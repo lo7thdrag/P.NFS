@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Imaging.pngimage,
-  System.Math, System.Types, System.UITypes, RzBmpBtn, VrControls, VrWheel, Generics.Collections;
+  System.Math, System.Types, System.UITypes, RzBmpBtn, VrControls, VrWheel, Generics.Collections,
+  uTCPDatatype;
 
 type
   TLayerItem = class
@@ -112,6 +113,11 @@ type
     procedure PntBxKolonkaPaint(Sender: TObject);
     procedure RzBmpBtnTrainingClick(Sender: TObject);
     procedure RzBmpBtnElevasiClick(Sender: TObject);
+    procedure RzBmpBtnFireClick(Sender: TObject);
+    procedure RzBmpBtnFireMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure RzBmpBtnFireMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
     FLayersKolonka, FLayersElevasi: TObjectList<TLayerItem>;
@@ -401,7 +407,6 @@ var
   ShipCallSign: string;
 begin
   Meriam57Manager := TMeriam57Manager.Create;
-  Meriam57Manager.InitializeSimulation;
 
   DoubleBuffered := True;
   pnlMonitor.DoubleBuffered := True;
@@ -441,6 +446,8 @@ begin
 
     Meriam57Manager.ServerIp := vBridgeServer.m2D_IP;
     Meriam57Manager.ServerPort := vBridgeServer.m2D_Port;
+
+    Meriam57Manager.InitializeSimulation;
 
     if DataModule1.InitZDB(vDbServer.mDBServer, vDbServer.mDBProto, vDbServer.mDBName, vDbServer.mDBUser, vDbServer.mDBPass, vDbServer.mDBPort) then
     begin
@@ -620,6 +627,7 @@ end;
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
   Meriam57Manager.FinalizeSimulation;
+  Meriam57Manager.Free;
 
   FLayersElevasi.Free;
   FBufferElevasi.Free;
@@ -787,6 +795,8 @@ begin
 
         PngIndikator.LoadFromFile(vPathImageSetting.ImgPath + 'indicator_readyON.png');
         ImgSTBYIndikator.Picture.Assign(PngIndikator);
+
+        RzBmpBtnFire.Enabled := True;
       end;
       11:
       begin
@@ -796,6 +806,8 @@ begin
 
         PngIndikator.LoadFromFile(vPathImageSetting.ImgPath + 'indicator_readyOFF.png');
         ImgSTBYIndikator.Picture.Assign(PngIndikator);
+
+        RzBmpBtnFire.Enabled := False;
       end;
     end;
   finally
@@ -945,13 +957,39 @@ begin
 end;
 
 procedure TForm1.RzBmpBtnElevasiClick(Sender: TObject);
+var
+  isValid : Boolean;
+  RecSend : TRec3DSetWCC;
+
+  CorrectBearing,
+  CorrectElev : Double;
 begin
-    if (StrToFloatDef(edtElevasi.Text, 0) <= 80 ) and (StrToFloatDef(edtElevasi.Text, 0) >= 0 )then
+  if (StrToFloatDef(edtElevasi.Text, 0) <= 80 ) and (StrToFloatDef(edtElevasi.Text, 0) >= 0 )then
   begin
     FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
     FTargetAngleElevasi := FMod(FTargetAngleElevasi, 360);
     if FTargetAngleElevasi < 0 then
       FTargetAngleElevasi := FTargetAngleElevasi + 360;
+
+    RecSend.ShipID          := Meriam57Manager.ShipID;
+    RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
+    RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+    Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
   end
   else if (StrToFloatDef(edtElevasi.Text, 0) >= 350 )then
   begin
@@ -959,10 +997,140 @@ begin
     FTargetAngleElevasi := FMod(FTargetAngleElevasi, 360);
     if FTargetAngleElevasi < 0 then
       FTargetAngleElevasi := FTargetAngleElevasi + 360;
+
+    RecSend.ShipID          := Meriam57Manager.ShipID;
+    RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
+    RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+    Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+  end;
+end;
+
+procedure TForm1.RzBmpBtnFireClick(Sender: TObject);
+var
+  isValid : Boolean;
+  RecSend : TRec3DSetWCC;
+
+  CorrectBearing,
+  CorrectElev : Double;
+begin
+  if not TryStrToFloat(edtElevasi.Text, CorrectElev) then isValid := false;
+  if not TryStrToFloat(edtTraining.Text, CorrectBearing) then isValid := False;
+
+  if isValid then
+  begin
+    RecSend.ShipID          := Meriam57Manager.ShipID;
+    RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := CorrectElev;
+    RecSend.mAutoCorrectBearing := CorrectBearing;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_F;
+    Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+  end;
+end;
+
+procedure TForm1.RzBmpBtnFireMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  isValid : Boolean;
+  RecSend : TRec3DSetWCC;
+
+  CorrectBearing,
+  CorrectElev : Double;
+begin
+  if not TryStrToFloat(edtElevasi.Text, CorrectElev) then isValid := false;
+  if not TryStrToFloat(edtTraining.Text, CorrectBearing) then isValid := False;
+
+  if isValid then
+  begin
+    RecSend.ShipID          := Meriam57Manager.ShipID;
+    RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := CorrectElev;
+    RecSend.mAutoCorrectBearing := CorrectBearing;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_START_F;
+    Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+  end;
+end;
+
+procedure TForm1.RzBmpBtnFireMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  isValid : Boolean;
+  RecSend : TRec3DSetWCC;
+
+  CorrectBearing,
+  CorrectElev : Double;
+begin
+  if not TryStrToFloat(edtElevasi.Text, CorrectElev) then isValid := false;
+  if not TryStrToFloat(edtTraining.Text, CorrectBearing) then isValid := False;
+
+  if isValid then
+  begin
+    RecSend.ShipID          := Meriam57Manager.ShipID;
+    RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := CorrectElev;
+    RecSend.mAutoCorrectBearing := CorrectBearing;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_STOP_F;
+    Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
   end;
 end;
 
 procedure TForm1.RzBmpBtnTrainingClick(Sender: TObject);
+var
+  isValid : Boolean;
+  RecSend : TRec3DSetWCC;
 begin
   if (StrToFloatDef(edtTraining.Text, 0) < Meriam57Manager.AssignedWeapon.ENDANGLE ) and (StrToFloatDef(edtTraining.Text, 0) > Meriam57Manager.AssignedWeapon.STARTANGLE )then
   begin
@@ -970,6 +1138,26 @@ begin
     FTargetAngleKolonka := FMod(FTargetAngleKolonka, 360);
     if FTargetAngleKolonka < 0 then
       FTargetAngleKolonka := FTargetAngleKolonka + 360;
+
+    RecSend.ShipID          := Meriam57Manager.ShipID;
+    RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
+    RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+    Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
   end;
 end;
 
