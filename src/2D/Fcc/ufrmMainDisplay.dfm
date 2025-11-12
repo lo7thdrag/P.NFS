@@ -1,7 +1,6 @@
 object frmMainFCC: TfrmMainFCC
   Left = 0
   Top = 0
-  ActiveControl = FltChkBxShootArea
   BorderStyle = bsNone
   Caption = 'FCC'
   ClientHeight = 1024
@@ -165,7 +164,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          0100011801000018D7160F010000006C906C771C000000000000000000000000
+          0100011801000088668231010000006C90B7771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -174,15 +173,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          01000018D7160F01000000881300C01C00000000000000000000000000000000
+          0100008866823101000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000060CB9700CD8AC1761F
-          00000000000000B08AC176A8176833FA35A4AFA0CB9700000000000000000000
+          000000000000000000000000000000000000000000000018F09700CD8ACE761F
+          00000000000000B08ACE76508B23318415A2A358F09700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object btnMapIncrement: TButton
@@ -274,73 +273,82 @@ object frmMainFCC: TfrmMainFCC
         TabOrder = 8
         OnClick = pnlMapRangeClick
       end
-      object FltChkBxTargetPara: TFlatCheckBox
-        Left = 672
-        Top = 12
-        Width = 130
+      object acbxDisRing: TAdvOfficeCheckBox
+        Tag = 1
+        Left = 697
+        Top = 47
+        Width = 120
         Height = 25
-        Caption = 'Target Para'
-        Color = clBlack
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clYellow
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
-        ParentColor = False
         ParentFont = False
         TabOrder = 9
-        TabStop = True
-      end
-      object FltChkBxDisRing: TFlatCheckBox
-        Left = 673
-        Top = 43
-        Width = 130
-        Height = 25
+        OnClick = acbxTargetParaClick
+        Alignment = taLeftJustify
         Caption = 'Dis Ring'
-        Color = clBlack
+        ReturnIsTab = False
+        Version = '1.6.1.0'
+      end
+      object acbxShootArea: TAdvOfficeCheckBox
+        Tag = 2
+        Left = 697
+        Top = 72
+        Width = 120
+        Height = 25
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clYellow
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
-        ParentColor = False
         ParentFont = False
         TabOrder = 10
-        TabStop = True
-      end
-      object FltChkBxShootArea: TFlatCheckBox
-        Left = 673
-        Top = 74
-        Width = 130
-        Height = 25
+        OnClick = acbxTargetParaClick
+        Alignment = taLeftJustify
         Caption = 'Shoot Area'
-        Color = clBlack
+        ReturnIsTab = False
+        Version = '1.6.1.0'
+      end
+      object acbxTrackerArea: TAdvOfficeCheckBox
+        Tag = 3
+        Left = 697
+        Top = 97
+        Width = 124
+        Height = 25
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clYellow
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
-        ParentColor = False
         ParentFont = False
         TabOrder = 11
-        TabStop = True
-      end
-      object FltChkBxTrackerArea: TFlatCheckBox
-        Left = 672
-        Top = 105
-        Width = 130
-        Height = 25
+        OnClick = acbxTargetParaClick
+        Alignment = taLeftJustify
         Caption = 'Tracker Area'
-        Color = clBlack
+        ReturnIsTab = False
+        Version = '1.6.1.0'
+      end
+      object acbxTargetPara: TAdvOfficeCheckBox
+        Left = 697
+        Top = 22
+        Width = 120
+        Height = 25
+        Checked = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clYellow
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
-        ParentColor = False
         ParentFont = False
         TabOrder = 12
-        TabStop = True
+        OnClick = acbxTargetParaClick
+        Alignment = taLeftJustify
+        Caption = 'Target Para'
+        ReturnIsTab = False
+        State = cbChecked
+        Version = '1.6.1.0'
       end
     end
     object pnlRightUpper: TPanel

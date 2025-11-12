@@ -8,7 +8,7 @@ uses
   System.ImageList, Vcl.ImgList,Vcl.OleCtrls, MapXLib_TLB, uBaseFunctionFCC, uObjectVisual,
   uCoordConverter, uMapXUnitConverter, system.math, TFlatCheckBoxUnit, uFccManager, uBridgeSet,
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
-  uRadarTargets;
+  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons;
 
 type
   TfrmMainFCC = class(TForm)
@@ -270,12 +270,12 @@ type
     lblMap1point5Km: TLabel;
     imgCompas: TImage;
     tmrUpdateForm: TTimer;
-    FltChkBxTargetPara: TFlatCheckBox;
-    FltChkBxDisRing: TFlatCheckBox;
-    FltChkBxShootArea: TFlatCheckBox;
-    FltChkBxTrackerArea: TFlatCheckBox;
     imgFcc1Image: TImage;
     tmrUpdateHeading: TTimer;
+    acbxDisRing: TAdvOfficeCheckBox;
+    acbxShootArea: TAdvOfficeCheckBox;
+    acbxTrackerArea: TAdvOfficeCheckBox;
+    acbxTargetPara: TAdvOfficeCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -289,6 +289,7 @@ type
     procedure tmrUpdateHeadingTimer(Sender: TObject);
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure acbxTargetParaClick(Sender: TObject);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -397,6 +398,28 @@ begin
   for I := 0 to WinControl.ControlCount - 1 do
     if WinControl.Controls[i] is TWinControl then
       EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
+
+procedure TfrmMainFCC.acbxTargetParaClick(Sender: TObject);
+begin
+  case TAdvOfficeCheckBox(Sender).Tag of
+    0: //target para
+    begin
+
+    end;
+    1: // dis range
+    begin
+      FRings.Visible := TAdvOfficeCheckBox(Sender).Checked;
+    end;
+    2: // shot area
+    begin
+      AreaPenembakan.Visible := TAdvOfficeCheckBox(Sender).Checked;
+    end;
+    3: // tracker area
+    begin
+      AreaTracker.Visible := TAdvOfficeCheckBox(Sender).Checked;
+    end;
+  end;
 end;
 
 procedure TfrmMainFCC.btnMapDecrementClick(Sender: TObject);
@@ -866,17 +889,11 @@ begin
 //  FRangeRing.Color := clWhite;
 
   FRings := TRadarRangeRings.Create;
+  acbxDisRing.Checked := FRings.Visible;
 
   // siapkan sectors (contoh sesuai gambar)
-//  SetLength(FSectors, 4);
-//  FSectors[0] := TRadarSector.Create(45, 30, RGB(255,60,80), True);   // merah bawah
-//  FSectors[1] := TRadarSector.Create(330, 360, RGB(255,60,80), True);   // merah kanan atas
-//  FSectors[2] := TRadarSector.Create(  0,  30, RGB(255,60,80), True);   // merah kiri atas
-//  FSectors[3] := TRadarSector.Create(345,  15, RGB(130,130,130), True); // abu depan
 
   // Blind zone: dua sektor
-  // contoh inisialisasi
-  Self.FCurrentRange := 3000; // 3 km
   AreaBlindZone := TRadarDynamicSector.Create;
   AreaBlindZone.Color := RGB(183,73,40);
   AreaBlindZone.AddSlice(30,45, 0.0, 48000.0); // center–3 km
@@ -894,9 +911,12 @@ begin
   AreaPenembakan.Color := RGB(53,80,75);
   AreaPenembakan.AddSlice(45,315, 0.0, 6500.0); // dari 1–3 km
 
+  acbxShootArea.Checked := AreaPenembakan.Visible;
+
   AreaTracker := TRadarDynamicSector.Create;
   AreaTracker.Color := RGB(32,70,145);
   AreaTracker.AddSlice(45,315, 6500.0, 17000.0); // dari 1–3 km
+  acbxTrackerArea.Checked := AreaTracker.Visible;
 
   FNorthInd := TRadarNorthIndicator.Create;
 
@@ -914,6 +934,12 @@ begin
   T := TargetMgr.AddTarget(112.760, -7.210);
   T.CircleRadius := 3;                       // fallback circle
   T.TrackLabel   := '002';
+
+  T := TargetMgr.AddTarget(112.771, -7.210);
+  T.LoadBitmapFromFile('.\data\Bitmap\AirUnknown.bmp');
+  T.BitmapTintColor := clYellow;
+  t.BitmapTintAlpha := 128;
+  T.TrackLabel   := '003';
 
   n := ParamCount ;
   if n < max_param then
@@ -1126,6 +1152,9 @@ begin
 
   lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
 
+  edtNavDataLAT.Text := FormatFloat('0.000', FCCManager.xShip.PositionY);
+  edtNavDataLON.Text := FormatFloat('0.000', FCCManager.xShip.PositionX);
+
   if not FCCManager.IsTrueMotion then begin
     Fmap.CenterX := FCCManager.xShip.PositionX;
     Fmap.CenterY := FCCManager.xShip.PositionY;
@@ -1140,7 +1169,20 @@ begin
 end;
 
 procedure TfrmMainFCC.tmrUpdateHeadingTimer(Sender: TObject);
+var
+  i : Integer;
+  RandomDeltaX,RandomDeltaY : Double;
 begin
+//  for i := 0 to TargetMgr.Count - 1 do
+//  begin
+//    RandomDeltaX := RandomRange(0, 1 + 1) * 0.01;
+//    RandomDeltaY := RandomRange(0, 1 + 1) * 0.01;
+//
+//    TargetMgr.Items(i).MapX := TargetMgr.Items(i).MapX + RandomDeltaX;
+//    TargetMgr.Items(i).MapY := TargetMgr.Items(i).MapY + RandomDeltaY;
+//  end;
+//  FMap.Refresh;
+
   if Assigned(FCCManager) then
   begin
     if Assigned(FCCManager.xShip) then

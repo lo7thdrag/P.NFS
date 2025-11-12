@@ -7,6 +7,11 @@ uses
   uCoordConverter;
 
 type
+  PRGBQuad = ^TRGBQuad;
+  TRGBQuad = packed record
+    B, G, R, A: Byte;
+  end;
+
   TRadarTargetSymbol = class
   private
     // map position
@@ -40,6 +45,9 @@ type
     FTrackLabel     : string;
     FTrackFontColor : TColor;
     FTrackFontSize  : Integer;
+    FLastBounds: TRect;
+    FBitmapTintAlpha: Byte;
+    FBitmapTintColor: TColor; // cache bounds terakhir (untuk hit-test tanpa Canvas)
 
     procedure UpdateScreenPos;
     procedure SetSelected(const Value: Boolean);
@@ -61,6 +69,7 @@ type
     // Bitmap
     procedure LoadBitmapFromFile(const AFileName: string);
     procedure ClearBitmap;
+    procedure TintBitmap(const Src: TBitmap; AColor: TColor; Alpha: Byte);
 
     // Font symbol
     procedure SetFontSymbol(const AFontName: string; AChar: WideChar;
@@ -89,6 +98,9 @@ type
 
     // gambar satu target
     procedure Draw(ACanvas: TCanvas);
+
+    property BitmapTintColor: TColor read FBitmapTintColor write FBitmapTintColor;
+    property BitmapTintAlpha: Byte read FBitmapTintAlpha write FBitmapTintAlpha;
   end;
 
 
@@ -120,8 +132,98 @@ type
 
 implementation
 
-{ TRadarTargetSymbol }
+// warna Delphi -> komponen RGB
+procedure SplitRGB(C: TColor; out R,G,B: Byte);
+begin
+  C := ColorToRGB(C);
+  R := GetRValue(C); G := GetGValue(C); B := GetBValue(C);
+end;
 
+// Semua piksel yang "hitam" → diwarnai TintColor + alpha=255
+// Piksel selain hitam → alpha=0 (transparan)
+// Tolerance 0..255 (contoh 8..16) agar "nyaris hitam" ikut diwarnai.
+procedure TintBlackAndMakeOthersTransparent(var Bmp: TBitmap; TintColor: TColor; Tolerance: Byte = 8);
+var
+  x, y: Integer;
+  p: PRGBQuad;
+  r, g, b: Byte;
+  tr, tg, tb: Byte;
+begin
+  if (Bmp.Width = 0) or (Bmp.Height = 0) then Exit;
+  Bmp.PixelFormat := pf32bit;
+
+  SplitRGB(TintColor, tr, tg, tb);
+
+  for y := 0 to Bmp.Height - 1 do
+  begin
+    p := Bmp.ScanLine[y];
+    for x := 0 to Bmp.Width - 1 do
+    begin
+      r := p^.R; g := p^.G; b := p^.B;
+
+      // "Hitam" jika semua channel <= tolerance
+      if (r <= Tolerance) and (g <= Tolerance) and (b <= Tolerance) then
+      begin
+        // warnai sesuai TintColor dan buat terlihat
+        p^.R := tr;
+        p^.G := tg;
+        p^.B := tb;
+        p^.A := $FF;     // fully opaque
+      end
+      else
+      begin
+        // bukan hitam → jadikan transparan
+        p^.A := 0;
+        // (opsional) nolkan RGB supaya aman
+        p^.R := 0; p^.G := 0; p^.B := 0;
+      end;
+
+      Inc(p);
+    end;
+  end;
+end;
+
+procedure PremultiplyAlpha(var Bmp: TBitmap);
+var
+  x,y: Integer;
+  p: PRGBQuad;
+  a: Integer;
+begin
+  if (Bmp.Width=0) or (Bmp.Height=0) then Exit;
+  Bmp.PixelFormat := pf32bit;
+  // Jika Delphi modern, ini cukup:
+  {$IF CompilerVersion >= 20.0}
+  Bmp.AlphaFormat := afPremultiplied;
+  {$ELSE}
+  for y := 0 to Bmp.Height-1 do
+  begin
+    p := Bmp.ScanLine[y];
+    for x := 0 to Bmp.Width-1 do
+    begin
+      a := p^.A;
+      p^.R := (p^.R * a) div 255;
+      p^.G := (p^.G * a) div 255;
+      p^.B := (p^.B * a) div 255;
+      Inc(p);
+    end;
+  end;
+  {$IFEND}
+end;
+
+procedure DrawBitmapWithAlpha(ACanvas: TCanvas; X, Y: Integer; Src: TBitmap);
+var
+  bf: BLENDFUNCTION;
+begin
+  PremultiplyAlpha(Src);
+  bf.BlendOp := AC_SRC_OVER;
+  bf.BlendFlags := 0;
+  bf.SourceConstantAlpha := 255;    // gunakan alpha per-pixel
+  bf.AlphaFormat := AC_SRC_ALPHA;   // penting!
+  AlphaBlend(ACanvas.Handle, X, Y, Src.Width, Src.Height,
+             Src.Canvas.Handle, 0, 0, Src.Width, Src.Height, bf);
+end;
+
+{ TRadarTargetSymbol }
 constructor TRadarTargetSymbol.Create;
 begin
   inherited Create;
@@ -152,6 +254,10 @@ begin
   FTrackLabel     := '';
   FTrackFontColor := clWhite;
   FTrackFontSize  := 8;
+  FLastBounds := Rect(0,0,0,0);
+
+  FBitmapTintColor := clNone;
+  FBitmapTintAlpha := 0;
 end;
 
 destructor TRadarTargetSymbol.Destroy;
@@ -165,6 +271,24 @@ begin
   FSelected := Value;
 end;
 
+procedure TRadarTargetSymbol.TintBitmap(const Src: TBitmap; AColor: TColor;
+  Alpha: Byte);
+var
+  BlendFunc: BLENDFUNCTION;
+  DC: HDC;
+  R: TRect;
+begin
+  DC := Src.Canvas.Handle;
+  R := Rect(0, 0, Src.Width, Src.Height);
+  BlendFunc.BlendOp := AC_SRC_OVER;
+  BlendFunc.BlendFlags := 0;
+  BlendFunc.SourceConstantAlpha := Alpha;
+  BlendFunc.AlphaFormat := 0;
+  Src.Canvas.Brush.Color := AColor;
+  AlphaBlend(DC, 0, 0, Src.Width, Src.Height,
+             DC, 0, 0, Src.Width, Src.Height, BlendFunc);
+end;
+
 procedure TRadarTargetSymbol.LoadBitmapFromFile(const AFileName: string);
 begin
   FUseBitmap := False;
@@ -173,7 +297,11 @@ begin
   if (AFileName <> '') and FileExists(AFileName) then
   try
     FBitmap.LoadFromFile(AFileName);
+//    TintBitmap(FBitmap, clLime, 128); // lapisi hijau transparan 50%
     FBitmap.Transparent := True;
+    // warnai hanya piksel hitam:
+//    TintBlackPixelsOnly(FBitmap, clLime, 56, 255, True);
+//    TintBlackPixelsOnly_NoAlphaSkip(FBitmap, clLime, 56, 255, True);
     FUseBitmap := (FBitmap.Width > 0) and (FBitmap.Height > 0);
   except
     FUseBitmap := False;
@@ -225,16 +353,45 @@ var
 begin
   UpdateScreenPos;
 
+  // Jika tidak ada Canvas, pakai cache terakhir (kalau ada)
+  if ACanvas = nil then
+  begin
+    if not IsRectEmpty(FLastBounds) then
+      Exit(FLastBounds);
+
+    // Fallback estimasi awal (sebelum pernah di-Draw):
+    if FUseBitmap and (FBitmap.Width > 0) and (FBitmap.Height > 0) then
+    begin
+      w := FBitmap.Width; h := FBitmap.Height;
+      Result := Rect(FScreenX - w div 2, FScreenY - h div 2,
+                     FScreenX + w div 2, FScreenY + h div 2);
+    end
+    else if FUseFont then
+    begin
+      // Estimasi kasar jika belum pernah diukur:
+      // lebar ≈ 0.6*FontSize, tinggi ≈ 1.2*FontSize
+      w := Max(6, Round(0.6 * FFontSize));
+      h := Max(6, Round(1.2 * FFontSize));
+      Result := Rect(FScreenX - w div 2, FScreenY - h div 2,
+                     FScreenX + w div 2, FScreenY + h div 2);
+    end
+    else
+    begin
+      r := Max(2, FCircleRadius);
+      Result := Rect(FScreenX - r, FScreenY - r,
+                     FScreenX + r, FScreenY + r);
+    end;
+
+    InflateRect(Result, 2, 2);
+    Exit;
+  end;
+
+  // ------ Mode dengan Canvas (ukur akurat) ------
   if FUseBitmap and (FBitmap.Width > 0) and (FBitmap.Height > 0) then
   begin
-    w := FBitmap.Width;
-    h := FBitmap.Height;
-    Result := Rect(
-      FScreenX - w div 2,
-      FScreenY - h div 2,
-      FScreenX + w div 2,
-      FScreenY + h div 2
-    );
+    w := FBitmap.Width; h := FBitmap.Height;
+    Result := Rect(FScreenX - w div 2, FScreenY - h div 2,
+                   FScreenX + w div 2, FScreenY + h div 2);
   end
   else if FUseFont then
   begin
@@ -243,28 +400,20 @@ begin
     s := FFontChar;
     w := ACanvas.TextWidth(s);
     h := ACanvas.TextHeight(s);
-    Result := Rect(
-      FScreenX - w div 2,
-      FScreenY - h div 2,
-      FScreenX + w div 2,
-      FScreenY + h div 2
-    );
+    Result := Rect(FScreenX - w div 2, FScreenY - h div 2,
+                   FScreenX + w div 2, FScreenY + h div 2);
   end
   else
   begin
-    r := FCircleRadius;
-    if r < 2 then r := 2;
-    Result := Rect(
-      FScreenX - r,
-      FScreenY - r,
-      FScreenX + r,
-      FScreenY + r
-    );
+    r := Max(2, FCircleRadius);
+    Result := Rect(FScreenX - r, FScreenY - r,
+                   FScreenX + r, FScreenY + r);
   end;
 
-  // tambahkan sedikit padding supaya klik lebih mudah
   InflateRect(Result, 2, 2);
 end;
+
+
 
 function TRadarTargetSymbol.HitTest(ACanvas: TCanvas; X, Y: Integer): Boolean;
 var
@@ -281,6 +430,7 @@ var
   s: UnicodeString;
   w, h, rad: Integer;
   txtX, txtY: Integer;
+  work : TBitmap;
 begin
   if not FVisible then Exit;
 
@@ -288,16 +438,51 @@ begin
 
   // hitung bounds simbol (untuk label & kotak select)
   R := GetBounds(ACanvas);
+  FLastBounds := R; // <-- cache untuk SelectAt tanpa Canvas
 
   // ====== gambar simbol ======
 
   if FUseBitmap and (FBitmap.Width > 0) and (FBitmap.Height > 0) then
   begin
-    ACanvas.Draw(
-      FScreenX - FBitmap.Width div 2,
-      FScreenY - FBitmap.Height div 2,
-      FBitmap
-    );
+//    ACanvas.Draw(
+//      FScreenX - FBitmap.Width div 2,
+//      FScreenY - FBitmap.Height div 2,
+//      FBitmap
+//    );
+//
+//    if (FBitmapTintColor <> clNone) and (FBitmapTintAlpha > 0) then
+//      TintBitmap(FBitmap, FBitmapTintColor, FBitmapTintAlpha);
+
+// buat salinan kerja agar sumber asli tidak berubah
+    Work := TBitmap.Create;
+    try
+      Work.Assign(FBitmap);
+      Work.PixelFormat := pf32bit;
+
+      // Warnai semua hitam → FBitmapTintColor, selain hitam transparan
+      // (atur toleransi sesuai ikonmu; 8–16 biasanya pas untuk anti-alias)
+      TintBlackAndMakeOthersTransparent(Work, FBitmapTintColor, 12);
+
+      // Gambar dengan per-pixel alpha
+      DrawBitmapWithAlpha(ACanvas,
+        FScreenX - Work.Width div 2,
+        FScreenY - Work.Height div 2,
+        Work);
+
+//      // contoh pewarnaan: kuning saat selected, hijau saat normal
+//      if FSelected then
+//        TintBlackPixelsOnly_NoAlphaSkip(Work, clYellow, 56, 255, True)
+//      else
+//        TintBlackPixelsOnly_NoAlphaSkip(Work, FBitmapTintColor,   56, FBitmapTintAlpha, True);
+
+//      ACanvas.Draw(
+//        FScreenX - Work.Width div 2,
+//        FScreenY - Work.Height div 2,
+//        Work
+//      );
+    finally
+      Work.Free;
+    end;
   end
   else if FUseFont then
   begin
@@ -462,11 +647,11 @@ begin
 
 //      if Assigned(R) then
 //      begin
-        if PtInRect(R, Point(X, Y)) then
-        begin
-          Hit := T;
-          Break;
-        end;
+          if PtInRect(R, Point(X, Y)) then
+          begin
+            Hit := T;
+            Break;
+          end;
 //      end;
     end;
   end;
