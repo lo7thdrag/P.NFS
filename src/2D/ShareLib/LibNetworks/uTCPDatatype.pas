@@ -634,6 +634,27 @@ type
   end;
 
   // REC_CANNON             = 7;  ----------------------------------------
+  TRec3DSetAK230 = record
+   pc               : TPacketCheck;
+
+   ShipID          : word;
+   mWeaponID       : Word; //Diisi sesuai Database
+   mLauncherID     : word;
+   mMissileID      : word;
+   mMissileNumber  : Word; //Diisi 0 aj...nanti instruktur yang ngisi ulang
+   mOrderID        : byte;
+
+   mTargetID       : Word; // Added by bagoes
+   mModeID         : Word; // ModeID
+
+   mUpDown              : Single;
+   mAutoCorrectElev     : Single;
+   mAutoCorrectBearing  : Single;
+
+   mBalistikID    : Word;
+   mSalvoRate     : Word;
+  end;
+
   TRec3DSetWCC = record
    pc               : TPacketCheck;
 
@@ -2218,6 +2239,7 @@ const
   C_DBID_CANNON76                 = 14;
   C_DBID_CANNON120                = 15;
   C_DBID_MOCCONSOLE               = 16;
+  C_DBID_CANNON30                 = 17;
 
   C_TIPEID_MISSILE = 1;
   C_TIPEID_ROCKET  = 2;
