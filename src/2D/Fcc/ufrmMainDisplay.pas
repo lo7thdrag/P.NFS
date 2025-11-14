@@ -20,180 +20,7 @@ type
     pnlINDData: TPanel;
     pnlNavData: TPanel;
     pnlWeatherData: TPanel;
-    pnlFCC: TPanel;
-    pnlTracker: TPanel;
-    pnlBite: TPanel;
-    pnlFCCHeader: TPanel;
-    pnlFCCBottom: TPanel;
-    pnlButtonCtrl: TPanel;
-    pnlLocalState: TPanel;
-    pnlLocalStateHeader: TPanel;
-    pnlSysCtrl: TPanel;
-    pnlCombatLs: TPanel;
-    pnlWaitLs: TPanel;
-    pnlTrLs: TPanel;
-    pnlCtrlCmd: TPanel;
-    pnlCtrlCmdHeader: TPanel;
-    pnlCombatCtrl: TPanel;
-    pnlWaitCtrl: TPanel;
-    pnlCtrl: TPanel;
-    pnlFireForbid: TPanel;
-    pnlCalData: TPanel;
-    pnlCalDataHeader: TPanel;
-    pnlLast: TPanel;
-    pnlLastHeader: TPanel;
-    pnlSum: TPanel;
-    pnlSumHeader: TPanel;
-    pnlCtrlData: TPanel;
-    pnlCtrlDataHeader: TPanel;
-    pnlCtrlState: TPanel;
-    pnlCtrlStateHeader: TPanel;
-    pnlGunData: TPanel;
-    pnlGunPointAngel: TPanel;
-    pnlGunPointAngelHeader: TPanel;
-    pnlGunState: TPanel;
-    pnlGunStateHeader: TPanel;
-    pnlGunParameter: TPanel;
-    pnlGunParameterHeader: TPanel;
-    pnlTrackerHeader: TPanel;
-    pnlBiteHeader: TPanel;
-    pnlTrackerBottom: TPanel;
-    pnlBiteBottom: TPanel;
-    pnlGpDrum: TPanel;
-    pnlGpType: TPanel;
-    pnlGpRate: TPanel;
-    pnlGpPr: TPanel;
-    pnlGpRr: TPanel;
-    pnlGpMv: TPanel;
-    pnlGpTime: TPanel;
-    lblGpDrum: TLabel;
-    lblGpType: TLabel;
-    lblGpRate: TLabel;
-    lblGpPr: TLabel;
-    lblGpRr: TLabel;
-    lblGpMv: TLabel;
-    lblGpTime: TLabel;
-    lblSatuanMv: TLabel;
-    lblSatuanTime: TLabel;
-    edtGpABE: TEdit;
-    edtGpaEL: TEdit;
-    lblGpaBE: TLabel;
-    lblGpaEL: TLabel;
-    lblLastDeltaBE: TLabel;
-    edtLastDeltaBE: TEdit;
-    edtLastDeltaEL: TEdit;
-    lblLastDeltaEL: TLabel;
-    edtLastDeltaD: TEdit;
-    lblLastDeltaD: TLabel;
-    lblLastSatuanDeltaBE: TLabel;
-    lblLastSatuanDeltaEL: TLabel;
-    lblLastSatuanDeltaD: TLabel;
-    lblSumDeltaBE: TLabel;
-    edtSumDeltaBe: TEdit;
-    lblSumSatuanDeltaBe: TLabel;
-    lblSumDeltaEL: TLabel;
-    edtSumDeltaEL: TEdit;
-    lblSumSatualDeltaEL: TLabel;
-    LblSumDeltaD: TLabel;
-    edtSumDeltaD: TEdit;
-    lblSumSatuanDeltaD: TLabel;
-    lblGpaSatuanBE: TLabel;
-    lblGpaSatuanEL: TLabel;
-    edtCtrlDataBE: TEdit;
-    edtCtrlDataEL: TEdit;
-    lblCtrlDataBE: TLabel;
-    lblCtrlDataEL: TLabel;
-    lblCtrlDataSatuanBE: TLabel;
-    lblCtrlDataSatuanEL: TLabel;
-    lblCtrlDataBeInc: TLabel;
-    edtCtrlDataBeInc: TEdit;
-    lblCtrlDataSatuanBeInc: TLabel;
-    LblCtrlDataELInc: TLabel;
-    edtCtrlDataElInc: TEdit;
-    lblCtrlDataSatuanELInc: TLabel;
-    lblCtrlDataBeS: TLabel;
-    edtCtrlDataBeS: TEdit;
-    lblCtrlDataSatuanBeS: TLabel;
-    lblCtrlDataElS: TLabel;
-    edtCtrlDataElS: TEdit;
-    lblCtrlDataSatuanElS: TLabel;
-    pnlTrackerData: TPanel;
-    lblTrdBE: TLabel;
-    lblTrdEL: TLabel;
-    lblTrdSatuanBE: TLabel;
-    lblTrdSatuanEL: TLabel;
-    lblTrdD: TLabel;
-    lblTrdSatuanD: TLabel;
-    lblTrdDeltaBE: TLabel;
-    lblTrdSatuanDeltaBE: TLabel;
-    lblTrdDeltaEL: TLabel;
-    lblTrdSatuanDeltaEL: TLabel;
-    pnlTrackerDataHeader: TPanel;
-    edtTrdBE: TEdit;
-    edtTrdEL: TEdit;
-    edtTrdD: TEdit;
-    edtTrdDeltaBE: TEdit;
-    edtTrdDeltaEL: TEdit;
-    pnlTrackerState: TPanel;
-    pnlTrackerStateHeader: TPanel;
-    edtTrsLocalCtrl: TEdit;
-    edtTrsCombat: TEdit;
-    edtTrsWait: TEdit;
-    edtTrsLost: TEdit;
-    edtTrsAuto: TEdit;
-    edtTrsTvChannel: TEdit;
-    edtTrsTurnOn: TEdit;
-    pnlBiteControl: TPanel;
-    pnlBiteBottomTime: TPanel;
-    lblBiteOperating: TLabel;
-    lblBiteSystem: TLabel;
-    lblBiteTimeOperating: TLabel;
-    lblBiteTimeSystem: TLabel;
-    lblBiteTimeOperatingValue: TLabel;
-    lblBiteTimeSystemValue: TLabel;
-    pnlBiteDvcState: TPanel;
-    lblBiteDvcStateHeader: TPanel;
-    pnlBiteChooseDvc: TPanel;
-    lblBiteChooseDvc: TPanel;
-    btnBiteChooseDvcFCC: TButton;
-    btnBiteChooseDvc730B: TButton;
     imgListLight: TImageList;
-    imgBiteDvcStateFCC: TImage;
-    imgBiteDvcState730B: TImage;
-    imgBiteDvcStateEO: TImage;
-    imgBiteDvcStateTR: TImage;
-    imgBiteDvcStateTCC: TImage;
-    imgBiteDvcStateSIE: TImage;
-    imgBiteDvcStateSR: TImage;
-    lblBiteDvcStateFcc: TLabel;
-    lblBiteDvcState730B: TLabel;
-    lblBiteDvcStateEO: TLabel;
-    lblBiteDvcStateTr: TLabel;
-    lblBiteDvcStateTCC: TLabel;
-    lblBiteDvcStateSIE: TLabel;
-    lblBiteDvcStateSR: TLabel;
-    imgCtrlStateTracked: TImage;
-    imgCtrlStateDataReady: TImage;
-    imgCtrlStateFCC: TImage;
-    imgCtrlStateFireAllow: TImage;
-    imgCtrlStateFiring: TImage;
-    imgCtrlStateLimitZone: TImage;
-    imgCtrlStateAimed: TImage;
-    lblCtrlStateTracked: TLabel;
-    lblCtrlStateDataReady: TLabel;
-    lblCtrlStateFCC: TLabel;
-    lblCtrlStateFireAllow: TLabel;
-    lblCtrlStateFiring: TLabel;
-    lblCtrlStateLimitZone: TLabel;
-    lblCtrlStateAimed: TLabel;
-    lblGunStateCtrlBy: TLabel;
-    imgGunStateCtrlBy: TImage;
-    lblGunStateServo: TLabel;
-    imgGunStateServo: TImage;
-    lblGunStateFC: TLabel;
-    imgGunStateFC: TImage;
-    lblGunStateReturnZero: TLabel;
-    imgGunStateReturnZero: TImage;
     pnlIndDataHeader: TPanel;
     pnlNavDataHeader: TPanel;
     pnlWeatherDataHeader: TPanel;
@@ -278,6 +105,343 @@ type
     acbxTargetPara: TAdvOfficeCheckBox;
     lblMapLat: TLabel;
     lblMapLon: TLabel;
+    pnlLowRight: TPanel;
+    pnlLowLeft: TPanel;
+    pnlBite: TPanel;
+    pnlBiteHeader: TPanel;
+    pnlBiteBottom: TPanel;
+    pnlBiteControl: TPanel;
+    pnlBiteBottomTime: TPanel;
+    lblBiteOperating: TLabel;
+    lblBiteSystem: TLabel;
+    lblBiteTimeOperating: TLabel;
+    lblBiteTimeSystem: TLabel;
+    lblBiteTimeOperatingValue: TLabel;
+    lblBiteTimeSystemValue: TLabel;
+    pnlTracker: TPanel;
+    pnlTrackerHeader: TPanel;
+    pnlTrackerBottom: TPanel;
+    pnlFCC1: TPanel;
+    pnlFCCHeader: TPanel;
+    pnlFCCBottom: TPanel;
+    pnlButtonCtrl: TPanel;
+    pnlLocalState: TPanel;
+    pnlLocalStateHeader: TPanel;
+    pnlSysCtrl: TPanel;
+    pnlCombatLs: TPanel;
+    pnlWaitLs: TPanel;
+    pnlTrLs: TPanel;
+    pnlCtrlCmd: TPanel;
+    pnlCtrlCmdHeader: TPanel;
+    pnlCombatCtrl: TPanel;
+    pnlWaitCtrl: TPanel;
+    pnlCtrl: TPanel;
+    pnlFireForbid: TPanel;
+    pnlCalData: TPanel;
+    pnlCalDataHeader: TPanel;
+    pnlLast: TPanel;
+    lblLastDeltaBE: TLabel;
+    lblLastDeltaEL: TLabel;
+    lblLastDeltaD: TLabel;
+    lblLastSatuanDeltaBE: TLabel;
+    lblLastSatuanDeltaEL: TLabel;
+    lblLastSatuanDeltaD: TLabel;
+    pnlLastHeader: TPanel;
+    edtLastDeltaBE: TEdit;
+    edtLastDeltaEL: TEdit;
+    edtLastDeltaD: TEdit;
+    pnlSum: TPanel;
+    lblSumDeltaBE: TLabel;
+    lblSumSatuanDeltaBe: TLabel;
+    lblSumDeltaEL: TLabel;
+    lblSumSatualDeltaEL: TLabel;
+    LblSumDeltaD: TLabel;
+    lblSumSatuanDeltaD: TLabel;
+    pnlSumHeader: TPanel;
+    edtSumDeltaBe: TEdit;
+    edtSumDeltaEL: TEdit;
+    edtSumDeltaD: TEdit;
+    pnlCtrlData: TPanel;
+    lblCtrlDataBE: TLabel;
+    lblCtrlDataEL: TLabel;
+    lblCtrlDataSatuanBE: TLabel;
+    lblCtrlDataSatuanEL: TLabel;
+    lblCtrlDataBeInc: TLabel;
+    lblCtrlDataSatuanBeInc: TLabel;
+    LblCtrlDataELInc: TLabel;
+    lblCtrlDataSatuanELInc: TLabel;
+    lblCtrlDataBeS: TLabel;
+    lblCtrlDataSatuanBeS: TLabel;
+    lblCtrlDataElS: TLabel;
+    lblCtrlDataSatuanElS: TLabel;
+    pnlCtrlDataHeader: TPanel;
+    edtCtrlDataBE: TEdit;
+    edtCtrlDataEL: TEdit;
+    edtCtrlDataBeInc: TEdit;
+    edtCtrlDataElInc: TEdit;
+    edtCtrlDataBeS: TEdit;
+    edtCtrlDataElS: TEdit;
+    pnlCtrlState: TPanel;
+    imgCtrlStateTracked: TImage;
+    imgCtrlStateDataReady: TImage;
+    imgCtrlStateFCC: TImage;
+    imgCtrlStateFireAllow: TImage;
+    imgCtrlStateFiring: TImage;
+    imgCtrlStateLimitZone: TImage;
+    imgCtrlStateAimed: TImage;
+    lblCtrlStateTracked: TLabel;
+    lblCtrlStateDataReady: TLabel;
+    lblCtrlStateFCC: TLabel;
+    lblCtrlStateFireAllow: TLabel;
+    lblCtrlStateFiring: TLabel;
+    lblCtrlStateLimitZone: TLabel;
+    lblCtrlStateAimed: TLabel;
+    pnlCtrlStateHeader: TPanel;
+    pnlGunData: TPanel;
+    pnlGunPointAngel: TPanel;
+    lblGpaBE: TLabel;
+    lblGpaEL: TLabel;
+    lblGpaSatuanBE: TLabel;
+    lblGpaSatuanEL: TLabel;
+    pnlGunPointAngelHeader: TPanel;
+    edtGpABE: TEdit;
+    edtGpaEL: TEdit;
+    pnlGunState: TPanel;
+    lblGunStateCtrlBy: TLabel;
+    imgGunStateCtrlBy: TImage;
+    lblGunStateServo: TLabel;
+    imgGunStateServo: TImage;
+    lblGunStateFC: TLabel;
+    imgGunStateFC: TImage;
+    lblGunStateReturnZero: TLabel;
+    imgGunStateReturnZero: TImage;
+    pnlGunStateHeader: TPanel;
+    pnlGunParameter: TPanel;
+    pnlGunParameterHeader: TPanel;
+    pnlFCC2: TPanel;
+    pnlFCC2Header: TPanel;
+    pnlFCC2Bottom: TPanel;
+    pnlFCC12: TPanel;
+    pnlFCC13: TPanel;
+    pnlLocalStateHeader1: TPanel;
+    pnlSysCtrl1: TPanel;
+    pnlCombatLs1: TPanel;
+    pnlWaitLs1: TPanel;
+    pnlTrLs1: TPanel;
+    pnlCtrlCmd1: TPanel;
+    pnlCtrlCmdHeader1: TPanel;
+    pnlCombatCtrl1: TPanel;
+    pnlWaitCtrl1: TPanel;
+    pnlCtrl1: TPanel;
+    pnlFireForbid1: TPanel;
+    pnlCalData1: TPanel;
+    pnlCalDataHeader1: TPanel;
+    pnlLast1: TPanel;
+    lblLastDeltaBE1: TLabel;
+    lblLastDeltaEL1: TLabel;
+    lblLastDeltaD1: TLabel;
+    lblLastSatuanDeltaBE1: TLabel;
+    lblLastSatuanDeltaEL1: TLabel;
+    lblLastSatuanDeltaD1: TLabel;
+    pnlLastHeader1: TPanel;
+    edtLastDeltaBE1: TEdit;
+    edtLastDeltaEL1: TEdit;
+    edtLastDeltaD1: TEdit;
+    pnlSum1: TPanel;
+    lblSumDeltaBE1: TLabel;
+    lblSumSatuanDeltaBe1: TLabel;
+    lblSumDeltaEL1: TLabel;
+    lblSumSatualDeltaEL1: TLabel;
+    lbl1: TLabel;
+    lblSumSatuanDeltaD1: TLabel;
+    pnlSumHeader1: TPanel;
+    edtSumDeltaBe1: TEdit;
+    edtSumDeltaEL1: TEdit;
+    edtSumDeltaD1: TEdit;
+    pnlCtrlData1: TPanel;
+    lblCtrlDataBE1: TLabel;
+    lblCtrlDataEL1: TLabel;
+    lblCtrlDataSatuanBE1: TLabel;
+    lblCtrlDataSatuanEL1: TLabel;
+    lblCtrlDataBeInc1: TLabel;
+    lblCtrlDataSatuanBeInc1: TLabel;
+    lbl2: TLabel;
+    lblCtrlDataSatuanELInc1: TLabel;
+    lblCtrlDataBeS1: TLabel;
+    lblCtrlDataSatuanBeS1: TLabel;
+    lblCtrlDataElS1: TLabel;
+    lblCtrlDataSatuanElS1: TLabel;
+    pnlCtrlDataHeader1: TPanel;
+    edtCtrlDataBE1: TEdit;
+    edtCtrlDataEL1: TEdit;
+    edtCtrlDataBeInc1: TEdit;
+    edtCtrlDataElInc1: TEdit;
+    edtCtrlDataBeS1: TEdit;
+    edtCtrlDataElS1: TEdit;
+    pnlCtrlState1: TPanel;
+    imgCtrlStateTrackedFCC2: TImage;
+    imgCtrlStateDataReadyFCC2: TImage;
+    imgCtrlStateFCC2: TImage;
+    imgCtrlStateFireAllowFCC2: TImage;
+    imgCtrlStateFiringFCC2: TImage;
+    imgCtrlStateLimitZoneFCC2: TImage;
+    imgCtrlStateAimedFCC2: TImage;
+    lblCtrlStateTracked1: TLabel;
+    lblCtrlStateDataReady1: TLabel;
+    lblCtrlStateFCC1: TLabel;
+    lblCtrlStateFireAllow1: TLabel;
+    lblCtrlStateFiring1: TLabel;
+    lblCtrlStateLimitZone1: TLabel;
+    lblCtrlStateAimed1: TLabel;
+    pnlCtrlStateHeader1: TPanel;
+    pnlGunData1: TPanel;
+    pnlFCC14: TPanel;
+    lblGpaBE1: TLabel;
+    lblGpaEL1: TLabel;
+    lblGpaSatuanBE1: TLabel;
+    lblGpaSatuanEL1: TLabel;
+    pnlGunPointAngelHeader1: TPanel;
+    edtGpABE1: TEdit;
+    edtGpaEL1: TEdit;
+    pnlGunState1: TPanel;
+    lblGunStateCtrlBy1: TLabel;
+    imgGunStateCtrlByFCC2: TImage;
+    lblGunStateServo1: TLabel;
+    imgGunStateServoFCC2: TImage;
+    lblGunStateFC1: TLabel;
+    imgGunStateFCFCC2: TImage;
+    lblGunStateReturnZero1: TLabel;
+    imgGunStateReturnZeroFCC2: TImage;
+    pnlGunStateHeader1: TPanel;
+    pnlGunParameter1: TPanel;
+    pnlGunParameterHeader1: TPanel;
+    lblGpDrum: TLabel;
+    pnlGpDrum: TPanel;
+    pnlGpType: TPanel;
+    lblGpType: TLabel;
+    lblGpRate: TLabel;
+    pnlGpRate: TPanel;
+    lblGpPr: TLabel;
+    pnlGpPr: TPanel;
+    lblGpRr: TLabel;
+    pnlGpRr: TPanel;
+    lblGpMv: TLabel;
+    pnlGpMv: TPanel;
+    lblGpTime: TLabel;
+    pnlGpTime: TPanel;
+    lblSatuanMv: TLabel;
+    lblSatuanTime: TLabel;
+    pnlBaseLow: TPanel;
+    pnlBaseHigh: TPanel;
+    pnlLowtHeader: TPanel;
+    pnlHigHeader: TPanel;
+    lblPRLow: TLabel;
+    lblLowPR: TLabel;
+    lblLowRR: TLabel;
+    edtLowPR: TEdit;
+    edtLowRR: TEdit;
+    edtHighPR: TEdit;
+    lblHighPR: TLabel;
+    lblHighRR: TLabel;
+    edtHighRR: TEdit;
+    pnlBiteControlFCC1: TPanel;
+    pnlBiteControlFCC2: TPanel;
+    pnlBiteChooseDvc: TPanel;
+    lblBiteChooseDvc: TPanel;
+    btnBiteChooseDvcFCC: TButton;
+    btnBiteChooseDvc730B: TButton;
+    pnlFire: TPanel;
+    pnlBiteDvcState: TPanel;
+    imgBiteDvcStateFCC: TImage;
+    imgBiteDvcState730B: TImage;
+    imgBiteDvcStateEO: TImage;
+    imgBiteDvcStateTR: TImage;
+    imgBiteDvcStateTCC: TImage;
+    imgBiteDvcStateSIE: TImage;
+    imgBiteDvcStateSR: TImage;
+    lblBiteDvcStateFcc: TLabel;
+    lblBiteDvcState730B: TLabel;
+    lblBiteDvcStateEO: TLabel;
+    lblBiteDvcStateTr: TLabel;
+    lblBiteDvcStateTCC: TLabel;
+    lblBiteDvcStateSIE: TLabel;
+    lblBiteDvcStateSR: TLabel;
+    lblBiteDvcStateHeader: TPanel;
+    pnlFcc2BiteDvcState: TPanel;
+    imgBiteDvcStateFCC2: TImage;
+    imgBiteDvcState57: TImage;
+    imgBiteDvcStateEOFcc2: TImage;
+    imgBiteDvcStateTRFcc2: TImage;
+    imgBiteDvcStateTCCFcc2: TImage;
+    imgBiteDvcStateSIEFcc2: TImage;
+    imgBiteDvcStateSRFcc2: TImage;
+    lblBiteDvcStateFcc2: TLabel;
+    lblBiteDvcState57: TLabel;
+    lblBiteDvcStateEOFcc2: TLabel;
+    lblBiteDvcStateTrFcc2: TLabel;
+    lblBiteDvcStateTCCFcc2: TLabel;
+    lblBiteDvcStateSIEFcc2: TLabel;
+    lblBiteDvcStateSRFcc2: TLabel;
+    pnl1Fcc2: TPanel;
+    pnlBiteChooseDvcFcc2: TPanel;
+    pnl2Fcc2: TPanel;
+    btnBiteChooseDvcFCC2: TButton;
+    btnBiteChooseDvc57: TButton;
+    pnlFireFcc2: TPanel;
+    pnlTrackerFCC1: TPanel;
+    pnlTrackerFCC2: TPanel;
+    pnlTrackerState: TPanel;
+    pnlTrackerStateHeader: TPanel;
+    edtTrsLocalCtrl: TEdit;
+    edtTrsCombat: TEdit;
+    edtTrsWait: TEdit;
+    edtTrsLost: TEdit;
+    edtTrsAuto: TEdit;
+    edtTrsTvChannel: TEdit;
+    edtTrsTurnOn: TEdit;
+    pnlTrackerData: TPanel;
+    lblTrdBE: TLabel;
+    lblTrdEL: TLabel;
+    lblTrdSatuanBE: TLabel;
+    lblTrdSatuanEL: TLabel;
+    lblTrdD: TLabel;
+    lblTrdSatuanD: TLabel;
+    lblTrdDeltaBE: TLabel;
+    lblTrdSatuanDeltaBE: TLabel;
+    lblTrdDeltaEL: TLabel;
+    lblTrdSatuanDeltaEL: TLabel;
+    pnlTrackerDataHeader: TPanel;
+    edtTrdBE: TEdit;
+    edtTrdEL: TEdit;
+    edtTrdD: TEdit;
+    edtTrdDeltaBE: TEdit;
+    edtTrdDeltaEL: TEdit;
+    pnlTrackerStateFCC2: TPanel;
+    pnlTrackerStateHeaderFCC2: TPanel;
+    edtTrsLocalCtrlFCC2: TEdit;
+    edtTrsCombatFCC2: TEdit;
+    edtTrsWaitFCC2: TEdit;
+    edtTrsLostFCC2: TEdit;
+    edtTrsAutoFCC2: TEdit;
+    edtTrsTvChannelFCC2: TEdit;
+    edtTrsTurnOnFCC2: TEdit;
+    pnlFCC2TrackerStateHeader: TPanel;
+    lblTrdBEFCC2: TLabel;
+    lblTrdELFCC2: TLabel;
+    lblTrdSatuanBEFCC2: TLabel;
+    lblTrdSatuanELFCC2: TLabel;
+    lblTrdDFCC2: TLabel;
+    lblTrdSatuanDFCC2: TLabel;
+    lblTrdDeltaBEFCC2: TLabel;
+    lblTrdSatuanDeltaBEFCC2: TLabel;
+    lblTrdDeltaELFCC2: TLabel;
+    lblTrdSatuanDeltaELFCC2: TLabel;
+    pnlTrackerDataHeaderFCC2: TPanel;
+    edtTrdBEFCC2: TEdit;
+    edtTrdELFCC2: TEdit;
+    edtTrdDFCC2: TEdit;
+    edtTrdDeltaBEFCC2: TEdit;
+    edtTrdDeltaELFCC2: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -324,7 +488,7 @@ type
 
     FNorthInd : TRadarNorthIndicator;
 
-    TargetMgr : TRadarTargetManager;
+//    TargetMgr : TRadarTargetManager;
 
     FCircleRect  : TRect;
     FCircleCX    : Integer;
@@ -366,7 +530,7 @@ implementation
 
 {$R *.dfm}
 
-uses uLibConst, uBaseConst, uScriptFcc, uDataModule, ulibSettings, uVehicleManager, uVehicle;
+uses uLibConst, uBaseConst, uScriptFcc, uDataModule, ulibSettings, uVehicleManager, uVehicle, uBaseFunction;
 const
   CMin_Z = 0;
   CMax_Z = 14;
@@ -632,7 +796,7 @@ begin
     FBearing0.ConvertCoord(aCvt);
     FBearing0.Draw(aCnv);
 
-    TargetMgr.Draw(aCnv);
+//    TargetMgr.Draw(aCnv);
 
     VehicleMgr.DrawAll(aCnv);
 end;
@@ -815,22 +979,37 @@ end;
 procedure TfrmMainFCC.FMapMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
-  Sel: TRadarTargetSymbol;
+//  Sel: TRadarTargetSymbol;
   v : TVehicle;
+  rangeX, dH, v0: Double;
+  aLow, aHigh, aEnv: Double;
+  ok: Boolean;
 begin
   if Button <> mbLeft then Exit;
 
-  Sel := TargetMgr.SelectAt(X, Y);
+//  Sel := TargetMgr.SelectAt(X, Y);
 
   v := VehicleMgr.SelectAt(X, Y);
 
 
   FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
 
-  if Assigned(Sel) then
+  if Assigned(v) then
   begin
     // misalnya tampilkan info target
     // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
+
+    rangeX := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
+    dH     := v.PosZ;    // target 20 m lebih rendah
+    v0     := 1035;    // m/s
+
+    if Assigned(FCCManager) then
+    begin
+      // 1) Tanpa environment (vakum)
+      ok := FCCManager.ComputeGunElevationVacuum(rangeX, dH, v0, aLow, aHigh);
+      edtLowPR.Text := FormatFloat('0.00', aLow);
+      edtHighPR.Text := FormatFloat('0.00', aHigh);
+    end;
   end;
 end;
 
@@ -843,7 +1022,7 @@ end;
 procedure TfrmMainFCC.FormCreate(Sender: TObject);
 var
   n : Integer;
-  T: TRadarTargetSymbol;
+//  T: TRadarTargetSymbol;
   ShipClassName,
   ShipCallSign: string;
   V: TVehicle;
@@ -925,8 +1104,8 @@ begin
 
   FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
 
-  TargetMgr := TRadarTargetManager.Create;
-  TargetMgr.CoordConverter := FMapConverter;
+//  TargetMgr := TRadarTargetManager.Create;
+//  TargetMgr.CoordConverter := FMapConverter;
 
 //  T := TargetMgr.AddTarget(112.751, -7.199);
 //  T.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
@@ -952,6 +1131,21 @@ begin
 //  // pakai bitmap tint: hitam -> kuning
 //  V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
 //  V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
+
+  case vFccSetting.FccMode of
+    1 : //FCC1 Mode
+    begin
+      pnlFCC1.BringToFront;
+      pnlTrackerFCC1.BringToFront;
+      pnlBiteControlFCC1.BringToFront;
+    end;
+    2 : //FCC2 Mode
+    begin
+      pnlFCC2.BringToFront;
+      pnlTrackerFCC2.BringToFront;
+      pnlBiteControlFCC2.BringToFront;
+    end;
+  end;
 
   n := ParamCount ;
   if n < max_param then
@@ -1058,29 +1252,61 @@ begin
   //  5 red
   //  6 yellow
 
-  //  initialize panel indikator control state
-  imgListLight.GetBitmap(1, imgCtrlStateFCC.Picture.Bitmap);
-  imgListLight.GetBitmap(1, imgCtrlStateTracked.Picture.Bitmap);
-  imgListLight.GetBitmap(0, imgCtrlStateDataReady.Picture.Bitmap);
-  imgListLight.GetBitmap(0, imgCtrlStateAimed.Picture.Bitmap);
-  imgListLight.GetBitmap(2, imgCtrlStateLimitZone.Picture.Bitmap);
-  imgListLight.GetBitmap(1, imgCtrlStateFireAllow.Picture.Bitmap);
-  imgListLight.GetBitmap(0, imgCtrlStateFiring.Picture.Bitmap);
+  case vFccSetting.FccMode of
+    1: //FCC1
+    begin
+      //  initialize panel indikator control state
+      imgListLight.GetBitmap(1, imgCtrlStateFCC.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateTracked.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateDataReady.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateAimed.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateLimitZone.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateFireAllow.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateFiring.Picture.Bitmap);
 
-  //  initialize panel indikator Gun state
-  imgListLight.GetBitmap(1, imgGunStateCtrlBy.Picture.Bitmap);
-  imgListLight.GetBitmap(1, imgGunStateServo.Picture.Bitmap);
-  imgListLight.GetBitmap(0, imgGunStateFC.Picture.Bitmap);
-  imgListLight.GetBitmap(0, imgGunStateReturnZero.Picture.Bitmap);
+      //  initialize panel indikator Gun state
+      imgListLight.GetBitmap(1, imgGunStateCtrlBy.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgGunStateServo.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgGunStateFC.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgGunStateReturnZero.Picture.Bitmap);
 
-  //  initialize panel indikator Bite Device state
-  imgListLight.GetBitmap(1, imgBiteDvcStateFCC.Picture.Bitmap);
-  imgListLight.GetBitmap(1, imgBiteDvcState730B.Picture.Bitmap);
-  imgListLight.GetBitmap(1, imgBiteDvcStateEO.Picture.Bitmap);
-  imgListLight.GetBitmap(2, imgBiteDvcStateTR.Picture.Bitmap);
-  imgListLight.GetBitmap(1, imgBiteDvcStateTCC.Picture.Bitmap);
-  imgListLight.GetBitmap(2, imgBiteDvcStateSIE.Picture.Bitmap);
-  imgListLight.GetBitmap(1, imgBiteDvcStateSR.Picture.Bitmap);
+      //  initialize panel indikator Bite Device state
+      imgListLight.GetBitmap(1, imgBiteDvcStateFCC.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcState730B.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateEO.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateTR.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateTCC.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateSIE.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateSR.Picture.Bitmap);
+    end;
+    2: //FCC2
+    begin
+      //  initialize panel indikator control state
+      imgListLight.GetBitmap(1, imgCtrlStateFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateTrackedFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateDataReadyFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateAimedFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateLimitZoneFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateFireAllowFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgCtrlStateFiringFCC2.Picture.Bitmap);
+
+      //  initialize panel indikator Gun state
+      imgListLight.GetBitmap(1, imgGunStateCtrlByFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgGunStateServoFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgGunStateFCFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgGunStateReturnZeroFCC2.Picture.Bitmap);
+
+      //  initialize panel indikator Bite Device state
+      imgListLight.GetBitmap(1, imgBiteDvcStateFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcState57.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateEOFcc2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateTRFcc2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateTCCFcc2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateSIEFcc2.Picture.Bitmap);
+      imgListLight.GetBitmap(1, imgBiteDvcStateSRFcc2.Picture.Bitmap);
+    end;
+  end;
+
 end;
 
 procedure TfrmMainFCC.LoadGeoset(const aGst: string);
@@ -1231,8 +1457,8 @@ begin
 
   lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
 
-  edtNavDataLAT.Text := FormatFloat('0.000', FCCManager.xShip.PositionY);
-  edtNavDataLON.Text := FormatFloat('0.000', FCCManager.xShip.PositionX);
+  edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
+  edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
 
   if not FCCManager.IsTrueMotion then begin
     Fmap.CenterX := FCCManager.xShip.PositionX;
@@ -1262,13 +1488,13 @@ begin
 //  end;
 //  FMap.Refresh;
 
-  if Assigned(FCCManager) then
-  begin
-    if Assigned(FCCManager.xShip) then
-    begin
-      FCCManager.xShip.Heading := FCCManager.xShip.Heading + 1;
-    end;
-  end;
+//  if Assigned(FCCManager) then
+//  begin
+//    if Assigned(FCCManager.xShip) then
+//    begin
+//      FCCManager.xShip.Heading := FCCManager.xShip.Heading + 1;
+//    end;
+//  end;
 end;
 
 end.

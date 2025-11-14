@@ -48,6 +48,8 @@ begin
 
     InitDefault_GameServerConfig(vSettingFile, vBridgeServer.m2D_IP, vBridgeServer.m2D_Port,
       vBridgeServer.m3D_IP, vBridgeServer.m3D_Port);
+
+    LoadFF_FCCSetting(vSettingFile, vFccSetting);
   end
   else
   begin
@@ -62,6 +64,12 @@ begin
 
     SaveDefault_GameServerConfig(vSettingFile, vBridgeServer.m2D_IP, vBridgeServer.m2D_Port,
       vBridgeServer.m3D_IP, vBridgeServer.m3D_Port);
+
+    InitDefault_GameServerConfig(vSettingFile, vBridgeServer.m2D_IP, vBridgeServer.m2D_Port,
+      vBridgeServer.m3D_IP, vBridgeServer.m3D_Port);
+
+    Save_FCCSetting(vSettingFile, vFccSetting);
+    LoadFF_FCCSetting(vSettingFile, vFccSetting);
   end;
 
 

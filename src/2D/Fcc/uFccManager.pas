@@ -1,4 +1,4 @@
-unit uFccManager;
+﻿unit uFccManager;
 
 interface
 uses
@@ -7,7 +7,7 @@ uses
   Classes, Sysutils,
   windows, uSimulationManager, uTCPDatatype, uBaseSimulationObject, uLibClientObject,
   uBridgeSet, uTestShip, uBaseFunction, uClassDatabase, System.Uitypes, uVehicleManager,
-  uVehicle;
+  uVehicle, System.Math;
 
 type
   TFCCManager = class(TSimulationManager)
@@ -70,10 +70,16 @@ type
 
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+
+    function ComputeGunElevationVacuum(const RangeX, DeltaHeight, V0: Double;
+      out AngleLowDeg, AngleHighDeg: Double): Boolean;
   end;
 
 var
   FCCManager : TFCCManager;
+
+const
+  G0 = 9.80665; // gravitasi standar (m/s^2)
 
 implementation
 
@@ -81,6 +87,45 @@ uses
   uDataModule;
 
 { TFCCManager }
+
+function TFCCManager.ComputeGunElevationVacuum(const RangeX, DeltaHeight,
+  V0: Double; out AngleLowDeg, AngleHighDeg: Double): Boolean;
+var
+  g, x, y, v2, v4, D, tanThetaLow, tanThetaHigh: Double;
+begin
+  Result := False;
+  AngleLowDeg := 0;
+  AngleHighDeg := 0;
+
+  g := G0;
+  x := RangeX;
+  y := DeltaHeight;
+
+  if (V0 <= 0) or (x <= 0) then
+    Exit;
+
+  v2 := Sqr(V0);
+  v4 := Sqr(v2);
+
+  // Discriminant:
+  // D = v0^4 - g * (g x^2 + 2 y v0^2)
+  D := v4 - g * (g * Sqr(x) + 2 * y * v2);
+
+  if D < 0 then
+    Exit; // target tidak terjangkau
+
+  D := Sqrt(D);
+
+  // Dua solusi tan(theta)
+  tanThetaLow  := (v2 - D) / (g * x);
+  tanThetaHigh := (v2 + D) / (g * x);
+
+  // Konversi ke derajat
+  AngleLowDeg  := RadToDeg(ArcTan(tanThetaLow));
+  AngleHighDeg := RadToDeg(ArcTan(tanThetaHigh));
+
+  Result := True;
+end;
 
 constructor TFCCManager.Create;
 begin
@@ -112,6 +157,7 @@ var  sc  : TSimulationClass;
 
      TestHeading : Double;
      V : TVehicle;
+     vdomain : Integer;
 begin
   aRec := @apRec^;
 
@@ -126,9 +172,23 @@ begin
 
       FxShip.Speed    := aRec.speed;
       FxShip.Heading  := aRec.heading;
+
+
+      V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
+
+      if not Assigned(v) then
+      begin
+        V := VehicleMgr.AddVehicle(FxShip.PositionX, FxShip.PositionY, '');
+      //  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
+        V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+        v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
+        V.SetSpeedKts(FxShip.Speed);
+        V.HeadingDeg := FxShip.Heading; // NE
+      end;
   end
   else begin
     sc := MainObjList.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
+    V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
 
     if sc = nil then begin
      obj := TClientObject.Create;
@@ -136,11 +196,6 @@ begin
      obj.Enabled := TRUE;
 
      MainObjList.AddObject(obj);
-
-      V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
-      // pakai bitmap tint: hitam -> kuning
-      V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
-      V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
     end
     else
      obj := sc as TClientObject;
@@ -151,6 +206,44 @@ begin
     obj.Speed     := aRec.speed;
 
     obj.Heading  := ConvCompass_To_Cartesian(aRec.heading);
+
+    if Assigned(V) then
+    begin
+      v.PosX := aRec.X;
+      v.PosY := aRec.Y;
+      v.PosZ := aRec.Z;
+      v.SetSpeedKts(aRec.speed);
+
+      v.HeadingDeg  := aRec.heading;
+    end
+    else
+    begin
+      vdomain := DataModule1.GetShipDomain(aRec.ShipID);
+
+      if (vdomain = 1) or (vdomain = 2) then
+      begin
+        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
+        V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+        v.Domain := vdomain;
+        // pakai bitmap tint: hitam -> kuning
+        case v.Domain of
+          1://surface
+          begin
+            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
+          end;
+          2://air
+          begin
+            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\AirUnknown.bmp');
+          end;
+          3://subsurface
+          begin
+            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SubsurfaceUnknown.bmp');
+          end;
+        end;
+
+        V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
+      end;
+    end;
   end;
 end;
 

@@ -252,7 +252,7 @@ begin
   FCircleColorSelected := clYellow;
 
   FTrackLabel     := '';
-  FTrackFontColor := clWhite;
+  FTrackFontColor := clYellow;
   FTrackFontSize  := 8;
   FLastBounds := Rect(0,0,0,0);
 

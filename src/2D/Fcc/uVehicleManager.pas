@@ -8,7 +8,7 @@ type
   TVehicleManager = class
   private
     FList: TList;               // of TVehicle
-    FConv: TCoordConverter;     // converter map -> screen (dioper ke Symbol)
+    FConv: TCoordConverter;
   public
     constructor Create;
     destructor Destroy; override;
@@ -17,6 +17,8 @@ type
 
     function  AddVehicle: TVehicle; overload;
     function  AddVehicle(const x, y: Double; const trackLabel: string = ''): TVehicle; overload;
+    function FindObjectByUid(const aUid: string): TVehicle;
+
     procedure RemoveVehicle(V: TVehicle);
     procedure Clear;
 
@@ -125,6 +127,30 @@ begin
     V.Symbol.Draw(ACanvas);
   end;
 end;
+
+function TVehicleManager.FindObjectByUid(const aUid: string): TVehicle;
+  var i   : integer;
+      obj : TVehicle;
+      found : boolean;
+  begin
+    result := nil;
+    obj := nil;
+//    with FList.LockList do
+//      try
+        i := 0;
+        found  := false;
+        while not found and (i<Count) do begin
+          obj := TVehicle(FList[i]);
+          found :=  aUid = obj.UniqueID;
+
+          inc(i);
+        end;
+//      finally
+//        FList.UnlockList;
+//      end;
+    if found then result := obj;
+
+  end;
 
 procedure TVehicleManager.DeselectAll;
 var

@@ -22,6 +22,8 @@ type
 
     // penautan ke peta/simbol
     FSymbol             : TRadarTargetSymbol;
+    FUniqueID: string;
+    FDomain: Integer;
 
     procedure SyncSymbolFromState; // push PosX/Y -> Symbol.MapX/MapY
   public
@@ -50,6 +52,9 @@ type
 
     // panggil sebelum draw (atau manager akan memanggil otomatis)
     procedure PrepareForDraw;
+
+    property UniqueID: string read FUniqueID write FUniqueID;
+    property Domain : Integer read FDomain write FDomain;
   end;
 
 implementation

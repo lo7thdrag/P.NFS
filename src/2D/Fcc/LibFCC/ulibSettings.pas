@@ -5,6 +5,7 @@ uses
   IniFiles, SysUtils, uIniFilesProcs, uCodecBase64;
 const
   c_image = 'image';
+  c_fccSetting = 'FccSetting';
 type
   TPathImageSetting = record
     ImgPath: string;
@@ -26,6 +27,10 @@ type
     m3D_Port,
     mCtrl_IP,
     mCtrl_port : string;
+  end;
+
+  TRecFCCSetting = record
+    FccMode : Integer;
   end;
 
 
@@ -51,6 +56,9 @@ type
     const m2DServerIP, m2DServerPort,
     m3DServerIP, m3DServerPort: string
     );
+
+  function LoadFF_FCCSetting(const fName: string; var FccSet: TRecFCCSetting): boolean;
+  procedure Save_FCCSetting(const fName: string; var FccSet: TRecFCCSetting);
 
 const
   defaultServer       = 'localhost';
@@ -90,6 +98,7 @@ var
   vDbServer : TRecBridgeDB;
   vBridgeServer : TRecBridgeServer;
   vPathImageSetting      : TPathImageSetting;
+  vFccSetting : TRecFCCSetting;
 
 implementation
   //==============================================================================
@@ -128,6 +137,8 @@ implementation
     ini.Free;
   end;
 
+
+
   function ForceReadString(var ini : TIniFile;
   const sSect, sKey, sDefault : string): string;
   begin
@@ -137,6 +148,33 @@ implementation
       ini.WriteString(sSect, sKey, sDefault);
     end;
 
+  end;
+
+  function LoadFF_FCCSetting(const fName: string; var FccSet: TRecFCCSetting): boolean;
+  var
+    IniF: TIniFile;
+    s: string;
+  begin
+    IniF := TIniFile.Create(fName);
+    s := ExtractFilePath(ParamStr(0));
+
+    with FccSet do
+    begin
+      FccMode := StrToInt(ForceReadString(iniF, c_fccSetting, 'FccMode', '1'));
+    end;
+
+    Result := True;
+  end;
+
+  procedure Save_FCCSetting(const fName: string; var FccSet: TRecFCCSetting);
+  var
+    ini: TIniFile;
+  begin
+    ini := TIniFile.Create(vSettingFile);
+    with ini do begin
+      WriteString(c_fccSetting, 'FccMode', '1');
+    end;
+    ini.Free;
   end;
 
   procedure InitDefault_DBConfig(
