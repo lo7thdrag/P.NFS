@@ -276,6 +276,8 @@ type
     acbxShootArea: TAdvOfficeCheckBox;
     acbxTrackerArea: TAdvOfficeCheckBox;
     acbxTargetPara: TAdvOfficeCheckBox;
+    lblMapLat: TLabel;
+    lblMapLon: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -290,6 +292,7 @@ type
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure acbxTargetParaClick(Sender: TObject);
+    procedure FMapMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -311,9 +314,7 @@ type
     FShipHeading : Integer;
 
     { Property On TDA }
-//    FRangeRing: TRangeRingsVisual;
     FRings       : TRadarRangeRings;
-//    FSectors     : array of TRadarSector;
     AreaBlindZone   : TRadarDynamicSector;
     AreaBlindZone1   : TRadarDynamicSector;
     AreaGunPoint   : TRadarDynamicSector;
@@ -330,6 +331,20 @@ type
     FCircleCY    : Integer;
     FCircleR     : Integer; // radius pixel lingkaran peta
 
+    //setting parameter
+    pCurrentScenID  : integer;
+    pServer_Ip,
+    pServer_Port,               //TriD_IP, TriD_Port,
+    pDBServer,
+    pDBProto,
+    pDBName,
+    pDBUser,
+    pDBPass,
+    pShipName,
+    pClassName      : string;
+    pShipID,
+    pClassID        : Integer;
+
     procedure LoadGeoset(const aGst: string); virtual;
     procedure InitializeForm();
     procedure setRegionCircle;
@@ -337,6 +352,8 @@ type
     procedure ResetColorRange();
 
     procedure DrawAll(aCnv: TCanvas; aCvt: TCoordConverter; aFlag: Byte);
+
+     procedure ShowInfoCursor(const x, y: integer);
   public
     { Public declarations }
     rCX, rCY: integer;
@@ -349,7 +366,7 @@ implementation
 
 {$R *.dfm}
 
-uses uLibConst, uBaseConst;
+uses uLibConst, uBaseConst, uScriptFcc, uDataModule, ulibSettings, uVehicleManager, uVehicle;
 const
   CMin_Z = 0;
   CMax_Z = 14;
@@ -519,43 +536,11 @@ var
 begin
   aCvt.ConvertToScreen(FMap.CenterX, FMap.CenterY, pnt.X, pnt.Y);
 
-  { Range Rings }
-//  FRangeRing.mx := FMap.CenterX;
-//  FRangeRing.mY := FMap.CenterY;
-//  FRangeRing.Center := pnt;
-
   z := FixMapZoom(FMap.Zoom);
   i := FindClosestZoomIndex(z);
   z := ZoomIndexToScale(i);
 
-//  FRangeRing.Interval := (FCurrentRange * C_Meter_To_NauticalMile) / 10;
-//  FRangeRing.RangeNum := 6;
-//  FRangeRing.Visible := True;
-//  FRangeRing.FilterShow := True;
-//  FRangeRing.ConvertCoord(aCvt);
-//  FRangeRing.Draw(aCnv);
-
-
-
-    // SECTORS
-//    for i := Low(FSectors) to High(FSectors) do
-//      if Assigned(FSectors[i]) then
-//      begin
-//        FSectors[i].CircleRect     := FCircleRect;
-//        FSectors[i].CurrentRange_m := FCurrentRange;
-//        FSectors[i].MapCenterX     := FMap.CenterX;
-//        FSectors[i].MapCenterY     := FMap.CenterY;
-//        FSectors[i].ConvertCoord(aCvt);
-//        FSectors[i].Draw(aCnv);
-//      end;
-
     // BLIND ZONE
-//    AreaBlindZone.CenterX       := FCircleCX;
-//    AreaBlindZone.CenterY       := FCircleCY;
-//    AreaBlindZone.OuterRadiusPx := FCircleR;
-//    AreaBlindZone.HeadingDeg    := FShipHeadingDeg;
-//    AreaBlindZone.Draw(C);
-
     AreaBlindZone1.CenterMode := cmMapPosition;
     AreaBlindZone1.MapPosX := FMap.CenterX;
     AreaBlindZone1.MapPosY := FMap.CenterY;
@@ -649,6 +634,7 @@ begin
 
     TargetMgr.Draw(aCnv);
 
+    VehicleMgr.DrawAll(aCnv);
 end;
 
 procedure TfrmMainFCC.DrawAngle(aCnv: TCanvas);
@@ -830,10 +816,14 @@ procedure TfrmMainFCC.FMapMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
   Sel: TRadarTargetSymbol;
+  v : TVehicle;
 begin
   if Button <> mbLeft then Exit;
 
   Sel := TargetMgr.SelectAt(X, Y);
+
+  v := VehicleMgr.SelectAt(X, Y);
+
 
   FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
 
@@ -844,16 +834,24 @@ begin
   end;
 end;
 
+procedure TfrmMainFCC.FMapMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  ShowInfoCursor(X,y);
+end;
+
 procedure TfrmMainFCC.FormCreate(Sender: TObject);
 var
   n : Integer;
   T: TRadarTargetSymbol;
+  ShipClassName,
+  ShipCallSign: string;
+  V: TVehicle;
 begin
+  BeginGame_FCC;
   FCCManager := TFCCManager.Create;
   SimCenter := FCCManager;
   SimCenter.FMap := FMap;
-
-  FCCManager.InitializeSimulation;
 
   FNorthAngle := 0;
   FMapCanvas         := TCanvas.Create;
@@ -862,6 +860,9 @@ begin
   FIndexRange := 3;
   FCurrentRange := CRangeOperation[3];
   pnlMap12km.Color := clYellow;
+
+  VehicleMgr := TVehicleManager.Create;
+  VehicleMgr.CoordConverter := FMapConverter; // converter MapX kamu
 
   EnableComposited(pnlSituationZone);
   FBitmapBackground := TBitmap.Create;
@@ -927,24 +928,83 @@ begin
   TargetMgr := TRadarTargetManager.Create;
   TargetMgr.CoordConverter := FMapConverter;
 
-  T := TargetMgr.AddTarget(112.751, -7.199);
-  T.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
-  T.TrackLabel := '001';
-
-  T := TargetMgr.AddTarget(112.760, -7.210);
-  T.CircleRadius := 3;                       // fallback circle
-  T.TrackLabel   := '002';
-
-  T := TargetMgr.AddTarget(112.771, -7.210);
-  T.LoadBitmapFromFile('.\data\Bitmap\AirUnknown.bmp');
-  T.BitmapTintColor := clYellow;
-  t.BitmapTintAlpha := 128;
-  T.TrackLabel   := '003';
+//  T := TargetMgr.AddTarget(112.751, -7.199);
+//  T.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
+//  T.TrackLabel := '001';
+//
+//  T := TargetMgr.AddTarget(112.760, -7.210);
+//  T.CircleRadius := 5;                       // fallback circle
+//  T.TrackLabel   := '002';
+//
+//  T := TargetMgr.AddTarget(112.771, -7.210);
+//  T.LoadBitmapFromFile('.\data\Bitmap\AirUnknown.bmp');
+//  T.BitmapTintColor := clYellow;
+//  t.BitmapTintAlpha := 128;
+//  T.TrackLabel   := '003';
+//
+//  // contoh tambah 2 vehicle
+//  V := VehicleMgr.AddVehicle(112.781, -7.199, '004');
+//  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
+//  V.SetSpeedKts(12);
+//  V.HeadingDeg := 45; // NE
+//
+//  V := VehicleMgr.AddVehicle(112.760, -7.230, '005');
+//  // pakai bitmap tint: hitam -> kuning
+//  V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
+//  V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
 
   n := ParamCount ;
   if n < max_param then
   begin
     FCCManager.IsStandAlone := true ;
+  end;
+
+  if not FCCManager.IsStandAlone then
+  begin
+      InitDefault_AllConfigFromInstruktur(pServer_Ip,pServer_Port,
+    pDBServer, pDBProto, pDBName, pDBUser,
+    pDBPass, pShipID, pCurrentScenID);
+
+    FCCManager.CurrentScenID := pCurrentScenID;
+    FCCManager.Server_Ip := pServer_Ip;
+    FCCManager.Server_Port := pServer_Port;               //TriD_IP, TriD_Port,
+    FCCManager.DBServer := vDbServer.mDBServer;
+    FCCManager.DBProto := vDbServer.mDBProto;
+    FCCManager.DBName := vDbServer.mDBName;
+    FCCManager.DBUser := vDbServer.mDBUser;
+    FCCManager.DBPass := vDbServer.mDBPass;
+    FCCManager.ShipID := pShipID;
+    FCCManager.ClassID := pClassID;
+
+    FCCManager.ServerIp := vBridgeServer.m2D_IP;
+    FCCManager.ServerPort := vBridgeServer.m2D_Port;
+
+    FCCManager.InitializeSimulation;
+
+    if DataModule1.InitZDB(vDbServer.mDBServer, vDbServer.mDBProto, vDbServer.mDBName, vDbServer.mDBUser, vDbServer.mDBPass, vDbServer.mDBPort) then
+    begin
+      FCCManager.ShipClassID  := DataModule1.GetShipType(FCCManager.ShipID, ShipClassName);
+      FCCManager.ShipName     := DataModule1.GetShipName(FCCManager.ShipID);
+      FCCManager.ShipNumber := DataModule1.GetShipNoById(FCCManager.ShipID);
+      FCCManager.ShipCallSign := DataModule1.GetShipCallsignByID(FCCManager.ShipID);
+
+      FCCManager.xShip.UniqueID := dbID_to_UniqueID(FCCManager.ShipID);
+
+//      lblKriName.Caption := 'KRI ' + Meriam57Manager.ShipCallSign + '-' + IntToStr(Meriam57Manager.ShipNumber);
+    end;
+    FCCManager.Env_Map := DataModule1.GetMapById(FCCManager.CurrentScenID);
+
+    FCCManager.Get57WeaponAssigned;
+//
+//    if Assigned(FCCManager.AssignedWeapon) then
+//    begin
+//      FTargetAngleKolonka := Meriam57Manager.AssignedWeapon.Pos_H;
+//      FAngleKolonka := Meriam57Manager.AssignedWeapon.Pos_H;
+//
+//      edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
+//    end;
+
+    FCCManager.Running := True;
   end;
 
 end;
@@ -954,6 +1014,9 @@ var
   i : Integer;
 begin
 //  FRangeRing.Free;
+  VehicleMgr.Free;
+  FCCManager.FinalizeSimulation;
+
   FNorthInd.Free;
   FBearing0.Free;
 
@@ -1139,6 +1202,22 @@ begin
   //global Form Koord
   rCx := rcxMap - FMap.Left;
   rCy := rCYMap + FMap.Top;
+end;
+
+procedure TfrmMainFCC.ShowInfoCursor(const x, y: integer);
+var
+  mx, my: double;
+  sx, sy: single;
+  z: double;
+  s: string;
+begin
+  sx := x;
+  sy := y;
+
+  FMap.ConvertCoord(sx, sy, mx, my, miScreenToMap);
+
+  lblMapLon.Caption := 'LON ' + FormatFloat('0.000', mx);
+  lblMapLat.Caption := 'LAT ' + FormatFloat('0.000', my);
 end;
 
 procedure TfrmMainFCC.tmrUpdateFormTimer(Sender: TObject);

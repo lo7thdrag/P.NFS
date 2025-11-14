@@ -87,6 +87,7 @@
         <DCC_DcuOutput>.\bin\comp</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <Debugger_RunParams>-192.168.5.230 -2120 -127.0.0.1 -mysql -dbNSuFs -root -admin -10 -10</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -138,7 +139,19 @@
         <DCCReference Include="LibVisual\uRadarVisual.pas"/>
         <DCCReference Include="LibVisual\uRadarDynamicSector.pas"/>
         <DCCReference Include="uRadarNorthIndicator.pas"/>
-        <DCCReference Include="uRadarTargets.pas"/>
+        <DCCReference Include="LibVisual\uRadarTargets.pas"/>
+        <DCCReference Include="uScriptFcc.pas"/>
+        <DCCReference Include="LibFCC\uIniFilesProcs.pas"/>
+        <DCCReference Include="LibFCC\ulibSettings.pas"/>
+        <DCCReference Include="LibFCC\uScriptCommon.pas"/>
+        <DCCReference Include="..\ShareLib\AppForms\uDataModule.pas">
+            <Form>DataModule1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\ShareLib\AppForms\uClassDatabase.pas"/>
+        <DCCReference Include="LibFCCObject\uVehicle.pas"/>
+        <DCCReference Include="uVehicleManager.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

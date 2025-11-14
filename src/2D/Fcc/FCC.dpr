@@ -35,13 +35,22 @@ uses
   uRadarVisual in 'LibVisual\uRadarVisual.pas',
   uRadarDynamicSector in 'LibVisual\uRadarDynamicSector.pas',
   uRadarNorthIndicator in 'uRadarNorthIndicator.pas',
-  uRadarTargets in 'uRadarTargets.pas';
+  uRadarTargets in 'LibVisual\uRadarTargets.pas',
+  uScriptFcc in 'uScriptFcc.pas',
+  uIniFilesProcs in 'LibFCC\uIniFilesProcs.pas',
+  ulibSettings in 'LibFCC\ulibSettings.pas',
+  uScriptCommon in 'LibFCC\uScriptCommon.pas',
+  uDataModule in '..\ShareLib\AppForms\uDataModule.pas' {DataModule1: TDataModule},
+  uClassDatabase in '..\ShareLib\AppForms\uClassDatabase.pas',
+  uVehicle in 'LibFCCObject\uVehicle.pas',
+  uVehicleManager in 'uVehicleManager.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TfrmMainFCC, frmMainFCC);
   Application.Run;
 end.
