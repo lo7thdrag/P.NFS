@@ -190,7 +190,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000E0C4570F010000006C907A771C000000000000000000000000
+          01000118010000D8E69604010000006C907A771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -199,15 +199,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000E0C4570F01000000881300C01C00000000000000000000000000000000
+          010000D8E6960401000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000060CB9700CD8AC3751F
-          00000000000000B08AC375E802B7328C2F32FFA0CB9700000000000000000000
+          00000000000000000000000000000000000000000000008CCB9700BAB1A1735C
+          CB970000000000FFFFFFFFC7B1A1732DD238B9A0CB9700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object btnMapIncrement: TButton
@@ -1119,8 +1119,6 @@ object frmMainFCC: TfrmMainFCC
       Height = 365
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 542
-      ExplicitWidth = 737
       object pnlBite: TPanel
         Left = 225
         Top = 1
@@ -1128,9 +1126,6 @@ object frmMainFCC: TfrmMainFCC
         Height = 363
         Align = alLeft
         TabOrder = 0
-        ExplicitLeft = 674
-        ExplicitTop = 0
-        ExplicitHeight = 365
         object pnlBiteHeader: TPanel
           Left = 1
           Top = 1
@@ -1155,7 +1150,6 @@ object frmMainFCC: TfrmMainFCC
           Height = 329
           Align = alClient
           TabOrder = 1
-          ExplicitHeight = 331
           object pnlBiteControl: TPanel
             Left = 1
             Top = 1
@@ -1171,10 +1165,6 @@ object frmMainFCC: TfrmMainFCC
               Align = alClient
               Caption = 'pnlBiteControlFCC1'
               TabOrder = 0
-              ExplicitLeft = 56
-              ExplicitTop = 56
-              ExplicitWidth = 185
-              ExplicitHeight = 41
               object pnlBiteChooseDvc: TPanel
                 Left = 121
                 Top = 1
@@ -1182,9 +1172,6 @@ object frmMainFCC: TfrmMainFCC
                 Height = 263
                 Align = alClient
                 TabOrder = 0
-                ExplicitLeft = 2
-                ExplicitTop = 2
-                ExplicitWidth = 222
                 object lblBiteChooseDvc: TPanel
                   Left = 1
                   Top = 1
@@ -1202,7 +1189,6 @@ object frmMainFCC: TfrmMainFCC
                   ParentBackground = False
                   ParentFont = False
                   TabOrder = 0
-                  ExplicitWidth = 220
                 end
                 object btnBiteChooseDvcFCC: TButton
                   Left = 6
@@ -1238,8 +1224,6 @@ object frmMainFCC: TfrmMainFCC
                 Height = 263
                 Align = alLeft
                 TabOrder = 1
-                ExplicitLeft = 9
-                ExplicitTop = 2
                 object imgBiteDvcStateFCC: TImage
                   Left = 77
                   Top = 40
@@ -1408,10 +1392,6 @@ object frmMainFCC: TfrmMainFCC
               Align = alClient
               Caption = 'pnlBiteControlFCC2'
               TabOrder = 1
-              ExplicitLeft = 136
-              ExplicitTop = 152
-              ExplicitWidth = 185
-              ExplicitHeight = 41
               object pnlFcc2BiteDvcState: TPanel
                 Left = 1
                 Top = 1
@@ -1419,8 +1399,6 @@ object frmMainFCC: TfrmMainFCC
                 Height = 263
                 Align = alLeft
                 TabOrder = 0
-                ExplicitLeft = 9
-                ExplicitTop = 2
                 object imgBiteDvcStateFCC2: TImage
                   Left = 77
                   Top = 40
@@ -1587,8 +1565,6 @@ object frmMainFCC: TfrmMainFCC
                 Height = 263
                 Align = alClient
                 TabOrder = 1
-                ExplicitLeft = 122
-                ExplicitTop = 2
                 object pnl2Fcc2: TPanel
                   Left = 1
                   Top = 1
@@ -1643,7 +1619,6 @@ object frmMainFCC: TfrmMainFCC
             Height = 60
             Align = alClient
             TabOrder = 1
-            ExplicitHeight = 62
             object lblBiteOperating: TLabel
               Left = 40
               Top = 6
@@ -1696,9 +1671,6 @@ object frmMainFCC: TfrmMainFCC
         Height = 363
         Align = alLeft
         TabOrder = 1
-        ExplicitLeft = 680
-        ExplicitTop = 0
-        ExplicitHeight = 365
         object pnlTrackerHeader: TPanel
           Left = 1
           Top = 1
@@ -1723,7 +1695,6 @@ object frmMainFCC: TfrmMainFCC
           Height = 329
           Align = alClient
           TabOrder = 1
-          ExplicitHeight = 331
           object pnlTrackerFCC1: TPanel
             Left = 1
             Top = 1
@@ -1732,10 +1703,6 @@ object frmMainFCC: TfrmMainFCC
             Align = alClient
             Caption = 'pnlTrackerFCC1'
             TabOrder = 0
-            ExplicitLeft = 64
-            ExplicitTop = 48
-            ExplicitWidth = 185
-            ExplicitHeight = 41
             object pnlTrackerState: TPanel
               Left = 129
               Top = 1
@@ -1743,9 +1710,6 @@ object frmMainFCC: TfrmMainFCC
               Height = 325
               Align = alClient
               TabOrder = 0
-              ExplicitLeft = 2
-              ExplicitTop = 2
-              ExplicitWidth = 218
               object pnlTrackerStateHeader: TPanel
                 Left = 1
                 Top = 1
@@ -1763,7 +1727,6 @@ object frmMainFCC: TfrmMainFCC
                 ParentBackground = False
                 ParentFont = False
                 TabOrder = 0
-                ExplicitWidth = 216
               end
               object edtTrsLocalCtrl: TEdit
                 Left = 23
@@ -1832,8 +1795,6 @@ object frmMainFCC: TfrmMainFCC
               Height = 325
               Align = alLeft
               TabOrder = 1
-              ExplicitLeft = 9
-              ExplicitTop = 2
               object lblTrdBE: TLabel
                 Left = 14
                 Top = 38
@@ -2035,10 +1996,6 @@ object frmMainFCC: TfrmMainFCC
             Align = alClient
             Caption = 'pnlTrackerFCC2'
             TabOrder = 1
-            ExplicitLeft = 112
-            ExplicitTop = 176
-            ExplicitWidth = 185
-            ExplicitHeight = 41
             object pnlTrackerStateFCC2: TPanel
               Left = 129
               Top = 1
@@ -2046,9 +2003,6 @@ object frmMainFCC: TfrmMainFCC
               Height = 325
               Align = alClient
               TabOrder = 0
-              ExplicitLeft = 2
-              ExplicitTop = 2
-              ExplicitWidth = 218
               object pnlTrackerStateHeaderFCC2: TPanel
                 Left = 1
                 Top = 1
@@ -2066,7 +2020,6 @@ object frmMainFCC: TfrmMainFCC
                 ParentBackground = False
                 ParentFont = False
                 TabOrder = 0
-                ExplicitWidth = 216
               end
               object edtTrsLocalCtrlFCC2: TEdit
                 Left = 23
@@ -2135,8 +2088,6 @@ object frmMainFCC: TfrmMainFCC
               Height = 325
               Align = alLeft
               TabOrder = 1
-              ExplicitLeft = 9
-              ExplicitTop = 2
               object lblTrdBEFCC2: TLabel
                 Left = 14
                 Top = 38
@@ -4715,8 +4666,6 @@ object frmMainFCC: TfrmMainFCC
                 ParentBackground = False
                 ParentFont = False
                 TabOrder = 0
-                ExplicitLeft = 2
-                ExplicitTop = 9
               end
               object edtLowPR: TEdit
                 Left = 64
@@ -4744,10 +4693,6 @@ object frmMainFCC: TfrmMainFCC
               Height = 182
               Align = alClient
               TabOrder = 2
-              ExplicitLeft = 64
-              ExplicitTop = 160
-              ExplicitWidth = 185
-              ExplicitHeight = 41
               object lblHighPR: TLabel
                 Left = 29
                 Top = 50
@@ -4791,8 +4736,6 @@ object frmMainFCC: TfrmMainFCC
                 ParentBackground = False
                 ParentFont = False
                 TabOrder = 0
-                ExplicitLeft = 2
-                ExplicitTop = 9
               end
               object edtHighPR: TEdit
                 Left = 72

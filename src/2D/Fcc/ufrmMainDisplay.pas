@@ -715,7 +715,10 @@ begin
     AreaBlindZone1.CurrentRange_m := Self.FCurrentRange;
 
     if Assigned(FCCManager) then
-      AreaBlindZone1.HeadingDeg    := FCCManager.xShip.Heading;
+    begin
+      if Assigned(FCCManager.xShip) then
+        AreaBlindZone1.HeadingDeg    := FCCManager.xShip.Heading;
+    end;
 
     AreaBlindZone1.Draw(aCnv);
 
@@ -729,7 +732,10 @@ begin
     AreaBlindZone.CurrentRange_m := Self.FCurrentRange;
 
     if Assigned(FCCManager) then
-      AreaBlindZone.HeadingDeg    := FCCManager.xShip.Heading;
+    begin
+      if Assigned(FCCManager.xShip) then
+        AreaBlindZone.HeadingDeg    := FCCManager.xShip.Heading;
+    end;
 
     AreaBlindZone.Draw(aCnv);
 
@@ -742,7 +748,10 @@ begin
     AreaPenembakan.CurrentRange_m := Self.FCurrentRange;
 
     if Assigned(FCCManager) then
-      AreaPenembakan.HeadingDeg    := FCCManager.xShip.Heading;
+    begin
+      if Assigned(FCCManager.xShip) then
+        AreaPenembakan.HeadingDeg    := FCCManager.xShip.Heading;
+    end;
 
     AreaPenembakan.Draw(aCnv);
 
@@ -755,7 +764,10 @@ begin
     AreaTracker.CurrentRange_m := Self.FCurrentRange;
 
     if Assigned(FCCManager) then
-      AreaTracker.HeadingDeg    := FCCManager.xShip.Heading;
+    begin
+      if Assigned(FCCManager.xShip) then
+        AreaTracker.HeadingDeg    := FCCManager.xShip.Heading;
+    end;
 
     AreaTracker.Draw(aCnv);
 
@@ -768,7 +780,10 @@ begin
     AreaGunPoint.CurrentRange_m := Self.FCurrentRange;
 
     if Assigned(FCCManager) then
-      AreaGunPoint.HeadingDeg    := FCCManager.xShip.Heading;
+    begin
+      if Assigned(FCCManager.xShip) then
+        AreaGunPoint.HeadingDeg    := FCCManager.xShip.Heading;
+    end;
 
     AreaGunPoint.Draw(aCnv);
 
@@ -778,8 +793,11 @@ begin
     FNorthInd.RadiusPx      := FCircleR;
     if Assigned(FCCManager) then
     begin
-      FNorthInd.HeadingDeg    := FCCManager.xShip.Heading;
-      FNorthInd.UseTrueMotion := FCCManager.IsTrueMotion; // TRUE or FALSE
+      if Assigned(FCCManager.xShip) then
+      begin
+        FNorthInd.HeadingDeg    := FCCManager.xShip.Heading;
+        FNorthInd.UseTrueMotion := FCCManager.IsTrueMotion; // TRUE or FALSE
+      end;
     end;
     FNorthInd.Draw(aCnv);
 
@@ -1457,19 +1475,25 @@ begin
 
   lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
 
-  edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
-  edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
-
-  if not FCCManager.IsTrueMotion then begin
-    Fmap.CenterX := FCCManager.xShip.PositionX;
-    Fmap.CenterY := FCCManager.xShip.PositionY;
-//    FMap.Rotation := 0;
-    FNorthAngle := 0;
-  end
-  else
+  if Assigned(FCCManager) then
   begin
-    FNorthAngle := -FCCManager.xShip.Heading;;
-//    FMap.Rotation := -FCCManager.xShip.Heading;
+    if Assigned(FCCManager.xShip) then
+    begin
+      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
+      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
+
+      if not FCCManager.IsTrueMotion then begin
+        Fmap.CenterX := FCCManager.xShip.PositionX;
+        Fmap.CenterY := FCCManager.xShip.PositionY;
+      //    FMap.Rotation := 0;
+        FNorthAngle := 0;
+      end
+      else
+      begin
+        FNorthAngle := -FCCManager.xShip.Heading;;
+      //    FMap.Rotation := -FCCManager.xShip.Heading;
+      end;
+    end;
   end;
 end;
 
