@@ -8,7 +8,7 @@ uses
   System.ImageList, Vcl.ImgList,Vcl.OleCtrls, MapXLib_TLB, uBaseFunctionFCC, uObjectVisual,
   uCoordConverter, uMapXUnitConverter, system.math, TFlatCheckBoxUnit, uFccManager, uBridgeSet,
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
-  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons;
+  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw;
 
 type
   TfrmMainFCC = class(TForm)
@@ -17,68 +17,7 @@ type
     PnlLower: TPanel;
     pnlRightUpper: TPanel;
     pnlVideoZone: TPanel;
-    pnlINDData: TPanel;
-    pnlNavData: TPanel;
-    pnlWeatherData: TPanel;
     imgListLight: TImageList;
-    pnlIndDataHeader: TPanel;
-    pnlNavDataHeader: TPanel;
-    pnlWeatherDataHeader: TPanel;
-    lblIndDataBatchNo: TLabel;
-    edtIndDataBatchNo: TEdit;
-    lblIndDataType: TLabel;
-    edtIndDataType: TEdit;
-    lblIndDataD: TLabel;
-    edtIndDataD: TEdit;
-    lblIndDataSatuanD: TLabel;
-    lblIndDataAZ: TLabel;
-    edtIndDataAZ: TEdit;
-    lblIndDataSatuanAZ: TLabel;
-    lblIndDataEL: TLabel;
-    edtIndDataEL: TEdit;
-    lblIndDataSatuanEL: TLabel;
-    lblIndDataCourse: TLabel;
-    edtIndDataCourse: TEdit;
-    lblIndDataSatuanCourse: TLabel;
-    lblIndDataSpeed: TLabel;
-    edtIndDataSpeed: TEdit;
-    lblIndDataSatuanSpeed: TLabel;
-    edtNavDataRoll: TEdit;
-    edtNavDataHeading: TEdit;
-    edtNavDataLON: TEdit;
-    edtNavDataPitch: TEdit;
-    edtNavDataSpeed: TEdit;
-    edtNavDataLAT: TEdit;
-    edtNavDataVoyage: TEdit;
-    lblNavDataRoll: TLabel;
-    lblNavDataHeading: TLabel;
-    lblNavDataLon: TLabel;
-    lblNavDataPitch: TLabel;
-    lblNavDataSpeed: TLabel;
-    lblNavDataSatuanRoll: TLabel;
-    lblNavDataSatuanLon: TLabel;
-    lblNavDataSatuanPitch: TLabel;
-    lblNavDataSatuanSpeed: TLabel;
-    lblNavDataLat: TLabel;
-    lblNavDataVoyage: TLabel;
-    lblNavDataSatuanHeading: TLabel;
-    lblNavDataSatuanVoyage: TLabel;
-    lblNavDataSatuanLat: TLabel;
-    lblWeatherDataWs: TLabel;
-    edtWeatherDataWs: TEdit;
-    lblWeatherDataSatuanWs: TLabel;
-    lblWeatherDataWd: TLabel;
-    edtWeatherDataWd: TEdit;
-    lblWeatherDataSatuanWd: TLabel;
-    lblWeatherDataTemp: TLabel;
-    edtWeatherDataTemp: TEdit;
-    lblWeatherDataSatuanTemp: TLabel;
-    lblWeatherDataHumi: TLabel;
-    edtWeatherDataHumi: TEdit;
-    lblWeatherDataSatuanHumi: TLabel;
-    lblWeatherDataAirP: TLabel;
-    edtWeatherDataAirP: TEdit;
-    lblWeatherDataSatuanAirP: TLabel;
     imgBackgrounSituationZone: TImage;
     FMap: TMap;
     btnMapIncrement: TButton;
@@ -442,6 +381,83 @@ type
     edtTrdDFCC2: TEdit;
     edtTrdDeltaBEFCC2: TEdit;
     edtTrdDeltaELFCC2: TEdit;
+    pnlStatusOwnShip: TPanel;
+    pnlIndWth: TPanel;
+    pnlCalSetting: TPanel;
+    pnlWeatherSetting: TPanel;
+    pnlNavSetting: TPanel;
+    pnlINDData: TPanel;
+    lblIndDataBatchNo: TLabel;
+    lblIndDataType: TLabel;
+    lblIndDataD: TLabel;
+    lblIndDataSatuanD: TLabel;
+    lblIndDataAZ: TLabel;
+    lblIndDataSatuanAZ: TLabel;
+    lblIndDataEL: TLabel;
+    lblIndDataSatuanEL: TLabel;
+    lblIndDataCourse: TLabel;
+    lblIndDataSatuanCourse: TLabel;
+    lblIndDataSpeed: TLabel;
+    lblIndDataSatuanSpeed: TLabel;
+    pnlIndDataHeader: TPanel;
+    edtIndDataBatchNo: TEdit;
+    edtIndDataType: TEdit;
+    edtIndDataD: TEdit;
+    edtIndDataAZ: TEdit;
+    edtIndDataEL: TEdit;
+    edtIndDataCourse: TEdit;
+    edtIndDataSpeed: TEdit;
+    pnlNavData: TPanel;
+    lblNavDataRoll: TLabel;
+    lblNavDataHeading: TLabel;
+    lblNavDataLon: TLabel;
+    lblNavDataPitch: TLabel;
+    lblNavDataSpeed: TLabel;
+    lblNavDataSatuanRoll: TLabel;
+    lblNavDataSatuanLon: TLabel;
+    lblNavDataSatuanPitch: TLabel;
+    lblNavDataSatuanSpeed: TLabel;
+    lblNavDataLat: TLabel;
+    lblNavDataVoyage: TLabel;
+    lblNavDataSatuanHeading: TLabel;
+    lblNavDataSatuanVoyage: TLabel;
+    lblNavDataSatuanLat: TLabel;
+    pnlNavDataHeader: TPanel;
+    edtNavDataRoll: TEdit;
+    edtNavDataHeading: TEdit;
+    edtNavDataLON: TEdit;
+    edtNavDataPitch: TEdit;
+    edtNavDataSpeed: TEdit;
+    edtNavDataLAT: TEdit;
+    edtNavDataVoyage: TEdit;
+    pnlWeatherData: TPanel;
+    lblWeatherDataWs: TLabel;
+    lblWeatherDataSatuanWs: TLabel;
+    lblWeatherDataWd: TLabel;
+    lblWeatherDataSatuanWd: TLabel;
+    lblWeatherDataTemp: TLabel;
+    lblWeatherDataSatuanTemp: TLabel;
+    lblWeatherDataHumi: TLabel;
+    lblWeatherDataSatuanHumi: TLabel;
+    lblWeatherDataAirP: TLabel;
+    lblWeatherDataSatuanAirP: TLabel;
+    pnlWeatherDataHeader: TPanel;
+    edtWeatherDataWs: TEdit;
+    edtWeatherDataWd: TEdit;
+    edtWeatherDataTemp: TEdit;
+    edtWeatherDataHumi: TEdit;
+    edtWeatherDataAirP: TEdit;
+    pnlCalSettingHeader: TPanel;
+    lblLastDeltaBESetting: TLabel;
+    edtDeltaBESetting: TEdit;
+    lblLastSatuanDeltaELSetting: TLabel;
+    lblLastSatuanDeltaELSetting2: TLabel;
+    edtDeltaELSetting: TEdit;
+    lblLastDeltaELSetting: TLabel;
+    lblLastDeltaDSetting: TLabel;
+    edtDeltaDSetting: TEdit;
+    lblLastSatuanDeltaDSetting: TLabel;
+    pnlBaseVideoZone: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -457,6 +473,10 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure acbxTargetParaClick(Sender: TObject);
     procedure FMapMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure FormShow(Sender: TObject);
+    procedure FMapMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure pnlFireFcc2Click(Sender: TObject);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -518,6 +538,9 @@ type
     procedure DrawAll(aCnv: TCanvas; aCvt: TCoordConverter; aFlag: Byte);
 
      procedure ShowInfoCursor(const x, y: integer);
+
+     procedure ptkCommand(const str : string);
+     procedure HandleKeyByBtnName(const BtnName: string);
   public
     { Public declarations }
     rCX, rCY: integer;
@@ -530,10 +553,31 @@ implementation
 
 {$R *.dfm}
 
-uses uLibConst, uBaseConst, uScriptFcc, uDataModule, ulibSettings, uVehicleManager, uVehicle, uBaseFunction;
+uses uLibConst, uBaseConst, uScriptFcc, uDataModule, ulibSettings, uVehicleManager, uVehicle, uBaseFunction, uTCPDatatype;
 const
   CMin_Z = 0;
   CMax_Z = 14;
+
+function RunAppInPanel(Panel: TWinControl; const Exe, Params: string): HWND;
+var
+  SI: STARTUPINFO;
+  PI: PROCESS_INFORMATION;
+begin
+  ZeroMemory(@SI, SizeOf(SI));
+  ZeroMemory(@PI, SizeOf(PI));
+  SI.cb := SizeOf(SI);
+  SI.dwFlags := STARTF_USESHOWWINDOW;
+  SI.wShowWindow := SW_SHOW;
+
+  if CreateProcess(nil, PChar(Exe + ' ' + Params), nil, nil, False,
+                   CREATE_NEW_CONSOLE, nil, nil, SI, PI) then
+  begin
+    Result := PI.hProcess;
+  end
+  else
+    Result := 0;
+end;
+
 
 function ZoomIndexToScale(const i: Integer): double;
 begin
@@ -1017,6 +1061,7 @@ begin
     // misalnya tampilkan info target
     // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
 
+    FCCManager.SelectedVehicle := v;
     rangeX := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
     dH     := v.PosZ;    // target 20 m lebih rendah
     v0     := 1035;    // m/s
@@ -1037,6 +1082,81 @@ begin
   ShowInfoCursor(X,y);
 end;
 
+procedure TfrmMainFCC.FMapMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  isValid : Boolean;
+  RecSend : TRec3DSetWCC;
+
+  CorrectBearing,
+  CorrectElev : Double;
+  aLow, aHigh: Double;
+  range,rangem, bearing : Double;
+begin
+  if Assigned(fccmanager.SelectedVehicle) then
+  begin
+    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    rangem := range * C_NauticalMile_To_Metre;
+    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    // range = 3000 m, target lebih rendah 25 m
+    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+
+    if (aLow <= 80 ) and (aLow >= 0 )then
+    begin
+//      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
+      aLow := FMod(aLow, 360);
+      if aLow < 0 then
+        aLow := aLow + 360;
+
+      RecSend.ShipID          := FCCManager.ShipID;
+      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID     := 0;
+      RecSend.mMissileID      := 0;
+      RecSend.mMissileNumber  := 0;
+      RecSend.mOrderID        := 0;
+
+      RecSend.mUpDown             := 0;
+      RecSend.mTargetID           := 0;
+      RecSend.mModeID             := 0;
+      RecSend.mAutoCorrectElev    := aLow;
+      RecSend.mAutoCorrectBearing := bearing;
+
+      RecSend.mBalistikID         := 0;
+      RecSend.mSalvoRate          := 30;
+
+
+      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+      FCCManager.NetSendTo3D_OrderCannon(RecSend);
+    end
+    else if (aLow >= 350 )then
+    begin
+      alow := FMod(alow, 360);
+      if alow < 0 then
+        alow := alow + 360;
+
+      RecSend.ShipID          := FCCManager.ShipID;
+      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID     := 0;
+      RecSend.mMissileID      := 0;
+      RecSend.mMissileNumber  := 0;
+      RecSend.mOrderID        := 0;
+
+      RecSend.mUpDown             := 0;
+      RecSend.mTargetID           := 0;
+      RecSend.mModeID             := 0;
+      RecSend.mAutoCorrectElev    := alow;
+      RecSend.mAutoCorrectBearing := bearing;
+
+      RecSend.mBalistikID         := 0;
+      RecSend.mSalvoRate          := 30;
+
+
+      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+      FCCManager.NetSendTo3D_OrderCannon(RecSend);
+    end;
+  end;
+end;
+
 procedure TfrmMainFCC.FormCreate(Sender: TObject);
 var
   n : Integer;
@@ -1049,6 +1169,8 @@ begin
   FCCManager := TFCCManager.Create;
   SimCenter := FCCManager;
   SimCenter.FMap := FMap;
+  FCCManager.OnPtkCommand := ptkCommand;
+  FCCManager.initEvent;
 
   FNorthAngle := 0;
   FMapCanvas         := TCanvas.Create;
@@ -1251,6 +1373,109 @@ begin
   DrawCompas(imgCompas.Canvas);
 end;
 
+procedure TfrmMainFCC.FormShow(Sender: TObject);
+var
+  ChromeHandle: HWND;
+  WindowHandle: HWND;
+begin
+  // jalankan chrome
+  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
+    '--app="https://google.com"');
+
+  // tunggu window chrome muncul
+  Sleep(500);
+
+  // temukan window chrome
+  WindowHandle := FindWindow('Chrome_WidgetWin_1', nil);
+
+  if WindowHandle <> 0 then
+  begin
+    // set parent ke panel
+    Winapi.Windows.SetParent(WindowHandle, pnlBaseVideoZone.Handle);
+
+    // sesuaikan posisi
+    SetWindowLong(WindowHandle, GWL_STYLE, WS_VISIBLE);
+    SetWindowPos(WindowHandle, 0, 0, 0, pnlBaseVideoZone.Width, pnlBaseVideoZone.Height,
+                 SWP_NOZORDER or SWP_SHOWWINDOW);
+  end;
+end;
+
+procedure TfrmMainFCC.HandleKeyByBtnName(const BtnName: string);
+var
+  Token: string;
+  C: Char;
+begin
+  Token := ExtractToken(BtnName);
+
+  if Token = '' then Exit;
+
+  if Token = 'CalSetting' then
+    pnlCalSetting.BringToFront
+  else if Token = 'Cancel' then
+    pnlIndWth.BringToFront;
+
+  if not (ActiveControl is TEdit) then Exit;
+
+  // ---------------- LETTERS ----------------
+  if (Length(Token) = 1) and (Token[1] in ['A'..'Z']) then
+  begin
+    PostMessage(ActiveControl.Handle, WM_CHAR, Ord(Token[1]), 0);
+    Exit;
+  end;
+
+  // ---------------- NUMBERS ----------------
+  if (Length(Token) = 1) and (Token[1] in ['0'..'9']) then
+  begin
+    PostMessage(ActiveControl.Handle, WM_CHAR, Ord(Token[1]), 0);
+    Exit;
+  end;
+
+  // ---------------- SPECIAL TOKENS ----------------
+  if Token = 'Dot' then
+    PostMessage(ActiveControl.Handle, WM_CHAR, Ord('.'), 0)
+
+  else if Token = 'Minus' then
+    PostMessage(ActiveControl.Handle, WM_CHAR, Ord('-'), 0)
+
+  else if Token = 'Plus' then
+    PostMessage(ActiveControl.Handle, WM_CHAR, Ord('+'), 0)
+
+  else if Token = 'Backspace' then
+    PostMessage(ActiveControl.Handle, WM_CHAR, VK_BACK, 0)
+
+  else if Token = 'Del' then
+  begin
+      PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_DELETE, 0);
+      PostMessage(ActiveControl.Handle, WM_KEYUP, VK_DELETE, 0);
+  end
+
+  else if Token = 'Enter' then
+    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_RETURN, 0)
+
+  else if Token = 'Cancel' then
+    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_ESCAPE, 0)
+
+  else if Token = 'Confirm' then
+    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_RETURN, 0)
+
+  // ---------------- ARROWS ----------------
+  else if Token = 'Up' then
+    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_UP, 0)
+
+  else if Token = 'Down' then
+    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_DOWN, 0)
+
+  else if Token = 'Left' then
+    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_LEFT, 0)
+
+  else if Token = 'Right' then
+    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_RIGHT, 0)
+
+
+
+end;
+
+
 procedure TfrmMainFCC.imgCompasClick(Sender: TObject);
 begin
   if Assigned(FCCManager) then
@@ -1361,6 +1586,64 @@ begin
   Result := FMap.width;
 end;
 
+procedure TfrmMainFCC.pnlFireFcc2Click(Sender: TObject);
+var
+  RecSend : TRec3DSetWCC;
+  aLow, aHigh: Double;
+  range,rangem, bearing : Double;
+begin
+  if Assigned(FCCManager.SelectedVehicle) then
+  begin
+    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    rangem := range * C_NauticalMile_To_Metre;
+    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    // range = 3000 m, target lebih rendah 25 m
+    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+
+    RecSend.ShipID          := FCCManager.ShipID;
+    RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := aLow;
+    RecSend.mAutoCorrectBearing := bearing;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_START_F;
+    FCCManager.NetSendTo3D_OrderCannon(RecSend);
+
+    Sleep(1000);
+
+    RecSend.ShipID          := FCCManager.ShipID;
+    RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := aLow;
+    RecSend.mAutoCorrectBearing := bearing;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_STOP_F;
+    FCCManager.NetSendTo3D_OrderCannon(RecSend);
+  end;
+end;
+
 procedure TfrmMainFCC.pnlMapRangeClick(Sender: TObject);
 begin
   ResetColorRange;
@@ -1369,6 +1652,11 @@ begin
   Self.FIndexRange := TPanel(Sender).Tag;
   self.FCurrentRange := CRangeOperation[TPanel(Sender).Tag];
   FMap.ZoomTo((Self.FCurrentRange  * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
+end;
+
+procedure TfrmMainFCC.ptkCommand(const str: string);
+begin
+  HandleKeyByBtnName(str);
 end;
 
 procedure TfrmMainFCC.ResetColorRange;

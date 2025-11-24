@@ -43,7 +43,9 @@ uses
   uDataModule in '..\ShareLib\AppForms\uDataModule.pas' {DataModule1: TDataModule},
   uClassDatabase in '..\ShareLib\AppForms\uClassDatabase.pas',
   uVehicle in 'LibFCCObject\uVehicle.pas',
-  uVehicleManager in 'uVehicleManager.pas';
+  uVehicleManager in 'uVehicleManager.pas',
+  uPtkReceiver in 'LibNetworkPTK\uPtkReceiver.pas',
+  uPtkServer in 'LibNetworkPTK\uPtkServer.pas';
 
 {$R *.res}
 

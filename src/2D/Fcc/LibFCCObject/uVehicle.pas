@@ -24,6 +24,7 @@ type
     FSymbol             : TRadarTargetSymbol;
     FUniqueID: string;
     FDomain: Integer;
+    FShipID: Word;
 
     procedure SyncSymbolFromState; // push PosX/Y -> Symbol.MapX/MapY
   public
@@ -55,6 +56,7 @@ type
 
     property UniqueID: string read FUniqueID write FUniqueID;
     property Domain : Integer read FDomain write FDomain;
+    property ShipID : Word read FShipID write FShipID;
   end;
 
 implementation

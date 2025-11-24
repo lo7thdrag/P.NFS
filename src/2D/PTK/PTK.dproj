@@ -132,6 +132,7 @@
         <DCCReference Include="Libs\NetworkTCMS\NetComponent\uUDPDatatype.pas"/>
         <DCCReference Include="Libs\uLibSettings.pas"/>
         <DCCReference Include="Libs\uPTKEnum.pas"/>
+        <DCCReference Include="Libs\uLibPTKSetting.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

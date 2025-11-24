@@ -2,7 +2,7 @@ unit uBaseFunctionFCC;
 
 interface
   uses
-    Classes, Windows, Math, uBaseConst, Graphics, uCoordDataTypes;
+    Classes, Windows, Math, uBaseConst, Graphics, uCoordDataTypes, System.SysUtils;
   type
     TBGRA = packed record
       b, g, r, a: Byte;
@@ -19,6 +19,9 @@ interface
   function RoundPoint(const d: t2DPoint): TPoint;
 
   function CalcBearing(const x1, y1, x2, y2: double): Double;
+  function CalcRange(const x1, y1, x2, y2: double):Double;
+  function CalcElevation(const r, z1, z2: double): double;
+
   function ValidateDegree(const aDegree: double): double;
   function ConvCartesian_To_Compass(const degree: double): double ;
   function ConvCompass_To_Cartesian(const degree: double): double;
@@ -26,6 +29,11 @@ interface
   function ConvCustomAngleStart(const degree,startAngle: Double):Double;
   function ConvCoordPolar_To_Cartesian(const aAngleRadian, aRadius: Double)
     : t2DPoint;
+  procedure SendKey(const VK: WORD);
+  function ExtractToken(const Btn: string): string;
+
+  function ComputeBallisticAngleVacuum(const RangeX, DeltaHeight, V0: Double;
+    out AngleLowDeg, AngleHighDeg: Double): Boolean;
 
 implementation
   //==============================================================================
@@ -73,6 +81,21 @@ implementation
     dy := (y2 - y1);
     bearing := C_RadToDeg * ArcTan2(dy, dx);
     result  := ConvCartesian_To_Compass(bearing);
+  end;
+  function CalcElevation(const r, z1, z2: double): double;
+  begin
+   { input apapun asal sama } //untested;
+   { return positif if z2 > z1 }
+    result := C_RadToDeg * ArcTan2(z2-z1, r );
+  end;
+  function CalcRange(const x1, y1, x2, y2: double):Double;
+  var dx, dy : Extended;
+  begin
+   {input dec degree, output nautical mile, }
+    dx := (x2 - x1) * C_Degree_To_NauticalMile;
+    dy := (y2 - y1) * C_Degree_To_NauticalMile;
+
+    result := sqrt(sqr(dx) + sqr(dy));
   end;
 
   //==============================================================================
@@ -184,4 +207,72 @@ implementation
     pt.Y := ct.Y - pt.Y;
   end;
 
+
+  // -----------------------------------------------------------
+// Kirim event keyboard (modern, SendInput)
+// -----------------------------------------------------------
+procedure SendKey(const VK: WORD);
+var
+  Input: TInput;
+begin
+  ZeroMemory(@Input, SizeOf(Input));
+  Input.Itype := INPUT_KEYBOARD;
+  Input.ki.wVk := VK;
+  Input.ki.dwFlags := 0; // key down
+  SendInput(1, Input, SizeOf(Input));
+
+  ZeroMemory(@Input, SizeOf(Input));
+  Input.Itype := INPUT_KEYBOARD;
+  Input.ki.wVk := VK;
+  Input.ki.dwFlags := KEYEVENTF_KEYUP; // key up
+  SendInput(1, Input, SizeOf(Input));
+end;
+
+// -----------------------------------------------------------
+// Ambil data setelah prefix: btn_NXXXXX
+// -----------------------------------------------------------
+function ExtractToken(const Btn: string): string;
+begin
+  // Format tombol: btn_NS, btn_N7, btn_NEnter, dst
+  if Btn.StartsWith('btn_N') then
+    Result := Btn.Substring(5)  // ambil setelah 'btn_N'
+  else if Btn.StartsWith('btn_') then
+    Result := Btn.Substring(4)  // ambil setelah 'btn_'
+  else
+    Result := Btn;
+end;
+
+
+function ComputeBallisticAngleVacuum(const RangeX, DeltaHeight, V0: Double;
+  out AngleLowDeg, AngleHighDeg: Double): Boolean;
+var
+  g, x, y, v2, v4, D, tanLow, tanHigh: Double;
+begin
+  Result := False;
+  AngleLowDeg := 0;
+  AngleHighDeg := 0;
+
+  g := 9.80665;
+  x := RangeX;
+  y := DeltaHeight;
+
+  if (V0 <= 0) or (x <= 0) then
+    Exit;
+
+  v2 := Sqr(V0);
+  v4 := v2 * v2;
+
+  D := v4 - g * (g * Sqr(x) + 2 * y * v2);
+  if D < 0 then Exit;
+
+  D := Sqrt(D);
+
+  tanLow  := (v2 - D) / (g * x);
+  tanHigh := (v2 + D) / (g * x);
+
+  AngleLowDeg  := RadToDeg(ArcTan(tanLow));
+  AngleHighDeg := RadToDeg(ArcTan(tanHigh));
+
+  Result := True;
+end;
 end.

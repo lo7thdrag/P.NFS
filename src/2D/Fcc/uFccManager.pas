@@ -7,7 +7,7 @@ uses
   Classes, Sysutils,
   windows, uSimulationManager, uTCPDatatype, uBaseSimulationObject, uLibClientObject,
   uBridgeSet, uTestShip, uBaseFunction, uClassDatabase, System.Uitypes, uVehicleManager,
-  uVehicle, System.Math;
+  uVehicle, System.Math, uPtkServer, uPtkReceiver, OverbyteIcsWSocket;
 
 type
   TFCCManager = class(TSimulationManager)
@@ -32,10 +32,16 @@ type
     FShipCallSign: string;
     FShipClassName: string;
     FEnv_Map: Integer;
+
+    FPtkServer: TListener;
+    FPtkHandler : TPtkReceiver;
+    FOnPtkCommand: TGetStrProc;
+    FSelectedVehicle: TVehicle;
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
+          procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
   public
     procedure Get57WeaponAssigned;
 
@@ -43,6 +49,10 @@ type
     destructor Destroy; override;
 
     procedure InitializeSimulation;     override;
+    procedure initEvent;
+
+    //send to network
+    procedure NetSendTo3D_OrderCannon(rec : TRec3DSetWCC);
 
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
@@ -67,6 +77,9 @@ type
     property ShipName: string read FShipName write FShipName;
     property ShipClassName: string read FShipClassName write FShipClassName;
     property ShipCallSign: string read FShipCallSign write FShipCallSign;
+
+    property OnPtkCommand : TGetStrProc read FOnPtkCommand write FOnPtkCommand;
+    property SelectedVehicle : TVehicle read FSelectedVehicle write FSelectedVehicle;
 
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -132,12 +145,20 @@ begin
   inherited;
   FIsStandAlone := False;
   FIsTrueMotion := False;
+
+  FPtkServer := TListener.Create;
+  FPtkHandler := TPtkReceiver.Create;
+  FPtkServer.OnNetReceive := FPtkHandler.NetPdkReceive;
+  FPtkServer.Startup;
 end;
 
 destructor TFCCManager.Destroy;
 begin
 
   inherited;
+
+  FPtkServer.Shutdown;
+  FPtkServer.Free;
 
   if not IsStandAlone then
     Net_DisConnect;
@@ -259,6 +280,11 @@ begin
 
 end;
 
+procedure TFCCManager.Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
+begin
+
+end;
+
 procedure TFCCManager.FMapMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
@@ -288,11 +314,29 @@ begin
   ListWeaponAssigned.Free;
 end;
 
+procedure TFCCManager.initEvent;
+begin
+  if Assigned(FPtkHandler) then
+  begin
+    FPtkHandler.OnPtkCommand := OnPtkCommand;
+  end;
+
+end;
+
 procedure TFCCManager.InitializeSimulation;
 begin
   inherited;
     NetComm.RegisterProcedure(
       REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
+
+  NetComm.RegisterProcedure(
+    C_REC_CANNON          ,Event_OrderRecognizer, sizeof(TRecMeriam));
+
+  NetComm.RegisterProcedure(
+    REC_MISSILEPOS        ,EventonRecMissilePosAvailable,  sizeof(TRecMissilePos));
+
+  NetComm.RegisterProcedure(
+    REC_STAT_CANNON_SPLASH  ,EventonReceiveSplashPoint  ,  sizeof(TRecSplashCannon));
 
   FxShip       := TXShip.Create;
   FxShip.PositionX := 112.75;
@@ -302,6 +346,12 @@ begin
 
   if not IsStandAlone then
     Net_Connect;
+end;
+
+procedure TFCCManager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
+begin
+  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+      TCPClient.sendDataEx(C_REC_CANNON, @Rec);
 end;
 
 end.
