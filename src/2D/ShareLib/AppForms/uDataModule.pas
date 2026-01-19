@@ -8,9 +8,9 @@ uses
   Dialogs, uClassDatabase, ZAbstractConnection;
 
 const
- CAT_SUBMARINES = 'SUBMARINE';
- CAT_HELICOPTER = 'HELICOPTER';
- CAT_AIRCRAFT   = 'AIRCRAFT';                 
+  CAT_SUBMARINES = 'SUBMARINE';
+  CAT_HELICOPTER = 'HELICOPTER';
+  CAT_AIRCRAFT = 'AIRCRAFT';
 
 type
   TDataModule1 = class(TDataModule)
@@ -21,139 +21,156 @@ type
     procedure DataModuleCreate(Sender: TObject);
   private
   public
-    function GetShipCategoryID(const shipid: integer ): integer;
-    function GetShipCategoryName(const catid: integer ): string;
+    function GetShipClassID(const shipid: integer): integer;
+    function GetShipClassName(const classid: integer): string;
+    function GetShipCategoryID(const shipid: integer): integer;
+    function GetShipCategoryName(const catid: integer): string;
     function GetShipType(const shipid: integer; var shipName: string): integer;
     function GetShipName(const shipid: integer): string;
-    function GetShipDomain(const shipid: integer): Integer;
-    function GetShipTarget(const shipid: integer): Integer;
+    function GetShipDomain(const shipid: integer): integer;
+    function GetShipTarget(const shipid: integer): integer;
     function GetShipMinSpeed(const shipid: integer): Double;
     function GetShipMaxSpeed(const shipid: integer): Double;
-    function getMacAddress(const ip : string) : string;
+    function getMacAddress(const ip: string): string;
 
-    function InitZDB(const zDbServer, zDBProto, zDBname,
-      zDBuser, zDBPass, mDBPort: string): boolean;
+    function InitZDB(const zDbServer, zDBProto, zDBname, zDBuser, zDBPass,
+      mDBPort: string): boolean;
     function GetStatusconDB: boolean;
 
-    function GetShipData_symbol(const shipclassid: integer;
-      var aSym: Char; var aFontName : string ): boolean;
+    function GetShipData_symbol(const shipclassid: integer; var aSym: Char;
+      var aFontName: string): boolean;
 
     procedure GetSteeringProfile(const idShip: integer;
-     var aMaxAhead, aMinAstern, aMaxRudder, aMinRudder,
-           aPanjang, aLebar, aTinggi: double);
+      var aMaxAhead, aMinAstern, aMaxRudder, aMinRudder, aPanjang, aLebar,
+      aTinggi: Double);
 
-     //Added By Nando
+    // Added By Nando
     function GetNameWeaponByID(const IdWeapon: integer): string;
-    function GetListWeaponOnShip(const IdShip: Integer; var aRec : Tlist): Integer;
-    function GetListWeaponRangeDetail(const idShip, idWeapon, idLauncher : Integer; var aRec : TList): Integer;
-    function GetListMissileOnWeapon(const Id: Integer; var aRec : Tlist):Integer;
-    function GetListWeaponOnShipBySceID(const idScen, idShip : Integer; var aRec : Tlist): Integer;
+    function GetListWeaponOnShip(const idShip: integer;
+      var aRec: Tlist): integer;
+    function GetListWeaponRangeDetail(const idShip, IdWeapon,
+      idLauncher: integer; var aRec: Tlist): integer;
+    function GetListMissileOnWeapon(const Id: integer; var aRec: Tlist)
+      : integer;
+    function GetListWeaponOnShipBySceID(const idScen, idShip: integer;
+      var aRec: Tlist): integer;
 
-    function GetListWeaponDetail(const idWeapon, idDet : integer; var aRec : Tlist): integer;
+    function GetListWeaponDetail(const IdWeapon, idDet: integer;
+      var aRec: Tlist): integer;
 
-    function GetAllShipFromScen(const SceID : integer; var aRec : Tlist):integer;
+    function GetAllShipFromScen(const SceID: integer; var aRec: Tlist): integer;
 
-    function GetAllWarShip(var aRec : TList): Integer;
-    function GetAllGeneralShip(var aRec : Tlist): Integer;
-    function GetAllTargetSurface(var aRec : TList): Integer;
-    function GetAllTargetSubsurface(var aRec : TList): Integer;
-    function GetAllTargetAir(var aRec : TList): Integer;
+    function GetAllWarShip(var aRec: Tlist): integer;
+    function GetAllGeneralShip(var aRec: Tlist): integer;
+    function GetAllTargetSurface(var aRec: Tlist): integer;
+    function GetAllTargetSubsurface(var aRec: Tlist): integer;
+    function GetAllTargetAir(var aRec: Tlist): integer;
 
+    function GetAllPort(var aRec: Tlist): integer;
+    function GetAllWeapon(var aRec: Tlist): integer;
+    function GetALLTypeWeapon(var aRec: Tlist): integer;
 
-    function GetAllPort(var aRec : TList): Integer;
-    function GetAllWeapon(var aRec : Tlist): integer;
-    function GetALLTypeWeapon(var aRec : Tlist):Integer;
+    function GetAllModel3D(var aRec: Tlist): integer;
+    function GetAllDOF3D(var aRec: Tlist): integer;
+    function GetAllSwitch(var aRec: Tlist): integer;
 
-    function GetAllModel3D(var aRec : Tlist):Integer;
-    function GetAllDOF3D(var aRec : Tlist):Integer;
-    function GetAllSwitch(var aRec : Tlist):Integer;
+    function GetModelIDByName(mName: string): integer;
+    function GetDofIDByName(mName: string): integer;
+    function GetSwitchIDByName(mName: string): integer;
 
-    function GetModelIDByName(mName : string): Integer;
-    function GetDofIDByName(mName : string): Integer;
-    function GetSwitchIDByName(mName : string): Integer;
+    function GetPortNameNoById(const portID: Double): string;
 
-    function GetPortNameNoById( const portID : double): string;
-
-    function GetWarShipInScenario(const ScenarioID : Integer; var aRec : Tlist):Integer;
-    function GetGeneralShipInScenario(const ScenarioID : Integer; var aRec : Tlist):Integer;
-    function GettAllScenario(var aRec : Tlist): integer;
-    function GetAllGame(var aRec : Tlist): integer;
-    function GetShipNoById( const ShipID : integer): Integer;
-    function GetMapById(const Sce_ID : integer): Integer;
-    function GetDesById(const Sce_ID : integer): string;
-    function GetConsoleListBySceID(const Sce_ID : integer; var aRec : TList):Integer;
+    function GetWarShipInScenario(const ScenarioID: integer;
+      var aRec: Tlist): integer;
+    function GetGeneralShipInScenario(const ScenarioID: integer;
+      var aRec: Tlist): integer;
+    function GettAllScenario(var aRec: Tlist): integer;
+    function GetAllGame(var aRec: Tlist): integer;
+    function GetShipNoById(const shipid: integer): integer;
+    function GetMapById(const Sce_ID: integer): integer;
+    function GetDesById(const Sce_ID: integer): string;
+    function GetConsoleListBySceID(const Sce_ID: integer;
+      var aRec: Tlist): integer;
 
     procedure DeleteDefaultScenario;
-    procedure FillListDefaultScenario(SceID : integer);
+    procedure FillListDefaultScenario(SceID: integer);
 
-    procedure SaveScenario(const rec: TScenario; ListShip, ListConsole, ListWeapon : Tlist);
-    procedure SaveWeaponShip(const Rec : TWeaponGetList);
-    procedure UpdateWeaponShip(const Rec : TWeaponGetList; const IDNumber : integer);
-    procedure SaveMissileWeapon(const Rec: TMissile);
-    procedure DeleteMissileWeapon(const IDM, MissileID : integer);
-    procedure DeleteWeaponShip(const IdShIp, IdWeapon, idLauncher, IDnumber : integer);
+    procedure SaveScenario(const rec: TScenario;
+      ListShip, ListConsole, ListWeapon: Tlist);
+    procedure SaveWeaponShip(const rec: TWeaponGetList);
+    procedure UpdateWeaponShip(const rec: TWeaponGetList;
+      const IDNumber: integer);
+    procedure SaveMissileWeapon(const rec: TMissile);
+    procedure DeleteMissileWeapon(const IDM, MissileID: integer);
+    procedure DeleteWeaponShip(const idShip, IdWeapon, idLauncher,
+      IDNumber: integer);
 
-    function GetPortIDfromSceID(const SceID : integer):Integer;
-    
-    procedure DeleteScenario(const idScen : Integer);
-    procedure UpdateCurrentDatabase(const IdScenario: integer; ListShip, ListConsole,ListWeapon: Tlist);
+    function GetPortIDfromSceID(const SceID: integer): integer;
 
-    function GetPC_Client(var aRec : TList): Integer;
+    procedure DeleteScenario(const idScen: integer);
+    procedure UpdateCurrentDatabase(const IdScenario: integer;
+      ListShip, ListConsole, ListWeapon: Tlist);
 
-    procedure UpdateEnvi(const  SceID: integer; const SceEnvi : TScenario);
-                               
-    procedure GetEnviBySceID(const SceID: integer;
-              var Rec : TScenario);
+    function GetPC_Client(var aRec: Tlist): integer;
 
-    function GetCanonTOFbyRange(GuntType: Integer; iRange: double): single;
+    procedure UpdateEnvi(const SceID: integer; const SceEnvi: TScenario);
 
-    function GetModelNameByID(IDModel : integer):string;
-    function GetDOFNameByID(IDDOF : integer):string;
-    function GetSwitchNameByID(IDSwitch : integer):string;
+    procedure GetEnviBySceID(const SceID: integer; var rec: TScenario);
+
+    function GetCanonTOFbyRange(GuntType: integer; iRange: Double): single;
+
+    function GetModelNameByID(IDModel: integer): string;
+    function GetDOFNameByID(IDDOF: integer): string;
+    function GetSwitchNameByID(IDSwitch: integer): string;
     function GetLethalityByID(const IdWeapon: integer): integer;
 
-    procedure GetOffsetMapByEnvMap(const EnvMap :integer; var OffX, OffY :double);
+    procedure GetOffsetMapByEnvMap(const EnvMap: integer;
+      var OffX, OffY: Double);
 
     procedure SaveLogEvent(const rec: TlogEvent);
-    function GetScenarioIDByName(NameScen: String; aRec:TList):integer;
-    function GetGameID(ScenID: Integer): Integer;
+    function GetScenarioIDByName(NameScen: String; aRec: Tlist): integer;
+    function GetGameID(ScenID: integer): integer;
     function GameNameAlreadyExist(aGameName: string): boolean;
-    function GetScenarioByID(IDScenario: Integer): string;
-    function GetMessageFromEventID(IDConsole,IDEvent:Integer):string;
-    function GetShipNameByID(IDShip: Integer): string;
-    function GetShipCallsignByID(IDShip: Integer): string;
+    function GetScenarioByID(IdScenario: integer): string;
+    function GetMessageFromEventID(IDConsole, IDEvent: integer): string;
+    function GetShipNameByID(idShip: integer): string;
+    function GetShipCallsignByID(idShip: integer): string;
     function GetShipDemensiLENGTHByID(const shipid: integer): Double;
     function GetShipDemensiWIDTHByID(const shipid: integer): Double;
     function GetShipDemensiHEIGHTByID(const shipid: integer): Double;
     function GetShipDamageByID(const shipid: integer): Double;
-    function GetGameNameBySceID(aSceID: Integer; aRec: TList): integer;
-    function GetGameNameByDate(date: string; aRec : Tlist):integer;
-    function GetGameNameBySceIDDate(aSceID: Integer;aTanggal: string;
-             aRec: TList): integer;
+    function GetGameNameBySceID(aSceID: integer; aRec: Tlist): integer;
+    function GetGameNameByDate(date: string; aRec: Tlist): integer;
+    function GetGameNameBySceIDDate(aSceID: integer; aTanggal: string;
+      aRec: Tlist): integer;
 
-    function GetVehicleProperties(const ShipID : Integer): TVehicle;
+    function GetVehicleProperties(const shipid: integer): TVehicle;
 
-    function CheckObjectCatDomainByCatID(const CatID: integer ): integer;
-    procedure GetSceneOffSetFromPortID(const id: integer; var x, y: double);
+    function CheckObjectCatDomainByCatID(const catid: integer): integer;
+    procedure GetSceneOffSetFromPortID(const Id: integer; var x, y: Double);
 
-    function CheckObjectCatDomain(const shipID: integer ): integer;
+    function CheckObjectCatDomain(const shipid: integer): integer;
 
-    procedure GetAllListClient(var aRec : Tlist);
-    function GetCubicleNameFromID(const id: integer ): string;
+    procedure GetAllListClient(var aRec: Tlist);
+    function GetCubicleNameFromID(const Id: integer): string;
 
-    procedure AddDetailWeapon(rec : TWeaponDetail);
-    procedure DeleteDetailWeapon(rec : TWeaponDetail);
-//    procedure updateShipName(const ip : string ; ship_name : string);
-    function getSceConsoleList(sce_id : Integer ; aRec : TList) : Integer;
-    procedure updateShipStart(ship_id : Integer ; ship_console : Integer);
-    function getRangDeg(ship_id : Integer ; weapon_id : Integer ; launcher : Integer ; aRec : TList) : Integer;
-    function getShipWeaponScen(sceID : Integer) : Integer;
-    function getShipIDByName(shipName : string) : Integer;
-    function getWeaponIDByName(weaponName : string) : Integer;
-    procedure updateSceWeapon(idScen : Integer ; idShip : Integer ; idWeapon : Integer ; idDet : Integer );
-    procedure deleteSceWeapon(idScen : Integer ; idShip : Integer ; idWeapon : Integer ; idDet : Integer );
-    function UpdateShipEditor(const shipid: integer; const vehicle : TVehicle) : Integer;
-    function IDclassbyName(shipid : Integer): String;
+    procedure AddDetailWeapon(rec: TWeaponDetail);
+    procedure DeleteDetailWeapon(rec: TWeaponDetail);
+    // procedure updateShipName(const ip : string ; ship_name : string);
+    function getSceConsoleList(Sce_ID: integer; aRec: Tlist): integer;
+    procedure updateShipStart(ship_id: integer; ship_console: integer);
+    function getRangDeg(ship_id: integer; weapon_id: integer; launcher: integer;
+      aRec: Tlist): integer;
+    function getShipWeaponScen(SceID: integer): integer;
+    function getShipIDByName(shipName: string): integer;
+    function getWeaponIDByName(weaponName: string): integer;
+    procedure updateSceWeapon(idScen: integer; idShip: integer;
+      IdWeapon: integer; idDet: integer);
+    procedure deleteSceWeapon(idScen: integer; idShip: integer;
+      IdWeapon: integer; idDet: integer);
+    function UpdateShipEditor(const shipid: integer;
+      const vehicle: TVehicle): integer;
+    function IDclassbyName(shipid: integer): String;
   end;
 
 var
@@ -163,11 +180,13 @@ implementation
 
 {$R *.dfm}
 
-procedure TDataModule1.GetSceneOffSetFromPortID(const id: integer; var x, y: double);
+procedure TDataModule1.GetSceneOffSetFromPortID(const Id: integer;
+  var x, y: Double);
 begin
-  with DataModule1 do begin
+  with DataModule1 do
+  begin
     DQ.SQL.Clear;
-    DQ.SQL.Add('select XOFFSET,YOFFSET from env_port where ID=' + IntToStr(id));
+    DQ.SQL.Add('select XOFFSET,YOFFSET from env_port where ID=' + IntToStr(Id));
     DQ.Open;
     x := DQ.FieldByName('XOFFSET').AsFloat;
     y := DQ.FieldByName('YOFFSET').AsFloat;
@@ -175,33 +194,34 @@ begin
   end;
 end;
 
-//procedure Tdatamodule1.updateShipName(const ip : string ; ship_name : string);
-//begin
+// procedure Tdatamodule1.updateShipName(const ip : string ; ship_name : string);
+// begin
 //
-//  if ip = 'Delete' then begin
+// if ip = 'Delete' then begin
 //
 //
-//    with DataModule1 do begin
-//      DQ.Close;
-//      DQ.SQL.Clear;
-//      DQ.SQL.Add(' update cm_console set Ship_Name = ' + QuotedStr(ship_name));
-//      DQ.ExecSQL;
-//    end;
-//  end
-//  else begin
-//    with DataModule1 do begin
-//      DQ.Close;
-//      DQ.SQL.Clear;
-//      DQ.SQL.Add(' update cm_console set Ship_Name = ' + QuotedStr(ship_name) + 'where PC_IP = ' + QuotedStr(ip));
-//      DQ.ExecSQL;
-//    end;
-//  end;
+// with DataModule1 do begin
+// DQ.Close;
+// DQ.SQL.Clear;
+// DQ.SQL.Add(' update cm_console set Ship_Name = ' + QuotedStr(ship_name));
+// DQ.ExecSQL;
+// end;
+// end
+// else begin
+// with DataModule1 do begin
+// DQ.Close;
+// DQ.SQL.Clear;
+// DQ.SQL.Add(' update cm_console set Ship_Name = ' + QuotedStr(ship_name) + 'where PC_IP = ' + QuotedStr(ip));
+// DQ.ExecSQL;
+// end;
+// end;
 //
-//end;
+// end;
 
-function Tdatamodule1.getMacAddress(const ip : string) : string;
+function TDataModule1.getMacAddress(const ip: string): string;
 begin
-  with DataModule1 do begin
+  with DataModule1 do
+  begin
     DQ.SQL.Clear;
     DQ.SQL.Add('select PC_MAC from cm_console where PC_IP = ' + QuotedStr(ip));
     DQ.Open;
@@ -210,23 +230,70 @@ begin
   end;
 end;
 
-function TDataModule1.CheckObjectCatDomainByCatID(const CatID: integer ): integer;
+function TDataModule1.CheckObjectCatDomainByCatID(const catid: integer)
+  : integer;
 begin
-  if DataModule1.GetShipCategoryName(catid) =  CAT_SUBMARINES then
+  if DataModule1.GetShipCategoryName(catid) = CAT_SUBMARINES then
     Result := 2
-  else
-  if DataModule1.GetShipCategoryName(catid) = CAT_HELICOPTER then
+  else if DataModule1.GetShipCategoryName(catid) = CAT_HELICOPTER then
     Result := 3
-  else
-  if DataModule1.GetShipCategoryName(catid) = CAT_AIRCRAFT then
+  else if DataModule1.GetShipCategoryName(catid) = CAT_AIRCRAFT then
     Result := 4
   else
     Result := 1;
 end;
 
-function TDataModule1.GetShipCategoryID(const shipid: integer ): integer;
+function TDataModule1.GetShipClassID(const shipid: integer): integer;
 begin
-  with DS do begin
+  Result := -1;
+  with DS do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT ');
+    SQL.Add(' A.SHIP_CLASS_ID ');
+    SQL.Add('FROM ');
+    SQL.Add(' m_ship A');
+    SQL.Add('WHERE ');
+    SQL.Add(' A.SHIP_ID = ' + IntToStr(shipid));
+    Open;
+    First;
+  end;
+
+  if DS.RecordCount > 0 then
+  begin
+    Result := DS.Fields[0].AsInteger;
+  end
+end;
+
+function TDataModule1.GetShipClassName(const classid: integer): string;
+begin
+  Result := '';
+  with DS do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT ');
+    SQL.Add(' A.SHIP_CLASS_NAME ');
+    SQL.Add('FROM ');
+    SQL.Add(' m_ship_class A ');
+    SQL.Add('WHERE ');
+    SQL.Add('A.SHIP_CLASS_ID = ' + IntToStr(classid));
+    Open;
+    First;
+  end;
+
+  if DS.RecordCount > 0 then
+  begin
+    Result := DS.Fields[0].AsString;
+  end
+end;
+
+function TDataModule1.GetShipCategoryID(const shipid: integer): integer;
+begin
+  Result := -1;
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -239,17 +306,17 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then begin
-     result   := DS.Fields[0].AsInteger;
+  if DS.RecordCount > 0 then
+  begin
+    Result := DS.Fields[0].AsInteger;
   end
-  else
-    Result := -1;
-
 end;
 
-function TDataModule1.GetShipCategoryName(const catid: integer ): string;
+function TDataModule1.GetShipCategoryName(const catid: integer): string;
 begin
-  with DS do begin
+  Result := '';
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -262,19 +329,21 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then begin
-     result   := DS.Fields[0].AsString;
+  if DS.RecordCount > 0 then
+  begin
+    Result := DS.Fields[0].AsString;
   end
-  else
-    Result := '';
-
 end;
 
-function TDataModule1.GetShipType(const shipid: integer; var shipName: string): integer;
+function TDataModule1.GetShipType(const shipid: integer;
+  var shipName: string): integer;
 begin
+  Result := -1;
+
   shipName := 'KRI X';
 
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -288,20 +357,20 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then begin
-     result   := DS.Fields[0].AsInteger;
-     shipName := DS.Fields[1].AsString;
+  if DS.RecordCount > 0 then
+  begin
+    Result := DS.Fields[0].AsInteger;
+    shipName := DS.Fields[1].AsString;
   end
-  else
-    Result := -1;
 
 end;
 
-function TDataModule1.GetPortNameNoById(const portID: double): string;
+function TDataModule1.GetPortNameNoById(const portID: Double): string;
 begin
   Result := 'Default Port';
 
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -315,15 +384,16 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsString;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsString;
 end;
 
 function TDataModule1.GetShipName(const shipid: integer): string;
 begin
   Result := 'KRI';
 
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -337,24 +407,25 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsString;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsString;
 end;
 
-
-function TDataModule1.GetShipCallsignByID(IDShip: Integer): string;
+function TDataModule1.GetShipCallsignByID(idShip: integer): string;
 begin
+  Result:= '';
   with DS do
   begin
 
-     if Active then Close;
-     SQL.Clear;
-     SQL.Add('SELECT SHIP_CALLSIGN');
-     SQL.Add('FROM m_ship');
-     SQL.Add('WHERE SHIP_ID = ' + IntToStr(IDShip));
+    if Active then
+      Close;
+    SQL.Clear;
+    SQL.Add('SELECT SHIP_CALLSIGN');
+    SQL.Add('FROM m_ship');
+    SQL.Add('WHERE SHIP_ID = ' + IntToStr(idShip));
 
-     Open;
-     DS.First;
+    Open;
+    DS.First;
   end;
 
   if not DS.IsEmpty then
@@ -364,10 +435,11 @@ end;
 function TDataModule1.GetShipData_symbol(const shipclassid: integer;
   var aSym: Char; var aFontName: string): boolean;
 begin
-  aSym      := ';';
+  aSym := ';';
   aFontName := 'TAKTIS_AL';
 
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -381,41 +453,43 @@ begin
     First;
   end;
 
-  result := DS.RecordCount > 0;
-  if Result then begin
+  Result := DS.RecordCount > 0;
+  if Result then
+  begin
     if DS.Fields[0].IsNull then
-      aSym      := ';'
+      aSym := ';'
     else
-      aSym      := Char(DS.Fields[1].AsInteger);
+      aSym := Char(DS.Fields[1].AsInteger);
   end;
 
 end;
+
 procedure TDataModule1.DataModuleCreate(Sender: TObject);
 begin
-//  DM := self;
+  // DM := self;
 end;
 
-
-function TDataModule1.InitZDB(const zDbServer, zDBProto, zDBname,
-  zDBuser, zDBPass, mDBPort: string): boolean;
+function TDataModule1.InitZDB(const zDbServer, zDBProto, zDBname, zDBuser,
+  zDBPass, mDBPort: string): boolean;
 begin
   with EmuConn do
   begin
     HostName := zDbServer;
     Protocol := zDBProto;
-    Database := zDBName;
-    User     := zDBUser;
-    Password := zDBpass;
-    Port     := StrToInt(mDBPort);
+    Database := zDBname;
+    User := zDBuser;
+    Password := zDBPass;
+    Port := StrToInt(mDBPort);
   end;
 
   try
     EmuConn.Connect;
-    Result :=  EmuConn.Connected;
+    Result := EmuConn.Connected;
   except
     on Exception do
     begin
-      MessageDlg('Error Database Connection on ' + zDbServer, mtError, [mbOK], 0);
+      MessageDlg('Error Database Connection on ' + zDbServer, mtError,
+        [mbOK], 0);
       Result := false;
       exit;
     end
@@ -428,15 +502,15 @@ begin
 end;
 
 procedure TDataModule1.GetSteeringProfile(const idShip: integer;
-     var aMaxAhead, aMinAstern, aMaxRudder, aMinRudder,
-           aPanjang, aLebar, aTinggi: double);
+  var aMaxAhead, aMinAstern, aMaxRudder, aMinRudder, aPanjang, aLebar,
+  aTinggi: Double);
 begin
-  aMaxAhead   :=  24;
-  aMinAstern  := -12;
-  aPanjang    := 100;
-  aLebar      :=  4;
-  aMaxRudder  :=  30;
-  aMinRudder  := -30;
+  aMaxAhead := 24;
+  aMinAstern := -12;
+  aPanjang := 100;
+  aLebar := 4;
+  aMaxRudder := 30;
+  aMinRudder := -30;
 
   DQ.Close;
   DQ.SQL.Clear;
@@ -444,18 +518,19 @@ begin
   DQ.SQL.Add('  DIM_LENGTH, DIM_WIDTH, DIM_HEIGHT');
   DQ.SQL.Add('FROM m_ship ');
   DQ.SQL.Add('WHERE SHIP_ID=:SID');
-  DQ.ParamByName('SID').AsInteger := IDShip;
+  DQ.ParamByName('SID').AsInteger := idShip;
   DQ.Open;
 
-  if not DQ.IsEmpty then begin
+  if not DQ.IsEmpty then
+  begin
 
     if DQ.FieldByName('SHIP_MAX_SPEED').AsFloat > 0 then
       aMaxAhead := DQ.FieldByName('SHIP_MAX_SPEED').AsFloat;
     if DQ.FieldByName('SHIP_MAX_SPEED_ASTERN').AsFloat > 0 then
-      aMinAstern := abs( DQ.FieldByName('SHIP_MAX_SPEED_ASTERN').AsFloat);
+      aMinAstern := abs(DQ.FieldByName('SHIP_MAX_SPEED_ASTERN').AsFloat);
     if DQ.FieldByName('SHIP_RUDDER').AsInteger > 0 then
       aMaxRudder := DQ.FieldByName('SHIP_RUDDER').AsInteger;
-    aMinRudder := - abs( aMaxRudder);
+    aMinRudder := -abs(aMaxRudder);
 
     if DQ.FieldByName('DIM_LENGTH').AsFloat > 0 then
       aPanjang := DQ.FieldByName('DIM_LENGTH').AsFloat;
@@ -469,7 +544,7 @@ end;
 
 function TDataModule1.GettAllScenario(var aRec: Tlist): integer;
 var
-  rec : TScenarioList;
+  rec: TScenarioList;
 begin
   Result := -1;
 
@@ -486,49 +561,53 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TScenarioList.Create;
-      rec.Scenario_ID     := DS.FieldByName('ID').AsInteger;
-      rec.Scenario_Name   := DS.FieldByName('NAMA').AsString;
-      rec.Scenario_KET    := DS.FieldByName('KET').AsString;
-      rec.ENV_PETA        := DS.FieldByName('ENV_PETA').AsInteger;
+      rec.Scenario_ID := DS.FieldByName('ID').AsInteger;
+      rec.Scenario_Name := DS.FieldByName('NAMA').AsString;
+      rec.Scenario_KET := DS.FieldByName('KET').AsString;
+      rec.ENV_PETA := DS.FieldByName('ENV_PETA').AsInteger;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetListWeaponDetail(const idWeapon, idDet : integer;
+function TDataModule1.GetListWeaponDetail(const IdWeapon, idDet: integer;
   var aRec: Tlist): integer;
 begin
-  
+
 end;
 
-function TDataModule1.GetListWeaponOnShipBySceID(const idScen,
-  idShip: Integer; var aRec: Tlist): Integer;
+function TDataModule1.GetListWeaponOnShipBySceID(const idScen, idShip: integer;
+  var aRec: Tlist): integer;
 var
-  rec : TScenarioWeapon;
-  i: Integer;
+  rec: TScenarioWeapon;
+  i: integer;
+  o: TObject;
 begin
   Result := -1;
 
   if not Assigned(aRec) then
-    aRec := TList.Create
+    aRec := Tlist.Create
   else
   begin
-    for i := aRec.Count -1 downto 0 do
+    for i := aRec.Count - 1 downto 0 do
     begin
+      o := TObject(aRec[i]);
+      if Assigned(o) then
+        o.Free;
       aRec.Delete(i);
     end;
     aRec.Clear;
@@ -542,7 +621,8 @@ begin
     SQL.Add('SELECT *');
 
     SQL.Add('FROM sce_weapon');
-    SQL.Add('WHERE IDSCEN='+IntToStr(idScen)+ ' AND IDSHIP='+IntToStr(idShip));
+    SQL.Add('WHERE IDSCEN=' + IntToStr(idScen) + ' AND IDSHIP=' +
+      IntToStr(idShip));
     SQL.Add('ORDER BY IDWEAPON, IDDET');
 
     Open;
@@ -556,9 +636,9 @@ begin
     for i := 0 to DQ.RecordCount - 1 do
     begin
       rec := TScenarioWeapon.Create;
-      rec.WeaponID    := DQ.FieldByName('IDWEAPON').AsInteger;
-      rec.LauncherID  := DQ.FieldByName('IDDET').AsInteger;
-      rec.ShipID      := DQ.FieldByName('IDSHIP').AsInteger;
+      rec.WeaponID := DQ.FieldByName('IDWEAPON').AsInteger;
+      rec.LauncherID := DQ.FieldByName('IDDET').AsInteger;
+      rec.shipid := DQ.FieldByName('IDSHIP').AsInteger;
 
       aRec.Add(rec);
       DQ.Next;
@@ -566,12 +646,12 @@ begin
   end;
 end;
 
-function TDataModule1.GetListMissileOnWeapon(const Id: Integer;
-  var aRec: Tlist): Integer;
+function TDataModule1.GetListMissileOnWeapon(const Id: integer;
+  var aRec: Tlist): integer;
 
 var
-  rec : TMissile;
-  i: Integer;
+  rec: TMissile;
+  i: integer;
 begin
   Result := -1;
 
@@ -583,44 +663,44 @@ begin
     SQL.Add('SELECT *');
 
     SQL.Add('FROM m_ship_missile');
-    SQL.Add('WHERE IDM=' + IntToStr(id));
+    SQL.Add('WHERE IDM=' + IntToStr(Id));
     SQL.Add('ORDER BY IDMISSILE');
 
     Open;
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    for i := 0 to Ds.RecordCount - 1 do
+    for i := 0 to DS.RecordCount - 1 do
     begin
       rec := TMissile.Create;
-      rec.ID          := DS.FieldByName('ID').AsInteger;
-      rec.IDM         := DS.FieldByName('IDM').AsInteger;
-      rec.IDMissile   := DS.FieldByName('IDMISSILE').AsInteger;
-      rec.IDModel     := DS.FieldByName('IDMODEL').AsInteger;
-      rec.IDDof       := DS.FieldByName('IDDOF').AsInteger;
-      rec.Pos_H       := DS.FieldByName('POS_H').AsInteger;
-      rec.Pos_P       := DS.FieldByName('POS_P').AsInteger;
+      rec.Id := DS.FieldByName('ID').AsInteger;
+      rec.IDM := DS.FieldByName('IDM').AsInteger;
+      rec.IDMissile := DS.FieldByName('IDMISSILE').AsInteger;
+      rec.IDModel := DS.FieldByName('IDMODEL').AsInteger;
+      rec.IDDOF := DS.FieldByName('IDDOF').AsInteger;
+      rec.Pos_H := DS.FieldByName('POS_H').AsInteger;
+      rec.Pos_P := DS.FieldByName('POS_P').AsInteger;
       rec.HasLauncher := DS.FieldByName('H_LAUNCHER').AsInteger;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetListWeaponRangeDetail(const idShip,
-  idWeapon, idLauncher: Integer; var aRec: TList): Integer;
+function TDataModule1.GetListWeaponRangeDetail(const idShip, IdWeapon,
+  idLauncher: integer; var aRec: Tlist): integer;
 var
-  rec : TWeaponDetail;
+  rec: TWeaponDetail;
 begin
   Result := -1;
 
@@ -632,60 +712,62 @@ begin
     SQL.Add('SELECT *');
 
     SQL.Add('FROM m_weapon_range_det');
-    SQL.Add('WHERE SHIP_ID='+ IntToStr(IdShip)
-          + ' AND WEAPON_ID=' + IntToStr(idWeapon)
-          + ' AND LAUNCHER_ID=' + IntToStr(idLauncher));
-          
+    SQL.Add('WHERE SHIP_ID=' + IntToStr(idShip) + ' AND WEAPON_ID=' +
+      IntToStr(IdWeapon) + ' AND LAUNCHER_ID=' + IntToStr(idLauncher));
+
     SQL.Add('ORDER BY WEAPON_TYPE');
 
     Open;
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
     while not DS.Eof do
     begin
-      rec             := TWeaponDetail.Create;
-      rec.IDShip      := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.IDWeapon    := DS.FieldByName('WEAPON_ID').AsInteger;
-      rec.IDLauncher  := DS.FieldByName('LAUNCHER_ID').AsInteger;
-      rec.IDType      := DS.FieldByName('WEAPON_TYPE').AsInteger;
-      rec.DetName     := DS.FieldByName('TYPE_NAME').AsString;
-      rec.StartAngle  := DS.FieldByName('START_DEGREE').AsFloat;
-      rec.EndAngle    := DS.FieldByName('END_DEGREE').AsFloat;
-      rec.HighRange   := DS.FieldByName('MAX_RANGE').AsFloat;
-      rec.LowRange    := DS.FieldByName('MIN_RANGE').AsFloat;
+      rec := TWeaponDetail.Create;
+      rec.idShip := DS.FieldByName('SHIP_ID').AsInteger;
+      rec.IdWeapon := DS.FieldByName('WEAPON_ID').AsInteger;
+      rec.idLauncher := DS.FieldByName('LAUNCHER_ID').AsInteger;
+      rec.IDType := DS.FieldByName('WEAPON_TYPE').AsInteger;
+      rec.DetName := DS.FieldByName('TYPE_NAME').AsString;
+      rec.StartAngle := DS.FieldByName('START_DEGREE').AsFloat;
+      rec.EndAngle := DS.FieldByName('END_DEGREE').AsFloat;
+      rec.HighRange := DS.FieldByName('MAX_RANGE').AsFloat;
+      rec.LowRange := DS.FieldByName('MIN_RANGE').AsFloat;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-
-function TDataModule1.GetListWeaponOnShip(const IdShip: Integer;
-  var aRec: Tlist): Integer;
+function TDataModule1.GetListWeaponOnShip(const idShip: integer;
+  var aRec: Tlist): integer;
 
 var
-  rec : TWeaponGetList;
-  i: Integer;
+  rec: TWeaponGetList;
+  i: integer;
+  o: TObject;
 begin
   Result := -1;
 
   if not Assigned(aRec) then
-    aRec := TList.Create
+    aRec := Tlist.Create
   else
   begin
-    for i := aRec.Count -1 downto 0 do
+    for i := aRec.Count - 1 downto 0 do
     begin
+      o := TObject(aRec[i]);
+      if Assigned(o) then
+        o.Free;
       aRec.Delete(i);
     end;
     aRec.Clear;
@@ -699,36 +781,32 @@ begin
     SQL.Add('SELECT *');
 
     SQL.Add('FROM m_ship_weapon');
-    SQL.Add('WHERE IDSHIP=' + IntToStr(IdShip));
+    SQL.Add('WHERE IDSHIP=' + IntToStr(idShip));
     SQL.Add('ORDER BY IDWEAPON, IDDET');
 
     Open;
     DS.First;
   end;
 
-    while not DS.Eof do
-    begin
-      rec := TWeaponGetList.Create;
-      rec.ID         := DS.FieldByName('ID').AsInteger;
-      rec.IDShip     := DS.FieldByName('IDSHIP').AsInteger;
-      rec.IDWeapon   := DS.FieldByName('IDWEAPON').AsInteger;
-      rec.IDDetail   := DS.FieldByName('IDDET').AsInteger;
-      rec.IDModel1   := DS.FieldByName('IDMODEL1').AsInteger;
-      rec.IDModel2   := DS.FieldByName('IDMODEL2').AsInteger;
-      rec.IDDof1     := DS.FieldByName('IDDOF1').AsInteger;
-      rec.IDDof2     := DS.FieldByName('IDDOF2').AsInteger;
-      rec.IDSwitch   := DS.FieldByName('IDSWITCH').AsInteger;
-      rec.Pos_H      := DS.FieldByName('POS_H').AsInteger;
-      rec.Pos_P      := DS.FieldByName('POS_P').AsInteger;
-      rec.STARTANGLE := DS.FieldByName('STARTANGLE').AsInteger;
-      rec.ENDANGLE   := DS.FieldByName('ENDANGLE').AsInteger;
-      rec.Is3DActor  := DS.FieldByName('IS3DACTOR').AsInteger;
-      aRec.Add(rec);
-      Ds.Next;
-    end;
-    Result := aRec.Count;
+  while not DS.Eof do
+  begin
+    rec := TWeaponGetList.Create;
+    rec.Id := DS.FieldByName('ID').AsInteger;
+    rec.idShip := DS.FieldByName('IDSHIP').AsInteger;
+    rec.IdWeapon := DS.FieldByName('IDWEAPON').AsInteger;
+    rec.IDDetail := DS.FieldByName('IDDET').AsInteger;
+    rec.IDModel1 := DS.FieldByName('IDMODEL1').AsInteger;
+    rec.IDModel2 := DS.FieldByName('IDMODEL2').AsInteger;
+    rec.IDDof1 := DS.FieldByName('IDDOF1').AsInteger;
+    rec.IDDof2 := DS.FieldByName('IDDOF2').AsInteger;
+    rec.IDSwitch := DS.FieldByName('IDSWITCH').AsInteger;
+    rec.Pos_H := DS.FieldByName('POS_H').AsInteger;
+    rec.Pos_P := DS.FieldByName('POS_P').AsInteger;
+    rec.Is3DActor := DS.FieldByName('IS3DACTOR').AsInteger;
+    aRec.Add(rec);
+    DS.Next;
+  end;
 end;
-
 
 function TDataModule1.GetDesById(const Sce_ID: integer): string;
 begin
@@ -793,20 +871,23 @@ begin
   end;
 end;
 
-procedure TDataModule1.GetOffsetMapByEnvMap(const EnvMap :integer; var OffX,
-  OffY: double);
+procedure TDataModule1.GetOffsetMapByEnvMap(const EnvMap: integer;
+  var OffX, OffY: Double);
 begin
-   with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
-    SQL.Add('select XOFFSET, YOFFSET from env_port where ID = '+ IntToStr(EnvMap));
+    SQL.Add('select XOFFSET, YOFFSET from env_port where ID = ' +
+      IntToStr(EnvMap));
     Open;
     First;
-   end;
-   if  DS.RecordCount  > 0 then begin
+  end;
+  if DS.RecordCount > 0 then
+  begin
     OffX := DS.FieldByName('XOFFSET').AsFloat;
     OffY := DS.FieldByName('YOFFSET').AsFloat;
-   end;
+  end;
 end;
 
 procedure TDataModule1.DeleteMissileWeapon(const IDM, MissileID: integer);
@@ -825,8 +906,8 @@ begin
   end;
 end;
 
-procedure TDataModule1.DeleteWeaponShip(const IdShIp, IdWeapon,
-  idLauncher, IDnumber: integer);
+procedure TDataModule1.DeleteWeaponShip(const idShip, IdWeapon, idLauncher,
+  IDNumber: integer);
 begin
   with DS do
   begin
@@ -835,7 +916,7 @@ begin
     SQL.Clear;
     SQL.Add('DELETE FROM m_ship_missile');
     SQL.Add('WHERE ');
-    SQL.Add('IDM=' + IntToStr(IDnumber));
+    SQL.Add('IDM=' + IntToStr(IDNumber));
 
     ExecSQL;
   end;
@@ -847,17 +928,17 @@ begin
     SQL.Clear;
     SQL.Add('DELETE FROM m_ship_weapon');
     SQL.Add('WHERE ');
-    SQL.Add('IDSHIP=' + IntToStr(IdShIp));
+    SQL.Add('IDSHIP=' + IntToStr(idShip));
     SQL.Add(' AND IDWEAPON=' + IntToStr(IdWeapon));
-    SQl.Add(' AND IDDET=' + IntToStr(idLauncher));
+    SQL.Add(' AND IDDET=' + IntToStr(idLauncher));
 
     ExecSQL;
   end;
 end;
 
-procedure TDataModule1.DeleteScenario(const idScen: Integer);
+procedure TDataModule1.DeleteScenario(const idScen: integer);
 begin
-  //delete table sce_main
+  // delete table sce_main
   with DS do
   begin
     Close;
@@ -866,7 +947,7 @@ begin
     ExecSQL;
   end;
 
-  //delete table sce_ship
+  // delete table sce_ship
   with DS do
   begin
     Close;
@@ -875,7 +956,7 @@ begin
     ExecSQL;
   end;
 
-  //delete table sce_weapon
+  // delete table sce_weapon
   with DS do
   begin
     Close;
@@ -884,7 +965,7 @@ begin
     ExecSQL;
   end;
 
-  //delete table sce_console
+  // delete table sce_console
   with DS do
   begin
     Close;
@@ -894,11 +975,10 @@ begin
   end;
 end;
 
-
-function TDataModule1.GetAllGeneralShip(var aRec: Tlist): Integer;
+function TDataModule1.GetAllGeneralShip(var aRec: Tlist): integer;
 var
-  rec : TVehicle;
-  i: Integer;
+  rec: TVehicle;
+  i: integer;
 begin
   Result := -1;
 
@@ -916,29 +996,29 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TVehicle.Create;
-      rec.Vehicle_ID     := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name   := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr   := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
+      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
+      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
+      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetShipNoById(const ShipID: integer): Integer;
+function TDataModule1.GetShipNoById(const shipid: integer): integer;
 begin
   Result := -1;
 
@@ -947,7 +1027,7 @@ begin
     Close;
 
     SQL.Clear;
-    SQL.Add('SELECT SHIP_NO FROM m_ship WHERE SHIP_ID=' + IntToStr(ShipID));
+    SQL.Add('SELECT SHIP_NO FROM m_ship WHERE SHIP_ID=' + IntToStr(shipid));
 
     Open;
     First;
@@ -959,11 +1039,12 @@ begin
   end;
 end;
 
-function TDataModule1.GetPC_Client(var aRec: TList): Integer;
+function TDataModule1.GetPC_Client(var aRec: Tlist): integer;
 var
-  rec : TClientConsole;
+  rec: TClientConsole;
+  i: Integer;
 begin
-  result := -1;
+  Result := -1;
 
   with DQ do
   begin
@@ -983,24 +1064,24 @@ begin
   if not DQ.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
     while not DQ.Eof do
     begin
       rec := TClientConsole.Create;
-      rec.ID          := DQ.FieldByName('ID').AsInteger;
-      rec.PC_IP       := DQ.FieldByName('PC_IP').AsString;
-      rec.PC_ID       := DQ.FieldByName('PC_ID').AsInteger;
-      rec.PC_IDM      := DQ.FieldByName('PC_IDM').AsInteger;
-      rec.PC_NAME     := DQ.FieldByName('PC_NAME').AsString;
-      rec.APP_TIPE    := DQ.FieldByName('APP_TIPE').AsInteger;
-      rec.APP_NAME    := DQ.FieldByName('APP_NAME').AsString;
-      rec.APP_PARAM   := DQ.FieldByName('APP_PARAMS').AsString;
-      rec.WeaponID    := DQ.FieldByName('WeaponID').AsInteger;
-      rec.PC_MAC      := DQ.FieldByName('PC_MAC').AsString;
-      rec.APP_NAME_2  := DQ.FieldByName('APP_NAME_2').AsString;
+      rec.Id := DQ.FieldByName('ID').AsInteger;
+      rec.PC_IP := DQ.FieldByName('PC_IP').AsString;
+      rec.PC_ID := DQ.FieldByName('PC_ID').AsInteger;
+      rec.PC_IDM := DQ.FieldByName('PC_IDM').AsInteger;
+      rec.PC_NAME := DQ.FieldByName('PC_NAME').AsString;
+      rec.APP_TIPE := DQ.FieldByName('APP_TIPE').AsInteger;
+      rec.APP_NAME := DQ.FieldByName('APP_NAME').AsString;
+      rec.APP_PARAM := DQ.FieldByName('APP_PARAMS').AsString;
+      rec.WeaponID := DQ.FieldByName('WeaponID').AsInteger;
+      rec.PC_MAC := DQ.FieldByName('PC_MAC').AsString;
+      rec.APP_NAME_2 := DQ.FieldByName('APP_NAME_2').AsString;
 
       aRec.Add(rec);
       DQ.Next;
@@ -1009,9 +1090,9 @@ begin
 end;
 
 function TDataModule1.GetConsoleListBySceID(const Sce_ID: integer;
-  var aRec: TList): Integer;
+  var aRec: Tlist): integer;
 var
-  rec : TConsole;
+  rec: TConsole;
 begin
   Result := -1;
 
@@ -1034,15 +1115,15 @@ begin
   if not DQ.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
     while not DQ.Eof do
     begin
       rec := TConsole.Create;
-      rec.ShipID     := DQ.FieldByName('SHIP_ID').AsInteger;
-      rec.ConsoleID  := DQ.FieldByName('SHIP_CONSOLE').AsInteger;
+      rec.shipid := DQ.FieldByName('SHIP_ID').AsInteger;
+      rec.ConsoleID := DQ.FieldByName('SHIP_CONSOLE').AsInteger;
       rec.LauncherID := DQ.FieldByName('SHIP_LAUNCHER').AsInteger;
 
       aRec.Add(rec);
@@ -1054,8 +1135,8 @@ end;
 function TDataModule1.GetAllShipFromScen(const SceID: integer;
   var aRec: Tlist): integer;
 var
-  rec : TVehicle;
-  i: Integer;
+  rec: TVehicle;
+  i: integer;
 begin
   Result := -1;
 
@@ -1077,25 +1158,25 @@ begin
   if not DQ.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not dq.Eof do
+    while not DQ.Eof do
     begin
       rec := TVehicle.Create;
-      rec.Vehicle_ID      := DQ.FieldByName('IDSHIP').AsInteger;
-      rec.Vehicle_Name    := GetShipName(rec.Vehicle_ID);
-      rec.Vehicle_Ctgr    := GetShipCategoryID(rec.Vehicle_ID);
-      rec.Vehicle_No      := GetShipNoById(rec.Vehicle_ID);
-      rec.Vehicle_X       := DQ.FieldByName('TRANS_X').AsFloat;
-      rec.Vehicle_Y       := DQ.FieldByName('TRANS_Y').AsFloat;
-      rec.Vehicle_Z       := DQ.FieldByName('TRANS_Z').AsInteger;
+      rec.Vehicle_ID := DQ.FieldByName('IDSHIP').AsInteger;
+      rec.Vehicle_Name := GetShipName(rec.Vehicle_ID);
+      rec.Vehicle_Ctgr := GetShipCategoryID(rec.Vehicle_ID);
+      rec.Vehicle_No := GetShipNoById(rec.Vehicle_ID);
+      rec.Vehicle_X := DQ.FieldByName('TRANS_X').AsFloat;
+      rec.Vehicle_Y := DQ.FieldByName('TRANS_Y').AsFloat;
+      rec.Vehicle_Z := DQ.FieldByName('TRANS_Z').AsInteger;
       rec.Vehicle_Heading := DQ.FieldByName('HEADING').AsInteger;
-      rec.Vehicle_Speed   := DQ.fieldByName('SPEED').AsInteger;
+      rec.Vehicle_Speed := DQ.FieldByName('SPEED').AsInteger;
       rec.Vehicle_Console := DQ.FieldByName('IDCONSOLES').AsInteger;
-      rec.Vehicle_Type    := GetShipDomain(rec.Vehicle_ID);
-      rec.Vehicle_Target  := GetShipTarget(rec.Vehicle_ID);
+      rec.Vehicle_Type := GetShipDomain(rec.Vehicle_ID);
+      rec.Vehicle_Target := GetShipTarget(rec.Vehicle_ID);
 
       aRec.Add(rec);
       DQ.Next;
@@ -1103,10 +1184,10 @@ begin
   end;
 end;
 
-function TDataModule1.GetAllTargetAir(var aRec: TList): Integer;
+function TDataModule1.GetAllTargetAir(var aRec: Tlist): integer;
 var
-  rec : TVehicle;
-  i: Integer;
+  rec: TVehicle;
+  i: integer;
 begin
   Result := -1;
 
@@ -1124,32 +1205,32 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TVehicle.Create;
-      rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-      rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
+      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
+      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
+      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
+      rec.Vehicle_No := DS.FieldByName('SHIP_NO').AsInteger;
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetAllTargetSubsurface(var aRec: TList): Integer;
+function TDataModule1.GetAllTargetSubsurface(var aRec: Tlist): integer;
 var
-  rec : TVehicle;
-  i: Integer;
+  rec: TVehicle;
+  i: integer;
 begin
   Result := -1;
 
@@ -1167,32 +1248,32 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TVehicle.Create;
-      rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-      rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
+      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
+      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
+      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
+      rec.Vehicle_No := DS.FieldByName('SHIP_NO').AsInteger;
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetAllTargetSurface(var aRec: TList): Integer;
+function TDataModule1.GetAllTargetSurface(var aRec: Tlist): integer;
 var
-  rec : TVehicle;
-  i: Integer;
+  rec: TVehicle;
+  i: integer;
 begin
   Result := -1;
 
@@ -1210,32 +1291,32 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TVehicle.Create;
-      rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-      rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
+      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
+      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
+      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
+      rec.Vehicle_No := DS.FieldByName('SHIP_NO').AsInteger;
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetAllWarShip(var aRec: TList): Integer;
+function TDataModule1.GetAllWarShip(var aRec: Tlist): integer;
 var
-  rec : TVehicle;
-  i: Integer;
+  rec: TVehicle;
+  i: integer;
 begin
   Result := -1;
 
@@ -1253,32 +1334,32 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TVehicle.Create;
-      rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-      rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
+      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
+      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
+      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
+      rec.Vehicle_No := DS.FieldByName('SHIP_NO').AsInteger;
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-procedure TDataModule1.GetAllListClient(var aRec : Tlist);
+procedure TDataModule1.GetAllListClient(var aRec: Tlist);
 var
-  rec : TClient;
-  i   : integer;
+  rec: TClient;
+  i: integer;
 begin
   with DS do
   begin
@@ -1294,7 +1375,7 @@ begin
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
@@ -1302,31 +1383,37 @@ begin
     begin
       rec := TClient.Create;
 
-      rec.C_ID      := DS.FieldByName('PC_ID').AsInteger;
+      rec.C_ID := DS.FieldByName('PC_ID').AsInteger;
       rec.C_Cubicle := GetCubicleNameFromID(DS.FieldByName('PC_IDM').AsInteger);
       rec.C_Console := DS.FieldByName('PC_NAME').AsString;
-      rec.C_Ip      := DS.FieldByName('PC_IP').AsString;
-      rec.C_Status  := 'OFFLINE';
+      rec.C_Ip := DS.FieldByName('PC_IP').AsString;
+      rec.C_Status := 'OFFLINE';
       rec.C_WeaponID := DS.FieldByName('WeaponID').AsInteger;
-      rec.C_Ship    := DS.FieldByName('Ship_Name').AsString;  // dendy tes
+      rec.C_Ship := DS.FieldByName('Ship_Name').AsString; // dendy tes
 
       case DS.FieldByName('APP_TIPE').AsInteger of
-        0 : rec.C_Type := '2D';
-        1 : rec.C_Type := '3D-S';
-        2 : rec.C_Type := '3D-C';
-        3 : rec.C_Type := '3D-W';
+        0:
+          rec.C_Type := '2D-Console';
+        1:
+          rec.C_Type := '3D-Server';
+        2:
+          rec.C_Type := '3D-Console';
+        3:
+          rec.C_Type := '3D-Weapon';
+        4:
+          rec.C_Type := '2D-Sigma';
       end;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetALLTypeWeapon(var aRec: Tlist): Integer;
+function TDataModule1.GetALLTypeWeapon(var aRec: Tlist): integer;
 var
-  rec : TTypeWeapon;
-  i: Integer;
+  rec: TTypeWeapon;
+  i: integer;
 begin
   Result := -1;
 
@@ -1343,31 +1430,31 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    for i := 0 to Ds.RecordCount - 1 do
+    for i := 0 to DS.RecordCount - 1 do
     begin
       rec := TTypeWeapon.Create;
-      rec.Weapon_ID  := DS.FieldByName('ID').AsInteger;
-      rec.Weapon_Name   := DS.FieldByName('NAMA').AsString;
+      rec.weapon_id := DS.FieldByName('ID').AsInteger;
+      rec.Weapon_Name := DS.FieldByName('NAMA').AsString;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
 function TDataModule1.GetAllWeapon(var aRec: Tlist): integer;
 var
-  rec : TShipWeapon;
-  i: Integer;
+  rec: TShipWeapon;
+  i: integer;
 begin
   Result := -1;
 
@@ -1384,49 +1471,50 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    for i := 0 to Ds.RecordCount - 1 do
+    for i := 0 to DS.RecordCount - 1 do
     begin
       rec := TShipWeapon.Create;
-      rec.Weapon_ID  := DS.FieldByName('ID').AsInteger;
-      rec.Weapon_Name   := DS.FieldByName('KET').AsString;
-      rec.Weapon_Type   := DS.FieldByName('TIPE').AsInteger;
+      rec.weapon_id := DS.FieldByName('ID').AsInteger;
+      rec.Weapon_Name := DS.FieldByName('KET').AsString;
+      rec.Weapon_Type := DS.FieldByName('TIPE').AsInteger;
       rec.Weapon_Lethality := DS.FieldByName('LETHALITY').AsInteger;
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetGeneralShipInScenario(const ScenarioID: Integer;
-  var aRec: Tlist): Integer;
+function TDataModule1.GetGeneralShipInScenario(const ScenarioID: integer;
+  var aRec: Tlist): integer;
 begin
 
 end;
 
-function TDataModule1.GetWarShipInScenario(const ScenarioID: Integer;
-  var aRec: Tlist): Integer;
+function TDataModule1.GetWarShipInScenario(const ScenarioID: integer;
+  var aRec: Tlist): integer;
 begin
 
 end;
 
-procedure TDataModule1.SaveScenario(const rec: TScenario; ListShip, ListConsole, ListWeapon : Tlist);
+procedure TDataModule1.SaveScenario(const rec: TScenario;
+  ListShip, ListConsole, ListWeapon: Tlist);
 var
-  i,ID : Integer;
-  ShipSave : TVehicle;
-  ConsoleSave : TSaveConsole;
+  i, Id: integer;
+  ShipSave: TVehicle;
+  ConsoleSave: TSaveConsole;
 
-  ListW : TList;
-  WeaponList : TWeaponGetList;
-  Weapon : TScenarioWeapon;
+  ListW: Tlist;
+  WeaponList: TWeaponGetList;
+  Weapon: TScenarioWeapon;
   j: integer;
 begin
   with DS do
@@ -1441,10 +1529,9 @@ begin
   end;
 
   if not DS.IsEmpty then
-    ID := DS.FieldByName('MAX(ID)').AsInteger + 1;
+    Id := DS.FieldByName('MAX(ID)').AsInteger + 1;
 
-
-  //Save Scenario Main
+  // Save Scenario Main
   with DS do
   begin
     with rec do
@@ -1475,12 +1562,12 @@ begin
       SQL.Add('ENV_SEASTATE, ');
       SQL.Add('ENV_TEMP, ');
       SQL.Add('ENV_BAROPRESSURE, ');
-      SQL.Add('ENV_HUMIDITY, ' );
+      SQL.Add('ENV_HUMIDITY, ');
       SQL.Add('ENV_FOG_H_PERSEN)');
 
       SQL.Add('VALUES ( ');
 
-      SQL.Add(IntToStr(ID) + ',');
+      SQL.Add(IntToStr(Id) + ',');
       SQL.Add(QuotedStr(rec.Scenario_Name) + ',');
       SQL.Add(IntToStr(rec.Scenario_Port) + ',');
       SQL.Add(IntToStr(rec.Scenario_Building) + ',');
@@ -1507,7 +1594,7 @@ begin
     end;
     ExecSQL;
 
-    //Save Scenario Console
+    // Save Scenario Console
     with DS do
     begin
       for i := 0 to ListConsole.Count - 1 do
@@ -1524,8 +1611,8 @@ begin
 
         SQL.Add('VALUES ( ');
 
-        SQL.Add(IntToStr(ID)+ ',');
-        SQL.Add(IntToStr(ConsoleSave.ShipID) + ',');
+        SQL.Add(IntToStr(Id) + ',');
+        SQL.Add(IntToStr(ConsoleSave.shipid) + ',');
         SQL.Add(IntToStr(ConsoleSave.ConsoleID) + ',');
         SQL.Add(IntToStr(ConsoleSave.LauncherID) + ')');
 
@@ -1533,7 +1620,7 @@ begin
       end;
     end;
 
-    //Save Scenario Ship
+    // Save Scenario Ship
     with DS do
     begin
       for i := 0 to ListShip.Count - 1 do
@@ -1555,8 +1642,8 @@ begin
 
         SQL.Add('VALUES ( ');
 
-        SQL.Add(IntToStr(i+1) + ',');
-        SQL.Add(IntToStr(ID)+ ',');
+        SQL.Add(IntToStr(i + 1) + ',');
+        SQL.Add(IntToStr(Id) + ',');
         SQL.Add(IntToStr(ShipSave.Vehicle_ID) + ',');
         SQL.Add(FloatToStr(ShipSave.Vehicle_X) + ',');
         SQL.Add(FloatToStr(ShipSave.Vehicle_Y) + ',');
@@ -1569,14 +1656,15 @@ begin
       end;
     end;
 
-    //Save Scenario Weapon
+    // Save Scenario Weapon
     with DS do
     begin
-      for i := 0 to ListWeapon.Count -1 do
+      for i := 0 to ListWeapon.Count - 1 do
       begin
         Weapon := TScenarioWeapon(ListWeapon.Items[i]);
 
-        if not Weapon.EnableWeapon then Continue;
+        if not Weapon.EnableWeapon then
+          Continue;
 
         Close;
         SQL.Clear;
@@ -1588,8 +1676,8 @@ begin
 
         SQL.Add('VALUES ( ');
 
-        SQL.Add(IntToStr(ID)+ ',');
-        SQL.Add(IntToStr(Weapon.ShipID) + ',');
+        SQL.Add(IntToStr(Id) + ',');
+        SQL.Add(IntToStr(Weapon.shipid) + ',');
         SQL.Add(IntToStr(Weapon.WeaponID) + ',');
         SQL.Add(IntToStr(Weapon.LauncherID) + ')');
 
@@ -1600,9 +1688,9 @@ begin
   end;
 end;
 
-procedure TDataModule1.SaveMissileWeapon(const Rec: TMissile);
+procedure TDataModule1.SaveMissileWeapon(const rec: TMissile);
 var
-  mID : Integer;
+  mID: integer;
 begin
   with DS do
   begin
@@ -1640,22 +1728,22 @@ begin
       SQL.Add('VALUES ( ');
 
       SQL.Add(IntToStr(mID) + ',');
-      SQL.Add(IntToStr(Rec.IDM)+ ',');
-      SQL.Add(IntToStr(Rec.IDMissile) + ',');
-      SQL.Add(IntToStr(Rec.IDModel) + ',');
-      SQL.Add(IntToStr(Rec.IDDof) + ',');
-      SQL.Add(IntToStr(Rec.Pos_H) + ',');
-      SQL.Add(IntToStr(Rec.Pos_P) + ',');
-      SQL.Add(IntToStr(Rec.HasLauncher) + ')');
+      SQL.Add(IntToStr(rec.IDM) + ',');
+      SQL.Add(IntToStr(rec.IDMissile) + ',');
+      SQL.Add(IntToStr(rec.IDModel) + ',');
+      SQL.Add(IntToStr(rec.IDDOF) + ',');
+      SQL.Add(IntToStr(rec.Pos_H) + ',');
+      SQL.Add(IntToStr(rec.Pos_P) + ',');
+      SQL.Add(IntToStr(rec.HasLauncher) + ')');
 
       ExecSQL;
     end;
-  end;  
+  end;
 end;
 
-procedure TDataModule1.SaveWeaponShip(const Rec: TWeaponGetList);
+procedure TDataModule1.SaveWeaponShip(const rec: TWeaponGetList);
 var
-  mID : Integer;
+  mID: integer;
 begin
   with DS do
   begin
@@ -1701,21 +1789,21 @@ begin
       SQL.Add('VALUES ( ');
 
       SQL.Add(IntToStr(mID) + ',');
-      SQL.Add(IntToStr(Rec.IDShip)+ ',');
-      SQL.Add(IntToStr(Rec.IDWeapon) + ',');
-      SQL.Add(IntToStr(Rec.IDDetail) + ',');
-      SQL.Add(IntToStr(Rec.IDModel1) + ',');
-      SQL.Add(IntToStr(Rec.IDModel2) + ',');
-      SQL.Add(IntToStr(Rec.IDDof1) + ',');
-      SQL.Add(IntToStr(Rec.IDDof2) + ',');
-      SQL.Add(IntToStr(Rec.IDSwitch) + ',');
-      SQL.Add(IntToStr(Rec.Pos_H) + ',');
-      SQL.Add(IntToStr(Rec.Pos_P) + ',');
+      SQL.Add(IntToStr(rec.idShip) + ',');
+      SQL.Add(IntToStr(rec.IdWeapon) + ',');
+      SQL.Add(IntToStr(rec.IDDetail) + ',');
+      SQL.Add(IntToStr(rec.IDModel1) + ',');
+      SQL.Add(IntToStr(rec.IDModel2) + ',');
+      SQL.Add(IntToStr(rec.IDDof1) + ',');
+      SQL.Add(IntToStr(rec.IDDof2) + ',');
+      SQL.Add(IntToStr(rec.IDSwitch) + ',');
+      SQL.Add(IntToStr(rec.Pos_H) + ',');
+      SQL.Add(IntToStr(rec.Pos_P) + ',');
       SQL.Add(IntToStr(0) + ',');
       SQL.Add(IntToStr(0) + ',');
       SQL.Add(IntToStr(0) + ',');
       SQL.Add(IntToStr(0) + ',');
-      SQL.Add(IntToStr(Rec.Is3DActor) + ')');
+      SQL.Add(IntToStr(rec.Is3DActor) + ')');
 
       ExecSQL;
     end;
@@ -1725,19 +1813,19 @@ end;
 procedure TDataModule1.UpdateCurrentDatabase(const IdScenario: integer;
   ListShip, ListConsole, ListWeapon: Tlist);
 var
-  i,ID : Integer;
-  ShipSave : TVehicle;
+  i, Id: integer;
+  ShipSave: TVehicle;
 
-  ListW : TList;
-  WeaponList : TWeaponGetList;
+  ListW: Tlist;
+  WeaponList: TWeaponGetList;
   j: integer;
 
-  ConsoleSave : TSaveConsole;
-  Weapon : TScenarioWeapon;
+  ConsoleSave: TSaveConsole;
+  Weapon: TScenarioWeapon;
 begin
-  ID := IdScenario;
+  Id := IdScenario;
 
-  //delete table sce_ship
+  // delete table sce_ship
   with DS do
   begin
     Close;
@@ -1746,7 +1834,7 @@ begin
     ExecSQL;
   end;
 
-  //delete table sce_weapon
+  // delete table sce_weapon
   with DS do
   begin
     Close;
@@ -1755,8 +1843,8 @@ begin
     ExecSQL;
   end;
 
-  //delete table sce_console
-   with DS do
+  // delete table sce_console
+  with DS do
   begin
     Close;
     SQL.Clear;
@@ -1764,7 +1852,7 @@ begin
     ExecSQL;
   end;
 
-  //save scenario ship
+  // save scenario ship
   with DS do
   begin
     for i := 0 to ListShip.Count - 1 do
@@ -1786,8 +1874,8 @@ begin
 
       SQL.Add('VALUES ( ');
 
-      SQL.Add(IntToStr(i+1) + ',');
-      SQL.Add(IntToStr(ID)+ ',');
+      SQL.Add(IntToStr(i + 1) + ',');
+      SQL.Add(IntToStr(Id) + ',');
       SQL.Add(IntToStr(ShipSave.Vehicle_ID) + ',');
       SQL.Add(FloatToStr(ShipSave.Vehicle_X) + ',');
       SQL.Add(FloatToStr(ShipSave.Vehicle_Y) + ',');
@@ -1800,14 +1888,15 @@ begin
     end;
   end;
 
-  //save scenario weapon
+  // save scenario weapon
   with DS do
   begin
-    for i := 0 to ListWeapon.Count -1 do
+    for i := 0 to ListWeapon.Count - 1 do
     begin
       Weapon := TScenarioWeapon(ListWeapon.Items[i]);
 
-      if not Weapon.EnableWeapon then Continue;
+      if not Weapon.EnableWeapon then
+        Continue;
 
       Close;
       SQL.Clear;
@@ -1819,8 +1908,8 @@ begin
 
       SQL.Add('VALUES ( ');
 
-      SQL.Add(IntToStr(ID)+ ',');
-      SQL.Add(IntToStr(Weapon.ShipID) + ',');
+      SQL.Add(IntToStr(Id) + ',');
+      SQL.Add(IntToStr(Weapon.shipid) + ',');
       SQL.Add(IntToStr(Weapon.WeaponID) + ',');
       SQL.Add(IntToStr(Weapon.LauncherID) + ')');
 
@@ -1828,7 +1917,7 @@ begin
     end;
   end;
 
-  //Save Scenario Console
+  // Save Scenario Console
   with DS do
   begin
     for i := 0 to ListConsole.Count - 1 do
@@ -1845,8 +1934,8 @@ begin
 
       SQL.Add('VALUES ( ');
 
-      SQL.Add(IntToStr(ID)+ ',');
-      SQL.Add(IntToStr(ConsoleSave.ShipID) + ',');
+      SQL.Add(IntToStr(Id) + ',');
+      SQL.Add(IntToStr(ConsoleSave.shipid) + ',');
       SQL.Add(IntToStr(ConsoleSave.ConsoleID) + ',');
       SQL.Add(IntToStr(ConsoleSave.LauncherID) + ')');
 
@@ -1855,7 +1944,8 @@ begin
   end;
 end;
 
-procedure TDataModule1.UpdateEnvi(const  SceID: integer; const SceEnvi : TScenario);
+procedure TDataModule1.UpdateEnvi(const SceID: integer;
+  const SceEnvi: TScenario);
 begin
   with DQ do
   begin
@@ -1864,29 +1954,31 @@ begin
 
     SQL.Add('UPDATE sce_main set ');
 
-    SQL.Add('ENV_BUILDING='     + IntToStr(SceEnvi.Scenario_Building) + ',');
-    SQL.Add('ENV_SSHIPS='       + IntToStr(SceEnvi.Scenario_StaticShip) + ',');
-    SQL.Add('ENV_BUOY='         + IntToStr(SceEnvi.Scenario_Buoy) + ',');
-    SQL.Add('ENV_TREE='         + IntToStr(SceEnvi.Scenario_Tree) + ',');
-    SQL.Add('ENV_THEME='        + IntToStr(SceEnvi.Scenario_Theme) + ',');
+    SQL.Add('ENV_BUILDING=' + IntToStr(SceEnvi.Scenario_Building) + ',');
+    SQL.Add('ENV_SSHIPS=' + IntToStr(SceEnvi.Scenario_StaticShip) + ',');
+    SQL.Add('ENV_BUOY=' + IntToStr(SceEnvi.Scenario_Buoy) + ',');
+    SQL.Add('ENV_TREE=' + IntToStr(SceEnvi.Scenario_Tree) + ',');
+    SQL.Add('ENV_THEME=' + IntToStr(SceEnvi.Scenario_Theme) + ',');
 
-    SQL.Add('ENV_SEASTATE='     + FloatToStr(SceEnvi.Scenario_SeaState) + ',');
+    SQL.Add('ENV_SEASTATE=' + FloatToStr(SceEnvi.Scenario_SeaState) + ',');
 
-    SQL.Add('ENV_WSPEED='       + FloatToStr(SceEnvi.Scenario_WindSpeed) + ',');
-    SQL.Add('ENV_WDIR_X='       + FloatToStr(SceEnvi.Scenario_WindDir_X) + ',');
-    SQL.Add('ENV_WDIR_Y='       + FloatToStr(SceEnvi.Scenario_WindDir_Y) + ',');
-    SQL.Add('ENV_WDIR_DEG='     + FloatToStr(SceEnvi.Scenario_WindDir_Deg) + ',');
+    SQL.Add('ENV_WSPEED=' + FloatToStr(SceEnvi.Scenario_WindSpeed) + ',');
+    SQL.Add('ENV_WDIR_X=' + FloatToStr(SceEnvi.Scenario_WindDir_X) + ',');
+    SQL.Add('ENV_WDIR_Y=' + FloatToStr(SceEnvi.Scenario_WindDir_Y) + ',');
+    SQL.Add('ENV_WDIR_DEG=' + FloatToStr(SceEnvi.Scenario_WindDir_Deg) + ',');
 
-    SQL.Add('ENV_CURSPEED='     + FloatToStr(SceEnvi.Scenario_CurrSpeed) + ',');
-    SQL.Add('ENV_CURDIR_X='     + FloatToStr(SceEnvi.Scenario_CurrDir_X) + ',');
-    SQL.Add('ENV_CURDIR_Y='     + FloatToStr(SceEnvi.Scenario_CurrDir_Y) + ',');
-    SQL.Add('ENV_CURDIR_DEG='   + FloatToStr(SceEnvi.Scenario_CurrDir_Deg) + ',');
+    SQL.Add('ENV_CURSPEED=' + FloatToStr(SceEnvi.Scenario_CurrSpeed) + ',');
+    SQL.Add('ENV_CURDIR_X=' + FloatToStr(SceEnvi.Scenario_CurrDir_X) + ',');
+    SQL.Add('ENV_CURDIR_Y=' + FloatToStr(SceEnvi.Scenario_CurrDir_Y) + ',');
+    SQL.Add('ENV_CURDIR_DEG=' + FloatToStr(SceEnvi.Scenario_CurrDir_Deg) + ',');
 
-    SQL.Add('ENV_TEMP='         + FloatToStr(SceEnvi.Scenario_Temperature) + ',');
-    SQL.Add('ENV_BAROPRESSURE=' + FloatToStr(SceEnvi.Scenario_BaroPressure) + ',');
-    SQL.Add('ENV_HUMIDITY='     + FloatToStr(SceEnvi.Scenario_Humidity) + ',');
-    SQL.Add('ENV_FOG_H='        + FloatToStr(SceEnvi.Scenario_FogHeight) + ',');
-    SQL.Add('ENV_FOG_H_PERSEN=' + FloatToStr(SceEnvi.Scenario_FogHeight_Persen) + ' ');
+    SQL.Add('ENV_TEMP=' + FloatToStr(SceEnvi.Scenario_Temperature) + ',');
+    SQL.Add('ENV_BAROPRESSURE=' +
+      FloatToStr(SceEnvi.Scenario_BaroPressure) + ',');
+    SQL.Add('ENV_HUMIDITY=' + FloatToStr(SceEnvi.Scenario_Humidity) + ',');
+    SQL.Add('ENV_FOG_H=' + FloatToStr(SceEnvi.Scenario_FogHeight) + ',');
+    SQL.Add('ENV_FOG_H_PERSEN=' +
+      FloatToStr(SceEnvi.Scenario_FogHeight_Persen) + ' ');
 
     SQL.Add('where ID=' + IntToStr(SceID));
 
@@ -1894,8 +1986,7 @@ begin
   end;
 end;
 
-procedure TDataModule1.GetEnviBySceID(const SceID: integer;
-              var Rec : TScenario);
+procedure TDataModule1.GetEnviBySceID(const SceID: integer; var rec: TScenario);
 begin
   with DS do
   begin
@@ -1908,43 +1999,43 @@ begin
     First;
   end;
 
-  while not ds.Eof do
+  while not DS.Eof do
   begin
-    Rec.Scenario_ID         := DS.FieldByName('ID').AsInteger;
-    Rec.Scenario_Port       := DS.FieldByName('ENV_PETA').AsInteger;
-    Rec.Scenario_Building   := DS.FieldByName('ENV_BUILDING').AsInteger;
-    Rec.Scenario_StaticShip := DS.FieldByName('ENV_SSHIPS').AsInteger;
-    Rec.Scenario_Buoy       := DS.FieldByName('ENV_BUOY').AsInteger;
-    Rec.Scenario_Tree       := DS.FieldByName('ENV_TREE').AsInteger;
-    Rec.Scenario_Theme      := DS.FieldByName('ENV_THEME').AsInteger;
+    rec.Scenario_ID := DS.FieldByName('ID').AsInteger;
+    rec.Scenario_Port := DS.FieldByName('ENV_PETA').AsInteger;
+    rec.Scenario_Building := DS.FieldByName('ENV_BUILDING').AsInteger;
+    rec.Scenario_StaticShip := DS.FieldByName('ENV_SSHIPS').AsInteger;
+    rec.Scenario_Buoy := DS.FieldByName('ENV_BUOY').AsInteger;
+    rec.Scenario_Tree := DS.FieldByName('ENV_TREE').AsInteger;
+    rec.Scenario_Theme := DS.FieldByName('ENV_THEME').AsInteger;
 
-    Rec.Scenario_WindScale   := DS.FieldByName('ENV_WSCALE').AsFloat;
-    Rec.Scenario_WindSpeed   := DS.FieldByName('ENV_WSPEED').AsFloat;
-    Rec.Scenario_WindDir_X   := DS.FieldByName('ENV_WDIR_X').AsFloat;
-    Rec.Scenario_WindDir_Y   := DS.FieldByName('ENV_WDIR_Y').AsFloat;
-    Rec.Scenario_WindDir_Deg := DS.FieldByName('ENV_WDIR_DEG').AsFloat;
+    rec.Scenario_WindScale := DS.FieldByName('ENV_WSCALE').AsFloat;
+    rec.Scenario_WindSpeed := DS.FieldByName('ENV_WSPEED').AsFloat;
+    rec.Scenario_WindDir_X := DS.FieldByName('ENV_WDIR_X').AsFloat;
+    rec.Scenario_WindDir_Y := DS.FieldByName('ENV_WDIR_Y').AsFloat;
+    rec.Scenario_WindDir_Deg := DS.FieldByName('ENV_WDIR_DEG').AsFloat;
 
-    Rec.Scenario_SeaState    := DS.FieldByName('ENV_SEASTATE').AsFloat;
+    rec.Scenario_SeaState := DS.FieldByName('ENV_SEASTATE').AsFloat;
 
-    Rec.Scenario_CurrSpeed   := DS.FieldByName('ENV_CURSPEED').AsFloat;
-    Rec.Scenario_CurrDir_X   := DS.FieldByName('ENV_CURDIR_X').AsFloat;
-    Rec.Scenario_WindDir_Y   := DS.FieldByName('ENV_CURDIR_Y').AsFloat;
-    Rec.Scenario_WindDir_Deg := DS.FieldByName('ENV_CURDIR_DEG').AsFloat;
+    rec.Scenario_CurrSpeed := DS.FieldByName('ENV_CURSPEED').AsFloat;
+    rec.Scenario_CurrDir_X := DS.FieldByName('ENV_CURDIR_X').AsFloat;
+    rec.Scenario_WindDir_Y := DS.FieldByName('ENV_CURDIR_Y').AsFloat;
+    rec.Scenario_WindDir_Deg := DS.FieldByName('ENV_CURDIR_DEG').AsFloat;
 
-    Rec.Scenario_Temperature      := DS.FieldByName('ENV_TEMP').AsFloat;
-    Rec.Scenario_BaroPressure     := DS.FieldByName('ENV_BAROPRESSURE').AsFloat;
-    Rec.Scenario_Humidity         := DS.FieldByName('ENV_HUMIDITY').AsFloat;
-    Rec.Scenario_FogHeight        := DS.FieldByName('ENV_FOG_H').AsFloat;
-    Rec.Scenario_FogHeight_Persen := DS.FieldByName('ENV_FOG_H_PERSEN').AsFloat;
+    rec.Scenario_Temperature := DS.FieldByName('ENV_TEMP').AsFloat;
+    rec.Scenario_BaroPressure := DS.FieldByName('ENV_BAROPRESSURE').AsFloat;
+    rec.Scenario_Humidity := DS.FieldByName('ENV_HUMIDITY').AsFloat;
+    rec.Scenario_FogHeight := DS.FieldByName('ENV_FOG_H').AsFloat;
+    rec.Scenario_FogHeight_Persen := DS.FieldByName('ENV_FOG_H_PERSEN').AsFloat;
 
     DS.Next;
   end;
 end;
 
-function TDataModule1.GetAllPort(var aRec: TList): Integer;
+function TDataModule1.GetAllPort(var aRec: Tlist): integer;
 var
-  rec : TPort;
-  i: Integer;
+  rec: TPort;
+  i: integer;
 begin
   Result := -1;
 
@@ -1959,32 +2050,32 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TPort.Create;
-      rec.Port_ID      := DS.FieldByName('ID').AsInteger;
-      rec.Port_Name    := DS.FieldByName('NAMA').AsString;
+      rec.Port_ID := DS.FieldByName('ID').AsInteger;
+      rec.Port_Name := DS.FieldByName('NAMA').AsString;
       rec.Port_XOffset := DS.FieldByName('XOFFSET').AsFloat;
       rec.Port_YOffset := DS.FieldByName('YOFFSET').AsFloat;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
 procedure TDataModule1.DeleteDefaultScenario;
 begin
-  //delete table sce_ship
+  // delete table sce_ship
   with DS do
   begin
     Close;
@@ -1993,7 +2084,7 @@ begin
     ExecSQL;
   end;
 
-  //delete table sce_weapon
+  // delete table sce_weapon
   with DS do
   begin
     Close;
@@ -2002,8 +2093,8 @@ begin
     ExecSQL;
   end;
 
-  //delete table sce_console
-   with DS do
+  // delete table sce_console
+  with DS do
   begin
     Close;
     SQL.Clear;
@@ -2014,80 +2105,87 @@ end;
 
 procedure TDataModule1.FillListDefaultScenario(SceID: integer);
 var
-  //Envi
-  SceEnvi : TScenario;
+  // Envi
+  SceEnvi: TScenario;
 
-  //Port
-  Port : Integer;
+  // Port
+  Port: integer;
 
-  ListWeapon,
-  ListShip,
-  ListConsole : TList;
+  ListWeapon, ListShip, ListConsole: Tlist;
 
-  SceWeapon   : TScenarioWeapon;
-  SceShip     : TVehicle;
-  SceConsole  : TConsole;
+  SceWeapon: TScenarioWeapon;
+  SceShip: TVehicle;
+  SceConsole: TConsole;
 
-  countShip   : Integer;
-  i, j : integer;
+  countShip: integer;
+  i, j: integer;
 begin
   SceEnvi := TScenario.Create;
-  GetEnviBySceID(SceID, SceEnvi);
+  try
+    GetEnviBySceID(SceID, SceEnvi);
 
-  //Scenario Main
-  with DQ do
-  begin
-    Close;
-    SQL.Clear;
+    // Scenario Main
+    with DQ do
+    begin
+      Close;
+      SQL.Clear;
 
-    SQL.Add('UPDATE sce_main set ');
+      SQL.Add('UPDATE sce_main set ');
 
-    SQL.Add('ENV_PETA='     + IntToStr(SceEnvi.Scenario_Port) + ',');
-    SQL.Add('ENV_BUILDING=' + IntToStr(SceEnvi.Scenario_Building) + ',');
-    SQL.Add('ENV_SSHIPS='   + IntToStr(SceEnvi.Scenario_StaticShip) + ',');
-    SQL.Add('ENV_BUOY='     + IntToStr(SceEnvi.Scenario_Buoy) + ',');
-    SQL.Add('ENV_TREE='     + IntToStr(SceEnvi.Scenario_Tree) + ',');
-    SQL.Add('ENV_THEME='    + IntToStr(SceEnvi.Scenario_Theme) + ',');
+      SQL.Add('ENV_PETA=' + IntToStr(SceEnvi.Scenario_Port) + ',');
+      SQL.Add('ENV_BUILDING=' + IntToStr(SceEnvi.Scenario_Building) + ',');
+      SQL.Add('ENV_SSHIPS=' + IntToStr(SceEnvi.Scenario_StaticShip) + ',');
+      SQL.Add('ENV_BUOY=' + IntToStr(SceEnvi.Scenario_Buoy) + ',');
+      SQL.Add('ENV_TREE=' + IntToStr(SceEnvi.Scenario_Tree) + ',');
+      SQL.Add('ENV_THEME=' + IntToStr(SceEnvi.Scenario_Theme) + ',');
 
-    SQL.Add('ENV_SEASTATE=' + FloatToStr(SceEnvi.Scenario_SeaState) + ',');
+      SQL.Add('ENV_SEASTATE=' + FloatToStr(SceEnvi.Scenario_SeaState) + ',');
 
-    SQL.Add('ENV_WSCALE='   + FloatToStr(SceEnvi.Scenario_WindScale) + ',');
-    SQL.Add('ENV_WSPEED='   + FloatToStr(SceEnvi.Scenario_WindSpeed) + ',');
-    SQL.Add('ENV_WDIR_X='   + FloatToStr(SceEnvi.Scenario_WindDir_X) + ',');
-    SQL.Add('ENV_WDIR_Y='   + FloatToStr(SceEnvi.Scenario_WindDir_Y) + ',');
-    SQL.Add('ENV_WDIR_DEG=' + FloatToStr(SceEnvi.Scenario_WindDir_Deg) + ',');
+      SQL.Add('ENV_WSCALE=' + FloatToStr(SceEnvi.Scenario_WindScale) + ',');
+      SQL.Add('ENV_WSPEED=' + FloatToStr(SceEnvi.Scenario_WindSpeed) + ',');
+      SQL.Add('ENV_WDIR_X=' + FloatToStr(SceEnvi.Scenario_WindDir_X) + ',');
+      SQL.Add('ENV_WDIR_Y=' + FloatToStr(SceEnvi.Scenario_WindDir_Y) + ',');
+      SQL.Add('ENV_WDIR_DEG=' + FloatToStr(SceEnvi.Scenario_WindDir_Deg) + ',');
 
-    SQL.Add('ENV_CURSPEED='   + FloatToStr(SceEnvi.Scenario_CurrSpeed) + ',');
-    SQL.Add('ENV_CURDIR_X='   + FloatToStr(SceEnvi.Scenario_CurrDir_X) + ',');
-    SQL.Add('ENV_CURDIR_Y='   + FloatToStr(SceEnvi.Scenario_WindDir_Y) + ',');
-    SQL.Add('ENV_CURDIR_DEG=' + FloatToStr(SceEnvi.Scenario_CurrDir_Deg) + ',');
+      SQL.Add('ENV_CURSPEED=' + FloatToStr(SceEnvi.Scenario_CurrSpeed) + ',');
+      SQL.Add('ENV_CURDIR_X=' + FloatToStr(SceEnvi.Scenario_CurrDir_X) + ',');
+      SQL.Add('ENV_CURDIR_Y=' + FloatToStr(SceEnvi.Scenario_WindDir_Y) + ',');
+      SQL.Add('ENV_CURDIR_DEG=' +
+        FloatToStr(SceEnvi.Scenario_CurrDir_Deg) + ',');
 
-    SQL.Add('ENV_TEMP='         + FloatToStr(SceEnvi.Scenario_Temperature) + ',');
-    SQL.Add('ENV_BAROPRESSURE=' + FloatToStr(SceEnvi.Scenario_BaroPressure) + ',');
-    SQL.Add('ENV_HUMIDITY='     + FloatToStr(SceEnvi.Scenario_Humidity) + ',');
-    SQL.Add('ENV_FOG_H='        + FloatToStr(SceEnvi.Scenario_FogHeight) + ',');
-    SQL.Add('ENV_FOG_H_PERSEN=' + FloatToStr(SceEnvi.Scenario_FogHeight_Persen) + ' ');
+      SQL.Add('ENV_TEMP=' + FloatToStr(SceEnvi.Scenario_Temperature) + ',');
+      SQL.Add('ENV_BAROPRESSURE=' +
+        FloatToStr(SceEnvi.Scenario_BaroPressure) + ',');
+      SQL.Add('ENV_HUMIDITY=' + FloatToStr(SceEnvi.Scenario_Humidity) + ',');
+      SQL.Add('ENV_FOG_H=' + FloatToStr(SceEnvi.Scenario_FogHeight) + ',');
+      SQL.Add('ENV_FOG_H_PERSEN=' +
+        FloatToStr(SceEnvi.Scenario_FogHeight_Persen) + ' ');
 
-    SQL.Add('where ID=' + IntToStr(0));
-    ExecSQL;
+      SQL.Add('where ID=' + IntToStr(0));
+      ExecSQL;
+    end;
+  finally
+    SceEnvi.Free;
   end;
 
-  //Scenario Ship
-  //Scenario Weapon
-  //Scenario Console
+  // Scenario Ship
+  // Scenario Weapon
+  // Scenario Console
   try
-    ListWeapon  := TList.Create;
-    ListShip    := TList.Create;
-    ListConsole := TList.Create;
+    ListWeapon := Tlist.Create;
+    ListShip := Tlist.Create;
+    ListConsole := Tlist.Create;
 
     GetConsoleListBySceID(SceID, ListConsole);
-    for i:= 0 to ListConsole.Count - 1 do
+    for i := 0 to ListConsole.Count - 1 do
     begin
       SceConsole := TConsole(ListConsole.Items[i]);
-
-      //Save Scenario Console
-      with DS do
+      if Assigned(SceConsole) then
       begin
+
+        // Save Scenario Console
+        with DS do
+        begin
 
           Close;
           SQL.Clear;
@@ -2099,82 +2197,95 @@ begin
 
           SQL.Add('VALUES ( ');
 
-          SQL.Add(IntToStr(0)+ ',');
-          SQL.Add(IntToStr(SceConsole.ShipID) + ',');
+          SQL.Add(IntToStr(0) + ',');
+          SQL.Add(IntToStr(SceConsole.shipid) + ',');
           SQL.Add(IntToStr(SceConsole.ConsoleID) + ',');
           SQL.Add(IntToStr(SceConsole.LauncherID) + ')');
 
           ExecSQL;
+        end;
+
+        SceConsole.Free;
+        ListConsole.Items[i] := nil;
       end;
     end;
 
     GetAllShipFromScen(SceID, ListShip);
     countShip := getShipWeaponScen(SceID);
 
-    for i:= 0 to ListShip.Count - 1 do
+    for i := 0 to ListShip.Count - 1 do
     begin
       SceShip := TVehicle(ListShip.Items[i]);
-
-      GetListWeaponOnShipBySceID(SceID, SceShip.Vehicle_ID, ListWeapon);
-      for j:= 0 to ListWeapon.Count - 1 do
+      if Assigned(SceShip) then
       begin
-        //if i > countShip - 1 then Break;
 
-        SceWeapon := TScenarioWeapon(ListWeapon.Items[j]);
+        GetListWeaponOnShipBySceID(SceID, SceShip.Vehicle_ID, ListWeapon);
+        for j := 0 to ListWeapon.Count - 1 do
+        begin
+          // if i > countShip - 1 then Break;
 
-        //Save Scenario Weapon
-        with DS do
+          SceWeapon := TScenarioWeapon(ListWeapon.Items[j]);
+
+          // Save Scenario Weapon
+          with DS do
+          begin
+            Close;
+            SQL.Clear;
+            SQL.Add('INSERT INTO sce_weapon (');
+            SQL.Add('IDSCEN, ');
+            SQL.Add('IDSHIP, ');
+            SQL.Add('IDWEAPON, ');
+            SQL.Add('IDDET) ');
+
+            SQL.Add('VALUES ( ');
+
+            SQL.Add(IntToStr(0) + ',');
+            SQL.Add(IntToStr(SceWeapon.shipid) + ',');
+            SQL.Add(IntToStr(SceWeapon.WeaponID) + ',');
+            SQL.Add(IntToStr(SceWeapon.LauncherID) + ')');
+            ExecSQL;
+          end;
+
+          SceWeapon.Free;
+          ListWeapon.Items[j] := nil;
+        end;
+
+        // Save Scenario Ship
+        with DQ do
         begin
           Close;
           SQL.Clear;
-          SQL.Add('INSERT INTO sce_weapon (');
-          SQL.Add('IDSCEN, ');
+
+          SQL.Add('INSERT INTO sce_ship (');
+          SQL.Add('ID, ');
+          SQL.Add('IDM, ');
           SQL.Add('IDSHIP, ');
-          SQL.Add('IDWEAPON, ');
-          SQL.Add('IDDET) ');
+          SQL.Add('TRANS_X, ');
+          SQL.Add('TRANS_Y, ');
+          SQL.Add('TRANS_Z, ');
+          SQL.Add('HEADING, ');
+          SQL.Add('SPEED, ');
+          SQL.Add('IDCONSOLES) ');
 
           SQL.Add('VALUES ( ');
 
-          SQL.Add(IntToStr(0)+ ',');
-          SQL.Add(IntToStr(SceWeapon.ShipID) + ',');
-          SQL.Add(IntToStr(SceWeapon.WeaponID) + ',');
-          SQL.Add(IntToStr(SceWeapon.LauncherID) + ')');
+          SQL.Add(IntToStr(i + 1) + ',');
+          SQL.Add(IntToStr(0) + ',');
+          SQL.Add(IntToStr(SceShip.Vehicle_ID) + ',');
+          SQL.Add(FloatToStr(SceShip.Vehicle_X) + ',');
+          SQL.Add(FloatToStr(SceShip.Vehicle_Y) + ',');
+          SQL.Add(FloatToStr(SceShip.Vehicle_Z) + ',');
+          SQL.Add(FloatToStr(SceShip.Vehicle_Heading) + ',');
+          SQL.Add('0' + ',');
+          SQL.Add('0' + ')');
+
           ExecSQL;
+
         end;
       end;
 
-      //Save Scenario Ship
-      with DQ do
-      begin
-        Close;
-        SQL.Clear;
-
-        SQL.Add('INSERT INTO sce_ship (');
-        SQL.Add('ID, ');
-        SQL.Add('IDM, ');
-        SQL.Add('IDSHIP, ');
-        SQL.Add('TRANS_X, ');
-        SQL.Add('TRANS_Y, ');
-        SQL.Add('TRANS_Z, ');
-        SQL.Add('HEADING, ');
-        SQL.Add('SPEED, ');
-        SQL.Add('IDCONSOLES) ');
-
-        SQL.Add('VALUES ( ');
-
-        SQL.Add(IntToStr(i+1) + ',');
-        SQL.Add(IntToStr(0)+ ',');
-        SQL.Add(IntToStr(SceShip.Vehicle_ID) + ',');
-        SQL.Add(FloatToStr(SceShip.Vehicle_X) + ',');
-        SQL.Add(FloatToStr(SceShip.Vehicle_Y) + ',');
-        SQL.Add(FloatToStr(SceShip.Vehicle_Z) + ',');
-        SQL.Add(FloatToStr(SceShip.Vehicle_Heading) + ',');
-        SQL.Add('0' + ',');
-        SQL.Add('0' + ')');
-
-        ExecSQL;
-
-      end
+      SceShip.Free;
+      ListShip.Items[i] := nil;
 
     end;
   finally
@@ -2184,9 +2295,9 @@ begin
   end;
 end;
 
-function TDataModule1.getShipWeaponScen(sceID : Integer) : Integer;
+function TDataModule1.getShipWeaponScen(SceID: integer): integer;
 var
-  countShip : Integer;
+  countShip: integer;
 begin
   with DQ do
   begin
@@ -2204,28 +2315,31 @@ begin
 
   while not DQ.Eof do
   begin
-      countShip      := DQ.FieldByName('count(id)').AsInteger;
-      DQ.Next;
+    countShip := DQ.FieldByName('count(id)').AsInteger;
+    DQ.Next;
   end;
 
   Result := countShip;
 end;
 
-function TDataModule1.getShipIDByName(shipName : string) : Integer;
+function TDataModule1.getShipIDByName(shipName: string): integer;
 var
-  idShip  : Integer;
+  idShip: integer;
 begin
-  with DQ do begin
+  with DQ do
+  begin
     Close;
     SQL.Clear;
-    SQL.Add('Select ship_id from m_ship where ship_name = ' + QuotedStr(shipName));
+    SQL.Add('Select ship_id from m_ship where ship_name = ' +
+      QuotedStr(shipName));
     Open;
     First;
   end;
 
   Result := DQ.RecordCount;
 
-  while not DQ.Eof do begin
+  while not DQ.Eof do
+  begin
     idShip := DQ.FieldByName('ship_id').AsInteger;
     DQ.Next;
   end;
@@ -2233,11 +2347,12 @@ begin
   Result := idShip;
 end;
 
-function TDataModule1.getWeaponIDByName(weaponName : string) : Integer;
+function TDataModule1.getWeaponIDByName(weaponName: string): integer;
 var
-  idWeapon  : Integer;
+  IdWeapon: integer;
 begin
-  with DQ do begin
+  with DQ do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('Select id from m_weapon where nama = ' + QuotedStr(weaponName));
@@ -2247,17 +2362,20 @@ begin
 
   Result := DQ.RecordCount;
 
-  while not DQ.Eof do begin
-    idWeapon := DQ.FieldByName('id').AsInteger;
+  while not DQ.Eof do
+  begin
+    IdWeapon := DQ.FieldByName('id').AsInteger;
     DQ.Next;
   end;
 
-  Result := idWeapon;
+  Result := IdWeapon;
 end;
 
-function TDataModule1.GetCanonTOFbyRange(GuntType: Integer; iRange: double): single;
-var HiRange,LoRange, HiTOF ,LoTOF : Single;
-    typeGun : string;
+function TDataModule1.GetCanonTOFbyRange(GuntType: integer;
+  iRange: Double): single;
+var
+  HiRange, LoRange, HiTOF, LoTOF: single;
+  typeGun: string;
 begin
   if GuntType = 1 then
     typeGun := '120'
@@ -2268,9 +2386,9 @@ begin
   begin
     Close;
     SQL.Clear;
-    SQL.Add('SELECT Range_meter, TOF FROM dt_meriam WHERE Gun_type = ' + typeGun +
-    ' And Range_meter <= ' + FloatToStr(iRange) +
-    ' ORDER BY Range_meter DESC LIMIT 1');
+    SQL.Add('SELECT Range_meter, TOF FROM dt_meriam WHERE Gun_type = ' + typeGun
+      + ' And Range_meter <= ' + FloatToStr(iRange) +
+      ' ORDER BY Range_meter DESC LIMIT 1');
     Open;
     First;
   end;
@@ -2278,20 +2396,21 @@ begin
   if not DS.IsEmpty then
   begin
     LoRange := DS.FieldByName('Range_meter').AsInteger;
-    LoTOF   := DS.FieldByName('TOF').AsFloat;
+    LoTOF := DS.FieldByName('TOF').AsFloat;
   end
   else
   begin
     LoRange := 0;
-    LoTOF   := 0.0;
+    LoTOF := 0.0;
   end;
 
   with DS do
   begin
     Close;
     SQL.Clear;
-    SQL.Add('SELECT Range_meter, TOF FROM dt_meriam WHERE Gun_type = ' + typeGun +
-    ' And Range_meter >= ' + FloatToStr(iRange) + ' ORDER BY Range_meter ASC LIMIT 1');
+    SQL.Add('SELECT Range_meter, TOF FROM dt_meriam WHERE Gun_type = ' + typeGun
+      + ' And Range_meter >= ' + FloatToStr(iRange) +
+      ' ORDER BY Range_meter ASC LIMIT 1');
     Open;
     First;
   end;
@@ -2299,16 +2418,17 @@ begin
   if not DS.IsEmpty then
   begin
     HiRange := DS.FieldByName('Range_meter').AsInteger;
-    HiTOF   := DS.FieldByName('TOF').AsFloat;
+    HiTOF := DS.FieldByName('TOF').AsFloat;
   end;
 
-  Result := LoTOF + (((iRange - LoRange)/(HiRange - LoRange))*(HiTOF - LoTOF));
+  Result := LoTOF + (((iRange - LoRange) / (HiRange - LoRange)) *
+    (HiTOF - LoTOF));
 end;
 
-function TDataModule1.GetAllDOF3D(var aRec: Tlist): Integer;
+function TDataModule1.GetAllDOF3D(var aRec: Tlist): integer;
 var
-  rec : TDOF;
-  i: Integer;
+  rec: TDOF;
+  i: integer;
 begin
   Result := -1;
 
@@ -2325,31 +2445,31 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TDOF.Create;
-      rec.ID     := DS.FieldByName('ID').AsInteger;
-      rec.Nama   := DS.FieldByName('NAMA').AsString;
+      rec.Id := DS.FieldByName('ID').AsInteger;
+      rec.Nama := DS.FieldByName('NAMA').AsString;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetAllModel3D(var aRec: Tlist): Integer;
+function TDataModule1.GetAllModel3D(var aRec: Tlist): integer;
 var
-  rec : TMODEL;
-  i: Integer;
+  rec: TMODEL;
+  i: integer;
 begin
   Result := -1;
 
@@ -2366,34 +2486,34 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TMODEL.Create;
-      rec.ID     := DS.FieldByName('ID').AsInteger;
-      rec.REFF   := DS.FieldByName('REFF').AsInteger;
-      rec.TIPE   := DS.FieldByName('TIPE').AsInteger;
-      rec.Nama   := DS.FieldByName('NAMA').AsString;
-      rec.Ext    := DS.FieldByName('EXT').AsString;
+      rec.Id := DS.FieldByName('ID').AsInteger;
+      rec.REFF := DS.FieldByName('REFF').AsInteger;
+      rec.TIPE := DS.FieldByName('TIPE').AsInteger;
+      rec.Nama := DS.FieldByName('NAMA').AsString;
+      rec.Ext := DS.FieldByName('EXT').AsString;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetAllSwitch(var aRec: Tlist): Integer;
+function TDataModule1.GetAllSwitch(var aRec: Tlist): integer;
 var
-  rec : TSwitch;
-  i: Integer;
+  rec: TSwitch;
+  i: integer;
 begin
   Result := -1;
 
@@ -2410,23 +2530,23 @@ begin
     DS.First;
   end;
 
-  Result := Ds.RecordCount;
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not ds.Eof do
+    while not DS.Eof do
     begin
       rec := TSwitch.Create;
-      rec.ID     := DS.FieldByName('ID').AsInteger;
-      rec.Nama   := DS.FieldByName('NAMA').AsString;
+      rec.Id := DS.FieldByName('ID').AsInteger;
+      rec.Nama := DS.FieldByName('NAMA').AsString;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
@@ -2494,7 +2614,7 @@ begin
   end;
 end;
 
-function TDataModule1.GetDofIDByName(mName: string): Integer;
+function TDataModule1.GetDofIDByName(mName: string): integer;
 begin
   Result := 0;
 
@@ -2515,7 +2635,7 @@ begin
   end;
 end;
 
-function TDataModule1.GetModelIDByName(mName: string): Integer;
+function TDataModule1.GetModelIDByName(mName: string): integer;
 begin
   Result := 0;
 
@@ -2536,7 +2656,7 @@ begin
   end;
 end;
 
-function TDataModule1.GetSwitchIDByName(mName: string): Integer;
+function TDataModule1.GetSwitchIDByName(mName: string): integer;
 begin
   Result := 0;
 
@@ -2557,7 +2677,8 @@ begin
   end;
 end;
 
-procedure TDataModule1.UpdateWeaponShip(const Rec: TWeaponGetList; const IDNumber : integer);
+procedure TDataModule1.UpdateWeaponShip(const rec: TWeaponGetList;
+  const IDNumber: integer);
 begin
   with DQ do
   begin
@@ -2566,32 +2687,33 @@ begin
 
     SQL.Add('UPDATE m_ship_weapon set ');
 
-    SQL.Add('IDDET='      + IntToStr(Rec.IDDetail) + ',');
-    SQL.Add('IDMODEL1='   + IntToStr(Rec.IDModel1) + ',');
-    SQL.Add('IDMODEL2='   + IntToStr(Rec.IDModel2) + ',');
-    SQL.Add('IDDOF1='     + IntToStr(Rec.IDDof1) + ',');
-    SQL.Add('IDDOF2='     + IntToStr(Rec.IDDof2) + ',');
+    SQL.Add('IDDET=' + IntToStr(rec.IDDetail) + ',');
+    SQL.Add('IDMODEL1=' + IntToStr(rec.IDModel1) + ',');
+    SQL.Add('IDMODEL2=' + IntToStr(rec.IDModel2) + ',');
+    SQL.Add('IDDOF1=' + IntToStr(rec.IDDof1) + ',');
+    SQL.Add('IDDOF2=' + IntToStr(rec.IDDof2) + ',');
 
-    SQL.Add('IDSWITCH='   + IntToStr(Rec.IDSwitch) + ',');
-    SQL.Add('POS_H='      + IntToStr(Rec.Pos_H) + ',');
-    SQL.Add('POS_P='      + IntToStr(Rec.Pos_P) + ',');
-    SQL.Add('IS3DACTOR='  + IntToStr(Rec.Is3DActor) + ' ');
+    SQL.Add('IDSWITCH=' + IntToStr(rec.IDSwitch) + ',');
+    SQL.Add('POS_H=' + IntToStr(rec.Pos_H) + ',');
+    SQL.Add('POS_P=' + IntToStr(rec.Pos_P) + ',');
+    SQL.Add('IS3DACTOR=' + IntToStr(rec.Is3DActor) + ' ');
 
-    SQL.Add('where IDSHIP=' + IntToStr(Rec.IDShip) + ' AND ' );
-    SQL.Add('IDWEAPON='     + IntToStr(Rec.IDWeapon) + ' AND ' );
-    SQL.Add('ID='     + IntToStr(IDNumber));
+    SQL.Add('where IDSHIP=' + IntToStr(rec.idShip) + ' AND ');
+    SQL.Add('IDWEAPON=' + IntToStr(rec.IdWeapon) + ' AND ');
+    SQL.Add('ID=' + IntToStr(IDNumber));
 
     ExecSQL;
   end;
 end;
 
-function TDataModule1.GetPortIDfromSceID(const SceID: integer): Integer;
+function TDataModule1.GetPortIDfromSceID(const SceID: integer): integer;
 begin
-  with DataModule1 do begin
+  with DataModule1 do
+  begin
     DQ.SQL.Clear;
     DQ.SQL.Add('select ENV_PETA from sce_main where ID=' + IntToStr(SceID));
     DQ.Open;
-    Result := DQ.Fields[0].AsInteger ;
+    Result := DQ.Fields[0].AsInteger;
     DQ.Close;
   end;
 end;
@@ -2617,7 +2739,7 @@ begin
       SQL.Add(FloatToStr(Param2) + ',');
       SQL.Add(FloatToStr(param3) + ',');
       SQL.Add(QuotedStr(tanggal) + ',');
-      SQL.Add(IntToStr(ShipID) + ',');
+      SQL.Add(IntToStr(shipid) + ',');
       SQL.Add(QuotedStr(NameGame) + ',');
       SQL.Add(QuotedStr(jam) + ')');
 
@@ -2626,21 +2748,19 @@ begin
   end;
 end;
 
-
-
-function TDataModule1.GetGameID(ScenID: Integer): Integer;
+function TDataModule1.GetGameID(ScenID: integer): integer;
 begin
   with DS do
   begin
-    //with rec do
-   // begin
-      Close;
-      SQL.Clear;
-      SQL.Add('SELECT MAX(GameID)');
-      SQL.Add('FROM m_log_game');
-      SQL.Add('WHERE ScenarioID = ' + IntToStr(ScenID));
-   // end;
-    //ExecSQL;
+    // with rec do
+    // begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT MAX(GameID)');
+    SQL.Add('FROM m_log_game');
+    SQL.Add('WHERE ScenarioID = ' + IntToStr(ScenID));
+    // end;
+    // ExecSQL;
     Open;
     DS.First;
   end;
@@ -2652,20 +2772,19 @@ begin
 
 end;
 
-
 function TDataModule1.GameNameAlreadyExist(aGameName: string): boolean;
 begin
   with DS do
   begin
-    //with rec do
-   // begin
-      Close;
-      SQL.Clear;
-      SQL.Add('SELECT DISTINCT GameName');
-      SQL.Add('FROM m_log_game');
-      SQL.Add('WHERE gameName ='+QuotedStr(aGameName));
-   // end;
-    //ExecSQL;
+    // with rec do
+    // begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT DISTINCT GameName');
+    SQL.Add('FROM m_log_game');
+    SQL.Add('WHERE gameName =' + QuotedStr(aGameName));
+    // end;
+    // ExecSQL;
     Open;
     DS.First;
   end;
@@ -2677,18 +2796,18 @@ begin
 
 end;
 
-function TDataModule1.GetScenarioByID(IDScenario: Integer): string;
+function TDataModule1.GetScenarioByID(IdScenario: integer): string;
 begin
   with DS do
   begin
-     Close;
-     SQL.Clear;
-     SQL.Add('SELECT NAMA');
-     SQL.Add('FROM sce_main');
-     SQL.Add('WHERE ID = ' + IntToStr(IDScenario));
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT NAMA');
+    SQL.Add('FROM sce_main');
+    SQL.Add('WHERE ID = ' + IntToStr(IdScenario));
 
-     Open;
-     DS.First;
+    Open;
+    DS.First;
   end;
 
   if not DS.IsEmpty then
@@ -2696,78 +2815,75 @@ begin
 end;
 
 function TDataModule1.GetScenarioIDByName(NameScen: String;
-  aRec: TList): integer;
+  aRec: Tlist): integer;
 var
-  rec : TSearchScenarioIDList;
-  str : string;
+  rec: TSearchScenarioIDList;
+  str: string;
 begin
-  str := '%'+NameScen+'%';
+  str := '%' + NameScen + '%';
   with DS do
   begin
-     Close;
-     SQL.Clear;
-     SQL.Add('SELECT ID');
-     SQL.Add('FROM sce_main');
-     SQL.Add('WHERE NAMA LIKE  ' + QuotedStr(str));
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT ID');
+    SQL.Add('FROM sce_main');
+    SQL.Add('WHERE NAMA LIKE  ' + QuotedStr(str));
 
-     Open;
-     DS.First;
+    Open;
+    DS.First;
   end;
-  Result := Ds.RecordCount;
-
+  Result := DS.RecordCount;
 
   if not DS.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not Ds.Eof do
+    while not DS.Eof do
     begin
-      rec         := TSearchScenarioIDList.Create;
-      rec.IDSce   := DS.FieldByName('ID').AsInteger;
+      rec := TSearchScenarioIDList.Create;
+      rec.IDSce := DS.FieldByName('ID').AsInteger;
 
       aRec.Add(rec);
-      Ds.Next;
+      DS.Next;
     end;
   end;
 end;
 
-function TDataModule1.GetGameNameBySceID(aSceID: Integer;
-  aRec: TList): integer;
+function TDataModule1.GetGameNameBySceID(aSceID: integer; aRec: Tlist): integer;
 var
-  rec     : TGameList;
-  IntTemp : integer;
+  rec: TGameList;
+  IntTemp: integer;
 begin
   with DQ do
   begin
-     Close;
-     SQL.Clear;
-     SQL.Add('SELECT DISTINCT GameName, ScenarioID, aDate');
-     SQL.Add('FROM m_log_game');
-     SQL.Add('WHERE ScenarioID = ' + IntToStr(aSceID));
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT DISTINCT GameName, ScenarioID, aDate');
+    SQL.Add('FROM m_log_game');
+    SQL.Add('WHERE ScenarioID = ' + IntToStr(aSceID));
 
-     Open;
-     DQ.First;
+    Open;
+    DQ.First;
   end;
   Result := DQ.RecordCount;
 
   if not DQ.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
     while not DQ.Eof do
     begin
-      rec            := TGameList.Create;
-      rec.GameName   := DQ.FieldByName('GameName').AsString;
-      rec.aTanggal   := DQ.FieldByName('aDate').AsString;
-      IntTemp        := DQ.FieldByName('ScenarioID').AsInteger;
-      rec.aScenName  := GetScenarioByID(IntTemp);
-
+      rec := TGameList.Create;
+      rec.GameName := DQ.FieldByName('GameName').AsString;
+      rec.aTanggal := DQ.FieldByName('aDate').AsString;
+      IntTemp := DQ.FieldByName('ScenarioID').AsInteger;
+      rec.aScenName := GetScenarioByID(IntTemp);
 
       aRec.Add(rec);
       DQ.Next;
@@ -2775,40 +2891,40 @@ begin
   end;
 end;
 
-function TDataModule1.GetGameNameBySceIDDate(aSceID: Integer;aTanggal: string;
-  aRec: TList): integer;
+function TDataModule1.GetGameNameBySceIDDate(aSceID: integer; aTanggal: string;
+  aRec: Tlist): integer;
 var
-  rec     : TGameList;
-  IntTemp : integer;
+  rec: TGameList;
+  IntTemp: integer;
 begin
   with DQ do
   begin
-     Close;
-     SQL.Clear;
-     SQL.Add('SELECT DISTINCT GameName, ScenarioID, aDate');
-     SQL.Add('FROM m_log_game');
-     SQL.Add('WHERE ScenarioID = ' + IntToStr(aSceID)+' AND aDate = '+ QuotedStr(aTanggal));
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT DISTINCT GameName, ScenarioID, aDate');
+    SQL.Add('FROM m_log_game');
+    SQL.Add('WHERE ScenarioID = ' + IntToStr(aSceID) + ' AND aDate = ' +
+      QuotedStr(aTanggal));
 
-     Open;
-     DQ.First;
+    Open;
+    DQ.First;
   end;
   Result := DQ.RecordCount;
 
   if not DQ.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
     while not DQ.Eof do
     begin
-      rec            := TGameList.Create;
-      rec.GameName   := DQ.FieldByName('GameName').AsString;
-      rec.aTanggal   := DQ.FieldByName('aDate').AsString;
-      IntTemp        := DQ.FieldByName('ScenarioID').AsInteger;
-      rec.aScenName  := GetScenarioByID(IntTemp);
-
+      rec := TGameList.Create;
+      rec.GameName := DQ.FieldByName('GameName').AsString;
+      rec.aTanggal := DQ.FieldByName('aDate').AsString;
+      IntTemp := DQ.FieldByName('ScenarioID').AsInteger;
+      rec.aScenName := GetScenarioByID(IntTemp);
 
       aRec.Add(rec);
       DQ.Next;
@@ -2816,38 +2932,41 @@ begin
   end;
 end;
 
-function TDataModule1.GetMessageFromEventID(IDConsole,IDEvent: Integer): string;
+function TDataModule1.GetMessageFromEventID(IDConsole,
+  IDEvent: integer): string;
 begin
+  Result := '';
   with DS do
   begin
-     Close;
-     SQL.Clear;
-     SQL.Add('SELECT Message');
-     SQL.Add('FROM m_log_master');
-     SQL.Add('WHERE ConsoleID ='+inttostr(IDConsole));
-     SQL.Add('AND EventID ='+inttostr(IDEvent));
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT Message');
+    SQL.Add('FROM m_log_master');
+    SQL.Add('WHERE ConsoleID =' + IntToStr(IDConsole));
+    SQL.Add('AND EventID =' + IntToStr(IDEvent));
 
-     Open;
-     DS.First;
+    Open;
+    DS.First;
   end;
 
   if not DS.IsEmpty then
     Result := DS.FieldByName('Message').AsString;
 end;
 
-function TDataModule1.GetShipNameByID(IDShip: Integer): string;
+function TDataModule1.GetShipNameByID(idShip: integer): string;
 begin
   with DS do
   begin
 
-     if Active then Close;
-     SQL.Clear;
-     SQL.Add('SELECT SHIP_NAME');
-     SQL.Add('FROM m_ship');
-     SQL.Add('WHERE SHIP_ID = ' + IntToStr(IDShip));
+    if Active then
+      Close;
+    SQL.Clear;
+    SQL.Add('SELECT SHIP_NAME');
+    SQL.Add('FROM m_ship');
+    SQL.Add('WHERE SHIP_ID = ' + IntToStr(idShip));
 
-     Open;
-     DS.First;
+    Open;
+    DS.First;
   end;
 
   if not DS.IsEmpty then
@@ -2856,8 +2975,8 @@ end;
 
 function TDataModule1.GetAllGame(var aRec: Tlist): integer;
 var
-  rec     : TGameList;
-  IntTemp : integer;
+  rec: TGameList;
+  IntTemp: integer;
 
 begin
   Result := -1;
@@ -2879,18 +2998,17 @@ begin
   if not DQ.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not dQ.Eof do
+    while not DQ.Eof do
     begin
-      rec            := TGameList.Create;
-      rec.GameName   := DQ.FieldByName('GameName').AsString;
-      rec.aTanggal   := DQ.FieldByName('aDate').AsString;
-      IntTemp        := DQ.FieldByName('ScenarioID').AsInteger;
-      rec.aScenName  := GetScenarioByID(IntTemp);
-
+      rec := TGameList.Create;
+      rec.GameName := DQ.FieldByName('GameName').AsString;
+      rec.aTanggal := DQ.FieldByName('aDate').AsString;
+      IntTemp := DQ.FieldByName('ScenarioID').AsInteger;
+      rec.aScenName := GetScenarioByID(IntTemp);
 
       aRec.Add(rec);
       DQ.Next;
@@ -2898,11 +3016,10 @@ begin
   end;
 end;
 
-function TDataModule1.GetGameNameByDate(date: string;
-  aRec: Tlist): integer;
+function TDataModule1.GetGameNameByDate(date: string; aRec: Tlist): integer;
 var
-  rec     : TGameList;
-  IntTemp : integer;
+  rec: TGameList;
+  IntTemp: integer;
 
 begin
   Result := -1;
@@ -2914,7 +3031,7 @@ begin
     SQL.Clear;
     SQL.Add('SELECT DISTINCT GameName,ScenarioID,aDate');
     SQL.Add('FROM m_log_game');
-    SQL.Add('WHERE aDate = '+ QuotedStr(date));
+    SQL.Add('WHERE aDate = ' + QuotedStr(date));
 
     Open;
     DQ.First;
@@ -2925,18 +3042,17 @@ begin
   if not DQ.IsEmpty then
   begin
     if not Assigned(aRec) then
-      aRec := TList.Create
+      aRec := Tlist.Create
     else
       aRec.Clear;
 
-    while not dQ.Eof do
+    while not DQ.Eof do
     begin
-      rec            := TGameList.Create;
-      rec.GameName   := DQ.FieldByName('GameName').AsString;
-      rec.aTanggal   := DQ.FieldByName('aDate').AsString;
-      IntTemp        := DQ.FieldByName('ScenarioID').AsInteger;
-      rec.aScenName  := GetScenarioByID(IntTemp);
-
+      rec := TGameList.Create;
+      rec.GameName := DQ.FieldByName('GameName').AsString;
+      rec.aTanggal := DQ.FieldByName('aDate').AsString;
+      IntTemp := DQ.FieldByName('ScenarioID').AsInteger;
+      rec.aScenName := GetScenarioByID(IntTemp);
 
       aRec.Add(rec);
       DQ.Next;
@@ -2948,7 +3064,8 @@ function TDataModule1.GetShipMaxSpeed(const shipid: integer): Double;
 begin
   Result := 1;
 
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -2962,15 +3079,16 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsFloat;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsFloat;
 end;
 
 function TDataModule1.GetShipMinSpeed(const shipid: integer): Double;
 begin
   Result := 1;
 
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -2984,16 +3102,16 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsFloat;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsFloat;
 end;
-
 
 function TDataModule1.GetShipDomain(const shipid: integer): integer;
 begin
   Result := 1;
 
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -3007,15 +3125,16 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsInteger;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsInteger;
 end;
 
 function TDataModule1.GetShipTarget(const shipid: integer): integer;
 begin
   Result := 0;
 
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -3029,32 +3148,30 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsInteger;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsInteger;
 end;
 
-function TDataModule1.CheckObjectCatDomain(const shipID: integer): integer;
+function TDataModule1.CheckObjectCatDomain(const shipid: integer): integer;
 var
-   catid : integer ;
+  catid: integer;
 begin
-  catid  := DataModule1.GetShipCategoryID(shipID);
+  catid := DataModule1.GetShipCategoryID(shipid);
 
-  if DataModule1.GetShipCategoryName(catid) =  CAT_SUBMARINES then
+  if DataModule1.GetShipCategoryName(catid) = CAT_SUBMARINES then
     Result := 2
-  else
-  if DataModule1.GetShipCategoryName(catid) = CAT_HELICOPTER then
+  else if DataModule1.GetShipCategoryName(catid) = CAT_HELICOPTER then
     Result := 3
-  else
-  if DataModule1.GetShipCategoryName(catid) = CAT_AIRCRAFT then
+  else if DataModule1.GetShipCategoryName(catid) = CAT_AIRCRAFT then
     Result := 4
   else
     Result := 1;
 end;
 
-function TDataModule1.GetCubicleNameFromID(const id: integer): string;
+function TDataModule1.GetCubicleNameFromID(const Id: integer): string;
 begin
   DQ.SQL.Clear;
-  DQ.SQL.Add('select NAMA from cm_cubicle where ID=' + IntToStr(id));
+  DQ.SQL.Add('select NAMA from cm_cubicle where ID=' + IntToStr(Id));
   DQ.Open;
   Result := DQ.Fields[0].AsString;
   DQ.Close;
@@ -3079,9 +3196,9 @@ begin
 
     SQL.Add('VALUES ( ');
 
-    SQL.Add(IntToStr(rec.IDShip)+ ',');
-    SQL.Add(IntToStr(rec.IDWeapon) + ',');
-    SQL.Add(IntToStr(rec.IDLauncher) + ',');
+    SQL.Add(IntToStr(rec.idShip) + ',');
+    SQL.Add(IntToStr(rec.IdWeapon) + ',');
+    SQL.Add(IntToStr(rec.idLauncher) + ',');
     SQL.Add(IntToStr(rec.IDType) + ',');
     SQL.Add(QuotedStr(rec.DetName) + ',');
     SQL.Add(FloatToStr(rec.LowRange) + ',');
@@ -3099,52 +3216,57 @@ begin
   begin
     Close;
     SQL.Clear;
-    SQL.Add('DELETE FROM m_weapon_range_det WHERE SHIP_ID=' + IntToStr(rec.IDShip)
-                                          + ' AND WEAPON_ID=' + IntToStr(rec.IDWeapon)
-                                          + ' AND WEAPON_TYPE=' + IntToStr(rec.IDType)
-                                          + ' AND LAUNCHER_ID=' + IntToStr(rec.IDLauncher));
+    SQL.Add('DELETE FROM m_weapon_range_det WHERE SHIP_ID=' +
+      IntToStr(rec.idShip) + ' AND WEAPON_ID=' + IntToStr(rec.IdWeapon) +
+      ' AND WEAPON_TYPE=' + IntToStr(rec.IDType) + ' AND LAUNCHER_ID=' +
+      IntToStr(rec.idLauncher));
     ExecSQL;
   end;
 end;
 
-function TDataModule1.getSceConsoleList(Sce_ID : Integer; aRec : TList) : Integer;
+function TDataModule1.getSceConsoleList(Sce_ID: integer; aRec: Tlist): integer;
 var
-  rec : TSceConList;
+  rec: TSceConList;
 begin
-  with DQ do begin
+  with DQ do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('Select Distinct SHIP_ID, SHIP_CONSOLE, SHIP_LAUNCHER');
     SQL.Add('From sce_console');
-    SQL.Add('where IDM = ' + IntToStr(sce_id));
+    SQL.Add('where IDM = ' + IntToStr(Sce_ID));
     Open;
     DQ.First;
   end;
 
   Result := DQ.RecordCount;
-  if not DQ.IsEmpty then begin
+  if not DQ.IsEmpty then
+  begin
     if not Assigned(aRec) then
-      aRec := TList.Create
-      else
-        aRec.Clear;
+      aRec := Tlist.Create
+    else
+      aRec.Clear;
   end;
 
-  while not DQ.Eof do begin
+  while not DQ.Eof do
+  begin
     rec := TSceConList.Create;
-    rec.ShipID      := DQ.FieldByName('SHIP_ID').AsInteger;
+    rec.shipid := DQ.FieldByName('SHIP_ID').AsInteger;
     rec.ShipConsole := DQ.FieldByName('SHIP_CONSOLE').AsInteger;
-    rec.ShipLaunch  := DQ.FieldByName('SHIP_LAUNCHER').AsInteger;
+    rec.ShipLaunch := DQ.FieldByName('SHIP_LAUNCHER').AsInteger;
 
     aRec.Add(rec);
     DQ.Next;
   end;
 end;
 
-function TDataModule1.getRangDeg(ship_id : Integer ; weapon_id : Integer ; launcher : Integer ; aRec : TList) : Integer;
+function TDataModule1.getRangDeg(ship_id: integer; weapon_id: integer;
+  launcher: integer; aRec: Tlist): integer;
 var
-  rec : TRangDeg;
+  rec: TRangDeg;
 begin
-  with DQ do begin
+  with DQ do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('select Distinct MIN_RANGE, MAX_RANGE, START_DEGREE, END_DEGREE');
@@ -3153,12 +3275,14 @@ begin
     SQL.Add('WEAPON_ID = ' + IntToStr(weapon_id) + ' and ');
     SQL.Add('LAUNCHER_ID = ' + IntToStr(launcher));
 
-    if (weapon_id = 5) and (launcher = 1) then begin
+    if (weapon_id = 5) and (launcher = 1) then
+    begin
       SQL.Add(' and TYPE_NAME = ' + QuotedStr('FWD WAR'));
     end
-    else if (weapon_id = 5) and (launcher = 2) then begin
+    else if (weapon_id = 5) and (launcher = 2) then
+    begin
       SQL.Add(' and TYPE_NAME = ' + QuotedStr('AFT WAR'));
-     // ShowMessage('masok');
+      // ShowMessage('masok');
     end;
 
     Open;
@@ -3166,40 +3290,46 @@ begin
   end;
 
   Result := DQ.RecordCount;
-  if not DQ.IsEmpty then begin
+  if not DQ.IsEmpty then
+  begin
     if not Assigned(aRec) then
-      aRec := TList.Create
-      else
-        aRec.Clear;
+      aRec := Tlist.Create
+    else
+      aRec.Clear;
   end;
 
-   while not DQ.Eof do begin
+  while not DQ.Eof do
+  begin
     rec := TRangDeg.Create;
     rec.rangeMin := DQ.FieldByName('MIN_RANGE').AsFloat;
     rec.rangeMax := DQ.FieldByName('MAX_RANGE').AsFloat;
     rec.startDeg := DQ.FieldByName('START_DEGREE').AsFloat;
-    rec.endDeg   := DQ.FieldByName('END_DEGREE').AsFloat;
+    rec.endDeg := DQ.FieldByName('END_DEGREE').AsFloat;
     aRec.Add(rec);
     DQ.Next;
   end;
 end;
 
-procedure TDataModule1.updateShipStart(ship_id : Integer ; ship_console : Integer);
+procedure TDataModule1.updateShipStart(ship_id: integer; ship_console: integer);
 var
-  kapal : string;
+  kapal: string;
 begin
   kapal := GetShipNameByID(ship_id);
-  with DataModule1 do begin
+  with DataModule1 do
+  begin
     DQ.Close;
     DQ.SQL.Clear;
-    DQ.SQL.Add('Update cm_console set Ship_Name = ' + QuotedStr(kapal) + 'Where PC_ID = ' + IntToStr(ship_console));
+    DQ.SQL.Add('Update cm_console set Ship_Name = ' + QuotedStr(kapal) +
+      'Where PC_ID = ' + IntToStr(ship_console));
     DQ.ExecSQL;
   end;
 end;
 
-procedure TDataModule1.updateSceWeapon(idScen : Integer ; idShip : Integer ; idWeapon : Integer ; idDet : Integer);
+procedure TDataModule1.updateSceWeapon(idScen: integer; idShip: integer;
+  IdWeapon: integer; idDet: integer);
 begin
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('Insert into sce_weapon (');
@@ -3210,22 +3340,24 @@ begin
 
     SQL.Add('VALUES ( ');
 
-    SQL.Add(IntToStr(0)+ ',');
+    SQL.Add(IntToStr(0) + ',');
     SQL.Add(IntToStr(idShip) + ',');
-    SQL.Add(IntToStr(idWeapon) + ',');
+    SQL.Add(IntToStr(IdWeapon) + ',');
     SQL.Add(IntToStr(idDet) + ')');
     ExecSQL;
   end;
 end;
 
-procedure TDataModule1.deleteSceWeapon(idScen : Integer ; idShip : Integer ; idWeapon : Integer ; idDet : Integer);
+procedure TDataModule1.deleteSceWeapon(idScen: integer; idShip: integer;
+  IdWeapon: integer; idDet: integer);
 begin
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('Delete from sce_weapon where IDSCEN = ' + IntToStr(idScen));
     SQL.Add('and IDSHIP = ' + IntToStr(idShip));
-    SQL.Add('and IDWEAPON = ' + IntToStr(idWeapon));
+    SQL.Add('and IDWEAPON = ' + IntToStr(IdWeapon));
     SQL.Add('and IDDET = ' + IntToStr(idDet));
     ExecSQL;
   end;
@@ -3246,14 +3378,15 @@ begin
 
   if not DS.IsEmpty then
   begin
-    Result := DS.FieldByName('LETHALITY').Asinteger;
+    Result := DS.FieldByName('LETHALITY').AsInteger;
   end;
 end;
 
 function TDataModule1.GetShipDemensiLENGTHByID(const shipid: integer): Double;
 begin
   Result := 1;
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -3267,16 +3400,15 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsFloat;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsFloat;
 end;
 
-
-function TDataModule1.GetShipDemensiWIDTHByID(
-  const shipid: integer): Double;
+function TDataModule1.GetShipDemensiWIDTHByID(const shipid: integer): Double;
 begin
   Result := 1;
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -3290,15 +3422,15 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsFloat;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsFloat;
 end;
 
-function TDataModule1.GetShipDemensiHEIGHTByID(
-  const shipid: integer): Double;
+function TDataModule1.GetShipDemensiHEIGHTByID(const shipid: integer): Double;
 begin
   Result := 1;
-  with DS do begin
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -3312,14 +3444,15 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsFloat;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsFloat;
 end;
 
 function TDataModule1.GetShipDamageByID(const shipid: integer): Double;
 begin
-   Result := 1;
-  with DS do begin
+  Result := 1;
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -3333,43 +3466,51 @@ begin
     First;
   end;
 
-  if  DS.RecordCount  > 0 then
-     result := DS.Fields[0].AsFloat;
+  if DS.RecordCount > 0 then
+    Result := DS.Fields[0].AsFloat;
 end;
 
-
-function TDataModule1.UpdateShipEditor(const shipid: integer; const vehicle : TVehicle) : Integer;
+function TDataModule1.UpdateShipEditor(const shipid: integer;
+  const vehicle: TVehicle): integer;
 begin
   Result := 1;
   with DQ do
   begin
-     Close;
-     SQL.Clear;
-     SQL.Add('UPDATE m_ship SET ');
-     SQL.Add('DIM_LENGTH ='     + FloatToStr(vehicle.Vehicle_LENGTH) + ',');
-     SQL.Add('DIM_WIDTH ='      + FloatToStr(vehicle.Vehicle_WIDTH) + ',');
-     SQL.Add('DIM_HEIGHT ='     + FloatToStr(vehicle.Vehicle_HEIGHT) + ',');
-     SQL.Add('SHIP_MAX_SPEED =' + FloatToStr(vehicle.Vehicle_Maxspeed) + ',');
-     SQL.Add('SHIP_MAX_SPEED_ASTERN ='  + FloatToStr(vehicle.Vehicle_Minspeed) + ',');
-     SQL.Add('DAMAGE_SUSTAINABILITY ='  + FloatToStr(vehicle.Vehicle_SUSTAINABILITY) + ',');
+    Close;
+    SQL.Clear;
+    SQL.Add('UPDATE m_ship SET ');
+    SQL.Add('DIM_LENGTH =' + FloatToStr(vehicle.Vehicle_LENGTH) + ',');
+    SQL.Add('DIM_WIDTH =' + FloatToStr(vehicle.Vehicle_WIDTH) + ',');
+    SQL.Add('DIM_HEIGHT =' + FloatToStr(vehicle.Vehicle_HEIGHT) + ',');
+    SQL.Add('SHIP_MAX_SPEED =' + FloatToStr(vehicle.Vehicle_Maxspeed) + ',');
+    SQL.Add('SHIP_MAX_SPEED_ASTERN =' +
+      FloatToStr(vehicle.Vehicle_Minspeed) + ',');
+    SQL.Add('DAMAGE_SUSTAINABILITY =' +
+      FloatToStr(vehicle.Vehicle_SUSTAINABILITY) + ',');
 
-     SQL.Add('SHIP_RUDDER_SWING_RATE ='  + FloatToStr(vehicle.Vehicle_RudderSwingRate) + ',');
-     SQL.Add('SHIP_THROTTLE_RATE ='      + FloatToStr(vehicle.Vehicle_ThrottleRate) + ',');
-     SQL.Add('SHIP_DISPLACEMENT ='       + FloatToStr(vehicle.Vehicle_Displacement) + ',');
-     SQL.Add('SHIP_HEEL_FACTOR ='        + FloatToStr(vehicle.Vehicle_HeelFactor) + ',');
-     SQL.Add('SHIP_SHAFT_UP ='           + FloatToStr(vehicle.Vehicle_ShaftUp) + ',');
-     SQL.Add('SHIP_TACTICAL_DIAMETER ='  + FloatToStr(vehicle.Vehicle_TacDiameter) + ',');
-     SQL.Add('SHIP_TRIM_FACTOR ='        + FloatToStr(vehicle.Vehicle_TrimFactor) + ' ');
+    SQL.Add('SHIP_RUDDER_SWING_RATE =' +
+      FloatToStr(vehicle.Vehicle_RudderSwingRate) + ',');
+    SQL.Add('SHIP_THROTTLE_RATE =' +
+      FloatToStr(vehicle.Vehicle_ThrottleRate) + ',');
+    SQL.Add('SHIP_DISPLACEMENT =' +
+      FloatToStr(vehicle.Vehicle_Displacement) + ',');
+    SQL.Add('SHIP_HEEL_FACTOR =' +
+      FloatToStr(vehicle.Vehicle_HeelFactor) + ',');
+    SQL.Add('SHIP_SHAFT_UP =' + FloatToStr(vehicle.Vehicle_ShaftUp) + ',');
+    SQL.Add('SHIP_TACTICAL_DIAMETER =' +
+      FloatToStr(vehicle.Vehicle_TacDiameter) + ',');
+    SQL.Add('SHIP_TRIM_FACTOR =' +
+      FloatToStr(vehicle.Vehicle_TrimFactor) + ' ');
 
     SQL.Add('where SHIP_ID=' + IntToStr(shipid));
     ExecSQL;
   end;
 end;
 
-function TDataModule1.IDclassbyName(shipid: Integer): String;
+function TDataModule1.IDclassbyName(shipid: integer): String;
 begin
-   with DQ do
-   begin
+  with DQ do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT ');
@@ -3382,17 +3523,19 @@ begin
 
     Open;
     First;
-   end;
-    if  DQ.RecordCount  > 0 then
-     result := DQ.FieldByName('ship_class_name').AsString;
+  end;
+  if DQ.RecordCount > 0 then
+    Result := DQ.FieldByName('ship_class_name').AsString;
 end;
-function TDataModule1.GetVehicleProperties(
-  const ShipID: Integer): TVehicle;
-var
-  recVec : TVehicle;
-begin
 
-  with DS do begin
+function TDataModule1.GetVehicleProperties(const shipid: integer): TVehicle;
+var
+  recVec: TVehicle;
+begin
+  Result := nil;
+
+  with DS do
+  begin
     Close;
     SQL.Clear;
     SQL.Add('SELECT *');
@@ -3405,20 +3548,19 @@ begin
     First;
   end;
 
-  recVec := TVehicle.Create;
-
-  if  DQ.RecordCount  > 0 then
+  if DQ.RecordCount > 0 then
   begin
-    recVec.Vehicle_RudderSwingRate := DS.FieldByName('SHIP_RUDDER_SWING_RATE').AsFloat;
-    recVec.Vehicle_ThrottleRate    := DS.FieldByName('SHIP_THROTTLE_RATE').AsFloat;
-    recVec.Vehicle_Displacement    := DS.FieldByName('SHIP_DISPLACEMENT').AsFloat;
-    recVec.Vehicle_HeelFactor      := DS.FieldByName('SHIP_HEEL_FACTOR').AsFloat;
-    recVec.Vehicle_ShaftUp         := DS.FieldByName('SHIP_SHAFT_UP').AsFloat;
-    recVec.Vehicle_TacDiameter     := DS.FieldByName('SHIP_TACTICAL_DIAMETER').AsFloat;
-    recVec.Vehicle_TrimFactor      := DS.FieldByName('SHIP_TRIM_FACTOR').AsFloat;
+    Result := TVehicle.Create;
+    Result.Vehicle_RudderSwingRate :=
+      DS.FieldByName('SHIP_RUDDER_SWING_RATE').AsFloat;
+    Result.Vehicle_ThrottleRate := DS.FieldByName('SHIP_THROTTLE_RATE').AsFloat;
+    Result.Vehicle_Displacement := DS.FieldByName('SHIP_DISPLACEMENT').AsFloat;
+    Result.Vehicle_HeelFactor := DS.FieldByName('SHIP_HEEL_FACTOR').AsFloat;
+    Result.Vehicle_ShaftUp := DS.FieldByName('SHIP_SHAFT_UP').AsFloat;
+    Result.Vehicle_TacDiameter :=
+      DS.FieldByName('SHIP_TACTICAL_DIAMETER').AsFloat;
+    Result.Vehicle_TrimFactor := DS.FieldByName('SHIP_TRIM_FACTOR').AsFloat;
   end;
-
-  result := recVec;
 end;
 
 end.

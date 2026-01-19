@@ -218,7 +218,7 @@ implementation
 
   destructor TNewReplay.Destroy;
   begin
-    FTimer.Terminate;
+//    FTimer.Terminate;
     FTimer.Free;
     SetLength(FFrameIndexList, 0);
 

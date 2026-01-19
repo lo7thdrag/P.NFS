@@ -74,7 +74,8 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    procedure Listen(aPort: string);
+    procedure Listen(aPort: string); overload;
+    procedure Listen(aAddress, aPort: string); overload;
     procedure Stop;
 
 //    procedure SendData(const aID: Word; aBuffer: PAnsiChar);
@@ -192,6 +193,33 @@ begin
   begin
     if Assigned(FLogStat) then
       FLogStat(TimeToString + ': Unhandled exception raised!');
+  end;
+end;
+
+procedure TNetLinkServer.Listen(aAddress, aPort: string);
+begin
+  if WSockServer.State = wsClosed then
+  begin
+    WSockServer.OnClientConnect := WSockServer_OnClientConnect;
+    WSockServer.OnClientDisconnect := WSockServer_OnClientDisconnect;
+    WSockServer.Proto := C_SOCK_DEF_PROTO;
+    WSockServer.Port := aPort;
+    WSockServer.Addr := aAddress;
+    WSockServer.LineMode := False;
+    WSockServer.LineEdit := False;
+    WSockServer.LineEcho := False;
+    WSockServer.ClientClass := TClientConnected;
+    WSockServer.Banner := '';
+    WSockServer.Listen;
+    FLongXAddress := StrToLongIP(WSockServer.LocalAddr);
+
+    if Assigned(FLogStat) then
+    begin
+      FLogStat(DateToString + ': ' + 'Server Listening at '+aAddress+':'+aPort);
+      FLogStat('addr : ' + WSockServer.Addr);
+      FLogStat('local :' + WSockServer.LocalAddr);
+      FLogStat('x addr' + WSockServer.GetXAddr);
+    end;
   end;
 end;
 
@@ -749,7 +777,7 @@ end;
 procedure TNetLinkServer.RegisterProcedure(const aType: Word;
   aProcedure: TPacketHandlerProc);
 begin
-  if Assigned(FRegProcs) and Assigned(aProcedure) then
+  if Assigned(FRegProcs) {and Assigned(aProcedure)} then
     FRegProcs.Register(aType, aProcedure);
 end;
 

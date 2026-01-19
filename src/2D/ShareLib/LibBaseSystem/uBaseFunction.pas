@@ -145,11 +145,24 @@ interface
     procedure SendLogEvenConsole(ClientTCP : TTCPClient; Ship_ID, Console_ID, Even_Id : Word; prm1, prm2, prm3 : double);
     function DeleteAmpersand(Value: string): string;
 
+    procedure ClearAList(const AList: TList);
+
 implementation
 
 uses
   IniFiles, Variants, SysUtils,
   {test} Dialogs;
+
+procedure ClearAList(const AList: TList);
+var i: Integer;
+begin
+  for i := 0 to AList.Count-1 do
+    if Assigned(AList[i]) then begin
+      TObject(AList[i]).Free;
+      AList[i]:= nil;
+    end;
+  AList.Clear;
+end;
 
 function DeleteAmpersand(Value: string): string;
 var

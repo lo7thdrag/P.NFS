@@ -180,7 +180,7 @@ implementation
     MainThread            := TMSTimer.Create;
     MainThread.Interval   := FGameDelayInterval;
     MainThread.OnRunning  := EventOnMainTimer;
-    MainThread.Priority   := tpHighest;
+//    MainThread.Priority   := tpHighest;
 
     MainGameTimer := TVirtualTime.Create;
     //    MainGameTimer.DateTimeOffset :=
@@ -203,9 +203,6 @@ implementation
   begin
     NetComm.Free;
 
-    MainThread.OnTimer    := nil;
-    MainThread.Terminate;
-
     MainViewList.Free;
     MainViewList := nil;
 
@@ -214,6 +211,10 @@ implementation
 
     MainGameTimer.Free;
     MainGameTimer := nil;
+
+    MainThread.OnTimer    := nil;
+//    MainThread.Terminate;
+    MainThread.Free;
 
     inherited;
   end;
@@ -228,10 +229,7 @@ implementation
       AddToMemoLog('Error: Init VerticalMapper');
       VMInited := false;
     end;
-
-
 }
-
   end;
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
