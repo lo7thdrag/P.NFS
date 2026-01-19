@@ -70,14 +70,14 @@ begin
   if FQueue.IsEmpty then
     Exit;
 
-  if Assigned(FLogStat) then
-    FLogStat(TimeToString + ' : Queue Size Before = ' + IntToStr(FQueue.Count));
+//  if Assigned(FLogStat) then
+//    FLogStat(TimeToString + ' : Queue Size Before = ' + IntToStr(FQueue.Count));
 
   Data:= FQueue.Dequeue;
   if Data<>nil then
   begin
-    if Assigned(FLogStat) then
-      FLogStat(TimeToString + ' : Queue Size After = ' + IntToStr(FQueue.Count));
+//    if Assigned(FLogStat) then
+//      FLogStat(TimeToString + ' : Queue Size After = ' + IntToStr(FQueue.Count));
     PacketRecognizer(Data);
     Result:= True;
   end;
@@ -111,16 +111,16 @@ begin
   if Length(AData)<=0 then
     Exit;
 
-  if Assigned(FLogStat) then
-      FLogStat(TimeToString + ' : Queue Size Before = ' + IntToStr(FQueue.Count));
+//  if Assigned(FLogStat) then
+//      FLogStat(TimeToString + ' : Queue Size Before = ' + IntToStr(FQueue.Count));
 
   FQueue.Enqueue(aData);
 
-  if FQueue.Count > 0 then
-  begin
-    if Assigned(FLogStat) then
-      FLogStat(TimeToString + ' : Queue Size After = ' + IntToStr(FQueue.Count));
-  end;
+//  if FQueue.Count > 0 then
+//  begin
+//    if Assigned(FLogStat) then
+//      FLogStat(TimeToString + ' : Queue Size After = ' + IntToStr(FQueue.Count));
+//  end;
 
 end;
 
