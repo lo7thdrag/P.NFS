@@ -78,7 +78,6 @@ type
     lbl1: TLabel;
     btn2: TVrBitmapButton;
     lbl2: TLabel;
-    img4: TImage;
     imgInd_BreakUNFR1: TImage;
     pnl14: TPanel;
     pnl15: TPanel;

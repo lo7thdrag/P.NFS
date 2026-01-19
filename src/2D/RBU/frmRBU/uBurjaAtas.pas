@@ -24,7 +24,7 @@ uses
 
   //RotationIndicator,
   {RotationMeter}
-   Spin, RotationMeter
+  { Spin,} RotationMeter, Vcl.Samples.Spin
   ;
 
 type
@@ -130,6 +130,7 @@ type
     rbclose: TRadioButton;
     m2: TPanel;
     se1: TSpinEdit;
+    Panel2: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure vrwhlHALU_HALSASChange(Sender: TObject);
     procedure vrwhlKOREKSI_HALSASChange(Sender: TObject);
@@ -307,7 +308,7 @@ begin
   Keypnl2 := False;
   DoubleBuffered := true;
 
-  CIHaluSasaran.LoadBGImage(path_image_burja + '200px_back.bmp');
+  CIHaluSasaran.LoadBGImage(path_image_burja + '150px_back.bmp');
   CIHaluSasaran.LoadOutImage(path_image_burja + 'HaluSasaranOut.bmp');
   CIHaluSasaran.LoadInImage(path_image_burja + 'HaluSasaranIn.bmp');
   CIHaluSasaran.Parent := self;
@@ -317,15 +318,14 @@ begin
   CIHaluSasaran.Line := LTop;
 
   RmKoreksiHalsas.LoadBGImage(path_image_burja + 'KoreksiHalsas.bmp');
-  RmKoreksiHalsas.LoadImage(path_image_burja +  'Jarum.bmp');
+  RmKoreksiHalsas.LoadImage(path_image_burja +  'jarum-100.bmp');
   RmKoreksiHalsas.Parent := self;
   RmKoreksiHalsas.Value := 0;
   RmKoreksiHalsas.ValMin := -60;
   RmKoreksiHalsas.ValMax := 60;
   RmKoreksiHalsas.Line := LNone;
 
-
-  RmBarSasaran.LoadBGImage(path_image_burja + '200px_back.bmp');
+  RmBarSasaran.LoadBGImage(path_image_burja + '150px_back.bmp');
   RmBarSasaran.LoadImage(path_image_burja + 'BarSasaran.bmp');
   RmBarSasaran.Parent := self;
   RmBarSasaran.Value := 0;
@@ -333,7 +333,7 @@ begin
   RmBarSasaran.ValMax := 180;
   RmBarSasaran.Line := LBottom;
 
-  CIHaluKapal.LoadBGImage(path_image_burja + '200px_back.bmp');
+  CIHaluKapal.LoadBGImage(path_image_burja + '150px_back.bmp');
   CIHaluKapal.LoadOutImage(path_image_burja +  'HaluSasaranOut.bmp');
   CIHaluKapal.LoadInImage(path_image_burja +  'HaluSasaranIn.bmp');
   CIHaluKapal.Parent := self;
@@ -342,8 +342,8 @@ begin
   CIHaluKapal.ValMax := 360;
   CIHaluKapal.Line := LTop;
 
-  CIBarelSas.LoadBGImage(path_image_burja + '200px_back.bmp');
-  CIBarelSas.LoadOutImage(path_image_burja +  'BarelSas_Out.bmp');
+  CIBarelSas.LoadBGImage(path_image_burja + '150px_back.bmp');
+  CIBarelSas.LoadOutImage(path_image_burja +  'barel-sas-2.bmp');
   CIBarelSas.LoadInImage(path_image_burja +  'BarelSas_In.bmp');
   CIBarelSas.Parent := self;
   CIBarelSas.Value := 0;
@@ -351,7 +351,7 @@ begin
   CIBarelSas.ValMax := 180;
   CIBarelSas.Line := LTop;
 
-  CILonchHaluan.LoadBGImage(path_image_burja + '200px_back.bmp');
+  CILonchHaluan.LoadBGImage(path_image_burja + '150px_back.bmp');
   CILonchHaluan.LoadOutImage(path_image_burja +  'LonchHaluanOut.bmp');
   CILonchHaluan.LoadInImage(path_image_burja +  'LonchHaluanIn.bmp');
   CILonchHaluan.Parent := self;
@@ -361,14 +361,14 @@ begin
   CILonchHaluan.Line := LTop;
 
   RmKoreksiTraining.LoadBGImage(path_image_burja + 'KoreksiTraining.bmp');
-  RmKoreksiTraining.LoadImage(path_image_burja +  'Jarum.bmp');
+  RmKoreksiTraining.LoadImage(path_image_burja +  'jarum-100.bmp');
   RmKoreksiTraining.Parent := self;
   RmKoreksiTraining.Value := 0;
   RmKoreksiTraining.ValMin := -60;
   RmKoreksiTraining.ValMax := 60;
   RmKoreksiTraining.Line := LNone;
 
-  CILonchBuritan.LoadBGImage(path_image_burja + '200px_back.bmp');
+  CILonchBuritan.LoadBGImage(path_image_burja + '150px_back.bmp');
   CILonchBuritan.LoadOutImage(path_image_burja +  'LonchHaluanOut.bmp');
   CILonchBuritan.LoadInImage(path_image_burja +  'LonchHaluanIn.bmp');
   CILonchBuritan.Parent := self;
@@ -377,7 +377,7 @@ begin
   CILonchBuritan.ValMax := 360;
   CILonchBuritan.Line := LTop;
 
-  RmKecSassaran.LoadBGImage(path_image_burja + '200px_back.bmp');
+  RmKecSassaran.LoadBGImage(path_image_burja + '150px_back.bmp');
   RmKecSassaran.LoadImage(path_image_burja +  'Kec_Sasaran.bmp');
   RmKecSassaran.Parent := self;
   RmKecSassaran.Value := 0;
@@ -385,15 +385,15 @@ begin
   RmKecSassaran.ValMax := 35;
   RmKecSassaran.Line := LTop;
 
-  RmKecKapal.LoadBGImage(path_image_burja + '200px_back.bmp');
-  RmKecKapal.LoadImage(path_image_burja +  'Kec_Kapal.bmp');
+  RmKecKapal.LoadBGImage(path_image_burja + '150px_back.bmp');
+  RmKecKapal.LoadImage(path_image_burja +  'kec-kapal.bmp');
   RmKecKapal.Parent := self;
   RmKecKapal.Value := 0;
   RmKecKapal.ValMin := 0;
   RmKecKapal.ValMax := 180;
   RmKecKapal.Line := LTop;
 
-  RmKedalaman.LoadBGImage(path_image_burja + '200px_back.bmp');
+  RmKedalaman.LoadBGImage(path_image_burja + '150px_back.bmp');
   RmKedalaman.LoadImage(path_image_burja +  'Kedalaman.bmp');
   RmKedalaman.Parent := self;
   RmKedalaman.Value := 0;
@@ -401,7 +401,7 @@ begin
   RmKedalaman.ValMax := 300;
   RmKedalaman.Line := LTop;
 
-  CIJarakDlmKabel.LoadBGImage(path_image_burja + '200px_back.bmp');
+  CIJarakDlmKabel.LoadBGImage(path_image_burja + '150px_back.bmp');
   CIJarakDlmKabel.LoadOutImage(path_image_burja + 'JarakDalamKabel_Out.bmp');
   CIJarakDlmKabel.LoadInImage(path_image_burja + 'JarakDalamKabel_In.bmp');
   CIJarakDlmKabel.Parent := self;
@@ -411,7 +411,7 @@ begin
   CIJarakDlmKabel.Line := LTop;
 
   RmKoreksiElevasi.LoadBGImage(path_image_burja + 'Koreksi_Elevasi.bmp');
-  RmKoreksiElevasi.LoadImage(path_image_burja +  'Jarum.bmp');
+  RmKoreksiElevasi.LoadImage(path_image_burja +  'jarum-100.bmp');
   RmKoreksiElevasi.Parent := self;
   RmKoreksiElevasi.Value := 0;
   RmKoreksiElevasi.ValMin := -3.0;
