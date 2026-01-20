@@ -19,7 +19,8 @@ uses
   uNetwork_Data_TCMS in 'Libs\NetworkTCMS\uNetwork_Data_TCMS.pas',
   uUDPDatatype in 'Libs\NetworkTCMS\NetComponent\uUDPDatatype.pas',
   uLibSettings in 'Libs\uLibSettings.pas',
-  uPTKEnum in 'Libs\uPTKEnum.pas';
+  uPTKEnum in 'Libs\uPTKEnum.pas',
+  uLibPTKSetting in 'Libs\uLibPTKSetting.pas';
 
 {$R *.res}
 

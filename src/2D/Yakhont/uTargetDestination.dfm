@@ -2,6 +2,7 @@ object frmTargetDest: TfrmTargetDest
   Left = 0
   Top = 0
   BorderStyle = bsNone
+  Caption = '\'
   ClientHeight = 600
   ClientWidth = 570
   Color = clBtnFace

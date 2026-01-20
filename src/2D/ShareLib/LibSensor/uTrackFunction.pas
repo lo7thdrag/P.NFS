@@ -89,6 +89,12 @@ uses
   function formatDMS_long(const x: double): string;
   function formatDMS_lat(const y: double): string;
 
+  // untuk Yakhont
+  function dmsLongitude(const x: Double): string;
+  function dmsLatitude(const y: Double): string;
+  function dmsToLongitude(const s: string): Double;
+  function dmsToLatitude(const s: string): Double;
+
   function ConvertStringToInt(const s: string): integer;
 
   function dmToLongitude(const s: string): Double;
@@ -536,6 +542,133 @@ end;
               FormatFloat('00', Minute)+ '.' +
               FormatFloat('00', Second);
   end;
+
+  function dmsLongitude(const x: Double): string;
+  var
+    absVal: Double;
+    Degree, Minute, Second: Double;
+    Dir: string;
+  begin
+    absVal := Abs(x);
+    if absVal > 180.0 then absVal := 180.0;
+
+    SplitDegreeMinuteSecond(absVal, Degree, Minute, Second);
+
+    if x < 0 then
+      Dir := 'W'
+    else
+      Dir := 'E';
+
+    Result :=
+      FormatFloat('000', Degree) + '.' +
+      FormatFloat('00', Minute) + '.' +
+      FormatFloat('00', Second) +
+      Dir;
+  end;
+
+  function dmsLatitude(const y: Double): string;
+  var
+    absVal: Double;
+    Degree, Minute, Second: Double;
+    Dir: string;
+  begin
+    absVal := Abs(y);
+    if absVal > 90.0 then absVal := 90.0;
+
+    SplitDegreeMinuteSecond(absVal, Degree, Minute, Second);
+
+    if y < 0 then
+      Dir := 'S'
+    else
+      Dir := 'N';
+
+    Result :=
+      FormatFloat('000', Degree) + '.' +
+      FormatFloat('00', Minute) + '.' +
+      FormatFloat('00', Second) +
+      Dir;
+  end;
+
+  function dmsToLongitude(const s: string): Double;
+  var
+    degree, minute, sec: Integer;
+    i, j: Integer;
+    tempstr: array[0..2] of string;
+    Dir: Char;
+    body: string;
+  begin
+    Result := 0;
+
+    if Length(s) < 2 then Exit;
+
+    Dir := UpCase(s[Length(s)]);
+    if not (Dir in ['E','W']) then Exit;
+
+    body := Copy(s, 1, Length(s)-1);
+
+    j := 0;
+    for i := 1 to Length(body) do
+    begin
+      if body[i] <> '.' then
+        tempstr[j] := tempstr[j] + body[i]
+      else
+        Inc(j);
+    end;
+
+    degree := ConvertStringToInt(tempstr[0]);
+    minute := ConvertStringToInt(tempstr[1]);
+    sec    := ConvertStringToInt(tempstr[2]);
+
+    if (degree < 0) or (degree > 180) then Exit;
+    if (minute >= 60) or (minute < 0) then begin Result := -1; Exit; end;
+    if (sec >= 60) or (sec < 0) then begin Result := -2; Exit; end;
+
+    Result := degree + (minute / 60.0) + (sec / 3600.0);
+
+    if Dir = 'W' then
+      Result := -Result;
+  end;
+
+  function dmsToLatitude(const s: string): Double;
+  var
+    degree, minute, sec: Integer;
+    i, j: Integer;
+    tempstr: array[0..2] of string;
+    Dir: Char;
+    body: string;
+  begin
+    Result := 0;
+
+    if Length(s) < 2 then Exit;
+
+    Dir := UpCase(s[Length(s)]);
+    if not (Dir in ['N','S']) then Exit;
+
+    body := Copy(s, 1, Length(s)-1);
+
+    j := 0;
+    for i := 1 to Length(body) do
+    begin
+      if body[i] <> '.' then
+        tempstr[j] := tempstr[j] + body[i]
+      else
+        Inc(j);
+    end;
+
+    degree := ConvertStringToInt(tempstr[0]);
+    minute := ConvertStringToInt(tempstr[1]);
+    sec    := ConvertStringToInt(tempstr[2]);
+
+    if (degree < 0) or (degree > 90) then Exit;
+    if (minute >= 60) or (minute < 0) then begin Result := -1; Exit; end;
+    if (sec >= 60) or (sec < 0) then begin Result := -2; Exit; end;
+
+    Result := degree + (minute / 60.0) + (sec / 3600.0);
+
+    if Dir = 'S' then
+      Result := -Result;
+  end;
+
 
   function ConvertStringToInt(const s: string): integer;
   var

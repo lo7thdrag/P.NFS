@@ -48,7 +48,7 @@ implementation
 
 {$R *.dfm}
 
-uses uManualInput, uTrackFunction, uMainMM;
+uses uManualInput, uTrackFunction, uMainMM, uYakhontManager, uTestShip;
 
 procedure TfrmDoc.btnExitClick(Sender: TObject);
 begin
@@ -136,8 +136,8 @@ begin
      begin
        sgDoc.Cells[1,0] := IntToStr(typeOfVariant);
        sgDoc.Cells[1,1] := '2.5';
-  //     sgDoc.Cells[1,2] := '000.00.00';
-  //     sgDoc.Cells[1,3] := '000.00.00';
+       sgDoc.Cells[1,2] := dmsLatitude(YakhontManager.xShip.PositionY);         //Lattitude
+       sgDoc.Cells[1,3] := dmsLongitude(YakhontManager.xShip.PositionX);        //Longitude
        sgDoc.Cells[1,4] := '00000.0';
   //     sgDoc.Cells[1,5] := '00.0';
   //     sgDoc.Cells[1,6] := '00.0';
@@ -172,8 +172,8 @@ begin
      begin
        sgDoc.Cells[1,0] := IntToStr(typeOfVariant);
        sgDoc.Cells[1,1] := '2.5';
-  //     sgDoc.Cells[1,2] := '000.00.00';
-  //     sgDoc.Cells[1,3] := '000.00.00';
+       sgDoc.Cells[1,2] := dmsLatitude(YakhontManager.xShip.PositionY);         //Lattitude
+       sgDoc.Cells[1,3] := dmsLongitude(YakhontManager.xShip.PositionX);        //Longitude
        sgDoc.Cells[1,4] := '00000.0';
   //     sgDoc.Cells[1,5] := '00.0';
   //     sgDoc.Cells[1,6] := '00.0';
@@ -193,8 +193,8 @@ begin
        sgDoc.Cells[1,20] := '0';
        sgDoc.Cells[1,21] := '0';
     // ============================================================================ //
-       sgDoc.Cells[1,22] := formatDMS_lat(Rec_TIVar2.LattTarget);
-       sgDoc.Cells[1,23] := formatDMS_long(Rec_TIVar2.LongTarget);
+       sgDoc.Cells[1,22] := dmsLatitude(Rec_TIVar2.LattTarget);               //Lattitude
+       sgDoc.Cells[1,23] := dmsLongitude(Rec_TIVar2.LongTarget);              //Longitude
        sgDoc.Cells[1,24] := FloatToStr(Rec_TIVar2.MRSE_posTarget);
        sgDoc.Cells[1,25] := FloatToStr(Rec_TIVar2.MRSE_headingTarget);
        sgDoc.Cells[1,26] := FloatToStr(Rec_TIVar2.MRSE_speedTarget);

@@ -39,6 +39,7 @@ const
   iniVal_MapOffX   = 'offsetx';
   iniVal_MapOffY   = 'offsety';
   iniVal_MapOff    = 'useoffset';
+  iniVal_Mode      = 'mode';
 
 //------------------------------------------------------------------------------
 function instrPrepareInif: string;

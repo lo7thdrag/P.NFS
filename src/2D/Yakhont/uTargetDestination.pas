@@ -222,8 +222,8 @@ var
   I : Integer;
   qCancel, qOprational, qLaunched, qPassed : Integer;
 begin
-  if (fmMainMM.readyToLaunch[1] = 1) and (fmMainMM.readyToLaunch[2] = 1) and
-    (fmMainMM.readyToLaunch[3] = 1) and (fmMainMM.readyToLaunch[4] = 1) then
+  if (fmMainMM.readyToLaunch[1] = 1) or (fmMainMM.readyToLaunch[2] = 1) or
+    (fmMainMM.readyToLaunch[3] = 1) or (fmMainMM.readyToLaunch[4] = 1) then
   begin
     qCancel     := 0;
     qOprational := 0;

@@ -120,6 +120,7 @@ type
     Label33: TLabel;
     Label35: TLabel;
     lblErrorLong: TLabel;
+    btnCheat: TButton;
     procedure edtMemberOfTIVariantKeyPress(Sender: TObject; var Key: Char);
     procedure edtNumberOfTIVariantKeyPress(Sender: TObject; var Key: Char);
     procedure edtMovingCompOfTargetInputAttributeKeyPress(Sender: TObject;
@@ -146,10 +147,11 @@ type
     procedure FormShortCut(var Msg: TWMKey; var Handled: Boolean);
     procedure StrGridShowResultSelectCell(Sender: TObject; ACol, ARow: Integer;
       var CanSelect: Boolean);
+    procedure btnCheatClick(Sender: TObject);
 
   private
     { Private declarations }
-    isCompletelyInsert : Boolean;
+//    isCompletelyInsert : Boolean;
 
     procedure setStringGrid;
     procedure setSGColumn1_Title;
@@ -160,7 +162,7 @@ type
     procedure Normalisasi;
   public
     { Public declarations }
-//    isCompletelyInsert : Boolean;
+    isCompletelyInsert : Boolean;
     typeOfVariant : Integer;
 
     Rec_TIVar1 : TRecTIVariant1;
@@ -291,7 +293,8 @@ begin
 //      initLat := 0;
       try
       begin
-        initLat := dmToLatitude(edtLatTarget.Text);
+//        initLat := dmToLatitude(edtLatTarget.Text);
+        initLat := dmsToLatitude(edtLatTarget.Text);
         flag := False;
         if (initLat = 0) then
         begin
@@ -309,7 +312,7 @@ begin
           edtLatTarget.Text := '';
         end;
 
-        Label33.Caption := 'Format should be: ' + '000.00.00 (Degree.Minute.Second)';
+        Label33.Caption := 'Format should be: 000.00.00N or 000.00.00S';
         edtLatTarget.Text := '';
       end;
       finally
@@ -427,7 +430,7 @@ begin
 
       try
       begin
-        initLong := dmToLongitude(edtLongTarget.Text);
+        initLong := dmsToLongitude(edtLongTarget.Text);
         flag := False;
         if (initLong = 0) then
         begin
@@ -442,7 +445,8 @@ begin
           lblErrorLong.Caption := 'ERROR: Second Input Not Allowed';
         end;
 
-        Label35.Caption := 'Format should be: ' + '000.00.00 (Degree.Minute.Second)';
+//        Label35.Caption := 'Format should be: ' + '000.00.00 (Degree.Minute.Second)';
+        Label35.Caption := 'Format should be: 000.00.00W or 000.00.00E';
         edtLongTarget.Text := '';
       end;
       finally
@@ -1035,6 +1039,7 @@ begin
    edtNumberOfTIVariant.SetFocus;
 end;
 
+
 procedure TfrmManualInput.Normalisasi;
 var
    I : Integer;
@@ -1239,8 +1244,8 @@ begin
    begin
      StrGridShowResult.Cells[1,0] := IntToStr(typeOfVariant);
      StrGridShowResult.Cells[1,1] := '2.5';
-//     StrGridShowResult.Cells[1,2] := '000.00.00';
-//     StrGridShowResult.Cells[1,3] := '000.00.00';
+     StrGridShowResult.Cells[1,2] := dmsLatitude(YakhontManager.xShip.PositionY);
+     StrGridShowResult.Cells[1,3] := dmsLongitude(YakhontManager.xShip.PositionX);
      StrGridShowResult.Cells[1,4] := '00000.0';
 //     StrGridShowResult.Cells[1,5] := '00.0';
 //     StrGridShowResult.Cells[1,6] := '00.0';
@@ -1275,8 +1280,8 @@ begin
    begin
      StrGridShowResult.Cells[1,0] := IntToStr(typeOfVariant);
      StrGridShowResult.Cells[1,1] := '2.5';
-//     StrGridShowResult.Cells[1,2] := '000.00.00';
-//     StrGridShowResult.Cells[1,3] := '000.00.00';
+     StrGridShowResult.Cells[1,2] := dmsLatitude(YakhontManager.xShip.PositionY);
+     StrGridShowResult.Cells[1,3] := dmsLongitude(YakhontManager.xShip.PositionX);
      StrGridShowResult.Cells[1,4] := '00000.0';
 //     StrGridShowResult.Cells[1,5] := '00.0';
 //     StrGridShowResult.Cells[1,6] := '00.0';
@@ -1296,8 +1301,8 @@ begin
      StrGridShowResult.Cells[1,20] := '0';
      StrGridShowResult.Cells[1,21] := '0';
   // ============================================================================ //
-     StrGridShowResult.Cells[1,22] := formatDMS_lat(Rec_TIVar2.LattTarget);
-     StrGridShowResult.Cells[1,23] := formatDMS_long(Rec_TIVar2.LongTarget);
+     StrGridShowResult.Cells[1,22] := dmsLatitude(Rec_TIVar2.LattTarget);
+     StrGridShowResult.Cells[1,23] := dmsLongitude(Rec_TIVar2.LongTarget);
      StrGridShowResult.Cells[1,24] := FloatToStr(Rec_TIVar2.MRSE_posTarget);
      StrGridShowResult.Cells[1,25] := FloatToStr(Rec_TIVar2.MRSE_headingTarget);
      StrGridShowResult.Cells[1,26] := FloatToStr(Rec_TIVar2.MRSE_speedTarget);
@@ -1399,6 +1404,45 @@ begin
   Grid.ColWidths[Column] := WMax + 50;
 end;
 
+procedure TfrmManualInput.btnCheatClick(Sender: TObject);
+begin
+  typeOfVariant := 1;
+  Rec_TIVar1.MovingCompTI              := 1;
+  Rec_TIVar1.DistTarget                := 250*1000;
+  YakhontManager.isTargetInRange       := True;
+
+  Rec_TIVar1.BearingTarget             := 180;
+  Rec_TIVar1.HeadingTarget             := 200;
+  Rec_TIVar1.SpeedTarget               := 54;
+  Rec_TIVar1.MRSE_distTarget           := 15*1000;
+  Rec_TIVar1.MRSE_bearingTarget        := 35;
+  Rec_TIVar1.MRSE_headingTarget        := 15;
+  Rec_TIVar1.MRSE_speedTarget          := 8;
+  Rec_TIVar1.AgeingTimeDataTarget      := 1500;
+  YakhontManager.isTimeAgeStart        := True;
+  fmMainMM.StartAgingTime              := Now;
+
+  YakhontManager.TimeAgeCount          := 1500;
+  Rec_TIVar1.TypeTarget                := 1;
+  Rec_TIVar1.CoreRadius                := 10000;
+  Rec_TIVar1.QuantityOfShipInCore      := 25;
+  StrGridShowResult.Visible            := False;
+
+  Rec_TIVar1.QuantityOfShipInFormation := 25;
+  setStringGrid;
+  StrGridShowResult.Visible := True;
+
+  with fmMainMM do
+  begin
+    pnlRTP.Caption   := 'RTP';
+    pnlNext.Caption  := 'TI Accepted';
+    lblType.Caption  := 'SSS';
+
+    isCompletelyInsert := true;
+    checkerButtonProcedure[1] := 1;
+  end;
+end;
+
 procedure TfrmManualInput.btnExitClick(Sender: TObject);
 var
   range : Double;
@@ -1427,15 +1471,82 @@ begin
         end;
 
       end;
-
-
       StrGridShowResult.Visible := false;
 
       pnlNext.Caption  := 'SD';
       btnSD.Font.Color := clBlack;
 
       btnTI.Enabled := false;
+    end
+    else if frmSelectionTI.currentSelectionTI = 1 then
+    begin
+      typeOfVariant := 1;
+      Rec_TIVar1.MRSE_distTarget           := 15*1000;
+      Rec_TIVar1.MRSE_bearingTarget        := 35;
+      Rec_TIVar1.MRSE_headingTarget        := 15;
+      Rec_TIVar1.MRSE_speedTarget          := 8;
+      Rec_TIVar1.AgeingTimeDataTarget      := 1500;
+      YakhontManager.isTimeAgeStart        := True;
+      fmMainMM.StartAgingTime              := Now;
+      YakhontManager.TimeAgeCount          := 1500;
+      Rec_TIVar1.TypeTarget                := 1;
+      Rec_TIVar1.CoreRadius                := 10000;
+      Rec_TIVar1.QuantityOfShipInCore      := 2;
+      StrGridShowResult.Visible            := False;
+
+      Rec_TIVar1.QuantityOfShipInFormation := 1;
+
+
+      with fmMainMM do
+      begin
+        pnlRTP.Caption   := 'RTP';
+        pnlNext.Caption  := 'TI Accepted';
+        lblType.Caption  := 'SSS';
+
+        isCompletelyInsert := true;
+        checkerButtonProcedure[1] := 1;
+
+        pnlNext.Caption  := 'SD';
+        btnSD.Font.Color := clBlack;
+
+        btnTI.Enabled := false;
+      end;
+    end
+    else if frmSelectionTI.currentSelectionTI = 2 then
+    begin
+      typeOfVariant := 2;
+      Rec_TIVar2.LongTarget                 := 113.4306;
+      Rec_TIVar2.LattTarget                 := 7.2838;
+      Rec_TIVar2.HeadingTarget              := 90;
+      Rec_TIVar2.Speedtarget                := 5;
+      Rec_TIVar2.MRSE_posTarget             := 5000;
+      Rec_TIVar2.MRSE_headingTarget         := 90;
+      Rec_TIVar2.MRSE_speedTarget           := 5;
+      Rec_TIVar2.AgeingTimeDataTarget       := 1500;
+      YakhontManager.isTimeAgeStart         := True;
+      fmMainMM.StartAgingTime               := Now;
+      Rec_TIVar2.TypeTarget                 := 1;
+      Rec_TIVar2.CoreRadius                 := 10000;
+      Rec_TIVar2.QuantityOfShipInCore       := 2;
+      StrGridShowResult.Visible             := False;
+      Rec_TIVar2.QuantityOfShipInFormation  := 1;
+
+      with fmMainMM do
+      begin
+        pnlRTP.Caption   := 'RTP';
+        pnlNext.Caption  := 'TI Accepted';
+        lblType.Caption  := 'SSS';
+
+        isCompletelyInsert := true;
+        checkerButtonProcedure[1] := 1;
+
+        pnlNext.Caption  := 'SD';
+        btnSD.Font.Color := clBlack;
+
+        btnTI.Enabled := false;
+      end;
     end;
+
   end;
   Close;
 end;

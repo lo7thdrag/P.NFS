@@ -1,6 +1,9 @@
 src/2D/Fcc/bin/comp/acntTypes.dcu
 *.dcu
 *.~1~
+*__history/
+*.dproj.local
+*.identcache
 src/2D/Meriam_57/__history/Meriam_57.dpr.~2~
 src/2D/Meriam_57/__history/Meriam_57.dpr.~3~
 src/2D/Meriam_57/__history/Meriam_57.dpr.~4~
@@ -38,3 +41,16 @@ src/2D/Meriam_57/__history/uMeriam57Manager.pas.~9~
 src/2D/Meriam_57/__history/uScriptSimM57.pas.~2~
 *.dcu
 *.dcu
+
+src/2D/AK230 DC Drive System/__history/
+
+src/2D/AK230 DC Drive System/libs/__history/
+
+src/2D/RBU Digital/__history/
+
+src/2D/RBU Digital/forms/__history/
+
+src/2D/RBU Digital/Libs/__history/
+
+src/2D/RBU Digital/Libs/LibUtils/__history/
+src/2D/Fcc/Dokumentasi.zip

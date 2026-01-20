@@ -94,7 +94,6 @@ interface
 
       GamePlayMode: TPlayMode;
       ShouldConnect : boolean;
-      StandAloneMode : boolean;
 
     //--------------------------------------------------------------------------
      tmpNewObj  : TSimulationClass;
@@ -181,7 +180,7 @@ implementation
     MainThread            := TMSTimer.Create;
     MainThread.Interval   := FGameDelayInterval;
     MainThread.OnRunning  := EventOnMainTimer;
-    MainThread.Priority   := tpHighest;
+//    MainThread.Priority   := tpHighest;
 
     MainGameTimer := TVirtualTime.Create;
     //    MainGameTimer.DateTimeOffset :=
@@ -229,12 +228,7 @@ implementation
       AddToMemoLog('Error: Init VerticalMapper');
       VMInited := false;
     end;
-
-
 }
-
-    if not StandAloneMode then
-     Net_Connect;
   end;
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

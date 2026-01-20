@@ -11,6 +11,7 @@ object frmLoadingScreen: TfrmLoadingScreen
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -194447,7 +194448,6 @@ object frmLoadingScreen: TfrmLoadingScreen
     Height = 33
     Max = 10
     TabOrder = 0
-    Visible = False
   end
   object timerLoadingScreen: TTimer
     Enabled = False

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, SpeedButtonImage, StrUtils, IniFiles, ExtCtrls,
-  OverbyteIcsWSocket, uFrmLogNewPDK, uThreadTimer, UfrmBaseTCMS, uLibSettings,
+  OverbyteIcsWSocket, uFrmLogNewPDK, uThreadTimer, UfrmBaseTCMS, uLibPTKSetting,
   uPTKEnum;
 
 type
@@ -124,27 +124,37 @@ end;
 
 procedure TfrmPTK.btnNkClick(Sender: TObject);
 begin
-  if TSpeedButtonImage(Sender).Name = 'btnNkNumCancel' then
+  if TSpeedButtonImage(Sender).Name = 'btn_NCancel' then
+  begin
     pnlPTK.BringToFront;
+    SendToServerPTK(TSpeedButtonImage(Sender).Name);
+  end
+  else
+  begin
+    SendToServerPTK(TSpeedButtonImage(Sender).Name);
+  end;
 end;
 
 procedure TfrmPTK.btnPtkClick(Sender: TObject);
 var
   i: Integer;
+  fSelected, fselectedsub : Integer;
 begin
 //  ShowMessage(TSpeedButtonImage(Sender).Name);
   //set other button color to black except pressed button
   for i := 2 to Length(FBtnArray) - 1 do
   begin
     FBtnArray[i].Color := clBlack;
+
   end;
-  if (TSpeedButtonImage(Sender).Name <> 'btnSysCtrl') and
-    (TSpeedButtonImage(Sender).Name <> 'btnLocalCtrl') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCombat') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCheck') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCtrlGun') and
-    (TSpeedButtonImage(Sender).Name <> 'btnVideo') and
-    (TSpeedButtonImage(Sender).Name <> 'btnDataRecord') then
+
+  if (TSpeedButtonImage(Sender).Name <> 'btn_SysCtrl') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_LocalCtrl') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Combat') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Check') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_CtrlGun') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Video') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_DataRecord') then
   begin
     if FisLocalCtrl then
     begin
@@ -188,7 +198,7 @@ begin
   end;
 
 
-  if TSpeedButtonImage(Sender).Name = 'btnSysCtrl' then
+  if TSpeedButtonImage(Sender).Name = 'btn_SysCtrl' then
   begin
 //    FBtnArray[0].Down := True;
     FBtnArray[0].Color := clLime;
@@ -196,7 +206,7 @@ begin
     FisLocalCtrl := False;
     GenerateCaptionByMenu('SysCtrl');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnLocalCtrl' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_LocalCtrl' then
   begin
 //    FBtnArray[1].Down := True;
     FBtnArray[1].Color := clLime;
@@ -219,7 +229,7 @@ begin
     end;
 
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCombat' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Combat' then
   begin
 //    FBtnArray[7].Down := True;
     FBtnArray[7].Color := clLime;
@@ -227,7 +237,7 @@ begin
     FLocalCtrlState := lcCombat;
     GenerateCaptionByMenu('Combat');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCheck' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Check' then
   begin
 //    FBtnArray[8].Down := True;
     FBtnArray[8].Color := clLime;
@@ -236,19 +246,19 @@ begin
     GenerateCaptionByMenu('Check');
     FBtnArray[29].Color := clLime;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnNavSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_NavSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnWeatherSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_WeatherSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCalSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_CalSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnIndSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_IndSetting' then
   begin
     FBtnArray[0].Color := clBlack;
     FBtnArray[1].Color := clBlack;
@@ -258,7 +268,7 @@ begin
     end;
     GenerateCaptionByMenu('IndSetting');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnBack' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Back' then
   begin
     if FisLocalCtrl then
     begin
@@ -286,23 +296,25 @@ begin
       GenerateSysCtrlMenu;
     end;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCtrlGun' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_CtrlGun' then
   begin
     GenerateCaptionByMenu('CtrlGun');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnVideo' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Video' then
   begin
     GenerateCaptionByMenu('Video');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnDataRecord' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_DataRecord' then
   begin
     GenerateCaptionByMenu('DataRecord');
   end;
 
-  if TSpeedButtonImage(Sender).Name = 'btnLockScreen' then
+  if TSpeedButtonImage(Sender).Name = 'btn_LockScreen' then
   begin
     GenerateCaptionByMenu('LockScreen');
   end;
+
+  SendToServerPTK(TSpeedButtonImage(Sender).Name);
 end;
 
 procedure TfrmPTK.DisableAllBtn;
@@ -371,22 +383,49 @@ begin
   FTimerConnect.Enabled := True;
 
   { Get Setting from ptk.ini }
-  iniPath := ExtractFilePath(Application.ExeName) + 'ptk.ini';
-  iniF := TIniFile.Create(iniPath);
-  try
-//    iniF := TIniFile.Create(iniPath);
-    FipConnect := iniF.ReadString('PTKSetting', 'ipConnect', '127.0.0.1');
-//    FPortConnect := iniF.ReadString('PTKSetting', 'portConnect', '2345');
-//    FisFullScreen := iniF.ReadBool('PTKSetting', 'isFullScreen', false);
-//    FFormHeight := iniF.ReadInteger('PTKSetting', 'FormHeight', Height);
-//    FFormWidth := iniF.ReadInteger('PTKSetting', 'FormWidth', Width);
-////    FServiceMonitor := iniF.ReadInteger('PTKSetting', 'ServiceMonitor', 0);
-//    FFont_Btn := iniF.ReadInteger('PTKSetting', 'FontSize', 6);
-//    if FFont_Btn < 0 then
-//      FFont_Btn := 8;
-  finally
-    iniF.Free;
+//  iniPath := ExtractFilePath(Application.ExeName) + 'ptk.ini';
+  iniPath := getFileSetting;
+//  iniF := TIniFile.Create(iniPath);
+
+  if FileExists(iniPath) then
+  begin
+    LoadNetworkSetting;
+    LoadPTKSetting;
+
+    FipConnect := NetworkSetting.ipConnect;
+    FPortConnect := NetworkSetting.portConnect;
+
+    FisFullScreen := PtkSetting.isFullScreen;
+    FServiceIndex := PtkSetting.MonitorPos;
+  end
+  else
+  begin
+    SaveNetworkSetting;
+    LoadNetworkSetting;
+
+    SavePTKSetting;
+    LoadPTKSetting;
+
+    FipConnect := NetworkSetting.ipConnect;
+    FPortConnect := NetworkSetting.portConnect;
+
+    FisFullScreen := PtkSetting.isFullScreen;
+    FServiceIndex := PtkSetting.MonitorPos;
   end;
+
+//  try
+////    iniF := TIniFile.Create(iniPath);
+//
+//
+////    FFormHeight := iniF.ReadInteger('PTKSetting', 'FormHeight', Height);
+////    FFormWidth := iniF.ReadInteger('PTKSetting', 'FormWidth', Width);
+////    FServiceMonitor := iniF.ReadInteger('PTKSetting', 'ServiceMonitor', 0);
+////    FFont_Btn := iniF.ReadInteger('PTKSetting', 'FontSize', 6);
+////    if FFont_Btn < 0 then
+////      FFont_Btn := 8;
+//  finally
+//    iniF.Free;
+//  end;
 
   FMode := 1;
 
@@ -438,6 +477,11 @@ end;
 procedure TfrmPTK.FormDestroy(Sender: TObject);
 begin
 //
+  if Assigned(FTimerConnect) then
+  begin
+    FTimerConnect.Enabled := False;
+    FTimerConnect.Free;
+  end;
 end;
 
 procedure TfrmPTK.FormMouseDown(Sender: TObject; Button: TMouseButton;
@@ -1029,36 +1073,36 @@ begin
       FBtnMainNames[i] := IntToStr(i);
   end;
 
-  FBtnNumNames[0] := 'NumE';
-  FBtnNumNames[1] := 'NumW';
-  FBtnNumNames[2] := 'NumS';
-  FBtnNumNames[3] := 'NumN';
+  FBtnNumNames[0] := 'NE';
+  FBtnNumNames[1] := 'NW';
+  FBtnNumNames[2] := 'NS';
+  FBtnNumNames[3] := 'NN';
   FBtnNumNames[4] := '4';
   FBtnNumNames[5] := '5';
-  FBtnNumNames[6] := 'Num1';
-  FBtnNumNames[7] := 'Num2';
-  FBtnNumNames[8] := 'Num3';
-  FBtnNumNames[9] := 'NumDot';
-  FBtnNumNames[10] := 'NumUp';
-  FBtnNumNames[11] := 'NumBackspace';
-  FBtnNumNames[12] := 'Num4';
-  FBtnNumNames[13] := 'Num5';
-  FBtnNumNames[14] := 'Num6';
-  FBtnNumNames[15] := 'NumPlus';
-  FBtnNumNames[16] := 'NumDown';
-  FBtnNumNames[17] := 'NumDel';
-  FBtnNumNames[18] := 'Num7';
-  FBtnNumNames[19] := 'Num8';
-  FBtnNumNames[20] := 'Num9';
-  FBtnNumNames[21] := 'NumMinus';
-  FBtnNumNames[22] := 'NumEnter';
+  FBtnNumNames[6] := 'N1';
+  FBtnNumNames[7] := 'N2';
+  FBtnNumNames[8] := 'N3';
+  FBtnNumNames[9] := 'NDot';
+  FBtnNumNames[10] := 'NUp';
+  FBtnNumNames[11] := 'NBackspace';
+  FBtnNumNames[12] := 'N4';
+  FBtnNumNames[13] := 'N5';
+  FBtnNumNames[14] := 'N6';
+  FBtnNumNames[15] := 'NPlus';
+  FBtnNumNames[16] := 'NDown';
+  FBtnNumNames[17] := 'NDel';
+  FBtnNumNames[18] := 'N7';
+  FBtnNumNames[19] := 'N8';
+  FBtnNumNames[20] := 'N9';
+  FBtnNumNames[21] := 'NMinus';
+  FBtnNumNames[22] := 'NEnter';
   FBtnNumNames[23] := '23';
-  FBtnNumNames[24] := 'NumLeft';
-  FBtnNumNames[25] := 'Num0';
-  FBtnNumNames[26] := 'NumRight';
+  FBtnNumNames[24] := 'NLeft';
+  FBtnNumNames[25] := 'N0';
+  FBtnNumNames[26] := 'NRight';
   FBtnNumNames[27] := '27';
-  FBtnNumNames[28] := 'NumCancel';
-  FBtnNumNames[29] := 'NumConfirm';
+  FBtnNumNames[28] := 'NCancel';
+  FBtnNumNames[29] := 'NConfirm';
 end;
 
 procedure TfrmPTK.GenerateSysCtrlMenu;
@@ -1236,7 +1280,7 @@ begin
     btn.Color       := clBlack;
     btn.Font.Color  := CL_TCMS_Orange;
     btn.Font.Size   := FFont_Btn;
-    btn.Name        := 'btn' + FBtnMainNames[i];
+    btn.Name        := 'btn_' + FBtnMainNames[i];
     btn.Caption     := FBtnMainCaption[i];
     btn.OnClick     := btnPtkClick;
     btn.Tag         := i;
@@ -1277,7 +1321,7 @@ begin
     btn.Font.Color  := clTeal;
     btn.Font.Size   := FFont_Btn;
     btn.Font.Style := [fsBold];
-    btn.Name        := 'btnNk' + FBtnNumNames[i];
+    btn.Name        := 'btn_' + FBtnNumNames[i];
     btn.Caption     := FBtnNumCaption[i];
     btn.OnClick     := btnNkClick;
     btn.Tag         := i;
@@ -1301,7 +1345,25 @@ end;
 
 procedure TfrmPTK.OnTimerConnectOnTime(const dt: Double);
 begin
+  if Assigned(FSocketTCPClient) then
+  begin
+    if not (FSocketTCPClient.State in [wsConnecting, wsConnected]) then
+    begin
+      FSocketTCPClient.Port := FPortConnect;
+      FSocketTCPClient.Addr := FipConnect;
+      FSocketTCPClient.LineMode := True;
+      FSocketTCPClient.LineEdit := True;
+      FSocketTCPClient.LineEnd := #10#13;
+      FSocketTCPClient.OnSessionClosed := SocketClientSessionClosed;
+      FSocketTCPClient.OnDataAvailable := SocketClientDataAvailable;
+      FSocketTCPClient.Connect;
+    end;
 
+    if FSocketTCPClient.State = wsConnected then
+    begin
+      FTimerConnect.Enabled := False;
+    end;
+  end;
 end;
 
 procedure TfrmPTK.ProcessCommand(Cmd: String);
@@ -1311,7 +1373,13 @@ end;
 
 procedure TfrmPTK.SendToServerPTK(str: string);
 begin
-
+  if Assigned(FSocketTCPClient) then
+  begin
+    if FSocketTCPClient.State = wsConnected then
+    begin
+      FSocketTCPClient.SendLine(str + #10#13);
+    end;
+  end;
 end;
 
 procedure TfrmPTK.SetOperationModeDisplay;
@@ -1372,7 +1440,7 @@ end;
 
 procedure TfrmPTK.SocketClientSessionClosed(Sender: TObject; ErrCode: Word);
 begin
-
+  FTimerConnect.Enabled := True;
 end;
 
 end.
