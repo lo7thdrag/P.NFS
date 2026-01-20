@@ -638,8 +638,8 @@ begin
   aRec := @apRec^;
 
   {Conver to 3D to map}
-  aRec^.x := aRec^.x + mapoffsetX;
-  aRec^.y := aRec^.y + mapoffsetY;
+//  aRec^.x := aRec^.x + mapoffsetX;
+//  aRec^.y := aRec^.y + mapoffsetY;
 
   AddToMemoLog(' _pos: ' + IntToStr(aRec^.ShipID) + Format('%2.6f, %2.6f',[aRec^.X, aRec^.Y]));
 
@@ -716,7 +716,6 @@ begin
       3 : PanelBawah.Launcher3OnFromInstruktur := True;
       4 : PanelBawah.Launcher4OnFromInstruktur := True;
     end;
-
   end
   else if aRec^.OrderID  = __ORD_C802_OFF then
   begin
@@ -1369,22 +1368,22 @@ begin
       begin
         AlignFormToMonitor(idxPanelAtas, apLeftTop, 0, 0, TForm(PanelAtas));
         AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(PanelBawah));
-        AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(Keyboard_Form));
+//        AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(Keyboard_Form));
 
         PanelAtas.BorderStyle := TFormBorderStyle(bdrPanelAtas);
         PanelBawah.BorderStyle := TFormBorderStyle(bdrPanelBawah);
-        Keyboard_Form.BorderStyle := TFormBorderStyle(bdrKeyboard);
+//        Keyboard_Form.BorderStyle := TFormBorderStyle(bdrKeyboard);
 
       end;
     3 :
       begin
         AlignFormToMonitor(idxPanelAtas, TAlignPos(alPanelAtas), 0, 0, TForm(PanelAtas));
         AlignFormToMonitor(idxPanelBawah, TAlignPos(alPanelBawah), 0, 0, TForm(PanelBawah));
-        AlignFormToMonitor(idxKeyboard, TAlignPos(alKeyboard), 0, 0, TForm(Keyboard_Form));
+//        AlignFormToMonitor(idxKeyboard, TAlignPos(alKeyboard), 0, 0, TForm(Keyboard_Form));
 
-        PanelAtas.BorderStyle := TFormBorderStyle(bdrPanelAtas);
-        PanelBawah.BorderStyle := TFormBorderStyle(bdrPanelBawah);
-        Keyboard_Form.BorderStyle := TFormBorderStyle(bdrKeyboard);
+//        PanelAtas.BorderStyle := TFormBorderStyle(bdrPanelAtas);
+//        PanelBawah.BorderStyle := TFormBorderStyle(bdrPanelBawah);
+//        Keyboard_Form.BorderStyle := TFormBorderStyle(bdrKeyboard);
       end;
 
   end;
@@ -1393,7 +1392,7 @@ begin
   PanelBawah.WindowState := wsMaximized;
   PanelAtas.Show;
   PanelAtas.WindowState := wsMaximized;
-  Keyboard_Form.Show;
+//  Keyboard_Form.Show;
 end;
 
 procedure TC802Manager.Initialize;
@@ -1891,7 +1890,7 @@ begin // di sini CreateForm dan Load Map
     readStr := IniF.ReadString(C_Map_Section, C_grd_ident, '');
     if (readStr <> '') and FileExists(readStr) then begin
       AddToMemoLog('Opening 3D map '+ readStr);
-      ///LoadGrid(readStr);
+//      LoadGrid(readStr);
     end
     else begin
       dec(result);
