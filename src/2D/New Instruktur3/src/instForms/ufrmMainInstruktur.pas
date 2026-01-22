@@ -32,7 +32,8 @@ uses
 
   uInstrukturManager, ufrmeLeftControl, uBaseConstan, ufGuidance, uTCPDatatype,
   ufWeaponStatus, uInstrukturObjects, uInstrukturViews, uBaseFunction, Contnrs, ufScenarioEdit,
-  uGlobalVar, uDistance , uCustomZoom, uBaseSimulationObject, uClassDatabase, uSimulationManager;
+  uGlobalVar, uDistance , uCustomZoom, uBaseSimulationObject, uClassDatabase, uSimulationManager,
+  System.ImageList;
 
 type
   TStateToolButton = (sZoomCenter, sZoomOut, sZoomIn, sZoomValue,
@@ -46,112 +47,78 @@ type
     MainMap: TMap;
     pnlInfo: TAdvSmoothPanel;
     pnlMainUp: TAdvSmoothPanel;
-    pnlMainMenu: TAdvSmoothPanel;
     MainMenu1: TMainMenu;
     DisplayGameController1: TMenuItem;
     DisplayController1: TMenuItem;
     DisplayFiringCommandProcedure1: TMenuItem;
     erminate1: TMenuItem;
-    lbl1: TLabel;
-    lbl2: TLabel;
-    lblLongitude: TLabel;
-    lblLatitude: TLabel;
-    bvl1: TBevel;
-    lbl3: TLabel;
-    lbl4: TLabel;
-    lblZoomLvl: TLabel;
-    lblGeoref: TLabel;
-    bvl2: TBevel;
-    lbl5: TLabel;
-    lbl6: TLabel;
-    lblToolUsed: TLabel;
-    lblMapUnit: TLabel;
-    bvl3: TBevel;
-    lbl7: TLabel;
-    lbl8: TLabel;
-    lblElevation: TLabel;
-    lblDepth: TLabel;
-    bvl4: TBevel;
-    lbl9: TLabel;
-    lbl10: TLabel;
-    lblX: TLabel;
-    lblY: TLabel;
-    bvl5: TBevel;
-    lbl11: TLabel;
-    lbl12: TLabel;
-    lbl3DY: TLabel;
-    lbl3DX: TLabel;
-    pnlStatus: TAdvSmoothPanel;
-    advsmthlbl1: TAdvSmoothLabel;
-    advsmthlbl3: TAdvSmoothLabel;
-    advsmthlbl4: TAdvSmoothLabel;
-    btnShowtikas: TButton;
     pnlMapInset: TPanel;
     MapInset: TMap;
     MapReviewSHOW1: TMenuItem;
-    AdvSmoothPanel1: TAdvSmoothPanel;
-    AdvSmoothLabel1: TAdvSmoothLabel;
-    AdvSmoothLabel2: TAdvSmoothLabel;
-    AdvSmoothLabel3: TAdvSmoothLabel;
-    AdvSmoothLabel4: TAdvSmoothLabel;
-    AdvSmoothLabel5: TAdvSmoothLabel;
-    AdvSmoothPanel2: TAdvSmoothPanel;
-    AdvSmoothLabel6: TAdvSmoothLabel;
-    AdvSmoothLabel7: TAdvSmoothLabel;
-    AdvSmoothLabel8: TAdvSmoothLabel;
-    AdvSmoothLabel9: TAdvSmoothLabel;
-    AdvSmoothLabel10: TAdvSmoothLabel;
-    AdvSmoothPanel3: TAdvSmoothPanel;
-    AdvSmoothLabel11: TAdvSmoothLabel;
-    AdvSmoothLabel12: TAdvSmoothLabel;
-    AdvSmoothLabel13: TAdvSmoothLabel;
-    AdvSmoothLabel14: TAdvSmoothLabel;
-    AdvSmoothLabel15: TAdvSmoothLabel;
-    AdvSmoothPanel4: TAdvSmoothPanel;
-    AdvSmoothLabel16: TAdvSmoothLabel;
-    AdvSmoothLabel17: TAdvSmoothLabel;
-    AdvSmoothLabel18: TAdvSmoothLabel;
-    AdvSmoothLabel19: TAdvSmoothLabel;
-    AdvSmoothLabel20: TAdvSmoothLabel;
-    AdvSmoothPanel5: TAdvSmoothPanel;
-    AdvSmoothLabel21: TAdvSmoothLabel;
-    AdvSmoothLabel22: TAdvSmoothLabel;
-    AdvSmoothLabel23: TAdvSmoothLabel;
-    AdvSmoothLabel24: TAdvSmoothLabel;
-    AdvSmoothLabel25: TAdvSmoothLabel;
-    AdvSmoothPanel6: TAdvSmoothPanel;
-    AdvSmoothLabel26: TAdvSmoothLabel;
-    AdvSmoothLabel27: TAdvSmoothLabel;
-    AdvSmoothLabel28: TAdvSmoothLabel;
-    AdvSmoothLabel29: TAdvSmoothLabel;
-    AdvSmoothLabel30: TAdvSmoothLabel;
+    mniTools: TMenuItem;
+    mniReplay: TMenuItem;
     AdvSmoothPanel7: TAdvSmoothPanel;
     lblConnect: TAdvSmoothLabel;
     AdvSmoothLabel32: TAdvSmoothLabel;
-    mniTools: TMenuItem;
-    mniReplay: TMenuItem;
-    advsmthpnl1: TAdvSmoothPanel;
     advsmthpnlStatus: TAdvSmoothPanel;
     lblCekRunning: TLabel;
     lbl13: TLabel;
-    edt1: TEdit;
-    btnZoomCenterMap2: TSpeedButtonImage;
-    btnZoomCenterMap1: TSpeedButtonImage;
-    btnZoomOut: TSpeedButtonImage;
-    btnRecordStart: TSpeedButtonImage;
-    btnSelectArrow: TSpeedButtonImage;
-    btnSelectMove: TSpeedButtonImage;
-    btnSelectMoveAll: TSpeedButtonImage;
-    btnZoomIn: TSpeedButtonImage;
-    btnZoomValue: TSpeedButtonImage;
-    btnHand: TSpeedButtonImage;
-    btnRecordPause: TSpeedButtonImage;
-    btnToolRuler: TSpeedButtonImage;
-    btnToolTikas: TSpeedButtonImage;
-    btnZoomCenter: TSpeedButtonImage;
     advsmthpnlStatus3D: TAdvSmoothPanel;
     lblBtmStat3d: TLabel;
     lblTopStat3d: TLabel;
+    pnlMainMenu: TAdvSmoothPanel;
+    btnRecordStart: TSpeedButtonImage;
+    btnRecordPause: TSpeedButtonImage;
+    btnHand: TSpeedButtonImage;
+    btnSelectArrow: TSpeedButtonImage;
+    btnSelectMove: TSpeedButtonImage;
+    btnSelectMoveAll: TSpeedButtonImage;
+    btnZoomCenter: TSpeedButtonImage;
+    btnZoomOut: TSpeedButtonImage;
+    btnZoomIn: TSpeedButtonImage;
+    btnZoomValue: TSpeedButtonImage;
+    btnToolRuler: TSpeedButtonImage;
+    btnToolTikas: TSpeedButtonImage;
+    Image1: TImage;
+    advsmthpnl1: TAdvSmoothPanel;
+    btnZoomCenterMap1: TSpeedButtonImage;
+    btnZoomCenterMap2: TSpeedButtonImage;
+    edt1: TEdit;
+    btnMiniMap: TSpeedButtonImage;
+    btnMonitor: TSpeedButtonImage;
+    pnlHeader: TPanel;
+    pnlMap: TPanel;
+    AdvSmoothPanel1: TAdvSmoothPanel;
+    btnShowtikas: TButton;
+    bvl1: TBevel;
+    bvl2: TBevel;
+    bvl3: TBevel;
+    bvl4: TBevel;
+    bvl5: TBevel;
+    lbl1: TLabel;
+    lbl10: TLabel;
+    lbl11: TLabel;
+    lbl12: TLabel;
+    lbl2: TLabel;
+    lbl3: TLabel;
+    lbl3DX: TLabel;
+    lbl3DY: TLabel;
+    lbl4: TLabel;
+    lbl5: TLabel;
+    lbl6: TLabel;
+    lbl7: TLabel;
+    lbl8: TLabel;
+    lbl9: TLabel;
+    lblDepth: TLabel;
+    lblElevation: TLabel;
+    lblGeoref: TLabel;
+    lblLatitude: TLabel;
+    lblLongitude: TLabel;
+    lblMapUnit: TLabel;
+    lblToolUsed: TLabel;
+    lblX: TLabel;
+    lblY: TLabel;
+    lblZoomLvl: TLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -277,7 +244,10 @@ end;
 procedure TfrmMainInstruktur.DisplayController1Click(Sender: TObject);
 begin
   case TComponent(sender).Tag of
-    1   : frmGameController.SetFormLayout;
+    1   :
+    begin
+      frmGameController.SetFormLayout;
+    end;
     10  :
     begin
       if Assigned(SimManager) then
@@ -299,8 +269,8 @@ end;
 procedure TfrmMainInstruktur.SetFormEnvironment;
 begin
   { Set Panel for Centering Tool Button }
-  pnlMainMenu.Left  := ( pnlMainUp.Width - pnlMainMenu.Width ) div 2;
-  btnShowtikas.Left := pnlMainUp.Width - btnShowtikas.Width - 10;
+//  pnlMainMenu.Left  := ( pnlMainUp.Width - pnlMainMenu.Width ) div 2;
+//  btnShowtikas.Left := pnlMainUp.Width - btnShowtikas.Width - 10;
 end;
 
 procedure TfrmMainInstruktur.SetFormLayout;
@@ -1082,6 +1052,10 @@ begin
     ImListToolMonitor.Add(Bmap, nil);
     Bmap.Free;
   end;
+  btnMonitor.ImageList  := ImListToolMonitor;
+  btnMonitor.ImageIndex := 0;
+
+
 
   btnZoomCenterMap1.ImageList  := ImListToolMonitor;
   btnZoomCenterMap1.ImageIndex := 0;

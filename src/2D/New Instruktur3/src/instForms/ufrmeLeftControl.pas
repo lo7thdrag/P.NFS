@@ -27,8 +27,8 @@ type
     btnPpDeviceType: TAdvSmoothButton;
     btnPpDeviceLauncher: TAdvSmoothButton;
     btnPpDeviceName: TAdvSmoothButton;
-    lblShipName: TAdvSmoothLabel;
     btnTikas: TAdvSmoothButton;
+    lblShipName: TAdvSmoothLabel;
     procedure btnRangeClick(Sender: TObject);
     procedure btnTikasClick(Sender: TObject);
   private
@@ -409,6 +409,8 @@ begin
     PopUpDeviceType.Items.Delete(i);
   end;
   PopUpDeviceType.Items.Clear;
+
+//  Width := 0;
 end;
 
 procedure TfrmeControl.SetObject(aObject: TInsObject);
