@@ -144,6 +144,7 @@ type
 
       { setting for instruktur }
       instMapSet            : TRecInstMapSet;
+      instMonitorSet        : TRecInstMonitorSet;
       InsUtils              : TInsUtil; //yoga
 
       { Time Simulation }
@@ -563,6 +564,7 @@ begin
   end;
 
   InitConfig_InstrMap(InstMapSet);
+  InitConfig_InstrMonitor(instMonitorSet);
 
   apPath  := ExtractFilePath(Application.ExeName);
   SetCurrentDir(apPath);

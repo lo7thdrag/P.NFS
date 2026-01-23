@@ -11,8 +11,15 @@ type
     useOffset: boolean;
   end;
 
+  TRecInstMonitorSet  = record
+    MapDisplay, ContollerDisplay : Integer;
+  end;
+
   procedure InitConfig_InstrMap(var aMapSet : TRecInstMapSet);
   procedure SaveConfig_InstrMap(const aMapSet : TRecInstMapSet);
+
+  procedure InitConfig_InstrMonitor(var aMonitorSet : TRecInstMonitorSet);
+  procedure SaveConfig_InstrMonitor(const aMonitorSet : TRecInstMonitorSet);
 
 
 implementation
@@ -40,6 +47,10 @@ const
   iniVal_MapOffY   = 'offsety';
   iniVal_MapOff    = 'useoffset';
   iniVal_Mode      = 'mode';
+
+  iniSect_Monitor       = 'monitor';
+  iniVal_MapDisplay       = 'MapDisplay';
+  iniVal_ContollerDisplay = 'ContollerDisplay';
 
 //------------------------------------------------------------------------------
 function instrPrepareInif: string;
@@ -93,6 +104,38 @@ begin
     WriteFloat(iniSect_Map, iniVal_MapOffX  , xOffset );
     WriteFloat(iniSect_Map, iniVal_MapOffY  , yOffset );
     WriteBool(iniSect_Map, iniVal_MapOff  , useOffset );
+  end;
+
+  ini.Free;
+end;
+
+procedure InitConfig_InstrMonitor(var aMonitorSet : TRecInstMonitorSet);
+var
+  ini: TIniFile;
+  iniF: string;
+begin
+  iniF := instrPrepareInif;
+  ini := TIniFile.Create(iniF);
+
+  with aMonitorSet do
+  begin
+    MapDisplay  := ForceReadInt(ini, iniSect_Monitor, iniVal_MapDisplay, 0);
+    ContollerDisplay  := ForceReadInt(ini, iniSect_Monitor, iniVal_ContollerDisplay, 0);
+  end;
+  ini.Free;
+end;
+
+procedure SaveConfig_InstrMonitor(const aMonitorSet : TRecInstMonitorSet);
+var ini: TIniFile;
+    iniF: string;
+begin
+  iniF := instrPrepareInif;
+  ini := TIniFile.Create(iniF);
+
+  with aMonitorSet, Ini do
+  begin
+    WriteInteger(iniSect_Monitor,  iniVal_MapDisplay,  MapDisplay );
+    WriteInteger(iniSect_Monitor,  iniVal_ContollerDisplay,  ContollerDisplay );
   end;
 
   ini.Free;
