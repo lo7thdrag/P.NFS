@@ -145,6 +145,7 @@ type
     procedure mniReplayClick(Sender: TObject);
     procedure btnZoomLevelObserverClick(Sender: TObject);
     procedure MainMapClick(Sender: TObject);
+    procedure btnAddVehicleClick(Sender: TObject);
   private
     { Private declarations }
 //    TimerDestroy : TTimer;
@@ -166,6 +167,7 @@ type
     ImListRecordStart,
     ImListRecordPause,
     ImListHand,
+    ImListAddVehicle,
     ImListToolTikas,
     ImListToolMonitor,
     ImListMinimap,
@@ -823,7 +825,7 @@ end;
 
 procedure TfrmMainInstruktur.SetScenarioState(status: string);
 begin
-if status = 'Replay' then
+if status = 'Play' then
   begin
     advsmthpnlStatus.Fill.Color := clGreen;
     advsmthpnlStatus.Fill.ColorMirror := cllime;
@@ -878,7 +880,7 @@ begin
   ImListSelectMove.Height := btnSelectMove.Height;
   try
     Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_09.bmp');
+    Bmap.LoadFromFile(strPath + 'button tool_09--.bmp');
   finally
     ImListSelectMove.Add(Bmap, nil);
     Bmap.Free;
@@ -916,6 +918,29 @@ begin
   end;
   btnSelectMoveAll.ImageList  := ImListSelectMoveAll;
   btnSelectMoveAll.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Add Vehicle '}
+  ImListAddVehicle := TImageList.Create(nil);
+  ImListAddVehicle.Width  := btnAddVehicle.Width;
+  ImListAddVehicle.Height := btnAddVehicle.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'addvhcl-2.bmp');
+  finally
+    ImListAddVehicle.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'addvhcl.bmp');
+  finally
+    ImListAddVehicle.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnAddVehicle.ImageList  := ImListAddVehicle;
+  btnAddVehicle.ImageIndex := 0;
   {$ENDREGION}
 
   {$REGION ' Move Map '}
@@ -2348,17 +2373,17 @@ begin
   end
   else
   begin
-    sX := X;
-    sY := Y;
-    MainMap.ConvertCoord(sX, sY, mX, mY, miScreenToMap);
-
-    mX := ( mX - SimManager.instMapSet.xOffset ) *  C_Degree_To_Meter;
-    mY := ( mY - SimManager.instMapSet.yOffset ) *  C_Degree_To_Meter;
-
-    frmAddShipRuntime.PosX := mX;
-    frmAddShipRuntime.PosY := mY;
-
-    frmAddShipRuntime.ShowModal;
+//    sX := X;
+//    sY := Y;
+//    MainMap.ConvertCoord(sX, sY, mX, mY, miScreenToMap);
+//
+//    mX := ( mX - SimManager.instMapSet.xOffset ) *  C_Degree_To_Meter;
+//    mY := ( mY - SimManager.instMapSet.yOffset ) *  C_Degree_To_Meter;
+//
+//    frmAddShipRuntime.PosX := mX;
+//    frmAddShipRuntime.PosY := mY;
+//
+//    frmAddShipRuntime.ShowModal;
   end;
 end;
 
@@ -2686,6 +2711,12 @@ begin
   end;
 
 //  Application.Terminate;
+end;
+
+procedure TfrmMainInstruktur.btnAddVehicleClick(Sender: TObject);
+begin
+  frmAddShipRuntime.ShowModal;
+  btnAddVehicle.ImageIndex := 0;
 end;
 
 procedure TfrmMainInstruktur.btnShowtikasClick(Sender: TObject);
