@@ -79,7 +79,7 @@ type
     btnZoomValue: TSpeedButtonImage;
     btnToolRuler: TSpeedButtonImage;
     btnToolTikas: TSpeedButtonImage;
-    Image1: TImage;
+    imgHeaderProject: TImage;
     advsmthpnl1: TAdvSmoothPanel;
     btnZoomCenterMap1: TSpeedButtonImage;
     btnZoomCenterMap2: TSpeedButtonImage;
@@ -119,6 +119,7 @@ type
     lblX: TLabel;
     lblY: TLabel;
     lblZoomLvl: TLabel;
+    btnClose: TSpeedButtonImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -165,7 +166,9 @@ type
     ImListRecordPause,
     ImListHand,
     ImListToolTikas,
-    ImListToolMonitor : TImageList;
+    ImListToolMonitor,
+    ImListMinimap,
+    ImListClose : TImageList;
 
     IsDown,
     isDragMulti,
@@ -204,6 +207,7 @@ type
     procedure ShowInfoCursor(const x, y: integer);
     procedure SetFormLayout;
     procedure SetFormEnvironment;
+    procedure SetProject;
     procedure SetDefaultMapTool;
     procedure setArrow;
     procedure setMapInset;
@@ -277,10 +281,10 @@ procedure TfrmMainInstruktur.SetFormLayout;
 begin
    { Set Main Instrukutur }
    DefaultMonitor := dmDesktop;
-   Height         := Screen.Monitors[0].Height;
-   Top            := Screen.Monitors[0].Top;
-   Left           := Screen.Monitors[0].Left;
-   width          := Screen.Monitors[0].Width;
+   Height         := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Height;
+   Top            := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Top;
+   Left           := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Left;
+   width          := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Width;
    Show;
 end;
 
@@ -756,6 +760,31 @@ begin
 //  TimerDestroy.OnTimer  := OnTimerDestroy_OnTime;
 end;
 
+procedure TfrmMainInstruktur.SetProject;
+var
+  strPath, worldproject : string;
+begin
+  strPath := '..\data\images\NFS instruktur - interface\imageIns\';
+
+  worldproject := SimManager.instProjectSet.World;
+
+  if worldproject = 'NAFS' then
+  begin
+    imgHeaderProject.Picture.LoadFromFile(strPath + 'nafs.bmp');
+    pnlMainMenu.Fill.Color := $00F99E61;
+  end
+  else if worldproject = 'NSFS' then
+  begin
+    imgHeaderProject.Picture.LoadFromFile(strPath + 'nsfs.bmp');
+    pnlMainMenu.Fill.Color := clRed
+  end
+  else if worldproject = 'NSSFS' then
+  begin
+    imgHeaderProject.Picture.LoadFromFile(strPath + 'nssfs.bmp');
+    pnlMainMenu.Fill.Color := clGreen
+  end;
+end;
+
 { Set Environment }
 procedure TfrmMainInstruktur.SetEnvironment;
 var
@@ -1054,6 +1083,50 @@ begin
   end;
   btnMonitor.ImageList  := ImListToolMonitor;
   btnMonitor.ImageIndex := 0;
+
+  { Minimap }
+  ImListMinimap := TImageList.Create(nil);
+  ImListMinimap.Width  := btnMiniMap.Width;
+  ImListMinimap.Height := btnMiniMap.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + '50-peta-2.bmp');
+  finally
+    ImListMinimap.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + '50-peta.bmp');
+  finally
+    ImListMinimap.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnMiniMap.ImageList  := ImListMinimap;
+  btnMiniMap.ImageIndex := 0;
+
+  { Close }
+  ImListClose := TImageList.Create(nil);
+  ImListClose.Width  := btnClose.Width;
+  ImListClose.Height := btnClose.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + '50-exit.bmp');
+  finally
+    ImListClose.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + '50-exit-2.bmp');
+  finally
+    ImListClose.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnClose.ImageList  := ImListClose;
+  btnClose.ImageIndex := 0;
 
 
 

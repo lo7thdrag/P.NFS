@@ -73,7 +73,7 @@ uses
 {$R *.res}
 
 begin
-  ReportMemoryLeaksOnShutdown:= True;
+  ReportMemoryLeaksOnShutdown:= False;
   Application.Initialize;
 
   Application.CreateForm(TDataModule1, DataModule1);
@@ -115,6 +115,7 @@ begin
   { Form Main }
   frmMainInstruktur.SetFormLayout;
   frmMainInstruktur.SetFormEnvironment;
+  frmMainInstruktur.SetProject;
 
   { Form Firing Command }
   //frmFiringCommand.SetFormLayout;
