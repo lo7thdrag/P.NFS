@@ -1087,6 +1087,15 @@ type
     OrderID: Byte;
   end;
 
+  // REC_CAMERA_KONTOL_NEW
+  TRec_CameraController = record
+    Pc: TPacketCheck;
+    SessionID : Integer;
+    cmd : Byte;
+    valueInt : Integer;
+    valueDbl : Double;
+  end;
+
 const
 
   // aldy map

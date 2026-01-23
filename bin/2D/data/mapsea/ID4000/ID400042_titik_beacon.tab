@@ -1,0 +1,32 @@
+!table
+!version 900
+!charset WindowsLatin1
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 25
+    NAME Char (128) ;
+    LAYER Char (200) ;
+    GM_TYPE Char (6) ;
+    COLOUR Char (254) ;
+    COLOUR_C Char (254) ;
+    RCID Integer ;
+    PRIM Smallint ;
+    GRUP Smallint ;
+    OBJL Integer ;
+    RVER Smallint ;
+    AGEN Integer ;
+    FIDN Integer ;
+    FIDS Integer ;
+    BCNSHP_C Char (254) ;
+    CATLAM_C Char (254) ;
+    COLPAT_C Char (254) ;
+    CATSPM_C Char (254) ;
+    CATRTB_C Char (254) ;
+    OBJNAM Char (254) ;
+    INFORM Char (254) ;
+    SCAMAX Integer ;
+    SCAMIN Integer ;
+    SORDAT Char (254) ;
+    SORIND Char (254) ;
+    DSNM Char (12) ;
