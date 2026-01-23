@@ -764,6 +764,7 @@ procedure TfrmMainInstruktur.SetProject;
 var
   strPath, worldproject : string;
 begin
+  {$REGION 'Setting Header'}
   strPath := '..\data\images\NFS instruktur - interface\imageIns\';
 
   worldproject := SimManager.instProjectSet.World;
@@ -771,18 +772,35 @@ begin
   if worldproject = 'NAFS' then
   begin
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nafs.bmp');
-    pnlMainMenu.Fill.Color := $00F99E61;
+    pnlMainMenu.Fill.Color := $00D0875A;
   end
   else if worldproject = 'NSFS' then
   begin
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nsfs.bmp');
-    pnlMainMenu.Fill.Color := clRed
+    pnlMainMenu.Fill.Color := $0040220F;
   end
   else if worldproject = 'NSSFS' then
   begin
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nssfs.bmp');
-    pnlMainMenu.Fill.Color := clGreen
+    pnlMainMenu.Fill.Color := $0058524F;
   end;
+  {$ENDREGION}
+
+  {$REGION 'Setting Panel'}
+  if worldproject = 'NAFS' then
+  begin
+    FrameControlLeft.pnlUp.Fill.Color := $00D0875A;
+  end
+  else if worldproject = 'NSFS' then
+  begin
+    FrameControlLeft.pnlUp.Fill.Color := $0040220F;
+  end
+  else if worldproject = 'NSSFS' then
+  begin
+    FrameControlLeft.pnlUp.Fill.Color := $0058524F;
+  end;
+
+  {$ENDREGION}
 end;
 
 { Set Environment }
