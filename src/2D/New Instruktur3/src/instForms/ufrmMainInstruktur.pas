@@ -120,6 +120,7 @@ type
     lblY: TLabel;
     lblZoomLvl: TLabel;
     btnClose: TSpeedButtonImage;
+    btnAddVehicle1: TSpeedButtonImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);

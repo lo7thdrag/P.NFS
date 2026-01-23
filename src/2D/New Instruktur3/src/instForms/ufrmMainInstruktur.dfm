@@ -28,7 +28,6 @@ object frmMainInstruktur: TfrmMainInstruktur
     Height = 1160
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 1069
     DesignSize = (
       1490
       1160)
@@ -40,7 +39,6 @@ object frmMainInstruktur: TfrmMainInstruktur
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitHeight = 925
       object pnlMainMenu: TAdvSmoothPanel
         Left = 1401
         Top = 0
@@ -80,14 +78,13 @@ object frmMainInstruktur: TfrmMainInstruktur
         Version = '1.6.0.1'
         Align = alRight
         TabOrder = 0
-        ExplicitHeight = 925
         DesignSize = (
           87
           1016)
         TMSStyle = 0
         object btnRecordStart: TSpeedButtonImage
           Left = 19
-          Top = 778
+          Top = 776
           Width = 48
           Height = 48
           Hint = 'OffRecord'
@@ -98,7 +95,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnRecordPause: TSpeedButtonImage
           Left = 19
-          Top = 715
+          Top = 718
           Width = 48
           Height = 48
           Caption = ''
@@ -107,7 +104,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnSelectArrow: TSpeedButtonImage
           Left = 19
-          Top = 85
+          Top = 22
           Width = 48
           Height = 48
           Hint = 'Arrow'
@@ -119,7 +116,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnSelectMove: TSpeedButtonImage
           Left = 19
-          Top = 148
+          Top = 80
           Width = 48
           Height = 48
           Hint = 'Move'
@@ -131,7 +128,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnSelectMoveAll: TSpeedButtonImage
           Left = 19
-          Top = 211
+          Top = 138
           Width = 48
           Height = 48
           Hint = 'MultiMove'
@@ -142,7 +139,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomCenter: TSpeedButtonImage
           Left = 19
-          Top = 274
+          Top = 312
           Width = 48
           Height = 48
           Hint = 'Center'
@@ -156,7 +153,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomOut: TSpeedButtonImage
           Left = 19
-          Top = 337
+          Top = 370
           Width = 48
           Height = 48
           Hint = 'ZoomOut'
@@ -167,7 +164,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomIn: TSpeedButtonImage
           Left = 19
-          Top = 400
+          Top = 428
           Width = 48
           Height = 48
           Hint = 'ZoomIn'
@@ -178,7 +175,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomValue: TSpeedButtonImage
           Left = 19
-          Top = 463
+          Top = 486
           Width = 48
           Height = 48
           Hint = 'ZoomScale'
@@ -189,7 +186,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnToolRuler: TSpeedButtonImage
           Left = 19
-          Top = 526
+          Top = 544
           Width = 48
           Height = 48
           Hint = 'Ruler'
@@ -200,7 +197,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnToolTikas: TSpeedButtonImage
           Left = 19
-          Top = 589
+          Top = 602
           Width = 48
           Height = 48
           Hint = 'Hide History'
@@ -211,7 +208,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnHand: TSpeedButtonImage
           Left = 19
-          Top = 22
+          Top = 254
           Width = 48
           Height = 48
           Hint = 'Hand'
@@ -223,7 +220,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnMiniMap: TSpeedButtonImage
           Left = 19
-          Top = 652
+          Top = 660
           Width = 48
           Height = 48
           Caption = ''
@@ -235,7 +232,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         object btnMonitor: TSpeedButtonImage
           Tag = 1
           Left = 19
-          Top = 889
+          Top = 834
           Width = 48
           Height = 48
           Hint = 'OffRecord'
@@ -260,6 +257,18 @@ object frmMainInstruktur: TfrmMainInstruktur
           ShowHint = True
           OnClick = DisplayController1Click
         end
+        object btnAddVehicle1: TSpeedButtonImage
+          Left = 19
+          Top = 196
+          Width = 48
+          Height = 48
+          Hint = 'Add Vehicle'
+          Caption = ''
+          Flat = True
+          ParentShowHint = False
+          ShowHint = True
+          Spacing = 0
+        end
       end
       object pnlMap: TPanel
         Left = 0
@@ -270,7 +279,6 @@ object frmMainInstruktur: TfrmMainInstruktur
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 1
-        ExplicitHeight = 925
         object MainMap: TMap
           Left = 0
           Top = 3
@@ -302,7 +310,7 @@ object frmMainInstruktur: TfrmMainInstruktur
             8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
             918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
             6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-            0100011801000098AA512A01000000000000001C000000000000000000000000
+            0100011801000040C5920F01000000000000001C000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000002
             0000000000000000000000000000000000000000000000000000000000000000
@@ -311,15 +319,15 @@ object frmMainInstruktur: TfrmMainInstruktur
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             8076C000000000008056C0000000000080764000000000008056400100000018
-            01000098AA512A010000006C8FE4771C00000000000000000000000000000000
+            01000040C5920F010000006C8F76771C00000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000200000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000280709002807090080
-            E89700B67293759C0D260034E997000000000034E99700000000000000000000
+            00000000000000000000000000000000000000000000000A1A03000A1A030080
+            E89700B67239754007030034E997000000000034E99700000000000000000000
             000088B3400000000000408F400001000001}
         end
         object pnlHeader: TPanel
@@ -374,7 +382,6 @@ object frmMainInstruktur: TfrmMainInstruktur
       Version = '1.6.0.1'
       Align = alBottom
       TabOrder = 1
-      ExplicitTop = 1005
       TMSStyle = 0
       object AdvSmoothPanel7: TAdvSmoothPanel
         Left = 1335
@@ -14156,7 +14163,6 @@ object frmMainInstruktur: TfrmMainInstruktur
       Anchors = [akRight, akBottom]
       Caption = 'pnlMapInset'
       TabOrder = 3
-      ExplicitTop = 809
       DesignSize = (
         253
         190)
@@ -14182,7 +14188,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          0100011801000098AA512A01000000000000001C000000000000000000000000
+          0100011801000040C5920F01000000000000001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -14191,7 +14197,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          01000098AA512A01000000000000001C00000000000000000000000000000000
+          01000040C5920F01000000000000001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
