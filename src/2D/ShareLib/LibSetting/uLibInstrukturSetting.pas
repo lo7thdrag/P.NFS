@@ -15,11 +15,18 @@ type
     MapDisplay, ContollerDisplay : Integer;
   end;
 
+  TRecInstProjectSet  = record
+    World : string;
+  end;
+
   procedure InitConfig_InstrMap(var aMapSet : TRecInstMapSet);
   procedure SaveConfig_InstrMap(const aMapSet : TRecInstMapSet);
 
   procedure InitConfig_InstrMonitor(var aMonitorSet : TRecInstMonitorSet);
   procedure SaveConfig_InstrMonitor(const aMonitorSet : TRecInstMonitorSet);
+
+  procedure InitConfig_InstrProject(var aProjectSet : TRecInstProjectSet);
+  procedure SaveConfig_InstrProject(const aProjectSet : TRecInstProjectSet);
 
 
 implementation
@@ -51,6 +58,9 @@ const
   iniSect_Monitor       = 'monitor';
   iniVal_MapDisplay       = 'MapDisplay';
   iniVal_ContollerDisplay = 'ContollerDisplay';
+
+  iniSect_Project       = 'project';
+  iniVal_world       = 'World';
 
 //------------------------------------------------------------------------------
 function instrPrepareInif: string;
@@ -136,6 +146,35 @@ begin
   begin
     WriteInteger(iniSect_Monitor,  iniVal_MapDisplay,  MapDisplay );
     WriteInteger(iniSect_Monitor,  iniVal_ContollerDisplay,  ContollerDisplay );
+  end;
+
+  ini.Free;
+end;
+
+procedure InitConfig_InstrProject(var aProjectSet : TRecInstProjectSet);
+var ini: TIniFile;
+    iniF: string;
+begin
+  iniF := instrPrepareInif;
+  ini := TIniFile.Create(iniF);
+
+  with aProjectSet do
+  begin
+    World  := ForceReadString(ini, iniSect_Project, iniVal_world, 'NASF');
+  end;
+  ini.Free;
+end;
+
+procedure SaveConfig_InstrProject(const aProjectSet : TRecInstProjectSet);
+var ini: TIniFile;
+    iniF: string;
+begin
+  iniF := instrPrepareInif;
+  ini := TIniFile.Create(iniF);
+
+  with aProjectSet, Ini do
+  begin
+    WriteString(iniSect_Project,  iniVal_world,  World );
   end;
 
   ini.Free;
