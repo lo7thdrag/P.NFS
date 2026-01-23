@@ -43,7 +43,6 @@ object frmeControl: TfrmeControl
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 403
     TMSStyle = 0
     object pnlUp: TAdvSmoothPanel
       Left = 0
@@ -84,7 +83,6 @@ object frmeControl: TfrmeControl
       Version = '1.6.0.1'
       Align = alTop
       TabOrder = 0
-      ExplicitWidth = 371
       TMSStyle = 0
       object lbl4: TAdvSmoothLabel
         Left = 19
@@ -459,7 +457,6 @@ object frmeControl: TfrmeControl
       TabSettings.Width = 177
       TabReorder = False
       TabOrder = 1
-      ExplicitTop = 0
       TMSStyle = 0
       object tsShipGuidance: TAdvSmoothTabPage
         Left = 1

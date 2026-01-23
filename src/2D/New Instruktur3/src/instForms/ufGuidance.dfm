@@ -3117,6 +3117,308 @@ object fGuidance: TfGuidance
         end
       end
     end
+    object grpWaypoint: TGroupBox
+      Left = 0
+      Top = 0
+      Width = 371
+      Height = 433
+      Align = alClient
+      Color = clGrayText
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 0
+      object lbl11: TLabel
+        Left = 39
+        Top = 226
+        Width = 28
+        Height = 13
+        Caption = 'Name'
+        Visible = False
+      end
+      object lblName: TLabel
+        Left = 174
+        Top = 226
+        Width = 9
+        Height = 13
+        Caption = '---'
+        Visible = False
+      end
+      object lblLongitude: TLabel
+        Left = 174
+        Top = 245
+        Width = 9
+        Height = 13
+        Caption = '---'
+        Visible = False
+      end
+      object lbl12: TLabel
+        Left = 39
+        Top = 245
+        Width = 37
+        Height = 13
+        Caption = 'Position'
+        Visible = False
+      end
+      object lblGroundSpeed: TLabel
+        Left = 174
+        Top = 264
+        Width = 15
+        Height = 13
+        Caption = '0.0'
+        Visible = False
+      end
+      object lbl13: TLabel
+        Left = 39
+        Top = 264
+        Width = 69
+        Height = 13
+        Caption = 'Ground Speed'
+        Visible = False
+      end
+      object lblEta: TLabel
+        Left = 174
+        Top = 304
+        Width = 9
+        Height = 13
+        Caption = '---'
+        Visible = False
+      end
+      object lbl14: TLabel
+        Left = 39
+        Top = 283
+        Width = 71
+        Height = 13
+        Caption = 'Distance to Go'
+        Visible = False
+      end
+      object lbl15: TLabel
+        Left = 254
+        Top = 283
+        Width = 14
+        Height = 13
+        Caption = 'nm'
+        Visible = False
+      end
+      object lbl16: TLabel
+        Left = 39
+        Top = 341
+        Width = 110
+        Height = 13
+        Caption = 'Ordered Ground Speed'
+        Visible = False
+      end
+      object lblDistance: TLabel
+        Left = 174
+        Top = 283
+        Width = 18
+        Height = 13
+        Caption = '000'
+        Visible = False
+      end
+      object lblOrderGroundWaypoint: TLabel
+        Left = 174
+        Top = 341
+        Width = 15
+        Height = 13
+        Caption = '0.0'
+        Visible = False
+      end
+      object lbl17: TLabel
+        Left = 254
+        Top = 341
+        Width = 26
+        Height = 13
+        Caption = 'knots'
+        Visible = False
+      end
+      object lbl18: TLabel
+        Left = 254
+        Top = 362
+        Width = 26
+        Height = 13
+        Caption = 'knots'
+        Visible = False
+      end
+      object lbl19: TLabel
+        Left = 254
+        Top = 264
+        Width = 26
+        Height = 13
+        Caption = 'knots'
+        Visible = False
+      end
+      object lblLatitude: TLabel
+        Left = 254
+        Top = 245
+        Width = 9
+        Height = 13
+        Caption = '---'
+        Visible = False
+      end
+      object lblActualGroundWaypoint: TLabel
+        Left = 174
+        Top = 362
+        Width = 15
+        Height = 13
+        Caption = '0.0'
+        Visible = False
+      end
+      object bvl1: TBevel
+        Left = 97
+        Top = 305
+        Width = 220
+        Height = 3
+      end
+      object bvl2: TBevel
+        Left = 44
+        Top = 279
+        Width = 295
+        Height = 3
+        Visible = False
+      end
+      object txt8: TStaticText
+        Left = 39
+        Top = 302
+        Width = 25
+        Height = 17
+        Caption = 'ETA'
+        TabOrder = 0
+        Visible = False
+      end
+      object txt9: TStaticText
+        Left = 136
+        Top = 347
+        Width = 71
+        Height = 17
+        Caption = 'Next waypoint'
+        TabOrder = 1
+      end
+      object txt10: TStaticText
+        Left = 39
+        Top = 360
+        Width = 106
+        Height = 17
+        Caption = 'Actual Ground Speed'
+        TabOrder = 2
+        Visible = False
+      end
+      object btnWaypoint: TButton
+        Left = 208
+        Top = 393
+        Width = 120
+        Height = 25
+        Caption = 'Edit Waypoints..'
+        TabOrder = 3
+        Visible = False
+      end
+      object txt11: TStaticText
+        Left = 304
+        Top = 328
+        Width = 7
+        Height = 17
+        Caption = ':'
+        TabOrder = 4
+      end
+      object txt12: TStaticText
+        Left = 344
+        Top = 275
+        Width = 7
+        Height = 17
+        Caption = ':'
+        TabOrder = 5
+      end
+      object txt13: TStaticText
+        Left = 344
+        Top = 294
+        Width = 7
+        Height = 17
+        Caption = ':'
+        TabOrder = 6
+      end
+      object txt14: TStaticText
+        Left = 344
+        Top = 321
+        Width = 7
+        Height = 17
+        Caption = ':'
+        TabOrder = 7
+      end
+      object txt15: TStaticText
+        Left = 344
+        Top = 334
+        Width = 7
+        Height = 17
+        Caption = ':'
+        TabOrder = 8
+      end
+      object txt16: TStaticText
+        Left = 344
+        Top = 392
+        Width = 7
+        Height = 17
+        Caption = ':'
+        TabOrder = 9
+      end
+      object txt17: TStaticText
+        Left = 344
+        Top = 371
+        Width = 7
+        Height = 17
+        Caption = ':'
+        TabOrder = 10
+      end
+      object btnWayP: TButton
+        Left = 16
+        Top = 32
+        Width = 75
+        Height = 25
+        Caption = 'waypoint'
+        TabOrder = 11
+        OnClick = btnWayPClick
+      end
+      object btnWayPOK: TButton
+        Left = 96
+        Top = 32
+        Width = 75
+        Height = 25
+        Caption = 'OK waypoint'
+        TabOrder = 12
+        OnClick = btnWayPOKClick
+      end
+      object btnStopWayPoint: TButton
+        Left = 178
+        Top = 32
+        Width = 75
+        Height = 25
+        Caption = 'q'
+        TabOrder = 13
+        OnClick = btnStopWayPointClick
+      end
+      object edtCoordX: TEdit
+        Left = 24
+        Top = 112
+        Width = 81
+        Height = 21
+        Enabled = False
+        TabOrder = 14
+      end
+      object edtCoordY: TEdit
+        Left = 112
+        Top = 112
+        Width = 81
+        Height = 21
+        Enabled = False
+        TabOrder = 15
+      end
+      object edtCoordZ: TEdit
+        Left = 200
+        Top = 112
+        Width = 81
+        Height = 21
+        Enabled = False
+        TabOrder = 16
+      end
+    end
     object grpStraightLine: TGroupBox
       Left = 0
       Top = 0
@@ -4603,308 +4905,6 @@ object fGuidance: TfGuidance
           ParentFont = False
           TabOrder = 10
         end
-      end
-    end
-    object grpWaypoint: TGroupBox
-      Left = 0
-      Top = 0
-      Width = 371
-      Height = 433
-      Align = alClient
-      Color = clGrayText
-      ParentBackground = False
-      ParentColor = False
-      TabOrder = 0
-      object lbl11: TLabel
-        Left = 39
-        Top = 226
-        Width = 28
-        Height = 13
-        Caption = 'Name'
-        Visible = False
-      end
-      object lblName: TLabel
-        Left = 174
-        Top = 226
-        Width = 9
-        Height = 13
-        Caption = '---'
-        Visible = False
-      end
-      object lblLongitude: TLabel
-        Left = 174
-        Top = 245
-        Width = 9
-        Height = 13
-        Caption = '---'
-        Visible = False
-      end
-      object lbl12: TLabel
-        Left = 39
-        Top = 245
-        Width = 37
-        Height = 13
-        Caption = 'Position'
-        Visible = False
-      end
-      object lblGroundSpeed: TLabel
-        Left = 174
-        Top = 264
-        Width = 15
-        Height = 13
-        Caption = '0.0'
-        Visible = False
-      end
-      object lbl13: TLabel
-        Left = 39
-        Top = 264
-        Width = 69
-        Height = 13
-        Caption = 'Ground Speed'
-        Visible = False
-      end
-      object lblEta: TLabel
-        Left = 174
-        Top = 304
-        Width = 9
-        Height = 13
-        Caption = '---'
-        Visible = False
-      end
-      object lbl14: TLabel
-        Left = 39
-        Top = 283
-        Width = 71
-        Height = 13
-        Caption = 'Distance to Go'
-        Visible = False
-      end
-      object lbl15: TLabel
-        Left = 254
-        Top = 283
-        Width = 14
-        Height = 13
-        Caption = 'nm'
-        Visible = False
-      end
-      object lbl16: TLabel
-        Left = 39
-        Top = 341
-        Width = 110
-        Height = 13
-        Caption = 'Ordered Ground Speed'
-        Visible = False
-      end
-      object lblDistance: TLabel
-        Left = 174
-        Top = 283
-        Width = 18
-        Height = 13
-        Caption = '000'
-        Visible = False
-      end
-      object lblOrderGroundWaypoint: TLabel
-        Left = 174
-        Top = 341
-        Width = 15
-        Height = 13
-        Caption = '0.0'
-        Visible = False
-      end
-      object lbl17: TLabel
-        Left = 254
-        Top = 341
-        Width = 26
-        Height = 13
-        Caption = 'knots'
-        Visible = False
-      end
-      object lbl18: TLabel
-        Left = 254
-        Top = 362
-        Width = 26
-        Height = 13
-        Caption = 'knots'
-        Visible = False
-      end
-      object lbl19: TLabel
-        Left = 254
-        Top = 264
-        Width = 26
-        Height = 13
-        Caption = 'knots'
-        Visible = False
-      end
-      object lblLatitude: TLabel
-        Left = 254
-        Top = 245
-        Width = 9
-        Height = 13
-        Caption = '---'
-        Visible = False
-      end
-      object lblActualGroundWaypoint: TLabel
-        Left = 174
-        Top = 362
-        Width = 15
-        Height = 13
-        Caption = '0.0'
-        Visible = False
-      end
-      object bvl1: TBevel
-        Left = 97
-        Top = 305
-        Width = 220
-        Height = 3
-      end
-      object bvl2: TBevel
-        Left = 44
-        Top = 279
-        Width = 295
-        Height = 3
-        Visible = False
-      end
-      object txt8: TStaticText
-        Left = 39
-        Top = 302
-        Width = 25
-        Height = 17
-        Caption = 'ETA'
-        TabOrder = 0
-        Visible = False
-      end
-      object txt9: TStaticText
-        Left = 136
-        Top = 347
-        Width = 71
-        Height = 17
-        Caption = 'Next waypoint'
-        TabOrder = 1
-      end
-      object txt10: TStaticText
-        Left = 39
-        Top = 360
-        Width = 106
-        Height = 17
-        Caption = 'Actual Ground Speed'
-        TabOrder = 2
-        Visible = False
-      end
-      object btnWaypoint: TButton
-        Left = 208
-        Top = 393
-        Width = 120
-        Height = 25
-        Caption = 'Edit Waypoints..'
-        TabOrder = 3
-        Visible = False
-      end
-      object txt11: TStaticText
-        Left = 304
-        Top = 328
-        Width = 7
-        Height = 17
-        Caption = ':'
-        TabOrder = 4
-      end
-      object txt12: TStaticText
-        Left = 344
-        Top = 275
-        Width = 7
-        Height = 17
-        Caption = ':'
-        TabOrder = 5
-      end
-      object txt13: TStaticText
-        Left = 344
-        Top = 294
-        Width = 7
-        Height = 17
-        Caption = ':'
-        TabOrder = 6
-      end
-      object txt14: TStaticText
-        Left = 344
-        Top = 321
-        Width = 7
-        Height = 17
-        Caption = ':'
-        TabOrder = 7
-      end
-      object txt15: TStaticText
-        Left = 344
-        Top = 334
-        Width = 7
-        Height = 17
-        Caption = ':'
-        TabOrder = 8
-      end
-      object txt16: TStaticText
-        Left = 344
-        Top = 392
-        Width = 7
-        Height = 17
-        Caption = ':'
-        TabOrder = 9
-      end
-      object txt17: TStaticText
-        Left = 344
-        Top = 371
-        Width = 7
-        Height = 17
-        Caption = ':'
-        TabOrder = 10
-      end
-      object btnWayP: TButton
-        Left = 16
-        Top = 32
-        Width = 75
-        Height = 25
-        Caption = 'waypoint'
-        TabOrder = 11
-        OnClick = btnWayPClick
-      end
-      object btnWayPOK: TButton
-        Left = 96
-        Top = 32
-        Width = 75
-        Height = 25
-        Caption = 'OK waypoint'
-        TabOrder = 12
-        OnClick = btnWayPOKClick
-      end
-      object btnStopWayPoint: TButton
-        Left = 178
-        Top = 32
-        Width = 75
-        Height = 25
-        Caption = 'q'
-        TabOrder = 13
-        OnClick = btnStopWayPointClick
-      end
-      object edtCoordX: TEdit
-        Left = 24
-        Top = 112
-        Width = 81
-        Height = 21
-        Enabled = False
-        TabOrder = 14
-      end
-      object edtCoordY: TEdit
-        Left = 112
-        Top = 112
-        Width = 81
-        Height = 21
-        Enabled = False
-        TabOrder = 15
-      end
-      object edtCoordZ: TEdit
-        Left = 200
-        Top = 112
-        Width = 81
-        Height = 21
-        Enabled = False
-        TabOrder = 16
       end
     end
   end

@@ -661,35 +661,35 @@ object frmMainInstruktur: TfrmMainInstruktur
         TabOrder = 3
         TMSStyle = 0
         object bvl1: TBevel
-          Left = 185
+          Left = 211
           Top = 16
           Width = 7
           Height = 34
           Shape = bsLeftLine
         end
         object bvl2: TBevel
-          Left = 348
+          Left = 402
           Top = 16
           Width = 7
           Height = 34
           Shape = bsLeftLine
         end
         object bvl3: TBevel
-          Left = 506
+          Left = 569
           Top = 15
           Width = 7
           Height = 34
           Shape = bsLeftLine
         end
         object bvl4: TBevel
-          Left = 657
+          Left = 720
           Top = 15
           Width = 7
           Height = 34
           Shape = bsLeftLine
         end
         object bvl5: TBevel
-          Left = 784
+          Left = 861
           Top = 17
           Width = 10
           Height = 34
@@ -710,7 +710,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl10: TLabel
-          Left = 664
+          Left = 730
           Top = 34
           Width = 16
           Height = 14
@@ -724,7 +724,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl11: TLabel
-          Left = 788
+          Left = 868
           Top = 34
           Width = 44
           Height = 14
@@ -738,7 +738,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl12: TLabel
-          Left = 788
+          Left = 868
           Top = 18
           Width = 44
           Height = 14
@@ -766,7 +766,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl3: TLabel
-          Left = 191
+          Left = 220
           Top = 18
           Width = 84
           Height = 14
@@ -780,7 +780,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl3DX: TLabel
-          Left = 880
+          Left = 960
           Top = 18
           Width = 39
           Height = 14
@@ -794,7 +794,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl3DY: TLabel
-          Left = 880
+          Left = 960
           Top = 34
           Width = 39
           Height = 14
@@ -808,7 +808,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl4: TLabel
-          Left = 191
+          Left = 220
           Top = 34
           Width = 84
           Height = 14
@@ -822,7 +822,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl5: TLabel
-          Left = 354
+          Left = 412
           Top = 34
           Width = 54
           Height = 14
@@ -837,7 +837,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Visible = False
         end
         object lbl6: TLabel
-          Left = 354
+          Left = 412
           Top = 17
           Width = 52
           Height = 14
@@ -851,7 +851,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl7: TLabel
-          Left = 512
+          Left = 579
           Top = 18
           Width = 44
           Height = 14
@@ -865,7 +865,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl8: TLabel
-          Left = 512
+          Left = 579
           Top = 34
           Width = 44
           Height = 14
@@ -879,7 +879,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lbl9: TLabel
-          Left = 665
+          Left = 731
           Top = 18
           Width = 15
           Height = 14
@@ -893,7 +893,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblDepth: TLabel
-          Left = 614
+          Left = 667
           Top = 34
           Width = 39
           Height = 14
@@ -908,7 +908,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblElevation: TLabel
-          Left = 614
+          Left = 667
           Top = 18
           Width = 39
           Height = 14
@@ -923,7 +923,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblGeoref: TLabel
-          Left = 305
+          Left = 348
           Top = 18
           Width = 39
           Height = 14
@@ -938,7 +938,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblLatitude: TLabel
-          Left = 143
+          Left = 158
           Top = 34
           Width = 39
           Height = 14
@@ -953,7 +953,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblLongitude: TLabel
-          Left = 143
+          Left = 158
           Top = 18
           Width = 39
           Height = 14
@@ -968,7 +968,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblMapUnit: TLabel
-          Left = 465
+          Left = 515
           Top = 34
           Width = 39
           Height = 14
@@ -984,7 +984,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Visible = False
         end
         object lblToolUsed: TLabel
-          Left = 465
+          Left = 515
           Top = 17
           Width = 29
           Height = 14
@@ -999,7 +999,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblX: TLabel
-          Left = 742
+          Left = 808
           Top = 18
           Width = 39
           Height = 14
@@ -1014,7 +1014,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblY: TLabel
-          Left = 742
+          Left = 808
           Top = 34
           Width = 39
           Height = 14
@@ -1029,7 +1029,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Transparent = True
         end
         object lblZoomLvl: TLabel
-          Left = 305
+          Left = 348
           Top = 34
           Width = 39
           Height = 14
