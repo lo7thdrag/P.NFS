@@ -2,6 +2,9 @@
 
 interface
 
+//uses Vcl.ExtCtrls, System.ImageList, Vcl.ImgList, Vcl.Controls, Vcl.StdCtrls,
+//  AdvOfficeButtons, Vcl.OleCtrls, MapXLib_TLB, System.Classes;
+
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
@@ -1116,7 +1119,7 @@ begin
       RecSend.mOrderID        := 0;
 
       RecSend.mUpDown             := 0;
-      RecSend.mTargetID           := 0;
+      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
       RecSend.mModeID             := 0;
       RecSend.mAutoCorrectElev    := aLow;
       RecSend.mAutoCorrectBearing := bearing;
@@ -1142,7 +1145,7 @@ begin
       RecSend.mOrderID        := 0;
 
       RecSend.mUpDown             := 0;
-      RecSend.mTargetID           := 0;
+      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
       RecSend.mModeID             := 0;
       RecSend.mAutoCorrectElev    := alow;
       RecSend.mAutoCorrectBearing := bearing;
@@ -1378,26 +1381,26 @@ var
   ChromeHandle: HWND;
   WindowHandle: HWND;
 begin
-  // jalankan chrome
-  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
-    '--app="https://google.com"');
-
-  // tunggu window chrome muncul
-  Sleep(500);
-
-  // temukan window chrome
-  WindowHandle := FindWindow('Chrome_WidgetWin_1', nil);
-
-  if WindowHandle <> 0 then
-  begin
-    // set parent ke panel
-    Winapi.Windows.SetParent(WindowHandle, pnlBaseVideoZone.Handle);
-
-    // sesuaikan posisi
-    SetWindowLong(WindowHandle, GWL_STYLE, WS_VISIBLE);
-    SetWindowPos(WindowHandle, 0, 0, 0, pnlBaseVideoZone.Width, pnlBaseVideoZone.Height,
-                 SWP_NOZORDER or SWP_SHOWWINDOW);
-  end;
+//  // jalankan chrome
+//  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
+//    '--app="https://google.com"');
+//
+//  // tunggu window chrome muncul
+//  Sleep(500);
+//
+//  // temukan window chrome
+//  WindowHandle := FindWindow('Chrome_WidgetWin_1', nil);
+//
+//  if WindowHandle <> 0 then
+//  begin
+//    // set parent ke panel
+//    Winapi.Windows.SetParent(WindowHandle, pnlBaseVideoZone.Handle);
+//
+//    // sesuaikan posisi
+//    SetWindowLong(WindowHandle, GWL_STYLE, WS_VISIBLE);
+//    SetWindowPos(WindowHandle, 0, 0, 0, pnlBaseVideoZone.Width, pnlBaseVideoZone.Height,
+//                 SWP_NOZORDER or SWP_SHOWWINDOW);
+//  end;
 end;
 
 procedure TfrmMainFCC.HandleKeyByBtnName(const BtnName: string);
@@ -1608,13 +1611,15 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
+    RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;;
     RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
 
     RecSend.mBalistikID         := 0;
     RecSend.mSalvoRate          := 30;
+
+//    FCCManager.SelectedVehicle.
 
 
     RecSend.mOrderID := __ORD_CANNON_START_F;
@@ -1630,7 +1635,7 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
+    RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;;
     RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;

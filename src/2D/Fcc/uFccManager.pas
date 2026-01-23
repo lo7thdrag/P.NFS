@@ -234,6 +234,7 @@ begin
       v.PosY := aRec.Y;
       v.PosZ := aRec.Z;
       v.SetSpeedKts(aRec.speed);
+      v.ShipID := aRec.ShipID;
 
       v.HeadingDeg  := aRec.heading;
     end
@@ -297,7 +298,8 @@ var WeaponAssigned : TWeaponGetList;
     I : Integer;
 begin
   ListWeaponAssigned := TList.Create;
-  if DataModule1.GetListWeaponOnShip(FShipID , ListWeaponAssigned) > 0 then
+  DataModule1.GetListWeaponOnShip(FShipID , ListWeaponAssigned);
+  if ListWeaponAssigned.Count > 0 then
   begin
     for I := 0 to ListWeaponAssigned.Count - 1 do begin
       WeaponAssigned := TWeaponGetList.Create;

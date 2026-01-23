@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, VrControls, VrLcd, jpeg, Buttons,
-  SpeedButtonImage, ImgList, Keyboard, VrDigit, VrAnalog;
+  SpeedButtonImage, ImgList, Keyboard, VrDigit, VrAnalog, System.ImageList,
+  Vcl.Imaging.pngimage;
 
 type
 
@@ -52,6 +53,7 @@ type
     il_orange_dis: TImageList;
     il_set_orange_dis: TImageList;
     il_green_dis: TImageList;
+    imgKeyboard: TImage;
     procedure FormShow(Sender: TObject);
     procedure btnFanClick(Sender: TObject);
     procedure btnACClick(Sender: TObject);
@@ -64,6 +66,7 @@ type
     procedure btnLimit_Yellow2Click(Sender: TObject);
     procedure btnLimit_Green2Click(Sender: TObject);
     procedure btnLimit_Green1Click(Sender: TObject);
+    procedure imgKeyboardClick(Sender: TObject);
   private
     { Private declarations }
     mis_selection : Integer;
@@ -90,9 +93,22 @@ var
 implementation
 
 uses
-  fPanelBawah, uC802Manager;
+  fPanelBawah, FKeyboard, uC802Manager;
 
 {$R *.dfm}
+
+procedure EnableComposited(WinControl:TWinControl);
+var
+  i:Integer;
+  NewExStyle:DWORD;
+begin
+  NewExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE) or WS_EX_COMPOSITED;
+  SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
+
+  for I := 0 to WinControl.ControlCount - 1 do
+    if WinControl.Controls[i] is TWinControl then
+      EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
 
 procedure TPanelAtas.C802_Off;
 begin
@@ -312,6 +328,7 @@ end;
 
 procedure TPanelAtas.FormShow(Sender: TObject);
 begin
+  EnableComposited(PanelAtas);
   Fan_Switch  := False;
   AC_Switch   := False;
   Power_Switch:= False;
@@ -349,6 +366,14 @@ begin
 
   C802_Off;
   isOn := False;
+end;
+
+procedure TPanelAtas.imgKeyboardClick(Sender: TObject);
+begin
+  if Keyboard_Form.Visible then
+    Keyboard_Form.Hide
+  else
+    Keyboard_Form.Show;
 end;
 
 procedure TPanelAtas.showImplicit(mis_num: Integer);

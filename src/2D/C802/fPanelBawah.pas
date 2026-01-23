@@ -7,7 +7,7 @@ uses
   Dialogs, ExtCtrls, ImgList, Buttons, SpeedButtonImage, StdCtrls, ComCtrls,
   OleCtrls, MapXLib_TLB, jpeg, VrControls, VrWheel, VrRotarySwitch, Keyboard,
   pngimage{, Symbols}, uC802_Object, uEventForm, uTCPDatatype,
-  uLibClientObject, TlHelp32;
+  uLibClientObject, TlHelp32, System.ImageList;
 
 type
 
@@ -605,6 +605,7 @@ type
     tmr2: TTimer;
     tmr3: TTimer;
     tmr4: TTimer;
+    pnlMap: TPanel;
 
     procedure ParSetting_behav;
     procedure LaunchStep_SetOn(indicator: TPanel);
@@ -645,9 +646,6 @@ type
     procedure btnCover_1Click(Sender: TObject);
     procedure btnCover_3Click(Sender: TObject);
     procedure tmrPrelaunchCheck_2Timer(Sender: TObject);
-    procedure MapC802DrawUserLayer(ASender: TObject; const Layer: IDispatch;
-      hOutputDC, hAttributeDC: Cardinal; const RectFull,
-      RectInvalid: IDispatch);
     procedure btnCancel_4Click(Sender: TObject);
     procedure tmrCheckPageTimer(Sender: TObject);
     procedure tmrPrelaunchCheck_3Timer(Sender: TObject);
@@ -671,6 +669,8 @@ type
     procedure pnlVisibleExitDblClick(Sender: TObject);
     procedure btnLaunch_1Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure MapC802DrawUserLayer(ASender: TObject; const Layer: IDispatch;
+      hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
   private
     { Private declarations }
     Open_cover1, Open_cover2, Open_cover3, Open_cover4: Boolean;
@@ -687,6 +687,8 @@ type
 
     function CloseCurrentHandleApplication(ExeFileName: string): Integer;
     procedure Mis_OnLaunch(mis_num: Integer);
+
+//    procedure WMEraseBkgrnd(var Message: TWMEraseBkgnd); message WM_ERASEBKGND;
 
   public
     { Public declarations }
@@ -817,6 +819,19 @@ uses
   uBaseSimulationObject, uBaseDataType, Math;
 
 {$R *.dfm}
+
+procedure EnableComposited(WinControl:TWinControl);
+var
+  i:Integer;
+  NewExStyle:DWORD;
+begin
+  NewExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE) or WS_EX_COMPOSITED;
+  SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
+
+  for I := 0 to WinControl.ControlCount - 1 do
+    if WinControl.Controls[i] is TWinControl then
+      EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
 
 procedure TPanelBawah.UpdatePosition;
 var
@@ -1240,6 +1255,7 @@ end;
 
 procedure TPanelBawah.Mis_OnLaunch(mis_num: Integer);
 var new_range,new_bearing: Double;
+    targetIdSend: Integer;
     miss_data: TC802_Object;
 begin
   Rec_data.ShipID := UniqueID_To_dbID(C802Manager.xShip.UniqueID);
@@ -1247,7 +1263,8 @@ begin
   Rec_data.mMissileID := 1;
   Rec_data.mMissileNumber := 1;
   Rec_data.mWeaponID := C_DBID_C802;
-  Rec_data.OrderID := OrdID_C802_launch;
+//  Rec_data.OrderID := OrdID_C802_launch;
+  Rec_data.OrderID := OrdID_C802_takeoff;
 
   miss_data := TC802_Object.Create;
   case mis_num of
@@ -1267,8 +1284,10 @@ begin
 
   if miss_data.TgtNo = Target1.Number then
     new_bearing := Target1.Azimuth + C802Manager.xShip.Heading;
+    targetIdSend := miss_data.TgtNo;
   if miss_data.TgtNo = Target2.Number then
     new_bearing := Target2.Azimuth + C802Manager.xShip.Heading;
+    targetIdSend := miss_data.TgtNo;
 
   if new_bearing > 360 then
     new_bearing := new_bearing - 360;
@@ -1284,6 +1303,7 @@ begin
 
 
 //  Rec_data.mTargetRange := Target1.Distance;
+  Rec_data.mTargetId := targetIdSend;
   Rec_data.mTargetBearing := new_bearing;
 
   C802Manager.NetComm.sendDataEx(REC_DATA_C802, @Rec_data);
@@ -1688,7 +1708,7 @@ begin
 end;
 
 procedure TPanelBawah.MapC802DrawUserLayer(ASender: TObject;
-  const Layer: IDispatch; hOutputDC, hAttributeDC: Cardinal; const RectFull,
+  const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull,
   RectInvalid: IDispatch);
 var
   I: Integer;
@@ -1855,6 +1875,7 @@ begin
   end;
 
 end;
+
 
 procedure TPanelBawah.LaunchStep_SetOff(indicator: TPanel);
 begin
@@ -2084,7 +2105,8 @@ begin
       begin
         if C802Manager.Missile1.FAccurateCal then
         begin
-          PrelaunchCheckOn(pnlAccurateCal_1);
+          PrelaunchCheckOn(
+          pnlAccurateCal_1);
           LaunchStep_SetOn(pnlLaunchStep_1_AccurateCal);
         end
         else PrelaunchCheckFailed(pnlAccurateCal_1);
@@ -3403,6 +3425,11 @@ begin
 //  LaunchReady_On(4);
 end;
 
+//procedure TPanelBawah.WMEraseBkgrnd(var Message: TWMEraseBkgnd);
+//begin
+//  Message.Result:= 1;
+//end;
+
 procedure TPanelBawah.PanelUp(panel: TPanel);
 begin
   panel.BevelOuter := bvRaised;
@@ -3449,9 +3476,11 @@ end;
 
 procedure TPanelBawah.FormCreate(Sender: TObject);
 begin
+//  ControlStyle:= ControlStyle + [csOpaque];
+
   C802Manager := TC802Manager.Create;
   Data802 := TC802_Object.Create;
-  MapC802.DoubleBuffered := true;
+  //MapC802.DoubleBuffered := False;
   FCanvas := TCanvas.Create;
   EventForm := TEventForm.Create;
 
@@ -3472,6 +3501,11 @@ begin
   Launcher3OnFromInstruktur := false;
   Launcher4OnFromInstruktur := false;
 
+  DoubleBuffered:= False;
+  MapC802.DoubleBuffered:= False;
+
+  pnlMap.Color:= clBlack;
+  EnableComposited(pnlMainMenu);
 end;
 
 procedure TPanelBawah.FormDestroy(Sender: TObject);

@@ -173,17 +173,17 @@ begin
    Counter            := 0;
   // color:= RGB();
 
-  RMJarak.LoadBGImage(path_image_panelFire + '240px_back.bmp');
-  RMJarak.LoadImage(path_image_panelFire +  'jarak.bmp');
+  RMJarak.LoadBGImage(path_image_panelFire + '150px_back.bmp.bmp');
+  RMJarak.LoadImage(path_image_panelFire +  'jarak_.bmp');
   RMJarak.Parent := self;
   RMJarak.Value  := 0;
   RMJarak.ValMin := 0;
   RMJarak.ValMax := 120;
   RMJarak.Line   := LTop;
 
-  DCKapalSendiri.LoadBGImage(path_image_panelFire + '260px_back.bmp');
-  DCKapalSendiri.LoadOutImage(path_image_panelFire + 'kpl_sendiri_out.bmp');
-  DCKapalSendiri.LoadInImage(path_image_panelFire + 'kpl_sendiri_in.bmp');
+  DCKapalSendiri.LoadBGImage(path_image_panelFire + '150px_back.bmp.bmp');
+  DCKapalSendiri.LoadOutImage(path_image_panelFire + 'kpl-sendiri-out.bmp');
+  DCKapalSendiri.LoadInImage(path_image_panelFire + 'kpl-sendiri-in-100-2.bmp');
   DCKapalSendiri.Parent := self;
   DCKapalSendiri.Value := 0;
   DCKapalSendiri.ValueOut := 0;
@@ -193,9 +193,9 @@ begin
   DCKapalSendiri.ValMaxOut := 360;
   DCKapalSendiri.Line := LTop;
 
-  DCSasaran.LoadBGImage(path_image_panelFire + '280px_back.bmp');
-  DCSasaran.LoadOutImage(path_image_panelFire + 'sasaran_out.bmp');
-  DCSasaran.LoadInImage(path_image_panelFire + 'sasaran_in.bmp');
+  DCSasaran.LoadBGImage(path_image_panelFire + '150px_back.bmp.bmp');
+  DCSasaran.LoadOutImage(path_image_panelFire + 'sasaran-out.bmp');
+  DCSasaran.LoadInImage(path_image_panelFire + 'sasaran-in-100-2.bmp');
   DCSasaran.Parent := self;
   DCSasaran.Value := 0;
   DCSasaran.ValueOut := 0;
@@ -205,24 +205,24 @@ begin
   DCSasaran.ValMaxOut := 360;
   DCSasaran.Line := LBottom;
 
-  RMKecSassaran.LoadBGImage(path_image_panelFire + '240px_back.bmp');
-  RMKecSassaran.LoadImage(path_image_panelFire +  'kec_sasaran.bmp');
+  RMKecSassaran.LoadBGImage(path_image_panelFire + '150px_back.bmp.bmp');
+  RMKecSassaran.LoadImage(path_image_panelFire +  'kec-sasaran.bmp');
   RMKecSassaran.Parent := self;
   RMKecSassaran.Value  := 0;
   RMKecSassaran.ValMin := 0;
   RMKecSassaran.ValMax := 35;
   RMKecSassaran.Line   := LTop;
 
-  RMSDL1.LoadBGImage(path_image_panelFire + '200px_sud_dat_lon_back.bmp');
-  RMSDL1.LoadImage(path_image_panelFire + 'sud_dat_lon_1.bmp');
+  RMSDL1.LoadBGImage(path_image_panelFire + 'sud-dat-lon-back-120.bmp');
+  RMSDL1.LoadImage(path_image_panelFire + 'sud-dat-lon-1-70.bmp');
   RMSDL1.Parent := self;
   RMSDL1.Value  := 0;
   RMSDL1.ValMin := -160;
   RMSDL1.ValMax := 160;
   RMSDL1.Line := LNone;
 
-  RMSDL2.LoadBGImage(path_image_panelFire + '200px_sud_dat_lon_back.bmp');
-  RMSDL2.LoadImage(path_image_panelFire + 'sud_dat_lon_2.bmp');
+  RMSDL2.LoadBGImage(path_image_panelFire + 'sud-dat-lon-back-120.bmp');
+  RMSDL2.LoadImage(path_image_panelFire + 'sud-dat-lon-2-70.bmp');
   RMSDL2.Parent := self;
   RMSDL2.Value  := 0;
   RMSDL2.ValMin := -160;

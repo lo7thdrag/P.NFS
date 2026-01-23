@@ -6,69 +6,56 @@ interface
 
 const
 
-  c_idx_prm_2DServerIP     = 1 ;
-  c_idx_prm_2DServerPort   = 2 ;
-  c_idx_prm_DBServer       = 3 ;
-  c_idx_prm_DBProto        = 4 ;
-  c_idx_prm_DBName         = 5 ;
-  c_idx_prm_DBUser         = 6 ;
-  c_idx_prm_DBPass         = 7 ;
-  c_idx_prm_CurrentShipID  = 8 ;
-  c_idx_prm_CurrentScenID  = 9 ;
+  c_idx_prm_2DServerIP = 1;
+  c_idx_prm_2DServerPort = 2;
+  c_idx_prm_DBServer = 3;
+  c_idx_prm_DBProto = 4;
+  c_idx_prm_DBName = 5;
+  c_idx_prm_DBUser = 6;
+  c_idx_prm_DBPass = 7;
+  c_idx_prm_CurrentShipID = 8;
+  c_idx_prm_CurrentScenID = 9;
   c_idx_prm_CurrentLauncID = 10;
 
-  max_param                = 9 ;
-  max_param_TDS            = 10;
+  max_param = 9;
+  max_param_TDS = 10;
 
 type
 
-  TRecBridgeDB  = record
-    mDBServer,
-    mDBProto,
-    mDBName,
-    mDBUser,
-    mDBPass,
-    mDBPort: string
+  TRecBridgeDB = record
+    mDBServer, mDBPort, mDBProto, mDBName, mDBUser, mDBPass: string
   end;
 
-  TRecBridgeServer  = record
-    m2D_IP,
-    m2D_Port,
-    m3D_IP,
-    m3D_Port,
-    mCtrl_IP,
-    mCtrl_port : string;
+  TRecBridgeServer = record
+    m2D_IP, m2D_Port, m3D_IP, m3D_Port, mCtrl_IP, mCtrl_port: string;
   end;
 
-  TRecBridgeServerConverter  = record
-    ServerBridge2DPort,
-    ServerBridge3DPort : string;
+  TRecSystemServer = record
+    Server2DAddress, Server2DPort, Server3DAddress, Server3DPort: string;
   end;
 
-  TRecBridgeShip  = record
-    mShipID,
-    mClassID: integer;
-    mShipName,
-    mClassName: string;
-    mScenario : Integer;
+  TRecBridgeShip = record
+    mShipID, mClassID: integer;
+    mShipName, mClassName: string;
+    mScenario: integer;
   end;
 
-  TRecBridgeSet  = record
-    mDB     : TRecBridgeDB;
-    mServer : TRecBridgeServer;
-    mShip   : TRecBridgeShip;
-    mBridgeConverter : TRecBridgeServerConverter;
+  TRecBridgeSet = record
+    mDB: TRecBridgeDB;
+    mServer: TRecBridgeServer;
+    mShip: TRecBridgeShip;
+    mSystemServer: TRecSystemServer;
   end;
 
-
-  TInsUtil = class  //yoga
-    CameraMode : Boolean;
-    MapMode    : Boolean;
-    MapID      : Integer;
-    InsID      : Integer;
-    DenahMode  : Integer;
+  TInsUtil = class // yoga
+    CameraMode: Boolean;
+    MapMode: Boolean;
+    MapID: integer;
+    InsID: integer;
+    DenahMode: integer;
   end;
-   //yoga
+
+  // yoga
   THelpIni = class
 
   end;
@@ -76,117 +63,105 @@ type
 const
 
   // constant setting connection
-  iniBridgeSet        = 'BridgeSet.ini';
-  defaultServer       = 'localhost';
-  default3DServer     = '192.168.0.82';
-  defaultServerPort   = '2120';
+  iniBridgeSet = 'BridgeSet.ini';
+  defaultServer = 'localhost';
+  default3DServer = '192.168.0.82';
+  defaultServerPort = '2120';
   default3DServerPort = '5001';
 
-  default2DServerPortConverter = '7001';
-  default3DServerPortConverter = '7002';
+  default2DServerAddressSystemServer = '127.0.0.1';
+  default2DServerPortSystemServer = '7001';
+  default3DServerAddressSystemServer = '127.0.0.1';
+  default3DServerPortSystemServer = '7002';
 
-  defaultDBServer   = '192.168.1.141';
-  defaultDBProto    = 'mysql';
-  defaultDBName     = 'dbNSuFs';
-  defaultDBUser     = 'usrNSUFS';
+  defaultDBServer = '192.168.1.141';
+  defaultDBProto = 'mysql';
+  defaultDBName = 'dbNSuFs';
+  defaultDBUser = 'usrNSUFS';
   defaultDBPassword = 'admin';
-  defaultDBPort     = '3306';
+  defaultDBPort = '3306';
 
-  defaultShipID    = 39;
-  defaultShipName  = 'KRI Nala';
-  defaultClassID   = 31;
+  defaultShipID = 39;
+  defaultShipName = 'KRI Nala';
+  defaultClassID = 31;
   defaultClassName = 'Fatahillah Class';
 
-
-  iniSectConfig      = 'CONFIG';
-  iniValServer       = 'SERVER';
-  iniVal3DServer     = '3DSERVER';
-  iniValServerPort   = 'SERVERPORT';
+  iniSectConfig = 'CONFIG';
+  iniValServer = 'SERVER';
+  iniValServerPort = 'SERVERPORT';
+  iniVal3DServer = '3DSERVER';
   iniVal3DServerPort = '3DSERVERPORT';
 
-  iniSectConfigConverter      = 'CONFIGCONVERTER';
-  iniVal2DServerPortConverter = '2DSERVERPORTCONVERTER';
-  iniVal3DServerPortConverter = '3DSERVERPORTCONVERTER';
+  iniSectConfigSystemServer = 'SystemServer';
+  iniVal2DServerAddressSystemServer = '2DServerAdress';
+  iniVal2DServerPortSystemServer = '2DServerPort';
+  iniVal3DServerAddressSystemServer = '3DServerAdress';
+  iniVal3DServerPortSystemServer = '3DServerPort';
 
   iniSectDBConfig = 'DBCONFIG';
-  iniValDBServer  = 'DBSERVER';
-  iniValDBProto   = 'DBPROTO';
-  iniValDBName    = 'DBNAME';
-  iniValDBUser    = 'DBUSER';
-  iniValDBpass    = 'DBPASS';
-  iniValDBport    = 'DBPORT';
+  iniValDBServer = 'DBSERVER';
+  iniValDBProto = 'DBPROTO';
+  iniValDBName = 'DBNAME';
+  iniValDBUser = 'DBUSER';
+  iniValDBpass = 'DBPASS';
+  iniValDBport = 'DBPORT';
 
-  iniSectShips    = 'SHIPS';
-  iniValShip      = 'SHIPID';
-  iniValShipName  = 'SHIPNAME';
-  iniValClassID   = 'SHIPCLASSID';
+  iniSectShips = 'SHIPS';
+  iniValShip = 'SHIPID';
+  iniValShipName = 'SHIPNAME';
+  iniValClassID = 'SHIPCLASSID';
   iniValClassName = 'SHIPCLASSNAME';
 
-  cRecsExt       = '.recs';
+  cRecsExt = '.recs';
 
-  procedure InitDefault_AllConfigFromInstruktur(
-      var m2DServerIP, m2DServerPort, mDBServer, mDBProto,
-      mDBName, mDBUser,  mDBPass: string; var mCurrentShipID, mCurrentScenID : integer);
+procedure InitDefault_AllConfigFromInstruktur(var m2DServerIP, m2DServerPort,
+  mDBServer, mDBProto, mDBName, mDBUser, mDBPass: string;
+  var mCurrentShipID, mCurrentScenID: integer);
 
-  procedure InitDefault_AllConfigFromInstruktur_TDS(
-      var m2DServerIP, m2DServerPort, mDBServer, mDBProto,
-      mDBName, mDBUser,  mDBPass: string; var mCurrentShipID, mCurrentScenID, mLauncherID : integer);
+procedure InitDefault_AllConfigFromInstruktur_TDS(var m2DServerIP,
+  m2DServerPort, mDBServer, mDBProto, mDBName, mDBUser, mDBPass: string;
+  var mCurrentShipID, mCurrentScenID, mLauncherID: integer);
 
+procedure InitInsUtil(const Path: string; var MapMode, CameraMode: Boolean;
+  var MapID, InsID, DenahMode: integer);
 
-  procedure InitInsUtil(
-    const Path: string;
-    var MapMode,CameraMode : Boolean; var MapID,InsID,DenahMode : integer);
+procedure InitDefault_DBConfig(const Path: string;
+  var mDBServer, mDBProto, mDBName, mDBUser, mDBPass, mDBPort: string);
 
-  procedure InitDefault_DBConfig(
-    const Path: string;
-    var mDBServer, mDBProto, mDBName, mDBUser,  mDBPass, mDBPort : string);
+procedure SaveDefault_DBConfig(const Path: string;
+  const mDBServer, mDBProto, mDBName, mDBUser, mDBPass, mDBPort: string);
 
-  procedure SaveDefault_DBConfig(
-    const Path: string;
-    const mDBServer, mDBProto, mDBName, mDBUser, mDBPass, mDBPort: string);
+procedure InitDefault_GameServerConfig(const Path: string;
+  var m2DServerIP, m2DServerPort, m3DServerIP, m3DServerPort: string);
 
-  procedure InitDefault_GameServerConfig(
-    const Path: string;
-    var m2DServerIP, m2DServerPort,
-        m3DServerIP, m3DServerPort: string);
+procedure InitDefault_SystemServerConfig(const Path: string;
+  var mServer2DAddress, mServer2DPort, mServer3DAddress, mServer3DPort: string);
 
-  procedure InitDefault_BridgeConverterConfig(
-    const Path: string;
-    var  mServerBridge2DPort, mServerBridge3DPort : string);
+procedure InitDefault_CtrlServerConfig(const Path: string;
+  var mCtrlServerIP, mCtrlServerPort: string);
 
-  procedure InitDefault_CtrlServerConfig(
-    const Path: string;
-    var mCtrlServerIP, mCtrlServerPort: string);
+procedure SaveDefault_GameServerConfig(const Path: string;
+  const m2DServerIP, m2DServerPort, m3DServerIP, m3DServerPort: string);
 
-  procedure SaveDefault_GameServerConfig(
-    const Path: string;
-    const m2DServerIP, m2DServerPort,
-        m3DServerIP, m3DServerPort: string);
+procedure SaveDefault_SystemServerConfig(const Path: string;
+  const mServer2DPort, mServer3DPort: string);
 
-  procedure SaveDefault_BridgeConverterConfig(
-    const Path: string;
-    const mServerBridge2DPort, mServerBridge3DPort: string);
+procedure InitDefault_ShipConfig(const Path: string;
+  var mShipID, mClassID: integer; var mShipName, mClassName: string);
 
-  procedure InitDefault_ShipConfig(
-    const Path: string;
-    var mShipID, mClassID: integer;
-    var mShipName, mClassName: string);
+procedure SaveDefault_ShipConfig(const Path: string;
+  const mShipID, mClassID: integer; const mShipName, mClassName: string);
 
-  procedure SaveDefault_ShipConfig(
-    const Path: string;
-    const mShipID, mClassID: integer;
-    const mShipName, mClassName: string);
-
-  function GetEmulatorSettingDirectory: string;
+function GetEmulatorSettingDirectory: string;
 
 function GetSettingDirectory: string;
 
-  function UniqueID_To_dbID(const uid: string): integer;
-  function dbID_to_UniqueID(const id: integer): string;
+function UniqueID_To_dbID(const uid: string): integer;
+function dbID_to_UniqueID(const id: integer): string;
 
 function GetDataPath: string;
 function GetRecordsPath: string;
-function GetFullNameRecsFileFromName ( s : string ) : string;
+function GetFullNameRecsFileFromName(s: string): string;
 
 implementation
 
@@ -196,7 +171,7 @@ uses
 
 function GetRecordsPath: string;
 begin
-//  result := '..\data\records\';
+  // result := '..\data\records\';
   result := 'N:\';
 end;
 
@@ -205,10 +180,10 @@ begin
   result := '..\data\';
 end;
 
-function GetFullNameRecsFileFromName ( s : string ) : string;
+function GetFullNameRecsFileFromName(s: string): string;
 begin
-//  Result := GetRecordsPath + s + cRecsExt; // bin/data/recs/*.recs
-  Result := 'N:\' + s + cRecsExt;
+  // Result := GetRecordsPath + s + cRecsExt; // bin/data/recs/*.recs
+  result := 'N:\' + s + cRecsExt;
 end;
 
 function GetSettingDirectory: string;
@@ -217,30 +192,34 @@ begin
 end;
 
 function GetEmulatorSettingDirectory: string;
-var reg: TREgistry;
+var
+  reg: TREgistry;
 begin
   result := '.';
   reg := TREgistry.Create;
-  Reg.RootKey := HKEY_CURRENT_USER;
-  if Reg.OpenKey('\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',
-     False) then begin
-     result := Reg.ReadString('AppData');
-     result := IncludeTrailingPathDelimiter( result) + 'emulator\';
-     Reg.CloseKey;
+  reg.RootKey := HKEY_CURRENT_USER;
+  if reg.OpenKey
+    ('\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', False)
+  then
+  begin
+    result := reg.ReadString('AppData');
+    result := IncludeTrailingPathDelimiter(result) + 'emulator\';
+    reg.CloseKey;
   end;
 
   reg.Free;
 end;
 
-
 function UniqueID_To_dbID(const uid: string): integer;
-var s: string;
+var
+  s: string;
 begin
-  s := Copy(uid, 4, Length(uid)-3);
+  s := Copy(uid, 4, Length(uid) - 3);
   try
     result := StrToInt(Trim(s));
   except
-    on EConvertError do begin
+    on EConvertError do
+    begin
       result := -1;
       exit;
     end
@@ -249,36 +228,38 @@ end;
 
 function dbID_to_UniqueID(const id: integer): string;
 begin
-   result := Format('VSL%0.4d', [id]);
+  result := Format('VSL%0.4d', [id]);
 end;
 
-
-function ForceReadString(var ini : TIniFile;
-  const sSect, sKey, sDefault : string): string;
+function ForceReadString(var ini: TIniFile;
+  const sSect, sKey, sDefault: string): string;
 begin
   result := ini.ReadString(sSect, sKey, '');
-  if result = '' then begin
+  if result = '' then
+  begin
     result := sDefault;
     ini.WriteString(sSect, sKey, sDefault);
   end;
 
 end;
 
-function ForceReadInt(var ini : TIniFile;
-  const sSect, sKey: string; iDefault: integer): integer;
+function ForceReadInt(var ini: TIniFile; const sSect, sKey: string;
+  iDefault: integer): integer;
 begin
   result := ini.ReadInteger(sSect, sKey, 0);
-  if (result = 0) and (iDefault <> 0) then begin
+  if (result = 0) and (iDefault <> 0) then
+  begin
     result := iDefault;
     ini.WriteInteger(sSect, sKey, iDefault);
   end;
 end;
 
-function ForceReadFloat(var ini : TIniFile;
-  const sSect, sKey: string; fDefault: double): double;
+function ForceReadFloat(var ini: TIniFile; const sSect, sKey: string;
+  fDefault: double): double;
 begin
   result := ini.ReadFloat(sSect, sKey, 0.0);
-  if (result = 0.0) and (fDefault <> 0.0) then begin
+  if (result = 0.0) and (fDefault <> 0.0) then
+  begin
     result := fDefault;
     ini.WriteFloat(sSect, sKey, fDefault);
   end;
@@ -291,68 +272,74 @@ begin
   if not DirectoryExists(result) then
     ForceDirectories(result);
 
-  result := result + '\' + iniBridgeSet;
+//  result := result + '\' + iniBridgeSet;
+  result := result + iniBridgeSet;
 end;
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
-
-procedure InitInsUtil(
-    const Path: string;
-    var MapMode,CameraMode : Boolean; var MapID,InsID,DenahMode : integer);
+procedure InitInsUtil(const Path: string; var MapMode, CameraMode: Boolean;
+  var MapID, InsID, DenahMode: integer);
 var
-  IniF : string;
-  ini  : TIniFile;
+  IniF: string;
+  ini: TIniFile;
 begin
   try
-    iniF  := PrepareInif(Path);
-    ini   := TIniFile.Create(iniF);
+    IniF := PrepareInif(Path);
+    ini := TIniFile.Create(IniF);
 
-    MapMode     := ini.ReadBool('Map', 'Mapmode', false);
-    CameraMode  := ini.ReadBool('Camera', 'Cameramode', false);
-    MapID       := ini.ReadInteger('Map', 'MapID', 0);
-    InsID       := ini.ReadInteger('INST', 'insID', 0);
-    DenahMode   := ini.ReadInteger('Denah', 'DenahMode', 0);
+    MapMode := ini.ReadBool('Map', 'Mapmode', False);
+    CameraMode := ini.ReadBool('Camera', 'Cameramode', False);
+    MapID := ini.ReadInteger('Map', 'MapID', 0);
+    InsID := ini.ReadInteger('INST', 'insID', 0);
+    DenahMode := ini.ReadInteger('Denah', 'DenahMode', 0);
   finally
     ini.Free;
   end;
 end;
 
- procedure InitDefault_AllConfigFromInstruktur_TDS(
-      var m2DServerIP, m2DServerPort, mDBServer, mDBProto,
-      mDBName, mDBUser,  mDBPass: string; var mCurrentShipID, mCurrentScenID, mLauncherID : integer);
- var
-  i, n : integer ;
-  str : string ;
-  b : Boolean;
- begin
-  n := ParamCount ;
-  b := ((AnsiContainsStr(Application.ExeName, 'SingaTorpedo'))
-      or (AnsiContainsStr(Application.ExeName, 'Yakhont'))
-      or (AnsiContainsStr(Application.ExeName, 'C802')));
+procedure InitDefault_AllConfigFromInstruktur_TDS(var m2DServerIP,
+  m2DServerPort, mDBServer, mDBProto, mDBName, mDBUser, mDBPass: string;
+  var mCurrentShipID, mCurrentScenID, mLauncherID: integer);
+var
+  i, n: integer;
+  str: string;
+  b: Boolean;
+begin
+  n := ParamCount;
+  b := ((AnsiContainsStr(Application.ExeName, 'SingaTorpedo')) or
+    (AnsiContainsStr(Application.ExeName, 'Yakhont')) or
+    (AnsiContainsStr(Application.ExeName, 'C802')));
   if n < max_param_TDS then
   begin
     if not b then
     begin
-      ShowMessage(Application.ExeName +', not enough parameter needed.');
-      Application.Terminate ;
+      ShowMessage(Application.ExeName + ', not enough parameter needed.');
+      Application.Terminate;
     end
     else
     begin
       for i := 1 to max_param_TDS do
       begin
-        //ShowMessage(ParamStr(i));
-        str := MidStr(ParamStr(i),2,length(ParamStr(i)));
+        // ShowMessage(ParamStr(i));
+        str := MidStr(ParamStr(i), 2, Length(ParamStr(i)));
         case i of
-          c_idx_prm_2DServerIP    :  m2DServerIP    := str;
-          c_idx_prm_2DServerPort  :  m2DServerPort  := str;
-          c_idx_prm_DBServer      :  mDBServer      := str;
-          c_idx_prm_DBProto       :  mDBProto       := str;
-          c_idx_prm_DBName        :  mDBName        := str;
-          c_idx_prm_DBUser        :  mDBUser        := str;
-          c_idx_prm_DBPass        :  mDBPass        := str;
-  //        c_idx_prm_CurrentShipID :  mCurrentShipID := StrToInt(str);
-  //        c_idx_prm_CurrentScenID :  mCurrentScenID := StrToInt(str);
+          c_idx_prm_2DServerIP:
+            m2DServerIP := str;
+          c_idx_prm_2DServerPort:
+            m2DServerPort := str;
+          c_idx_prm_DBServer:
+            mDBServer := str;
+          c_idx_prm_DBProto:
+            mDBProto := str;
+          c_idx_prm_DBName:
+            mDBName := str;
+          c_idx_prm_DBUser:
+            mDBUser := str;
+          c_idx_prm_DBPass:
+            mDBPass := str;
+          // c_idx_prm_CurrentShipID :  mCurrentShipID := StrToInt(str);
+          // c_idx_prm_CurrentScenID :  mCurrentScenID := StrToInt(str);
         end;
       end;
     end
@@ -361,61 +348,78 @@ end;
   begin
     for i := 1 to max_param_TDS do
     begin
-      //ShowMessage(ParamStr(i));
-      str := MidStr(ParamStr(i),2,length(ParamStr(i)));
+      // ShowMessage(ParamStr(i));
+      str := MidStr(ParamStr(i), 2, Length(ParamStr(i)));
       case i of
-        c_idx_prm_2DServerIP    :  m2DServerIP    := str;
-        c_idx_prm_2DServerPort  :  m2DServerPort  := str;
-        c_idx_prm_DBServer      :  mDBServer      := str;
-        c_idx_prm_DBProto       :  mDBProto       := str;
-        c_idx_prm_DBName        :  mDBName        := str;
-        c_idx_prm_DBUser        :  mDBUser        := str;
-        c_idx_prm_DBPass        :  mDBPass        := str;
-        c_idx_prm_CurrentShipID :  mCurrentShipID := StrToInt(str);
-        c_idx_prm_CurrentScenID :  mCurrentScenID := StrToInt(str);
-        c_idx_prm_CurrentLauncID:  mLauncherID    := StrToInt(str);
+        c_idx_prm_2DServerIP:
+          m2DServerIP := str;
+        c_idx_prm_2DServerPort:
+          m2DServerPort := str;
+        c_idx_prm_DBServer:
+          mDBServer := str;
+        c_idx_prm_DBProto:
+          mDBProto := str;
+        c_idx_prm_DBName:
+          mDBName := str;
+        c_idx_prm_DBUser:
+          mDBUser := str;
+        c_idx_prm_DBPass:
+          mDBPass := str;
+        c_idx_prm_CurrentShipID:
+          mCurrentShipID := StrToInt(str);
+        c_idx_prm_CurrentScenID:
+          mCurrentScenID := StrToInt(str);
+        c_idx_prm_CurrentLauncID:
+          mLauncherID := StrToInt(str);
 
       end;
     end;
-   // SetConnection;
+    // SetConnection;
   end;
- end;
+end;
 
-procedure InitDefault_AllConfigFromInstruktur(
-      var m2DServerIP, m2DServerPort, mDBServer, mDBProto,
-      mDBName, mDBUser,  mDBPass: string; var mCurrentShipID, mCurrentScenID : integer);
+procedure InitDefault_AllConfigFromInstruktur(var m2DServerIP, m2DServerPort,
+  mDBServer, mDBProto, mDBName, mDBUser, mDBPass: string;
+  var mCurrentShipID, mCurrentScenID: integer);
 var
-  i, n : integer ;
-  str : string ;
-  b : Boolean;
+  i, n: integer;
+  str: string;
+  b: Boolean;
 begin
-  n := ParamCount ;
-  b := ((AnsiContainsStr(Application.ExeName, 'SingaTorpedo'))
-      or (AnsiContainsStr(Application.ExeName, 'Yakhont'))
-      or (AnsiContainsStr(Application.ExeName, 'C802')));
+  n := ParamCount;
+  b := ((AnsiContainsStr(Application.ExeName, 'SingaTorpedo')) or
+    (AnsiContainsStr(Application.ExeName, 'Yakhont')) or
+    (AnsiContainsStr(Application.ExeName, 'C802')));
   if n < max_param then
   begin
     if not b then
     begin
-      ShowMessage(Application.ExeName +', not enough parameter needed.');
-      Application.Terminate ;
+      ShowMessage(Application.ExeName + ', not enough parameter needed.');
+      Application.Terminate;
     end
     else
     begin
       for i := 1 to max_param do
       begin
-        //ShowMessage(ParamStr(i));
-        str := MidStr(ParamStr(i),2,length(ParamStr(i)));
+        // ShowMessage(ParamStr(i));
+        str := MidStr(ParamStr(i), 2, Length(ParamStr(i)));
         case i of
-          c_idx_prm_2DServerIP    :  m2DServerIP    := str;
-          c_idx_prm_2DServerPort  :  m2DServerPort  := str;
-          c_idx_prm_DBServer      :  mDBServer      := str;
-          c_idx_prm_DBProto       :  mDBProto       := str;
-          c_idx_prm_DBName        :  mDBName        := str;
-          c_idx_prm_DBUser        :  mDBUser        := str;
-          c_idx_prm_DBPass        :  mDBPass        := str;
-  //        c_idx_prm_CurrentShipID :  mCurrentShipID := StrToInt(str);
-  //        c_idx_prm_CurrentScenID :  mCurrentScenID := StrToInt(str);
+          c_idx_prm_2DServerIP:
+            m2DServerIP := str;
+          c_idx_prm_2DServerPort:
+            m2DServerPort := str;
+          c_idx_prm_DBServer:
+            mDBServer := str;
+          c_idx_prm_DBProto:
+            mDBProto := str;
+          c_idx_prm_DBName:
+            mDBName := str;
+          c_idx_prm_DBUser:
+            mDBUser := str;
+          c_idx_prm_DBPass:
+            mDBPass := str;
+          // c_idx_prm_CurrentShipID :  mCurrentShipID := StrToInt(str);
+          // c_idx_prm_CurrentScenID :  mCurrentScenID := StrToInt(str);
         end;
       end;
     end
@@ -424,40 +428,49 @@ begin
   begin
     for i := 1 to max_param do
     begin
-      //ShowMessage(ParamStr(i));
-      str := MidStr(ParamStr(i),2,length(ParamStr(i)));
+      // ShowMessage(ParamStr(i));
+      str := MidStr(ParamStr(i), 2, Length(ParamStr(i)));
       case i of
-        c_idx_prm_2DServerIP    :  m2DServerIP    := str;
-        c_idx_prm_2DServerPort  :  m2DServerPort  := str;
-        c_idx_prm_DBServer      :  mDBServer      := str;
-        c_idx_prm_DBProto       :  mDBProto       := str;
-        c_idx_prm_DBName        :  mDBName        := str;
-        c_idx_prm_DBUser        :  mDBUser        := str;
-        c_idx_prm_DBPass        :  mDBPass        := str;
-        c_idx_prm_CurrentShipID :  mCurrentShipID := StrToInt(str);
-        c_idx_prm_CurrentScenID :  mCurrentScenID := StrToInt(str);
+        c_idx_prm_2DServerIP:
+          m2DServerIP := str;
+        c_idx_prm_2DServerPort:
+          m2DServerPort := str;
+        c_idx_prm_DBServer:
+          mDBServer := str;
+        c_idx_prm_DBProto:
+          mDBProto := str;
+        c_idx_prm_DBName:
+          mDBName := str;
+        c_idx_prm_DBUser:
+          mDBUser := str;
+        c_idx_prm_DBPass:
+          mDBPass := str;
+        c_idx_prm_CurrentShipID:
+          mCurrentShipID := StrToInt(str);
+        c_idx_prm_CurrentScenID:
+          mCurrentScenID := StrToInt(str);
       end;
     end;
-   // SetConnection;
+    // SetConnection;
   end;
 
 end;
 
-//------------------------------------------------------------------------------
-procedure InitDefault_DBConfig(
-  const Path: string;
-    var mDBServer, mDBProto, mDBName, mDBUser,  mDBPass, mDBPort : string
-  );
+// ------------------------------------------------------------------------------
+procedure InitDefault_DBConfig(const Path: string;
+  var mDBServer, mDBProto, mDBName, mDBUser, mDBPass, mDBPort: string);
 var
   ini: TIniFile;
-  readIn, readOut, iniF: string;
+  readIn, readOut, IniF: string;
 begin
-  iniF := PrepareInif(path);
+  IniF := PrepareInif(Path);
 
-  ini := TIniFile.Create(iniF);
+  ini := TIniFile.Create(IniF);
 
-  mDBServer := ForceReadString(ini, iniSectDBConfig, iniValDBServer, defaultDBServer);
-  mDBProto := ForceReadString(ini, iniSectDBConfig, iniValDBProto, defaultDBProto);
+  mDBServer := ForceReadString(ini, iniSectDBConfig, iniValDBServer,
+    defaultDBServer);
+  mDBProto := ForceReadString(ini, iniSectDBConfig, iniValDBProto,
+    defaultDBProto);
 
   readIn := Base64Encode(defaultDBName);
   readOut := ForceReadString(ini, iniSectDBConfig, iniValDBName, readIn);
@@ -468,7 +481,7 @@ begin
   mDBUser := Base64Decode(readOut);
 
   readIn := Base64Encode(defaultDBPassword);
-  readOut := ForceReadString(ini, iniSectDBConfig, iniValDBPass, readIn);
+  readOut := ForceReadString(ini, iniSectDBConfig, iniValDBpass, readIn);
   mDBPass := Base64Decode(readOut);
 
   mDBPort := ForceReadString(ini, iniSectDBConfig, iniValDBport, defaultDBPort);
@@ -476,81 +489,80 @@ begin
   ini.Free;
 end;
 
-procedure SaveDefault_DBConfig(
-  const Path: string;
-  const mDBServer, mDBProto, mDBName, mDBUser, mDBPass, mDBPort: string
-  );
+procedure SaveDefault_DBConfig(const Path: string;
+  const mDBServer, mDBProto, mDBName, mDBUser, mDBPass, mDBPort: string);
 var
   ini: TIniFile;
-  iniF: string;
+  IniF: string;
 begin
-  iniF := PrepareInif(path);
+  IniF := PrepareInif(Path);
 
-  ini := TIniFile.Create(iniF);
-  with ini do begin
+  ini := TIniFile.Create(IniF);
+  with ini do
+  begin
     WriteString(iniSectDBConfig, iniValDBServer, mDBServer);
     WriteString(iniSectDBConfig, iniValDBProto, mDBProto);
     WriteString(iniSectDBConfig, iniValDBName, Base64Encode(mDBName));
     WriteString(iniSectDBConfig, iniValDBUser, Base64Encode(mDBUser));
-    WriteString(iniSectDBConfig, iniValDBPass, Base64Encode(mDBPass));
+    WriteString(iniSectDBConfig, iniValDBpass, Base64Encode(mDBPass));
     WriteString(iniSectDBConfig, iniValDBport, mDBPort);
   end;
   ini.Free;
 end;
 
-//------------------------------------------------------------------------------
-procedure InitDefault_CtrlServerConfig(
-    const Path: string;
-    var mCtrlServerIP, mCtrlServerPort: string);
+// ------------------------------------------------------------------------------
+procedure InitDefault_CtrlServerConfig(const Path: string;
+  var mCtrlServerIP, mCtrlServerPort: string);
 var
   ini: TIniFile;
-  iniF: string;
+  IniF: string;
 begin
   try
-    iniF  := PrepareInif(path);
-    ini   := TIniFile.Create(iniF);
+    IniF := PrepareInif(Path);
+    ini := TIniFile.Create(IniF);
 
-    mCtrlServerIP   := ForceReadString(ini, iniSectConfig, 'ControlSrv', '127.0.0.1');
-    mCtrlServerPort := ForceReadString(ini, iniSectConfig, 'ControlSrvPort', '1234');
+    mCtrlServerIP := ForceReadString(ini, iniSectConfig, 'ControlSrv',
+      '127.0.0.1');
+    mCtrlServerPort := ForceReadString(ini, iniSectConfig,
+      'ControlSrvPort', '1234');
   finally
     ini.Free;
   end
 end;
 
-procedure InitDefault_GameServerConfig(
-  const Path: string;
-  var m2DServerIP, m2DServerPort,
-  m3DServerIP, m3DServerPort: string
-  );
+procedure InitDefault_GameServerConfig(const Path: string;
+  var m2DServerIP, m2DServerPort, m3DServerIP, m3DServerPort: string);
 var
   ini: TIniFile;
-  iniF: string;
+  IniF: string;
 begin
-  iniF := PrepareInif(path);
+  IniF := PrepareInif(Path);
 
-  ini := TIniFile.Create(iniF);
+  ini := TIniFile.Create(IniF);
 
-  m2DServerIP := ForceReadString(ini, iniSectConfig, iniValServer, defaultServer);
-  m2DServerPort := ForceReadString(ini, iniSectConfig, iniValServerPort, defaultServerPort);
-  m3DServerIP := ForceReadString(ini, iniSectConfig, iniVal3DServer, default3DServer);
-  m3DServerPort := ForceReadString(ini, iniSectConfig, iniVal3DServerPort, default3DServerPort);
+  m2DServerIP := ForceReadString(ini, iniSectConfig, iniValServer,
+    defaultServer);
+  m2DServerPort := ForceReadString(ini, iniSectConfig, iniValServerPort,
+    defaultServerPort);
+  m3DServerIP := ForceReadString(ini, iniSectConfig, iniVal3DServer,
+    default3DServer);
+  m3DServerPort := ForceReadString(ini, iniSectConfig, iniVal3DServerPort,
+    default3DServerPort);
 
   ini.Free;
 end;
 
-procedure SaveDefault_GameServerConfig(
-  const Path: string;
-  const m2DServerIP, m2DServerPort,
-  m3DServerIP, m3DServerPort: string
-  );
+procedure SaveDefault_GameServerConfig(const Path: string;
+  const m2DServerIP, m2DServerPort, m3DServerIP, m3DServerPort: string);
 var
   ini: TIniFile;
-  iniF: string;
+  IniF: string;
 begin
-  iniF := PrepareInif(path);
+  IniF := PrepareInif(Path);
 
-  ini := TIniFile.Create(iniF);
-  with ini do begin
+  ini := TIniFile.Create(IniF);
+  with ini do
+  begin
     WriteString(iniSectConfig, iniValServer, m2DServerIP);
     WriteString(iniSectConfig, iniValServerPort, m2DServerPort);
     WriteString(iniSectConfig, iniVal3DServer, m3DServerIP);
@@ -559,77 +571,82 @@ begin
   ini.Free;
 end;
 
-
-procedure InitDefault_BridgeConverterConfig(
-    const Path: string;
-    var  mServerBridge2DPort, mServerBridge3DPort : string);
+procedure InitDefault_SystemServerConfig(const Path: string;
+  var mServer2DAddress, mServer2DPort, mServer3DAddress, mServer3DPort: string);
 
 var
   ini: TIniFile;
-  iniF: string;
+  IniF: string;
 begin
-  iniF := PrepareInif(path);
+  IniF := PrepareInif(Path);
 
-  ini := TIniFile.Create(iniF);
+  ini := TIniFile.Create(IniF);
 
-  mServerBridge2DPort := ForceReadString(ini, iniSectConfigConverter, iniVal2DServerPortConverter, default2DServerPortConverter);
-  mServerBridge3DPort := ForceReadString(ini, iniSectConfigConverter, iniVal3DServerPortConverter, default3DServerPortConverter);
+  mServer2DAddress := ForceReadString(ini, iniSectConfigSystemServer,
+    iniVal2DServerAddressSystemServer, default2DServerAddressSystemServer);
+  mServer2DPort := ForceReadString(ini, iniSectConfigSystemServer,
+    iniVal2DServerPortSystemServer, default2DServerPortSystemServer);
+
+  mServer3DAddress := ForceReadString(ini, iniSectConfigSystemServer,
+    iniVal3DServerAddressSystemServer, default3DServerAddressSystemServer);
+  mServer3DPort := ForceReadString(ini, iniSectConfigSystemServer,
+    iniVal3DServerPortSystemServer, default3DServerPortSystemServer);
 
   ini.Free;
 end;
-procedure SaveDefault_BridgeConverterConfig(
-  const Path: string;
-  const mServerBridge2DPort, mServerBridge3DPort: string);
+
+procedure SaveDefault_SystemServerConfig(const Path: string;
+  const mServer2DPort, mServer3DPort: string);
 var
   ini: TIniFile;
-  iniF: string;
+  IniF: string;
 begin
-  iniF := PrepareInif(path);
+  IniF := PrepareInif(Path);
 
-  ini := TIniFile.Create(iniF);
-  with ini do begin
-    WriteString(iniSectConfigConverter, iniVal2DServerPortConverter, mServerBridge2DPort);
-    WriteString(iniSectConfigConverter, iniVal3DServerPortConverter, mServerBridge3DPort);
+  ini := TIniFile.Create(IniF);
+  with ini do
+  begin
+    WriteString(iniSectConfigSystemServer, iniVal2DServerPortSystemServer,
+      mServer2DPort);
+    WriteString(iniSectConfigSystemServer, iniVal3DServerPortSystemServer,
+      mServer3DPort);
   end;
   ini.Free;
 end;
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
-procedure InitDefault_ShipConfig(
-  const Path: string;
-  var mShipID, mClassID: integer;
-  var mShipName, mClassName: string
-  );
+procedure InitDefault_ShipConfig(const Path: string;
+  var mShipID, mClassID: integer; var mShipName, mClassName: string);
 var
   ini: TIniFile;
-  iniF: string;
+  IniF: string;
 begin
-  iniF := PrepareInif(path);
+  IniF := PrepareInif(Path);
 
-  ini := TIniFile.Create(iniF);
+  ini := TIniFile.Create(IniF);
 
-  mShipID := ForceReadInt(ini, iniSectShips, iniValSHIP, defaultShipID);
-  mShipName := ForceReadString(ini, iniSectShips, iniValShipName, defaultShipName);
+  mShipID := ForceReadInt(ini, iniSectShips, iniValShip, defaultShipID);
+  mShipName := ForceReadString(ini, iniSectShips, iniValShipName,
+    defaultShipName);
   mClassID := ForceReadInt(ini, iniSectShips, iniValClassID, defaultClassID);
-  mClassName := ForceReadString(ini, iniSectShips, iniValClassName, defaultClassName);
+  mClassName := ForceReadString(ini, iniSectShips, iniValClassName,
+    defaultClassName);
 
   ini.Free;
 end;
 
-procedure SaveDefault_ShipConfig(
-  const Path: string;
-  const mShipID, mClassID: integer;
-  const mShipName, mClassName: string
-  );
+procedure SaveDefault_ShipConfig(const Path: string;
+  const mShipID, mClassID: integer; const mShipName, mClassName: string);
 var
   ini: TIniFile;
-  iniF: string;
+  IniF: string;
 begin
-  iniF := PrepareInif(path);
+  IniF := PrepareInif(Path);
 
-  ini := TIniFile.Create(iniF);
-  with ini do begin
-    WriteInteger(iniSectShips, iniValSHIP, mShipID);
+  ini := TIniFile.Create(IniF);
+  with ini do
+  begin
+    WriteInteger(iniSectShips, iniValShip, mShipID);
     WriteString(iniSectShips, iniValShipName, mShipName);
     WriteInteger(iniSectShips, iniValClassID, mClassID);
     WriteString(iniSectShips, iniValClassName, mClassName);
@@ -637,13 +654,13 @@ begin
   ini.Free;
 end;
 
-{procedure InitDefault_MapConfig(
+{ procedure InitDefault_MapConfig(
   const Path: string;
   var xOffset, yOffset: double);
-var
+  var
   ini: TIniFile;
   iniF: string;
-begin
+  begin
   iniF := PrepareInif(path);
 
   ini := TIniFile.Create(iniF);
@@ -651,61 +668,60 @@ begin
   yOffset  :=  ForceReadFloat(ini, iniSectMaps, iniValMapOffY, 0.0);
 
   ini.Free;
-end;
+  end;
 
-procedure SaveDefault_MapConfig(
+  procedure SaveDefault_MapConfig(
   const Path: string;
   var xOffset, yOffset: double);
-var
+  var
   ini: TIniFile;
   iniF: string;
-begin
+  begin
   iniF := PrepareInif(path);
 
   ini := TIniFile.Create(iniF);
   with ini do begin
-      WriteFloat(iniSectMaps, iniValMapOffX  , xOffset );
-      WriteFloat(iniSectMaps, iniValMapOffY  , yOffset );
+  WriteFloat(iniSectMaps, iniValMapOffX  , xOffset );
+  WriteFloat(iniSectMaps, iniValMapOffY  , yOffset );
   end;
   ini.Free;
-end;
+  end;
 }
- {var
-    bridgeSet:  TRecBridgeSet;
-    aPath : string;
+{ var
+  bridgeSet:  TRecBridgeSet;
+  aPath : string;
 
-//Contoh load / init -------------------
-   FPath := GetEmulatorSettingDirectory;
+  //Contoh load / init -------------------
+  FPath := GetEmulatorSettingDirectory;
 
   with bridgeSet.mDB do
-    InitDefault_DBConfig(aPath,
-      mDBServer, mDBProto, mDBName, mDBUser, mDBPass );
+  InitDefault_DBConfig(aPath,
+  mDBServer, mDBProto, mDBName, mDBUser, mDBPass );
 
   with bridgeSet.mServer do
-    InitDefault_GameServerConfig( aPath,
-      m2D_IP,  m2D_Port,
-      m3D_IP,  m3D_Port);
+  InitDefault_GameServerConfig( aPath,
+  m2D_IP,  m2D_Port,
+  m3D_IP,  m3D_Port);
 
   with bridgeSet.mShip do
-    InitDefault_ShipConfig(aPath,
-      mShipID,   mClassID,
-      mShipName, mClassName);
+  InitDefault_ShipConfig(aPath,
+  mShipID,   mClassID,
+  mShipName, mClassName);
 
-//Contoh Save ------------------------
-   with bridgeSet.mDB do
-     SaveDefault_DBConfig(FPath,
-      mDBServer, mDBProto, mDBName, mDBUser, mDBPass );
+  //Contoh Save ------------------------
+  with bridgeSet.mDB do
+  SaveDefault_DBConfig(FPath,
+  mDBServer, mDBProto, mDBName, mDBUser, mDBPass );
 
   with bridgeSet.mServer do
-    SaveDefault_GameServerConfig( FPath,
-      m2D_IP,  m2D_Port,
-      m3D_IP,  m3D_Port);
+  SaveDefault_GameServerConfig( FPath,
+  m2D_IP,  m2D_Port,
+  m3D_IP,  m3D_Port);
 
   with bridgeSet.mShip do
-    SaveDefault_ShipConfig(FPath,
-      mShipID,   mClassID,
-      mShipName, mClassName);
+  SaveDefault_ShipConfig(FPath,
+  mShipID,   mClassID,
+  mShipName, mClassName);
 
 }
 end.
-

@@ -1,6 +1,7 @@
 object Keyboard: TKeyboard
   Left = 0
   Top = 120
+  BorderIcons = []
   BorderStyle = bsSingle
   Caption = 'Keyboard'
   ClientHeight = 743
@@ -98434,6 +98435,7 @@ object Keyboard: TKeyboard
     Top = 146
     Width = 160
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       96540000424D96540000000000003600000028000000780000003C0000000100
@@ -99122,6 +99124,7 @@ object Keyboard: TKeyboard
     Top = 146
     Width = 160
     Height = 80
+    Caption = ''
     Flat = True
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWhite
@@ -101189,6 +101192,7 @@ object Keyboard: TKeyboard
     Top = 271
     Width = 160
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -103250,6 +103254,7 @@ object Keyboard: TKeyboard
     Top = 271
     Width = 160
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -105311,6 +105316,7 @@ object Keyboard: TKeyboard
     Top = 390
     Width = 160
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -107372,6 +107378,7 @@ object Keyboard: TKeyboard
     Top = 390
     Width = 160
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -109433,6 +109440,7 @@ object Keyboard: TKeyboard
     Top = 506
     Width = 160
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -111494,6 +111502,7 @@ object Keyboard: TKeyboard
     Top = 506
     Width = 160
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -113555,6 +113564,7 @@ object Keyboard: TKeyboard
     Top = 146
     Width = 100
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -115616,6 +115626,7 @@ object Keyboard: TKeyboard
     Top = 146
     Width = 100
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -117677,6 +117688,7 @@ object Keyboard: TKeyboard
     Top = 271
     Width = 100
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -119738,6 +119750,7 @@ object Keyboard: TKeyboard
     Top = 271
     Width = 100
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -121799,6 +121812,7 @@ object Keyboard: TKeyboard
     Top = 390
     Width = 100
     Height = 100
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -123862,6 +123876,7 @@ object Keyboard: TKeyboard
     Top = 390
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -125923,6 +125938,7 @@ object Keyboard: TKeyboard
     Top = 390
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -127984,6 +128000,7 @@ object Keyboard: TKeyboard
     Top = 506
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -130045,6 +130062,7 @@ object Keyboard: TKeyboard
     Top = 506
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -132106,6 +132124,7 @@ object Keyboard: TKeyboard
     Top = 146
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -134167,6 +134186,7 @@ object Keyboard: TKeyboard
     Top = 146
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -136228,6 +136248,7 @@ object Keyboard: TKeyboard
     Top = 146
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -138289,6 +138310,7 @@ object Keyboard: TKeyboard
     Top = 271
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -140350,6 +140372,7 @@ object Keyboard: TKeyboard
     Top = 271
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -142411,6 +142434,7 @@ object Keyboard: TKeyboard
     Top = 271
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -144472,6 +144496,7 @@ object Keyboard: TKeyboard
     Top = 390
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -146533,6 +146558,7 @@ object Keyboard: TKeyboard
     Top = 390
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -148594,6 +148620,7 @@ object Keyboard: TKeyboard
     Top = 390
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -150655,6 +150682,7 @@ object Keyboard: TKeyboard
     Top = 506
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -152716,6 +152744,7 @@ object Keyboard: TKeyboard
     Top = 506
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -154777,6 +154806,7 @@ object Keyboard: TKeyboard
     Top = 506
     Width = 80
     Height = 80
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100
@@ -156838,6 +156868,7 @@ object Keyboard: TKeyboard
     Top = 486
     Width = 100
     Height = 100
+    Caption = ''
     Flat = True
     Glyph.Data = {
       36000100424D3600010000000000360000002800000080000000800000000100

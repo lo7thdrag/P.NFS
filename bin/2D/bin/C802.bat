@@ -1,0 +1,1 @@
+C802.exe -10.10.10.200 -2120 -10.10.10.200 -mysql -dbnsfs -root -T3server! -8 -11

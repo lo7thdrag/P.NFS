@@ -46,7 +46,7 @@ type
      pCurrentScenID   : integer;
 
      pServer_Ip,pServer_Port,
-     pDBServer, pDBProto, pDBName, pDBUser, pDBPass,
+     pDBServer, pDBServerPort, pDBProto, pDBName, pDBUser, pDBPass,
      pShipName, pClassName : string;
      pShipID, pClassID : Integer;
      OffX_Map, OffY_Map: Double;
@@ -207,9 +207,9 @@ begin
   begin
     StandAloneMode := false ;
     InitDefault_AllConfigFromInstruktur(pServer_Ip,pServer_Port,
-    pDBServer, pDBProto, pDBName, pDBUser,pDBPass, pShipID, pCurrentScenID );
+    pDBServer, pDBServerPort, pDBProto, pDBName, pDBUser,pDBPass, pShipID, pCurrentScenID );
 
-    if DataModule1.InitZDB(pDBServer, pDBProto, pDBName, pDBUser, pDBPass) then
+    if DataModule1.InitZDB(pDBServer, pDBProto, pDBName, pDBUser, pDBPass, '3306'{pDBServerPort}) then
     begin
         ShipClassID  := DataModule1.GetShipType(pShipID, ShipClassName);
         ShipName     := DataModule1.GetShipName(pShipID);
@@ -327,9 +327,9 @@ begin
    case Screen.MonitorCount of
      1: begin
         AlignFormToMonitor(0, apLeftTop , 0 ,0, TForm(frmTopBurja));
-        AlignFormToMonitor(0, apLeftTop , 0 ,0, TForm(frmBottomBurja));
-        AlignFormToMonitor(0, apLeftTop , 0 ,0, TForm(frm108Kiri));
-        AlignFormToMonitor(0, apLeftTop , 0 ,0, TForm( frm108Kanan));
+        AlignFormToMonitor(0, apLeftBottom , 0 ,0, TForm(frmBottomBurja));
+        AlignFormToMonitor(0, apLeftBottom , 0 ,0, TForm(frm108Kiri));
+        AlignFormToMonitor(0, apLeftBottom , 0 ,0, TForm( frm108Kanan));
 
        frmPanelFire.FormStyle     := fsStayOnTop;
        frm108Kiri.BorderStyle     := TFormBorderStyle(bdr108);
@@ -340,8 +340,8 @@ begin
 
      end;
      2,3: begin
-       frmTopBurja.Height := 1080;
-       frmTopBurja.Width := 1920;
+//       frmTopBurja.Height := 1080;
+//       frmTopBurja.Width := 1920;
 
        frmBottomBurja.Height := frmTopBurja.Height;
        frmBottomBurja.Width := frmTopBurja.Width;
@@ -494,8 +494,8 @@ var aRec: ^TRecData3DPosition;
 
 begin
    aRec := @apRec^;
-   aRec.X :=  aRec.X + OffX_Map;
-   aRec.Y :=  aRec.Y + OffY_Map;
+//   aRec.X :=  aRec.X + OffX_Map;
+//   aRec.Y :=  aRec.Y + OffY_Map;
 
    AddToMemoLog(' : ' + dbID_to_UniqueID(aRec.ShipID) + Format(' %2.6f, %2.6f',[aRec.X, aRec.Y]));
 
