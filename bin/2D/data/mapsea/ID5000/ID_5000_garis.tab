@@ -1,0 +1,42 @@
+!table
+!version 300
+!charset Neutral
+
+Definition Table
+  Type NATIVE Charset "Neutral"
+  Fields 35
+    GM_LAYER Char (22) ;
+    ELEVATION Integer (4) ;
+    LAYER Char (22) ;
+    GM_TYPE Char (26) ;
+    RCID Integer (4) ;
+    PRIM Integer (1) ;
+    GRUP Integer (1) ;
+    OBJL Integer (3) ;
+    RVER Integer (1) ;
+    AGEN Integer (3) ;
+    FIDN Integer (10) ;
+    FIDS Integer (3) ;
+    CATBRG_C Char (1) ;
+    FUNCTN Integer (2) ;
+    COLOUR Integer (1) ;
+    COLPAT Char (1) ;
+    OBJNAM Char (37) ;
+    INFORM Char (51) ;
+    SCAMAX Integer (5) ;
+    SCAMIN Integer (7) ;
+    SORDAT Integer (8) ;
+    SORIND Char (74) ;
+    DSNM Char (12) ;
+    CATCOA_C Char (11) ;
+    NAME Integer (3) ;
+    DRVAL1 Integer (5) ;
+    DRVAL2 Integer (5) ;
+    QUASOU Char (1) ;
+    CATNAV_C Char (40) ;
+    CATTRK_C Char (36) ;
+    TECSOU Char (1) ;
+    ORIENT Float ;
+    CATROD_C Char (10) ;
+    CATSLC_C Char (12) ;
+    WATLEV_C Char (30) ;

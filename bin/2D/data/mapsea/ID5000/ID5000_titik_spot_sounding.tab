@@ -1,0 +1,30 @@
+!table
+!version 300
+!charset Neutral
+
+Definition Table
+  Type NATIVE Charset "Neutral"
+  Fields 23
+    NAME Char (16) ;
+    LAYER Char (14) ;
+    GM_TYPE Char (18) ;
+    RCID Integer (10) ;
+    PRIM Integer (10) ;
+    GRUP Integer (10) ;
+    OBJL Integer (10) ;
+    RVER Integer (10) ;
+    AGEN Integer (10) ;
+    FIDN Integer (10) ;
+    FIDS Integer (10) ;
+    EXPSOU Integer (10) ;
+    QUASOU_C Char (254) ;
+    TECSOU Char (254) ;
+    ELEVATION Float ;
+    OBJNAM Char (254) ;
+    INFORM Char (254) ;
+    SCAMAX Integer (10) ;
+    SCAMIN Integer (10) ;
+    SORDAT Char (254) ;
+    SORIND Char (254) ;
+    DSNM Char (12) ;
+    path Char (254) ;

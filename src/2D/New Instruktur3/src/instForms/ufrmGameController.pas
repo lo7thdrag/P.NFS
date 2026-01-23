@@ -14,7 +14,7 @@ uses
   uClassDatabase, ufrmMainInstruktur, ufScenarioEdit, uDataModule,
   uInstrukturManager, uTCPDatatype, uCMSetting, uBaseCoordSystem, uBaseConstan, ufReportEvent ,
   ufInstLog, uBaseFunction, uInstrukturObjects, uTrajectory, uSimulationManager,
-  RzPanel, ufrmTrajectoryView;
+  RzPanel, ufrmTrajectoryView, AdvTrackBar;
 
 
 type
@@ -676,9 +676,30 @@ type
     imgRBU_Amb2: TImage;
     imgTocos_Amb2: TImage;
     imgAsroc_Amb2: TImage;
-    pnlCameraSet: TAdvSmoothPanel;
-    lblCameraPin: TAdvSmoothLabel;
+    pnlCameraMode: TAdvSmoothPanel;
+    lblCameraMode: TAdvSmoothLabel;
+    pnlCameraViewGadipake: TPanel;
     btnCamPin: TAdvSmoothButton;
+    btnFreeCam: TAdvSmoothButton;
+    pnlCameraRotate1Gadipake: TPanel;
+    pnlPinCamera: TAdvSmoothPanel;
+    wheelAzimut: TVrWheel;
+    lblAzimut: TAdvSmoothLabel;
+    edtAzimut: TEdit;
+    bvlVertical: TBevel;
+    lblPinCamera: TAdvSmoothLabel;
+    lblAzimuthVal: TAdvSmoothLabel;
+    lblRange: TAdvSmoothLabel;
+    trackBarRange: TAdvTrackBar;
+    lblMinRange: TAdvSmoothLabel;
+    lblMaxRange: TAdvSmoothLabel;
+    edtRangeValue: TEdit;
+    edtElevationValue: TEdit;
+    lblMinElevation: TAdvSmoothLabel;
+    AdvSmoothLabel2: TAdvSmoothLabel;
+    trackBarElevation: TAdvTrackBar;
+    lblElevation: TAdvSmoothLabel;
+    bvlHorizontal: TBevel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -796,6 +817,7 @@ type
     procedure btn1Click(Sender: TObject);
     procedure tmrSeaStateTimer(Sender: TObject);
     procedure btnCamPinClick(Sender: TObject);
+    procedure wheelAzimutChange(Sender: TObject);
 
   private
     { Private declarations }
@@ -5516,6 +5538,18 @@ begin
   end;
   UpdateEnvy;
   SimManager.NetSendTo3D_SetCommandOrder(0, ORD_CURDIRECTION, newDir, 0,0,0,0);
+end;
+
+procedure TfrmGameController.wheelAzimutChange(Sender: TObject);
+var
+ azimuth : Integer;
+begin
+  if wheelAzimut.Position < 180 then
+    azimuth := (180 + wheelAzimut.Position)
+  else
+    azimuth := (wheelAzimut.Position - 180);
+
+  edtAzimut.Text := IntToStr(azimuth);
 end;
 
 procedure TfrmGameController.wtrChange;
