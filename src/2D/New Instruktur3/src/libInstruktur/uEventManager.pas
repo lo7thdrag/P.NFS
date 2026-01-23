@@ -402,12 +402,14 @@ begin
           0 :
           begin
             frmMainInstruktur.lblCekRunning.Caption := 'Stop';
+            frmMainInstruktur.SetScenarioState(frmMainInstruktur.lblCekRunning.Caption);
           end;
 
           //Game Status play
           1 :
           begin
             frmMainInstruktur.lblCekRunning.Caption := 'Play';
+            frmMainInstruktur.SetScenarioState(frmMainInstruktur.lblCekRunning.Caption);
             //frmMainInstruktur.Caption := 'Firing System Instruktur - '+DataModule1.GetScenarioByID(0);
 
             frmGameController.lblPortEnv.Caption         := DataModule1.GetPortNameNoById(RecEnvy.Scenario_Port);
@@ -1045,6 +1047,7 @@ var
   i : integer;
 begin
   frmMainInstruktur.lblConnect.Caption.Text := SockStateS[newState];
+  frmMainInstruktur.SetStatusServer(frmMainInstruktur.lblConnect.Caption.Text);
 
   if (OldState = wsConnected) and (NewState = wsClosed) then
   begin
@@ -1625,6 +1628,7 @@ begin
     SimManager.StopScenario;
 
   frmMainInstruktur.lblCekRunning.Caption := 'Stop';
+  frmMainInstruktur.SetScenarioState(frmMainInstruktur.lblCekRunning.Caption);
   frmMainInstruktur.Caption := 'Firing System Instruktur';
   frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
 end;
@@ -1729,6 +1733,7 @@ begin
             if frmMainInstruktur.lblCekRunning.Caption <> 'Editing' then
             begin
                frmMainInstruktur.lblCekRunning.Caption := 'Play';
+               frmMainInstruktur.SetScenarioState(frmMainInstruktur.lblCekRunning.Caption);
             end;
 
             frmMainInstruktur.cekStatusKonek := 'Play';
@@ -1764,6 +1769,7 @@ begin
             if frmMainInstruktur.lblCekRunning.Caption <> 'Editing' then
             begin
                frmMainInstruktur.lblCekRunning.Caption := 'Stop';
+               frmMainInstruktur.SetScenarioState(frmMainInstruktur.lblCekRunning.Caption);
             end;
 
             frmMainInstruktur.Caption := 'Firing System Instruktur';
@@ -2055,10 +2061,12 @@ begin
   if value = 0 then  //stop
   begin
     frmMainInstruktur.lblCekRunning.Caption := 'Stop';
+    frmMainInstruktur.SetScenarioState(frmMainInstruktur.lblCekRunning.Caption);
   end
   else           //replay
   begin
     frmMainInstruktur.lblCekRunning.Caption := 'Replay';
+    frmMainInstruktur.SetScenarioState(frmMainInstruktur.lblCekRunning.Caption);
   end;
 
 end;

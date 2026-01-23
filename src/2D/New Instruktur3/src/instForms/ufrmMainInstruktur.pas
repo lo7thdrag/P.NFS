@@ -120,7 +120,7 @@ type
     lblY: TLabel;
     lblZoomLvl: TLabel;
     btnClose: TSpeedButtonImage;
-    btnAddVehicle1: TSpeedButtonImage;
+    btnAddVehicle: TSpeedButtonImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -219,6 +219,9 @@ type
     procedure SetTrackObject;
     procedure SetTrackObjectTrajectory;
     procedure deleteLeftFrame;
+
+    procedure SetStatusServer(status : string);
+    procedure SetScenarioState(status : string);
   end;
 
 var
@@ -347,46 +350,60 @@ end;
 
 procedure TfrmMainInstruktur.SetDefaultMapTool;
 begin
-  btnZoomCenter.ImageIndex     := 0;
-  btnZoomOut.ImageIndex        := 0;
-  btnZoomIn.ImageIndex         := 0;
-  btnZoomValue.ImageIndex      := 0;
-  btnSelectArrow.ImageIndex    := 0;
-  btnSelectMove.ImageIndex     := 0;
-  btnSelectMoveAll.ImageIndex  := 0;
-  btnToolRuler.ImageIndex      := 0;
-  //btnRecordStart.ImageIndex    := 0;
-  btnRecordPause.ImageIndex    := 0;
-  btnHand.ImageIndex           := 0;
-  btnToolTikas.ImageIndex      := 0;
-  btnZoomCenterMap1.ImageIndex := 0;
-  btnZoomCenterMap2.ImageIndex := 0;
+  btnSelectArrow.ImageIndex     := 0;
+  btnSelectMove.ImageIndex      := 0;
+  btnSelectMoveAll.ImageIndex   := 0;
+  btnAddVehicle.ImageIndex      := 0;
 
-  btnHand.ImageIndex  := 1;
-  FToolSelected       := sHand;
-  MainMap.CurrentTool := miPanTool;
-  lblToolUsed.Caption := 'Select Hand';
+  btnHand.ImageIndex            := 0;
+  btnZoomCenter.ImageIndex      := 0;
+  btnZoomOut.ImageIndex         := 0;
+  btnZoomIn.ImageIndex          := 0;
+  btnZoomValue.ImageIndex       := 0;
+
+  btnToolRuler.ImageIndex       := 0;
+  btnToolTikas.ImageIndex       := 0;
+  btnMiniMap.ImageIndex         := 0;
+  btnMonitor.ImageIndex         := 0;
+  btnClose.ImageIndex           := 0;
+
+//btnRecordStart.ImageIndex       := 0;
+//  btnRecordPause.ImageIndex     := 0;
+//  btnZoomCenterMap1.ImageIndex  := 0;
+//  btnZoomCenterMap2.ImageIndex  := 0;
+
+  btnSelectArrow.ImageIndex  := 1;
+  FToolSelected       := sSelectArrow;
+  MainMap.CurrentTool := miArrowTool;
+  lblToolUsed.Caption := 'Select Arrow';
 end;
 
 procedure TfrmMainInstruktur.setArrow;
 begin
-  btnZoomCenter.ImageIndex     := 0;
-  btnZoomCenterMap1.ImageIndex     := 0;
-  btnZoomCenterMap2.ImageIndex     := 0;
-  btnZoomOut.ImageIndex        := 0;
-  btnZoomIn.ImageIndex         := 0;
-  btnZoomValue.ImageIndex      := 0;
-  btnSelectArrow.ImageIndex    := 1;
-  btnSelectMove.ImageIndex     := 0;
-  btnSelectMoveAll.ImageIndex  := 0;
-  btnToolRuler.ImageIndex      := 0;
- // btnRecordStart.ImageIndex    := 0;
-  btnRecordPause.ImageIndex    := 0;
-  btnHand.ImageIndex           := 0;
-  btnToolTikas.ImageIndex      := 0;
-  btnHand.ImageIndex           := 0;
+  btnSelectArrow.ImageIndex     := 0;
+  btnSelectMove.ImageIndex      := 0;
+  btnSelectMoveAll.ImageIndex   := 0;
+  btnAddVehicle.ImageIndex      := 0;
 
- // FToolSelected       := sSelectArrow;
+  btnHand.ImageIndex            := 0;
+  btnZoomCenter.ImageIndex      := 0;
+  btnZoomOut.ImageIndex         := 0;
+  btnZoomIn.ImageIndex          := 0;
+  btnZoomValue.ImageIndex       := 0;
+
+  btnToolRuler.ImageIndex       := 0;
+  btnToolTikas.ImageIndex       := 0;
+  btnMiniMap.ImageIndex         := 0;
+  btnMonitor.ImageIndex         := 0;
+  btnClose.ImageIndex           := 0;
+
+//btnRecordStart.ImageIndex       := 0;
+//  btnRecordPause.ImageIndex     := 0;
+//  btnZoomCenterMap1.ImageIndex  := 0;
+//  btnZoomCenterMap2.ImageIndex  := 0;
+
+  btnSelectArrow.ImageIndex  := 1;
+  FToolSelected       := sSelectArrow;
   SimManager.Selections.ClearSelection;
   SimManager.VSelect.Visible := false;
   MainMap.CurrentTool := miArrowTool;
@@ -765,7 +782,7 @@ procedure TfrmMainInstruktur.SetProject;
 var
   strPath, worldproject : string;
 begin
-  {$REGION 'Setting Header'}
+  {$REGION ' Setting Header '}
   strPath := '..\data\images\NFS instruktur - interface\imageIns\';
 
   worldproject := SimManager.instProjectSet.World;
@@ -787,7 +804,7 @@ begin
   end;
   {$ENDREGION}
 
-  {$REGION 'Setting Panel'}
+  {$REGION ' Setting Panel '}
   if worldproject = 'NAFS' then
   begin
     FrameControlLeft.pnlUp.Fill.Color := $00D0875A;
@@ -804,6 +821,24 @@ begin
   {$ENDREGION}
 end;
 
+procedure TfrmMainInstruktur.SetScenarioState(status: string);
+begin
+if status = 'Replay' then
+  begin
+    advsmthpnlStatus.Fill.Color := clGreen;
+    advsmthpnlStatus.Fill.ColorMirror := cllime;
+    advsmthpnlStatus.Fill.ColorMirrorTo := clGreen;
+    advsmthpnlStatus.Fill.ColorTo := cllime;
+  end
+  else
+  begin
+    advsmthpnlStatus.Fill.Color := clMaroon;
+    advsmthpnlStatus.Fill.ColorMirror := clRed;
+    advsmthpnlStatus.Fill.ColorMirrorTo := clMaroon;
+    advsmthpnlStatus.Fill.ColorTo := clRed;
+  end;
+end;
+
 { Set Environment }
 procedure TfrmMainInstruktur.SetEnvironment;
 var
@@ -813,96 +848,8 @@ begin
   strPath := '..\data\images\NFS instruktur - interface\bmp\main\tool\';
 
   { Tool Button }
-  { Zoom Center}
-  ImListZoomCenter := TImageList.Create(nil);
-  ImListZoomCenter.Width  := btnZoomCenter.Width;
-  ImListZoomCenter.Height := btnZoomCenter.Height;
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_06.bmp');
-  finally
-    ImListZoomCenter.Add(Bmap, nil);
-    Bmap.Free;
-  end;
 
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_06_down.bmp');
-  finally
-    ImListZoomCenter.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-  btnZoomCenter.ImageList  := ImListZoomCenter;
-  btnZoomCenter.ImageIndex := 0;
-
-
-  { Zoom Out}
-  ImListZoomOut := TImageList.Create(nil);
-  ImListZoomOut.Width  := btnZoomOut.Width;
-  ImListZoomOut.Height := btnZoomOut.Height;
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_03.bmp');
-  finally
-    ImListZoomOut.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_03_down.bmp');
-  finally
-    ImListZoomOut.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-  btnZoomOut.ImageList  := ImListZoomOut;
-  btnZoomOut.ImageIndex := 0;
-
-  { Zoom In}
-  ImListZoomIn := TImageList.Create(nil);
-  ImListZoomIn.Width  := btnZoomIn.Width;
-  ImListZoomIn.Height := btnZoomIn.Height;
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_04.bmp');
-  finally
-    ImListZoomIn.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_04_down.bmp');
-  finally
-    ImListZoomIn.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-  btnZoomIn.ImageList  := ImListZoomIn;
-  btnZoomIn.ImageIndex := 0;
-
-  { Zoom Value }
-  ImListZoomValue := TImageList.Create(nil);
-  ImListZoomValue.Width  := btnZoomValue.Width;
-  ImListZoomValue.Height := btnZoomValue.Height;
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_05.bmp');
-  finally
-    ImListZoomValue.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_05_down.bmp');
-  finally
-    ImListZoomValue.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-  btnZoomValue.ImageList  := ImListZoomValue;
-  btnZoomValue.ImageIndex := 0;
-
-  { Select Arrow }
+  {$REGION ' Select Arrow '}
   ImListSelectArrow := TImageList.Create(nil);
   ImListSelectArrow.Width  := btnSelectArrow.Width;
   ImListSelectArrow.Height := btnSelectArrow.Height;
@@ -923,8 +870,9 @@ begin
   end;
   btnSelectArrow.ImageList  := ImListSelectArrow;
   btnSelectArrow.ImageIndex := 0;
+  {$ENDREGION}
 
-  { Select Move }
+  {$REGION ' Select Move '}
   ImListSelectMove := TImageList.Create(nil);
   ImListSelectMove.Width  := btnSelectMove.Width;
   ImListSelectMove.Height := btnSelectMove.Height;
@@ -945,8 +893,9 @@ begin
   end;
   btnSelectMove.ImageList  := ImListSelectMove;
   btnSelectMove.ImageIndex := 0;
+  {$ENDREGION}
 
-  { Select Move All}
+  {$REGION ' Select Move All '}
   ImListSelectMoveAll := TImageList.Create(nil);
   ImListSelectMoveAll.Width  := btnSelectMoveAll.Width;
   ImListSelectMoveAll.Height := btnSelectMoveAll.Height;
@@ -967,99 +916,9 @@ begin
   end;
   btnSelectMoveAll.ImageList  := ImListSelectMoveAll;
   btnSelectMoveAll.ImageIndex := 0;
+  {$ENDREGION}
 
-  { Tool Ruler}
-  ImListToolRuler := TImageList.Create(nil);
-  ImListToolRuler.Width  := btnToolRuler.Width;
-  ImListToolRuler.Height := btnToolRuler.Height;
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_07.bmp');
-  finally
-    ImListToolRuler.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_07_down.bmp');
-  finally
-    ImListToolRuler.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-  btnToolRuler.ImageList  := ImListToolRuler;
-  btnToolRuler.ImageIndex := 0;
-
-
-  { Tool Tikas}
-  ImListToolTikas := TImageList.Create(nil);
-  ImListToolTikas.Width  := btnToolTikas.Width;
-  ImListToolTikas.Height := btnToolTikas.Height;
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_13.bmp');
-  finally
-    ImListToolTikas.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_13_down.bmp');
-  finally
-    ImListToolTikas.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-  btnToolTikas.ImageList  := ImListToolTikas;
-  btnToolTikas.ImageIndex := 0;
-
-
-
-  { Record Start}
-  ImListRecordStart := TImageList.Create(nil);
-  ImListRecordStart.Width  := btnRecordStart.Width;
-  ImListRecordStart.Height := btnRecordStart.Height;
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_10.bmp');
-  finally
-    ImListRecordStart.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_10_down.bmp');
-  finally
-    ImListRecordStart.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-  btnRecordStart.ImageList := ImListRecordStart;
-  btnRecordStart.ImageIndex := 0;
-
-  { Record Pause}
-  ImListRecordPause := TImageList.Create(nil);
-  ImListRecordPause.Width  := btnRecordPause.Width;
-  ImListRecordPause.Height := btnRecordPause.Height;
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_11.bmp');
-  finally
-    ImListRecordPause.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-
-  try
-    Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_11_down.bmp');
-  finally
-    ImListRecordPause.Add(Bmap, nil);
-    Bmap.Free;
-  end;
-  btnRecordPause.ImageList  := ImListRecordPause;
-  btnRecordPause.ImageIndex := 0;
-
-  { Hand }
+  {$REGION ' Move Map '}
   ImListHand := TImageList.Create(nil);
   ImListHand.Width  := btnHand.Width;
   ImListHand.Height := btnHand.Height;
@@ -1080,30 +939,147 @@ begin
   end;
   btnHand.ImageList  := ImListHand;
   btnHand.ImageIndex := 0;
+  {$ENDREGION}
 
-  { Monitor }
-  ImListToolMonitor := TImageList.Create(nil);
-  ImListToolMonitor.Width  := btnZoomCenterMap1.Width;
-  ImListToolMonitor.Height := btnZoomCenterMap1.Height;
+  {$REGION ' Zoom Center '}
+  ImListZoomCenter := TImageList.Create(nil);
+  ImListZoomCenter.Width  := btnZoomCenter.Width;
+  ImListZoomCenter.Height := btnZoomCenter.Height;
   try
     Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_14.bmp');
+    Bmap.LoadFromFile(strPath + 'button tool_06.bmp');
   finally
-    ImListToolMonitor.Add(Bmap, nil);
+    ImListZoomCenter.Add(Bmap, nil);
     Bmap.Free;
   end;
 
   try
     Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'button tool_14_Down.bmp');
+    Bmap.LoadFromFile(strPath + 'button tool_06_down.bmp');
   finally
-    ImListToolMonitor.Add(Bmap, nil);
+    ImListZoomCenter.Add(Bmap, nil);
     Bmap.Free;
   end;
-  btnMonitor.ImageList  := ImListToolMonitor;
-  btnMonitor.ImageIndex := 0;
+  btnZoomCenter.ImageList  := ImListZoomCenter;
+  btnZoomCenter.ImageIndex := 0;
+  {$ENDREGION}
 
-  { Minimap }
+  {$REGION ' Zoom Out '}
+  ImListZoomOut := TImageList.Create(nil);
+  ImListZoomOut.Width  := btnZoomOut.Width;
+  ImListZoomOut.Height := btnZoomOut.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_03.bmp');
+  finally
+    ImListZoomOut.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_03_down.bmp');
+  finally
+    ImListZoomOut.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnZoomOut.ImageList  := ImListZoomOut;
+  btnZoomOut.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Zoom In '}
+  ImListZoomIn := TImageList.Create(nil);
+  ImListZoomIn.Width  := btnZoomIn.Width;
+  ImListZoomIn.Height := btnZoomIn.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_04.bmp');
+  finally
+    ImListZoomIn.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_04_down.bmp');
+  finally
+    ImListZoomIn.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnZoomIn.ImageList  := ImListZoomIn;
+  btnZoomIn.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Zoom Value '}
+  ImListZoomValue := TImageList.Create(nil);
+  ImListZoomValue.Width  := btnZoomValue.Width;
+  ImListZoomValue.Height := btnZoomValue.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_05.bmp');
+  finally
+    ImListZoomValue.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_05_down.bmp');
+  finally
+    ImListZoomValue.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnZoomValue.ImageList  := ImListZoomValue;
+  btnZoomValue.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Tool Ruler '}
+  ImListToolRuler := TImageList.Create(nil);
+  ImListToolRuler.Width  := btnToolRuler.Width;
+  ImListToolRuler.Height := btnToolRuler.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_07.bmp');
+  finally
+    ImListToolRuler.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_07_down.bmp');
+  finally
+    ImListToolRuler.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnToolRuler.ImageList  := ImListToolRuler;
+  btnToolRuler.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Tool Tikas '}
+  ImListToolTikas := TImageList.Create(nil);
+  ImListToolTikas.Width  := btnToolTikas.Width;
+  ImListToolTikas.Height := btnToolTikas.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_13.bmp');
+  finally
+    ImListToolTikas.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_13_down.bmp');
+  finally
+    ImListToolTikas.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnToolTikas.ImageList  := ImListToolTikas;
+  btnToolTikas.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Minimap '}
   ImListMinimap := TImageList.Create(nil);
   ImListMinimap.Width  := btnMiniMap.Width;
   ImListMinimap.Height := btnMiniMap.Height;
@@ -1124,8 +1100,78 @@ begin
   end;
   btnMiniMap.ImageList  := ImListMinimap;
   btnMiniMap.ImageIndex := 0;
+  {$ENDREGION}
 
-  { Close }
+  {$REGION ' Monitor '}
+  ImListToolMonitor := TImageList.Create(nil);
+  ImListToolMonitor.Width  := btnZoomCenterMap1.Width;
+  ImListToolMonitor.Height := btnZoomCenterMap1.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_14.bmp');
+  finally
+    ImListToolMonitor.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_14_Down.bmp');
+  finally
+    ImListToolMonitor.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnMonitor.ImageList  := ImListToolMonitor;
+  btnMonitor.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Record Start '}
+  ImListRecordStart := TImageList.Create(nil);
+  ImListRecordStart.Width  := btnRecordStart.Width;
+  ImListRecordStart.Height := btnRecordStart.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_10.bmp');
+  finally
+    ImListRecordStart.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_10_down.bmp');
+  finally
+    ImListRecordStart.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnRecordStart.ImageList := ImListRecordStart;
+  btnRecordStart.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Record Pause '}
+  ImListRecordPause := TImageList.Create(nil);
+  ImListRecordPause.Width  := btnRecordPause.Width;
+  ImListRecordPause.Height := btnRecordPause.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_11.bmp');
+  finally
+    ImListRecordPause.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'button tool_11_down.bmp');
+  finally
+    ImListRecordPause.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnRecordPause.ImageList  := ImListRecordPause;
+  btnRecordPause.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Close '}
   ImListClose := TImageList.Create(nil);
   ImListClose.Width  := btnClose.Width;
   ImListClose.Height := btnClose.Height;
@@ -1146,7 +1192,7 @@ begin
   end;
   btnClose.ImageList  := ImListClose;
   btnClose.ImageIndex := 0;
-
+  {$ENDREGION}
 
 
   btnZoomCenterMap1.ImageList  := ImListToolMonitor;
@@ -2964,6 +3010,24 @@ begin
     else begin
       frmGameController.edtTampung.Text := '0';
     end;
+  end;
+end;
+
+procedure TfrmMainInstruktur.SetStatusServer(status : string);
+begin
+  if status = ' Connected' then
+  begin
+    AdvSmoothPanel7.Fill.Color := clGreen;
+    AdvSmoothPanel7.Fill.ColorMirror := cllime;
+    AdvSmoothPanel7.Fill.ColorMirrorTo := clGreen;
+    AdvSmoothPanel7.Fill.ColorTo := cllime;
+  end
+  else
+  begin
+    AdvSmoothPanel7.Fill.Color := clMaroon;
+    AdvSmoothPanel7.Fill.ColorMirror := clRed;
+    AdvSmoothPanel7.Fill.ColorMirrorTo := clMaroon;
+    AdvSmoothPanel7.Fill.ColorTo := clRed;
   end;
 end;
 

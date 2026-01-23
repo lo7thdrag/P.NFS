@@ -78,13 +78,14 @@ object frmMainInstruktur: TfrmMainInstruktur
         Version = '1.6.0.1'
         Align = alRight
         TabOrder = 0
+        ExplicitTop = -6
         DesignSize = (
           87
           1016)
         TMSStyle = 0
         object btnRecordStart: TSpeedButtonImage
           Left = 19
-          Top = 776
+          Top = 895
           Width = 48
           Height = 48
           Hint = 'OffRecord'
@@ -95,7 +96,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnRecordPause: TSpeedButtonImage
           Left = 19
-          Top = 718
+          Top = 837
           Width = 48
           Height = 48
           Caption = ''
@@ -119,7 +120,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Top = 80
           Width = 48
           Height = 48
-          Hint = 'Move'
+          Hint = 'Move Vehicle'
           Caption = ''
           Flat = True
           ParentShowHint = False
@@ -131,7 +132,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Top = 138
           Width = 48
           Height = 48
-          Hint = 'MultiMove'
+          Hint = 'Multi Move Vehicle'
           Caption = ''
           Flat = True
           ParentShowHint = False
@@ -142,7 +143,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Top = 312
           Width = 48
           Height = 48
-          Hint = 'Center'
+          Hint = 'Center Map'
           Caption = ''
           Flat = True
           Layout = blGlyphTop
@@ -200,7 +201,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Top = 602
           Width = 48
           Height = 48
-          Hint = 'Hide History'
+          Hint = 'History'
           Caption = ''
           Flat = True
           ParentShowHint = False
@@ -211,7 +212,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Top = 254
           Width = 48
           Height = 48
-          Hint = 'Hand'
+          Hint = 'Move Map'
           Caption = ''
           Flat = True
           ParentShowHint = False
@@ -223,6 +224,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Top = 660
           Width = 48
           Height = 48
+          Hint = 'Mini Map'
           Caption = ''
           Flat = True
           ParentShowHint = False
@@ -232,11 +234,10 @@ object frmMainInstruktur: TfrmMainInstruktur
         object btnMonitor: TSpeedButtonImage
           Tag = 1
           Left = 19
-          Top = 834
+          Top = 718
           Width = 48
           Height = 48
-          Hint = 'OffRecord'
-          Anchors = [akBottom]
+          Hint = 'Game Controller'
           Caption = ''
           Flat = True
           ParentShowHint = False
@@ -246,10 +247,10 @@ object frmMainInstruktur: TfrmMainInstruktur
         object btnClose: TSpeedButtonImage
           Tag = 10
           Left = 19
-          Top = 952
+          Top = 953
           Width = 48
           Height = 48
-          Hint = 'OffRecord'
+          Hint = 'Exit'
           Anchors = [akBottom]
           Caption = ''
           Flat = True
@@ -257,7 +258,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           ShowHint = True
           OnClick = DisplayController1Click
         end
-        object btnAddVehicle1: TSpeedButtonImage
+        object btnAddVehicle: TSpeedButtonImage
           Left = 19
           Top = 196
           Width = 48
@@ -310,7 +311,7 @@ object frmMainInstruktur: TfrmMainInstruktur
             8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
             918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
             6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-            0100011801000040C5920F01000000000000001C000000000000000000000000
+            0100011801000098AA512A01000000000000001C000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000002
             0000000000000000000000000000000000000000000000000000000000000000
@@ -319,15 +320,15 @@ object frmMainInstruktur: TfrmMainInstruktur
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             8076C000000000008056C0000000000080764000000000008056400100000018
-            01000040C5920F010000006C8F76771C00000000000000000000000000000000
+            01000098AA512A010000006C8FE4771C00000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000200000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
-            00000000000000000000000000000000000000000000000A1A03000A1A030080
-            E89700B67239754007030034E997000000000034E99700000000000000000000
+            0000000000000000000000000000000000000000000000280709002807090080
+            E89700B67293759C0D260034E997000000000034E99700000000000000000000
             000088B3400000000000408F400001000001}
         end
         object pnlHeader: TPanel
@@ -428,12 +429,15 @@ object frmMainInstruktur: TfrmMainInstruktur
           Top = 34
           Width = 133
           Height = 18
-          Fill.ColorMirror = clNone
+          Fill.Color = clWhite
+          Fill.ColorTo = clWhite
+          Fill.ColorMirror = clWhite
           Fill.ColorMirrorTo = clNone
           Fill.GradientType = gtVertical
           Fill.GradientMirrorType = gtSolid
           Fill.BorderColor = clNone
           Fill.Rounding = 0
+          Fill.ShadowColor = clWhite
           Fill.ShadowOffset = 0
           Fill.Glow = gmNone
           Caption.Text = 'Closed'
@@ -442,7 +446,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Caption.Font.Height = -13
           Caption.Font.Name = 'Tahoma'
           Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
+          Caption.ColorStart = clWhite
           Caption.ColorEnd = clWhite
           CaptionShadow.Text = 'AdvSmoothLabel'
           CaptionShadow.Font.Charset = DEFAULT_CHARSET
@@ -483,6 +487,79 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
       end
       object advsmthpnlStatus: TAdvSmoothPanel
+        Left = 1182
+        Top = 0
+        Width = 153
+        Height = 63
+        Cursor = crDefault
+        Caption.HTMLFont.Charset = DEFAULT_CHARSET
+        Caption.HTMLFont.Color = clWindowText
+        Caption.HTMLFont.Height = -11
+        Caption.HTMLFont.Name = 'Tahoma'
+        Caption.HTMLFont.Style = []
+        Caption.Font.Charset = DEFAULT_CHARSET
+        Caption.Font.Color = clWindowText
+        Caption.Font.Height = -16
+        Caption.Font.Name = 'Tahoma'
+        Caption.Font.Style = [fsBold]
+        Caption.ColorStart = clSilver
+        Caption.ColorEnd = clWhite
+        Fill.Color = clGray
+        Fill.ColorTo = 10066329
+        Fill.ColorMirror = 10066329
+        Fill.ColorMirrorTo = clGray
+        Fill.GradientType = gtVertical
+        Fill.GradientMirrorType = gtVertical
+        Fill.BorderColor = clWhite
+        Fill.BorderWidth = 5
+        Fill.Rounding = 10
+        Fill.ShadowColor = clNone
+        Fill.ShadowOffset = 10
+        Fill.Glow = gmNone
+        Version = '1.6.0.1'
+        Align = alRight
+        TabOrder = 1
+        ExplicitLeft = 1029
+        DesignSize = (
+          153
+          63)
+        TMSStyle = 0
+        object lblCekRunning: TLabel
+          Left = 10
+          Top = 34
+          Width = 133
+          Height = 18
+          Alignment = taCenter
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          AutoSize = False
+          Caption = 'Stop'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Transparent = True
+        end
+        object lbl13: TLabel
+          Left = 10
+          Top = 16
+          Width = 133
+          Height = 18
+          Alignment = taCenter
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          AutoSize = False
+          Caption = 'Scenario State'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Transparent = True
+        end
+      end
+      object advsmthpnlStatus3D: TAdvSmoothPanel
         Left = 1029
         Top = 0
         Width = 153
@@ -515,79 +592,9 @@ object frmMainInstruktur: TfrmMainInstruktur
         Version = '1.6.0.1'
         Align = alRight
         Visible = False
-        TabOrder = 1
-        DesignSize = (
-          153
-          63)
-        TMSStyle = 0
-        object lblCekRunning: TLabel
-          Left = 10
-          Top = 34
-          Width = 133
-          Height = 18
-          Alignment = taCenter
-          Anchors = [akLeft, akTop, akRight, akBottom]
-          AutoSize = False
-          Caption = 'Stop'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWhite
-          Font.Height = -12
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Transparent = True
-        end
-        object lbl13: TLabel
-          Left = 10
-          Top = 16
-          Width = 133
-          Height = 18
-          Alignment = taCenter
-          Anchors = [akLeft, akTop, akRight, akBottom]
-          AutoSize = False
-          Caption = 'Status '
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWhite
-          Font.Height = -12
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Transparent = True
-        end
-      end
-      object advsmthpnlStatus3D: TAdvSmoothPanel
-        Left = 1182
-        Top = 0
-        Width = 153
-        Height = 63
-        Cursor = crDefault
-        Caption.HTMLFont.Charset = DEFAULT_CHARSET
-        Caption.HTMLFont.Color = clWindowText
-        Caption.HTMLFont.Height = -11
-        Caption.HTMLFont.Name = 'Tahoma'
-        Caption.HTMLFont.Style = []
-        Caption.Font.Charset = DEFAULT_CHARSET
-        Caption.Font.Color = clWindowText
-        Caption.Font.Height = -16
-        Caption.Font.Name = 'Tahoma'
-        Caption.Font.Style = [fsBold]
-        Caption.ColorStart = clSilver
-        Caption.ColorEnd = clWhite
-        Fill.Color = clGray
-        Fill.ColorTo = 10066329
-        Fill.ColorMirror = 10066329
-        Fill.ColorMirrorTo = clGray
-        Fill.GradientType = gtVertical
-        Fill.GradientMirrorType = gtVertical
-        Fill.BorderColor = clWhite
-        Fill.BorderWidth = 5
-        Fill.Rounding = 10
-        Fill.ShadowColor = clNone
-        Fill.ShadowOffset = 10
-        Fill.Glow = gmNone
-        Version = '1.6.0.1'
-        Align = alRight
         TabOrder = 2
+        ExplicitLeft = 982
+        ExplicitTop = 6
         DesignSize = (
           153
           63)
@@ -617,7 +624,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           Alignment = taCenter
           Anchors = [akLeft, akTop, akRight, akBottom]
           AutoSize = False
-          Caption = 'Scenario Status'
+          Caption = '3D Status'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -14188,7 +14195,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          0100011801000040C5920F01000000000000001C000000000000000000000000
+          0100011801000098AA512A01000000000000001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -14197,7 +14204,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          01000040C5920F01000000000000001C00000000000000000000000000000000
+          01000098AA512A01000000000000001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
