@@ -1,0 +1,1 @@
+fcc.exe -192.168.0.210 -2120 -127.0.0.1 -mysql -dbNSuFs -root -T3server! -10 -10
