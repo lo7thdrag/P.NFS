@@ -856,6 +856,16 @@ type
     ShipID : Word;
   end;
 
+  // REC_CAMERA_KONtrOL_NEW
+  TRec_CameraController3D = record     // Rec_CMD_CAMERA_CONTROLLER = 68
+    [BsonElement('cmd')]
+    cmd : Byte;
+    [BsonElement('vnt')]
+    valueInt : Integer;
+    [BsonElement('vdb')]
+    valueDbl : Double;
+  end;
+
 implementation
 
 end.

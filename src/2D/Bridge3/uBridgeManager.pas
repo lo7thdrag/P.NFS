@@ -430,6 +430,8 @@ begin
     RegisterProcedure(REC_RECV_TORP_STATE, nil, sizeof(TRec_TorpStatus));
     RegisterProcedure(REC_CMD_SET_CAMERA_TARGET, ServerReceive_ClientSend,
       sizeof(TRecCmdSetCameraTarget));
+    RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, ServerReceive_ClientSend,
+      sizeof(TRec_CameraController));
 
     // For Map Control
     RegisterProcedure(REC_MAP_COMMAND, ServerReceive_ServerSend,
@@ -503,6 +505,9 @@ begin
   TcpClient.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET, nil,
       sizeof(TRecCmdSetCameraTarget));
 
+  TcpClient.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, nil,
+      sizeof(TRec_CameraController));
+
 end;
 
 procedure TBridgeManager.RunSimulation;
@@ -544,6 +549,8 @@ var
   recVLMica: ^TRec3DSetVLMica;
 
   recCmdSetCameraTarget: ^TRecCmdSetCameraTarget;
+
+  recCmdSetCameraController: ^TRec_CameraController;
 
   xTarget_3D, yTarget_3D, zTarget_3D: Double;
 
@@ -795,6 +802,15 @@ begin
         ' --> Send Back To Server 3D');
       recCmdSetCameraTarget:= @apRec^;
       OnLogPacket('ShipID :' + IntToStr(recCmdSetCameraTarget^.ShipID));
+    end
+    else if pc.ID = Rec_CMD_CAMERA_CONTROLLER then
+    begin
+      OnLogPacket('Rec_CMD_CAMERA_CONTROLLER, ' + IntToStr(pc.ID) +
+        ' --> Send Back To Server 3D');
+      recCmdSetCameraController:= @apRec^;
+      OnLogPacket(('Rec_CMD_CAMERA_CONTROLLER' + #13#10 +
+            'cmd : ' + IntToStr(recCmdSetCameraController^.cmd)+ #13#10 +
+            'ValInt : ' + IntToStr(recCmdSetCameraController^.valueInt)+ #13#10));
     end
     else
     begin

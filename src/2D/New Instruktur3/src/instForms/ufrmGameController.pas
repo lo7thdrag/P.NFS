@@ -820,6 +820,19 @@ type
     procedure wheelAzimutChange(Sender: TObject);
     procedure trackBarRangeChange(Sender: TObject);
     procedure trackBarElevationChange(Sender: TObject);
+    procedure edtAzimutExit(Sender: TObject);
+    procedure btnFreeCamClick(Sender: TObject);
+    procedure edtAzimutKeyPress(Sender: TObject; var Key: Char);
+    procedure wheelAzimutMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure trackBarRangeMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure edtRangeValueExit(Sender: TObject);
+    procedure edtRangeValueKeyPress(Sender: TObject; var Key: Char);
+    procedure edtElevationValueExit(Sender: TObject);
+    procedure edtElevationValueKeyPress(Sender: TObject; var Key: Char);
+    procedure trackBarElevationMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
 
   private
     { Private declarations }
@@ -3409,6 +3422,7 @@ begin
   end;
 end;
 
+
 { Torpedo A244 }
 procedure TfrmGameController.btnFireSpsClick(Sender: TObject);
 var
@@ -4373,18 +4387,6 @@ begin
   end;
 end;
 
-procedure TfrmGameController.btnCamPinClick(Sender: TObject);
-var
-  ShipID: Word;
-  RecSend: TRecCmdSetCameraTarget;
-begin
-  if not Assigned(SimManager.TrackObject) then
-    Exit;
-  ShipID:= SimManager.TrackObject.FDataBaseID;
-  RecSend.ShipID:= ShipID;
-  SimManager.NetSendTo3D_CommandPinCamera(@RecSend);
-end;
-
 procedure TfrmGameController.btnCamRotateOldLeftMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
@@ -4697,10 +4699,47 @@ begin
   edtElevationValue.Text := IntToStr(trackBarElevation.Position);
 end;
 
+procedure TfrmGameController.trackBarElevationMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  rec : TRec_CameraController;
+begin
+  if StrToInt(edtElevationValue.Text) < trackBarElevation.Min then
+    edtElevationValue.Text := IntToStr(trackBarElevation.Min)
+  else if StrToInt(edtElevationValue.Text) > trackBarElevation.Max then
+    edtElevationValue.Text := IntToStr(trackBarElevation.Max);
+
+  trackBarElevation.Position := StrToInt(edtElevationValue.Text);
+
+  rec.cmd := __ORD_ID_CAMCON_POS_ELEVATION;
+  rec.valueInt := StrToInt(edtElevationValue.Text);
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
+end;
+
 procedure TfrmGameController.trackBarRangeChange(Sender: TObject);
 begin
   edtRangeValue.Text := IntToStr(trackBarRange.Position);
+end;
 
+procedure TfrmGameController.trackBarRangeMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  rec : TRec_CameraController;
+begin
+  if StrToInt(edtRangeValue.Text) < trackBarRange.Min then
+    edtRangeValue.Text := IntToStr(trackBarRange.Min)
+  else if StrToInt(edtRangeValue.Text) > trackBarRange.Max then
+    edtRangeValue.Text := IntToStr(trackBarRange.Max);
+
+  trackBarRange.Position := StrToInt(edtRangeValue.Text);
+
+  rec.cmd := __ORD_ID_CAMCON_POS_RANGE;
+  rec.valueInt := StrToInt(edtRangeValue.Text);
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
 end;
 
 procedure TfrmGameController.LoadImageLight(var Aimage: TImage; imgStat: string; const stat: byte);
@@ -5375,6 +5414,175 @@ begin
     SimManager.FMap.CurrentTool := TOOL_SELECT_ASROC_TARGET;
 end;
 
+procedure TfrmGameController.btnCamPinClick(Sender: TObject);
+var
+  ShipID: Word;
+  RecSend: TRecCmdSetCameraTarget;
+  rec : TRec_CameraController;
+begin
+  if not Assigned(SimManager.TrackObject) then
+    Exit;
+//  ShipID:= SimManager.TrackObject.FDataBaseID;
+//  RecSend.ShipID:= ShipID;
+//  SimManager.NetSendTo3D_CommandPinCamera(RecSend);
+
+  // Coba Send Cam Denta
+  ShipID := SimManager.TrackObject.FDataBaseID;
+  rec.cmd := __ORD_ID_CAMCON_SHOW_PLATFORM;
+  rec.valueInt := ShipID;
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
+end;
+
+procedure TfrmGameController.edtAzimutExit(Sender: TObject);
+var
+  azimuth : Integer;
+  rec : TRec_CameraController;
+begin
+  azimuth := StrToInt(edtAzimut.Text);
+
+  if azimuth >= 360 then
+    azimuth := 0;
+
+  if azimuth < 180 then
+    wheelAzimut.Position := azimuth + 180
+  else
+    wheelAzimut.Position := azimuth - 180;
+
+  rec.cmd := __ORD_ID_CAMCON_POS_AZIMUTH;
+  rec.valueInt := azimuth;
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
+end;
+
+procedure TfrmGameController.edtAzimutKeyPress(Sender: TObject; var Key: Char);
+var
+rec : TRec_CameraController;
+azimuth : Integer;
+begin
+  if not (Key in[#48 .. #57, #8, #13]) then
+    Key := #0;
+
+  if Key = #13 then
+  begin
+    azimuth := StrToInt(edtAzimut.Text);
+
+    if azimuth >= 360 then
+      azimuth := 0;
+
+    if azimuth < 180 then
+      wheelAzimut.Position := azimuth + 180
+    else
+      wheelAzimut.Position := azimuth - 180;
+
+    rec.cmd := __ORD_ID_CAMCON_POS_AZIMUTH;
+    rec.valueInt := azimuth;
+    rec.valueDbl := 0;
+
+    SimManager.NetSendTo3D_CommandCamera(@rec);
+  end;
+end;
+
+procedure TfrmGameController.edtElevationValueExit(Sender: TObject);
+var
+  rec : TRec_CameraController;
+begin
+
+  if StrToInt(edtElevationValue.Text) < trackBarElevation.Min then
+    edtElevationValue.Text := IntToStr(trackBarElevation.Min)
+  else if StrToInt(edtElevationValue.Text) > trackBarElevation.Max then
+    edtElevationValue.Text := IntToStr(trackBarElevation.Max);
+
+  trackBarElevation.Position := StrToInt(edtElevationValue.Text);
+
+  rec.cmd := __ORD_ID_CAMCON_POS_ELEVATION;
+  rec.valueInt := StrToInt(edtElevationValue.Text);
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
+end;
+
+procedure TfrmGameController.edtElevationValueKeyPress(Sender: TObject;
+  var Key: Char);
+var
+  rec : TRec_CameraController;
+begin
+  if not (Key in[#48 .. #57, #8, #13]) then
+    Key := #0;
+
+  if Key = #13 then
+  begin
+    if StrToInt(edtElevationValue.Text) < trackBarElevation.Min then
+      edtElevationValue.Text := IntToStr(trackBarElevation.Min)
+    else if StrToInt(edtElevationValue.Text) > trackBarElevation.Max then
+      edtElevationValue.Text := IntToStr(trackBarElevation.Max);
+
+    trackBarElevation.Position := StrToInt(edtElevationValue.Text);
+
+    rec.cmd := __ORD_ID_CAMCON_POS_ELEVATION;
+    rec.valueInt := StrToInt(edtElevationValue.Text);
+    rec.valueDbl := 0;
+
+    SimManager.NetSendTo3D_CommandCamera(@rec);
+  end;
+end;
+
+procedure TfrmGameController.edtRangeValueExit(Sender: TObject);
+var
+  rec : TRec_CameraController;
+begin
+  if StrToInt(edtRangeValue.Text) < trackBarRange.Min then
+    edtRangeValue.Text := IntToStr(trackBarRange.Min)
+  else if StrToInt(edtRangeValue.Text) > trackBarRange.Max then
+    edtRangeValue.Text := IntToStr(trackBarRange.Max);
+
+  trackBarRange.Position := StrToInt(edtRangeValue.Text);
+
+  rec.cmd := __ORD_ID_CAMCON_POS_RANGE;
+  rec.valueInt := StrToInt(edtRangeValue.Text);
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
+end;
+
+procedure TfrmGameController.edtRangeValueKeyPress(Sender: TObject;
+  var Key: Char);
+var
+  rec : TRec_CameraController;
+begin
+  if not (Key in[#48 .. #57, #8, #13]) then
+    Key := #0;
+
+  if Key = #13 then
+  begin
+    if StrToInt(edtRangeValue.Text) < trackBarRange.Min then
+      edtRangeValue.Text := IntToStr(trackBarRange.Min)
+    else if StrToInt(edtRangeValue.Text) > trackBarRange.Max then
+      edtRangeValue.Text := IntToStr(trackBarRange.Max);
+
+    trackBarRange.Position := StrToInt(edtRangeValue.Text);
+
+    rec.cmd := __ORD_ID_CAMCON_POS_RANGE;
+    rec.valueInt := StrToInt(edtRangeValue.Text);
+    rec.valueDbl := 0;
+
+    SimManager.NetSendTo3D_CommandCamera(@rec);
+  end;
+end;
+
+procedure TfrmGameController.btnFreeCamClick(Sender: TObject);
+var
+rec : TRec_CameraController;
+begin
+  rec.cmd := __ORD_ID_CAMCON_MODE;
+  rec.valueInt := 0;
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
+end;
+
 procedure TfrmGameController.edtTampungChange(Sender: TObject);
 begin
   if edtTampung.Text = '0' then
@@ -5563,6 +5771,17 @@ begin
     azimuth := (wheelAzimut.Position - 180);
 
   edtAzimut.Text := IntToStr(azimuth);
+end;
+
+procedure TfrmGameController.wheelAzimutMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+ rec : TRec_CameraController;
+begin
+ rec.cmd := __ORD_ID_CAMCON_POS_AZIMUTH;
+ rec.valueInt := StrToInt(edtAzimut.Text);
+
+ SimManager.NetSendTo3D_CommandCamera(@rec);
 end;
 
 procedure TfrmGameController.wtrChange;

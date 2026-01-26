@@ -686,6 +686,9 @@ begin
   FServer2D.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET, Server2DReceive_Server3DSend,
       sizeof(TRecCmdSetCameraTarget));
 
+  FServer2D.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, Server2DReceive_Server3DSend,
+      sizeof(TRec_CameraController));
+
   // GUIDANCE VEHICLE
   FServer2D.RegisterProcedure(REC_GUIDANCE, Server2DReceive_Server3DSend,
     SizeOf(TRecGuidance));
@@ -810,6 +813,9 @@ var
 
   RecCmdSetCameraTarget: ^TRecCmdSetCameraTarget;
   RecCmdSetCameraTarget3D: TRecCmdSetCameraTarget3D;
+
+  RecCmdSetCameraControl: ^TRec_CameraController;
+  RecCmdSetCameraControl3D: TRec_CameraController3D;
 
   o: TObject;
 
@@ -1637,17 +1643,33 @@ begin
           FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
         end;
       end;
-    REC_CMD_SET_CAMERA_TARGET:
+//    REC_CMD_SET_CAMERA_TARGET:
+//      begin
+//        RecCmdSetCameraTarget := @apRec^;
+//
+//        if Assigned(OnLogReceived2D) then
+//          OnLogReceived2D('REC_CMD_SET_CAMERA_TARGET' + #13#10 +
+//            'ShipID : ' + IntToStr(RecCmdSetCameraTarget^.ShipID));
+//
+//        RecCmdSetCameraTarget3D.ShipID := RecCmdSetCameraTarget^.ShipID;
+//
+//        TcpServer3D.SendData(REC_CMD_SET_CAMERA_TARGET_3D, RecCmdSetCameraTarget3D);
+//      end;
+    Rec_CMD_CAMERA_CONTROLLER:
       begin
-        RecCmdSetCameraTarget := @apRec^;
+        RecCmdSetCameraControl := @apRec^;
 
         if Assigned(OnLogReceived2D) then
-          OnLogReceived2D('REC_CMD_SET_CAMERA_TARGET' + #13#10 +
-            'ShipID : ' + IntToStr(RecCmdSetCameraTarget^.ShipID));
+          OnLogReceived2D('Rec_CMD_CAMERA_CONTROLLER' + #13#10 +
+            'cmd : ' + IntToStr(RecCmdSetCameraControl^.cmd)+ #13#10 +
+            'ValInt : ' + IntToStr(RecCmdSetCameraControl^.valueInt)+ #13#10);
+//            'ValDbl : ' + (RecCmdSetCameraControl^.valueDbl)+ #13#10);
 
-        RecCmdSetCameraTarget3D.ShipID := RecCmdSetCameraTarget^.ShipID;
+        RecCmdSetCameraControl3D.cmd := RecCmdSetCameraControl^.cmd;
+        RecCmdSetCameraControl3D.valueInt := RecCmdSetCameraControl^.valueInt;
+        RecCmdSetCameraControl3D.valueDbl := RecCmdSetCameraControl^.valueDbl;
 
-        TcpServer3D.SendData(REC_CMD_SET_CAMERA_TARGET_3D, RecCmdSetCameraTarget3D);
+        TcpServer3D.SendData(REC_CMD_SET_CAMERA_TARGET_3D, RecCmdSetCameraControl3D);
       end;
 
     { REC_CMD_MISTRAL:

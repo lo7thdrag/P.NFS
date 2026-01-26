@@ -1087,10 +1087,12 @@ type
     OrderID: Byte;
   end;
 
-  // REC_CAMERA_KONTOL_NEW
-  TRec_CameraController = record
+  // REC_CAMERA_KONtrOL_NEW
+  PRec_CameraController = ^TRec_CameraController;
+  TRec_CameraController = record     // Rec_CMD_CAMERA_CONTROLLER = 68
     Pc: TPacketCheck;
-    SessionID : Integer;
+//    SessionID : Integer;
+//    ShipID: Word;     // bukaen kalo misal butuh ship id
     cmd : Byte;
     valueInt : Integer;
     valueDbl : Double;
@@ -1386,6 +1388,19 @@ const
   REC_RBU_SONARMODE = 65;
 
   RecRBU_SonarMode_ORDER = 66;
+
+  Rec_CMD_CAMERA_CONTROLLER = 68;           // denta was here
+  __ORD_ID_CAMCON_MODE             = 1;
+  __ORD_ID_CAMCON_SHOW_PLATFORM    = 2;
+  __ORD_ID_CAMCON_POS_AZIMUTH      = 3;
+  __ORD_ID_CAMCON_POS_RANGE        = 4;
+  __ORD_ID_CAMCON_POS_ELEVATION    = 5;
+  __ORD_ID_CAMCON_REPOS_LAT        = 6;
+  __ORD_ID_CAMCON_REPOS_LONG       = 7;
+  __ORD_ID_CAMCON_TRACK_POS        = 8;
+  __ORD_ID_CAMCON_VISION           = 9;
+  __ORD_ID_CAMCON_StartMove        = 10;
+  __ORD_ID_CAMCON_StopMove         = 11;
 
   REC_CMD_COM_CONSOLE = 71;
 

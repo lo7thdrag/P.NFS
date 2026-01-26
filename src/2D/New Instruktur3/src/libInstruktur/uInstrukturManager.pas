@@ -299,6 +299,8 @@ type
       procedure SendCommand2D_Order(Rec : TRecData2DOrder);
       procedure NetSendTo3D_CommandPinCamera(rec : PRecCmdSetCameraTarget);
 
+      procedure NetSendTo3D_CommandCamera(rec : PRec_CameraController);
+
       {for replay}
       procedure Replay_Start;
       procedure Replay_Stop;
@@ -1065,6 +1067,8 @@ begin
 
   TCPClient.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET,    nil, Sizeof(TRecCmdSetCameraTarget));
 
+  TCPClient.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER,    nil, Sizeof(TRec_CameraController));
+
 end;
 
 { Create ship after receive packet }
@@ -1819,6 +1823,12 @@ procedure TSimManager.NetSendTo3D_CommandPinCamera(rec : PRecCmdSetCameraTarget)
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
     TCPClient.sendDataEx(REC_CMD_SET_CAMERA_TARGET, PAnsiChar(rec));
+end;
+
+procedure TSimManager.NetSendTo3D_CommandCamera(rec: PRec_CameraController);
+begin
+  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+    TCPClient.sendDataEx(Rec_CMD_CAMERA_CONTROLLER, PAnsiChar(rec));
 end;
 
 procedure TSimManager.NetSendTo3D_DelShipRuntime(shipID: integer);
