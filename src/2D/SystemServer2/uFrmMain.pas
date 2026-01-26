@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
 
-  uServerManager;
+  uServerManager, AdvSmoothPanel;
 
 type
   TfrmMain = class(TForm)
@@ -28,10 +28,11 @@ type
     tmrShutdownServer: TTimer;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
-    pnl1Home: TPanel;
     pnl2Log: TPanel;
     btnBack: TButton;
+    pnl1Home: TAdvSmoothPanel;
     btn1: TButton;
+    lbljudul: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -140,30 +141,42 @@ begin
 
   if mProject = 'NAFS' then
   begin
-    pnl1Home.Caption := 'SERVER NAFS';
-    pnl1Home.Color := $00D0875A;
+    lbljudul.Caption := 'SERVER NAFS';
+    lbljudul.Font.Color         := $00D0875A;
+    pnl1Home.Fill.Color         := $00D0875A;
+    pnl1Home.Fill.ColorMirror   := $00D4D4D4;
+    pnl1Home.Fill.ColorMirrorTo := $00D0875A;
+    pnl1Home.Fill.ColorTo       := $00D4D4D4;
     pnlServer2D.Color := $00D0875A;
     pnlServer3D.Color := $00D0875A;
-    Top := 10;
-    Left := 900;
+    Top   := 0;
+    Left  := 975;
   end
   else if mProject = 'NSFS' then
   begin
-    pnl1Home.Caption := 'SERVER NSFS';
-    pnl1Home.Color := $0040220F;
+    lbljudul.Caption := 'SERVER NSFS';
+    lbljudul.Font.Color         := $0040220F;
+    pnl1Home.Fill.Color         := $0040220F;
+    pnl1Home.Fill.ColorMirror   := $00CF7234;
+    pnl1Home.Fill.ColorMirrorTo := $0040220F;
+    pnl1Home.Fill.ColorTo       := $00CF7234;
     pnlServer2D.Color := $0040220F;
     pnlServer3D.Color := $0040220F;
-    Top := 400;
-    Left := 900;
+    Top   := 340;
+    Left  := 975;
   end
   else
   begin
-    pnl1Home.Caption := 'SERVER NSSFS';
-    pnl1Home.Color := $0058524F;
+    lbljudul.Caption := 'SERVER NSSFS';
+    lbljudul.Font.Color         := $0058524F;
+    pnl1Home.Fill.Color         := $0058524F;
+    pnl1Home.Fill.ColorMirror   := $00E4E4E4;
+    pnl1Home.Fill.ColorMirrorTo := $0058524F;
+    pnl1Home.Fill.ColorTo       := $00E4E4E4;
     pnlServer2D.Color := $0058524F;
     pnlServer3D.Color := $0058524F;
-    Top := 780;
-    Left := 900;
+    Top   := 680;
+    Left  := 975;
   end;
 
 end;
