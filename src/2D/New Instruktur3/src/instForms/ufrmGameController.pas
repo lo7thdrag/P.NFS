@@ -818,6 +818,8 @@ type
     procedure tmrSeaStateTimer(Sender: TObject);
     procedure btnCamPinClick(Sender: TObject);
     procedure wheelAzimutChange(Sender: TObject);
+    procedure trackBarRangeChange(Sender: TObject);
+    procedure trackBarElevationChange(Sender: TObject);
 
   private
     { Private declarations }
@@ -996,40 +998,40 @@ begin
                                - pnlCameraMove.Width) div 2;
 
 
-  pnlCameraSelectID.Top        := pnlStatusObject.Top + ((pnlStatusObject.Height div 2) - (pnlCameraSelectID.Height div 2));
-  pnlCameraSelectID.Left       := aOverlap;
-  pnlCameraView.Top            := 40 + pnlCameraView.Height - 120;
-  pnlCameraView.Left           := aOverlap;
-  pnlCameraRotate.Top          := 40 + pnlCameraView.Height - 120;
-  pnlCameraRotate.Left         := pnlCameraView.Left + pnlCameraView.Width + 10;
-  pnlCameraRotateOld.Top       := 40 + pnlCameraView.Height - 120;
-  pnlCameraRotateOld.Left      := pnlCameraRotate.Left + pnlCameraRotate.Width + 10;
-  pnlCameraMove.Top            := 40 + pnlCameraView.Height - 120;
-  pnlCameraMove.Left           := pnlCameraRotateOld.Left + pnlCameraRotateOld.Width + 10;
-
-  pnlCameraSelectID.Width       :=  pnlCameraRotate.Width + pnlCameraRotateOld.Width +
-                                    pnlCameraMove.Width + pnlCameraView.Width + 30;
-
-  //btnCameraLock.Left      := pnlCameraSelectID.Left + pnlCameraSelectID.Width + 10;
-  //btnCameraUnlock.Left    := btnCameraLock.Left + btnCameraLock.Width;
-
-  lblCameraView.Top       := 40 + pnlCameraView.Height - 150;
-  lblCameraView.Left      := aOverlap;
-  lblCameraRotate.Top     := 40 + pnlCameraView.Height - 150;
-  lblCameraRotate.Left    := pnlCameraRotate.Left;
-  lblCameraRotate2.top    := 40 + pnlCameraView.Height - 150;
-  lblCameraRotate2.Left   := pnlCameraRotateOld.Left;
-  lblCameraMove.Top       := 40 + pnlCameraView.Height - 150;
-  lblCameraMove.Left      := pnlCameraMove.Left;
-
-  { Wheel Camera }
-  vrWheelCameraRotateX.BackImage.LoadFromFile(strPathRotary + 'button_rotate camera 150.bmp');
-  vrWheelCameraRotateX.Radius       := 60;
-  vrWheelCameraRotateX.Transparent  := false;
-
-  vrWheelCameraRotateY.BackImage.LoadFromFile(strPathRotary + 'button_rotate camera 150.bmp');
-  vrWheelCameraRotateY.Radius       := 60;
-  vrWheelCameraRotateY.Transparent  := false;
+//  pnlCameraSelectID.Top        := pnlStatusObject.Top + ((pnlStatusObject.Height div 2) - (pnlCameraSelectID.Height div 2));
+//  pnlCameraSelectID.Left       := aOverlap;
+//  pnlCameraView.Top            := 40 + pnlCameraView.Height - 120;
+//  pnlCameraView.Left           := aOverlap;
+//  pnlCameraRotate.Top          := 40 + pnlCameraView.Height - 120;
+//  pnlCameraRotate.Left         := pnlCameraView.Left + pnlCameraView.Width + 10;
+//  pnlCameraRotateOld.Top       := 40 + pnlCameraView.Height - 120;
+//  pnlCameraRotateOld.Left      := pnlCameraRotate.Left + pnlCameraRotate.Width + 10;
+//  pnlCameraMove.Top            := 40 + pnlCameraView.Height - 120;
+//  pnlCameraMove.Left           := pnlCameraRotateOld.Left + pnlCameraRotateOld.Width + 10;
+//
+//  pnlCameraSelectID.Width       :=  pnlCameraRotate.Width + pnlCameraRotateOld.Width +
+//                                    pnlCameraMove.Width + pnlCameraView.Width + 30;
+//
+//  //btnCameraLock.Left      := pnlCameraSelectID.Left + pnlCameraSelectID.Width + 10;
+//  //btnCameraUnlock.Left    := btnCameraLock.Left + btnCameraLock.Width;
+//
+//  lblCameraView.Top       := 40 + pnlCameraView.Height - 150;
+//  lblCameraView.Left      := aOverlap;
+//  lblCameraRotate.Top     := 40 + pnlCameraView.Height - 150;
+//  lblCameraRotate.Left    := pnlCameraRotate.Left;
+//  lblCameraRotate2.top    := 40 + pnlCameraView.Height - 150;
+//  lblCameraRotate2.Left   := pnlCameraRotateOld.Left;
+//  lblCameraMove.Top       := 40 + pnlCameraView.Height - 150;
+//  lblCameraMove.Left      := pnlCameraMove.Left;
+//
+//  { Wheel Camera }
+//  vrWheelCameraRotateX.BackImage.LoadFromFile(strPathRotary + 'button_rotate camera 150.bmp');
+//  vrWheelCameraRotateX.Radius       := 60;
+//  vrWheelCameraRotateX.Transparent  := false;
+//
+//  vrWheelCameraRotateY.BackImage.LoadFromFile(strPathRotary + 'button_rotate camera 150.bmp');
+//  vrWheelCameraRotateY.Radius       := 60;
+//  vrWheelCameraRotateY.Transparent  := false;
 
   pnlRuangIns.Width  := imgRuangIns.Width + 20;
   pnlRuangIns.Height := imgRuangIns.Height + 20;
@@ -4688,6 +4690,17 @@ procedure TfrmGameController.tmrStatusTimer(Sender: TObject);
 begin
   btnRefreshClient.Enabled := True;
   tmrStatus.Enabled := false;
+end;
+
+procedure TfrmGameController.trackBarElevationChange(Sender: TObject);
+begin
+  edtElevationValue.Text := IntToStr(trackBarElevation.Position);
+end;
+
+procedure TfrmGameController.trackBarRangeChange(Sender: TObject);
+begin
+  edtRangeValue.Text := IntToStr(trackBarRange.Position);
+
 end;
 
 procedure TfrmGameController.LoadImageLight(var Aimage: TImage; imgStat: string; const stat: byte);
