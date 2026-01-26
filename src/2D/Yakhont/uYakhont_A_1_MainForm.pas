@@ -160,6 +160,7 @@ begin
        begin
           isEnabled := true;
           frmYakh_A_2_MainForm.img1.Visible:=False;
+          frmYakh_A_2_MainForm.imgSACSon.SendToBack;
           //StateOn := True;
 
        end
