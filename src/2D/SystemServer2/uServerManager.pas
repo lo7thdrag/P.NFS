@@ -122,6 +122,8 @@ type
       write FOnLogReceived3d;
     property OnLogListenPort3D: TGetStrProc read FOnLogListenPort3D
       write FOnLogListenPort3D;
+    property PubBridgeSet: TRecBridgeSet read bridgeSet
+      write bridgeSet;
   end;
 
 implementation
@@ -201,7 +203,7 @@ begin
   with bridgeSet.mSystemServer do
   begin
     InitDefault_SystemServerConfig(bridgeSetPath, Server2DAddress, Server2DPort,
-      Server3DAddress, Server3DPort);
+      Server3DAddress, Server3DPort, Project);
   end;
 
   Prepare_As_Server2D;

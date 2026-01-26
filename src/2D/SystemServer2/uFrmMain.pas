@@ -26,14 +26,20 @@ type
     mmoLogClient2D: TMemo;
     mmoLogClientData2D: TMemo;
     tmrShutdownServer: TTimer;
-    Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
+    pnl1Home: TPanel;
+    pnl2Log: TPanel;
+    btnBack: TButton;
+    btn1: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure tmrShutdownServerTimer(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
   private
     { Private declarations }
     isClose: Boolean;
@@ -58,6 +64,20 @@ implementation
 
 {$R *.dfm}
 { TfrmMain }
+
+procedure TfrmMain.btn1Click(Sender: TObject);
+begin
+  Height := 660;
+  Width := 597;
+  pnl2Log.BringToFront;
+end;
+
+procedure TfrmMain.btnBackClick(Sender: TObject);
+begin
+  Height := 300;
+  Width := 300;
+  pnl1Home.BringToFront;
+end;
 
 procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -110,6 +130,42 @@ end;
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   ServerManager.Free;
+end;
+
+procedure TfrmMain.FormShow(Sender: TObject);
+var
+  mProject : string;
+begin
+  mProject := ServerManager.PubBridgeSet.mSystemServer.Project;
+
+  if mProject = 'NAFS' then
+  begin
+    pnl1Home.Caption := 'SERVER NAFS';
+    pnl1Home.Color := $00D0875A;
+    pnlServer2D.Color := $00D0875A;
+    pnlServer3D.Color := $00D0875A;
+    Top := 10;
+    Left := 900;
+  end
+  else if mProject = 'NSFS' then
+  begin
+    pnl1Home.Caption := 'SERVER NSFS';
+    pnl1Home.Color := $0040220F;
+    pnlServer2D.Color := $0040220F;
+    pnlServer3D.Color := $0040220F;
+    Top := 400;
+    Left := 900;
+  end
+  else
+  begin
+    pnl1Home.Caption := 'SERVER NSSFS';
+    pnl1Home.Color := $0058524F;
+    pnlServer2D.Color := $0058524F;
+    pnlServer3D.Color := $0058524F;
+    Top := 780;
+    Left := 900;
+  end;
+
 end;
 
 procedure TfrmMain.OnClientStatus3D(const s: string);

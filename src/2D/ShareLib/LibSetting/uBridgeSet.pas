@@ -31,7 +31,7 @@ type
   end;
 
   TRecSystemServer = record
-    Server2DAddress, Server2DPort, Server3DAddress, Server3DPort: string;
+    Server2DAddress, Server2DPort, Server3DAddress, Server3DPort, Project: string;
   end;
 
   TRecBridgeShip = record
@@ -97,6 +97,7 @@ const
   iniVal2DServerPortSystemServer = '2DServerPort';
   iniVal3DServerAddressSystemServer = '3DServerAdress';
   iniVal3DServerPortSystemServer = '3DServerPort';
+  iniValProject = 'Project';
 
   iniSectDBConfig = 'DBCONFIG';
   iniValDBServer = 'DBSERVER';
@@ -135,7 +136,7 @@ procedure InitDefault_GameServerConfig(const Path: string;
   var m2DServerIP, m2DServerPort, m3DServerIP, m3DServerPort: string);
 
 procedure InitDefault_SystemServerConfig(const Path: string;
-  var mServer2DAddress, mServer2DPort, mServer3DAddress, mServer3DPort: string);
+  var mServer2DAddress, mServer2DPort, mServer3DAddress, mServer3DPort, mProject: string);
 
 procedure InitDefault_CtrlServerConfig(const Path: string;
   var mCtrlServerIP, mCtrlServerPort: string);
@@ -572,7 +573,7 @@ begin
 end;
 
 procedure InitDefault_SystemServerConfig(const Path: string;
-  var mServer2DAddress, mServer2DPort, mServer3DAddress, mServer3DPort: string);
+  var mServer2DAddress, mServer2DPort, mServer3DAddress, mServer3DPort, mProject: string);
 
 var
   ini: TIniFile;
@@ -591,6 +592,11 @@ begin
     iniVal3DServerAddressSystemServer, default3DServerAddressSystemServer);
   mServer3DPort := ForceReadString(ini, iniSectConfigSystemServer,
     iniVal3DServerPortSystemServer, default3DServerPortSystemServer);
+
+  mServer3DPort := ForceReadString(ini, iniSectConfigSystemServer,
+    iniVal3DServerPortSystemServer, default3DServerPortSystemServer);
+
+  mProject := ForceReadString(ini, iniSectConfigSystemServer, iniValProject, 'NAFS');
 
   ini.Free;
 end;
