@@ -1615,7 +1615,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 943
           object lblYakhontStatus: TLabel
             Left = 151
             Top = 11
@@ -2085,7 +2084,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl2: TLabel
             Left = 143
             Top = 10
@@ -2146,16 +2144,17 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
+          ExplicitLeft = 1
+          ExplicitTop = 16
           object Bevel2: TBevel
             Left = 45
-            Top = 41
+            Top = 24
             Width = 292
             Height = 1
           end
           object Label9: TLabel
             Left = 176
-            Top = 11
+            Top = 1
             Width = 35
             Height = 19
             Caption = 'C802'
@@ -2168,9 +2167,9 @@ object fWeaponStatus: TfWeaponStatus
           end
           object grpAssignC802: TGroupBox
             Left = 38
-            Top = 642
+            Top = 517
             Width = 297
-            Height = 105
+            Height = 87
             Caption = 'AssignC802'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
@@ -2277,7 +2276,7 @@ object fWeaponStatus: TfWeaponStatus
             object btnC802Assign: TButton
               Tag = 1
               Left = 14
-              Top = 61
+              Top = 52
               Width = 91
               Height = 25
               Caption = 'Assign'
@@ -2293,7 +2292,7 @@ object fWeaponStatus: TfWeaponStatus
             object btnC802DeAssign: TButton
               Tag = 2
               Left = 109
-              Top = 61
+              Top = 52
               Width = 85
               Height = 25
               Caption = 'Cancel'
@@ -2309,9 +2308,9 @@ object fWeaponStatus: TfWeaponStatus
           end
           object grp8: TGroupBox
             Left = 40
-            Top = 48
+            Top = 31
             Width = 297
-            Height = 137
+            Height = 110
             Caption = 'Status Launcher'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
@@ -2322,7 +2321,7 @@ object fWeaponStatus: TfWeaponStatus
             TabOrder = 1
             object imgLoadC802_1: TImage
               Left = 116
-              Top = 27
+              Top = 28
               Width = 17
               Height = 17
               Transparent = True
@@ -2336,14 +2335,14 @@ object fWeaponStatus: TfWeaponStatus
             end
             object imgC802_3: TImage
               Left = 117
-              Top = 83
+              Top = 69
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgC802_4: TImage
               Left = 40
-              Top = 84
+              Top = 69
               Width = 17
               Height = 17
               Transparent = True
@@ -2364,14 +2363,14 @@ object fWeaponStatus: TfWeaponStatus
             end
             object lbl82: TLabel
               Left = 104
-              Top = 86
+              Top = 72
               Width = 8
               Height = 13
               Caption = '3'
             end
             object lbl83: TLabel
               Left = 24
-              Top = 86
+              Top = 71
               Width = 8
               Height = 13
               Caption = '4'
@@ -2379,7 +2378,7 @@ object fWeaponStatus: TfWeaponStatus
             object btn9: TButton
               Tag = 3
               Left = 179
-              Top = 77
+              Top = 67
               Width = 75
               Height = 23
               Caption = 'Load'
@@ -2388,7 +2387,7 @@ object fWeaponStatus: TfWeaponStatus
             end
             object cbbLoadC802: TComboBox
               Left = 179
-              Top = 30
+              Top = 28
               Width = 72
               Height = 21
               Font.Charset = DEFAULT_CHARSET
@@ -2409,9 +2408,9 @@ object fWeaponStatus: TfWeaponStatus
           end
           object grp9: TGroupBox
             Left = 38
-            Top = 195
+            Top = 147
             Width = 298
-            Height = 433
+            Height = 363
             Caption = 'Status Console'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
@@ -2422,9 +2421,9 @@ object fWeaponStatus: TfWeaponStatus
             TabOrder = 2
             object grpC802Launcher1: TGroupBox
               Left = 14
-              Top = 24
+              Top = 13
               Width = 268
-              Height = 81
+              Height = 74
               Caption = 'Launcher 1'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
@@ -2463,9 +2462,9 @@ object fWeaponStatus: TfWeaponStatus
             end
             object grpC802Launcher2: TGroupBox
               Left = 13
-              Top = 125
+              Top = 98
               Width = 269
-              Height = 82
+              Height = 74
               Caption = 'Launcher 2'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
@@ -2504,9 +2503,9 @@ object fWeaponStatus: TfWeaponStatus
             end
             object grpC802Launcher3: TGroupBox
               Left = 13
-              Top = 228
+              Top = 184
               Width = 268
-              Height = 83
+              Height = 75
               Caption = 'Launcher 3'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
@@ -2545,9 +2544,9 @@ object fWeaponStatus: TfWeaponStatus
             end
             object grpC802Launcher4: TGroupBox
               Left = 13
-              Top = 333
+              Top = 271
               Width = 268
-              Height = 82
+              Height = 72
               Caption = 'Launcher 4'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
