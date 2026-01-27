@@ -3479,6 +3479,7 @@ begin
     tR.Enabled := True;
 
     if not TOCOSSim then begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       t := StringReplace(tR.TargetTrack.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
@@ -3959,6 +3960,7 @@ begin
     tR.IsNoTarget := true;
 
     if not TOCOSSim then begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
 
@@ -4597,6 +4599,7 @@ begin
     tR.Enabled := True;
 
     if not TOCOSSim then begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
 
@@ -4751,6 +4754,7 @@ begin
   if GetTorp_fromTube(torpAssgn,i,tR) then
   begin
     if not TOCOSSim then begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
 
@@ -4800,6 +4804,7 @@ begin
   if GetTorp_fromTube(torpAssgn,i,tR) then
   begin
     if not TOCOSSim then begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
 
@@ -4849,6 +4854,7 @@ begin
   if not GetTorp_fromTube(torpAssgn,i,tR) then
   begin
     if not TOCOSSim then begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
 
@@ -4904,6 +4910,7 @@ begin
   {coba debug disini}
   if Assigned(tR) then begin
     if not TOCOSSim then begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
 
@@ -5002,6 +5009,7 @@ begin
   if GetTorp_fromTube(torpAssgn,i,tR) then
   begin
     if not TOCOSSim then begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
 
@@ -5098,6 +5106,7 @@ begin
     begin
       if not TOCOSSim then
       begin
+        aRec.mMissileType := Word(ttrack.TorpedoType);
         s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
         TryStrToInt(s,mShip);
 

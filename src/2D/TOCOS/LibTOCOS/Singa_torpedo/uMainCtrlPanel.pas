@@ -350,6 +350,85 @@ begin
         {LOG}
         TOCOS.SendEvenTOCOS(2);
       end;
+      {prepareing for barrel selection}
+//      if (Tag = 11) then
+//      begin
+//        IsPortFlag := False;
+//        IsStbFlag := True;
+//
+//        TOCOS.StatusTube:= True;
+//        TOCOS.torpAssgn := ttStarBoard;
+//        TOCOS.vDisplayCtrlPanelLeft.pPage5Show;
+//        CurTorp := Starboard;
+//        Stagebutton(ttStarBoard);
+//        {LOG}
+//        TOCOS.SendEvenTOCOS(2);
+//      end
+//      else if (Tag = 13) then
+//      begin
+//        IsPortFlag := False;
+//        IsStbFlag := True;
+//
+//        TOCOS.StatusTube:= True;
+//        TOCOS.torpAssgn := ttStarBoard;
+//        TOCOS.vDisplayCtrlPanelLeft.pPage5Show;
+//        CurTorp := Starboard;
+//        Stagebutton(ttStarBoard);
+//        {LOG}
+//        TOCOS.SendEvenTOCOS(2);
+//      end
+//      else if (Tag = 15) then
+//      begin
+//        IsPortFlag := False;
+//        IsStbFlag := True;
+//
+//        TOCOS.StatusTube:= True;
+//        TOCOS.torpAssgn := ttStarBoard;
+//        TOCOS.vDisplayCtrlPanelLeft.pPage5Show;
+//        CurTorp := Starboard;
+//        Stagebutton(ttStarBoard);
+//        {LOG}
+//        TOCOS.SendEvenTOCOS(2);
+//      end
+//      else if (Tag = 12) then
+//      begin
+//        IsPortFlag := True;
+//        IsStbFlag := False;
+//
+//        TOCOS.StatusTube:= True;
+//        TOCOS.torpAssgn := ttPort;
+//        TOCOS.vDisplayCtrlPanelLeft.pPage6Show;
+//        CurTorp := Port;
+//        Stagebutton(ttPort);
+//        {LOG}
+//        TOCOS.SendEvenTOCOS(1);
+//      end
+//      else if (Tag = 14) then
+//      begin
+//        IsPortFlag := True;
+//        IsStbFlag := False;
+//
+//        TOCOS.StatusTube:= True;
+//        TOCOS.torpAssgn := ttPort;
+//        TOCOS.vDisplayCtrlPanelLeft.pPage6Show;
+//        CurTorp := Port;
+//        Stagebutton(ttPort);
+//        {LOG}
+//        TOCOS.SendEvenTOCOS(1);
+//      end
+//      else if (Tag = 16) then
+//      begin
+//        IsPortFlag := True;
+//        IsStbFlag := False;
+//
+//        TOCOS.StatusTube:= True;
+//        TOCOS.torpAssgn := ttPort;
+//        TOCOS.vDisplayCtrlPanelLeft.pPage6Show;
+//        CurTorp := Port;
+//        Stagebutton(ttPort);
+//        {LOG}
+//        TOCOS.SendEvenTOCOS(1);
+//      end;
       UpdateStateGroup(1, GroupIndex);
       ImageIndex := 1;
 
@@ -484,6 +563,7 @@ begin
   aRec.mMissileID := 1;
   aRec.mWeaponID := C_DBID_TORPEDO_SUT;
   aRec.mMissileNumber := 1;
+  aRec.mMissileType := TOCOS.vTechnicalCtrlPanel.TorpType;
 
   aRec.mTorpedoCourse := 180;
   aRec.mTorpedoSpeed := 18 {+ C_Knot_To_ms {LOW};

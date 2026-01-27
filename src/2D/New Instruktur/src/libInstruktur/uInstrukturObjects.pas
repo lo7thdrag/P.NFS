@@ -249,7 +249,11 @@ interface
 
       //Loading
       LoadingMissile1,
-      LoadingMissile2 : TStatusWeapon;
+      LoadingMissile2{,
+      LoadingMissile3,
+      LoadingMissile4,
+      LoadingMissile5,
+      LoadingMissile6} : TStatusWeapon;
 
 
       constructor Create(Const aParent : TInsObject; aMap: TMap); override;

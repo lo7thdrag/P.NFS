@@ -447,7 +447,7 @@ uses
     NetComm.RegisterProcedure(C_REC_FIRE_CONTROL,        Event_OrderRecognizer,           sizeof(TRecFireControlOrder));
 
     {Position}
-    NetComm.RegisterProcedure(REC_3D_POSITION,           EventonReceiveDataPosition,      sizeof(TRecDataPosition));
+    NetComm.RegisterProcedure(REC_3D_POSITION,           EventonReceiveDataPosition,      SizeOf(TRecData3DPosition));//sizeof(TRecDataPosition));
     NetComm.RegisterProcedure(REC_3D_MISSILEPOS,         EventonRecMissilePosAvailable,   sizeof(TRecMissilePos));
 
     {Lain-lain}

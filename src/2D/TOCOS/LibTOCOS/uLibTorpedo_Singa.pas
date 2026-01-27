@@ -626,6 +626,7 @@ begin
   begin
     if tR.Launched and tR.Enabled and not tR.IsManual then
     begin
+      aRec.mMissileType := word(tR.TorpedoType);
       if status then
       begin
         if tR.isDetectTarget then
@@ -712,6 +713,7 @@ begin
   try
     if Assigned(tR) then begin
       tR.IsManual  := IsmanualTorp;   //<-- set Manual Locally
+      aRec.mMissileType := Word(tR.TorpedoType);
       if tR.Launched then
       begin
         if not TOCOSSim then begin
@@ -775,6 +777,7 @@ begin
 
   if GetTorp_fromTube(torpAssgn,i,tR) then
   begin
+    aRec.mMissileType := Word(tR.TorpedoType);
     if not TOCOSSim then begin
       if isSearch then
       begin
@@ -844,6 +847,7 @@ begin
 
   if tR.Launched and tR.Enabled then     // Jika telah diluncurkan, jika enable, dan jika tidak dikontrol secara Manual
   begin
+    aRec.mMissileType := Word(tR.TorpedoType);
     if not TOCOSSim then begin
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
@@ -1154,6 +1158,7 @@ begin
   begin
     if tR.Enabled and tR.Launched then
     begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       s := StringReplace(xSHIP.UniqueID,'VSL','',[rfReplaceAll]);
       TryStrToInt(s,mShip);
 
@@ -1275,6 +1280,7 @@ begin
   begin
     if tR.Launched and tR.Enabled then
     begin
+      aRec.mMissileType := Word(tR.TorpedoType);
       if tR.isDetectTarget then
       begin
         tR.IsHoaming  := True;

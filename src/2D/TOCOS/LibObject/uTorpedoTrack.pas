@@ -28,12 +28,19 @@ interface
     TLolimm = (lmOn, lmOff);
     THomingType = (htPas, htAct, htCmb);
     THomingBlockType = (hbOn, hbOff);
+    TTorpType = (ttSUT, ttBlackShark);
 
     TLoadStatus = class // Prince
     Private
     public
       Port        : TStatusWeapon;
       StarBoard   : TStatusWeapon;
+//      Barrel1     : TStatusWeapon;
+//      Barrel2     : TStatusWeapon;
+//      Barrel3     : TStatusWeapon;
+//      Barrel4     : TStatusWeapon;
+//      Barrel5     : TStatusWeapon;
+//      Barrel6     : TStatusWeapon;
       constructor Create;
       destructor Destroy; override;
     end;
@@ -53,6 +60,7 @@ interface
 
       FTube     : TTube;
       FSpeedType: TSpeedType;
+      FTorpedoType : TTorpType;
 
 
       procedure setShipDist(const Value: double);
@@ -81,6 +89,8 @@ interface
       procedure SetDepth(const value: Double);
 	    function getDepth: Double;
 
+      procedure setTorpedoType(const Value: TTorpType);
+      function getTorpedoType: TTorpType;
 
     protected
       tgtPos : t2DPoint;
@@ -149,6 +159,7 @@ interface
       property RunTime : Double read getRunTime write SetRunTime;
       property Depth : Double read getDepth write SetDepth; // feet
       property IsManual : Boolean read FIsManual write FIsManual;
+      property TorpedoType : TTorpType read getTorpedoType write setTorpedoType;
     end;
 
 implementation
@@ -237,6 +248,7 @@ begin
   IsnotActive_Torp  := False;
   isShutdown        := False;
   isSearch          := False;
+  FTorpedoType      := ttSUT; {initialize}
 end;
 
 destructor TTorpedoTrack.Destroy;
@@ -435,9 +447,19 @@ begin
   result := FShipDistance;
 end;
 
+function TTorpedoTrack.getTorpedoType: TTorpType;
+begin
+  Result := FTorpedoType;
+end;
+
 function TTorpedoTrack.getTube: TTube;
 begin
   result := FTube;
+end;
+
+procedure TTorpedoTrack.setTorpedoType(const Value: TTorpType);
+begin
+  FTorpedoType := Value;
 end;
 
 procedure TTorpedoTrack.setTube(const Value: TTube);

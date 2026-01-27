@@ -349,6 +349,7 @@ type
     mMissileNumber: word; // Diisi 0 aj...nanti instruktur yang ngisi ulang
     mT_ID: word;
     OrderID: Byte;
+    mMissileType    : Word;
 
     mTorpedoCourse: single;
     mTorpedoSpeed: single;

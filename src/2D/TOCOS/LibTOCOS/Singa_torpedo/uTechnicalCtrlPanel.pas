@@ -141,6 +141,8 @@ type
     pmHiden: TPopupMenu;
     QuickStart1: TMenuItem;
     CloseAllForm1: TMenuItem;
+    btnSUTType: TSpeedButtonImage;
+    btnBSType: TSpeedButtonImage;
     procedure FormCreate(Sender: TObject);
     procedure pmConnectClick(Sender: TObject);
     procedure pmCloseClick(Sender: TObject);
@@ -165,6 +167,8 @@ type
     procedure btnClearScenarioClick(Sender: TObject);
     procedure QuickStartClick(Sender: TObject);
     procedure CloseAllForm1Click(Sender: TObject);
+    procedure btnSUTTypeClick(Sender: TObject);
+    procedure btnBSTypeClick(Sender: TObject);
   private
     image_path:  string;
 
@@ -196,6 +200,7 @@ type
     IndRdyToFre2_on,
 
     powerON : Boolean;
+    TorpType : Word;
     {mServer: string;
     mShip: integer;
     bConnect: boolean;
@@ -316,6 +321,13 @@ begin
   btnPowerOn.Caption        := UpperCase('POWER' + #13 + 'ON');
   btnSysOn.Caption          := UpperCase('SYS' + #13 + 'ON');
   btnSysReset.Caption       := UpperCase('SYS' + #13 + 'RESET');
+
+  btnSUTType.Caption := UpperCase('SUT');
+  btnBSType.Caption  := UpperCase('BLACK' + #13 + 'SHARK');
+  btnSUTType.Down := True;
+//  btnSUTType.ImageIndex := 1;
+//  btnBSType.ImageIndex := 0;
+  TorpType := 0;
 end;
 
 procedure TvTechnicalCtrlPanel.FormShow(Sender: TObject);
@@ -380,7 +392,16 @@ begin
       SetUpdownImage(btnPowerOn);
 //   Timer1.Enabled := True;
 //  end;
-
+      if TorpType = 0 then
+      begin
+        btnSUTType.ImageIndex := 1;
+        btnBSType.ImageIndex := 0;
+      end
+      else if TorpType = 1 then
+      begin
+        btnSUTType.ImageIndex := 0;
+        btnBSType.ImageIndex := 1;
+      end;
  
 end;
 
@@ -515,6 +536,17 @@ procedure TvTechnicalCtrlPanel.SetLocalVariable(tdc: TGenericTDCInterface);
 begin
 //  inherited;
   TOCOS := tdc  AS TTorpedoInterface;
+end;
+
+procedure TvTechnicalCtrlPanel.btnSUTTypeClick(Sender: TObject);
+begin
+  inherited;
+  TorpType := 0;
+  if btnSUTType.Down then
+  begin
+    btnSUTType.ImageIndex := 1;
+    btnBSType.ImageIndex := 0;
+  end;
 end;
 
 procedure TvTechnicalCtrlPanel.btnSysOnClick(Sender: TObject);
@@ -732,6 +764,9 @@ begin
   //Prince
   btnOff.Down := True;
   SetUpdownImage(btnOff);
+
+  btnSUTType.ImageIndex := 0;
+  btnBSType.ImageIndex := 0;
 end;
 
 procedure TvTechnicalCtrlPanel.btnSysResetClick(Sender: TObject);
@@ -790,6 +825,17 @@ begin
     btnLoadProgr.Down := False;
   end;
   SetUpdownImage(btnLoadProgr);
+end;
+
+procedure TvTechnicalCtrlPanel.btnBSTypeClick(Sender: TObject);
+begin
+  inherited;
+  TorpType := btnBSType.Tag;
+  if btnBSType.Down then
+  begin
+    btnBSType.ImageIndex := 1;
+    btnSUTType.ImageIndex := 0;
+  end;
 end;
 
 procedure TvTechnicalCtrlPanel.btnCasClick(Sender: TObject);

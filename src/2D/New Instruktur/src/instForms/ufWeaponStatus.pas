@@ -3252,6 +3252,34 @@ begin
               tsLoading : LoadImageLight(imgLoadTocos2, LoadImgLoading);
               tsLaunch : LoadImageLight(imgLoadTocos2, LoadImgRunning);
             end;
+
+//            //loading Missile 3
+//            case WeaponTOCOS.LoadingMissile3 of
+//              tsOff : LoadImageLight(imgLoadTocos3, LoadImgOff);
+//              tsLoading : LoadImageLight(imgLoadTocos3, LoadImgLoading);
+//              tsLaunch : LoadImageLight(imgLoadTocos3, LoadImgRunning);
+//            end;
+//
+//            //loading Missile 4
+//            case WeaponTOCOS.LoadingMissile4 of
+//              tsOff : LoadImageLight(imgLoadTocos4, LoadImgOff);
+//              tsLoading : LoadImageLight(imgLoadTocos4, LoadImgLoading);
+//              tsLaunch : LoadImageLight(imgLoadTocos4, LoadImgRunning);
+//            end;
+//
+//            //loading Missile 5
+//            case WeaponTOCOS.LoadingMissile5 of
+//              tsOff : LoadImageLight(imgLoadTocos5, LoadImgOff);
+//              tsLoading : LoadImageLight(imgLoadTocos5, LoadImgLoading);
+//              tsLaunch : LoadImageLight(imgLoadTocos5, LoadImgRunning);
+//            end;
+//
+//            //loading Missile 6
+//            case WeaponTOCOS.LoadingMissile6 of
+//              tsOff : LoadImageLight(imgLoadTocos6, LoadImgOff);
+//              tsLoading : LoadImageLight(imgLoadTocos6, LoadImgLoading);
+//              tsLaunch : LoadImageLight(imgLoadTocos6, LoadImgRunning);
+//            end;
           end;
         end;
 
@@ -4452,7 +4480,7 @@ begin
           recSend.ShipID                   := SimManager.TrackObject.FDataBaseID;
           recSend.mWeaponID                := weaponSUT.Weapon_ID;
           recSend.mLauncherID              := launcherID;
-          recSend.mMissileID               := 1;
+          recSend.mMissileID               := 1;  //set barrel num
           recSend.mMissileNumber           := 1;
           recSend.OrderID                  := __ORD_TORPEDOSUT_LOADING ;
           recsend.mT_ID                    := 0;
@@ -4463,6 +4491,7 @@ begin
           recsend.mTorpedoEnDis            := 0;
           recsend.mpredm                   := 0;
           recsend.mTargetType              := 0;
+          recsend.mMissileType             := 0;  //later set by client
 
           SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
         end;
@@ -4510,7 +4539,21 @@ begin
 
           case LauncherID of
             1 : WeaponTOCOS.LoadingMissile1 := Status;
+//            begin
+//              case MissileID of
+//                1 : WeaponTOCOS.LoadingMissile2 := Status;
+//                2 : WeaponTOCOS.LoadingMissile4 := Status;
+//                3 : WeaponTOCOS.LoadingMissile6 := Status;
+//              end;
+//            end;
             2 : WeaponTOCOS.LoadingMissile2 := Status;
+//            begin
+//              case MissileID of
+//                1 : WeaponTOCOS.LoadingMissile1 := Status;
+//                2 : WeaponTOCOS.LoadingMissile3 := Status;
+//                3 : WeaponTOCOS.LoadingMissile5 := Status;
+//              end;
+//            end;
           end;
 
 //          if rzgrpTocos.Opened = True and rzgrpTocos.Opened = True then
