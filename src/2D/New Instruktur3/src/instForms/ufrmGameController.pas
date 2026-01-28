@@ -997,8 +997,8 @@ begin
   TabMain.TabSettings.Width  := Width div 5;
 
   { Tab Select Object }
-  TabSelectObject.TabSettings.Height := 40;
-  TabSelectObject.TabSettings.Width  := TabSelectObject.Width div 2;
+//  TabSelectObject.TabSettings.Height := 40;
+//  TabSelectObject.TabSettings.Width  := TabSelectObject.Width div 2;
 
   { Tab Control }
   TabControl.TabSettings.Height := 40;
