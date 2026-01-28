@@ -802,10 +802,14 @@ begin
     rec.IDSwitch := DS.FieldByName('IDSWITCH').AsInteger;
     rec.Pos_H := DS.FieldByName('POS_H').AsInteger;
     rec.Pos_P := DS.FieldByName('POS_P').AsInteger;
+    rec.STARTANGLE := DS.FieldByName('STARTANGLE').AsInteger;
+    rec.ENDANGLE   := DS.FieldByName('ENDANGLE').AsInteger;
     rec.Is3DActor := DS.FieldByName('IS3DACTOR').AsInteger;
     aRec.Add(rec);
     DS.Next;
   end;
+
+  Result := aRec.Count;
 end;
 
 function TDataModule1.GetDesById(const Sce_ID: integer): string;

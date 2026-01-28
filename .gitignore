@@ -4,4 +4,5 @@
 *__recovery/
 *.dproj.local
 *.identcache
+*.bak
 src/2D/Fcc/Dokumentasi.zip
