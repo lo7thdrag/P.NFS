@@ -2373,8 +2373,6 @@ begin
     yakhontLauncherID := IntToStr(4);
   end;
 
-
-
   if chkYahkontM1.Checked = True then
   begin
      M1 := '1';
@@ -2399,7 +2397,6 @@ begin
   end
   else
      M4 := '0';
-
 
   if not Assigned(lvRuntimeShip.Selected) then Exit;
   if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
@@ -2431,9 +2428,6 @@ begin
   begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
-
-
-
 
   if isValid then
   begin

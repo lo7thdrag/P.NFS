@@ -153,6 +153,8 @@ begin
           isEnabled := False;
           frmYakh_A_2_MainForm.img1.Visible:=True;
 
+          imgPS.Visible      := False;
+          imgSB.Visible      := False;
      end;
      1 : begin
        { if the PS & SB indikator are ON mode, you may click ON button NCR }
@@ -163,13 +165,12 @@ begin
           frmYakh_A_2_MainForm.imgSACSon.SendToBack;
           //StateOn := True;
 
+          imgPS.Visible      := True;
+          imgSB.Visible      := True;
        end
 
      end;
    end;
-
-   imgPS.Visible      := True;
-   imgSB.Visible      := True;
 end;
 
 procedure TfrmYakh_A_1_MainForm.timerATimer(Sender: TObject);
