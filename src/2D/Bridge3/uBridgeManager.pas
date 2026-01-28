@@ -103,6 +103,8 @@ type
     procedure ClientRecv_3D_Order(apRec: PAnsiChar; aSize: Integer);
 
     procedure ClientReceive_ServerSend(apRec: PAnsiChar; aSize: Integer);
+
+    property PubBridgeSet: TRecBridgeSet read bridgeSet write bridgeSet;
   end;
 
 var
@@ -222,6 +224,12 @@ begin
   begin
     InitDefault_GameServerConfig(bridgeSetPath, Ip2D, Port2D, IpServer3D,
       PortServer3D);
+  end;
+
+  with bridgeSet.mSystemServer do
+  begin
+    InitDefault_SystemServerConfig(bridgeSetPath, Server2DAddress, Server2DPort,
+      Server3DAddress, Server3DPort, Project);
   end;
 
   if Assigned(OnlogSettingDB) then

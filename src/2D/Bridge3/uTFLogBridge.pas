@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls,
 
-  uBridgeManager;
+  uBridgeManager, AdvSmoothPanel;
 
 type
   TTFLogBridge = class(TForm)
@@ -28,14 +28,20 @@ type
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
+    pnl1Home: TAdvSmoothPanel;
+    lbljudul: TLabel;
+    btn1: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure tmrShutdownServerTimer(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormShow(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
   private
     { Private declarations }
     isClose: Boolean;
+
   public
     { Public declarations }
     procedure OnLogPnlClient3D(str: string);
@@ -56,6 +62,13 @@ implementation
 
 {$R *.dfm}
 { TTFLogBridge }
+
+procedure TTFLogBridge.btn1Click(Sender: TObject);
+begin
+  Height := 660;
+  Width := 597;
+  pnlMain.BringToFront;
+end;
 
 procedure TTFLogBridge.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -99,6 +112,48 @@ end;
 procedure TTFLogBridge.FormDestroy(Sender: TObject);
 begin
   BridgeManager.Free;
+end;
+
+procedure TTFLogBridge.FormShow(Sender: TObject);
+var
+  mProject : string;
+begin
+  mProject := BridgeManager.PubBridgeSet.mSystemServer.Project;
+
+  if mProject = 'NAFS' then
+  begin
+    lbljudul.Caption := 'BRIGDE NAFS';
+    lbljudul.Font.Color         := $00D0875A;
+    pnl1Home.Fill.Color         := $00D0875A;
+    pnl1Home.Fill.ColorMirror   := $00D4D4D4;
+    pnl1Home.Fill.ColorMirrorTo := $00D0875A;
+    pnl1Home.Fill.ColorTo       := $00D4D4D4;
+    Top   := 0;
+    Left  := 975;
+  end
+  else if mProject = 'NSFS' then
+  begin
+    lbljudul.Caption := 'BRIGDE NSFS';
+    lbljudul.Font.Color         := $0040220F;
+    pnl1Home.Fill.Color         := $0040220F;
+    pnl1Home.Fill.ColorMirror   := $00CF7234;
+    pnl1Home.Fill.ColorMirrorTo := $0040220F;
+    pnl1Home.Fill.ColorTo       := $00CF7234;
+    Top   := 340;
+    Left  := 975;
+  end
+  else
+  begin
+    lbljudul.Caption := 'BRIGDE NSSFS';
+    lbljudul.Font.Color         := $0058524F;
+    pnl1Home.Fill.Color         := $0058524F;
+    pnl1Home.Fill.ColorMirror   := $00E4E4E4;
+    pnl1Home.Fill.ColorMirrorTo := $0058524F;
+    pnl1Home.Fill.ColorTo       := $00E4E4E4;
+    Top   := 680;
+    Left  := 975;
+  end;
+
 end;
 
 procedure TTFLogBridge.OnLogClient3D(str: string);
