@@ -158,7 +158,6 @@ type
     Pos_P,
     STARTANGLE,
     ENDANGLE,
-
     Is3DActor : Integer;
   end;
 

@@ -2,8 +2,8 @@ unit uMeriam57Manager;
 
 interface
 uses
-  Forms, classes, Windows, uTCPDatatype, uSimulationManager, uClassDatabase, Sysutils, uLibClientObject,
-  uBaseSimulationObject, uTestShip, uBaseFunction, OverbyteIcsWSocket;
+  Forms, classes, Windows, uSimulationManager, uClassDatabase, Sysutils, uLibClientObject,
+  uBaseSimulationObject, uTestShip, uBaseFunction, uTCPDatatype, OverbyteIcsWSocket;
 
 type
   TMeriam57Manager=class(TSimulationManager)
@@ -43,6 +43,7 @@ type
 
       procedure InitializeSimulation;     override;
 
+      //send to network
       procedure NetSendTo3D_OrderCannon(rec : TRec3DSetWCC);
 
       property IsStandAlone: boolean read FIsStandAlone write FIsStandAlone;
@@ -87,6 +88,9 @@ destructor TMeriam57Manager.Destroy;
 begin
 
   inherited;
+
+  if not IsStandAlone then
+    Net_DisConnect;
 
   if Assigned(xShip) then
     xShip.Free;
@@ -226,12 +230,10 @@ begin
     Net_Connect;
 end;
 
-
-
 procedure TMeriam57Manager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
-      TCPClient.sendDataEx(C_REC_CANNON, @Rec);
+    TCPClient.sendDataEx(C_REC_CANNON, @Rec);
 end;
 
 end.
