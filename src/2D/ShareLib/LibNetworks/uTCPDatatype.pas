@@ -630,6 +630,27 @@ type
     numValue: Integer;
   end;
 
+  TRec3DSetAK230 = record
+   pc               : TPacketCheck;
+
+   ShipID          : word;
+   mWeaponID       : Word; //Diisi sesuai Database
+   mLauncherID     : word;
+   mMissileID      : word;
+   mMissileNumber  : Word; //Diisi 0 aj...nanti instruktur yang ngisi ulang
+   mOrderID        : byte;
+
+   mTargetID       : Word; // Added by bagoes
+   mModeID         : Word; // ModeID
+
+   mUpDown              : Single;
+   mAutoCorrectElev     : Single;
+   mAutoCorrectBearing  : Single;
+
+   mBalistikID    : Word;
+   mSalvoRate     : Word;
+  end;
+
   // REC_CANNON             = 7;  ----------------------------------------
   TRec3DSetWCC = packed record
     Pc: TPacketCheck;
@@ -2205,6 +2226,8 @@ const
   C_DBID_MOCPKRCONSOLE = 17;
   C_DBID_VLMICA = 18;
   C_DBID_CANNON35 = 19;
+  C_DBID_CANNON30 = 20;
+  C_DBID_TORPEDO_BLACKSHARK = 21;
 
 
   C_TIPEID_MISSILE = 1;
