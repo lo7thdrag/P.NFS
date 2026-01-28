@@ -156,6 +156,8 @@ type
     IDSwitch,
     Pos_H,
     Pos_P,
+    STARTANGLE,
+    ENDANGLE,
     Is3DActor : Integer;
   end;
 
