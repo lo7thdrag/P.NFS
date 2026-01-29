@@ -461,7 +461,7 @@ end;
 procedure TfrmDCDSMain.btnDcdcExecuteClick(Sender: TObject);
 var
   elevVal, trainVal, acElevVal, acTrainVal: Double;
-  lRec : TRec3DSetAK230;
+  lRec : TRec3DSetWCC;
 begin
   if edtElevationValue.Text = '' then
   begin
@@ -1061,7 +1061,7 @@ end;
 
 procedure TfrmDCDSMain.StartCannonFire(Gun_ID: word);
 var
-  lRec: TRec3DSetAK230;
+  lRec: TRec3DSetWCC;
   isValidB, isValidE : boolean;
   cBearing, cElevation : Double;
 begin
@@ -1093,7 +1093,7 @@ end;
 
 procedure TfrmDCDSMain.StopCannonFire(Gun_ID: word);
 var
-  lRec: TRec3DSetAK230;
+  lRec: TRec3DSetWCC;
   isValidB, isValidE : boolean;
   cBearing, cElevation : Double;
 begin

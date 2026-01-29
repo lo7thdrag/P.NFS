@@ -43,7 +43,7 @@ type
 
       procedure InitializeSimulation;     override;
 
-      procedure NetSendTo3D_OrderCannon(rec: TRec3DSetAK230);
+      procedure NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
 
       property IsStandAlone: boolean read FIsStandAlone write FIsStandAlone;
 
@@ -208,7 +208,7 @@ begin
     Net_Connect;
 end;
 
-procedure TAK230Manager.NetSendTo3D_OrderCannon(rec: TRec3DSetAK230);
+procedure TAK230Manager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
     TCPClient.sendDataEx(C_REC_CANNON, @rec);
