@@ -26,6 +26,7 @@ uses
    uBridgeSet,
    uCodecBase64,
    uBaseFunction,
+   uBaseSimulationObject,
    uBaseConstan;
 
 type
@@ -224,7 +225,7 @@ begin
     InitDefault_AllConfigFromInstruktur(pServer_Ip,pServer_Port,
     pDBServer, pDBProto, pDBName, pDBUser,pDBPass, pShipID, pCurrentScenID );
 
-    if DataModule1.InitZDB(pDBServer, pDBProto, pDBName, pDBUser, pDBPass, pServer_Port) then
+    if DataModule1.InitZDB(pDBServer, pDBProto, pDBName, pDBUser, pDBPass, '3306') then
     begin
         ShipClassID  := DataModule1.GetShipType(pShipID, ShipClassName);
         ShipName     := DataModule1.GetShipName(pShipID);
@@ -507,6 +508,7 @@ end;
 procedure  TRBUManager.EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
 var
   aRec: ^TRecData3DPosition;
+  sc  : TSimulationClass;
   V : uVehicle.TVehicle;
   obj : uLibClientObject.TClientObject;
   vdomain : Integer;
@@ -546,7 +548,18 @@ begin
    end
    else
    begin
+     sc := MainObjList.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
      V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
+
+     if sc = nil then begin
+     obj := TClientObject.Create;
+     obj.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+     obj.Enabled := TRUE;
+
+     MainObjList.AddObject(obj);
+    end
+    else
+     obj := sc as TClientObject;
 
      obj.PositionX := aRec.X;
      obj.PositionY := aRec.Y;
@@ -567,7 +580,7 @@ begin
     begin
       vdomain := DataModule1.GetShipDomain(aRec.ShipID);
 
-      if (vdomain = 1) or (vdomain = 2) then
+      if (vdomain = 1) or (vdomain = 2) or (vdomain = 3)then
       begin
         V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);

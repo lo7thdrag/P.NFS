@@ -54,9 +54,9 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TfrmMainDisplay, frmMainDisplay);
   Application.CreateForm(TfrmPasswordEntryCode, frmPasswordEntryCode);
-  Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TfrmNetSetting, frmNetSetting);
   frmPasswordEntryCode.Show;
   Application.Run;

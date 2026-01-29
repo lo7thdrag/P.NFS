@@ -434,6 +434,13 @@ begin
     ListMissileL[i].Available := True;
   end;
 
+  if FLauncherId = 0 then
+  begin
+    ShowMessage('Silahkan pilih mode penembakan terlebih dahulu');
+    Exit;
+  end;
+
+
   if FLauncherId = 1 then //R
   begin
     lncr := Lonch1;
@@ -465,6 +472,12 @@ begin
 
   if not GetBalistik(BalistikMode, range, Use_Balistik) then
     Exit;
+
+  if FLauncherId = 0 then
+  begin
+    ShowMessage('Silahkan pilih mode penembakan terlebih dahulu');
+    Exit;
+  end;
 
   if IsReadyToFire then //IsReadyToFire
   begin
