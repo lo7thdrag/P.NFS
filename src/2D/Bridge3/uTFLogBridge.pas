@@ -31,6 +31,7 @@ type
     pnl1Home: TAdvSmoothPanel;
     lbljudul: TLabel;
     btn1: TButton;
+    btnBack: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -38,6 +39,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
     procedure btn1Click(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
   private
     { Private declarations }
     isClose: Boolean;
@@ -65,9 +67,16 @@ implementation
 
 procedure TTFLogBridge.btn1Click(Sender: TObject);
 begin
-  Height := 660;
-  Width := 597;
+  Height  := 379;
+  Width   := 1057;
   pnlMain.BringToFront;
+end;
+
+procedure TTFLogBridge.btnBackClick(Sender: TObject);
+begin
+  Height  := 300;
+  Width   := 300;
+  pnl1Home.BringToFront;
 end;
 
 procedure TTFLogBridge.FormClose(Sender: TObject; var Action: TCloseAction);
