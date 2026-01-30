@@ -856,8 +856,12 @@ type
 
     procedure CurrentShipItemSendCommandPlayerCamera ( const orderID, LockID : integer);
     procedure CurrentShipItemSendCommandPlayerLockSideCamera ( const orderID, TypeLock, LockID : integer);
-    procedure CurrentShipItemSendCommanPlayerEvent( const orderID, eventID, eventType : Integer;
-                                                    const SpeedPlayer, DesiredValue : double);
+
+    procedure CurrentShipItemSendCommanPlayerEvent( const orderID, valInt : Integer;
+                                                    const valDbl : double);
+//    procedure CurrentShipItemSendCommanPlayerEvent( const orderID, eventID, eventType : Integer;
+//                                                    const SpeedPlayer, DesiredValue : double);
+
     procedure LoadImageLight(var Aimage : TImage; imgStat : string; const stat : byte);
   public
     { Public declarations }
@@ -4220,20 +4224,15 @@ begin
 end;
 
 procedure TfrmGameController.CurrentShipItemSendCommanPlayerEvent(
-  const orderID, eventID, eventType: Integer; const SpeedPlayer, DesiredValue: double);
+  const orderID, valInt : Integer; const valDbl : double);
 var
-  RecSend : spUtilityTools;
+  rec : TRec_CameraController;
 begin
-  RecSend.OrderID := orderID;                 // Order ID
-  RecSend.c0      := ObserverID;              // ID Observer
-  RecSend.c1      := eventID;                 // Event ID
-  RecSend.c2      := eventType;
-  RecSend.c3      := 0;
-  RecSend.c4      := 0;
-  RecSend.c5      := SpeedPlayer;             // Speed Player;
-  RecSend.c6      := DesiredValue;
+  rec.cmd := orderID;                 // Order ID
+  rec.valueInt      := valInt;              // ID Observer
+  rec.valueDbl      := valDbl;
 
-  SimManager.NetSendTo3D_SetCommandPlayerCamera(RecSend);
+  SimManager.NetSendTo3D_CommandCamera(@rec);
 end;
 
 procedure TfrmGameController.btnPlayerCameraLockClick(Sender: TObject);
@@ -4340,17 +4339,17 @@ procedure TfrmGameController.btnCamMoveLefMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   case TComponent(sender).Tag of
-    6 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_LEFT, 3, 0);
-    7 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_UP, 3, 0);
-    8 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_RIGHT, 3, 0);
-    9 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_DOWN, 3, 0);
+    6 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    7 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    8 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    9 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
 
-    10 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_LEFT, 3, 0);
-    11 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_FORWARD, 3, 0);
-    12 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_UP, 3, 0);
-    13 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
-    14 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_DOWN, 3, 0);
-    15 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_BACK, 3, 0);
+    10 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    11 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    12 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    13 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    14 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    15 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
   end;
 end;
 
@@ -4358,17 +4357,17 @@ procedure TfrmGameController.btnCamRotateOldLeftMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   case TComponent(sender).Tag of
-    6 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_LEFT, 3, 0);
-    7 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_UP, 3, 0);
-    8 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_RIGHT, 3, 0);
-    9 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_DOWN, 3, 0);
+    6 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    7 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    8 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    9 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
 
-    10 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_LEFT, 3, 0);
-    11 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_FORWARD, 3, 0);
-    12 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_UP, 3, 0);
-    13 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
-    14 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_DOWN, 3, 0);
-    15 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_BACK, 3, 0);
+    10 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    11 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    12 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    13 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    14 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    15 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
   end;
 end;
 
@@ -4376,8 +4375,8 @@ procedure TfrmGameController.btnCamMoveLefMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   case TComponent(sender).Tag of
-    6,7,8,9           : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_OFF, 0, 0, 0);
-    10,11,12,13,14,15 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
+    6,7,8,9           : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(sender).Tag, 0);
+    10,11,12,13,14,15 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(sender).Tag, 0);
   end;
 end;
 
@@ -4385,8 +4384,8 @@ procedure TfrmGameController.btnCamRotateOldLeftMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   case TComponent(sender).Tag of
-    6,7,8,9           : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_OFF, 0, 0, 0);
-    10,11,12,13,14,15 : CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
+    6,7,8,9           : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(sender).Tag, 0);
+    10,11,12,13,14,15 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(sender).Tag, 0);
   end;
 end;
 
