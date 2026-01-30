@@ -4624,7 +4624,7 @@ begin
       newDir := (vrWheelCameraRotateY.Position - 180);
     end;
 
-    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_UP, 3, newDir);
+//    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_UP, 3, newDir);
   end
   else
   begin
@@ -4649,7 +4649,7 @@ begin
       newDir := (vrWheelCameraRotateX.Position - 180);
     end;
 
-    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_LEFT, 3, newDir);
+//    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_ROTATE_ON, ROTATE_PLAYER_LEFT, 3, newDir);
   end
   else
   begin
@@ -7373,25 +7373,25 @@ end;
 procedure TfrmGameController.btnCanonTest3DMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
+//  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
 end;
 
 procedure TfrmGameController.btnCanonTest3DMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
+//  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
 end;
 
 procedure TfrmGameController.btnstoprotateClick(Sender: TObject);
 begin
-  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
+//  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
 end;
 
 procedure TfrmGameController.btn1MouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   Sleep(100);
-  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
+//  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
 end;
 
 procedure TfrmGameController.btn1MouseUp(Sender: TObject;
@@ -7464,7 +7464,7 @@ begin
     RecSend.mBalistikID         := BalistikID;
     RecSend.mSalvoRate          := salvoRate;
 
-    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
+//    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
     case TComponent(sender).Tag of
       //fire
       1 : begin
@@ -7494,7 +7494,7 @@ begin
 
     end;
     Sleep(100);
-    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
+//    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
   end;
 end;
 
