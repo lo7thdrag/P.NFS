@@ -11,7 +11,7 @@ object TFLogBridge: TTFLogBridge
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poScreenCenter
+  Position = poDesigned
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -26,8 +26,6 @@ object TFLogBridge: TTFLogBridge
     Height = 261
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1057
-    ExplicitHeight = 379
     object Splitter1: TSplitter
       Left = 257
       Top = 1
@@ -60,7 +58,6 @@ object TFLogBridge: TTFLogBridge
       Height = 259
       Align = alLeft
       TabOrder = 0
-      ExplicitHeight = 377
       object mLogClient: TMemo
         Left = 1
         Top = 50
@@ -70,7 +67,6 @@ object TFLogBridge: TTFLogBridge
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitHeight = 285
       end
       object pnlClientUp: TPanel
         Left = 1
@@ -89,7 +85,6 @@ object TFLogBridge: TTFLogBridge
         Align = alBottom
         Caption = 'Status : Not Connected'
         TabOrder = 2
-        ExplicitTop = 335
       end
     end
     object pnlServer: TPanel
@@ -99,7 +94,6 @@ object TFLogBridge: TTFLogBridge
       Height = 259
       Align = alLeft
       TabOrder = 1
-      ExplicitHeight = 377
       object mLogServer: TMemo
         Left = 1
         Top = 50
@@ -109,7 +103,6 @@ object TFLogBridge: TTFLogBridge
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitHeight = 326
       end
       object pnlServerUp: TPanel
         Left = 1
@@ -128,7 +121,6 @@ object TFLogBridge: TTFLogBridge
       Height = 259
       Align = alLeft
       TabOrder = 2
-      ExplicitHeight = 377
       object pnlSettingUp: TPanel
         Left = 1
         Top = 1
@@ -147,7 +139,6 @@ object TFLogBridge: TTFLogBridge
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 1
-        ExplicitHeight = 326
       end
     end
     object pnlPacket: TPanel
@@ -158,7 +149,6 @@ object TFLogBridge: TTFLogBridge
       Align = alClient
       Caption = 'pnlPacket'
       TabOrder = 3
-      ExplicitHeight = 377
       object pnlUppacket: TPanel
         Left = 1
         Top = 1
@@ -191,7 +181,6 @@ object TFLogBridge: TTFLogBridge
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 1
-        ExplicitHeight = 326
       end
     end
   end
@@ -234,8 +223,6 @@ object TFLogBridge: TTFLogBridge
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 1057
-    ExplicitHeight = 379
     TMSStyle = 0
     object lbljudul: TLabel
       Left = 0
@@ -270,8 +257,6 @@ object TFLogBridge: TTFLogBridge
       ParentFont = False
       TabOrder = 0
       OnClick = btn1Click
-      ExplicitTop = 347
-      ExplicitWidth = 1057
     end
   end
   object tmrShutdownServer: TTimer
