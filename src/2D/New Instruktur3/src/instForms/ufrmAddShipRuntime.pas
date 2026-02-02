@@ -31,6 +31,11 @@ type
     btnRemoveObject: TAdvSmoothButton;
     lblZ: TAdvSmoothLabel;
     edtZCoord: TCurvyEdit;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    CurvyEdit1: TCurvyEdit;
+    AdvSmoothLabel2: TAdvSmoothLabel;
+    CurvyEdit2: TCurvyEdit;
+    btnPinPoin: TAdvSmoothButton;
     procedure TabSelectionChange(Sender: TObject);
     procedure TabTargetShipChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);

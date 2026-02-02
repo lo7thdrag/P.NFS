@@ -1169,13 +1169,10 @@ var
 begin
    { Set Game Controller }
    DefaultMonitor := dmDesktop;
-   if Screen.MonitorCount > 1 then i := 1
-   else i := 0;
-
-   Height       := Screen.Monitors[i].Height;
-   Top          := Screen.Monitors[i].Top;
-   Left         := Screen.Monitors[i].Left;
-   width        := Screen.Monitors[i].Width;
+   Height       := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Height;
+   Top          := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Top;
+   Left         := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Left;
+   width        := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Width;
    
    FillClientList;
 
