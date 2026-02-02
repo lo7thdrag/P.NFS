@@ -1066,6 +1066,7 @@ var
   CorrectBearing,
   CorrectElev : Double;
 begin
+  isValid := True;
   if not TryStrToFloat(edtElevasi.Text, CorrectElev) then isValid := false;
   if not TryStrToFloat(edtTraining.Text, CorrectBearing) then isValid := False;
 
@@ -1102,6 +1103,8 @@ var
   CorrectBearing,
   CorrectElev : Double;
 begin
+  isValid := True;
+
   if not TryStrToFloat(edtElevasi.Text, CorrectElev) then isValid := false;
   if not TryStrToFloat(edtTraining.Text, CorrectBearing) then isValid := False;
 

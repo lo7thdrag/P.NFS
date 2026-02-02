@@ -174,7 +174,7 @@ begin
     for I := 0 to ListWeaponAssigned.Count - 1 do begin
       WeaponAssigned := TWeaponGetList.Create;
       WeaponAssigned := TWeaponGetList(ListWeaponAssigned.Items[I]);
-      if WeaponAssigned.IDWeapon = C_DBID_CANNON30 then begin
+      if WeaponAssigned.IDWeapon = C_DBID_CANNON_AK230 then begin
         FAssignedWeapon := TWeaponGetList.Create;
         FAssignedWeapon := TWeaponGetList(ListWeaponAssigned.Items[I]);
         Break;
