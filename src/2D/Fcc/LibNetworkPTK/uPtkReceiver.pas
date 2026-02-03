@@ -70,7 +70,7 @@ end;
 procedure TPtkReceiver.DelayMisille(sender : Tobject);
 
 begin
-//  inherited;
+  inherited;
 //  DelayCount := DelayCount + 1;
 //
 //  if not SimManager.IsConnected then
