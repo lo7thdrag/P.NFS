@@ -1537,86 +1537,100 @@ begin
   frmMainInstruktur.deleteLeftFrame;
   { Delete Listview Ship/Missile }
   { Ship }
-  for i:= frmGameController.lvRuntimeShip.Items.Count - 1 downto 0 do
-  begin
-    if Assigned(frmGameController.lvRuntimeShip.Items[i].Data) then
+  if Assigned(frmGameController.lvRuntimeShip) then begin
+    for i:= frmGameController.lvRuntimeShip.Items.Count - 1 downto 0 do
     begin
-      Vehicle := TVehicle(frmGameController.lvRuntimeShip.Items[i].Data);
-      Vehicle.Free;
-    end;
+      if Assigned(frmGameController.lvRuntimeShip.Items[i].Data) then
+      begin
+        Vehicle := TVehicle(frmGameController.lvRuntimeShip.Items[i].Data);
+        Vehicle.Free;
+      end;
 
-    frmGameController.lvRuntimeShip.Items[i].Delete;
+      frmGameController.lvRuntimeShip.Items[i].Delete;
+    end;
+    frmGameController.lvRuntimeShip.Items.Clear;
   end;
-  frmGameController.lvRuntimeShip.Items.Clear;
 
   { Ship2 }
-  for i:= frmGameController.lvRuntimeShipTrajectory.Items.Count - 1 downto 0 do
-  begin
-    if Assigned(frmGameController.lvRuntimeShipTrajectory.Items[i].Data) then
+  if Assigned(frmGameController.lvRuntimeShipTrajectory) then begin
+    for i:= frmGameController.lvRuntimeShipTrajectory.Items.Count - 1 downto 0 do
     begin
-      Vehicle := TVehicle(frmGameController.lvRuntimeShipTrajectory.Items[i].Data);
-      Vehicle.Free;
-    end;
+      if Assigned(frmGameController.lvRuntimeShipTrajectory.Items[i].Data) then
+      begin
+        Vehicle := TVehicle(frmGameController.lvRuntimeShipTrajectory.Items[i].Data);
+        Vehicle.Free;
+      end;
 
-    frmGameController.lvRuntimeShipTrajectory.Items[i].Delete;
+      frmGameController.lvRuntimeShipTrajectory.Items[i].Delete;
+    end;
+    frmGameController.lvRuntimeShipTrajectory.Items.Clear;
   end;
-  frmGameController.lvRuntimeShipTrajectory.Items.Clear;
 
   { Missile }
-  for i:= frmGameController.lvRuntimeMissile.Items.Count - 1 downto 0 do
-  begin
-    if Assigned(frmGameController.lvRuntimeMissile.Items[i].Data) then
+  if Assigned(frmGameController.lvRuntimeMissile) then begin
+    for i:= frmGameController.lvRuntimeMissile.Items.Count - 1 downto 0 do
     begin
-      Weapon := TWeapon(frmGameController.lvRuntimeMissile.Items[i].Data);
-      Weapon.Free;
-    end;
+      if Assigned(frmGameController.lvRuntimeMissile.Items[i].Data) then
+      begin
+        Weapon := TWeapon(frmGameController.lvRuntimeMissile.Items[i].Data);
+        Weapon.Free;
+      end;
 
-    frmGameController.lvRuntimeMissile.Items[i].Delete;
+      frmGameController.lvRuntimeMissile.Items[i].Delete;
+    end;
+    frmGameController.lvRuntimeMissile.Items.Clear;
   end;
-  frmGameController.lvRuntimeMissile.Items.Clear;
 
   { Missile2 }
-  for i:= frmGameController.lvRuntimeMissileTrajectory.Items.Count - 1 downto 0 do
-  begin
-    if Assigned(frmGameController.lvRuntimeMissileTrajectory.Items[i].Data) then
+  if Assigned(frmGameController.lvRuntimeMissileTrajectory) then begin
+    for i:= frmGameController.lvRuntimeMissileTrajectory.Items.Count - 1 downto 0 do
     begin
-      Weapon := TWeapon(frmGameController.lvRuntimeMissileTrajectory.Items[i].Data);
-      Weapon.Free;
-    end;
+      if Assigned(frmGameController.lvRuntimeMissileTrajectory.Items[i].Data) then
+      begin
+        Weapon := TWeapon(frmGameController.lvRuntimeMissileTrajectory.Items[i].Data);
+        Weapon.Free;
+      end;
 
-    frmGameController.lvRuntimeMissileTrajectory.Items[i].Delete;
+      frmGameController.lvRuntimeMissileTrajectory.Items[i].Delete;
+    end;
+    frmGameController.lvRuntimeMissile.Items.Clear;
   end;
-  frmGameController.lvRuntimeMissile.Items.Clear;
 
   { Waepon }
-  for i:= frmGameController.lvWeapon.Items.Count -1 downto 0 do
-  begin
-    if Assigned(frmGameController.lvWeapon.Items[i].Data) then
+  if Assigned(frmGameController.lvWeapon) then begin
+    for i:= frmGameController.lvWeapon.Items.Count -1 downto 0 do
     begin
-      Weapon := TWeapon(frmGameController.lvWeapon.Items[i].Data);
-      Weapon.Free;
+      if Assigned(frmGameController.lvWeapon.Items[i].Data) then
+      begin
+        Weapon := TWeapon(frmGameController.lvWeapon.Items[i].Data);
+        Weapon.Free;
+      end;
+
+      frmGameController.lvWeapon.Items[i].Delete;
     end;
-
-    frmGameController.lvWeapon.Items[i].Delete;
-  end;
-  frmGameController.lvWeapon.Items.Clear;
-
-  for i:= frmGameController.pmClient.Items.Count -1 downto 0 do
-  begin
-    MenuItem := TMenuItem(frmGameController.pmClient.Items[i]);
-    if MenuItem.Tag <= 0 then Continue;
-
-    frmGameController.pmClient.Items.Delete(i);
-    FreeAndNil(MenuItem);
+    frmGameController.lvWeapon.Items.Clear;
   end;
 
-  for i:= frmGameController.pmClient2.Items.Count -1 downto 0 do
-  begin
-    MenuItem := TMenuItem(frmGameController.pmClient2.Items[i]);
-    if MenuItem.Tag <= 0 then Continue;
+  if Assigned(frmGameController.pmClient) then begin
+    for i:= frmGameController.pmClient.Items.Count -1 downto 0 do
+    begin
+      MenuItem := TMenuItem(frmGameController.pmClient.Items[i]);
+      if MenuItem.Tag <= 0 then Continue;
 
-    frmGameController.pmClient2.Items.Delete(i);
-    FreeAndNil(MenuItem);
+      frmGameController.pmClient.Items.Delete(i);
+      FreeAndNil(MenuItem);
+    end;
+  end;
+
+  if Assigned(frmGameController.pmClient2) then begin
+    for i:= frmGameController.pmClient2.Items.Count -1 downto 0 do
+    begin
+      MenuItem := TMenuItem(frmGameController.pmClient2.Items[i]);
+      if MenuItem.Tag <= 0 then Continue;
+
+      frmGameController.pmClient2.Items.Delete(i);
+      FreeAndNil(MenuItem);
+    end;
   end;
 
   frmGameController.VisibleStatusShip(False, 1);

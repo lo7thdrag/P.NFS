@@ -73,7 +73,7 @@ uses
 {$R *.res}
 
 begin
-  ReportMemoryLeaksOnShutdown:= False;
+  ReportMemoryLeaksOnShutdown:= True;
   Application.Initialize;
 
   Application.CreateForm(TDataModule1, DataModule1);
@@ -164,7 +164,7 @@ begin
   Application.Run;
 
   { Script }
-//  frmGameController.DestroyTrajectory;
-//  SimManager.TCPClient.setLog(nil);
-//  uScriptManager.EndSimulation;
+  frmGameController.DestroyTrajectory;
+  SimManager.TCPClient.setLog(nil);
+  uScriptManager.EndSimulation;
 end.

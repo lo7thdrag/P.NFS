@@ -69,8 +69,8 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TfrmDCDSMain, frmDCDSMain);
   Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TfrmDCDSMain, frmDCDSMain);
   
   Application.Run;
 end.

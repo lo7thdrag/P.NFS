@@ -852,7 +852,7 @@ begin
   { Tool Button }
 
   {$REGION ' Select Arrow '}
-  ImListSelectArrow := TImageList.Create(nil);
+  ImListSelectArrow := TImageList.Create(Self);
   ImListSelectArrow.Width  := btnSelectArrow.Width;
   ImListSelectArrow.Height := btnSelectArrow.Height;
   try
@@ -875,7 +875,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Select Move '}
-  ImListSelectMove := TImageList.Create(nil);
+  ImListSelectMove := TImageList.Create(Self);
   ImListSelectMove.Width  := btnSelectMove.Width;
   ImListSelectMove.Height := btnSelectMove.Height;
   try
@@ -898,7 +898,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Select Move All '}
-  ImListSelectMoveAll := TImageList.Create(nil);
+  ImListSelectMoveAll := TImageList.Create(Self);
   ImListSelectMoveAll.Width  := btnSelectMoveAll.Width;
   ImListSelectMoveAll.Height := btnSelectMoveAll.Height;
   try
@@ -921,7 +921,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Add Vehicle '}
-  ImListAddVehicle := TImageList.Create(nil);
+  ImListAddVehicle := TImageList.Create(Self);
   ImListAddVehicle.Width  := btnAddVehicle.Width;
   ImListAddVehicle.Height := btnAddVehicle.Height;
   try
@@ -944,7 +944,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Move Map '}
-  ImListHand := TImageList.Create(nil);
+  ImListHand := TImageList.Create(Self);
   ImListHand.Width  := btnHand.Width;
   ImListHand.Height := btnHand.Height;
   try
@@ -967,7 +967,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Zoom Center '}
-  ImListZoomCenter := TImageList.Create(nil);
+  ImListZoomCenter := TImageList.Create(Self);
   ImListZoomCenter.Width  := btnZoomCenter.Width;
   ImListZoomCenter.Height := btnZoomCenter.Height;
   try
@@ -990,7 +990,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Zoom Out '}
-  ImListZoomOut := TImageList.Create(nil);
+  ImListZoomOut := TImageList.Create(Self);
   ImListZoomOut.Width  := btnZoomOut.Width;
   ImListZoomOut.Height := btnZoomOut.Height;
   try
@@ -1013,7 +1013,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Zoom In '}
-  ImListZoomIn := TImageList.Create(nil);
+  ImListZoomIn := TImageList.Create(Self);
   ImListZoomIn.Width  := btnZoomIn.Width;
   ImListZoomIn.Height := btnZoomIn.Height;
   try
@@ -1036,7 +1036,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Zoom Value '}
-  ImListZoomValue := TImageList.Create(nil);
+  ImListZoomValue := TImageList.Create(Self);
   ImListZoomValue.Width  := btnZoomValue.Width;
   ImListZoomValue.Height := btnZoomValue.Height;
   try
@@ -1059,7 +1059,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Tool Ruler '}
-  ImListToolRuler := TImageList.Create(nil);
+  ImListToolRuler := TImageList.Create(Self);
   ImListToolRuler.Width  := btnToolRuler.Width;
   ImListToolRuler.Height := btnToolRuler.Height;
   try
@@ -1082,7 +1082,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Tool Tikas '}
-  ImListToolTikas := TImageList.Create(nil);
+  ImListToolTikas := TImageList.Create(Self);
   ImListToolTikas.Width  := btnToolTikas.Width;
   ImListToolTikas.Height := btnToolTikas.Height;
   try
@@ -1105,7 +1105,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Minimap '}
-  ImListMinimap := TImageList.Create(nil);
+  ImListMinimap := TImageList.Create(Self);
   ImListMinimap.Width  := btnMiniMap.Width;
   ImListMinimap.Height := btnMiniMap.Height;
   try
@@ -1128,7 +1128,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Monitor '}
-  ImListToolMonitor := TImageList.Create(nil);
+  ImListToolMonitor := TImageList.Create(Self);
   ImListToolMonitor.Width  := btnZoomCenterMap1.Width;
   ImListToolMonitor.Height := btnZoomCenterMap1.Height;
   try
@@ -1151,7 +1151,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Record Start '}
-  ImListRecordStart := TImageList.Create(nil);
+  ImListRecordStart := TImageList.Create(Self);
   ImListRecordStart.Width  := btnRecordStart.Width;
   ImListRecordStart.Height := btnRecordStart.Height;
   try
@@ -1174,7 +1174,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Record Pause '}
-  ImListRecordPause := TImageList.Create(nil);
+  ImListRecordPause := TImageList.Create(Self);
   ImListRecordPause.Width  := btnRecordPause.Width;
   ImListRecordPause.Height := btnRecordPause.Height;
   try
@@ -1197,7 +1197,7 @@ begin
   {$ENDREGION}
 
   {$REGION ' Close '}
-  ImListClose := TImageList.Create(nil);
+  ImListClose := TImageList.Create(Self);
   ImListClose.Width  := btnClose.Width;
   ImListClose.Height := btnClose.Height;
   try
@@ -1232,9 +1232,10 @@ end;
 
 procedure TfrmMainInstruktur.FormDestroy(Sender: TObject);
 begin
-   frmGameController.DestroyTrajectory;
-  SimManager.TCPClient.setLog(nil);
-  uScriptManager.EndSimulation;
+//  frmGameController.DestroyTrajectory;
+//  SimManager.TCPClient.setLog(nil);
+//  SimManager.TCPClient.Disconnect;
+//  uScriptManager.EndSimulation;
 
   FMapCanvas.Free;
   FMapInsetCanvas.Free;
@@ -2697,6 +2698,11 @@ begin
   end;
 //  Application.Terminate;
 //  TimerDestroy.Enabled := true;
+
+//  frmGameController.DestroyTrajectory;
+//  SimManager.TCPClient.setLog(nil);
+//  SimManager.TCPClient.Disconnect;
+//  uScriptManager.EndSimulation
 end;
 
 procedure TfrmMainInstruktur.OnTimerDestroy_OnTime(sender: TObject);

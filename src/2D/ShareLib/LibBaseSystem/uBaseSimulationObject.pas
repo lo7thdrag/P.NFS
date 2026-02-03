@@ -217,26 +217,29 @@ end;
 
 // - TSimulationContainer public method -----------------------------------------
 procedure TSimulationContainer.AddObject(aObj: TObject);
+var
+  AList: TList;
 begin
-  with FListItem.LockList do
-    try
-      Add(aObj);
-    finally
-      FListItem.UnlockList;
-    end;
+  AList:= FListItem.LockList;  
+  try
+    AList.Add(aObj);
+  finally
+    FListItem.UnlockList;
+  end;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 procedure TSimulationContainer.RemoveObject(aObj: TObject);
+var
+  AList: TList;  
 begin
-  with FListItem.LockList do
-    try
-      Remove(aObj);
-      if Assigned(aObj) then
-        aObj.Free;
-    finally
-      FListItem.UnlockList;
-    end;
+  AList:= FListItem.LockList;
+  try
+    if (AList.Remove(aObj)>0) and Assigned(aObj) then
+      aObj.Free;    
+  finally
+    FListItem.UnlockList;
+  end;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -262,22 +265,28 @@ end;
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 procedure TSimulationContainer.ClearObject();
 var
+  AList: TList;
   i: integer;
   obj: TObject;
 begin
-  with FListItem.LockList do
-    try
-      for i := 0 to Count - 1 do
-      begin
-        if Assigned(Items[i]) then begin
-          obj := TObject(Items[i]);
-          obj.Free;
-        end;
+  AList:= FListItem.LockList;
+  try
+    for i := 0 to AList.Count - 1 do
+    begin
+      if Assigned(AList.Items[i]) then begin
+        obj := TObject(AList.Items[i]);
+        if Assigned(obj) then
+          try
+            obj.Free;
+          except
+          end;
+        AList.Items[i]:= nil;
       end;
-      Clear;
-    finally
-      FListItem.UnlockList;
     end;
+    AList.Clear;
+  finally
+    FListItem.UnlockList;
+  end;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
