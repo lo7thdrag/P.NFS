@@ -22,7 +22,13 @@ uses
   uFrmFireDistribution in 'libDisplayUI\FrmTab\uFrmFireDistribution.pas' {frmFireDistribution},
   uFrmMissileMonitor in 'libDisplayUI\FrmTab\uFrmMissileMonitor.pas' {frmMissileMonitor},
   uFrmLaunchData in 'libDisplayUI\FrmTab\uFrmLaunchData.pas' {frmLaunchData},
-  uFrmChannelSelect in 'libDisplayUI\FrmTab\uFrmChannelSelect.pas' {frmChannelSelect};
+  uFrmChannelSelect in 'libDisplayUI\FrmTab\uFrmChannelSelect.pas' {frmChannelSelect},
+  uScriptC705 in 'libMgr\uScriptC705.pas',
+  uTCPClient in '..\..\ShareLib\LibNetworks\uTCPClient.pas',
+  uTCPDatatype in '..\..\ShareLib\LibNetworks\uTCPDatatype.pas',
+  uC705SimManager in 'libMgr\uC705SimManager.pas',
+  uBaseDataType in '..\..\ShareLib\LibBaseSystem\uBaseDataType.pas',
+  uFrmINSTest in 'libDisplayUI\FrmTab\uFrmINSTest.pas' {frmINSTest};
 
 {$R *.res}
 
@@ -39,9 +45,10 @@ begin
   Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
   Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);
-  Application.CreateForm(TfrmMissileMonitor, frmMissileMonitor);
-  Application.CreateForm(TfrmLaunchData, frmLaunchData);
-  Application.CreateForm(TfrmChannelSelect, frmChannelSelect);
+  //Application.CreateForm(TfrmINSTest, frmINSTest);
+  //Application.CreateForm(TfrmMissileMonitor, frmMissileMonitor);
+  //Application.CreateForm(TfrmLaunchData, frmLaunchData);
+  //Application.CreateForm(TfrmChannelSelect, frmChannelSelect);
   //Application.CreateForm(TfrmFireDistribution, frmFireDistribution);
   //Application.CreateForm(TfrmMissileInformation, frmMissileInformation);
   //  frmRoutePlan.SetMonitor(VMonitorSetting.MonitorKiri,
@@ -52,6 +59,8 @@ begin
 //                              VMonitorTopLeft.MonBot_Left, VMonitorTopLeft.MonBot_Top);
 
   uFormMgr.InitForms;
-
+  uScriptC705.BeginC705;
   Application.Run;
+
+  uScriptC705.EndC705;
 end.

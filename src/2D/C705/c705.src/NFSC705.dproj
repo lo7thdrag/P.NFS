@@ -148,6 +148,15 @@
         <DCCReference Include="libDisplayUI\FrmTab\uFrmChannelSelect.pas">
             <Form>frmChannelSelect</Form>
         </DCCReference>
+        <DCCReference Include="libMgr\uScriptC705.pas"/>
+        <DCCReference Include="..\..\ShareLib\LibNetworks\uTCPClient.pas"/>
+        <DCCReference Include="..\..\ShareLib\LibNetworks\uTCPDatatype.pas"/>
+        <DCCReference Include="libMgr\uC705SimManager.pas"/>
+        <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseDataType.pas"/>
+        <DCCReference Include="libDisplayUI\FrmTab\uFrmINSTest.pas">
+            <Form>frmINSTest</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

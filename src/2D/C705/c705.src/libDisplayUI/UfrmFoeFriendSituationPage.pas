@@ -11,7 +11,8 @@ uses
   uFrmFireDistribution,
   uFrmMissileMonitor,
   uFrmLaunchData,
-  uFrmChannelSelect;
+  uFrmChannelSelect,
+  uFrmINSTest;
 
 type
   TfrmFoeFriendSituationPage = class(TForm)
@@ -455,7 +456,7 @@ type
     FFormChSelect: TfrmChannelSelect; //done UI
     FFormMissileControl: TfrmMissileInformation; //belum
     FFormMissileMonitor: TfrmMissileMonitor; //done UI
-    FFormINSTest: TfrmMissileInformation; //belum
+    FFormINSTest: TfrmINSTest; //belum
     FFormLaunchData: TfrmLaunchData; //done UI
 
     procedure AttachPanelTo(aPanel, aParent: TWinControl);
@@ -526,7 +527,7 @@ begin
     FFormMissileMonitor := TfrmMissileMonitor.Create(Self);
 
   if not Assigned(FFormINSTest) then
-    FFormINSTest := TfrmMissileInformation.Create(Self);
+    FFormINSTest := TfrmINSTest.Create(Self);
 
   if not Assigned(FFormLaunchData) then
     FFormLaunchData := TfrmLaunchData.Create(Self);
@@ -633,7 +634,11 @@ begin
   else if advpgcFunctionMenuFoe.ActivePage = advtsINSTest then
   begin
     {$REGION 'INS Test'}
+    if Assigned(FFormINSTest) then
+      FFormINSTest.Hide;
+
     pnlInsTestTab.Visible := True;
+    pnlInsTestTab.BringToFront;
 
     AttachPanelTo(pnlArea2, pnlArea2_InsTest);
     AttachPanelTo(pnlArea3A, pnlArea3A_InsTest);
@@ -772,6 +777,15 @@ begin
 //  end;
 
   UpdateLayoutTab;
+
+  // case ketika di tab INS Test, jadi navigasi untuk form INS Test only
+  if (advpgcFunctionMenuFoe.ActivePage = advtsINSTest) and (Assigned(FFormINSTest)) then begin
+    case Key of
+      VK_RETURN: begin
+        EmbedAreaForm(FFormINSTest, pnlArea1_InsTest);
+      end;
+    end;
+  end;
 
   {$REGION 'Panel Exit Form Enter to Exit'}
   if pnlExitTab.Visible = True then

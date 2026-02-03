@@ -2,8 +2,8 @@ object frmChannelSelect: TfrmChannelSelect
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 889
-  ClientWidth = 970
+  ClientHeight = 850
+  ClientWidth = 954
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,14 +19,14 @@ object frmChannelSelect: TfrmChannelSelect
   TextHeight = 13
   object Bevel2: TBevel
     Left = 27
-    Top = 752
+    Top = 731
     Width = 445
     Height = 9
     Shape = bsBottomLine
   end
   object Label51: TLabel
     Left = 32
-    Top = 777
+    Top = 756
     Width = 257
     Height = 18
     Caption = 'For select,Press [Up] or [down]'
@@ -39,7 +39,7 @@ object frmChannelSelect: TfrmChannelSelect
   end
   object Label53: TLabel
     Left = 32
-    Top = 809
+    Top = 788
     Width = 264
     Height = 18
     Caption = '[Enter] for confir,[Esc] for return'
@@ -100,14 +100,14 @@ object frmChannelSelect: TfrmChannelSelect
     Left = 248
     Top = 24
     Width = 681
-    Height = 521
+    Height = 473
     BevelInner = bvRaised
     BevelKind = bkSoft
     BevelOuter = bvNone
     TabOrder = 5
     object Label5: TLabel
       Left = 10
-      Top = 463
+      Top = 415
       Width = 429
       Height = 18
       Caption = 'For select,Press [Up] or [down],or Press the number'
@@ -120,7 +120,7 @@ object frmChannelSelect: TfrmChannelSelect
     end
     object Label6: TLabel
       Left = 10
-      Top = 487
+      Top = 439
       Width = 281
       Height = 18
       Caption = '[Enter] for confirm,[Esc] for return'
@@ -205,14 +205,14 @@ object frmChannelSelect: TfrmChannelSelect
     Left = 248
     Top = 24
     Width = 681
-    Height = 521
+    Height = 473
     BevelInner = bvRaised
     BevelKind = bkSoft
     BevelOuter = bvNone
     TabOrder = 4
     object Label3: TLabel
       Left = 10
-      Top = 463
+      Top = 415
       Width = 429
       Height = 18
       Caption = 'For select,Press [Up] or [down],or Press the number'
@@ -225,7 +225,7 @@ object frmChannelSelect: TfrmChannelSelect
     end
     object Label4: TLabel
       Left = 10
-      Top = 487
+      Top = 439
       Width = 281
       Height = 18
       Caption = '[Enter] for confirm,[Esc] for return'
@@ -310,14 +310,14 @@ object frmChannelSelect: TfrmChannelSelect
     Left = 248
     Top = 24
     Width = 681
-    Height = 521
+    Height = 473
     BevelInner = bvRaised
     BevelKind = bkSoft
     BevelOuter = bvNone
     TabOrder = 3
     object Label1: TLabel
       Left = 10
-      Top = 463
+      Top = 415
       Width = 429
       Height = 18
       Caption = 'For select,Press [Up] or [down],or Press the number'
@@ -330,7 +330,7 @@ object frmChannelSelect: TfrmChannelSelect
     end
     object Label2: TLabel
       Left = 10
-      Top = 487
+      Top = 439
       Width = 281
       Height = 18
       Caption = '[Enter] for confirm,[Esc] for return'
