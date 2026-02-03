@@ -2,9 +2,6 @@
 
 interface
 
-//uses Vcl.ExtCtrls, System.ImageList, Vcl.ImgList, Vcl.Controls, Vcl.StdCtrls,
-//  AdvOfficeButtons, Vcl.OleCtrls, MapXLib_TLB, System.Classes;
-
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
@@ -461,6 +458,48 @@ type
     edtDeltaDSetting: TEdit;
     lblLastSatuanDeltaDSetting: TLabel;
     pnlBaseVideoZone: TPanel;
+    pnlWeatherSettingHeader: TPanel;
+    rbWeatherAuto: TRadioButton;
+    rbWeatherManual: TRadioButton;
+    edtWeatherSettingWs: TEdit;
+    lblWeatherSettingWs: TLabel;
+    lblWeatherSettingSatuanWs: TLabel;
+    lblWeatherSettingWd: TLabel;
+    edtWeatherSettingWd: TEdit;
+    lblWeatherSettingSatuanWd: TLabel;
+    lblWeatherSettingTemp: TLabel;
+    edtWeatherSettingTemp: TEdit;
+    lblWeatherSettingSatuanTemp: TLabel;
+    lblWeatherSettingHumi: TLabel;
+    edtWeatherSettingHumi: TEdit;
+    lblWeatherSettingSatuanHumi: TLabel;
+    lblWeatherSettingAirP: TLabel;
+    edtWeatherSettingAirP: TEdit;
+    lblWeatherSettingSatuanAirP: TLabel;
+    pnlNavSettingHeader: TPanel;
+    lblNavSettingHeading: TLabel;
+    edtNavSettingHeading: TEdit;
+    lblNavSettingSatuanHeading: TLabel;
+    lblNavSettingVoyage: TLabel;
+    edtNavSettingALT: TEdit;
+    lblNavSettingSatuanVoyage: TLabel;
+    lblNavSettingPitch: TLabel;
+    edtNavSettingPitch: TEdit;
+    lblNavSettingSatuanPitch: TLabel;
+    lblNavSettingRoll: TLabel;
+    edtNavSettingRoll: TEdit;
+    lblNavSettingSatuanRoll: TLabel;
+    lblNavSettingSpeed: TLabel;
+    edtNavSettingSpeed: TEdit;
+    lblNavSettingSatuanSpeed: TLabel;
+    lblNavSettingLon: TLabel;
+    edtNavSettingLON: TEdit;
+    lblNavSettingSatuanLon: TLabel;
+    lblNavSettingLat: TLabel;
+    edtNavSettingLAT: TEdit;
+    lblNavSettingSatuanLat: TLabel;
+    rbNavAuto: TRadioButton;
+    rbNavrManual: TRadioButton;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -480,6 +519,8 @@ type
     procedure FMapMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pnlFireFcc2Click(Sender: TObject);
+    procedure onRbNavSetting(Sender: TObject);
+    procedure onRbWeatherSetting(Sender: TObject);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -518,6 +559,9 @@ type
     FCircleCY    : Integer;
     FCircleR     : Integer; // radius pixel lingkaran peta
 
+    FIsWeatherAuto : Boolean;
+    FIsNavAuto : Boolean;
+
     //setting parameter
     pCurrentScenID  : integer;
     pServer_Ip,
@@ -532,6 +576,8 @@ type
     pShipID,
     pClassID        : Integer;
 
+    activePanel : Integer; // 1: cal setting
+
     procedure LoadGeoset(const aGst: string); virtual;
     procedure InitializeForm();
     procedure setRegionCircle;
@@ -544,6 +590,8 @@ type
 
      procedure ptkCommand(const str : string);
      procedure HandleKeyByBtnName(const BtnName: string);
+
+    procedure fireClick();
   public
     { Public declarations }
     rCX, rCY: integer;
@@ -1033,6 +1081,64 @@ begin
   Canvas.LineTo(X2, Y2);
 end;
 
+procedure TfrmMainFCC.fireClick;
+var
+  RecSend : TRec3DSetWCC;
+  aLow, aHigh: Double;
+  range,rangem, bearing : Double;
+begin
+  if Assigned(FCCManager.SelectedVehicle) then
+  begin
+    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    rangem := range * C_NauticalMile_To_Metre;
+    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    // range = 3000 m, target lebih rendah 25 m
+    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+
+    RecSend.ShipID          := FCCManager.ShipID;
+    RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := aLow;
+    RecSend.mAutoCorrectBearing := bearing;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_START_F;
+    FCCManager.NetSendTo3D_OrderCannon(RecSend);
+
+    Sleep(1000);
+
+    RecSend.ShipID          := FCCManager.ShipID;
+    RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID     := 0;
+    RecSend.mMissileID      := 0;
+    RecSend.mMissileNumber  := 0;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := aLow;
+    RecSend.mAutoCorrectBearing := bearing;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 30;
+
+
+    RecSend.mOrderID := __ORD_CANNON_STOP_F;
+    FCCManager.NetSendTo3D_OrderCannon(RecSend);
+  end;
+end;
+
 procedure TfrmMainFCC.FMapDrawUserLayer(ASender: TObject;
   const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull,
   RectInvalid: IDispatch);
@@ -1119,7 +1225,7 @@ begin
       RecSend.mOrderID        := 0;
 
       RecSend.mUpDown             := 0;
-      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
+      RecSend.mTargetID           := 0;
       RecSend.mModeID             := 0;
       RecSend.mAutoCorrectElev    := aLow;
       RecSend.mAutoCorrectBearing := bearing;
@@ -1145,7 +1251,7 @@ begin
       RecSend.mOrderID        := 0;
 
       RecSend.mUpDown             := 0;
-      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
+      RecSend.mTargetID           := 0;
       RecSend.mModeID             := 0;
       RecSend.mAutoCorrectElev    := alow;
       RecSend.mAutoCorrectBearing := bearing;
@@ -1264,7 +1370,7 @@ begin
 //  t.BitmapTintAlpha := 128;
 //  T.TrackLabel   := '003';
 //
-//  // contoh tambah 2 vehicle
+////  // contoh tambah 2 vehicle
 //  V := VehicleMgr.AddVehicle(112.781, -7.199, '004');
 //  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
 //  V.SetSpeedKts(12);
@@ -1344,6 +1450,8 @@ begin
     FCCManager.Running := True;
   end;
 
+  FIsWeatherAuto := True;
+  FIsNavAuto := True;
 end;
 
 procedure TfrmMainFCC.FormDestroy(Sender: TObject);
@@ -1381,26 +1489,26 @@ var
   ChromeHandle: HWND;
   WindowHandle: HWND;
 begin
-//  // jalankan chrome
-//  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
-//    '--app="https://google.com"');
-//
-//  // tunggu window chrome muncul
-//  Sleep(500);
-//
-//  // temukan window chrome
-//  WindowHandle := FindWindow('Chrome_WidgetWin_1', nil);
-//
-//  if WindowHandle <> 0 then
-//  begin
-//    // set parent ke panel
-//    Winapi.Windows.SetParent(WindowHandle, pnlBaseVideoZone.Handle);
-//
-//    // sesuaikan posisi
-//    SetWindowLong(WindowHandle, GWL_STYLE, WS_VISIBLE);
-//    SetWindowPos(WindowHandle, 0, 0, 0, pnlBaseVideoZone.Width, pnlBaseVideoZone.Height,
-//                 SWP_NOZORDER or SWP_SHOWWINDOW);
-//  end;
+  // jalankan chrome
+  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
+    '--app="https://google.com"');
+
+  // tunggu window chrome muncul
+  Sleep(500);
+
+  // temukan window chrome
+  WindowHandle := FindWindow('Chrome_WidgetWin_1', nil);
+
+  if WindowHandle <> 0 then
+  begin
+    // set parent ke panel
+    Winapi.Windows.SetParent(WindowHandle, pnlBaseVideoZone.Handle);
+
+    // sesuaikan posisi
+    SetWindowLong(WindowHandle, GWL_STYLE, WS_VISIBLE);
+    SetWindowPos(WindowHandle, 0, 0, 0, pnlBaseVideoZone.Width, pnlBaseVideoZone.Height,
+                 SWP_NOZORDER or SWP_SHOWWINDOW);
+  end;
 end;
 
 procedure TfrmMainFCC.HandleKeyByBtnName(const BtnName: string);
@@ -1412,8 +1520,59 @@ begin
 
   if Token = '' then Exit;
 
-  if Token = 'CalSetting' then
-    pnlCalSetting.BringToFront
+  if (Token = 'CalSetting') or (Token = 'btnCalSetting') or (Token = 'btn_CalSetting')  then
+  begin
+    pnlCalSetting.BringToFront;
+    activePanel := 1;
+  end
+  else if (Token = 'WeatherSetting') or (Token = 'btnWeatherSetting') or (Token = 'btn_WeatherSetting')  then
+  begin
+    pnlWeatherSetting.BringToFront;
+    activePanel := 2;
+  end
+  else if (Token = 'avSetting') or (Token = 'btnNavSetting') or (Token = 'btn_NavSetting')  then
+  begin
+    pnlNavSetting.BringToFront;
+    activePanel := 3;
+  end
+  else if (Token = 'btnVFireSetting')  then
+  begin
+    fireClick;
+  end
+  else if Token = 'Confirm' then
+  begin
+    case activePanel of
+      1: //cal setting
+      begin
+        edtLastDeltaBE.Text := edtDeltaBESetting.Text;
+        edtLastDeltaEL.Text := edtDeltaELSetting.Text;
+        edtLastDeltaD.Text := edtDeltaDSetting.Text;
+
+        edtLastDeltaBE1.Text := edtDeltaBESetting.Text;
+        edtLastDeltaEL1.Text := edtDeltaELSetting.Text;
+        edtLastDeltaD1.Text := edtDeltaDSetting.Text;
+        pnlIndWth.BringToFront;
+      end;
+      2: // weather setting
+      begin
+        edtWeatherDataWs.Text := edtWeatherSettingWs.Text;
+        edtWeatherDataWd.Text := edtWeatherSettingWd.Text;
+        edtWeatherDataTemp.Text := edtWeatherSettingTemp.Text;
+        edtWeatherDataHumi.Text := edtWeatherSettingHumi.Text;
+        edtWeatherDataAirP.Text := edtWeatherSettingAirP.Text;
+        pnlIndWth.BringToFront;
+      end;
+      3: // Nav Setting
+      begin
+        edtNavDataHeading.Text := edtNavSettingHeading.Text;
+        edtNavDataPitch.Text := edtNavSettingPitch.Text;
+        edtNavDataRoll.Text := edtNavSettingRoll.Text;
+        edtNavDataLON.Text := edtNavSettingLON.Text;
+        edtNavDataLAT.Text := edtNavSettingLAT.Text;
+        pnlIndWth.BringToFront;
+      end;
+    end;
+  end
   else if Token = 'Cancel' then
     pnlIndWth.BringToFront;
 
@@ -1589,6 +1748,24 @@ begin
   Result := FMap.width;
 end;
 
+procedure TfrmMainFCC.onRbNavSetting(Sender: TObject);
+begin
+  if rbNavAuto.Checked then
+    FIsNavAuto := True;
+
+  if rbNavrManual.Checked then
+    FIsNavAuto := False;
+end;
+
+procedure TfrmMainFCC.onRbWeatherSetting(Sender: TObject);
+begin
+  if rbWeatherAuto.Checked then
+    FIsWeatherAuto := True;
+
+  if rbWeatherManual.Checked then
+    FIsWeatherAuto := False;
+end;
+
 procedure TfrmMainFCC.pnlFireFcc2Click(Sender: TObject);
 var
   RecSend : TRec3DSetWCC;
@@ -1611,15 +1788,13 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;;
+    RecSend.mTargetID           := 0;
     RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
 
     RecSend.mBalistikID         := 0;
     RecSend.mSalvoRate          := 30;
-
-//    FCCManager.SelectedVehicle.
 
 
     RecSend.mOrderID := __ORD_CANNON_START_F;
@@ -1635,7 +1810,7 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;;
+    RecSend.mTargetID           := 0;
     RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
@@ -1770,22 +1945,34 @@ begin
 
   if Assigned(FCCManager) then
   begin
-    if Assigned(FCCManager.xShip) then
+    if FIsNavAuto then
     begin
-      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
-      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
-
-      if not FCCManager.IsTrueMotion then begin
-        Fmap.CenterX := FCCManager.xShip.PositionX;
-        Fmap.CenterY := FCCManager.xShip.PositionY;
-      //    FMap.Rotation := 0;
-        FNorthAngle := 0;
-      end
-      else
+      if Assigned(FCCManager.xShip) then
       begin
-        FNorthAngle := -FCCManager.xShip.Heading;;
-      //    FMap.Rotation := -FCCManager.xShip.Heading;
+        edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
+        edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
+        edtNavDataSpeed.Text := FormatFloat('0.00', FCCManager.xShip.Speed);
+        edtNavDataHeading.Text := FormatFloat('0.00', FCCManager.xShip.Heading);
+        edtNavDataPitch.Text := FormatFloat('0.00', FCCManager.xShip.Pitch);
+        edtNavDataRoll.Text := FormatFloat('0.00', FCCManager.xShip.Roll);
+
+        if not FCCManager.IsTrueMotion then begin
+          Fmap.CenterX := FCCManager.xShip.PositionX;
+          Fmap.CenterY := FCCManager.xShip.PositionY;
+        //    FMap.Rotation := 0;
+          FNorthAngle := 0;
+        end
+        else
+        begin
+          FNorthAngle := -FCCManager.xShip.Heading;;
+        //    FMap.Rotation := -FCCManager.xShip.Heading;
+        end;
       end;
+    end;
+
+    if FIsWeatherAuto then
+    begin
+
     end;
   end;
 end;

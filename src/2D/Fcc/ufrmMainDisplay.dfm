@@ -192,7 +192,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000382F842C010000006C9047771C000000000000000000000000
+          01000118010000E0E4940401000000AF0F41771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -201,15 +201,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000382F842C01000000881300C01C00000000000000000000000000000000
+          010000E0E4940401000000FCE097001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000088CB9700CD8AD67521
-          00000000000000B08AD675E043A4130AF52EE2C8CB9700000000000000000000
+          0000000000000000000000000000000000000000000000E4140650495D400074
+          007A007200650073002E0064006C006C002C002D003500000000000000000000
           000088B3400000000000408F400001000001}
       end
       object btnMapIncrement: TButton
@@ -411,24 +411,6 @@ object frmMainFCC: TfrmMainFCC
         Height = 240
         Align = alClient
         TabOrder = 1
-        object pnlWeatherSetting: TPanel
-          Left = 1
-          Top = 1
-          Width = 450
-          Height = 238
-          Align = alClient
-          Caption = 'pnlWeatherSetting'
-          TabOrder = 2
-        end
-        object pnlNavSetting: TPanel
-          Left = 1
-          Top = 1
-          Width = 450
-          Height = 238
-          Align = alClient
-          Caption = 'pnlNavSetting'
-          TabOrder = 3
-        end
         object pnlCalSetting: TPanel
           Left = 1
           Top = 1
@@ -521,7 +503,7 @@ object frmMainFCC: TfrmMainFCC
             Height = 23
             Align = alTop
             BevelOuter = bvNone
-            Caption = 'Left'
+            Caption = 'CAL Setting'
             Color = clBlue
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clHighlightText
@@ -555,6 +537,535 @@ object frmMainFCC: TfrmMainFCC
             Height = 21
             TabOrder = 3
             Text = '25.63'
+          end
+        end
+        object pnlNavSetting: TPanel
+          Left = 1
+          Top = 1
+          Width = 450
+          Height = 238
+          Align = alClient
+          TabOrder = 3
+          ExplicitLeft = -327
+          ExplicitTop = -114
+          object lblNavSettingHeading: TLabel
+            Left = 36
+            Top = 80
+            Width = 46
+            Height = 13
+            Caption = 'Heading'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingSatuanHeading: TLabel
+            Left = 136
+            Top = 81
+            Width = 9
+            Height = 13
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingVoyage: TLabel
+            Left = 36
+            Top = 162
+            Width = 21
+            Height = 13
+            Caption = 'ALT'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingSatuanVoyage: TLabel
+            Left = 136
+            Top = 162
+            Width = 11
+            Height = 13
+            Caption = 'm'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingPitch: TLabel
+            Left = 36
+            Top = 102
+            Width = 28
+            Height = 13
+            Caption = 'Pitch'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingSatuanPitch: TLabel
+            Left = 136
+            Top = 104
+            Width = 9
+            Height = 13
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingRoll: TLabel
+            Left = 219
+            Top = 103
+            Width = 21
+            Height = 13
+            Caption = 'Roll'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingSatuanRoll: TLabel
+            Left = 318
+            Top = 103
+            Width = 9
+            Height = 13
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingSpeed: TLabel
+            Left = 219
+            Top = 77
+            Width = 35
+            Height = 13
+            Caption = 'Speed'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingSatuanSpeed: TLabel
+            Left = 318
+            Top = 77
+            Width = 14
+            Height = 13
+            Caption = 'Kn'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingLon: TLabel
+            Left = 36
+            Top = 133
+            Width = 21
+            Height = 13
+            Caption = 'LON'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingSatuanLon: TLabel
+            Left = 161
+            Top = 133
+            Width = 9
+            Height = 13
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingLat: TLabel
+            Left = 219
+            Top = 133
+            Width = 21
+            Height = 13
+            Caption = 'LAT'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblNavSettingSatuanLat: TLabel
+            Left = 345
+            Top = 133
+            Width = 9
+            Height = 13
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object pnlNavSettingHeader: TPanel
+            Left = 1
+            Top = 1
+            Width = 448
+            Height = 23
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'NAV Setting'
+            Color = clBlue
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clHighlightText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 0
+            ExplicitLeft = 2
+            ExplicitTop = 9
+          end
+          object edtNavSettingHeading: TEdit
+            Left = 85
+            Top = 75
+            Width = 41
+            Height = 21
+            TabOrder = 1
+            Text = '7.62'
+          end
+          object edtNavSettingALT: TEdit
+            Left = 85
+            Top = 157
+            Width = 41
+            Height = 21
+            TabOrder = 2
+            Text = '0.00'
+          end
+          object edtNavSettingPitch: TEdit
+            Left = 85
+            Top = 103
+            Width = 41
+            Height = 21
+            TabOrder = 3
+            Text = '7.62'
+          end
+          object edtNavSettingRoll: TEdit
+            Left = 269
+            Top = 99
+            Width = 41
+            Height = 21
+            TabOrder = 4
+            Text = '25.63'
+          end
+          object edtNavSettingSpeed: TEdit
+            Left = 269
+            Top = 72
+            Width = 41
+            Height = 21
+            TabOrder = 5
+            Text = '7.62'
+          end
+          object edtNavSettingLON: TEdit
+            Left = 85
+            Top = 130
+            Width = 73
+            Height = 21
+            TabOrder = 6
+            Text = ' 0.00000000'
+          end
+          object edtNavSettingLAT: TEdit
+            Left = 269
+            Top = 129
+            Width = 73
+            Height = 21
+            TabOrder = 7
+            Text = ' 0.00000000'
+          end
+          object rbNavAuto: TRadioButton
+            Left = 36
+            Top = 47
+            Width = 113
+            Height = 17
+            Caption = 'Auto'
+            Checked = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 8
+            TabStop = True
+            OnClick = onRbNavSetting
+          end
+          object rbNavrManual: TRadioButton
+            Left = 219
+            Top = 47
+            Width = 113
+            Height = 17
+            Caption = 'Manual'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 9
+            OnClick = onRbNavSetting
+          end
+        end
+        object pnlWeatherSetting: TPanel
+          Left = 1
+          Top = 1
+          Width = 450
+          Height = 238
+          Align = alClient
+          TabOrder = 2
+          object lblWeatherSettingWs: TLabel
+            Left = 19
+            Top = 80
+            Width = 21
+            Height = 13
+            Caption = 'W S'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingSatuanWs: TLabel
+            Left = 108
+            Top = 81
+            Width = 23
+            Height = 13
+            Caption = 'm/s'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingWd: TLabel
+            Left = 18
+            Top = 109
+            Width = 22
+            Height = 13
+            Caption = 'W D'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingSatuanWd: TLabel
+            Left = 108
+            Top = 111
+            Width = 9
+            Height = 13
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingTemp: TLabel
+            Left = 18
+            Top = 134
+            Width = 35
+            Height = 13
+            Caption = 'Temp.'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingSatuanTemp: TLabel
+            Left = 108
+            Top = 137
+            Width = 16
+            Height = 13
+            Caption = ' '#8451
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingHumi: TLabel
+            Left = 256
+            Top = 83
+            Width = 32
+            Height = 13
+            Caption = 'Humi.'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingSatuanHumi: TLabel
+            Left = 350
+            Top = 78
+            Width = 13
+            Height = 13
+            Caption = '%'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingAirP: TLabel
+            Left = 257
+            Top = 109
+            Width = 26
+            Height = 13
+            Caption = 'Air P'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblWeatherSettingSatuanAirP: TLabel
+            Left = 342
+            Top = 109
+            Width = 21
+            Height = 13
+            Caption = 'hPa'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object pnlWeatherSettingHeader: TPanel
+            Left = 1
+            Top = 1
+            Width = 448
+            Height = 23
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Weather Setting'
+            Color = clBlue
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clHighlightText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 0
+            ExplicitLeft = 2
+            ExplicitTop = 9
+          end
+          object rbWeatherAuto: TRadioButton
+            Left = 72
+            Top = 48
+            Width = 113
+            Height = 17
+            Caption = 'Auto'
+            Checked = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 1
+            TabStop = True
+            OnClick = onRbWeatherSetting
+          end
+          object rbWeatherManual: TRadioButton
+            Left = 257
+            Top = 48
+            Width = 113
+            Height = 17
+            Caption = 'Manual'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
+          end
+          object edtWeatherSettingWs: TEdit
+            Left = 61
+            Top = 75
+            Width = 41
+            Height = 21
+            TabOrder = 3
+            Text = '7.62'
+          end
+          object edtWeatherSettingWd: TEdit
+            Left = 61
+            Top = 106
+            Width = 41
+            Height = 21
+            TabOrder = 4
+            Text = 'Air'
+          end
+          object edtWeatherSettingTemp: TEdit
+            Left = 61
+            Top = 133
+            Width = 41
+            Height = 21
+            TabOrder = 5
+            Text = '7.62'
+          end
+          object edtWeatherSettingHumi: TEdit
+            Left = 295
+            Top = 75
+            Width = 41
+            Height = 21
+            TabOrder = 6
+            Text = '25.63'
+          end
+          object edtWeatherSettingAirP: TEdit
+            Left = 295
+            Top = 106
+            Width = 41
+            Height = 21
+            TabOrder = 7
+            Text = '7.62'
           end
         end
         object pnlIndWth: TPanel
@@ -1241,7 +1752,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 2
-              Text = 'Air'
+              Text = '20'
             end
             object edtWeatherDataTemp: TEdit
               Left = 48
