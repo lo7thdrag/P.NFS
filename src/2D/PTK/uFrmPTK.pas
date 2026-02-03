@@ -154,13 +154,13 @@ begin
 
   end;
 
-  if (TSpeedButtonImage(Sender).Name <> 'btnSysCtrl') and
-    (TSpeedButtonImage(Sender).Name <> 'btnLocalCtrl') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCombat') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCheck') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCtrlGun') and
-    (TSpeedButtonImage(Sender).Name <> 'btnVideo') and
-    (TSpeedButtonImage(Sender).Name <> 'btnDataRecord') then
+  if (TSpeedButtonImage(Sender).Name <> 'btn_SysCtrl') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_LocalCtrl') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Combat') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Check') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_CtrlGun') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Video') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_DataRecord') then
   begin
     if FisLocalCtrl then
     begin
@@ -204,7 +204,7 @@ begin
   end;
 
 
-  if TSpeedButtonImage(Sender).Name = 'btnSysCtrl' then
+  if TSpeedButtonImage(Sender).Name = 'btn_SysCtrl' then
   begin
 //    FBtnArray[0].Down := True;
     FBtnArray[0].Color := clLime;
@@ -212,7 +212,7 @@ begin
     FisLocalCtrl := False;
     GenerateCaptionByMenu('SysCtrl');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnLocalCtrl' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_LocalCtrl' then
   begin
 //    FBtnArray[1].Down := True;
     FBtnArray[1].Color := clLime;
@@ -235,7 +235,7 @@ begin
     end;
 
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCombat' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Combat' then
   begin
 //    FBtnArray[7].Down := True;
     FBtnArray[7].Color := clLime;
@@ -243,7 +243,7 @@ begin
     FLocalCtrlState := lcCombat;
     GenerateCaptionByMenu('Combat');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCheck' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Check' then
   begin
 //    FBtnArray[8].Down := True;
     FBtnArray[8].Color := clLime;
@@ -252,19 +252,19 @@ begin
     GenerateCaptionByMenu('Check');
     FBtnArray[29].Color := clLime;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnNavSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_NavSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnWeatherSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_WeatherSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCalSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_CalSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnIndSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_IndSetting' then
   begin
     FBtnArray[0].Color := clBlack;
     FBtnArray[1].Color := clBlack;
@@ -274,7 +274,7 @@ begin
     end;
     GenerateCaptionByMenu('IndSetting');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnBack' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Back' then
   begin
     if FisLocalCtrl then
     begin
@@ -302,20 +302,20 @@ begin
       GenerateSysCtrlMenu;
     end;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCtrlGun' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_CtrlGun' then
   begin
     GenerateCaptionByMenu('CtrlGun');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnVideo' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Video' then
   begin
     GenerateCaptionByMenu('Video');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnDataRecord' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_DataRecord' then
   begin
     GenerateCaptionByMenu('DataRecord');
   end;
 
-  if TSpeedButtonImage(Sender).Name = 'btnLockScreen' then
+  if TSpeedButtonImage(Sender).Name = 'btn_LockScreen' then
   begin
     GenerateCaptionByMenu('LockScreen');
   end;
@@ -1292,7 +1292,7 @@ begin
     btn.Color       := clBlack;
     btn.Font.Color  := CL_TCMS_Orange;
     btn.Font.Size   := FFont_Btn;
-    btn.Name        := 'btn' + FBtnMainNames[i];
+    btn.Name        := 'btn_' + FBtnMainNames[i];
     btn.Caption     := FBtnMainCaption[i];
     btn.OnClick     := btnPtkClick;
     btn.Tag         := i;
