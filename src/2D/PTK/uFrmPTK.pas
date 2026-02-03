@@ -14,6 +14,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure WSocket1SocksConnected(Sender: TObject; ErrCode: Word);
   private
     { Network Connecttion }
     FipConnect : string;
@@ -129,6 +130,11 @@ begin
     pnlPTK.BringToFront;
     SendToServerPTK(TSpeedButtonImage(Sender).Name);
   end
+  else if TSpeedButtonImage(Sender).Name = 'btn_NConfirm' then
+  begin
+    pnlPTK.BringToFront;
+    SendToServerPTK(TSpeedButtonImage(Sender).Name);
+  end
   else
   begin
     SendToServerPTK(TSpeedButtonImage(Sender).Name);
@@ -148,13 +154,13 @@ begin
 
   end;
 
-  if (TSpeedButtonImage(Sender).Name <> 'btnSysCtrl') and
-    (TSpeedButtonImage(Sender).Name <> 'btnLocalCtrl') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCombat') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCheck') and
-    (TSpeedButtonImage(Sender).Name <> 'btnCtrlGun') and
-    (TSpeedButtonImage(Sender).Name <> 'btnVideo') and
-    (TSpeedButtonImage(Sender).Name <> 'btnDataRecord') then
+  if (TSpeedButtonImage(Sender).Name <> 'btn_SysCtrl') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_LocalCtrl') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Combat') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Check') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_CtrlGun') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_Video') and
+    (TSpeedButtonImage(Sender).Name <> 'btn_DataRecord') then
   begin
     if FisLocalCtrl then
     begin
@@ -198,7 +204,7 @@ begin
   end;
 
 
-  if TSpeedButtonImage(Sender).Name = 'btnSysCtrl' then
+  if TSpeedButtonImage(Sender).Name = 'btn_SysCtrl' then
   begin
 //    FBtnArray[0].Down := True;
     FBtnArray[0].Color := clLime;
@@ -206,7 +212,7 @@ begin
     FisLocalCtrl := False;
     GenerateCaptionByMenu('SysCtrl');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnLocalCtrl' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_LocalCtrl' then
   begin
 //    FBtnArray[1].Down := True;
     FBtnArray[1].Color := clLime;
@@ -229,7 +235,7 @@ begin
     end;
 
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCombat' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Combat' then
   begin
 //    FBtnArray[7].Down := True;
     FBtnArray[7].Color := clLime;
@@ -237,7 +243,7 @@ begin
     FLocalCtrlState := lcCombat;
     GenerateCaptionByMenu('Combat');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCheck' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Check' then
   begin
 //    FBtnArray[8].Down := True;
     FBtnArray[8].Color := clLime;
@@ -246,19 +252,19 @@ begin
     GenerateCaptionByMenu('Check');
     FBtnArray[29].Color := clLime;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnNavSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_NavSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnWeatherSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_WeatherSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCalSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_CalSetting' then
   begin
     pnlNumKey.BringToFront;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnIndSetting' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_IndSetting' then
   begin
     FBtnArray[0].Color := clBlack;
     FBtnArray[1].Color := clBlack;
@@ -268,7 +274,7 @@ begin
     end;
     GenerateCaptionByMenu('IndSetting');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnBack' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Back' then
   begin
     if FisLocalCtrl then
     begin
@@ -296,20 +302,20 @@ begin
       GenerateSysCtrlMenu;
     end;
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnCtrlGun' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_CtrlGun' then
   begin
     GenerateCaptionByMenu('CtrlGun');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnVideo' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_Video' then
   begin
     GenerateCaptionByMenu('Video');
   end
-  else if TSpeedButtonImage(Sender).Name = 'btnDataRecord' then
+  else if TSpeedButtonImage(Sender).Name = 'btn_DataRecord' then
   begin
     GenerateCaptionByMenu('DataRecord');
   end;
 
-  if TSpeedButtonImage(Sender).Name = 'btnLockScreen' then
+  if TSpeedButtonImage(Sender).Name = 'btn_LockScreen' then
   begin
     GenerateCaptionByMenu('LockScreen');
   end;
@@ -379,7 +385,7 @@ begin
 
   FTimerConnect := TPrecisseTimer.Create;
   FTimerConnect.OnRunning := OnTimerConnectOnTime;
-  FTimerConnect.Interval := 2000;
+  FTimerConnect.Interval := 5000;
   FTimerConnect.Enabled := True;
 
   { Get Setting from ptk.ini }
@@ -650,36 +656,36 @@ begin
     end;
   end;
 
-  FBtnArray[0].Name := 'btnSysCtrl';
-  FBtnArray[1].Name := 'btnLocalCtrl';
-  FBtnArray[2].Name := 'btnCtrlGun';
-  FBtnArray[3].Name := 'btnVideo';
-  FBtnArray[4].Name := 'btnDataRecord';
-  FBtnArray[5].Name := 'btnLockScreen';
-  FBtnArray[6].Name := 'btn6';
-  FBtnArray[7].Name := 'btnCombat';
-  FBtnArray[8].Name := 'btnCheck';
-  FBtnArray[9].Name := 'btn9';
-  FBtnArray[10].Name := 'btn10';
-  FBtnArray[11].Name := 'btn11';
-  FBtnArray[12].Name := 'btnEoFcsStatic';
-  FBtnArray[13].Name := 'btnEoFcsDynamic';
-  FBtnArray[14].Name := 'btnEoSemiStatic';
-  FBtnArray[15].Name := 'btnEoSemiDynamic';
-  FBtnArray[16].Name := 'btn16';
-  FBtnArray[17].Name := 'btn17';
-  FBtnArray[18].Name := 'btnFccAndGun';
-  FBtnArray[19].Name := 'btnGunStatic';
-  FBtnArray[20].Name := 'btnGunSpeed';
-  FBtnArray[21].Name := 'btnGunSin';
-  FBtnArray[22].Name := 'btn22';
-  FBtnArray[23].Name := 'btn23';
-  FBtnArray[24].Name := 'btnFccStatic';
-  FBtnArray[25].Name := 'btnFccDynamic';
-  FBtnArray[26].Name := 'btn26';
-  FBtnArray[27].Name := 'btn27';
-  FBtnArray[28].Name := 'btnCheckStart';
-  FBtnArray[29].Name := 'btnCheckStop';
+  FBtnArray[0].Name := 'btn_SysCtrl';
+  FBtnArray[1].Name := 'btn_LocalCtrl';
+  FBtnArray[2].Name := 'btn_CtrlGun';
+  FBtnArray[3].Name := 'btn_Video';
+  FBtnArray[4].Name := 'btn_DataRecord';
+  FBtnArray[5].Name := 'btn_LockScreen';
+  FBtnArray[6].Name := 'btn_6';
+  FBtnArray[7].Name := 'btn_Combat';
+  FBtnArray[8].Name := 'btn_Check';
+  FBtnArray[9].Name := 'btn_9';
+  FBtnArray[10].Name := 'btn_10';
+  FBtnArray[11].Name := 'btn_11';
+  FBtnArray[12].Name := 'btn_EoFcsStatic';
+  FBtnArray[13].Name := 'btn_EoFcsDynamic';
+  FBtnArray[14].Name := 'btn_EoSemiStatic';
+  FBtnArray[15].Name := 'btn_EoSemiDynamic';
+  FBtnArray[16].Name := 'btn_16';
+  FBtnArray[17].Name := 'btn_17';
+  FBtnArray[18].Name := 'btn_FccAndGun';
+  FBtnArray[19].Name := 'btn_GunStatic';
+  FBtnArray[20].Name := 'btn_GunSpeed';
+  FBtnArray[21].Name := 'btn_GunSin';
+  FBtnArray[22].Name := 'btn_22';
+  FBtnArray[23].Name := 'btn_23';
+  FBtnArray[24].Name := 'btn_FccStatic';
+  FBtnArray[25].Name := 'btn_FccDynamic';
+  FBtnArray[26].Name := 'btn_26';
+  FBtnArray[27].Name := 'btn_27';
+  FBtnArray[28].Name := 'btn_CheckStart';
+  FBtnArray[29].Name := 'btn_CheckStop';
 end;
 
 procedure TfrmPTK.GenerateCombatMenu;
@@ -740,36 +746,36 @@ begin
     end;
   end;
 
-  FBtnArray[0].Name := 'btnSysCtrl';
-  FBtnArray[1].Name := 'btnLocalCtrl';
-  FBtnArray[2].Name := 'btnCtrlGun';
-  FBtnArray[3].Name := 'btnVideo';
-  FBtnArray[4].Name := 'btnDataRecord';
-  FBtnArray[5].Name := 'btnLockScreen';
-  FBtnArray[6].Name := 'btn6';
-  FBtnArray[7].Name := 'btnCombat';
-  FBtnArray[8].Name := 'btnCheck';
-  FBtnArray[9].Name := 'btn9';
-  FBtnArray[10].Name := 'btn10';
-  FBtnArray[11].Name := 'btn11';
-  FBtnArray[12].Name := 'btnIndSetting';
-  FBtnArray[13].Name := 'btnDAttackSetting';
-  FBtnArray[14].Name := 'btnVFireSetting';
-  FBtnArray[15].Name := 'btnWait';
-  FBtnArray[16].Name := 'btnInd';
-  FBtnArray[17].Name := 'btnAutonomous';
-  FBtnArray[18].Name := 'btnCalSetting';
-  FBtnArray[19].Name := 'btnNavSetting';
-  FBtnArray[20].Name := 'btnWeatherSetting';
-  FBtnArray[21].Name := 'btnDAttack';
-  FBtnArray[22].Name := 'btnVFire';
-  FBtnArray[23].Name := 'btn23';
-  FBtnArray[24].Name := 'btn24';
-  FBtnArray[25].Name := 'btnEo';
-  FBtnArray[26].Name := 'btn26';
-  FBtnArray[27].Name := 'btnZeroFlyOff';
-  FBtnArray[28].Name := 'btn28';
-  FBtnArray[29].Name := 'btnConfirm';
+  FBtnArray[0].Name := 'btn_SysCtrl';
+  FBtnArray[1].Name := 'btn_LocalCtrl';
+  FBtnArray[2].Name := 'btn_CtrlGun';
+  FBtnArray[3].Name := 'btn_Video';
+  FBtnArray[4].Name := 'btn_DataRecord';
+  FBtnArray[5].Name := 'btn_LockScreen';
+  FBtnArray[6].Name := 'btn_6';
+  FBtnArray[7].Name := 'btn_Combat';
+  FBtnArray[8].Name := 'btn_Check';
+  FBtnArray[9].Name := 'btn_9';
+  FBtnArray[10].Name := 'btn_10';
+  FBtnArray[11].Name := 'btn_11';
+  FBtnArray[12].Name := 'btn_IndSetting';
+  FBtnArray[13].Name := 'btn_DAttackSetting';
+  FBtnArray[14].Name := 'btn_VFireSetting';
+  FBtnArray[15].Name := 'btn_Wait';
+  FBtnArray[16].Name := 'btn_Ind';
+  FBtnArray[17].Name := 'btn_Autonomous';
+  FBtnArray[18].Name := 'btn_CalSetting';
+  FBtnArray[19].Name := 'btn_NavSetting';
+  FBtnArray[20].Name := 'btn_WeatherSetting';
+  FBtnArray[21].Name := 'btn_DAttack';
+  FBtnArray[22].Name := 'btn_VFire';
+  FBtnArray[23].Name := 'btn_23';
+  FBtnArray[24].Name := 'btn_24';
+  FBtnArray[25].Name := 'btn_Eo';
+  FBtnArray[26].Name := 'btn_26';
+  FBtnArray[27].Name := 'btn_ZeroFlyOff';
+  FBtnArray[28].Name := 'btn_28';
+  FBtnArray[29].Name := 'btn_Confirm';
 
   SetOperationModeDisplay;
 end;
@@ -818,36 +824,36 @@ begin
     end;
   end;
 
-  FBtnArray[0].Name := 'btnSysCtrl';
-  FBtnArray[1].Name := 'btnLocalCtrl';
-  FBtnArray[2].Name := 'btnCtrlGun';
-  FBtnArray[3].Name := 'btnVideo';
-  FBtnArray[4].Name := 'btnDataRecord';
-  FBtnArray[5].Name := 'btnLockScreen';
-  FBtnArray[6].Name := 'btn6';
-  FBtnArray[7].Name := 'btnServoOn';
-  FBtnArray[8].Name := 'btn8';
-  FBtnArray[9].Name := 'btn9';
-  FBtnArray[10].Name := 'btnLDrum';
-  FBtnArray[11].Name := 'btnRDrum';
-  FBtnArray[12].Name := 'btn12';
-  FBtnArray[13].Name := 'btnCooDisabled';
-  FBtnArray[14].Name := 'btn14';
-  FBtnArray[15].Name := 'btnHigh';
-  FBtnArray[16].Name := 'btnMiddle';
-  FBtnArray[17].Name := 'btnLow';
-  FBtnArray[18].Name := 'btn18';
-  FBtnArray[19].Name := 'btn19';
-  FBtnArray[20].Name := 'btn20';
-  FBtnArray[21].Name := 'btnRrSetting';
-  FBtnArray[22].Name := 'btn22';
-  FBtnArray[23].Name := 'btnTimeSetting';
-  FBtnArray[24].Name := 'btn24';
-  FBtnArray[25].Name := 'btn25';
-  FBtnArray[26].Name := 'btn26';
-  FBtnArray[27].Name := 'btn27';
-  FBtnArray[28].Name := 'btn28';
-  FBtnArray[29].Name := 'btn29';
+  FBtnArray[0].Name := 'btn_SysCtrl';
+  FBtnArray[1].Name := 'btn_LocalCtrl';
+  FBtnArray[2].Name := 'btn_CtrlGun';
+  FBtnArray[3].Name := 'btn_Video';
+  FBtnArray[4].Name := 'btn_DataRecord';
+  FBtnArray[5].Name := 'btn_LockScreen';
+  FBtnArray[6].Name := 'btn_6';
+  FBtnArray[7].Name := 'btn_ServoOn';
+  FBtnArray[8].Name := 'btn_8';
+  FBtnArray[9].Name := 'btn_9';
+  FBtnArray[10].Name := 'btn_LDrum';
+  FBtnArray[11].Name := 'btn_RDrum';
+  FBtnArray[12].Name := 'btn_12';
+  FBtnArray[13].Name := 'btn_CooDisabled';
+  FBtnArray[14].Name := 'btn_14';
+  FBtnArray[15].Name := 'btn_High';
+  FBtnArray[16].Name := 'btn_Middle';
+  FBtnArray[17].Name := 'btn_Low';
+  FBtnArray[18].Name := 'btn_18';
+  FBtnArray[19].Name := 'btn_19';
+  FBtnArray[20].Name := 'btn_20';
+  FBtnArray[21].Name := 'btn_RrSetting';
+  FBtnArray[22].Name := 'btn_22';
+  FBtnArray[23].Name := 'btn_TimeSetting';
+  FBtnArray[24].Name := 'btn_24';
+  FBtnArray[25].Name := 'btn_25';
+  FBtnArray[26].Name := 'btn_26';
+  FBtnArray[27].Name := 'btn_27';
+  FBtnArray[28].Name := 'btn_28';
+  FBtnArray[29].Name := 'btn_29';
 end;
 
 procedure TfrmPTK.GenerateDataRecordMenu;
@@ -894,36 +900,36 @@ begin
     end;
   end;
 
-  FBtnArray[0].Name := 'btnSysCtrl';
-  FBtnArray[1].Name := 'btnLocalCtrl';
-  FBtnArray[2].Name := 'btnCtrlGun';
-  FBtnArray[3].Name := 'btnVideo';
-  FBtnArray[4].Name := 'btnDataRecord';
-  FBtnArray[5].Name := 'btnLockScreen';
-  FBtnArray[6].Name := 'btn6';
-  FBtnArray[7].Name := 'btn7';
-  FBtnArray[8].Name := 'btn8';
-  FBtnArray[9].Name := 'btnRecordStart';
-  FBtnArray[10].Name := 'btnRecordStop';
-  FBtnArray[11].Name := 'btn11';
-  FBtnArray[12].Name := 'btn12';
-  FBtnArray[13].Name := 'btn13';
-  FBtnArray[14].Name := 'btn14';
-  FBtnArray[15].Name := 'btn15';
-  FBtnArray[16].Name := 'btn16';
-  FBtnArray[17].Name := 'btn17';
-  FBtnArray[18].Name := 'btn18';
-  FBtnArray[19].Name := 'btn19';
-  FBtnArray[20].Name := 'btn20';
-  FBtnArray[21].Name := 'btn21';
-  FBtnArray[22].Name := 'btn22';
-  FBtnArray[23].Name := 'btn23';
-  FBtnArray[24].Name := 'btn24';
-  FBtnArray[25].Name := 'btn25';
-  FBtnArray[26].Name := 'btn26';
-  FBtnArray[27].Name := 'btn27';
-  FBtnArray[28].Name := 'btn28';
-  FBtnArray[29].Name := 'btn29';
+  FBtnArray[0].Name := 'btn_SysCtrl';
+  FBtnArray[1].Name := 'btn_LocalCtrl';
+  FBtnArray[2].Name := 'btn_CtrlGun';
+  FBtnArray[3].Name := 'btn_Video';
+  FBtnArray[4].Name := 'btn_DataRecord';
+  FBtnArray[5].Name := 'btn_LockScreen';
+  FBtnArray[6].Name := 'btn_6';
+  FBtnArray[7].Name := 'btn_7';
+  FBtnArray[8].Name := 'btn_8';
+  FBtnArray[9].Name := 'btn_RecordStart';
+  FBtnArray[10].Name := 'btn_RecordStop';
+  FBtnArray[11].Name := 'btn_11';
+  FBtnArray[12].Name := 'btn_12';
+  FBtnArray[13].Name := 'btn_13';
+  FBtnArray[14].Name := 'btn_14';
+  FBtnArray[15].Name := 'btn_15';
+  FBtnArray[16].Name := 'btn_16';
+  FBtnArray[17].Name := 'btn_17';
+  FBtnArray[18].Name := 'btn_18';
+  FBtnArray[19].Name := 'btn_19';
+  FBtnArray[20].Name := 'btn_20';
+  FBtnArray[21].Name := 'btn_21';
+  FBtnArray[22].Name := 'btn_22';
+  FBtnArray[23].Name := 'btn_23';
+  FBtnArray[24].Name := 'btn_24';
+  FBtnArray[25].Name := 'btn_25';
+  FBtnArray[26].Name := 'btn_26';
+  FBtnArray[27].Name := 'btn_27';
+  FBtnArray[28].Name := 'btn_28';
+  FBtnArray[29].Name := 'btn_29';
 end;
 
 procedure TfrmPTK.GenerateIndSettingMenu;
@@ -948,14 +954,14 @@ begin
   begin
     FBtnArray[i].Caption := '  ';
     FBtnArray[i].Enabled := False;
-    FBtnArray[i].Name := 'btn' + IntToStr(i);
+    FBtnArray[i].Name := 'btn_' + IntToStr(i);
   end;
 
-  FBtnArray[0].Name := 'btnFcc';
-  FBtnArray[1].Name := 'btnTcc';
-  FBtnArray[2].Name := 'btnSr';
-  FBtnArray[3].Name := 'btnTr';
-  FBtnArray[29].Name := 'btnBack';
+  FBtnArray[0].Name := 'btn_Fcc';
+  FBtnArray[1].Name := 'btn_Tcc';
+  FBtnArray[2].Name := 'btn_Sr';
+  FBtnArray[3].Name := 'btn_Tr';
+  FBtnArray[29].Name := 'btn_Back';
 end;
 
 procedure TfrmPTK.GenerateLocalCtrlMenu;
@@ -1002,47 +1008,53 @@ begin
     end;
   end;
 
-  FBtnArray[0].Name := 'btnSysCtrl';
-  FBtnArray[1].Name := 'btnLocalCtrl';
-  FBtnArray[2].Name := 'btnCtrlGun';
-  FBtnArray[3].Name := 'btnVideo';
-  FBtnArray[4].Name := 'btnDataRecord';
-  FBtnArray[5].Name := 'btnLockScreen';
-  FBtnArray[6].Name := 'btn6';
-  FBtnArray[7].Name := 'btnCombat';
-  FBtnArray[8].Name := 'btnCheck';
-  FBtnArray[9].Name := 'btn9';
-  FBtnArray[10].Name := 'btn10';
-  FBtnArray[11].Name := 'btn11';
-  FBtnArray[12].Name := 'btn12';
-  FBtnArray[13].Name := 'btn13';
-  FBtnArray[14].Name := 'btn14';
-  FBtnArray[15].Name := 'btn15';
-  FBtnArray[16].Name := 'btn16';
-  FBtnArray[17].Name := 'btn17';
-  FBtnArray[18].Name := 'btn18';
-  FBtnArray[19].Name := 'btn19';
-  FBtnArray[20].Name := 'btn20';
-  FBtnArray[21].Name := 'btn21';
-  FBtnArray[22].Name := 'btn22';
-  FBtnArray[23].Name := 'btn23';
-  FBtnArray[24].Name := 'btn24';
-  FBtnArray[25].Name := 'btn25';
-  FBtnArray[26].Name := 'btn26';
-  FBtnArray[27].Name := 'btnZeroFlyOff';
-  FBtnArray[28].Name := 'btn28';
-  FBtnArray[29].Name := 'btn29';
+  FBtnArray[0].Name := 'btn_SysCtrl';
+  FBtnArray[1].Name := 'btn_LocalCtrl';
+  FBtnArray[2].Name := 'btn_CtrlGun';
+  FBtnArray[3].Name := 'btn_Video';
+  FBtnArray[4].Name := 'btn_DataRecord';
+  FBtnArray[5].Name := 'btn_LockScreen';
+  FBtnArray[6].Name := 'btn_6';
+  FBtnArray[7].Name := 'btn_Combat';
+  FBtnArray[8].Name := 'btn_Check';
+  FBtnArray[9].Name := 'btn_9';
+  FBtnArray[10].Name := 'btn_10';
+  FBtnArray[11].Name := 'btn_11';
+  FBtnArray[12].Name := 'btn_12';
+  FBtnArray[13].Name := 'btn_13';
+  FBtnArray[14].Name := 'btn_14';
+  FBtnArray[15].Name := 'btn_15';
+  FBtnArray[16].Name := 'btn_16';
+  FBtnArray[17].Name := 'btn_17';
+  FBtnArray[18].Name := 'btn_18';
+  FBtnArray[19].Name := 'btn_19';
+  FBtnArray[20].Name := 'btn_20';
+  FBtnArray[21].Name := 'btn_21';
+  FBtnArray[22].Name := 'btn_22';
+  FBtnArray[23].Name := 'btn_23';
+  FBtnArray[24].Name := 'btn_24';
+  FBtnArray[25].Name := 'btn_25';
+  FBtnArray[26].Name := 'btn_26';
+  FBtnArray[27].Name := 'btn_ZeroFlyOff';
+  FBtnArray[28].Name := 'btn_28';
+  FBtnArray[29].Name := 'btn_29';
 
 //  FBtnArray[7].GroupIndex := 2;
 //  FBtnArray[8].GroupIndex := 2;
 end;
 
 procedure TfrmPTK.GenerateLockScreenMenu;
+var i: Integer;
 begin
   if FisScreenLocked then
   begin
     EnableAllBtn;
     FBtnArray[5].Caption := 'Lock' + #13#10 + 'Screen';
+    for i := 0 to 29 do
+    begin
+      if FBtnArray[i].Caption = '  ' then
+        FBtnArray[i].Enabled := False;
+    end;
   end
   else
   begin
@@ -1149,36 +1161,36 @@ begin
     end;
   end;
 
-  FBtnArray[0].Name := 'btnSysCtrl';
-  FBtnArray[1].Name := 'btnLocalCtrl';
-  FBtnArray[2].Name := 'btnCtrlGun';
-  FBtnArray[3].Name := 'btnVideo';
-  FBtnArray[4].Name := 'btnDataRecord';
-  FBtnArray[5].Name := 'btnLockScreen';
-  FBtnArray[6].Name := 'btnNavSetting';
-  FBtnArray[7].Name := 'btnWeatherSetting';
-  FBtnArray[8].Name := 'btnCalSetting';
-  FBtnArray[9].Name := 'btn9';
-  FBtnArray[10].Name := 'btn10';
-  FBtnArray[11].Name := 'btn11';
-  FBtnArray[12].Name := 'btn12';
-  FBtnArray[13].Name := 'btn13';
-  FBtnArray[14].Name := 'btn14';
-  FBtnArray[15].Name := 'btn15';
-  FBtnArray[16].Name := 'btn16';
-  FBtnArray[17].Name := 'btn17';
-  FBtnArray[18].Name := 'btn18';
-  FBtnArray[19].Name := 'btn19';
-  FBtnArray[20].Name := 'btn20';
-  FBtnArray[21].Name := 'btn21';
-  FBtnArray[22].Name := 'btn22';
-  FBtnArray[23].Name := 'btn23';
-  FBtnArray[24].Name := 'btn24';
-  FBtnArray[25].Name := 'btn25';
-  FBtnArray[26].Name := 'btn26';
-  FBtnArray[27].Name := 'btnZeroFlyOff';
-  FBtnArray[28].Name := 'btn28';
-  FBtnArray[29].Name := 'btn29';
+  FBtnArray[0].Name := 'btn_SysCtrl';
+  FBtnArray[1].Name := 'btn_LocalCtrl';
+  FBtnArray[2].Name := 'btn_CtrlGun';
+  FBtnArray[3].Name := 'btn_Video';
+  FBtnArray[4].Name := 'btn_DataRecord';
+  FBtnArray[5].Name := 'btn_LockScreen';
+  FBtnArray[6].Name := 'btn_NavSetting';
+  FBtnArray[7].Name := 'btn_WeatherSetting';
+  FBtnArray[8].Name := 'btn_CalSetting';
+  FBtnArray[9].Name := 'btn_9';
+  FBtnArray[10].Name := 'btn_10';
+  FBtnArray[11].Name := 'btn_11';
+  FBtnArray[12].Name := 'btn_12';
+  FBtnArray[13].Name := 'btn_13';
+  FBtnArray[14].Name := 'btn_14';
+  FBtnArray[15].Name := 'btn_15';
+  FBtnArray[16].Name := 'btn_16';
+  FBtnArray[17].Name := 'btn_17';
+  FBtnArray[18].Name := 'btn_18';
+  FBtnArray[19].Name := 'btn_19';
+  FBtnArray[20].Name := 'btn_20';
+  FBtnArray[21].Name := 'btn_21';
+  FBtnArray[22].Name := 'btn_22';
+  FBtnArray[23].Name := 'btn_23';
+  FBtnArray[24].Name := 'btn_24';
+  FBtnArray[25].Name := 'btn_25';
+  FBtnArray[26].Name := 'btn_26';
+  FBtnArray[27].Name := 'btn_ZeroFlyOff';
+  FBtnArray[28].Name := 'btn_28';
+  FBtnArray[29].Name := 'btn_29';
 end;
 
 procedure TfrmPTK.GenerateVideoMenu;
@@ -1225,36 +1237,36 @@ begin
     end;
   end;
 
-  FBtnArray[0].Name := 'btnSysCtrl';
-  FBtnArray[1].Name := 'btnLocalCtrl';
-  FBtnArray[2].Name := 'btnCtrlGun';
-  FBtnArray[3].Name := 'btnVideo';
-  FBtnArray[4].Name := 'btnDataRecord';
-  FBtnArray[5].Name := 'btnLockScreen';
-  FBtnArray[6].Name := 'btn6';
-  FBtnArray[7].Name := 'btn7';
-  FBtnArray[8].Name := 'btn8';
-  FBtnArray[9].Name := 'btnTv';
-  FBtnArray[10].Name := 'btnIr';
-  FBtnArray[11].Name := 'btn11';
-  FBtnArray[12].Name := 'btnBrightPlus';
-  FBtnArray[13].Name := 'btnBrightMin';
-  FBtnArray[14].Name := 'btnContrastPlus';
-  FBtnArray[15].Name := 'btnContrastMin';
-  FBtnArray[16].Name := 'btnGainPlus';
-  FBtnArray[17].Name := 'btnGainMin';
-  FBtnArray[18].Name := 'btn18';
-  FBtnArray[19].Name := 'btn19';
-  FBtnArray[20].Name := 'btn20';
-  FBtnArray[21].Name := 'btn21';
-  FBtnArray[22].Name := 'btn22';
-  FBtnArray[23].Name := 'btn23';
-  FBtnArray[24].Name := 'btn24';
-  FBtnArray[25].Name := 'btn25';
-  FBtnArray[26].Name := 'btn26';
-  FBtnArray[27].Name := 'btn27';
-  FBtnArray[28].Name := 'btn28';
-  FBtnArray[29].Name := 'btn29';
+  FBtnArray[0].Name := 'btn_SysCtrl';
+  FBtnArray[1].Name := 'btn_LocalCtrl';
+  FBtnArray[2].Name := 'btn_CtrlGun';
+  FBtnArray[3].Name := 'btn_Video';
+  FBtnArray[4].Name := 'btn_DataRecord';
+  FBtnArray[5].Name := 'btn_LockScreen';
+  FBtnArray[6].Name := 'btn_6';
+  FBtnArray[7].Name := 'btn_7';
+  FBtnArray[8].Name := 'btn_8';
+  FBtnArray[9].Name := 'btn_Tv';
+  FBtnArray[10].Name := 'btn_Ir';
+  FBtnArray[11].Name := 'btn_11';
+  FBtnArray[12].Name := 'btn_BrightPlus';
+  FBtnArray[13].Name := 'btn_BrightMin';
+  FBtnArray[14].Name := 'btn_ContrastPlus';
+  FBtnArray[15].Name := 'btn_ContrastMin';
+  FBtnArray[16].Name := 'btn_GainPlus';
+  FBtnArray[17].Name := 'btn_GainMin';
+  FBtnArray[18].Name := 'btn_18';
+  FBtnArray[19].Name := 'btn_19';
+  FBtnArray[20].Name := 'btn_20';
+  FBtnArray[21].Name := 'btn_21';
+  FBtnArray[22].Name := 'btn_22';
+  FBtnArray[23].Name := 'btn_23';
+  FBtnArray[24].Name := 'btn_24';
+  FBtnArray[25].Name := 'btn_25';
+  FBtnArray[26].Name := 'btn_26';
+  FBtnArray[27].Name := 'btn_27';
+  FBtnArray[28].Name := 'btn_28';
+  FBtnArray[29].Name := 'btn_29';
 end;
 
 procedure TfrmPTK.InitButtons;
@@ -1280,7 +1292,7 @@ begin
     btn.Color       := clBlack;
     btn.Font.Color  := CL_TCMS_Orange;
     btn.Font.Size   := FFont_Btn;
-    btn.Name        := 'btn' + FBtnMainNames[i];
+    btn.Name        := 'btn_' + FBtnMainNames[i];
     btn.Caption     := FBtnMainCaption[i];
     btn.OnClick     := btnPtkClick;
     btn.Tag         := i;
@@ -1356,11 +1368,13 @@ begin
       FSocketTCPClient.LineEnd := #10#13;
       FSocketTCPClient.OnSessionClosed := SocketClientSessionClosed;
       FSocketTCPClient.OnDataAvailable := SocketClientDataAvailable;
+      FSocketTCPClient.OnSocksConnected := WSocket1SocksConnected;
       FSocketTCPClient.Connect;
     end;
 
     if FSocketTCPClient.State = wsConnected then
     begin
+      ShowMessage('Socket Connected');
       FTimerConnect.Enabled := False;
     end;
   end;
@@ -1441,6 +1455,13 @@ end;
 procedure TfrmPTK.SocketClientSessionClosed(Sender: TObject; ErrCode: Word);
 begin
   FTimerConnect.Enabled := True;
+//  ShowMessage('Socket Disconnected');
+end;
+
+procedure TfrmPTK.WSocket1SocksConnected(Sender: TObject; ErrCode: Word);
+begin
+  inherited;
+//  ShowMessage('Socket Connected');
 end;
 
 end.

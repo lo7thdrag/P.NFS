@@ -7,7 +7,9 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, VrControls,
   VrDesign, Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.OleCtrls, MapXLib_TLB, Math,
   uCoordConverter, uBaseFunction, uBaseConst, uMapXUnitConverter, uLibConst,
-  Vcl.Menus;
+  Vcl.Menus, OverbyteIcsWSocket,
+  uTCPDatatype,
+  uC705SimManager, uLibSettings;
 
 type
   TfrmRoutePlan = class(TForm)
@@ -75,6 +77,7 @@ type
     PopupMenu1: TPopupMenu;
     Close1: TMenuItem;
     WCC1: TMenuItem;
+    tmrConnectToBridge: TTimer;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -84,6 +87,7 @@ type
     procedure WCC1Click(Sender: TObject);
     procedure imgZoomInClick(Sender: TObject);
     procedure imgZoomOutClick(Sender: TObject);
+    procedure tmrConnectToBridgeTimer(Sender: TObject);
   protected
     //procedure DrawAngle(aCnv: TCanvas);
     //procedure DrawCompass(aCnv: TCanvas);
@@ -108,6 +112,9 @@ type
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
+
+    { Socket NFS}
+    procedure onTCPChangeState(Sender: TObject; OldState, NewState: TSocketState);
   end;
 
 var
@@ -194,6 +201,9 @@ begin
 
   { Form Show }
   Show;
+
+  { Socket Connect to Bridge }
+  tmrConnectToBridge.Enabled := True;
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
@@ -364,6 +374,52 @@ begin
 
   Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
   Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
+end;
+
+procedure TfrmRoutePlan.tmrConnectToBridgeTimer(Sender: TObject);
+var
+  recSend : TRecData2DOrder;
+  I : Integer;
+begin
+
+  if Assigned(SimManager) then
+  begin
+    tmrConnectToBridge.Enabled := False;
+
+    //connect to NFS bridge
+    if SimManager.NFSNetRecv.State <> wsConnected then
+    begin
+      SimManager.NFSNetRecv.Connect(VNfsNetwork.ServerIP, IntToStr(VNfsNetwork.Serverport));
+      tmrConnectToBridge.Enabled := True;
+    end
+    else
+    begin
+      tmrConnectToBridge.Enabled := False;
+
+      if SimManager.NFSNetRecv.State = wsConnected then
+      begin
+        //req sync packet after connect
+        recSend.orderID   := _CM_REQ_SYNCPACKET;
+        recSend.numValue  := 0;
+        recSend.strValue  := '';
+        recSend.strValue2 := '';
+        recSend.strValue3 := '';
+        recSend.ipConsole := '';
+        SimManager.NFSNetRecv.sendDataEx(REC_2D_ORDER, @recSend);
+      end;
+
+    end;
+  end;
+
+end;
+
+procedure TfrmRoutePlan.onTCPChangeState(Sender: TObject; OldState,
+  NewState: TSocketState);
+begin
+  if (OldState = wsConnected) and (NewState = wsClosed) then
+  begin
+    tmrConnectToBridge.Enabled := True;
+  end;
 end;
 
 end.

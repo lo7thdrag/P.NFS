@@ -21,7 +21,7 @@ type
     BCAddress : string;
     SessionID : Integer;
     CubicleID : integer;
-    Server: string;
+    ServerIP: string;
     Serverport: Integer;
     Server3D: string;
     Server3DPort: Integer;
@@ -97,7 +97,7 @@ begin
       BCAddress     := INIFReadString(iniF, 'Network', 'BroadCastAddress', '192.168.1.255');
       CubicleID     := INIFReadInteger(inif, 'Network', 'CubicleID', 1);
 
-      Server        := INIFReadString(iniF, 'Network', 'Server', '192.168.0.231');
+      ServerIP        := INIFReadString(iniF, 'Network', 'Server', '192.168.0.231');
       Serverport    := INIFReadInteger(inif, 'Network', 'Serverport', 2120);
       Server3D      := INIFReadString(iniF, 'Network', '3DServer', '192.168.0.231');;
       Server3DPort  := INIFReadInteger(inif, 'Network', '3DServerPort', 7001);

@@ -193,6 +193,8 @@ begin
 
       FxShip.Speed    := aRec.speed;
       FxShip.Heading  := aRec.heading;
+      FxShip.Pitch := aRec.pitch;
+      FxShip.Roll := aRec.roll;
 
 
       V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
@@ -234,7 +236,6 @@ begin
       v.PosY := aRec.Y;
       v.PosZ := aRec.Z;
       v.SetSpeedKts(aRec.speed);
-      v.ShipID := aRec.ShipID;
 
       v.HeadingDeg  := aRec.heading;
     end
@@ -298,8 +299,7 @@ var WeaponAssigned : TWeaponGetList;
     I : Integer;
 begin
   ListWeaponAssigned := TList.Create;
-  DataModule1.GetListWeaponOnShip(FShipID , ListWeaponAssigned);
-  if ListWeaponAssigned.Count > 0 then
+  if DataModule1.GetListWeaponOnShip(FShipID , ListWeaponAssigned) > 0 then
   begin
     for I := 0 to ListWeaponAssigned.Count - 1 do begin
       WeaponAssigned := TWeaponGetList.Create;
