@@ -88247,6 +88247,15 @@ object frmWCC: TfrmWCC
           TabOrder = 0
         end
       end
+      object pnlRealTimeCombat: TPanel
+        Tag = 1
+        Left = 353
+        Top = 199
+        Width = 185
+        Height = 41
+        BevelOuter = bvNone
+        TabOrder = 3
+      end
     end
   end
   object pnlSide: TPanel

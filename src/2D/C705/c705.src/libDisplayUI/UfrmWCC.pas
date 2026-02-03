@@ -81,6 +81,7 @@ type
     lblCheckP301a: TLabel;
     lblCheckP105B: TLabel;
     RoutePlan1: TMenuItem;
+    pnlRealTimeCombat: TPanel;
     {$ENDREGION}
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -128,46 +129,51 @@ end;
 procedure TfrmWCC.UpdateHighlight;
 var
   i: Integer;
-  L: TLabel;
+  aLbl: TLabel;
 begin
   for i := 0 to pnlMainMenu.ControlCount - 1 do
-    if (pnlMainMenu.Controls[i] is TLabel) and
-        (pnlMainMenu.Controls[i].Tag > 0) then
+  if (pnlMainMenu.Controls[i] is TLabel) and
+      (pnlMainMenu.Controls[i].Tag > 0) then
+  begin
+    aLbl := TLabel(pnlMainMenu.Controls[i]);
+
+    if aLbl = FActiveLabel then
     begin
-      L := TLabel(pnlMainMenu.Controls[i]);
+      aLbl.Font.Style := [fsBold];
+      aLbl.Font.Color := clWhite;
+      aLbl.Color := clHighlight;
+      aLbl.Transparent := False;
 
-      if L = FActiveLabel then
-      begin
-        L.Font.Style := [fsBold];
-        L.Font.Color := clWhite;
-        L.Color := clHighlight;
-        L.Transparent := False;
-
-        ShowPanelForMenu(L);
-      end
-      else
-      begin
-        L.Font.Style := [];
-        L.Font.Color := clSilver;
-        L.Color := clNone;
-        L.Transparent := True;
-      end;
+      ShowPanelForMenu(aLbl);
+    end
+    else
+    begin
+      aLbl.Font.Style := [];
+      aLbl.Font.Color := clSilver;
+      aLbl.Color := clNone;
+      aLbl.Transparent := True;
     end;
+  end;
 end;
 
-procedure TfrmWCC.ShowPanelForMenu(ALabel: TLabel);
+procedure TfrmWCC.ShowPanelForMenu(aLabel: TLabel);
 var
   i: Integer;
-  P: TPanel;
+  aPnl: TPanel;
 begin
-  if (ALabel = nil) or (ALabel.Tag <= 0) then Exit;
+  if (aLabel = nil) or (aLabel.Tag <= 0) then Exit;
 
   for i := 0 to pnlMainMenu.ControlCount - 1 do
-    if pnlMainMenu.Controls[i] is TPanel then
-    begin
-      P := TPanel(pnlMainMenu.Controls[i]);
-      P.Visible := (P.Tag = ALabel.Tag);
-    end;
+  if pnlMainMenu.Controls[i] is TPanel then
+  begin
+    aPnl := TPanel(pnlMainMenu.Controls[i]);
+    aPnl.Visible := (aPnl.Tag = aLabel.Tag);
+
+//    if aPnl.Tag = 1 then
+//    begin
+//      frmFoeFriendSituationPage.Show;
+//    end;
+  end;
 end;
 
 procedure TfrmWCC.FormKeyDown(Sender: TObject; var Key: Word;

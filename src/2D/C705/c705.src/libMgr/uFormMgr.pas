@@ -17,6 +17,7 @@ uses
   Vcl.Controls,
   UfrmWCC,
   UfrmRoutePlan,
+  uFrmKeyboardCalcLaunch,
   uLibSettings;
 
 { ========================================================= }
@@ -67,9 +68,12 @@ begin
                               VMonitorTopLeft.MonBot_Left, VMonitorTopLeft.MonBot_Top);
     frmRoutePlan.SetMonitor(VMonitorSetting.MonitorKiri,
                               VMonitorTopLeft.MonTop_Left, VMonitorTopLeft.MonTop_Top);
+    frmKeyboardCalcLaunch.SetMonitor(VMonitorSetting.MonitorMini,
+                              VMonitorTopLeft.MonMini_Left, VMonitorTopLeft.MonMini_Top);
 
     frmWCC.Show;
     frmRoutePlan.Show;
+    frmKeyboardCalcLaunch.Show;
   end;
 end;
 

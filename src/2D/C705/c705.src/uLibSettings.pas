@@ -39,6 +39,7 @@ type
   TMonitorSetting = record
     MonitorKiri: Integer;
     MonitorKanan: Integer;
+    MonitorMini: Integer;
     MonitorWidth: Integer;
     MonitorHeight: Integer;
   end;
@@ -50,6 +51,8 @@ type
     MonBot_Top : Integer;
     MonMiddle_Left : Integer;
     MonMiddle_Top : Integer;
+    MonMini_Left : Integer;
+    MonMini_Top : Integer;
   end;
 
 //  TTcmsNetwork = record
@@ -144,6 +147,7 @@ begin
     with VMonitorSetting do begin
       MonitorKiri := INIFReadInteger(iniF, 'SetMonitor', 'MonitorAtas', 0);
       MonitorKanan := INIFReadInteger(iniF, 'SetMonitor', 'MonitorBawah', 0);
+      MonitorMini := INIFReadInteger(iniF, 'SetMonitor', 'MonitorMini', 0);
       MonitorHeight := INIFReadInteger(iniF, 'SetMonitor', 'MonHeight', 0);
       MonitorWidth := INIFReadInteger(iniF, 'SetMonitor', 'MonWidth', 0);
     end;
@@ -165,6 +169,8 @@ begin
       MonTop_Top := INIFReadInteger(iniF, 'TopLeft', 'MonTop_Top', 0);
       MonBot_Left := INIFReadInteger(iniF, 'TopLeft', 'MonBot_Left', 0);
       MonBot_Top := INIFReadInteger(iniF, 'TopLeft', 'MonBot_Top', 0);
+      MonMini_Left := INIFReadInteger(iniF, 'TopLeft', 'MonMini_Left', 0);
+      MonMini_Top := INIFReadInteger(iniF, 'TopLeft', 'MonMini_Top', 0);
     end;
   finally
     iniF.Free;

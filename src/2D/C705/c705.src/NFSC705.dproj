@@ -126,6 +126,28 @@
             <Form>frmFoeFriendSituationPage</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="libDisplayUI\FrmTab\uFrmMissileInformation.pas">
+            <Form>frmMissileInformation</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="libDisplayUI\uFrmKeyboardCalcLaunch.pas">
+            <Form>frmKeyboardCalcLaunch</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="libDisplayUI\FrmTab\uFrmFireDistribution.pas">
+            <Form>frmFireDistribution</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="libDisplayUI\FrmTab\uFrmMissileMonitor.pas">
+            <Form>frmMissileMonitor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="libDisplayUI\FrmTab\uFrmLaunchData.pas">
+            <Form>frmLaunchData</Form>
+        </DCCReference>
+        <DCCReference Include="libDisplayUI\FrmTab\uFrmChannelSelect.pas">
+            <Form>frmChannelSelect</Form>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

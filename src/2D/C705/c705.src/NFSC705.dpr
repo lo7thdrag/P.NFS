@@ -16,7 +16,13 @@ uses
   uBaseFunction in 'LibBaseSystem\uBaseFunction.pas',
   uCoordConverter in 'LibBaseSystem\uCoordConverter.pas',
   uFormMgr in 'libMgr\uFormMgr.pas',
-  UfrmFoeFriendSituationPage in 'libDisplayUI\UfrmFoeFriendSituationPage.pas' {frmFoeFriendSituationPage};
+  UfrmFoeFriendSituationPage in 'libDisplayUI\UfrmFoeFriendSituationPage.pas' {frmFoeFriendSituationPage},
+  uFrmMissileInformation in 'libDisplayUI\FrmTab\uFrmMissileInformation.pas' {frmMissileInformation},
+  uFrmKeyboardCalcLaunch in 'libDisplayUI\uFrmKeyboardCalcLaunch.pas' {frmKeyboardCalcLaunch},
+  uFrmFireDistribution in 'libDisplayUI\FrmTab\uFrmFireDistribution.pas' {frmFireDistribution},
+  uFrmMissileMonitor in 'libDisplayUI\FrmTab\uFrmMissileMonitor.pas' {frmMissileMonitor},
+  uFrmLaunchData in 'libDisplayUI\FrmTab\uFrmLaunchData.pas' {frmLaunchData},
+  uFrmChannelSelect in 'libDisplayUI\FrmTab\uFrmChannelSelect.pas' {frmChannelSelect};
 
 {$R *.res}
 
@@ -32,6 +38,12 @@ begin
 
   Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
+  Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);
+  Application.CreateForm(TfrmMissileMonitor, frmMissileMonitor);
+  Application.CreateForm(TfrmLaunchData, frmLaunchData);
+  Application.CreateForm(TfrmChannelSelect, frmChannelSelect);
+  //Application.CreateForm(TfrmFireDistribution, frmFireDistribution);
+  //Application.CreateForm(TfrmMissileInformation, frmMissileInformation);
   //  frmRoutePlan.SetMonitor(VMonitorSetting.MonitorKiri,
 //                              VMonitorTopLeft.MonTop_Left, VMonitorTopLeft.MonTop_Top);
 
