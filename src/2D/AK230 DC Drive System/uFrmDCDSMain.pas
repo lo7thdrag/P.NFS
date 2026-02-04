@@ -1154,9 +1154,9 @@ begin
   if Round(FVTgtTraining) <> Round(FVCurTraining) then
   begin
     if ((FVTgtTraining - FVCurTraining) < 180) and ((FVTgtTraining - FVCurTraining) > 0)  then
-      FVCurTraining := FVCurTraining + 0.1
+      FVCurTraining := FVCurTraining + 1
     else
-      FVCurTraining := FVCurTraining - 0.1;
+      FVCurTraining := FVCurTraining - 1;
     RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);
   end
   else
@@ -1165,12 +1165,12 @@ begin
   if Round(FVTgtElevation) <> Round(FVCurElevation) then
   begin
     if ((FVTgtElevation - FVCurElevation) < 85) and ((FVTgtElevation - FVCurElevation) > 0) then
-      FVCurElevation := FVCurElevation + 0.1
+      FVCurElevation := FVCurElevation + 1
     else
     begin
       //if ((FVTgtElevation - FVCurElevation) < -10) then
 
-      FVCurElevation := FVCurElevation - 0.1;
+      FVCurElevation := FVCurElevation - 1;
     end;
     RotateAndDisplayFixedSize(imgElevPtr, FOriginalPngElevation, FVCurElevation);
   end

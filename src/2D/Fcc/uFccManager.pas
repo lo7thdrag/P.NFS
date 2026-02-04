@@ -97,7 +97,7 @@ const
 implementation
 
 uses
-  uDataModule;
+  uDataModule, ulibSettings;
 
 { TFCCManager }
 
@@ -304,12 +304,24 @@ begin
     for I := 0 to ListWeaponAssigned.Count - 1 do begin
       WeaponAssigned := TWeaponGetList.Create;
       WeaponAssigned := TWeaponGetList(ListWeaponAssigned.Items[I]);
-      if WeaponAssigned.IDWeapon = C_DBID_CANNON57 then begin
-        FAssignedWeapon := TWeaponGetList.Create;
-        FAssignedWeapon := TWeaponGetList(ListWeaponAssigned.Items[I]);
-        Break;
+      case vFccSetting.FccMode of
+      1 : //FCC1 Mode
+        begin
+          if WeaponAssigned.IDWeapon = C_DBID_CANNON_TYPE_730 then begin
+            FAssignedWeapon := TWeaponGetList.Create;
+            FAssignedWeapon := TWeaponGetList(ListWeaponAssigned.Items[I]);
+            Break;
+          end;
+        end;
+        2 : //FCC2 Mode
+        begin
+          if WeaponAssigned.IDWeapon = C_DBID_CANNON57 then begin
+          FAssignedWeapon := TWeaponGetList.Create;
+          FAssignedWeapon := TWeaponGetList(ListWeaponAssigned.Items[I]);
+          Break;
+          end;
+        end;
       end;
-
        WeaponAssigned.Free;
     end;
   end;

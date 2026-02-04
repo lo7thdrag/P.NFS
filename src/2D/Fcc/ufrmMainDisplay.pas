@@ -1207,6 +1207,9 @@ begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
     bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    bearing := bearing - FCCManager.xShip.Heading;
+    if bearing < 0 then
+    bearing := bearing + 360;
     // range = 3000 m, target lebih rendah 25 m
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
 
@@ -1438,6 +1441,7 @@ begin
     FCCManager.Env_Map := DataModule1.GetMapById(FCCManager.CurrentScenID);
 
     FCCManager.Get57WeaponAssigned;
+
 //
 //    if Assigned(FCCManager.AssignedWeapon) then
 //    begin
