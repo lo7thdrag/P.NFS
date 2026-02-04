@@ -1560,25 +1560,25 @@ var
   WindowHandle: HWND;
 begin
   // jalankan chrome
-  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
-    '--app="https://google.com"');
+//  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
+//    '--app="https://google.com"');
 
   // tunggu window chrome muncul
-  Sleep(500);
+//  Sleep(500);
 
   // temukan window chrome
-  WindowHandle := FindWindow('Chrome_WidgetWin_1', nil);
-
-  if WindowHandle <> 0 then
-  begin
-    // set parent ke panel
-    Winapi.Windows.SetParent(WindowHandle, pnlBaseVideoZone.Handle);
-
-    // sesuaikan posisi
-    SetWindowLong(WindowHandle, GWL_STYLE, WS_VISIBLE);
-    SetWindowPos(WindowHandle, 0, 0, 0, pnlBaseVideoZone.Width, pnlBaseVideoZone.Height,
-                 SWP_NOZORDER or SWP_SHOWWINDOW);
-  end;
+//  WindowHandle := FindWindow('Chrome_WidgetWin_1', nil);
+//
+//  if WindowHandle <> 0 then
+//  begin
+//    // set parent ke panel
+//    Winapi.Windows.SetParent(WindowHandle, pnlBaseVideoZone.Handle);
+//
+//    // sesuaikan posisi
+//    SetWindowLong(WindowHandle, GWL_STYLE, WS_VISIBLE);
+//    SetWindowPos(WindowHandle, 0, 0, 0, pnlBaseVideoZone.Width, pnlBaseVideoZone.Height,
+//                 SWP_NOZORDER or SWP_SHOWWINDOW);
+//  end;
 end;
 
 procedure TfrmMainFCC.HandleKeyByBtnName(const BtnName: string);
