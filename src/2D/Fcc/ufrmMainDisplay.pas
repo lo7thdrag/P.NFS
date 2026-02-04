@@ -1103,8 +1103,19 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+    RecSend.mTargetID           := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
+
+    case vFccSetting.FccMode of
+    1 : //FCC1 Mode
+    begin
+      RecSend.mModeID             := 3;
+    end;
+    2 : //FCC2 Mode
+    begin
+      RecSend.mModeID             := 1;
+    end;
+  end;
+
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
 
@@ -1125,7 +1136,7 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
+    RecSend.mTargetID           := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
     RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
@@ -1228,8 +1239,18 @@ begin
       RecSend.mOrderID        := 0;
 
       RecSend.mUpDown             := 0;
-      RecSend.mTargetID           := 0;
-      RecSend.mModeID             := 0;
+      RecSend.mTargetID           := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
+
+      case vFccSetting.FccMode of
+        1 : //FCC1 Mode
+        begin
+          RecSend.mModeID             := 3;
+        end;
+        2 : //FCC2 Mode
+        begin
+          RecSend.mModeID             := 1;
+        end;
+      end;
       RecSend.mAutoCorrectElev    := aLow;
       RecSend.mAutoCorrectBearing := bearing;
 
@@ -1254,8 +1275,19 @@ begin
       RecSend.mOrderID        := 0;
 
       RecSend.mUpDown             := 0;
-      RecSend.mTargetID           := 0;
-      RecSend.mModeID             := 0;
+      RecSend.mTargetID           := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
+
+      case vFccSetting.FccMode of
+        1 : //FCC1 Mode
+        begin
+          RecSend.mModeID             := 3;
+        end;
+        2 : //FCC2 Mode
+        begin
+          RecSend.mModeID             := 1;
+        end;
+      end;
+
       RecSend.mAutoCorrectElev    := alow;
       RecSend.mAutoCorrectBearing := bearing;
 
@@ -1488,6 +1520,8 @@ begin
 
   FIsWeatherAuto := True;
   FIsNavAuto := True;
+
+  FMap.ZoomTo((Self.FCurrentRange  * 0.0008) * 2, FMap.CenterX, FMap.CenterY);
 end;
 
 procedure TfrmMainFCC.FormDestroy(Sender: TObject);
@@ -1824,8 +1858,18 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+    RecSend.mTargetID           := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
+
+    case vFccSetting.FccMode of
+      1 : //FCC1 Mode
+      begin
+        RecSend.mModeID             := 3;
+      end;
+      2 : //FCC2 Mode
+      begin
+        RecSend.mModeID             := 1;
+      end;
+    end;
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
 
@@ -1846,8 +1890,18 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+    RecSend.mTargetID           := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
+
+    case vFccSetting.FccMode of
+      1 : //FCC1 Mode
+      begin
+        RecSend.mModeID             := 3;
+      end;
+      2 : //FCC2 Mode
+      begin
+        RecSend.mModeID             := 1;
+      end;
+    end;
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
 
@@ -1867,7 +1921,8 @@ begin
 
   Self.FIndexRange := TPanel(Sender).Tag;
   self.FCurrentRange := CRangeOperation[TPanel(Sender).Tag];
-  FMap.ZoomTo((Self.FCurrentRange  * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
+//  FMap.ZoomTo((Self.FCurrentRange  * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
+  FMap.ZoomTo((Self.FCurrentRange  * 0.0008) * 2, FMap.CenterX, FMap.CenterY);
 end;
 
 procedure TfrmMainFCC.ptkCommand(const str: string);
