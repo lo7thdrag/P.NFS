@@ -866,21 +866,21 @@ begin
 
     AreaTracker.Draw(aCnv);
 
-    AreaGunPoint.CenterMode     := cmMapPosition;
-    AreaGunPoint.MapPosX        := FMap.CenterX;
-    AreaGunPoint.MapPosY        := FMap.CenterY;
-    AreaGunPoint.CoordConverter := aCvt;
-
-    AreaGunPoint.OuterRadiusPx  := FCircleR;
-    AreaGunPoint.CurrentRange_m := Self.FCurrentRange;
-
-    if Assigned(FCCManager) then
-    begin
-      if Assigned(FCCManager.xShip) then
-        AreaGunPoint.HeadingDeg    := FCCManager.xShip.Heading;
-    end;
-
-    AreaGunPoint.Draw(aCnv);
+//    AreaGunPoint.CenterMode     := cmMapPosition;
+//    AreaGunPoint.MapPosX        := FMap.CenterX;
+//    AreaGunPoint.MapPosY        := FMap.CenterY;
+//    AreaGunPoint.CoordConverter := aCvt;
+//
+//    AreaGunPoint.OuterRadiusPx  := FCircleR;
+//    AreaGunPoint.CurrentRange_m := Self.FCurrentRange;
+//
+//    if Assigned(FCCManager) then
+//    begin
+//      if Assigned(FCCManager.xShip) then
+//        AreaGunPoint.HeadingDeg    := FCCManager.xShip.Heading;
+//    end;
+//
+//    AreaGunPoint.Draw(aCnv);
 
     // --- North Indicator ---
     FNorthInd.CenterX       := FCircleCX;
@@ -1326,29 +1326,61 @@ begin
   // siapkan sectors (contoh sesuai gambar)
 
   // Blind zone: dua sektor
-  AreaBlindZone := TRadarDynamicSector.Create;
-  AreaBlindZone.Color := RGB(183,73,40);
-  AreaBlindZone.AddSlice(30,45, 0.0, 48000.0); // center–3 km
-  AreaBlindZone.AddSlice(315,330,   0.0, 48000.0);
+  case vFccSetting.FccMode of
+    1 : //FCC1 Mode
+    begin
+      AreaBlindZone := TRadarDynamicSector.Create;
+      AreaBlindZone.Color := RGB(183,73,40);
+      AreaBlindZone.AddSlice(210,225, 0.0, 48000.0); // center–3 km
+      AreaBlindZone.AddSlice(135,150,   0.0, 48000.0);
 
-  AreaBlindZone1 := TRadarDynamicSector.Create;
-  AreaBlindZone1.Color := RGB(94,90,105);
-  AreaBlindZone1.AddSlice(330,30, 0.0, 48000.0); // dari 1–3 km
+      AreaBlindZone1 := TRadarDynamicSector.Create;
+      AreaBlindZone1.Color := RGB(94,90,105);
+      AreaBlindZone1.AddSlice(135,210, 0.0, 48000.0); // dari 1–3 km
 
-  AreaGunPoint := TRadarDynamicSector.Create;
-  AreaGunPoint.Color := RGB(237,83,93);
-  AreaGunPoint.AddSlice(165,195, 0.0, 48000.0); // dari 1–3 km
+      AreaGunPoint := TRadarDynamicSector.Create;
+      AreaGunPoint.Color := RGB(237,83,93);
+      AreaGunPoint.AddSlice(358,2, 0.0, 48000.0); // dari 1–3 km
 
-  AreaPenembakan := TRadarDynamicSector.Create;
-  AreaPenembakan.Color := RGB(53,80,75);
-  AreaPenembakan.AddSlice(45,315, 0.0, 6500.0); // dari 1–3 km
+      AreaPenembakan := TRadarDynamicSector.Create;
+      AreaPenembakan.Color := RGB(53,80,75);
+      AreaPenembakan.AddSlice(225,135, 0.0, 3000.0); // dari 1–3 km
 
-  acbxShootArea.Checked := AreaPenembakan.Visible;
+      acbxShootArea.Checked := AreaPenembakan.Visible;
 
-  AreaTracker := TRadarDynamicSector.Create;
-  AreaTracker.Color := RGB(32,70,145);
-  AreaTracker.AddSlice(45,315, 6500.0, 17000.0); // dari 1–3 km
-  acbxTrackerArea.Checked := AreaTracker.Visible;
+      AreaTracker := TRadarDynamicSector.Create;
+      AreaTracker.Color := RGB(32,70,145);
+      AreaTracker.AddSlice(225,135, 3000.0, 17000.0); // dari 1–3 km
+      acbxTrackerArea.Checked := AreaTracker.Visible;
+    end;
+    2 : //FCC2 Mode
+    begin
+      AreaBlindZone := TRadarDynamicSector.Create;
+      AreaBlindZone.Color := RGB(183,73,40);
+      AreaBlindZone.AddSlice(30,45, 0.0, 48000.0); // center–3 km
+      AreaBlindZone.AddSlice(315,330,   0.0, 48000.0);
+
+      AreaBlindZone1 := TRadarDynamicSector.Create;
+      AreaBlindZone1.Color := RGB(94,90,105);
+      AreaBlindZone1.AddSlice(330,30, 0.0, 48000.0); // dari 1–3 km
+
+      AreaGunPoint := TRadarDynamicSector.Create;
+      AreaGunPoint.Color := RGB(237,83,93);
+      AreaGunPoint.AddSlice(177,183, 0.0, 48000.0); // dari 1–3 km
+
+      AreaPenembakan := TRadarDynamicSector.Create;
+      AreaPenembakan.Color := RGB(53,80,75);
+      AreaPenembakan.AddSlice(45,315, 0.0, 6500.0); // dari 1–3 km
+
+      acbxShootArea.Checked := AreaPenembakan.Visible;
+
+      AreaTracker := TRadarDynamicSector.Create;
+      AreaTracker.Color := RGB(32,70,145);
+      AreaTracker.AddSlice(45,315, 6500.0, 17000.0); // dari 1–3 km
+      acbxTrackerArea.Checked := AreaTracker.Visible;
+    end;
+  end;
+
 
   FNorthInd := TRadarNorthIndicator.Create;
 
