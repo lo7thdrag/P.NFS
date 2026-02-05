@@ -3,7 +3,7 @@ object frmMainFCC: TfrmMainFCC
   Top = 0
   BorderStyle = bsNone
   Caption = 'FCC'
-  ClientHeight = 1024
+  ClientHeight = 1029
   ClientWidth = 1280
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -192,7 +192,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          0100011801000060A26028010000006C8FBC771C000000000000000000000000
+          0100011801000090A55728010000006C8FBC771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -201,15 +201,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          01000060A2602801000000880300C01C00000000000000000000000000000000
+          01000090A5572801000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000060E89700FD8A227621
-          00000000000000E08A227680B00D123C6EED12A0E89700000000000000000000
+          000000000000000000000000000000000000000000000018F09700FD8A227621
+          00000000000000E08A227680B00D12F469ED1258F09700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object btnMapIncrement: TButton
@@ -1257,7 +1257,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 1
-              Text = '7.62'
+              Text = '0'
             end
             object edtIndDataType: TEdit
               Left = 63
@@ -1265,7 +1265,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 2
-              Text = 'Air'
+              Text = '--'
             end
             object edtIndDataD: TEdit
               Left = 63
@@ -1274,7 +1274,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 3
-              Text = '7.62'
+              Text = '0'
             end
             object edtIndDataAZ: TEdit
               Left = 63
@@ -1282,7 +1282,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 4
-              Text = '25.63'
+              Text = '0.00'
             end
             object edtIndDataEL: TEdit
               Left = 63
@@ -1291,7 +1291,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 5
-              Text = '7.62'
+              Text = '0.00'
             end
             object edtIndDataCourse: TEdit
               Left = 63
@@ -1299,7 +1299,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 6
-              Text = '25.63'
+              Text = '0.00'
             end
             object edtIndDataSpeed: TEdit
               Left = 63
@@ -1307,7 +1307,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 7
-              Text = '25.63'
+              Text = '0.00'
             end
           end
           object pnlNavData: TPanel
@@ -1411,9 +1411,9 @@ object frmMainFCC: TfrmMainFCC
             object lblNavDataSatuanPitch: TLabel
               Left = 120
               Top = 101
-              Width = 11
+              Width = 9
               Height = 13
-              Caption = 'm'
+              Caption = ' '#176
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -11
@@ -1476,9 +1476,9 @@ object frmMainFCC: TfrmMainFCC
             object lblNavDataSatuanVoyage: TLabel
               Left = 120
               Top = 78
-              Width = 9
+              Width = 18
               Height = 13
-              Caption = ' '#176
+              Caption = 'Nm'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -11
@@ -1573,7 +1573,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 7
-              Text = 'Air'
+              Text = '--'
             end
           end
           object pnlWeatherData: TPanel
@@ -1737,7 +1737,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 1
-              Text = '7.62'
+              Text = '0.00'
             end
             object edtWeatherDataWd: TEdit
               Left = 48
@@ -1745,7 +1745,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 2
-              Text = '20'
+              Text = '0.00'
             end
             object edtWeatherDataTemp: TEdit
               Left = 48
@@ -1754,7 +1754,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 3
-              Text = '7.62'
+              Text = '0.00'
             end
             object edtWeatherDataHumi: TEdit
               Left = 48
@@ -1762,7 +1762,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 4
-              Text = '25.63'
+              Text = '50'
             end
             object edtWeatherDataAirP: TEdit
               Left = 48
@@ -1771,7 +1771,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 5
-              Text = '7.62'
+              Text = '1009'
             end
           end
         end
@@ -1782,25 +1782,28 @@ object frmMainFCC: TfrmMainFCC
     Left = 0
     Top = 657
     Width = 1280
-    Height = 367
+    Height = 372
     Align = alClient
     DoubleBuffered = True
     ParentDoubleBuffered = False
     TabOrder = 1
+    ExplicitHeight = 367
     object pnlLowRight: TPanel
       Left = 825
       Top = 1
       Width = 454
-      Height = 365
+      Height = 370
       Align = alClient
       TabOrder = 0
+      ExplicitHeight = 365
       object pnlBite: TPanel
         Left = 225
         Top = 1
         Width = 230
-        Height = 363
+        Height = 368
         Align = alLeft
         TabOrder = 0
+        ExplicitHeight = 363
         object pnlBiteHeader: TPanel
           Left = 1
           Top = 1
@@ -1822,9 +1825,10 @@ object frmMainFCC: TfrmMainFCC
           Left = 1
           Top = 33
           Width = 228
-          Height = 329
+          Height = 334
           Align = alClient
           TabOrder = 1
+          ExplicitHeight = 329
           object pnlBiteControl: TPanel
             Left = 1
             Top = 1
@@ -2294,9 +2298,10 @@ object frmMainFCC: TfrmMainFCC
             Left = 1
             Top = 268
             Width = 226
-            Height = 60
+            Height = 65
             Align = alClient
             TabOrder = 1
+            ExplicitHeight = 60
             object lblBiteOperating: TLabel
               Left = 40
               Top = 6
@@ -2346,9 +2351,10 @@ object frmMainFCC: TfrmMainFCC
         Left = 1
         Top = 1
         Width = 224
-        Height = 363
+        Height = 368
         Align = alLeft
         TabOrder = 1
+        ExplicitHeight = 363
         object pnlTrackerHeader: TPanel
           Left = 1
           Top = 1
@@ -2370,24 +2376,27 @@ object frmMainFCC: TfrmMainFCC
           Left = 1
           Top = 33
           Width = 222
-          Height = 329
+          Height = 334
           Align = alClient
           TabOrder = 1
+          ExplicitHeight = 329
           object pnlTrackerFCC1: TPanel
             Left = 1
             Top = 1
             Width = 220
-            Height = 327
+            Height = 332
             Align = alClient
             Caption = 'pnlTrackerFCC1'
             TabOrder = 0
+            ExplicitHeight = 327
             object pnlTrackerState: TPanel
               Left = 129
               Top = 1
               Width = 90
-              Height = 325
+              Height = 330
               Align = alClient
               TabOrder = 0
+              ExplicitHeight = 325
               object pnlTrackerStateHeader: TPanel
                 Left = 1
                 Top = 1
@@ -2470,9 +2479,10 @@ object frmMainFCC: TfrmMainFCC
               Left = 1
               Top = 1
               Width = 128
-              Height = 325
+              Height = 330
               Align = alLeft
               TabOrder = 1
+              ExplicitHeight = 325
               object lblTrdBE: TLabel
                 Left = 14
                 Top = 38
@@ -2628,7 +2638,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtTrdEL: TEdit
                 Left = 40
@@ -2636,7 +2646,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 2
-                Text = '25.63'
+                Text = '0.00'
               end
               object edtTrdD: TEdit
                 Left = 40
@@ -2645,7 +2655,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 3
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtTrdDeltaBE: TEdit
                 Left = 40
@@ -2653,7 +2663,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 4
-                Text = '25.63'
+                Text = '0.00'
               end
               object edtTrdDeltaEL: TEdit
                 Left = 40
@@ -2662,7 +2672,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 5
-                Text = '7.62'
+                Text = '0.00'
               end
             end
           end
@@ -2670,17 +2680,19 @@ object frmMainFCC: TfrmMainFCC
             Left = 1
             Top = 1
             Width = 220
-            Height = 327
+            Height = 332
             Align = alClient
             Caption = 'pnlTrackerFCC2'
             TabOrder = 1
+            ExplicitHeight = 327
             object pnlTrackerStateFCC2: TPanel
               Left = 129
               Top = 1
               Width = 90
-              Height = 325
+              Height = 330
               Align = alClient
               TabOrder = 0
+              ExplicitHeight = 325
               object pnlTrackerStateHeaderFCC2: TPanel
                 Left = 1
                 Top = 1
@@ -2763,9 +2775,10 @@ object frmMainFCC: TfrmMainFCC
               Left = 1
               Top = 1
               Width = 128
-              Height = 325
+              Height = 330
               Align = alLeft
               TabOrder = 1
+              ExplicitHeight = 325
               object lblTrdBEFCC2: TLabel
                 Left = 14
                 Top = 38
@@ -2921,7 +2934,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtTrdELFCC2: TEdit
                 Left = 40
@@ -2929,7 +2942,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 2
-                Text = '25.63'
+                Text = '0.00'
               end
               object edtTrdDFCC2: TEdit
                 Left = 40
@@ -2938,7 +2951,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 3
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtTrdDeltaBEFCC2: TEdit
                 Left = 40
@@ -2946,7 +2959,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 4
-                Text = '25.63'
+                Text = '0'
               end
               object edtTrdDeltaELFCC2: TEdit
                 Left = 40
@@ -2955,7 +2968,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 5
-                Text = '7.62'
+                Text = '0'
               end
             end
           end
@@ -2966,10 +2979,11 @@ object frmMainFCC: TfrmMainFCC
       Left = 1
       Top = 1
       Width = 824
-      Height = 365
+      Height = 370
       Align = alLeft
       Caption = 'pnlLowLeft'
       TabOrder = 1
+      ExplicitHeight = 365
       object pnlFCC1: TPanel
         Left = 0
         Top = 0
@@ -3259,7 +3273,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtLastDeltaEL: TEdit
                 Left = 64
@@ -3267,7 +3281,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 2
-                Text = '25.63'
+                Text = '0.00'
               end
               object edtLastDeltaD: TEdit
                 Left = 64
@@ -3275,7 +3289,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 3
-                Text = '25.63'
+                Text = '0.00'
               end
             end
             object pnlSum: TPanel
@@ -3388,7 +3402,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtSumDeltaEL: TEdit
                 Left = 72
@@ -3396,7 +3410,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 2
-                Text = '25.63'
+                Text = '0.00'
               end
               object edtSumDeltaD: TEdit
                 Left = 72
@@ -3404,7 +3418,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 3
-                Text = '25.63'
+                Text = '0.00'
               end
             end
           end
@@ -3596,7 +3610,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 1
-              Text = '7.62'
+              Text = '0.00'
             end
             object edtCtrlDataEL: TEdit
               Left = 56
@@ -3604,7 +3618,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 2
-              Text = '25.63'
+              Text = '0.00'
             end
             object edtCtrlDataBeInc: TEdit
               Left = 56
@@ -3613,7 +3627,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 3
-              Text = '7.62'
+              Text = '0.00'
             end
             object edtCtrlDataElInc: TEdit
               Left = 56
@@ -3621,7 +3635,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 4
-              Text = '25.63'
+              Text = '0.00'
             end
             object edtCtrlDataBeS: TEdit
               Left = 56
@@ -3630,7 +3644,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 5
-              Text = '7.62'
+              Text = '0.00'
             end
             object edtCtrlDataElS: TEdit
               Left = 56
@@ -3638,7 +3652,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 6
-              Text = '25.63'
+              Text = '0.00'
             end
           end
           object pnlCtrlState: TPanel
@@ -3880,7 +3894,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 23
                 Align = alTop
                 BevelOuter = bvNone
-                Caption = 'Gun Point Angel'
+                Caption = 'Gun Point Angle'
                 Color = clSilver
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clBlue
@@ -3898,7 +3912,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtGpaEL: TEdit
                 Left = 56
@@ -3906,7 +3920,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 2
-                Text = '25.63'
+                Text = '0.00'
               end
             end
             object pnlGunState: TPanel
@@ -4116,9 +4130,9 @@ object frmMainFCC: TfrmMainFCC
             end
             object lblSatuanMv: TLabel
               Left = 125
-              Top = 138
+              Top = 163
               Width = 23
-              Height = 13
+              Height = 19
               Caption = 'm/s'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -4179,15 +4193,15 @@ object frmMainFCC: TfrmMainFCC
               Top = 80
               Width = 74
               Height = 25
-              Caption = 'Hight'
+              Caption = 'High'
               TabOrder = 3
             end
             object pnlGpPr: TPanel
-              Left = 42
+              Left = 43
               Top = 106
               Width = 74
               Height = 25
-              Caption = '35'
+              Caption = '0'
               TabOrder = 4
             end
             object pnlGpRr: TPanel
@@ -4195,7 +4209,7 @@ object frmMainFCC: TfrmMainFCC
               Top = 131
               Width = 74
               Height = 25
-              Caption = '265'
+              Caption = '500'
               TabOrder = 5
             end
             object pnlGpMv: TPanel
@@ -4506,7 +4520,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtLastDeltaEL1: TEdit
                 Left = 64
@@ -4514,7 +4528,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 2
-                Text = '25.63'
+                Text = '0.00'
               end
               object edtLastDeltaD1: TEdit
                 Left = 64
@@ -4522,7 +4536,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 3
-                Text = '25.63'
+                Text = '0.00'
               end
             end
             object pnlSum1: TPanel
@@ -4635,7 +4649,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0.00'
               end
               object edtSumDeltaEL1: TEdit
                 Left = 72
@@ -4643,7 +4657,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 2
-                Text = '25.63'
+                Text = '0.00'
               end
               object edtSumDeltaD1: TEdit
                 Left = 72
@@ -4651,7 +4665,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 3
-                Text = '25.63'
+                Text = '0.00'
               end
             end
           end
@@ -4843,7 +4857,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 1
-              Text = '7.62'
+              Text = '180.00'
             end
             object edtCtrlDataEL1: TEdit
               Left = 56
@@ -4851,7 +4865,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 2
-              Text = '25.63'
+              Text = '0.00'
             end
             object edtCtrlDataBeInc1: TEdit
               Left = 56
@@ -4860,7 +4874,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 3
-              Text = '7.62'
+              Text = '0.00'
             end
             object edtCtrlDataElInc1: TEdit
               Left = 56
@@ -4868,7 +4882,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 4
-              Text = '25.63'
+              Text = '0.00'
             end
             object edtCtrlDataBeS1: TEdit
               Left = 56
@@ -4877,7 +4891,7 @@ object frmMainFCC: TfrmMainFCC
               Height = 21
               ReadOnly = True
               TabOrder = 5
-              Text = '7.62'
+              Text = '0.00'
             end
             object edtCtrlDataElS1: TEdit
               Left = 56
@@ -4885,7 +4899,7 @@ object frmMainFCC: TfrmMainFCC
               Width = 41
               Height = 21
               TabOrder = 6
-              Text = '25.63'
+              Text = '0.00'
             end
           end
           object pnlCtrlState1: TPanel
@@ -5127,7 +5141,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 23
                 Align = alTop
                 BevelOuter = bvNone
-                Caption = 'Gun Point Angel'
+                Caption = 'Gun Point Angle'
                 Color = clSilver
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clBlue
@@ -5145,7 +5159,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '180.00'
               end
               object edtGpaEL1: TEdit
                 Left = 56
@@ -5153,7 +5167,7 @@ object frmMainFCC: TfrmMainFCC
                 Width = 41
                 Height = 21
                 TabOrder = 2
-                Text = '25.63'
+                Text = '0.00'
               end
             end
             object pnlGunState1: TPanel
@@ -5317,9 +5331,9 @@ object frmMainFCC: TfrmMainFCC
               object lblLowRR: TLabel
                 Left = 21
                 Top = 71
-                Width = 15
+                Width = 16
                 Height = 13
-                Caption = 'PR'
+                Caption = 'RR'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWindowText
                 Font.Height = -11
@@ -5352,7 +5366,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0'
               end
               object edtLowRR: TEdit
                 Left = 64
@@ -5361,7 +5375,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 2
-                Text = '7.62'
+                Text = '200'
               end
             end
             object pnlBaseHigh: TPanel
@@ -5387,9 +5401,9 @@ object frmMainFCC: TfrmMainFCC
               object lblHighRR: TLabel
                 Left = 29
                 Top = 79
-                Width = 15
+                Width = 16
                 Height = 13
-                Caption = 'PR'
+                Caption = 'RR'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWindowText
                 Font.Height = -11
@@ -5422,7 +5436,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 1
-                Text = '7.62'
+                Text = '0'
               end
               object edtHighRR: TEdit
                 Left = 72
@@ -5431,7 +5445,7 @@ object frmMainFCC: TfrmMainFCC
                 Height = 21
                 ReadOnly = True
                 TabOrder = 2
-                Text = '7.62'
+                Text = '200'
               end
             end
           end

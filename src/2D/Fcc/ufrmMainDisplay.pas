@@ -1190,8 +1190,8 @@ begin
     begin
       // 1) Tanpa environment (vakum)
       ok := FCCManager.ComputeGunElevationVacuum(rangeX, dH, v0, aLow, aHigh);
-      edtLowPR.Text := FormatFloat('0.00', aLow);
-      edtHighPR.Text := FormatFloat('0.00', aHigh);
+//      edtLowPR.Text := FormatFloat('0.00', aLow);
+//      edtHighPR.Text := FormatFloat('0.00', aHigh);
     end;
   end;
 end;
@@ -1297,7 +1297,11 @@ begin
 
       RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
       FCCManager.NetSendTo3D_OrderCannon(RecSend);
+
+
     end;
+    edtGpABE1.text := bearing.ToString();
+    edtGpaEL1.Text := alow.ToString();
   end;
 end;
 
@@ -1733,22 +1737,22 @@ begin
       //  initialize panel indikator control state
       imgListLight.GetBitmap(1, imgCtrlStateFCC.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgCtrlStateTracked.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateDataReady.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateAimed.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgCtrlStateDataReady.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgCtrlStateAimed.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgCtrlStateLimitZone.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateFireAllow.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateFiring.Picture.Bitmap);
+      imgListLight.GetBitmap(2, imgCtrlStateFireAllow.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgCtrlStateFiring.Picture.Bitmap);
 
       //  initialize panel indikator Gun state
       imgListLight.GetBitmap(1, imgGunStateCtrlBy.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgGunStateServo.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgGunStateFC.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgGunStateReturnZero.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgGunStateReturnZero.Picture.Bitmap);
 
       //  initialize panel indikator Bite Device state
       imgListLight.GetBitmap(1, imgBiteDvcStateFCC.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgBiteDvcState730B.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateEO.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgBiteDvcStateEO.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgBiteDvcStateTR.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgBiteDvcStateTCC.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgBiteDvcStateSIE.Picture.Bitmap);
@@ -1758,23 +1762,23 @@ begin
     begin
       //  initialize panel indikator control state
       imgListLight.GetBitmap(1, imgCtrlStateFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateTrackedFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateDataReadyFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateAimedFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgCtrlStateTrackedFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgCtrlStateDataReadyFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgCtrlStateAimedFCC2.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgCtrlStateLimitZoneFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateFireAllowFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateFiringFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(2, imgCtrlStateFireAllowFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgCtrlStateFiringFCC2.Picture.Bitmap);
 
       //  initialize panel indikator Gun state
       imgListLight.GetBitmap(1, imgGunStateCtrlByFCC2.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgGunStateServoFCC2.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgGunStateFCFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgGunStateReturnZeroFCC2.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgGunStateReturnZeroFCC2.Picture.Bitmap);
 
       //  initialize panel indikator Bite Device state
       imgListLight.GetBitmap(1, imgBiteDvcStateFCC2.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgBiteDvcState57.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateEOFcc2.Picture.Bitmap);
+      imgListLight.GetBitmap(0, imgBiteDvcStateEOFcc2.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgBiteDvcStateTRFcc2.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgBiteDvcStateTCCFcc2.Picture.Bitmap);
       imgListLight.GetBitmap(1, imgBiteDvcStateSIEFcc2.Picture.Bitmap);
@@ -1841,6 +1845,7 @@ var
   RecSend : TRec3DSetWCC;
   aLow, aHigh: Double;
   range,rangem, bearing : Double;
+  bmp: TBitmap;
 begin
   if Assigned(FCCManager.SelectedVehicle) then
   begin
@@ -1880,7 +1885,12 @@ begin
     RecSend.mOrderID := __ORD_CANNON_START_F;
     FCCManager.NetSendTo3D_OrderCannon(RecSend);
 
-    Sleep(1000);
+    bmp := TBitmap.Create;
+    imgListLight.GetBitmap(1, bmp);
+    imgCtrlStateFiringFCC2.Picture.Bitmap := bmp;
+    bmp.Free;
+
+    // PEMISAH ANTARA START FIRE AND STOP FIRE
 
     RecSend.ShipID          := FCCManager.ShipID;
     RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
@@ -1896,10 +1906,27 @@ begin
       1 : //FCC1 Mode
       begin
         RecSend.mModeID             := 3;
+        Sleep(1000);
       end;
       2 : //FCC2 Mode
       begin
         RecSend.mModeID             := 1;
+
+        if  (edtLowRR.Text = '0') or (edtHighRR.text = '0') then
+          Exit;
+        Sleep(500);
+
+        edtLowPR.Text := IntToStr(StrToInt(edtLowPR.Text) + 1);
+        edtLowRR.Text := IntToStr(StrToInt(edtLowRR.Text) - 1);
+
+        Sleep(500);
+
+        edtHighPR.Text := IntToStr(StrToInt(edtHighPR.Text) + 1);
+        edtHighRR.Text := IntToStr(StrToInt(edtHighRR.Text) - 1);
+
+//        edtHighPR := edtHighPR + 1;
+//        edtHighRR := edtHighRR - 1;
+
       end;
     end;
     RecSend.mAutoCorrectElev    := aLow;
@@ -1911,6 +1938,11 @@ begin
 
     RecSend.mOrderID := __ORD_CANNON_STOP_F;
     FCCManager.NetSendTo3D_OrderCannon(RecSend);
+
+    bmp := TBitmap.Create;
+    imgListLight.GetBitmap(0, bmp);
+    imgCtrlStateFiringFCC2.Picture.Bitmap := bmp;
+    bmp.Free;
   end;
 end;
 
