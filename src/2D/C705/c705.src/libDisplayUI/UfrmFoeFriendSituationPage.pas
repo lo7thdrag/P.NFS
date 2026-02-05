@@ -6,13 +6,15 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, AdvPageControl, Vcl.ComCtrls,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, VrControls, VrLights,
-  AdvUtil, Vcl.Grids, AdvObj, BaseGrid, AdvGrid, Vcl.Buttons,
+  AdvUtil, Vcl.Grids, AdvObj, BaseGrid, AdvGrid, Vcl.Buttons, uLibConst,
   uFrmMissileInformation,
   uFrmFireDistribution,
   uFrmMissileMonitor,
   uFrmLaunchData,
   uFrmChannelSelect,
-  uFrmINSTest;
+  uFrmINSTest,
+  uFrmParamSetting,
+  UfrmRadar;
 
 type
   TfrmFoeFriendSituationPage = class(TForm)
@@ -433,14 +435,20 @@ type
     Bevel2: TBevel;
     Label51: TLabel;
     Label53: TLabel;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
-    Panel5: TPanel;
-    pnlPowerOn: TPanel;
+    pnlMCtrlHeader: TPanel;
+    pnlPowerOnContentMCtrl: TPanel;
     Label58: TLabel;
     Panel19: TPanel;
+    pnlPowerOnMCtrl: TPanel;
+    pnlReCheckMCtrl: TPanel;
+    pnlINSAlignMCtrl: TPanel;
+    pnlPowerOffMCtrl: TPanel;
+    pnlReCheckContentMCtrl: TPanel;
+    Label61: TLabel;
+    pnlINSAlignContentMCtrl: TPanel;
+    Label63: TLabel;
+    pnlPowerOffContentMCtrl: TPanel;
+    Label67: TLabel;
     {$ENDREGION}
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
@@ -450,14 +458,19 @@ type
     procedure FormHide(Sender: TObject);
   private
     { Private declarations }
+    FFormRadar: TfrmRadar;
     FFormFireDist: TfrmFireDistribution;
     FFormMissileInfo: TfrmMissileInformation;
-    FFormParSetting: TfrmMissileInformation; //belum
+    FFormParSetting: TfrmParamSetting; //done UI
     FFormChSelect: TfrmChannelSelect; //done UI
-    FFormMissileControl: TfrmMissileInformation; //belum
+    FFormMissileControl: TfrmLaunchData; //belum
     FFormMissileMonitor: TfrmMissileMonitor; //done UI
-    FFormINSTest: TfrmINSTest; //belum
+    FFormINSTest: TfrmINSTest; //done UI
     FFormLaunchData: TfrmLaunchData; //done UI
+
+    // For tab M. Control (Missile Control)
+    FarrHeaderPnlMCtrl: array[0..3] of TPanel;
+    FActivePnlIdxMCtrl: Integer;
 
     procedure AttachPanelTo(aPanel, aParent: TWinControl);
     procedure HidePanels(const aPanels: array of TPanel);
@@ -470,6 +483,11 @@ type
     // Set form lain ke panel Tabsheet
     procedure EnsureAreas;
     procedure EmbedAreaForm(aFrm: TForm; aParent: TWinControl);
+
+    // Set Keybind Navigasi tab Missile Control
+    procedure SetActiveHeaderMCtrl(idx: Integer);
+    procedure ShowActiveContentMCtrl;
+    procedure CloseAllContentMCtrl;
   public
     { Public declarations }
   end;
@@ -483,6 +501,19 @@ implementation
 
 uses
   UfrmWCC;
+
+procedure EnableComposited(WinControl:TWinControl);
+var
+  i:Integer;
+  NewExStyle:DWORD;
+begin
+  NewExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE) or WS_EX_COMPOSITED;
+  SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
+
+  for I := 0 to WinControl.ControlCount - 1 do
+    if WinControl.Controls[i] is TWinControl then
+      EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
 
 {$REGION 'Panel Management'}
 procedure TfrmFoeFriendSituationPage.advpgcFunctionMenuFoeChange(
@@ -508,6 +539,9 @@ end;
 
 procedure TfrmFoeFriendSituationPage.EnsureAreas;
 begin
+  if not Assigned(FFormRadar) then
+    FFormRadar := TfrmRadar.Create(Self);
+
   if not Assigned(FFormFireDist) then
     FFormFireDist := TfrmFireDistribution.Create(Self);
 
@@ -515,13 +549,13 @@ begin
     FFormMissileInfo := TfrmMissileInformation.Create(Self);
 
   if not Assigned(FFormParSetting) then
-    FFormParSetting := TfrmMissileInformation.Create(Self);
+    FFormParSetting := TfrmParamSetting.Create(Self);
 
   if not Assigned(FFormChSelect) then
     FFormChSelect := TfrmChannelSelect.Create(Self);
 
   if not Assigned(FFormMissileControl) then
-    FFormMissileControl := TfrmMissileInformation.Create(Self);
+    FFormMissileControl := TfrmLaunchData.Create(Self);
 
   if not Assigned(FFormMissileMonitor) then
     FFormMissileMonitor := TfrmMissileMonitor.Create(Self);
@@ -563,6 +597,8 @@ begin
     AttachPanelTo(pnlArea3B, pnlArea3B_Situation);
     AttachPanelTo(pnlArea4, pnlArea4_Situation);
     AttachPanelTo(pnlArea5, pnlArea5_Situation);
+
+    EmbedAreaForm(FFormRadar, pnlMap_Situation);
     {$ENDREGION}
   end
   else if advpgcFunctionMenuFoe.ActivePage = advtsFireDistr then
@@ -597,6 +633,8 @@ begin
     AttachPanelTo(pnlArea3B, pnlArea3B_ParSetting);
     AttachPanelTo(pnlArea4, pnlArea4_ParSetting);
     AttachPanelTo(pnlArea5, pnlArea5_ParSetting);
+
+    EmbedAreaForm(FFormParSetting, pnlArea1_ParSetting);
     {$ENDREGION}
   end
   else if advpgcFunctionMenuFoe.ActivePage = advtsChSelect then
@@ -619,6 +657,8 @@ begin
     AttachPanelTo(pnlArea3B, pnlArea3B_MControl);
     AttachPanelTo(pnlArea4, pnlArea4_MControl);
     AttachPanelTo(pnlArea5, pnlArea5_MControl);
+
+    //pnlMissileControl.Visible := True;
     {$ENDREGION}
   end
   else if advpgcFunctionMenuFoe.ActivePage = advtsMMonitor then
@@ -676,6 +716,22 @@ begin
   end;
 
 end;
+
+procedure TfrmFoeFriendSituationPage.HandleTabShortcut(Key: Word);
+begin
+  case Key of
+    Ord('1'): advpgcFunctionMenuFoe.ActivePage := advtsSituation;
+    Ord('2'): advpgcFunctionMenuFoe.ActivePage := advtsFireDistr;
+    Ord('3'): advpgcFunctionMenuFoe.ActivePage := advtsMInfo;
+    Ord('4'): advpgcFunctionMenuFoe.ActivePage := advtsParSetting;
+    Ord('5'): advpgcFunctionMenuFoe.ActivePage := advtsChSelect;
+    Ord('6'): advpgcFunctionMenuFoe.ActivePage := advtsMControl;
+    Ord('7'): advpgcFunctionMenuFoe.ActivePage := advtsMMonitor;
+    Ord('8'): advpgcFunctionMenuFoe.ActivePage := advtsINSTest;
+    Ord('9'): advpgcFunctionMenuFoe.ActivePage := advtsLaunchData;
+    Ord('0'): advpgcFunctionMenuFoe.ActivePage := advtsExit;
+  end;
+end;
 {$ENDREGION}
 
 procedure TfrmFoeFriendSituationPage.FormCreate(Sender: TObject);
@@ -684,12 +740,26 @@ var
 begin
   KeyPreview := True; // UNtuk bisa KeyDown ketika fokus ke PageControl
 
+  // Hilangin caption TPanel
   for i := 0 to ComponentCount - 1 do
-    if Components[i] is TPanel then
-    begin
-      if TPanel(Components[i]).Tag < 10  then
-        TPanel(Components[i]).Caption := '';
-    end;
+  if Components[i] is TPanel then
+  begin
+    if TPanel(Components[i]).Tag < 10  then
+      TPanel(Components[i]).Caption := '';
+  end;
+
+  // For tab M. Control purpose
+  FarrHeaderPnlMCtrl[0] := pnlPowerOnMCtrl;
+  FarrHeaderPnlMCtrl[1] := pnlReCheckMCtrl;
+  FarrHeaderPnlMCtrl[2] := pnlINSAlignMCtrl;
+  FarrHeaderPnlMCtrl[3] := pnlPowerOffMCtrl;
+
+  FActivePnlIdxMCtrl := 0;
+  SetActiveHeaderMCtrl(FActivePnlIdxMCtrl);
+  CloseAllContentMCtrl;
+
+  // For tab Sitation purpose
+  EnableComposited(pnlMap_Situation);
 end;
 
 procedure TfrmFoeFriendSituationPage.FormShow(Sender: TObject);
@@ -711,15 +781,17 @@ end;
 procedure TfrmFoeFriendSituationPage.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
+  {$REGION 'Case untuk Form Ch Select'}
   // case ketika di tab Ch Select, jadi navigasi untuk form Ch Select only
-
-  // ==============================
-  // Selector Page ACTIVE
-  // ==============================
-  if (advpgcFunctionMenuFoe.ActivePage = advtsChSelect) and (Assigned(FFormChSelect)) then begin
-    // ==========================
-    // Selector BELUM aktif
-    // ==========================
+  {
+    form Ch Select sudah assigned
+  }
+  if (advpgcFunctionMenuFoe.ActivePage = advtsChSelect) and
+    (Assigned(FFormChSelect)) then
+  begin
+    {
+      form Ch Select BELUM aktif
+    }
     if not FFormChSelect.isChSelectFrmActive then begin
       case Key of
         VK_RETURN: begin
@@ -730,54 +802,156 @@ begin
 
         VK_ESCAPE: begin
           FFormChSelect.DeactivateFrmChSelect;
-          //advpgcFunctionMenuFoe.ActivePage := advtsParSetting;
           Key := 0;
           Exit;
         end;
       end;
 
       HandleTabShortcut(Key);
+      UpdateLayoutTab;
 
       Exit; // stop shortcut global
     end;
 
-    // ==========================
-    // Selector SUDAH aktif
-    // ==========================
+    {
+      form Ch Select SUDAH aktif
+    }
     case Key of
       VK_ESCAPE:
-        begin
-          FFormChSelect.HandleKeyDown(Key, Shift);
-          //FFormChSelect.DeactivateFrmChSelect;
-          Key := 0;
-          Exit;
-        end;
+      begin
+        FFormChSelect.HandleKeyDown(Key, Shift);
+        Key := 0;
+        Exit;
+      end;
 
-      VK_UP, VK_DOWN, VK_RETURN:
-        begin
-          FFormChSelect.HandleKeyDown(Key, Shift);
-          Key := 0;
-          Exit;
-        end;
+      VK_UP, VK_DOWN,
+        VK_RETURN:
+      begin
+        FFormChSelect.HandleKeyDown(Key, Shift);
+        Key := 0;
+        Exit;
+      end;
     end;
 
     Exit;
   end;
+  {$ENDREGION}
 
-  // ==============================
-  // Global Form Foe Friend Situation shortcuts
-  // ==============================
+  {$REGION 'Case untuk Form Missile Control'}
+  { case ketika di tab M. Control (Missile Control) }
+  if (advpgcFunctionMenuFoe.ActivePage = advtsMControl) and
+    (Assigned(FFormMissileControl)) then
+  begin
+    if pnlMissileControl.Visible = False then
+    begin
+      if Key = VK_RETURN then
+        pnlMissileControl.Visible := True;
+
+      //Exit;
+    end
+    else begin
+      case Key of
+        VK_UP: begin
+          if FActivePnlIdxMCtrl > 0 then
+            SetActiveHeaderMCtrl(FActivePnlIdxMCtrl - 1);
+          Exit;
+        end;
+
+        VK_DOWN: begin
+          if FActivePnlIdxMCtrl < High(FarrHeaderPnlMCtrl) then
+            SetActiveHeaderMCtrl(FActivePnlIdxMCtrl + 1);
+
+          Exit;
+        end;
+
+        VK_RETURN: begin
+          ShowActiveContentMCtrl;
+          Exit;
+        end;
+
+        VK_ESCAPE: begin
+          pnlMissileControl.Visible := False;
+          Exit;
+        end;
+      end;
+
+      Exit;
+    end;
+
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Case untuk Form Parameter Setting'}
+  // case ketika di tab Par. Setting (Parameter Setting), jadi navigasi untuk form Par Setting only
+  {
+    form Parameter Setting sudah assigned
+  }
+  if (advpgcFunctionMenuFoe.ActivePage = advtsParSetting) and
+    (Assigned(FFormParSetting)) then
+  begin
+    {
+      form Par Setting BELUM aktif
+    }
+    if not FFormParSetting.isParSettingFrmActive then begin
+      case Key of
+        VK_RETURN: begin
+          FFormParSetting.ActivateFrmParSetting;
+          Key := 0;
+          Exit;
+        end;
+
+        VK_ESCAPE: begin
+          FFormParSetting.DeactivateFrmParSetting;
+          Key := 0;
+          Exit;
+        end;
+      end;
+
+      HandleTabShortcut(Key);
+      UpdateLayoutTab;
+
+      Exit; // stop shortcut global
+    end;
+
+    {
+      form Par Setting SUDAH aktif
+    }
+    case Key of
+      VK_ESCAPE:
+      begin
+        FFormParSetting.HandleKeyDownParSetting(Key, Shift);
+        Key := 0;
+        Exit;
+      end;
+
+      VK_UP, VK_DOWN,
+        VK_RETURN:
+      begin
+        FFormParSetting.HandleKeyDownParSetting(Key, Shift);
+        Key := 0;
+        Exit;
+      end;
+    end;
+
+    Exit;
+  end;
+  {$ENDREGION}
+
+  {
+    Global Form Foe Friend Situation shortcuts
+  }
   HandleTabShortcut(Key);
 
-//  case Key of
-//    VK_ESCAPE:
-//    begin
-//      frmWCC.show;
-//    end;
-//  end;
+  case Key of
+    VK_ESCAPE:
+    begin
+      frmWCC.show;
+    end;
+  end;
 
   UpdateLayoutTab;
 
+  {$REGION 'Case untuk form INS Test'}
   // case ketika di tab INS Test, jadi navigasi untuk form INS Test only
   if (advpgcFunctionMenuFoe.ActivePage = advtsINSTest) and (Assigned(FFormINSTest)) then begin
     case Key of
@@ -786,6 +960,7 @@ begin
       end;
     end;
   end;
+  {$ENDREGION}
 
   {$REGION 'Panel Exit Form Enter to Exit'}
   if pnlExitTab.Visible = True then
@@ -807,22 +982,6 @@ begin
   end;
   {$ENDREGION}
 
-end;
-
-procedure TfrmFoeFriendSituationPage.HandleTabShortcut(Key: Word);
-begin
-  case Key of
-    Ord('1'): advpgcFunctionMenuFoe.ActivePage := advtsSituation;
-    Ord('2'): advpgcFunctionMenuFoe.ActivePage := advtsFireDistr;
-    Ord('3'): advpgcFunctionMenuFoe.ActivePage := advtsMInfo;
-    Ord('4'): advpgcFunctionMenuFoe.ActivePage := advtsParSetting;
-    Ord('5'): advpgcFunctionMenuFoe.ActivePage := advtsChSelect;
-    Ord('6'): advpgcFunctionMenuFoe.ActivePage := advtsMControl;
-    Ord('7'): advpgcFunctionMenuFoe.ActivePage := advtsMMonitor;
-    Ord('8'): advpgcFunctionMenuFoe.ActivePage := advtsINSTest;
-    Ord('9'): advpgcFunctionMenuFoe.ActivePage := advtsLaunchData;
-    Ord('0'): advpgcFunctionMenuFoe.ActivePage := advtsExit;
-  end;
 end;
 
 {$REGION 'Semua Tab Sheet'}
@@ -848,7 +1007,63 @@ end;
 {$ENDREGION}
 
 {$REGION 'Tab M. Control}
+procedure TfrmFoeFriendSituationPage.SetActiveHeaderMCtrl(idx: Integer);
+var
+  i: Integer;
+begin
+  // Helper Set panel mana yang Lowered (Panel Down)
 
+  // Set panel Not Selected
+  for i := 0 to High(FarrHeaderPnlMCtrl) do
+  begin
+    FarrHeaderPnlMCtrl[i].BevelInner := bvRaised;
+    FarrHeaderPnlMCtrl[i].BevelOuter := bvRaised;
+    FarrHeaderPnlMCtrl[i].Font.Color := clWindowText;
+  end;
+
+  FarrHeaderPnlMCtrl[idx].BevelInner := bvLowered;
+  FarrHeaderPnlMCtrl[idx].BevelOuter := bvLowered;
+  FarrHeaderPnlMCtrl[idx].Font.Color := CBlueColor;
+
+  FActivePnlIdxMCtrl:= idx;
+end;
+
+procedure TfrmFoeFriendSituationPage.ShowActiveContentMCtrl;
+begin
+  CloseAllContentMCtrl;
+
+  case FActivePnlIdxMCtrl of
+    0: begin
+      pnlPowerOnContentMCtrl.Visible := True;
+      pnlPowerOnContentMCtrl.BringToFront;
+    end;
+    1: begin
+      pnlReCheckContentMCtrl.Visible := True;
+      pnlReCheckContentMCtrl.BringToFront;
+    end;
+    2: begin
+      pnlINSAlignContentMCtrl.Visible := True;
+      pnlINSAlignContentMCtrl.BringToFront;
+    end;
+    4: begin
+      pnlPowerOffContentMCtrl.Visible := True;
+      pnlPowerOffContentMCtrl.BringToFront;
+    end;
+  end;
+end;
+
+procedure TfrmFoeFriendSituationPage.CloseAllContentMCtrl;
+begin
+  pnlPowerOnContentMCtrl.Visible := False;
+  pnlReCheckContentMCtrl.Visible := False;
+  pnlINSAlignContentMCtrl.Visible := False;
+  pnlPowerOffContentMCtrl.Visible := False;
+
+//  FarrHeaderPnlMCtrl[0] := nil;
+//  FarrHeaderPnlMCtrl[1] := nil;
+//  FarrHeaderPnlMCtrl[2] := nil;
+//  FarrHeaderPnlMCtrl[3] := nil;
+end;
 {$ENDREGION}
 
 {$REGION 'Tab M. Monitor}

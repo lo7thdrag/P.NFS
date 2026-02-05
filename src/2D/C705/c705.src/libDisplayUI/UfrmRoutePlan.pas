@@ -3,13 +3,14 @@ unit UfrmRoutePlan;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, VrControls,
-  VrDesign, Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.OleCtrls, MapXLib_TLB, Math,
-  uCoordConverter, uBaseFunction, uBaseConst, uMapXUnitConverter, uLibConst,
-  Vcl.Menus, OverbyteIcsWSocket,
-  uTCPDatatype,
-  uC705SimManager, uLibSettings;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ExtCtrls, Vcl.StdCtrls, VrControls, VrDesign, Vcl.Imaging.pngimage,
+  Vcl.Buttons, Vcl.OleCtrls, Vcl.Menus,
+
+  MapXLib_TLB, Math, uCoordConverter,
+  uBaseFunction, uBaseConst, uMapXUnitConverter, uLibConst, OverbyteIcsWSocket,
+  uTCPDatatype, uC705SimManager, uLibSettings, uScriptC705;
 
 type
   TfrmRoutePlan = class(TForm)
@@ -77,17 +78,15 @@ type
     PopupMenu1: TPopupMenu;
     Close1: TMenuItem;
     WCC1: TMenuItem;
-    tmrConnectToBridge: TTimer;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure Panel1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure Panel1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure Close1Click(Sender: TObject);
     procedure WCC1Click(Sender: TObject);
     procedure imgZoomInClick(Sender: TObject);
     procedure imgZoomOutClick(Sender: TObject);
-    procedure tmrConnectToBridgeTimer(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   protected
     //procedure DrawAngle(aCnv: TCanvas);
     //procedure DrawCompass(aCnv: TCanvas);
@@ -96,15 +95,15 @@ type
     function MeterHeight: Integer;
   private
     { Private declarations }
-    FMapRect : TRect;
+    FMapRect: TRect;
 
     { Map }
-    FBitmapBackground : TBitmap;
-    FMapCanvas     : TCanvas;
+    FBitmapBackground: TBitmap;
+    FMapCanvas: TCanvas;
     FLyrDraw: CMapXLayer;
-    FCurrentRange : Double;  // meter
-    FIndexRange : Integer;
-    FMapConverter : TMapXUnitConverter;
+    FCurrentRange: Double;  // meter
+    FIndexRange: Integer;
+    FMapConverter: TMapXUnitConverter;
 
     procedure LoadInitMap;
     procedure LoadGeoset(const aGst: string); virtual;
@@ -113,8 +112,6 @@ type
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 
-    { Socket NFS}
-    procedure onTCPChangeState(Sender: TObject; OldState, NewState: TSocketState);
   end;
 
 var
@@ -130,7 +127,6 @@ uses
 const
   CMin_Z = 0;
   CMax_Z = 14;
-
 
 function FixMapZoom(z: double): double;
 begin
@@ -177,17 +173,29 @@ begin
   //Result := imgBackgroundZone.Width;
 end;
 
-procedure EnableComposited(WinControl:TWinControl);
+procedure EnableComposited(WinControl: TWinControl);
 var
-  i:Integer;
-  NewExStyle:DWORD;
+  i: Integer;
+  NewExStyle: DWORD;
 begin
   NewExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE) or WS_EX_COMPOSITED;
   SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
 
-  for I := 0 to WinControl.ControlCount - 1 do
+  for i := 0 to WinControl.ControlCount - 1 do
     if WinControl.Controls[i] is TWinControl then
       EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
+
+procedure TfrmRoutePlan.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if Assigned(FMapCanvas) then
+    FreeAndNil(FMapCanvas);
+  if Assigned(FMapConverter) then
+    FreeAndNil(FMapConverter);
+  if Assigned(FBitmapBackground) then
+    FreeAndNil(FBitmapBackground);
+
+  EndC705;
 end;
 
 procedure TfrmRoutePlan.FormCreate(Sender: TObject);
@@ -201,9 +209,6 @@ begin
 
   { Form Show }
   Show;
-
-  { Socket Connect to Bridge }
-  tmrConnectToBridge.Enabled := True;
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
@@ -236,7 +241,7 @@ begin
   else
     self.FCurrentRange := CRangeOperation[0];
 
-  FMap.ZoomTo((Self.FCurrentRange  * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
+  FMap.ZoomTo((Self.FCurrentRange * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
 end;
 
 procedure TfrmRoutePlan.imgZoomOutClick(Sender: TObject);
@@ -247,30 +252,33 @@ begin
     self.FCurrentRange := CRangeOperation[self.FIndexRange];
   end
   else
-    self.FCurrentRange := CRangeOperation[CCountRange -1];
+    self.FCurrentRange := CRangeOperation[CCountRange - 1];
 
-  FMap.ZoomTo((Self.FCurrentRange  * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
+  FMap.ZoomTo((Self.FCurrentRange * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
 end;
 
 procedure TfrmRoutePlan.LoadGeoset(const aGst: string);
-var i: integer;
+var
+  i: integer;
   z: OleVariant;
-  mInfo : CMapXLayerInfo;
+  mInfo: CMapXLayerInfo;
 begin
 
   InitOleVariant(z);
   FMap.Layers.RemoveAll;
 
-  if not FileExists(aGst) then  begin
-    ShowMessage('File ' + aGst+ ' Not Found.');
+  if not FileExists(aGst) then
+  begin
+    ShowMessage('File ' + aGst + ' Not Found.');
     Exit;
   end;
 
-  if (aGst <> '') and  FileExists(aGst) then begin
+  if (aGst <> '') and FileExists(aGst) then
+  begin
     FMap.Geoset := aGst;
 
     mInfo := CoLayerInfo.Create;
-    mInfo.type_ := miLayerInfoTypeUserDraw ;
+    mInfo.type_ := miLayerInfoTypeUserDraw;
     mInfo.AddParameter('Name', 'Animation');
     FLyrDraw := FMap.Layers.Add(mInfo, 1);
 
@@ -282,7 +290,7 @@ begin
 
     FMap.CenterX := 112.75;
     fmap.CenterY := -7.2;
-    FMap.ZoomTo((Self.FCurrentRange  * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
+    FMap.ZoomTo((Self.FCurrentRange * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
 
     //pnlMap.Caption := 'Sudah load map';
   end
@@ -290,7 +298,7 @@ end;
 
 procedure TfrmRoutePlan.LoadInitMap;
 begin
-  FMapCanvas    := TCanvas.Create;
+  FMapCanvas := TCanvas.Create;
   FMapConverter := TMapXUnitConverter.Create;
   FMapConverter.FMap := FMap;
   FIndexRange := 3;
@@ -302,14 +310,7 @@ begin
   FBitmapBackground.Height := imgMapBackground.Height;
   FBitmapBackground.Width := imgMapBackground.Width;
   FBitmapBackground.Canvas.Brush.Color := clBlack; // new color
-  FBitmapBackground.Canvas.FillRect(
-   Rect(
-     0,
-     0,
-     FBitmapBackground.Width,
-     FBitmapBackground.Height
-    )
-  );
+  FBitmapBackground.Canvas.FillRect(Rect(0, 0, FBitmapBackground.Width, FBitmapBackground.Height));
 
   imgMapBackground.Picture.Assign(FBitmapBackground);
 
@@ -317,8 +318,7 @@ begin
 //  LoadGeoset('.\.\.\.\bin\2D\data\mapsea\Indonesia.gst');
 end;
 
-procedure TfrmRoutePlan.DrawAll(aCnv: TCanvas; aCvt: TCoordConverter;
-  aFlag: Byte);
+procedure TfrmRoutePlan.DrawAll(aCnv: TCanvas; aCvt: TCoordConverter; aFlag: Byte);
 var
   pnt: Winapi.Windows.TPoint;
 var
@@ -335,8 +335,7 @@ end;
 
 {$ENDREGION}
 
-procedure TfrmRoutePlan.Panel1MouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
+procedure TfrmRoutePlan.Panel1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   // Show Images instead of Map
   if (ssShift in Shift) then
@@ -354,7 +353,7 @@ end;
 
 procedure TfrmRoutePlan.Close1Click(Sender: TObject);
 begin
-  Application.Terminate;
+  Close;
 end;
 
 procedure TfrmRoutePlan.WCC1Click(Sender: TObject);
@@ -376,50 +375,5 @@ begin
   Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
 end;
 
-procedure TfrmRoutePlan.tmrConnectToBridgeTimer(Sender: TObject);
-var
-  recSend : TRecData2DOrder;
-  I : Integer;
-begin
-
-  if Assigned(SimManager) then
-  begin
-    tmrConnectToBridge.Enabled := False;
-
-    //connect to NFS bridge
-    if SimManager.NFSNetRecv.State <> wsConnected then
-    begin
-      SimManager.NFSNetRecv.Connect(VNfsNetwork.ServerIP, IntToStr(VNfsNetwork.Serverport));
-      tmrConnectToBridge.Enabled := True;
-    end
-    else
-    begin
-      tmrConnectToBridge.Enabled := False;
-
-      if SimManager.NFSNetRecv.State = wsConnected then
-      begin
-        //req sync packet after connect
-        recSend.orderID   := _CM_REQ_SYNCPACKET;
-        recSend.numValue  := 0;
-        recSend.strValue  := '';
-        recSend.strValue2 := '';
-        recSend.strValue3 := '';
-        recSend.ipConsole := '';
-        SimManager.NFSNetRecv.sendDataEx(REC_2D_ORDER, @recSend);
-      end;
-
-    end;
-  end;
-
-end;
-
-procedure TfrmRoutePlan.onTCPChangeState(Sender: TObject; OldState,
-  NewState: TSocketState);
-begin
-  if (OldState = wsConnected) and (NewState = wsClosed) then
-  begin
-    tmrConnectToBridge.Enabled := True;
-  end;
-end;
-
 end.
+

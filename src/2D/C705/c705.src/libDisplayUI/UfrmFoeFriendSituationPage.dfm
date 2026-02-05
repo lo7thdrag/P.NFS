@@ -491,13 +491,14 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 0
           object pnlMissileControl: TPanel
             Tag = 5
-            Left = 103
-            Top = 104
+            Left = 232
+            Top = 264
             Width = 489
             Height = 322
             Color = clActiveBorder
             ParentBackground = False
             TabOrder = 0
+            Visible = False
             object Bevel2: TBevel
               Left = 20
               Top = 236
@@ -531,35 +532,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
               Font.Style = []
               ParentFont = False
             end
-            object SpeedButton1: TSpeedButton
-              Left = 20
-              Top = 68
-              Width = 122
-              Height = 36
-              Caption = 'Power On'
-            end
-            object SpeedButton2: TSpeedButton
-              Left = 20
-              Top = 110
-              Width = 122
-              Height = 36
-              Caption = 'ReCheck'
-            end
-            object SpeedButton3: TSpeedButton
-              Left = 20
-              Top = 152
-              Width = 122
-              Height = 36
-              Caption = 'INS Align.'
-            end
-            object SpeedButton4: TSpeedButton
-              Left = 20
-              Top = 194
-              Width = 122
-              Height = 36
-              Caption = 'PowerOff'
-            end
-            object Panel5: TPanel
+            object pnlMCtrlHeader: TPanel
+              Tag = 60
               Left = 1
               Top = 1
               Width = 487
@@ -578,7 +552,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
               ParentFont = False
               TabOrder = 0
             end
-            object pnlPowerOn: TPanel
+            object pnlPowerOnContentMCtrl: TPanel
               Left = 152
               Top = 68
               Width = 313
@@ -606,6 +580,141 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
                 Color = clBlue
                 ParentBackground = False
                 TabOrder = 0
+              end
+            end
+            object pnlPowerOnMCtrl: TPanel
+              Tag = 61
+              Left = 20
+              Top = 69
+              Width = 122
+              Height = 35
+              BevelInner = bvLowered
+              BevelOuter = bvLowered
+              Caption = 'Power On'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 11754291
+              Font.Height = -16
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 2
+            end
+            object pnlReCheckMCtrl: TPanel
+              Tag = 62
+              Left = 20
+              Top = 110
+              Width = 122
+              Height = 35
+              BevelInner = bvLowered
+              BevelOuter = bvLowered
+              Caption = 'ReCheck'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -16
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 3
+            end
+            object pnlINSAlignMCtrl: TPanel
+              Tag = 63
+              Left = 20
+              Top = 152
+              Width = 122
+              Height = 35
+              BevelInner = bvLowered
+              BevelOuter = bvLowered
+              Caption = 'INS Align.'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -16
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 4
+            end
+            object pnlPowerOffMCtrl: TPanel
+              Tag = 64
+              Left = 20
+              Top = 194
+              Width = 122
+              Height = 35
+              BevelInner = bvLowered
+              BevelOuter = bvLowered
+              Caption = 'PowerOff'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -16
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentBackground = False
+              ParentFont = False
+              TabOrder = 5
+            end
+            object pnlReCheckContentMCtrl: TPanel
+              Left = 152
+              Top = 68
+              Width = 313
+              Height = 162
+              BevelOuter = bvNone
+              TabOrder = 6
+              object Label61: TLabel
+                Left = 191
+                Top = 12
+                Width = 66
+                Height = 18
+                Caption = 'Recheck'
+                Font.Charset = ANSI_CHARSET
+                Font.Color = clBlue
+                Font.Height = -16
+                Font.Name = 'Verdana'
+                Font.Style = []
+                ParentFont = False
+              end
+            end
+            object pnlINSAlignContentMCtrl: TPanel
+              Left = 152
+              Top = 68
+              Width = 313
+              Height = 162
+              BevelOuter = bvNone
+              TabOrder = 7
+              object Label63: TLabel
+                Left = 191
+                Top = 12
+                Width = 82
+                Height = 18
+                Caption = 'INS Align.'
+                Font.Charset = ANSI_CHARSET
+                Font.Color = clBlue
+                Font.Height = -16
+                Font.Name = 'Verdana'
+                Font.Style = []
+                ParentFont = False
+              end
+            end
+            object pnlPowerOffContentMCtrl: TPanel
+              Left = 152
+              Top = 68
+              Width = 313
+              Height = 162
+              BevelOuter = bvNone
+              TabOrder = 8
+              object Label67: TLabel
+                Left = 191
+                Top = 12
+                Width = 74
+                Height = 18
+                Caption = 'PowerOff'
+                Font.Charset = ANSI_CHARSET
+                Font.Color = clBlue
+                Font.Height = -16
+                Font.Name = 'Verdana'
+                Font.Style = []
+                ParentFont = False
               end
             end
           end

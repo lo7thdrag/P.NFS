@@ -157,6 +157,17 @@
             <Form>frmINSTest</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="LibMapX\uShipModel.pas"/>
+        <DCCReference Include="LibMapX\uPhysicsEngine.pas"/>
+        <DCCReference Include="LibMapX\uRadarSensor.pas"/>
+        <DCCReference Include="libDisplayUI\FrmTab\UfrmRadar.pas">
+            <Form>frmRadar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="libDisplayUI\FrmTab\uFrmParamSetting.pas">
+            <Form>frmParamSetting</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

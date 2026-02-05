@@ -28,11 +28,17 @@ uses
   uTCPDatatype in '..\..\ShareLib\LibNetworks\uTCPDatatype.pas',
   uC705SimManager in 'libMgr\uC705SimManager.pas',
   uBaseDataType in '..\..\ShareLib\LibBaseSystem\uBaseDataType.pas',
-  uFrmINSTest in 'libDisplayUI\FrmTab\uFrmINSTest.pas' {frmINSTest};
+  uFrmINSTest in 'libDisplayUI\FrmTab\uFrmINSTest.pas' {frmINSTest},
+  uShipModel in 'LibMapX\uShipModel.pas',
+  uPhysicsEngine in 'LibMapX\uPhysicsEngine.pas',
+  uRadarSensor in 'LibMapX\uRadarSensor.pas',
+  UfrmRadar in 'libDisplayUI\FrmTab\UfrmRadar.pas' {frmRadar},
+  uFrmParamSetting in 'libDisplayUI\FrmTab\uFrmParamSetting.pas' {frmParamSetting};
 
 {$R *.res}
 
 begin
+  ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
@@ -45,6 +51,9 @@ begin
   Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
   Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);
+  //Application.CreateForm(TfrmParamSetting, frmParamSetting);
+  //Application.CreateForm(TfrmRadar, frmRadar);
+  //Application.CreateForm(TfrmParamSetting, frmParamSetting);
   //Application.CreateForm(TfrmINSTest, frmINSTest);
   //Application.CreateForm(TfrmMissileMonitor, frmMissileMonitor);
   //Application.CreateForm(TfrmLaunchData, frmLaunchData);
@@ -61,6 +70,4 @@ begin
   uFormMgr.InitForms;
   uScriptC705.BeginC705;
   Application.Run;
-
-  uScriptC705.EndC705;
 end.
