@@ -6,7 +6,7 @@ object frmMainInstruktur: TfrmMainInstruktur
   Caption = 'Firing System Instruktur'
   ClientHeight = 1160
   ClientWidth = 1490
-  Color = clWhite
+  Color = clBtnFace
   TransparentColorValue = clGradientActiveCaption
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -28,23 +28,28 @@ object frmMainInstruktur: TfrmMainInstruktur
     Width = 1490
     Height = 1160
     Align = alClient
+    BevelOuter = bvNone
     TabOrder = 0
     DesignSize = (
       1490
       1160)
     object pnlMainBottom: TPanel
-      Left = 1
-      Top = 80
-      Width = 1488
-      Height = 1016
+      Left = 0
+      Top = 79
+      Width = 1490
+      Height = 1018
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
+      ExplicitLeft = 1
+      ExplicitTop = 80
+      ExplicitWidth = 1488
+      ExplicitHeight = 1016
       object pnlMainMenu: TAdvSmoothPanel
-        Left = 1401
+        Left = 1403
         Top = 0
         Width = 87
-        Height = 1016
+        Height = 1018
         Cursor = crDefault
         Caption.Location = plTopCenter
         Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -79,9 +84,11 @@ object frmMainInstruktur: TfrmMainInstruktur
         Version = '1.6.0.1'
         Align = alRight
         TabOrder = 0
+        ExplicitLeft = 1401
+        ExplicitHeight = 1016
         DesignSize = (
           87
-          1016)
+          1018)
         TMSStyle = 0
         object btnRecordStart: TSpeedButtonImage
           Left = 19
@@ -247,7 +254,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         object btnClose: TSpeedButtonImage
           Tag = 10
           Left = 19
-          Top = 953
+          Top = 955
           Width = 48
           Height = 48
           Hint = 'Exit'
@@ -257,6 +264,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           ParentShowHint = False
           ShowHint = True
           OnClick = DisplayController1Click
+          ExplicitTop = 953
         end
         object btnAddVehicle: TSpeedButtonImage
           Left = 19
@@ -275,17 +283,19 @@ object frmMainInstruktur: TfrmMainInstruktur
       object pnlMap: TPanel
         Left = 0
         Top = 0
-        Width = 1401
-        Height = 1016
+        Width = 1403
+        Height = 1018
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 1
+        ExplicitWidth = 1401
+        ExplicitHeight = 1016
         object MainMap: TMap
           Left = 0
           Top = 3
-          Width = 1401
-          Height = 1013
+          Width = 1403
+          Height = 1015
           ParentColor = False
           Align = alClient
           TabOrder = 0
@@ -300,7 +310,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           ExplicitWidth = 1197
           ExplicitHeight = 922
           ControlData = {
-            8A1A0600CC900000B2680000010000000F0000FF0D47656F44696374696F6E61
+            8A1A060001910000E7680000010000000F0000FF0D47656F44696374696F6E61
             727905456D70747900E8030000000000000000000002000E001E000000000000
             0000000000000000000000000000000000000000000600010000000000500001
             010000640000000001F4010000050000800C000000000000000000000000FFFF
@@ -312,7 +322,7 @@ object frmMainInstruktur: TfrmMainInstruktur
             8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
             918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
             6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-            01000118010000E87C42290100000045FD49651C000000000000000000000000
+            01000118010000F0AC6C0F01000000000000001C000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000002
             0000000000000000000000000000000000000000000000000000000000000000
@@ -321,34 +331,35 @@ object frmMainInstruktur: TfrmMainInstruktur
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             8076C000000000008056C0000000000080764000000000008056400100000018
-            010000E87C422901000000F93D79771C00000000000000000000000000000000
+            010000F0AC6C0F010000006C8F76771C00000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000200000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000005A0A05005A
-            0A05005A0A050098CA9700B67278772E281A004CCB9700000000000000000000
+            0000000000000000000000000000000000000000000000680505006805050080
+            E89700B6723975F009040034E997000000000034E99700000000000000000000
             000088B3400000000000408F400001000001}
         end
         object pnlHeader: TPanel
           Left = 0
           Top = 0
-          Width = 1401
+          Width = 1403
           Height = 3
           Align = alTop
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 1
+          ExplicitWidth = 1401
         end
       end
     end
     object pnlInfo: TAdvSmoothPanel
-      Left = 1
-      Top = 1096
-      Width = 1488
+      Left = 0
+      Top = 1097
+      Width = 1490
       Height = 63
       Cursor = crDefault
       Caption.Location = plTopCenter
@@ -384,9 +395,12 @@ object frmMainInstruktur: TfrmMainInstruktur
       Version = '1.6.0.1'
       Align = alBottom
       TabOrder = 1
+      ExplicitLeft = 1
+      ExplicitTop = 1096
+      ExplicitWidth = 1488
       TMSStyle = 0
       object AdvSmoothPanel7: TAdvSmoothPanel
-        Left = 1335
+        Left = 1337
         Top = 0
         Width = 153
         Height = 63
@@ -424,6 +438,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         Version = '1.6.0.1'
         Align = alRight
         TabOrder = 0
+        ExplicitLeft = 1335
         TMSStyle = 0
         object lblConnect: TAdvSmoothLabel
           Left = 10
@@ -488,7 +503,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
       end
       object advsmthpnlStatus: TAdvSmoothPanel
-        Left = 1182
+        Left = 1184
         Top = 0
         Width = 153
         Height = 63
@@ -520,6 +535,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         Version = '1.6.0.1'
         Align = alRight
         TabOrder = 1
+        ExplicitLeft = 1182
         DesignSize = (
           153
           63)
@@ -560,7 +576,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
       end
       object advsmthpnlStatus3D: TAdvSmoothPanel
-        Left = 1029
+        Left = 1031
         Top = 0
         Width = 153
         Height = 63
@@ -593,6 +609,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         Align = alRight
         Visible = False
         TabOrder = 2
+        ExplicitLeft = 1029
         DesignSize = (
           153
           63)
@@ -635,7 +652,7 @@ object frmMainInstruktur: TfrmMainInstruktur
       object AdvSmoothPanel1: TAdvSmoothPanel
         Left = 0
         Top = 0
-        Width = 1029
+        Width = 1031
         Height = 63
         Cursor = crDefault
         Caption.Location = plTopCenter
@@ -671,6 +688,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         Version = '1.6.0.1'
         Align = alClient
         TabOrder = 3
+        ExplicitWidth = 1029
         TMSStyle = 0
         object bvl1: TBevel
           Left = 211
@@ -1068,9 +1086,9 @@ object frmMainInstruktur: TfrmMainInstruktur
       end
     end
     object pnlMainUp: TAdvSmoothPanel
-      Left = 1
-      Top = 1
-      Width = 1488
+      Left = 0
+      Top = 0
+      Width = 1490
       Height = 79
       Cursor = crDefault
       Caption.Location = plTopCenter
@@ -1106,11 +1124,14 @@ object frmMainInstruktur: TfrmMainInstruktur
       Version = '1.6.0.1'
       Align = alTop
       TabOrder = 2
+      ExplicitLeft = 1
+      ExplicitTop = 1
+      ExplicitWidth = 1488
       TMSStyle = 0
       object imgHeaderProject: TImage
         Left = 0
         Top = 0
-        Width = 1488
+        Width = 1490
         Height = 79
         Align = alClient
         Picture.Data = {
@@ -14078,10 +14099,11 @@ object frmMainInstruktur: TfrmMainInstruktur
           55DA8A55DA8A55DA8A55DA8A55DA8A55DA8A55DA8A55DA8A55DA8A55DA8A55DA
           8A55}
         Stretch = True
+        ExplicitWidth = 1488
         ExplicitHeight = 80
       end
       object advsmthpnl1: TAdvSmoothPanel
-        Left = 1263
+        Left = 1265
         Top = 0
         Width = 225
         Height = 80
@@ -14121,6 +14143,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         Anchors = [akTop, akRight]
         Visible = False
         TabOrder = 0
+        ExplicitLeft = 1263
         TMSStyle = 0
         object btnZoomCenterMap1: TSpeedButtonImage
           Left = 16
@@ -14193,7 +14216,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000E87C422901000000000000001C000000000000000000000000
+          01000118010000F0AC6C0F01000000000000001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -14202,7 +14225,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000E87C422901000000000000001C00000000000000000000000000000000
+          010000F0AC6C0F01000000000000001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000

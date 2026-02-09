@@ -123,6 +123,7 @@ begin
   { Form Game Controller }
   frmGameController.SetFormLayout;
   frmGameController.SetFormEnvironment;
+  frmGameController.SetProject;
   frmGameController.CreateTrajectory;
 
   { Check Mode Instruktur }
@@ -149,13 +150,13 @@ begin
 
   if SimManager.InsUtils.DenahMode = 1 then   //armabar
   begin
-    frmGameController.pnlRuangIns.Visible := False;
-    frmGameController.pnlRuangInsArmabar.Visible := True;
+//    frmGameController.pnlRuangIns.Visible := False;
+//    frmGameController.pnlRuangInsArmabar.Visible := True;
   end
   else                                   //kodikal
   begin
-    frmGameController.pnlRuangIns.Visible := true;
-    frmGameController.pnlRuangInsArmabar.Visible := false;
+//    frmGameController.pnlRuangIns.Visible := true;
+//    frmGameController.pnlRuangInsArmabar.Visible := false;
   end;
 
   SimManager.TCPClient.setLog(TStringList(frmMainLog.mmoLog.Lines));

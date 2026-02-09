@@ -14,7 +14,8 @@ uses
   uClassDatabase, ufrmMainInstruktur, ufScenarioEdit, uDataModule,
   uInstrukturManager, uTCPDatatype, uCMSetting, uBaseCoordSystem, uBaseConstan, ufReportEvent ,
   ufInstLog, uBaseFunction, uInstrukturObjects, uTrajectory, uSimulationManager,
-  RzPanel, ufrmTrajectoryView, AdvTrackBar;
+  RzPanel, ufrmTrajectoryView, AdvTrackBar, SpeedButtonImage,
+  Vcl.Imaging.pngimage;
 
 
 type
@@ -35,24 +36,6 @@ type
     tsPlatform: TAdvSmoothTabPage;
     tsClient: TAdvSmoothTabPage;
     tsEnvironment: TAdvSmoothTabPage;
-    pnlPlatformRight: TPanel;
-    pnlPlatformLeft: TPanel;
-    TabSelectObject: TAdvSmoothTabPager;
-    tsSelectShip: TAdvSmoothTabPage;
-    tsSelectWeapon: TAdvSmoothTabPage;
-    lvRuntimeShip: TListView;
-    lvRuntimeMissile: TListView;
-    lvClient: TListView;
-    pnlStatusObject: TAdvSmoothPanel;
-    pnlControlObject: TAdvSmoothPanel;
-    pnlPlatfromUp: TAdvSmoothPanel;
-    tabControl: TAdvSmoothTabPager;
-    pnlPlatformBottom: TAdvSmoothPanel;
-    pnlWeapon: TAdvSmoothPanel;
-    pnlLaunchWeapon: TAdvSmoothPanel;
-    lvWeapon: TListView;
-    btnRemoveObject: TAdvSmoothButton;
-    btnRepostObject: TAdvSmoothButton;
     MiniMap1: TMap;
     mmfrmMain: TMainMenu;
     Application1: TMenuItem;
@@ -64,21 +47,6 @@ type
     ScenarioPlay1: TMenuItem;
     ScenariosTOP1: TMenuItem;
     ScenarioReport1: TMenuItem;
-    lblShipName: TAdvSmoothLabel;
-    lblLat: TAdvSmoothLabel;
-    lblLong: TAdvSmoothLabel;
-    lblZCord: TAdvSmoothLabel;
-    lblLatValue: TAdvSmoothLabel;
-    lblLongVal: TAdvSmoothLabel;
-    lblZVal: TAdvSmoothLabel;
-    lblHeading: TAdvSmoothLabel;
-    lblSpeed: TAdvSmoothLabel;
-    lblPitch: TAdvSmoothLabel;
-    lblRoll: TAdvSmoothLabel;
-    lblHeadingVal: TAdvSmoothLabel;
-    lblSpeedVal: TAdvSmoothLabel;
-    lblPitchVal: TAdvSmoothLabel;
-    lblRollVal: TAdvSmoothLabel;
     pmClient: TPopupMenu;
     pmClientStop: TMenuItem;
     mniShutdown1: TMenuItem;
@@ -95,465 +63,18 @@ type
     mni5: TMenuItem;
     mni6: TMenuItem;
     mni7: TMenuItem;
-    pnlClientButtom: TAdvSmoothPanel;
-    pnlClientRight: TAdvSmoothPanel;
-    btnSettingClient: TAdvSmoothButton;
-    btnRefreshClient: TAdvSmoothButton;
-    pgWeapon: TAdvPageControl;
-    pgtwTorpedoSUT: TAdvTabSheet;
-    scrlbxTOCOS: TScrollBox;
-    lbl53: TLabel;
-    lbl52: TLabel;
-    lbl21: TLabel;
-    lbl20: TLabel;
-    lbl19: TLabel;
-    lbl18: TLabel;
-    Label7: TLabel;
-    Label60: TLabel;
-    Label6: TLabel;
-    Label5: TLabel;
-    Label4: TLabel;
-    Label3: TLabel;
-    Label151: TLabel;
-    Label127: TLabel;
-    lbl86: TLabel;
-    lbl88: TLabel;
-    eTorpSUTSafeDis: TEdit;
-    eTorpSUTDepth: TEdit;
-    eTorpSUTCourse: TEdit;
-    eTorpedoSUTEnDis: TEdit;
-    cbbLauncherID: TComboBox;
-    btnSearchTorpedoSUT: TAdvSmoothButton;
-    btnHomingTorpedoSUT: TAdvSmoothButton;
-    btnhandleTorpedoSUT: TAdvSmoothButton;
-    btnFireTorpodoSUT: TAdvSmoothButton;
-    edtTorpSUTTargetID: TEdit;
-    cbbTorpMissile: TComboBox;
-    cbbTorpSUTNumber: TComboBox;
-    cbbTorpSUTTargetType: TComboBox;
-    cbbTorpPredMode: TComboBox;
-    pgtwAsroc: TAdvTabSheet;
-    scrlbxAsroc: TScrollBox;
-    lbl29: TLabel;
-    lbl26: TLabel;
-    lbl25: TLabel;
-    lbl24: TLabel;
-    lbl17: TLabel;
-    lbl16: TLabel;
-    lbl11: TLabel;
-    Label2: TLabel;
-    Label161: TLabel;
-    Label159: TLabel;
-    Label15: TLabel;
-    Label146: TLabel;
-    Label145: TLabel;
-    Label126: TLabel;
-    Label125: TLabel;
-    Label102: TLabel;
-    Label1: TLabel;
-    btnAsrocAssign: TAdvSmoothButton;
-    edtAsrocNumber: TEdit;
-    eAsrocTargetID: TEdit;
-    eAsrocRange: TEdit;
-    eAsrocMissileID: TEdit;
-    eAsrocLauncherID: TEdit;
-    eAsrocDepth: TEdit;
-    eAsrocCorrRange: TEdit;
-    eAsrocBearing: TEdit;
-    btnAsrocFire: TAdvSmoothButton;
-    btnAsrocDeAssign: TAdvSmoothButton;
-    cbbAsrocMissileType: TComboBox;
-    cbbAsrocFuze: TComboBox;
-    pgtwRBU6000: TAdvTabSheet;
-    scrlbxRBU6000: TScrollBox;
-    lbl75: TLabel;
-    lbl74: TLabel;
-    lbl73: TLabel;
-    lbl72: TLabel;
-    lbl71: TLabel;
-    lbl70: TLabel;
-    lbl47: TLabel;
-    lbl34: TLabel;
-    lbl33: TLabel;
-    lbl32: TLabel;
-    lbl31: TLabel;
-    lbl12: TLabel;
-    Label38: TLabel;
-    Label37: TLabel;
-    Label36: TLabel;
-    Label16: TLabel;
-    Label124: TLabel;
-    Label123: TLabel;
-    lbl76: TLabel;
-    lbl77: TLabel;
-    eRBUTargetID: TEdit;
-    eRBU6000MissilieID: TEdit;
-    eRBU6000Depth: TEdit;
-    eRBU6000CorrElev: TEdit;
-    eRBU6000CorrBearing: TEdit;
-    eRBU6000Bearing: TEdit;
-    eRBU6000Balistik: TEdit;
-    edtRBU6000Number: TEdit;
-    btnRBU6000Loading: TAdvSmoothButton;
-    btnRBU6000Fire: TAdvSmoothButton;
-    btnRBU6000DeAssign: TAdvSmoothButton;
-    btnRBU6000Auto: TAdvSmoothButton;
-    btnRBU6000Assign: TAdvSmoothButton;
-    btnRBUStartFire: TAdvSmoothButton;
-    btnRBUStopFire: TAdvSmoothButton;
-    pgtwTorpedoA244: TAdvTabSheet;
-    scrlbxTorpedoA244: TScrollBox;
-    lbl56: TLabel;
-    lbl54: TLabel;
-    lbl4: TLabel;
-    lbl15: TLabel;
-    lbl14: TLabel;
-    lbl13: TLabel;
-    Label59: TLabel;
-    Label58: TLabel;
-    Label57: TLabel;
-    Label56: TLabel;
-    Label55: TLabel;
-    Label54: TLabel;
-    Label53: TLabel;
-    edtSPS_Number: TEdit;
-    edtSPS_ISC: TEdit;
-    btnFireSps: TAdvSmoothButton;
-    pgtwDefault: TAdvTabSheet;
-    pgtwWCCCannon: TAdvTabSheet;
-    scrlbxWCC: TScrollBox;
-    lbl9: TLabel;
-    lbl8: TLabel;
-    lbl7: TLabel;
-    lbl68: TLabel;
-    lbl6: TLabel;
-    lbl48: TLabel;
-    lbl45: TLabel;
-    lbl44: TLabel;
-    lbl10: TLabel;
-    Label155: TLabel;
-    Label120: TLabel;
-    Label108: TLabel;
-    Label104: TLabel;
-    btnCannonAssigned: TAdvSmoothButton;
-    edtCannonTargetID: TEdit;
-    edtCannonMissileNumber: TEdit;
-    edtCannonMissileID: TEdit;
-    edtCannonLauncherID: TEdit;
-    edtCannonCorrElev: TEdit;
-    edtCannonCorrBearing: TEdit;
-    btnWCannonCease: TAdvSmoothButton;
-    btnCannonStartFire: TAdvSmoothButton;
-    btnCannonFire: TAdvSmoothButton;
-    btnCannonDeassigned: TAdvSmoothButton;
-    cbbCannonModeID: TComboBox;
-    cbbCannonBalistikID: TComboBox;
-    pgtwTetral: TAdvTabSheet;
-    scrlbxTetral: TScrollBox;
-    lbl55: TLabel;
-    lbl50: TLabel;
-    lbl5: TLabel;
-    lbl49: TLabel;
-    Label94: TLabel;
-    Label83: TLabel;
-    Label82: TLabel;
-    Label81: TLabel;
-    Label80: TLabel;
-    Label46: TLabel;
-    Label114: TLabel;
-    edtTetral_TRange: TEdit;
-    edtTetral_TElev: TEdit;
-    edtTetral_TBearing: TEdit;
-    edtTetral_Number: TEdit;
-    btnTetral_Fire: TAdvSmoothButton;
-    btnTetral_Assign: TAdvSmoothButton;
-    pgtwMistral: TAdvTabSheet;
-    scrlbxMistral: TScrollBox;
-    Label99: TLabel;
-    Label97: TLabel;
-    Label96: TLabel;
-    Label95: TLabel;
-    Label92: TLabel;
-    Label87: TLabel;
-    Label86: TLabel;
-    Label85: TLabel;
-    Label84: TLabel;
-    Label116: TLabel;
-    Label115: TLabel;
-    btnMistral_Assign: TAdvSmoothButton;
-    edtMistral_TRange: TEdit;
-    edtMistral_TElev: TEdit;
-    edtMistral_TBearing: TEdit;
-    edtMistral_Number: TEdit;
-    btnMistral_Fire: TAdvSmoothButton;
-    pgtwStrella: TAdvTabSheet;
-    scrlbxStrella: TScrollBox;
-    Label93: TLabel;
-    Label91: TLabel;
-    Label90: TLabel;
-    Label89: TLabel;
-    Label88: TLabel;
-    Label118: TLabel;
-    Label117: TLabel;
-    Label113: TLabel;
-    Label111: TLabel;
-    Label110: TLabel;
-    Label109: TLabel;
-    edtStrella_TRange: TEdit;
-    edtStrella_TElev: TEdit;
-    edtStrella_TBearing: TEdit;
-    edtStrella_Number: TEdit;
-    btnStrella_Fire: TAdvSmoothButton;
-    btnStrella_Assign: TAdvSmoothButton;
-    pgtwExocetMM40: TAdvTabSheet;
-    scrlbxExocetMM40: TScrollBox;
-    lbl66: TLabel;
-    lbl64: TLabel;
-    lbl63: TLabel;
-    lbl62: TLabel;
-    lbl61: TLabel;
-    lbl60: TLabel;
-    lbl59: TLabel;
-    lbl58: TLabel;
-    Label79: TLabel;
-    Label78: TLabel;
-    Label77: TLabel;
-    Label76: TLabel;
-    Label75: TLabel;
-    Label71: TLabel;
-    Label119: TLabel;
-    Label107: TLabel;
-    Label106: TLabel;
-    Label101: TLabel;
-    Label100: TLabel;
-    btnExocet40_Fire: TAdvSmoothButton;
-    edtExocet40_TRange: TEdit;
-    edtExocet40_TerminalRange: TEdit;
-    edtExocet40_TBearing: TEdit;
-    edtExocet40_ObstacleRange: TEdit;
-    edtExocet40_ObstacleAlt: TEdit;
-    edtExocet40_ApproachRange: TEdit;
-    btnTrack: TAdvSmoothButton;
-    cbbExocet40_AngularMode: TComboBox;
-    cbbExocet40_AgilityMode: TComboBox;
-    cbbExocet40_InitialStepMode: TComboBox;
-    cbbExocet40_Missile: TComboBox;
-    cbbExocet40_Number: TComboBox;
-    pgtwYAHKONT: TAdvTabSheet;
-    scrlbxYakhont: TScrollBox;
-    Label148: TLabel;
-    Label147: TLabel;
-    Label140: TLabel;
-    Label139: TLabel;
-    Label137: TLabel;
-    Label135: TLabel;
-    Label134: TLabel;
-    Label132: TLabel;
-    Label130: TLabel;
-    Label129: TLabel;
-    lbl78: TLabel;
-    lbl79: TLabel;
-    lbl80: TLabel;
-    lbl81: TLabel;
-    edtYahkont_TRange: TEdit;
-    edtYahkont_TBearing: TEdit;
-    edtYahkont_Number: TEdit;
-    edtYahkont_Missile: TEdit;
-    btnYahkont_Fire_: TAdvSmoothButton;
-    pgtwC802: TAdvTabSheet;
-    scrlbxC802: TScrollBox;
-    Label149: TLabel;
-    Label143: TLabel;
-    Label141: TLabel;
-    Label138: TLabel;
-    Label136: TLabel;
-    Label133: TLabel;
-    Label131: TLabel;
-    edtC802_TRange: TEdit;
-    edtC802_TBearing: TEdit;
-    edtC802_Number: TEdit;
-    edtC802_Missile: TEdit;
-    btnC802_Fire: TAdvSmoothButton;
-    vrwhlWindDirec: TVrWheel;
-    vrwhlSeaDirection: TVrWheel;
-    lbl: TLabel;
-    lbl1: TLabel;
-    lbl3: TLabel;
-    lbl28: TLabel;
-    lbl30: TLabel;
-    lbl35: TLabel;
-    lbl36: TLabel;
-    lbl39: TLabel;
-    lbl40: TLabel;
-    lbl41: TLabel;
-    grpTemp: TGroupBox;
-    grpSeaSpeed: TGroupBox;
-    grpHumidity: TGroupBox;
-    grpBaroPressure: TGroupBox;
-    grp1: TGroupBox;
-    grpSeaState: TGroupBox;
-    grpFogHeight: TGroupBox;
     tmrStatus: TTimer;
     mniool1: TMenuItem;
     Restart2DServer1: TMenuItem;
-    imgRuangIns: TImage;
-    imgMoc1: TImage;
-    imgRBU: TImage;
-    imgTocos: TImage;
-    pnlRuangIns: TPanel;
-    imgAsroc: TImage;
-    img57: TImage;
-    imgMistral: TImage;
-    imgStrela: TImage;
-    imgMoc2: TImage;
-    imgC802: TImage;
-    imgYakhont: TImage;
-    imgWCC: TImage;
-    img40: TImage;
-    imgServer: TImage;
-    imgOb1: TImage;
-    imgOb3: TImage;
-    imgOb2: TImage;
-    imgOb4: TImage;
-    lbl42: TLabel;
     mniLog1: TMenuItem;
-    img_moc1x: TImage;
-    img_rbux: TImage;
-    img_tocosx: TImage;
-    img_asrocx: TImage;
-    img_wccx: TImage;
-    img_moc2x: TImage;
-    img_yakhontx: TImage;
-    img_c802x: TImage;
-    img_mistralx: TImage;
-    img_strelax: TImage;
-    img_m40x: TImage;
-    img_m57x: TImage;
-    img_moc1: TImage;
-    img_rbu: TImage;
-    img_tocos: TImage;
-    img_asroc: TImage;
-    img_wcc: TImage;
-    img_moc2: TImage;
-    img_yakhont: TImage;
-    img_c802: TImage;
-    img_strela: TImage;
-    img_mistral: TImage;
-    img_m40: TImage;
-    img_m57: TImage;
-    img_Server: TImage;
-    img_Ob2: TImage;
-    img_Ob1: TImage;
-    img_Ob4: TImage;
-    img_Ob3: TImage;
-    imgFrame1: TImage;
-    imgFrame2: TImage;
-    imgFrame4: TImage;
-    imgFrame3: TImage;
-    imgFrameServer: TImage;
     Help1: TMenuItem;
-    lblSeaState: TLabel;
-    lblstate: TLabel;
-    lblKnots: TLabel;
-    lblWindSpeed: TLabel;
-    lblKnot: TLabel;
-    lblCelcius: TLabel;
-    lblMiliBar: TLabel;
-    lblBaroPresure: TLabel;
-    lblCurrentSpeed: TLabel;
-    lblPersen: TLabel;
-    lblHumidity: TLabel;
-    lbl37: TLabel;
-    lblFogHeight: TLabel;
-    lblTemperature: TLabel;
-    lblWindDirection: TLabel;
-    lbl43: TLabel;
-    lbl57: TLabel;
-    lblCurrentDirection: TLabel;
-    cbbTorpSutSpeed: TComboBox;
-    cbbrbuLauncherId: TComboBox;
-    cbbA244Launcher: TComboBox;
-    cbbMistralLaunch: TComboBox;
-    cbbStrellaLauncher: TComboBox;
-    cbbTetralLaunch: TComboBox;
-    btnSetPosYahkont: TAdvSmoothButton;
-    btnSetPosC802: TAdvSmoothButton;
     Start1: TMenuItem;
     Start2: TMenuItem;
-    cbbC802Launcher: TComboBox;
-    cbbYahkontLauncher: TComboBox;
-    cbbExxocetLauncher: TComboBox;
     Manual1: TMenuItem;
     Komando1: TMenuItem;
-    chkYahkontM1: TCheckBox;
-    chkYahkontM2: TCheckBox;
-    chkYahkontM3: TCheckBox;
-    chkYahkontM4: TCheckBox;
-    btnSetPosStrella: TAdvSmoothButton;
-    btnSetPosMistral: TAdvSmoothButton;
-    lblKoorYc802: TLabel;
-    lblkoorXc802: TLabel;
-    lbl38: TLabel;
-    lbl65: TLabel;
-    txt1: TStaticText;
-    txt2: TStaticText;
-    lbl46: TLabel;
-    cbbRBUassigntment: TComboBox;
-    btnRBUsetPos: TSpeedButton;
-    btnTorpSutTarget: TSpeedButton;
-	cbbA244MissID: TComboBox;
-    cbbA244MissID2: TComboBox;
-    cbbWTR: TComboBox;
-    cbbISD: TComboBox;
-    cbbISD2: TComboBox;
-    cbbISR: TComboBox;
-    cbbPRG: TComboBox;
-    cbbCEI: TComboBox;
-    cbbCEI2: TComboBox;
-    cbbFLO: TComboBox;
-    cbbFLO2: TComboBox;
-    cbbACM: TComboBox;
-    cbbACE: TComboBox;
-    cbbDOP: TComboBox;
-	
-    btnAsrocTarget: TSpeedButton;
-	lbl2: TLabel;
-    lbl23: TLabel;
-    lbl67: TLabel;
-    lbl69: TLabel;
-    lbl82: TLabel;
-    lbl83: TLabel;
-    edtTampung: TEdit;
-    Label8: TLabel;
-    Label9: TLabel;
-    StaticText1: TStaticText;
-    StaticText2: TStaticText;
-    lblcoorXyakhont: TLabel;
-    lblcoorYyakhont: TLabel;
-    lblPortEnv: TLabel;
-    btnSelectCanonTarget: TSpeedButton;
-    edtTorpSutRange: TEdit;
-    btnSetPosTetral: TAdvSmoothButton;
-    btnLoadingTorpedoSUT: TAdvSmoothButton;
-    btnLoadingAsroc: TAdvSmoothButton;
-    btnLoadingTorpA244: TAdvSmoothButton;
-    btnLoadingTetral: TAdvSmoothButton;
-    btnLoadingMistral: TAdvSmoothButton;
-    btnLoadingStrella: TAdvSmoothButton;
-    btnLoadingExocet: TAdvSmoothButton;
-    btnLoadingYakhont: TAdvSmoothButton;
-    btnLoadingC802: TAdvSmoothButton;
-    tbSeaState: TVrTrackBar;
-    tbWindSpeed: TVrTrackBar;
-    tbSeaSpeed: TVrTrackBar;
-    tbTemp: TVrTrackBar;
-    tbBaroPressure: TVrTrackBar;
-    tbHumidity: TVrTrackBar;
-    tbFogH: TVrTrackBar;
     pmLvWeapon: TPopupMenu;
     On1: TMenuItem;
     Off1: TMenuItem;
-    eRBU6000Range: TEdit;
     tmrRBU: TTimer;
     RestartAllCommunication1: TMenuItem;
     ShutdownCommunication1: TMenuItem;
@@ -561,9 +82,7 @@ type
     ShutdownServer1: TMenuItem;
     RestartServer1: TMenuItem;
     CloseAllCommunication1: TMenuItem;
-    btnReleaseYakhont: TAdvSmoothButton;
     tsTrajectory: TAdvSmoothTabPage;
-    cbbRBUSalvoCount: TComboBox;
     tsSelectShipWeaponTrajectory: TAdvSmoothPanel;
     AdvSmoothTabPager1: TAdvSmoothTabPager;
     AdvSmoothTabPage1: TAdvSmoothTabPage;
@@ -581,62 +100,134 @@ type
     AdvSmoothButton1: TAdvSmoothButton;
     imgTrajectory: TImage;
     tmrTrajectory: TTimer;
-    cbbTetral_Missile: TComboBox;
-    cbbMistralMissileID: TComboBox;
-    cbbStrelaMissileID: TComboBox;
-    RzStatusBar1: TRzStatusBar;
     ProfilKetinggian1: TMenuItem;
-    lbl22: TLabel;
-    lbl27: TLabel;
-    cbbSalvoRate: TComboBox;
-    lblInfo: TLabel;
-    edtExxocet40_LeftAngle: TEdit;
-    edtExxocet40_RightAngle: TEdit;
-    edtExxocet40_FarRange: TEdit;
-    edtExxocet40_NearRange: TEdit;
-    chkExxoMask_1: TCheckBox;
-    chkExxoMask_2: TCheckBox;
-    chkExxoMask_3: TCheckBox;
-    chkExxoMask_4: TCheckBox;
-    chkExxoMask_5: TCheckBox;
-    chkExxoMask_6: TCheckBox;
-    chkExxoMask_7: TCheckBox;
-    chkExxoMask_8: TCheckBox;
-    chkExxoMask_9: TCheckBox;
-    chkExxoMask_10: TCheckBox;
-    chkExxoMask_11: TCheckBox;
-    chkExxoMask_12: TCheckBox;
-    chkExxoMask_13: TCheckBox;
-    chkExxoMask_14: TCheckBox;
-    chkExxoMask_15: TCheckBox;
-    chkExxoMask_16: TCheckBox;
-    edtExxocet40_SeekOpenX: TEdit;
-    edtExxocet40_SeekOpenY: TEdit;
-    edtExxocet40_OpenSeekerHead: TEdit;
+    tmrSeaState: TTimer;
+    pnlHeader: TAdvSmoothPanel;
+    imgHeaderProject: TImage;
+    pnlInfo: TAdvSmoothPanel;
+    AdvSmoothPanel2: TAdvSmoothPanel;
+    lbl84: TLabel;
+    lbl90: TLabel;
+    btnAddVehicleZoomCenterMap1: TSpeedButtonImage;
+    btnAddVehicle1: TSpeedButtonImage;
+    btnAddVehicle2: TSpeedButtonImage;
+    btnAddVehicle3: TSpeedButtonImage;
+    pnlMain: TPanel;
+    pnlClient: TPanel;
+    pnlClientLayout: TPanel;
+    imgRuangIns: TImage;
+    img40: TImage;
+    img57: TImage;
+    imgAsroc: TImage;
+    imgC802: TImage;
+    imgMistral: TImage;
+    imgMoc1: TImage;
+    imgOb1: TImage;
+    imgOb2: TImage;
+    imgOb3: TImage;
+    imgOb4: TImage;
+    imgRBU: TImage;
+    imgServer: TImage;
+    imgStrela: TImage;
+    imgTocos: TImage;
+    imgWCC: TImage;
+    img_Server: TImage;
+    img_Ob2: TImage;
+    img_Ob4: TImage;
+    img_Ob3: TImage;
+    img_Ob1: TImage;
+    pnlSparator: TPanel;
+    pnlClientSetting: TAdvSmoothPanel;
+    btnSettingClient: TAdvSmoothButton;
+    btnRefreshClient: TAdvSmoothButton;
+    pnlClientList: TAdvSmoothPanel;
+    lvClient: TListView;
+    pnlClientDetails: TAdvSmoothPanel;
+    pnlReport: TPanel;
+    img1: TImage;
+    img2: TImage;
+    img3: TImage;
+    img4: TImage;
+    img5: TImage;
+    img6: TImage;
+    img7: TImage;
+    img8: TImage;
+    img9: TImage;
+    img10: TImage;
+    img11: TImage;
+    img12: TImage;
+    img13: TImage;
+    pnlPlatform: TPanel;
+    pnlEnvironment: TPanel;
     mmoReport: TMemo;
-    pnlRuangInsArmabar: TPanel;
-    imgRuangInsArmabar: TImage;
+    grp1: TGroupBox;
+    tbWindSpeed: TVrTrackBar;
+    grpBaroPressure: TGroupBox;
+    tbBaroPressure: TVrTrackBar;
+    grpFogHeight: TGroupBox;
+    tbFogH: TVrTrackBar;
+    grpHumidity: TGroupBox;
+    tbHumidity: TVrTrackBar;
+    grpSeaSpeed: TGroupBox;
+    tbSeaSpeed: TVrTrackBar;
+    grpSeaState: TGroupBox;
+    tbSeaState: TVrTrackBar;
+    grpTemp: TGroupBox;
+    tbTemp: TVrTrackBar;
+    lbl: TLabel;
+    lbl1: TLabel;
+    lbl28: TLabel;
+    lbl3: TLabel;
+    lbl30: TLabel;
+    lbl35: TLabel;
+    lbl36: TLabel;
+    lbl37: TLabel;
+    lbl39: TLabel;
+    lbl40: TLabel;
+    lbl41: TLabel;
+    lbl43: TLabel;
+    lbl57: TLabel;
+    lblBaroPresure: TLabel;
+    lblCelcius: TLabel;
+    lblCurrentDirection: TLabel;
+    lblCurrentSpeed: TLabel;
+    lblFogHeight: TLabel;
+    lblHumidity: TLabel;
+    lblKnot: TLabel;
+    lblKnots: TLabel;
+    lblMiliBar: TLabel;
+    lblPersen: TLabel;
+    lblPortEnv: TLabel;
+    lblSeaState: TLabel;
+    lblstate: TLabel;
+    lblTemperature: TLabel;
+    lblWindDirection: TLabel;
+    lblWindSpeed: TLabel;
+    vrwhlSeaDirection: TVrWheel;
+    vrwhlWindDirec: TVrWheel;
+    btnAddVehicle4: TSpeedButtonImage;
+    pnlScenario: TPanel;
+    pnlPlatformLeft: TPanel;
+    TabSelectObject: TAdvSmoothTabPager;
+    tsSelectShip: TAdvSmoothTabPage;
+    lvRuntimeShip: TListView;
+    tsSelectWeapon: TAdvSmoothTabPage;
+    lvRuntimeMissile: TListView;
+    pnlControlObject: TAdvSmoothPanel;
+    btnRemoveObject: TAdvSmoothButton;
+    btnRepostObject: TAdvSmoothButton;
+    pnlPlatformRight: TPanel;
+    pnlPlatfromUp: TAdvSmoothPanel;
+    tabControl: TAdvSmoothTabPager;
     pnlPlayerCamera: TAdvSmoothPanel;
-    lblCameraView: TAdvSmoothLabel;
-    lblCameraRotate: TAdvSmoothLabel;
     lblCameraMove: TAdvSmoothLabel;
     lblCameraRotate2: TAdvSmoothLabel;
-    pnlCameraView: TAdvSmoothPanel;
-    btnCamViewFront: TRzShapeButton;
-    btnCamViewLeft: TRzShapeButton;
-    btnCamViewRight: TRzShapeButton;
-    btnCamViewBack: TRzShapeButton;
-    btnCamViewTop: TRzShapeButton;
+    lblPinCamera: TAdvSmoothLabel;
     pnlCameraSelectID: TAdvSmoothPanel;
     lbl223: TAdvSmoothLabel;
     cbSelectIDCamera: TCurvyCombo;
     btnCameraLock: TAdvSmoothButton;
     btnCameraUnlock: TAdvSmoothButton;
-    pnlCameraRotate: TAdvSmoothPanel;
-    vrWheelCameraRotateY: TVrWheel;
-    vrWheelCameraRotateX: TVrWheel;
-    lblRotateX: TAdvSmoothLabel;
-    lblRotateY: TAdvSmoothLabel;
     pnlCameraMove: TAdvSmoothPanel;
     btnCamMoveUp: TRzShapeButton;
     btnCamMoveLef: TRzShapeButton;
@@ -649,57 +240,441 @@ type
     btnCamRotateOldLeft: TRzShapeButton;
     btnCamRotateOldRight: TRzShapeButton;
     btnCamRotateOldDown: TRzShapeButton;
-    cbbExocet40_ApproachRange: TComboBox;
-    tmrSeaState: TTimer;
-    cbbAsrocMissileID: TComboBox;
-    imgWCC_Amb: TImage;
-    imgC802_Amb: TImage;
-    imgYakhont_Amb: TImage;
-    imgWCC_Amb2: TImage;
-    imgC802_Amb2: TImage;
-    imgYakhont_Amb2: TImage;
-    imgMoc2_Amb: TImage;
-    imgMoc2_Amb2: TImage;
-    imgStrela_Amb: TImage;
-    imgMistral_Amb: TImage;
-    imgTDS57_Amb: TImage;
-    imgTDS40_Amb: TImage;
-    imgTDS57_Amb2: TImage;
-    imgTDS40_Amb2: TImage;
-    imgMistral_Amb2: TImage;
-    imgStrela_Amb2: TImage;
-    imgMoc1_Amb: TImage;
-    imgRBU_Amb: TImage;
-    imgTocos_Amb: TImage;
-    imgAsroc_Amb: TImage;
-    imgMoc1_Amb2: TImage;
-    imgRBU_Amb2: TImage;
-    imgTocos_Amb2: TImage;
-    imgAsroc_Amb2: TImage;
     pnlCameraMode: TAdvSmoothPanel;
     lblCameraMode: TAdvSmoothLabel;
-    pnlCameraViewGadipake: TPanel;
     btnCamPin: TAdvSmoothButton;
     btnFreeCam: TAdvSmoothButton;
+    pnlCameraViewGadipake: TPanel;
+    lblCameraView: TAdvSmoothLabel;
+    pnlCameraView: TAdvSmoothPanel;
+    btnCamViewFront: TRzShapeButton;
+    btnCamViewLeft: TRzShapeButton;
+    btnCamViewRight: TRzShapeButton;
+    btnCamViewBack: TRzShapeButton;
+    btnCamViewTop: TRzShapeButton;
     pnlCameraRotate1Gadipake: TPanel;
+    lblCameraRotate: TAdvSmoothLabel;
+    pnlCameraRotate: TAdvSmoothPanel;
+    vrWheelCameraRotateY: TVrWheel;
+    vrWheelCameraRotateX: TVrWheel;
+    lblRotateX: TAdvSmoothLabel;
+    lblRotateY: TAdvSmoothLabel;
     pnlPinCamera: TAdvSmoothPanel;
     wheelAzimut: TVrWheel;
     lblAzimut: TAdvSmoothLabel;
-    edtAzimut: TEdit;
     bvlVertical: TBevel;
-    lblPinCamera: TAdvSmoothLabel;
     lblAzimuthVal: TAdvSmoothLabel;
     lblRange: TAdvSmoothLabel;
-    trackBarRange: TAdvTrackBar;
     lblMinRange: TAdvSmoothLabel;
     lblMaxRange: TAdvSmoothLabel;
-    edtRangeValue: TEdit;
-    edtElevationValue: TEdit;
     lblMinElevation: TAdvSmoothLabel;
     AdvSmoothLabel2: TAdvSmoothLabel;
-    trackBarElevation: TAdvTrackBar;
     lblElevation: TAdvSmoothLabel;
     bvlHorizontal: TBevel;
+    edtAzimut: TEdit;
+    trackBarRange: TAdvTrackBar;
+    edtRangeValue: TEdit;
+    edtElevationValue: TEdit;
+    trackBarElevation: TAdvTrackBar;
+    pnlPlatformBottom: TAdvSmoothPanel;
+    pnlLaunchWeapon: TAdvSmoothPanel;
+    pgWeapon: TAdvPageControl;
+    pgtwTorpedoSUT: TAdvTabSheet;
+    scrlbxTOCOS: TScrollBox;
+    lbl53: TLabel;
+    lbl52: TLabel;
+    lbl21: TLabel;
+    lbl20: TLabel;
+    lbl19: TLabel;
+    lbl18: TLabel;
+    lbl42: TLabel;
+    lbl51: TLabel;
+    lbl85: TLabel;
+    lbl87: TLabel;
+    lbl89: TLabel;
+    lbl91: TLabel;
+    lbl92: TLabel;
+    lbl93: TLabel;
+    lbl86: TLabel;
+    lbl88: TLabel;
+    btnTorpSutTarget: TSpeedButton;
+    edtTorpSUTSafeDis: TEdit;
+    edtTorpSUTDepth: TEdit;
+    edtTorpSUTCourse: TEdit;
+    edtTorpedoSUTEnDis: TEdit;
+    cbbLauncherID: TComboBox;
+    btnSearchTorpedoSUT: TAdvSmoothButton;
+    btnHomingTorpedoSUT: TAdvSmoothButton;
+    btnhandleTorpedoSUT: TAdvSmoothButton;
+    btnFireTorpodoSUT: TAdvSmoothButton;
+    edtTorpSUTTargetID: TEdit;
+    cbbTorpMissile: TComboBox;
+    cbbTorpSUTNumber: TComboBox;
+    cbbTorpSUTTargetType: TComboBox;
+    cbbTorpPredMode: TComboBox;
+    cbbTorpSutSpeed: TComboBox;
+    edtTampung: TEdit;
+    edtTorpSutRange: TEdit;
+    btnLoadingTorpedoSUT: TAdvSmoothButton;
+    pgtwAsroc: TAdvTabSheet;
+    scrlbxAsroc: TScrollBox;
+    lbl29: TLabel;
+    lbl26: TLabel;
+    lbl25: TLabel;
+    lbl24: TLabel;
+    lbl17: TLabel;
+    lbl16: TLabel;
+    lbl11: TLabel;
+    lbl94: TLabel;
+    lbl95: TLabel;
+    lbl96: TLabel;
+    lbl97: TLabel;
+    lbl98: TLabel;
+    lbl99: TLabel;
+    lbl100: TLabel;
+    lbl101: TLabel;
+    lbl102: TLabel;
+    lbl103: TLabel;
+    btnAsrocTarget: TSpeedButton;
+    btnAsrocAssign: TAdvSmoothButton;
+    eAsrocNumber: TEdit;
+    eAsrocTargetID: TEdit;
+    eAsrocRange: TEdit;
+    eAsrocMissileID: TEdit;
+    eAsrocLauncherID: TEdit;
+    eAsrocDepth: TEdit;
+    eAsrocCorrRange: TEdit;
+    eAsrocBearing: TEdit;
+    btnAsrocFire: TAdvSmoothButton;
+    btnAsrocDeAssign: TAdvSmoothButton;
+    cbbAsrocMissileType: TComboBox;
+    cbbAsrocFuze: TComboBox;
+    btnLoadingAsroc: TAdvSmoothButton;
+    cbbAsrocMissileID: TComboBox;
+    pgtwRBU6000: TAdvTabSheet;
+    scrlbxRBU6000: TScrollBox;
+    lbl75: TLabel;
+    lbl74: TLabel;
+    lbl73: TLabel;
+    lbl72: TLabel;
+    lbl71: TLabel;
+    lbl70: TLabel;
+    lbl47: TLabel;
+    lbl34: TLabel;
+    lbl33: TLabel;
+    lbl32: TLabel;
+    lbl31: TLabel;
+    lbl12: TLabel;
+    lbl104: TLabel;
+    lbl105: TLabel;
+    lbl106: TLabel;
+    lbl107: TLabel;
+    lbl108: TLabel;
+    lbl109: TLabel;
+    lbl76: TLabel;
+    lbl77: TLabel;
+    lbl46: TLabel;
+    btnRBUsetPos: TSpeedButton;
+    eRBUTargetID: TEdit;
+    eRBU6000MissilieID: TEdit;
+    eRBU6000Depth: TEdit;
+    eRBU6000CorrElev: TEdit;
+    eRBU6000CorrBearing: TEdit;
+    eRBU6000Bearing: TEdit;
+    eRBU6000Balistik: TEdit;
+    eRBU6000Number: TEdit;
+    btnRBU6000Loading: TAdvSmoothButton;
+    btnRBU6000Fire: TAdvSmoothButton;
+    btnRBU6000DeAssign: TAdvSmoothButton;
+    btnRBU6000Auto: TAdvSmoothButton;
+    btnRBU6000Assign: TAdvSmoothButton;
+    btnRBUStartFire: TAdvSmoothButton;
+    btnRBUStopFire: TAdvSmoothButton;
+    cbbrbuLauncherId: TComboBox;
+    cbbRBUassigntment: TComboBox;
+    eRBU6000Range: TEdit;
+    cbbRBUSalvoCount: TComboBox;
+    pgtwTorpedoA244: TAdvTabSheet;
+    scrlbxTorpedoA244: TScrollBox;
+    lbl56: TLabel;
+    lbl54: TLabel;
+    lbl4: TLabel;
+    lbl15: TLabel;
+    lbl14: TLabel;
+    lbl13: TLabel;
+    lbl110: TLabel;
+    lbl111: TLabel;
+    lbl112: TLabel;
+    lbl113: TLabel;
+    lbl114: TLabel;
+    lbl115: TLabel;
+    lbl116: TLabel;
+    lbl2: TLabel;
+    lbl23: TLabel;
+    lbl67: TLabel;
+    lbl69: TLabel;
+    lbl82: TLabel;
+    lbl83: TLabel;
+    edtSPS_Number: TEdit;
+    edtSPS_ISC: TEdit;
+    btnFireSps: TAdvSmoothButton;
+    cbbA244Launcher: TComboBox;
+    cbbA244MissID: TComboBox;
+    cbbA244MissID2: TComboBox;
+    cbbWTR: TComboBox;
+    cbbISD: TComboBox;
+    cbbISD2: TComboBox;
+    cbbISR: TComboBox;
+    cbbPRG: TComboBox;
+    cbbCEI: TComboBox;
+    cbbCEI2: TComboBox;
+    cbbFLO: TComboBox;
+    cbbFLO2: TComboBox;
+    cbbACM: TComboBox;
+    cbbACE: TComboBox;
+    cbbDOP: TComboBox;
+    btnLoadingTorpA244: TAdvSmoothButton;
+    pgtwDefault: TAdvTabSheet;
+    lblInfo: TLabel;
+    pgtwWCCCannon: TAdvTabSheet;
+    scrlbxWCC: TScrollBox;
+    lbl9: TLabel;
+    lbl8: TLabel;
+    lbl7: TLabel;
+    lbl68: TLabel;
+    lbl6: TLabel;
+    lbl48: TLabel;
+    lbl45: TLabel;
+    lbl44: TLabel;
+    lbl10: TLabel;
+    lbl117: TLabel;
+    lbl118: TLabel;
+    lbl119: TLabel;
+    lbl120: TLabel;
+    btnSelectCanonTarget: TSpeedButton;
+    lbl22: TLabel;
+    lbl27: TLabel;
+    btnCannonAssigned: TAdvSmoothButton;
+    edtCannonTargetID: TEdit;
+    edtCannonMissileNumber: TEdit;
+    edtCannonMissileID: TEdit;
+    edtCannonLauncherID: TEdit;
+    edtCannonCorrElev: TEdit;
+    edtCannonCorrBearing: TEdit;
+    btnWCannonCease: TAdvSmoothButton;
+    btnCannonStartFire: TAdvSmoothButton;
+    btnCannonFire: TAdvSmoothButton;
+    btnCannonDeassigned: TAdvSmoothButton;
+    cbbCannonModeID: TComboBox;
+    cbbCannonBalistikID: TComboBox;
+    cbbSalvoRate: TComboBox;
+    pgtwTetral: TAdvTabSheet;
+    scrlbxTetral: TScrollBox;
+    lbl55: TLabel;
+    lbl50: TLabel;
+    lbl5: TLabel;
+    lbl49: TLabel;
+    lbl121: TLabel;
+    lbl122: TLabel;
+    lbl123: TLabel;
+    lbl124: TLabel;
+    lbl125: TLabel;
+    lbl126: TLabel;
+    lbl127: TLabel;
+    edtTetral_TRange: TEdit;
+    edtTetral_TElev: TEdit;
+    edtTetral_TBearing: TEdit;
+    edtTetral_Number: TEdit;
+    btnTetral_Fire: TAdvSmoothButton;
+    btnTetral_Assign: TAdvSmoothButton;
+    cbbTetralLaunch: TComboBox;
+    btnSetPosTetral: TAdvSmoothButton;
+    btnLoadingTetral: TAdvSmoothButton;
+    cbbTetral_Missile: TComboBox;
+    pgtwMistral: TAdvTabSheet;
+    scrlbxMistral: TScrollBox;
+    lbl128: TLabel;
+    lbl129: TLabel;
+    lbl130: TLabel;
+    lbl131: TLabel;
+    lbl132: TLabel;
+    lbl133: TLabel;
+    lbl134: TLabel;
+    lbl135: TLabel;
+    lbl136: TLabel;
+    lbl137: TLabel;
+    lbl138: TLabel;
+    btnMistral_Assign: TAdvSmoothButton;
+    edtMistral_TRange: TEdit;
+    edtMistral_TElev: TEdit;
+    edtMistral_TBearing: TEdit;
+    edtMistral_Number: TEdit;
+    btnMistral_Fire: TAdvSmoothButton;
+    cbbMistralLaunch: TComboBox;
+    btnSetPosMistral: TAdvSmoothButton;
+    btnLoadingMistral: TAdvSmoothButton;
+    cbbMistralMissileID: TComboBox;
+    pgtwStrella: TAdvTabSheet;
+    scrlbxStrella: TScrollBox;
+    lbl139: TLabel;
+    lbl140: TLabel;
+    lbl141: TLabel;
+    lbl142: TLabel;
+    lbl143: TLabel;
+    lbl144: TLabel;
+    lbl145: TLabel;
+    lbl146: TLabel;
+    lbl147: TLabel;
+    lbl148: TLabel;
+    lbl149: TLabel;
+    edtStrella_TRange: TEdit;
+    edtStrella_TElev: TEdit;
+    edtStrella_TBearing: TEdit;
+    edtStrella_Number: TEdit;
+    btnStrella_Fire: TAdvSmoothButton;
+    btnStrella_Assign: TAdvSmoothButton;
+    cbbStrellaLauncher: TComboBox;
+    btnSetPosStrella: TAdvSmoothButton;
+    btnLoadingStrella: TAdvSmoothButton;
+    cbbStrelaMissileID: TComboBox;
+    pgtwExocetMM40: TAdvTabSheet;
+    scrlbxExocetMM40: TScrollBox;
+    lbl66: TLabel;
+    lbl64: TLabel;
+    lbl63: TLabel;
+    lbl62: TLabel;
+    lbl61: TLabel;
+    lbl60: TLabel;
+    lbl59: TLabel;
+    lbl58: TLabel;
+    lbl150: TLabel;
+    lbl151: TLabel;
+    lbl152: TLabel;
+    lbl153: TLabel;
+    lbl154: TLabel;
+    lbl155: TLabel;
+    lbl156: TLabel;
+    lbl157: TLabel;
+    lbl158: TLabel;
+    lbl159: TLabel;
+    lbl160: TLabel;
+    btnExocet40_Fire: TAdvSmoothButton;
+    edtExocet40_TRange: TEdit;
+    edtExocet40_TerminalRange: TEdit;
+    edtExocet40_TBearing: TEdit;
+    edtExocet40_ObstacleRange: TEdit;
+    edtExocet40_ObstacleAlt: TEdit;
+    edtExocet40_ApproachRange: TEdit;
+    btnTrack: TAdvSmoothButton;
+    cbbExocet40_AngularMode: TComboBox;
+    cbbExocet40_AgilityMode: TComboBox;
+    cbbExocet40_InitialStepMode: TComboBox;
+    cbbExocet40_Missile: TComboBox;
+    cbbExocet40_Number: TComboBox;
+    cbbExxocetLauncher: TComboBox;
+    chkExxoMask_13: TCheckBox;
+    chkExxoMask_14: TCheckBox;
+    chkExxoMask_15: TCheckBox;
+    chkExxoMask_16: TCheckBox;
+    chkExxoMask_5: TCheckBox;
+    chkExxoMask_6: TCheckBox;
+    chkExxoMask_7: TCheckBox;
+    chkExxoMask_8: TCheckBox;
+    chkExxoMask_9: TCheckBox;
+    chkExxoMask_10: TCheckBox;
+    chkExxoMask_11: TCheckBox;
+    chkExxoMask_12: TCheckBox;
+    chkExxoMask_1: TCheckBox;
+    chkExxoMask_2: TCheckBox;
+    chkExxoMask_3: TCheckBox;
+    chkExxoMask_4: TCheckBox;
+    btnLoadingExocet: TAdvSmoothButton;
+    edtExxocet40_LeftAngle: TEdit;
+    edtExxocet40_RightAngle: TEdit;
+    edtExxocet40_FarRange: TEdit;
+    edtExxocet40_NearRange: TEdit;
+    edtExxocet40_SeekOpenX: TEdit;
+    edtExxocet40_SeekOpenY: TEdit;
+    edtExxocet40_OpenSeekerHead: TEdit;
+    cbbExocet40_ApproachRange: TComboBox;
+    pgtwYAHKONT: TAdvTabSheet;
+    scrlbxYakhont: TScrollBox;
+    lbl161: TLabel;
+    lbl162: TLabel;
+    lbl163: TLabel;
+    lbl164: TLabel;
+    lbl165: TLabel;
+    lbl166: TLabel;
+    lbl167: TLabel;
+    lbl168: TLabel;
+    lbl169: TLabel;
+    lbl170: TLabel;
+    lbl78: TLabel;
+    lbl79: TLabel;
+    lbl80: TLabel;
+    lbl81: TLabel;
+    lbl171: TLabel;
+    lbl172: TLabel;
+    lblcoorXyakhont: TLabel;
+    lblcoorYyakhont: TLabel;
+    edtYahkont_TRange: TEdit;
+    edtYahkont_TBearing: TEdit;
+    edtYahkont_Number: TEdit;
+    edtYahkont_Missile: TEdit;
+    btnYahkont_Fire_: TAdvSmoothButton;
+    btnSetPosYahkont: TAdvSmoothButton;
+    cbbYahkontLauncher: TComboBox;
+    chkYahkontM1: TCheckBox;
+    chkYahkontM2: TCheckBox;
+    chkYahkontM3: TCheckBox;
+    chkYahkontM4: TCheckBox;
+    txt3: TStaticText;
+    txt4: TStaticText;
+    btnLoadingYakhont: TAdvSmoothButton;
+    btnReleaseYakhont: TAdvSmoothButton;
+    pgtwC802: TAdvTabSheet;
+    scrlbxC802: TScrollBox;
+    lbl173: TLabel;
+    lbl174: TLabel;
+    lbl175: TLabel;
+    lbl176: TLabel;
+    lbl177: TLabel;
+    lbl178: TLabel;
+    lbl179: TLabel;
+    lbl38: TLabel;
+    lbl65: TLabel;
+    lblKoorYc802: TLabel;
+    lblkoorXc802: TLabel;
+    edtC802_Number: TEdit;
+    edtC802_Missile: TEdit;
+    cbbC802Launcher: TComboBox;
+    btnC802_Fire: TAdvSmoothButton;
+    edtC802_TBearing: TEdit;
+    btnSetPosC802: TAdvSmoothButton;
+    edtC802_TRange: TEdit;
+    txt1: TStaticText;
+    txt2: TStaticText;
+    btnLoadingC802: TAdvSmoothButton;
+    pnl1: TPanel;
+    pnlStatusObject: TAdvSmoothPanel;
+    lblLat: TAdvSmoothLabel;
+    lblLong: TAdvSmoothLabel;
+    lblZCord: TAdvSmoothLabel;
+    lblLatValue: TAdvSmoothLabel;
+    lblLongVal: TAdvSmoothLabel;
+    lblZVal: TAdvSmoothLabel;
+    lblHeading: TAdvSmoothLabel;
+    lblSpeed: TAdvSmoothLabel;
+    lblPitch: TAdvSmoothLabel;
+    lblRoll: TAdvSmoothLabel;
+    lblHeadingVal: TAdvSmoothLabel;
+    lblSpeedVal: TAdvSmoothLabel;
+    lblPitchVal: TAdvSmoothLabel;
+    lblRollVal: TAdvSmoothLabel;
+    pnlImageObject: TAdvSmoothPanel;
+    lblShipName: TAdvSmoothLabel;
+    pnlWeapon: TAdvSmoothPanel;
+    lvWeapon: TListView;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -833,6 +808,10 @@ type
     procedure edtElevationValueKeyPress(Sender: TObject; var Key: Char);
     procedure trackBarElevationMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure btnAddVehicle4Click(Sender: TObject);
+    procedure btnAddVehicleZoomCenterMap1Click(Sender: TObject);
+    procedure btnAddVehicle1Click(Sender: TObject);
+    procedure btnAddVehicle2Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -866,6 +845,7 @@ type
   public
     { Public declarations }
     procedure SetFormLayout;
+    procedure SetProject;
     procedure SetFormEnvironment;
     procedure AssignStatus(ShipID, WeaponID, LauncherID, MissileID : Byte; AssignStatus : Boolean );
     procedure RefreshFormWeapon(const WeaponName : string);
@@ -959,6 +939,19 @@ const
 
   );
 
+procedure EnableComposited(WinControl:TWinControl);
+var
+  i:Integer;
+  NewExStyle:DWORD;
+begin
+  NewExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE) or WS_EX_COMPOSITED;
+  SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
+
+  for I := 0 to WinControl.ControlCount - 1 do
+    if WinControl.Controls[i] is TWinControl then
+      EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
+
 procedure TfrmGameController.FormCreate(Sender: TObject);
 begin
   SetObjectCreate;
@@ -970,6 +963,9 @@ begin
   unlockCam := False;
   //tmrSeaState.Enabled := True;
   frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.firstCekOpenGroupBar := False;
+
+  EnableComposited(pnlMain);
+//  EnableComposited(pnlMapInset);
 end;
 
 procedure TfrmGameController.DisplayController1Click(Sender: TObject);
@@ -1050,33 +1046,33 @@ begin
 //  vrWheelCameraRotateY.Radius       := 60;
 //  vrWheelCameraRotateY.Transparent  := false;
 
-  pnlRuangIns.Width  := imgRuangIns.Width + 20;
-  pnlRuangIns.Height := imgRuangIns.Height + 20;
-  pnlRuangIns.Top    := 75;
-  pnlRuangIns.Left   := 0;
+//  pnlRuangIns.Width  := imgRuangIns.Width + 20;
+//  pnlRuangIns.Height := imgRuangIns.Height + 20;
+//  pnlRuangIns.Top    := 75;
+//  pnlRuangIns.Left   := 0;
  // imgRuangIns.Left := 5;
  // imgRuangIns.top  := pnlRuangIns.Top + ;
-  lvClient.Top := 0;
-  lvClient.Left := imgRuangIns.Width + 30;
-
-  lvClient.Width := tsClient.Width - imgRuangIns.Width - 30;
-  lvClient.Align := alRight;
+//  lvClient.Top := 0;
+//  lvClient.Left := imgRuangIns.Width + 30;
+//
+//  lvClient.Width := tsClient.Width - imgRuangIns.Width - 30;
+//  lvClient.Align := alRight;
 
   { Listview Client}
-  for i:= 1 to lvClient.Columns.Count - 1 do
-  begin
-    if i = 3 then begin
-      lvClient.Columns[i].Width := lvClient.Columns[0].Width;
-    end
-    else if i = 6 then begin
-      lvClient.Columns[i].Width := ((lvClient.Width - lvClient.Columns[0].Width) div (lvClient.Columns.Count -1)) +
-      lvClient.Columns[0].Width;
-    end
-    else begin
-      lvClient.Columns[i].Width := (lvClient.Width - lvClient.Columns[0].Width) div (lvClient.Columns.Count -1);
-    end;
-
-    end;
+//  for i:= 1 to lvClient.Columns.Count - 1 do
+//  begin
+//    if i = 3 then begin
+//      lvClient.Columns[i].Width := lvClient.Columns[0].Width;
+//    end
+//    else if i = 6 then begin
+//      lvClient.Columns[i].Width := ((lvClient.Width - lvClient.Columns[0].Width) div (lvClient.Columns.Count -1)) +
+//      lvClient.Columns[0].Width;
+//    end
+//    else begin
+//      lvClient.Columns[i].Width := (lvClient.Width - lvClient.Columns[0].Width) div (lvClient.Columns.Count -1);
+//    end;
+//
+//    end;
 
   //Environment
   {wheel}
@@ -1173,7 +1169,7 @@ begin
    Top          := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Top;
    Left         := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Left;
    width        := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Width;
-   
+
    FillClientList;
 
    Show;
@@ -1264,6 +1260,49 @@ begin
   VisibleStatusShip(False, 1);
 
   TabMain.ActivePage := tsPlatform;
+end;
+
+procedure TfrmGameController.SetProject;
+var
+  strPath, worldproject : string;
+begin
+  {$REGION ' Setting Header '}
+  strPath := '..\data\images\NFS instruktur - interface\imageIns\';
+
+  worldproject := SimManager.instProjectSet.World;
+
+  if worldproject = 'NAFS' then
+  begin
+    imgHeaderProject.Picture.LoadFromFile(strPath + 'nafs_.bmp');
+//    pnlMainMenu.Fill.Color := $00D0875A;
+  end
+  else if worldproject = 'NSFS' then
+  begin
+    imgHeaderProject.Picture.LoadFromFile(strPath + 'nsfs_.bmp');
+//    pnlMainMenu.Fill.Color := $0040220F;
+  end
+  else if worldproject = 'NSSFS' then
+  begin
+    imgHeaderProject.Picture.LoadFromFile(strPath + 'nssfs_.bmp');
+//    pnlMainMenu.Fill.Color := $0058524F;
+  end;
+  {$ENDREGION}
+
+  {$REGION ' Setting Panel '}
+//  if worldproject = 'NAFS' then
+//  begin
+//    FrameControlLeft.pnlUp.Fill.Color := $00D0875A;
+//  end
+//  else if worldproject = 'NSFS' then
+//  begin
+//    FrameControlLeft.pnlUp.Fill.Color := $0040220F;
+//  end
+//  else if worldproject = 'NSSFS' then
+//  begin
+//    FrameControlLeft.pnlUp.Fill.Color := $0058524F;
+//  end;
+
+  {$ENDREGION}
 end;
 
 { ----------------------------------------------------------------------------------------- }
@@ -3112,7 +3151,7 @@ begin
    if not TryStrToInt(eRBU6000MissilieID.Text, missileID) then valid := false;
    if not TryStrToInt(Idlauncher, launcherID) then valid := false;
    if not TryStrToInt(eRBU6000Balistik.Text, MissileType) then valid := False;
-   if not TryStrToInt(edtRBU6000Number.Text, MissileNumber) then valid := False;
+   if not TryStrToInt(eRBU6000Number.Text, MissileNumber) then valid := False;
    if not TryStrToInt(eRBUTargetID.Text, TargetID) then valid := False;
    if not TryStrToInt(cbbRBUSalvoCount.Text, CountSalvo) then valid := False;
    if not TryStrToFloat(eRBU6000CorrBearing.Text, Corrbearing) then valid := False;
@@ -3202,6 +3241,26 @@ begin
 end;
 
 { Asroc }
+procedure TfrmGameController.btnAddVehicle1Click(Sender: TObject);
+begin
+  pnlEnvironment.BringToFront
+end;
+
+procedure TfrmGameController.btnAddVehicle2Click(Sender: TObject);
+begin
+  pnlReport.BringToFront
+end;
+
+procedure TfrmGameController.btnAddVehicle4Click(Sender: TObject);
+begin
+  pnlClient.BringToFront;
+end;
+
+procedure TfrmGameController.btnAddVehicleZoomCenterMap1Click(Sender: TObject);
+begin
+pnlPlatform.BringToFront;
+end;
+
 procedure TfrmGameController.btnAsrocFireClick(Sender: TObject);
 var
   valid : boolean ;
@@ -3222,7 +3281,7 @@ begin
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
   if not TryStrToInt(eAsrocLauncherID.Text, lcrID) then valid := false;
-  if not TryStrToInt(edtAsrocNumber.Text, MissileNumber) then valid := false;
+  if not TryStrToInt(eAsrocNumber.Text, MissileNumber) then valid := false;
   if not TryStrToInt(cbbAsrocMissileID.Text, MissileID) then valid := false;
   if not TryStrToInt(eAsrocTargetID.Text, TargetID) then valid := false;
 
@@ -3329,11 +3388,11 @@ begin
   if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToFloat(eTorpSUTCourse.Text,mCourse) then isvalid := False;
+  if not TryStrToFloat(edtTorpSUTCourse.Text,mCourse) then isvalid := False;
   if not TryStrToFloat(TorpSpeed , mSpeed) then isvalid := False;
-  if not TryStrToFloat(eTorpSUTDepth.Text,mDepth) then isvalid := False;
-  if not TryStrToFloat(eTorpSUTSafeDis.Text, mSafedistance) then isvalid := False;
-  if not TryStrToFloat(eTorpedoSUTEnDis.Text, mEnabledistance) then isvalid := False;
+  if not TryStrToFloat(edtTorpSUTDepth.Text,mDepth) then isvalid := False;
+  if not TryStrToFloat(edtTorpSUTSafeDis.Text, mSafedistance) then isvalid := False;
+  if not TryStrToFloat(edtTorpedoSUTEnDis.Text, mEnabledistance) then isvalid := False;
 
   if not TryStrToInt(edtTorpSUTTargetID.Text, TargetID) then isvalid := false;
   if not TryStrToInt(Idlauncher, lcrID) then isvalid := false;
@@ -4826,25 +4885,25 @@ begin
     else if console = 'MOC-2' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMoc2,LoadImgOff,OFFLINE)
+//        LoadImageLight(imgMoc2,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMoc2,LoadImgOn,ONLINE)
+//        LoadImageLight(imgMoc2,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMoc2,LoadImgRunning,RUNNING);
+//        LoadImageLight(imgMoc2,LoadImgRunning,RUNNING);
 
     end
     else if console = 'Yakhont' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgYakhont,LoadImgOff,OFFLINE)
+//        LoadImageLight(imgYakhont,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgYakhont,LoadImgOn,ONLINE)
+//        LoadImageLight(imgYakhont,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgYakhont,LoadImgRunning,RUNNING);
+//        LoadImageLight(imgYakhont,LoadImgRunning,RUNNING);
 
     end
     else if console = 'C-802' then
@@ -4973,123 +5032,123 @@ end;
 
 procedure TfrmGameController.SetImgSelectConsole;
 begin
-  img_moc1x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\moc1.bmp');
-  img_rbux.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\rbu.bmp');
-  img_tocosx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\tocos.bmp');
-  img_asrocx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\asroc.bmp');
-  img_wccx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\wcc.bmp');
-  img_moc2x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\moc2.bmp');
-  img_yakhontx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\yakhont.bmp');
-  img_c802x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\c802.bmp');
-  img_mistralx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\mistral.bmp');
-  img_strelax.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\strela.bmp');
-  img_m40x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\tds40.bmp');
-  img_m57x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\tds57.bmp');
+//  img_moc1x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\moc1.bmp');
+//  img_rbux.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\rbu.bmp');
+//  img_tocosx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\tocos.bmp');
+//  img_asrocx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\asroc.bmp');
+//  img_wccx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\wcc.bmp');
+//  img_moc2x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\moc2.bmp');
+//  img_yakhontx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\yakhont.bmp');
+//  img_c802x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\c802.bmp');
+//  img_mistralx.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\mistral.bmp');
+//  img_strelax.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\strela.bmp');
+//  img_m40x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\tds40.bmp');
+//  img_m57x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\tds57.bmp');
 
-  imgMoc1_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-MOC1_up.bmp');
-  imgRBU_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-RBU_up.bmp');
-  imgTocos_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-torpedosut_up.bmp');
-  imgAsroc_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-ASROC_up.bmp');
-  imgWCC_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\surface-120mm_up.bmp');
-  imgMoc2_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\surface-MOC2_up.bmp');
-  imgYakhont_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\surface-yakhont_up.bmp');
-  imgC802_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\surface-c802_up.bmp');
-  imgMistral_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-mistral_up.bmp');
-  imgStrela_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-strela_up.bmp');
-  imgTDS40_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-tds40mm_up.bmp');
-  imgTDS57_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-tds57mm_up.bmp');
+//  imgMoc1_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-MOC1_up.bmp');
+//  imgRBU_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-RBU_up.bmp');
+//  imgTocos_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-torpedosut_up.bmp');
+//  imgAsroc_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-ASROC_up.bmp');
+//  imgWCC_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\surface-120mm_up.bmp');
+//  imgMoc2_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\surface-MOC2_up.bmp');
+//  imgYakhont_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\surface-yakhont_up.bmp');
+//  imgC802_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\surface-c802_up.bmp');
+//  imgMistral_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-mistral_up.bmp');
+//  imgStrela_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-strela_up.bmp');
+//  imgTDS40_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-tds40mm_up.bmp');
+//  imgTDS57_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-tds57mm_up.bmp');
 
 
-  img_moc1x.Left    := img_moc1.Left;
-  img_moc1x.Top     := img_moc1.Top;
-  img_rbux.Left     := img_rbu.Left;
-  img_rbux.Top      := img_rbu.Top;
-  img_tocosx.Left   := img_tocos.Left;
-  img_tocosx.Top    := img_tocos.Top;
-  img_asrocx.Left   := img_asroc.Left;
-  img_asrocx.Top    := img_asroc.Top;
-  img_wccx.Left     := img_wcc.Left;
-  img_wccx.Top      := img_wcc.Top;
-  img_moc2x.Left    := img_moc2.Left;
-  img_moc2x.Top     := img_moc2.Top;
-  img_yakhontx.Left := img_yakhont.Left;
-  img_yakhontx.Top  := img_yakhont.Top;
-  img_c802x.Left    := img_c802.Left;
-  img_c802x.Top     := img_c802.Top;
-  img_mistralx.Left := img_mistral.Left;
-  img_mistralx.Top  := img_mistral.Top;
-  img_strelax.Left  := img_strela.Left;
-  img_strelax.Top   := img_strela.Top;
-  img_m40x.Left     := img_m40.Left;
-  img_m40x.Top      := img_m40.Top;
-  img_m57x.Left     := img_m57.Left;
-  img_m57x.Top      := img_m57.Top;
+//  img_moc1x.Left    := img_moc1.Left;
+//  img_moc1x.Top     := img_moc1.Top;
+//  img_rbux.Left     := img_rbu.Left;
+//  img_rbux.Top      := img_rbu.Top;
+//  img_tocosx.Left   := img_tocos.Left;
+//  img_tocosx.Top    := img_tocos.Top;
+//  img_asrocx.Left   := img_asroc.Left;
+//  img_asrocx.Top    := img_asroc.Top;
+//  img_wccx.Left     := img_wcc.Left;
+//  img_wccx.Top      := img_wcc.Top;
+//  img_moc2x.Left    := img_moc2.Left;
+//  img_moc2x.Top     := img_moc2.Top;
+//  img_yakhontx.Left := img_yakhont.Left;
+//  img_yakhontx.Top  := img_yakhont.Top;
+//  img_c802x.Left    := img_c802.Left;
+//  img_c802x.Top     := img_c802.Top;
+//  img_mistralx.Left := img_mistral.Left;
+//  img_mistralx.Top  := img_mistral.Top;
+//  img_strelax.Left  := img_strela.Left;
+//  img_strelax.Top   := img_strela.Top;
+//  img_m40x.Left     := img_m40.Left;
+//  img_m40x.Top      := img_m40.Top;
+//  img_m57x.Left     := img_m57.Left;
+//  img_m57x.Top      := img_m57.Top;
 
-  imgFrame1.Width  := 40;
-  imgFrame1.Height := 7;
-  imgFrame1.Top  := img_Ob1.Top - 1;
-  imgFrame1.Left := img_Ob1.Left - 2;
+//  imgFrame1.Width  := 40;
+//  imgFrame1.Height := 7;
+//  imgFrame1.Top  := img_Ob1.Top - 1;
+//  imgFrame1.Left := img_Ob1.Left - 2;
   img_Ob1.BringToFront;
 
-  imgFrame2.Width  := 40;
-  imgFrame2.Height := 7;
-  imgFrame2.Top  := img_Ob2.Top - 1;
-  imgFrame2.Left := img_Ob2.Left - 2;
+//  imgFrame2.Width  := 40;
+//  imgFrame2.Height := 7;
+//  imgFrame2.Top  := img_Ob2.Top - 1;
+//  imgFrame2.Left := img_Ob2.Left - 2;
   img_Ob2.BringToFront;
 
-  imgFrame3.Width  := 40;
-  imgFrame3.Height := 7;
-  imgFrame3.Top  := img_Ob3.Top - 1;
-  imgFrame3.Left := img_Ob3.Left - 2;
+//  imgFrame3.Width  := 40;
+//  imgFrame3.Height := 7;
+//  imgFrame3.Top  := img_Ob3.Top - 1;
+//  imgFrame3.Left := img_Ob3.Left - 2;
   img_Ob3.BringToFront;
 
-  imgFrame4.Width  := 40;
-  imgFrame4.Height := 7;
-  imgFrame4.Top  := img_Ob4.Top - 1;
-  imgFrame4.Left := img_Ob4.Left - 2;
+//  imgFrame4.Width  := 40;
+//  imgFrame4.Height := 7;
+//  imgFrame4.Top  := img_Ob4.Top - 1;
+//  imgFrame4.Left := img_Ob4.Left - 2;
   img_Ob4.BringToFront;
 
   //imgFrameServer.Width  := 83;
   //imgFrameServer.Height := 14;
-  imgFrameServer.Width  := 100;
-  imgFrameServer.Height := 30;
-  imgFrameServer.Top  := img_Server.Top - 3;
-  imgFrameServer.Left := img_Server.Left - 2;
+//  imgFrameServer.Width  := 100;
+//  imgFrameServer.Height := 30;
+//  imgFrameServer.Top  := img_Server.Top - 3;
+//  imgFrameServer.Left := img_Server.Left - 2;
   img_Server.BringToFront;
 end;
 
 procedure TfrmGameController.ClearAllVisibleConsole;
 begin
-   img_moc1x.Visible := false;
-   img_rbux.Visible := false;
-   img_tocosx.Visible := false;
-   img_asrocx.Visible := false;
-   img_wccx.Visible := false;
-   img_moc2x.Visible:= false;
-   img_yakhontx.Visible := false;
-   img_c802x.Visible := false;
-   img_mistralx.Visible := false;
-   img_strelax.Visible := false;
-   img_m40x.Visible := false;
-   img_m57x.Visible := false;
-   imgFrame1.Visible := false;
-   imgFrame2.Visible := false;
-   imgFrame3.Visible := false;
-   imgFrame4.Visible := false;
-   imgFrameServer.Visible := false;
+//   img_moc1x.Visible := false;
+//   img_rbux.Visible := false;
+//   img_tocosx.Visible := false;
+//   img_asrocx.Visible := false;
+//   img_wccx.Visible := false;
+//   img_moc2x.Visible:= false;
+//   img_yakhontx.Visible := false;
+//   img_c802x.Visible := false;
+//   img_mistralx.Visible := false;
+//   img_strelax.Visible := false;
+//   img_m40x.Visible := false;
+//   img_m57x.Visible := false;
+//   imgFrame1.Visible := false;
+//   imgFrame2.Visible := false;
+//   imgFrame3.Visible := false;
+//   imgFrame4.Visible := false;
+//   imgFrameServer.Visible := false;
 
-   imgMoc1_Amb2.Visible := false;
-   imgRBU_Amb2.Visible := false;
-   imgTocos_Amb2.Visible := false;
-   imgAsroc_Amb2.Visible := false;
-   imgWCC_Amb2.Visible := false;
-   imgMoc2_Amb2.Visible:= false;
-   imgYakhont_Amb2.Visible := false;
-   imgC802_Amb2.Visible := false;
-   imgMistral_Amb2.Visible := false;
-   imgStrela_Amb2.Visible := false;
-   imgTDS40_Amb2.Visible := false;
-   imgTDS57_Amb2.Visible := false;
+//   imgMoc1_Amb2.Visible := false;
+//   imgRBU_Amb2.Visible := false;
+//   imgTocos_Amb2.Visible := false;
+//   imgAsroc_Amb2.Visible := false;
+//   imgWCC_Amb2.Visible := false;
+//   imgMoc2_Amb2.Visible:= false;
+//   imgYakhont_Amb2.Visible := false;
+//   imgC802_Amb2.Visible := false;
+//   imgMistral_Amb2.Visible := false;
+//   imgStrela_Amb2.Visible := false;
+//   imgTDS40_Amb2.Visible := false;
+//   imgTDS57_Amb2.Visible := false;
 
 end;
 
@@ -5104,74 +5163,74 @@ begin
 
     if (console = 'MOC-1') or (console = 'SPS115') then
     begin
-      img_moc1x.Visible := true;
-      imgMoc1_Amb2.Visible := True;
+//      img_moc1x.Visible := true;
+//      imgMoc1_Amb2.Visible := True;
     end
     else if console = 'MOC-2' then
     begin
-      img_moc2x.Visible := true;
-      imgMoc2_Amb2.Visible := True;
+//      img_moc2x.Visible := true;
+//      imgMoc2_Amb2.Visible := True;
     end
     else if console = 'Yakhont' then
     begin
-      img_yakhontx.Visible := true;
-      imgYakhont_Amb2.Visible := True;
+//      img_yakhontx.Visible := true;
+//      imgYakhont_Amb2.Visible := True;
     end
     else if console = 'C-802' then
     begin
-      img_c802x.Visible := true;
-      imgC802_Amb2.Visible := True;
+//      img_c802x.Visible := true;
+//      imgC802_Amb2.Visible := True;
     end
     else if console = 'WCC' then
     begin
-      img_wccx.Visible := true;
-      imgWCC_Amb2.Visible := True;
+//      img_wccx.Visible := true;
+//      imgWCC_Amb2.Visible := True;
     end
     else if console = 'MISTRAL' then
     begin
-      img_mistralx.Visible := true;
-      imgMistral_Amb2.Visible := true;
+//      img_mistralx.Visible := true;
+//      imgMistral_Amb2.Visible := true;
     end
     else if console = 'STRELLA' then
     begin
-      img_strelax.Visible := true;
-      imgStrela_Amb2.Visible := True;
+//      img_strelax.Visible := true;
+//      imgStrela_Amb2.Visible := True;
     end
     else if console = 'TDS Meriam 57' then
     begin
-      img_m57x.Visible := true;
-      imgTDS57_Amb2.Visible := True;
+//      img_m57x.Visible := true;
+//      imgTDS57_Amb2.Visible := True;
     end
     else if console = 'TDS Meriam 40' then
     begin
-      img_m40x.Visible := true;
-      imgTDS40_Amb2.Visible := True;
+//      img_m40x.Visible := true;
+//      imgTDS40_Amb2.Visible := True;
     end
     else if console = 'Asroc' then
     begin
-      img_asrocx.Visible := true;
-      imgAsroc_Amb2.Visible := True;
+//      img_asrocx.Visible := true;
+//      imgAsroc_Amb2.Visible := True;
     end
     else if console = 'Tocos' then
     begin
-      img_tocosx.Visible := true;
-      imgTocos_Amb2.Visible := True;
+//      img_tocosx.Visible := true;
+//      imgTocos_Amb2.Visible := True;
     end
     else if console = 'RBU 6000' then
     begin
-      img_rbux.Visible := true;
-      imgRBU_Amb2.Visible := True;
+//      img_rbux.Visible := true;
+//      imgRBU_Amb2.Visible := True;
     end
     else if console = '3D SERVER' then
-      imgFrameServer.Visible := true
+//      imgFrameServer.Visible := true
     else if console = 'OBSERVER-1' then
-      imgFrame1.Visible := true
+//      imgFrame1.Visible := true
     else if console = 'OBSERVER-2' then
-      imgFrame2.Visible := true
+//      imgFrame2.Visible := true
     else if console = 'OBSERVER-3' then
-      imgFrame3.Visible := true
+//      imgFrame3.Visible := true
     else if console = 'OBSERVER-4' then
-      imgFrame4.Visible := true;
+//      imgFrame4.Visible := true;
   end;
 end;
 
@@ -5348,9 +5407,9 @@ if cbbRBUassigntment.ItemIndex = 0 then
 begin
    btnRBU6000Assign.Visible := False;
    btnRBU6000Auto.Visible   := True;
-   Label16.Visible          := False;
+//   Label16.Visible          := False;
    eRBU6000Bearing.Visible  := False;
-   Label36.Visible          := False;
+//   Label36.Visible          := False;
    eRBU6000Range.Visible    := False;
    lbl47.Visible            := True;
    eRBUTargetID.Visible     := True;
@@ -5364,9 +5423,9 @@ else if cbbRBUassigntment.ItemIndex = 1 then
 begin
    btnRBU6000Assign.Visible := True;
    btnRBU6000Auto.Visible   := False;
-   Label16.Visible          := True;
+//   Label16.Visible          := True;
    eRBU6000Bearing.Visible  := True;
-   Label36.Visible          := True;
+//   Label36.Visible          := True;
    eRBU6000Range.Visible    := True;
    lbl47.Visible            := False;
    eRBUTargetID.Visible     := False;
@@ -5577,48 +5636,48 @@ procedure TfrmGameController.edtTampungChange(Sender: TObject);
 begin
   if edtTampung.Text = '0' then
   begin
-    eTorpSUTCourse.Visible := False;
+    edtTorpSUTCourse.Visible := False;
     cbbTorpSutSpeed.Visible:= False;
-    eTorpSUTDepth.Visible  := False;
+    edtTorpSUTDepth.Visible  := False;
     btnhandleTorpedoSUT.Visible := False;
     btnHomingTorpedoSUT.Visible := False;
     btnSearchTorpedoSUT.Visible := False;
-    label7.Visible := False;
-    label6.Visible := False;
-    label5.Visible := False;
+//    label7.Visible := False;
+//    label6.Visible := False;
+//    label5.Visible := False;
     lbl18.Visible := False;
     lbl19.Visible := False;
     lbl20.Visible := False;
 
-    Label60.Visible := True;
+//    Label60.Visible := True;
     lbl52.Visible := True;
-    label3.Visible := True;
+//    label3.Visible := True;
     lbl21.Visible := True;
     lbl53.Visible := True;
-    eTorpSUTSafeDis.Visible := True;
-    eTorpedoSUTEnDis.Visible:= True;
+    edtTorpSUTSafeDis.Visible := True;
+    edtTorpedoSUTEnDis.Visible:= True;
     cbbTorpPredMode.Visible := True;
     btnFireTorpodoSUT.Visible := True;
   end
   else if edtTampung.Text = '1' then
   begin
-    eTorpSUTCourse.Visible := True;
+    edtTorpSUTCourse.Visible := True;
     cbbTorpSutSpeed.Visible:= True;
-    eTorpSUTDepth.Visible  := True;
+    edtTorpSUTDepth.Visible  := True;
     btnhandleTorpedoSUT.Visible := True;
     btnHomingTorpedoSUT.Visible := True;
     btnSearchTorpedoSUT.Visible := True;
-    label7.Visible := True;
-    label6.Visible := True;
-    label5.Visible := True;
+//    label7.Visible := True;
+//    label6.Visible := True;
+//    label5.Visible := True;
     lbl18.Visible := True;
     lbl19.Visible := True;
     lbl20.Visible := True;
 
-    eTorpSUTSafeDis.Visible := False;
-    eTorpedoSUTEnDis.Visible:= False;
+    edtTorpSUTSafeDis.Visible := False;
+    edtTorpedoSUTEnDis.Visible:= False;
     btnFireTorpodoSUT.Visible := False;
-    Label60.Visible := False;
+//    Label60.Visible := False;
     lbl52.Visible := False;
     lbl21.Visible  := False;
     lbl53.Visible := False;
