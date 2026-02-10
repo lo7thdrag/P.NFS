@@ -210,9 +210,7 @@ type
     pnlPlatformLeft: TPanel;
     TabSelectObject: TAdvSmoothTabPager;
     tsSelectShip: TAdvSmoothTabPage;
-    lvRuntimeShip: TListView;
     tsSelectWeapon: TAdvSmoothTabPage;
-    lvRuntimeMissile: TListView;
     pnlControlObject: TAdvSmoothPanel;
     btnRemoveObject: TAdvSmoothButton;
     btnRepostObject: TAdvSmoothButton;
@@ -220,8 +218,6 @@ type
     pnlPlatfromUp: TAdvSmoothPanel;
     tabControl: TAdvSmoothTabPager;
     pnlPlayerCamera: TAdvSmoothPanel;
-    lblCameraMove: TAdvSmoothLabel;
-    lblCameraRotate2: TAdvSmoothLabel;
     lblPinCamera: TAdvSmoothLabel;
     pnlCameraSelectID: TAdvSmoothPanel;
     lbl223: TAdvSmoothLabel;
@@ -675,6 +671,10 @@ type
     lblShipName: TAdvSmoothLabel;
     pnlWeapon: TAdvSmoothPanel;
     lvWeapon: TListView;
+    lblCameraMove: TAdvSmoothLabel;
+    lblCameraRotate2: TAdvSmoothLabel;
+    lvRuntimeMissile: TListView;
+    lvRuntimeShip: TListView;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -5482,6 +5482,10 @@ begin
   rec.valueDbl := 0;
 
   SimManager.NetSendTo3D_CommandCamera(@rec);
+
+  pnlPinCamera.Visible := True;
+  pnlCameraRotateOld.Visible := False;
+  pnlCameraMove.Visible := False;
 end;
 
 procedure TfrmGameController.edtAzimutExit(Sender: TObject);
@@ -5630,6 +5634,10 @@ begin
   rec.valueDbl := 0;
 
   SimManager.NetSendTo3D_CommandCamera(@rec);
+
+  pnlPinCamera.Visible := False;
+  pnlCameraRotateOld.Visible := True;
+  pnlCameraMove.Visible := True;
 end;
 
 procedure TfrmGameController.edtTampungChange(Sender: TObject);

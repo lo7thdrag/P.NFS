@@ -4,7 +4,7 @@ object frmGameController: TfrmGameController
   BorderIcons = [biSystemMenu]
   BorderStyle = bsNone
   Caption = 'Game Controller'
-  ClientHeight = 1060
+  ClientHeight = 1056
   ClientWidth = 1920
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14553,7 +14553,7 @@ object frmGameController: TfrmGameController
   end
   object pnlInfo: TAdvSmoothPanel
     Left = 0
-    Top = 997
+    Top = 993
     Width = 1920
     Height = 63
     Cursor = crDefault
@@ -14590,6 +14590,7 @@ object frmGameController: TfrmGameController
     Version = '1.6.0.1'
     Align = alBottom
     TabOrder = 2
+    ExplicitTop = 997
     TMSStyle = 0
     object AdvSmoothPanel2: TAdvSmoothPanel
       Left = 0
@@ -14676,7 +14677,7 @@ object frmGameController: TfrmGameController
     Left = 0
     Top = 82
     Width = 1920
-    Height = 915
+    Height = 911
     Fill.ColorMirror = clNone
     Fill.ColorMirrorTo = clNone
     Fill.GradientType = gtVertical
@@ -14699,12 +14700,13 @@ object frmGameController: TfrmGameController
     TabReorder = False
     OnChange = TabMainChange
     TabOrder = 0
+    ExplicitHeight = 915
     TMSStyle = 0
     object tsPlatform: TAdvSmoothTabPage
       Left = 0
       Top = 50
       Width = 1920
-      Height = 864
+      Height = 860
       Cursor = crHandPoint
       Caption = 'Platform'
       PageAppearance.ColorTo = clSilver
@@ -14754,7 +14756,7 @@ object frmGameController: TfrmGameController
       Left = 0
       Top = 50
       Width = 1920
-      Height = 864
+      Height = 860
       Cursor = crHandPoint
       Caption = 'Client'
       PageAppearance.ColorTo = clSilver
@@ -14803,7 +14805,7 @@ object frmGameController: TfrmGameController
       Left = 0
       Top = 50
       Width = 1920
-      Height = 864
+      Height = 860
       Cursor = crHandPoint
       Caption = 'Environment'
       PageAppearance.Color = 7301478
@@ -181108,7 +181110,7 @@ object frmGameController: TfrmGameController
       Left = 0
       Top = 50
       Width = 1920
-      Height = 864
+      Height = 860
       Caption = 'Map'
       PageAppearance.ColorTo = clSilver
       PageAppearance.ColorMirror = clSilver
@@ -181157,7 +181159,7 @@ object frmGameController: TfrmGameController
         Left = 2
         Top = 2
         Width = 417
-        Height = 860
+        Height = 856
         Cursor = crDefault
         Caption.Location = plTopCenter
         Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -181192,12 +181194,13 @@ object frmGameController: TfrmGameController
         Version = '1.6.0.1'
         Align = alLeft
         TabOrder = 0
+        ExplicitHeight = 860
         TMSStyle = 0
         object AdvSmoothTabPager1: TAdvSmoothTabPager
           Left = 0
           Top = 0
           Width = 417
-          Height = 860
+          Height = 856
           Fill.ColorMirror = clNone
           Fill.ColorMirrorTo = clNone
           Fill.GradientType = gtVertical
@@ -181217,12 +181220,13 @@ object frmGameController: TfrmGameController
           TabSettings.Width = 180
           TabReorder = False
           TabOrder = 0
+          ExplicitHeight = 860
           TMSStyle = 0
           object AdvSmoothTabPage1: TAdvSmoothTabPage
             Left = 1
             Top = 40
             Width = 415
-            Height = 818
+            Height = 814
             Caption = 'Ship'
             PageAppearance.Color = 7301478
             PageAppearance.ColorTo = clSilver
@@ -181271,7 +181275,7 @@ object frmGameController: TfrmGameController
               Left = 2
               Top = 2
               Width = 411
-              Height = 735
+              Height = 731
               Align = alClient
               Columns = <
                 item
@@ -181297,10 +181301,11 @@ object frmGameController: TfrmGameController
               ParentFont = False
               TabOrder = 0
               ViewStyle = vsReport
+              ExplicitHeight = 735
             end
             object pnlTrajectory: TAdvSmoothPanel
               Left = 2
-              Top = 737
+              Top = 733
               Width = 411
               Height = 79
               Cursor = crDefault
@@ -181337,6 +181342,7 @@ object frmGameController: TfrmGameController
               Version = '1.6.0.1'
               Align = alBottom
               TabOrder = 1
+              ExplicitTop = 737
               TMSStyle = 0
               object advsmthlbl1: TAdvSmoothLabel
                 Left = 43
@@ -181432,7 +181438,7 @@ object frmGameController: TfrmGameController
             Left = 1
             Top = 40
             Width = 415
-            Height = 818
+            Height = 814
             Caption = 'Weapon'
             PageAppearance.Color = 7301478
             PageAppearance.ColorTo = clSilver
@@ -181480,7 +181486,7 @@ object frmGameController: TfrmGameController
               Left = 2
               Top = 2
               Width = 411
-              Height = 735
+              Height = 731
               Align = alClient
               Columns = <
                 item
@@ -181506,10 +181512,11 @@ object frmGameController: TfrmGameController
               ParentFont = False
               TabOrder = 0
               ViewStyle = vsReport
+              ExplicitHeight = 735
             end
             object AdvSmoothPanel1: TAdvSmoothPanel
               Left = 2
-              Top = 737
+              Top = 733
               Width = 411
               Height = 79
               Cursor = crDefault
@@ -181547,6 +181554,7 @@ object frmGameController: TfrmGameController
               Align = alBottom
               Visible = False
               TabOrder = 1
+              ExplicitTop = 737
               TMSStyle = 0
               object AdvSmoothButton1: TAdvSmoothButton
                 Left = 1
@@ -181590,7 +181598,7 @@ object frmGameController: TfrmGameController
         Left = 419
         Top = 2
         Width = 1499
-        Height = 860
+        Height = 856
         Fill.ColorMirror = clNone
         Fill.ColorMirrorTo = clNone
         Fill.GradientType = gtVertical
@@ -181611,12 +181619,13 @@ object frmGameController: TfrmGameController
         TabReorder = False
         OnChange = tsTrajectoryMapviewChange
         TabOrder = 1
+        ExplicitHeight = 860
         TMSStyle = 0
         object tsMapViewTrajectory: TAdvSmoothTabPage
           Left = 1
           Top = 40
           Width = 1497
-          Height = 818
+          Height = 814
           Caption = 'Map View'
           PageAppearance.Color = 7301478
           PageAppearance.ColorTo = clSilver
@@ -181664,14 +181673,14 @@ object frmGameController: TfrmGameController
             Left = 2
             Top = 2
             Width = 1493
-            Height = 814
+            Height = 810
             ParentColor = False
             Align = alClient
             TabOrder = 0
             ExplicitWidth = 1161
             ExplicitHeight = 588
             ControlData = {
-              8A1A06004E9A000021540000010000000F0000FF0D47656F44696374696F6E61
+              8A1A06004E9A0000B7530000010000000F0000FF0D47656F44696374696F6E61
               727905456D70747900E8030000000000000000000002000E001E000000000000
               0000000000000000000000000000000000000000000600010000000000500001
               010000640000000001F4010000050000800C000000000000000000000000FFFF
@@ -181683,7 +181692,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000E0C17F0F0100000024E897001C000000000000000000000000
+              01000118010000E0C17F0F01000000252E55771C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -181699,8 +181708,8 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000001BF21360000000054
-              EC970004E89700000000006688CE50000200006B88CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000030F39700E0
+              EE9700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -181708,7 +181717,7 @@ object frmGameController: TfrmGameController
           Left = 1
           Top = 40
           Width = 1497
-          Height = 818
+          Height = 814
           Caption = 'Trajectory'
           PageAppearance.Color = 7301478
           PageAppearance.ColorTo = clSilver
@@ -181756,7 +181765,7 @@ object frmGameController: TfrmGameController
             Left = 2
             Top = 2
             Width = 1493
-            Height = 814
+            Height = 810
             Align = alClient
             ExplicitWidth = 1161
             ExplicitHeight = 588
@@ -181768,7 +181777,7 @@ object frmGameController: TfrmGameController
       Left = 0
       Top = 50
       Width = 1920
-      Height = 864
+      Height = 860
       Caption = 'Report'
       PageAppearance.ColorTo = clSilver
       PageAppearance.ColorMirror = clSilver
@@ -181818,23 +181827,25 @@ object frmGameController: TfrmGameController
     Left = 0
     Top = 82
     Width = 1920
-    Height = 915
+    Height = 911
     Align = alClient
     BevelOuter = bvNone
     Color = clMedGray
     TabOrder = 3
+    ExplicitHeight = 915
     object pnlClient: TPanel
       Left = 0
       Top = 0
       Width = 1920
-      Height = 915
+      Height = 911
       Align = alClient
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 0
+      ExplicitHeight = 915
       DesignSize = (
         1920
-        915)
+        911)
       object pnlClientLayout: TPanel
         Left = 6
         Top = 2
@@ -198750,31 +198761,34 @@ object frmGameController: TfrmGameController
       Left = 0
       Top = 0
       Width = 1920
-      Height = 915
+      Height = 911
       Align = alClient
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 1
+      ExplicitHeight = 915
       object mmoReport: TMemo
         Left = 0
         Top = 0
         Width = 1920
-        Height = 915
+        Height = 911
         Align = alClient
         ReadOnly = True
         ScrollBars = ssBoth
         TabOrder = 0
+        ExplicitHeight = 915
       end
     end
     object pnlEnvironment: TPanel
       Left = 0
       Top = 0
       Width = 1920
-      Height = 915
+      Height = 911
       Align = alClient
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 3
+      ExplicitHeight = 915
       object lbl: TLabel
         Left = 892
         Top = 99
@@ -199596,234 +199610,38 @@ object frmGameController: TfrmGameController
       Left = 0
       Top = 0
       Width = 1920
-      Height = 915
+      Height = 911
       Align = alClient
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 4
+      ExplicitHeight = 915
     end
     object pnlPlatform: TPanel
       Left = 0
       Top = 0
       Width = 1920
-      Height = 915
+      Height = 911
       Align = alClient
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 2
+      ExplicitHeight = 915
       object pnlPlatformLeft: TPanel
         Left = 0
         Top = 0
         Width = 407
-        Height = 915
+        Height = 911
         Align = alLeft
         BevelOuter = bvNone
         Color = clSilver
         TabOrder = 0
-        object TabSelectObject: TAdvSmoothTabPager
+        ExplicitHeight = 915
+        object pnlControlObject: TAdvSmoothPanel
           Left = 0
           Top = 0
           Width = 407
-          Height = 843
-          Fill.Color = 16773091
-          Fill.ColorTo = 16768452
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Transparent = False
-          Align = alClient
-          ActivePage = tsSelectWeapon
-          TabSettings.LeftMargin = 0
-          TabSettings.RightMargin = 0
-          TabSettings.StartMargin = 0
-          TabSettings.Height = 40
-          TabSettings.Spacing = 5
-          TabSettings.Width = 175
-          TabReorder = False
-          OnChange = TabSelectObjectChange
-          TabOrder = 0
-          ExplicitTop = 128
-          ExplicitHeight = 715
-          TMSStyle = 0
-          object tsSelectShip: TAdvSmoothTabPage
-            Left = 1
-            Top = 40
-            Width = 405
-            Height = 801
-            Caption = 'Ship'
-            PageAppearance.Color = 7301478
-            PageAppearance.ColorTo = clSilver
-            PageAppearance.ColorMirror = clSilver
-            PageAppearance.ColorMirrorTo = 7301478
-            PageAppearance.GradientType = gtVertical
-            PageAppearance.GradientMirrorType = gtVertical
-            PageAppearance.BorderColor = clNone
-            PageAppearance.Rounding = 0
-            PageAppearance.ShadowOffset = 0
-            PageAppearance.Glow = gmNone
-            TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-            TabAppearance.Appearance.Font.Color = clWhite
-            TabAppearance.Appearance.Font.Height = -11
-            TabAppearance.Appearance.Font.Name = 'Tahoma'
-            TabAppearance.Appearance.Font.Style = [fsBold]
-            TabAppearance.Appearance.SimpleLayout = True
-            TabAppearance.Appearance.Rounding = 0
-            TabAppearance.Status.Caption = '0'
-            TabAppearance.Status.Appearance.Fill.Color = clRed
-            TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-            TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-            TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-            TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-            TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-            TabAppearance.Status.Appearance.Fill.Rounding = 0
-            TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-            TabAppearance.Status.Appearance.Fill.Glow = gmNone
-            TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-            TabAppearance.Status.Appearance.Font.Color = clWhite
-            TabAppearance.Status.Appearance.Font.Height = -11
-            TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-            TabAppearance.Status.Appearance.Font.Style = []
-            TabAppearance.Bevel = False
-            TabAppearance.BevelColor = 16765357
-            TabAppearance.BevelColorDown = 16640730
-            TabAppearance.BevelColorSelected = 16640730
-            TabAppearance.BevelColorHot = 16640730
-            TabAppearance.BevelColorDisabled = 16640730
-            TabAppearance.Color = 7301478
-            TabAppearance.ColorDown = clBlack
-            TabAppearance.ColorSelected = clBlack
-            TabAppearance.ColorHot = clSilver
-            TabAppearance.ColorDisabled = 7301478
-            TMSStyle = 0
-            object lvRuntimeShip: TListView
-              Left = 2
-              Top = 2
-              Width = 401
-              Height = 797
-              Align = alClient
-              Columns = <
-                item
-                  Caption = 'Ship Name'
-                  Width = 180
-                end
-                item
-                  Caption = 'Domain '
-                  Width = 100
-                end
-                item
-                  Caption = 'Type'
-                  Width = 80
-                end>
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
-              Font.Style = [fsBold]
-              GridLines = True
-              ReadOnly = True
-              RowSelect = True
-              ParentFont = False
-              TabOrder = 0
-              ViewStyle = vsReport
-              OnClick = lvRuntimeShipClick
-              ExplicitHeight = 669
-            end
-          end
-          object tsSelectWeapon: TAdvSmoothTabPage
-            Left = 1
-            Top = 40
-            Width = 405
-            Height = 801
-            Caption = 'Weapon'
-            PageAppearance.Color = 7301478
-            PageAppearance.ColorTo = clSilver
-            PageAppearance.ColorMirror = clSilver
-            PageAppearance.ColorMirrorTo = 7301478
-            PageAppearance.GradientType = gtVertical
-            PageAppearance.GradientMirrorType = gtVertical
-            PageAppearance.BorderColor = clNone
-            PageAppearance.Rounding = 0
-            PageAppearance.ShadowOffset = 0
-            PageAppearance.Glow = gmNone
-            TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-            TabAppearance.Appearance.Font.Color = clWhite
-            TabAppearance.Appearance.Font.Height = -11
-            TabAppearance.Appearance.Font.Name = 'Tahoma'
-            TabAppearance.Appearance.Font.Style = [fsBold]
-            TabAppearance.Appearance.SimpleLayout = True
-            TabAppearance.Appearance.Rounding = 0
-            TabAppearance.Status.Caption = '0'
-            TabAppearance.Status.Appearance.Fill.Color = clRed
-            TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-            TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-            TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-            TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-            TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-            TabAppearance.Status.Appearance.Fill.Rounding = 0
-            TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-            TabAppearance.Status.Appearance.Fill.Glow = gmNone
-            TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-            TabAppearance.Status.Appearance.Font.Color = clWhite
-            TabAppearance.Status.Appearance.Font.Height = -11
-            TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-            TabAppearance.Status.Appearance.Font.Style = []
-            TabAppearance.Bevel = False
-            TabAppearance.BevelColor = 16765357
-            TabAppearance.BevelColorDown = 16640730
-            TabAppearance.BevelColorSelected = 16640730
-            TabAppearance.BevelColorHot = 16640730
-            TabAppearance.BevelColorDisabled = 16640730
-            TabAppearance.Color = 7301478
-            TabAppearance.ColorDown = clBlack
-            TabAppearance.ColorSelected = clBlack
-            TabAppearance.ColorHot = clSilver
-            TabAppearance.ColorDisabled = 7301478
-            TMSStyle = 0
-            object lvRuntimeMissile: TListView
-              Left = 2
-              Top = 2
-              Width = 401
-              Height = 797
-              Align = alClient
-              Columns = <
-                item
-                  Caption = 'Missile Name'
-                  Width = 150
-                end
-                item
-                  Caption = 'Missile Parent'
-                  Width = 130
-                end
-                item
-                  Caption = 'Launcher'
-                  Width = 100
-                end>
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
-              Font.Style = [fsBold]
-              GridLines = True
-              ReadOnly = True
-              RowSelect = True
-              ParentFont = False
-              TabOrder = 0
-              ViewStyle = vsReport
-              OnClick = lvRuntimeMissileClick
-              ExplicitHeight = 669
-            end
-          end
-        end
-        object pnlControlObject: TAdvSmoothPanel
-          Left = 0
-          Top = 843
-          Width = 407
-          Height = 72
+          Height = 911
           Cursor = crDefault
           Caption.Location = plTopCenter
           Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -199856,12 +199674,14 @@ object frmGameController: TfrmGameController
           Fill.ShadowOffset = 10
           Fill.Glow = gmNone
           Version = '1.6.0.1'
-          Align = alBottom
-          TabOrder = 1
+          Align = alClient
+          TabOrder = 0
+          ExplicitTop = 843
+          ExplicitHeight = 72
           TMSStyle = 0
           object btnRemoveObject: TAdvSmoothButton
-            Left = 38
-            Top = 15
+            Left = 41
+            Top = 831
             Width = 160
             Height = 46
             Cursor = crHandPoint
@@ -199895,8 +199715,8 @@ object frmGameController: TfrmGameController
             TMSStyle = 0
           end
           object btnRepostObject: TAdvSmoothButton
-            Left = 206
-            Top = 15
+            Left = 207
+            Top = 831
             Width = 160
             Height = 46
             Cursor = crHandPoint
@@ -199929,18 +199749,211 @@ object frmGameController: TfrmGameController
             OnClick = btnRepostObjectClick
             TMSStyle = 0
           end
+          object TabSelectObject: TAdvSmoothTabPager
+            Left = 8
+            Top = 35
+            Width = 391
+            Height = 510
+            Fill.Color = 7301478
+            Fill.ColorTo = 16768452
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Transparent = False
+            ActivePage = tsSelectShip
+            TabSettings.LeftMargin = 0
+            TabSettings.RightMargin = 0
+            TabSettings.StartMargin = 0
+            TabSettings.Height = 40
+            TabSettings.Spacing = 5
+            TabSettings.Width = 200
+            TabReorder = False
+            OnChange = TabSelectObjectChange
+            TabOrder = 2
+            TMSStyle = 0
+            object tsSelectShip: TAdvSmoothTabPage
+              Left = 1
+              Top = 40
+              Width = 389
+              Height = 468
+              Caption = 'Ship'
+              PageAppearance.Color = 7301478
+              PageAppearance.ColorTo = clSilver
+              PageAppearance.ColorMirror = clSilver
+              PageAppearance.ColorMirrorTo = 7301478
+              PageAppearance.GradientType = gtVertical
+              PageAppearance.GradientMirrorType = gtVertical
+              PageAppearance.BorderColor = clNone
+              PageAppearance.Rounding = 0
+              PageAppearance.ShadowOffset = 0
+              PageAppearance.Glow = gmNone
+              TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
+              TabAppearance.Appearance.Font.Color = clWhite
+              TabAppearance.Appearance.Font.Height = -11
+              TabAppearance.Appearance.Font.Name = 'Tahoma'
+              TabAppearance.Appearance.Font.Style = [fsBold]
+              TabAppearance.Appearance.SimpleLayout = True
+              TabAppearance.Appearance.Rounding = 0
+              TabAppearance.Status.Caption = '0'
+              TabAppearance.Status.Appearance.Fill.Color = clRed
+              TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
+              TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
+              TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
+              TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
+              TabAppearance.Status.Appearance.Fill.BorderColor = clGray
+              TabAppearance.Status.Appearance.Fill.Rounding = 0
+              TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
+              TabAppearance.Status.Appearance.Fill.Glow = gmNone
+              TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
+              TabAppearance.Status.Appearance.Font.Color = clWhite
+              TabAppearance.Status.Appearance.Font.Height = -11
+              TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
+              TabAppearance.Status.Appearance.Font.Style = []
+              TabAppearance.Bevel = False
+              TabAppearance.BevelColor = 16765357
+              TabAppearance.BevelColorDown = 16640730
+              TabAppearance.BevelColorSelected = 16640730
+              TabAppearance.BevelColorHot = 16640730
+              TabAppearance.BevelColorDisabled = 16640730
+              TabAppearance.Color = 7301478
+              TabAppearance.ColorDown = clBlack
+              TabAppearance.ColorSelected = clBlack
+              TabAppearance.ColorHot = clSilver
+              TabAppearance.ColorDisabled = 7301478
+              TMSStyle = 0
+              object lvRuntimeShip: TListView
+                Left = 9
+                Top = 9
+                Width = 388
+                Height = 778
+                Columns = <
+                  item
+                    Caption = 'Ship Name'
+                    Width = 180
+                  end
+                  item
+                    Caption = 'Domain '
+                    Width = 100
+                  end
+                  item
+                    Caption = 'Type'
+                    Width = 80
+                  end>
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -11
+                Font.Name = 'MS Sans Serif'
+                Font.Style = [fsBold]
+                GridLines = True
+                ReadOnly = True
+                RowSelect = True
+                ParentFont = False
+                TabOrder = 0
+                ViewStyle = vsReport
+                OnClick = lvRuntimeShipClick
+              end
+            end
+            object tsSelectWeapon: TAdvSmoothTabPage
+              Left = 1
+              Top = 40
+              Width = 389
+              Height = 468
+              Caption = 'Weapon'
+              PageAppearance.Color = 7301478
+              PageAppearance.ColorTo = clSilver
+              PageAppearance.ColorMirror = clSilver
+              PageAppearance.ColorMirrorTo = 7301478
+              PageAppearance.GradientType = gtVertical
+              PageAppearance.GradientMirrorType = gtVertical
+              PageAppearance.BorderColor = clNone
+              PageAppearance.Rounding = 0
+              PageAppearance.ShadowOffset = 0
+              PageAppearance.Glow = gmNone
+              TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
+              TabAppearance.Appearance.Font.Color = clWhite
+              TabAppearance.Appearance.Font.Height = -11
+              TabAppearance.Appearance.Font.Name = 'Tahoma'
+              TabAppearance.Appearance.Font.Style = [fsBold]
+              TabAppearance.Appearance.SimpleLayout = True
+              TabAppearance.Appearance.Rounding = 0
+              TabAppearance.Status.Caption = '0'
+              TabAppearance.Status.Appearance.Fill.Color = clRed
+              TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
+              TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
+              TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
+              TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
+              TabAppearance.Status.Appearance.Fill.BorderColor = clGray
+              TabAppearance.Status.Appearance.Fill.Rounding = 0
+              TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
+              TabAppearance.Status.Appearance.Fill.Glow = gmNone
+              TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
+              TabAppearance.Status.Appearance.Font.Color = clWhite
+              TabAppearance.Status.Appearance.Font.Height = -11
+              TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
+              TabAppearance.Status.Appearance.Font.Style = []
+              TabAppearance.Bevel = False
+              TabAppearance.BevelColor = 16765357
+              TabAppearance.BevelColorDown = 16640730
+              TabAppearance.BevelColorSelected = 16640730
+              TabAppearance.BevelColorHot = 16640730
+              TabAppearance.BevelColorDisabled = 16640730
+              TabAppearance.Color = 7301478
+              TabAppearance.ColorDown = clBlack
+              TabAppearance.ColorSelected = clBlack
+              TabAppearance.ColorHot = clSilver
+              TabAppearance.ColorDisabled = 7301478
+              TMSStyle = 0
+              object lvRuntimeMissile: TListView
+                Left = 8
+                Top = 10
+                Width = 388
+                Height = 779
+                Columns = <
+                  item
+                    Caption = 'Missile Name'
+                    Width = 150
+                  end
+                  item
+                    Caption = 'Missile Parent'
+                    Width = 130
+                  end
+                  item
+                    Caption = 'Launcher'
+                    Width = 100
+                  end>
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -11
+                Font.Name = 'MS Sans Serif'
+                Font.Style = [fsBold]
+                GridLines = True
+                ReadOnly = True
+                RowSelect = True
+                ParentFont = False
+                TabOrder = 0
+                ViewStyle = vsReport
+                OnClick = lvRuntimeMissileClick
+              end
+            end
+          end
         end
       end
       object pnlPlatformRight: TPanel
         Left = 814
         Top = 0
         Width = 1106
-        Height = 915
+        Height = 911
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
         ExplicitLeft = 407
         ExplicitWidth = 1513
+        ExplicitHeight = 915
         object pnlPlatfromUp: TAdvSmoothPanel
           Left = 0
           Top = 0
@@ -200057,64 +200070,6 @@ object frmGameController: TfrmGameController
               ExplicitWidth = 1513
               ExplicitHeight = 465
               TMSStyle = 0
-              object lblCameraMove: TAdvSmoothLabel
-                Left = 912
-                Top = 24
-                Width = 250
-                Height = 30
-                Fill.ColorMirror = clNone
-                Fill.ColorMirrorTo = clNone
-                Fill.GradientType = gtVertical
-                Fill.GradientMirrorType = gtSolid
-                Fill.BorderColor = clNone
-                Fill.Rounding = 0
-                Fill.ShadowOffset = 0
-                Fill.Glow = gmNone
-                Caption.Text = 'Camera Move'
-                Caption.Font.Charset = DEFAULT_CHARSET
-                Caption.Font.Color = clWindowText
-                Caption.Font.Height = -11
-                Caption.Font.Name = 'Tahoma'
-                Caption.Font.Style = [fsBold]
-                Caption.ColorStart = clSilver
-                Caption.ColorEnd = clWhite
-                CaptionShadow.Text = 'AdvSmoothLabel'
-                CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                CaptionShadow.Font.Color = clWindowText
-                CaptionShadow.Font.Height = -27
-                CaptionShadow.Font.Name = 'Tahoma'
-                CaptionShadow.Font.Style = []
-                Version = '1.6.1.0'
-              end
-              object lblCameraRotate2: TAdvSmoothLabel
-                Left = 660
-                Top = 25
-                Width = 242
-                Height = 30
-                Fill.ColorMirror = clNone
-                Fill.ColorMirrorTo = clNone
-                Fill.GradientType = gtVertical
-                Fill.GradientMirrorType = gtSolid
-                Fill.BorderColor = clNone
-                Fill.Rounding = 0
-                Fill.ShadowOffset = 0
-                Fill.Glow = gmNone
-                Caption.Text = 'Camera Rotate 2'
-                Caption.Font.Charset = DEFAULT_CHARSET
-                Caption.Font.Color = clWindowText
-                Caption.Font.Height = -11
-                Caption.Font.Name = 'Tahoma'
-                Caption.Font.Style = [fsBold]
-                Caption.ColorStart = clSilver
-                Caption.ColorEnd = clWhite
-                CaptionShadow.Text = 'AdvSmoothLabel'
-                CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                CaptionShadow.Font.Color = clWindowText
-                CaptionShadow.Font.Height = -27
-                CaptionShadow.Font.Name = 'Tahoma'
-                CaptionShadow.Font.Style = []
-                Version = '1.6.1.0'
-              end
               object lblPinCamera: TAdvSmoothLabel
                 Left = 1168
                 Top = 16
@@ -200143,6 +200098,2658 @@ object frmGameController: TfrmGameController
                 CaptionShadow.Font.Name = 'Tahoma'
                 CaptionShadow.Font.Style = []
                 Version = '1.6.1.0'
+              end
+              object pnlPinCamera: TAdvSmoothPanel
+                Left = 240
+                Top = 35
+                Width = 825
+                Height = 280
+                Cursor = crDefault
+                Caption.Location = plTopCenter
+                Caption.HatchStyle = HatchStyleDiagonalBrick
+                Caption.HTMLFont.Charset = DEFAULT_CHARSET
+                Caption.HTMLFont.Color = clWindowText
+                Caption.HTMLFont.Height = -13
+                Caption.HTMLFont.Name = 'Tahoma'
+                Caption.HTMLFont.Style = []
+                Caption.Font.Charset = DEFAULT_CHARSET
+                Caption.Font.Color = clWindowText
+                Caption.Font.Height = -16
+                Caption.Font.Name = 'Tahoma'
+                Caption.Font.Style = [fsBold]
+                Caption.Top = 20
+                Caption.ColorStart = clWhite
+                Caption.ColorEnd = clWhite
+                Caption.GradientType = gtHorizontal
+                Caption.LineColor = clBlack
+                Caption.Line = False
+                Fill.Color = 7301478
+                Fill.ColorTo = 7301478
+                Fill.ColorMirror = 7301478
+                Fill.ColorMirrorTo = 7301478
+                Fill.GradientType = gtVertical
+                Fill.GradientMirrorType = gtVertical
+                Fill.BorderColor = clSilver
+                Fill.BorderWidth = 5
+                Fill.Rounding = 10
+                Fill.ShadowColor = clNone
+                Fill.ShadowOffset = 10
+                Fill.Glow = gmNone
+                Version = '1.6.0.1'
+                Visible = False
+                TabOrder = 6
+                TMSStyle = 0
+                object wheelAzimut: TVrWheel
+                  Left = 63
+                  Top = 45
+                  Width = 150
+                  Height = 150
+                  Hint = 'Rotate to View'
+                  MaxValue = 360
+                  BackImage.Data = {
+                    0E090100424D0E09010000000000360000002800000096000000960000000100
+                    180000000000D8080100C30E0000C30E00000000000000000000706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696620207069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    2020706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696620207069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966202070696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069667069667069667069667069667069666F68657069667068656F68656F
+                    68656F68656F68656F68656F68656F68656F68656F68656F68656F68656F6865
+                    7069666F68657069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069662020706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069667069667069667069667069667069667069667069667069667069666F
+                    68656F6865706966716967716A67736C6A746D6A77706D78716F78716F7A7371
+                    7B75727B75727C75727C75727B75727B75737B75727C75737B75727B75727B74
+                    727A747178716F78706E756E6C746C69726B687169667069666F68656F686570
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696620207069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    69667069667069667069667069667069667069667069667069666F68656F6865
+                    716967746D6A78706D7A737079737078716F716C6A6F6B68635F5D5F5C5A5C58
+                    574D4A494A48464A48464A48464B48474A48474A48474B48474A48464A48464A
+                    48464C48475A5655605D5B615E5C6F6A68726D6B7973717B74727B7472797370
+                    766E6C716A676F68656E67656F68657069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966202070696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966706966706866726B687770
+                    6D7A7370787370706C6966625F5956544D4A494441413B383837363534333233
+                    33323535343736363938373938373939383A39393A39393A39393B39393A3939
+                    39383738373738363635343434333233323137353538373642403F4A48475755
+                    54656160706B697A74717D7674797270736C696F68666F686570696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069662020706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069667069667069667069667069666F6865716A67746D6A77706E79737075
+                    6F6C66625F53504E4442413938373534343534343837363B3939403F3D424141
+                    4645444948474A49484B4A494B4A4B4D4C4B4E4D4C4F4E4D4F4E4D504F4E4F4E
+                    4D4F4E4E4F4E4D4C4B4B4B4A4A4B49494A4848474545444242413F3F3C3B3A38
+                    3737353434353433373635413F3E504D4C64605E76706E7D77757A7471756E6B
+                    716A676F68656F68657069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696620207069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    69667069667069667069667069666F6865736B6878716E79726F726C69615E5B
+                    4B49473C39393533333735353C3B3A403F3F4443424847464C4A4A4D4C4C504F
+                    4E5150505352505352525453535554545554555656555958585A58595A595A59
+                    58585C5B5B5A595859585859585855545455545354535253515252515051504F
+                    4E4D4C4D4B4B49484845444342403F3D3B3B3837363332323836364845445E5B
+                    59726D6B7C76737B7572746E6B6F68656F686570696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    2020706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966736C697A727075706C65605E4E4B4A3C3A
+                    39353332393737413F3F4745444948474C4B4A4F4D4D514F4F54525255545456
+                    56555957575A59585A59595B5A5A5B5A5A5C5B5B5D5C5C5E5D5D353434484747
+                    3231311F1F1E4141412829291F1F1F515050605F5F5C5B5A5B5A5A5A5A595A58
+                    58595858575655565554545353525150504E4E4D4C4B4A49484846454341403A
+                    3938343332383736484745625E5C77726F7E787576706D6F68656F6865706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696620207069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966716A67756D6A79726F716B69585553403F3D36353539
+                    3737403E3E4745454C4A494E4D4D514F505352525655555857575958585A5A59
+                    5C5B5B5D5C5C5D5C5D5E5E5D5E5E5E5F5E5E5F5E5E5F5E5E5F5F5E6464641D1C
+                    1C3333331616161212121818181616160D0E0E3E3D3D6666665F5F5E605F5F5E
+                    5E5D5E5D5D5E5D5D5D5C5C5C5C5B5B5A5A595A59595757575655545353525151
+                    4F4E4E4D4B4A4848474241403A38383534343C3B3953504F706B6A7E78757871
+                    6E726B686F686570696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966202070696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    69667069666F6865706966766F6C79726F6C6764534F4D3B39383736353F3D3C
+                    4644444B49484E4D4D5150505453525755555958585A5A5A5D5B5B5D5D5D5E5D
+                    5D5E5E5D5E5E5E5F5E5E5F5F5E5E5E5E5F5F5F5F5E5E5F5F5F5F5E5F60605E59
+                    59581D1D1D3C3C3D2222221010102626262121211B1B1B3C3C3C6666665F5F5F
+                    605F5F5F5F5F5F5F5F5F5F5F5F5E5E5E5E5E5E5E5D5E5D5D5E5D5D5D5D5C5B5A
+                    5A5A5958575656555453525151504E4D4D4B4A474645413F3E3837363735354C
+                    4A496C66657D76747B7370716A676F6865706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069662020706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966746D6A78726E6B66634E4C4A3A39383938374442414948
+                    474D4B4B514F4F5352515655555958585A59595C5C5B5D5C5C5D5D5D5E5E5E5F
+                    5E5E5F5E5E5F5F5E5E5E5E5F5E5E5F5F5E5F5E5E5E5E5E5E5E5E5E5E5E5E5E5E
+                    6061602B2B2B0404053A3A3A1919191010102121211313130909093F3F3F6465
+                    655E5E5E5E5E5E5F5E5E5F5E5E5F5F5F5F5F5F5F5F5F5F5F5E5F5E5E5F5F5F5F
+                    5F5F5E5E5E5E5D5D5D5C5B5B5B5A5A59585856565454535151504E4C4D4C4A48
+                    4745443B3A383635344846456964637F787578716E6F69657069657069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696620207069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966726B6878716E706A68514E4C3B3B393B39394443424B4A484E
+                    4D4C5251505554545857565A59585B5C5A5E5D5D5E5D5D5F5E5E5E5E5E5E5E5E
+                    5F5F5F5F5E5E5E5E5E5E5E5E5D5D5D5D5D5D5D5D5D5C5C5C5C5C5C5C5C5C5C5C
+                    5C5B5B5B5D5D5D4F4F4E3232314E4E4E3C3C3C2C2C2C4D4D4D3A3A3A33333256
+                    56565D5E5D5C5C5C5D5D5D5D5D5D5D5D5D5E5D5D5E5E5E5E5E5E5F5E5E5F5E5E
+                    5F5F5E5F5F5F5F5E5F5F5F5F5F5F5E5F5E5E5E5E5D5D5C5C5B5B5A5958585655
+                    55535252504E4D4D4A4B4746453C3B3A3736364A47466F6B687E7875766E6B6F
+                    68656F6865706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966202070696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    69666F6865716A6777706D756E6B5956543E3C3A3C3B3A4443424B49494F4E4D
+                    5352515655545857575B5A5A5D5C5C5D5D5C5E5E5D5E5D5D5F5F5E5F5E5E5E5E
+                    5E5E5E5E5E5E5D5D5D5D5D5D5D5C5B5C5C5C5C5B5B5B5B5B5B5B5B5B5A5A5A5A
+                    5A5A5A5A5A5A5A5A5A5A5A5C5C5C5F5F5E5B5B5B5C5C5C5D5D5D5C5C5C5E5E5E
+                    5F5F5F5B5B5B5A59595A5A5A5A5A5A5B5B5B5B5B5B5C5C5B5C5C5B5C5C5C5D5D
+                    5D5E5D5D5E5E5D5E5D5E5F5E5E5E5E5E5E5E5E5F5E5E5F5E5E5F5F5F5E5D5D5E
+                    5D5D5C5B5B5A5958585656545252504F4E4D4B4A4745443D3C3B38373552504D
+                    77716F7E7673726B686F68657069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069666F62706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966726D6A77716E65605E4543423C3A3A4544434B4A494F4E4D5252
+                    515655545958575B5B5A5C5C5C5E5D5D5E5E5D5E5E5D5F5E5E5E5E5D5E5D5D5E
+                    5D5D5D5D5D5B5B5B5C5B5C5C5C5B5C5B5A5A5B5B5A5A5A5A5A5A585858585858
+                    5858585858585858585858585757575656565756575656565959585959595656
+                    565756565757575757575857575858585858585858585858585959595959585A
+                    5A5A5A5A5A5B5B5A5C5A5A5D5C5C5E5E5D5D5D5D5E5E5E5E5E5E5E5E5E5F5E5E
+                    5F5E5E5F5E5E5F5E5E5D5C5C5C5B5B5A5958575656555352504F4E4D4B4B4846
+                    463C3A393D3C3B605C5B7D777578716D6F686570696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696634387069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966716A67776F6C726C69524F4D3C3B3A42403F4B48494F4E4D52515056
+                    55545958585A5A595C5C5C5D5D5D5E5D5D5E5E5D5E5E5D5D5D5D5D5D5D5C5C5C
+                    5C5B5B5B5B5B5A5A5A5B5A5A5A5A5A5959585958595758585757575656565656
+                    5657565655555554555554545454545454545454545454545455555549484941
+                    4141545454545454545454545454545454555555555555555555565656575757
+                    5656565757575959595959595959595A5A595B5B5B5B5B5B5C5C5C5D5D5D5D5D
+                    5D5D5D5D5E5E5E5E5E5E5F5E5E5F5E5E5E5E5E5D5D5D5C5B5B5A5A5957565553
+                    5252504F4E4D4B4B444241393837494746726D6B7D7875726B686F6865706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    3334706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6A676F6A67726C6977716D65605E444241403E3D4947464E4C4D524F50555454
+                    5857565B5A5A5C5C5B5D5C5C5D5D5D5E5E5D5E5E5E5E5D5D5D5D5C5D5C5C5B5C
+                    5C5B5B5B5B5B5A59585859595958585857575757575756565655555555555554
+                    54545151514C4B4C535353535353525252525251525151525152525151565657
+                    2222221110105252525352525252525252525252525252525353525454544E4E
+                    4E5050505555555555555757575757575757575757575959595959595A59595B
+                    5A5B5C5B5B5D5D5D5D5D5D5D5D5D5E5E5E5F5E5E5E5E5E5F5E5E5E5D5D5D5C5C
+                    5C5B5A595858575555535251504E4E4B49493F3F3E3C3A3A615D5B7E78757670
+                    6D706966716A6770696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696644657069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706A67746D6A766E6B5853523F3E3D4644434E4C4B514F4F5453535756
+                    565A59595C5B5B5E5D5D5D5D5D5E5E5D5E5D5E5E5D5D5D5D5D5D5D5C5C5C5C5A
+                    5B5B595959595959595958585858565656555556565656545555545454535353
+                    5352525454544949493A3A3A5050504F50504E4F4F4F4E4D4F4D4D4E4D4D4E4D
+                    4D5252512121201010104E4D4D4F4E4E4F4D4D4F4F4F4F4F4F4F4F4F50505052
+                    52523D3D3D434242555555535252545454545454555555555555575757575757
+                    5959595959595958585A5A595C5C5C5C5C5C5D5B5C5E5E5D5E5E5E5F5E5E5F5E
+                    5E5F5E5E5E5E5D5D5C5C5B5A5A5958575554545250504F4D4C4847463C3A394F
+                    4C4C7873707A7471706966706966716A67706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966437270696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966706966706966706966706A
+                    67706A67706A67766F6C6E68664D4A4842403F4A4948504E4D53525156555559
+                    58575B5B5A5D5C5C5E5D5D5E5D5E5E5D5D5E5D5D5C5D5C5C5C5C5B5B5B5A5A59
+                    5959595958585858585656565656565656565555555454535353535252525251
+                    51505050504F4F4F4F4F4D4C4C3A3A394848484D4C4C4C4B4B4B4A4A4B4A4A4B
+                    4A4A4B4A4A4F4E4E2021201010104B4B4B4C4B4B4B4A4A4B4A4A4B4A4A4B4B4A
+                    4C4C4B4D4D4C3C3C3C474746505050504F4F5151505151515252525453535454
+                    535555555757575656565757575959585959595959595B5B5B5C5B5B5D5C5C5E
+                    5E5D5E5E5E5E5E5E5F5F5F5E5E5D5E5E5D5D5B5C5A5959575656545352504F4E
+                    4D4B4A403E3E43413F6D69677E7875716B67706966716A677069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069663A72706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706A67716B6877706D67615F4845444644434E4C4B52504F555353585757
+                    5A59595D5C5B5D5D5C5E5D5D5E5D5D5E5E5E5D5D5D5C5C5C5C5B5B5B5A5A5A59
+                    595958585857575758585555555455555555554445454B4B4B53515150504F4F
+                    4F4F4E4E4E4D4D4C4C4C4C4C4B4B4D4C4B3333324241414A4949484747494847
+                    4746464847474847474C4B4B1F1F1F1010104A49484948474948474948474947
+                    474847474949484645453131314A49484D4B4B4D4C4C4E4E4D4F4E4E504F4F51
+                    50515252524F4F4F4443435253535656575757575858585857585959595B5A5A
+                    5C5B5B5C5C5B5C5D5D5E5E5D5F5E5E5F5E5E5F5F5E5F5E5E5D5C5B5C5B5B5A58
+                    58565554535150504E4D4645443F3D3C625E5C7F7976736D6970696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966FFFF7069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    716A67706966716A67756E6B615C5A4645434A4847514E4D5452515756555958
+                    575C5B5A5D5C5C5E5D5D5E5C5D5E5E5D5E5E5D5D5C5C5C5B5B5B5B5B5A5A5A58
+                    5859595858585857555556555555545454545353555454403F3F3C3C3C50504F
+                    4D4E4C4C4C4B4C4B4A4A4A494A49494A49484B4A493E3D3D4746464E4D4D4E4D
+                    4C4F4F4E504E4D5251505251505655541F1E1E0C0C0C52515153525152515052
+                    5150514F4F504F4E4F4F4E4948483A39394948484B4A494B49494B4A494C4B4B
+                    4D4C4C4E4D4D5151504443443939395353535452545555535556555756555958
+                    585959585A59595B5A5B5B5B5B5C5C5C5E5E5D5E5E5E5F5E5E5F5E5E5F5E5E5E
+                    5E5D5D5C5C5A59595856565553535250504D4B4A3F3E3D5A57567D7674756E6B
+                    706966716A67716A677069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966FFFF70696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66716A67716A67726B67756E6B5B56544544434D4B4B5351505553525857565B
+                    5A595C5C5A5E5C5C5E5E5D5E5D5D5E5E5D5D5D5C5C5C5B5C5B5B5A5A5A595959
+                    5958595858575656565555545454545353535252515150505150504C4B4B3635
+                    344A4A494C4B4B4B4A494B4A494C4B4A4F4E4D504F4E5352515655545857555A
+                    59585C5A595C5A5A5E5C5C5E5D5C5E5D5C62605F413F3F3635345F5D5C605E5D
+                    5F5D5D5F5E5D5F5E5D5F5E5C5F5D5C5D5B5B5B5A5958575554545251504F4F4E
+                    4D4D4B4A4B4A4A4C4B4A4D4C4C39383745444453525251515053525254535355
+                    54545656555757565857575959595B5A5A5B5B5B5C5C5C5D5D5D5E5E5D5F5E5E
+                    5F5F5E5F5E5E5F5E5E5D5C5C5C5B5A595858565453545251504D4C42403F514E
+                    4E7C7673766F6C706865716A6770696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966706966FFFF706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966726A67746E6B5A5754494746514E4D545252565554595857
+                    5C5A5A5D5C5C5E5D5D5F5E5D5F5D5D5E5E5D5D5D5D5C5B5C5B5B5B5A5A5A5959
+                    59585857585859585858545455535354535251525151514F4F4F4F4E4E4E4D50
+                    4E4E393838424141504F4E514F4E5352525856555A59585C5A5A5C5A5B5D5B5A
+                    5E5B5A605D5D6361606664646865656867666967666967666C6A686C6A696967
+                    666967666967666967666A686769676667656466636365646365636264626262
+                    61615F5D5D5A58585554535251504847473736354E4C4C504E4E504F4E505150
+                    5251515352525553545655555959585959595958585959595C5B5B5C5B5B5D5D
+                    5C5E5D5D5E5E5E5F5E5E5F5E5E5F5E5E5F5D5D5D5B5B5A595858575556535353
+                    5050454342504D4C7B767377706D6F6865706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966706966706966706966706966FFFF7069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966726B67726C695955544B484853504F5654535957565B5A
+                    585C5B5A5F5D5D5F5E5E5F5E5E5F5E5E5D5D5D5E5C5C5C5C5B5C5B5B5A5A5A59
+                    58585858575859572F2F30393838575756515151515050504F4F4F4E4E4E4E4D
+                    4F4E4D504E4E504E4E5352515858575C5A595E5B5B5E5C5B5E5C5B615F5E6A67
+                    67737271807F7E8A89899594949E9D9DA2A1A1A3A2A2A3A2A2A3A2A2A3A2A2A3
+                    A2A2A3A2A2A3A2A2A3A2A2A3A2A2A1A0A09C9B9B9291918988877F7D7D767474
+                    6F6D6C6A696769676668676666646362605F5A5858545352525151504E4E4F4E
+                    4D4F4F4E50504F5150505351525857574544442827275353535A5A5A5A59595C
+                    5B5B5C5B5B5D5C5C5E5E5D5F5E5E5F5F5E605F5F605F5E605E5E5D5C5C5C5A5A
+                    5958575755545452524846454F4B4A79737077706C6F68657069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    FFFF706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966716A67736B685955534D4A4A5553525855545958565C
+                    5B595E5C5B5F5D5D605E5E5F5F5E5F5E5E5F5E5E5D5C5C5C5C5B5A5B5A5A5959
+                    5959585757575756575A59592828280B0B0B4E4D4D535351504F4F504E4E504F
+                    4E5250505453525957555C5A5A5D5C5A5D5C5A5F5D5C65636273717086868599
+                    9998A9A8A8B3B2B2B9B9B9BDBDBDC0BFBFC1C1C1C3C3C3C3C4C4C3C2C3C3C2C3
+                    C3C2C3C2C2C3C2C2C3C2C2C2C2C3C2C1C1C1BDBDBDBBBCBBB9B9B8B6B6B6B2B1
+                    B1ACACACA1A1A09393928482817675746F6E6C6C6A696A696868666562605F5A
+                    595955545352515050504F51504F525151565555191818161515555656585858
+                    5757565959595A5A5A5C5B5B5D5C5C5E5D5D5E5D5D605F5F605F5F605F5F605F
+                    5E5F5D5D5D5C5B5A58585856565755544B49484D4C4A78737077706D6F686570
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966FFFF7069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966716A67736C695B57554F4C4C5754545856565B5959
+                    5C5B5A5E5D5C5F5E5E605E5E605F5E5F5E5E5E5E5E5D5D5C5C5B5B5B5A5A5A5A
+                    59595858585857565555565555575555504F4F0E0E0E27262656555552504F53
+                    52515655545A58585E5B5B5D5B5A5D5A5A6463627676748E8E8EA6A6A6B6B6B5
+                    BFBFBFC2C3C3C6C6C6CCCCCCD5D5D5DDDDDDE6E5E5E8E8E7E9E9E8E9E9E9E9E9
+                    E9E9E9E9E9E9E9E9E9E9E9E9E9E9E9E9E8E8E8E7E7E7E5E5E5E0E1E1D7D6D6CD
+                    CDCDC3C3C3BCBDBDB9B9B9B8B8B8B4B3B3ABABAA9C9C9B898888787877706E6E
+                    6C6B6A6B69686563635D5C5C5755545351515755553B3A3A0606064442425959
+                    595656565757565858585959595B5B5A5C5B5B5D5C5C5E5E5E5F5F5E605F5F60
+                    5F5F605F5E605F5F605E5D5D5C5B5B59595A57575956564C4A49504E4C7B7573
+                    766E6C6F68657069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966FFFF70696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966716A67736D695E5A58514F4E5855555957575C5A
+                    595E5C5C5F5D5D615F5F615F5F605F5F605F5F5F5E5E5E5D5D5D5C5C5B5A5A5B
+                    5A5A5A5959575856575656575656545453535253585756373636050505464545
+                    5C5A595B59585F5D5C5E5C5B5F5C5C6D6C6B898787A5A5A5BBBBBAC5C5C5CAC9
+                    C9CDCDCDD5D5D6E4E4E4EFEFEFF0F0F0E6E6E6D5D5D5BCBBBBB0B0B089898980
+                    8080818181818181818181818181818181818181808080898989B0B0B0BBBBBC
+                    D4D4D3E5E5E5EEEEEEEBEAEADEDEDDCDCDCDC2C1C1BBBBBBB9B9B9B5B5B5AAAA
+                    A9999797848282757371706E6D6D6B6C67656562605F59575711111124242459
+                    5857555453565554575656585657595858595A595C5B5B5C5B5B5E5E5C5F5E5E
+                    5F5F5E616060616060616060606060605F5E5F5D5C5D5B5A5B58575A58574E4C
+                    4B5451507B7573756E6B6F686570696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966FFFF706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706A67726C68615C5A52504F5957565C59585C
+                    5A595F5D5C605F5E615F5F61605F615F5F605F5F5F5F5E5E5D5D5D5D5C5B5A5A
+                    5C5C5B5A59595857585757565656555655555453535453535554535756551817
+                    171E1D1D5F5D5C5F5D5B605D5C71706F959494B4B4B4C5C5C5CCCCCBD3D3D3DF
+                    DEDEECEBEBF1F1F1E3E3E3BFBFBF8F8F8F6262623B3A3A2727271313130E0E0E
+                    0505050303030303030303030303030303030303030303030303030505050E0E
+                    0E1313132727273B3B3B6262628F8F8FBFBFBFE2E2E2EEEEEEE5E5E5D4D4D4C4
+                    C4C4BABABAB7B7B7B1B1B1A1A0A0898887787675737070737270343333080808
+                    504E4E5857565453525554545655555756565757575A59595A5A595C5C5B5D5C
+                    5C5E5D5D5F5E5E605F5E61606061606062616062606062605F5F5D5C5D5B5A5C
+                    59585B59584E4C4B5754537C7673736C696F6865706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966FFFF7069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966736D6A66605E5452515A57575C5A59
+                    5E5C5B5F5D5C605F5E61605F61605F61606061605F605F5F5F5D5E5D5D5C5C5C
+                    5B5B5A5A5958585B5A5A5857575757575655555554545554545654545856555F
+                    5E5D4D4B4B3231305B5A587271709A9998BCBCBBC9C9C9CDCDCDDBDBDBEDEDED
+                    F1F1F2DCDCDCA9A9A86867672E2E2D1010100505050505050707070A0A0A0C0C
+                    0C0D0D0D10101011111111111111111111111111111111111111111111111110
+                    10100D0D0D0C0C0C0A0A0A0707070505050505051010102E2E2E696767A8A8A8
+                    DADADAEDEDECE5E5E5CDCDCCBBBBBBB6B7B7B3B3B3A4A3A38C8A897B79784645
+                    444746456B69685D5C5B5957565655545655545757565757565859575B5B5B59
+                    58585B5A5A5D5D5C5E5D5D605F5E605F5F616060626160626160626160615F5F
+                    605E5D5F5C5B5D5B5A5C5B5A4E4C4B5F5B5A7E7774716A677069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966FFFF70696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966736C696964615855545C59595F5C
+                    5B605E5D615F5E62605F63616163616162616162616161605F5F5E5E5F5E5E5D
+                    5D5C5C5C5B5C5C5B4545444847475B5A595756565756555756555857565B5959
+                    5F5D5C615F5D605E5D6F6E6D949392BCBBBCCCCCCCD0D0D0DCDCDCF1F1F1ECEC
+                    ECB4B4B36A6A6A2A2A2A0707070302030B0B0B11111112121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121111110B0B0B0203
+                    030707072A2A2A6A6A69B3B3B3E9E8E8EBEAEACFCFCEBDBDBCB7B8B7B2B2B3A2
+                    A0A08B89897A79787472716D6C6B6462625C5B5A5957575857565857575C5B5A
+                    4F4F4F403F3F5B5A5A5E5D5D5E5D5D605F5E605F5F6160606261616362616362
+                    62646262636160625F5F605D5D5F5D5C5E5B5A4F4C4C6763617D767370696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966706966FFFF706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966706966726A676E67645B58565D5B5A60
+                    5E5C615F5D626160636160636261646261636261626161626160605F5F5F5F5E
+                    5D5C5C5D5C5C5C5B5B5C5B5A5555533636374C4B4B5B59595957575B59585E5C
+                    5C61605E605D5C615F5E858483B6B5B5CDCDCDD3D3D3E1E1E0F4F3F3E6E5E599
+                    98984141410E0E0E020202070707111111131313131313121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121213
+                    13131313131111110707070202020E0E0E414141999999E4E3E3EDECEBD3D3D3
+                    BDBCBCB6B6B6B1B0B09A99987F7D7C777574727170696867615F5E5B5A585B5A
+                    595554543636364F4E4D5D5D5D5D5C5B5D5D5C5F5E5E605F5F61606062616063
+                    6262646262646362646362646261626160625F5E615E5E5E5C5B504E4D706C69
+                    7972706F68657069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966706966706966706966706966FFFF7069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966716A67716967605C5B5E5B5B
+                    635F6062605F646160656362656362656363646362636262636261626161605F
+                    5E5F5E5E5E5D5C5D5C5C5C5B5B5B5A5A5E5E5C5252513A3838565554605D5D61
+                    5F5F6361605E5C5A706D6CA3A3A2CBCBCAD2D1D1DCDCDCF4F4F4E6E6E6979696
+                    3232320606060606060D0D0D1212121313131212121212121212121212121111
+                    1112121212121213131313131313131313131311111111111111111111111111
+                    1111111111111111111111131313131313131313131313121212121212111111
+                    1212121212121212121212121313131212120D0D0D0606060606063332339695
+                    95E2E2E2EBEBEBCCCCCCB8B8B8B5B5B5A9A8A88D8B8B7B7878767574706D6D66
+                    64645E5C5C3E3D3D4948475F5E5D5C5B5A5D5C5B5E5D5C5F5E5E605F5E616060
+                    63616163626265636364636365636365646365636264626163615F6361605D5B
+                    5A555251797270756E6B6F686570696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    FFFF706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966716A66726A6765615F5F5D
+                    5C64616065626165636265646366656466656466656466646464636262616162
+                    6060605F5F5F5F5D5E5D5D5D5C5C5D5C5B5C5A5A5C5A5A5E5C5C5553525A5959
+                    646261646261615F5E828280BBBABAD2D2D2D5D5D5EAEAEAF2F2F2AAA9A93B3B
+                    3B03030308080812121212121212121212121212121212121212121212121212
+                    1212141414151515141414131313131313131313131313131313141313141313
+                    1413131413131413131413131313131313131313131313131313131414141515
+                    1514141412121212121212121212121212121212121212121212121212121208
+                    08080303033B3B3BA9A9A9EDEDEDDDDEDEC0C0C0B7B7B7B1B0B09A9898817F7E
+                    7978777472716564635554535F5C5D5D5C5B5C5B5A5E5D5C5E5D5D5F5E5D605F
+                    5F61605F63626164626265646366646466656467656566646567656466646264
+                    62626662615A58575D5A587C7573726B68706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966FFFF7069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966706966706966706966716A676A656260
+                    5D5C656261666463676563676564686664686565676664666564666464646362
+                    636261616160615F5F605F5E5E5D5C5E5D5C5E5C5C5D5D5B5E5C5C5F5D5C6462
+                    6166646463605F666463989695CBCBCBD6D5D5E0E0E0F7F7F6D0D0D057575709
+                    0909040404111111131313121212121212121212121212121212121212141414
+                    1414141414141213131212121617171C1C1C2424242929293233333A3B3B3A3B
+                    3B3A3B3B3A3B3B3A3B3B3A3B3B3A3B3B3A3B3B3233332929292424241C1C1C16
+                    1717121212121313141414141414141414121212121212121212121212121212
+                    121212131313111111040404090909575757CECECEF0EFEFD0CFCFB9B9B9B4B4
+                    B4A3A3A38685847C79797775746F6D6C6462615F5D5D5E5D5C5E5D5C5F5D5D5F
+                    5E5E615F5F616060626160636262646363666564676564686665696765686665
+                    6866656764636764636764635755536865637B73716F68657069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966FFFF70696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966716A676E6764
+                    63605E6664626965646866656967666967666966666867666866666765656663
+                    6464636263626163616261605F605F5E5F5E5E5F5D5D5F5D5D5F5D5C605F5E63
+                    6161676564625F5E6D6969AAA8A8D3D3D2D7D6D6EBEAEAF2F2F29898981F1F1F
+                    0101010D0D0D1313131212121212121212121212121212121414141414141313
+                    131212121414141C1C1C2828283233333B3D3D40414143444444454544454543
+                    4444434444434444434444434444434444434444434444444545444545434444
+                    4041413B3D3D3233332828281C1C1C1414141212121313131414141414141212
+                    121212121212121212121212121313130D0D0D0202021F2020979696EDEDEDDD
+                    DDDDBDBDBCB5B5B5ABABAA8D8C8B7E7B7B7977766F6D6C656463615F5F5F5E5D
+                    5F5E5D605F5D605F5F6160606362616362626564636664646866656866666967
+                    66696766696766696766686565696665676462575554756F6D756F6B6F686570
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966FFFF706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966706966706966716A667069
+                    676763626765646A68666B67666B68676B68686B68686968686A676668666666
+                    656565636364636263626161605E63626161605F5F5E5D605E5E605F5E62605F
+                    656362686564646160747170B6B5B4D6D6D6DADADAF1F0F0DDDDDC5D5D5D0404
+                    040B0B0B13131312121212121212121212121212121214141415151512121213
+                    13131C1C1C2A2B2B383939414242444545434444434444414242414242414242
+                    4142424142424142424142424142424142424142424142424142424142424142
+                    424142424142424344444344444445454142423839392A2B2B1C1C1C13131312
+                    12121515151414141212121212121212121212121212121313130B0B0B050505
+                    5D5D5CD9D9D9E7E6E6C3C3C3B5B6B5AFAEAE929190807E7D7B7978716E6F6866
+                    66626160615F5F615F6061605F63626162616063626164636367656567666668
+                    67676969686B69686B69686B69686B69676B67676C69676460605E5C5B7B7572
+                    726A676F68657069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966FFFF7069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696671
+                    6A676B66636866646C69686C6A696C6A696D6A696D6B696C6A696B69686B6968
+                    6867666765656665636463626564644E4D4C47474662616063626163605F6362
+                    6166646469666663615F787675BEBEBDD9D9D9DEDEDEF6F6F6C2C2C132323200
+                    00000F0F0F131313121212121212121212121212131414151515121212131313
+                    2122223334344041414445454445454243434142424142424142424142424142
+                    4241424241424241424241424241424241424241424241424241424241424241
+                    4242414242414242414242414242414242414242424343444545444545404141
+                    3334342122221313131212121515151314141212121212121212121212121313
+                    130F0F0F000000323232C0C0BFEEEEEECACAC9B7B7B7AFB0B096949482807E7C
+                    7A7972706F6967666362616463616765644F4F4E484746656463656564676664
+                    6866666967676B69686B6A696C6A696D6B6A6D6B6A6C6A696D6A696E6B6A5E5C
+                    5B6C67667A726F6F686570696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966FFFF70696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069666E68656966646E6A6A6E6B6A6E6C6A6E6C6B6E6C6B6E6C6A6C6B6A6C6A
+                    696A696869676667666665656464636265636361605F4343434241415F5E5D66
+                    64646766656A68676461607A7877C1C2C0DADAD9E1E0E0F8F8F7A2A2A1171818
+                    0505051212121414141313131212121212121313131515151212121313132222
+                    2238393843444444454542434341424241424241424241424241424241424241
+                    4242414242414242414242414242414242414242414242414242414242414242
+                    4142424142424142424142424142424142424142424142424142424142424142
+                    4242434344454543444438393922222213131312121215151513131312121212
+                    1212121212131313121212050505181818A1A0A0F0F0F0CECECEB8B8B8B0B0B0
+                    9796958281807D7C7B7371716A69686463624D4B4B3E3E3D5E5D5C6665656564
+                    646766656867666967666B69696C6A696D6B6A6E6C6B6E6C6B6E6C6B6F6C6B6F
+                    6D6B6C69685E5C5B787370736C69706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966706966FFFF706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069667069666B66646E6C6A716E6D716E6D716E6D706D6D706E6D6E6C6B6D
+                    6B6B6B6B6A6A69686968676865656564636464626462626463626664644B4948
+                    50504E6B69686B6969666463797776C1C1C1DADAD9E2E0E0F5F4F49695950E0E
+                    0E090A0A1212121313131414141212121313131516161414141111111D1D1D35
+                    3636434545434544414242414242414242414242414242414242414242414242
+                    4142424142424142424142424142424142424142424142424142424142424142
+                    4241424241424241424241424241424241424241424241424241424241424241
+                    42424142424142424142424142424344454345453536361D1D1D111111141414
+                    1515151212121212121313131212121212120A0A0A0E0E0E949494EEEEEED0D0
+                    CFB8B8B8B1B0B09695958482817F7C7B7674735A585744424263626167666665
+                    63646564646765646866666968686A69696D6B6B6E6C6B6E6E6C706E6D706E6D
+                    706E6E706E6D726F6E6764636764627A74716F68657069667069667069667069
+                    66706966706966706966706966706966706966706966706966706966FFFF7069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    69667069667069666D67646D6A6973706F73706F73706F72706F716F6E716E6D
+                    706D6D6D6C6B6C6B6A6B68696967676766666765646664646564636663636765
+                    646A68676866656D6B69686564757372C0BFBEDBDCDBE2E1E1F3F2F283828208
+                    09090B0A0A1313131414141414141414141414141717171313131515152D2D2D
+                    4143434445454142424142424142424142424142424142424142424142424142
+                    4241424241424241424241424241424241424241424241424241424241424241
+                    4242414242414242414242414242414242414242414242414242414242414242
+                    4142424142424142424142424142424142424142424142424445454143432D2D
+                    2D1515151313131616161414141313131414141313131313130A0A0A09090982
+                    8282ECECECD1D0D0B9B8B8AFAFAF9594938482817F7D7C716F6E6B6968696767
+                    6665656665656765656766666967676A68686A6A686D6B6B6E6C6C6F6E6C716F
+                    6E726F6E73706F736F6F73706F73706F625F5F74706D756E6B6F686570696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    FFFF706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069666F68656D696773716F7472717472717471707471707270
+                    6F716F6E706E6D6E6C6B6C6A6A6B6A6969686767666568656467656467656567
+                    65656967666C6A696F6C6B6A6866706D6CB8B7B6DDDDDCE1E1E1F4F4F3828382
+                    0505050C0C0C1313131414141414141414141515151616151111101E1E1E3A3B
+                    3B45454642434341424241424241424241424241424241424241424241424241
+                    4242414242414242414242414242414242414242414242414242414242414242
+                    4142424142424142424142424142424142424142424142424142424142424142
+                    4241424241424241424241424241424241424241424241424241424241424242
+                    43434546453A3B3B1E1E1E111011161515151515141414141414131313131313
+                    0C0C0C060606828181EEECECCECECEB7B7B7ADACAC92908F8583817F7D7C7471
+                    716B69686967666866666866666968676968676A69686C696A6D6B6A6E6D6C70
+                    6F6E72706E73706F7471707472717572717673726F6C6B6663627A7471706865
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966FFFF7069667069667069667069667069667069667069667069667069
+                    667069667069667069667069666D676472706E76747376737375747276737274
+                    737273716F72706E706F6E6E6C6C6D6A6A6C6A68696867686766676766676765
+                    6966676967666C6A696E6C6B6F6B6A6B6967ABA9A9DDDCDCDFDEDEF5F5F59494
+                    930909090D0D0D13131314141414141414141415151514151511111128282841
+                    4141434444404241414142414242414242414242414242414242414242414242
+                    4142424142424142424142424142424142424142424142424142424142424142
+                    4241424241424241424241424241424241424241424241424241424241424241
+                    4242414242414241414242414242414242414242414242414242414242414242
+                    4141424042414041414344444142422828281112121415151515151414141414
+                    141414141212120D0D0D0A0909949393EEEDEDCACACAB7B6B6A9A9A88E8C8C84
+                    83827D7A79726F6E6C6A696A68676967676868666A69696B69696B6A696D6C6A
+                    6F6D6D716F6E727070747271747371767272767473767372777573686665736E
+                    6C766F6C6F686570696670696670696670696670696670696670696670696670
+                    6966706966706966FFFF70696670696670696670696670696670696670696670
+                    69667069667069667069667069666E67646F6B69797675797574797574787574
+                    777473767373747271727070706F6D6E6C6C6D6B6B6D6C6B6E6C6C6A68686968
+                    676A68676B69686D6B696F6E6C706E6D6A6767999797DAD9D9DDDDDDF3F2F29F
+                    9E9E0D0D0E0A0A0A1414141414141414141414141515151313131314142F3030
+                    4344444142424041414041414041414041414041414041414041414041414041
+                    4140414140414140414140414140414140414140414140414140414140414140
+                    4141404141404141404141404141404141404141404141404141404141404141
+                    4041414041414041414041414041414041414041414041414041414041414041
+                    414041414041414041414041414041414243434344442E303013141413131315
+                    15151414141414141313131313130C0C0C0D0D0D9E9D9DEAEAEAC6C5C5B5B5B4
+                    A3A3A28B8A898582817B7877716E6E6D6B6A6C69696A69686B69696E6C6C6F6E
+                    6D6E6C6B6F6D6D716F6F7271707472717674737774747775747976757A767574
+                    71706A66647A7370706966706966706966706966706966706966706966706966
+                    706966706966706966706966FFFF706966706966706966706966706966706966
+                    7069667069667069667069667069667069666C67647773717C79777A78767A78
+                    76797675787574777474747271727170716F6D6E6D6C6F6D6C65646463616171
+                    6F6E6D6C6B6B69696D6B6A706E6C72706E6B6966858382D2D1D1DDDCDCEEEDED
+                    BDBDBC1716160A0A0A1515151414141414141414141818181413131314143233
+                    344344444041413F40403F40403F40403F40404040403F41403F40403F40413F
+                    41413F40403F41413F41403F40403F40413F40403F40403F40403F40403F4040
+                    3F40413F40403F40403F40403F40404040404040403F40403F41403F40403F41
+                    404040404040413F40403F40403F41404040403F41413F40403F40404041403F
+                    40404041413F40404041414040403F40413F40413F4140404141434444323333
+                    1314141313131616161414141414141313131515150A0A0A171717BCBBBAE2E2
+                    E1BFBFBFB2B1B19D9B9B898786848180797675716F6E6D6C6B6D6B6B73717067
+                    66656462626F6E6D6F6E6D72706F7371707472717775747875747976757A7876
+                    7A78767C79786B6968746F6D746D6A7069667069667069667069667069667069
+                    66706966706966706966706966706966FFFF7069667069667069667069667069
+                    667069667069667069667069667069667069666E6764706B697D79797B79787B
+                    79787B77777977767876757674737472717271706F6E6D6E6D6C7372714B4A4B
+                    1111113F3E3D6D6B6A747271706D6C72706F6E6C6B757371C0BFBEDDDDDCE8E8
+                    E7D5D4D430303006060615151514141414141415151516161614141415151534
+                    35354142433F3F3F3E3F3F3F40403F40403F40403F40403E40403F40403F3F40
+                    3F40403F403F3F40403F3F403F40403F40403E403F3F40403F40403F40403F40
+                    403F40403F403F3F40403F3F3F3F40403F40403E40403E40403F40403F3F403F
+                    403F3F3F403F40403F403F3F40403F40403F3F3F3E40403F3F3F3F40403F4040
+                    3E3F403F40403E3F403F40403E3F403E40403F40403F403F3F40403E3F403F3F
+                    4041424234353516151514141416161614141414141414141415151506060631
+                    3131D2D1D1D9DAD9BCBBBBAFAEAE959392888685817F7E767573757372727170
+                    4E4D4C171616343333727170706F6E716F6E7372707473727675737876757977
+                    767B78777C79787D7B797574726B68677972706F686570696670696670696670
+                    6966706966706966706966706966706966706966FFFF70696670696670696670
+                    69667069667069667069667069667069667069667069666C66637875737D7B79
+                    7C7A787C79787B797679777678767576747374727172706F6F6F6E6E6D6C6E6D
+                    6C6664633B39380B0B0A1B1A1A54535274717073706F6A6867A4A2A2DCDBDBE0
+                    E0DFE8E7E7585857010100131313141414141414141414171717141314131414
+                    3435354243433E3F3F3E3E3E3E3F3F3E3F3F3E3F3F3E3F3F3E3E3F3E3F3F3E3F
+                    3F3E3F3F3E3F3E3E3E3F3E3F3F3E3F3E3E3E3F3E3F3F3E3F3F3E3F3E3E3F3F3E
+                    3F3F3E3F3F3E3F3F3E3E3F3E3F3F3E3E3F3E3F3F3E3F3F3E3F3F3E3F3F3E3F3F
+                    3E3F3F3E3F3F3E3F3F3D3F3F3D3F3F3E3F3F3E3F3F3E3F3F3E3F3E3E3F3F3E3F
+                    3E3E3F3F3E3F3E3E3F3F3E3F3E3D3F3F3E3F3F3E3F3F3E3E3E3E3F3F3E3E3F3E
+                    3F3E3E3F3F3E3E3F424343343535141414141414171717151515141414141414
+                    131313010101585858E3E3E2CECECDB7B7B7A7A6A68E8C8B878584807E7D625F
+                    5F2726260708072E2D2D5F5E5D706F6E6F6E6D706E6E73716F74727177757478
+                    76757977767B79767C79787C79787D7B7A6B696875716E736C696F6865706966
+                    706966706966706966706966706966706966706966706966FFFF706966706966
+                    7069667069667069667069667069667069667069667069666F67646F69677E7B
+                    7A7E7B797D7A797C7A787B797679777678767575747373717071706F706D6E6E
+                    6D6C6D6C6B6F6D6D747271646262343333080808302F2E6B6968878584D3D2D2
+                    DBDADBEEECEC8F8F8E0506061111111414141414141515151818181616161313
+                    133131324041413D3E3E3D3E3E3D3D3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D
+                    3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3C3E3E3D3E3E
+                    3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3D3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E
+                    3E3D3E3E3D3E3E3D3E3E3D3D3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D
+                    3E3E3D3E3F3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3D3E3D3E3E3D3E3E3D3E3E
+                    3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E4041413131311313131616161818181616
+                    161414141414141111110606068F8E8EE5E4E4C2C1C1B4B3B39C9B9A8E8C8B4F
+                    4D4C0505061F1F1F5A5957747372716F6F6E6C6B6F6E6D716F6E727170747271
+                    7674737776757977767B79787C79787C7A797E7C7A7573726D696878716E6F68
+                    65706966706966706966706966706966706966706966706966706966FFFF7069
+                    667069667069667069667069667069667069667069667069667069666C656276
+                    7371807D7C7D7B7A7D7A797C79787B7978797776777574757473727070716F6F
+                    706D6D6F6C6C6E6C6B6D6B6A6D6C6B72706F7876755653543F3D3D6F6D6BBBBA
+                    BADBDBDBE4E3E3C3C2C21E1E1E0C0D0D15151514141415151518181818181812
+                    12122C2D2D3F40403C3C3C3B3C3C3B3D3C3C3D3E3C3E3C3B3C3C3B3E3C3D3C3D
+                    3C3D3C3C3D3C3C3C3C3B3C3D3C3E3C3B3C3C3B3C3C3B3E3D3C3C3C3C3D3C3C3E
+                    3C3B3D3C3C3C3C3B3D3C3C3C3D3B3C3D3D3D3D3C3C3C3C3E3C3C3E3D3B3C3C3C
+                    3C3C3B3D3C3C3E3C3C3C3C3C3D3C3B3C3C3B3C3C3C3D3D3C3C3C3C3C3C3B3D3D
+                    3B3C3D3B3D3C3C3D3C3B3C3C3B3C3C3D3D3D3D3D3D3C3D3D3C3E3C3C3C3D3C3D
+                    3C3C3C3D3B3C3D3C3C3D3B3C3D3C3C3C3C3C3C3C3D3C3F40402C2D2D12121218
+                    18181817171515151414141515150D0D0D1E1F1FC2C1C1D7D6D7BCBBBBADACAD
+                    9593935B59584E4D4D7674727674736F6D6C6E6C6C6E6C6C706D6D716F6F7270
+                    6F7372717674727876757977767B79787C79787D7A797E7B7A7D7A796D696877
+                    716E726A676F6966706966706966706966706966706966706966706966706966
+                    FFFF7069667069667069667069667069667069667069667069667069666F6864
+                    6C67647D7A78807D7C7E7B7A7D7B7A7C7A797B78787977767775747572727271
+                    70706F6E6F6D6D6F6D6C6E6D6C6E6C6B6F6D6C706D6D737070787675706D6C93
+                    9292D8D8D7DDDCDCE3E1E1505050040404151515141414161616181818191A1A
+                    1111112425253E3F3F3B3C3C3A3C3C3B3B3B3B3C3C3B3C3C3B3B3C3A3C3B3B3C
+                    3C3B3B3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3B3B
+                    3C3B3B3C3C3B3B3C3B3C3C3B3C3C3B3C3C3B3B3B3B3C3C3B3C3C3B3C3C3B3B3B
+                    3B3C3B3B3C3C3B3B3B3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C
+                    3C3B3C3C3B3C3B3B3C3C3B3C3C3B3C3C3B3C3C3B3C3B3B3C3C3B3C3B3B3C3C3B
+                    3C3C3B3C3C3B3C3C3B3C3C3B3B3B3B3C3C3B3C3C3B3C3B3B3C3C3B3C3D3E3F3E
+                    252525111111191A1A171717161616141414151515040404515151DEDEDECAC9
+                    C9B8B7B7A2A0A0908D8C8D8A897D7A7A72706F716F6E6F6E6D706E6D706E6E70
+                    6E6E7270707371717573727775757976767B79787C7A797D7A7A7E7B7B807D7C
+                    73706F726D6B766E6B7068657069667069667069667069667069667069667069
+                    66706966FFFF7069667069667069667069667069667069667069667069667069
+                    666D6563736E6C827E7D7F7C7B7F7C7A7E7B797C7A797B787778767677757475
+                    7271727070716F6E6F6D6C6F6D6C6E6D6C6F6D6C706E6D726F6E73706F6F6D6C
+                    757371C0BFBFDBDBDAE7E6E69C9B9B0A0A0A1010101414141515151818181B1B
+                    1B1414141A1B1B393A3A3B3C3C3A3B3B3A3B3B3A3B3A3A3B3B3A3B3A3A3B3B3A
+                    3B3B3A3B3B3A3B3B3A3B3B3A3B3B3A3B3B3A3A3B393B3B3A3A3B3A3B3B3A3B3B
+                    3A3B3B3A3B3B3A3B3B3A3A3B3A3B3B3A3B3B3A3B3B3A3B3A3A3B3B3A3B3B3A3B
+                    3B393A3A3A3B3B3A3B3B3A3B3B3A3A3B3A3B3B3A3B3A3A3B3B3A3B3A3A3A3A3A
+                    3B3B3A3B3B3A3B3A3A3A3B3A3A3B3A3B3B3A3B3B3A3B3B3A3A3A3A3B3A3A3B3B
+                    3A3B3B3A3B3B3A3B3B3A3B3B3A3A3B3A3B3B3A3A3B3A3B3B3A3B3B393B3B3A3B
+                    3B3B3C3C3A3A3A1B1B1B1414141B1B1B1818181515151414141010100A0A0A9D
+                    9C9CDFDEDDBFBEBEB0AFAF949292888585807E7D777473716F6E6F6E6D706E6D
+                    706E6D706E6D72706F7371707572737775747976757B79777C7A787D7B797F7C
+                    7B817D7C7B78776E6B6976706D70696570696670696670696670696670696670
+                    6966706966706966707070696670696670696670696670696670696670696670
+                    69667069666B64627A767583807E807D7C807D7B7E7B7A7D7A797A7977797675
+                    77757474727172706F716F6E6F6D6D6F6E6D6E6E6D706D6C72706F73716F7471
+                    706A6867979695D7D7D6DBDBDAD2D1D13838370808081414141414141717171C
+                    1C1C1919191414143233333A3B3B38393939393A38393A39393A383939393A3A
+                    383939393A39383A3938393A383A3A38393938393A383A39393A39393A393839
+                    3A383939383A39383A3939393A383A39383939393A3A393A3A38393A39393939
+                    3A3A38393A383A3A383A3A383A39383A39383A39383939393A3A383A3A38393A
+                    383A3A38393938393A383A3938393A383A3A383A39383A3A383A3A393A3A3939
+                    3A393A3A393A3A383939393A3A383A39393A39393A3A393A3939393A38393939
+                    393A3939393839393B3B3B3233331414141818181B1B1B171717151515151515
+                    080808383838D0CECECDCCCCB9B8B8A4A3A28A89888583827B7978747170716F
+                    6E716F6D716F6E706F6F72706F7371707473717775747976757A79787D7A797E
+                    7B7A807B7A807D7C817E7C706E6C75706E726B68706966706966706966706966
+                    7069667069667069667069667070706966706966706966706966706966706966
+                    7069667069666F68656C6764807D7D827F7D817D7C807D7B7E7B7A7D7A797B78
+                    7778757476747374717172706F71706F716F6F706D6D706E6D726F6F73717073
+                    7170706E6C73706FBFBEBED6D6D5E1DFE0868686050506131313141414171717
+                    1B1B1B1D1D1D1212122727273B3C3C3838393839383739383838383739383839
+                    3837393938393937383937383838393838383838393838383838393837383937
+                    3839383838383939373839383839383938383939373839383838383838383939
+                    3838393838383839383838383838383838393838393739383739383839383838
+                    3838393938383838383938393838383938393837393838383937383837383837
+                    3838373938373838373838383938383838373838373838383838373838383938
+                    3839393738383839393839383738383B3C3C2727271212121D1D1D1A1A1A1616
+                    16151515131313050505878787DBDADABEBDBCB1B0B0949190878584807E7D77
+                    7574737170716F6F716F6E72716F7371707371707573717674747876757B7877
+                    7C7A797E7B7A807C7B817D7C83807F777372716D6B756E6B6F68657069667069
+                    6670696670696670696670696670696670707069667069667069667069667069
+                    667069667069667069666D6663726E6B848180817E7D817E7C807D7B7E7B7A7C
+                    79797A787677757476747373717072706F6C6B6B6D6C6B747271747171737070
+                    7472707471706B6867939190D3D3D2D4D3D3CDCCCC2E2F2F0B0B0B1515151616
+                    1619191920202017171719191936373738383837373736383737373737383736
+                    3737373738363738373737373737373737373737363737373737363837373738
+                    3737373637373738373738383737373737373738373738373738383737373637
+                    3736373737383737373737383737373837373837373737383737373837383836
+                    3837373737363737373837363838373737363738373837373737373738373737
+                    3737373637383637383737373737373737383637373737373737383738373638
+                    373737373737383637373737373738373737373838393737381919191617171F
+                    1F1F1919191616161515150B0B0B2E2E2ECCCBCBC8C7C7B8B7B7A2A1A18A8885
+                    8481817B7979747271747271757373716F6E6D6B6A7371707473727675747876
+                    757B79767C79797E7B7A807D7B817E7C837F7E7E7B7A6E6B6A77706E70686570
+                    6966706966706966706966706966706966706966707070696670696670696670
+                    6966706966706966706966716A676B64617B7675858180827F7D817E7D807D7B
+                    7E7B7A7C7A797977767775747573737472707472716462614B4A495856566B68
+                    68747271747170716E6D706E6DB7B5B5D1D2D0DCDBDB87868608080814141414
+                    14141818181D1E1E1F1F1F1212122C2C2C383939353636363636363737363737
+                    3635363635373637353636373637363637363537363637363636363537363637
+                    3736353736363636373736373736363536373736373735373736373636373736
+                    3636363736363637363636363736363737363637363737363737363737363537
+                    3635373637363637373637363635363637373637373536373637363536363636
+                    3736373736363736363636363736363535373636373736363636373636363736
+                    37363637363637363636373636363635353636373636353536363839392B2C2C
+                    1212121F1F1F1E1E1E181818151515141414080808878787D6D5D5BCBBBAAFAD
+                    AD918F8E878482807E7C7775746C6A695E5C5C4C4B4B5C5A5974737175737276
+                    75747775747A77777C7A787E7B7A7F7D7C807D7C827F7D83807E716E6C76706E
+                    716A677069667069667069667069667069667069667069667070706966706966
+                    7069667069667069667069667069666F68656C6562817D7D84807F827F7E827E
+                    7D7F7D7C7E7B7A7C79787A777778757576747373717173717072706F67656458
+                    56554E4D4C6A67667774736C6968848382CBCACAD2D2D1CFCECE3A3A3A090909
+                    1414141717171B1B1B2322221616161B1C1C3636363535363435353435353435
+                    3534343534343534353534353534353534353534353535343534353534353534
+                    3435343534343535343535343535343534343535343535343535343434343535
+                    3435353435353434353435353435343434343434353435353435353435353435
+                    3434353534353434353434353534353534353534353534353434343534353535
+                    3534343534343535333535343435343534343535343535343535343435343535
+                    3435353435353434353435353435353434353435353435353435353435353436
+                    353536361B1C1C1616162222221C1C1C1818181515150909093B3B3BCECDCCC5
+                    C4C3B6B5B59D9B9B888584858281757372585755585655646262716F6E747271
+                    7672737674737876757A78777C7A797E7B7A807D7C817E7D827F7E8581807774
+                    73726E6C746D6A6F686570696670696670696670696670696670696670707069
+                    667069667069667069667069667069667069666D6663706A6886838184807E82
+                    807E817F7D807E7C7E7B7A7C79787A777677757476737273717173717073706F
+                    74727175737272706F73706E73716F6C6968A2A19FCFCFCED9D7D79B9A9A0F0F
+                    0F1010101515151A1A1A2122222121211211112B2C2C34353633333333333333
+                    3433333434333434333333333333333433333334333433333333333333333334
+                    3333343334333334343334333333333333333334343334343333343334343333
+                    3433343333333332343433333333343433333433343333333433333333333433
+                    3433333333333433333433333333333434333434323434333434333434333434
+                    3333333333333334333334333334343333343334333334343234343333333333
+                    3333343433333333333432333333343433343333333333343433343433343433
+                    34343333333435362B2C2C1212122121212121211A1A1A1717171010100F100F
+                    9B9A9AD1CFD0B9B8B8A8A7A78D89898682817D7A797674727674737673737473
+                    727372717674737674747876757A78767C79797E7B7A807D7C817F7D827F7E85
+                    81807F7B7B706D6B766F6C6F6865706966706966706966706966706966706966
+                    7070706966706966706966706966706966706966716A676A6360777271878482
+                    83817F837F7E827F7D807E7C7D7B7A7C79787A78777775747674737572727372
+                    7072706F7270707372717573727673716F6D6D767473BAB9B8CFCECDD3D2D25B
+                    5B5B0606061414141817171E1D1D252525181818191A1A333333323232323333
+                    3232333233333233333233323232323233333231333232323233323233323132
+                    3232333232333332333332333132323231333232313331323332323232333332
+                    3332323131323331323231323333323232323233323333323232323332323331
+                    3232323232333232323233323232333233313233333233323232313233323233
+                    3232313132323331333332313332333232333232313232333332333332313232
+                    3332323331323232323232323333323231323333323333313231323233323232
+                    3232333233323231333232323333331A191A1818182525251E1E1E1818181414
+                    140506065C5B5BD0CFCFBEBDBDB1B0B0959292878583817F7E7A777676747274
+                    72717472717472717674737775747876757A77767C7A797D7B7A807E7C827F7D
+                    83807F84817F83807E726E6D77706D7169667069667069667069667069667069
+                    667069663D587069667069667069667069667069667069667069666A64617F7A
+                    7987838184817F83807E827F7D807E7C7E7B797C797879787678757476747274
+                    72727472707472717471717573717673727572716D6B69888685C7C6C6CFCDCD
+                    BBBAB92626260B0B0B1716161B1A1A2323232424241212122726263232323031
+                    3130303030313130303130313130313130313030313130313130313130313130
+                    3130303131303131303131303131303131303130303131303131303131303031
+                    3031313031313031303031313031313031303031313031313031303031303031
+                    3130303030303130313130313130313130313030313130313130313130313130
+                    3131303031303130303031303031303130303131303131303131303131303031
+                    3030313031313031313031313031313031313030313030303031313030313031
+                    313031313030303030313031313031313232322627261212122525252323231B
+                    1B1B1717170B0C0C272727BAB9B9C5C4C4B6B5B49F9D9D8986848482817C7978
+                    7775737573717473717573727674727775747876757A77777D7A787E7B7A817E
+                    7C827F7D83807E85817F868280767270756E6C726B6770696670696670696670
+                    6966706966706966514F7069667069667069667069667069667069666F68656C
+                    666383807E87838285817F83807F827F7E807D7D7D7B7A7B79787A7777777574
+                    7574727472717472717471717573727573727673737572716C6A699E9D9CC9C8
+                    C8D0CFCE8D8C8C0A0B0B1414141918191F1F1F2728281D1D1D1616162F2F2F30
+                    31312F2F2F2F2F2F2F302F2F30302F2F2F2F302F2F2F2F2F302F2F30302F3030
+                    2F30302F2F2F2F30302F30302F2F2F2F2F2F2F2F302F2F302F30302F2F302F30
+                    2F2F30302F2F302F30302F302F2F2F302F2F302F30302F2F302F30302F30302F
+                    2F2F2F2F2F2F30302F2F302F302F2F30302F2F2F2F302F2F302F2F30302F2F30
+                    2F30302F30302F302F2F302F2F2F302F2F302F30302F30302F302F2F30302F30
+                    302F2F2F2F2F302F302F2F30302F2F302F2F302F2F302F30302F2F302F2F302F
+                    2F302F302F2F2F2F2F30302F2F302F30302F2F2F3030312E2F2F1616161E1E1E
+                    2828281F1F1F1918181414140B0B0A8D8D8DCCC9CAB8B6B7A8A7A68B8A888684
+                    837E7C7A7975747673727572727573727573727775757876757A77767C7A797E
+                    7B7A807E7D827F7E83807F8581808683817A7876736F6D736C696F6865706966
+                    7069667069667069667069665F5E706966706966706966706966706966716A67
+                    6D66636E686687848387848286818084818083807E807E7D7E7B7A7C79797977
+                    7777757476737375727175727275727174737177747376747273706F716F6EB2
+                    B1B0C6C5C5CECDCC5857570808081718181B1B1B2424232A2A291616161E1F1F
+                    2F30302D2E2E2E2F2E2E2E2E2E2E2E2E2F2D2E2F2F2E2E2F2E2E2F2E2E2F2E2F
+                    2E2E2E2F2E2F2E2E2E2F2E2F2F2E2F2F2E2E2F2E2E2F2E2F2F2D2F2E2E2F2E2E
+                    2F2F2E2F2E2D2F2F2E2F2F2E2F2F2E2E2E2E2F2F2E2F2E2E2E2F2E2E2F2E2F2F
+                    2E2F2E2E2F2F2E2F2E2E2F2F2E2F2F2E2F2E2E2F2F2E2F2F2E2E2F2E2D2F2E2F
+                    2F2E2D2F2D2F2E2E2D2E2E2F2F2E2F2F2E2F2E2E2E2E2E2D2F2E2F2E2E2E2E2E
+                    2E2E2E2E2F2D2E2E2E2E2E2E2F2E2E2F2F2E2E2E2E2F2F2E2F2F2E2D2D2E2F2F
+                    2E2E2F2D2F2F2E2E2F2D2F2F2E2E2E2E2F2E2E2F2F2E2F2F2D2E2E2F30301E1F
+                    1F1616162B2B2B2323231B1B1B171717080908595858CBCACAB9B8B7AFAEAD92
+                    908E878483817F7D7978767675747674737574737674737875747976767B7776
+                    7C7A797D7C7B807E7C827F7E84817F8581808784827F7D7B736F6C746D6B7069
+                    667069667069667069667069667069665E5E7069667069667069667069667069
+                    667069666B6461736F6D8A868586838186838184818083807E807D7C7E7C7A7C
+                    7A797A77777775747674737573727573727473717673737775747674726F6D6C
+                    7E7C7BBDBCBCC6C4C4BDBCBC2B2B2A100F1019191920201F2929282828281312
+                    132626272D2E2E2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C
+                    2D2C2C2D2D2C2C2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2D2D2D
+                    2C2D2D2D2D2C2C2D2D2D2C2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2C
+                    2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C
+                    2D2D2C2D2D2C2D2D2D2D2C2C2D2D2C2D2D2C2C2D2C2D2D2C2D2D2C2D2D2C2D2D
+                    2C2D2D2C2D2C2C2D2D2D2C2D2C2D2D2C2D2D2C2D2C2C2C2D2C2D2C2C2D2D2C2D
+                    2D2C2D2D2C2D2D2D2D2C2C2D2D2D2D2D2C2D2C2C2D2D2C2D2D2C2D2D2C2D2D2E
+                    2F2F2627261312122929292A2A2A1E1E1F1A191A1010102B2B2BBDBCBBBDBBBB
+                    B3B2B29A98978785848381807C79787876747775747774737775747876757977
+                    767B79787C7A797E7C7A807E7D82807E84817F84838187848283807F74706E74
+                    6E6B706865706966706966706966706966706966595A70696670696670696670
+                    69667069667069666A64607973728B878687838186838184817F827F7E807D7B
+                    7E7B7A7C7A787A78777875747774737876757A77767876757876747775737673
+                    726E6B6A8E8C8BC2C1C0C9C8C79E9D9D1313131615161B1B1C2323232E2E2E21
+                    21211515152A2B2B2C2C2C2B2C2C2B2C2C2B2C2C2B2C2B2B2B2B2B2C2C2B2C2C
+                    2B2C2C2B2C2B2B2C2C2B2C2C2B2C2C2B2C2B2B2C2C2B2C2B2B2C2C2B2B2C2B2C
+                    2C2B2B2B2B2C2C2B2B2B2B2C2C2B2C2C2B2C2C2B2C2B2B2C2C2B2C2C2B2B2B2B
+                    2C2B2B2B2C2B2C2C2B2B2C2B2C2C2B2C2C2B2C2C2B2C2C2B2C2C2B2B2C2B2C2C
+                    2B2B2C2B2C2C2B2B2B2B2C2B2B2B2C2B2C2C2B2C2C2B2B2C2B2C2C2B2B2C2B2C
+                    2C2B2C2C2B2C2C2B2B2B2B2B2C2B2C2C2B2C2B2B2B2C2B2B2C2B2C2B2B2C2C2B
+                    2B2C2B2C2C2B2C2C2B2C2C2B2C2C2B2C2C2B2B2B2B2C2B2B2C2C2B2C2C2B2C2B
+                    2C2C2C2C2D2D2A2B2A1514142122223030302323231B1B1B1616161313139E9C
+                    9CC4C3C2B3B2B2A19F9F8986858582817D7B797A77767977767C79787B787878
+                    76757977767A79777D7A797F7C7A807D7C83807E85817F868281888482868281
+                    767271756F6C7069667069667069667069667069667069665251706966706966
+                    70696670696670696670696569625F7F7A798A8686868281868281848080827F
+                    7E807D7B7E7C7A7C79797A777778777576747267656462605F6B696977747478
+                    75757572716E6B699E9C9BC1C1C0CBCAC97675750B0B0C1918181E1F1F262726
+                    3131311A1A1A1A1B1A2B2C2B292A292A2A2A2A2A2A2A292A2A292A292B2A2A29
+                    2A2A29292A2A2B2A292A2A2B2A2A2B2A2A29292A292A2A292A2A2A292A2A2A2A
+                    2A2A2A2A29292A2B2A2A2A292A2A2A292A29292A292A2B2A29292A2A2A2A2A2A
+                    2A2A2B292A2A2A2A292A2A2A2A2A292A292A2A2B292A2A292A2A2A2A2A292A2A
+                    292A2B2B2A292B2929292A2A2A2A2A292A292A2A2929292B2A2A2A292A2A2A2A
+                    2A2A2A2A292A292A29292A292A2A2A2929292A2A292A292A292A2A2A2A2A2A29
+                    2A2A2A2A2A2A2A29292A2A2A2A2929292A292A2A2A29292A292A2A2A29292A2A
+                    292A292A292A2A292A2A2B2B2B1A1A1B1A1A1A3333332928281E1D1E1919190B
+                    0C0B767675C9C7C6B4B3B3A7A6A68C89888582817F7C7C787776706E6D666362
+                    6564637572727A78767A79777C7A797E7B7B817E7C837F7F8480808682808783
+                    82888483777574746E6B716A677069667069667069667069667069664E4F7069
+                    667069667069667069667069667069666A6360817D7B8B878587838287838185
+                    818083807E817D7B7E7C7A7D7A797A78767A7675787574626060535151595757
+                    5F5D5C767473757270706E6CA8A7A6C0BEBEC7C6C55251520D0D0D1A1A1A2222
+                    222C2C2C3030311415151F1F1F2A2A2928282828292828282928282828282828
+                    2829282828282928282828282928282928282828282828282928282928282828
+                    2828282828292828282829292828292829282828282828292828282828292829
+                    2928282828282828282828282828282828292828282928282828292928282828
+                    2828282928282829282828282929282928282928282928282828282828282929
+                    2828292828282828282828292828282828292828282829282828282829282828
+                    2928292828292828282928292928282828282828282928282828282828292928
+                    29292828282829292828282828282A29291F1F201515153232322E2E2E212121
+                    1A1A1A0D0D0C525251C6C4C4B6B5B5ACABAB908D8C878483827F7E615F5E5A57
+                    575653535E5C5B7673737A78777B78777D7B797F7C7B817E7D83807E84817F87
+                    83818884828985847B7776756F6D726A67706966706966706966706966706966
+                    49497069667069667069667069667069666E67646C66638884828A8684888482
+                    87838185828083807E807D7B7E7C7A7D7A797A78767976757875747876757A76
+                    75787574757371787474726F6D777573AFAEAEC0C0BFBAB9B83534351011101C
+                    1C1C2524253333332D2D2E121313232424282828272727272727272727272727
+                    2727272727272627272727272727272727272727282727282727272727272728
+                    2727272727272727282727272727282727282727272727272727272727272727
+                    2827272728272727272727272727272728272827262727272827272727272728
+                    2727272727272728272727272727272728272727272727272727272727272728
+                    2727282727272726272727272727272727272727272827272727282727272727
+                    2727272727272727272728262728272727272728272727272727272727272727
+                    2727272628272727272727282727272727272828282324241313132E2F2F3434
+                    352525251C1C1C111110353534B9B8B8B9B8B8ADADAC959291868382827F7E78
+                    75737774747A78767A78777977767A77767C78777D7B797F7C7B817E7D83807E
+                    84817F8683818783828A86857E7B7A746F6D726B687069667069667069667069
+                    66706966014D7069667069667069667069667069666F67646964618A86848B87
+                    8588858388848285828184817F817E7C7F7C7B7D7B797A797779777679767578
+                    76747876747977757A7976797674706C6B7F7C7BB4B3B2C1C1C0AAA9A8262626
+                    1313121F1F1F28282838383829292A1313132425252526262626262626262626
+                    2526262526252625262626272626252625262726262526252526252626262526
+                    2525262526262626262626262525262626252526262625262526262626252625
+                    2625262625252626252626262625262625252625252625262626262625252626
+                    2626262626252526262626252626252525262626262626252625262626252726
+                    2525262626252525262525262625262626262625262525252627262525262527
+                    2626262625262626252625252625252626272627262625252626262627252625
+                    252625262625252626252626252625252626262626252527262425251313132A
+                    2A2A3A3A3A2A2A2A1F1F1F131413262626AAA8A8BDBABBAFAEAD999796888482
+                    8481807F7C7A7A78767A78767977767A78777B78767C79797E7B7A807D7B827F
+                    7E84807F8582808784828884828B8785817E7C746F6D716A6770696670696670
+                    696670696670696664647069667069667069667069667069666E66636F69678B
+                    87858A868488858388848285818083807F807D7C7F7C7B7D7B797A78787A7776
+                    7976757876747876747977767A77767875736F6B6A858382B5B4B4C3C2C29594
+                    941819181616162222222D2D2D3B3B3B22222315151625252524242524242424
+                    2424242424242425242524252425242524242424242424242524242524242525
+                    2424242424252424242424242424242424242424242425252424242424242424
+                    2524242424252424242524242424242424252424252424242424242424252424
+                    2424242424242425242525242424242425242524252424242425242524242525
+                    2424252425242424242424242425242425242424252424252425252424242425
+                    2524252424242424242424242524242524242424242424252424252424242424
+                    2425242524242524242424242525242425242524242424242425242524252525
+                    1515142323233D3C3D2D2E2F222222171616191918959493BFBEBDAFAEAD9C9A
+                    998885838581807F7D7B7B78777B78777A77767A78777B79777D79787E7B7A7F
+                    7D7C827F7D83807F8581808784828884838B8785827E7C75716E746D6A6F6865
+                    706966706966706966706966B6B87069667069667069667069667069666D6663
+                    746E6C8E8A888A858489858488848385828084807F817E7D7F7C7B7E7B7A7B78
+                    787A77767A77767976767976757A77767B77777874746F6C6A8B8988B6B5B4C1
+                    C0BF8A8A891616161919192424243131313F3F3F202020161616242424232323
+                    2323232323232323242323232323232323242323232323232323232323232324
+                    2323242323232423232323232323232323232323242323232323232423232323
+                    2423232323232323232423232323232424232323232423232424232423232323
+                    2323232323232323232323232323242323232323232323232323242323242323
+                    2323232323232323242423232323232423232323232423232323232323232323
+                    2324232323232323232323232323232323232323232323232323232323232423
+                    2323232323242323242323232323232323242323232323242323232323232323
+                    232424241616162020204040403232322424241918181616168B8989BFBEBDAE
+                    ADAD9E9C9B898685868281807D7C7C79787B78777B78777B78777B79787E7A7A
+                    7E7C7A807D7C827F7E84807F8582808884838984848B8685868280757170746D
+                    6A706865706966706966706966706966CACD7069667069667069667069667069
+                    666C6562736E6C8F8B8A8A868489868488858385828184817F827F7D807C7C7E
+                    7B7A7C7A797B78777A78767977757A77767B78777B78767774726E6B6A8D8C8B
+                    B7B6B5C0BFBE6E6E6E1111111C1D1D2727273636363D3D3D1717171819182323
+                    2222222122232122222222222222222222212221222122232222222222222222
+                    2222222123222121222222222221222221222222222323222122222322222222
+                    2221222221222223212222222222232122222223232222222222222222212222
+                    2322232121212222222322222222222122212122222322212222222122222222
+                    2321222122222121222222222321222222222223222121222121222223222321
+                    2221212222222221212221222223222222222222212222212222222222222223
+                    2221212222222222222122212221212222232222232322232122212122222222
+                    22212221232323241A1A1A1818183D3E3D3737372828281D1D1C1111126F6E6E
+                    BEBDBCAFAEAEA09F9E898785868381817E7C7D7A797C79787B79777C79787C7A
+                    787E7A7A7F7D7B807D7C827F7E84817F8683808885838985848B878587858376
+                    7270746D6A706966706966706966706966706966EBF570696670696670696670
+                    69667069666C6562726D6B8F8B898E8A88908D8B8B8886898685878483827F7D
+                    8683828681807E7B7A7B78777B78777A77767A77767B78777B78777774736D6B
+                    688E8C8BB6B5B5BEBDBC6766661010111E1E1E2A2A293A3A3A3D3D3D12121219
+                    1A19212122202020202021202020202020202020202021202120202120202120
+                    2020201F20212020212020212020202020202020202021202020202020202020
+                    2020202020212020202020202120202120202020202020202120202020202020
+                    2020202120202021202121202020202020202120202020202020202120202021
+                    2020202021202020202020212020212020202020202020202020212020202020
+                    2020202120212120212020202020202020212020202120202020212020202020
+                    20202020202020201F2020202021202020202120202020202021202020202020
+                    2020202020202020202121211C1D1C1515153E3E3E3B3B3C2A2A2B1F1F1F1011
+                    11676666BCBBBAAFAEADA19F9E898684858381817E7C7C79787C79787C79787C
+                    79787D7A797D7B797F7D7C83807F85827F8582808986848986848985848B8785
+                    888583757270736C69706966706966706966706966706966D8A1706966706966
+                    7069667069667069666C6562736D6B928D8C726E6C5D5B5A716D6C726E6D7371
+                    708682815D5A595753537976767D7A797C79787C79787C7A787D7A797D7A7979
+                    75736E6B698F8C8CB5B4B3BCBBBA6766661111112020202C2C2C3E3E3E404040
+                    1414141819192020201F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F
+                    1F1F201F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F201F1F1F1F1F1F1F
+                    1F1F1F1F1F1E1F1F1F1F1F1E1F1F1E1F1F1F1F1F1F1F1F201F1F1F1F1F1F1F1F
+                    1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F
+                    1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F
+                    1F1F1F1F1F1E1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F201F1F1F1F201F
+                    1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F201E1F1F1F1F1F1F1F1F1F1F1F1F1F
+                    1F1F1F201F1F1F1F1F1F1F1F1F2020201A1A1A1515154141413D3D3D2C2C2C20
+                    2020111111676766BBBAB9AEADACA19E9E8A868687848384807F7F7C7B7D7A79
+                    7E7B7A7E7B7A7D7A797E7B7982807F837F7E8782818A87858885848D89888A86
+                    858B8786898584777271736C697069667069667069667069667069666F277069
+                    667069667069667069667069666B6461746E6C97939125242319181773706E48
+                    46453534337572711112110B0B0B5956568582817D7A797D7A797D7B797F7C7B
+                    7F7C7A7A76746E6B6A8E8C8BB4B3B3BCBABA6766661211112222222E2E2E4141
+                    414343431414141718171F1E1E1D1D1D1E1E1E1E1D1E1D1D1D1E1D1E1E1E1E1E
+                    1E1E1D1D1F1E1E1D1D1D1E1E1D1D1E1E1D1D1D1E1E1D1D1D1D1E1D1D1E1E1D1D
+                    1E1D1D1D1D1E1D1F1D1E1D1D1D1E1F1E1D1E1E1E1D1D1D1E1E1D1E1D1D1E1D1F
+                    1E1E1D1D1E1F1E1D1E1E1E1E1E1E1E1D1D1D1E1D1D1F1D1E1E1D1E1E1E1D1E1D
+                    1D1D1E1D1E1D1D1E1D1D1F1E1E1D1D1D1E1E1E1E1E1E1E1D1E1D1E1D1D1E1E1D
+                    1E1D1D1D1D1E1D1E1F1E1D1E1E1D1E1D1F1E1E1E1D1D1E1D1D1D1F1D1D1E1E1D
+                    1E1E1D1D1E1D1E1E1D1D1E1E1F1D1D1D1E1D1D1E1D1E1E1E1E1E1D1E1D1D1E1D
+                    1E1D1E1D1D1D1E1F1E1D1E1E1E1E1D1E1D1F1E1F1A191A161616434343414040
+                    2F2F2F212121111111676666BAB9B8ADACACA09E9D8A88868885848481807F7C
+                    7B7E7C7B7E7C7A7F7C7B7D7B7A84817F62605F25242346444358565528262652
+                    4F4F8C89878D8A87898684777371736C69706966706966706966706966706966
+                    450A7069667069667069667069667069666C6461726D6B969290605D5B201E1E
+                    6865636E6C6A24232262605E252424222121514E4E8582813939392322222726
+                    252626252726252B2A296562608F8D8CB1B0B0BAB7B766666613131323232330
+                    30304343434646461414141616171C1D1E1C1D1D1C1C1C1C1D1D1C1D1D1C1D1D
+                    1C1D1D1C1D1C1C1D1D1C1D1D1C1D1D1C1D1C1C1C1C1D1C1D1C1D1D1D1D1C1C1D
+                    1C1C1D1D1C1C1D1D1D1C1C1D1D1D1C1D1D1D1D1C1D1D1C1D1D1D1D1C1C1D1D1C
+                    1C1D1D1D1D1C1C1D1C1D1C1D1C1D1C1D1D1C1D1D1D1D1C1C1D1D1C1D1C1D1C1D
+                    1C1D1D1D1D1D1C1C1C1C1D1D1D1D1C1C1D1C1D1D1D1C1D1D1C1D1D1D1D1D1C1C
+                    1D1C1C1C1C1D1D1C1D1C1D1C1C1C1D1D1C1D1D1D1D1D1C1D1D1D1C1C1D1D1D1C
+                    1C1D1C1D1D1C1D1D1C1D1D1C1C1D1C1D1D1C1D1C1C1C1D1C1D1C1C1D1D1C1D1D
+                    1D1C1C1D1D1C1C1D1D1C1C1D1C1D1D1C1D1C1D1D1D1D1D1E1919191616164545
+                    45424242303030222222121212666565B7B6B6AAAAA99F9E9D8C89874A4A4923
+                    22222322222727262525232D2B2B706E6D8885845E5C5A252423202020232322
+                    1312122221208985838F8C8A898684777271736C697069667069667069667069
+                    66706966670F7069667069667069667069667069666B6461746E6C97918F4F4D
+                    4C1918172B2A2A7471701919194C49491F1E1E151616514E4E8884835957564C
+                    4A4A4F4C4C4C4B4A4C4949504E4D6B67668E8C8AAFAEAEB8B6B6656464131313
+                    2424243232324646464647461414141616161C1D1C1C1C1C1B1B1C1B1C1C1C1C
+                    1B1B1C1B1B1C1C1B1C1C1C1C1B1B1C1C1C1C1C1B1C1B1B1B1B1C1B1C1B1B1C1B
+                    1C1C1C1C1C1B1C1C1B1C1C1C1B1B1C1C1B1B1C1C1B1B1C1C1B1C1C1C1C1B1C1B
+                    1B1B1B1C1C1C1C1C1C1B1C1B1B1C1B1C1C1C1B1C1C1B1C1C1C1B1B1B1B1C1C1B
+                    1B1B1B1C1B1B1C1C1C1B1B1C1B1C1B1C1B1C1B1B1C1C1C1B1C1B1C1C1B1B1B1B
+                    1C1C1B1C1B1B1B1C1B1C1C1C1B1B1B1B1B1B1C1C1B1C1C1B1C1C1B1C1C1B1C1C
+                    1B1C1B1C1C1B1B1C1C1B1B1B1B1B1C1B1C1B1B1C1B1C1C1C1B1C1C1B1C1B1B1C
+                    1C1B1B1C1B1C1C1B1C1C1B1B1C1C1B1B1B1C1C1B1C1C1B1C1B1C1C1C18181815
+                    1615464646444445313131232323131414656464B6B4B4A9A7A79E9B9B8C8987
+                    686664514F4E4E4C4B504D4C4E4B4B51504F777473898483524F4E1312122423
+                    23282726282625272524888482908C8A8A8684787271736C6970696670696670
+                    6966706966706966CF4F7069667069667069667069667069666C6562736D6B99
+                    95924A48471B1B1B4E4B4C3E3C3C2221205D5B5A302E2D1F1E1E686564858180
+                    837F7E83807E83807F8581808581807F7B7A706C6B8D8B89AEADADB7B5B56464
+                    631313132525253232324747474949491414141414141B1A1A1B1A1B1B1B1B1B
+                    1B1B1B1A1B1B1B1B1B1B1B191A1B1B1B1B1B1B1B1B1A1B1B1B1B1A1B1B1A1A1B
+                    1B1B1A191B1B1B1A1B1A1A1B1A1B1B1A1B1B1B1B1B1B1B1A1B1B1B1B1B1B1B1B
+                    1B1B1B1B1A1B1B1B1B1B1A1A1A1B1B1B1B1A1B1A1B1A1B1A1B1B1A1A1A1B1B1A
+                    1B1A1B1B1B1A1B1A1A1B1A1B1B1B1B1B1B1B1B1A1B1B1B1B1A1B1A1B1B1B1A1B
+                    1B1B1B1B1A1A1B1B1A1B1B1B1B1A1B1B1B1B1B1B1B1B1B1B1A1B1B1B1B1A1B1B
+                    1A1B1A1B1A1A1B1B1B1B1B1B1A1A1B1B1B1B1B1B1B1B1A1A1B1B1B1B1B1B1A1B
+                    1B1B1A1B1A1B1B1A1A1B1B1B1A1B1B1B1B1B1B1A1B1B1B1A1B1B1B1B1A1A1A1A
+                    171716151515474747454545323232242424131313666564B5B3B3A8A6A69D9B
+                    9A8B88868C89888A87868683808682808581808481807F7C7B88858344434204
+                    04042424232928270B0B0B2524238C8885918C8A8A8785787271736C69706966
+                    706966706966706966706966F1E37069667069667069667069667069666C6562
+                    736E6D928E8D8D89878582818B87857F7C7B807D7B868381817E7D7D7A7A827E
+                    7D7E7B797D7A797C79787D7A797E7B797E7B79797674706C6B8B8988ABAAAAB4
+                    B2B26564641414142525253434344848484A4A4A141414141415191A1A191A19
+                    191919191919191A19191919191919191A1919191919191919191919191A1919
+                    19191A19191919191919191A19191A191A19191A19191919191919191A191919
+                    1A1919191919191919191919191919191A191919191919191919191A1919191A
+                    19191A19191919191919191A19191A19191919191919191A1919191919191919
+                    1919191919191919191A19191A19191919191919191919191919191919191919
+                    191A191919191A19191A1919191919191A191919191919191919191A19191919
+                    19191919191A191919191919191919191A1919191919191A1919191919191919
+                    1A191A19161615151515474747464646323232242424141414646363B2B1B0A5
+                    A4A39B9A988C888788858483807F7F7C7A7F7C7A7E7B7A7E7B7A7F7C7A83807E
+                    7372704644435D5B5A6E6A6A4644436865648E8A888E8A888A8785787472736C
+                    69706966706966706966706966706966DBE27069667069667069667069667069
+                    666C6562736E6D928E8C8D89878F8B8A8C89878C88868A878586838286838285
+                    8380807D7C7E7B7A7E7B797D7A797E7B797F7B7A7E7B7A797774706D6B898886
+                    ABA9A9B2B1B06463631514142525253534344949494A4A4A1313131414141918
+                    1918181818191818181818181918181818181818191818181818181818181818
+                    1819181818191918181819181818181818181818181918181819181818181918
+                    1818181818181819181818181818181818181819181818191819181918191818
+                    1818181818181818191818181918191818191818181818181818181818181818
+                    1918181818191918181819181818181918181818181918181918191918181818
+                    1918181818181818191819181818191819181818181819181818181818181818
+                    1818181818181918181818181919181918181818181918181818181918181818
+                    1818181819181918151515151414484848454545323232242424141414646362
+                    B1B0AFA5A3A39A98988B8887888583848180807D7B7F7C7B7E7C7B7F7C7A7F7C
+                    7B807D7B8582818C87868B87868C8887908C8A8F8C8A8B87858D89878A878578
+                    7472736C69706966706966706966706966706966D4D670696670696670696670
+                    69667069666B6461746E6D928F8D8B87858B87858A87858A8583888381858281
+                    84807F827F7D817D7B7F7C7B7F7C7A7E7B7A7F7B7A807C7B7F7C7B7A77756F6D
+                    6C878483A8A7A6B1B0AF6A69691717172525253535354A4A494E4D4E18181812
+                    1312181717161816171717171618171817161617181818161716171817161616
+                    1617171818171718181617161717181617181718161716171618181617161717
+                    1817181718181716171716171817181817161618171818181717171816171716
+                    1818181717171716161816161817171718161718171816171717181718161717
+                    1817171718181817161816161718181617171618171718181716181716181718
+                    1717181617171718171617181616171817171717181717181718161816171717
+                    1717171617161716161718161818161818181717161717181718161617181717
+                    1617171617171718171717171314131818184A4A4A4545453232322424241616
+                    16696968B0ADAEA3A2A09896968B8886898584848180817D7C7F7D7B807C7A80
+                    7D7B807D7B827D7C827F7E84817F8783828784828985848B87848B88868E8A88
+                    8B8785787473736C69706966706966706966706966706966698C706966706966
+                    7069667069667069666B6461716C6A948F8D8D88868C88868C87858A85848884
+                    8287838185817F84807E817D7D807D7B7F7C7A7F7B7A7F7B7A807C7B807C7A7B
+                    7776706D6C837F7FA5A4A3B0AEAE81807F1D1D1D232424343434484848565657
+                    2625250F0F0F1616161616161617161616161616161616161616161616161616
+                    1616161616161616161616161616161616161616161616161616161616161616
+                    1616161616161616161616161616161616161616161616161616161616161616
+                    1616161616161616161616161616161616161616161616161616161616161616
+                    1616161616161616161616161616161616161616161616161616171616161616
+                    1616161616161616161616161616161616161616161616161616161616161616
+                    1616161616161616161616161616161616161616161616161616161616161616
+                    161616161616161616161616161616160F100F24242450515143434332313223
+                    22221D1D1D817F7FAEACABA09F9E9593928B868588858384827F817E7C817D7B
+                    807C7B807D7B807D7B817D7D84807E85817F8683828984838A85848C87848C88
+                    868E8A888B87857B7673726A677069667069667069667069667069666F707069
+                    667069667069667069667069666D6663696361908B898E8A878C88868C87868A
+                    868488848387838085817F84807E817D7D807D7B807C7B7F7B7A7F7C7A807D7B
+                    817D7B7B7876716D6C7C7978A19F9FADACAC8887862021202323233333344747
+                    475858582C2C2C0E0F0F15151616151615151615151515151515151515151615
+                    1515151516161616151515151516161515151516151615151516161515151515
+                    1515151515151515151516161515151515161516151515161615151515151515
+                    1615151515151516151615151515151515151515161516151515151515151515
+                    1515151515151515151616151515151615161515161515151516151616151516
+                    1516151516151615151515151515151515151515151516151516161515161515
+                    1515151616151515151616161616151515151515151515151515151616161516
+                    15151515161515151516161515151516161515160E0F0F292929515151414141
+                    313132212122202020888786ABAAA99E9D9C93918F8A868589848384807F817E
+                    7C817D7C807D7B817D7B817D7C827F7C84807E85817F8783828884838A86848C
+                    87858C87868E8A8888858377716F706966706966706966706966706966706966
+                    6D6F7069667069667069667069667069666E67646A64628F8B898F8B898D8987
+                    8C88878B8785898684888483868381858280827F7E817E7D807D7C807D7C817E
+                    7C82807E84817F7D7A79736F6E7774739C9B9AA8A7A69695942E2C2C22212133
+                    33334545455A595A3839390E0E0E141413141515141414151515151515151515
+                    1415151515151515141414141515141515141415151415151514151515141415
+                    1515151515151514151514151515151415151515151415141515141514151515
+                    1515151515151515151515141415151515151515141414151415151515141515
+                    1515151515151515141515141515141515151515151415151415141515141514
+                    1415141415151515151514151515151514151515151515151415151514141415
+                    1514151515151514141515151514141415141515151515151515151515151514
+                    1514151415151515141415151514151515151515151414130F0E0F3435345151
+                    513F3F3F30302F2020202C2B2C969494A6A4A39C9B9A918E8D8A868587848387
+                    848184817F83807E817E7D817E7D827F7D817E7E84817F868281888583898684
+                    8B87858C88878C88878F8B8986838175706F716A677069667069667069667069
+                    6670696612487069667069667069667069667069666F67646862608E8987918D
+                    8B8C88878B88878B8785898684888583868381858280827F7D817E7D817F7D80
+                    7D7B7976747875737674727C797876727173706E969494A4A3A2A09F9E393838
+                    1F1F1F3131314242425858584545451011111213121414131414141414141314
+                    1414131414141313141414131414141414141314141414141414131313141414
+                    1414141413131414141414141414141314141414141413141414131414141413
+                    1414141314131414131414141414141414131414141414141414141414141314
+                    1414141413141414141314141314141414131414141414131414141414141414
+                    1414141414141414141314141313141414141414141414141414141414131314
+                    1414141414141314141314141414141414141414131414131314141414131414
+                    141414141314131413141414141413141314131414141414131212121111113D
+                    3E3D4E4E4E3C3C3C2E2E2E1E1E1E383838A09E9EA1A09F9998988E8B8A8A8684
+                    878482726F6E7571707A7775807D7B837F7E827F7D827F7F84817F8682818885
+                    838A86848B87858B88878D88878E8A8987838176706D70686570696670696670
+                    69667069667069666D6D706966706966706966706966706966706966655F5D86
+                    817F938E8C8D88878C88878C87868B868488858387838185828083807F837F7E
+                    807D7B6866655755555A58566E6A697F7B79787473706D6B8F8C8BA09E9EA6A4
+                    A44F4E4E1D1E1E303030403F3F55545550515016171711111113131313131313
+                    1313131313131313131313131313131313131313131313131313131313131313
+                    1313131313131313131313131313131313131313131313131313131313131313
+                    1313131313131313131313131313131313131313131313131313131313141313
+                    1313131313131313131313131313131313131313131313131313131313131313
+                    1313131313131313131313131313131313131313131313131313131313131313
+                    1313131313131313131313131313131313131313131313131313131313131313
+                    1313131313131313131313131413131313131313131313131313131313111111
+                    1616164747474A4A4A3939392D2D2D1C1D1C4E4E4EA6A4A39B9A9A9694948C88
+                    878A86848785826F6C6A5C5A595856556563607D7A7884807F84807E85818087
+                    83818A85848B86848C87858C88878E89878F8B89837E7C736E6A706966706966
+                    7069667069667069667069667170706966706966706966706966706966716A66
+                    67605D837E7D938E8D8E89878E89878C87858B87858984828884828783818581
+                    7F84807F817D7B7A7776807D7B837F7E858180817E7C7A77746F6C6A8583819D
+                    9C9BA6A4A36968671E1D1D2E2E2E3D3C3C4F504F5B5A5B2324240E0E0E121213
+                    1212121212121312121213121212131212121213121212121212131212121212
+                    1212131313121212121212121313121212121212121212131212121212121212
+                    1212131212121213121212121213121212121212121212121212121212121212
+                    1212121212121312121212121312121212131212131212121313121212121213
+                    1212121212121212121212121212121213131212131312121212121212131212
+                    1212121212131312121212121212131212121212121212121212121213121213
+                    1312121212131212121312121312131212121212121213121212131212121212
+                    130F0F0F2020204E4E4E4545453737372B2C2C1C1C1C686766A5A3A398989793
+                    91908C8686898684868281868381858180837F7E7C7977807C7B85817F83807F
+                    8682818884828A86848B87858C87868D88878E8987908B89827E7C726D6A7069
+                    6570696670696670696670696670696677757069667069667069667069667069
+                    66716A6767605D79747295908E8E89878E89878C88868C87858A868488848287
+                    838186827F84807F837F7D85817F837F7E837F7E837F7E837E7D7D7877706D6B
+                    7A7877999897A19F9E8482822323242B2B2B3939394B4B4B5D5D5E3435350D0D
+                    0D12121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12121212120E0E0E2E2E2E4F4F4F4140403434342829292222228381819F9D9D
+                    9694948F8D8C8B868489848386818184807E847F7E84807F85828084807F8480
+                    7F84807F8782818884828A86848B87858C88868D89878E8A878E89887F797872
+                    6B687069667069667069667069667069667069667D7B70696670696670696670
+                    6966706966716A6768625E726E6C95908E8F8A878D88878D88868C87868A8684
+                    88848287838185817F85817F837F7E837F7E837F7D837F7D837F7E837E7D7E7A
+                    7874716E736F6D9392919B9A9996959434333426262637373746464659595949
+                    4949101010121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121111113F3E3F4B4B4B3D3C3D3232322425233332339694
+                    949896969392918C89888A858488848285828084807E837F7E84807E84807E84
+                    807F84807F8681808783818884828A86848B87858C88868E89878F8A888D8987
+                    7C7674716A677069667069667069667069667069667069668180706966706966
+                    706966706966706966716A676B64616A6663928E8C908B898D88878D88878C88
+                    868B878589858388848286828085818084807F84807F837F7E837F7E84807D84
+                    807F807C7B7774716E6B698988879897979E9C9C525251202020343434434343
+                    5252525858581D1D1D0F0F0F1212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    121212121212121212121010101B1B1B4A494946464539393A2F2F301E1E1E51
+                    50509E9C9B959392918F8E8A86858B868488838285818085817F84807E837F7E
+                    84807F84807F8581808581808984838985838B87858C88868D88878E89878F8A
+                    888B868477726F7069667069667069667069667069667069667069667C857069
+                    667069667069667069667069667069666E676465605C8D8987918C8A8E89888D
+                    88878C88868B87848A858489858387838186828084807F84807E837F7E837F7E
+                    84807E84807F827E7D7A76756F6B687E7B7A9694959D9B9A7473722222222F2F
+                    2F3E3E3E4D4D4D5D5D5D3434340C0C0C12121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12121212121212121212121212120E0E0E2D2D2D4C4C4C4141413636352B2C2B
+                    2020207372719B9A999290908E8B8A8A858489858387828185817F85817F8480
+                    7E84807E84807F85817F8581808783818984838985838C87858C88868D88878D
+                    8987908B89888381756F6C706966706966706966706966706966706966706966
+                    7070706966706966706966706966706966706966716A67635D5A85807F938E8C
+                    8E89878D88878D88878C87868A868489858388838286828085818084807F8480
+                    7F84807E84807F85817F84807E7D7977726E6C74716F908F8E9996978D8B8B34
+                    33332828283A3A3A4848475858584C4C4C131313101010121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121111111313133F3F3F4849493D3C3D3333
+                    332425253231318C8B8A9694938F8D8C8A87868A858489858387828185817F85
+                    818084807F84807E8581808581808783818783818985838A86848C88868C8886
+                    8D88878E89878F8A88837F7D726C687069667069667069667069667069667069
+                    667069667070706966706966706966706966706966706966726B68655F5C7873
+                    7196918F8E89878E89878D88878D88868A86848A868488848287838186828085
+                    818085817E84807F85817E868280888382817D7C7572706F6B6A878585959393
+                    9897965352522323233535354343435151515A5A5A2728270D0C0C1212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    121212121212121212121212121212121212120E0E0E2323234949494343433A
+                    393A303030202020525151989695908E8E8B8A88898583898583898583898583
+                    86828185817F85817E85817F8582808782818782818885828A85848B86848C88
+                    868D88878E89878F8A888F8A887E7A78716B6770696670696670696670696670
+                    69667069667069667070706966706966706966706966706966706966716A676A
+                    64616B676496918F8E89878E89878D88868D88868C87858A8684898583878381
+                    87838186828085817F858180878382837F7D74716F7976747B77766F6A687A78
+                    789190909998967775752828282E2E2E3E3E3E4A4A4A595A5A4142420F0F0F10
+                    1010121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212111111111010373737494949
+                    3E3E3E3636352B2B2B2626267674759695948C8A898986858984838B8785837F
+                    7E706C6B7F7B7A88838287838185817F8682818782818883828884828A86848B
+                    87858D88878D88878E89878F8A888E8987797472706966706966706966706966
+                    7069667069667069667069667070706966706966706966706966706966706966
+                    706966706966625C5A8E8A88918C8A8E89878E89878C88868C87858B86858A85
+                    848884828783818783818783817F7C7B6864645B58585B5857777472817D7B73
+                    6E6D706D6C8A8A8992909091908E404040282828383838444444515151575757
+                    2121210E0E0E1212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212120F0F0F1E1D1E4646
+                    464242423A3A3A3232322525253E3E3E908E8E8F8D8C8988878884838A85838A
+                    868484807E615D5C59575663605F7B77758682818783818783818884828A8483
+                    8A86848C87858D88878D89878E89878F8A88888482746E6B7068657069667069
+                    6670696670696670696670696670696670707069667069667069667069667069
+                    66706966706966716A67635D5A807C7996918F8D88868E89878E89868D88868C
+                    87868985838984838884828783818884827774726764637C78768A8583878381
+                    817D7B7874726C68677F7D7C8D8C8C9493926868672626263433343F403F4949
+                    4957565741414110101012121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121211111136
+                    36364747473D3D3E3637362F2F2F232424676666929190888786868484878381
+                    8985838884828783818B8684807C7B6B6766706C6A8783818882828883828985
+                    838A85848B87858C88868D89868E89878E8987908B88837E7C706A6770696670
+                    69667069667069667069667069667069667069660E7170696670696670696670
+                    6966706966706966706966716A6768625F706B699893908E89868E89868E8986
+                    8D88868C87858B87848985828884818884828782808782808A85848985828682
+                    7F86828085807E7D7977706C6A716E6C8988878C8B8A8A88873939392B2B2C3A
+                    3A3A4444444E4E4D5655562727280D0D0D121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12121212121212121212121212121212121212121212121212121212120F0F0F
+                    2323234646464141413A3A3B3333332928283738378886868A88888483828581
+                    808984818984828883818683808682808984828B868388848187828088838188
+                    85828985828B85848B87848D88858E89878E89868F8A878F8A877D77746F6865
+                    7069667069667069667069667069667069667069667069667070706966706966
+                    7069667069667069667069667069667069666D6663655F5D918D8A918C8A8E88
+                    868E89878D88868D88858C87858A858389848289848287838187838087828087
+                    828086817F87828087817F817D7B7672716B67657F7C7B8B8A89918F8E656564
+                    2627273435343F3E3E4848485354544949491515150F0F0F1212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121010
+                    101414143C3D3C4545453D3D3D363637302F2F2525246363628F8C8C85838383
+                    808086828089848288848187838187828187838086828086827F878280888382
+                    8983818985828A85838B86848C87858D88868E89878E89868F8A888B87857670
+                    6D6F686570696670696670696670696670696670696670696670696670707069
+                    66706966706966706966706966706966706966706966706966635D5A827D7C95
+                    908E8D87858E88868D87858D87868C87858A8684898483888482888381878381
+                    87838086828187828086828086828084807E7C78766F6B69706E6C8786858B89
+                    888685833E3E3E2A2A2B3A39394343434B4B4B5455543535350E0E0E11111112
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12120F0F0F2D2E2E4646463F3F3F393A393333342828283D3C3D848282878584
+                    817F7F827F7D8782808984828883818883818682818782808682808682808783
+                    808884818884828984838A86838A87858D87868D89868E88868D8886908B8985
+                    807E716A68706865706966706966706966706966706966706966706966706966
+                    7070706966706966706966706966706966706966706966706966716A6767605D
+                    716C6996918F8E89878D88868D89878C87858C87858B86848985838984828783
+                    81878381878381878280878281878280878381878280807B7A7672706D69667C
+                    7A798785868D8B8A6B6A6A2A2A2B3332323D3E3E4546454E4F4E515151222222
+                    0D0D0D1212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212120F0F0F1F1F1F4443444242423C3C3B3637362F2F2F2828286A68688987
+                    87807E7E7F7D7C8783818A858388838187838187828187838087828186828086
+                    82808783818884828984828985838A86848C87858C87868D89878D88868E8987
+                    8F8A887C77746F68647069667069667069667069667069667069667069667069
+                    667069667070706966706966706966706966706966706966706966706966716A
+                    676E6764635D5B8F8A89918C8A8E88868E88868D88868D87858C87858B86848A
+                    84828984828883818883818883818782808782808882818783818A8583827D7C
+                    6B66646E6A698281818684848886854949492A2A2A383839403F3F4747475050
+                    504646471616160F0F0F12121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    121212121010101616163D3D3D4443443E3E3E38383933333327282848474786
+                    8484817F7F7C7A7B817D7C837D7B8A8583908B89888381878281878281878280
+                    8782808783808983828984828A85838A85838B86848D87868D88868E88868E88
+                    868F8A888A8583756D6B6F686470696670696670696670696670696670696670
+                    6966706966706966757070696670696670696670696670696670696670696670
+                    6966706966726B68625C597C787596918E8D88868D88858D88858D88868C8785
+                    8B8684898583898482898482878380878380888381888380898583908C8A7A76
+                    743533332826256763627775748281808583837877763333343030313B3B3B42
+                    42424848485151513B3B3B111111101010121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12121212121010101212123434344646464040403C3B3B3636362E2E2E333232
+                    7674748280807B79797B79788984824543412927266966648F8A898B86848682
+                    808682808783818783818883828984828A85838B86848C87848C88858D88858D
+                    88858D89868F8B88827D7B706966706966706966706966706966706966706966
+                    7069667069667069667069668A8C706966706966706966706966706966706966
+                    706966706966706966716A676B656267626095918F8E89878D88868D88868D88
+                    868C87858C87848986848984828984828784818783818783818A868487838051
+                    4E4D10100F171615575353706D6A6966647B7A79817F7F86858461605F2C2C2C
+                    3435353D3D3E4444454B4B4B5151512F2F2F0D0E0E1111111212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121111110E0E0E2C2C2C4747474141413D3D3D3838383132312A2A
+                    2A5F5E5E8382807A78777775757F7C798984826D6A682A29290909093E3B3B7D
+                    79778C87868783808783818783818883828984828985838B86848C87848D8886
+                    8D88868D88868F89878D88867873706F68657069667069667069667069667069
+                    66706966706966706966706966706966340B7069667069667069667069667069
+                    66706966706966706966706966706966716A67605B58847F7E958F8D8D88858D
+                    88858D88868C87858B87848A86838984828984828784818783808B88866D6A67
+                    1D1D1C100F0F494645827D7B8984827873716965636D6A697D7D7D7F7E7D807E
+                    7D4A4A4A2B2C2C3838383F3F3F4545454C4C4C4E4E4E2B2B2B0E0E0E11111112
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    121212121212121111110E0E0E2928294746474344433F3F3F393A3A3434342B
+                    2A2B4949497E7C7B7A7877747372797574847F7C86817E8C88858D89875E5C5A
+                    1716160F0F0F5755548985838884818783808883818984828985838B86838C87
+                    858D88868D88858D88858F8A8886817E70696770696670696670696670696670
+                    69667069667069667069667069667069667069665D5C70696670696670696670
+                    6966706966706966706966706966706966706966716A6769625E6B666596918F
+                    8D88868D88858D88868C87848C87848A86848985828984828884808783808D89
+                    8663605E353333767370908A8889848285807E7E7977736E6C67636172706E7C
+                    7B7A7E7C7B7473723B3B3B30302F3B3B3A4040404545454C4C4C4E4E4E292929
+                    0F0E0F1212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12121212121212121111110E0F0E2727274747484545454140403B3C3C363737
+                    2E2E2E3C3B3A72717079777571706F72706F807B7985807E87817F8781808783
+                    808D8886827D7B413F3E4D4B498985838884818783808984828985828A85828C
+                    86848B87848D88858D88858D88858E89877A75726E6764706966706966706966
+                    7069667069667069667069667069667069667069667069667F80706966706966
+                    706966706966706966706966706966706966706966706966706966706865625B
+                    58898482948E8D8C86848D87858D87858C86848B86848B858389838188838187
+                    828086817F8783818B86858A8684847F7E85807E857F7F837E7C7B76746D6967
+                    6662607574737978787C7A7A6967683434343334333C3C3C4142414646464D4D
+                    4D4D4D4D2928290E0E0E10101012121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121010100E0E0E2728274848484747484242423E3E3E3938
+                    393131313333346866657674746F6D6C6D6C6B7A7675847E7C85807E86817F86
+                    817F86807F85807E8883828C8785888382868280878280888280888382898482
+                    8B84838B86848C87858D87858D87858F8987888381716B686F68657069667069
+                    6670696670696670696670696670696670696670696670696670696681807069
+                    6670696670696670696670696670696670696670696670696670696670696671
+                    6A67655F5C706B689791908E88868D87858D87858C86848B86848A8583898382
+                    87838187828086817F878280868180847F7D847F7D847F7D85807E857F7E807C
+                    7A7672706864626763627675747675757977775C5B5C3131323635353D3C3D43
+                    43424747474D4D4D4E4E4E2B2B2B0E0E0E101010121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    121212121212121212121010100E0E0E2B2A2B4B4B4B49494944444440403F3B
+                    3B3B3334333131315A595A7471716C6B6A68676674716F817C7A837E7C85807E
+                    86817F85807E84807E84807D837F7D85807E85807F85817F8782808782808883
+                    818984828B84848B86848C87858D87858E8886908A887C78756E676470696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    8985706966706966706966706966706966706966706966706966706966706966
+                    706966716A676F6865615A578A8583938E8B8C87858C88858B86848A86848984
+                    8388848288838185828085817F85817E827E7C827E7C837E7C827E7C827E7B83
+                    7F7D827E7C7C7877726D6C64605F696665757373747373757373565655313131
+                    3737373E3E3E4343434747474D4D4C50504F302F301111111010101212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12121212121212121212121010101111112F2F2F4E4E4E4B4B4B464546424141
+                    3C3C3C3536353231315554546F6E6D6969686564636D6A6A7F7977817D7B847F
+                    7D847F7E847F7E827E7B817D7B817D7B817D7C817D7D837F7C847F7D85807F87
+                    83818783818884828A85848B86848B88858C87868F8987898481726B686E6764
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069669B917069667069667069667069667069667069667069667069667069
+                    66706966706966706966716A6767605D6D68659793908C87848C87848C88858B
+                    858289858288848187838085817E84807D827E7D827E7B827E7B807D7A817C7B
+                    817D7A827D7B817D7B817E7B7B77756D6968615E5C6A6867727271727070706E
+                    6E4F4F4F3232313737383E3E3E4444454849494F4F4F5353533C3C3B1616160D
+                    0D0D111111121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121111110D0D0D1616163B3C3C5354544D4E4D4848484343
+                    433E3E3D3736373132324F4E4E6A69686664646160606866657A77747F7B7983
+                    7F7D84817F827E7C817D7B817D7A807C7A807C7A817D7A817D7B837F7B837F7D
+                    84807E8782808783808884818A86838B87848C88858D88858E8A877C76736D66
+                    6370696670696670696670696670696670696670696670696670696670696670
+                    696670696670696647A470696670696670696670696670696670696670696670
+                    69667069667069667069667069667069667169665F595685807E948F8C8B8583
+                    8C87848B868389858288848187838085817E84807D827E7B827E7B817D7A807C
+                    79807C7A807C7A807B7884807D7E7B7974716F7773716A6664615E5C6A696871
+                    70706E6D6C6C6B6A4F4E4D34343438383840403F45444549484A4E4E4E555554
+                    4848482221210D0D0D0F0F0F1212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    121212121212121212120F0F0F0D0D0D2222224A4A4A575757505050494A4944
+                    44443F3F3F3838383434334D4D4D6665656463625E5D5C6361607673717E7977
+                    827E7C77737174716F85817E7F7B797F7B79807C797F7B79807C79807C7A827E
+                    7B837F7C84807D86817F8884818984828A85828B87848C87848E888587827F6F
+                    68656F6865706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966352D706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966716A676A6360676260948F
+                    8D8E87858B85838B868489848289838287828085807D847F7D837E7C807C7B80
+                    7B7A7F7A797F79797E7978827D7B77727153504F6663607F7A7875706E676361
+                    605C5B6A68676E6E6D6B6B6A6968675050503535363838383F3F404545454B4A
+                    4A4E4E4E5554545353533535361414140D0D0D11111112121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12121212121212121111110C0C0C1414143838385857575959595151514C4C4C
+                    4646464040403939393637374F4F4E626160605F5E5C5B5A605E5D736F6E7B77
+                    757E7A78847F7D716D6B4C49486C6967817D7C7C78767E79787F7A797F7B7980
+                    7C7A817D7B837E7D837F7E8782808883818984828A85828C86848C86848D8785
+                    7972706D66637069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966464B7069667069667069667069667069
+                    66706966706966706966706966706966706966706966706966706966716A6760
+                    5A587B777595918E8A85828B868389848188848187828084807E837F7C827E7C
+                    807C7A7E7B797D79777C78767E7B786C69684A48486563617F7B787D79777A76
+                    74716D6B65615E5F5B5A6967666E6D6D69696867666652515237383838383840
+                    403F4646454B4B4B4F4F4F5454565C5C5B4D4D4C2828280F0F0F0E0E0E101010
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121010100C0D0D0F0F0F2A2A2A5252526161615A5A5A5353534E4E
+                    4E48484841404139393939393951504F5F5E5F5D5C5B5858565D5C5B716D6C7A
+                    75737B78757E7A777E7A777F7B796F6D6A4B4A4862605F7D79777B78767C7977
+                    7D79777F7B79817D7A827E7C847F7D86827F8783808984818986828B87838D88
+                    85837E7B6D66646F686570696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966121270696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    716A676C6563605B598F8A878F8A888985828A858289848187838084807F847F
+                    7D827E7C7F7C7A7E7B797C78777C79767C78766663626B68667E7A797B76757B
+                    77757C7775787472706C6A63605E5F5B5A6766666C6B6B686767656564575656
+                    3C3D3D3838383F403F4546454B4B4B4F4F4F5555565D5D5D5E5D5E4646462323
+                    230F0F0F0C0C0C10101012121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    121212121010100C0C0C0E0F0F2324244B4B4B6565656464645B5B5B5555554F
+                    4F4F49494941414139393A3E3E3E5453525C5B5B5A5A595656555B5A5A6F6C6A
+                    7874717A76747D79767D79767B78767A76747C7977716E6C615E5D7874737B77
+                    767B78757D79777E7A78807C7A827E7C847F7D86827F8883818984828B86838C
+                    87848B8583726C696D6663706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069661212706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966726B67655E5C6E696796918F8A85848A848289838189838185
+                    808085807E837E7C807B7A7D7A797D77767B76757975747A76747A7674777372
+                    7773727874727A75747975737772716F6B69635F5E5E5A586663626A69696766
+                    666362625A59594344433939393E3E3E4545454B4B4B5051515656565C5C5B63
+                    63636161614949492A2A2A1212120B0B0B0E0E0E121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    1212121212121212121212121212121212121212121212121212121212121212
+                    12120E0E0E0B0B0B1212122C2C2C4E4F4F6A6A6A6C6C6C6464645D5D5D575757
+                    5150504949494040413B3B3A4444435654545A59585655555453525C5B5A706B
+                    6A7672707974727B77757B77757A767477737377737176727177747279757477
+                    73727875737A77757D78777E7A78817C7B847F7D85807E8782808983818A8482
+                    8B86848D88857B76746C65627069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696612127069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966726A675F5957807C79958F8C898381898481
+                    89828188828085807E837D7C807C797F7A787D78777A76747975737774727672
+                    7075716F75716F75716F7571707773727873727772706F6A68645F5D5D595763
+                    61606968686666666362625D5D5C4C4C4B3C3D3D3C3C3C4444444B4A4A505051
+                    5657565C5C5C6363636B6B6B6A6A6A5757583B3B3B1D1D1D0F0F0F0B0B0B0D0D
+                    0D0F0E0F10101011111112121212121212121212121212121212121212121212
+                    12121212121212121212121212121212121212121111111010100E0E0E0D0C0C
+                    0B0B0B0E0E0E1F1F1F3F3F3F6060607474747676766D6D6D6565655E5E5E5757
+                    575050504848473F3F3F3E3E3F4C4B4A5655555756565454535151515E5C5B6F
+                    6C6A75716F7874727975737A757378747276727074706E736F6E736F6E73706E
+                    7672707773717874727B77757D79777F7A78817D7B847F7D86807E8883808983
+                    818A84818D878586807D6D67646F686570696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    1212706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966716A676D6663615B598E8886908B
+                    8889848188838188828086817F837F7D807C7A7F7A787C79777A767478747277
+                    737075717074706E736F6D726F6D726E6D74706E76716F7672717773706E6A68
+                    64605D5D5957615D5C6766666767666262625E5D5D5453534444443D3D3D4141
+                    414949495050505656565C5C5C63636369696A7070717475756D6E6E5A5A5A3E
+                    3E3E2727271717170E0E0E0B0B0B0A0A0A0A0A0A0E0E0E0E0E0E0E0E0E0E0E0E
+                    0E0E0E0E0E0E0E0E0E0E0E0E0E0E0E0D0D0D0A0A0A090A0A0A0A0A0E0E0E1717
+                    172828284242426060607878788180807C7C7C7474746C6C6C6565655E5E5E56
+                    56564E4E4E4645453F3F3F454444505050555454545353525151535252615F5E
+                    706B6A746F6E76726F797472787372757170726F6D726E6C716E6C716E6B716E
+                    6C72706E7471707773717875737A77747D79777F7A78827D7B85807D86817F87
+                    83808A84818C86838B8583726D6A6D6662706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696612127069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966706966706966706966716A67665F5C6A
+                    6563938E8C8B868389848087828086828084807D827D7A7F7B787C78777A7675
+                    777473757271736F6E716F6D716D6C6F6C6B6F6C6B6F6D6B726E6C74706F5B58
+                    56686462706C6A6561605D59575E5B596562636766666363635F5F5F5A59584D
+                    4E4D4342423F3F3F4747474D4D4D5454545B5B5A6161616867676E6D6E747474
+                    7C7C7C8080807C7C7C6F6F6E5E5D5D4C4D4D3939392F2F2F1B1B1B1515151616
+                    161717171616161717171717171717171616161C1C1C3131313C3B3B51515164
+                    64637676768585868B8B8B8787877F7F7F7878797171716B6B6A6363635B5B5B
+                    5454544B4B4B4443434544434C4C4B5353515353525151514F4F4E5554546662
+                    61706B69726E6C767271726E6C5653516F6B6A736F6D6F6B6A6E6B696E6B6A6E
+                    6C69706D6C716D6C73706E7673717774727A77757D7A78807B7A837E7D85807E
+                    86827F8984818A84828C86857A73716C65627069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966121270696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    726A67615A5876726F95908E89838188828187828085807F827E7C7F7B7A7D79
+                    787A7675787473757170736F6E706D6C6E6C6B6D6A696C69686C6968706D6C58
+                    5555494646706B6A74706E6E6A696763615E5A585B5856615E5E656465646464
+                    61615F5D5C5B5655554B4B4B4343434343434949495050505657575E5E5E6565
+                    656C6C6C7171717877777F7E7F8686868C8B8B8E8E8E8E8E8D8B8B8B7F7F7F7D
+                    7D7D7E7E7E808080818181828282828282838383818181858585939393959595
+                    97979794959490908F8989888281827B7B7B7675766F6F6F6767675F605F5757
+                    574F4E4E4747474545454B4A4A5150505252515151514F504F5050505B595969
+                    65646F6B68726D6C74706E75716F75716F5450504D4B4A6F6B6A6C69676B6867
+                    6B68676C69686F6B6A706D6C736F6E7672717874737B77767F7A78807C7A837E
+                    7D86817F8882808983818D8685817B796C65626F686570696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069661212706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966716A677069665E5956817D7B938E8B87817F87828086817F837F7C80
+                    7C7A7D79787B7775787573757270726F6D706D6B6F6C6A6C69686A67666B6868
+                    5755534240406864646F6C6A706B6A716D6B6F6B6A6865635F5C5A5B57565E5B
+                    5A6563626565646262625E5E5E5A59595453534C4C4B4645454545454A4A4B51
+                    52525959596060606767666F6E6D7474747878787E7E7E8484848989898D8D8C
+                    9191919494949595959797979898989999999A999999999A9898989797979393
+                    938F908F8B8A8A8686868181817B7C7B7776776F6F6F68686860606058575851
+                    50504A4A4A4948484B4B4A4F4E4F5150505050504F4F4E4E4D4E57565564615F
+                    6A67656D6A68706C6B726E6D736F6D706C6A6F6B6A6D69684745444D4B4A6966
+                    656966656A67666B68676E6B6A706D6B73706E7673717975737C78767F7B7981
+                    7D7B84807E86817F8882808B858486817E6D66646E6764706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696612127069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966716A676C6562605B598985838F898887817F878280
+                    84807D827E7C7F7A787C77757A7574767272726F6D706D6C6F6C6A6B68676966
+                    656966655452525F5D5C6966656764636966656D69686E6A696E6B686A666564
+                    605E5A57565551505E5C5B6362626463646061615D5D5C59595A5554544F4E4E
+                    4A49494948484B4B4B5151515858585F5F5F6565656A6A6A7070707676767B7B
+                    7A7F7F7F82828285848587878789898989898A8A8A8A8A8A8A8A898A89898987
+                    87868484848181807C7B7B7777777272726B6B6C6464645E5E5E5757574F5050
+                    4B4B4C4B4B4B4E4D4D504F4F505050515050504F4F4F4E4E5252515E5B59615D
+                    5B6763616F6B69706C6A716D6B706C6A6D696869666567646366646363606050
+                    4E4D6361606865646865646A68666E6B69706E6B736F6E7673717976757D7978
+                    817C7B837D7B86817F87817F8A8482888281706B686D66637069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966121270696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966716A6768615E635E5C908B898D88
+                    8587817F86807E847F7D817C7A7D79777B7775787473757170716E6D6E6B6A6B
+                    68676966656664636765646664636361606361606462616763626A66656C6867
+                    6C6968726E6D403E3D1A19195854535D59585F5C5B6362616363636160605E5D
+                    5D5B5B5B5857575352524E4E4E4B4B4B4B4B4B4E4E4E5453535858585E5E5E64
+                    64646969696D6C6D707070747374767576787878787878797979797979777777
+                    7676767474737070706C6D6D6868686363625D5D5D5857575252524E4E4E4E4D
+                    4D4E4E4E4F4F4F5150515151515151515050504F4F4F5353525B585764615F6D
+                    68662F2D2C2B2A2A726F6D706B696D696869666566636264616063605F625F5E
+                    63615F6663626462616663626865646B69686F6C6A726E6D7572707875737C78
+                    767F7B79827D7B847F7D86817F8983818B8583746E6C6B646170696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069661212706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966706966706966706966736C69665F5C69
+                    6561938E8B8C858386807D85807D837E7B7F7B787C7876797573767270716E6D
+                    6E6B6A6C696769676566646364616063605F615E5D615E5D615F5D615E5E6360
+                    5F6561606B67656663611312123331306864625E5A585A56545A56545E5C5A62
+                    605F6261616160605E5E5E5B5A5A5959595656565353535151514F4E4E4E4F4E
+                    5050505252525455545757585A5B5B5D5D5D5F5F5F6060606161616161616161
+                    616060605F5F5F5D5C5C5A5A5A575757545453515151505050504F4F50505051
+                    51515251515251515251515150505050505150505452525B5857625E5C66625F
+                    696463716D6B4F4C4A0605054E4B4A6F6C6A65626062605E605D5D5F5D5C5F5D
+                    5C5F5D5B615E5D625F5E6462606764636966646D6A68706C6B726F6E7773717A
+                    76747E7977817C7A847F7C85807E8882808C868378726F6B6562716A67706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696612127069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    726B68635D5A6A6562928C8B8A8482857F7D857F7E827C7B7E79787B77757874
+                    7273706E6F6C6B6C696869676566646364616062605F615D5D5E5C5B5E5B5A5D
+                    5B5A5E5C5B605D5C6764632E2D2C12121164605F6D6967676361635F5D5D5957
+                    5A56545A56555D5A595F5D5D6160606060605E5F5F5D5C5C5B5B5A5A59595858
+                    5857575655555454535353525253535352525253535254535354545455555555
+                    5554555454545454545353535252525252525252525251535252535352535353
+                    5252525352525151525151515151515352525755545C5958615D5C65615F6763
+                    616A66636B68666C6967716D6B29272719181863615F615E5C5D5B595C59595C
+                    5A595C5A595D5B5A605E5D615E5D63615F6665626B67666E6A69716D6C74726F
+                    7875747D7876807B79837E7B847F7D87827F8B858278726F69625F706A677169
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    1212706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966726B68615B586D6866938E8C898381847E7E847F7C817B7A7D
+                    78777A7675767371726F6D6F6B6A6B686768656465626162605F5F5E5D5E5B5B
+                    5C5A5A5B59595A58585F5D5C4B4949060606403E3D6865656561616764636864
+                    63666261625E5D5D59585A55545955545A57555D5A595F5D5D605F5F5F5F5F5E
+                    5F5E5D5D5D5B5B5B5A5A5A595959595858585757585857575757585757595857
+                    5957575958575958575857565756565756565554555555555453535453535353
+                    535353535252525352525453535655545A57565E5B59615D5C64605E66626069
+                    65636A66656B67656966646764616764625552510908083836355F5D5B595756
+                    5956565A58575B59595D5B5A5F5E5C625F5E6462616865646C6968706D6C7370
+                    6F7774727B77767E7A79817C7B847F7C86807F8B85837A757269625F70696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696612127069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966726A67615B586F6C69938E8C898382837E7C
+                    837E7B807B787C7876797574757270716E6C6D6A696A676665636263605F605E
+                    5D5E5C5A5C5A595A58575957575B5A592121211B1A195B59585C59585E5B5A61
+                    5E5C64606066636267636265616065615F605C5B5B5756595553595554595654
+                    5C59575D5A595E5D5C5E5C5C5D5D5D5D5D5C5B5B5B5A5A5A5A59595859585959
+                    5959595858585858585858595858585857575757575756565655555554545455
+                    54545554545755555956555A57565D58575F5B59615D5C63605E6763616A6665
+                    696564696563676463656260625F5D5F5B5B5C59585F5D5C2D2C2C1212125452
+                    525958575856555A58575B59585E5B5B615E5D63615F6663636A67666E6C6A73
+                    6F6E7672717B77747E7A77817C7A837E7C86807E8B85827C76736A6361706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966121270696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966716A67726A67615B586D6866918C
+                    89898481847E7C837E7B7F7B787C7776797573757170706D6B6B6A6868656465
+                    626162605E5E5C5B5C5A5A5A58575856555755554241404C4A49575554555352
+                    5755545856555B58585E5C5B625F5D6763615956555C5857666260615E5C5F5A
+                    595B57565A56545855535856535A56555B58565B59575D5A595C5A595B59585B
+                    59585B59585B59585B5A595C5A5A5A58585A58585A58575A58575A58575B5857
+                    5B57565B57565C58575D59575F5B5A605C5B625F5D64605E6562606864636460
+                    5F575454666362646160605E5C5D5A5A5A5756585655555352575554504E4E40
+                    3F3E5452515756555856555A58575C5A59605E5C62605F6664626A66656D6A69
+                    72706E7673717A76747E7877817B7A837E7C86817D8984817974716963607069
+                    66716A6770696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069661212706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966706966706966706966716A67726A6761
+                    5B586A6663908C898A8582847E7C827D7B7F7B797C787678747374706F706C6C
+                    6C6967686564646362605E5D5E5C5B5C5A595857565754545957565654535351
+                    5052504F5251505351505552515755545A58565E5B59413F3E55525066636165
+                    626065615F63605F625E5C605C5A5E5A585E59575C57565955545A56545A5755
+                    5A57545A57555A57555A57555754525551505A57555B57565B57565B58565C58
+                    575D59575E5B58605C5B625E5D635F5D64605F66626066626167636267636166
+                    63615F5C5B413E3E5956555D5A59585655565453545251535150525050525150
+                    5553525957565654545655555957575C5A595E5D5C635F5F6663626966656D6B
+                    69716E6C7673707B76747D7977807B79837E7C86807E8A848277716E68615E70
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696612127069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966726B68645D5A6864618E89878C8685827D7B827D7A7F7A787B77757874
+                    7175706E6F6C6B6B6867686564646261615E5D5E5B5A5A585758565656545453
+                    525151505051504F51504F514F4F504F4E51504E5553524B49493D3A3A595655
+                    5B58575D5B595F5C5B615E5D625F5E64605F64605F625E5C615D5B625D5C615D
+                    5C615C5B605C5B605D5B605C5B656160302E2D1E1D1C605C5B615E5C605D5C62
+                    5E5C625E5D635F5D63615E64605F635F5D65626166626166626064605F625E5D
+                    5F5C5B5D5A595B595843424145444357555452505052514F514F4F504F4E5251
+                    505250505351515453535755545856565B59585E5C5B615F5E6562616A66666D
+                    6A69706E6D7572707975737D78767F7B79827D7B86807F898381756F6E69625F
+                    716A677069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    69667069667069667069667069667069667069660D1070696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966726B68655F5C635D5B8783818F8A87827D7B817C797F
+                    7A787D777679747373716F6F6D6B6D6A68676565646160615E5D5D5B5A5A5958
+                    575655555453545252525150514F4F504E4E4F4D4D4F4D4D52504F3C3A3A4240
+                    3F5351505351505553525754535856555A57565D5A58625E5C48464556535265
+                    616064615F64615F65615F6562606662606C67652B2928131312666160686361
+                    6561606562606561606561606561605E5B5A4441405E5B5A605D5C5E5B595A57
+                    565856545754535553525552524A4747383636504E4E504E4E4F4E4D504E4E50
+                    4F4F51504F5351505452525755545856565B59585E5C5B615F5E656262696765
+                    6D6A69716F6C7672717A75747D78767F7B79827D7A87828087817F6F69676862
+                    5F706966716A6770696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069666F72706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966736C6869625F605B597F7B79918B89
+                    847F7D807B797F7A787C7776787473747170706D6B6C6A68686665656361615F
+                    5E5E5C5C5C595858575656555453525152504F504F4E4E4D4C4E4C4C4D4C4B47
+                    46454A49484E4C4C4F4C4C4F4D4D504F4E52504F5451515552515856563E3D3C
+                    504D4C5C59585B59575D5A595E5B5A5E5B595E5B5A63605F2A28281413135F5B
+                    5A605C5B5E5B595D5B595E5A5A5D59585B5957575454403E3D54525156545354
+                    525152504F514F4E504E4D504E4E4F4E4D4D4C4B4745454D4C4B4E4D4D504E4E
+                    504F4E51504F5351505554535655545957565C5A595F5C5C62605F6664626B67
+                    676F6B6A726F6D7673717B76747E79767F7A78827D7B898280837C7B6C666469
+                    6360716A67706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069667069667069667069667069667069667069667069667069664E537069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966706966726B686C65625E57
+                    5574706D8E8A87898381817C787F7A787C78757A7674767270726E6C6D6A6969
+                    676666636362605F5F5D5C5C5A5A595857565554545251525150504F4E4E4D4C
+                    4D4C4C4F4E4D4E4D4C4D4C4B4C4B4A4D4C4B4D4C4C4E4D4B4F4D4D514F4E4C4B
+                    4A3C3C3A4E4C4C51504F52504F54525053515154525154525158565524242312
+                    121254525156545354525153515054515053515052504F5351503F3D3D454343
+                    504F4E4D4C4B4E4D4C4D4C4B4D4B4B4C4A4A4D4C4B4D4C4B4F4F4D504E4E4F4E
+                    4D514F4E5250505352515653535856555A58575D5B5A605E5D6462616765646B
+                    68676F6C6B74706F7873727B76747E7977807B79837E7C8983817C7674696260
+                    6B6462716A677069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    5A57706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696671
+                    6A67716966605A576864618984838D8886817C7A7F7A787D79777B7675777371
+                    72706D6E6B6B6C6968676564646160605E5D5F5D5C5C5A595856555654545554
+                    52525151504F4F4F4E4D4E4D4C4D4C4C4E4B4B4C4B4A4C4B4B4D4B4B4C4B4A4F
+                    4D4D4644433A39384D4C4B4D4C4B4E4C4B4E4C4B4E4C4C4E4C4C4E4D4C52504F
+                    1F1E1E0E0E0E4E4C4C504E4D4D4C4B4D4C4C4E4C4C4E4C4B4E4C4C4F4D4E3E3C
+                    3C4140404E4C4C4B4A4A4C4B4B4C4B4B4C4A4A4C4B4B4D4C4B4E4D4C4E4E4D50
+                    4F4E5250505351515553535755545957585C5A5A5E5C5C615F5F656362696766
+                    6E6A69716D6C7571707975737C77767E7977807B7986807E87827F736E6B6760
+                    5D6F6764726A6870696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069665A5C7069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966726B68726B6866605D5F5B587C77768F8A8886817F7F7A787D79
+                    777B777578757275716F706D6C6D6A696A676665646262605F5F5D5D5C5B5A5B
+                    5858585756555454535352525150504E4E504E4E4E4D4E4E4D4C4D4C4C4D4C4B
+                    4C4A4A4B4A4A4B4A4A4948484A49494B4A4A4A49494A49494B49494B49494B49
+                    494E4B4B2929291C1B1B4A49494B4A4A4A49494B49494A49484A49494C4B4A4C
+                    4A4A4B49494A4A494C4B4A4B4A4A4D4A4B4D4C4B4E4D4C4F4E4E504F4E50504E
+                    51504F5352515452525654545957575B59585E5C5B615F5F6461616864646B68
+                    676F6C6B736F6E7672717A76747C78767E7978827D7B888280807A786A656268
+                    625F706966726A67716A67706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966003A70696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966716A67726B686D66635F58566C67658884828D
+                    8886827C7A7D78767D78767B767477737074706E6F6D6B6C6A68686664656361
+                    62605F605D5D5D5C5B5B5958595756565554545352535251525051504F4E4F4E
+                    4E4E4D4E4D4D4C4C4B4B4C4B4A4D4C4A4B4A494B4A494B4A4A4B4A494B4A494A
+                    49494A49484A49484A48484948484B4A494B4A4A4B4A4A4B4A494A4948494849
+                    4B4A4A4B4A4A4C4B4A4D4C4B4E4D4C4E4D4C4D4C4C4F4E4D504F4E5251505251
+                    505452525654545856555957575B5A595E5D5C605F5E6461606765646B67676F
+                    6C6A726E6C75726F7975737B76747D7876807B7886817F86817E756F6D66605D
+                    6C6562716A67716A677069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069665A5E706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966726B68726B68655F5C
+                    605C597874718D87858984828079787D78767C7775797573777270736F6D6F6C
+                    6B6D69686A656565636263615F605E5D5E5C5B5C5A5859575758565557545454
+                    5352545252525050514F4F504F4E4E4D4D4E4D4C4D4C4B4C4B4B4C4B4B4D4C4C
+                    4D4C4C4D4B4B4B4A4A4B4A4A4C4B4A4D4C4B4C4B4B4D4C4B4D4B4B4D4C4B4C4B
+                    4C4C4B4B4D4C4C4E4D4D4E4C4C4F4E4D514F4F51505052505052515054525255
+                    54535756565957565A58595D5A5A5F5D5C615F5E6562616764636B68676E6B6A
+                    726E6C75716F7873717B76747E77777E7977837E7C8882807C77746A65626761
+                    5E706966726A67716A6770696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069667069667069667069667069665C5A7069667069667069667069667069
+                    667069667069667069667069667069667069667069667069667069667069666F
+                    6865706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966706966706966706966706966706966716A
+                    66736C696E6763615B5865615E7F7B798D888685807E7F7A787C78757B767478
+                    7472767170736F6D6F6C6B6D69686A6765666362646161615F5E5F5D5C5D5B5B
+                    5C5A59595857595657565554545352545252525151525050514F4F504F4E504F
+                    4E504F4F504F4E504E4E4F4E4D4E4D4D4F4E4D504F4D4F4E4D504E4E504E4E50
+                    4F4E504F4E504F4F504F4F515050525150535251545252545353575554575655
+                    5957575B5A595D5B5B5E5C5B605D5D6360606562616765646B68676E6B69716E
+                    6C74706F7773717A75747C77757E7977827D7B888280817C796E696666605D6D
+                    6563726B67716A67706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966686670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966726B68726B686A64615F59566B6664837F7C8C888586817F
+                    7F7A777B77747B777479757376737174706E716E6C6D6A696B68666967656664
+                    6364626162605F5F5D5D5E5C5C5D5C5A5B5A595A595859565757565556555456
+                    55545554535554535252515252515251515352525958575A5958545453525151
+                    5352525352525353515454535655535655545756565958565958565A59575D5B
+                    5A5D5C5B5F5C5C605E5E63615F6462616765646A68676C69686E6C6A726F6D75
+                    716F7773717A76737B77747D7976837E7B86827F827E7A736D6B665F5D6A6360
+                    716A66716A67716A677069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667B78706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966706966706966706966706966716966726B68726B6867605E605B586D69
+                    66837E7B8C878486817F7E7A777C77757B767479757377737275716F726F6D70
+                    6C6B6D6A686C696769676567646464626164605F615F5E605F5E605E5D5D5B5A
+                    5C5A595B59585A59585A59585957575957565958575958573B3A3A313030514F
+                    4F5A59585857565A58575A58575B59585B5B5A5D5B5A5E5B5B5F5D5C5F5D5C60
+                    5E5D62605F6461606663626865646A68666C6A686F6B6A726E6C73706E767370
+                    7875737A76747C77747E7976827D7B878280827D7A736F6C67615E68625E716A
+                    67726B68716A6770696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696695867069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966706966706966706966706966736C6970
+                    6966665F5D605C596964627E7A788B8684878280817C797D78767B7574797572
+                    777472767270736F6D716E6C706D6C6E6B696C69686A67666764636663626563
+                    6264626163616062605F62605F61605F5F5E5D605D5D6462615453520D0D0C09
+                    0A093A39396664635F5D5C5F5D5D605E5E615F5F61605F62605F636160656362
+                    6664636866646A67666B68676C69686F6A69716D6C736F6D7571707772717875
+                    727A76747C78757F7B78847E7B86827F7F7B786F6A6866605E68615E6E676472
+                    6B68706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7071706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    706966716A67726B6870696568625F605B5865615E78737086817F8A86848780
+                    7F807C797C77757B757479747379747377737275717074706F716E6D6F6C6B6E
+                    6B6A6D6A686C69686B68676967666966656866656764646764636B6969555453
+                    1313121C1B1B3B3B396D6B6A6663626765646765646866656A67656B68676C69
+                    686D6A696E6A696F6C6B716E6C726F6E74706F7672717874727974737B76747C
+                    76757F7A78837E7C85817E847E7C7A75736A6664655F5C6963606F6865716A67
+                    716A677069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670707069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966706966706966706966706966716A67726B686B6461625C59625C5A6E
+                    69677C77768783808B868486817F807B797D78757B77747A75747A7573787472
+                    77737175727074716F736F6E716E6D726D6C706D6B706C6B6F6C6B6E6C6A7470
+                    6E5D5A590D0D0D1110103F3E3C7674716F6C6A6F6C6B706D6B706D6B726E6C72
+                    6F6D73706E756F6E7672707673717874727975737A76737B77747C78757E7977
+                    837F7C87828085807E7D7875716C6967615F655F5C6A6461716A67716A677069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966707070696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966716A67736B68
+                    6E666367605D625C59635E5B6D69667A757385817E898482878280837E7C807B
+                    797F79777C77757B76747A757479747379747277737277727176717076717074
+                    716F767371716D6B2F2E2E22201F5E5A597A757475716F757170777270767270
+                    7873727873727974727A75747B76747C77757E7976807A78817C7A847F7D8782
+                    7F847F7C7B7674706B6967626065605D67625F6D6663726A67716A6770696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667070706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66706966716A67716A677069666D666368625E625C59615C59696461736E6C7E
+                    7978837E7C87818087818087807E847E7D837D7C807A787E79777D78767C7775
+                    7B76747A75737975737B76747C77757B76747C76747974737975737B75737B76
+                    747C77757E79777F7977827C7B837D7C847F7C857F7E85807E827D7B7D797775
+                    706E6C6664655F5D645D5B68615F6E6764706966716A67716A67706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670707069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966716A67716A677069666B6361
+                    655E5B625C5A635E5B6762606E6966736E6C7B77747E7977847F7D85807E8581
+                    7E88838188838086828086828086828087828087828086827F87828087828087
+                    828087838084807E847F7D837F7C7D79767C777574706C706B686A646265605D
+                    645E5B66605D6A63616F6865716A67716A677069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966707070696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    66716A67726B68716A676F68656B646168625F655E5C645E5B625C5A65605D65
+                    605E65605E6E69676F6A686E69676E69676E69676E69676E69676E69676E6967
+                    6E69676E6A676E6967696361645F5D66615F645E5C655E5C66605D69625F6B64
+                    616E6764716A66726B68716A6770696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667070706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966716A67716A67716A67716966706966706966
+                    6F67656E67646C66636B64616B64616B64616B64616B64616B64616B64626B64
+                    616B64616B64616B64616B64626D66636E67646E676570696670696670696671
+                    6A67716A67716A67706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670707069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7070706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670707069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966707070696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667070706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    6670696670696670696670696670696670696670696670696670696670696670
+                    6966706966706966706966706966706966706966706966706966706966706966
+                    7069667069667069667069667069667069667069667069667069667069667069
+                    667069667069667069667069667069667070}
+                  HandleImage.Data = {
+                    BE000000424DBE00000000000000760000002800000009000000090000000100
+                    0400000000004800000000000000000000001000000000000000000000000000
+                    80000080000000808000800000008000800080800000C0C0C000808080000000
+                    FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
+                    0000333000333000000033099903300000003099999030000000309999903000
+                    0000307999903000000033077903300000003330003330000000333333333000
+                    0000}
+                  OnChange = wheelAzimutChange
+                  OnMouseUp = wheelAzimutMouseUp
+                end
+                object lblAzimut: TAdvSmoothLabel
+                  Left = 96
+                  Top = 11
+                  Width = 84
+                  Height = 33
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = 'Azimuth'
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = 'Azimuth'
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
+                object bvlVertical: TBevel
+                  Left = 273
+                  Top = 23
+                  Width = 1
+                  Height = 234
+                end
+                object lblAzimuthVal: TAdvSmoothLabel
+                  Left = 88
+                  Top = 204
+                  Width = 101
+                  Height = 33
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = 'Azimuth Value :'
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = 'Azimuth Value :'
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
+                object lblRange: TAdvSmoothLabel
+                  Left = 341
+                  Top = 11
+                  Width = 146
+                  Height = 33
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = 'Range From Platform'
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = 'Range From Platform'
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
+                object lblMinRange: TAdvSmoothLabel
+                  Left = 304
+                  Top = 55
+                  Width = 20
+                  Height = 33
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = '10'
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = '10'
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
+                object lblMaxRange: TAdvSmoothLabel
+                  Left = 751
+                  Top = 55
+                  Width = 34
+                  Height = 33
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = '1000'
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = '1000'
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
+                object lblMinElevation: TAdvSmoothLabel
+                  Left = 299
+                  Top = 216
+                  Width = 29
+                  Height = 33
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = '-89'#176
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = '-89'#176
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
+                object AdvSmoothLabel2: TAdvSmoothLabel
+                  Left = 759
+                  Top = 216
+                  Width = 26
+                  Height = 33
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = '89'#176
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = '89'#176
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
+                object lblElevation: TAdvSmoothLabel
+                  Left = 341
+                  Top = 167
+                  Width = 146
+                  Height = 33
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = 'Elevation From Platform'
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = 'Elevation From Platform'
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
+                object bvlHorizontal: TBevel
+                  Left = 292
+                  Top = 137
+                  Width = 500
+                  Height = 1
+                end
+                object edtAzimut: TEdit
+                  Left = 115
+                  Top = 236
+                  Width = 46
+                  Height = 24
+                  Hint = 'Azimut Value Rotation'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -13
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 0
+                  Text = '180'
+                  OnExit = edtAzimutExit
+                  OnKeyPress = edtAzimutKeyPress
+                end
+                object trackBarRange: TAdvTrackBar
+                  Left = 305
+                  Top = 34
+                  Width = 480
+                  Height = 29
+                  Hint = 'Slide to change range'
+                  BorderColor = clNone
+                  BorderColorDisabled = clNone
+                  Buttons.BorderColor = 9262895
+                  Buttons.BorderColorHot = 10079963
+                  Buttons.BorderColorDown = 4548219
+                  Buttons.Color = 15653832
+                  Buttons.ColorTo = 16178633
+                  Buttons.ColorHot = 15465983
+                  Buttons.ColorHotTo = 11332863
+                  Buttons.ColorDown = 7778289
+                  Buttons.ColorDownTo = 4296947
+                  Buttons.ColorMirror = 15586496
+                  Buttons.ColorMirrorTo = 16245200
+                  Buttons.ColorMirrorHot = 5888767
+                  Buttons.ColorMirrorHotTo = 10807807
+                  Buttons.ColorMirrorDown = 946929
+                  Buttons.ColorMirrorDownTo = 5021693
+                  Buttons.GradientMirror = ggVertical
+                  ColorTo = clNone
+                  ColorDisabled = clNone
+                  ColorDisabledTo = clNone
+                  Direction = gdHorizontal
+                  Color = clNone
+                  Max = 1000
+                  Min = 10
+                  Position = 70
+                  Slider.BorderColor = 12752500
+                  Slider.BorderColorDisabled = clBlack
+                  Slider.Color = clWhite
+                  Slider.ColorTo = clBlack
+                  Slider.ColorDisabled = clBlack
+                  Slider.ColorDisabledTo = clBlack
+                  Slider.ColorCompleted = clNone
+                  Slider.ColorCompletedTo = clNone
+                  Slider.ColorCompletedDisabled = clNone
+                  Slider.ColorCompletedDisabledTo = clNone
+                  Slider.Direction = gdHorizontal
+                  Slider.Rounded = True
+                  TabOrder = 1
+                  Thumb.BorderColor = 10317632
+                  Thumb.BorderColorHot = 10079963
+                  Thumb.BorderColorDown = 4548219
+                  Thumb.BorderColorDisabled = clBlack
+                  Thumb.Color = 15653832
+                  Thumb.ColorTo = 16178633
+                  Thumb.ColorDown = 7778289
+                  Thumb.ColorDownTo = 4296947
+                  Thumb.ColorHot = 15465983
+                  Thumb.ColorHotTo = 11332863
+                  Thumb.ColorDisabled = clBlack
+                  Thumb.ColorDisabledTo = clBlack
+                  Thumb.ColorMirror = 15586496
+                  Thumb.ColorMirrorTo = 16245200
+                  Thumb.ColorMirrorHot = 5888767
+                  Thumb.ColorMirrorHotTo = 10807807
+                  Thumb.ColorMirrorDown = 946929
+                  Thumb.ColorMirrorDownTo = 5021693
+                  Thumb.ColorMirrorDisabled = clBlack
+                  Thumb.ColorMirrorDisabledTo = clBlack
+                  Thumb.Gradient = ggVertical
+                  Thumb.GradientMirror = ggRadial
+                  Thumb.Shape = tsPointer
+                  TickMark.Color = clBlack
+                  TickMark.ColorDisabled = clBlack
+                  TickMark.Font.Charset = DEFAULT_CHARSET
+                  TickMark.Font.Color = clWindowText
+                  TickMark.Font.Height = -11
+                  TickMark.Font.Name = 'Tahoma'
+                  TickMark.Font.Style = []
+                  TickMark.ShowImageAtSteps = 2
+                  TickMark.Spacing = 5
+                  TrackHint = False
+                  TrackLabel.Font.Charset = DEFAULT_CHARSET
+                  TrackLabel.Font.Color = clWindowText
+                  TrackLabel.Font.Height = -11
+                  TrackLabel.Font.Name = 'Tahoma'
+                  TrackLabel.Font.Style = []
+                  TrackLabel.Format = 'Pos: %d'
+                  Version = '1.6.10.2'
+                  OnChange = trackBarRangeChange
+                  OnMouseUp = trackBarRangeMouseUp
+                end
+                object edtRangeValue: TEdit
+                  Left = 522
+                  Top = 69
+                  Width = 46
+                  Height = 24
+                  Hint = 'Range Value in Metre'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -13
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 2
+                  Text = '70'
+                  OnExit = edtRangeValueExit
+                  OnKeyPress = edtRangeValueKeyPress
+                end
+                object edtElevationValue: TEdit
+                  Left = 522
+                  Top = 230
+                  Width = 46
+                  Height = 24
+                  Hint = 'Elevation Value in Degree'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -13
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 3
+                  Text = '15'
+                  OnExit = edtElevationValueExit
+                  OnKeyPress = edtElevationValueKeyPress
+                end
+                object trackBarElevation: TAdvTrackBar
+                  Left = 305
+                  Top = 195
+                  Width = 480
+                  Height = 29
+                  Hint = 'Slide to change elevation'
+                  BorderColor = clNone
+                  BorderColorDisabled = clNone
+                  Buttons.BorderColor = 9262895
+                  Buttons.BorderColorHot = 10079963
+                  Buttons.BorderColorDown = 4548219
+                  Buttons.Color = 15653832
+                  Buttons.ColorTo = 16178633
+                  Buttons.ColorHot = 15465983
+                  Buttons.ColorHotTo = 11332863
+                  Buttons.ColorDown = 7778289
+                  Buttons.ColorDownTo = 4296947
+                  Buttons.ColorMirror = 15586496
+                  Buttons.ColorMirrorTo = 16245200
+                  Buttons.ColorMirrorHot = 5888767
+                  Buttons.ColorMirrorHotTo = 10807807
+                  Buttons.ColorMirrorDown = 946929
+                  Buttons.ColorMirrorDownTo = 5021693
+                  Buttons.GradientMirror = ggVertical
+                  ColorTo = clNone
+                  ColorDisabled = clNone
+                  ColorDisabledTo = clNone
+                  Direction = gdHorizontal
+                  Color = clNone
+                  Max = 89
+                  Min = -89
+                  Position = 15
+                  Slider.BorderColor = 12752500
+                  Slider.BorderColorDisabled = clBlack
+                  Slider.Color = clWhite
+                  Slider.ColorTo = clBlack
+                  Slider.ColorDisabled = clBlack
+                  Slider.ColorDisabledTo = clBlack
+                  Slider.ColorCompleted = clNone
+                  Slider.ColorCompletedTo = clNone
+                  Slider.ColorCompletedDisabled = clNone
+                  Slider.ColorCompletedDisabledTo = clNone
+                  Slider.Direction = gdHorizontal
+                  Slider.Rounded = True
+                  TabOrder = 4
+                  Thumb.BorderColor = 10317632
+                  Thumb.BorderColorHot = 10079963
+                  Thumb.BorderColorDown = 4548219
+                  Thumb.BorderColorDisabled = clBlack
+                  Thumb.Color = 15653832
+                  Thumb.ColorTo = 16178633
+                  Thumb.ColorDown = 7778289
+                  Thumb.ColorDownTo = 4296947
+                  Thumb.ColorHot = 15465983
+                  Thumb.ColorHotTo = 11332863
+                  Thumb.ColorDisabled = clBlack
+                  Thumb.ColorDisabledTo = clBlack
+                  Thumb.ColorMirror = 15586496
+                  Thumb.ColorMirrorTo = 16245200
+                  Thumb.ColorMirrorHot = 5888767
+                  Thumb.ColorMirrorHotTo = 10807807
+                  Thumb.ColorMirrorDown = 946929
+                  Thumb.ColorMirrorDownTo = 5021693
+                  Thumb.ColorMirrorDisabled = clBlack
+                  Thumb.ColorMirrorDisabledTo = clBlack
+                  Thumb.Gradient = ggVertical
+                  Thumb.GradientMirror = ggRadial
+                  Thumb.Shape = tsPointer
+                  TickMark.Color = clBlack
+                  TickMark.ColorDisabled = clBlack
+                  TickMark.Font.Charset = DEFAULT_CHARSET
+                  TickMark.Font.Color = clWindowText
+                  TickMark.Font.Height = -11
+                  TickMark.Font.Name = 'Tahoma'
+                  TickMark.Font.Style = []
+                  TickMark.ShowImageAtSteps = 4
+                  TickMark.Spacing = 5
+                  TrackHint = False
+                  TrackLabel.Font.Charset = DEFAULT_CHARSET
+                  TrackLabel.Font.Color = clWindowText
+                  TrackLabel.Font.Height = -11
+                  TrackLabel.Font.Name = 'Tahoma'
+                  TrackLabel.Font.Style = []
+                  TrackLabel.Format = 'Pos: %d'
+                  Version = '1.6.10.2'
+                  OnChange = trackBarElevationChange
+                  OnMouseUp = trackBarElevationMouseUp
+                end
               end
               object pnlCameraSelectID: TAdvSmoothPanel
                 Left = 15
@@ -200304,10 +202911,10 @@ object frmGameController: TfrmGameController
                 end
               end
               object pnlCameraMove: TAdvSmoothPanel
-                Left = 912
-                Top = 53
-                Width = 250
-                Height = 250
+                Left = 656
+                Top = 35
+                Width = 409
+                Height = 280
                 Cursor = crDefault
                 Caption.Location = plTopCenter
                 Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -200340,12 +202947,13 @@ object frmGameController: TfrmGameController
                 Fill.ShadowOffset = 10
                 Fill.Glow = gmNone
                 Version = '1.6.0.1'
+                Visible = False
                 TabOrder = 0
                 TMSStyle = 0
                 object btnCamMoveUp: TRzShapeButton
                   Tag = 12
-                  Left = 65
-                  Top = 29
+                  Left = 141
+                  Top = 59
                   Width = 128
                   Height = 59
                   BevelWidth = 0
@@ -202710,8 +205318,8 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamMoveLef: TRzShapeButton
                   Tag = 10
-                  Left = 32
-                  Top = 62
+                  Left = 108
+                  Top = 92
                   Width = 60
                   Height = 127
                   BevelWidth = 0
@@ -205098,8 +207706,8 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamMoveRight: TRzShapeButton
                   Tag = 13
-                  Left = 165
-                  Top = 62
+                  Left = 241
+                  Top = 92
                   Width = 60
                   Height = 127
                   BevelWidth = 0
@@ -207486,8 +210094,8 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamMoveDown: TRzShapeButton
                   Tag = 14
-                  Left = 64
-                  Top = 161
+                  Left = 140
+                  Top = 191
                   Width = 128
                   Height = 60
                   BevelWidth = 0
@@ -209893,8 +212501,8 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamMoveForward: TRzShapeButton
                   Tag = 11
-                  Left = 88
-                  Top = 85
+                  Left = 164
+                  Top = 113
                   Width = 82
                   Height = 41
                   BevelWidth = 0
@@ -210908,8 +213516,8 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamMoveBack: TRzShapeButton
                   Tag = 15
-                  Left = 88
-                  Top = 122
+                  Left = 164
+                  Top = 152
                   Width = 82
                   Height = 41
                   BevelWidth = 0
@@ -211921,12 +214529,41 @@ object frmGameController: TfrmGameController
                     55005D5855005D5855005D5855005D5855005D5855005D5855005D5855005D58
                     55005D575500655F5C0070696600}
                 end
+                object lblCameraMove: TAdvSmoothLabel
+                  Left = 80
+                  Top = 12
+                  Width = 250
+                  Height = 30
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = 'Camera Move'
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = 'AdvSmoothLabel'
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
               end
               object pnlCameraRotateOld: TAdvSmoothPanel
-                Left = 656
-                Top = 55
-                Width = 250
-                Height = 248
+                Left = 240
+                Top = 35
+                Width = 409
+                Height = 280
                 Cursor = crDefault
                 Caption.Location = plTopCenter
                 Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -211959,12 +214596,13 @@ object frmGameController: TfrmGameController
                 Fill.ShadowOffset = 10
                 Fill.Glow = gmNone
                 Version = '1.6.0.1'
+                Visible = False
                 TabOrder = 2
                 TMSStyle = 0
                 object btnCamRotateOldUp: TRzShapeButton
                   Tag = 7
-                  Left = 65
-                  Top = 29
+                  Left = 141
+                  Top = 59
                   Width = 128
                   Height = 59
                   BevelWidth = 0
@@ -214329,8 +216967,8 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamRotateOldLeft: TRzShapeButton
                   Tag = 6
-                  Left = 32
-                  Top = 61
+                  Left = 108
+                  Top = 91
                   Width = 60
                   Height = 127
                   BevelWidth = 0
@@ -216717,8 +219355,8 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamRotateOldRight: TRzShapeButton
                   Tag = 8
-                  Left = 165
-                  Top = 62
+                  Left = 241
+                  Top = 92
                   Width = 60
                   Height = 127
                   BevelWidth = 0
@@ -219105,8 +221743,8 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamRotateOldDown: TRzShapeButton
                   Tag = 9
-                  Left = 64
-                  Top = 161
+                  Left = 140
+                  Top = 191
                   Width = 128
                   Height = 60
                   BevelWidth = 0
@@ -221510,12 +224148,41 @@ object frmGameController: TfrmGameController
                     6600706966007069660070696600706966007069660070696600706966007069
                     66007069660070696600706966007069660070696600}
                 end
+                object lblCameraRotate2: TAdvSmoothLabel
+                  Left = 84
+                  Top = 13
+                  Width = 242
+                  Height = 30
+                  Fill.ColorMirror = clNone
+                  Fill.ColorMirrorTo = clNone
+                  Fill.GradientType = gtVertical
+                  Fill.GradientMirrorType = gtSolid
+                  Fill.BorderColor = clNone
+                  Fill.Rounding = 0
+                  Fill.ShadowOffset = 0
+                  Fill.Glow = gmNone
+                  Caption.Text = 'Camera Rotate 2'
+                  Caption.Font.Charset = DEFAULT_CHARSET
+                  Caption.Font.Color = clWindowText
+                  Caption.Font.Height = -11
+                  Caption.Font.Name = 'Tahoma'
+                  Caption.Font.Style = [fsBold]
+                  Caption.ColorStart = clSilver
+                  Caption.ColorEnd = clWhite
+                  CaptionShadow.Text = 'AdvSmoothLabel'
+                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
+                  CaptionShadow.Font.Color = clWindowText
+                  CaptionShadow.Font.Height = -27
+                  CaptionShadow.Font.Name = 'Tahoma'
+                  CaptionShadow.Font.Style = []
+                  Version = '1.6.1.0'
+                end
               end
               object pnlCameraMode: TAdvSmoothPanel
-                Left = 94
-                Top = 159
+                Left = 46
+                Top = 35
                 Width = 156
-                Height = 146
+                Height = 280
                 Cursor = crDefault
                 Caption.Location = plTopCenter
                 Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -221552,7 +224219,7 @@ object frmGameController: TfrmGameController
                 TMSStyle = 0
                 object lblCameraMode: TAdvSmoothLabel
                   Left = 34
-                  Top = 6
+                  Top = 11
                   Width = 84
                   Height = 33
                   Fill.ColorMirror = clNone
@@ -221581,9 +224248,9 @@ object frmGameController: TfrmGameController
                 end
                 object btnCamPin: TAdvSmoothButton
                   Left = 19
-                  Top = 41
+                  Top = 78
                   Width = 117
-                  Height = 34
+                  Height = 62
                   Cursor = crHandPoint
                   Appearance.Font.Charset = ANSI_CHARSET
                   Appearance.Font.Color = clBlack
@@ -221616,9 +224283,9 @@ object frmGameController: TfrmGameController
                 end
                 object btnFreeCam: TAdvSmoothButton
                   Left = 19
-                  Top = 91
+                  Top = 167
                   Width = 117
-                  Height = 34
+                  Height = 62
                   Cursor = crHandPoint
                   Appearance.Font.Charset = ANSI_CHARSET
                   Appearance.Font.Color = clBlack
@@ -237811,2657 +240478,6 @@ object frmGameController: TfrmGameController
                   end
                 end
               end
-              object pnlPinCamera: TAdvSmoothPanel
-                Left = 1055
-                Top = 46
-                Width = 455
-                Height = 247
-                Cursor = crDefault
-                Caption.Location = plTopCenter
-                Caption.HatchStyle = HatchStyleDiagonalBrick
-                Caption.HTMLFont.Charset = DEFAULT_CHARSET
-                Caption.HTMLFont.Color = clWindowText
-                Caption.HTMLFont.Height = -13
-                Caption.HTMLFont.Name = 'Tahoma'
-                Caption.HTMLFont.Style = []
-                Caption.Font.Charset = DEFAULT_CHARSET
-                Caption.Font.Color = clWindowText
-                Caption.Font.Height = -16
-                Caption.Font.Name = 'Tahoma'
-                Caption.Font.Style = [fsBold]
-                Caption.Top = 20
-                Caption.ColorStart = clWhite
-                Caption.ColorEnd = clWhite
-                Caption.GradientType = gtHorizontal
-                Caption.LineColor = clBlack
-                Caption.Line = False
-                Fill.Color = 7301478
-                Fill.ColorTo = 7301478
-                Fill.ColorMirror = 7301478
-                Fill.ColorMirrorTo = 7301478
-                Fill.GradientType = gtVertical
-                Fill.GradientMirrorType = gtVertical
-                Fill.BorderColor = clSilver
-                Fill.BorderWidth = 5
-                Fill.Rounding = 10
-                Fill.ShadowColor = clNone
-                Fill.ShadowOffset = 10
-                Fill.Glow = gmNone
-                Version = '1.6.0.1'
-                TabOrder = 6
-                TMSStyle = 0
-                object wheelAzimut: TVrWheel
-                  Left = 6
-                  Top = 28
-                  Width = 150
-                  Height = 150
-                  Hint = 'Rotate to View'
-                  MaxValue = 360
-                  BackImage.Data = {
-                    0E090100424D0E09010000000000360000002800000096000000960000000100
-                    180000000000D8080100C30E0000C30E00000000000000000000706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696620207069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    2020706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696620207069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966202070696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069667069667069667069667069667069666F68657069667068656F68656F
-                    68656F68656F68656F68656F68656F68656F68656F68656F68656F68656F6865
-                    7069666F68657069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069662020706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069667069667069667069667069667069667069667069667069667069666F
-                    68656F6865706966716967716A67736C6A746D6A77706D78716F78716F7A7371
-                    7B75727B75727C75727C75727B75727B75737B75727C75737B75727B75727B74
-                    727A747178716F78706E756E6C746C69726B687169667069666F68656F686570
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696620207069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    69667069667069667069667069667069667069667069667069666F68656F6865
-                    716967746D6A78706D7A737079737078716F716C6A6F6B68635F5D5F5C5A5C58
-                    574D4A494A48464A48464A48464B48474A48474A48474B48474A48464A48464A
-                    48464C48475A5655605D5B615E5C6F6A68726D6B7973717B74727B7472797370
-                    766E6C716A676F68656E67656F68657069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966202070696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966706966706866726B687770
-                    6D7A7370787370706C6966625F5956544D4A494441413B383837363534333233
-                    33323535343736363938373938373939383A39393A39393A39393B39393A3939
-                    39383738373738363635343434333233323137353538373642403F4A48475755
-                    54656160706B697A74717D7674797270736C696F68666F686570696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069662020706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069667069667069667069667069666F6865716A67746D6A77706E79737075
-                    6F6C66625F53504E4442413938373534343534343837363B3939403F3D424141
-                    4645444948474A49484B4A494B4A4B4D4C4B4E4D4C4F4E4D4F4E4D504F4E4F4E
-                    4D4F4E4E4F4E4D4C4B4B4B4A4A4B49494A4848474545444242413F3F3C3B3A38
-                    3737353434353433373635413F3E504D4C64605E76706E7D77757A7471756E6B
-                    716A676F68656F68657069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696620207069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    69667069667069667069667069666F6865736B6878716E79726F726C69615E5B
-                    4B49473C39393533333735353C3B3A403F3F4443424847464C4A4A4D4C4C504F
-                    4E5150505352505352525453535554545554555656555958585A58595A595A59
-                    58585C5B5B5A595859585859585855545455545354535253515252515051504F
-                    4E4D4C4D4B4B49484845444342403F3D3B3B3837363332323836364845445E5B
-                    59726D6B7C76737B7572746E6B6F68656F686570696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    2020706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966736C697A727075706C65605E4E4B4A3C3A
-                    39353332393737413F3F4745444948474C4B4A4F4D4D514F4F54525255545456
-                    56555957575A59585A59595B5A5A5B5A5A5C5B5B5D5C5C5E5D5D353434484747
-                    3231311F1F1E4141412829291F1F1F515050605F5F5C5B5A5B5A5A5A5A595A58
-                    58595858575655565554545353525150504E4E4D4C4B4A49484846454341403A
-                    3938343332383736484745625E5C77726F7E787576706D6F68656F6865706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696620207069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966716A67756D6A79726F716B69585553403F3D36353539
-                    3737403E3E4745454C4A494E4D4D514F505352525655555857575958585A5A59
-                    5C5B5B5D5C5C5D5C5D5E5E5D5E5E5E5F5E5E5F5E5E5F5E5E5F5F5E6464641D1C
-                    1C3333331616161212121818181616160D0E0E3E3D3D6666665F5F5E605F5F5E
-                    5E5D5E5D5D5E5D5D5D5C5C5C5C5B5B5A5A595A59595757575655545353525151
-                    4F4E4E4D4B4A4848474241403A38383534343C3B3953504F706B6A7E78757871
-                    6E726B686F686570696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966202070696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    69667069666F6865706966766F6C79726F6C6764534F4D3B39383736353F3D3C
-                    4644444B49484E4D4D5150505453525755555958585A5A5A5D5B5B5D5D5D5E5D
-                    5D5E5E5D5E5E5E5F5E5E5F5F5E5E5E5E5F5F5F5F5E5E5F5F5F5F5E5F60605E59
-                    59581D1D1D3C3C3D2222221010102626262121211B1B1B3C3C3C6666665F5F5F
-                    605F5F5F5F5F5F5F5F5F5F5F5F5E5E5E5E5E5E5E5D5E5D5D5E5D5D5D5D5C5B5A
-                    5A5A5958575656555453525151504E4D4D4B4A474645413F3E3837363735354C
-                    4A496C66657D76747B7370716A676F6865706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069662020706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966746D6A78726E6B66634E4C4A3A39383938374442414948
-                    474D4B4B514F4F5352515655555958585A59595C5C5B5D5C5C5D5D5D5E5E5E5F
-                    5E5E5F5E5E5F5F5E5E5E5E5F5E5E5F5F5E5F5E5E5E5E5E5E5E5E5E5E5E5E5E5E
-                    6061602B2B2B0404053A3A3A1919191010102121211313130909093F3F3F6465
-                    655E5E5E5E5E5E5F5E5E5F5E5E5F5F5F5F5F5F5F5F5F5F5F5E5F5E5E5F5F5F5F
-                    5F5F5E5E5E5E5D5D5D5C5B5B5B5A5A59585856565454535151504E4C4D4C4A48
-                    4745443B3A383635344846456964637F787578716E6F69657069657069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696620207069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966726B6878716E706A68514E4C3B3B393B39394443424B4A484E
-                    4D4C5251505554545857565A59585B5C5A5E5D5D5E5D5D5F5E5E5E5E5E5E5E5E
-                    5F5F5F5F5E5E5E5E5E5E5E5E5D5D5D5D5D5D5D5D5D5C5C5C5C5C5C5C5C5C5C5C
-                    5C5B5B5B5D5D5D4F4F4E3232314E4E4E3C3C3C2C2C2C4D4D4D3A3A3A33333256
-                    56565D5E5D5C5C5C5D5D5D5D5D5D5D5D5D5E5D5D5E5E5E5E5E5E5F5E5E5F5E5E
-                    5F5F5E5F5F5F5F5E5F5F5F5F5F5F5E5F5E5E5E5E5D5D5C5C5B5B5A5958585655
-                    55535252504E4D4D4A4B4746453C3B3A3736364A47466F6B687E7875766E6B6F
-                    68656F6865706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966202070696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    69666F6865716A6777706D756E6B5956543E3C3A3C3B3A4443424B49494F4E4D
-                    5352515655545857575B5A5A5D5C5C5D5D5C5E5E5D5E5D5D5F5F5E5F5E5E5E5E
-                    5E5E5E5E5E5E5D5D5D5D5D5D5D5C5B5C5C5C5C5B5B5B5B5B5B5B5B5B5A5A5A5A
-                    5A5A5A5A5A5A5A5A5A5A5A5C5C5C5F5F5E5B5B5B5C5C5C5D5D5D5C5C5C5E5E5E
-                    5F5F5F5B5B5B5A59595A5A5A5A5A5A5B5B5B5B5B5B5C5C5B5C5C5B5C5C5C5D5D
-                    5D5E5D5D5E5E5D5E5D5E5F5E5E5E5E5E5E5E5E5F5E5E5F5E5E5F5F5F5E5D5D5E
-                    5D5D5C5B5B5A5958585656545252504F4E4D4B4A4745443D3C3B38373552504D
-                    77716F7E7673726B686F68657069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069666F62706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966726D6A77716E65605E4543423C3A3A4544434B4A494F4E4D5252
-                    515655545958575B5B5A5C5C5C5E5D5D5E5E5D5E5E5D5F5E5E5E5E5D5E5D5D5E
-                    5D5D5D5D5D5B5B5B5C5B5C5C5C5B5C5B5A5A5B5B5A5A5A5A5A5A585858585858
-                    5858585858585858585858585757575656565756575656565959585959595656
-                    565756565757575757575857575858585858585858585858585959595959585A
-                    5A5A5A5A5A5B5B5A5C5A5A5D5C5C5E5E5D5D5D5D5E5E5E5E5E5E5E5E5E5F5E5E
-                    5F5E5E5F5E5E5F5E5E5D5C5C5C5B5B5A5958575656555352504F4E4D4B4B4846
-                    463C3A393D3C3B605C5B7D777578716D6F686570696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696634387069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966716A67776F6C726C69524F4D3C3B3A42403F4B48494F4E4D52515056
-                    55545958585A5A595C5C5C5D5D5D5E5D5D5E5E5D5E5E5D5D5D5D5D5D5D5C5C5C
-                    5C5B5B5B5B5B5A5A5A5B5A5A5A5A5A5959585958595758585757575656565656
-                    5657565655555554555554545454545454545454545454545455555549484941
-                    4141545454545454545454545454545454555555555555555555565656575757
-                    5656565757575959595959595959595A5A595B5B5B5B5B5B5C5C5C5D5D5D5D5D
-                    5D5D5D5D5E5E5E5E5E5E5F5E5E5F5E5E5E5E5E5D5D5D5C5B5B5A5A5957565553
-                    5252504F4E4D4B4B444241393837494746726D6B7D7875726B686F6865706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    3334706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6A676F6A67726C6977716D65605E444241403E3D4947464E4C4D524F50555454
-                    5857565B5A5A5C5C5B5D5C5C5D5D5D5E5E5D5E5E5E5E5D5D5D5D5C5D5C5C5B5C
-                    5C5B5B5B5B5B5A59585859595958585857575757575756565655555555555554
-                    54545151514C4B4C535353535353525252525251525151525152525151565657
-                    2222221110105252525352525252525252525252525252525353525454544E4E
-                    4E5050505555555555555757575757575757575757575959595959595A59595B
-                    5A5B5C5B5B5D5D5D5D5D5D5D5D5D5E5E5E5F5E5E5E5E5E5F5E5E5E5D5D5D5C5C
-                    5C5B5A595858575555535251504E4E4B49493F3F3E3C3A3A615D5B7E78757670
-                    6D706966716A6770696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696644657069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706A67746D6A766E6B5853523F3E3D4644434E4C4B514F4F5453535756
-                    565A59595C5B5B5E5D5D5D5D5D5E5E5D5E5D5E5E5D5D5D5D5D5D5D5C5C5C5C5A
-                    5B5B595959595959595958585858565656555556565656545555545454535353
-                    5352525454544949493A3A3A5050504F50504E4F4F4F4E4D4F4D4D4E4D4D4E4D
-                    4D5252512121201010104E4D4D4F4E4E4F4D4D4F4F4F4F4F4F4F4F4F50505052
-                    52523D3D3D434242555555535252545454545454555555555555575757575757
-                    5959595959595958585A5A595C5C5C5C5C5C5D5B5C5E5E5D5E5E5E5F5E5E5F5E
-                    5E5F5E5E5E5E5D5D5C5C5B5A5A5958575554545250504F4D4C4847463C3A394F
-                    4C4C7873707A7471706966706966716A67706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966437270696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966706966706966706966706A
-                    67706A67706A67766F6C6E68664D4A4842403F4A4948504E4D53525156555559
-                    58575B5B5A5D5C5C5E5D5D5E5D5E5E5D5D5E5D5D5C5D5C5C5C5C5B5B5B5A5A59
-                    5959595958585858585656565656565656565555555454535353535252525251
-                    51505050504F4F4F4F4F4D4C4C3A3A394848484D4C4C4C4B4B4B4A4A4B4A4A4B
-                    4A4A4B4A4A4F4E4E2021201010104B4B4B4C4B4B4B4A4A4B4A4A4B4A4A4B4B4A
-                    4C4C4B4D4D4C3C3C3C474746505050504F4F5151505151515252525453535454
-                    535555555757575656565757575959585959595959595B5B5B5C5B5B5D5C5C5E
-                    5E5D5E5E5E5E5E5E5F5F5F5E5E5D5E5E5D5D5B5C5A5959575656545352504F4E
-                    4D4B4A403E3E43413F6D69677E7875716B67706966716A677069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069663A72706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706A67716B6877706D67615F4845444644434E4C4B52504F555353585757
-                    5A59595D5C5B5D5D5C5E5D5D5E5D5D5E5E5E5D5D5D5C5C5C5C5B5B5B5A5A5A59
-                    595958585857575758585555555455555555554445454B4B4B53515150504F4F
-                    4F4F4E4E4E4D4D4C4C4C4C4C4B4B4D4C4B3333324241414A4949484747494847
-                    4746464847474847474C4B4B1F1F1F1010104A49484948474948474948474947
-                    474847474949484645453131314A49484D4B4B4D4C4C4E4E4D4F4E4E504F4F51
-                    50515252524F4F4F4443435253535656575757575858585857585959595B5A5A
-                    5C5B5B5C5C5B5C5D5D5E5E5D5F5E5E5F5E5E5F5F5E5F5E5E5D5C5B5C5B5B5A58
-                    58565554535150504E4D4645443F3D3C625E5C7F7976736D6970696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966FFFF7069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    716A67706966716A67756E6B615C5A4645434A4847514E4D5452515756555958
-                    575C5B5A5D5C5C5E5D5D5E5C5D5E5E5D5E5E5D5D5C5C5C5B5B5B5B5B5A5A5A58
-                    5859595858585857555556555555545454545353555454403F3F3C3C3C50504F
-                    4D4E4C4C4C4B4C4B4A4A4A494A49494A49484B4A493E3D3D4746464E4D4D4E4D
-                    4C4F4F4E504E4D5251505251505655541F1E1E0C0C0C52515153525152515052
-                    5150514F4F504F4E4F4F4E4948483A39394948484B4A494B49494B4A494C4B4B
-                    4D4C4C4E4D4D5151504443443939395353535452545555535556555756555958
-                    585959585A59595B5A5B5B5B5B5C5C5C5E5E5D5E5E5E5F5E5E5F5E5E5F5E5E5E
-                    5E5D5D5C5C5A59595856565553535250504D4B4A3F3E3D5A57567D7674756E6B
-                    706966716A67716A677069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966FFFF70696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66716A67716A67726B67756E6B5B56544544434D4B4B5351505553525857565B
-                    5A595C5C5A5E5C5C5E5E5D5E5D5D5E5E5D5D5D5C5C5C5B5C5B5B5A5A5A595959
-                    5958595858575656565555545454545353535252515150505150504C4B4B3635
-                    344A4A494C4B4B4B4A494B4A494C4B4A4F4E4D504F4E5352515655545857555A
-                    59585C5A595C5A5A5E5C5C5E5D5C5E5D5C62605F413F3F3635345F5D5C605E5D
-                    5F5D5D5F5E5D5F5E5D5F5E5C5F5D5C5D5B5B5B5A5958575554545251504F4F4E
-                    4D4D4B4A4B4A4A4C4B4A4D4C4C39383745444453525251515053525254535355
-                    54545656555757565857575959595B5A5A5B5B5B5C5C5C5D5D5D5E5E5D5F5E5E
-                    5F5F5E5F5E5E5F5E5E5D5C5C5C5B5A595858565453545251504D4C42403F514E
-                    4E7C7673766F6C706865716A6770696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966706966FFFF706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966726A67746E6B5A5754494746514E4D545252565554595857
-                    5C5A5A5D5C5C5E5D5D5F5E5D5F5D5D5E5E5D5D5D5D5C5B5C5B5B5B5A5A5A5959
-                    59585857585859585858545455535354535251525151514F4F4F4F4E4E4E4D50
-                    4E4E393838424141504F4E514F4E5352525856555A59585C5A5A5C5A5B5D5B5A
-                    5E5B5A605D5D6361606664646865656867666967666967666C6A686C6A696967
-                    666967666967666967666A686769676667656466636365646365636264626262
-                    61615F5D5D5A58585554535251504847473736354E4C4C504E4E504F4E505150
-                    5251515352525553545655555959585959595958585959595C5B5B5C5B5B5D5D
-                    5C5E5D5D5E5E5E5F5E5E5F5E5E5F5E5E5F5D5D5D5B5B5A595858575556535353
-                    5050454342504D4C7B767377706D6F6865706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966706966706966706966706966FFFF7069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966726B67726C695955544B484853504F5654535957565B5A
-                    585C5B5A5F5D5D5F5E5E5F5E5E5F5E5E5D5D5D5E5C5C5C5C5B5C5B5B5A5A5A59
-                    58585858575859572F2F30393838575756515151515050504F4F4F4E4E4E4E4D
-                    4F4E4D504E4E504E4E5352515858575C5A595E5B5B5E5C5B5E5C5B615F5E6A67
-                    67737271807F7E8A89899594949E9D9DA2A1A1A3A2A2A3A2A2A3A2A2A3A2A2A3
-                    A2A2A3A2A2A3A2A2A3A2A2A3A2A2A1A0A09C9B9B9291918988877F7D7D767474
-                    6F6D6C6A696769676668676666646362605F5A5858545352525151504E4E4F4E
-                    4D4F4F4E50504F5150505351525857574544442827275353535A5A5A5A59595C
-                    5B5B5C5B5B5D5C5C5E5E5D5F5E5E5F5F5E605F5F605F5E605E5E5D5C5C5C5A5A
-                    5958575755545452524846454F4B4A79737077706C6F68657069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    FFFF706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966716A67736B685955534D4A4A5553525855545958565C
-                    5B595E5C5B5F5D5D605E5E5F5F5E5F5E5E5F5E5E5D5C5C5C5C5B5A5B5A5A5959
-                    5959585757575756575A59592828280B0B0B4E4D4D535351504F4F504E4E504F
-                    4E5250505453525957555C5A5A5D5C5A5D5C5A5F5D5C65636273717086868599
-                    9998A9A8A8B3B2B2B9B9B9BDBDBDC0BFBFC1C1C1C3C3C3C3C4C4C3C2C3C3C2C3
-                    C3C2C3C2C2C3C2C2C3C2C2C2C2C3C2C1C1C1BDBDBDBBBCBBB9B9B8B6B6B6B2B1
-                    B1ACACACA1A1A09393928482817675746F6E6C6C6A696A696868666562605F5A
-                    595955545352515050504F51504F525151565555191818161515555656585858
-                    5757565959595A5A5A5C5B5B5D5C5C5E5D5D5E5D5D605F5F605F5F605F5F605F
-                    5E5F5D5D5D5C5B5A58585856565755544B49484D4C4A78737077706D6F686570
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966FFFF7069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966716A67736C695B57554F4C4C5754545856565B5959
-                    5C5B5A5E5D5C5F5E5E605E5E605F5E5F5E5E5E5E5E5D5D5C5C5B5B5B5A5A5A5A
-                    59595858585857565555565555575555504F4F0E0E0E27262656555552504F53
-                    52515655545A58585E5B5B5D5B5A5D5A5A6463627676748E8E8EA6A6A6B6B6B5
-                    BFBFBFC2C3C3C6C6C6CCCCCCD5D5D5DDDDDDE6E5E5E8E8E7E9E9E8E9E9E9E9E9
-                    E9E9E9E9E9E9E9E9E9E9E9E9E9E9E9E9E8E8E8E7E7E7E5E5E5E0E1E1D7D6D6CD
-                    CDCDC3C3C3BCBDBDB9B9B9B8B8B8B4B3B3ABABAA9C9C9B898888787877706E6E
-                    6C6B6A6B69686563635D5C5C5755545351515755553B3A3A0606064442425959
-                    595656565757565858585959595B5B5A5C5B5B5D5C5C5E5E5E5F5F5E605F5F60
-                    5F5F605F5E605F5F605E5D5D5C5B5B59595A57575956564C4A49504E4C7B7573
-                    766E6C6F68657069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966FFFF70696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966716A67736D695E5A58514F4E5855555957575C5A
-                    595E5C5C5F5D5D615F5F615F5F605F5F605F5F5F5E5E5E5D5D5D5C5C5B5A5A5B
-                    5A5A5A5959575856575656575656545453535253585756373636050505464545
-                    5C5A595B59585F5D5C5E5C5B5F5C5C6D6C6B898787A5A5A5BBBBBAC5C5C5CAC9
-                    C9CDCDCDD5D5D6E4E4E4EFEFEFF0F0F0E6E6E6D5D5D5BCBBBBB0B0B089898980
-                    8080818181818181818181818181818181818181808080898989B0B0B0BBBBBC
-                    D4D4D3E5E5E5EEEEEEEBEAEADEDEDDCDCDCDC2C1C1BBBBBBB9B9B9B5B5B5AAAA
-                    A9999797848282757371706E6D6D6B6C67656562605F59575711111124242459
-                    5857555453565554575656585657595858595A595C5B5B5C5B5B5E5E5C5F5E5E
-                    5F5F5E616060616060616060606060605F5E5F5D5C5D5B5A5B58575A58574E4C
-                    4B5451507B7573756E6B6F686570696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966FFFF706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706A67726C68615C5A52504F5957565C59585C
-                    5A595F5D5C605F5E615F5F61605F615F5F605F5F5F5F5E5E5D5D5D5D5C5B5A5A
-                    5C5C5B5A59595857585757565656555655555453535453535554535756551817
-                    171E1D1D5F5D5C5F5D5B605D5C71706F959494B4B4B4C5C5C5CCCCCBD3D3D3DF
-                    DEDEECEBEBF1F1F1E3E3E3BFBFBF8F8F8F6262623B3A3A2727271313130E0E0E
-                    0505050303030303030303030303030303030303030303030303030505050E0E
-                    0E1313132727273B3B3B6262628F8F8FBFBFBFE2E2E2EEEEEEE5E5E5D4D4D4C4
-                    C4C4BABABAB7B7B7B1B1B1A1A0A0898887787675737070737270343333080808
-                    504E4E5857565453525554545655555756565757575A59595A5A595C5C5B5D5C
-                    5C5E5D5D5F5E5E605F5E61606061606062616062606062605F5F5D5C5D5B5A5C
-                    59585B59584E4C4B5754537C7673736C696F6865706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966FFFF7069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966736D6A66605E5452515A57575C5A59
-                    5E5C5B5F5D5C605F5E61605F61605F61606061605F605F5F5F5D5E5D5D5C5C5C
-                    5B5B5A5A5958585B5A5A5857575757575655555554545554545654545856555F
-                    5E5D4D4B4B3231305B5A587271709A9998BCBCBBC9C9C9CDCDCDDBDBDBEDEDED
-                    F1F1F2DCDCDCA9A9A86867672E2E2D1010100505050505050707070A0A0A0C0C
-                    0C0D0D0D10101011111111111111111111111111111111111111111111111110
-                    10100D0D0D0C0C0C0A0A0A0707070505050505051010102E2E2E696767A8A8A8
-                    DADADAEDEDECE5E5E5CDCDCCBBBBBBB6B7B7B3B3B3A4A3A38C8A897B79784645
-                    444746456B69685D5C5B5957565655545655545757565757565859575B5B5B59
-                    58585B5A5A5D5D5C5E5D5D605F5E605F5F616060626160626160626160615F5F
-                    605E5D5F5C5B5D5B5A5C5B5A4E4C4B5F5B5A7E7774716A677069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966FFFF70696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966736C696964615855545C59595F5C
-                    5B605E5D615F5E62605F63616163616162616162616161605F5F5E5E5F5E5E5D
-                    5D5C5C5C5B5C5C5B4545444847475B5A595756565756555756555857565B5959
-                    5F5D5C615F5D605E5D6F6E6D949392BCBBBCCCCCCCD0D0D0DCDCDCF1F1F1ECEC
-                    ECB4B4B36A6A6A2A2A2A0707070302030B0B0B11111112121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121111110B0B0B0203
-                    030707072A2A2A6A6A69B3B3B3E9E8E8EBEAEACFCFCEBDBDBCB7B8B7B2B2B3A2
-                    A0A08B89897A79787472716D6C6B6462625C5B5A5957575857565857575C5B5A
-                    4F4F4F403F3F5B5A5A5E5D5D5E5D5D605F5E605F5F6160606261616362616362
-                    62646262636160625F5F605D5D5F5D5C5E5B5A4F4C4C6763617D767370696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966706966FFFF706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966706966726A676E67645B58565D5B5A60
-                    5E5C615F5D626160636160636261646261636261626161626160605F5F5F5F5E
-                    5D5C5C5D5C5C5C5B5B5C5B5A5555533636374C4B4B5B59595957575B59585E5C
-                    5C61605E605D5C615F5E858483B6B5B5CDCDCDD3D3D3E1E1E0F4F3F3E6E5E599
-                    98984141410E0E0E020202070707111111131313131313121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121213
-                    13131313131111110707070202020E0E0E414141999999E4E3E3EDECEBD3D3D3
-                    BDBCBCB6B6B6B1B0B09A99987F7D7C777574727170696867615F5E5B5A585B5A
-                    595554543636364F4E4D5D5D5D5D5C5B5D5D5C5F5E5E605F5F61606062616063
-                    6262646262646362646362646261626160625F5E615E5E5E5C5B504E4D706C69
-                    7972706F68657069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966706966706966706966706966FFFF7069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966716A67716967605C5B5E5B5B
-                    635F6062605F646160656362656362656363646362636262636261626161605F
-                    5E5F5E5E5E5D5C5D5C5C5C5B5B5B5A5A5E5E5C5252513A3838565554605D5D61
-                    5F5F6361605E5C5A706D6CA3A3A2CBCBCAD2D1D1DCDCDCF4F4F4E6E6E6979696
-                    3232320606060606060D0D0D1212121313131212121212121212121212121111
-                    1112121212121213131313131313131313131311111111111111111111111111
-                    1111111111111111111111131313131313131313131313121212121212111111
-                    1212121212121212121212121313131212120D0D0D0606060606063332339695
-                    95E2E2E2EBEBEBCCCCCCB8B8B8B5B5B5A9A8A88D8B8B7B7878767574706D6D66
-                    64645E5C5C3E3D3D4948475F5E5D5C5B5A5D5C5B5E5D5C5F5E5E605F5E616060
-                    63616163626265636364636365636365646365636264626163615F6361605D5B
-                    5A555251797270756E6B6F686570696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    FFFF706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966716A66726A6765615F5F5D
-                    5C64616065626165636265646366656466656466656466646464636262616162
-                    6060605F5F5F5F5D5E5D5D5D5C5C5D5C5B5C5A5A5C5A5A5E5C5C5553525A5959
-                    646261646261615F5E828280BBBABAD2D2D2D5D5D5EAEAEAF2F2F2AAA9A93B3B
-                    3B03030308080812121212121212121212121212121212121212121212121212
-                    1212141414151515141414131313131313131313131313131313141313141313
-                    1413131413131413131413131313131313131313131313131313131414141515
-                    1514141412121212121212121212121212121212121212121212121212121208
-                    08080303033B3B3BA9A9A9EDEDEDDDDEDEC0C0C0B7B7B7B1B0B09A9898817F7E
-                    7978777472716564635554535F5C5D5D5C5B5C5B5A5E5D5C5E5D5D5F5E5D605F
-                    5F61605F63626164626265646366646466656467656566646567656466646264
-                    62626662615A58575D5A587C7573726B68706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966FFFF7069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966706966706966706966716A676A656260
-                    5D5C656261666463676563676564686664686565676664666564666464646362
-                    636261616160615F5F605F5E5E5D5C5E5D5C5E5C5C5D5D5B5E5C5C5F5D5C6462
-                    6166646463605F666463989695CBCBCBD6D5D5E0E0E0F7F7F6D0D0D057575709
-                    0909040404111111131313121212121212121212121212121212121212141414
-                    1414141414141213131212121617171C1C1C2424242929293233333A3B3B3A3B
-                    3B3A3B3B3A3B3B3A3B3B3A3B3B3A3B3B3A3B3B3233332929292424241C1C1C16
-                    1717121212121313141414141414141414121212121212121212121212121212
-                    121212131313111111040404090909575757CECECEF0EFEFD0CFCFB9B9B9B4B4
-                    B4A3A3A38685847C79797775746F6D6C6462615F5D5D5E5D5C5E5D5C5F5D5D5F
-                    5E5E615F5F616060626160636262646363666564676564686665696765686665
-                    6866656764636764636764635755536865637B73716F68657069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966FFFF70696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966716A676E6764
-                    63605E6664626965646866656967666967666966666867666866666765656663
-                    6464636263626163616261605F605F5E5F5E5E5F5D5D5F5D5D5F5D5C605F5E63
-                    6161676564625F5E6D6969AAA8A8D3D3D2D7D6D6EBEAEAF2F2F29898981F1F1F
-                    0101010D0D0D1313131212121212121212121212121212121414141414141313
-                    131212121414141C1C1C2828283233333B3D3D40414143444444454544454543
-                    4444434444434444434444434444434444434444434444444545444545434444
-                    4041413B3D3D3233332828281C1C1C1414141212121313131414141414141212
-                    121212121212121212121212121313130D0D0D0202021F2020979696EDEDEDDD
-                    DDDDBDBDBCB5B5B5ABABAA8D8C8B7E7B7B7977766F6D6C656463615F5F5F5E5D
-                    5F5E5D605F5D605F5F6160606362616362626564636664646866656866666967
-                    66696766696766696766686565696665676462575554756F6D756F6B6F686570
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966FFFF706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966706966706966716A667069
-                    676763626765646A68666B67666B68676B68686B68686968686A676668666666
-                    656565636364636263626161605E63626161605F5F5E5D605E5E605F5E62605F
-                    656362686564646160747170B6B5B4D6D6D6DADADAF1F0F0DDDDDC5D5D5D0404
-                    040B0B0B13131312121212121212121212121212121214141415151512121213
-                    13131C1C1C2A2B2B383939414242444545434444434444414242414242414242
-                    4142424142424142424142424142424142424142424142424142424142424142
-                    424142424142424344444344444445454142423839392A2B2B1C1C1C13131312
-                    12121515151414141212121212121212121212121212121313130B0B0B050505
-                    5D5D5CD9D9D9E7E6E6C3C3C3B5B6B5AFAEAE929190807E7D7B7978716E6F6866
-                    66626160615F5F615F6061605F63626162616063626164636367656567666668
-                    67676969686B69686B69686B69686B69676B67676C69676460605E5C5B7B7572
-                    726A676F68657069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966FFFF7069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696671
-                    6A676B66636866646C69686C6A696C6A696D6A696D6B696C6A696B69686B6968
-                    6867666765656665636463626564644E4D4C47474662616063626163605F6362
-                    6166646469666663615F787675BEBEBDD9D9D9DEDEDEF6F6F6C2C2C132323200
-                    00000F0F0F131313121212121212121212121212131414151515121212131313
-                    2122223334344041414445454445454243434142424142424142424142424142
-                    4241424241424241424241424241424241424241424241424241424241424241
-                    4242414242414242414242414242414242414242424343444545444545404141
-                    3334342122221313131212121515151314141212121212121212121212121313
-                    130F0F0F000000323232C0C0BFEEEEEECACAC9B7B7B7AFB0B096949482807E7C
-                    7A7972706F6967666362616463616765644F4F4E484746656463656564676664
-                    6866666967676B69686B6A696C6A696D6B6A6D6B6A6C6A696D6A696E6B6A5E5C
-                    5B6C67667A726F6F686570696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966FFFF70696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069666E68656966646E6A6A6E6B6A6E6C6A6E6C6B6E6C6B6E6C6A6C6B6A6C6A
-                    696A696869676667666665656464636265636361605F4343434241415F5E5D66
-                    64646766656A68676461607A7877C1C2C0DADAD9E1E0E0F8F8F7A2A2A1171818
-                    0505051212121414141313131212121212121313131515151212121313132222
-                    2238393843444444454542434341424241424241424241424241424241424241
-                    4242414242414242414242414242414242414242414242414242414242414242
-                    4142424142424142424142424142424142424142424142424142424142424142
-                    4242434344454543444438393922222213131312121215151513131312121212
-                    1212121212131313121212050505181818A1A0A0F0F0F0CECECEB8B8B8B0B0B0
-                    9796958281807D7C7B7371716A69686463624D4B4B3E3E3D5E5D5C6665656564
-                    646766656867666967666B69696C6A696D6B6A6E6C6B6E6C6B6E6C6B6F6C6B6F
-                    6D6B6C69685E5C5B787370736C69706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966706966FFFF706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069667069666B66646E6C6A716E6D716E6D716E6D706D6D706E6D6E6C6B6D
-                    6B6B6B6B6A6A69686968676865656564636464626462626463626664644B4948
-                    50504E6B69686B6969666463797776C1C1C1DADAD9E2E0E0F5F4F49695950E0E
-                    0E090A0A1212121313131414141212121313131516161414141111111D1D1D35
-                    3636434545434544414242414242414242414242414242414242414242414242
-                    4142424142424142424142424142424142424142424142424142424142424142
-                    4241424241424241424241424241424241424241424241424241424241424241
-                    42424142424142424142424142424344454345453536361D1D1D111111141414
-                    1515151212121212121313131212121212120A0A0A0E0E0E949494EEEEEED0D0
-                    CFB8B8B8B1B0B09695958482817F7C7B7674735A585744424263626167666665
-                    63646564646765646866666968686A69696D6B6B6E6C6B6E6E6C706E6D706E6D
-                    706E6E706E6D726F6E6764636764627A74716F68657069667069667069667069
-                    66706966706966706966706966706966706966706966706966706966FFFF7069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    69667069667069666D67646D6A6973706F73706F73706F72706F716F6E716E6D
-                    706D6D6D6C6B6C6B6A6B68696967676766666765646664646564636663636765
-                    646A68676866656D6B69686564757372C0BFBEDBDCDBE2E1E1F3F2F283828208
-                    09090B0A0A1313131414141414141414141414141717171313131515152D2D2D
-                    4143434445454142424142424142424142424142424142424142424142424142
-                    4241424241424241424241424241424241424241424241424241424241424241
-                    4242414242414242414242414242414242414242414242414242414242414242
-                    4142424142424142424142424142424142424142424142424445454143432D2D
-                    2D1515151313131616161414141313131414141313131313130A0A0A09090982
-                    8282ECECECD1D0D0B9B8B8AFAFAF9594938482817F7D7C716F6E6B6968696767
-                    6665656665656765656766666967676A68686A6A686D6B6B6E6C6C6F6E6C716F
-                    6E726F6E73706F736F6F73706F73706F625F5F74706D756E6B6F686570696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    FFFF706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069666F68656D696773716F7472717472717471707471707270
-                    6F716F6E706E6D6E6C6B6C6A6A6B6A6969686767666568656467656467656567
-                    65656967666C6A696F6C6B6A6866706D6CB8B7B6DDDDDCE1E1E1F4F4F3828382
-                    0505050C0C0C1313131414141414141414141515151616151111101E1E1E3A3B
-                    3B45454642434341424241424241424241424241424241424241424241424241
-                    4242414242414242414242414242414242414242414242414242414242414242
-                    4142424142424142424142424142424142424142424142424142424142424142
-                    4241424241424241424241424241424241424241424241424241424241424242
-                    43434546453A3B3B1E1E1E111011161515151515141414141414131313131313
-                    0C0C0C060606828181EEECECCECECEB7B7B7ADACAC92908F8583817F7D7C7471
-                    716B69686967666866666866666968676968676A69686C696A6D6B6A6E6D6C70
-                    6F6E72706E73706F7471707472717572717673726F6C6B6663627A7471706865
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966FFFF7069667069667069667069667069667069667069667069667069
-                    667069667069667069667069666D676472706E76747376737375747276737274
-                    737273716F72706E706F6E6E6C6C6D6A6A6C6A68696867686766676766676765
-                    6966676967666C6A696E6C6B6F6B6A6B6967ABA9A9DDDCDCDFDEDEF5F5F59494
-                    930909090D0D0D13131314141414141414141415151514151511111128282841
-                    4141434444404241414142414242414242414242414242414242414242414242
-                    4142424142424142424142424142424142424142424142424142424142424142
-                    4241424241424241424241424241424241424241424241424241424241424241
-                    4242414242414241414242414242414242414242414242414242414242414242
-                    4141424042414041414344444142422828281112121415151515151414141414
-                    141414141212120D0D0D0A0909949393EEEDEDCACACAB7B6B6A9A9A88E8C8C84
-                    83827D7A79726F6E6C6A696A68676967676868666A69696B69696B6A696D6C6A
-                    6F6D6D716F6E727070747271747371767272767473767372777573686665736E
-                    6C766F6C6F686570696670696670696670696670696670696670696670696670
-                    6966706966706966FFFF70696670696670696670696670696670696670696670
-                    69667069667069667069667069666E67646F6B69797675797574797574787574
-                    777473767373747271727070706F6D6E6C6C6D6B6B6D6C6B6E6C6C6A68686968
-                    676A68676B69686D6B696F6E6C706E6D6A6767999797DAD9D9DDDDDDF3F2F29F
-                    9E9E0D0D0E0A0A0A1414141414141414141414141515151313131314142F3030
-                    4344444142424041414041414041414041414041414041414041414041414041
-                    4140414140414140414140414140414140414140414140414140414140414140
-                    4141404141404141404141404141404141404141404141404141404141404141
-                    4041414041414041414041414041414041414041414041414041414041414041
-                    414041414041414041414041414041414243434344442E303013141413131315
-                    15151414141414141313131313130C0C0C0D0D0D9E9D9DEAEAEAC6C5C5B5B5B4
-                    A3A3A28B8A898582817B7877716E6E6D6B6A6C69696A69686B69696E6C6C6F6E
-                    6D6E6C6B6F6D6D716F6F7271707472717674737774747775747976757A767574
-                    71706A66647A7370706966706966706966706966706966706966706966706966
-                    706966706966706966706966FFFF706966706966706966706966706966706966
-                    7069667069667069667069667069667069666C67647773717C79777A78767A78
-                    76797675787574777474747271727170716F6D6E6D6C6F6D6C65646463616171
-                    6F6E6D6C6B6B69696D6B6A706E6C72706E6B6966858382D2D1D1DDDCDCEEEDED
-                    BDBDBC1716160A0A0A1515151414141414141414141818181413131314143233
-                    344344444041413F40403F40403F40403F40404040403F41403F40403F40413F
-                    41413F40403F41413F41403F40403F40413F40403F40403F40403F40403F4040
-                    3F40413F40403F40403F40403F40404040404040403F40403F41403F40403F41
-                    404040404040413F40403F40403F41404040403F41413F40403F40404041403F
-                    40404041413F40404041414040403F40413F40413F4140404141434444323333
-                    1314141313131616161414141414141313131515150A0A0A171717BCBBBAE2E2
-                    E1BFBFBFB2B1B19D9B9B898786848180797675716F6E6D6C6B6D6B6B73717067
-                    66656462626F6E6D6F6E6D72706F7371707472717775747875747976757A7876
-                    7A78767C79786B6968746F6D746D6A7069667069667069667069667069667069
-                    66706966706966706966706966706966FFFF7069667069667069667069667069
-                    667069667069667069667069667069667069666E6764706B697D79797B79787B
-                    79787B77777977767876757674737472717271706F6E6D6E6D6C7372714B4A4B
-                    1111113F3E3D6D6B6A747271706D6C72706F6E6C6B757371C0BFBEDDDDDCE8E8
-                    E7D5D4D430303006060615151514141414141415151516161614141415151534
-                    35354142433F3F3F3E3F3F3F40403F40403F40403F40403E40403F40403F3F40
-                    3F40403F403F3F40403F3F403F40403F40403E403F3F40403F40403F40403F40
-                    403F40403F403F3F40403F3F3F3F40403F40403E40403E40403F40403F3F403F
-                    403F3F3F403F40403F403F3F40403F40403F3F3F3E40403F3F3F3F40403F4040
-                    3E3F403F40403E3F403F40403E3F403E40403F40403F403F3F40403E3F403F3F
-                    4041424234353516151514141416161614141414141414141415151506060631
-                    3131D2D1D1D9DAD9BCBBBBAFAEAE959392888685817F7E767573757372727170
-                    4E4D4C171616343333727170706F6E716F6E7372707473727675737876757977
-                    767B78777C79787D7B797574726B68677972706F686570696670696670696670
-                    6966706966706966706966706966706966706966FFFF70696670696670696670
-                    69667069667069667069667069667069667069667069666C66637875737D7B79
-                    7C7A787C79787B797679777678767576747374727172706F6F6F6E6E6D6C6E6D
-                    6C6664633B39380B0B0A1B1A1A54535274717073706F6A6867A4A2A2DCDBDBE0
-                    E0DFE8E7E7585857010100131313141414141414141414171717141314131414
-                    3435354243433E3F3F3E3E3E3E3F3F3E3F3F3E3F3F3E3F3F3E3E3F3E3F3F3E3F
-                    3F3E3F3F3E3F3E3E3E3F3E3F3F3E3F3E3E3E3F3E3F3F3E3F3F3E3F3E3E3F3F3E
-                    3F3F3E3F3F3E3F3F3E3E3F3E3F3F3E3E3F3E3F3F3E3F3F3E3F3F3E3F3F3E3F3F
-                    3E3F3F3E3F3F3E3F3F3D3F3F3D3F3F3E3F3F3E3F3F3E3F3F3E3F3E3E3F3F3E3F
-                    3E3E3F3F3E3F3E3E3F3F3E3F3E3D3F3F3E3F3F3E3F3F3E3E3E3E3F3F3E3E3F3E
-                    3F3E3E3F3F3E3E3F424343343535141414141414171717151515141414141414
-                    131313010101585858E3E3E2CECECDB7B7B7A7A6A68E8C8B878584807E7D625F
-                    5F2726260708072E2D2D5F5E5D706F6E6F6E6D706E6E73716F74727177757478
-                    76757977767B79767C79787C79787D7B7A6B696875716E736C696F6865706966
-                    706966706966706966706966706966706966706966706966FFFF706966706966
-                    7069667069667069667069667069667069667069667069666F67646F69677E7B
-                    7A7E7B797D7A797C7A787B797679777678767575747373717071706F706D6E6E
-                    6D6C6D6C6B6F6D6D747271646262343333080808302F2E6B6968878584D3D2D2
-                    DBDADBEEECEC8F8F8E0506061111111414141414141515151818181616161313
-                    133131324041413D3E3E3D3E3E3D3D3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D
-                    3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3C3E3E3D3E3E
-                    3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3D3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E
-                    3E3D3E3E3D3E3E3D3E3E3D3D3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D
-                    3E3E3D3E3F3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E3D3D3E3D3E3E3D3E3E3D3E3E
-                    3D3E3E3D3E3E3D3E3E3D3E3E3D3E3E4041413131311313131616161818181616
-                    161414141414141111110606068F8E8EE5E4E4C2C1C1B4B3B39C9B9A8E8C8B4F
-                    4D4C0505061F1F1F5A5957747372716F6F6E6C6B6F6E6D716F6E727170747271
-                    7674737776757977767B79787C79787C7A797E7C7A7573726D696878716E6F68
-                    65706966706966706966706966706966706966706966706966706966FFFF7069
-                    667069667069667069667069667069667069667069667069667069666C656276
-                    7371807D7C7D7B7A7D7A797C79787B7978797776777574757473727070716F6F
-                    706D6D6F6C6C6E6C6B6D6B6A6D6C6B72706F7876755653543F3D3D6F6D6BBBBA
-                    BADBDBDBE4E3E3C3C2C21E1E1E0C0D0D15151514141415151518181818181812
-                    12122C2D2D3F40403C3C3C3B3C3C3B3D3C3C3D3E3C3E3C3B3C3C3B3E3C3D3C3D
-                    3C3D3C3C3D3C3C3C3C3B3C3D3C3E3C3B3C3C3B3C3C3B3E3D3C3C3C3C3D3C3C3E
-                    3C3B3D3C3C3C3C3B3D3C3C3C3D3B3C3D3D3D3D3C3C3C3C3E3C3C3E3D3B3C3C3C
-                    3C3C3B3D3C3C3E3C3C3C3C3C3D3C3B3C3C3B3C3C3C3D3D3C3C3C3C3C3C3B3D3D
-                    3B3C3D3B3D3C3C3D3C3B3C3C3B3C3C3D3D3D3D3D3D3C3D3D3C3E3C3C3C3D3C3D
-                    3C3C3C3D3B3C3D3C3C3D3B3C3D3C3C3C3C3C3C3C3D3C3F40402C2D2D12121218
-                    18181817171515151414141515150D0D0D1E1F1FC2C1C1D7D6D7BCBBBBADACAD
-                    9593935B59584E4D4D7674727674736F6D6C6E6C6C6E6C6C706D6D716F6F7270
-                    6F7372717674727876757977767B79787C79787D7A797E7B7A7D7A796D696877
-                    716E726A676F6966706966706966706966706966706966706966706966706966
-                    FFFF7069667069667069667069667069667069667069667069667069666F6864
-                    6C67647D7A78807D7C7E7B7A7D7B7A7C7A797B78787977767775747572727271
-                    70706F6E6F6D6D6F6D6C6E6D6C6E6C6B6F6D6C706D6D737070787675706D6C93
-                    9292D8D8D7DDDCDCE3E1E1505050040404151515141414161616181818191A1A
-                    1111112425253E3F3F3B3C3C3A3C3C3B3B3B3B3C3C3B3C3C3B3B3C3A3C3B3B3C
-                    3C3B3B3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3B3B
-                    3C3B3B3C3C3B3B3C3B3C3C3B3C3C3B3C3C3B3B3B3B3C3C3B3C3C3B3C3C3B3B3B
-                    3B3C3B3B3C3C3B3B3B3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C3C3B3C
-                    3C3B3C3C3B3C3B3B3C3C3B3C3C3B3C3C3B3C3C3B3C3B3B3C3C3B3C3B3B3C3C3B
-                    3C3C3B3C3C3B3C3C3B3C3C3B3B3B3B3C3C3B3C3C3B3C3B3B3C3C3B3C3D3E3F3E
-                    252525111111191A1A171717161616141414151515040404515151DEDEDECAC9
-                    C9B8B7B7A2A0A0908D8C8D8A897D7A7A72706F716F6E6F6E6D706E6D706E6E70
-                    6E6E7270707371717573727775757976767B79787C7A797D7A7A7E7B7B807D7C
-                    73706F726D6B766E6B7068657069667069667069667069667069667069667069
-                    66706966FFFF7069667069667069667069667069667069667069667069667069
-                    666D6563736E6C827E7D7F7C7B7F7C7A7E7B797C7A797B787778767677757475
-                    7271727070716F6E6F6D6C6F6D6C6E6D6C6F6D6C706E6D726F6E73706F6F6D6C
-                    757371C0BFBFDBDBDAE7E6E69C9B9B0A0A0A1010101414141515151818181B1B
-                    1B1414141A1B1B393A3A3B3C3C3A3B3B3A3B3B3A3B3A3A3B3B3A3B3A3A3B3B3A
-                    3B3B3A3B3B3A3B3B3A3B3B3A3B3B3A3B3B3A3A3B393B3B3A3A3B3A3B3B3A3B3B
-                    3A3B3B3A3B3B3A3B3B3A3A3B3A3B3B3A3B3B3A3B3B3A3B3A3A3B3B3A3B3B3A3B
-                    3B393A3A3A3B3B3A3B3B3A3B3B3A3A3B3A3B3B3A3B3A3A3B3B3A3B3A3A3A3A3A
-                    3B3B3A3B3B3A3B3A3A3A3B3A3A3B3A3B3B3A3B3B3A3B3B3A3A3A3A3B3A3A3B3B
-                    3A3B3B3A3B3B3A3B3B3A3B3B3A3A3B3A3B3B3A3A3B3A3B3B3A3B3B393B3B3A3B
-                    3B3B3C3C3A3A3A1B1B1B1414141B1B1B1818181515151414141010100A0A0A9D
-                    9C9CDFDEDDBFBEBEB0AFAF949292888585807E7D777473716F6E6F6E6D706E6D
-                    706E6D706E6D72706F7371707572737775747976757B79777C7A787D7B797F7C
-                    7B817D7C7B78776E6B6976706D70696570696670696670696670696670696670
-                    6966706966706966707070696670696670696670696670696670696670696670
-                    69667069666B64627A767583807E807D7C807D7B7E7B7A7D7A797A7977797675
-                    77757474727172706F716F6E6F6D6D6F6E6D6E6E6D706D6C72706F73716F7471
-                    706A6867979695D7D7D6DBDBDAD2D1D13838370808081414141414141717171C
-                    1C1C1919191414143233333A3B3B38393939393A38393A39393A383939393A3A
-                    383939393A39383A3938393A383A3A38393938393A383A39393A39393A393839
-                    3A383939383A39383A3939393A383A39383939393A3A393A3A38393A39393939
-                    3A3A38393A383A3A383A3A383A39383A39383A39383939393A3A383A3A38393A
-                    383A3A38393938393A383A3938393A383A3A383A39383A3A383A3A393A3A3939
-                    3A393A3A393A3A383939393A3A383A39393A39393A3A393A3939393A38393939
-                    393A3939393839393B3B3B3233331414141818181B1B1B171717151515151515
-                    080808383838D0CECECDCCCCB9B8B8A4A3A28A89888583827B7978747170716F
-                    6E716F6D716F6E706F6F72706F7371707473717775747976757A79787D7A797E
-                    7B7A807B7A807D7C817E7C706E6C75706E726B68706966706966706966706966
-                    7069667069667069667069667070706966706966706966706966706966706966
-                    7069667069666F68656C6764807D7D827F7D817D7C807D7B7E7B7A7D7A797B78
-                    7778757476747374717172706F71706F716F6F706D6D706E6D726F6F73717073
-                    7170706E6C73706FBFBEBED6D6D5E1DFE0868686050506131313141414171717
-                    1B1B1B1D1D1D1212122727273B3C3C3838393839383739383838383739383839
-                    3837393938393937383937383838393838383838393838383838393837383937
-                    3839383838383939373839383839383938383939373839383838383838383939
-                    3838393838383839383838383838383838393838393739383739383839383838
-                    3838393938383838383938393838383938393837393838383937383837383837
-                    3838373938373838373838383938383838373838373838383838373838383938
-                    3839393738383839393839383738383B3C3C2727271212121D1D1D1A1A1A1616
-                    16151515131313050505878787DBDADABEBDBCB1B0B0949190878584807E7D77
-                    7574737170716F6F716F6E72716F7371707371707573717674747876757B7877
-                    7C7A797E7B7A807C7B817D7C83807F777372716D6B756E6B6F68657069667069
-                    6670696670696670696670696670696670707069667069667069667069667069
-                    667069667069667069666D6663726E6B848180817E7D817E7C807D7B7E7B7A7C
-                    79797A787677757476747373717072706F6C6B6B6D6C6B747271747171737070
-                    7472707471706B6867939190D3D3D2D4D3D3CDCCCC2E2F2F0B0B0B1515151616
-                    1619191920202017171719191936373738383837373736383737373737383736
-                    3737373738363738373737373737373737373737363737373737363837373738
-                    3737373637373738373738383737373737373738373738373738383737373637
-                    3736373737383737373737383737373837373837373737383737373837383836
-                    3837373737363737373837363838373737363738373837373737373738373737
-                    3737373637383637383737373737373737383637373737373737383738373638
-                    373737373737383637373737373738373737373838393737381919191617171F
-                    1F1F1919191616161515150B0B0B2E2E2ECCCBCBC8C7C7B8B7B7A2A1A18A8885
-                    8481817B7979747271747271757373716F6E6D6B6A7371707473727675747876
-                    757B79767C79797E7B7A807D7B817E7C837F7E7E7B7A6E6B6A77706E70686570
-                    6966706966706966706966706966706966706966707070696670696670696670
-                    6966706966706966706966716A676B64617B7675858180827F7D817E7D807D7B
-                    7E7B7A7C7A797977767775747573737472707472716462614B4A495856566B68
-                    68747271747170716E6D706E6DB7B5B5D1D2D0DCDBDB87868608080814141414
-                    14141818181D1E1E1F1F1F1212122C2C2C383939353636363636363737363737
-                    3635363635373637353636373637363637363537363637363636363537363637
-                    3736353736363636373736373736363536373736373735373736373636373736
-                    3636363736363637363636363736363737363637363737363737363737363537
-                    3635373637363637373637363635363637373637373536373637363536363636
-                    3736373736363736363636363736363535373636373736363636373636363736
-                    37363637363637363636373636363635353636373636353536363839392B2C2C
-                    1212121F1F1F1E1E1E181818151515141414080808878787D6D5D5BCBBBAAFAD
-                    AD918F8E878482807E7C7775746C6A695E5C5C4C4B4B5C5A5974737175737276
-                    75747775747A77777C7A787E7B7A7F7D7C807D7C827F7D83807E716E6C76706E
-                    716A677069667069667069667069667069667069667069667070706966706966
-                    7069667069667069667069667069666F68656C6562817D7D84807F827F7E827E
-                    7D7F7D7C7E7B7A7C79787A777778757576747373717173717072706F67656458
-                    56554E4D4C6A67667774736C6968848382CBCACAD2D2D1CFCECE3A3A3A090909
-                    1414141717171B1B1B2322221616161B1C1C3636363535363435353435353435
-                    3534343534343534353534353534353534353534353535343534353534353534
-                    3435343534343535343535343535343534343535343535343535343434343535
-                    3435353435353434353435353435343434343434353435353435353435353435
-                    3434353534353434353434353534353534353534353534353434343534353535
-                    3534343534343535333535343435343534343535343535343535343435343535
-                    3435353435353434353435353435353434353435353435353435353435353436
-                    353536361B1C1C1616162222221C1C1C1818181515150909093B3B3BCECDCCC5
-                    C4C3B6B5B59D9B9B888584858281757372585755585655646262716F6E747271
-                    7672737674737876757A78777C7A797E7B7A807D7C817E7D827F7E8581807774
-                    73726E6C746D6A6F686570696670696670696670696670696670696670707069
-                    667069667069667069667069667069667069666D6663706A6886838184807E82
-                    807E817F7D807E7C7E7B7A7C79787A777677757476737273717173717073706F
-                    74727175737272706F73706E73716F6C6968A2A19FCFCFCED9D7D79B9A9A0F0F
-                    0F1010101515151A1A1A2122222121211211112B2C2C34353633333333333333
-                    3433333434333434333333333333333433333334333433333333333333333334
-                    3333343334333334343334333333333333333334343334343333343334343333
-                    3433343333333332343433333333343433333433343333333433333333333433
-                    3433333333333433333433333333333434333434323434333434333434333434
-                    3333333333333334333334333334343333343334333334343234343333333333
-                    3333343433333333333432333333343433343333333333343433343433343433
-                    34343333333435362B2C2C1212122121212121211A1A1A1717171010100F100F
-                    9B9A9AD1CFD0B9B8B8A8A7A78D89898682817D7A797674727674737673737473
-                    727372717674737674747876757A78767C79797E7B7A807D7C817F7D827F7E85
-                    81807F7B7B706D6B766F6C6F6865706966706966706966706966706966706966
-                    7070706966706966706966706966706966706966716A676A6360777271878482
-                    83817F837F7E827F7D807E7C7D7B7A7C79787A78777775747674737572727372
-                    7072706F7270707372717573727673716F6D6D767473BAB9B8CFCECDD3D2D25B
-                    5B5B0606061414141817171E1D1D252525181818191A1A333333323232323333
-                    3232333233333233333233323232323233333231333232323233323233323132
-                    3232333232333332333332333132323231333232313331323332323232333332
-                    3332323131323331323231323333323232323233323333323232323332323331
-                    3232323232333232323233323232333233313233333233323232313233323233
-                    3232313132323331333332313332333232333232313232333332333332313232
-                    3332323331323232323232323333323231323333323333313231323233323232
-                    3232333233323231333232323333331A191A1818182525251E1E1E1818181414
-                    140506065C5B5BD0CFCFBEBDBDB1B0B0959292878583817F7E7A777676747274
-                    72717472717472717674737775747876757A77767C7A797D7B7A807E7C827F7D
-                    83807F84817F83807E726E6D77706D7169667069667069667069667069667069
-                    667069663D587069667069667069667069667069667069667069666A64617F7A
-                    7987838184817F83807E827F7D807E7C7E7B797C797879787678757476747274
-                    72727472707472717471717573717673727572716D6B69888685C7C6C6CFCDCD
-                    BBBAB92626260B0B0B1716161B1A1A2323232424241212122726263232323031
-                    3130303030313130303130313130313130313030313130313130313130313130
-                    3130303131303131303131303131303131303130303131303131303131303031
-                    3031313031313031303031313031313031303031313031313031303031303031
-                    3130303030303130313130313130313130313030313130313130313130313130
-                    3131303031303130303031303031303130303131303131303131303131303031
-                    3030313031313031313031313031313031313030313030303031313030313031
-                    313031313030303030313031313031313232322627261212122525252323231B
-                    1B1B1717170B0C0C272727BAB9B9C5C4C4B6B5B49F9D9D8986848482817C7978
-                    7775737573717473717573727674727775747876757A77777D7A787E7B7A817E
-                    7C827F7D83807E85817F868280767270756E6C726B6770696670696670696670
-                    6966706966706966514F7069667069667069667069667069667069666F68656C
-                    666383807E87838285817F83807F827F7E807D7D7D7B7A7B79787A7777777574
-                    7574727472717472717471717573727573727673737572716C6A699E9D9CC9C8
-                    C8D0CFCE8D8C8C0A0B0B1414141918191F1F1F2728281D1D1D1616162F2F2F30
-                    31312F2F2F2F2F2F2F302F2F30302F2F2F2F302F2F2F2F2F302F2F30302F3030
-                    2F30302F2F2F2F30302F30302F2F2F2F2F2F2F2F302F2F302F30302F2F302F30
-                    2F2F30302F2F302F30302F302F2F2F302F2F302F30302F2F302F30302F30302F
-                    2F2F2F2F2F2F30302F2F302F302F2F30302F2F2F2F302F2F302F2F30302F2F30
-                    2F30302F30302F302F2F302F2F2F302F2F302F30302F30302F302F2F30302F30
-                    302F2F2F2F2F302F302F2F30302F2F302F2F302F2F302F30302F2F302F2F302F
-                    2F302F302F2F2F2F2F30302F2F302F30302F2F2F3030312E2F2F1616161E1E1E
-                    2828281F1F1F1918181414140B0B0A8D8D8DCCC9CAB8B6B7A8A7A68B8A888684
-                    837E7C7A7975747673727572727573727573727775757876757A77767C7A797E
-                    7B7A807E7D827F7E83807F8581808683817A7876736F6D736C696F6865706966
-                    7069667069667069667069665F5E706966706966706966706966706966716A67
-                    6D66636E686687848387848286818084818083807E807E7D7E7B7A7C79797977
-                    7777757476737375727175727275727174737177747376747273706F716F6EB2
-                    B1B0C6C5C5CECDCC5857570808081718181B1B1B2424232A2A291616161E1F1F
-                    2F30302D2E2E2E2F2E2E2E2E2E2E2E2E2F2D2E2F2F2E2E2F2E2E2F2E2E2F2E2F
-                    2E2E2E2F2E2F2E2E2E2F2E2F2F2E2F2F2E2E2F2E2E2F2E2F2F2D2F2E2E2F2E2E
-                    2F2F2E2F2E2D2F2F2E2F2F2E2F2F2E2E2E2E2F2F2E2F2E2E2E2F2E2E2F2E2F2F
-                    2E2F2E2E2F2F2E2F2E2E2F2F2E2F2F2E2F2E2E2F2F2E2F2F2E2E2F2E2D2F2E2F
-                    2F2E2D2F2D2F2E2E2D2E2E2F2F2E2F2F2E2F2E2E2E2E2E2D2F2E2F2E2E2E2E2E
-                    2E2E2E2E2F2D2E2E2E2E2E2E2F2E2E2F2F2E2E2E2E2F2F2E2F2F2E2D2D2E2F2F
-                    2E2E2F2D2F2F2E2E2F2D2F2F2E2E2E2E2F2E2E2F2F2E2F2F2D2E2E2F30301E1F
-                    1F1616162B2B2B2323231B1B1B171717080908595858CBCACAB9B8B7AFAEAD92
-                    908E878483817F7D7978767675747674737574737674737875747976767B7776
-                    7C7A797D7C7B807E7C827F7E84817F8581808784827F7D7B736F6C746D6B7069
-                    667069667069667069667069667069665E5E7069667069667069667069667069
-                    667069666B6461736F6D8A868586838186838184818083807E807D7C7E7C7A7C
-                    7A797A77777775747674737573727573727473717673737775747674726F6D6C
-                    7E7C7BBDBCBCC6C4C4BDBCBC2B2B2A100F1019191920201F2929282828281312
-                    132626272D2E2E2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C
-                    2D2C2C2D2D2C2C2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2D2D2D
-                    2C2D2D2D2D2C2C2D2D2D2C2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2C
-                    2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C2D2D2C
-                    2D2D2C2D2D2C2D2D2D2D2C2C2D2D2C2D2D2C2C2D2C2D2D2C2D2D2C2D2D2C2D2D
-                    2C2D2D2C2D2C2C2D2D2D2C2D2C2D2D2C2D2D2C2D2C2C2C2D2C2D2C2C2D2D2C2D
-                    2D2C2D2D2C2D2D2D2D2C2C2D2D2D2D2D2C2D2C2C2D2D2C2D2D2C2D2D2C2D2D2E
-                    2F2F2627261312122929292A2A2A1E1E1F1A191A1010102B2B2BBDBCBBBDBBBB
-                    B3B2B29A98978785848381807C79787876747775747774737775747876757977
-                    767B79787C7A797E7C7A807E7D82807E84817F84838187848283807F74706E74
-                    6E6B706865706966706966706966706966706966595A70696670696670696670
-                    69667069667069666A64607973728B878687838186838184817F827F7E807D7B
-                    7E7B7A7C7A787A78777875747774737876757A77767876757876747775737673
-                    726E6B6A8E8C8BC2C1C0C9C8C79E9D9D1313131615161B1B1C2323232E2E2E21
-                    21211515152A2B2B2C2C2C2B2C2C2B2C2C2B2C2C2B2C2B2B2B2B2B2C2C2B2C2C
-                    2B2C2C2B2C2B2B2C2C2B2C2C2B2C2C2B2C2B2B2C2C2B2C2B2B2C2C2B2B2C2B2C
-                    2C2B2B2B2B2C2C2B2B2B2B2C2C2B2C2C2B2C2C2B2C2B2B2C2C2B2C2C2B2B2B2B
-                    2C2B2B2B2C2B2C2C2B2B2C2B2C2C2B2C2C2B2C2C2B2C2C2B2C2C2B2B2C2B2C2C
-                    2B2B2C2B2C2C2B2B2B2B2C2B2B2B2C2B2C2C2B2C2C2B2B2C2B2C2C2B2B2C2B2C
-                    2C2B2C2C2B2C2C2B2B2B2B2B2C2B2C2C2B2C2B2B2B2C2B2B2C2B2C2B2B2C2C2B
-                    2B2C2B2C2C2B2C2C2B2C2C2B2C2C2B2C2C2B2B2B2B2C2B2B2C2C2B2C2C2B2C2B
-                    2C2C2C2C2D2D2A2B2A1514142122223030302323231B1B1B1616161313139E9C
-                    9CC4C3C2B3B2B2A19F9F8986858582817D7B797A77767977767C79787B787878
-                    76757977767A79777D7A797F7C7A807D7C83807E85817F868281888482868281
-                    767271756F6C7069667069667069667069667069667069665251706966706966
-                    70696670696670696670696569625F7F7A798A8686868281868281848080827F
-                    7E807D7B7E7C7A7C79797A777778777576747267656462605F6B696977747478
-                    75757572716E6B699E9C9BC1C1C0CBCAC97675750B0B0C1918181E1F1F262726
-                    3131311A1A1A1A1B1A2B2C2B292A292A2A2A2A2A2A2A292A2A292A292B2A2A29
-                    2A2A29292A2A2B2A292A2A2B2A2A2B2A2A29292A292A2A292A2A2A292A2A2A2A
-                    2A2A2A2A29292A2B2A2A2A292A2A2A292A29292A292A2B2A29292A2A2A2A2A2A
-                    2A2A2B292A2A2A2A292A2A2A2A2A292A292A2A2B292A2A292A2A2A2A2A292A2A
-                    292A2B2B2A292B2929292A2A2A2A2A292A292A2A2929292B2A2A2A292A2A2A2A
-                    2A2A2A2A292A292A29292A292A2A2A2929292A2A292A292A292A2A2A2A2A2A29
-                    2A2A2A2A2A2A2A29292A2A2A2A2929292A292A2A2A29292A292A2A2A29292A2A
-                    292A292A292A2A292A2A2B2B2B1A1A1B1A1A1A3333332928281E1D1E1919190B
-                    0C0B767675C9C7C6B4B3B3A7A6A68C89888582817F7C7C787776706E6D666362
-                    6564637572727A78767A79777C7A797E7B7B817E7C837F7F8480808682808783
-                    82888483777574746E6B716A677069667069667069667069667069664E4F7069
-                    667069667069667069667069667069666A6360817D7B8B878587838287838185
-                    818083807E817D7B7E7C7A7D7A797A78767A7675787574626060535151595757
-                    5F5D5C767473757270706E6CA8A7A6C0BEBEC7C6C55251520D0D0D1A1A1A2222
-                    222C2C2C3030311415151F1F1F2A2A2928282828292828282928282828282828
-                    2829282828282928282828282928282928282828282828282928282928282828
-                    2828282828292828282829292828292829282828282828292828282828292829
-                    2928282828282828282828282828282828292828282928282828292928282828
-                    2828282928282829282828282929282928282928282928282828282828282929
-                    2828292828282828282828292828282828292828282829282828282829282828
-                    2928292828292828282928292928282828282828282928282828282828292928
-                    29292828282829292828282828282A29291F1F201515153232322E2E2E212121
-                    1A1A1A0D0D0C525251C6C4C4B6B5B5ACABAB908D8C878483827F7E615F5E5A57
-                    575653535E5C5B7673737A78777B78777D7B797F7C7B817E7D83807E84817F87
-                    83818884828985847B7776756F6D726A67706966706966706966706966706966
-                    49497069667069667069667069667069666E67646C66638884828A8684888482
-                    87838185828083807E807D7B7E7C7A7D7A797A78767976757875747876757A76
-                    75787574757371787474726F6D777573AFAEAEC0C0BFBAB9B83534351011101C
-                    1C1C2524253333332D2D2E121313232424282828272727272727272727272727
-                    2727272727272627272727272727272727272727282727282727272727272728
-                    2727272727272727282727272727282727282727272727272727272727272727
-                    2827272728272727272727272727272728272827262727272827272727272728
-                    2727272727272728272727272727272728272727272727272727272727272728
-                    2727282727272726272727272727272727272727272827272727282727272727
-                    2727272727272727272728262728272727272728272727272727272727272727
-                    2727272628272727272727282727272727272828282324241313132E2F2F3434
-                    352525251C1C1C111110353534B9B8B8B9B8B8ADADAC959291868382827F7E78
-                    75737774747A78767A78777977767A77767C78777D7B797F7C7B817E7D83807E
-                    84817F8683818783828A86857E7B7A746F6D726B687069667069667069667069
-                    66706966014D7069667069667069667069667069666F67646964618A86848B87
-                    8588858388848285828184817F817E7C7F7C7B7D7B797A797779777679767578
-                    76747876747977757A7976797674706C6B7F7C7BB4B3B2C1C1C0AAA9A8262626
-                    1313121F1F1F28282838383829292A1313132425252526262626262626262626
-                    2526262526252625262626272626252625262726262526252526252626262526
-                    2525262526262626262626262525262626252526262625262526262626252625
-                    2625262625252626252626262625262625252625252625262626262625252626
-                    2626262626252526262626252626252525262626262626252625262626252726
-                    2525262626252525262525262625262626262625262525252627262525262527
-                    2626262625262626252625252625252626272627262625252626262627252625
-                    252625262625252626252626252625252626262626252527262425251313132A
-                    2A2A3A3A3A2A2A2A1F1F1F131413262626AAA8A8BDBABBAFAEAD999796888482
-                    8481807F7C7A7A78767A78767977767A78777B78767C79797E7B7A807D7B827F
-                    7E84807F8582808784828884828B8785817E7C746F6D716A6770696670696670
-                    696670696670696664647069667069667069667069667069666E66636F69678B
-                    87858A868488858388848285818083807F807D7C7F7C7B7D7B797A78787A7776
-                    7976757876747876747977767A77767875736F6B6A858382B5B4B4C3C2C29594
-                    941819181616162222222D2D2D3B3B3B22222315151625252524242524242424
-                    2424242424242425242524252425242524242424242424242524242524242525
-                    2424242424252424242424242424242424242424242425252424242424242424
-                    2524242424252424242524242424242424252424252424242424242424252424
-                    2424242424242425242525242424242425242524252424242425242524242525
-                    2424252425242424242424242425242425242424252424252425252424242425
-                    2524252424242424242424242524242524242424242424252424252424242424
-                    2425242524242524242424242525242425242524242424242425242524252525
-                    1515142323233D3C3D2D2E2F222222171616191918959493BFBEBDAFAEAD9C9A
-                    998885838581807F7D7B7B78777B78777A77767A78777B79777D79787E7B7A7F
-                    7D7C827F7D83807F8581808784828884838B8785827E7C75716E746D6A6F6865
-                    706966706966706966706966B6B87069667069667069667069667069666D6663
-                    746E6C8E8A888A858489858488848385828084807F817E7D7F7C7B7E7B7A7B78
-                    787A77767A77767976767976757A77767B77777874746F6C6A8B8988B6B5B4C1
-                    C0BF8A8A891616161919192424243131313F3F3F202020161616242424232323
-                    2323232323232323242323232323232323242323232323232323232323232324
-                    2323242323232423232323232323232323232323242323232323232423232323
-                    2423232323232323232423232323232424232323232423232424232423232323
-                    2323232323232323232323232323242323232323232323232323242323242323
-                    2323232323232323242423232323232423232323232423232323232323232323
-                    2324232323232323232323232323232323232323232323232323232323232423
-                    2323232323242323242323232323232323242323232323242323232323232323
-                    232424241616162020204040403232322424241918181616168B8989BFBEBDAE
-                    ADAD9E9C9B898685868281807D7C7C79787B78777B78777B78777B79787E7A7A
-                    7E7C7A807D7C827F7E84807F8582808884838984848B8685868280757170746D
-                    6A706865706966706966706966706966CACD7069667069667069667069667069
-                    666C6562736E6C8F8B8A8A868489868488858385828184817F827F7D807C7C7E
-                    7B7A7C7A797B78777A78767977757A77767B78777B78767774726E6B6A8D8C8B
-                    B7B6B5C0BFBE6E6E6E1111111C1D1D2727273636363D3D3D1717171819182323
-                    2222222122232122222222222222222222212221222122232222222222222222
-                    2222222123222121222222222221222221222222222323222122222322222222
-                    2221222221222223212222222222232122222223232222222222222222212222
-                    2322232121212222222322222222222122212122222322212222222122222222
-                    2321222122222121222222222321222222222223222121222121222223222321
-                    2221212222222221212221222223222222222222212222212222222222222223
-                    2221212222222222222122212221212222232222232322232122212122222222
-                    22212221232323241A1A1A1818183D3E3D3737372828281D1D1C1111126F6E6E
-                    BEBDBCAFAEAEA09F9E898785868381817E7C7D7A797C79787B79777C79787C7A
-                    787E7A7A7F7D7B807D7C827F7E84817F8683808885838985848B878587858376
-                    7270746D6A706966706966706966706966706966EBF570696670696670696670
-                    69667069666C6562726D6B8F8B898E8A88908D8B8B8886898685878483827F7D
-                    8683828681807E7B7A7B78777B78777A77767A77767B78777B78777774736D6B
-                    688E8C8BB6B5B5BEBDBC6766661010111E1E1E2A2A293A3A3A3D3D3D12121219
-                    1A19212122202020202021202020202020202020202021202120202120202120
-                    2020201F20212020212020212020202020202020202021202020202020202020
-                    2020202020212020202020202120202120202020202020202120202020202020
-                    2020202120202021202121202020202020202120202020202020202120202021
-                    2020202021202020202020212020212020202020202020202020212020202020
-                    2020202120212120212020202020202020212020202120202020212020202020
-                    20202020202020201F2020202021202020202120202020202021202020202020
-                    2020202020202020202121211C1D1C1515153E3E3E3B3B3C2A2A2B1F1F1F1011
-                    11676666BCBBBAAFAEADA19F9E898684858381817E7C7C79787C79787C79787C
-                    79787D7A797D7B797F7D7C83807F85827F8582808986848986848985848B8785
-                    888583757270736C69706966706966706966706966706966D8A1706966706966
-                    7069667069667069666C6562736D6B928D8C726E6C5D5B5A716D6C726E6D7371
-                    708682815D5A595753537976767D7A797C79787C79787C7A787D7A797D7A7979
-                    75736E6B698F8C8CB5B4B3BCBBBA6766661111112020202C2C2C3E3E3E404040
-                    1414141819192020201F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F
-                    1F1F201F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F201F1F1F1F1F1F1F
-                    1F1F1F1F1F1E1F1F1F1F1F1E1F1F1E1F1F1F1F1F1F1F1F201F1F1F1F1F1F1F1F
-                    1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F
-                    1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F
-                    1F1F1F1F1F1E1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F201F1F1F1F201F
-                    1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F201E1F1F1F1F1F1F1F1F1F1F1F1F1F
-                    1F1F1F201F1F1F1F1F1F1F1F1F2020201A1A1A1515154141413D3D3D2C2C2C20
-                    2020111111676766BBBAB9AEADACA19E9E8A868687848384807F7F7C7B7D7A79
-                    7E7B7A7E7B7A7D7A797E7B7982807F837F7E8782818A87858885848D89888A86
-                    858B8786898584777271736C697069667069667069667069667069666F277069
-                    667069667069667069667069666B6461746E6C97939125242319181773706E48
-                    46453534337572711112110B0B0B5956568582817D7A797D7A797D7B797F7C7B
-                    7F7C7A7A76746E6B6A8E8C8BB4B3B3BCBABA6766661211112222222E2E2E4141
-                    414343431414141718171F1E1E1D1D1D1E1E1E1E1D1E1D1D1D1E1D1E1E1E1E1E
-                    1E1E1D1D1F1E1E1D1D1D1E1E1D1D1E1E1D1D1D1E1E1D1D1D1D1E1D1D1E1E1D1D
-                    1E1D1D1D1D1E1D1F1D1E1D1D1D1E1F1E1D1E1E1E1D1D1D1E1E1D1E1D1D1E1D1F
-                    1E1E1D1D1E1F1E1D1E1E1E1E1E1E1E1D1D1D1E1D1D1F1D1E1E1D1E1E1E1D1E1D
-                    1D1D1E1D1E1D1D1E1D1D1F1E1E1D1D1D1E1E1E1E1E1E1E1D1E1D1E1D1D1E1E1D
-                    1E1D1D1D1D1E1D1E1F1E1D1E1E1D1E1D1F1E1E1E1D1D1E1D1D1D1F1D1D1E1E1D
-                    1E1E1D1D1E1D1E1E1D1D1E1E1F1D1D1D1E1D1D1E1D1E1E1E1E1E1D1E1D1D1E1D
-                    1E1D1E1D1D1D1E1F1E1D1E1E1E1E1D1E1D1F1E1F1A191A161616434343414040
-                    2F2F2F212121111111676666BAB9B8ADACACA09E9D8A88868885848481807F7C
-                    7B7E7C7B7E7C7A7F7C7B7D7B7A84817F62605F25242346444358565528262652
-                    4F4F8C89878D8A87898684777371736C69706966706966706966706966706966
-                    450A7069667069667069667069667069666C6461726D6B969290605D5B201E1E
-                    6865636E6C6A24232262605E252424222121514E4E8582813939392322222726
-                    252626252726252B2A296562608F8D8CB1B0B0BAB7B766666613131323232330
-                    30304343434646461414141616171C1D1E1C1D1D1C1C1C1C1D1D1C1D1D1C1D1D
-                    1C1D1D1C1D1C1C1D1D1C1D1D1C1D1D1C1D1C1C1C1C1D1C1D1C1D1D1D1D1C1C1D
-                    1C1C1D1D1C1C1D1D1D1C1C1D1D1D1C1D1D1D1D1C1D1D1C1D1D1D1D1C1C1D1D1C
-                    1C1D1D1D1D1C1C1D1C1D1C1D1C1D1C1D1D1C1D1D1D1D1C1C1D1D1C1D1C1D1C1D
-                    1C1D1D1D1D1D1C1C1C1C1D1D1D1D1C1C1D1C1D1D1D1C1D1D1C1D1D1D1D1D1C1C
-                    1D1C1C1C1C1D1D1C1D1C1D1C1C1C1D1D1C1D1D1D1D1D1C1D1D1D1C1C1D1D1D1C
-                    1C1D1C1D1D1C1D1D1C1D1D1C1C1D1C1D1D1C1D1C1C1C1D1C1D1C1C1D1D1C1D1D
-                    1D1C1C1D1D1C1C1D1D1C1C1D1C1D1D1C1D1C1D1D1D1D1D1E1919191616164545
-                    45424242303030222222121212666565B7B6B6AAAAA99F9E9D8C89874A4A4923
-                    22222322222727262525232D2B2B706E6D8885845E5C5A252423202020232322
-                    1312122221208985838F8C8A898684777271736C697069667069667069667069
-                    66706966670F7069667069667069667069667069666B6461746E6C97918F4F4D
-                    4C1918172B2A2A7471701919194C49491F1E1E151616514E4E8884835957564C
-                    4A4A4F4C4C4C4B4A4C4949504E4D6B67668E8C8AAFAEAEB8B6B6656464131313
-                    2424243232324646464647461414141616161C1D1C1C1C1C1B1B1C1B1C1C1C1C
-                    1B1B1C1B1B1C1C1B1C1C1C1C1B1B1C1C1C1C1C1B1C1B1B1B1B1C1B1C1B1B1C1B
-                    1C1C1C1C1C1B1C1C1B1C1C1C1B1B1C1C1B1B1C1C1B1B1C1C1B1C1C1C1C1B1C1B
-                    1B1B1B1C1C1C1C1C1C1B1C1B1B1C1B1C1C1C1B1C1C1B1C1C1C1B1B1B1B1C1C1B
-                    1B1B1B1C1B1B1C1C1C1B1B1C1B1C1B1C1B1C1B1B1C1C1C1B1C1B1C1C1B1B1B1B
-                    1C1C1B1C1B1B1B1C1B1C1C1C1B1B1B1B1B1B1C1C1B1C1C1B1C1C1B1C1C1B1C1C
-                    1B1C1B1C1C1B1B1C1C1B1B1B1B1B1C1B1C1B1B1C1B1C1C1C1B1C1C1B1C1B1B1C
-                    1C1B1B1C1B1C1C1B1C1C1B1B1C1C1B1B1B1C1C1B1C1C1B1C1B1C1C1C18181815
-                    1615464646444445313131232323131414656464B6B4B4A9A7A79E9B9B8C8987
-                    686664514F4E4E4C4B504D4C4E4B4B51504F777473898483524F4E1312122423
-                    23282726282625272524888482908C8A8A8684787271736C6970696670696670
-                    6966706966706966CF4F7069667069667069667069667069666C6562736D6B99
-                    95924A48471B1B1B4E4B4C3E3C3C2221205D5B5A302E2D1F1E1E686564858180
-                    837F7E83807E83807F8581808581807F7B7A706C6B8D8B89AEADADB7B5B56464
-                    631313132525253232324747474949491414141414141B1A1A1B1A1B1B1B1B1B
-                    1B1B1B1A1B1B1B1B1B1B1B191A1B1B1B1B1B1B1B1B1A1B1B1B1B1A1B1B1A1A1B
-                    1B1B1A191B1B1B1A1B1A1A1B1A1B1B1A1B1B1B1B1B1B1B1A1B1B1B1B1B1B1B1B
-                    1B1B1B1B1A1B1B1B1B1B1A1A1A1B1B1B1B1A1B1A1B1A1B1A1B1B1A1A1A1B1B1A
-                    1B1A1B1B1B1A1B1A1A1B1A1B1B1B1B1B1B1B1B1A1B1B1B1B1A1B1A1B1B1B1A1B
-                    1B1B1B1B1A1A1B1B1A1B1B1B1B1A1B1B1B1B1B1B1B1B1B1B1A1B1B1B1B1A1B1B
-                    1A1B1A1B1A1A1B1B1B1B1B1B1A1A1B1B1B1B1B1B1B1B1A1A1B1B1B1B1B1B1A1B
-                    1B1B1A1B1A1B1B1A1A1B1B1B1A1B1B1B1B1B1B1A1B1B1B1A1B1B1B1B1A1A1A1A
-                    171716151515474747454545323232242424131313666564B5B3B3A8A6A69D9B
-                    9A8B88868C89888A87868683808682808581808481807F7C7B88858344434204
-                    04042424232928270B0B0B2524238C8885918C8A8A8785787271736C69706966
-                    706966706966706966706966F1E37069667069667069667069667069666C6562
-                    736E6D928E8D8D89878582818B87857F7C7B807D7B868381817E7D7D7A7A827E
-                    7D7E7B797D7A797C79787D7A797E7B797E7B79797674706C6B8B8988ABAAAAB4
-                    B2B26564641414142525253434344848484A4A4A141414141415191A1A191A19
-                    191919191919191A19191919191919191A1919191919191919191919191A1919
-                    19191A19191919191919191A19191A191A19191A19191919191919191A191919
-                    1A1919191919191919191919191919191A191919191919191919191A1919191A
-                    19191A19191919191919191A19191A19191919191919191A1919191919191919
-                    1919191919191919191A19191A19191919191919191919191919191919191919
-                    191A191919191A19191A1919191919191A191919191919191919191A19191919
-                    19191919191A191919191919191919191A1919191919191A1919191919191919
-                    1A191A19161615151515474747464646323232242424141414646363B2B1B0A5
-                    A4A39B9A988C888788858483807F7F7C7A7F7C7A7E7B7A7E7B7A7F7C7A83807E
-                    7372704644435D5B5A6E6A6A4644436865648E8A888E8A888A8785787472736C
-                    69706966706966706966706966706966DBE27069667069667069667069667069
-                    666C6562736E6D928E8C8D89878F8B8A8C89878C88868A878586838286838285
-                    8380807D7C7E7B7A7E7B797D7A797E7B797F7B7A7E7B7A797774706D6B898886
-                    ABA9A9B2B1B06463631514142525253534344949494A4A4A1313131414141918
-                    1918181818191818181818181918181818181818191818181818181818181818
-                    1819181818191918181819181818181818181818181918181819181818181918
-                    1818181818181819181818181818181818181819181818191819181918191818
-                    1818181818181818191818181918191818191818181818181818181818181818
-                    1918181818191918181819181818181918181818181918181918191918181818
-                    1918181818181818191819181818191819181818181819181818181818181818
-                    1818181818181918181818181919181918181818181918181818181918181818
-                    1818181819181918151515151414484848454545323232242424141414646362
-                    B1B0AFA5A3A39A98988B8887888583848180807D7B7F7C7B7E7C7B7F7C7A7F7C
-                    7B807D7B8582818C87868B87868C8887908C8A8F8C8A8B87858D89878A878578
-                    7472736C69706966706966706966706966706966D4D670696670696670696670
-                    69667069666B6461746E6D928F8D8B87858B87858A87858A8583888381858281
-                    84807F827F7D817D7B7F7C7B7F7C7A7E7B7A7F7B7A807C7B7F7C7B7A77756F6D
-                    6C878483A8A7A6B1B0AF6A69691717172525253535354A4A494E4D4E18181812
-                    1312181717161816171717171618171817161617181818161716171817161616
-                    1617171818171718181617161717181617181718161716171618181617161717
-                    1817181718181716171716171817181817161618171818181717171816171716
-                    1818181717171716161816161817171718161718171816171717181718161717
-                    1817171718181817161816161718181617171618171718181716181716181718
-                    1717181617171718171617181616171817171717181717181718161816171717
-                    1717171617161716161718161818161818181717161717181718161617181717
-                    1617171617171718171717171314131818184A4A4A4545453232322424241616
-                    16696968B0ADAEA3A2A09896968B8886898584848180817D7C7F7D7B807C7A80
-                    7D7B807D7B827D7C827F7E84817F8783828784828985848B87848B88868E8A88
-                    8B8785787473736C69706966706966706966706966706966698C706966706966
-                    7069667069667069666B6461716C6A948F8D8D88868C88868C87858A85848884
-                    8287838185817F84807E817D7D807D7B7F7C7A7F7B7A7F7B7A807C7B807C7A7B
-                    7776706D6C837F7FA5A4A3B0AEAE81807F1D1D1D232424343434484848565657
-                    2625250F0F0F1616161616161617161616161616161616161616161616161616
-                    1616161616161616161616161616161616161616161616161616161616161616
-                    1616161616161616161616161616161616161616161616161616161616161616
-                    1616161616161616161616161616161616161616161616161616161616161616
-                    1616161616161616161616161616161616161616161616161616171616161616
-                    1616161616161616161616161616161616161616161616161616161616161616
-                    1616161616161616161616161616161616161616161616161616161616161616
-                    161616161616161616161616161616160F100F24242450515143434332313223
-                    22221D1D1D817F7FAEACABA09F9E9593928B868588858384827F817E7C817D7B
-                    807C7B807D7B807D7B817D7D84807E85817F8683828984838A85848C87848C88
-                    868E8A888B87857B7673726A677069667069667069667069667069666F707069
-                    667069667069667069667069666D6663696361908B898E8A878C88868C87868A
-                    868488848387838085817F84807E817D7D807D7B807C7B7F7B7A7F7C7A807D7B
-                    817D7B7B7876716D6C7C7978A19F9FADACAC8887862021202323233333344747
-                    475858582C2C2C0E0F0F15151616151615151615151515151515151515151615
-                    1515151516161616151515151516161515151516151615151516161515151515
-                    1515151515151515151516161515151515161516151515161615151515151515
-                    1615151515151516151615151515151515151515161516151515151515151515
-                    1515151515151515151616151515151615161515161515151516151616151516
-                    1516151516151615151515151515151515151515151516151516161515161515
-                    1515151616151515151616161616151515151515151515151515151616161516
-                    15151515161515151516161515151516161515160E0F0F292929515151414141
-                    313132212122202020888786ABAAA99E9D9C93918F8A868589848384807F817E
-                    7C817D7C807D7B817D7B817D7C827F7C84807E85817F8783828884838A86848C
-                    87858C87868E8A8888858377716F706966706966706966706966706966706966
-                    6D6F7069667069667069667069667069666E67646A64628F8B898F8B898D8987
-                    8C88878B8785898684888483868381858280827F7E817E7D807D7C807D7C817E
-                    7C82807E84817F7D7A79736F6E7774739C9B9AA8A7A69695942E2C2C22212133
-                    33334545455A595A3839390E0E0E141413141515141414151515151515151515
-                    1415151515151515141414141515141515141415151415151514151515141415
-                    1515151515151514151514151515151415151515151415141515141514151515
-                    1515151515151515151515141415151515151515141414151415151515141515
-                    1515151515151515141515141515141515151515151415151415141515141514
-                    1415141415151515151514151515151514151515151515151415151514141415
-                    1514151515151514141515151514141415141515151515151515151515151514
-                    1514151415151515141415151514151515151515151414130F0E0F3435345151
-                    513F3F3F30302F2020202C2B2C969494A6A4A39C9B9A918E8D8A868587848387
-                    848184817F83807E817E7D817E7D827F7D817E7E84817F868281888583898684
-                    8B87858C88878C88878F8B8986838175706F716A677069667069667069667069
-                    6670696612487069667069667069667069667069666F67646862608E8987918D
-                    8B8C88878B88878B8785898684888583868381858280827F7D817E7D817F7D80
-                    7D7B7976747875737674727C797876727173706E969494A4A3A2A09F9E393838
-                    1F1F1F3131314242425858584545451011111213121414131414141414141314
-                    1414131414141313141414131414141414141314141414141414131313141414
-                    1414141413131414141414141414141314141414141413141414131414141413
-                    1414141314131414131414141414141414131414141414141414141414141314
-                    1414141413141414141314141314141414131414141414131414141414141414
-                    1414141414141414141314141313141414141414141414141414141414131314
-                    1414141414141314141314141414141414141414131414131314141414131414
-                    141414141314131413141414141413141314131414141414131212121111113D
-                    3E3D4E4E4E3C3C3C2E2E2E1E1E1E383838A09E9EA1A09F9998988E8B8A8A8684
-                    878482726F6E7571707A7775807D7B837F7E827F7D827F7F84817F8682818885
-                    838A86848B87858B88878D88878E8A8987838176706D70686570696670696670
-                    69667069667069666D6D706966706966706966706966706966706966655F5D86
-                    817F938E8C8D88878C88878C87868B868488858387838185828083807F837F7E
-                    807D7B6866655755555A58566E6A697F7B79787473706D6B8F8C8BA09E9EA6A4
-                    A44F4E4E1D1E1E303030403F3F55545550515016171711111113131313131313
-                    1313131313131313131313131313131313131313131313131313131313131313
-                    1313131313131313131313131313131313131313131313131313131313131313
-                    1313131313131313131313131313131313131313131313131313131313141313
-                    1313131313131313131313131313131313131313131313131313131313131313
-                    1313131313131313131313131313131313131313131313131313131313131313
-                    1313131313131313131313131313131313131313131313131313131313131313
-                    1313131313131313131313131413131313131313131313131313131313111111
-                    1616164747474A4A4A3939392D2D2D1C1D1C4E4E4EA6A4A39B9A9A9694948C88
-                    878A86848785826F6C6A5C5A595856556563607D7A7884807F84807E85818087
-                    83818A85848B86848C87858C88878E89878F8B89837E7C736E6A706966706966
-                    7069667069667069667069667170706966706966706966706966706966716A66
-                    67605D837E7D938E8D8E89878E89878C87858B87858984828884828783818581
-                    7F84807F817D7B7A7776807D7B837F7E858180817E7C7A77746F6C6A8583819D
-                    9C9BA6A4A36968671E1D1D2E2E2E3D3C3C4F504F5B5A5B2324240E0E0E121213
-                    1212121212121312121213121212131212121213121212121212131212121212
-                    1212131313121212121212121313121212121212121212131212121212121212
-                    1212131212121213121212121213121212121212121212121212121212121212
-                    1212121212121312121212121312121212131212131212121313121212121213
-                    1212121212121212121212121212121213131212131312121212121212131212
-                    1212121212131312121212121212131212121212121212121212121213121213
-                    1312121212131212121312121312131212121212121213121212131212121212
-                    130F0F0F2020204E4E4E4545453737372B2C2C1C1C1C686766A5A3A398989793
-                    91908C8686898684868281868381858180837F7E7C7977807C7B85817F83807F
-                    8682818884828A86848B87858C87868D88878E8987908B89827E7C726D6A7069
-                    6570696670696670696670696670696677757069667069667069667069667069
-                    66716A6767605D79747295908E8E89878E89878C88868C87858A868488848287
-                    838186827F84807F837F7D85817F837F7E837F7E837F7E837E7D7D7877706D6B
-                    7A7877999897A19F9E8482822323242B2B2B3939394B4B4B5D5D5E3435350D0D
-                    0D12121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12121212120E0E0E2E2E2E4F4F4F4140403434342829292222228381819F9D9D
-                    9694948F8D8C8B868489848386818184807E847F7E84807F85828084807F8480
-                    7F84807F8782818884828A86848B87858C88868D89878E8A878E89887F797872
-                    6B687069667069667069667069667069667069667D7B70696670696670696670
-                    6966706966716A6768625E726E6C95908E8F8A878D88878D88868C87868A8684
-                    88848287838185817F85817F837F7E837F7E837F7D837F7D837F7E837E7D7E7A
-                    7874716E736F6D9392919B9A9996959434333426262637373746464659595949
-                    4949101010121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121111113F3E3F4B4B4B3D3C3D3232322425233332339694
-                    949896969392918C89888A858488848285828084807E837F7E84807E84807E84
-                    807F84807F8681808783818884828A86848B87858C88868E89878F8A888D8987
-                    7C7674716A677069667069667069667069667069667069668180706966706966
-                    706966706966706966716A676B64616A6663928E8C908B898D88878D88878C88
-                    868B878589858388848286828085818084807F84807F837F7E837F7E84807D84
-                    807F807C7B7774716E6B698988879897979E9C9C525251202020343434434343
-                    5252525858581D1D1D0F0F0F1212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    121212121212121212121010101B1B1B4A494946464539393A2F2F301E1E1E51
-                    50509E9C9B959392918F8E8A86858B868488838285818085817F84807E837F7E
-                    84807F84807F8581808581808984838985838B87858C88868D88878E89878F8A
-                    888B868477726F7069667069667069667069667069667069667069667C857069
-                    667069667069667069667069667069666E676465605C8D8987918C8A8E89888D
-                    88878C88868B87848A858489858387838186828084807F84807E837F7E837F7E
-                    84807E84807F827E7D7A76756F6B687E7B7A9694959D9B9A7473722222222F2F
-                    2F3E3E3E4D4D4D5D5D5D3434340C0C0C12121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12121212121212121212121212120E0E0E2D2D2D4C4C4C4141413636352B2C2B
-                    2020207372719B9A999290908E8B8A8A858489858387828185817F85817F8480
-                    7E84807E84807F85817F8581808783818984838985838C87858C88868D88878D
-                    8987908B89888381756F6C706966706966706966706966706966706966706966
-                    7070706966706966706966706966706966706966716A67635D5A85807F938E8C
-                    8E89878D88878D88878C87868A868489858388838286828085818084807F8480
-                    7F84807E84807F85817F84807E7D7977726E6C74716F908F8E9996978D8B8B34
-                    33332828283A3A3A4848475858584C4C4C131313101010121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121111111313133F3F3F4849493D3C3D3333
-                    332425253231318C8B8A9694938F8D8C8A87868A858489858387828185817F85
-                    818084807F84807E8581808581808783818783818985838A86848C88868C8886
-                    8D88878E89878F8A88837F7D726C687069667069667069667069667069667069
-                    667069667070706966706966706966706966706966706966726B68655F5C7873
-                    7196918F8E89878E89878D88878D88868A86848A868488848287838186828085
-                    818085817E84807F85817E868280888382817D7C7572706F6B6A878585959393
-                    9897965352522323233535354343435151515A5A5A2728270D0C0C1212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    121212121212121212121212121212121212120E0E0E2323234949494343433A
-                    393A303030202020525151989695908E8E8B8A88898583898583898583898583
-                    86828185817F85817E85817F8582808782818782818885828A85848B86848C88
-                    868D88878E89878F8A888F8A887E7A78716B6770696670696670696670696670
-                    69667069667069667070706966706966706966706966706966706966716A676A
-                    64616B676496918F8E89878E89878D88868D88868C87858A8684898583878381
-                    87838186828085817F858180878382837F7D74716F7976747B77766F6A687A78
-                    789190909998967775752828282E2E2E3E3E3E4A4A4A595A5A4142420F0F0F10
-                    1010121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212111111111010373737494949
-                    3E3E3E3636352B2B2B2626267674759695948C8A898986858984838B8785837F
-                    7E706C6B7F7B7A88838287838185817F8682818782818883828884828A86848B
-                    87858D88878D88878E89878F8A888E8987797472706966706966706966706966
-                    7069667069667069667069667070706966706966706966706966706966706966
-                    706966706966625C5A8E8A88918C8A8E89878E89878C88868C87858B86858A85
-                    848884828783818783818783817F7C7B6864645B58585B5857777472817D7B73
-                    6E6D706D6C8A8A8992909091908E404040282828383838444444515151575757
-                    2121210E0E0E1212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212120F0F0F1E1D1E4646
-                    464242423A3A3A3232322525253E3E3E908E8E8F8D8C8988878884838A85838A
-                    868484807E615D5C59575663605F7B77758682818783818783818884828A8483
-                    8A86848C87858D88878D89878E89878F8A88888482746E6B7068657069667069
-                    6670696670696670696670696670696670707069667069667069667069667069
-                    66706966706966716A67635D5A807C7996918F8D88868E89878E89868D88868C
-                    87868985838984838884828783818884827774726764637C78768A8583878381
-                    817D7B7874726C68677F7D7C8D8C8C9493926868672626263433343F403F4949
-                    4957565741414110101012121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121211111136
-                    36364747473D3D3E3637362F2F2F232424676666929190888786868484878381
-                    8985838884828783818B8684807C7B6B6766706C6A8783818882828883828985
-                    838A85848B87858C88868D89868E89878E8987908B88837E7C706A6770696670
-                    69667069667069667069667069667069667069660E7170696670696670696670
-                    6966706966706966706966716A6768625F706B699893908E89868E89868E8986
-                    8D88868C87858B87848985828884818884828782808782808A85848985828682
-                    7F86828085807E7D7977706C6A716E6C8988878C8B8A8A88873939392B2B2C3A
-                    3A3A4444444E4E4D5655562727280D0D0D121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12121212121212121212121212121212121212121212121212121212120F0F0F
-                    2323234646464141413A3A3B3333332928283738378886868A88888483828581
-                    808984818984828883818683808682808984828B868388848187828088838188
-                    85828985828B85848B87848D88858E89878E89868F8A878F8A877D77746F6865
-                    7069667069667069667069667069667069667069667069667070706966706966
-                    7069667069667069667069667069667069666D6663655F5D918D8A918C8A8E88
-                    868E89878D88868D88858C87858A858389848289848287838187838087828087
-                    828086817F87828087817F817D7B7672716B67657F7C7B8B8A89918F8E656564
-                    2627273435343F3E3E4848485354544949491515150F0F0F1212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121010
-                    101414143C3D3C4545453D3D3D363637302F2F2525246363628F8C8C85838383
-                    808086828089848288848187838187828187838086828086827F878280888382
-                    8983818985828A85838B86848C87858D88868E89878E89868F8A888B87857670
-                    6D6F686570696670696670696670696670696670696670696670696670707069
-                    66706966706966706966706966706966706966706966706966635D5A827D7C95
-                    908E8D87858E88868D87858D87868C87858A8684898483888482888381878381
-                    87838086828187828086828086828084807E7C78766F6B69706E6C8786858B89
-                    888685833E3E3E2A2A2B3A39394343434B4B4B5455543535350E0E0E11111112
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12120F0F0F2D2E2E4646463F3F3F393A393333342828283D3C3D848282878584
-                    817F7F827F7D8782808984828883818883818682818782808682808682808783
-                    808884818884828984838A86838A87858D87868D89868E88868D8886908B8985
-                    807E716A68706865706966706966706966706966706966706966706966706966
-                    7070706966706966706966706966706966706966706966706966716A6767605D
-                    716C6996918F8E89878D88868D89878C87858C87858B86848985838984828783
-                    81878381878381878280878281878280878381878280807B7A7672706D69667C
-                    7A798785868D8B8A6B6A6A2A2A2B3332323D3E3E4546454E4F4E515151222222
-                    0D0D0D1212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212120F0F0F1F1F1F4443444242423C3C3B3637362F2F2F2828286A68688987
-                    87807E7E7F7D7C8783818A858388838187838187828187838087828186828086
-                    82808783818884828984828985838A86848C87858C87868D89878D88868E8987
-                    8F8A887C77746F68647069667069667069667069667069667069667069667069
-                    667069667070706966706966706966706966706966706966706966706966716A
-                    676E6764635D5B8F8A89918C8A8E88868E88868D88868D87858C87858B86848A
-                    84828984828883818883818883818782808782808882818783818A8583827D7C
-                    6B66646E6A698281818684848886854949492A2A2A383839403F3F4747475050
-                    504646471616160F0F0F12121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    121212121010101616163D3D3D4443443E3E3E38383933333327282848474786
-                    8484817F7F7C7A7B817D7C837D7B8A8583908B89888381878281878281878280
-                    8782808783808983828984828A85838A85838B86848D87868D88868E88868E88
-                    868F8A888A8583756D6B6F686470696670696670696670696670696670696670
-                    6966706966706966757070696670696670696670696670696670696670696670
-                    6966706966726B68625C597C787596918E8D88868D88858D88858D88868C8785
-                    8B8684898583898482898482878380878380888381888380898583908C8A7A76
-                    743533332826256763627775748281808583837877763333343030313B3B3B42
-                    42424848485151513B3B3B111111101010121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12121212121010101212123434344646464040403C3B3B3636362E2E2E333232
-                    7674748280807B79797B79788984824543412927266966648F8A898B86848682
-                    808682808783818783818883828984828A85838B86848C87848C88858D88858D
-                    88858D89868F8B88827D7B706966706966706966706966706966706966706966
-                    7069667069667069667069668A8C706966706966706966706966706966706966
-                    706966706966706966716A676B656267626095918F8E89878D88868D88868D88
-                    868C87858C87848986848984828984828784818783818783818A868487838051
-                    4E4D10100F171615575353706D6A6966647B7A79817F7F86858461605F2C2C2C
-                    3435353D3D3E4444454B4B4B5151512F2F2F0D0E0E1111111212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121111110E0E0E2C2C2C4747474141413D3D3D3838383132312A2A
-                    2A5F5E5E8382807A78777775757F7C798984826D6A682A29290909093E3B3B7D
-                    79778C87868783808783818783818883828984828985838B86848C87848D8886
-                    8D88868D88868F89878D88867873706F68657069667069667069667069667069
-                    66706966706966706966706966706966340B7069667069667069667069667069
-                    66706966706966706966706966706966716A67605B58847F7E958F8D8D88858D
-                    88858D88868C87858B87848A86838984828984828784818783808B88866D6A67
-                    1D1D1C100F0F494645827D7B8984827873716965636D6A697D7D7D7F7E7D807E
-                    7D4A4A4A2B2C2C3838383F3F3F4545454C4C4C4E4E4E2B2B2B0E0E0E11111112
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    121212121212121111110E0E0E2928294746474344433F3F3F393A3A3434342B
-                    2A2B4949497E7C7B7A7877747372797574847F7C86817E8C88858D89875E5C5A
-                    1716160F0F0F5755548985838884818783808883818984828985838B86838C87
-                    858D88868D88858D88858F8A8886817E70696770696670696670696670696670
-                    69667069667069667069667069667069667069665D5C70696670696670696670
-                    6966706966706966706966706966706966706966716A6769625E6B666596918F
-                    8D88868D88858D88868C87848C87848A86848985828984828884808783808D89
-                    8663605E353333767370908A8889848285807E7E7977736E6C67636172706E7C
-                    7B7A7E7C7B7473723B3B3B30302F3B3B3A4040404545454C4C4C4E4E4E292929
-                    0F0E0F1212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12121212121212121111110E0F0E2727274747484545454140403B3C3C363737
-                    2E2E2E3C3B3A72717079777571706F72706F807B7985807E87817F8781808783
-                    808D8886827D7B413F3E4D4B498985838884818783808984828985828A85828C
-                    86848B87848D88858D88858D88858E89877A75726E6764706966706966706966
-                    7069667069667069667069667069667069667069667069667F80706966706966
-                    706966706966706966706966706966706966706966706966706966706865625B
-                    58898482948E8D8C86848D87858D87858C86848B86848B858389838188838187
-                    828086817F8783818B86858A8684847F7E85807E857F7F837E7C7B76746D6967
-                    6662607574737978787C7A7A6967683434343334333C3C3C4142414646464D4D
-                    4D4D4D4D2928290E0E0E10101012121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121010100E0E0E2728274848484747484242423E3E3E3938
-                    393131313333346866657674746F6D6C6D6C6B7A7675847E7C85807E86817F86
-                    817F86807F85807E8883828C8785888382868280878280888280888382898482
-                    8B84838B86848C87858D87858D87858F8987888381716B686F68657069667069
-                    6670696670696670696670696670696670696670696670696670696681807069
-                    6670696670696670696670696670696670696670696670696670696670696671
-                    6A67655F5C706B689791908E88868D87858D87858C86848B86848A8583898382
-                    87838187828086817F878280868180847F7D847F7D847F7D85807E857F7E807C
-                    7A7672706864626763627675747675757977775C5B5C3131323635353D3C3D43
-                    43424747474D4D4D4E4E4E2B2B2B0E0E0E101010121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    121212121212121212121010100E0E0E2B2A2B4B4B4B49494944444440403F3B
-                    3B3B3334333131315A595A7471716C6B6A68676674716F817C7A837E7C85807E
-                    86817F85807E84807E84807D837F7D85807E85807F85817F8782808782808883
-                    818984828B84848B86848C87858D87858E8886908A887C78756E676470696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    8985706966706966706966706966706966706966706966706966706966706966
-                    706966716A676F6865615A578A8583938E8B8C87858C88858B86848A86848984
-                    8388848288838185828085817F85817E827E7C827E7C837E7C827E7C827E7B83
-                    7F7D827E7C7C7877726D6C64605F696665757373747373757373565655313131
-                    3737373E3E3E4343434747474D4D4C50504F302F301111111010101212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12121212121212121212121010101111112F2F2F4E4E4E4B4B4B464546424141
-                    3C3C3C3536353231315554546F6E6D6969686564636D6A6A7F7977817D7B847F
-                    7D847F7E847F7E827E7B817D7B817D7B817D7C817D7D837F7C847F7D85807F87
-                    83818783818884828A85848B86848B88858C87868F8987898481726B686E6764
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069669B917069667069667069667069667069667069667069667069667069
-                    66706966706966706966716A6767605D6D68659793908C87848C87848C88858B
-                    858289858288848187838085817E84807D827E7D827E7B827E7B807D7A817C7B
-                    817D7A827D7B817D7B817E7B7B77756D6968615E5C6A6867727271727070706E
-                    6E4F4F4F3232313737383E3E3E4444454849494F4F4F5353533C3C3B1616160D
-                    0D0D111111121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121111110D0D0D1616163B3C3C5354544D4E4D4848484343
-                    433E3E3D3736373132324F4E4E6A69686664646160606866657A77747F7B7983
-                    7F7D84817F827E7C817D7B817D7A807C7A807C7A817D7A817D7B837F7B837F7D
-                    84807E8782808783808884818A86838B87848C88858D88858E8A877C76736D66
-                    6370696670696670696670696670696670696670696670696670696670696670
-                    696670696670696647A470696670696670696670696670696670696670696670
-                    69667069667069667069667069667069667169665F595685807E948F8C8B8583
-                    8C87848B868389858288848187838085817E84807D827E7B827E7B817D7A807C
-                    79807C7A807C7A807B7884807D7E7B7974716F7773716A6664615E5C6A696871
-                    70706E6D6C6C6B6A4F4E4D34343438383840403F45444549484A4E4E4E555554
-                    4848482221210D0D0D0F0F0F1212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    121212121212121212120F0F0F0D0D0D2222224A4A4A575757505050494A4944
-                    44443F3F3F3838383434334D4D4D6665656463625E5D5C6361607673717E7977
-                    827E7C77737174716F85817E7F7B797F7B79807C797F7B79807C79807C7A827E
-                    7B837F7C84807D86817F8884818984828A85828B87848C87848E888587827F6F
-                    68656F6865706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966352D706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966716A676A6360676260948F
-                    8D8E87858B85838B868489848289838287828085807D847F7D837E7C807C7B80
-                    7B7A7F7A797F79797E7978827D7B77727153504F6663607F7A7875706E676361
-                    605C5B6A68676E6E6D6B6B6A6968675050503535363838383F3F404545454B4A
-                    4A4E4E4E5554545353533535361414140D0D0D11111112121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12121212121212121111110C0C0C1414143838385857575959595151514C4C4C
-                    4646464040403939393637374F4F4E626160605F5E5C5B5A605E5D736F6E7B77
-                    757E7A78847F7D716D6B4C49486C6967817D7C7C78767E79787F7A797F7B7980
-                    7C7A817D7B837E7D837F7E8782808883818984828A85828C86848C86848D8785
-                    7972706D66637069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966464B7069667069667069667069667069
-                    66706966706966706966706966706966706966706966706966706966716A6760
-                    5A587B777595918E8A85828B868389848188848187828084807E837F7C827E7C
-                    807C7A7E7B797D79777C78767E7B786C69684A48486563617F7B787D79777A76
-                    74716D6B65615E5F5B5A6967666E6D6D69696867666652515237383838383840
-                    403F4646454B4B4B4F4F4F5454565C5C5B4D4D4C2828280F0F0F0E0E0E101010
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121010100C0D0D0F0F0F2A2A2A5252526161615A5A5A5353534E4E
-                    4E48484841404139393939393951504F5F5E5F5D5C5B5858565D5C5B716D6C7A
-                    75737B78757E7A777E7A777F7B796F6D6A4B4A4862605F7D79777B78767C7977
-                    7D79777F7B79817D7A827E7C847F7D86827F8783808984818986828B87838D88
-                    85837E7B6D66646F686570696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966121270696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    716A676C6563605B598F8A878F8A888985828A858289848187838084807F847F
-                    7D827E7C7F7C7A7E7B797C78777C79767C78766663626B68667E7A797B76757B
-                    77757C7775787472706C6A63605E5F5B5A6766666C6B6B686767656564575656
-                    3C3D3D3838383F403F4546454B4B4B4F4F4F5555565D5D5D5E5D5E4646462323
-                    230F0F0F0C0C0C10101012121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    121212121010100C0C0C0E0F0F2324244B4B4B6565656464645B5B5B5555554F
-                    4F4F49494941414139393A3E3E3E5453525C5B5B5A5A595656555B5A5A6F6C6A
-                    7874717A76747D79767D79767B78767A76747C7977716E6C615E5D7874737B77
-                    767B78757D79777E7A78807C7A827E7C847F7D86827F8883818984828B86838C
-                    87848B8583726C696D6663706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069661212706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966726B67655E5C6E696796918F8A85848A848289838189838185
-                    808085807E837E7C807B7A7D7A797D77767B76757975747A76747A7674777372
-                    7773727874727A75747975737772716F6B69635F5E5E5A586663626A69696766
-                    666362625A59594344433939393E3E3E4545454B4B4B5051515656565C5C5B63
-                    63636161614949492A2A2A1212120B0B0B0E0E0E121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    1212121212121212121212121212121212121212121212121212121212121212
-                    12120E0E0E0B0B0B1212122C2C2C4E4F4F6A6A6A6C6C6C6464645D5D5D575757
-                    5150504949494040413B3B3A4444435654545A59585655555453525C5B5A706B
-                    6A7672707974727B77757B77757A767477737377737176727177747279757477
-                    73727875737A77757D78777E7A78817C7B847F7D85807E8782808983818A8482
-                    8B86848D88857B76746C65627069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696612127069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966726A675F5957807C79958F8C898381898481
-                    89828188828085807E837D7C807C797F7A787D78777A76747975737774727672
-                    7075716F75716F75716F7571707773727873727772706F6A68645F5D5D595763
-                    61606968686666666362625D5D5C4C4C4B3C3D3D3C3C3C4444444B4A4A505051
-                    5657565C5C5C6363636B6B6B6A6A6A5757583B3B3B1D1D1D0F0F0F0B0B0B0D0D
-                    0D0F0E0F10101011111112121212121212121212121212121212121212121212
-                    12121212121212121212121212121212121212121111111010100E0E0E0D0C0C
-                    0B0B0B0E0E0E1F1F1F3F3F3F6060607474747676766D6D6D6565655E5E5E5757
-                    575050504848473F3F3F3E3E3F4C4B4A5655555756565454535151515E5C5B6F
-                    6C6A75716F7874727975737A757378747276727074706E736F6E736F6E73706E
-                    7672707773717874727B77757D79777F7A78817D7B847F7D86807E8883808983
-                    818A84818D878586807D6D67646F686570696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    1212706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966716A676D6663615B598E8886908B
-                    8889848188838188828086817F837F7D807C7A7F7A787C79777A767478747277
-                    737075717074706E736F6D726F6D726E6D74706E76716F7672717773706E6A68
-                    64605D5D5957615D5C6766666767666262625E5D5D5453534444443D3D3D4141
-                    414949495050505656565C5C5C63636369696A7070717475756D6E6E5A5A5A3E
-                    3E3E2727271717170E0E0E0B0B0B0A0A0A0A0A0A0E0E0E0E0E0E0E0E0E0E0E0E
-                    0E0E0E0E0E0E0E0E0E0E0E0E0E0E0E0D0D0D0A0A0A090A0A0A0A0A0E0E0E1717
-                    172828284242426060607878788180807C7C7C7474746C6C6C6565655E5E5E56
-                    56564E4E4E4645453F3F3F454444505050555454545353525151535252615F5E
-                    706B6A746F6E76726F797472787372757170726F6D726E6C716E6C716E6B716E
-                    6C72706E7471707773717875737A77747D79777F7A78827D7B85807D86817F87
-                    83808A84818C86838B8583726D6A6D6662706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696612127069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966706966706966706966716A67665F5C6A
-                    6563938E8C8B868389848087828086828084807D827D7A7F7B787C78777A7675
-                    777473757271736F6E716F6D716D6C6F6C6B6F6C6B6F6D6B726E6C74706F5B58
-                    56686462706C6A6561605D59575E5B596562636766666363635F5F5F5A59584D
-                    4E4D4342423F3F3F4747474D4D4D5454545B5B5A6161616867676E6D6E747474
-                    7C7C7C8080807C7C7C6F6F6E5E5D5D4C4D4D3939392F2F2F1B1B1B1515151616
-                    161717171616161717171717171717171616161C1C1C3131313C3B3B51515164
-                    64637676768585868B8B8B8787877F7F7F7878797171716B6B6A6363635B5B5B
-                    5454544B4B4B4443434544434C4C4B5353515353525151514F4F4E5554546662
-                    61706B69726E6C767271726E6C5653516F6B6A736F6D6F6B6A6E6B696E6B6A6E
-                    6C69706D6C716D6C73706E7673717774727A77757D7A78807B7A837E7D85807E
-                    86827F8984818A84828C86857A73716C65627069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966121270696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    726A67615A5876726F95908E89838188828187828085807F827E7C7F7B7A7D79
-                    787A7675787473757170736F6E706D6C6E6C6B6D6A696C69686C6968706D6C58
-                    5555494646706B6A74706E6E6A696763615E5A585B5856615E5E656465646464
-                    61615F5D5C5B5655554B4B4B4343434343434949495050505657575E5E5E6565
-                    656C6C6C7171717877777F7E7F8686868C8B8B8E8E8E8E8E8D8B8B8B7F7F7F7D
-                    7D7D7E7E7E808080818181828282828282838383818181858585939393959595
-                    97979794959490908F8989888281827B7B7B7675766F6F6F6767675F605F5757
-                    574F4E4E4747474545454B4A4A5150505252515151514F504F5050505B595969
-                    65646F6B68726D6C74706E75716F75716F5450504D4B4A6F6B6A6C69676B6867
-                    6B68676C69686F6B6A706D6C736F6E7672717874737B77767F7A78807C7A837E
-                    7D86817F8882808983818D8685817B796C65626F686570696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069661212706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966716A677069665E5956817D7B938E8B87817F87828086817F837F7C80
-                    7C7A7D79787B7775787573757270726F6D706D6B6F6C6A6C69686A67666B6868
-                    5755534240406864646F6C6A706B6A716D6B6F6B6A6865635F5C5A5B57565E5B
-                    5A6563626565646262625E5E5E5A59595453534C4C4B4645454545454A4A4B51
-                    52525959596060606767666F6E6D7474747878787E7E7E8484848989898D8D8C
-                    9191919494949595959797979898989999999A999999999A9898989797979393
-                    938F908F8B8A8A8686868181817B7C7B7776776F6F6F68686860606058575851
-                    50504A4A4A4948484B4B4A4F4E4F5150505050504F4F4E4E4D4E57565564615F
-                    6A67656D6A68706C6B726E6D736F6D706C6A6F6B6A6D69684745444D4B4A6966
-                    656966656A67666B68676E6B6A706D6B73706E7673717975737C78767F7B7981
-                    7D7B84807E86817F8882808B858486817E6D66646E6764706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696612127069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966716A676C6562605B598985838F898887817F878280
-                    84807D827E7C7F7A787C77757A7574767272726F6D706D6C6F6C6A6B68676966
-                    656966655452525F5D5C6966656764636966656D69686E6A696E6B686A666564
-                    605E5A57565551505E5C5B6362626463646061615D5D5C59595A5554544F4E4E
-                    4A49494948484B4B4B5151515858585F5F5F6565656A6A6A7070707676767B7B
-                    7A7F7F7F82828285848587878789898989898A8A8A8A8A8A8A8A898A89898987
-                    87868484848181807C7B7B7777777272726B6B6C6464645E5E5E5757574F5050
-                    4B4B4C4B4B4B4E4D4D504F4F505050515050504F4F4F4E4E5252515E5B59615D
-                    5B6763616F6B69706C6A716D6B706C6A6D696869666567646366646363606050
-                    4E4D6361606865646865646A68666E6B69706E6B736F6E7673717976757D7978
-                    817C7B837D7B86817F87817F8A8482888281706B686D66637069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966121270696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966716A6768615E635E5C908B898D88
-                    8587817F86807E847F7D817C7A7D79777B7775787473757170716E6D6E6B6A6B
-                    68676966656664636765646664636361606361606462616763626A66656C6867
-                    6C6968726E6D403E3D1A19195854535D59585F5C5B6362616363636160605E5D
-                    5D5B5B5B5857575352524E4E4E4B4B4B4B4B4B4E4E4E5453535858585E5E5E64
-                    64646969696D6C6D707070747374767576787878787878797979797979777777
-                    7676767474737070706C6D6D6868686363625D5D5D5857575252524E4E4E4E4D
-                    4D4E4E4E4F4F4F5150515151515151515050504F4F4F5353525B585764615F6D
-                    68662F2D2C2B2A2A726F6D706B696D696869666566636264616063605F625F5E
-                    63615F6663626462616663626865646B69686F6C6A726E6D7572707875737C78
-                    767F7B79827D7B847F7D86817F8983818B8583746E6C6B646170696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069661212706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966706966706966706966736C69665F5C69
-                    6561938E8B8C858386807D85807D837E7B7F7B787C7876797573767270716E6D
-                    6E6B6A6C696769676566646364616063605F615E5D615E5D615F5D615E5E6360
-                    5F6561606B67656663611312123331306864625E5A585A56545A56545E5C5A62
-                    605F6261616160605E5E5E5B5A5A5959595656565353535151514F4E4E4E4F4E
-                    5050505252525455545757585A5B5B5D5D5D5F5F5F6060606161616161616161
-                    616060605F5F5F5D5C5C5A5A5A575757545453515151505050504F4F50505051
-                    51515251515251515251515150505050505150505452525B5857625E5C66625F
-                    696463716D6B4F4C4A0605054E4B4A6F6C6A65626062605E605D5D5F5D5C5F5D
-                    5C5F5D5B615E5D625F5E6462606764636966646D6A68706C6B726F6E7773717A
-                    76747E7977817C7A847F7C85807E8882808C868378726F6B6562716A67706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696612127069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    726B68635D5A6A6562928C8B8A8482857F7D857F7E827C7B7E79787B77757874
-                    7273706E6F6C6B6C696869676566646364616062605F615D5D5E5C5B5E5B5A5D
-                    5B5A5E5C5B605D5C6764632E2D2C12121164605F6D6967676361635F5D5D5957
-                    5A56545A56555D5A595F5D5D6160606060605E5F5F5D5C5C5B5B5A5A59595858
-                    5857575655555454535353525253535352525253535254535354545455555555
-                    5554555454545454545353535252525252525252525251535252535352535353
-                    5252525352525151525151515151515352525755545C5958615D5C65615F6763
-                    616A66636B68666C6967716D6B29272719181863615F615E5C5D5B595C59595C
-                    5A595C5A595D5B5A605E5D615E5D63615F6665626B67666E6A69716D6C74726F
-                    7875747D7876807B79837E7B847F7D87827F8B858278726F69625F706A677169
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    1212706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966726B68615B586D6866938E8C898381847E7E847F7C817B7A7D
-                    78777A7675767371726F6D6F6B6A6B686768656465626162605F5F5E5D5E5B5B
-                    5C5A5A5B59595A58585F5D5C4B4949060606403E3D6865656561616764636864
-                    63666261625E5D5D59585A55545955545A57555D5A595F5D5D605F5F5F5F5F5E
-                    5F5E5D5D5D5B5B5B5A5A5A595959595858585757585857575757585757595857
-                    5957575958575958575857565756565756565554555555555453535453535353
-                    535353535252525352525453535655545A57565E5B59615D5C64605E66626069
-                    65636A66656B67656966646764616764625552510908083836355F5D5B595756
-                    5956565A58575B59595D5B5A5F5E5C625F5E6462616865646C6968706D6C7370
-                    6F7774727B77767E7A79817C7B847F7C86807F8B85837A757269625F70696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696612127069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966726A67615B586F6C69938E8C898382837E7C
-                    837E7B807B787C7876797574757270716E6C6D6A696A676665636263605F605E
-                    5D5E5C5A5C5A595A58575957575B5A592121211B1A195B59585C59585E5B5A61
-                    5E5C64606066636267636265616065615F605C5B5B5756595553595554595654
-                    5C59575D5A595E5D5C5E5C5C5D5D5D5D5D5C5B5B5B5A5A5A5A59595859585959
-                    5959595858585858585858595858585857575757575756565655555554545455
-                    54545554545755555956555A57565D58575F5B59615D5C63605E6763616A6665
-                    696564696563676463656260625F5D5F5B5B5C59585F5D5C2D2C2C1212125452
-                    525958575856555A58575B59585E5B5B615E5D63615F6663636A67666E6C6A73
-                    6F6E7672717B77747E7A77817C7A837E7C86807E8B85827C76736A6361706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966121270696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966716A67726A67615B586D6866918C
-                    89898481847E7C837E7B7F7B787C7776797573757170706D6B6B6A6868656465
-                    626162605E5E5C5B5C5A5A5A58575856555755554241404C4A49575554555352
-                    5755545856555B58585E5C5B625F5D6763615956555C5857666260615E5C5F5A
-                    595B57565A56545855535856535A56555B58565B59575D5A595C5A595B59585B
-                    59585B59585B59585B5A595C5A5A5A58585A58585A58575A58575A58575B5857
-                    5B57565B57565C58575D59575F5B5A605C5B625F5D64605E6562606864636460
-                    5F575454666362646160605E5C5D5A5A5A5756585655555352575554504E4E40
-                    3F3E5452515756555856555A58575C5A59605E5C62605F6664626A66656D6A69
-                    72706E7673717A76747E7877817B7A837E7C86817D8984817974716963607069
-                    66716A6770696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069661212706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966706966706966706966716A67726A6761
-                    5B586A6663908C898A8582847E7C827D7B7F7B797C787678747374706F706C6C
-                    6C6967686564646362605E5D5E5C5B5C5A595857565754545957565654535351
-                    5052504F5251505351505552515755545A58565E5B59413F3E55525066636165
-                    626065615F63605F625E5C605C5A5E5A585E59575C57565955545A56545A5755
-                    5A57545A57555A57555A57555754525551505A57555B57565B57565B58565C58
-                    575D59575E5B58605C5B625E5D635F5D64605F66626066626167636267636166
-                    63615F5C5B413E3E5956555D5A59585655565453545251535150525050525150
-                    5553525957565654545655555957575C5A595E5D5C635F5F6663626966656D6B
-                    69716E6C7673707B76747D7977807B79837E7C86807E8A848277716E68615E70
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696612127069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966726B68645D5A6864618E89878C8685827D7B827D7A7F7A787B77757874
-                    7175706E6F6C6B6B6867686564646261615E5D5E5B5A5A585758565656545453
-                    525151505051504F51504F514F4F504F4E51504E5553524B49493D3A3A595655
-                    5B58575D5B595F5C5B615E5D625F5E64605F64605F625E5C615D5B625D5C615D
-                    5C615C5B605C5B605D5B605C5B656160302E2D1E1D1C605C5B615E5C605D5C62
-                    5E5C625E5D635F5D63615E64605F635F5D65626166626166626064605F625E5D
-                    5F5C5B5D5A595B595843424145444357555452505052514F514F4F504F4E5251
-                    505250505351515453535755545856565B59585E5C5B615F5E6562616A66666D
-                    6A69706E6D7572707975737D78767F7B79827D7B86807F898381756F6E69625F
-                    716A677069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    69667069667069667069667069667069667069660D1070696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966726B68655F5C635D5B8783818F8A87827D7B817C797F
-                    7A787D777679747373716F6F6D6B6D6A68676565646160615E5D5D5B5A5A5958
-                    575655555453545252525150514F4F504E4E4F4D4D4F4D4D52504F3C3A3A4240
-                    3F5351505351505553525754535856555A57565D5A58625E5C48464556535265
-                    616064615F64615F65615F6562606662606C67652B2928131312666160686361
-                    6561606562606561606561606561605E5B5A4441405E5B5A605D5C5E5B595A57
-                    565856545754535553525552524A4747383636504E4E504E4E4F4E4D504E4E50
-                    4F4F51504F5351505452525755545856565B59585E5C5B615F5E656262696765
-                    6D6A69716F6C7672717A75747D78767F7B79827D7A87828087817F6F69676862
-                    5F706966716A6770696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069666F72706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966736C6869625F605B597F7B79918B89
-                    847F7D807B797F7A787C7776787473747170706D6B6C6A68686665656361615F
-                    5E5E5C5C5C595858575656555453525152504F504F4E4E4D4C4E4C4C4D4C4B47
-                    46454A49484E4C4C4F4C4C4F4D4D504F4E52504F5451515552515856563E3D3C
-                    504D4C5C59585B59575D5A595E5B5A5E5B595E5B5A63605F2A28281413135F5B
-                    5A605C5B5E5B595D5B595E5A5A5D59585B5957575454403E3D54525156545354
-                    525152504F514F4E504E4D504E4E4F4E4D4D4C4B4745454D4C4B4E4D4D504E4E
-                    504F4E51504F5351505554535655545957565C5A595F5C5C62605F6664626B67
-                    676F6B6A726F6D7673717B76747E79767F7A78827D7B898280837C7B6C666469
-                    6360716A67706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069667069667069667069667069667069667069667069667069664E537069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966706966726B686C65625E57
-                    5574706D8E8A87898381817C787F7A787C78757A7674767270726E6C6D6A6969
-                    676666636362605F5F5D5C5C5A5A595857565554545251525150504F4E4E4D4C
-                    4D4C4C4F4E4D4E4D4C4D4C4B4C4B4A4D4C4B4D4C4C4E4D4B4F4D4D514F4E4C4B
-                    4A3C3C3A4E4C4C51504F52504F54525053515154525154525158565524242312
-                    121254525156545354525153515054515053515052504F5351503F3D3D454343
-                    504F4E4D4C4B4E4D4C4D4C4B4D4B4B4C4A4A4D4C4B4D4C4B4F4F4D504E4E4F4E
-                    4D514F4E5250505352515653535856555A58575D5B5A605E5D6462616765646B
-                    68676F6C6B74706F7873727B76747E7977807B79837E7C8983817C7674696260
-                    6B6462716A677069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    5A57706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696671
-                    6A67716966605A576864618984838D8886817C7A7F7A787D79777B7675777371
-                    72706D6E6B6B6C6968676564646160605E5D5F5D5C5C5A595856555654545554
-                    52525151504F4F4F4E4D4E4D4C4D4C4C4E4B4B4C4B4A4C4B4B4D4B4B4C4B4A4F
-                    4D4D4644433A39384D4C4B4D4C4B4E4C4B4E4C4B4E4C4C4E4C4C4E4D4C52504F
-                    1F1E1E0E0E0E4E4C4C504E4D4D4C4B4D4C4C4E4C4C4E4C4B4E4C4C4F4D4E3E3C
-                    3C4140404E4C4C4B4A4A4C4B4B4C4B4B4C4A4A4C4B4B4D4C4B4E4D4C4E4E4D50
-                    4F4E5250505351515553535755545957585C5A5A5E5C5C615F5F656362696766
-                    6E6A69716D6C7571707975737C77767E7977807B7986807E87827F736E6B6760
-                    5D6F6764726A6870696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069665A5C7069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966726B68726B6866605D5F5B587C77768F8A8886817F7F7A787D79
-                    777B777578757275716F706D6C6D6A696A676665646262605F5F5D5D5C5B5A5B
-                    5858585756555454535352525150504E4E504E4E4E4D4E4E4D4C4D4C4C4D4C4B
-                    4C4A4A4B4A4A4B4A4A4948484A49494B4A4A4A49494A49494B49494B49494B49
-                    494E4B4B2929291C1B1B4A49494B4A4A4A49494B49494A49484A49494C4B4A4C
-                    4A4A4B49494A4A494C4B4A4B4A4A4D4A4B4D4C4B4E4D4C4F4E4E504F4E50504E
-                    51504F5352515452525654545957575B59585E5C5B615F5F6461616864646B68
-                    676F6C6B736F6E7672717A76747C78767E7978827D7B888280807A786A656268
-                    625F706966726A67716A67706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966003A70696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966716A67726B686D66635F58566C67658884828D
-                    8886827C7A7D78767D78767B767477737074706E6F6D6B6C6A68686664656361
-                    62605F605D5D5D5C5B5B5958595756565554545352535251525051504F4E4F4E
-                    4E4E4D4E4D4D4C4C4B4B4C4B4A4D4C4A4B4A494B4A494B4A4A4B4A494B4A494A
-                    49494A49484A49484A48484948484B4A494B4A4A4B4A4A4B4A494A4948494849
-                    4B4A4A4B4A4A4C4B4A4D4C4B4E4D4C4E4D4C4D4C4C4F4E4D504F4E5251505251
-                    505452525654545856555957575B5A595E5D5C605F5E6461606765646B67676F
-                    6C6A726E6C75726F7975737B76747D7876807B7886817F86817E756F6D66605D
-                    6C6562716A67716A677069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069665A5E706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966726B68726B68655F5C
-                    605C597874718D87858984828079787D78767C7775797573777270736F6D6F6C
-                    6B6D69686A656565636263615F605E5D5E5C5B5C5A5859575758565557545454
-                    5352545252525050514F4F504F4E4E4D4D4E4D4C4D4C4B4C4B4B4C4B4B4D4C4C
-                    4D4C4C4D4B4B4B4A4A4B4A4A4C4B4A4D4C4B4C4B4B4D4C4B4D4B4B4D4C4B4C4B
-                    4C4C4B4B4D4C4C4E4D4D4E4C4C4F4E4D514F4F51505052505052515054525255
-                    54535756565957565A58595D5A5A5F5D5C615F5E6562616764636B68676E6B6A
-                    726E6C75716F7873717B76747E77777E7977837E7C8882807C77746A65626761
-                    5E706966726A67716A6770696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069667069667069667069667069665C5A7069667069667069667069667069
-                    667069667069667069667069667069667069667069667069667069667069666F
-                    6865706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966706966706966706966706966706966716A
-                    66736C696E6763615B5865615E7F7B798D888685807E7F7A787C78757B767478
-                    7472767170736F6D6F6C6B6D69686A6765666362646161615F5E5F5D5C5D5B5B
-                    5C5A59595857595657565554545352545252525151525050514F4F504F4E504F
-                    4E504F4F504F4E504E4E4F4E4D4E4D4D4F4E4D504F4D4F4E4D504E4E504E4E50
-                    4F4E504F4E504F4F504F4F515050525150535251545252545353575554575655
-                    5957575B5A595D5B5B5E5C5B605D5D6360606562616765646B68676E6B69716E
-                    6C74706F7773717A75747C77757E7977827D7B888280817C796E696666605D6D
-                    6563726B67716A67706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966686670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966726B68726B686A64615F59566B6664837F7C8C888586817F
-                    7F7A777B77747B777479757376737174706E716E6C6D6A696B68666967656664
-                    6364626162605F5F5D5D5E5C5C5D5C5A5B5A595A595859565757565556555456
-                    55545554535554535252515252515251515352525958575A5958545453525151
-                    5352525352525353515454535655535655545756565958565958565A59575D5B
-                    5A5D5C5B5F5C5C605E5E63615F6462616765646A68676C69686E6C6A726F6D75
-                    716F7773717A76737B77747D7976837E7B86827F827E7A736D6B665F5D6A6360
-                    716A66716A67716A677069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667B78706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966706966706966706966706966716966726B68726B6867605E605B586D69
-                    66837E7B8C878486817F7E7A777C77757B767479757377737275716F726F6D70
-                    6C6B6D6A686C696769676567646464626164605F615F5E605F5E605E5D5D5B5A
-                    5C5A595B59585A59585A59585957575957565958575958573B3A3A313030514F
-                    4F5A59585857565A58575A58575B59585B5B5A5D5B5A5E5B5B5F5D5C5F5D5C60
-                    5E5D62605F6461606663626865646A68666C6A686F6B6A726E6C73706E767370
-                    7875737A76747C77747E7976827D7B878280827D7A736F6C67615E68625E716A
-                    67726B68716A6770696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696695867069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966706966706966706966706966736C6970
-                    6966665F5D605C596964627E7A788B8684878280817C797D78767B7574797572
-                    777472767270736F6D716E6C706D6C6E6B696C69686A67666764636663626563
-                    6264626163616062605F62605F61605F5F5E5D605D5D6462615453520D0D0C09
-                    0A093A39396664635F5D5C5F5D5D605E5E615F5F61605F62605F636160656362
-                    6664636866646A67666B68676C69686F6A69716D6C736F6D7571707772717875
-                    727A76747C78757F7B78847E7B86827F7F7B786F6A6866605E68615E6E676472
-                    6B68706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7071706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    706966716A67726B6870696568625F605B5865615E78737086817F8A86848780
-                    7F807C797C77757B757479747379747377737275717074706F716E6D6F6C6B6E
-                    6B6A6D6A686C69686B68676967666966656866656764646764636B6969555453
-                    1313121C1B1B3B3B396D6B6A6663626765646765646866656A67656B68676C69
-                    686D6A696E6A696F6C6B716E6C726F6E74706F7672717874727974737B76747C
-                    76757F7A78837E7C85817E847E7C7A75736A6664655F5C6963606F6865716A67
-                    716A677069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670707069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966706966706966706966706966716A67726B686B6461625C59625C5A6E
-                    69677C77768783808B868486817F807B797D78757B77747A75747A7573787472
-                    77737175727074716F736F6E716E6D726D6C706D6B706C6B6F6C6B6E6C6A7470
-                    6E5D5A590D0D0D1110103F3E3C7674716F6C6A6F6C6B706D6B706D6B726E6C72
-                    6F6D73706E756F6E7672707673717874727975737A76737B77747C78757E7977
-                    837F7C87828085807E7D7875716C6967615F655F5C6A6461716A67716A677069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966707070696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966716A67736B68
-                    6E666367605D625C59635E5B6D69667A757385817E898482878280837E7C807B
-                    797F79777C77757B76747A757479747379747277737277727176717076717074
-                    716F767371716D6B2F2E2E22201F5E5A597A757475716F757170777270767270
-                    7873727873727974727A75747B76747C77757E7976807A78817C7A847F7D8782
-                    7F847F7C7B7674706B6967626065605D67625F6D6663726A67716A6770696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667070706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66706966716A67716A677069666D666368625E625C59615C59696461736E6C7E
-                    7978837E7C87818087818087807E847E7D837D7C807A787E79777D78767C7775
-                    7B76747A75737975737B76747C77757B76747C76747974737975737B75737B76
-                    747C77757E79777F7977827C7B837D7C847F7C857F7E85807E827D7B7D797775
-                    706E6C6664655F5D645D5B68615F6E6764706966716A67716A67706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670707069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966716A67716A677069666B6361
-                    655E5B625C5A635E5B6762606E6966736E6C7B77747E7977847F7D85807E8581
-                    7E88838188838086828086828086828087828087828086827F87828087828087
-                    828087838084807E847F7D837F7C7D79767C777574706C706B686A646265605D
-                    645E5B66605D6A63616F6865716A67716A677069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966707070696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    66716A67726B68716A676F68656B646168625F655E5C645E5B625C5A65605D65
-                    605E65605E6E69676F6A686E69676E69676E69676E69676E69676E69676E6967
-                    6E69676E6A676E6967696361645F5D66615F645E5C655E5C66605D69625F6B64
-                    616E6764716A66726B68716A6770696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667070706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966716A67716A67716A67716966706966706966
-                    6F67656E67646C66636B64616B64616B64616B64616B64616B64616B64626B64
-                    616B64616B64616B64616B64626D66636E67646E676570696670696670696671
-                    6A67716A67716A67706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670707069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7070706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670707069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966707070696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667070706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    6670696670696670696670696670696670696670696670696670696670696670
-                    6966706966706966706966706966706966706966706966706966706966706966
-                    7069667069667069667069667069667069667069667069667069667069667069
-                    667069667069667069667069667069667070}
-                  HandleImage.Data = {
-                    BE000000424DBE00000000000000760000002800000009000000090000000100
-                    0400000000004800000000000000000000001000000000000000000000000000
-                    80000080000000808000800000008000800080800000C0C0C000808080000000
-                    FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
-                    0000333000333000000033099903300000003099999030000000309999903000
-                    0000307999903000000033077903300000003330003330000000333333333000
-                    0000}
-                  OnChange = wheelAzimutChange
-                  OnMouseUp = wheelAzimutMouseUp
-                end
-                object lblAzimut: TAdvSmoothLabel
-                  Left = 39
-                  Top = 6
-                  Width = 84
-                  Height = 33
-                  Fill.ColorMirror = clNone
-                  Fill.ColorMirrorTo = clNone
-                  Fill.GradientType = gtVertical
-                  Fill.GradientMirrorType = gtSolid
-                  Fill.BorderColor = clNone
-                  Fill.Rounding = 0
-                  Fill.ShadowOffset = 0
-                  Fill.Glow = gmNone
-                  Caption.Text = 'Azimuth'
-                  Caption.Font.Charset = DEFAULT_CHARSET
-                  Caption.Font.Color = clWindowText
-                  Caption.Font.Height = -11
-                  Caption.Font.Name = 'Tahoma'
-                  Caption.Font.Style = [fsBold]
-                  Caption.ColorStart = clSilver
-                  Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = 'Azimuth'
-                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                  CaptionShadow.Font.Color = clWindowText
-                  CaptionShadow.Font.Height = -27
-                  CaptionShadow.Font.Name = 'Tahoma'
-                  CaptionShadow.Font.Style = []
-                  Version = '1.6.1.0'
-                end
-                object bvlVertical: TBevel
-                  Left = 165
-                  Top = 23
-                  Width = 1
-                  Height = 195
-                end
-                object lblAzimuthVal: TAdvSmoothLabel
-                  Left = 31
-                  Top = 173
-                  Width = 101
-                  Height = 33
-                  Fill.ColorMirror = clNone
-                  Fill.ColorMirrorTo = clNone
-                  Fill.GradientType = gtVertical
-                  Fill.GradientMirrorType = gtSolid
-                  Fill.BorderColor = clNone
-                  Fill.Rounding = 0
-                  Fill.ShadowOffset = 0
-                  Fill.Glow = gmNone
-                  Caption.Text = 'Azimuth Value :'
-                  Caption.Font.Charset = DEFAULT_CHARSET
-                  Caption.Font.Color = clWindowText
-                  Caption.Font.Height = -11
-                  Caption.Font.Name = 'Tahoma'
-                  Caption.Font.Style = [fsBold]
-                  Caption.ColorStart = clSilver
-                  Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = 'Azimuth Value :'
-                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                  CaptionShadow.Font.Color = clWindowText
-                  CaptionShadow.Font.Height = -27
-                  CaptionShadow.Font.Name = 'Tahoma'
-                  CaptionShadow.Font.Style = []
-                  Version = '1.6.1.0'
-                end
-                object lblRange: TAdvSmoothLabel
-                  Left = 233
-                  Top = 6
-                  Width = 146
-                  Height = 33
-                  Fill.ColorMirror = clNone
-                  Fill.ColorMirrorTo = clNone
-                  Fill.GradientType = gtVertical
-                  Fill.GradientMirrorType = gtSolid
-                  Fill.BorderColor = clNone
-                  Fill.Rounding = 0
-                  Fill.ShadowOffset = 0
-                  Fill.Glow = gmNone
-                  Caption.Text = 'Range From Platform'
-                  Caption.Font.Charset = DEFAULT_CHARSET
-                  Caption.Font.Color = clWindowText
-                  Caption.Font.Height = -11
-                  Caption.Font.Name = 'Tahoma'
-                  Caption.Font.Style = [fsBold]
-                  Caption.ColorStart = clSilver
-                  Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = 'Range From Platform'
-                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                  CaptionShadow.Font.Color = clWindowText
-                  CaptionShadow.Font.Height = -27
-                  CaptionShadow.Font.Name = 'Tahoma'
-                  CaptionShadow.Font.Style = []
-                  Version = '1.6.1.0'
-                end
-                object lblMinRange: TAdvSmoothLabel
-                  Left = 196
-                  Top = 55
-                  Width = 20
-                  Height = 33
-                  Fill.ColorMirror = clNone
-                  Fill.ColorMirrorTo = clNone
-                  Fill.GradientType = gtVertical
-                  Fill.GradientMirrorType = gtSolid
-                  Fill.BorderColor = clNone
-                  Fill.Rounding = 0
-                  Fill.ShadowOffset = 0
-                  Fill.Glow = gmNone
-                  Caption.Text = '10'
-                  Caption.Font.Charset = DEFAULT_CHARSET
-                  Caption.Font.Color = clWindowText
-                  Caption.Font.Height = -11
-                  Caption.Font.Name = 'Tahoma'
-                  Caption.Font.Style = [fsBold]
-                  Caption.ColorStart = clSilver
-                  Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = '10'
-                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                  CaptionShadow.Font.Color = clWindowText
-                  CaptionShadow.Font.Height = -27
-                  CaptionShadow.Font.Name = 'Tahoma'
-                  CaptionShadow.Font.Style = []
-                  Version = '1.6.1.0'
-                end
-                object lblMaxRange: TAdvSmoothLabel
-                  Left = 392
-                  Top = 55
-                  Width = 34
-                  Height = 33
-                  Fill.ColorMirror = clNone
-                  Fill.ColorMirrorTo = clNone
-                  Fill.GradientType = gtVertical
-                  Fill.GradientMirrorType = gtSolid
-                  Fill.BorderColor = clNone
-                  Fill.Rounding = 0
-                  Fill.ShadowOffset = 0
-                  Fill.Glow = gmNone
-                  Caption.Text = '1000'
-                  Caption.Font.Charset = DEFAULT_CHARSET
-                  Caption.Font.Color = clWindowText
-                  Caption.Font.Height = -11
-                  Caption.Font.Name = 'Tahoma'
-                  Caption.Font.Style = [fsBold]
-                  Caption.ColorStart = clSilver
-                  Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = '1000'
-                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                  CaptionShadow.Font.Color = clWindowText
-                  CaptionShadow.Font.Height = -27
-                  CaptionShadow.Font.Name = 'Tahoma'
-                  CaptionShadow.Font.Style = []
-                  Version = '1.6.1.0'
-                end
-                object lblMinElevation: TAdvSmoothLabel
-                  Left = 191
-                  Top = 191
-                  Width = 29
-                  Height = 33
-                  Fill.ColorMirror = clNone
-                  Fill.ColorMirrorTo = clNone
-                  Fill.GradientType = gtVertical
-                  Fill.GradientMirrorType = gtSolid
-                  Fill.BorderColor = clNone
-                  Fill.Rounding = 0
-                  Fill.ShadowOffset = 0
-                  Fill.Glow = gmNone
-                  Caption.Text = '-89'#176
-                  Caption.Font.Charset = DEFAULT_CHARSET
-                  Caption.Font.Color = clWindowText
-                  Caption.Font.Height = -11
-                  Caption.Font.Name = 'Tahoma'
-                  Caption.Font.Style = [fsBold]
-                  Caption.ColorStart = clSilver
-                  Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = '-89'#176
-                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                  CaptionShadow.Font.Color = clWindowText
-                  CaptionShadow.Font.Height = -27
-                  CaptionShadow.Font.Name = 'Tahoma'
-                  CaptionShadow.Font.Style = []
-                  Version = '1.6.1.0'
-                end
-                object AdvSmoothLabel2: TAdvSmoothLabel
-                  Left = 399
-                  Top = 191
-                  Width = 26
-                  Height = 33
-                  Fill.ColorMirror = clNone
-                  Fill.ColorMirrorTo = clNone
-                  Fill.GradientType = gtVertical
-                  Fill.GradientMirrorType = gtSolid
-                  Fill.BorderColor = clNone
-                  Fill.Rounding = 0
-                  Fill.ShadowOffset = 0
-                  Fill.Glow = gmNone
-                  Caption.Text = '89'#176
-                  Caption.Font.Charset = DEFAULT_CHARSET
-                  Caption.Font.Color = clWindowText
-                  Caption.Font.Height = -11
-                  Caption.Font.Name = 'Tahoma'
-                  Caption.Font.Style = [fsBold]
-                  Caption.ColorStart = clSilver
-                  Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = '89'#176
-                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                  CaptionShadow.Font.Color = clWindowText
-                  CaptionShadow.Font.Height = -27
-                  CaptionShadow.Font.Name = 'Tahoma'
-                  CaptionShadow.Font.Style = []
-                  Version = '1.6.1.0'
-                end
-                object lblElevation: TAdvSmoothLabel
-                  Left = 233
-                  Top = 142
-                  Width = 146
-                  Height = 33
-                  Fill.ColorMirror = clNone
-                  Fill.ColorMirrorTo = clNone
-                  Fill.GradientType = gtVertical
-                  Fill.GradientMirrorType = gtSolid
-                  Fill.BorderColor = clNone
-                  Fill.Rounding = 0
-                  Fill.ShadowOffset = 0
-                  Fill.Glow = gmNone
-                  Caption.Text = 'Elevation From Platform'
-                  Caption.Font.Charset = DEFAULT_CHARSET
-                  Caption.Font.Color = clWindowText
-                  Caption.Font.Height = -11
-                  Caption.Font.Name = 'Tahoma'
-                  Caption.Font.Style = [fsBold]
-                  Caption.ColorStart = clSilver
-                  Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = 'Elevation From Platform'
-                  CaptionShadow.Font.Charset = DEFAULT_CHARSET
-                  CaptionShadow.Font.Color = clWindowText
-                  CaptionShadow.Font.Height = -27
-                  CaptionShadow.Font.Name = 'Tahoma'
-                  CaptionShadow.Font.Style = []
-                  Version = '1.6.1.0'
-                end
-                object bvlHorizontal: TBevel
-                  Left = 184
-                  Top = 127
-                  Width = 243
-                  Height = 1
-                end
-                object edtAzimut: TEdit
-                  Left = 39
-                  Top = 205
-                  Width = 84
-                  Height = 24
-                  Hint = 'Azimut Value Rotation'
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWindowText
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  ParentFont = False
-                  TabOrder = 0
-                  Text = '180'
-                  OnExit = edtAzimutExit
-                  OnKeyPress = edtAzimutKeyPress
-                end
-                object trackBarRange: TAdvTrackBar
-                  Left = 197
-                  Top = 34
-                  Width = 220
-                  Height = 29
-                  Hint = 'Slide to change range'
-                  BorderColor = clNone
-                  BorderColorDisabled = clNone
-                  Buttons.BorderColor = 9262895
-                  Buttons.BorderColorHot = 10079963
-                  Buttons.BorderColorDown = 4548219
-                  Buttons.Color = 15653832
-                  Buttons.ColorTo = 16178633
-                  Buttons.ColorHot = 15465983
-                  Buttons.ColorHotTo = 11332863
-                  Buttons.ColorDown = 7778289
-                  Buttons.ColorDownTo = 4296947
-                  Buttons.ColorMirror = 15586496
-                  Buttons.ColorMirrorTo = 16245200
-                  Buttons.ColorMirrorHot = 5888767
-                  Buttons.ColorMirrorHotTo = 10807807
-                  Buttons.ColorMirrorDown = 946929
-                  Buttons.ColorMirrorDownTo = 5021693
-                  Buttons.GradientMirror = ggVertical
-                  ColorTo = clNone
-                  ColorDisabled = clNone
-                  ColorDisabledTo = clNone
-                  Direction = gdHorizontal
-                  Color = clNone
-                  Max = 1000
-                  Min = 10
-                  Position = 70
-                  Slider.BorderColor = 12752500
-                  Slider.BorderColorDisabled = clBlack
-                  Slider.Color = clWhite
-                  Slider.ColorTo = clBlack
-                  Slider.ColorDisabled = clBlack
-                  Slider.ColorDisabledTo = clBlack
-                  Slider.ColorCompleted = clNone
-                  Slider.ColorCompletedTo = clNone
-                  Slider.ColorCompletedDisabled = clNone
-                  Slider.ColorCompletedDisabledTo = clNone
-                  Slider.Direction = gdHorizontal
-                  Slider.Rounded = True
-                  TabOrder = 1
-                  Thumb.BorderColor = 10317632
-                  Thumb.BorderColorHot = 10079963
-                  Thumb.BorderColorDown = 4548219
-                  Thumb.BorderColorDisabled = clBlack
-                  Thumb.Color = 15653832
-                  Thumb.ColorTo = 16178633
-                  Thumb.ColorDown = 7778289
-                  Thumb.ColorDownTo = 4296947
-                  Thumb.ColorHot = 15465983
-                  Thumb.ColorHotTo = 11332863
-                  Thumb.ColorDisabled = clBlack
-                  Thumb.ColorDisabledTo = clBlack
-                  Thumb.ColorMirror = 15586496
-                  Thumb.ColorMirrorTo = 16245200
-                  Thumb.ColorMirrorHot = 5888767
-                  Thumb.ColorMirrorHotTo = 10807807
-                  Thumb.ColorMirrorDown = 946929
-                  Thumb.ColorMirrorDownTo = 5021693
-                  Thumb.ColorMirrorDisabled = clBlack
-                  Thumb.ColorMirrorDisabledTo = clBlack
-                  Thumb.Gradient = ggVertical
-                  Thumb.GradientMirror = ggRadial
-                  Thumb.Shape = tsPointer
-                  TickMark.Color = clBlack
-                  TickMark.ColorDisabled = clBlack
-                  TickMark.Font.Charset = DEFAULT_CHARSET
-                  TickMark.Font.Color = clWindowText
-                  TickMark.Font.Height = -11
-                  TickMark.Font.Name = 'Tahoma'
-                  TickMark.Font.Style = []
-                  TickMark.ShowImageAtSteps = 2
-                  TickMark.Spacing = 5
-                  TrackHint = False
-                  TrackLabel.Font.Charset = DEFAULT_CHARSET
-                  TrackLabel.Font.Color = clWindowText
-                  TrackLabel.Font.Height = -11
-                  TrackLabel.Font.Name = 'Tahoma'
-                  TrackLabel.Font.Style = []
-                  TrackLabel.Format = 'Pos: %d'
-                  Version = '1.6.10.2'
-                  OnChange = trackBarRangeChange
-                  OnMouseUp = trackBarRangeMouseUp
-                end
-                object edtRangeValue: TEdit
-                  Left = 256
-                  Top = 69
-                  Width = 107
-                  Height = 24
-                  Hint = 'Range Value in Metre'
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWindowText
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  ParentFont = False
-                  TabOrder = 2
-                  Text = '70'
-                  OnExit = edtRangeValueExit
-                  OnKeyPress = edtRangeValueKeyPress
-                end
-                object edtElevationValue: TEdit
-                  Left = 256
-                  Top = 205
-                  Width = 107
-                  Height = 24
-                  Hint = 'Elevation Value in Degree'
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWindowText
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  ParentFont = False
-                  TabOrder = 3
-                  Text = '15'
-                  OnExit = edtElevationValueExit
-                  OnKeyPress = edtElevationValueKeyPress
-                end
-                object trackBarElevation: TAdvTrackBar
-                  Left = 197
-                  Top = 170
-                  Width = 220
-                  Height = 29
-                  Hint = 'Slide to change elevation'
-                  BorderColor = clNone
-                  BorderColorDisabled = clNone
-                  Buttons.BorderColor = 9262895
-                  Buttons.BorderColorHot = 10079963
-                  Buttons.BorderColorDown = 4548219
-                  Buttons.Color = 15653832
-                  Buttons.ColorTo = 16178633
-                  Buttons.ColorHot = 15465983
-                  Buttons.ColorHotTo = 11332863
-                  Buttons.ColorDown = 7778289
-                  Buttons.ColorDownTo = 4296947
-                  Buttons.ColorMirror = 15586496
-                  Buttons.ColorMirrorTo = 16245200
-                  Buttons.ColorMirrorHot = 5888767
-                  Buttons.ColorMirrorHotTo = 10807807
-                  Buttons.ColorMirrorDown = 946929
-                  Buttons.ColorMirrorDownTo = 5021693
-                  Buttons.GradientMirror = ggVertical
-                  ColorTo = clNone
-                  ColorDisabled = clNone
-                  ColorDisabledTo = clNone
-                  Direction = gdHorizontal
-                  Color = clNone
-                  Max = 89
-                  Min = -89
-                  Position = 15
-                  Slider.BorderColor = 12752500
-                  Slider.BorderColorDisabled = clBlack
-                  Slider.Color = clWhite
-                  Slider.ColorTo = clBlack
-                  Slider.ColorDisabled = clBlack
-                  Slider.ColorDisabledTo = clBlack
-                  Slider.ColorCompleted = clNone
-                  Slider.ColorCompletedTo = clNone
-                  Slider.ColorCompletedDisabled = clNone
-                  Slider.ColorCompletedDisabledTo = clNone
-                  Slider.Direction = gdHorizontal
-                  Slider.Rounded = True
-                  TabOrder = 4
-                  Thumb.BorderColor = 10317632
-                  Thumb.BorderColorHot = 10079963
-                  Thumb.BorderColorDown = 4548219
-                  Thumb.BorderColorDisabled = clBlack
-                  Thumb.Color = 15653832
-                  Thumb.ColorTo = 16178633
-                  Thumb.ColorDown = 7778289
-                  Thumb.ColorDownTo = 4296947
-                  Thumb.ColorHot = 15465983
-                  Thumb.ColorHotTo = 11332863
-                  Thumb.ColorDisabled = clBlack
-                  Thumb.ColorDisabledTo = clBlack
-                  Thumb.ColorMirror = 15586496
-                  Thumb.ColorMirrorTo = 16245200
-                  Thumb.ColorMirrorHot = 5888767
-                  Thumb.ColorMirrorHotTo = 10807807
-                  Thumb.ColorMirrorDown = 946929
-                  Thumb.ColorMirrorDownTo = 5021693
-                  Thumb.ColorMirrorDisabled = clBlack
-                  Thumb.ColorMirrorDisabledTo = clBlack
-                  Thumb.Gradient = ggVertical
-                  Thumb.GradientMirror = ggRadial
-                  Thumb.Shape = tsPointer
-                  TickMark.Color = clBlack
-                  TickMark.ColorDisabled = clBlack
-                  TickMark.Font.Charset = DEFAULT_CHARSET
-                  TickMark.Font.Color = clWindowText
-                  TickMark.Font.Height = -11
-                  TickMark.Font.Name = 'Tahoma'
-                  TickMark.Font.Style = []
-                  TickMark.ShowImageAtSteps = 4
-                  TickMark.Spacing = 5
-                  TrackHint = False
-                  TrackLabel.Font.Charset = DEFAULT_CHARSET
-                  TrackLabel.Font.Color = clWindowText
-                  TrackLabel.Font.Height = -11
-                  TrackLabel.Font.Name = 'Tahoma'
-                  TrackLabel.Font.Style = []
-                  TrackLabel.Format = 'Pos: %d'
-                  Version = '1.6.10.2'
-                  OnChange = trackBarElevationChange
-                  OnMouseUp = trackBarElevationMouseUp
-                end
-              end
             end
           end
         end
@@ -240469,7 +240485,7 @@ object frmGameController: TfrmGameController
           Left = 0
           Top = 350
           Width = 1106
-          Height = 565
+          Height = 561
           Cursor = crDefault
           Caption.Text = 'pnlPlatformBottom'
           Caption.Location = plTopCenter
@@ -240513,7 +240529,7 @@ object frmGameController: TfrmGameController
             Left = 0
             Top = 0
             Width = 1106
-            Height = 565
+            Height = 561
             Cursor = crDefault
             Caption.Text = 'pnlLaunchWeapon'
             Caption.Location = plTopCenter
@@ -240557,9 +240573,9 @@ object frmGameController: TfrmGameController
               Left = 0
               Top = 0
               Width = 1106
-              Height = 565
+              Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwAsroc
+              ActivePage = pgtwMistral
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -240579,8 +240595,7 @@ object frmGameController: TfrmGameController
               PersistPagesState.Enabled = False
               TabOrder = 0
               TabWidth = 150
-              ExplicitWidth = 1240
-              ExplicitHeight = 450
+              ExplicitHeight = 414
               object pgtwTorpedoSUT: TAdvTabSheet
                 Caption = 'Torpedo SUT'
                 Color = 7301478
@@ -240593,7 +240608,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -241278,7 +241293,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -241869,7 +241884,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -242673,7 +242688,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -243305,7 +243320,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -243884,7 +243899,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -244274,7 +244289,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -244664,7 +244679,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -245056,7 +245071,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -245875,7 +245890,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -246414,7 +246429,7 @@ object frmGameController: TfrmGameController
                   Left = 0
                   Top = 0
                   Width = 1098
-                  Height = 537
+                  Height = 533
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1232
@@ -246783,14 +246798,15 @@ object frmGameController: TfrmGameController
         Left = 407
         Top = 0
         Width = 407
-        Height = 915
+        Height = 911
         Align = alLeft
         BevelOuter = bvNone
         Color = clMedGray
         TabOrder = 2
+        ExplicitHeight = 915
         object pnlStatusObject: TAdvSmoothPanel
           Left = 0
-          Top = 292
+          Top = 351
           Width = 407
           Height = 128
           Cursor = crDefault
@@ -247251,7 +247267,7 @@ object frmGameController: TfrmGameController
           Left = 0
           Top = 0
           Width = 407
-          Height = 292
+          Height = 351
           Cursor = crDefault
           Caption.Location = plTopCenter
           Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -247321,9 +247337,9 @@ object frmGameController: TfrmGameController
         end
         object pnlWeapon: TAdvSmoothPanel
           Left = 0
-          Top = 420
+          Top = 479
           Width = 407
-          Height = 495
+          Height = 432
           Cursor = crDefault
           Caption.Location = plTopCenter
           Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -247363,10 +247379,10 @@ object frmGameController: TfrmGameController
           ExplicitHeight = 450
           TMSStyle = 0
           object lvWeapon: TListView
-            Left = 19
-            Top = 83
-            Width = 273
-            Height = 450
+            Left = 16
+            Top = 16
+            Width = 375
+            Height = 401
             Columns = <
               item
                 Caption = 'Weapon Name'
@@ -247399,8 +247415,8 @@ object frmGameController: TfrmGameController
     end
   end
   object mmfrmMain: TMainMenu
-    Left = 78
-    Top = 630
+    Left = 230
+    Top = 14
     object Application1: TMenuItem
       Caption = 'Application'
       Visible = False
@@ -247499,8 +247515,8 @@ object frmGameController: TfrmGameController
     end
   end
   object pmClient: TPopupMenu
-    Left = 46
-    Top = 630
+    Left = 190
+    Top = 14
     object pmClientStop: TMenuItem
       Caption = 'Stop'
       OnClick = mni3Click
@@ -247539,8 +247555,8 @@ object frmGameController: TfrmGameController
     end
   end
   object pmClient2: TPopupMenu
-    Left = 14
-    Top = 630
+    Left = 158
+    Top = 22
     object mni1: TMenuItem
       Caption = 'Stop'
       OnClick = mni3Click
@@ -247586,8 +247602,8 @@ object frmGameController: TfrmGameController
     Top = 8
   end
   object pmLvWeapon: TPopupMenu
-    Left = 135
-    Top = 629
+    Left = 279
+    Top = 13
     object On1: TMenuItem
       Tag = 1
       Caption = 'On'
