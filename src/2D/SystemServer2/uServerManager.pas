@@ -2103,6 +2103,9 @@ procedure TServerManager.ServerRecv_3D_Server2DSend(AHeader: TPacketHeader;
 var
   incoming_data: TRecSplashCannon3D;
   apRec: TRecSplashCannon;
+
+  incoming_data_cannon: TRec3DSetWCC3D;
+  apRec_cannon: TRec3DSetWCC;
 begin
   if Length(AContent) > 0 then
   begin
@@ -2132,6 +2135,43 @@ begin
       apRec.PosZ := incoming_data.PosZ;
 
       FServer2D.SendDataEx(REC_STAT_CANNON_SPLASH, @apRec, nil);
+    end;
+
+    if AHeader.PacketID=C_REC_CANNON then
+    begin
+
+      TgoBsonSerializer.Deserialize<TRec3DSetWCC3D>(AContent, incoming_data_cannon);
+
+//      if Assigned(FOnLogReceived3d) then
+//      begin
+//        FOnLogReceived3d('JSON : ' + AContent);
+//        FOnLogReceived3d('REC_STAT_CANNON_SPLASH' + #13#10 +
+//          'ShipID : ' + IntToStr(incoming_data.ShipID) + #13#10 +
+//          'WeaponID : ' + IntToStr(incoming_data.WeaponID) + #13#10 +
+//          'LauncherID : ' + IntToStr(incoming_data.LauncherID) + #13#10 +
+//          'X : ' + FormatFloat('0.00', incoming_data.PosX) + #13#10 +
+//          'Y : ' + FormatFloat('0.00', incoming_data.PosY) + #13#10 +
+//          'Z : ' + FormatFloat('0.00', incoming_data.PosZ));
+//      end;
+
+      apRec_cannon.ShipID := incoming_data_cannon.ShipID;
+      apRec_cannon.mWeaponID := incoming_data_cannon.mWeaponID;
+      apRec_cannon.mLauncherID := incoming_data_cannon.mLauncherID;
+      apRec_cannon.mMissileID := incoming_data_cannon.mMissileID;
+      apRec_cannon.mMissileNumber := incoming_data_cannon.mMissileNumber;
+      apRec_cannon.mOrderID := incoming_data_cannon.mOrderID;
+      apRec_cannon.mTargetID := incoming_data_cannon.mTargetID;
+      apRec_cannon.mModeID := incoming_data_cannon.mModeID;
+      apRec_cannon.mUpDown := incoming_data_cannon.mUpDown;
+
+      apRec_cannon.mAutoCorrectElev := incoming_data_cannon.mAutoCorrectElev;
+      apRec_cannon.mAutoCorrectBearing := incoming_data_cannon.mAutoCorrectBearing;
+      apRec_cannon.mBalistikID := incoming_data_cannon.mBalistikID;
+      apRec_cannon.mSalvoRate := incoming_data_cannon.mSalvoRate;
+
+      FServer2D.SendDataEx(C_REC_CANNON, @apRec_cannon, nil);
+
+      TcpServer3D.SendData(REC_SET_CANNON, incoming_data_cannon);
     end;
   end;
 end;
