@@ -210,9 +210,7 @@ type
     pnlPlatformLeft: TPanel;
     TabSelectObject: TAdvSmoothTabPager;
     tsSelectShip: TAdvSmoothTabPage;
-    lvRuntimeShip: TListView;
     tsSelectWeapon: TAdvSmoothTabPage;
-    lvRuntimeMissile: TListView;
     pnlControlObject: TAdvSmoothPanel;
     btnRemoveObject: TAdvSmoothButton;
     btnRepostObject: TAdvSmoothButton;
@@ -220,8 +218,6 @@ type
     pnlPlatfromUp: TAdvSmoothPanel;
     tabControl: TAdvSmoothTabPager;
     pnlPlayerCamera: TAdvSmoothPanel;
-    lblCameraMove: TAdvSmoothLabel;
-    lblCameraRotate2: TAdvSmoothLabel;
     lblPinCamera: TAdvSmoothLabel;
     pnlCameraSelectID: TAdvSmoothPanel;
     lbl223: TAdvSmoothLabel;
@@ -656,25 +652,29 @@ type
     txt2: TStaticText;
     btnLoadingC802: TAdvSmoothButton;
     pnl1: TPanel;
-    pnlStatusObject: TAdvSmoothPanel;
-    lblLat: TAdvSmoothLabel;
-    lblLong: TAdvSmoothLabel;
-    lblZCord: TAdvSmoothLabel;
-    lblLatValue: TAdvSmoothLabel;
-    lblLongVal: TAdvSmoothLabel;
-    lblZVal: TAdvSmoothLabel;
-    lblHeading: TAdvSmoothLabel;
-    lblSpeed: TAdvSmoothLabel;
-    lblPitch: TAdvSmoothLabel;
-    lblRoll: TAdvSmoothLabel;
-    lblHeadingVal: TAdvSmoothLabel;
-    lblSpeedVal: TAdvSmoothLabel;
-    lblPitchVal: TAdvSmoothLabel;
-    lblRollVal: TAdvSmoothLabel;
     pnlImageObject: TAdvSmoothPanel;
     lblShipName: TAdvSmoothLabel;
     pnlWeapon: TAdvSmoothPanel;
     lvWeapon: TListView;
+    lblCameraMove: TAdvSmoothLabel;
+    lblCameraRotate2: TAdvSmoothLabel;
+    lvRuntimeMissile: TListView;
+    lvRuntimeShip: TListView;
+    imgShip: TImage;
+    lblLongVal: TAdvSmoothLabel;
+    lblLatValue: TAdvSmoothLabel;
+    lblZVal: TAdvSmoothLabel;
+    lblZCord: TAdvSmoothLabel;
+    lblLong: TAdvSmoothLabel;
+    lblHeading: TAdvSmoothLabel;
+    lblHeadingVal: TAdvSmoothLabel;
+    lblSpeedVal: TAdvSmoothLabel;
+    lblPitch: TAdvSmoothLabel;
+    lblPitchVal: TAdvSmoothLabel;
+    lblRollVal: TAdvSmoothLabel;
+    lblRoll: TAdvSmoothLabel;
+    lblSpeed: TAdvSmoothLabel;
+    lblLat: TAdvSmoothLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -819,6 +819,9 @@ type
     onOffMode  : Integer;
     sceIDINI   : Integer;
     unlockCam  : boolean;
+
+    Ship_ID: Integer;
+    Ship_Name: string;
 
     ScaleHeight, ScaleWidht : Integer; // for trajectory
 
@@ -1456,6 +1459,7 @@ var
   ListWeapon    : TList;
   status        : string;
   sceWeapon     : TScenarioWeapon;
+  strPicture    : string;
 begin
   VisibleStatusShip(false, 1);
   lvRuntimeMissile.Selected := nil;
@@ -1464,6 +1468,12 @@ begin
   begin
     if Assigned(TListView(Sender).Selected.Data) then
     begin
+      Ship_ID := TVehicle(TListView(Sender).Selected.Data).Vehicle_ID;
+      Ship_Name := TVehicle(TListView(Sender).Selected.Data).Vehicle_Name;
+
+      strPicture := '..\Data\imageship\' +
+      TVehicle(TListView(Sender).Selected.Data).Vehicle_Name + '.png';
+
       Vehicle := TVehicle(TListView(Sender).Selected.Data);
 
       VisibleStatusShip(true, 1);
@@ -1486,6 +1496,11 @@ begin
       frmMainInstruktur.MainMap.CenterX := Vehicle.Vehicle_X;
       frmMainInstruktur.MainMap.CenterY := Vehicle.Vehicle_Y;
       frmMainInstruktur.SetTrackObject;
+
+      if FileExists(strPicture) then
+      begin
+        imgShip.Picture.LoadFromFile(strPicture);
+      end;
     end;
 
     ShowDefaultPageWeapon(true);
@@ -5482,6 +5497,10 @@ begin
   rec.valueDbl := 0;
 
   SimManager.NetSendTo3D_CommandCamera(@rec);
+
+  pnlPinCamera.Visible := True;
+  pnlCameraRotateOld.Visible := False;
+  pnlCameraMove.Visible := False;
 end;
 
 procedure TfrmGameController.edtAzimutExit(Sender: TObject);
@@ -5630,6 +5649,10 @@ begin
   rec.valueDbl := 0;
 
   SimManager.NetSendTo3D_CommandCamera(@rec);
+
+  pnlPinCamera.Visible := False;
+  pnlCameraRotateOld.Visible := True;
+  pnlCameraMove.Visible := True;
 end;
 
 procedure TfrmGameController.edtTampungChange(Sender: TObject);
