@@ -519,8 +519,7 @@ begin
     end;
 
     sSelectArrow    :
-    begin
-      {$REGION ' sSelectArrow '}
+    begin      {$REGION ' sSelectArrow '}
       btnSelectArrow.ImageIndex    := 1;
       MainMap.CurrentTool          := miArrowTool;
       SimManager.Selections.ClearSelection;
@@ -576,7 +575,7 @@ begin
         frmDistance.BringToFront;
         frmDistance.Show;
       end;
-      lblToolUsed.Caption := 'Tool Ruler';
+      lblToolUsed.Caption := 'Tool_Ruler';
       {$ENDREGION}
     end;
 
@@ -754,7 +753,7 @@ begin
         frmAddShipRuntime.BringToFront;
         frmAddShipRuntime.Show;
       end;
-      lblToolUsed.Caption := 'Tool Ruler';
+      lblToolUsed.Caption := 'Add Vehicle';
       {$ENDREGION}
     end;
   end;

@@ -35,6 +35,7 @@ type
     Longitude: TCurvyEdit;
     AdvSmoothLabel2: TAdvSmoothLabel;
     Latitude: TCurvyEdit;
+    AdvSmoothButton1: TAdvSmoothButton;
     procedure TabSelectionChange(Sender: TObject);
     procedure TabTargetShipChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
