@@ -672,6 +672,8 @@ type
     imgPlatform: TImage;
     imgEnvironment: TImage;
     imgReport: TImage;
+    btn2: TButton;
+    btn1: TButton;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);

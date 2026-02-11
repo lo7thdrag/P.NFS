@@ -183205,7 +183205,7 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000A192C13F0000000054
+              0000000000000000000000000000000000000000000000D1E74E360000000054
               EC970004E89700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
@@ -184174,16 +184174,6 @@ object frmGameController: TfrmGameController
           OnMouseUp = tbTempMouseUp
         end
       end
-    end
-    object pnlScenario: TPanel
-      Left = 0
-      Top = 0
-      Width = 1920
-      Height = 911
-      Align = alClient
-      BevelOuter = bvNone
-      Color = clMedGray
-      TabOrder = 4
     end
     object pnlPlatform: TPanel
       Left = 0
@@ -231876,6 +231866,36 @@ object frmGameController: TfrmGameController
             OnMouseDown = lvWeaponMouseDown
           end
         end
+      end
+    end
+    object pnlScenario: TPanel
+      Left = 0
+      Top = 0
+      Width = 1920
+      Height = 911
+      Align = alClient
+      BevelOuter = bvNone
+      Color = clMedGray
+      TabOrder = 4
+      object btn2: TButton
+        Tag = 3
+        Left = 840
+        Top = 334
+        Width = 240
+        Height = 112
+        Caption = 'Start Scenario'
+        TabOrder = 0
+        OnClick = qClick
+      end
+      object btn1: TButton
+        Tag = 4
+        Left = 840
+        Top = 465
+        Width = 240
+        Height = 112
+        Caption = 'Stop Scenario'
+        TabOrder = 1
+        OnClick = qClick
       end
     end
     object pnlClient: TPanel
