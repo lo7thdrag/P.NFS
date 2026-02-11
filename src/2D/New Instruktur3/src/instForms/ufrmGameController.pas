@@ -676,6 +676,9 @@ type
     btn1: TButton;
     imageC802: TImage;
     imageYahkont: TImage;
+    ImageCannon: TImage;
+    imageTetral: TImage;
+    imageMistral: TImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -4257,6 +4260,9 @@ begin
       begin
         imageC802.Picture.LoadFromFile(weaponPic);
         imageYahkont.Picture.LoadFromFile(weaponPic);
+        ImageCannon.Picture.LoadFromFile(weaponPic);
+        imageTetral.Picture.LoadFromFile(weaponPic);
+        imageMistral.Picture.LoadFromFile(weaponPic);
       end;
     end;
 
