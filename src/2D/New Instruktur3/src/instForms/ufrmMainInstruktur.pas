@@ -224,6 +224,7 @@ type
 
     procedure SetStatusServer(status : string);
     procedure SetScenarioState(status : string);
+    procedure SetStatus3DServer(status : string);
   end;
 
 var
@@ -3047,6 +3048,24 @@ begin
     else begin
       frmGameController.edtTampung.Text := '0';
     end;
+  end;
+end;
+
+procedure TfrmMainInstruktur.SetStatus3DServer(status: string);
+begin
+  if status = ' Connected' then
+  begin
+    advsmthpnlStatus3D.Fill.Color := clGreen;
+    advsmthpnlStatus3D.Fill.ColorMirror := cllime;
+    advsmthpnlStatus3D.Fill.ColorMirrorTo := clGreen;
+    advsmthpnlStatus3D.Fill.ColorTo := cllime;
+  end
+  else
+  begin
+    advsmthpnlStatus3D.Fill.Color := clMaroon;
+    advsmthpnlStatus3D.Fill.ColorMirror := clRed;
+    advsmthpnlStatus3D.Fill.ColorMirrorTo := clMaroon;
+    advsmthpnlStatus3D.Fill.ColorTo := clRed;
   end;
 end;
 
