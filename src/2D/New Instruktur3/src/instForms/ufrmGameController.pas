@@ -674,6 +674,8 @@ type
     imgReport: TImage;
     btn2: TButton;
     btn1: TButton;
+    imageC802: TImage;
+    imageYahkont: TImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -820,6 +822,8 @@ type
 
     Ship_ID: Integer;
     Ship_Name: string;
+    Weapon_ID: Integer;
+    Weapon_Name: string;
 
     ScaleHeight, ScaleWidht : Integer; // for trajectory
 
@@ -4154,10 +4158,11 @@ end;
 
 procedure TfrmGameController.lvWeaponClick(Sender: TObject);
 var
-  Weapon       : TWeapon;
-  Vehicle      : TVehicle;
-  i : Integer;
+  Weapon        : TWeapon;
+  Vehicle       : TVehicle;
+  i             : Integer;
   ClientConsole : TClientList;
+  weaponPic     : string;
 begin
   if (TListView(sender).Selected <> nil) then
   begin
@@ -4166,6 +4171,11 @@ begin
     begin
       Weapon := TWeapon(TListView(sender).Selected.Data);
 
+      Weapon_ID := TWeapon(TListView(sender).Selected.Data).WeaponID ;
+      Weapon_Name := TWeapon(TListView(sender).Selected.Data).MissileName;
+
+      weaponPic := '..\Data\imageWeapon\' +
+      TWeapon(TListView(sender).Selected.Data).MissileName + '.png';
 
       ShowDefaultPageWeapon(false);
       ShowWeaponPanel(Weapon.WeaponID, Weapon.launcherID);
@@ -4241,6 +4251,12 @@ begin
             end;
           end;
         end;
+      end;
+
+      if FileExists(weaponPic) then
+      begin
+        imageC802.Picture.LoadFromFile(weaponPic);
+        imageYahkont.Picture.LoadFromFile(weaponPic);
       end;
     end;
 
