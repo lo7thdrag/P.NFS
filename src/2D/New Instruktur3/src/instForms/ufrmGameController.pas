@@ -679,6 +679,9 @@ type
     ImageCannon: TImage;
     imageTetral: TImage;
     imageMistral: TImage;
+    imageStrella: TImage;
+    imageTorpedoSUT: TImage;
+    imagerRBU6000: TImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -4263,6 +4266,9 @@ begin
         ImageCannon.Picture.LoadFromFile(weaponPic);
         imageTetral.Picture.LoadFromFile(weaponPic);
         imageMistral.Picture.LoadFromFile(weaponPic);
+        imageStrella.Picture.LoadFromFile(weaponPic);
+        imageTorpedoSUT.Picture.LoadFromFile(weaponPic);
+        imagerRBU6000.Picture.LoadFromFile(weaponPic);
       end;
     end;
 
