@@ -1371,7 +1371,16 @@ begin
     Close;
 
     SQL.Clear;
-    SQL.Add('select * from cm_console order by PC_ID asc');
+//    SQL.Add('select * from cm_console order by PC_ID asc');
+
+    SQL.Add('select * from cm_console ');
+    SQL.Add('order by ');
+    SQL.Add('  case ');
+    SQL.Add('    when APP_TIPE = 5 then 0 ');  // SERVER
+    SQL.Add('    when APP_TIPE = 1 then 1 ');  // 3D SERVER
+    SQL.Add('    else 2 ');
+    SQL.Add('  end, ');
+    SQL.Add('  PC_ID asc');
 
     Open;
     DS.First;
