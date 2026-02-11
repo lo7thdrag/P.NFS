@@ -99,7 +99,7 @@ begin
   lvTargetAirAll.OnClick := ListViewClick;
 
   TabSelection.ActivePage := tsShipKRI;
-//  Position.poDesigned;
+  Position := poDesigned;
 end;
 
 procedure TfrmAddShipRuntime.FormDestroy(Sender: TObject);
