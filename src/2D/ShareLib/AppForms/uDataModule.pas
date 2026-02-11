@@ -2021,6 +2021,7 @@ begin
   while not DS.Eof do
   begin
     rec.Scenario_ID := DS.FieldByName('ID').AsInteger;
+    rec.Scenario_Desc := DS.FieldByName('KET').AsString;
     rec.Scenario_Port := DS.FieldByName('ENV_PETA').AsInteger;
     rec.Scenario_Building := DS.FieldByName('ENV_BUILDING').AsInteger;
     rec.Scenario_StaticShip := DS.FieldByName('ENV_SSHIPS').AsInteger;

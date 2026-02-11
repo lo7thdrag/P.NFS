@@ -695,19 +695,19 @@ type
     AdvSmoothLabel4: TAdvSmoothLabel;
     mmoKetSce: TMemo;
     cbbPort: TComboBox;
-    lvWarShipSelect: TListView;
-    lv1: TListView;
-    lv2: TListView;
+    lvKri: TListView;
+    lvTarget: TListView;
+    lvGeneral: TListView;
     pnlHeaderScenario: TAdvSmoothPanel;
-    lbl180: TLabel;
+    lblScenarioName: TLabel;
     pnlsprScen2: TPanel;
     pnlEnviScenario: TAdvSmoothPanel;
     AdvSmoothLabel5: TAdvSmoothLabel;
     AdvSmoothLabel6: TAdvSmoothLabel;
     advsmthlbl4: TAdvSmoothLabel;
     AdvSmoothLabel14: TAdvSmoothLabel;
-    VrWheel1: TVrWheel;
-    VrWheel2: TVrWheel;
+    VrWindDirection: TVrWheel;
+    VrCurrentDirection: TVrWheel;
     AdvSmoothLabel15: TAdvSmoothLabel;
     advsmthlbl5: TAdvSmoothLabel;
     advsmthlbl7: TAdvSmoothLabel;
@@ -715,7 +715,7 @@ type
     advsmthlbl8: TAdvSmoothLabel;
     trckBarSeaState: TTrackBar;
     trckBarCurrentSpeed: TTrackBar;
-    trckBarWindDirection: TTrackBar;
+    trckBarWindSpeed: TTrackBar;
     trckBarTemperature: TTrackBar;
     trckBarBarometer: TTrackBar;
     trckBarHumidity: TTrackBar;
@@ -723,7 +723,7 @@ type
     btnStopScenario: TButton;
     btn2: TButton;
     btn3: TButton;
-    edtWindDirection: TEdit;
+    edtWindSpeed: TEdit;
     edtCurrentSpeed: TEdit;
     edtTemperature: TEdit;
     edtBarometer: TEdit;
@@ -927,6 +927,7 @@ type
     {$REGION ' Scenario Procedure '}
 
     procedure ShowScenario;
+    procedure UpdateScenarioData;
 
     {$ENDREGION}
 
@@ -976,7 +977,7 @@ var
 
 implementation
 
-uses DateUtils, ufListScenario, Math, ufrmeLeftControl;
+uses DateUtils, ufListScenario, Math, ufrmeLeftControl, ufEnvi;
 
 {$R *.dfm}
 
@@ -1884,21 +1885,30 @@ end;
 
 procedure TfrmGameController.imgEditClick(Sender: TObject);
 begin
-  if lvListScen.Selected <> nil then
-  begin
-    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
-    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
-    frmMainInstruktur.Caption := 'Firing System Instruktur - '+lvListScen.Selected.SubItems[0];
+  frmListScenario.isPlay := false;
+  frmListScenario.Show;
 
-    frmSceEditor.isNew := false;
-    frmSceEditor.UpdateVisualForm;
+  frmListScenario.btnOk.Tag := 0;
+  frmListScenario.btnOk.Enabled := true;
+  frmListScenario.lblGameName.Visible := false;
+  frmListScenario.edtGameName.Visible := false;
+  frmListScenario.btnRemove.Visible := true;
 
-    Close;
-  end
-  else
-  begin
-    ShowMessage('Select Scenario First');
-  end;
+//  if lvListScen.Selected <> nil then
+//  begin
+//    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
+//    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
+//    frmMainInstruktur.Caption := 'Firing System Instruktur - '+lvListScen.Selected.SubItems[0];
+//
+//    frmSceEditor.isNew := false;
+//    frmSceEditor.UpdateVisualForm;
+//
+//    Close;
+//  end
+//  else
+//  begin
+//    ShowMessage('Select Scenario First');
+//  end;
 end;
 
 procedure TfrmGameController.RunClientFromPopupMenu(Sender: TObject);
@@ -2419,13 +2429,14 @@ var
   aDateTime : TDatetime;
   formatDate : string;
 begin
-  if lvListScen.Selected = nil then Exit;
+  if lvListScen.Selected = nil then
+    Exit;
 
   aDateTime := Now;
   DateTimeToString(formatDate, 'ddmmyy_hhnnss', aDateTime);
-//  edtGameName.Text := lvListScen.Selected.SubItems[0]+'_'+formatDate;
 
-  //btnOk.SetFocus;
+  UpdateScenarioData;
+
 end;
 
 procedure TfrmGameController.lvListScenKeyPress(Sender: TObject; var Key: Char);
@@ -3970,7 +3981,6 @@ var
   ListScenario : Tlist;
   Scenario : TScenarioList;
 begin
-//  edtGameName.Text:='';
   lvListScen.Items.Clear;
 
   ListScenario := TList.Create;
@@ -3980,19 +3990,21 @@ begin
   begin
     Scenario := TScenarioList(ListScenario[i]);
 
-//    if Scenario.Scenario_ID = 0 then Continue;
-
-    if Scenario.Scenario_ID=0 then
+    if Scenario.Scenario_ID = 0 then
     else
+    begin
       with lvListScen.Items.Add do
       begin
         Caption := IntToStr(Scenario.Scenario_ID);
         SubItems.Add(Scenario.Scenario_Name);
         SubItems.Add(DataModule1.GetPortNameNoById(Scenario.ENV_PETA));
       end;
+    end;
   end;
+
   ClearAList(ListScenario);
   ListScenario.Free;
+
 end;
 
 procedure TfrmGameController.ShowWeaponPanel(WeaponID, LauncherID: integer);
@@ -6306,6 +6318,295 @@ begin
   end;
 end;
 
+
+procedure TfrmGameController.UpdateScenarioData;
+var
+  listAllShip, listAllConsole: TList;
+
+  ShipDetail, AllShip: TVehicle;
+
+  AllConsole: TClientConsole;
+  i: Integer;
+  j: Integer;
+
+  Dx, Dy: Double;
+  Mx, My: Double;
+
+  Ship: TInsObject;
+
+  ListScenario: TList;
+  Scenario: TScenarioList;
+
+  ListConsole: TList;
+  Console: TConsole;
+  Console_ID: Integer;
+
+  { Envi }
+  SceEnvi: TScenario;
+
+  ClientList: TClientList;
+begin
+  { First Initialize }
+//  ClearWeaponListScenario;
+
+  lblScenarioName.Caption := '';
+  mmoKetSce.Clear;
+
+  ClearListViewData(lvKri);
+  ClearListViewData(lvTarget);
+  ClearListViewData(lvGeneral);
+
+//  SimManager.MainObjList.ClearObject;
+
+  lblScenarioName.Caption := lvListScen.Selected.SubItems[0];
+
+
+  { Environment }
+  SceEnvi := TScenario.Create;
+  try
+    DataModule1.GetEnviBySceID(StrToInt(lvListScen.Selected.Caption), SceEnvi);
+
+    mmoKetSce.Lines.Add(SceEnvi.Scenario_Desc);
+    cbbPort.ItemIndex := SceEnvi.Scenario_Port;
+
+    trckBarSeaState.Position := Round(SceEnvi.Scenario_SeaState);
+    edtSeaState.Text := FloatToStr(SceEnvi.Scenario_SeaState);
+
+    trckBarWindSpeed.Position := Round(SceEnvi.Scenario_WindSpeed);
+    edtWindSpeed.Text := FloatToStr(SceEnvi.Scenario_WindSpeed);
+
+    trckBarCurrentSpeed.Position := Round(SceEnvi.Scenario_CurrSpeed);
+    edtCurrentSpeed.Text := FloatToStr(SceEnvi.Scenario_CurrSpeed);
+
+    trckBarTemperature.Position := Round(SceEnvi.Scenario_Temperature);
+    edtTemperature.Text := FloatToStr(SceEnvi.Scenario_Temperature);
+
+    trckBarBarometer.Position := Round(SceEnvi.Scenario_BaroPressure);
+    edtBarometer.Text := FloatToStr(SceEnvi.Scenario_BaroPressure);
+
+    trckBarHumidity.Position := Round(SceEnvi.Scenario_Humidity);
+    edtHumidity.Text := FloatToStr(SceEnvi.Scenario_Humidity);
+
+    trckBarFogHeight.Position := Round (SceEnvi.Scenario_FogHeight);
+    edtFogHeight.Text := FloatToStr(SceEnvi.Scenario_FogHeight);
+
+    VrWindDirection.Position := Round (SceEnvi.Scenario_WindDir_Deg);
+    VrCurrentDirection.Position := Round (SceEnvi.Scenario_CurrDir_Deg);
+
+    if SceEnvi.Scenario_WindDir_Deg > 180 then
+     VrWindDirection.position := (Round(SceEnvi.Scenario_WindDir_Deg) - 180)
+    else
+      VrWindDirection.position :=(Round(SceEnvi.Scenario_WindDir_Deg) + 180);
+
+    if SceEnvi.Scenario_CurrDir_Deg > 180 then
+      VrCurrentDirection.position :=(Round(SceEnvi.Scenario_CurrDir_Deg) - 180)
+    else
+      VrCurrentDirection.position :=(Round(SceEnvi.Scenario_CurrDir_Deg) + 180);
+
+//    frmMoreEnvi.lblCurrentSpeed.Caption := FloatToStr(SceEnvi.Scenario_CurrSpeed);
+//    frmMoreEnvi.lblWindDirection.Caption := FloatToStr(SceEnvi.Scenario_WindDir_Deg);
+//    frmMoreEnvi.lblCurrentDirection.Caption := FloatToStr(SceEnvi.Scenario_CurrDir_Deg);
+//    frmMoreEnvi.lblTemperature.Caption := FloatToStr(SceEnvi.Scenario_Temperature);
+//    frmMoreEnvi.lblBaroPressure.Caption := FloatToStr(SceEnvi.Scenario_BaroPressure);
+//    frmMoreEnvi.lblHumidity.Caption := FloatToStr(SceEnvi.Scenario_Humidity);
+//    frmMoreEnvi.lblFogHeight.Caption := FloatToStr(SceEnvi.Scenario_FogHeight_Persen);
+
+//    frmMoreEnvi.eBuilding.ItemIndex := SceEnvi.Scenario_Building;
+//    frmMoreEnvi.eStaticShips.ItemIndex := SceEnvi.Scenario_StaticShip;
+//    frmMoreEnvi.eBuoy.ItemIndex := SceEnvi.Scenario_Buoy;
+//    frmMoreEnvi.eTree.ItemIndex := SceEnvi.Scenario_Tree;
+//    frmMoreEnvi.eTheme.ItemIndex := SceEnvi.Scenario_Theme;
+//    frmMoreEnvi.Building := SceEnvi.Scenario_Building;
+//    frmMoreEnvi.StaticShip := SceEnvi.Scenario_StaticShip;
+//    frmMoreEnvi.Buoy := SceEnvi.Scenario_Buoy;
+//    frmMoreEnvi.Tree := SceEnvi.Scenario_Tree;
+//    frmMoreEnvi.Theme := SceEnvi.Scenario_Theme;
+
+//    frmMoreEnvi.lblWindDirection.Caption :=
+//      FloatToStr(SceEnvi.Scenario_WindDir_Deg);
+//    frmMoreEnvi.lblCurrentDirection.Caption :=
+//      FloatToStr(SceEnvi.Scenario_CurrDir_Deg);
+//    frmMoreEnvi.lblTemperature.Caption :=
+//      FloatToStr(SceEnvi.Scenario_Temperature);
+//    frmMoreEnvi.lblBaroPressure.Caption :=
+//      FloatToStr(SceEnvi.Scenario_BaroPressure);
+//    frmMoreEnvi.lblHumidity.Caption := FloatToStr(SceEnvi.Scenario_Humidity);
+//    frmMoreEnvi.lblFogHeight.Caption :=
+//      FloatToStr(SceEnvi.Scenario_FogHeight_Persen);
+//    frmMoreEnvi.SeaState := Round(SceEnvi.Scenario_SeaState);
+//    frmMoreEnvi.WindSpeed := Round(SceEnvi.Scenario_WindSpeed);
+//    frmMoreEnvi.CurrentSpeed := Round(SceEnvi.Scenario_CurrSpeed);
+//    frmMoreEnvi.WindDir := Round(SceEnvi.Scenario_WindDir_Deg);
+//    frmMoreEnvi.CurrentDir := Round(SceEnvi.Scenario_CurrDir_Deg);
+//    frmMoreEnvi.Temperature := Round(SceEnvi.Scenario_Temperature);
+//    frmMoreEnvi.BaroPressure := Round(SceEnvi.Scenario_BaroPressure);
+//    frmMoreEnvi.Humidity := Round(SceEnvi.Scenario_Humidity);
+//    frmMoreEnvi.FogHeight := Round(SceEnvi.Scenario_FogHeight_Persen);
+//
+//    frmMoreEnvi.tbSeaState.position := Round(SceEnvi.Scenario_SeaState);
+//    frmMoreEnvi.tbWindSpeed.position := Round(SceEnvi.Scenario_WindSpeed);
+//    frmMoreEnvi.tbSeaSpeed.position := Round(SceEnvi.Scenario_CurrSpeed);
+//    frmMoreEnvi.tbTemp.position := Round(SceEnvi.Scenario_Temperature);
+//    frmMoreEnvi.tbBaroPressure.position :=
+//      Round(SceEnvi.Scenario_BaroPressure);
+//    frmMoreEnvi.tbHumidity.position := Round(SceEnvi.Scenario_Humidity);
+//    frmMoreEnvi.tbFogH.position := Round(SceEnvi.Scenario_FogHeight_Persen);
+
+
+  finally
+    SceEnvi.Free;
+  end;
+  { --------------------------------------------------------------------- }
+
+//  ListScenario := TList.Create;
+//  DataModule1.GettAllScenario(ListScenario);
+//  for i := 0 to ListScenario.Count - 1 do
+//  begin
+//    if Assigned(ListScenario[i]) then
+//    begin
+//      Scenario := TScenarioList(ListScenario[i]);
+//      if Scenario.Scenario_ID = Scenario_ID then
+//      begin
+//        cbbPort.ItemIndex := Round(Scenario.ENV_PETA);
+//        break;
+//      end;
+//    end;
+//  end;
+//  ClearAList(ListScenario);
+//  ListScenario.Free;
+//
+//  ListConsole := TList.Create;
+//  DataModule1.GetConsoleListBySceID(Scenario_ID, ListConsole);
+//  for i := 0 to ListConsole.Count - 1 do
+//  begin
+//    if Assigned(ListConsole.Items[i]) then
+//    begin
+//      Console := TConsole(ListConsole.Items[i]);
+//
+//      for j := 0 to lvConsole.Items.Count - 1 do
+//      begin
+//        Console_ID := StrToInt(lvConsole.Items[j].Caption);
+//
+//        if Console.ConsoleID = Console_ID then
+//        begin
+//          lvConsole.Items[j].SubItems[4] :=
+//            DataModule1.GetShipName(Console.shipID);
+//          lvConsole.Items[j].SubItems[5] := IntToStr(Console.shipID);
+//          lvConsole.Items[j].SubItems[6] := IntToStr(Console.LauncherID);
+//
+//          break;
+//        end;
+//      end;
+//    end;
+//  end;
+//  ClearAList(ListConsole);
+//  ListConsole.Free;
+//
+//  mmoKetSce.Lines.Add(DataModule1.GetDesById(Scenario_ID));
+//  DataModule1.GetSceneOffSetFromPortID
+//    (DataModule1.GetMapById(Scenario_ID), Dx, Dy);
+//
+//  if ((SimManager.instMapSet.xOffset <> Dx) and
+//    (SimManager.instMapSet.yOffset <> Dy)) then
+//  begin
+//    SimManager.instMapSet.useOffset := true;
+//    SimManager.instMapSet.xOffset := Dx;
+//    SimManager.instMapSet.yOffset := Dy;
+//    SimManager.instMapSet.xCenter := Dx;
+//    SimManager.instMapSet.yCenter := Dy;
+//
+//    frmMainInstruktur.MainMap.ZoomTo(frmMainInstruktur.MainMap.Zoom, Dx, Dy);
+//  end;
+//
+//  GetAllVehicle;
+//
+//  listAllShip := TList.Create;
+//  DataModule1.GetAllShipFromScen(Scenario_ID, listAllShip);
+//  for i := 0 to listAllShip.Count - 1 do
+//  begin
+//    if Assigned(listAllShip[i]) then
+//    begin
+//      AllShip := TVehicle(listAllShip[i]);
+//
+//      ShipDetail := TVehicle.Create;
+//      ShipDetail.Vehicle_ID := AllShip.Vehicle_ID;
+//      ShipDetail.Vehicle_Name := AllShip.Vehicle_Name;
+//      ShipDetail.Vehicle_Ctgr := AllShip.Vehicle_Ctgr;
+//      ShipDetail.Vehicle_No := AllShip.Vehicle_No;
+//      ShipDetail.Vehicle_X := AllShip.Vehicle_X;
+//      ShipDetail.Vehicle_Y := AllShip.Vehicle_Y;
+//      ShipDetail.Vehicle_Z := AllShip.Vehicle_Z;
+//      ShipDetail.Vehicle_Heading := AllShip.Vehicle_Heading;
+//      ShipDetail.Vehicle_Speed := AllShip.Vehicle_Speed;
+//
+//      { KRI SHIP }
+//      if (AllShip.Vehicle_Ctgr <> 0) and (AllShip.Vehicle_Type = 1) and
+//        (AllShip.Vehicle_Target = 0) then
+//      begin
+//        { Get KRI Ship }
+//        ListViewAdd(lvWarShipSelect, lvWarShipAll, ShipDetail, 3);
+//      end
+//      else
+//        { General SHIP }
+//        if (AllShip.Vehicle_Ctgr = 0) and (AllShip.Vehicle_Type = 1) and
+//          (AllShip.Vehicle_Target = 0) then
+//        begin
+//          { Get KRI Ship }
+//          ListViewAdd(lvGeneralShipSelect, lvGeneralShipAll, ShipDetail, 3);
+//        end
+//        else
+//          { Target Surface }
+//          if (AllShip.Vehicle_Type = 1) and (AllShip.Vehicle_Target = 1) then
+//          begin
+//            { Get KRI Ship }
+//            ListViewAdd(lvTargetSurfaceSelect, lvTargetSurfaceAll,
+//              ShipDetail, 3);
+//          end
+//          else
+//            { Target Subsurface }
+//            if (AllShip.Vehicle_Type = 3) and (AllShip.Vehicle_Target = 1)
+//            then
+//            begin
+//              { Get KRI Ship }
+//              ListViewAdd(lvTargetSubsurfaceSelect, lvTargetSubsurfaceAll,
+//                ShipDetail, 3);
+//            end
+//            else
+//              { Target Subsurface }
+//              if (AllShip.Vehicle_Type = 2) and (AllShip.Vehicle_Target = 1)
+//              then
+//              begin
+//                { Get KRI Ship }
+//                ListViewAdd(lvTargetAirSelect, lvTargetAirAll, ShipDetail, 3);
+//              end;
+//
+//      { Set Environment Object }
+//      Mx := AllShip.Vehicle_X;
+//      My := AllShip.Vehicle_Y;
+//      // Mx := (AllShip.Vehicle_X / C_Degree_To_Meter)+ Dx;
+//      // My := (AllShip.Vehicle_Y / C_Degree_To_Meter)+ Dy;
+//
+//      for j := 0 to SimManager.MainObjList.ItemCount - 1 do
+//      begin
+//        if Assigned(SimManager.MainObjList.getObject(j)) then
+//        begin
+//          Ship := SimManager.MainObjList.getObject(j) as TInsObject;
+//          if Ship.FDataBaseID = AllShip.Vehicle_ID then
+//          begin
+//            Ship.MoveTo(Mx, My);
+//            Ship.AllowUpdate := false;
+//            Ship.VSymbol.Heading := ValidateDegree(AllShip.Vehicle_Heading);
+//            Ship.PositionZ := AllShip.Vehicle_Z;
+//            Ship.Speed := AllShip.Vehicle_Speed;
+//            break;
+//          end;
+//        end;
+//      end;
+//    end;
+//  end;
+//  ClearAList(listAllShip);
+//  listAllShip.Free;
+end;
 
 procedure TfrmGameController.lvWeaponMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
