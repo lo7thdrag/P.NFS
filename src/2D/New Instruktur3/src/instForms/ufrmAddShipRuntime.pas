@@ -32,10 +32,9 @@ type
     lblZ: TAdvSmoothLabel;
     edtZCoord: TCurvyEdit;
     AdvSmoothLabel1: TAdvSmoothLabel;
-    CurvyEdit1: TCurvyEdit;
+    Longitude: TCurvyEdit;
     AdvSmoothLabel2: TAdvSmoothLabel;
-    CurvyEdit2: TCurvyEdit;
-    btnPinPoin: TAdvSmoothButton;
+    Latitude: TCurvyEdit;
     procedure TabSelectionChange(Sender: TObject);
     procedure TabTargetShipChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -100,6 +99,7 @@ begin
   lvTargetAirAll.OnClick := ListViewClick;
 
   TabSelection.ActivePage := tsShipKRI;
+//  Position.poDesigned;
 end;
 
 procedure TfrmAddShipRuntime.FormDestroy(Sender: TObject);

@@ -57,7 +57,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 416
     TMSStyle = 0
     object TabSelection: TAdvSmoothTabPager
       Left = 0
@@ -85,7 +84,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       TabReorder = False
       OnChange = TabSelectionChange
       TabOrder = 0
-      ExplicitHeight = 416
       TMSStyle = 0
       object tsShipKRI: TAdvSmoothTabPage
         Left = 1
@@ -159,7 +157,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
           SortType = stBoth
           TabOrder = 0
           ViewStyle = vsReport
-          ExplicitHeight = 370
         end
         object lvWeaponSelected: TListView
           Left = 895
@@ -300,7 +297,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
           TabReorder = False
           OnChange = TabTargetShipChange
           TabOrder = 0
-          ExplicitHeight = 370
           TMSStyle = 0
           object tsSurface: TAdvSmoothTabPage
             Left = 1
@@ -373,7 +369,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
               SortType = stBoth
               TabOrder = 0
               ViewStyle = vsReport
-              ExplicitHeight = 339
             end
           end
           object tsSubsurface: TAdvSmoothTabPage
@@ -446,7 +441,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
               SortType = stBoth
               TabOrder = 0
               ViewStyle = vsReport
-              ExplicitHeight = 339
             end
           end
           object tsAir: TAdvSmoothTabPage
@@ -520,7 +514,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
               SortType = stBoth
               TabOrder = 0
               ViewStyle = vsReport
-              ExplicitHeight = 339
             end
           end
         end
@@ -597,7 +590,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
           SortType = stBoth
           TabOrder = 0
           ViewStyle = vsReport
-          ExplicitHeight = 370
         end
       end
     end
@@ -779,10 +771,10 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       ImeName = ''
       Text = ''
     end
-    object CurvyEdit1: TCurvyEdit
+    object Longitude: TCurvyEdit
       Left = 98
       Top = 23
-      Width = 151
+      Width = 201
       Height = 24
       TabOrder = 2
       TabStop = False
@@ -791,10 +783,10 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       ImeName = ''
       Text = ''
     end
-    object CurvyEdit2: TCurvyEdit
+    object Latitude: TCurvyEdit
       Left = 98
       Top = 51
-      Width = 151
+      Width = 201
       Height = 24
       TabOrder = 3
       TabStop = False
@@ -802,40 +794,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       Controls = <>
       ImeName = ''
       Text = ''
-    end
-    object btnPinPoin: TAdvSmoothButton
-      Left = 255
-      Top = 25
-      Width = 51
-      Height = 46
-      Cursor = crHandPoint
-      Appearance.Font.Charset = ANSI_CHARSET
-      Appearance.Font.Color = clBlack
-      Appearance.Font.Height = -13
-      Appearance.Font.Name = 'Tahoma'
-      Appearance.Font.Style = [fsBold]
-      Status.Caption = '0'
-      Status.Appearance.Fill.Color = clRed
-      Status.Appearance.Fill.ColorMirror = clNone
-      Status.Appearance.Fill.ColorMirrorTo = clNone
-      Status.Appearance.Fill.GradientType = gtSolid
-      Status.Appearance.Fill.GradientMirrorType = gtSolid
-      Status.Appearance.Fill.BorderColor = clGray
-      Status.Appearance.Fill.Rounding = 0
-      Status.Appearance.Fill.ShadowOffset = 0
-      Status.Appearance.Fill.Glow = gmNone
-      Status.Appearance.Font.Charset = DEFAULT_CHARSET
-      Status.Appearance.Font.Color = clWhite
-      Status.Appearance.Font.Height = -11
-      Status.Appearance.Font.Name = 'Tahoma'
-      Status.Appearance.Font.Style = []
-      BevelColor = clGray
-      Caption = '+'
-      Color = clSilver
-      ParentFont = False
-      TabOrder = 4
-      Version = '2.1.3.0'
-      TMSStyle = 0
     end
   end
 end

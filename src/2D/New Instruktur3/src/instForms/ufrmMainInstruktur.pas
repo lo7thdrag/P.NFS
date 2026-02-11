@@ -39,7 +39,7 @@ type
   TStateToolButton = (sZoomCenter, sZoomOut, sZoomIn, sZoomValue,
                       sSelectArrow, sSelectMove, sSelectMoveAll,
                       sToolRuler, sRecordStart, sRecordPause, sHand,
-                      sToolTikas, sToolZoomCenterMap1, sToolZoomCenterMap2);
+                      sToolTikas, sToolZoomCenterMap1, sToolZoomCenterMap2, sAddVehicle);
 
   TfrmMainInstruktur = class(TForm)
     pnlMain: TPanel;
@@ -334,6 +334,7 @@ begin
   btnToolTikas.Tag      := 11;
   btnZoomCenterMap1.Tag := 12;
   btnZoomCenterMap2.Tag := 13;
+  btnAddVehicle.Tag     := 14;
 
   btnZoomCenter.OnClick     := OnClick_ToolButton;
   btnZoomCenterMap1.OnClick := OnClick_ToolButton;
@@ -349,6 +350,7 @@ begin
   btnRecordPause.OnClick    := OnClick_ToolButton;
   btnHand.OnClick           := OnClick_ToolButton;
   btnToolTikas.OnClick      := OnClick_ToolButton;
+  btnAddVehicle.OnClick     := OnClick_ToolButton;
 end;
 
 procedure TfrmMainInstruktur.SetDefaultMapTool;
@@ -445,6 +447,7 @@ begin
   case FToolSelected of
     sZoomCenter     :
     begin
+      {$REGION ' sZoomCenter '}
       btnZoomCenter.ImageIndex     := 1;
       MainMap.CurrentTool          := miCenterTool;
       SimManager.Selections.ClearSelection;
@@ -454,10 +457,12 @@ begin
       // untuk map didepan
       Map1Ready := False;
       Map2Ready := False
+      {$ENDREGION}
     end;
 
     sZoomOut        :
     begin
+      {$REGION ' sZoomOut '}
       if MainMap.Zoom >= 2050 then
       begin
         btnSelectArrow.ImageIndex    := 1;
@@ -474,10 +479,12 @@ begin
         SimManager.VSelect.Visible := false;
         lblToolUsed.Caption := 'Zoom Out';
       end;
+      {$ENDREGION}
     end;
 
     sZoomIn         :
     begin
+      {$REGION ' sZoomIn '}
       if MainMap.Zoom <= 4 then
       begin
         btnSelectArrow.ImageIndex    := 1;
@@ -494,10 +501,12 @@ begin
         SimManager.VSelect.Visible := false;
         lblToolUsed.Caption := 'Zoom In';
       end;
+      {$ENDREGION}
     end;
 
     sZoomValue      :
     begin
+      {$REGION ' sZoomValue '}
       Map1Ready := False;
       Map2Ready := False;
       btnHand.ImageIndex           := 1;
@@ -506,19 +515,23 @@ begin
       SimManager.VSelect.Visible := false;
 
       frmCustomZoom.ShowModal;
+      {$ENDREGION}
     end;
 
     sSelectArrow    :
     begin
+      {$REGION ' sSelectArrow '}
       btnSelectArrow.ImageIndex    := 1;
       MainMap.CurrentTool          := miArrowTool;
       SimManager.Selections.ClearSelection;
       SimManager.VSelect.Visible := false;
       lblToolUsed.Caption := 'Select Arrow';
+      {$ENDREGION}
     end;
 
     sSelectMove     :
     begin
+      {$REGION ' sSelectMove '}
       btnSelectMove.ImageIndex     := 1;
       MainMap.CurrentTool          := TOOL_MOVE_UNIT;
       isSelectTool                 := false;
@@ -529,20 +542,24 @@ begin
       SimManager.VSelect.ptStart  := pt;
       SimManager.VSelect.ptEnd    := pt;
       lblToolUsed.Caption := 'Select Move';
+      {$ENDREGION}
     end;
 
     sSelectMoveAll  :
     begin
+      {$REGION ' sSelectMoveAll '}
       btnSelectMoveAll.ImageIndex  := 1;
       MainMap.CurrentTool          := TOOL_SELECT_UNIT;
       isSelectTool                 := true;
       SimManager.Selections.ClearSelection;
       SimManager.VSelect.Visible := false;
       lblToolUsed.Caption := 'Select Move All';
+      {$ENDREGION}
     end;
 
     sToolRuler      :
     begin
+      {$REGION ' sToolRuler '}
       btnHand.ImageIndex           := 1;
       MainMap.CurrentTool          := TOOL_DISTANCE;
       SimManager.Selections.ClearSelection;
@@ -560,11 +577,12 @@ begin
         frmDistance.Show;
       end;
       lblToolUsed.Caption := 'Tool Ruler';
-
+      {$ENDREGION}
     end;
 
     sRecordStart    :
     begin
+      {$REGION ' sRecordStart '}
       if (SimManager.MainObjList.ItemCount > 0)
          and (not(SimManager.fGamePlayType = gpmReplay))then
       begin
@@ -596,6 +614,7 @@ begin
         ShowMessage('Instruktur :: Empty Scenario.');
         btnRecordStart.ImageIndex    := 0;
       end;
+      {$ENDREGION}
     end;
 
     sRecordPause    :
@@ -605,15 +624,18 @@ begin
 
     sHand   :
     begin
+      {$REGION ' sHand '}
       btnHand.ImageIndex           := 1;
       MainMap.CurrentTool          := miPanTool;
       SimManager.Selections.ClearSelection;
       SimManager.VSelect.Visible := false;
       lblToolUsed.Caption := 'Select Hand';
+      {$ENDREGION}
     end;
 
     sToolTikas  :
     begin
+      {$REGION ' sToolTikas '}
       if btnToolTikas.Hint = 'Hide History' then
       begin
         btnToolTikas.Hint := 'Show History';
@@ -641,10 +663,12 @@ begin
 
         end;
       end;
+      {$ENDREGION}
     end;
 
     sToolZoomCenterMap1 :
     begin
+      {$REGION ' sToolZoomCenterMap1 '}
 //      SimManager.InstrukturSendLaunchCommand(ipClient, IntToStr(shipID), '0');
 
 
@@ -672,12 +696,12 @@ begin
       SimManager.Selections.ClearSelection;
       SimManager.VSelect.Visible := false;
       lblToolUsed.Caption := 'Select Arrow';
-
+      {$ENDREGION}
     end;
 
     sToolZoomCenterMap2 :
     begin
-
+      {$REGION ' sToolZoomCenterMap2 '}
       {btnZoomCenterMap2.ImageIndex     := 1;
       MainMap.CurrentTool              := miCenterTool;
       Map1Ready                        := False;
@@ -711,7 +735,27 @@ begin
       SimManager.VSelect.Visible := false;
       lblToolUsed.Caption := 'Select Arrow';
 
+      {$ENDREGION}
+    end;
 
+    sAddVehicle :
+    begin
+      {$REGION ' sAddVehicle '}
+      btnAddVehicle.ImageIndex := 0;
+      MainMap.CurrentTool          := TOOL_ADD_VEHICLE;
+      SimManager.Selections.ClearSelection;
+      SimManager.VSelect.Visible := false;
+
+      if MainMap.Geoset <> '' then
+      begin
+        MainMap.CurrentTool := TOOL_ADD_VEHICLE;
+
+        frmAddShipRuntime.FormStyle := fsStayOnTop;
+        frmAddShipRuntime.BringToFront;
+        frmAddShipRuntime.Show;
+      end;
+      lblToolUsed.Caption := 'Tool Ruler';
+      {$ENDREGION}
     end;
   end;
 end;
@@ -772,7 +816,7 @@ begin
   MainMap.CreateCustomTool(TOOL_SELECT_TETRAL_TARGET, miToolTypePoint, miCrossCursor, miCrossCursor);
   //MainMap.CreateCustomTool(TOOL_MAP_VIEW, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_SELECT_WAYPOINT, miToolTypePoint, miCrossCursor, miCrossCursor);
-
+  MainMap.CreateCustomTool(TOOL_ADD_VEHICLE, miToolTypePoint, miCrossCursor, miCrossCursor);
 
 
 //  TimerDestroy := TTimer.Create(nil);
@@ -1323,6 +1367,7 @@ begin
       { Select Tool }
       miArrowTool :
       begin
+        {$REGION ' Select Tool '}
         FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
         SimManager.ResetColorShip;
         mptLast := point(X, Y);
@@ -1365,7 +1410,8 @@ begin
           end;
         end;
         frmGameController.SelectShip(SimManager.TrackObject);   //sinkron dengan list di form game controller
-                                                                //entah track object nil atau tidak
+
+        {$ENDREGION}                                                        //entah track object nil atau tidak
       end;
 
       miZoomOutTool :
@@ -1388,7 +1434,7 @@ begin
       { Move Unit Tool }
       TOOL_MOVE_UNIT :
       begin
-
+        {$REGION ' Move Unit Tool '}
         mptLast := point(X, Y);
         SimManager.DragObject := nil;
         IsDragMulti := false;
@@ -1470,10 +1516,13 @@ begin
           end;
 
         end;
+
+        {$ENDREGION}
       end;
       {Repost Object}
       TOOL_REPOST_OBJECT :
       begin
+        {$REGION ' Repost Object '}
 
         frmGameController.btnRemoveObject.Enabled := True;
         sX := X;
@@ -1500,10 +1549,12 @@ begin
 //          end;
         end;
         SetDefaultMapTool;
+        {$ENDREGION}
       end;
       { Distance Ruler }
       TOOL_DISTANCE:
       begin
+        {$REGION ' Distance Ruler '}
         frmDistance.BringToFront;
         SimManager.VRuler.Visible := true;
 
@@ -1548,11 +1599,14 @@ begin
           frmDistance.startX := X;
           frmDistance.startY := Y;
         end;
+
+        {$ENDREGION}
       end;
 
       { Database Pos}
       TOOL_DATABASE_POS :
       begin
+        {$REGION ' Database Pos '}
         if not Assigned(SimManager.DatabaseObject) then
           Exit;
 
@@ -1572,11 +1626,13 @@ begin
         setAltAndDepth(flag);
         SimManager.DatabaseObject := nil;
         setArrow;
+        {$ENDREGION}
       end;
 
       { Assign Ascok }
       TOOL_SELECT_ASROCTARGET :
       begin
+        {$REGION ' Assign Ascok '}
         frmMainInstruktur.SetDefaultMapTool;
         if not Assigned(SimManager.TrackObject) then
           Exit;
@@ -1620,11 +1676,13 @@ begin
           SimManager.selectedObject := nil;
           SimManager.selectedView   := nil;
         end;
+        {$ENDREGION}
       end;
 
       { Assign C802 } 
       TOOL_SELECT_C802TARGET:
       begin
+        {$REGION ' Assign C802 '}
         frmMainInstruktur.SetDefaultMapTool;
         if not Assigned(SimManager.TrackObject) then
           Exit;
@@ -1668,11 +1726,13 @@ begin
           SimManager.selectedObject := nil;
           SimManager.selectedView   := nil;
         end;
+        {$ENDREGION}
       end;
 
       { Assign Yakhont }
       TOOL_SELECT_YAKHONTTARGET:
       begin
+        {$REGION ' Assign Yakhont '}
         frmMainInstruktur.SetDefaultMapTool;
         if not Assigned(SimManager.TrackObject) then
           Exit;
@@ -1714,12 +1774,13 @@ begin
           SimManager.selectedObject := nil;
           SimManager.selectedView   := nil;
         end;
+        {$ENDREGION}
       end;
 
       { Assign RBU }
       TOOL_SELECT_RBUTARGET:
       begin
-
+        {$REGION ' Assign RBU '}
         frmMainInstruktur.SetDefaultMapTool;
         if not Assigned(SimManager.TrackObject) then
         Exit;
@@ -1762,11 +1823,13 @@ begin
           SimManager.selectedObject := nil;
           SimManager.selectedView   := nil;
         end;
+        {$ENDREGION}
       end;
 
       { Assign SPS/ Torpedo A244 }
       TOOL_SELECT_SPSTARGET :
       begin
+        {$REGION ' Assign SPS/ Torpedo A244 '}
         frmMainInstruktur.SetDefaultMapTool;
         if not Assigned(SimManager.TrackObject) then
           Exit;
@@ -1807,11 +1870,13 @@ begin
           SimManager.selectedObject := nil;
           SimManager.selectedView   := nil;
         end;
+        {$ENDREGION}
       end;
 
       { Select Coord Exocet MM40 }
       TOOL_SELECT_COORD :
       begin
+        {$REGION ' Select Coord Exocet MM40 '}
         if Assigned(frmGameController.lvRuntimeShip.Selected) then
         begin
           frmMainInstruktur.SetDefaultMapTool;
@@ -1838,11 +1903,12 @@ begin
           end;
 
         end;
-
+        {$ENDREGION}
       end;
 
       TOOL_SELECT_COORD_C802 :
       begin
+        {$REGION ' TOOL_SELECT_COORD_C802 '}
         if Assigned(frmGameController.lvRuntimeShip.Selected) then
         begin
           frmMainInstruktur.SetDefaultMapTool;
@@ -1881,10 +1947,12 @@ begin
           end;
 
         end;
+        {$ENDREGION}
       end;
 
       TOOL_SELECT_COORD_YAKHONT :
       begin
+        {$REGION ' TOOL_SELECT_COORD_YAKHONT '}
         if Assigned(frmGameController.lvRuntimeShip.Selected) then
         begin
           frmMainInstruktur.SetDefaultMapTool;
@@ -1917,10 +1985,12 @@ begin
           end;
 //          DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail,  ListWeaponDetail);
         end;
+        {$ENDREGION}
       end;
 
       TOOL_SELECT_COORD_STRELLA :
       begin
+        {$REGION ' TOOL_SELECT_COORD_STRELLA '}
         if Assigned(frmGameController.lvRuntimeShip.Selected) then
         begin
           frmMainInstruktur.SetDefaultMapTool;
@@ -1956,9 +2026,12 @@ begin
           end;
 
         end;
+        {$ENDREGION}
       end;
+
       TOOL_SELECT_COORD_MISTRAL :
       begin
+        {$REGION ' TOOL_SELECT_COORD_MISTRAL '}
         if Assigned(frmGameController.lvRuntimeShip.Selected) then
         begin
           frmMainInstruktur.SetDefaultMapTool;
@@ -1994,10 +2067,12 @@ begin
           end;
 
         end;
+        {$ENDREGION}
       end;
 
       TOOL_SELECT_TORPSUT_TARGET :
       begin
+        {$REGION ' TOOL_SELECT_TORPSUT_TARGET '}
 //        if not Assigned(SimManager.TrackObject) then Exit;
 
         SimManager.FindViewByPosition(mptDown, SimManager.selectedView);
@@ -2033,10 +2108,12 @@ begin
         end;
 
         setArrow;
+        {$ENDREGION}
       end;
 
       TOOL_SELECT_COORD_RBU:
       begin
+        {$REGION ' TOOL_SELECT_COORD_RBU '}
         if Assigned(frmGameController.lvRuntimeShip.Selected) then
         begin
           frmMainInstruktur.SetDefaultMapTool;
@@ -2125,11 +2202,12 @@ begin
           frmGameController.eRBUTargetID.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
           setArrow;
         end;
+        {$ENDREGION}
       end;
 
       TOOL_SELECT_ASROC_TARGET :
       begin
-
+        {$REGION ' TOOL_SELECT_ASROC_TARGET '}
         frmMainInstruktur.SetDefaultMapTool;
 
         sx := X;
@@ -2231,12 +2309,12 @@ begin
           setArrow;
 
         end;
-
-
+        {$ENDREGION}
       end;
 
       TOOL_SELECT_TETRAL_TARGET :
       begin
+        {$REGION ' TOOL_SELECT_TETRAL_TARGET '}
         if Assigned(frmGameController.lvRuntimeShip.Selected) then
         begin
           frmMainInstruktur.SetDefaultMapTool;
@@ -2273,10 +2351,12 @@ begin
           end;
 
         end;
+        {$ENDREGION}
       end;
 
       TOOL_SELECT_CANON_TARGET :
       begin
+        {$REGION ' TOOL_SELECT_CANON_TARGET '}
         SimManager.FindViewByPosition(mptDown, SimManager.selectedView);
         if not Assigned(SimManager.selectedView) then
           Exit;
@@ -2294,7 +2374,9 @@ begin
         end;
         frmGameController.edtCannonTargetID.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
         setArrow;
+        {$ENDREGION}
       end;
+
       TOOL_MAP_VIEW :
       begin
 
@@ -2302,6 +2384,7 @@ begin
 
      TOOL_SELECT_WAYPOINT :
      begin
+       {$REGION ' TOOL_SELECT_WAYPOINT '}
       sX := X;
       SY := Y;
       MainMap.ConvertCoord(sx, sY, mx, my, miScreenToMap);
@@ -2370,6 +2453,18 @@ begin
             end;
           end;
         end; }
+      {$ENDREGION}
+     end;
+
+     TOOL_ADD_VEHICLE :
+     begin
+      sx := x;
+      sy := y;
+
+      MainMap.ConvertCoord(sx, sy, mx, my, miScreenToMap);
+
+      frmAddShipRuntime.Longitude.Text  := ConvLL_To_Str(mx, '0');
+      frmAddShipRuntime.Latitude.Text   := ConvLL_To_Str(my, '1');
      end;
     end;
   end
