@@ -106,8 +106,6 @@ type
     imgHeaderProject: TImage;
     pnlInfo: TAdvSmoothPanel;
     AdvSmoothPanel2: TAdvSmoothPanel;
-    lbl84: TLabel;
-    lbl90: TLabel;
     pnlMain: TPanel;
     pnlClient: TPanel;
     pnlClientLayout: TPanel;
@@ -672,8 +670,6 @@ type
     imgPlatform: TImage;
     imgEnvironment: TImage;
     imgReport: TImage;
-    btn2: TButton;
-    btn1: TButton;
     imageC802: TImage;
     imageYahkont: TImage;
     ImageCannon: TImage;
@@ -681,7 +677,60 @@ type
     imageMistral: TImage;
     imageStrella: TImage;
     imageTorpedoSUT: TImage;
-    imagerRBU6000: TImage;
+    imageRBU6000: TImage;
+    imageTpoA244: TImage;
+    pnlListScenario: TAdvSmoothPanel;
+    lblGameName: TLabel;
+    imgEdit: TImage;
+    imgNew: TImage;
+    imgDelete: TImage;
+    lvListScen: TListView;
+    pnlsprScen1: TPanel;
+    pnlMainScenario: TAdvSmoothPanel;
+    pnlDetailScenario: TAdvSmoothPanel;
+    advsmthlbl3: TAdvSmoothLabel;
+    advsmthlbl2: TAdvSmoothLabel;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    AdvSmoothLabel3: TAdvSmoothLabel;
+    AdvSmoothLabel4: TAdvSmoothLabel;
+    mmoKetSce: TMemo;
+    cbbPort: TComboBox;
+    lvWarShipSelect: TListView;
+    lv1: TListView;
+    lv2: TListView;
+    pnlHeaderScenario: TAdvSmoothPanel;
+    lbl180: TLabel;
+    pnlsprScen2: TPanel;
+    pnlEnviScenario: TAdvSmoothPanel;
+    AdvSmoothLabel5: TAdvSmoothLabel;
+    AdvSmoothLabel6: TAdvSmoothLabel;
+    advsmthlbl4: TAdvSmoothLabel;
+    AdvSmoothLabel14: TAdvSmoothLabel;
+    VrWheel1: TVrWheel;
+    VrWheel2: TVrWheel;
+    AdvSmoothLabel15: TAdvSmoothLabel;
+    advsmthlbl5: TAdvSmoothLabel;
+    advsmthlbl7: TAdvSmoothLabel;
+    advsmthlbl6: TAdvSmoothLabel;
+    advsmthlbl8: TAdvSmoothLabel;
+    trckBarSeaState: TTrackBar;
+    trckBarCurrentSpeed: TTrackBar;
+    trckBarWindDirection: TTrackBar;
+    trckBarTemperature: TTrackBar;
+    trckBarBarometer: TTrackBar;
+    trckBarHumidity: TTrackBar;
+    trckBarFogHeight: TTrackBar;
+    btnStopScenario: TButton;
+    btn2: TButton;
+    btn3: TButton;
+    edtWindDirection: TEdit;
+    edtCurrentSpeed: TEdit;
+    edtTemperature: TEdit;
+    edtBarometer: TEdit;
+    edtHumidity: TEdit;
+    edtFogHeight: TEdit;
+    edtSeaState: TEdit;
+    pnlsprScen3: TPanel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -818,6 +867,10 @@ type
     procedure MainMenuClick(Sender: TObject);
     procedure MainMenuMouseEnter(Sender: TObject);
     procedure MainMenuMouseLeave(Sender: TObject);
+    procedure lvListScenKeyPress(Sender: TObject; var Key: Char);
+    procedure imgEditClick(Sender: TObject);
+    procedure lvListScenClick(Sender: TObject);
+    procedure imgDeleteClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -871,6 +924,11 @@ type
     procedure RunClientFromPopupSubMenu(Sender: TObject);
     procedure AutoRefresh;
 
+    {$REGION ' Scenario Procedure '}
+
+    procedure ShowScenario;
+
+    {$ENDREGION}
 
     procedure FillClientList;
     procedure CekLight;
@@ -1809,6 +1867,40 @@ begin
 
 end;
 
+procedure TfrmGameController.imgDeleteClick(Sender: TObject);
+var
+  id : Integer;
+begin
+  if lvListScen.Selected <> nil then
+  begin
+    id :=  StrToInt(lvListScen.Selected.Caption);
+    DataModule1.DeleteScenario(id);
+  end
+  else
+    ShowMessage('Select Scenario First');
+
+  ShowScenario;
+end;
+
+procedure TfrmGameController.imgEditClick(Sender: TObject);
+begin
+  if lvListScen.Selected <> nil then
+  begin
+    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
+    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
+    frmMainInstruktur.Caption := 'Firing System Instruktur - '+lvListScen.Selected.SubItems[0];
+
+    frmSceEditor.isNew := false;
+    frmSceEditor.UpdateVisualForm;
+
+    Close;
+  end
+  else
+  begin
+    ShowMessage('Select Scenario First');
+  end;
+end;
+
 procedure TfrmGameController.RunClientFromPopupMenu(Sender: TObject);
 var
   shipID      : integer ;
@@ -2319,6 +2411,28 @@ begin
   else
   begin
      SelectConsole;
+  end;
+end;
+
+procedure TfrmGameController.lvListScenClick(Sender: TObject);
+var
+  aDateTime : TDatetime;
+  formatDate : string;
+begin
+  if lvListScen.Selected = nil then Exit;
+
+  aDateTime := Now;
+  DateTimeToString(formatDate, 'ddmmyy_hhnnss', aDateTime);
+//  edtGameName.Text := lvListScen.Selected.SubItems[0]+'_'+formatDate;
+
+  //btnOk.SetFocus;
+end;
+
+procedure TfrmGameController.lvListScenKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+//    btnOkClick(btnOK);
   end;
 end;
 
@@ -3339,6 +3453,7 @@ begin
     1:
     begin
       pnlScenario.BringToFront;
+      ShowScenario;
     end;
     2:
     begin
@@ -3849,6 +3964,37 @@ begin
 
 end;
 
+procedure TfrmGameController.ShowScenario;
+var
+  i : integer;
+  ListScenario : Tlist;
+  Scenario : TScenarioList;
+begin
+//  edtGameName.Text:='';
+  lvListScen.Items.Clear;
+
+  ListScenario := TList.Create;
+  DataModule1.GettAllScenario(ListScenario);
+
+  for i := 0 to ListScenario.Count - 1 do
+  begin
+    Scenario := TScenarioList(ListScenario[i]);
+
+//    if Scenario.Scenario_ID = 0 then Continue;
+
+    if Scenario.Scenario_ID=0 then
+    else
+      with lvListScen.Items.Add do
+      begin
+        Caption := IntToStr(Scenario.Scenario_ID);
+        SubItems.Add(Scenario.Scenario_Name);
+        SubItems.Add(DataModule1.GetPortNameNoById(Scenario.ENV_PETA));
+      end;
+  end;
+  ClearAList(ListScenario);
+  ListScenario.Free;
+end;
+
 procedure TfrmGameController.ShowWeaponPanel(WeaponID, LauncherID: integer);
 var
   launcher : string;
@@ -4268,7 +4414,8 @@ begin
         imageMistral.Picture.LoadFromFile(weaponPic);
         imageStrella.Picture.LoadFromFile(weaponPic);
         imageTorpedoSUT.Picture.LoadFromFile(weaponPic);
-        imagerRBU6000.Picture.LoadFromFile(weaponPic);
+        imageRBU6000.Picture.LoadFromFile(weaponPic);
+        imageTpoA244.Picture.LoadFromFile(weaponPic);
       end;
     end;
 
