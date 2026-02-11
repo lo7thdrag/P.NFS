@@ -108,10 +108,6 @@ type
     AdvSmoothPanel2: TAdvSmoothPanel;
     lbl84: TLabel;
     lbl90: TLabel;
-    btnAddVehicleZoomCenterMap1: TSpeedButtonImage;
-    btnAddVehicle1: TSpeedButtonImage;
-    btnAddVehicle2: TSpeedButtonImage;
-    btnAddVehicle3: TSpeedButtonImage;
     pnlMain: TPanel;
     pnlClient: TPanel;
     pnlClientLayout: TPanel;
@@ -172,7 +168,6 @@ type
     lblWindSpeed: TLabel;
     vrwhlSeaDirection: TVrWheel;
     vrwhlWindDirec: TVrWheel;
-    btnAddVehicle4: TSpeedButtonImage;
     pnlScenario: TPanel;
     pnlPlatformLeft: TPanel;
     TabSelectObject: TAdvSmoothTabPager;
@@ -672,6 +667,11 @@ type
     imgAK230: TImage;
     imgMK4NAFS: TImage;
     imgMK3NAFS: TImage;
+    imgClient: TImage;
+    imgScenario: TImage;
+    imgPlatform: TImage;
+    imgEnvironment: TImage;
+    imgReport: TImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -805,10 +805,9 @@ type
     procedure edtElevationValueKeyPress(Sender: TObject; var Key: Char);
     procedure trackBarElevationMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure btnAddVehicle4Click(Sender: TObject);
-    procedure btnAddVehicleZoomCenterMap1Click(Sender: TObject);
-    procedure btnAddVehicle1Click(Sender: TObject);
-    procedure btnAddVehicle2Click(Sender: TObject);
+    procedure MainMenuClick(Sender: TObject);
+    procedure MainMenuMouseEnter(Sender: TObject);
+    procedure MainMenuMouseLeave(Sender: TObject);
 
   private
     { Private declarations }
@@ -3318,24 +3317,64 @@ begin
 end;
 
 { Asroc }
-procedure TfrmGameController.btnAddVehicle1Click(Sender: TObject);
+procedure TfrmGameController.MainMenuClick(Sender: TObject);
 begin
-  pnlEnvironment.BringToFront
+  case TImage(Sender).Tag of
+    0:
+    begin
+      pnlClient.BringToFront;
+    end;
+    1:
+    begin
+      pnlScenario.BringToFront;
+    end;
+    2:
+    begin
+      pnlPlatform.BringToFront;
+    end;
+    3:
+    begin
+      pnlEnvironment.BringToFront;
+    end;
+    4:
+    begin
+      pnlReport.BringToFront;
+    end;
+  end;
 end;
 
-procedure TfrmGameController.btnAddVehicle2Click(Sender: TObject);
+procedure TfrmGameController.MainMenuMouseEnter(Sender: TObject);
 begin
-  pnlReport.BringToFront
+  TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+
+  case TImage(Sender).Tag of
+    0:
+    begin
+//      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+    end;
+    1:
+    begin
+//      pnlScenario.BringToFront;
+    end;
+    2:
+    begin
+//      pnlPlatform.BringToFront;
+    end;
+    3:
+    begin
+//      pnlEnvironment.BringToFront;
+    end;
+    4:
+    begin
+//      pnlReport.BringToFront;
+    end;
+  end;
 end;
 
-procedure TfrmGameController.btnAddVehicle4Click(Sender: TObject);
-begin
-  pnlClient.BringToFront;
-end;
 
-procedure TfrmGameController.btnAddVehicleZoomCenterMap1Click(Sender: TObject);
+procedure TfrmGameController.MainMenuMouseLeave(Sender: TObject);
 begin
-pnlPlatform.BringToFront;
+  TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '.png');
 end;
 
 procedure TfrmGameController.btnAsrocFireClick(Sender: TObject);
