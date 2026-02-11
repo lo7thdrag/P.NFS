@@ -183329,6 +183329,46 @@ object frmGameController: TfrmGameController
     BevelOuter = bvNone
     Color = clMedGray
     TabOrder = 3
+    object pnlScenario: TPanel
+      Left = 0
+      Top = 0
+      Width = 1920
+      Height = 911
+      Align = alClient
+      BevelOuter = bvNone
+      Color = clMedGray
+      TabOrder = 4
+      object btn2: TButton
+        Tag = 3
+        Left = 840
+        Top = 334
+        Width = 240
+        Height = 112
+        Caption = 'Start Scenario'
+        TabOrder = 0
+        OnClick = qClick
+      end
+      object btn1: TButton
+        Tag = 4
+        Left = 840
+        Top = 465
+        Width = 240
+        Height = 112
+        Caption = 'Stop Scenario'
+        TabOrder = 1
+        OnClick = qClick
+      end
+      object Button1: TButton
+        Tag = 1
+        Left = 822
+        Top = 643
+        Width = 240
+        Height = 112
+        Caption = 'Stop Scenario'
+        TabOrder = 2
+        OnClick = qClick
+      end
+    end
     object pnlReport: TPanel
       Left = 0
       Top = 0
@@ -200925,36 +200965,6 @@ object frmGameController: TfrmGameController
         Anchors = [akTop, akRight]
         TabOrder = 3
         TMSStyle = 0
-      end
-    end
-    object pnlScenario: TPanel
-      Left = 0
-      Top = 0
-      Width = 1920
-      Height = 911
-      Align = alClient
-      BevelOuter = bvNone
-      Color = clMedGray
-      TabOrder = 4
-      object btn2: TButton
-        Tag = 3
-        Left = 840
-        Top = 334
-        Width = 240
-        Height = 112
-        Caption = 'Start Scenario'
-        TabOrder = 0
-        OnClick = qClick
-      end
-      object btn1: TButton
-        Tag = 4
-        Left = 840
-        Top = 465
-        Width = 240
-        Height = 112
-        Caption = 'Stop Scenario'
-        TabOrder = 1
-        OnClick = qClick
       end
     end
     object pnlPlatform: TPanel
@@ -241897,7 +241907,7 @@ object frmGameController: TfrmGameController
               Width = 1106
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwStrella
+              ActivePage = pgtwC802
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -243571,7 +243581,7 @@ object frmGameController: TfrmGameController
                       B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2000000}
                     OnClick = btnRBU6000FireClick
                   end
-                  object imagerRBU6000: TImage
+                  object imageRBU6000: TImage
                     Left = 584
                     Top = 0
                     Width = 510
@@ -244019,8 +244029,8 @@ object frmGameController: TfrmGameController
                   Align = alClient
                   TabOrder = 0
                   object lbl56: TLabel
-                    Left = 304
-                    Top = 357
+                    Left = 27
+                    Top = 377
                     Width = 95
                     Height = 16
                     Caption = 'Missile Number'
@@ -244033,8 +244043,8 @@ object frmGameController: TfrmGameController
                     Visible = False
                   end
                   object lbl54: TLabel
-                    Left = 359
-                    Top = 139
+                    Left = 27
+                    Top = 320
                     Width = 39
                     Height = 16
                     Caption = 'Barrel'
@@ -244046,8 +244056,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl4: TLabel
-                    Left = 355
-                    Top = 202
+                    Left = 27
+                    Top = 348
                     Width = 60
                     Height = 16
                     Caption = 'Launcher'
@@ -244061,7 +244071,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl15: TLabel
                     Left = 27
-                    Top = 139
+                    Top = 149
                     Width = 58
                     Height = 16
                     Caption = 'Torp PRG'
@@ -244087,7 +244097,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl13: TLabel
                     Left = 27
-                    Top = 88
+                    Top = 92
                     Width = 54
                     Height = 16
                     Caption = 'Torp ISC'
@@ -244099,8 +244109,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl110: TLabel
-                    Left = 359
-                    Top = 37
+                    Left = 27
+                    Top = 206
                     Width = 62
                     Height = 16
                     Caption = 'Torp ACM'
@@ -244113,7 +244123,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl111: TLabel
                     Left = 27
-                    Top = 61
+                    Top = 64
                     Width = 55
                     Height = 16
                     Caption = 'Torp ISD'
@@ -244125,8 +244135,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl112: TLabel
-                    Left = 359
-                    Top = 112
+                    Left = 27
+                    Top = 291
                     Width = 55
                     Height = 16
                     Caption = 'Torp FLO'
@@ -244138,8 +244148,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl113: TLabel
-                    Left = 359
-                    Top = 62
+                    Left = 27
+                    Top = 234
                     Width = 58
                     Height = 16
                     Caption = 'Torp ACE'
@@ -244151,8 +244161,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl114: TLabel
-                    Left = 359
-                    Top = 89
+                    Left = 27
+                    Top = 263
                     Width = 59
                     Height = 16
                     Caption = 'Torp DOP'
@@ -244165,7 +244175,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl115: TLabel
                     Left = 27
-                    Top = 163
+                    Top = 178
                     Width = 53
                     Height = 16
                     Caption = 'Torp CEI'
@@ -244178,7 +244188,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl116: TLabel
                     Left = 27
-                    Top = 114
+                    Top = 121
                     Width = 55
                     Height = 16
                     Caption = 'Torp ISR'
@@ -244190,8 +244200,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl2: TLabel
-                    Left = 550
-                    Top = 113
+                    Left = 261
+                    Top = 291
                     Width = 46
                     Height = 16
                     Alignment = taCenter
@@ -244204,8 +244214,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl23: TLabel
-                    Left = 550
-                    Top = 61
+                    Left = 261
+                    Top = 234
                     Width = 46
                     Height = 16
                     Alignment = taCenter
@@ -244218,8 +244228,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl67: TLabel
-                    Left = 220
-                    Top = 89
+                    Left = 261
+                    Top = 92
                     Width = 47
                     Height = 16
                     Alignment = taCenter
@@ -244232,8 +244242,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl69: TLabel
-                    Left = 220
-                    Top = 163
+                    Left = 261
+                    Top = 178
                     Width = 46
                     Height = 16
                     Alignment = taCenter
@@ -244246,7 +244256,7 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl82: TLabel
-                    Left = 220
+                    Left = 261
                     Top = 64
                     Width = 46
                     Height = 16
@@ -244260,8 +244270,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl83: TLabel
-                    Left = 220
-                    Top = 117
+                    Left = 261
+                    Top = 121
                     Width = 46
                     Height = 16
                     Alignment = taCenter
@@ -244273,10 +244283,20 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
+                  object imageTpoA244: TImage
+                    Left = 584
+                    Top = 0
+                    Width = 510
+                    Height = 529
+                    Align = alRight
+                    ParentShowHint = False
+                    ShowHint = True
+                    Stretch = True
+                  end
                   object edtSPS_Number: TEdit
-                    Left = 417
-                    Top = 353
-                    Width = 100
+                    Left = 142
+                    Top = 374
+                    Width = 111
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clBlack
@@ -244289,8 +244309,8 @@ object frmGameController: TfrmGameController
                     Visible = False
                   end
                   object edtSPS_ISC: TEdit
-                    Left = 101
-                    Top = 87
+                    Left = 142
+                    Top = 89
                     Width = 111
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -244304,8 +244324,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnFireSps: TAdvSmoothButton
                     Tag = 1
-                    Left = 767
-                    Top = 31
+                    Left = 27
+                    Top = 423
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -244338,8 +244358,8 @@ object frmGameController: TfrmGameController
                     TMSStyle = 0
                   end
                   object cbbA244Launcher: TComboBox
-                    Left = 426
-                    Top = 200
+                    Left = 142
+                    Top = 347
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244354,8 +244374,8 @@ object frmGameController: TfrmGameController
                       'kanan')
                   end
                   object cbbA244MissID: TComboBox
-                    Left = 431
-                    Top = 137
+                    Left = 142
+                    Top = 319
                     Width = 110
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244369,8 +244389,8 @@ object frmGameController: TfrmGameController
                       '6')
                   end
                   object cbbA244MissID2: TComboBox
-                    Left = 430
-                    Top = 137
+                    Left = 142
+                    Top = 319
                     Width = 110
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244385,8 +244405,8 @@ object frmGameController: TfrmGameController
                       '5')
                   end
                   object cbbWTR: TComboBox
-                    Left = 101
-                    Top = 36
+                    Left = 142
+                    Top = 35
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244400,8 +244420,8 @@ object frmGameController: TfrmGameController
                       'SH')
                   end
                   object cbbISD: TComboBox
-                    Left = 99
-                    Top = 60
+                    Left = 142
+                    Top = 64
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244418,8 +244438,8 @@ object frmGameController: TfrmGameController
                       '80')
                   end
                   object cbbISD2: TComboBox
-                    Left = 101
-                    Top = 60
+                    Left = 142
+                    Top = 63
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244438,9 +244458,9 @@ object frmGameController: TfrmGameController
                       '400')
                   end
                   object cbbISR: TComboBox
-                    Left = 99
-                    Top = 115
-                    Width = 111
+                    Left = 140
+                    Top = 120
+                    Width = 113
                     Height = 19
                     Style = csOwnerDrawFixed
                     ItemHeight = 13
@@ -244458,8 +244478,8 @@ object frmGameController: TfrmGameController
                       '8400')
                   end
                   object cbbPRG: TComboBox
-                    Left = 101
-                    Top = 137
+                    Left = 142
+                    Top = 148
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244472,8 +244492,8 @@ object frmGameController: TfrmGameController
                       'SP')
                   end
                   object cbbCEI: TComboBox
-                    Left = 101
-                    Top = 161
+                    Left = 142
+                    Top = 176
                     Width = 111
                     Height = 21
                     TabOrder = 11
@@ -244482,8 +244502,8 @@ object frmGameController: TfrmGameController
                       '50')
                   end
                   object cbbCEI2: TComboBox
-                    Left = 101
-                    Top = 161
+                    Left = 142
+                    Top = 177
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244496,8 +244516,8 @@ object frmGameController: TfrmGameController
                       '10')
                   end
                   object cbbFLO: TComboBox
-                    Left = 430
-                    Top = 109
+                    Left = 142
+                    Top = 290
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244510,8 +244530,8 @@ object frmGameController: TfrmGameController
                       '80')
                   end
                   object cbbFLO2: TComboBox
-                    Left = 431
-                    Top = 109
+                    Left = 142
+                    Top = 290
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244526,8 +244546,8 @@ object frmGameController: TfrmGameController
                       '400')
                   end
                   object cbbACM: TComboBox
-                    Left = 431
-                    Top = 34
+                    Left = 142
+                    Top = 205
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244541,8 +244561,8 @@ object frmGameController: TfrmGameController
                       'MIX')
                   end
                   object cbbACE: TComboBox
-                    Left = 431
-                    Top = 60
+                    Left = 142
+                    Top = 233
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244557,8 +244577,8 @@ object frmGameController: TfrmGameController
                       '7200')
                   end
                   object cbbDOP: TComboBox
-                    Left = 431
-                    Top = 85
+                    Left = 142
+                    Top = 262
                     Width = 111
                     Height = 19
                     Style = csOwnerDrawFixed
@@ -244572,8 +244592,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnLoadingTorpA244: TAdvSmoothButton
                     Tag = 2
-                    Left = 767
-                    Top = 78
+                    Left = 167
+                    Top = 423
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -247246,6 +247266,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl162: TLabel
                     Left = 16
@@ -247259,6 +247280,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl163: TLabel
                     Left = 248
@@ -247272,6 +247294,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl164: TLabel
                     Left = 15
@@ -247285,6 +247308,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl165: TLabel
                     Left = 247
@@ -247298,6 +247322,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl166: TLabel
                     Left = 235
@@ -247337,6 +247362,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl169: TLabel
                     Left = 17
@@ -247376,6 +247402,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl79: TLabel
                     Left = 17
@@ -247389,6 +247416,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl80: TLabel
                     Left = 17
@@ -247402,6 +247430,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl81: TLabel
                     Left = 17
@@ -247415,6 +247444,7 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl171: TLabel
                     Left = 16
@@ -247519,6 +247549,7 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 2
                     Text = '1'
+                    Visible = False
                   end
                   object edtYahkont_Missile: TEdit
                     Left = 130
@@ -247533,10 +247564,11 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 3
                     Text = '1'
+                    Visible = False
                   end
                   object btnYahkont_Fire_: TAdvSmoothButton
                     Tag = 1
-                    Left = 15
+                    Left = 16
                     Top = 443
                     Width = 119
                     Height = 40
@@ -247571,7 +247603,7 @@ object frmGameController: TfrmGameController
                   end
                   object btnSetPosYahkont: TAdvSmoothButton
                     Tag = -1
-                    Left = 15
+                    Left = 16
                     Top = 399
                     Width = 119
                     Height = 40
@@ -247611,6 +247643,7 @@ object frmGameController: TfrmGameController
                     Width = 107
                     Height = 21
                     TabOrder = 6
+                    Visible = False
                     Items.Strings = (
                       'Missile 1'
                       'Missile 2'
@@ -247623,6 +247656,7 @@ object frmGameController: TfrmGameController
                     Width = 17
                     Height = 17
                     TabOrder = 7
+                    Visible = False
                   end
                   object chkYahkontM2: TCheckBox
                     Left = 130
@@ -247630,6 +247664,7 @@ object frmGameController: TfrmGameController
                     Width = 17
                     Height = 17
                     TabOrder = 8
+                    Visible = False
                   end
                   object chkYahkontM3: TCheckBox
                     Left = 130
@@ -247637,6 +247672,7 @@ object frmGameController: TfrmGameController
                     Width = 17
                     Height = 17
                     TabOrder = 9
+                    Visible = False
                   end
                   object chkYahkontM4: TCheckBox
                     Left = 130
@@ -247644,6 +247680,7 @@ object frmGameController: TfrmGameController
                     Width = 17
                     Height = 17
                     TabOrder = 10
+                    Visible = False
                   end
                   object txt3: TStaticText
                     Left = 107
@@ -247705,6 +247742,7 @@ object frmGameController: TfrmGameController
                     Color = clBlack
                     ParentFont = False
                     TabOrder = 13
+                    Visible = False
                     Version = '2.1.3.0'
                     OnClick = btnYahkont_Fire_Click
                     TMSStyle = 0
@@ -247741,6 +247779,7 @@ object frmGameController: TfrmGameController
                     Color = clBlack
                     ParentFont = False
                     TabOrder = 14
+                    Visible = False
                     Version = '2.1.3.0'
                     OnClick = btnYahkont_Fire_Click
                     TMSStyle = 0

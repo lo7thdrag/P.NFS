@@ -681,7 +681,9 @@ type
     imageMistral: TImage;
     imageStrella: TImage;
     imageTorpedoSUT: TImage;
-    imagerRBU6000: TImage;
+    imageRBU6000: TImage;
+    Button1: TButton;
+    imageTpoA244: TImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -4268,7 +4270,8 @@ begin
         imageMistral.Picture.LoadFromFile(weaponPic);
         imageStrella.Picture.LoadFromFile(weaponPic);
         imageTorpedoSUT.Picture.LoadFromFile(weaponPic);
-        imagerRBU6000.Picture.LoadFromFile(weaponPic);
+        imageRBU6000.Picture.LoadFromFile(weaponPic);
+        imageTpoA244.Picture.LoadFromFile(weaponPic);
       end;
     end;
 
