@@ -116,26 +116,6 @@ type
     pnlClient: TPanel;
     pnlClientLayout: TPanel;
     imgRuangIns: TImage;
-    img40: TImage;
-    img57: TImage;
-    imgAsroc: TImage;
-    imgC802: TImage;
-    imgMistral: TImage;
-    imgMoc1: TImage;
-    imgOb1: TImage;
-    imgOb2: TImage;
-    imgOb3: TImage;
-    imgOb4: TImage;
-    imgRBU: TImage;
-    imgServer: TImage;
-    imgStrela: TImage;
-    imgTocos: TImage;
-    imgWCC: TImage;
-    img_Server: TImage;
-    img_Ob2: TImage;
-    img_Ob4: TImage;
-    img_Ob3: TImage;
-    img_Ob1: TImage;
     pnlSparator: TPanel;
     pnlClientSetting: TAdvSmoothPanel;
     btnSettingClient: TAdvSmoothButton;
@@ -144,19 +124,6 @@ type
     lvClient: TListView;
     pnlClientDetails: TAdvSmoothPanel;
     pnlReport: TPanel;
-    img1: TImage;
-    img2: TImage;
-    img3: TImage;
-    img4: TImage;
-    img5: TImage;
-    img6: TImage;
-    img7: TImage;
-    img8: TImage;
-    img9: TImage;
-    img10: TImage;
-    img11: TImage;
-    img12: TImage;
-    img13: TImage;
     pnlPlatform: TPanel;
     pnlEnvironment: TPanel;
     mmoReport: TMemo;
@@ -675,6 +642,36 @@ type
     lblRoll: TAdvSmoothLabel;
     lblSpeed: TAdvSmoothLabel;
     lblLat: TAdvSmoothLabel;
+    img3DNAFS: TImage;
+    img3DNSFS: TImage;
+    img3DNSSFS: TImage;
+    imgC705: TImage;
+    img57Manual: TImage;
+    imgMR103: TImage;
+    img57Digital: TImage;
+    imgMR35: TImage;
+    imgC802: TImage;
+    imgYakhont: TImage;
+    imgTDS76: TImage;
+    imgMK4NSFS: TImage;
+    imgMK3NSFS: TImage;
+    imgMK3NSSFS: TImage;
+    imgMK4NSSFS: TImage;
+    imgSUT: TImage;
+    imgRBUDigital: TImage;
+    imgRBUAnalog: TImage;
+    imgInstrukturNSSFS: TImage;
+    imgInstrukturNSFS: TImage;
+    imgInstrukturNAFS: TImage;
+    imgServerNSSFS: TImage;
+    imgServerNAFS: TImage;
+    imgServerNSFS: TImage;
+    imgTracket730: TImage;
+    imgCIWS730: TImage;
+    imgMR203: TImage;
+    imgAK230: TImage;
+    imgMK4NAFS: TImage;
+    imgMK3NAFS: TImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1098,6 +1095,7 @@ var
   ListClient : TList;
   Client     : TClient;
   ClientList : TClientList;
+  worldproject : string;
 begin
   { Fill Client List }
 //  for i:= 0 to lvClient.Items.Count -1 do
@@ -1110,6 +1108,7 @@ begin
 //  lvClient.Items.Clear;
   ClearListViewData(lvClient);
 
+  worldproject := SimManager.instProjectSet.World;
 
   ListClient := TList.Create;
   try
@@ -1122,6 +1121,69 @@ begin
         Client := TClient(ListClient.Items[i]);
 
         li := lvClient.FindCaption(0, FormatFloat('00', Client.C_ID ), false, true, false);
+
+        {Jika server atau instruktur dilompati}
+
+//        if Client.C_Cubicle  = 'SERVER' then
+//          Continue;
+        if Client.C_Console  = 'INSTRUKTUR NAFS' then
+            Continue
+        else if Client.C_Console  = 'INSTRUKTUR NSFS' then
+            Continue
+        else if Client.C_Console  = 'INSTRUKTUR NSSFS' then
+            Continue;
+
+        if Client.C_GameType = 0 then       // Filter menurut game type
+        begin
+          if worldproject = 'NAFS' then
+          begin
+            with lvClient.Items.Add do
+            begin
+              Caption := IntToStr(lvClient.Items.Count);
+              SubItems.Add(Client.C_Cubicle);
+              SubItems.Add(Client.C_Console);
+              SubItems.Add(Client.C_Type);
+              SubItems.Add(Client.C_Ip);
+              SubItems.Add(Client.C_Status);
+              SubItems.Add(Client.C_Ship);
+            end;
+          end;
+          Continue;
+        end
+        else if Client.C_GameType = 1 then
+        begin
+          if worldproject = 'NSFS' then
+          begin
+            with lvClient.Items.Add do
+            begin
+              Caption := IntToStr(lvClient.Items.Count);
+              SubItems.Add(Client.C_Cubicle);
+              SubItems.Add(Client.C_Console);
+              SubItems.Add(Client.C_Type);
+              SubItems.Add(Client.C_Ip);
+              SubItems.Add(Client.C_Status);
+              SubItems.Add(Client.C_Ship);
+            end;
+          end;
+          Continue;
+        end
+        else if Client.C_GameType = 2 then
+        begin
+          if worldproject = 'NSSFS' then
+          begin
+            with lvClient.Items.Add do
+            begin
+              Caption := IntToStr(lvClient.Items.Count);
+              SubItems.Add(Client.C_Cubicle);
+              SubItems.Add(Client.C_Console);
+              SubItems.Add(Client.C_Type);
+              SubItems.Add(Client.C_Ip);
+              SubItems.Add(Client.C_Status);
+              SubItems.Add(Client.C_Ship);
+            end;
+          end;
+          Continue;
+        end;
 
         if not Assigned(li) then
         begin
@@ -4825,101 +4887,214 @@ begin
   begin
     console := lvClient.Items[i].SubItems[1];
 
-    if console = '3D SERVER' then
+    if console = 'SERVER NSSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img_Server,LoadScreenServerOff,OFFLINE)
+        LoadImageLight(imgServerNSSFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img_Server,LoadScreenServerOn,ONLINE)
+        LoadImageLight(imgServerNSSFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img_Server,LoadScreenServerRunning,RUNNING);
-
+        LoadImageLight(imgServerNSSFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'OBSERVER-1' then
+    else if console = 'SERVER NSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img_Ob1,LoadScreenOff,OFFLINE)
+        LoadImageLight(imgServerNSFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img_Ob1,LoadScreenOn,ONLINE)
+        LoadImageLight(imgServerNSFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img_Ob1,LoadScreenRunning,RUNNING);
-
+        LoadImageLight(imgServerNSFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'OBSERVER-2' then
+    else if console = 'SERVER NAFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img_Ob2,LoadScreenOff,OFFLINE)
+        LoadImageLight(imgServerNAFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img_Ob2,LoadScreenOn,ONLINE)
+        LoadImageLight(imgServerNAFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img_Ob2,LoadScreenRunning,RUNNING);
-
+        LoadImageLight(imgServerNAFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'OBSERVER-3' then
+    else if console = '3D DISPLAY NSSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img_Ob3,LoadScreenOff,OFFLINE)
+        LoadImageLight(img3DNSSFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img_Ob3,LoadScreenOn,ONLINE)
+        LoadImageLight(img3DNSSFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img_Ob3,LoadScreenRunning,RUNNING);
-
+        LoadImageLight(img3DNSSFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'OBSERVER-4' then
+    else if console = '3D DISPLAY NSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img_Ob4,LoadScreenOff,OFFLINE)
+        LoadImageLight(img3DNSFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img_Ob4,LoadScreenOn,ONLINE)
+        LoadImageLight(img3DNSFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img_Ob4,LoadScreenRunning,RUNNING);
-
+        LoadImageLight(img3DNSFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'MOC-1' then
+    else if console = '3D DISPLAY NAFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMoc1,LoadImgOff,OFFLINE)
+        LoadImageLight(img3DNAFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMoc1,LoadImgOn,ONLINE)
+        LoadImageLight(img3DNAFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMoc1,LoadImgRunning,RUNNING);
-
+        LoadImageLight(img3DNAFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'MOC-2' then
+    else if console = 'INSTRUKTUR NSSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-//        LoadImageLight(imgMoc2,LoadImgOff,OFFLINE)
+        LoadImageLight(imgInstrukturNSSFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-//        LoadImageLight(imgMoc2,LoadImgOn,ONLINE)
+        LoadImageLight(imgInstrukturNSSFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-//        LoadImageLight(imgMoc2,LoadImgRunning,RUNNING);
-
+        LoadImageLight(imgInstrukturNSSFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'Yakhont' then
+    else if console = 'INSTRUKTUR NSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-//        LoadImageLight(imgYakhont,LoadImgOff,OFFLINE)
+        LoadImageLight(imgInstrukturNSFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-//        LoadImageLight(imgYakhont,LoadImgOn,ONLINE)
+        LoadImageLight(imgInstrukturNSFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-//        LoadImageLight(imgYakhont,LoadImgRunning,RUNNING);
+        LoadImageLight(imgInstrukturNSFS,LoadImgRunning,RUNNING);
+    end
+    else if console = 'INSTRUKTUR NAFS' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgInstrukturNAFS,LoadImgOff,OFFLINE)
 
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgInstrukturNAFS,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgInstrukturNAFS,LoadImgRunning,RUNNING);
+    end
+    else if console = 'MK3-2H NSSFS' then             //NSSFS
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgMK3NSSFS,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgMK3NSSFS,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgMK3NSSFS,LoadImgRunning,RUNNING);
+    end
+    else if console = 'MK4 NSSFS' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgMK4NSSFS,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgMK4NSSFS,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgMK4NSSFS,LoadImgRunning,RUNNING);
+    end
+    else if console = 'SUT & BLACK SHARK' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgSUT,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgSUT,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgSUT,LoadImgRunning,RUNNING);
+    end
+    else if console = 'RBU DIGITAL' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgRBUDigital,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgRBUDigital,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgRBUDigital,LoadImgRunning,RUNNING);
+    end
+    else if console = 'RBU ANALOG' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgRBUAnalog,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgRBUAnalog,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgRBUAnalog,LoadImgRunning,RUNNING);
+    end
+    else if console = 'C-705' then         //NSFS
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgC705,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgC705,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgC705,LoadImgRunning,RUNNING);
+    end
+    else if console = '57-MANUAL' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(img57Manual,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(img57Manual,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(img57Manual,LoadImgRunning,RUNNING);
+    end
+    else if console = 'MR-103' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgMR103,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgMR103,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgMR103,LoadImgRunning,RUNNING);
+    end
+    else if console = '57-DIGITAL' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(img57Digital,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(img57Digital,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(img57Digital,LoadImgRunning,RUNNING);
+    end
+    else if console = 'MR-35' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgMR35,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgMR35,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgMR35,LoadImgRunning,RUNNING);
     end
     else if console = 'C-802' then
     begin
@@ -4931,112 +5106,117 @@ begin
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
         LoadImageLight(imgC802,LoadImgRunning,RUNNING);
-
     end
-    else if console = 'WCC' then
+    else if console = 'YAKHONT' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgWCC,LoadImgOff,OFFLINE)
+        LoadImageLight(imgYakhont,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgWCC,LoadImgOn,ONLINE)
+        LoadImageLight(imgYakhont,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgWCC,LoadImgRunning,RUNNING);
-
+        LoadImageLight(imgYakhont,LoadImgRunning,RUNNING);
     end
-    else if console = 'MISTRAL' then
+    else if console = 'MK3-2H' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMistral,LoadImgOff,OFFLINE)
+        LoadImageLight(imgMK3NSFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMistral,LoadImgOn,ONLINE)
+        LoadImageLight(imgMK3NSFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMistral,LoadImgRunning,RUNNING);
-
+        LoadImageLight(imgMK3NSFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'STRELLA' then
+    else if console = 'MK4' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgStrela,LoadImgOff,OFFLINE)
+        LoadImageLight(imgMK4NSFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgStrela,LoadImgOn,ONLINE)
+        LoadImageLight(imgMK4NSFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgStrela,LoadImgRunning,RUNNING);
-
+        LoadImageLight(imgMK4NSFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'TDS Meriam 57' then
+    else if console = 'TDS FC 76MM' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img57,LoadImgOff,OFFLINE)
+        LoadImageLight(imgTDS76,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img57,LoadImgOn,ONLINE)
+        LoadImageLight(imgTDS76,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img57,LoadImgRunning,RUNNING);
+        LoadImageLight(imgTDS76,LoadImgRunning,RUNNING);
     end
-    else if console = 'TDS Meriam 40' then
+    else if console = 'MK3-2H NAFS' then      //NAFS
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img40,LoadImgOff,OFFLINE)
+        LoadImageLight(imgMK3NAFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img40,LoadImgOn,ONLINE)
+        LoadImageLight(imgMK3NAFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img40,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK3NAFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'Asroc' then
+    else if console = 'MK4 NAFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgAsroc,LoadImgOff,OFFLINE)
+        LoadImageLight(imgMK4NAFS,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgAsroc,LoadImgOn,ONLINE)
+        LoadImageLight(imgMK4NAFS,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgAsroc,LoadImgRunning,RUNNING);
-
+        LoadImageLight(imgMK4NAFS,LoadImgRunning,RUNNING);
     end
-    else if console = 'Tocos' then
+    else if console = 'AK-230' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgTocos,LoadImgOff,OFFLINE)
+        LoadImageLight(imgAK230,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgTocos,LoadImgOn,ONLINE)
+        LoadImageLight(imgAK230,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgTocos,LoadImgRunning,RUNNING);
+        LoadImageLight(imgAK230,LoadImgRunning,RUNNING);
     end
-    else if console = 'RBU 6000' then
+    else if console = 'MR-203' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgRBU,LoadImgOff,OFFLINE)
+        LoadImageLight(imgMR203,LoadImgOff,OFFLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgRBU,LoadImgOn,ONLINE)
+        LoadImageLight(imgMR203,LoadImgOn,ONLINE)
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgRBU,LoadImgRunning,RUNNING);
-
+        LoadImageLight(imgMR203,LoadImgRunning,RUNNING);
     end
-    else if console = 'SPS115' then      //cendol dulu, ngikut yang moc1 aja
+    else if console = 'CIWS-730' then
     begin
-//      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-//        LoadImageLight(imgMoc1,LoadImgOff,OFFLINE)
-//
-//      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-//        LoadImageLight(imgMoc1,LoadImgOn,ONLINE)
-//
-//      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-//        LoadImageLight(imgMoc1,LoadImgRunning,RUNNING);
-    end;
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgCIWS730,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgCIWS730,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgCIWS730,LoadImgRunning,RUNNING);
+    end
+    else if console = 'TRACKET 730' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgTracket730,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgTracket730,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgTracket730,LoadImgRunning,RUNNING);
+    end
   end;
 end;
 
@@ -5103,25 +5283,25 @@ begin
 //  imgFrame1.Height := 7;
 //  imgFrame1.Top  := img_Ob1.Top - 1;
 //  imgFrame1.Left := img_Ob1.Left - 2;
-  img_Ob1.BringToFront;
+//  img_Ob1.BringToFront;
 
 //  imgFrame2.Width  := 40;
 //  imgFrame2.Height := 7;
 //  imgFrame2.Top  := img_Ob2.Top - 1;
 //  imgFrame2.Left := img_Ob2.Left - 2;
-  img_Ob2.BringToFront;
+//  img_Ob2.BringToFront;
 
 //  imgFrame3.Width  := 40;
 //  imgFrame3.Height := 7;
 //  imgFrame3.Top  := img_Ob3.Top - 1;
 //  imgFrame3.Left := img_Ob3.Left - 2;
-  img_Ob3.BringToFront;
+//  img_Ob3.BringToFront;
 
 //  imgFrame4.Width  := 40;
 //  imgFrame4.Height := 7;
 //  imgFrame4.Top  := img_Ob4.Top - 1;
 //  imgFrame4.Left := img_Ob4.Left - 2;
-  img_Ob4.BringToFront;
+//  img_Ob4.BringToFront;
 
   //imgFrameServer.Width  := 83;
   //imgFrameServer.Height := 14;
@@ -5129,7 +5309,7 @@ begin
 //  imgFrameServer.Height := 30;
 //  imgFrameServer.Top  := img_Server.Top - 3;
 //  imgFrameServer.Left := img_Server.Left - 2;
-  img_Server.BringToFront;
+//  img_Server.BringToFront;
 end;
 
 procedure TfrmGameController.ClearAllVisibleConsole;

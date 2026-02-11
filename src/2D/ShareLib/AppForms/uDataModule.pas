@@ -1086,6 +1086,7 @@ begin
       rec.WeaponID := DQ.FieldByName('WeaponID').AsInteger;
       rec.PC_MAC := DQ.FieldByName('PC_MAC').AsString;
       rec.APP_NAME_2 := DQ.FieldByName('APP_NAME_2').AsString;
+      rec.GAME_TIPE := DQ.FieldByName('Game_Type').AsInteger;
 
       aRec.Add(rec);
       DQ.Next;
@@ -1394,6 +1395,7 @@ begin
       rec.C_Status := 'OFFLINE';
       rec.C_WeaponID := DS.FieldByName('WeaponID').AsInteger;
       rec.C_Ship := DS.FieldByName('Ship_Name').AsString; // dendy tes
+      rec.C_GameType := DS.FieldByName('Game_Type').AsInteger;
 
       case DS.FieldByName('APP_TIPE').AsInteger of
         0:
@@ -1406,6 +1408,10 @@ begin
           rec.C_Type := '3D-Weapon';
         4:
           rec.C_Type := '2D-Sigma';
+        5:
+          rec.C_Type := 'Server';
+        6:
+          rec.C_Type := 'Instruktur';
       end;
 
       aRec.Add(rec);

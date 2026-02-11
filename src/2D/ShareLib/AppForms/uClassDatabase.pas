@@ -110,6 +110,7 @@ type
     C_Status : string;
 
     C_WeaponID : integer;
+    C_GameType : Integer;
 
   end;
 
@@ -129,6 +130,7 @@ type
     Cli_SHIPID,
     Cli_LAUNCHERID,
     WeaponID : integer;
+    Cli_GameType : Integer;
   end;
 
   TPort = class
@@ -214,6 +216,7 @@ type
     WeaponID  : Integer;
     PC_MAC    : string[20];
     APP_NAME_2: string[20];
+    GAME_TIPE : Integer;
   end;
 
   TSaveConsole = class
