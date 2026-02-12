@@ -59,7 +59,6 @@ object frmGameController: TfrmGameController
     Version = '1.6.0.1'
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 1920
     TMSStyle = 0
     object imgHeaderProject: TImage
       Left = 0
@@ -16097,7 +16096,6 @@ object frmGameController: TfrmGameController
     Version = '1.6.0.1'
     Align = alBottom
     TabOrder = 2
-    ExplicitWidth = 1920
     TMSStyle = 0
     object AdvSmoothPanel2: TAdvSmoothPanel
       Left = 0
@@ -16138,7 +16136,6 @@ object frmGameController: TfrmGameController
       Version = '1.6.0.1'
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 1920
       TMSStyle = 0
     end
   end
@@ -16152,7 +16149,6 @@ object frmGameController: TfrmGameController
     Color = clWhite
     ParentBackground = False
     TabOrder = 4
-    ExplicitWidth = 1920
   end
   object TabMain: TAdvSmoothTabPager
     Left = 0
@@ -16181,7 +16177,6 @@ object frmGameController: TfrmGameController
     TabReorder = False
     OnChange = TabMainChange
     TabOrder = 0
-    ExplicitWidth = 1920
     TMSStyle = 0
     object tsPlatform: TAdvSmoothTabPage
       Left = 0
@@ -183094,7 +183089,6 @@ object frmGameController: TfrmGameController
         TabReorder = False
         OnChange = tsTrajectoryMapviewChange
         TabOrder = 1
-        ExplicitWidth = 1499
         TMSStyle = 0
         object tsMapViewTrajectory: TAdvSmoothTabPage
           Left = 1
@@ -183167,7 +183161,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000C87653270100000024E897001C000000000000000000000000
+              01000118010000A01E690F0100000024E897001C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183176,14 +183170,14 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              010000C876532701000000000000001C00000000000000000000000000000000
+              010000A01E690F01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000D9E05E390000000054
+              000000000000000000000000000000000000000000000081890E360000000054
               EC970004E89700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
@@ -183307,7 +183301,6 @@ object frmGameController: TfrmGameController
     BevelOuter = bvNone
     Color = clMedGray
     TabOrder = 3
-    ExplicitWidth = 1920
     object pnlReport: TPanel
       Left = 0
       Top = 0
@@ -183317,7 +183310,6 @@ object frmGameController: TfrmGameController
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 1
-      ExplicitWidth = 1920
       object mmoReport: TMemo
         Left = 0
         Top = 0
@@ -183327,7 +183319,6 @@ object frmGameController: TfrmGameController
         ReadOnly = True
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitWidth = 1920
       end
     end
     object pnlEnvironment: TPanel
@@ -183339,7 +183330,6 @@ object frmGameController: TfrmGameController
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 3
-      ExplicitWidth = 1920
       object lbl: TLabel
         Left = 892
         Top = 99
@@ -184166,7 +184156,6 @@ object frmGameController: TfrmGameController
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 2
-      ExplicitWidth = 1920
       object pnlPlatformLeft: TPanel
         Left = 0
         Top = 0
@@ -184490,7 +184479,6 @@ object frmGameController: TfrmGameController
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitWidth = 1106
         object pnlPlatfromUp: TAdvSmoothPanel
           Left = 0
           Top = 0
@@ -184531,7 +184519,6 @@ object frmGameController: TfrmGameController
           Version = '1.6.0.1'
           Align = alTop
           TabOrder = 0
-          ExplicitWidth = 1106
           TMSStyle = 0
           object tabControl: TAdvSmoothTabPager
             Left = 0
@@ -184560,7 +184547,6 @@ object frmGameController: TfrmGameController
             TabReorder = False
             OnChange = TabControlChange
             TabOrder = 0
-            ExplicitWidth = 1106
             TMSStyle = 0
             object pnlPlayerCamera: TAdvSmoothPanel
               Left = 0
@@ -184601,7 +184587,6 @@ object frmGameController: TfrmGameController
               Version = '1.6.0.1'
               Align = alClient
               TabOrder = 0
-              ExplicitWidth = 1106
               TMSStyle = 0
               object lblPinCamera: TAdvSmoothLabel
                 Left = 1168
@@ -225054,7 +225039,6 @@ object frmGameController: TfrmGameController
           Version = '1.6.0.1'
           Align = alClient
           TabOrder = 1
-          ExplicitWidth = 1106
           TMSStyle = 0
           object pnlLaunchWeapon: TAdvSmoothPanel
             Left = 0
@@ -225096,7 +225080,6 @@ object frmGameController: TfrmGameController
             Version = '1.6.0.1'
             Align = alClient
             TabOrder = 0
-            ExplicitWidth = 1106
             TMSStyle = 0
             object pgWeapon: TAdvPageControl
               Left = 0
@@ -225124,14 +225107,12 @@ object frmGameController: TfrmGameController
               PersistPagesState.Enabled = False
               TabOrder = 0
               TabWidth = 150
-              ExplicitWidth = 1106
               object pgtwTorpedoSUT: TAdvTabSheet
                 Caption = 'Torpedo SUT'
                 Color = 7301478
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxTOCOS: TScrollBox
                   Left = 0
                   Top = 0
@@ -225139,7 +225120,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl53: TLabel
                     Left = 276
                     Top = 69
@@ -225825,7 +225805,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 1
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxAsroc: TScrollBox
                   Left = 0
                   Top = 0
@@ -225833,7 +225812,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl29: TLabel
                     Left = 589
                     Top = -17
@@ -226414,7 +226392,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 4
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxRBU6000: TScrollBox
                   Left = 0
                   Top = 0
@@ -226422,7 +226399,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl75: TLabel
                     Left = 290
                     Top = 164
@@ -227226,7 +227202,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 5
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxTorpedoA244: TScrollBox
                   Tag = 1
                   Left = 0
@@ -227235,7 +227210,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl56: TLabel
                     Left = 27
                     Top = 377
@@ -227845,7 +227819,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 3
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object lblInfo: TLabel
                   Left = 307
                   Top = 136
@@ -227867,7 +227840,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 6
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxWCC: TScrollBox
                   Left = 0
                   Top = 0
@@ -227875,7 +227847,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl9: TLabel
                     Left = 272
                     Top = 304
@@ -228455,7 +228426,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxTetral: TScrollBox
                   Left = 0
                   Top = 0
@@ -228463,7 +228433,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl55: TLabel
                     Left = 248
                     Top = 230
@@ -228854,7 +228823,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxMistral: TScrollBox
                   Left = 0
                   Top = 0
@@ -228862,7 +228830,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl128: TLabel
                     Left = 264
                     Top = 232
@@ -229253,7 +229220,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxStrella: TScrollBox
                   Left = 0
                   Top = 0
@@ -229261,7 +229227,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl139: TLabel
                     Left = 28
                     Top = 169
@@ -229654,7 +229619,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxExocetMM40: TScrollBox
                   Left = 0
                   Top = 0
@@ -229662,7 +229626,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl66: TLabel
                     Left = 365
                     Top = 128
@@ -230471,7 +230434,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxYakhont: TScrollBox
                   Left = 0
                   Top = 0
@@ -230479,7 +230441,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl161: TLabel
                     Left = 248
                     Top = 313
@@ -231019,7 +230980,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitWidth = 1098
                 object scrlbxC802: TScrollBox
                   Left = 0
                   Top = 0
@@ -231027,7 +230987,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 1098
                   object lbl173: TLabel
                     Left = 16
                     Top = 204
@@ -231982,7 +231941,6 @@ object frmGameController: TfrmGameController
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 4
-      ExplicitWidth = 1920
       object pnlListScenario: TAdvSmoothPanel
         Left = 0
         Top = 0
@@ -232022,7 +231980,6 @@ object frmGameController: TfrmGameController
         Version = '1.6.0.1'
         Align = alLeft
         TabOrder = 0
-        ExplicitLeft = 8
         TMSStyle = 0
         object lblGameName: TLabel
           Left = 19
@@ -232205,7 +232162,7 @@ object frmGameController: TfrmGameController
           Left = 19
           Top = 65
           Width = 392
-          Height = 844
+          Height = 810
           Columns = <
             item
               Caption = 'ID'
@@ -232226,6 +232183,16 @@ object frmGameController: TfrmGameController
           ViewStyle = vsReport
           OnClick = lvListScenClick
           OnKeyPress = lvListScenKeyPress
+        end
+        object btn2: TButton
+          Tag = 3
+          Left = 18
+          Top = 881
+          Width = 394
+          Height = 39
+          Caption = 'Start Scenario'
+          TabOrder = 1
+          OnClick = qClick
         end
       end
       object pnlsprScen1: TPanel
@@ -232278,7 +232245,6 @@ object frmGameController: TfrmGameController
         Version = '1.6.0.1'
         Align = alClient
         TabOrder = 2
-        ExplicitWidth = 1491
         TMSStyle = 0
         object pnlDetailScenario: TAdvSmoothPanel
           Left = 0
@@ -232319,7 +232285,6 @@ object frmGameController: TfrmGameController
           Version = '1.6.0.1'
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 1015
           TMSStyle = 0
           object advsmthlbl3: TAdvSmoothLabel
             Left = 795
@@ -232507,32 +232472,37 @@ object frmGameController: TfrmGameController
             Columns = <
               item
                 Caption = 'Ship Name'
-                Width = 300
+                Width = 270
+              end
+              item
+                Alignment = taCenter
+                Caption = 'Domain'
+                Width = 130
               end
               item
                 Alignment = taCenter
                 Caption = 'Longitude'
-                Width = 175
+                Width = 155
               end
               item
                 Alignment = taCenter
                 Caption = 'Latitude'
-                Width = 175
+                Width = 155
               end
               item
                 Alignment = taCenter
                 Caption = 'Altitude'
-                Width = 100
+                Width = 80
               end
               item
                 Alignment = taCenter
                 Caption = 'Heading'
-                Width = 100
+                Width = 80
               end
               item
                 Alignment = taCenter
                 Caption = 'Speed'
-                Width = 100
+                Width = 80
               end>
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -232555,32 +232525,37 @@ object frmGameController: TfrmGameController
             Columns = <
               item
                 Caption = 'Ship Name'
-                Width = 300
+                Width = 270
+              end
+              item
+                Alignment = taCenter
+                Caption = 'Domain'
+                Width = 130
               end
               item
                 Alignment = taCenter
                 Caption = 'Longitude'
-                Width = 175
+                Width = 155
               end
               item
                 Alignment = taCenter
                 Caption = 'Latitude'
-                Width = 175
+                Width = 155
               end
               item
                 Alignment = taCenter
                 Caption = 'Altitude'
-                Width = 100
+                Width = 80
               end
               item
                 Alignment = taCenter
                 Caption = 'Heading'
-                Width = 100
+                Width = 80
               end
               item
                 Alignment = taCenter
                 Caption = 'Speed'
-                Width = 100
+                Width = 80
               end>
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -232596,39 +232571,44 @@ object frmGameController: TfrmGameController
             ViewStyle = vsReport
           end
           object lvGeneral: TListView
-            Left = 22
-            Top = 689
+            Left = 23
+            Top = 691
             Width = 966
             Height = 148
             Columns = <
               item
                 Caption = 'Ship Name'
-                Width = 300
+                Width = 270
+              end
+              item
+                Alignment = taCenter
+                Caption = 'Domain'
+                Width = 130
               end
               item
                 Alignment = taCenter
                 Caption = 'Longitude'
-                Width = 175
+                Width = 155
               end
               item
                 Alignment = taCenter
                 Caption = 'Latitude'
-                Width = 175
+                Width = 155
               end
               item
                 Alignment = taCenter
                 Caption = 'Altitude'
-                Width = 100
+                Width = 80
               end
               item
                 Alignment = taCenter
                 Caption = 'Heading'
-                Width = 100
+                Width = 80
               end
               item
                 Alignment = taCenter
                 Caption = 'Speed'
-                Width = 100
+                Width = 80
               end>
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
@@ -232683,7 +232663,6 @@ object frmGameController: TfrmGameController
           Version = '1.6.0.1'
           Align = alTop
           TabOrder = 1
-          ExplicitWidth = 1487
           TMSStyle = 0
           object lblScenarioName: TLabel
             Left = 0
@@ -232714,7 +232693,6 @@ object frmGameController: TfrmGameController
           Color = clWhite
           ParentBackground = False
           TabOrder = 2
-          ExplicitWidth = 1487
         end
         object pnlEnviScenario: TAdvSmoothPanel
           Left = 1017
@@ -232755,8 +232733,6 @@ object frmGameController: TfrmGameController
           Version = '1.6.0.1'
           Align = alRight
           TabOrder = 3
-          ExplicitLeft = 837
-          ExplicitTop = 148
           DesignSize = (
             473
             834)
@@ -235034,16 +235010,6 @@ object frmGameController: TfrmGameController
             TabOrder = 7
             OnClick = qClick
           end
-          object btn2: TButton
-            Tag = 3
-            Left = 342
-            Top = 783
-            Width = 89
-            Height = 39
-            Caption = 'Start Scenario'
-            TabOrder = 8
-            OnClick = qClick
-          end
           object btn3: TButton
             Tag = 1
             Left = 152
@@ -235051,7 +235017,7 @@ object frmGameController: TfrmGameController
             Width = 89
             Height = 39
             Caption = 'Edit Scenario'
-            TabOrder = 9
+            TabOrder = 8
             OnClick = qClick
           end
           object edtWindSpeed: TEdit
@@ -235061,7 +235027,7 @@ object frmGameController: TfrmGameController
             Height = 21
             Alignment = taCenter
             ReadOnly = True
-            TabOrder = 10
+            TabOrder = 9
             Text = '0'
           end
           object edtCurrentSpeed: TEdit
@@ -235071,7 +235037,7 @@ object frmGameController: TfrmGameController
             Height = 21
             Alignment = taCenter
             ReadOnly = True
-            TabOrder = 11
+            TabOrder = 10
             Text = '0'
           end
           object edtTemperature: TEdit
@@ -235081,7 +235047,7 @@ object frmGameController: TfrmGameController
             Height = 21
             Alignment = taCenter
             ReadOnly = True
-            TabOrder = 12
+            TabOrder = 11
             Text = '0'
           end
           object edtBarometer: TEdit
@@ -235091,7 +235057,7 @@ object frmGameController: TfrmGameController
             Height = 21
             Alignment = taCenter
             ReadOnly = True
-            TabOrder = 13
+            TabOrder = 12
             Text = '0'
           end
           object edtHumidity: TEdit
@@ -235101,7 +235067,7 @@ object frmGameController: TfrmGameController
             Height = 21
             Alignment = taCenter
             ReadOnly = True
-            TabOrder = 14
+            TabOrder = 13
             Text = '0'
           end
           object edtFogHeight: TEdit
@@ -235111,7 +235077,7 @@ object frmGameController: TfrmGameController
             Height = 21
             Alignment = taCenter
             ReadOnly = True
-            TabOrder = 15
+            TabOrder = 14
             Text = '0'
           end
           object edtSeaState: TEdit
@@ -235121,7 +235087,7 @@ object frmGameController: TfrmGameController
             Height = 21
             Alignment = taCenter
             ReadOnly = True
-            TabOrder = 16
+            TabOrder = 15
             Text = '0'
           end
         end
@@ -235135,7 +235101,6 @@ object frmGameController: TfrmGameController
           Color = clWhite
           ParentBackground = False
           TabOrder = 4
-          ExplicitLeft = 1011
         end
       end
     end
@@ -235148,7 +235113,6 @@ object frmGameController: TfrmGameController
       BevelOuter = bvNone
       Color = clMedGray
       TabOrder = 0
-      ExplicitWidth = 1920
       DesignSize = (
         1923
         911)
@@ -251683,7 +251647,6 @@ object frmGameController: TfrmGameController
         Version = '1.6.0.1'
         Anchors = [akTop, akRight]
         TabOrder = 1
-        ExplicitLeft = 1437
         TMSStyle = 0
         object btnSettingClient: TAdvSmoothButton
           Left = 246
@@ -251796,7 +251759,6 @@ object frmGameController: TfrmGameController
         Version = '1.6.0.1'
         Anchors = [akTop, akRight]
         TabOrder = 2
-        ExplicitLeft = 1437
         TMSStyle = 0
         object lvClient: TListView
           Left = 13
@@ -251891,7 +251853,6 @@ object frmGameController: TfrmGameController
         Version = '1.6.0.1'
         Anchors = [akTop, akRight]
         TabOrder = 3
-        ExplicitLeft = 1437
         TMSStyle = 0
       end
     end

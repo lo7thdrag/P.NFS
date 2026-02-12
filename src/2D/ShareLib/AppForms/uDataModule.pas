@@ -1150,9 +1150,8 @@ begin
     Close;
 
     SQL.Clear;
-    SQL.Add('SELECT *');
-    SQL.Add('FROM sce_ship');
-    SQL.Add('WHERE IDM=' + IntToStr(SceID));
+    SQL.Add('SELECT * FROM sce_ship');
+    SQL.Add('WHERE IDM =' + IntToStr(SceID));
     SQL.Add('ORDER BY IDM, ID, IDSHIP');
     Open;
     First;
