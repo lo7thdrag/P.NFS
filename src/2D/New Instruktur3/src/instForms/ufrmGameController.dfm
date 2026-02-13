@@ -245603,7 +245603,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwTorpedoSUT
+              ActivePage = pgtwTetral
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -246820,7 +246820,7 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object Label97: TLabel
+                  object lblStartVLMica: TLabel
                     Left = 673
                     Top = 455
                     Width = 5
@@ -246846,7 +246846,7 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object Label99: TLabel
+                  object lblEndVLMica: TLabel
                     Left = 673
                     Top = 491
                     Width = 5
@@ -246872,7 +246872,7 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object Label101: TLabel
+                  object lblMinVLMica: TLabel
                     Left = 992
                     Top = 455
                     Width = 5
@@ -246885,7 +246885,7 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object Label102: TLabel
+                  object lblMaxVLMica: TLabel
                     Left = 992
                     Top = 487
                     Width = 5
@@ -253637,7 +253637,7 @@ object frmGameController: TfrmGameController
                 ExplicitTop = 0
                 ExplicitWidth = 100
                 ExplicitHeight = 100
-                object ScrollBox1: TScrollBox
+                object scrlbxCannon57: TScrollBox
                   Left = 0
                   Top = 0
                   Width = 1101
@@ -253827,7 +253827,7 @@ object frmGameController: TfrmGameController
                 ExplicitTop = 0
                 ExplicitWidth = 100
                 ExplicitHeight = 100
-                object ScrollBox2: TScrollBox
+                object scrlbxExocetMM38: TScrollBox
                   Left = 0
                   Top = 0
                   Width = 1101
@@ -253992,6 +253992,576 @@ object frmGameController: TfrmGameController
                     TabOrder = 2
                   end
                   object StaticText52: TStaticText
+                    Left = 952
+                    Top = 487
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 3
+                  end
+                end
+              end
+              object pgtwCannon35: TAdvTabSheet
+                Caption = 'Cannon 35'
+                Color = clBtnFace
+                ColorTo = clNone
+                TabColor = 7301478
+                TabColorTo = clWhite
+                ExplicitLeft = 24
+                ExplicitTop = 0
+                ExplicitWidth = 100
+                ExplicitHeight = 100
+                object scrlbxCannon35: TScrollBox
+                  Left = 0
+                  Top = 0
+                  Width = 1101
+                  Height = 533
+                  Align = alClient
+                  Color = 7301478
+                  ParentColor = False
+                  TabOrder = 0
+                  object imageCannon35: TImage
+                    Left = 528
+                    Top = 0
+                    Width = 565
+                    Height = 433
+                    ParentShowHint = False
+                    ShowHint = True
+                    Stretch = True
+                  end
+                  object Label15: TLabel
+                    Left = 538
+                    Top = 455
+                    Width = 85
+                    Height = 16
+                    Caption = 'Start Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblStartCannon35: TLabel
+                    Left = 659
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label29: TLabel
+                    Left = 538
+                    Top = 489
+                    Width = 74
+                    Height = 16
+                    Caption = 'End Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblEndCannon35: TLabel
+                    Left = 659
+                    Top = 489
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label33: TLabel
+                    Left = 857
+                    Top = 455
+                    Width = 67
+                    Height = 16
+                    Caption = 'Min Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMinCannon35: TLabel
+                    Left = 978
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label37: TLabel
+                    Left = 857
+                    Top = 487
+                    Width = 71
+                    Height = 16
+                    Caption = 'Max Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMaxCannon35: TLabel
+                    Left = 978
+                    Top = 487
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object StaticText53: TStaticText
+                    Left = 633
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 0
+                  end
+                  object StaticText54: TStaticText
+                    Left = 633
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 1
+                  end
+                  object StaticText55: TStaticText
+                    Left = 952
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 2
+                  end
+                  object StaticText56: TStaticText
+                    Left = 952
+                    Top = 487
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 3
+                  end
+                end
+              end
+              object pgtwCannonAK230: TAdvTabSheet
+                Caption = 'Cannon AK230'
+                Color = clBtnFace
+                ColorTo = clNone
+                TabColor = 7301478
+                TabColorTo = clWhite
+                ExplicitLeft = 24
+                ExplicitTop = 0
+                ExplicitWidth = 100
+                ExplicitHeight = 100
+                object scrlbxCannonAK230: TScrollBox
+                  Left = 0
+                  Top = 0
+                  Width = 1101
+                  Height = 533
+                  Align = alClient
+                  Color = 7301478
+                  ParentColor = False
+                  TabOrder = 0
+                  object imageCannonAK230: TImage
+                    Left = 528
+                    Top = 0
+                    Width = 565
+                    Height = 433
+                    ParentShowHint = False
+                    ShowHint = True
+                    Stretch = True
+                  end
+                  object Label17: TLabel
+                    Left = 538
+                    Top = 455
+                    Width = 85
+                    Height = 16
+                    Caption = 'Start Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblStartAK230: TLabel
+                    Left = 659
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label35: TLabel
+                    Left = 538
+                    Top = 489
+                    Width = 74
+                    Height = 16
+                    Caption = 'End Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblEndAK230: TLabel
+                    Left = 659
+                    Top = 489
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label41: TLabel
+                    Left = 857
+                    Top = 455
+                    Width = 67
+                    Height = 16
+                    Caption = 'Min Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMinAK230: TLabel
+                    Left = 978
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label45: TLabel
+                    Left = 857
+                    Top = 487
+                    Width = 71
+                    Height = 16
+                    Caption = 'Max Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMaxAK230: TLabel
+                    Left = 978
+                    Top = 487
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object StaticText57: TStaticText
+                    Left = 633
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 0
+                  end
+                  object StaticText58: TStaticText
+                    Left = 633
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 1
+                  end
+                  object StaticText59: TStaticText
+                    Left = 952
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 2
+                  end
+                  object StaticText60: TStaticText
+                    Left = 952
+                    Top = 487
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 3
+                  end
+                end
+              end
+              object pgtwCannon730: TAdvTabSheet
+                Caption = 'Cannon Type 730'
+                Color = clBtnFace
+                ColorTo = clNone
+                TabColor = 7301478
+                TabColorTo = clWhite
+                ExplicitLeft = 24
+                ExplicitTop = 0
+                ExplicitWidth = 100
+                ExplicitHeight = 100
+                object scrlbxCannon730: TScrollBox
+                  Left = 0
+                  Top = 0
+                  Width = 1101
+                  Height = 533
+                  Align = alClient
+                  Color = 7301478
+                  ParentColor = False
+                  TabOrder = 0
+                  object imageCannon730: TImage
+                    Left = 528
+                    Top = 0
+                    Width = 565
+                    Height = 433
+                    ParentShowHint = False
+                    ShowHint = True
+                    Stretch = True
+                  end
+                  object Label30: TLabel
+                    Left = 538
+                    Top = 455
+                    Width = 85
+                    Height = 16
+                    Caption = 'Start Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblStartCannon730: TLabel
+                    Left = 659
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label43: TLabel
+                    Left = 538
+                    Top = 489
+                    Width = 74
+                    Height = 16
+                    Caption = 'End Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblEndCannon730: TLabel
+                    Left = 659
+                    Top = 489
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label49: TLabel
+                    Left = 857
+                    Top = 455
+                    Width = 67
+                    Height = 16
+                    Caption = 'Min Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMinCannon730: TLabel
+                    Left = 978
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label53: TLabel
+                    Left = 857
+                    Top = 487
+                    Width = 71
+                    Height = 16
+                    Caption = 'Max Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMaxCannon730: TLabel
+                    Left = 978
+                    Top = 484
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object StaticText61: TStaticText
+                    Left = 633
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 0
+                  end
+                  object StaticText62: TStaticText
+                    Left = 633
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 1
+                  end
+                  object StaticText63: TStaticText
+                    Left = 952
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 2
+                  end
+                  object StaticText64: TStaticText
                     Left = 952
                     Top = 487
                     Width = 8
