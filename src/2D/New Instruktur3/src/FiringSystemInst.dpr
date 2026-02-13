@@ -112,6 +112,9 @@ begin
   { Ruler Distance }
   frmDistance.Map     := frmMainInstruktur.MainMap;
 
+  { Add Vehicle }
+  frmAddShipRuntime.Map     := frmMainInstruktur.MainMap;
+
   { Form Main }
   frmMainInstruktur.SetFormLayout;
   frmMainInstruktur.SetFormEnvironment;

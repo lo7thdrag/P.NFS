@@ -13,6 +13,7 @@ object frmAddShipRuntime: TfrmAddShipRuntime
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
@@ -827,6 +828,7 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       ParentFont = False
       TabOrder = 4
       Version = '2.1.3.0'
+      OnClick = AdvSmoothButton1Click
       TMSStyle = 0
     end
   end

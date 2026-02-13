@@ -7,7 +7,7 @@ uses
   Dialogs, AdvSmoothPanel, AdvSmoothButton, ComCtrls, AdvSmoothTabPager,
   AdvSmoothLabel, CurvyControls,
 
-  uClassDatabase, uInstrukturManager, ufrmGameController, uDataModule;
+  uClassDatabase, uInstrukturManager, ufrmGameController, uDataModule, MapXLib_TLB;
 
 type
   TfrmAddShipRuntime = class(TForm)
@@ -42,6 +42,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnRemoveObjectClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure AdvSmoothButton1Click(Sender: TObject);
   private
     { Private declarations }
     VehicleRuntime: TVehicle;
@@ -49,12 +51,16 @@ type
   public
     { Public declarations }
     PosX, PosY: Double;
+    Map : TMap;
   end;
 
 var
   frmAddShipRuntime: TfrmAddShipRuntime;
 
 implementation
+
+uses
+ufrmMainInstruktur;
 
 {$R *.dfm}
 
@@ -81,6 +87,14 @@ begin
   edtZCoord.Text := '0';
   lblZ.Visible := False;
   lblZ.Caption.Text := 'Altitude';
+end;
+
+procedure TfrmAddShipRuntime.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  SimManager.VRuler.Visible             := false;
+  Map.CurrentTool                       := miPanTool;
+  frmMainInstruktur.lblToolUsed.Caption := 'Select Hand';
 end;
 
 procedure TfrmAddShipRuntime.FormCreate(Sender: TObject);
@@ -488,6 +502,11 @@ begin
     listTargetAir.Free;
   end;
 
+end;
+
+procedure TfrmAddShipRuntime.AdvSmoothButton1Click(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TfrmAddShipRuntime.btnRemoveObjectClick(Sender: TObject);
