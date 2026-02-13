@@ -64,7 +64,7 @@ object frmRadar: TfrmRadar
   object tmrDisplay: TTimer
     Enabled = False
     OnTimer = tmrDisplayTimer
-    Left = 496
-    Top = 136
+    Left = 280
+    Top = 96
   end
 end

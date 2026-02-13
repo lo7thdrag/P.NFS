@@ -8,9 +8,9 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, System.Contnrs,
   System.Math,
 
-  uC705SimManager,
+  uC705SimManager, uVehicleManager,
 
-  uShipModel, uPhysicsEngine, uRadarSensor, Vcl.StdCtrls;
+  uShipModel, uRadarSensor, Vcl.StdCtrls;
 
 type
   TfrmRadar = class(TForm)
@@ -83,7 +83,7 @@ begin
 
   EnableComposited(pnlBtmRadar);
 
-  FDisplay := TRadarDisplay.Create(PaintBox1, 0, SimManager.NFSObjectList);
+  FDisplay := TRadarDisplay.Create(PaintBox1, 0, VehicleMgr.NFSObjectList);
 
   FDisplay.OwnShipID:= 29;
   FDisplay.RadarRangeNM:= 60.0;

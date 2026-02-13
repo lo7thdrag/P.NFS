@@ -5,9 +5,9 @@ interface
 type
   TViewMode = (vmRoutePlan, vmWCC);
 
-procedure InitForms;
-procedure SwitchView(AMode: TViewMode);
-function IsSingleMonitor: Boolean;
+  procedure InitForms;
+  procedure SwitchView(AMode: TViewMode);
+  function IsSingleMonitor: Boolean;
 
 implementation
 
@@ -57,13 +57,13 @@ begin
 
   if IsSingleMonitor then
   begin
-    // Laptop / single monitor
+    // Laptop atau single monitor
     frmWCC.Show;
     frmRoutePlan.Hide;
   end
   else
   begin
-    // dual monitor
+    // dual monitor atau di Console
     frmWCC.SetMonitor(VMonitorSetting.MonitorKanan,
                               VMonitorTopLeft.MonBot_Left, VMonitorTopLeft.MonBot_Top);
     frmRoutePlan.SetMonitor(VMonitorSetting.MonitorKiri,

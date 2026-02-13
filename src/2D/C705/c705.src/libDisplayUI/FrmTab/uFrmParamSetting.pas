@@ -41,29 +41,104 @@ type
     pnlCaptureMode_Far: TPanel;
     pnlCaptureMode_Control: TPanel;
     Label7: TLabel;
-    Panel1: TPanel;
+    pnlShipPos: TPanel;
     Panel36: TPanel;
     Label40: TLabel;
-    pnlSeaTgtNo: TPanel;
+    pnlSeaTgtRNo: TPanel;
     lblSeaTgtNoVal: TLabel;
     Panel2: TPanel;
     Label8: TLabel;
-    pnlSeaTgtRng: TPanel;
+    pnlSeaTgtRRng: TPanel;
     lblSeaTgtRngVal: TLabel;
     Panel4: TPanel;
     Label10: TLabel;
-    pnSeaTgtAzimuth: TPanel;
+    pnlSeaTgtRAzimuth: TPanel;
     lbSeaTgtAzimuthVal: TLabel;
     Panel8: TPanel;
     Label12: TLabel;
-    pnlSeaTgtSpd: TPanel;
+    pnlSeaTgtRSpd: TPanel;
     lblSeaTgtSpdVal: TLabel;
     Panel10: TPanel;
     Label14: TLabel;
-    pnlSeaTgtHdg: TPanel;
+    pnlSeaTgtRHdg: TPanel;
     lblSeaTgtHdgVal: TLabel;
     Label5: TLabel;
-    lblTgtNoSea: TLabel;
+    lblTgtNoSeaR: TLabel;
+    pnlSeaTgtAContent: TPanel;
+    Label9: TLabel;
+    Label11: TLabel;
+    lblTgtNoSeaA: TLabel;
+    Panel7: TPanel;
+    Label15: TLabel;
+    pnlSeaTgtANo: TPanel;
+    lblSeaTgtANo: TLabel;
+    Panel11: TPanel;
+    Label17: TLabel;
+    pnlSeaTgtALong: TPanel;
+    lblSeaTgtALong: TLabel;
+    Panel13: TPanel;
+    Label19: TLabel;
+    pnlSeaTgtALat: TPanel;
+    lnlSeaTgtALong: TLabel;
+    pnlLandTgtAContent: TPanel;
+    Label13: TLabel;
+    Label16: TLabel;
+    lblTgtNolandA: TLabel;
+    Panel9: TPanel;
+    Label20: TLabel;
+    pnlLandTgtANo: TPanel;
+    lblLandTgtANo: TLabel;
+    Panel14: TPanel;
+    Label22: TLabel;
+    pnlLandTgtALong: TPanel;
+    lblLandTgtALong: TLabel;
+    Panel16: TPanel;
+    Label24: TLabel;
+    pnlLandTgtALat: TPanel;
+    lblLandTgtALat: TLabel;
+    Panel18: TPanel;
+    Label26: TLabel;
+    pnlLandTgtAHeight: TPanel;
+    lblLandTgtAHeight: TLabel;
+    pnlShipAttitude: TPanel;
+    pnlShipPosContent: TPanel;
+    Label23: TLabel;
+    Label25: TLabel;
+    Panel3: TPanel;
+    Label27: TLabel;
+    pnlLongShipPos: TPanel;
+    lblLongShipPos: TLabel;
+    Panel15: TPanel;
+    Label29: TLabel;
+    pnlLatShipPos: TPanel;
+    lblLatShipPos: TLabel;
+    Panel19: TPanel;
+    Label31: TLabel;
+    pnlSpdShipPos: TPanel;
+    lblSpdShipPos: TLabel;
+    pnlShipAttitudeContent: TPanel;
+    Label18: TLabel;
+    lblShipPitchShipAtt: TLabel;
+    Panel12: TPanel;
+    Label28: TLabel;
+    pnlPitchShipAtt: TPanel;
+    lblPitchShipAtt: TLabel;
+    Panel20: TPanel;
+    Label32: TLabel;
+    pnlRollShipAtt: TPanel;
+    lblRollShipAtt: TLabel;
+    Panel22: TPanel;
+    Label34: TLabel;
+    pnlHdgShipAtt: TPanel;
+    lblHdgShipAtt: TLabel;
+    Panel1: TPanel;
+    Label36: TLabel;
+    Panel24: TPanel;
+    Label37: TLabel;
+    pnlESpdShipAtt: TPanel;
+    lblESpdShipAtt: TLabel;
+    pnlNSpdShipAtt: TPanel;
+    lblNSpdShipAtt: TLabel;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -196,7 +271,7 @@ begin
   CloseAllContent;
 
   case FActiveHeaderIdxParam of
-    0: begin
+    0: begin     // Capture Mode
       pnlCaptureModeContent.Visible := True;
 
       FarrContentSelection[0] := pnlCaptureMode_Big;
@@ -208,7 +283,7 @@ begin
 
       FSelectionContentCount := 6;
     end;
-    1: begin
+    1: begin     // Sea State
       pnlTgtChContent.Visible := True;
 
       FarrContentSelection[0] := pnlSeaState_Low;
@@ -216,12 +291,13 @@ begin
 
       FSelectionContentCount := 2;
     end;
-    2: begin
+    2: begin     // Sea TGT R
       pnlSeaTgtRContent.Visible := True;
-
-//      FarrContentSelection[0] := pnlNavContent_GyroCom;
-//      FarrContentSelection[1] := pnlNavContent_GyroNet;
     end;
+    3:          // Sea TGT A
+      pnlSeaTgtAContent.Visible := True;
+    4:          // Land TGT A
+      pnlLandTgtAContent.Visible := True;
   end;
 
   // Pindah focuse navigasi ke Panel Content

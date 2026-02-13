@@ -30,10 +30,14 @@ uses
   uBaseDataType in '..\..\ShareLib\LibBaseSystem\uBaseDataType.pas',
   uFrmINSTest in 'libDisplayUI\FrmTab\uFrmINSTest.pas' {frmINSTest},
   uShipModel in 'LibMapX\uShipModel.pas',
-  uPhysicsEngine in 'LibMapX\uPhysicsEngine.pas',
   uRadarSensor in 'LibMapX\uRadarSensor.pas',
   UfrmRadar in 'libDisplayUI\FrmTab\UfrmRadar.pas' {frmRadar},
-  uFrmParamSetting in 'libDisplayUI\FrmTab\uFrmParamSetting.pas' {frmParamSetting};
+  uFrmParamSetting in 'libDisplayUI\FrmTab\uFrmParamSetting.pas' {frmParamSetting},
+  uBridgeSet in '..\..\ShareLib\LibSetting\uBridgeSet.pas',
+  uBaseSimObjects in '..\didFramework\LibSims\uBaseSimObjects.pas',
+  uSimObjects in '..\didFramework\LibSims\uSimObjects.pas',
+  uCoordDataTypes in 'LibBaseSystem\uCoordDataTypes.pas',
+  uVehicleManager in 'libMgr\uVehicleManager.pas';
 
 {$R *.res}
 
@@ -42,15 +46,11 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  uLibSettings.LoadMonitorSetting;
-  uLibSettings.LoadNFSNetwork;
-  uLibSettings.LoadMonitorTopLeft;
-
-  //uLibSettings.LoadNFSDBConfig;
-
   Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
   Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);
+  Application.CreateForm(TfrmWCC, frmWCC);
+  //Application.CreateForm(TfrmPnlArea3AFoeFriend, frmPnlArea3AFoeFriend);
   //Application.CreateForm(TfrmParamSetting, frmParamSetting);
   //Application.CreateForm(TfrmRadar, frmRadar);
   //Application.CreateForm(TfrmParamSetting, frmParamSetting);
@@ -60,14 +60,7 @@ begin
   //Application.CreateForm(TfrmChannelSelect, frmChannelSelect);
   //Application.CreateForm(TfrmFireDistribution, frmFireDistribution);
   //Application.CreateForm(TfrmMissileInformation, frmMissileInformation);
-  //  frmRoutePlan.SetMonitor(VMonitorSetting.MonitorKiri,
-//                              VMonitorTopLeft.MonTop_Left, VMonitorTopLeft.MonTop_Top);
 
-  Application.CreateForm(TfrmWCC, frmWCC);
-//  frmWCC.SetMonitor(VMonitorSetting.MonitorKanan,
-//                              VMonitorTopLeft.MonBot_Left, VMonitorTopLeft.MonBot_Top);
-
-  uFormMgr.InitForms;
   uScriptC705.BeginC705;
   Application.Run;
 end.

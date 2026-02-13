@@ -158,7 +158,6 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="LibMapX\uShipModel.pas"/>
-        <DCCReference Include="LibMapX\uPhysicsEngine.pas"/>
         <DCCReference Include="LibMapX\uRadarSensor.pas"/>
         <DCCReference Include="libDisplayUI\FrmTab\UfrmRadar.pas">
             <Form>frmRadar</Form>
@@ -168,6 +167,11 @@
             <Form>frmParamSetting</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\..\ShareLib\LibSetting\uBridgeSet.pas"/>
+        <DCCReference Include="..\didFramework\LibSims\uBaseSimObjects.pas"/>
+        <DCCReference Include="..\didFramework\LibSims\uSimObjects.pas"/>
+        <DCCReference Include="LibBaseSystem\uCoordDataTypes.pas"/>
+        <DCCReference Include="libMgr\uVehicleManager.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

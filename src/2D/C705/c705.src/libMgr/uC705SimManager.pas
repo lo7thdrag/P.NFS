@@ -4,11 +4,9 @@ interface
 
 uses
   System.SysUtils, Vcl.ExtCtrls, System.Contnrs, OverbyteIcsWSocket, uTCPClient,
-  uTCPDatatype, uLibSettings, uShipModel;
+  uTCPDatatype, uLibSettings, uShipModel, uVehicleManager;
 
 type
-  PRecData3DPosition = ^TRecData3DPosition;
-
   GameSimManager = class
   private
     { NFS Dependencies }
@@ -16,25 +14,19 @@ type
     FAutoConnectToBridgeTimer: TTimer;
 
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
-
-    function FindObjectByID(AID: Integer): TShipContact;
-    procedure UpdateObjectList(AShipInfo: PRecData3DPosition);
-    procedure DeleteObjectByID(AID: Integer);
-
     procedure OnConnected(msg: string);
     procedure OnDisconnected(msg: string);
 
     { Receive procedure from NFS }
     procedure netNFS_OnReceiveData3DPosition(apRec: PAnsiChar; aSize: integer);
     procedure netNFS_OnReceive2DOrder(apRec: PAnsiChar; aSize: integer);
+    procedure netNFS_OnDeleteShip(apRec: PAnsiChar; aSize: integer);
 
   public
     NFSNetRecv: TTCPClient;
 
     constructor Create;
     destructor Destroy; override;
-
-    property NFSObjectList: TObjectList read FNFSObjectList;
 
   published
     {
@@ -51,17 +43,18 @@ implementation
 
 constructor GameSimManager.Create;
 begin
-  FNFSObjectList := TObjectList.Create;
-
   {Socket NFS}
   NFSNetRecv := TTCPClient.Create;
 
   NFSNetRecv.OnConnected := OnConnected;
   NFSNetRecv.OnDisconnected := OnDisconnected;
 
+  {Register Procedure NetNFS}
   NFSNetRecv.RegisterProcedure(REC_3D_POSITION, netNFS_OnReceiveData3DPosition, SizeOf(TRecData3DPosition));
   NFSNetRecv.RegisterProcedure(REC_2D_ORDER, netNFS_OnReceive2DOrder, SizeOf(TRecData2DOrder));
+  NFSNetRecv.RegisterProcedure(REC_3D_ORDER, netNFS_OnDeleteShip, SizeOf(TRecData3DOrder));
 
+  {Timer untuk Connect ke Bridge}
   FAutoConnectToBridgeTimer := TTimer.Create(nil);
   FAutoConnectToBridgeTimer.Interval := 5000;
   FAutoConnectToBridgeTimer.OnTimer := tmrAutoConnectToBridgeTimer;
@@ -83,91 +76,10 @@ begin
     FreeAndNil(NFSNetRecv);
   end;
 
-  if Assigned(FNFSObjectList) then
-    FreeAndNil(FNFSObjectList);
-
   inherited;
 end;
 
-function GameSimManager.FindObjectByID(AID: Integer): TShipContact;
-var
-  i: Integer;
-  Ship: TShipContact;
-begin
-  Result := nil;
-  if Assigned(FNFSObjectList) then
-  begin
-    for i := 0 to FNFSObjectList.Count - 1 do
-    begin
-      Ship := TShipContact(FNFSObjectList[i]);
-      if Ship.ID = AID then
-      begin
-        Result := Ship;
-        Break;
-      end;
-    end;
-  end;
-end;
-
-procedure GameSimManager.UpdateObjectList(AShipInfo: PRecData3DPosition);
-var
-  Ship: TShipContact;
-begin
-  if Assigned(FNFSObjectList) and Assigned(AShipInfo) then
-  begin
-    Ship := FindObjectByID(AShipInfo^.ShipID);
-    if not Assigned(Ship) then
-    begin
-      Ship := TShipContact.Create(AShipInfo^.ShipID, '', AShipInfo^.Y, AShipInfo^.X, AShipInfo^.Heading, AShipInfo^.Speed);
-      FNFSObjectList.Add(Ship);
-    end
-    else
-    begin
-      Ship.Lat := AShipInfo^.Y;
-      Ship.Lon := AShipInfo^.X;
-      Ship.Heading := AShipInfo^.Heading;
-      Ship.Speed := AShipInfo^.Speed;
-    end;
-  end;
-end;
-
-procedure GameSimManager.DeleteObjectByID(AID: Integer);
-var
-  i: Integer;
-  Ship: TShipContact;
-begin
-  if Assigned(FNFSObjectList) then
-  begin
-    for i := 0 to FNFSObjectList.Count - 1 do
-    begin
-      Ship := TShipContact(FNFSObjectList[i]);
-      if Ship.ID = AID then
-      begin
-        FNFSObjectList.Delete(i);
-        Break;
-      end;
-    end;
-  end;
-end;
-
-procedure GameSimManager.netNFS_OnReceive2DOrder(apRec: PAnsiChar; aSize: integer);
-var
-  rec: ^TRecData2DOrder;
-  str: string;
-begin
-  rec := @apRec^;
-  str := rec^.strValue;
-end;
-
-procedure GameSimManager.netNFS_OnReceiveData3DPosition(apRec: PAnsiChar; aSize: integer);
-var
-  rec: PRecData3DPosition;
-  AShip: TShipContact;
-begin
-  rec := @apRec^;
-  UpdateObjectList(rec);
-end;
-
+{$REGION 'NFS Socket'}
 procedure GameSimManager.OnConnected(msg: string);
 var
   recSend: TRecData2DOrder;
@@ -197,6 +109,37 @@ begin
     SimManager.NFSNetRecv.Connect(VNfsNetwork.ServerIP, IntToStr(VNfsNetwork.Serverport));
   end
 end;
+{$ENDREGION}
+
+{$REGION 'NetNFS Receive Order'}
+
+procedure GameSimManager.netNFS_OnDeleteShip(apRec: PAnsiChar; aSize: integer);
+var
+  i: integer;
+  aRec: ^TRecData3DOrder;
+begin
+  aRec := @apRec^;
+end;
+
+procedure GameSimManager.netNFS_OnReceive2DOrder(apRec: PAnsiChar; aSize: integer);
+var
+  rec: ^TRecData2DOrder;
+  str: string;
+begin
+  rec := @apRec^;
+  str := rec^.strValue;
+end;
+
+procedure GameSimManager.netNFS_OnReceiveData3DPosition(apRec: PAnsiChar; aSize: integer);
+var
+  rec: PRecData3DPosition;
+  AShip: TShipContact;
+begin
+  rec := @apRec^;
+  VehicleMgr.UpdateObjectList(rec);
+end;
+
+{$ENDREGION}
 
 end.
 

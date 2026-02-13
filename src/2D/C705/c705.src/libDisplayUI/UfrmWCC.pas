@@ -97,6 +97,8 @@ type
     procedure UpdateHighlight;
     function FindLabelByTag(ATag: Integer): TLabel;
     procedure ShowPanelForMenu(ALabel: TLabel);
+
+    procedure HideAllPnlContent;
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
@@ -144,7 +146,7 @@ begin
       aLbl.Color := clHighlight;
       aLbl.Transparent := False;
 
-      ShowPanelForMenu(aLbl);
+      //ShowPanelForMenu(aLbl);
     end
     else
     begin
@@ -171,7 +173,8 @@ begin
 
 //    if aPnl.Tag = 1 then
 //    begin
-//      frmFoeFriendSituationPage.Show;
+//      if Assigned(frmFoeFriendSituationPage) then
+//        frmFoeFriendSituationPage.Show;
 //    end;
   end;
 end;
@@ -209,25 +212,35 @@ begin
   case Key of
     VK_UP:   Dec(NextTag);
     VK_DOWN: Inc(NextTag);
-    {
+
     VK_RETURN:
-      begin
-        lblMenuMouseEnter(FActiveLabel);
-        Exit;
-      end;
-    }
+    begin
+      if NextTag = 1 then
+        frmFoeFriendSituationPage.Show;
+
+      //Exit;
+    end;
+
   else
     Exit;
   end;
 
   // Mentok atas & bawah
-  if (NextTag < 1) or (NextTag > pnlMainMenu.ControlCount) then Exit;
+  if (NextTag < 1) or (NextTag > pnlMainMenu.ControlCount) then
+    Exit;
 
   NextLabel := FindLabelByTag(NextTag);
   if NextLabel <> nil then
   begin
     FActiveLabel := NextLabel;
     UpdateHighlight;
+
+    HideAllPnlContent;
+
+    case Key of
+      VK_RETURN: ShowPanelForMenu(NextLabel);
+    end;
+
   end;
   {$ENDREGION}
 
@@ -254,6 +267,13 @@ procedure TfrmWCC.FormShow(Sender: TObject);
 begin
   Width := 1920;
   Height := 1080;
+end;
+
+procedure TfrmWCC.HideAllPnlContent;
+begin
+  pnlHardwareCheck.Visible := False;
+  pnlSimulateTraining.Visible := False;
+  pnlSoftwareExit.Visible := False;
 end;
 
 procedure TfrmWCC.lblMenuClick(Sender: TObject);
@@ -295,24 +315,18 @@ end;
 
 procedure TfrmWCC.RoutePlan1Click(Sender: TObject);
 begin
-  // pindah ke form Route Plan ketika 1 monitor
+  // pindah ke form Route Plan ketika 1 monitor menggunakan PopupMenu
   SwitchView(vmRoutePlan);
 end;
 
 procedure TfrmWCC.Close1Click(Sender: TObject);
 begin
   Application.Terminate;
+  //Close;
 end;
 
 procedure TfrmWCC.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 begin
-//  if Screen.MonitorCount = 0 then
-//    Exit;
-//
-//  if Screen.MonitorCount = 1 then
-//    aMonitorIdx := 0
-//  else aMonitorIdx := aMonitorIdx;  // handle kalau monitor cuma 1
-
   Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
   Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
 end;

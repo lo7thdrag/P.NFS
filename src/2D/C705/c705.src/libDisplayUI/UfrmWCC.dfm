@@ -87848,7 +87848,7 @@ object frmWCC: TfrmWCC
         Top = 45
         Width = 292
         Height = 23
-        Caption = 'C706 Weapon Control Console'
+        Caption = 'C705 Weapon Control Console'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -19

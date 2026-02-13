@@ -62,106 +62,57 @@ type
     pnlTargetName3A: TPanel;
     pnlTarget3A: TPanel;
     vrlInitState: TVrLights;
-    lblInitState: TLabel;
-    vrlINSGNSS: TVrLights;
-    Label4: TLabel;
-    vrlMNormal: TVrLights;
-    lblMNormal: TLabel;
-    vrlCalFinished: TVrLights;
-    lblCalFinished: TLabel;
-    vrlNavigate: TVrLights;
-    lblNavigation: TLabel;
-    vrlIgnition: TVrLights;
-    lblIgnition: TLabel;
-    vrlPowerOn: TVrLights;
-    lblTakeOff: TLabel;
-    vrlTakeOff: TVrLights;
-    lblParaSetting: TLabel;
-    vrlParaSetting: TVrLights;
-    lblInsideSector: TLabel;
-    vrlInsideSector: TVrLights;
-    lblSeaTgt: TLabel;
-    vrlSeaTgt: TVrLights;
-    lblEngine: TLabel;
-    vrlEngine: TVrLights;
-    lblPowerOn: TLabel;
-    vrlInitChk: TVrLights;
-    lblInitChk: TLabel;
-    lblWarmup: TLabel;
-    vrlWarmup: TVrLights;
-    vrlLandTgt: TVrLights;
-    lblLandTgt: TLabel;
-    vrlFullOpen: TVrLights;
-    lblFullOpen: TLabel;
-    vrlParaLocking: TVrLights;
-    lblParaLocking: TLabel;
-    vrlBusSupply: TVrLights;
-    lblBusSupply: TLabel;
-    vrlPlcChk: TVrLights;
-    lblPlcChk: TLabel;
-    vrlSeeker: TVrLights;
-    vrlInsAlign: TVrLights;
-    lblInsAlign: TLabel;
-    lblSeeker: TLabel;
-    vrlBoosterArm: TVrLights;
-    lblBoosterArm: TLabel;
-    vrlBatteryAct: TVrLights;
-    lblBatteryAct: TLabel;
-    vrlLnchRdy: TVrLights;
-    lblLnchRdy: TLabel;
-    vrlPwrSwitch: TVrLights;
-    lblPwrSwitch: TLabel;
+    lblInitState3A: TLabel;
+    lblInsGnss3A: TLabel;
+    lblMNormal3A: TLabel;
+    lblCalFinished3A: TLabel;
+    lblNavigate3A: TLabel;
+    lblIgnition3A: TLabel;
+    lblTakeOff3A: TLabel;
+    lblParaSetting3A: TLabel;
+    lblInsideSector3A: TLabel;
+    lblSeaTgt3A: TLabel;
+    lblEngine3A: TLabel;
+    lblPowerOn3A: TLabel;
+    lblInitChk3A: TLabel;
+    lblWarmup3A: TLabel;
+    lblLandTgt3A: TLabel;
+    lblFullOpen3A: TLabel;
+    lblParaLocking3A: TLabel;
+    lblBusSupply3A: TLabel;
+    lblPlcChk3A: TLabel;
+    lblInsAlign3A: TLabel;
+    lblSeeker3A: TLabel;
+    lblBoosterArm3A: TLabel;
+    lblBatteryAct3A: TLabel;
+    lblLnchRdy3A: TLabel;
+    lblPwrSwitch3A: TLabel;
     pnlArea3B: TPanel;
-    VrLights1: TVrLights;
-    Label3: TLabel;
-    VrLights2: TVrLights;
-    Label5: TLabel;
-    VrLights3: TVrLights;
-    Label6: TLabel;
-    VrLights4: TVrLights;
-    Label8: TLabel;
-    VrLights5: TVrLights;
-    Label9: TLabel;
-    VrLights6: TVrLights;
-    Label10: TLabel;
-    VrLights7: TVrLights;
-    Label11: TLabel;
-    VrLights8: TVrLights;
-    Label12: TLabel;
-    VrLights9: TVrLights;
-    Label13: TLabel;
-    VrLights10: TVrLights;
-    Label14: TLabel;
-    VrLights11: TVrLights;
-    Label18: TLabel;
-    VrLights12: TVrLights;
-    Label19: TLabel;
-    VrLights13: TVrLights;
-    Label20: TLabel;
-    Label21: TLabel;
-    VrLights14: TVrLights;
-    VrLights15: TVrLights;
-    Label22: TLabel;
-    VrLights16: TVrLights;
-    Label23: TLabel;
-    VrLights17: TVrLights;
-    Label24: TLabel;
-    VrLights18: TVrLights;
-    Label25: TLabel;
-    VrLights19: TVrLights;
-    Label26: TLabel;
-    VrLights20: TVrLights;
-    VrLights21: TVrLights;
-    Label27: TLabel;
-    Label28: TLabel;
-    VrLights22: TVrLights;
-    Label29: TLabel;
-    VrLights23: TVrLights;
-    Label30: TLabel;
-    VrLights24: TVrLights;
-    Label31: TLabel;
-    VrLights25: TVrLights;
-    Label32: TLabel;
+    lblInitState3B: TLabel;
+    lblInsGnss3B: TLabel;
+    lblMNormal3B: TLabel;
+    lblCalFinished3B: TLabel;
+    lblNavigate3B: TLabel;
+    lblIgnition3B: TLabel;
+    lblTakeOff3B: TLabel;
+    lblParaSetting3B: TLabel;
+    lblInsideSector3B: TLabel;
+    lblSeaTgt3B: TLabel;
+    lblEngine3B: TLabel;
+    lblPowerOn3B: TLabel;
+    lblInitChk3B: TLabel;
+    lblWarmup3B: TLabel;
+    lblLandTgt3B: TLabel;
+    lblFullOpen3B: TLabel;
+    lblParaLocking3B: TLabel;
+    lblBusSupply3B: TLabel;
+    lblPlcChk3B: TLabel;
+    lblInsAlign3B: TLabel;
+    lblSeeker3B: TLabel;
+    lblBoosterArm3B: TLabel;
+    lblBatteryAct3B: TLabel;
+    lblLnchRdy3B: TLabel;
+    lblPwrSwitch3B: TLabel;
     Panel4: TPanel;
     Image2: TImage;
     Panel6: TPanel;
@@ -449,6 +400,56 @@ type
     Label63: TLabel;
     pnlPowerOffContentMCtrl: TPanel;
     Label67: TLabel;
+    pnlVrlInitState3A: TPanel;
+    pnlVrlInsGnss3A: TPanel;
+    pnlVrlMNormal3A: TPanel;
+    pnlVrlCalFinished3A: TPanel;
+    pnlVrlNavigate3A: TPanel;
+    pnlVrlIgnition3A: TPanel;
+    pnlVrlSeaTgt3A: TPanel;
+    pnlVrlInsideSector3A: TPanel;
+    pnlVrlParaSetting: TPanel;
+    pnlVrlTakeOff3A: TPanel;
+    pnlVrlPowerOn3A: TPanel;
+    pnlVrlEngine3A: TPanel;
+    pnlVrlFullOpen3A: TPanel;
+    pnlVrlParaLocking3A: TPanel;
+    pnlVrlLandTgt3A: TPanel;
+    pnlVrlInitChk3A: TPanel;
+    pnlVrlWarmUp3A: TPanel;
+    pnlVrlBusSupply3A: TPanel;
+    pnlVrlPlcChk3A: TPanel;
+    pnlVrlBoosterArm3A: TPanel;
+    pnlVrlBatteryAct3A: TPanel;
+    pnlVrlSeeker3A: TPanel;
+    pnlVrlInsAlign3A: TPanel;
+    pnlVrlLnchRdy3A: TPanel;
+    pnlVrlPwrSwitch3A: TPanel;
+    pnlVrlInitState3B: TPanel;
+    pnlVrlInsGnss3B: TPanel;
+    pnlVrlMNormal3B: TPanel;
+    pnlVrlCalFinished3B: TPanel;
+    pnlVrlNavigate3B: TPanel;
+    pnlVrlIgnition3B: TPanel;
+    pnlVrlTakeOff3B: TPanel;
+    pnlVrlParaSetting3B: TPanel;
+    pnlVrlInsideSector3B: TPanel;
+    pnlVrlSeaTgt3B: TPanel;
+    pnlVrlEngine3B: TPanel;
+    pnlVrlPowerOn3B: TPanel;
+    pnlVrlInitChk3B: TPanel;
+    pnlVrlWarmUp3B: TPanel;
+    pnlVrlLandTgt3B: TPanel;
+    pnlVrlFullOpen3B: TPanel;
+    pnlVrlParaLocking3B: TPanel;
+    pnlVrlBusSupply3B: TPanel;
+    pnlVrlPlcChk3B: TPanel;
+    pnlVrlBoosterArm3B: TPanel;
+    pnlVrlBatteryAct3B: TPanel;
+    pnlVrlSeeker3B: TPanel;
+    pnlVrlInsAlign3B: TPanel;
+    pnlVrlLnchRdy3B: TPanel;
+    pnlVrlPwrSwitch3B: TPanel;
     {$ENDREGION}
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
@@ -463,10 +464,11 @@ type
     FFormMissileInfo: TfrmMissileInformation;
     FFormParSetting: TfrmParamSetting; //done UI
     FFormChSelect: TfrmChannelSelect; //done UI
-    FFormMissileControl: TfrmLaunchData; //belum
+    FFormMissileControl: TfrmRadar; //done UI
     FFormMissileMonitor: TfrmMissileMonitor; //done UI
     FFormINSTest: TfrmINSTest; //done UI
     FFormLaunchData: TfrmLaunchData; //done UI
+    FFormExit: TfrmRadar; // done UI
 
     // For tab M. Control (Missile Control)
     FarrHeaderPnlMCtrl: array[0..3] of TPanel;
@@ -555,7 +557,7 @@ begin
     FFormChSelect := TfrmChannelSelect.Create(Self);
 
   if not Assigned(FFormMissileControl) then
-    FFormMissileControl := TfrmLaunchData.Create(Self);
+    FFormMissileControl := TfrmRadar.Create(Self);
 
   if not Assigned(FFormMissileMonitor) then
     FFormMissileMonitor := TfrmMissileMonitor.Create(Self);
@@ -565,6 +567,9 @@ begin
 
   if not Assigned(FFormLaunchData) then
     FFormLaunchData := TfrmLaunchData.Create(Self);
+
+  if not Assigned (FFormExit) then
+    FFormExit := TfrmRadar.Create(Self);
 end;
 
 procedure TfrmFoeFriendSituationPage.AttachPanelTo(aPanel, aParent: TWinControl);
@@ -658,6 +663,7 @@ begin
     AttachPanelTo(pnlArea4, pnlArea4_MControl);
     AttachPanelTo(pnlArea5, pnlArea5_MControl);
 
+    EmbedAreaForm(FFormMissileControl, pnlArea1_MControl);
     //pnlMissileControl.Visible := True;
     {$ENDREGION}
   end
@@ -669,6 +675,8 @@ begin
     AttachPanelTo(pnlArea3B, pnlArea3B_MMonitor);
     AttachPanelTo(pnlArea4, pnlArea4_MMonitor);
     AttachPanelTo(pnlArea5, pnlArea5_MMonitor);
+
+    EmbedAreaForm(FFormMissileMonitor, pnlArea1_MMonitor);
     {$ENDREGION}
   end
   else if advpgcFunctionMenuFoe.ActivePage = advtsINSTest then
@@ -709,6 +717,8 @@ begin
     AttachPanelTo(pnlArea3B, pnlArea3B_Exit);
     AttachPanelTo(pnlArea4, pnlArea4_Exit);
     AttachPanelTo(pnlArea5, pnlArea5_Exit);
+
+    EmbedAreaForm(FFormExit, pnlArea1_Exit);
     {$ENDREGION}
   end
   else begin
@@ -760,6 +770,9 @@ begin
 
   // For tab Sitation purpose
   EnableComposited(pnlMap_Situation);
+  EnableComposited(pnlArea1_MControl);
+  EnableComposited(pnlArea1_Exit);
+  EnableComposited(pnlArea1_InsTest);
 end;
 
 procedure TfrmFoeFriendSituationPage.FormShow(Sender: TObject);
@@ -808,7 +821,8 @@ begin
       end;
 
       HandleTabShortcut(Key);
-      UpdateLayoutTab;
+      advpgcFunctionMenuFoeChange(Sender);
+      //UpdateLayoutTab;
 
       Exit; // stop shortcut global
     end;
@@ -846,6 +860,7 @@ begin
     begin
       if Key = VK_RETURN then
         pnlMissileControl.Visible := True;
+        pnlMissileControl.BringToFront;
 
       //Exit;
     end
@@ -908,7 +923,8 @@ begin
       end;
 
       HandleTabShortcut(Key);
-      UpdateLayoutTab;
+      advpgcFunctionMenuFoeChange(Sender);
+      //UpdateLayoutTab;
 
       Exit; // stop shortcut global
     end;
@@ -949,7 +965,8 @@ begin
     end;
   end;
 
-  UpdateLayoutTab;
+  advpgcFunctionMenuFoeChange(Sender);
+  //UpdateLayoutTab;
 
   {$REGION 'Case untuk form INS Test'}
   // case ketika di tab INS Test, jadi navigasi untuk form INS Test only
@@ -957,6 +974,7 @@ begin
     case Key of
       VK_RETURN: begin
         EmbedAreaForm(FFormINSTest, pnlArea1_InsTest);
+        Exit;
       end;
     end;
   end;

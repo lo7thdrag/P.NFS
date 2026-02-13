@@ -38,7 +38,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     Height = 1080
     ActivePage = advtsSituation
     ActiveFont.Charset = DEFAULT_CHARSET
-    ActiveFont.Color = clWindowText
+    ActiveFont.Color = 10908270
     ActiveFont.Height = -13
     ActiveFont.Name = 'Tahoma'
     ActiveFont.Style = []
@@ -50,8 +50,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    DefaultTabColor = clLime
-    ActiveColor = clSilver
+    DefaultTabColor = 10790913
+    ActiveColor = 12762561
     TabBackGroundColor = clBtnFace
     TabMargin.RightMargin = 0
     TabOverlap = 0
@@ -64,7 +64,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'Situation'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       object pnlLeft_Situation: TPanel
         Left = 0
@@ -140,12 +140,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'Fire Distr.'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object pnlArea5_FireDist: TPanel
         Left = 0
         Top = 999
@@ -220,7 +216,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'M. info.'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       ExplicitLeft = 0
       ExplicitTop = 0
@@ -300,7 +296,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'Par. Setting'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       ExplicitLeft = 0
       ExplicitTop = 0
@@ -380,7 +376,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'Ch. Select'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       ExplicitLeft = 0
       ExplicitTop = 0
@@ -460,7 +456,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'M. Control'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       ExplicitLeft = 0
       ExplicitTop = 0
@@ -489,235 +485,6 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           Align = alTop
           Caption = 'Area1'
           TabOrder = 0
-          object pnlMissileControl: TPanel
-            Tag = 5
-            Left = 232
-            Top = 264
-            Width = 489
-            Height = 322
-            Color = clActiveBorder
-            ParentBackground = False
-            TabOrder = 0
-            Visible = False
-            object Bevel2: TBevel
-              Left = 20
-              Top = 236
-              Width = 445
-              Height = 9
-              Shape = bsBottomLine
-            end
-            object Label51: TLabel
-              Left = 25
-              Top = 261
-              Width = 257
-              Height = 18
-              Caption = 'For select,Press [Up] or [down]'
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clNavy
-              Font.Height = -16
-              Font.Name = 'Verdana'
-              Font.Style = []
-              ParentFont = False
-            end
-            object Label53: TLabel
-              Left = 25
-              Top = 293
-              Width = 281
-              Height = 18
-              Caption = '[Enter] for confirm,[Esc] for return'
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clNavy
-              Font.Height = -16
-              Font.Name = 'Verdana'
-              Font.Style = []
-              ParentFont = False
-            end
-            object pnlMCtrlHeader: TPanel
-              Tag = 60
-              Left = 1
-              Top = 1
-              Width = 487
-              Height = 41
-              Align = alTop
-              Alignment = taLeftJustify
-              BevelOuter = bvLowered
-              Caption = 'Missile Control'
-              Color = clNavy
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clLime
-              Font.Height = -16
-              Font.Name = 'Verdana'
-              Font.Style = []
-              ParentBackground = False
-              ParentFont = False
-              TabOrder = 0
-            end
-            object pnlPowerOnContentMCtrl: TPanel
-              Left = 152
-              Top = 68
-              Width = 313
-              Height = 162
-              BevelOuter = bvNone
-              TabOrder = 1
-              object Label58: TLabel
-                Left = 191
-                Top = 12
-                Width = 33
-                Height = 18
-                Caption = '1~2'
-                Font.Charset = ANSI_CHARSET
-                Font.Color = clBlue
-                Font.Height = -16
-                Font.Name = 'Verdana'
-                Font.Style = []
-                ParentFont = False
-              end
-              object Panel19: TPanel
-                Left = 10
-                Top = 5
-                Width = 175
-                Height = 32
-                Color = clBlue
-                ParentBackground = False
-                TabOrder = 0
-              end
-            end
-            object pnlPowerOnMCtrl: TPanel
-              Tag = 61
-              Left = 20
-              Top = 69
-              Width = 122
-              Height = 35
-              BevelInner = bvLowered
-              BevelOuter = bvLowered
-              Caption = 'Power On'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = 11754291
-              Font.Height = -16
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentBackground = False
-              ParentFont = False
-              TabOrder = 2
-            end
-            object pnlReCheckMCtrl: TPanel
-              Tag = 62
-              Left = 20
-              Top = 110
-              Width = 122
-              Height = 35
-              BevelInner = bvLowered
-              BevelOuter = bvLowered
-              Caption = 'ReCheck'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -16
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentBackground = False
-              ParentFont = False
-              TabOrder = 3
-            end
-            object pnlINSAlignMCtrl: TPanel
-              Tag = 63
-              Left = 20
-              Top = 152
-              Width = 122
-              Height = 35
-              BevelInner = bvLowered
-              BevelOuter = bvLowered
-              Caption = 'INS Align.'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -16
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentBackground = False
-              ParentFont = False
-              TabOrder = 4
-            end
-            object pnlPowerOffMCtrl: TPanel
-              Tag = 64
-              Left = 20
-              Top = 194
-              Width = 122
-              Height = 35
-              BevelInner = bvLowered
-              BevelOuter = bvLowered
-              Caption = 'PowerOff'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -16
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentBackground = False
-              ParentFont = False
-              TabOrder = 5
-            end
-            object pnlReCheckContentMCtrl: TPanel
-              Left = 152
-              Top = 68
-              Width = 313
-              Height = 162
-              BevelOuter = bvNone
-              TabOrder = 6
-              object Label61: TLabel
-                Left = 191
-                Top = 12
-                Width = 66
-                Height = 18
-                Caption = 'Recheck'
-                Font.Charset = ANSI_CHARSET
-                Font.Color = clBlue
-                Font.Height = -16
-                Font.Name = 'Verdana'
-                Font.Style = []
-                ParentFont = False
-              end
-            end
-            object pnlINSAlignContentMCtrl: TPanel
-              Left = 152
-              Top = 68
-              Width = 313
-              Height = 162
-              BevelOuter = bvNone
-              TabOrder = 7
-              object Label63: TLabel
-                Left = 191
-                Top = 12
-                Width = 82
-                Height = 18
-                Caption = 'INS Align.'
-                Font.Charset = ANSI_CHARSET
-                Font.Color = clBlue
-                Font.Height = -16
-                Font.Name = 'Verdana'
-                Font.Style = []
-                ParentFont = False
-              end
-            end
-            object pnlPowerOffContentMCtrl: TPanel
-              Left = 152
-              Top = 68
-              Width = 313
-              Height = 162
-              BevelOuter = bvNone
-              TabOrder = 8
-              object Label67: TLabel
-                Left = 191
-                Top = 12
-                Width = 74
-                Height = 18
-                Caption = 'PowerOff'
-                Font.Charset = ANSI_CHARSET
-                Font.Color = clBlue
-                Font.Height = -16
-                Font.Name = 'Verdana'
-                Font.Style = []
-                ParentFont = False
-              end
-            end
-          end
         end
         object pnlArea2_MControl: TPanel
           Left = 1
@@ -764,12 +531,241 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 2
         end
       end
+      object pnlMissileControl: TPanel
+        Tag = 5
+        Left = 232
+        Top = 264
+        Width = 489
+        Height = 322
+        Color = clActiveBorder
+        ParentBackground = False
+        TabOrder = 3
+        Visible = False
+        object Bevel2: TBevel
+          Left = 20
+          Top = 236
+          Width = 445
+          Height = 9
+          Shape = bsBottomLine
+        end
+        object Label51: TLabel
+          Left = 25
+          Top = 261
+          Width = 257
+          Height = 18
+          Caption = 'For select,Press [Up] or [down]'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -16
+          Font.Name = 'Verdana'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label53: TLabel
+          Left = 25
+          Top = 293
+          Width = 281
+          Height = 18
+          Caption = '[Enter] for confirm,[Esc] for return'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -16
+          Font.Name = 'Verdana'
+          Font.Style = []
+          ParentFont = False
+        end
+        object pnlMCtrlHeader: TPanel
+          Tag = 60
+          Left = 1
+          Top = 1
+          Width = 487
+          Height = 41
+          Align = alTop
+          Alignment = taLeftJustify
+          BevelOuter = bvLowered
+          Caption = 'Missile Control'
+          Color = clNavy
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clLime
+          Font.Height = -16
+          Font.Name = 'Verdana'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 0
+        end
+        object pnlPowerOnContentMCtrl: TPanel
+          Left = 152
+          Top = 68
+          Width = 313
+          Height = 162
+          BevelOuter = bvNone
+          TabOrder = 1
+          object Label58: TLabel
+            Left = 191
+            Top = 12
+            Width = 33
+            Height = 18
+            Caption = '1~2'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Panel19: TPanel
+            Left = 10
+            Top = 5
+            Width = 175
+            Height = 32
+            Color = clBlue
+            ParentBackground = False
+            TabOrder = 0
+          end
+        end
+        object pnlPowerOnMCtrl: TPanel
+          Tag = 61
+          Left = 20
+          Top = 69
+          Width = 122
+          Height = 35
+          BevelInner = bvLowered
+          BevelOuter = bvLowered
+          Caption = 'Power On'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 11754291
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 2
+        end
+        object pnlReCheckMCtrl: TPanel
+          Tag = 62
+          Left = 20
+          Top = 110
+          Width = 122
+          Height = 35
+          BevelInner = bvLowered
+          BevelOuter = bvLowered
+          Caption = 'ReCheck'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 3
+        end
+        object pnlINSAlignMCtrl: TPanel
+          Tag = 63
+          Left = 20
+          Top = 152
+          Width = 122
+          Height = 35
+          BevelInner = bvLowered
+          BevelOuter = bvLowered
+          Caption = 'INS Align.'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 4
+        end
+        object pnlPowerOffMCtrl: TPanel
+          Tag = 64
+          Left = 20
+          Top = 194
+          Width = 122
+          Height = 35
+          BevelInner = bvLowered
+          BevelOuter = bvLowered
+          Caption = 'PowerOff'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 5
+        end
+        object pnlReCheckContentMCtrl: TPanel
+          Left = 152
+          Top = 68
+          Width = 313
+          Height = 162
+          BevelOuter = bvNone
+          TabOrder = 6
+          object Label61: TLabel
+            Left = 191
+            Top = 12
+            Width = 66
+            Height = 18
+            Caption = 'Recheck'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentFont = False
+          end
+        end
+        object pnlINSAlignContentMCtrl: TPanel
+          Left = 152
+          Top = 68
+          Width = 313
+          Height = 162
+          BevelOuter = bvNone
+          TabOrder = 7
+          object Label63: TLabel
+            Left = 191
+            Top = 12
+            Width = 82
+            Height = 18
+            Caption = 'INS Align.'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentFont = False
+          end
+        end
+        object pnlPowerOffContentMCtrl: TPanel
+          Left = 152
+          Top = 68
+          Width = 313
+          Height = 162
+          BevelOuter = bvNone
+          TabOrder = 8
+          object Label67: TLabel
+            Left = 191
+            Top = 12
+            Width = 74
+            Height = 18
+            Caption = 'PowerOff'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentFont = False
+          end
+        end
+      end
     end
     object advtsMMonitor: TAdvTabSheet
       Caption = 'M. Monitor'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       ExplicitLeft = 0
       ExplicitTop = 0
@@ -849,7 +845,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'INS Test'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       ExplicitLeft = 0
       ExplicitTop = 0
@@ -880,8 +876,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 0
           object pnlInsTestTab: TPanel
             Tag = 5
-            Left = 110
-            Top = 190
+            Left = 232
+            Top = 279
             Width = 489
             Height = 292
             Color = clActiveBorder
@@ -1030,7 +1026,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'Launch Data'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       ExplicitLeft = 0
       ExplicitTop = 0
@@ -1110,7 +1106,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Caption = 'Exit'
       Color = clBtnFace
       ColorTo = clNone
-      TabColor = clLime
+      TabColor = 10790913
       TabColorTo = clNone
       ExplicitLeft = 0
       ExplicitTop = 0
@@ -1122,7 +1118,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
         Width = 1912
         Height = 50
         Align = alBottom
-        TabOrder = 1
+        TabOrder = 0
       end
       object pnlLeft_Exit: TPanel
         Left = 0
@@ -1130,7 +1126,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
         Width = 956
         Height = 999
         Align = alLeft
-        TabOrder = 2
+        TabOrder = 1
         object pnlArea1_Exit: TPanel
           Left = 1
           Top = 1
@@ -1156,7 +1152,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
         Width = 956
         Height = 999
         Align = alClient
-        TabOrder = 3
+        TabOrder = 2
         object pnlArea3B_Exit: TPanel
           Left = 1
           Top = 301
@@ -1187,13 +1183,13 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       end
       object pnlExitTab: TPanel
         Tag = 5
-        Left = 110
-        Top = 190
+        Left = 232
+        Top = 279
         Width = 489
         Height = 292
         Color = clActiveBorder
         ParentBackground = False
-        TabOrder = 0
+        TabOrder = 3
         object Bevel3: TBevel
           Left = 20
           Top = 186
@@ -1305,7 +1301,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       LedsVisible = [lsGreen]
       Transparent = True
     end
-    object lblInitState: TLabel
+    object lblInitState3A: TLabel
       Left = 44
       Top = 100
       Width = 73
@@ -1318,16 +1314,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlINSGNSS: TVrLights
-      Left = 13
-      Top = 122
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label4: TLabel
+    object lblInsGnss3A: TLabel
       Left = 44
       Top = 122
       Width = 65
@@ -1340,15 +1327,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlMNormal: TVrLights
-      Left = 13
-      Top = 144
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblMNormal: TLabel
+    object lblMNormal3A: TLabel
       Left = 44
       Top = 144
       Width = 65
@@ -1361,15 +1340,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlCalFinished: TVrLights
-      Left = 13
-      Top = 166
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblCalFinished: TLabel
+    object lblCalFinished3A: TLabel
       Left = 44
       Top = 166
       Width = 83
@@ -1382,15 +1353,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlNavigate: TVrLights
-      Left = 13
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblNavigation: TLabel
+    object lblNavigate3A: TLabel
       Left = 44
       Top = 189
       Width = 58
@@ -1403,15 +1366,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlIgnition: TVrLights
-      Left = 13
-      Top = 210
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblIgnition: TLabel
+    object lblIgnition3A: TLabel
       Left = 44
       Top = 210
       Width = 49
@@ -1424,16 +1379,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlPowerOn: TVrLights
-      Left = 181
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblTakeOff: TLabel
+    object lblTakeOff3A: TLabel
       Left = 212
       Top = 210
       Width = 55
@@ -1446,15 +1392,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlTakeOff: TVrLights
-      Left = 181
-      Top = 210
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblParaSetting: TLabel
+    object lblParaSetting3A: TLabel
       Left = 212
       Top = 189
       Width = 82
@@ -1467,15 +1405,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlParaSetting: TVrLights
-      Left = 181
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblInsideSector: TLabel
+    object lblInsideSector3A: TLabel
       Left = 212
       Top = 166
       Width = 88
@@ -1488,15 +1418,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlInsideSector: TVrLights
-      Left = 181
-      Top = 166
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblSeaTgt: TLabel
+    object lblSeaTgt3A: TLabel
       Left = 212
       Top = 144
       Width = 52
@@ -1509,15 +1431,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlSeaTgt: TVrLights
-      Left = 181
-      Top = 144
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblEngine: TLabel
+    object lblEngine3A: TLabel
       Left = 212
       Top = 122
       Width = 43
@@ -1530,16 +1444,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlEngine: TVrLights
-      Left = 181
-      Top = 122
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblPowerOn: TLabel
+    object lblPowerOn3A: TLabel
       Left = 212
       Top = 100
       Width = 63
@@ -1552,16 +1457,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlInitChk: TVrLights
-      Left = 333
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblInitChk: TLabel
+    object lblInitChk3A: TLabel
       Left = 364
       Top = 100
       Width = 62
@@ -1574,7 +1470,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object lblWarmup: TLabel
+    object lblWarmup3A: TLabel
       Left = 364
       Top = 122
       Width = 59
@@ -1587,24 +1483,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlWarmup: TVrLights
-      Left = 333
-      Top = 122
-      Width = 25
-      Height = 17
-      LedState = [lsYellow]
-      LedsVisible = [lsYellow]
-      Transparent = True
-    end
-    object vrlLandTgt: TVrLights
-      Left = 333
-      Top = 144
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblLandTgt: TLabel
+    object lblLandTgt3A: TLabel
       Left = 364
       Top = 144
       Width = 58
@@ -1617,16 +1496,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlFullOpen: TVrLights
-      Left = 333
-      Top = 166
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblFullOpen: TLabel
+    object lblFullOpen3A: TLabel
       Left = 364
       Top = 166
       Width = 61
@@ -1639,15 +1509,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlParaLocking: TVrLights
-      Left = 333
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblParaLocking: TLabel
+    object lblParaLocking3A: TLabel
       Left = 364
       Top = 189
       Width = 84
@@ -1660,16 +1522,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlBusSupply: TVrLights
-      Left = 493
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblBusSupply: TLabel
+    object lblBusSupply3A: TLabel
       Left = 524
       Top = 100
       Width = 72
@@ -1682,15 +1535,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlPlcChk: TVrLights
-      Left = 493
-      Top = 122
-      Width = 25
-      Height = 17
-      LedsVisible = [lsYellow]
-      Transparent = True
-    end
-    object lblPlcChk: TLabel
+    object lblPlcChk3A: TLabel
       Left = 524
       Top = 122
       Width = 55
@@ -1703,25 +1548,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlSeeker: TVrLights
-      Left = 637
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object vrlInsAlign: TVrLights
-      Left = 637
-      Top = 122
-      Width = 25
-      Height = 17
-      LedState = [lsYellow]
-      LedsVisible = [lsYellow]
-      Transparent = True
-    end
-    object lblInsAlign: TLabel
+    object lblInsAlign3A: TLabel
       Left = 668
       Top = 122
       Width = 59
@@ -1734,7 +1561,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object lblSeeker: TLabel
+    object lblSeeker3A: TLabel
       Left = 668
       Top = 100
       Width = 45
@@ -1747,15 +1574,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlBoosterArm: TVrLights
-      Left = 493
-      Top = 166
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblBoosterArm: TLabel
+    object lblBoosterArm3A: TLabel
       Left = 524
       Top = 166
       Width = 80
@@ -1768,15 +1587,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlBatteryAct: TVrLights
-      Left = 493
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblBatteryAct: TLabel
+    object lblBatteryAct3A: TLabel
       Left = 524
       Top = 188
       Width = 77
@@ -1789,16 +1600,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlLnchRdy: TVrLights
-      Left = 637
-      Top = 166
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object lblLnchRdy: TLabel
+    object lblLnchRdy3A: TLabel
       Left = 668
       Top = 166
       Width = 65
@@ -1811,16 +1613,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object vrlPwrSwitch: TVrLights
-      Left = 637
-      Top = 188
-      Width = 25
-      Height = 17
-      LedState = [lsYellow]
-      LedsVisible = [lsYellow]
-      Transparent = True
-    end
-    object lblPwrSwitch: TLabel
+    object lblPwrSwitch3A: TLabel
       Left = 668
       Top = 188
       Width = 79
@@ -2481,14 +2274,14 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
         Stretch = True
       end
       object pnlTrget3A: TPanel
-        Left = 601
+        Left = 611
         Top = 1
         Width = 213
         Height = 78
-        Align = alLeft
         BevelOuter = bvNone
         TabOrder = 0
         object pnlTargetNmb3A: TPanel
+          Tag = 53
           Left = 0
           Top = 50
           Width = 213
@@ -2498,6 +2291,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 0
         end
         object pnlTargetName3A: TPanel
+          Tag = 52
           Left = 0
           Top = 25
           Width = 213
@@ -2507,6 +2301,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 1
         end
         object pnlTarget3A: TPanel
+          Tag = 51
           Left = 0
           Top = 0
           Width = 213
@@ -2618,6 +2413,231 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
         TabOrder = 3
       end
     end
+    object pnlVrlInitState3A: TPanel
+      Left = 15
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 2
+    end
+    object pnlVrlInsGnss3A: TPanel
+      Left = 15
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 3
+    end
+    object pnlVrlMNormal3A: TPanel
+      Left = 15
+      Top = 147
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 4
+    end
+    object pnlVrlCalFinished3A: TPanel
+      Left = 15
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 5
+    end
+    object pnlVrlNavigate3A: TPanel
+      Left = 15
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 6
+    end
+    object pnlVrlIgnition3A: TPanel
+      Left = 15
+      Top = 213
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 7
+    end
+    object pnlVrlSeaTgt3A: TPanel
+      Left = 185
+      Top = 147
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 8
+    end
+    object pnlVrlInsideSector3A: TPanel
+      Left = 185
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 9
+    end
+    object pnlVrlParaSetting: TPanel
+      Left = 185
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 10
+    end
+    object pnlVrlTakeOff3A: TPanel
+      Left = 185
+      Top = 213
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 11
+    end
+    object pnlVrlPowerOn3A: TPanel
+      Left = 185
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 12
+    end
+    object pnlVrlEngine3A: TPanel
+      Left = 185
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 13
+    end
+    object pnlVrlFullOpen3A: TPanel
+      Left = 337
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 14
+    end
+    object pnlVrlParaLocking3A: TPanel
+      Left = 337
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 15
+    end
+    object pnlVrlLandTgt3A: TPanel
+      Left = 337
+      Top = 147
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 16
+    end
+    object pnlVrlInitChk3A: TPanel
+      Left = 337
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 17
+    end
+    object pnlVrlWarmUp3A: TPanel
+      Left = 337
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clYellow
+      ParentBackground = False
+      TabOrder = 18
+    end
+    object pnlVrlBusSupply3A: TPanel
+      Left = 497
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 19
+    end
+    object pnlVrlPlcChk3A: TPanel
+      Left = 497
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 20
+    end
+    object pnlVrlBoosterArm3A: TPanel
+      Left = 497
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 21
+    end
+    object pnlVrlBatteryAct3A: TPanel
+      Left = 497
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 22
+    end
+    object pnlVrlSeeker3A: TPanel
+      Left = 641
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 23
+    end
+    object pnlVrlInsAlign3A: TPanel
+      Left = 641
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clYellow
+      ParentBackground = False
+      TabOrder = 24
+    end
+    object pnlVrlLnchRdy3A: TPanel
+      Left = 641
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 25
+    end
+    object pnlVrlPwrSwitch3A: TPanel
+      Left = 641
+      Top = 191
+      Width = 20
+      Height = 10
+      Color = clYellow
+      ParentBackground = False
+      TabOrder = 26
+    end
   end
   object pnlArea3B: TPanel
     Left = 1005
@@ -2627,16 +2647,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     Color = clWhite
     ParentBackground = False
     TabOrder = 2
-    object VrLights1: TVrLights
-      Left = 13
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label3: TLabel
+    object lblInitState3B: TLabel
       Left = 44
       Top = 100
       Width = 73
@@ -2649,16 +2660,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights2: TVrLights
-      Left = 13
-      Top = 122
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label5: TLabel
+    object lblInsGnss3B: TLabel
       Left = 44
       Top = 122
       Width = 65
@@ -2671,15 +2673,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights3: TVrLights
-      Left = 13
-      Top = 144
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label6: TLabel
+    object lblMNormal3B: TLabel
       Left = 44
       Top = 144
       Width = 65
@@ -2692,15 +2686,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights4: TVrLights
-      Left = 13
-      Top = 166
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label8: TLabel
+    object lblCalFinished3B: TLabel
       Left = 44
       Top = 166
       Width = 83
@@ -2713,15 +2699,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights5: TVrLights
-      Left = 13
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label9: TLabel
+    object lblNavigate3B: TLabel
       Left = 44
       Top = 189
       Width = 58
@@ -2734,15 +2712,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights6: TVrLights
-      Left = 13
-      Top = 210
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label10: TLabel
+    object lblIgnition3B: TLabel
       Left = 44
       Top = 210
       Width = 49
@@ -2755,16 +2725,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights7: TVrLights
-      Left = 181
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label11: TLabel
+    object lblTakeOff3B: TLabel
       Left = 212
       Top = 210
       Width = 55
@@ -2777,15 +2738,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights8: TVrLights
-      Left = 181
-      Top = 210
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label12: TLabel
+    object lblParaSetting3B: TLabel
       Left = 212
       Top = 189
       Width = 82
@@ -2798,15 +2751,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights9: TVrLights
-      Left = 181
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label13: TLabel
+    object lblInsideSector3B: TLabel
       Left = 212
       Top = 166
       Width = 88
@@ -2819,15 +2764,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights10: TVrLights
-      Left = 181
-      Top = 166
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label14: TLabel
+    object lblSeaTgt3B: TLabel
       Left = 212
       Top = 144
       Width = 52
@@ -2840,15 +2777,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights11: TVrLights
-      Left = 181
-      Top = 144
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label18: TLabel
+    object lblEngine3B: TLabel
       Left = 212
       Top = 122
       Width = 43
@@ -2861,16 +2790,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights12: TVrLights
-      Left = 181
-      Top = 122
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label19: TLabel
+    object lblPowerOn3B: TLabel
       Left = 212
       Top = 100
       Width = 63
@@ -2883,16 +2803,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights13: TVrLights
-      Left = 333
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label20: TLabel
+    object lblInitChk3B: TLabel
       Left = 364
       Top = 100
       Width = 62
@@ -2905,7 +2816,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object Label21: TLabel
+    object lblWarmup3B: TLabel
       Left = 364
       Top = 122
       Width = 59
@@ -2918,24 +2829,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights14: TVrLights
-      Left = 333
-      Top = 122
-      Width = 25
-      Height = 17
-      LedState = [lsYellow]
-      LedsVisible = [lsYellow]
-      Transparent = True
-    end
-    object VrLights15: TVrLights
-      Left = 333
-      Top = 144
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label22: TLabel
+    object lblLandTgt3B: TLabel
       Left = 364
       Top = 144
       Width = 58
@@ -2948,15 +2842,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights16: TVrLights
-      Left = 333
-      Top = 166
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label23: TLabel
+    object lblFullOpen3B: TLabel
       Left = 364
       Top = 166
       Width = 61
@@ -2969,15 +2855,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights17: TVrLights
-      Left = 333
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label24: TLabel
+    object lblParaLocking3B: TLabel
       Left = 364
       Top = 189
       Width = 84
@@ -2990,16 +2868,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights18: TVrLights
-      Left = 493
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label25: TLabel
+    object lblBusSupply3B: TLabel
       Left = 524
       Top = 100
       Width = 72
@@ -3012,15 +2881,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights19: TVrLights
-      Left = 493
-      Top = 122
-      Width = 25
-      Height = 17
-      LedsVisible = [lsYellow]
-      Transparent = True
-    end
-    object Label26: TLabel
+    object lblPlcChk3B: TLabel
       Left = 524
       Top = 122
       Width = 55
@@ -3033,24 +2894,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights20: TVrLights
-      Left = 637
-      Top = 100
-      Width = 25
-      Height = 17
-      LedState = [lsGreen]
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object VrLights21: TVrLights
-      Left = 637
-      Top = 122
-      Width = 25
-      Height = 17
-      LedsVisible = [lsYellow]
-      Transparent = True
-    end
-    object Label27: TLabel
+    object lblInsAlign3B: TLabel
       Left = 668
       Top = 122
       Width = 59
@@ -3063,7 +2907,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object Label28: TLabel
+    object lblSeeker3B: TLabel
       Left = 668
       Top = 100
       Width = 45
@@ -3076,15 +2920,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights22: TVrLights
-      Left = 493
-      Top = 166
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label29: TLabel
+    object lblBoosterArm3B: TLabel
       Left = 524
       Top = 166
       Width = 80
@@ -3097,15 +2933,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights23: TVrLights
-      Left = 493
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label30: TLabel
+    object lblBatteryAct3B: TLabel
       Left = 524
       Top = 188
       Width = 77
@@ -3118,15 +2946,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights24: TVrLights
-      Left = 637
-      Top = 166
-      Width = 25
-      Height = 17
-      LedsVisible = [lsGreen]
-      Transparent = True
-    end
-    object Label31: TLabel
+    object lblLnchRdy3B: TLabel
       Left = 668
       Top = 166
       Width = 65
@@ -3139,15 +2959,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       Font.Style = []
       ParentFont = False
     end
-    object VrLights25: TVrLights
-      Left = 637
-      Top = 188
-      Width = 25
-      Height = 17
-      LedsVisible = [lsYellow]
-      Transparent = True
-    end
-    object Label32: TLabel
+    object lblPwrSwitch3B: TLabel
       Left = 668
       Top = 188
       Width = 79
@@ -3887,14 +3699,14 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
         Stretch = True
       end
       object Panel6: TPanel
-        Left = 601
+        Left = 611
         Top = 1
         Width = 213
         Height = 78
-        Align = alLeft
         BevelOuter = bvNone
         TabOrder = 0
         object Panel7: TPanel
+          Tag = 56
           Left = 0
           Top = 50
           Width = 213
@@ -3904,6 +3716,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 0
         end
         object Panel8: TPanel
+          Tag = 55
           Left = 0
           Top = 25
           Width = 213
@@ -3913,6 +3726,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 1
         end
         object Panel9: TPanel
+          Tag = 54
           Left = 0
           Top = 0
           Width = 213
@@ -4023,6 +3837,231 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
         ParentFont = False
         TabOrder = 3
       end
+    end
+    object pnlVrlInitState3B: TPanel
+      Left = 15
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 2
+    end
+    object pnlVrlInsGnss3B: TPanel
+      Left = 15
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 3
+    end
+    object pnlVrlMNormal3B: TPanel
+      Left = 15
+      Top = 147
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 4
+    end
+    object pnlVrlCalFinished3B: TPanel
+      Left = 15
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 5
+    end
+    object pnlVrlNavigate3B: TPanel
+      Left = 15
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 6
+    end
+    object pnlVrlIgnition3B: TPanel
+      Left = 15
+      Top = 213
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 7
+    end
+    object pnlVrlTakeOff3B: TPanel
+      Left = 185
+      Top = 213
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 8
+    end
+    object pnlVrlParaSetting3B: TPanel
+      Left = 185
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 9
+    end
+    object pnlVrlInsideSector3B: TPanel
+      Left = 185
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 10
+    end
+    object pnlVrlSeaTgt3B: TPanel
+      Left = 185
+      Top = 147
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 11
+    end
+    object pnlVrlEngine3B: TPanel
+      Left = 185
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 12
+    end
+    object pnlVrlPowerOn3B: TPanel
+      Left = 185
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 13
+    end
+    object pnlVrlInitChk3B: TPanel
+      Left = 337
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 14
+    end
+    object pnlVrlWarmUp3B: TPanel
+      Left = 337
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clYellow
+      ParentBackground = False
+      TabOrder = 15
+    end
+    object pnlVrlLandTgt3B: TPanel
+      Left = 337
+      Top = 147
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 16
+    end
+    object pnlVrlFullOpen3B: TPanel
+      Left = 337
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 17
+    end
+    object pnlVrlParaLocking3B: TPanel
+      Left = 337
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 18
+    end
+    object pnlVrlBusSupply3B: TPanel
+      Left = 497
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 19
+    end
+    object pnlVrlPlcChk3B: TPanel
+      Left = 497
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 20
+    end
+    object pnlVrlBoosterArm3B: TPanel
+      Left = 497
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 21
+    end
+    object pnlVrlBatteryAct3B: TPanel
+      Left = 497
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 22
+    end
+    object pnlVrlSeeker3B: TPanel
+      Left = 641
+      Top = 103
+      Width = 20
+      Height = 10
+      Color = clLime
+      ParentBackground = False
+      TabOrder = 23
+    end
+    object pnlVrlInsAlign3B: TPanel
+      Left = 641
+      Top = 125
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 24
+    end
+    object pnlVrlLnchRdy3B: TPanel
+      Left = 641
+      Top = 169
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 25
+    end
+    object pnlVrlPwrSwitch3B: TPanel
+      Left = 641
+      Top = 192
+      Width = 20
+      Height = 10
+      Color = clGray
+      ParentBackground = False
+      TabOrder = 26
     end
   end
   object pnlArea2: TPanel

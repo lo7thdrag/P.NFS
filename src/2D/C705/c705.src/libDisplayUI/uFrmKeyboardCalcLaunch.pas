@@ -97,7 +97,7 @@ end;
 procedure TfrmKeyboardCalcLaunch.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 begin
   Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
-  Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
+  Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop + 1100;
 end;
 
 end.

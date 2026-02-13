@@ -173,6 +173,8 @@ type
     rudder: single;
   end;
 
+  PRecData3DPosition = ^TRecData3DPosition;
+
   TRecDataAll3DPosition = record
   // posisi ship maupun weapon>>khusus untuk replay
     Pc: TPacketCheck;
