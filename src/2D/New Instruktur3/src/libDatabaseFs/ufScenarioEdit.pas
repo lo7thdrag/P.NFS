@@ -31,17 +31,11 @@ type
     tsShipGeneral: TAdvSmoothTabPage;
     tsMargin: TAdvSmoothTabPage;
     tsConsoleRun: TAdvSmoothTabPage;
-    lvWarShipAll: TListView;
     btnAddWarShip: TAdvSmoothButton;
     btnRemoveWarShip: TAdvSmoothButton;
-    lvWarShipSelect: TListView;
     btnWeaponList: TAdvSmoothButton;
-    lvWeaponSelected: TListView;
-    lvGeneralShipAll: TListView;
     btnRemoveGnrShip: TAdvSmoothButton;
     btnAddGnrShip: TAdvSmoothButton;
-    lvGeneralShipSelect: TListView;
-    lvConsole: TListView;
     TabTargetShip: TAdvSmoothTabPager;
     tsSurface: TAdvSmoothTabPage;
     tsSubsurface: TAdvSmoothTabPage;
@@ -53,25 +47,50 @@ type
     mmoKetSce: TMemo;
     btnSaveScenario: TAdvSmoothButton;
     btnSetPosition: TAdvSmoothButton;
-    btnEnableWeapon: TAdvSmoothButton;
     advsmthlbl1: TAdvSmoothLabel;
     advsmthlbl2: TAdvSmoothLabel;
     advsmthlbl3: TAdvSmoothLabel;
-    lvTargetSurfaceAll: TListView;
     btnAddTargetSurface: TAdvSmoothButton;
     btnRemoveTargetSurface: TAdvSmoothButton;
-    lvTargetSurfaceSelect: TListView;
-    lvTargetSubsurfaceAll: TListView;
     btnAddTargetSubsurface: TAdvSmoothButton;
     btnRemoveTargetSubsurface: TAdvSmoothButton;
-    lvTargetSubsurfaceSelect: TListView;
-    lvTargetAirAll: TListView;
     btnAddTargetAir: TAdvSmoothButton;
     btnRemoveTargetAir: TAdvSmoothButton;
-    lvTargetAirSelect: TListView;
     imgShip: TImage;
     btnWeaponListGeneral: TAdvSmoothButton;
     btnWeaponListTarget: TAdvSmoothButton;
+    pnlScenarioList: TAdvSmoothPanel;
+    lvWarShipAll: TListView;
+    lblGameName: TLabel;
+    AdvSmoothPanel1: TAdvSmoothPanel;
+    lvWarShipSelect: TListView;
+    AdvSmoothPanel3: TAdvSmoothPanel;
+    lvTargetSurfaceAll: TListView;
+    Label1: TLabel;
+    lvWeaponSelected: TListView;
+    btnEnableWeapon: TAdvSmoothButton;
+    AdvSmoothLabel1: TAdvSmoothLabel;
+    AdvSmoothLabel2: TAdvSmoothLabel;
+    AdvSmoothPanel4: TAdvSmoothPanel;
+    lvTargetSurfaceSelect: TListView;
+    AdvSmoothPanel5: TAdvSmoothPanel;
+    AdvSmoothPanel2: TAdvSmoothPanel;
+    AdvSmoothPanel6: TAdvSmoothPanel;
+    AdvSmoothPanel7: TAdvSmoothPanel;
+    lvTargetSubsurfaceAll: TListView;
+    Label2: TLabel;
+    lvTargetSubsurfaceSelect: TListView;
+    lvTargetAirAll: TListView;
+    Label3: TLabel;
+    lvTargetAirSelect: TListView;
+    AdvSmoothPanel9: TAdvSmoothPanel;
+    AdvSmoothPanel8: TAdvSmoothPanel;
+    lvGeneralShipAll: TListView;
+    Label4: TLabel;
+    lvGeneralShipSelect: TListView;
+    AdvSmoothPanel10: TAdvSmoothPanel;
+    lvConsole: TListView;
+    Label5: TLabel;
     procedure btnWeaponListClick(Sender: TObject);
     procedure btnEditDatabaseClick(Sender: TObject);
     procedure lvGeneralShipAllClick(Sender: TObject);
@@ -193,125 +212,125 @@ begin
   TabSelection.TabSettings.Width := (TabSelection.Width - 10) div 5;
 
   { Ship KRI }
-  lvWarShipAll.Height := tsShipKRI.Height - 20;
-  lvWarShipAll.Left := 10;
-  lvWarShipAll.Top := 10;
-  lvWarShipSelect.Height := tsShipKRI.Height - 20;
-  lvWarShipSelect.Width := tsShipKRI.Width - 50 - lvWarShipAll.Width -
-    lvWeaponSelected.Width - btnAddWarShip.Width;
-  lvWarShipSelect.Left := 30 + btnAddWarShip.Width + lvWarShipAll.Width;
-  lvWarShipSelect.Top := 10;
-  lvWeaponSelected.Left := 40 + lvWarShipSelect.Width + lvWarShipAll.Width +
-    btnAddWarShip.Width;
-  lvWeaponSelected.Top := 10;
-  btnEnableWeapon.Left := lvWeaponSelected.Left;
-  btnAddWarShip.Top := tsShipKRI.Height div 2 - btnAddWarShip.Height;
-  btnAddWarShip.Left := 20 + lvWarShipAll.Width;
-  btnRemoveWarShip.Top := btnAddWarShip.Top + btnAddWarShip.Height + 5;
-  btnRemoveWarShip.Left := 20 + lvWarShipAll.Width;
-  btnWeaponList.Top := tsShipKRI.Height - 20 - btnWeaponList.Height;
-  btnWeaponList.Left := 20 + lvWarShipAll.Width;
-
-  btnWeaponListTarget.Top := tsShipKRI.Height - 45 - btnWeaponListTarget.Height;
-  btnWeaponListTarget.Left := 20 + lvTargetSurfaceAll.Width;
-
-  btnWeaponListGeneral.Top := tsShipKRI.Height - 20 -
-    btnWeaponListGeneral.Height;
-  btnWeaponListGeneral.Left := 20 + lvTargetSurfaceAll.Width;
+//  lvWarShipAll.Height := tsShipKRI.Height - 20;
+//  lvWarShipAll.Left := 10;
+//  lvWarShipAll.Top := 10;
+//  lvWarShipSelect.Height := tsShipKRI.Height - 20;
+//  lvWarShipSelect.Width := tsShipKRI.Width - 50 - lvWarShipAll.Width -
+//    lvWeaponSelected.Width - btnAddWarShip.Width;
+//  lvWarShipSelect.Left := 30 + btnAddWarShip.Width + lvWarShipAll.Width;
+//  lvWarShipSelect.Top := 10;
+//  lvWeaponSelected.Left := 40 + lvWarShipSelect.Width + lvWarShipAll.Width +
+//    btnAddWarShip.Width;
+//  lvWeaponSelected.Top := 10;
+//  btnEnableWeapon.Left := lvWeaponSelected.Left;
+//  btnAddWarShip.Top := tsShipKRI.Height div 2 - btnAddWarShip.Height;
+//  btnAddWarShip.Left := 20 + lvWarShipAll.Width;
+//  btnRemoveWarShip.Top := btnAddWarShip.Top + btnAddWarShip.Height + 5;
+//  btnRemoveWarShip.Left := 20 + lvWarShipAll.Width;
+//  btnWeaponList.Top := tsShipKRI.Height - 20 - btnWeaponList.Height;
+//  btnWeaponList.Left := 20 + lvWarShipAll.Width;
+//
+//  btnWeaponListTarget.Top := tsShipKRI.Height - 45 - btnWeaponListTarget.Height;
+//  btnWeaponListTarget.Left := 20 + lvTargetSurfaceAll.Width;
+//
+//  btnWeaponListGeneral.Top := tsShipKRI.Height - 20 -
+//    btnWeaponListGeneral.Height;
+//  btnWeaponListGeneral.Left := 20 + lvTargetSurfaceAll.Width;
 
   { Ship General }
-  lvGeneralShipAll.Height := tsShipGeneral.Height - 20;
-  lvGeneralShipAll.Left := 10;
-  lvGeneralShipAll.Top := 10;
-  lvGeneralShipSelect.Height := tsShipGeneral.Height - 20;
-  lvGeneralShipSelect.Width := tsShipGeneral.Width - 40 - lvGeneralShipAll.Width
-    - btnAddWarShip.Width;
-  lvGeneralShipSelect.Left := 30 + btnAddGnrShip.Width + lvGeneralShipAll.Width;
-  lvGeneralShipSelect.Top := 10;
-  btnAddGnrShip.Top := tsShipGeneral.Height div 2 - btnAddWarShip.Height;
-  btnAddGnrShip.Left := 20 + lvGeneralShipAll.Width;
-  btnRemoveGnrShip.Top := btnAddGnrShip.Top + btnAddGnrShip.Height + 5;
-  btnRemoveGnrShip.Left := 20 + lvGeneralShipAll.Width;
+//  lvGeneralShipAll.Height := tsShipGeneral.Height - 20;
+//  lvGeneralShipAll.Left := 10;
+//  lvGeneralShipAll.Top := 10;
+//  lvGeneralShipSelect.Height := tsShipGeneral.Height - 20;
+//  lvGeneralShipSelect.Width := tsShipGeneral.Width - 40 - lvGeneralShipAll.Width
+//    - btnAddWarShip.Width;
+//  lvGeneralShipSelect.Left := 30 + btnAddGnrShip.Width + lvGeneralShipAll.Width;
+//  lvGeneralShipSelect.Top := 10;
+//  btnAddGnrShip.Top := tsShipGeneral.Height div 2 - btnAddWarShip.Height;
+//  btnAddGnrShip.Left := 20 + lvGeneralShipAll.Width;
+//  btnRemoveGnrShip.Top := btnAddGnrShip.Top + btnAddGnrShip.Height + 5;
+//  btnRemoveGnrShip.Left := 20 + lvGeneralShipAll.Width;
 
   { Target Surface }
-  lvTargetSurfaceAll.Height := tsSurface.Height - 20;
-  lvTargetSurfaceAll.Left := 10;
-  lvTargetSurfaceAll.Top := 10;
-  lvTargetSurfaceSelect.Height := tsSurface.Height - 20;
-  lvTargetSurfaceSelect.Width := tsSurface.Width - 40 - lvTargetSurfaceAll.Width
-    - btnAddTargetSurface.Width;
-  lvTargetSurfaceSelect.Left := 30 + btnAddTargetSurface.Width +
-    lvTargetSurfaceAll.Width;
-  lvTargetSurfaceSelect.Top := 10;
-  btnAddTargetSurface.Top := tsSurface.Height div 2 -
-    btnAddTargetSurface.Height;
-  btnAddTargetSurface.Left := 20 + lvTargetSurfaceAll.Width;
-  btnRemoveTargetSurface.Top := btnAddTargetSurface.Top +
-    btnAddTargetSurface.Height + 5;
-  btnRemoveTargetSurface.Left := 20 + lvTargetSurfaceAll.Width;
+//  lvTargetSurfaceAll.Height := tsSurface.Height - 20;
+//  lvTargetSurfaceAll.Left := 10;
+//  lvTargetSurfaceAll.Top := 10;
+//  lvTargetSurfaceSelect.Height := tsSurface.Height - 20;
+//  lvTargetSurfaceSelect.Width := tsSurface.Width - 40 - lvTargetSurfaceAll.Width
+//    - btnAddTargetSurface.Width;
+//  lvTargetSurfaceSelect.Left := 30 + btnAddTargetSurface.Width +
+//    lvTargetSurfaceAll.Width;
+//  lvTargetSurfaceSelect.Top := 10;
+//  btnAddTargetSurface.Top := tsSurface.Height div 2 -
+//    btnAddTargetSurface.Height;
+//  btnAddTargetSurface.Left := 20 + lvTargetSurfaceAll.Width;
+//  btnRemoveTargetSurface.Top := btnAddTargetSurface.Top +
+//    btnAddTargetSurface.Height + 5;
+//  btnRemoveTargetSurface.Left := 20 + lvTargetSurfaceAll.Width;
 
   { Target Subsurface }
-  lvTargetSubsurfaceAll.Height := tsSubsurface.Height - 20;
-  lvTargetSubsurfaceAll.Left := 10;
-  lvTargetSubsurfaceAll.Top := 10;
-  lvTargetSubsurfaceSelect.Height := tsSubsurface.Height - 20;
-  lvTargetSubsurfaceSelect.Width := tsSubsurface.Width - 40 -
-    lvTargetSubsurfaceAll.Width - btnAddTargetSubsurface.Width;
-  lvTargetSubsurfaceSelect.Left := 30 + btnAddTargetSubsurface.Width +
-    lvTargetSubsurfaceAll.Width;
-  lvTargetSubsurfaceSelect.Top := 10;
-  btnAddTargetSubsurface.Top := tsSubsurface.Height div 2 -
-    btnAddTargetSubsurface.Height;
-  btnAddTargetSubsurface.Left := 20 + lvTargetSubsurfaceAll.Width;
-  btnRemoveTargetSubsurface.Top := btnAddTargetSubsurface.Top +
-    btnAddTargetSubsurface.Height + 5;
-  btnRemoveTargetSubsurface.Left := 20 + lvTargetSubsurfaceAll.Width;
+//  lvTargetSubsurfaceAll.Height := tsSubsurface.Height - 20;
+//  lvTargetSubsurfaceAll.Left := 10;
+//  lvTargetSubsurfaceAll.Top := 10;
+//  lvTargetSubsurfaceSelect.Height := tsSubsurface.Height - 20;
+//  lvTargetSubsurfaceSelect.Width := tsSubsurface.Width - 40 -
+//    lvTargetSubsurfaceAll.Width - btnAddTargetSubsurface.Width;
+//  lvTargetSubsurfaceSelect.Left := 30 + btnAddTargetSubsurface.Width +
+//    lvTargetSubsurfaceAll.Width;
+//  lvTargetSubsurfaceSelect.Top := 10;
+//  btnAddTargetSubsurface.Top := tsSubsurface.Height div 2 -
+//    btnAddTargetSubsurface.Height;
+//  btnAddTargetSubsurface.Left := 20 + lvTargetSubsurfaceAll.Width;
+//  btnRemoveTargetSubsurface.Top := btnAddTargetSubsurface.Top +
+//    btnAddTargetSubsurface.Height + 5;
+//  btnRemoveTargetSubsurface.Left := 20 + lvTargetSubsurfaceAll.Width;
 
   { Target Air }
-  lvTargetAirAll.Height := tsAir.Height - 20;
-  lvTargetAirAll.Left := 10;
-  lvTargetAirAll.Top := 10;
-  lvTargetAirSelect.Height := tsAir.Height - 20;
-  lvTargetAirSelect.Width := tsAir.Width - 40 - lvTargetAirAll.Width -
-    btnAddTargetAir.Width;
-  lvTargetAirSelect.Left := 30 + btnAddTargetAir.Width + lvTargetAirAll.Width;
-  lvTargetAirSelect.Top := 10;
-  btnAddTargetAir.Top := tsAir.Height div 2 - btnAddTargetAir.Height;
-  btnAddTargetAir.Left := 20 + lvTargetAirAll.Width;
-  btnRemoveTargetAir.Top := btnAddTargetAir.Top + btnAddTargetAir.Height + 5;
-  btnRemoveTargetAir.Left := 20 + lvTargetAirAll.Width;
-
-  lvWarShipSelect.Columns[5].Width := 80;
-  lvWarShipSelect.Columns[0].Width := lvWarShipSelect.Width - 20 -
-    lvWarShipSelect.Columns[1].Width - lvWarShipSelect.Columns[2].Width -
-    lvWarShipSelect.Columns[3].Width - lvWarShipSelect.Columns[4].Width -
-    lvWarShipSelect.Columns[5].Width;
-
-  lvGeneralShipSelect.Columns[5].Width := 80;
-  lvGeneralShipSelect.Columns[0].Width := lvGeneralShipSelect.Width - 20 -
-    lvGeneralShipSelect.Columns[1].Width - lvGeneralShipSelect.Columns[2].Width
-    - lvGeneralShipSelect.Columns[3].Width - lvGeneralShipSelect.Columns[4]
-    .Width - lvGeneralShipSelect.Columns[5].Width;
-
-  lvTargetSurfaceSelect.Columns[5].Width := 80;
-  lvTargetSurfaceSelect.Columns[0].Width := lvTargetSurfaceSelect.Width - 20 -
-    lvTargetSurfaceSelect.Columns[1].Width - lvTargetSurfaceSelect.Columns[2]
-    .Width - lvTargetSurfaceSelect.Columns[3].Width -
-    lvTargetSurfaceSelect.Columns[4].Width -
-    lvTargetSurfaceSelect.Columns[5].Width;
-
-  lvTargetSubsurfaceSelect.Columns[5].Width := 80;
-  lvTargetSubsurfaceSelect.Columns[0].Width := lvTargetSubsurfaceSelect.Width -
-    20 - lvTargetSubsurfaceSelect.Columns[1].Width -
-    lvTargetSubsurfaceSelect.Columns[2].Width - lvTargetSubsurfaceSelect.Columns
-    [3].Width - lvTargetSubsurfaceSelect.Columns[4].Width -
-    lvTargetSubsurfaceSelect.Columns[5].Width;
-
-  lvTargetAirSelect.Columns[5].Width := 80;
-  lvTargetAirSelect.Columns[0].Width := lvTargetAirSelect.Width - 20 -
-    lvTargetAirSelect.Columns[1].Width - lvTargetAirSelect.Columns[2].Width -
-    lvTargetAirSelect.Columns[3].Width - lvTargetAirSelect.Columns[4].Width -
-    lvTargetAirSelect.Columns[5].Width;
+//  lvTargetAirAll.Height := tsAir.Height - 20;
+//  lvTargetAirAll.Left := 10;
+//  lvTargetAirAll.Top := 10;
+//  lvTargetAirSelect.Height := tsAir.Height - 20;
+//  lvTargetAirSelect.Width := tsAir.Width - 40 - lvTargetAirAll.Width -
+//    btnAddTargetAir.Width;
+//  lvTargetAirSelect.Left := 30 + btnAddTargetAir.Width + lvTargetAirAll.Width;
+//  lvTargetAirSelect.Top := 10;
+//  btnAddTargetAir.Top := tsAir.Height div 2 - btnAddTargetAir.Height;
+//  btnAddTargetAir.Left := 20 + lvTargetAirAll.Width;
+//  btnRemoveTargetAir.Top := btnAddTargetAir.Top + btnAddTargetAir.Height + 5;
+//  btnRemoveTargetAir.Left := 20 + lvTargetAirAll.Width;
+//
+//  lvWarShipSelect.Columns[5].Width := 80;
+//  lvWarShipSelect.Columns[0].Width := lvWarShipSelect.Width - 20 -
+//    lvWarShipSelect.Columns[1].Width - lvWarShipSelect.Columns[2].Width -
+//    lvWarShipSelect.Columns[3].Width - lvWarShipSelect.Columns[4].Width -
+//    lvWarShipSelect.Columns[5].Width;
+//
+//  lvGeneralShipSelect.Columns[5].Width := 80;
+//  lvGeneralShipSelect.Columns[0].Width := lvGeneralShipSelect.Width - 20 -
+//    lvGeneralShipSelect.Columns[1].Width - lvGeneralShipSelect.Columns[2].Width
+//    - lvGeneralShipSelect.Columns[3].Width - lvGeneralShipSelect.Columns[4]
+//    .Width - lvGeneralShipSelect.Columns[5].Width;
+//
+//  lvTargetSurfaceSelect.Columns[5].Width := 80;
+//  lvTargetSurfaceSelect.Columns[0].Width := lvTargetSurfaceSelect.Width - 20 -
+//    lvTargetSurfaceSelect.Columns[1].Width - lvTargetSurfaceSelect.Columns[2]
+//    .Width - lvTargetSurfaceSelect.Columns[3].Width -
+//    lvTargetSurfaceSelect.Columns[4].Width -
+//    lvTargetSurfaceSelect.Columns[5].Width;
+//
+//  lvTargetSubsurfaceSelect.Columns[5].Width := 80;
+//  lvTargetSubsurfaceSelect.Columns[0].Width := lvTargetSubsurfaceSelect.Width -
+//    20 - lvTargetSubsurfaceSelect.Columns[1].Width -
+//    lvTargetSubsurfaceSelect.Columns[2].Width - lvTargetSubsurfaceSelect.Columns
+//    [3].Width - lvTargetSubsurfaceSelect.Columns[4].Width -
+//    lvTargetSubsurfaceSelect.Columns[5].Width;
+//
+//  lvTargetAirSelect.Columns[5].Width := 80;
+//  lvTargetAirSelect.Columns[0].Width := lvTargetAirSelect.Width - 20 -
+//    lvTargetAirSelect.Columns[1].Width - lvTargetAirSelect.Columns[2].Width -
+//    lvTargetAirSelect.Columns[3].Width - lvTargetAirSelect.Columns[4].Width -
+//    lvTargetAirSelect.Columns[5].Width;
 end;
 { -------------------------------------------------------------------------- }
 
