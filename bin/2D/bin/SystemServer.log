@@ -1,7 +1,7 @@
-[28 Jan 2026 09:11:19] <DEBUG> bridgeSetPath = D:\CAECILIA MC\Projeck 2025\NFS\P.NFS\bin\2D\bin\
-[28 Jan 2026 09:11:19] <DEBUG> DBServer = 192.168.0.203
-[28 Jan 2026 09:11:19] <DEBUG> DBProto = mysql
-[28 Jan 2026 09:11:19] <DEBUG> DBName = dbNSuFs
-[28 Jan 2026 09:11:19] <DEBUG> DBUser = root
-[28 Jan 2026 09:11:19] <DEBUG> DBPass = T3server!
-[28 Jan 2026 09:11:19] <DEBUG> DBPo
+[12 Feb 2026 15:52:26] <DEBUG> bridgeSetPath = D:\P.NFS\bin\2D\bin\
+[12 Feb 2026 15:52:26] <DEBUG> DBServer = 127.0.0.1
+[12 Feb 2026 15:52:26] <DEBUG> DBProto = mysql
+[12 Feb 2026 15:52:26] <DEBUG> DBName = dbNSuFs
+[12 Feb 2026 15:52:26] <DEBUG> DBUser = root
+[12 Feb 2026 15:52:26] <DEBUG> DBPass = T3server!
+[12 Feb 2026 15:52:26] <DEBUG> DBPort = 3306

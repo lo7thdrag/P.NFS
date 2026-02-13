@@ -783,7 +783,7 @@ begin
   FrameControlLeft.FrameWeaponStatus.SetHandleEvent;
   FrameControlLeft.FrameWeaponStatus.CreateSPSPopUp;
   FrameControlLeft.FrameWeaponStatus.NillAllSet;
-
+  FrameControlLeft.Width := 0;//357
   Menu := MainMenu1;
   
 //  DoubleBuffered         := True;
