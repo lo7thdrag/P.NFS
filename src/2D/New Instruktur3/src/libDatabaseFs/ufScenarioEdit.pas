@@ -1469,8 +1469,7 @@ begin
   frmGameController.SetFormLayout;
 
   { Set Map }
-  DataModule1.GetSceneOffSetFromPortID
-    (DataModule1.GetMapById(CurrentScenarioID), Dx, Dy);
+  DataModule1.GetSceneOffSetFromPortID(DataModule1.GetMapById(CurrentScenarioID), Dx, Dy);
   SimManager.instMapSet.useOffset := true;
   SimManager.instMapSet.xOffset := Dx;
   SimManager.instMapSet.yOffset := Dy;

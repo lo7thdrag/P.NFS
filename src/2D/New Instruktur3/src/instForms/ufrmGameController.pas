@@ -11,7 +11,7 @@ uses
   AdvSmoothPanel, OleCtrls, AdvSmoothLabel, StdCtrls, IniFiles,
   AdvPageControl,RzButton, {acPNG,} jpeg, Buttons, VrTrackBar, Mask, MaskEdEx, AdvEdit,
 
-  uClassDatabase, ufrmMainInstruktur, ufScenarioEdit, uDataModule,
+  uClassDatabase, ufrmMainInstruktur, ufScenarioEdit, uDataModule, uGlobalVar,
   uInstrukturManager, uTCPDatatype, uCMSetting, uBaseCoordSystem, uBaseConstan, ufReportEvent ,
   ufInstLog, uBaseFunction, uInstrukturObjects, uTrajectory, uSimulationManager,
   RzPanel, ufrmTrajectoryView, AdvTrackBar, SpeedButtonImage,
@@ -113,10 +113,8 @@ type
     pnlSparator: TPanel;
     pnlClientSetting: TAdvSmoothPanel;
     btnSettingClient: TAdvSmoothButton;
-    btnRefreshClient: TAdvSmoothButton;
     pnlClientList: TAdvSmoothPanel;
     lvClient: TListView;
-    pnlClientDetails: TAdvSmoothPanel;
     pnlReport: TPanel;
     pnlPlatform: TPanel;
     pnlEnvironment: TPanel;
@@ -675,8 +673,6 @@ type
     trckBarBarometer: TTrackBar;
     trckBarHumidity: TTrackBar;
     trckBarFogHeight: TTrackBar;
-    btnStopScenario: TButton;
-    btn3: TButton;
     edtWindSpeed: TEdit;
     edtCurrentSpeed: TEdit;
     edtTemperature: TEdit;
@@ -685,7 +681,6 @@ type
     edtFogHeight: TEdit;
     edtSeaState: TEdit;
     pnlsprScen3: TPanel;
-    btn2: TButton;
     AdvSmoothPanel3: TAdvSmoothPanel;
     Label1: TLabel;
     vrwhlSeaDirection: TVrWheel;
@@ -735,6 +730,11 @@ type
     lblPortEnv: TLabel;
     Label2: TLabel;
     lblCurrentDirection: TLabel;
+    btnRefreshClient: TAdvSmoothButton;
+    btnLoadScenario: TAdvSmoothButton;
+    btnStopScenario: TAdvSmoothButton;
+    pnlShipEditor: TPanel;
+    imgShipEditor: TImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -875,6 +875,9 @@ type
     procedure imgEditClick(Sender: TObject);
     procedure lvListScenClick(Sender: TObject);
     procedure imgDeleteClick(Sender: TObject);
+    procedure imgNewClick(Sender: TObject);
+    procedure btnLoadScenarioClick(Sender: TObject);
+    procedure btnStopScenarioClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -893,6 +896,8 @@ type
     //Trajectory
     FTrajectory : TTrajectory;
 
+    scenarioGameName : string;
+
     procedure ClearListViewData(const aListView: TListView);
 
     procedure WakeOnLan(const AMacAddress : string); //yoga
@@ -910,7 +915,9 @@ type
 //                                                    const SpeedPlayer, DesiredValue : double);
 
     procedure LoadImageLight(var Aimage : TImage; imgStat : string; const stat : byte);
+
   public
+
     { Public declarations }
     procedure SetFormLayout;
     procedure SetProject;
@@ -932,6 +939,7 @@ type
 
     procedure ShowScenario;
     procedure UpdateScenarioData;
+    procedure ClearScenarioData;
 
     {$ENDREGION}
 
@@ -1450,7 +1458,7 @@ end;
 { Scenario Menu }
 procedure TfrmGameController.qClick(Sender: TObject);
 var
-  btnSelected : integer; 
+  btnSelected : integer;
 begin
   case TComponent(Sender).Tag of
     1 :
@@ -1520,6 +1528,7 @@ begin
         ClearListViewData(lvRuntimeShipTrajectory);
 //        lvRuntimeMissileTrajectory.Items.Clear;
         ClearListViewData(lvRuntimeMissileTrajectory);
+        frmMainInstruktur.FrameControlLeft.Width := 0;
       end;
     end;
   end;
@@ -1882,6 +1891,9 @@ begin
     DataModule1.DeleteScenario(id);
 
     ShowMessage('Scenario ' + lvListScen.Selected.SubItems[0] + ' successfully deleted');
+
+    ClearScenarioData;
+
   end
   else
     ShowMessage('Select Scenario First');
@@ -1891,30 +1903,39 @@ end;
 
 procedure TfrmGameController.imgEditClick(Sender: TObject);
 begin
-  frmListScenario.isPlay := false;
-  frmListScenario.Show;
+  if lvListScen.Selected <> nil then
+  begin
+    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
+    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
 
-  frmListScenario.btnOk.Tag := 0;
-  frmListScenario.btnOk.Enabled := true;
-  frmListScenario.lblGameName.Visible := false;
-  frmListScenario.edtGameName.Visible := false;
-  frmListScenario.btnRemove.Visible := true;
+    frmSceEditor.isNew := false;
+    frmSceEditor.UpdateVisualForm;
+    frmSceEditor.SetFormLayout;
+    frmSceEditor.SetFormEnvironment;
+    frmMainInstruktur.lblCekRunning.Caption := 'Editing';
+    frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
 
-//  if lvListScen.Selected <> nil then
-//  begin
-//    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
-//    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
-//    frmMainInstruktur.Caption := 'Firing System Instruktur - '+lvListScen.Selected.SubItems[0];
-//
-//    frmSceEditor.isNew := false;
-//    frmSceEditor.UpdateVisualForm;
-//
-//    Close;
-//  end
-//  else
-//  begin
-//    ShowMessage('Select Scenario First');
-//  end;
+    Close;
+  end
+  else
+  begin
+    ShowMessage('Select Scenario First');
+  end;
+end;
+
+procedure TfrmGameController.imgNewClick(Sender: TObject);
+begin
+  Close;
+  //frmFiringCommand.Close;
+
+  SimManager.isDatabaseMode := True;
+
+  frmSceEditor.isNew := True;
+
+  frmSceEditor.SetFormLayout;
+  frmSceEditor.SetFormEnvironment;
+  frmMainInstruktur.lblCekRunning.Caption := 'Editing';
+  frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
 end;
 
 procedure TfrmGameController.RunClientFromPopupMenu(Sender: TObject);
@@ -2440,6 +2461,7 @@ begin
 
   aDateTime := Now;
   DateTimeToString(formatDate, 'ddmmyy_hhnnss', aDateTime);
+  scenarioGameName := lvListScen.Selected.SubItems[0]+'_'+formatDate;
 
   UpdateScenarioData;
 
@@ -2930,6 +2952,39 @@ begin
 end;
 
 { Strella }
+procedure TfrmGameController.btnStopScenarioClick(Sender: TObject);
+var
+  btnSelected : integer;
+begin
+  btnSelected := 6;   // mrYes
+  if SimManager.fGamePlayType = gpmScenAndRecord then   begin
+    frmMainInstruktur.btnRecordStart.Hint := 'OffRecord';
+    frmMainInstruktur.btnRecordStart.ImageIndex    := 0;
+    SimManager.StopRecording;
+    btnSelected := MessageDlg('Instruktur :: stop recording and stop scenario',
+               mtConfirmation,[mbYes,mbNo],0);
+  end;
+  if btnSelected = mrYes then
+  begin
+    frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
+    if Length(SimManager.bridgeSet.mServer.m3D_IP) > 0 then
+      SimManager.StopToClientOnIP(SimManager.bridgeSet.mServer.m3D_IP);
+    frmMainInstruktur.Caption := 'Firing System Instruktur';
+    frmMainInstruktur.cekCaption  := frmMainInstruktur.Caption;
+    SimManager.NetSendStatusGame(0, 2);
+    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0,0,0,0) ;
+    frmMainInstruktur.deleteLeftFrame;
+    SetDefaultEnvirontment;
+
+    //dendy sementara
+//        lvRuntimeShipTrajectory.Items.Clear;
+    ClearListViewData(lvRuntimeShipTrajectory);
+//        lvRuntimeMissileTrajectory.Items.Clear;
+    ClearListViewData(lvRuntimeMissileTrajectory);
+    frmMainInstruktur.FrameControlLeft.Width := 0;
+  end;
+end;
+
 procedure TfrmGameController.btnStrella_FireClick(Sender: TObject);
 var
   isValid          : Boolean;
@@ -3474,14 +3529,27 @@ begin
     end;
     2:
     begin
-      pnlPlatform.BringToFront;
+      pnlShipEditor.BringToFront;
     end;
     3:
     begin
-      pnlEnvironment.BringToFront;
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+        exit;
+
+      pnlPlatform.BringToFront;
     end;
     4:
     begin
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+        exit;
+
+      pnlEnvironment.BringToFront;
+    end;
+    5:
+    begin
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+        exit;
+
       pnlReport.BringToFront;
     end;
   end;
@@ -3489,28 +3557,39 @@ end;
 
 procedure TfrmGameController.MainMenuMouseEnter(Sender: TObject);
 begin
-  TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
-
   case TImage(Sender).Tag of
     0:
     begin
-//      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
     end;
     1:
     begin
-//      pnlScenario.BringToFront;
+      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
     end;
     2:
     begin
-//      pnlPlatform.BringToFront;
+      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
     end;
     3:
     begin
-//      pnlEnvironment.BringToFront;
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+        exit;
+
+      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
     end;
     4:
     begin
-//      pnlReport.BringToFront;
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+        exit;
+
+      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+    end;
+    5:
+    begin
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+        exit;
+
+      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
     end;
   end;
 end;
@@ -6324,7 +6403,6 @@ begin
   end;
 end;
 
-
 procedure TfrmGameController.UpdateScenarioData;
 var
   ScenarioId : Integer;
@@ -6354,17 +6432,12 @@ var
 
   ClientList: TClientList;
 begin
-  { First Initialize }
-//  ClearWeaponListScenario;
-
   lblScenarioName.Caption := '';
   mmoKetSce.Clear;
 
   ClearListViewData(lvKri);
   ClearListViewData(lvTarget);
   ClearListViewData(lvGeneral);
-
-//  SimManager.MainObjList.ClearObject;
 
   ScenarioId := StrToInt(lvListScen.Selected.Caption);
   lblScenarioName.Caption := lvListScen.Selected.SubItems[0];
@@ -6417,9 +6490,7 @@ begin
   end;
   {$ENDREGION}
 
-  {$REGION ' Load KRI '}
-//    GetAllVehicle;
-
+  {$REGION ' Load Vehicle '}
   listAllShip := TList.Create;
 
   try
@@ -6512,29 +6583,6 @@ begin
           end;
           {$ENDREGION}
         end
-
-//        { Set Environment Object }
-//        Mx := vehicleTemp.Vehicle_X;
-//        My := vehicleTemp.Vehicle_Y;
-//        // Mx := (AllShip.Vehicle_X / C_Degree_To_Meter)+ Dx;
-//        // My := (AllShip.Vehicle_Y / C_Degree_To_Meter)+ Dy;
-//
-//        for j := 0 to SimManager.MainObjList.ItemCount - 1 do
-//        begin
-//          if Assigned(SimManager.MainObjList.getObject(j)) then
-//          begin
-//            Ship := SimManager.MainObjList.getObject(j) as TInsObject;
-//            if Ship.FDataBaseID = vehicleTemp.Vehicle_ID then
-//            begin
-//              Ship.MoveTo(Mx, My);
-//              Ship.AllowUpdate := false;
-//              Ship.VSymbol.Heading := ValidateDegree(vehicleTemp.Vehicle_Heading);
-//              Ship.PositionZ := vehicleTemp.Vehicle_Z;
-//              Ship.Speed := vehicleTemp.Vehicle_Speed;
-//              break;
-//            end;
-//          end;
-//        end;
       end;
     end;
 
@@ -6542,165 +6590,7 @@ begin
     ClearAList(listAllShip);
     listAllShip.Free;
   end;
-
   {$ENDREGION}
-
-  {$REGION ' Load KRI '}
-
-  {$ENDREGION}
-
-  {$REGION ' Load KRI '}
-
-  {$ENDREGION}
-
-//  ListScenario := TList.Create;
-//  DataModule1.GettAllScenario(ListScenario);
-//  for i := 0 to ListScenario.Count - 1 do
-//  begin
-//    if Assigned(ListScenario[i]) then
-//    begin
-//      Scenario := TScenarioList(ListScenario[i]);
-//      if Scenario.Scenario_ID = Scenario_ID then
-//      begin
-//        cbbPort.ItemIndex := Round(Scenario.ENV_PETA);
-//        break;
-//      end;
-//    end;
-//  end;
-//  ClearAList(ListScenario);
-//  ListScenario.Free;
-//
-//  ListConsole := TList.Create;
-//  DataModule1.GetConsoleListBySceID(Scenario_ID, ListConsole);
-//  for i := 0 to ListConsole.Count - 1 do
-//  begin
-//    if Assigned(ListConsole.Items[i]) then
-//    begin
-//      Console := TConsole(ListConsole.Items[i]);
-//
-//      for j := 0 to lvConsole.Items.Count - 1 do
-//      begin
-//        Console_ID := StrToInt(lvConsole.Items[j].Caption);
-//
-//        if Console.ConsoleID = Console_ID then
-//        begin
-//          lvConsole.Items[j].SubItems[4] :=
-//            DataModule1.GetShipName(Console.shipID);
-//          lvConsole.Items[j].SubItems[5] := IntToStr(Console.shipID);
-//          lvConsole.Items[j].SubItems[6] := IntToStr(Console.LauncherID);
-//
-//          break;
-//        end;
-//      end;
-//    end;
-//  end;
-//  ClearAList(ListConsole);
-//  ListConsole.Free;
-//
-//  mmoKetSce.Lines.Add(DataModule1.GetDesById(Scenario_ID));
-//  DataModule1.GetSceneOffSetFromPortID
-//    (DataModule1.GetMapById(Scenario_ID), Dx, Dy);
-//
-//  if ((SimManager.instMapSet.xOffset <> Dx) and
-//    (SimManager.instMapSet.yOffset <> Dy)) then
-//  begin
-//    SimManager.instMapSet.useOffset := true;
-//    SimManager.instMapSet.xOffset := Dx;
-//    SimManager.instMapSet.yOffset := Dy;
-//    SimManager.instMapSet.xCenter := Dx;
-//    SimManager.instMapSet.yCenter := Dy;
-//
-//    frmMainInstruktur.MainMap.ZoomTo(frmMainInstruktur.MainMap.Zoom, Dx, Dy);
-//  end;
-//
-//  GetAllVehicle;
-//
-//  listAllShip := TList.Create;
-//  DataModule1.GetAllShipFromScen(Scenario_ID, listAllShip);
-//  for i := 0 to listAllShip.Count - 1 do
-//  begin
-//    if Assigned(listAllShip[i]) then
-//    begin
-//      AllShip := TVehicle(listAllShip[i]);
-//
-//      ShipDetail := TVehicle.Create;
-//      ShipDetail.Vehicle_ID := AllShip.Vehicle_ID;
-//      ShipDetail.Vehicle_Name := AllShip.Vehicle_Name;
-//      ShipDetail.Vehicle_Ctgr := AllShip.Vehicle_Ctgr;
-//      ShipDetail.Vehicle_No := AllShip.Vehicle_No;
-//      ShipDetail.Vehicle_X := AllShip.Vehicle_X;
-//      ShipDetail.Vehicle_Y := AllShip.Vehicle_Y;
-//      ShipDetail.Vehicle_Z := AllShip.Vehicle_Z;
-//      ShipDetail.Vehicle_Heading := AllShip.Vehicle_Heading;
-//      ShipDetail.Vehicle_Speed := AllShip.Vehicle_Speed;
-//
-//      { KRI SHIP }
-//      if (AllShip.Vehicle_Ctgr <> 0) and (AllShip.Vehicle_Type = 1) and
-//        (AllShip.Vehicle_Target = 0) then
-//      begin
-//        { Get KRI Ship }
-//        ListViewAdd(lvWarShipSelect, lvWarShipAll, ShipDetail, 3);
-//      end
-//      else
-//        { General SHIP }
-//        if (AllShip.Vehicle_Ctgr = 0) and (AllShip.Vehicle_Type = 1) and
-//          (AllShip.Vehicle_Target = 0) then
-//        begin
-//          { Get KRI Ship }
-//          ListViewAdd(lvGeneralShipSelect, lvGeneralShipAll, ShipDetail, 3);
-//        end
-//        else
-//          { Target Surface }
-//          if (AllShip.Vehicle_Type = 1) and (AllShip.Vehicle_Target = 1) then
-//          begin
-//            { Get KRI Ship }
-//            ListViewAdd(lvTargetSurfaceSelect, lvTargetSurfaceAll,
-//              ShipDetail, 3);
-//          end
-//          else
-//            { Target Subsurface }
-//            if (AllShip.Vehicle_Type = 3) and (AllShip.Vehicle_Target = 1)
-//            then
-//            begin
-//              { Get KRI Ship }
-//              ListViewAdd(lvTargetSubsurfaceSelect, lvTargetSubsurfaceAll,
-//                ShipDetail, 3);
-//            end
-//            else
-//              { Target Subsurface }
-//              if (AllShip.Vehicle_Type = 2) and (AllShip.Vehicle_Target = 1)
-//              then
-//              begin
-//                { Get KRI Ship }
-//                ListViewAdd(lvTargetAirSelect, lvTargetAirAll, ShipDetail, 3);
-//              end;
-//
-//      { Set Environment Object }
-//      Mx := AllShip.Vehicle_X;
-//      My := AllShip.Vehicle_Y;
-//      // Mx := (AllShip.Vehicle_X / C_Degree_To_Meter)+ Dx;
-//      // My := (AllShip.Vehicle_Y / C_Degree_To_Meter)+ Dy;
-//
-//      for j := 0 to SimManager.MainObjList.ItemCount - 1 do
-//      begin
-//        if Assigned(SimManager.MainObjList.getObject(j)) then
-//        begin
-//          Ship := SimManager.MainObjList.getObject(j) as TInsObject;
-//          if Ship.FDataBaseID = AllShip.Vehicle_ID then
-//          begin
-//            Ship.MoveTo(Mx, My);
-//            Ship.AllowUpdate := false;
-//            Ship.VSymbol.Heading := ValidateDegree(AllShip.Vehicle_Heading);
-//            Ship.PositionZ := AllShip.Vehicle_Z;
-//            Ship.Speed := AllShip.Vehicle_Speed;
-//            break;
-//          end;
-//        end;
-//      end;
-//    end;
-//  end;
-//  ClearAList(listAllShip);
-//  listAllShip.Free;
 end;
 
 procedure TfrmGameController.lvWeaponMouseDown(Sender: TObject;
@@ -8271,6 +8161,57 @@ begin
   //CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
 end;
 
+procedure TfrmGameController.btnLoadScenarioClick(Sender: TObject);
+begin
+  if lvListScen.Selected <> nil then
+  begin
+    if SimManager.fGamePlayType = gpmReplay then
+    begin
+      ShowMessage('Stop Replay first to play Scenario');
+      exit;
+    end;
+
+    if frmMainInstruktur.lblCekRunning.Caption = 'Play' then
+    begin
+      ShowMessage('Stop Scenario Play First');
+      Exit;
+    end;
+
+    DataModule1.DeleteDefaultScenario;
+
+    CurrentScenarioID  := StrToInt(lvListScen.Selected.Caption);
+    CurrentScenarioName := lvListScen.Selected.SubItems[0];
+    IDGame             := DataModule1.GetGameID(CurrentScenarioID);
+    SceIDTemporary     := CurrentScenarioID;
+
+    if DataModule1.GameNameAlreadyExist(scenarioGameName) then
+    begin
+      ShowMessage(QuotedStr(scenarioGameName)+' is Already Exist');
+      exit;
+    end;
+
+    GameName := scenarioGameName;
+
+    //send game name...
+    SimManager.NetSendGameName(GameName);
+    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0,0,0,0);
+
+    //DataModule1.DeleteDefaultScenario;
+
+    DataModule1.FillListDefaultScenario(CurrentScenarioID);
+    SimManager.NetSendStatusGame(CurrentScenarioID, 1);
+//    SimManager.ServerIp := CurrentConsole3DServerAddress;
+    SimManager.InstrukturSendLaunchAllCommand;
+    SimManager.isDatabaseMode := False;
+
+    ClearScenarioData;
+    pnlPlatform.BringToFront;
+    frmMainInstruktur.FrameControlLeft.Width := 357;
+  end
+  else
+    ShowMessage('Select Scenario First');
+end;
+
 procedure TfrmGameController.btn1Click(Sender: TObject);
 var
   Item : TListItem;
@@ -8535,6 +8476,43 @@ begin
     end;
   end;
   aListView.Clear;
+end;
+
+procedure TfrmGameController.ClearScenarioData;
+begin
+  {$REGION ' Clear Data '}
+  lblScenarioName.Caption := '---';
+  mmoKetSce.Clear;
+  cbbPort.ItemIndex := 0;
+
+  ClearListViewData(lvKri);
+  ClearListViewData(lvTarget);
+  ClearListViewData(lvGeneral);
+
+  trckBarSeaState.Position := 1;
+  edtSeaState.Text := '1';
+
+  trckBarWindSpeed.Position := 0;
+  edtWindSpeed.Text := '0';
+
+  trckBarCurrentSpeed.Position := 0;
+  edtCurrentSpeed.Text := '0';
+
+  trckBarTemperature.Position := 0;
+  edtTemperature.Text := '0';
+
+  trckBarBarometer.Position := 0;
+  edtBarometer.Text := '0';
+
+  trckBarHumidity.Position := 0;
+  edtHumidity.Text := '0';
+
+  trckBarFogHeight.Position := 0;
+  edtFogHeight.Text := '0';
+
+  VrWindDirection.Position := 0;
+  VrCurrentDirection.Position := 0;
+  {$ENDREGION}
 end;
 
 end.
