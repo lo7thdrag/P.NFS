@@ -735,6 +735,18 @@ type
     vrwhlSeaDirection: TVrWheel;
     Label2: TLabel;
     lblCurrentDirection: TLabel;
+    Label3: TLabel;
+    StaticText1: TStaticText;
+    lblStartDegC802: TLabel;
+    Label7: TLabel;
+    StaticText2: TStaticText;
+    lblEndDegC802: TLabel;
+    Label16: TLabel;
+    StaticText3: TStaticText;
+    lblMinRangeC802: TLabel;
+    Label18: TLabel;
+    StaticText4: TStaticText;
+    lblMaxRangeC802: TLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
