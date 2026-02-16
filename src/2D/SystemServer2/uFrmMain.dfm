@@ -1,9 +1,10 @@
 object frmMain: TfrmMain
   Left = 0
   Top = 0
+  BorderStyle = bsNone
   Caption = 'System Server'
-  ClientHeight = 300
-  ClientWidth = 300
+  ClientHeight = 333
+  ClientWidth = 250
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,31 +23,35 @@ object frmMain: TfrmMain
   object pnl2Log: TPanel
     Left = 0
     Top = 0
-    Width = 300
-    Height = 300
+    Width = 250
+    Height = 333
     Align = alClient
     Caption = 'SERVER NAFS'
     Color = clBackground
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 300
+    ExplicitHeight = 300
     object pnlContent2D: TPanel
       Left = 1
       Top = 1
-      Width = 298
+      Width = 248
       Height = 344
       Align = alTop
       TabOrder = 0
+      ExplicitWidth = 298
       object pnlServer2D: TPanel
         Left = 1
         Top = 1
-        Width = 296
+        Width = 246
         Height = 41
         Align = alTop
         Color = 13666138
         ParentBackground = False
         TabOrder = 0
+        ExplicitWidth = 296
         DesignSize = (
-          296
+          246
           41)
         object Label1: TLabel
           Left = 13
@@ -75,7 +80,7 @@ object frmMain: TfrmMain
           ParentFont = False
         end
         object btnBack: TButton
-          Left = 211
+          Left = 161
           Top = 8
           Width = 75
           Height = 25
@@ -83,15 +88,17 @@ object frmMain: TfrmMain
           Caption = 'Back'
           TabOrder = 0
           OnClick = btnBackClick
+          ExplicitLeft = 211
         end
       end
       object pnlLogServer2D: TPanel
         Left = 1
         Top = 42
-        Width = 296
+        Width = 246
         Height = 301
         Align = alClient
         TabOrder = 1
+        ExplicitWidth = 296
         object Splitter3: TSplitter
           Left = 209
           Top = 1
@@ -112,32 +119,35 @@ object frmMain: TfrmMain
         object mmoLogClientData2D: TMemo
           Left = 213
           Top = 1
-          Width = 82
+          Width = 32
           Height = 299
           Align = alClient
           BorderStyle = bsNone
           ScrollBars = ssBoth
           TabOrder = 1
           WordWrap = False
+          ExplicitWidth = 82
         end
       end
     end
     object pnlContent3D: TPanel
       Left = 1
       Top = 345
-      Width = 298
+      Width = 248
       Height = 4
       Align = alClient
       TabOrder = 1
+      ExplicitWidth = 298
       object pnlServer3D: TPanel
         Left = 1
         Top = 1
-        Width = 296
+        Width = 246
         Height = 41
         Align = alTop
         Color = 13666138
         ParentBackground = False
         TabOrder = 0
+        ExplicitWidth = 296
         object Label2: TLabel
           Left = 13
           Top = 14
@@ -168,10 +178,11 @@ object frmMain: TfrmMain
       object pnlLogServer3D: TPanel
         Left = 1
         Top = 42
-        Width = 296
+        Width = 246
         Height = 17
         Align = alClient
         TabOrder = 1
+        ExplicitWidth = 296
         object Splitter2: TSplitter
           Left = 209
           Top = 1
@@ -182,7 +193,7 @@ object frmMain: TfrmMain
         object mmoLog3D: TMemo
           Left = 213
           Top = 1
-          Width = 82
+          Width = 32
           Height = 15
           Align = alClient
           BevelInner = bvLowered
@@ -192,6 +203,7 @@ object frmMain: TfrmMain
           ScrollBars = ssBoth
           TabOrder = 0
           WordWrap = False
+          ExplicitWidth = 82
         end
         object lbClients3D: TListBox
           Left = 1
@@ -209,8 +221,8 @@ object frmMain: TfrmMain
   object pnl1Home: TAdvSmoothPanel
     Left = 0
     Top = 0
-    Width = 300
-    Height = 300
+    Width = 250
+    Height = 333
     Cursor = crDefault
     Caption.Location = plTopCenter
     Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -245,12 +257,14 @@ object frmMain: TfrmMain
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 300
+    ExplicitHeight = 300
     TMSStyle = 0
     object lbljudul: TLabel
       Left = 0
       Top = 0
-      Width = 300
-      Height = 268
+      Width = 250
+      Height = 301
       Align = alClient
       Alignment = taCenter
       Caption = 'SERVER NAFS'
@@ -266,8 +280,8 @@ object frmMain: TfrmMain
     end
     object btn1: TButton
       Left = 0
-      Top = 268
-      Width = 300
+      Top = 301
+      Width = 250
       Height = 32
       Align = alBottom
       Caption = 'Show Log'
@@ -279,6 +293,8 @@ object frmMain: TfrmMain
       ParentFont = False
       TabOrder = 0
       OnClick = btn1Click
+      ExplicitTop = 268
+      ExplicitWidth = 300
     end
   end
   object tmrShutdownServer: TTimer

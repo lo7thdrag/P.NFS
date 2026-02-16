@@ -31,6 +31,7 @@ type
     pnl1Home: TAdvSmoothPanel;
     lbljudul: TLabel;
     btn1: TButton;
+    Panel1: TPanel;
     btnBack: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -70,13 +71,38 @@ begin
   Height  := 379;
   Width   := 1057;
   pnlMain.BringToFront;
+
+  BorderStyle := bsSizeable;
 end;
 
 procedure TTFLogBridge.btnBackClick(Sender: TObject);
+var
+  mProject : string;
+
 begin
-  Height  := 300;
-  Width   := 300;
+  Height := 333;
+  Width := 250;
+
   pnl1Home.BringToFront;
+  BorderStyle := bsNone;
+
+  mProject := BridgeManager.PubBridgeSet.mSystemServer.Project;
+
+  if mProject = 'NAFS' then
+  begin
+    Top   := 20;
+    Left  := 1032;
+  end
+  else if mProject = 'NSFS' then
+  begin
+    Top   := 363;
+    Left  := 1032;
+  end
+  else
+  begin
+    Top   := 706;
+    Left  := 1032;
+  end;
 end;
 
 procedure TTFLogBridge.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -137,8 +163,14 @@ begin
     pnl1Home.Fill.ColorMirror   := $00D4D4D4;
     pnl1Home.Fill.ColorMirrorTo := $00D0875A;
     pnl1Home.Fill.ColorTo       := $00D4D4D4;
-    Top   := 0;
-    Left  := 975;
+
+    pnlClientUp.Color := $00D0875A;
+    pnlServerUp.Color := $00D0875A;
+    pnlSettingUp.Color := $00D0875A;
+    pnlUppacket.Color := $00D0875A;
+
+    Top   := 20;
+    Left  := 1292;
   end
   else if mProject = 'NSFS' then
   begin
@@ -148,8 +180,14 @@ begin
     pnl1Home.Fill.ColorMirror   := $00CF7234;
     pnl1Home.Fill.ColorMirrorTo := $0040220F;
     pnl1Home.Fill.ColorTo       := $00CF7234;
-    Top   := 340;
-    Left  := 975;
+
+    pnlClientUp.Color := $0040220F;
+    pnlServerUp.Color := $0040220F;
+    pnlSettingUp.Color := $0040220F;
+    pnlUppacket.Color := $0040220F;
+
+    Top   := 363;
+    Left  := 1292;
   end
   else
   begin
@@ -159,8 +197,14 @@ begin
     pnl1Home.Fill.ColorMirror   := $00E4E4E4;
     pnl1Home.Fill.ColorMirrorTo := $0058524F;
     pnl1Home.Fill.ColorTo       := $00E4E4E4;
-    Top   := 680;
-    Left  := 975;
+
+    pnlClientUp.Color := $0058524F;
+    pnlServerUp.Color := $0058524F;
+    pnlSettingUp.Color := $0058524F;
+    pnlUppacket.Color := $0058524F;
+
+    Top   := 706;
+    Left  := 1292;
   end;
 
 end;

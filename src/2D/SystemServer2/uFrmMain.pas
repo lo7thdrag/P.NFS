@@ -71,13 +71,36 @@ begin
   Height := 660;
   Width := 597;
   pnl2Log.BringToFront;
+  BorderStyle := bsSizeable;
 end;
 
 procedure TfrmMain.btnBackClick(Sender: TObject);
+var
+  mProject : string;
+
 begin
-  Height := 300;
-  Width := 300;
+  Height := 333;
+  Width := 250;
   pnl1Home.BringToFront;
+  BorderStyle := bsNone;
+
+  mProject := ServerManager.PubBridgeSet.mSystemServer.Project;
+
+  if mProject = 'NAFS' then
+  begin
+    Top   := 20;
+    Left  := 1032;
+  end
+  else if mProject = 'NSFS' then
+  begin
+    Top   := 363;
+    Left  := 1032;
+  end
+  else
+  begin
+    Top   := 706;
+    Left  := 1032;
+  end;
 end;
 
 procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -149,8 +172,8 @@ begin
     pnl1Home.Fill.ColorTo       := $00D4D4D4;
     pnlServer2D.Color := $00D0875A;
     pnlServer3D.Color := $00D0875A;
-    Top   := 0;
-    Left  := 975;
+    Top   := 20;
+    Left  := 1032;
   end
   else if mProject = 'NSFS' then
   begin
@@ -162,8 +185,8 @@ begin
     pnl1Home.Fill.ColorTo       := $00CF7234;
     pnlServer2D.Color := $0040220F;
     pnlServer3D.Color := $0040220F;
-    Top   := 340;
-    Left  := 975;
+    Top   := 363;
+    Left  := 1032;
   end
   else
   begin
@@ -175,8 +198,8 @@ begin
     pnl1Home.Fill.ColorTo       := $00E4E4E4;
     pnlServer2D.Color := $0058524F;
     pnlServer3D.Color := $0058524F;
-    Top   := 680;
-    Left  := 975;
+    Top   := 706;
+    Left  := 1032;
   end;
 
 end;
