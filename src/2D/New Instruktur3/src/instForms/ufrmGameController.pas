@@ -116,7 +116,7 @@ type
     pnlClientList: TAdvSmoothPanel;
     lvClient: TListView;
     pnlReport: TPanel;
-    pnlPlatform: TPanel;
+    pnlController: TPanel;
     pnlEnvironment: TPanel;
     mmoReport: TMemo;
     pnlScenario: TPanel;
@@ -620,7 +620,7 @@ type
     imgMK3NAFS: TImage;
     imgClient: TImage;
     imgScenario: TImage;
-    imgPlatform: TImage;
+    imgController: TImage;
     imgEnvironment: TImage;
     imgReport: TImage;
     imageC802: TImage;
@@ -679,8 +679,8 @@ type
     btnRefreshClient: TAdvSmoothButton;
     btnLoadScenario: TAdvSmoothButton;
     btnStopScenario: TAdvSmoothButton;
-    pnlShipEditor: TPanel;
-    imgShipEditor: TImage;
+    pnlPlatform: TPanel;
+    imgPlatform: TImage;
     AdvSmoothPanel5: TAdvSmoothPanel;
     Label8: TLabel;
     Label9: TLabel;
@@ -3738,14 +3738,14 @@ begin
     end;
     2:
     begin
-      pnlShipEditor.BringToFront;
+      pnlPlatform.BringToFront;
     end;
     3:
     begin
       if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
         exit;
 
-      pnlPlatform.BringToFront;
+      pnlController.BringToFront;
     end;
     4:
     begin
@@ -8421,7 +8421,7 @@ begin
     SimManager.isDatabaseMode := False;
 
     ClearScenarioData;
-    pnlPlatform.BringToFront;
+    pnlController.BringToFront;
     frmMainInstruktur.FrameControlLeft.Width := 357;
   end
   else
