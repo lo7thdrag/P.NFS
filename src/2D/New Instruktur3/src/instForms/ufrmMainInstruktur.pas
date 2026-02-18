@@ -146,6 +146,7 @@ type
     procedure btnZoomLevelObserverClick(Sender: TObject);
     procedure MainMapClick(Sender: TObject);
     procedure btnAddVehicleClick(Sender: TObject);
+    procedure btnSelectArrowClick(Sender: TObject);
   private
     { Private declarations }
 //    TimerDestroy : TTimer;
@@ -519,7 +520,8 @@ begin
     end;
 
     sSelectArrow    :
-    begin      {$REGION ' sSelectArrow '}
+    begin
+      {$REGION ' sSelectArrow '}
       btnSelectArrow.ImageIndex    := 1;
       MainMap.CurrentTool          := miArrowTool;
       SimManager.Selections.ClearSelection;
@@ -531,6 +533,11 @@ begin
     sSelectMove     :
     begin
       {$REGION ' sSelectMove '}
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+       begin
+        btnSelectMove.ImageIndex := 0;
+        exit;
+       end;
       btnSelectMove.ImageIndex     := 1;
       MainMap.CurrentTool          := TOOL_MOVE_UNIT;
       isSelectTool                 := false;
@@ -547,6 +554,11 @@ begin
     sSelectMoveAll  :
     begin
       {$REGION ' sSelectMoveAll '}
+       if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+       begin
+        btnSelectMoveAll.ImageIndex := 0;
+        exit;
+       end;
       btnSelectMoveAll.ImageIndex  := 1;
       MainMap.CurrentTool          := TOOL_SELECT_UNIT;
       isSelectTool                 := true;
@@ -740,6 +752,13 @@ begin
     sAddVehicle :
     begin
       {$REGION ' sAddVehicle '}
+       if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+       begin
+        btnAddVehicle.ImageIndex := 0;
+        exit;
+       end;
+
+      frmAddShipRuntime.BringToFront;
       btnAddVehicle.ImageIndex := 0;
       MainMap.CurrentTool          := TOOL_ADD_VEHICLE;
       SimManager.Selections.ClearSelection;
@@ -2816,8 +2835,21 @@ end;
 
 procedure TfrmMainInstruktur.btnAddVehicleClick(Sender: TObject);
 begin
-  frmAddShipRuntime.ShowModal;
+  if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+        exit;
+
+      frmAddShipRuntime.BringToFront;
+
+//  frmAddShipRuntime.ShowModal; //
   btnAddVehicle.ImageIndex := 0;
+end;
+
+procedure TfrmMainInstruktur.btnSelectArrowClick(Sender: TObject);
+begin
+  if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+        exit;
+
+     btnSelectArrow.BringToFront;
 end;
 
 procedure TfrmMainInstruktur.btnShowtikasClick(Sender: TObject);
