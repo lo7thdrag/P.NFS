@@ -183295,7 +183295,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000C8BB820F0100000024E897001C000000000000000000000000
+              010001180100001013C1040100000015F52F751C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183304,15 +183304,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              010000C8BB820F01000000000000001C00000000000000000000000000000000
+              0100001013C10401000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000317A402F0000000054
-              EC970004E89700000000006688CE50000200006B88CE50000000000000000000
+              000000000000000000000000000000000000000000000000000000C8E7970078
+              E39700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -245442,7 +245442,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwTetral
+              ActivePage = pgtwWCCCannon
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -245805,7 +245805,7 @@ object frmGameController: TfrmGameController
                   object lblStartSUT: TLabel
                     Left = 669
                     Top = 456
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -245831,7 +245831,7 @@ object frmGameController: TfrmGameController
                   object lblEndSUT: TLabel
                     Left = 669
                     Top = 492
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -245857,7 +245857,7 @@ object frmGameController: TfrmGameController
                   object lblMinSUT: TLabel
                     Left = 988
                     Top = 456
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -245870,7 +245870,7 @@ object frmGameController: TfrmGameController
                   object lblMaxSUT: TLabel
                     Left = 988
                     Top = 488
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -246312,7 +246312,7 @@ object frmGameController: TfrmGameController
                 end
               end
               object pgtwAsroc: TAdvTabSheet
-                Caption = 'VL MICA'
+                Caption = 'Asroc'
                 Color = 7301478
                 ColorTo = clNone
                 ImageIndex = 1
@@ -246637,7 +246637,7 @@ object frmGameController: TfrmGameController
                       B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2B2000000}
                     OnClick = btnAsrocTargetClick
                   end
-                  object imageVLMica: TImage
+                  object imageAsroc: TImage
                     Left = 528
                     Top = 0
                     Width = 565
@@ -246659,10 +246659,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblStartVLMica: TLabel
+                  object lblStartAsroc: TLabel
                     Left = 673
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -246685,10 +246685,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblEndVLMica: TLabel
+                  object lblEndAsroc: TLabel
                     Left = 673
-                    Top = 491
-                    Width = 4
+                    Top = 484
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -246711,10 +246711,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblMinVLMica: TLabel
+                  object lblMinAsroc: TLabel
                     Left = 992
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -246724,10 +246724,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblMaxVLMica: TLabel
+                  object lblMaxAsroc: TLabel
                     Left = 992
                     Top = 487
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -247068,7 +247068,7 @@ object frmGameController: TfrmGameController
                 end
               end
               object pgtwRBU6000: TAdvTabSheet
-                Caption = 'RBU 6000'
+                Caption = 'RBU 6000 Analog'
                 Color = 7301478
                 ColorTo = clNone
                 ImageIndex = 4
@@ -247469,7 +247469,7 @@ object frmGameController: TfrmGameController
                   object lblStartRBU: TLabel
                     Left = 665
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -247495,7 +247495,7 @@ object frmGameController: TfrmGameController
                   object lblEndRBU: TLabel
                     Left = 665
                     Top = 491
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -247521,7 +247521,7 @@ object frmGameController: TfrmGameController
                   object lblMinRBU: TLabel
                     Left = 984
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -247534,7 +247534,7 @@ object frmGameController: TfrmGameController
                   object lblMaxRBU: TLabel
                     Left = 984
                     Top = 487
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248330,7 +248330,7 @@ object frmGameController: TfrmGameController
                   object lblStartA244s: TLabel
                     Left = 664
                     Top = 453
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248343,7 +248343,7 @@ object frmGameController: TfrmGameController
                   object lblEndA244s: TLabel
                     Left = 664
                     Top = 489
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248382,7 +248382,7 @@ object frmGameController: TfrmGameController
                   object lblMinA244s: TLabel
                     Left = 983
                     Top = 453
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248395,7 +248395,7 @@ object frmGameController: TfrmGameController
                   object lblMaxA244s: TLabel
                     Left = 983
                     Top = 485
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249154,7 +249154,7 @@ object frmGameController: TfrmGameController
                   object lblStartCannon76: TLabel
                     Left = 675
                     Top = 452
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249180,7 +249180,7 @@ object frmGameController: TfrmGameController
                   object lblEndCannon76: TLabel
                     Left = 675
                     Top = 488
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249206,7 +249206,7 @@ object frmGameController: TfrmGameController
                   object lblMinCannon76: TLabel
                     Left = 994
                     Top = 452
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249218,8 +249218,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxCannon76: TLabel
                     Left = 994
-                    Top = 484
-                    Width = 4
+                    Top = 488
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249231,7 +249231,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label87: TLabel
                     Left = 873
-                    Top = 484
+                    Top = 486
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -249562,7 +249562,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText36: TStaticText
                     Left = 968
-                    Top = 484
+                    Top = 486
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -249761,7 +249761,7 @@ object frmGameController: TfrmGameController
                   object lblStartTetral: TLabel
                     Left = 667
                     Top = 452
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249774,7 +249774,7 @@ object frmGameController: TfrmGameController
                   object lblEndTetral: TLabel
                     Left = 667
                     Top = 488
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249813,7 +249813,7 @@ object frmGameController: TfrmGameController
                   object lblMinTetral: TLabel
                     Left = 986
                     Top = 452
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249826,7 +249826,7 @@ object frmGameController: TfrmGameController
                   object lblMaxTetral: TLabel
                     Left = 986
                     Top = 484
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250132,7 +250132,7 @@ object frmGameController: TfrmGameController
                 end
               end
               object pgtwMistral: TAdvTabSheet
-                Caption = 'Cannon 120'
+                Caption = 'Mistral'
                 Color = 7301478
                 ColorTo = clNone
                 TabColor = 7301478
@@ -250291,7 +250291,7 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     Visible = False
                   end
-                  object imageCannon120: TImage
+                  object imageMistral: TImage
                     Left = 528
                     Top = 0
                     Width = 565
@@ -250313,10 +250313,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblStartCannon120: TLabel
+                  object lblStartMistral: TLabel
                     Left = 675
                     Top = 451
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250339,10 +250339,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblEndCannon120: TLabel
+                  object lblEndMistral: TLabel
                     Left = 675
                     Top = 487
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250365,10 +250365,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblMinCannon120: TLabel
+                  object lblMinMistral: TLabel
                     Left = 994
                     Top = 451
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250378,10 +250378,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblMaxCannon120: TLabel
+                  object lblMaxMistral: TLabel
                     Left = 994
                     Top = 483
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250687,7 +250687,7 @@ object frmGameController: TfrmGameController
                 end
               end
               object pgtwStrella: TAdvTabSheet
-                Caption = 'Cannon 40'
+                Caption = 'Strella'
                 Color = 7301478
                 ColorTo = clNone
                 TabColor = 7301478
@@ -250846,9 +250846,9 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object imageCannon40: TImage
-                    Left = 528
-                    Top = 0
+                  object imageStrella: TImage
+                    Left = 529
+                    Top = -1
                     Width = 565
                     Height = 433
                     ParentShowHint = False
@@ -250868,10 +250868,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblStartCannon40: TLabel
+                  object lblStartStrella: TLabel
                     Left = 665
                     Top = 454
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250894,10 +250894,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblEndCannon40: TLabel
+                  object lblEndStrella: TLabel
                     Left = 665
-                    Top = 487
-                    Width = 4
+                    Top = 486
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250920,10 +250920,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblMinCannon40: TLabel
+                  object lblMinStrella: TLabel
                     Left = 984
                     Top = 452
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250933,10 +250933,10 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblMaxCannon40: TLabel
+                  object lblMaxStrella: TLabel
                     Left = 984
-                    Top = 483
-                    Width = 4
+                    Top = 486
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250948,7 +250948,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label79: TLabel
                     Left = 863
-                    Top = 483
+                    Top = 485
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -251229,7 +251229,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText32: TStaticText
                     Left = 958
-                    Top = 483
+                    Top = 485
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -251256,6 +251256,8 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
+                  ExplicitLeft = 2
+                  ExplicitTop = -2
                   object lbl66: TLabel
                     Left = 365
                     Top = 128
@@ -251513,7 +251515,7 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object imageExocet: TImage
+                  object imageExocetMM40: TImage
                     Left = 528
                     Top = 0
                     Width = 565
@@ -251538,7 +251540,7 @@ object frmGameController: TfrmGameController
                   object lblStartMM40: TLabel
                     Left = 661
                     Top = 456
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251564,7 +251566,7 @@ object frmGameController: TfrmGameController
                   object lblEndMM40: TLabel
                     Left = 661
                     Top = 489
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251590,7 +251592,7 @@ object frmGameController: TfrmGameController
                   object lblMinMM40: TLabel
                     Left = 980
                     Top = 454
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251602,8 +251604,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxMM40: TLabel
                     Left = 980
-                    Top = 485
-                    Width = 4
+                    Top = 489
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251615,7 +251617,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label71: TLabel
                     Left = 859
-                    Top = 485
+                    Top = 487
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -252213,7 +252215,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText28: TStaticText
                     Left = 954
-                    Top = 485
+                    Top = 487
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -252461,7 +252463,7 @@ object frmGameController: TfrmGameController
                   object lblcoorXyakhont: TLabel
                     Left = 195
                     Top = 187
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252474,7 +252476,7 @@ object frmGameController: TfrmGameController
                   object lblcoorYyakhont: TLabel
                     Left = 195
                     Top = 220
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252509,7 +252511,7 @@ object frmGameController: TfrmGameController
                   object lblStartYakhont: TLabel
                     Left = 657
                     Top = 457
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252522,7 +252524,7 @@ object frmGameController: TfrmGameController
                   object lblEndYakhont: TLabel
                     Left = 657
                     Top = 490
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252561,7 +252563,7 @@ object frmGameController: TfrmGameController
                   object lblMinYakhont: TLabel
                     Left = 976
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252573,8 +252575,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxYakhont: TLabel
                     Left = 976
-                    Top = 486
-                    Width = 4
+                    Top = 490
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252586,7 +252588,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label31: TLabel
                     Left = 855
-                    Top = 486
+                    Top = 488
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -252917,7 +252919,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText8: TStaticText
                     Left = 950
-                    Top = 486
+                    Top = 488
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -253064,7 +253066,7 @@ object frmGameController: TfrmGameController
                   object lblKoorYc802: TLabel
                     Left = 200
                     Top = 189
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253077,7 +253079,7 @@ object frmGameController: TfrmGameController
                   object lblkoorXc802: TLabel
                     Left = 200
                     Top = 155
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253112,7 +253114,7 @@ object frmGameController: TfrmGameController
                   object lblStartDegC802: TLabel
                     Left = 659
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253137,8 +253139,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblEndDegC802: TLabel
                     Left = 659
-                    Top = 489
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253164,7 +253166,7 @@ object frmGameController: TfrmGameController
                   object lblMinRangeC802: TLabel
                     Left = 978
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253176,7 +253178,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label18: TLabel
                     Left = 857
-                    Top = 487
+                    Top = 489
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -253189,8 +253191,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxRangeC802: TLabel
                     Left = 978
-                    Top = 487
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253448,7 +253450,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText4: TStaticText
                     Left = 952
-                    Top = 487
+                    Top = 489
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -253502,7 +253504,7 @@ object frmGameController: TfrmGameController
                   object lblStartCannon57: TLabel
                     Left = 659
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253527,8 +253529,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblEndCannon57: TLabel
                     Left = 659
-                    Top = 489
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253554,7 +253556,7 @@ object frmGameController: TfrmGameController
                   object lblMinCannon57: TLabel
                     Left = 978
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253566,7 +253568,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label121: TLabel
                     Left = 857
-                    Top = 487
+                    Top = 489
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -253579,8 +253581,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxCannon57: TLabel
                     Left = 978
-                    Top = 487
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253634,7 +253636,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText50: TStaticText
                     Left = 952
-                    Top = 487
+                    Top = 489
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -253688,7 +253690,7 @@ object frmGameController: TfrmGameController
                   object lblStartMM38: TLabel
                     Left = 659
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253713,8 +253715,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblEndMM38: TLabel
                     Left = 659
-                    Top = 489
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253740,7 +253742,7 @@ object frmGameController: TfrmGameController
                   object lblMinMM38: TLabel
                     Left = 978
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253752,7 +253754,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label110: TLabel
                     Left = 857
-                    Top = 487
+                    Top = 489
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -253765,8 +253767,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxMM38: TLabel
                     Left = 978
-                    Top = 487
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253820,7 +253822,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText52: TStaticText
                     Left = 952
-                    Top = 487
+                    Top = 489
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -253874,7 +253876,7 @@ object frmGameController: TfrmGameController
                   object lblStartCannon35: TLabel
                     Left = 659
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253899,8 +253901,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblEndCannon35: TLabel
                     Left = 659
-                    Top = 489
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253926,7 +253928,7 @@ object frmGameController: TfrmGameController
                   object lblMinCannon35: TLabel
                     Left = 978
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -253938,7 +253940,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label37: TLabel
                     Left = 857
-                    Top = 487
+                    Top = 489
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -253951,8 +253953,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxCannon35: TLabel
                     Left = 978
-                    Top = 487
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254006,7 +254008,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText56: TStaticText
                     Left = 952
-                    Top = 487
+                    Top = 489
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -254060,7 +254062,7 @@ object frmGameController: TfrmGameController
                   object lblStartAK230: TLabel
                     Left = 659
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254085,8 +254087,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblEndAK230: TLabel
                     Left = 659
-                    Top = 489
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254112,7 +254114,7 @@ object frmGameController: TfrmGameController
                   object lblMinAK230: TLabel
                     Left = 978
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254124,7 +254126,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label45: TLabel
                     Left = 857
-                    Top = 487
+                    Top = 489
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -254137,8 +254139,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxAK230: TLabel
                     Left = 978
-                    Top = 487
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254192,7 +254194,7 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText60: TStaticText
                     Left = 952
-                    Top = 487
+                    Top = 489
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -254246,7 +254248,7 @@ object frmGameController: TfrmGameController
                   object lblStartCannon730: TLabel
                     Left = 659
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254271,8 +254273,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblEndCannon730: TLabel
                     Left = 659
-                    Top = 489
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254298,7 +254300,7 @@ object frmGameController: TfrmGameController
                   object lblMinCannon730: TLabel
                     Left = 978
                     Top = 455
-                    Width = 4
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254310,7 +254312,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label53: TLabel
                     Left = 857
-                    Top = 487
+                    Top = 489
                     Width = 71
                     Height = 16
                     Caption = 'Max Range'
@@ -254323,8 +254325,8 @@ object frmGameController: TfrmGameController
                   end
                   object lblMaxCannon730: TLabel
                     Left = 978
-                    Top = 484
-                    Width = 4
+                    Top = 491
+                    Width = 5
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -254378,7 +254380,575 @@ object frmGameController: TfrmGameController
                   end
                   object StaticText64: TStaticText
                     Left = 952
-                    Top = 487
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 3
+                  end
+                end
+              end
+              object pgtwCannon40: TAdvTabSheet
+                Caption = 'Cannon 40'
+                Color = clBtnFace
+                ColorTo = clNone
+                TabColor = 7301478
+                TabColorTo = clWhite
+                ExplicitLeft = 6
+                ExplicitTop = 22
+                object ScrollBox1: TScrollBox
+                  Left = 0
+                  Top = 0
+                  Width = 1101
+                  Height = 533
+                  Align = alClient
+                  Color = 7301478
+                  ParentColor = False
+                  TabOrder = 0
+                  object imageCannon40: TImage
+                    Left = 528
+                    Top = 0
+                    Width = 565
+                    Height = 433
+                    ParentShowHint = False
+                    ShowHint = True
+                    Stretch = True
+                  end
+                  object Label38: TLabel
+                    Left = 538
+                    Top = 455
+                    Width = 85
+                    Height = 16
+                    Caption = 'Start Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblStartCannon40: TLabel
+                    Left = 659
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label50: TLabel
+                    Left = 538
+                    Top = 489
+                    Width = 74
+                    Height = 16
+                    Caption = 'End Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblEndCannon40: TLabel
+                    Left = 659
+                    Top = 491
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label57: TLabel
+                    Left = 857
+                    Top = 455
+                    Width = 67
+                    Height = 16
+                    Caption = 'Min Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMinCannon40: TLabel
+                    Left = 978
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label61: TLabel
+                    Left = 857
+                    Top = 489
+                    Width = 71
+                    Height = 16
+                    Caption = 'Max Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMaxCannon40: TLabel
+                    Left = 978
+                    Top = 491
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object StaticText65: TStaticText
+                    Left = 633
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 0
+                  end
+                  object StaticText66: TStaticText
+                    Left = 633
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 1
+                  end
+                  object StaticText67: TStaticText
+                    Left = 952
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 2
+                  end
+                  object StaticText68: TStaticText
+                    Left = 952
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 3
+                  end
+                end
+              end
+              object pgtwCannon120: TAdvTabSheet
+                Caption = 'Cannon 120'
+                Color = clBtnFace
+                ColorTo = clNone
+                TabColor = 7301478
+                TabColorTo = clWhite
+                ExplicitLeft = 24
+                ExplicitTop = 0
+                ExplicitWidth = 100
+                ExplicitHeight = 100
+                object ScrollBox2: TScrollBox
+                  Left = 0
+                  Top = 0
+                  Width = 1101
+                  Height = 533
+                  Align = alClient
+                  Color = 7301478
+                  ParentColor = False
+                  TabOrder = 0
+                  object imageCannon120: TImage
+                    Left = 528
+                    Top = 0
+                    Width = 565
+                    Height = 433
+                    ParentShowHint = False
+                    ShowHint = True
+                    Stretch = True
+                  end
+                  object Label65: TLabel
+                    Left = 538
+                    Top = 455
+                    Width = 85
+                    Height = 16
+                    Caption = 'Start Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblStartCannon120: TLabel
+                    Left = 659
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label69: TLabel
+                    Left = 538
+                    Top = 489
+                    Width = 74
+                    Height = 16
+                    Caption = 'End Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblEndCannon120: TLabel
+                    Left = 659
+                    Top = 491
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label73: TLabel
+                    Left = 857
+                    Top = 455
+                    Width = 67
+                    Height = 16
+                    Caption = 'Min Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMinCannon120: TLabel
+                    Left = 978
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label77: TLabel
+                    Left = 857
+                    Top = 489
+                    Width = 71
+                    Height = 16
+                    Caption = 'Max Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMaxCannon120: TLabel
+                    Left = 978
+                    Top = 491
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object StaticText69: TStaticText
+                    Left = 633
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 0
+                  end
+                  object StaticText70: TStaticText
+                    Left = 633
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 1
+                  end
+                  object StaticText71: TStaticText
+                    Left = 952
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 2
+                  end
+                  object StaticText72: TStaticText
+                    Left = 952
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 3
+                  end
+                end
+              end
+              object pgtwRBU6000Digital: TAdvTabSheet
+                Caption = 'RBU 6000 Digital'
+                Color = clBtnFace
+                ColorTo = clNone
+                TabColor = 7301478
+                TabColorTo = clWhite
+                ExplicitLeft = 24
+                ExplicitTop = 0
+                ExplicitWidth = 100
+                ExplicitHeight = 100
+                object ScrollBox3: TScrollBox
+                  Left = 0
+                  Top = 0
+                  Width = 1101
+                  Height = 533
+                  Align = alClient
+                  Color = 7301478
+                  ParentColor = False
+                  TabOrder = 0
+                  object imageRBUDigital: TImage
+                    Left = 528
+                    Top = 0
+                    Width = 565
+                    Height = 433
+                    ParentShowHint = False
+                    ShowHint = True
+                    Stretch = True
+                  end
+                  object Label81: TLabel
+                    Left = 538
+                    Top = 455
+                    Width = 85
+                    Height = 16
+                    Caption = 'Start Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblStartRBUDigital: TLabel
+                    Left = 659
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label85: TLabel
+                    Left = 538
+                    Top = 489
+                    Width = 74
+                    Height = 16
+                    Caption = 'End Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblEndRBUDigital: TLabel
+                    Left = 659
+                    Top = 491
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label89: TLabel
+                    Left = 857
+                    Top = 455
+                    Width = 67
+                    Height = 16
+                    Caption = 'Min Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMinRBUDigital: TLabel
+                    Left = 978
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label93: TLabel
+                    Left = 857
+                    Top = 489
+                    Width = 71
+                    Height = 16
+                    Caption = 'Max Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMaxRBUDigital: TLabel
+                    Left = 978
+                    Top = 491
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object StaticText73: TStaticText
+                    Left = 633
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 0
+                  end
+                  object StaticText74: TStaticText
+                    Left = 633
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 1
+                  end
+                  object StaticText75: TStaticText
+                    Left = 952
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 2
+                  end
+                  object StaticText76: TStaticText
+                    Left = 952
+                    Top = 489
                     Width = 8
                     Height = 17
                     Caption = ':'
