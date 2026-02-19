@@ -102,12 +102,13 @@ type
 
   TClient = class
     C_ID : Integer;
-    C_Ship, 
+    C_Ship,
     C_Cubicle,
     C_Console,
     C_Type,
     C_Ip,
     C_Status : string;
+    C_LauncherID : Integer;
 
     C_WeaponID : integer;
     C_GameType : Integer;

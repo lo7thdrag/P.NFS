@@ -1490,6 +1490,15 @@ begin
           begin
             with lvClient.Items.Add do
             begin
+              ClientList := TClientList.Create;
+              ClientList.Id           := Client.C_ID;
+              ClientList.Cli_Cubicle  := Client.C_Cubicle;
+              ClientList.Cli_Console  := Client.C_Console;
+              ClientList.Cli_Type     := Client.C_Type;
+              ClientList.Cli_IP       := Client.C_Ip;
+              ClientList.Cli_Status   := Client.C_Status;
+              ClientList.WeaponID     := Client.C_WeaponID;
+
               Caption := IntToStr(lvClient.Items.Count);
               SubItems.Add(Client.C_Cubicle);
               SubItems.Add(Client.C_Console);
@@ -1497,6 +1506,9 @@ begin
               SubItems.Add(Client.C_Ip);
               SubItems.Add(Client.C_Status);
               SubItems.Add(Client.C_Ship);
+              SubItems.Add('');
+
+              Data := ClientList;
             end;
           end;
           Continue;
@@ -1507,6 +1519,15 @@ begin
           begin
             with lvClient.Items.Add do
             begin
+              ClientList := TClientList.Create;
+              ClientList.Id           := Client.C_ID;
+              ClientList.Cli_Cubicle  := Client.C_Cubicle;
+              ClientList.Cli_Console  := Client.C_Console;
+              ClientList.Cli_Type     := Client.C_Type;
+              ClientList.Cli_IP       := Client.C_Ip;
+              ClientList.Cli_Status   := Client.C_Status;
+              ClientList.WeaponID     := Client.C_WeaponID;
+
               Caption := IntToStr(lvClient.Items.Count);
               SubItems.Add(Client.C_Cubicle);
               SubItems.Add(Client.C_Console);
@@ -1514,6 +1535,9 @@ begin
               SubItems.Add(Client.C_Ip);
               SubItems.Add(Client.C_Status);
               SubItems.Add(Client.C_Ship);
+              SubItems.Add('');
+
+              Data := ClientList;
             end;
           end;
           Continue;
@@ -1524,6 +1548,15 @@ begin
           begin
             with lvClient.Items.Add do
             begin
+              ClientList := TClientList.Create;
+              ClientList.Id           := Client.C_ID;
+              ClientList.Cli_Cubicle  := Client.C_Cubicle;
+              ClientList.Cli_Console  := Client.C_Console;
+              ClientList.Cli_Type     := Client.C_Type;
+              ClientList.Cli_IP       := Client.C_Ip;
+              ClientList.Cli_Status   := Client.C_Status;
+              ClientList.WeaponID     := Client.C_WeaponID;
+
               Caption := IntToStr(lvClient.Items.Count);
               SubItems.Add(Client.C_Cubicle);
               SubItems.Add(Client.C_Console);
@@ -1531,6 +1564,9 @@ begin
               SubItems.Add(Client.C_Ip);
               SubItems.Add(Client.C_Status);
               SubItems.Add(Client.C_Ship);
+              SubItems.Add('');
+
+              Data := ClientList;
             end;
           end;
           Continue;
