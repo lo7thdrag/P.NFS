@@ -171,7 +171,6 @@ object frmMain: TfrmMain
           Alignment = taLeftJustify
           Caption = 'Debug'
           TabOrder = 2
-          Visible = False
           OnClick = cbDebugClick
         end
         object spbDBServer: TPanel

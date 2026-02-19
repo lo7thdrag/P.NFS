@@ -350,7 +350,7 @@ begin
         with aListView.Items.Add do
         begin
           Data := aVehicle;
-          Caption := aVehicle.Vehicle_Name;
+          Caption := IntToStr(lvConsole.Items.Count);
           SubItems.Add('0');
           SubItems.Add('0');
           SubItems.Add('0');
@@ -2077,7 +2077,7 @@ begin
         // ClientList.Cli_Status   := Client.C_Status;
         ClientList.WeaponID := AllConsole.WeaponID;
 
-        Caption := IntToStr(AllConsole.Id);
+        Caption := IntToStr(lvConsole.Items.Count);
 
         case AllConsole.PC_IDM of
           0:
@@ -2092,8 +2092,8 @@ begin
             end;
           2:
             begin
-              ClientList.Cli_Cubicle := 'OBSERVER';
-              SubItems.Add('OBSERVER');
+              ClientList.Cli_Cubicle := '3D SERVER';
+              SubItems.Add('3D SERVER');
             end;
         end;
 

@@ -27,6 +27,8 @@ type
     function getConsoleName(aID : Integer): string;
     function GetMessage(LogEvent: TLogEvent; IDConsole,IDEvent: Integer):string; 
   public
+    pShipID, pClassID : Integer;
+
     constructor Create;
     destructor Destroy; override;
 
@@ -573,6 +575,7 @@ var
   WeaponRBU        : TWeaponOn_RBU;
 
   WeaponShip : TWeaponOnShip;
+  Client     : TClient;
 begin
   shipID        := Rec.shipID ;
   WeaponID      := Rec.WeaponID ;
@@ -779,12 +782,9 @@ begin
 
     ST_MISSILE_LOADED :
     begin
-
       // cek status Green
       frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.LoadingStatus(shipID, WeaponID, LauncherID, MissileID, tsLoading);
     end;
-
-
   end;
 end;
 
@@ -990,14 +990,19 @@ begin
   end;
 end;
 
-procedure TEventManager.OnReceiveComConsole(Rec: TRecComConsole); //dendy mampir
+procedure TEventManager.OnReceiveComConsole(Rec: TRecComConsole);
 var
   i               : integer;
   kapal           : String;
   LauncherClient  : string;
+  Item : TListItem;
 
   Client : TClientList;
+  ClientList : TClient;
+  aRec : ^TRecMissilePos;
 begin
+  Client := TClientList.Create;
+
   for i := 0 to frmGameController.lvClient.Items.Count -1 do
   begin
     if frmGameController.lvClient.Items[i].SubItems[3] = Rec.IpSender then
@@ -1035,8 +1040,6 @@ begin
         end;
         frmGameController.CekLight;
       end;
-
-
     end
   end;
 end;
@@ -1840,7 +1843,13 @@ begin
           (rec.WeaponID = C_DBID_CANNON120)then
         begin
            SimManager.InstrukturSendStopCommandIP(ClientConsole.Cli_IP);
+        end
+        else if (rec.Shipid = ClientConsole.Cli_SHIPID) and
+           (rec.WeaponID = C_DBID_YAKHONT)  then
+        begin
+          SimManager.InstrukturSendStopCommandIP(ClientConsole.Cli_IP);
         end;
+
 
         if (rec.Shipid = ClientConsole.Cli_SHIPID) and
            (rec.Launcher = ClientConsole.Cli_LAUNCHERID) and

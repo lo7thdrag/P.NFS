@@ -524,7 +524,6 @@ object frmSceEditor: TfrmSceEditor
         TabReorder = False
         OnChange = TabSelectionChange
         TabOrder = 0
-        ExplicitHeight = 735
         TMSStyle = 0
         object tsShipKRI: TAdvSmoothTabPage
           Left = 1
