@@ -8,7 +8,7 @@ uses
   System.ImageList, Vcl.ImgList,Vcl.OleCtrls, MapXLib_TLB, uBaseFunctionFCC, uObjectVisual,
   uCoordConverter, uMapXUnitConverter, system.math, TFlatCheckBoxUnit, uFccManager, uBridgeSet,
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
-  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, MSHTML, ActiveX;
+  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, MSHTML, ActiveX, uClassDatabase;
 
 type
   TfrmMainFCC = class(TForm)
@@ -1390,6 +1390,7 @@ var
   ShipCallSign: string;
   V: TVehicle;
   rgnOuter, rgnInner: HRGN;
+  envSce : tscenario;
 begin
   BeginGame_FCC;
   FCCManager := TFCCManager.Create;
@@ -1614,6 +1615,15 @@ begin
     FCCManager.Running := True;
   end;
 
+  envSce := TScenario.Create;
+  DataModule1.GetEnviBySceID(FCCManager.CurrentScenID, envSce);
+  edtWeatherDataWs.Text := envSce.Scenario_WindSpeed.ToString();
+  edtWeatherDataWd.Text := envSce.Scenario_WindDir_Deg.ToString();
+  edtWeatherDataTemp.Text := envSce.Scenario_Temperature.ToString();
+  edtWeatherDataHumi.Text := envSce.Scenario_Humidity.ToString();
+  edtWeatherDataAirP.Text := envSce.Scenario_BaroPressure.ToString();
+  envSce.Free;
+
   FIsWeatherAuto := True;
   FIsNavAuto := True;
 
@@ -1705,6 +1715,12 @@ begin
   end
   else if (Token = 'WeatherSetting') or (Token = 'btnWeatherSetting') or (Token = 'btn_WeatherSetting')  then
   begin
+    edtWeatherSettingWs.Text := edtWeatherDataWs.Text;
+    edtWeatherSettingWd.Text := edtWeatherDataWd.Text;
+    edtWeatherSettingTemp.Text := edtWeatherDataTemp.Text;
+    edtWeatherSettingHumi.Text := edtWeatherDataHumi.Text;
+    edtWeatherSettingAirP.Text := edtWeatherDataAirP.Text;
+
     pnlWeatherSetting.BringToFront;
     activePanel := 2;
   end
@@ -1825,6 +1841,8 @@ begin
 end;
 
 procedure TfrmMainFCC.InitializeForm;
+//var
+//envSce : TScenario;
 begin
   // light from image list
   //  0 grey
@@ -1898,6 +1916,15 @@ begin
     end;
   end;
 
+//  envSce := TScenario.Create;
+//  DataModule1.GetEnviBySceID(FCCManager.CurrentScenID, envSce);
+//  edtWeatherDataWs.Text := envSce.Scenario_WindSpeed.ToString();
+//  edtWeatherDataWd.Text := envSce.Scenario_WindDir_Deg.ToString();
+//  edtWeatherDataTemp.Text := envSce.Scenario_Temperature.ToString();
+//  edtWeatherDataHumi.Text := envSce.Scenario_Humidity.ToString();
+//  edtWeatherDataAirP.Text := envSce.Scenario_BaroPressure.ToString();
+//  envSce.Free;
+
 end;
 
 procedure TfrmMainFCC.LoadGeoset(const aGst: string);
@@ -1944,9 +1971,22 @@ begin
 end;
 
 procedure TfrmMainFCC.onRbWeatherSetting(Sender: TObject);
+var
+envSce : TScenario;
 begin
   if rbWeatherAuto.Checked then
+  begin
+    envSce := TScenario.Create;
+    DataModule1.GetEnviBySceID(FCCManager.CurrentScenID, envSce);
+    edtWeatherSettingWs.Text := envSce.Scenario_WindSpeed.ToString();
+    edtWeatherSettingWd.Text := envSce.Scenario_WindDir_Deg.ToString();
+    edtWeatherSettingTemp.Text := envSce.Scenario_Temperature.ToString();
+    edtWeatherSettingHumi.Text := envSce.Scenario_Humidity.ToString();
+    edtWeatherSettingAirP.Text := envSce.Scenario_BaroPressure.ToString();
+    envSce.Free;
+
     FIsWeatherAuto := True;
+  end;
 
   if rbWeatherManual.Checked then
     FIsWeatherAuto := False;
@@ -2193,6 +2233,7 @@ begin
         edtNavDataHeading.Text := FormatFloat('0.00', FCCManager.xShip.Heading);
         edtNavDataPitch.Text := FormatFloat('0.00', FCCManager.xShip.Pitch);
         edtNavDataRoll.Text := FormatFloat('0.00', FCCManager.xShip.Roll);
+//        edtNavDataVoyage.Text := FormatFloat('0.00', FCCManager.xShip.);
 
         if not FCCManager.IsTrueMotion then begin
           Fmap.CenterX := FCCManager.xShip.PositionX;

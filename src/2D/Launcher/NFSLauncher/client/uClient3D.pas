@@ -1007,17 +1007,23 @@ begin
               // ++ BAWE-20110418: XML_CLEANUP
               XML_Cleanup(cbDebug.Checked);
               // -- BAWE-20110418: XML_CLEANUP
-              if thisComputer.c_app_type = APP_2D then
+              if thisComputer.c_app_tipe = APP_2D then
               begin
                 CloseCurrentHandleApplication(thisComputer.c_app_name);
                 AddToLogs(' ::: 2D Client Receive Stop Command. "' +
                   thisComputer.c_app_name + '"');
+              end
+              else if thisComputer.c_app_tipe = APP_3D_Client then
+              begin
+                CloseCurrentHandleApplication(thisComputer.c_app_name_2);
+                AddToLogs(' ::: 3D Client Receive Stop Command. "' +
+                  thisComputer.c_app_name_2 + '"');
               end;
               AddToLogs(' ::: STOPED');
             end;
           __CM_CLIENT_RELAUNCH:
             begin
-              if thisComputer.c_app_type = APP_2D then
+              if thisComputer.c_app_tipe = APP_2D then
                 CloseCurrentHandleApplication(thisComputer.c_app_name);
               cmdClientApp.Stop;
               cmdClientApp.Execute;

@@ -201,15 +201,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000E85AC31301000000880300C01C00000000000000000000000000000000
+          010000E85AC31301000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E8E197003D8B877621
-          00000000000000208B8776A0EBCB1319CF4C7628E29700000000000000000000
+          000000000000000000000000000000000000000000000018F097003D8B877621
+          00000000000000208B8776704D5F4649C14C7658F09700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object btnMapIncrement: TButton
@@ -707,134 +707,6 @@ object frmMainFCC: TfrmMainFCC
             OnClick = onRbNavSetting
           end
         end
-        object pnlCalSetting: TPanel
-          Left = 1
-          Top = 1
-          Width = 450
-          Height = 238
-          Align = alClient
-          TabOrder = 1
-          object lblLastDeltaBESetting: TLabel
-            Left = 150
-            Top = 70
-            Width = 24
-            Height = 13
-            Caption = ' '#916'BE'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object lblLastSatuanDeltaELSetting: TLabel
-            Left = 266
-            Top = 69
-            Width = 30
-            Height = 13
-            Caption = 'mrad'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object lblLastSatuanDeltaELSetting2: TLabel
-            Left = 266
-            Top = 97
-            Width = 30
-            Height = 13
-            Caption = 'mrad'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object lblLastDeltaELSetting: TLabel
-            Left = 149
-            Top = 97
-            Width = 23
-            Height = 13
-            Caption = ' '#916'EL'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object lblLastDeltaDSetting: TLabel
-            Left = 153
-            Top = 124
-            Width = 16
-            Height = 13
-            Caption = #916'D'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object lblLastSatuanDeltaDSetting: TLabel
-            Left = 266
-            Top = 125
-            Width = 11
-            Height = 13
-            Caption = 'm'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object pnlCalSettingHeader: TPanel
-            Left = 1
-            Top = 1
-            Width = 448
-            Height = 23
-            Align = alTop
-            BevelOuter = bvNone
-            Caption = 'CAL Setting'
-            Color = clBlue
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clHighlightText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentBackground = False
-            ParentFont = False
-            TabOrder = 0
-          end
-          object edtDeltaBESetting: TEdit
-            Left = 204
-            Top = 67
-            Width = 41
-            Height = 21
-            TabOrder = 1
-            Text = '7.62'
-          end
-          object edtDeltaELSetting: TEdit
-            Left = 204
-            Top = 94
-            Width = 41
-            Height = 21
-            TabOrder = 2
-            Text = '25.63'
-          end
-          object edtDeltaDSetting: TEdit
-            Left = 204
-            Top = 121
-            Width = 41
-            Height = 21
-            TabOrder = 3
-            Text = '25.63'
-          end
-        end
         object pnlWeatherSetting: TPanel
           Left = 1
           Top = 1
@@ -1027,7 +899,7 @@ object frmMainFCC: TfrmMainFCC
             Width = 41
             Height = 21
             TabOrder = 3
-            Text = '7.62'
+            Text = '0'
           end
           object edtWeatherSettingWd: TEdit
             Left = 61
@@ -1060,6 +932,134 @@ object frmMainFCC: TfrmMainFCC
             Height = 21
             TabOrder = 7
             Text = '7.62'
+          end
+        end
+        object pnlCalSetting: TPanel
+          Left = 1
+          Top = 1
+          Width = 450
+          Height = 238
+          Align = alClient
+          TabOrder = 1
+          object lblLastDeltaBESetting: TLabel
+            Left = 150
+            Top = 70
+            Width = 24
+            Height = 13
+            Caption = ' '#916'BE'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblLastSatuanDeltaELSetting: TLabel
+            Left = 266
+            Top = 69
+            Width = 30
+            Height = 13
+            Caption = 'mrad'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblLastSatuanDeltaELSetting2: TLabel
+            Left = 266
+            Top = 97
+            Width = 30
+            Height = 13
+            Caption = 'mrad'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblLastDeltaELSetting: TLabel
+            Left = 149
+            Top = 97
+            Width = 23
+            Height = 13
+            Caption = ' '#916'EL'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblLastDeltaDSetting: TLabel
+            Left = 153
+            Top = 124
+            Width = 16
+            Height = 13
+            Caption = #916'D'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblLastSatuanDeltaDSetting: TLabel
+            Left = 266
+            Top = 125
+            Width = 11
+            Height = 13
+            Caption = 'm'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object pnlCalSettingHeader: TPanel
+            Left = 1
+            Top = 1
+            Width = 448
+            Height = 23
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'CAL Setting'
+            Color = clBlue
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clHighlightText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 0
+          end
+          object edtDeltaBESetting: TEdit
+            Left = 204
+            Top = 67
+            Width = 41
+            Height = 21
+            TabOrder = 1
+            Text = '7.62'
+          end
+          object edtDeltaELSetting: TEdit
+            Left = 204
+            Top = 94
+            Width = 41
+            Height = 21
+            TabOrder = 2
+            Text = '25.63'
+          end
+          object edtDeltaDSetting: TEdit
+            Left = 204
+            Top = 121
+            Width = 41
+            Height = 21
+            TabOrder = 3
+            Text = '25.63'
           end
         end
         object pnlIndWth: TPanel
@@ -4322,7 +4322,7 @@ object frmMainFCC: TfrmMainFCC
                 Top = 108
                 Width = 74
                 Height = 25
-                Caption = 'Fire Forbid'
+                Caption = 'Fire Allow'
                 TabOrder = 4
               end
             end
