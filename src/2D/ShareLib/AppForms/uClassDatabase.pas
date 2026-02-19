@@ -16,6 +16,7 @@ type
     Vehicle_Minspeed : Double;
     Vehicle_Type     : Integer;
     Vehicle_Target   : Integer;
+    Vehicle_MaxspeedAstern : Double;
 
     Vehicle_X        : Double;
     Vehicle_Y        : Double;
