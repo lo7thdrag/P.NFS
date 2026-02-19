@@ -21,6 +21,10 @@ type
     procedure DataModuleCreate(Sender: TObject);
   private
   public
+    {$REGION ' Platform '}
+    function GetShipByID(const shipid: integer): TVehicle;
+    {$ENDREGION}
+
     function GetShipClassID(const shipid: integer): integer;
     function GetShipClassName(const classid: integer): string;
     function GetShipCategoryID(const shipid: integer): integer;
@@ -59,7 +63,7 @@ type
       var aRec: Tlist): integer;
 
     function GetAllShipFromScen(const SceID: integer; var aRec: Tlist): integer;
-
+    function GetAllShip(var aRec: Tlist): integer;
     function GetAllWarShip(var aRec: Tlist): integer;
     function GetAllGeneralShip(var aRec: Tlist): integer;
     function GetAllTargetSurface(var aRec: Tlist): integer;
@@ -409,6 +413,55 @@ begin
 
   if DS.RecordCount > 0 then
     Result := DS.Fields[0].AsString;
+end;
+
+function TDataModule1.GetShipByID(const shipid: integer): TVehicle;
+var
+  rec: TVehicle;
+  i: integer;
+begin
+  Result := nil;
+
+  with DS do
+  begin
+    Close;
+
+    SQL.Clear;
+    SQL.Add('SELECT * FROM m_ship');
+    SQL.Add('WHERE ship_id = ' + IntToStr(shipid));
+
+    Open;
+  end;
+
+  if DS.RecordCount > 0 then
+  begin
+    rec := TVehicle.Create;
+    rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
+    rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
+    rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
+    rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
+    rec.Vehicle_Type  := DS.FieldByName('SHIP_TYPE').AsInteger;
+
+    rec.Vehicle_TrimFactor      := DS.FieldByName('SHIP_TRIM_FACTOR').AsFloat;
+    rec.Vehicle_TacDiameter     := DS.FieldByName('SHIP_TACTICAL_DIAMETER').AsFloat;
+    rec.Vehicle_ShaftUp         := DS.FieldByName('SHIP_SHAFT_UP').AsFloat;
+    rec.Vehicle_HeelFactor      := DS.FieldByName('SHIP_HEEL_FACTOR').AsFloat;
+    rec.Vehicle_Displacement    := DS.FieldByName('SHIP_DISPLACEMENT').AsFloat;
+    rec.Vehicle_ThrottleRate    := DS.FieldByName('SHIP_THROTTLE_RATE').AsFloat;
+    rec.Vehicle_RudderSwingRate := DS.FieldByName('SHIP_RUDDER_SWING_RATE').AsFloat;
+
+    rec.Vehicle_SUSTAINABILITY  := DS.FieldByName('DAMAGE_SUSTAINABILITY').AsFloat;
+    rec.Vehicle_Maxspeed        := DS.FieldByName('SHIP_MAX_SPEED').AsFloat;
+    rec.Vehicle_MaxspeedAstern  := DS.FieldByName('SHIP_MAX_SPEED_ASTERN').AsFloat;
+
+    rec.Vehicle_LENGTH  := DS.FieldByName('DIM_LENGTH').AsFloat;
+    rec.Vehicle_WIDTH   := DS.FieldByName('DIM_WIDTH').AsFloat;
+    rec.Vehicle_HEIGHT  := DS.FieldByName('DIM_HEIGHT').AsFloat;
+
+
+    Result := rec;
+  end;
+
 end;
 
 function TDataModule1.GetShipCallsignByID(idShip: integer): string;
@@ -1133,6 +1186,49 @@ begin
 
       aRec.Add(rec);
       DQ.Next;
+    end;
+  end;
+end;
+
+function TDataModule1.GetAllShip(var aRec: Tlist): integer;
+var
+  rec: TVehicle;
+  i: integer;
+begin
+  Result := -1;
+
+  with DS do
+  begin
+    Close;
+
+    SQL.Clear;
+    SQL.Add('SELECT *');
+    SQL.Add('FROM m_ship');
+    SQL.Add('ORDER BY SHIP_ID');
+
+    Open;
+    DS.First;
+  end;
+
+  Result := DS.RecordCount;
+
+  if not DS.IsEmpty then
+  begin
+    if not Assigned(aRec) then
+      aRec := Tlist.Create
+    else
+      aRec.Clear;
+
+    while not DS.Eof do
+    begin
+      rec := TVehicle.Create;
+      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
+      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
+      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
+      rec.Vehicle_No := DS.FieldByName('SHIP_NO').AsInteger;
+      rec.Vehicle_Type := DS.FieldByName('SHIP_TYPE').AsInteger;
+      aRec.Add(rec);
+      DS.Next;
     end;
   end;
 end;

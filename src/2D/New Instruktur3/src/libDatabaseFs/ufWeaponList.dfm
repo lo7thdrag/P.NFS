@@ -28,7 +28,7 @@ object frmWeaponList: TfrmWeaponList
     Fill.ShadowOffset = 0
     Fill.Glow = gmNone
     Transparent = False
-    ActivePage = tsShipKRI
+    ActivePage = tsShipTarget
     Color = 7301478
     TabPosition = tpTopLeft
     TabSettings.LeftMargin = 0

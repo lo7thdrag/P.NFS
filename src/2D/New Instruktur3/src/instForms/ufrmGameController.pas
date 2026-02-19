@@ -1147,6 +1147,9 @@ type
     procedure imgNewClick(Sender: TObject);
     procedure btnLoadScenarioClick(Sender: TObject);
     procedure btnStopScenarioClick(Sender: TObject);
+    procedure lvShipListClick(Sender: TObject);
+    procedure lvWeaponSelectClick(Sender: TObject);
+    procedure ClearAllDetail;
 
   private
     { Private declarations }
@@ -1168,6 +1171,7 @@ type
     scenarioGameName : string;
 
     procedure ClearListViewData(const aListView: TListView);
+    procedure ClearListShipData(const aListView: TListView);
 
     procedure WakeOnLan(const AMacAddress : string); //yoga
     procedure UpdateEnvy;
@@ -1209,6 +1213,14 @@ type
     procedure ShowScenario;
     procedure UpdateScenarioData;
     procedure ClearScenarioData;
+
+    {$ENDREGION}
+
+    {$REGION ' ShowShip Procedure '}
+
+    procedure ShowShip;
+    procedure UpdateShipData;
+    procedure ClearShipData;
 
     {$ENDREGION}
 
@@ -2046,6 +2058,15 @@ begin
     frmMainInstruktur.FrameControlLeft.FrameGuidance.pnlBack.BringToFront;
 
   end;
+end;
+
+procedure TfrmGameController.lvShipListClick(Sender: TObject);
+begin
+  if lvShipList.Selected = nil then
+    Exit;
+
+  UpdateShipData;
+
 end;
 
 { --------------------------------------------------------------------- }
@@ -3835,6 +3856,7 @@ begin
     2:
     begin
       pnlPlatform.BringToFront;
+      ShowShip;
     end;
     3:
     begin
@@ -4394,6 +4416,46 @@ begin
 
   ClearAList(ListScenario);
   ListScenario.Free;
+
+end;
+procedure TfrmGameController.ShowShip;
+var
+  i : integer;
+  ListShip : Tlist;
+  Ship : TVehicle;
+begin
+  {membersihkan lvship}
+  lvShipList.Items.Clear;
+
+  {membuat objek list}
+  ListShip := TList.Create;
+
+  {Ngambil data dari database}
+  DataModule1.GetAllShip(ListShip);
+
+  for i := 0 to ListShip.Count - 1 do
+  begin
+    Ship := TVehicle(ListShip[i]);
+
+    {Ngeprint ke list view}
+    with lvShipList.Items.Add do
+    begin
+      Caption := IntToStr(Ship.Vehicle_ID);
+      SubItems.Add(Ship.Vehicle_Name);
+
+      case Ship.Vehicle_Type of
+        1: SubItems.Add('Surface');
+        2: SubItems.Add('Air');
+        3: SubItems.Add('Subsurface');
+      end;
+    end;
+  end;
+
+  {menghapus isi list}
+  ClearAList(ListShip);
+
+  {menghancurkan objek list}
+  ListShip.Free;
 
 end;
 
@@ -6091,6 +6153,39 @@ begin
 //  img_Server.BringToFront;
 end;
 
+procedure TfrmGameController.ClearAllDetail;
+begin
+  edtPosPitch.Text    := '';
+  edtPosHeading.Text  := '';
+  edtModelBody.Text   := '';
+  edtModelSpout.Text  := '';
+  edtDOF1.Text        := '';
+  edtDOF2.Text        := '';
+  edtSwitch.Text      := '';
+  edt3DActor.Text     := '';
+
+//  cbbModelBody.ItemIndex  := 0;
+//  cbbModelSpout.ItemIndex := 0;
+//  cbbDOF_I.ItemIndex      := 0;
+//  cbbDOF_II.ItemIndex     := 0;
+//  cbbSwitch.ItemIndex     := 0;
+//
+//  edtLauncher.Text        := '0';
+//  edtUpdateHeading.Text   := '0';
+//  edtUpdatePitch.Text     := '0';
+//
+//  btnUpdate.Visible       := false;
+
+  edtDetailName.Text  := '';
+  edtStartDegree.Text := '';
+  edtEndDegree.Text   := '';
+  edtMinRange.Text    := '';
+  edtMaxRange.Text    := '';
+
+  lvDetail.Items.Clear;
+  pnlDetail.BringToFront;
+end;
+
 procedure TfrmGameController.ClearAllVisibleConsole;
 begin
 //   img_moc1x.Visible := false;
@@ -7059,6 +7154,88 @@ begin
   {$ENDREGION}
 end;
 
+procedure TfrmGameController.UpdateShipData;
+var
+  i : Integer;
+  ShipId : Integer;
+  AllShip : TList;
+  ShipTemp: TVehicle;
+
+  {Var lvWeapon}
+  ListWeaponOnShip : TList;
+  WeaponOnShip : TWeaponGetList;
+  strPicture : string;
+
+begin
+  {Membersihkan tampilan form}
+  ClearShipData;
+
+  {Membuat objek penampung}
+  ShipTemp := TVehicle.Create;
+
+  ShipId := StrToInt(lvShipList.Selected.Caption);
+
+  ShipTemp := DataModule1.GetShipByID(ShipId);
+
+  if Assigned(ShipTemp) then
+  begin
+    cveShipName.Text :=  lvShipList.Selected.SubItems[0];
+    edtShipName.Text :=  lvShipList.Selected.SubItems[0];
+    cveClass.Text    :=  lvShipList.Selected.Caption;
+
+    {$REGION ' Dimensions '}
+    edtShipLength.Text   := FloatToStr(ShipTemp.Vehicle_LENGTH);
+    edtShipwidth.Text    := FloatToStr(ShipTemp.Vehicle_WIDTH);
+    edtShipHeight.Text   := FloatToStr(ShipTemp.Vehicle_HEIGHT);
+    {$ENDREGION}
+
+    {$REGION ' Properties '}
+    edtShipMaxSpeed.Text         := FloatToStr(ShipTemp.Vehicle_Maxspeed);
+    edtShipMaxSpeedAstern.Text   := FloatToStr(ShipTemp.Vehicle_MaxspeedAstern);
+    edtDamageSustainability.Text := FloatToStr(ShipTemp.Vehicle_SUSTAINABILITY);
+
+    edtShipRudderSwingRate.Text  := FloatToStr(ShipTemp.Vehicle_RudderSwingRate);
+    edtShipThrottleRate.Text     := FloatToStr(ShipTemp.Vehicle_ThrottleRate);
+    edtShipDisplacement.Text     := FloatToStr(ShipTemp.Vehicle_Displacement);
+    edtShipHeelFactor.Text       := FloatToStr(ShipTemp.Vehicle_HeelFactor);
+    edtShipShaftUp.Text          := FloatToStr(ShipTemp.Vehicle_ShaftUp);
+    edtShipTacDiameter.Text      := FloatToStr(ShipTemp.Vehicle_TacDiameter);
+    edtShipTrimFactor.Text       := FloatToStr(ShipTemp.Vehicle_TrimFactor);
+    {$ENDREGION}
+
+    {$REGION ' lvWeapon '}
+    lvWeaponSelect.Items.Clear;
+
+    ListWeaponOnShip := TList.Create;
+
+    DataModule1.GetListWeaponOnShip(ShipId, ListWeaponOnShip);
+
+    if Assigned(ListWeaponOnShip) then
+    begin
+      for i := 0 to ListWeaponOnShip.Count-1 do
+      begin
+        WeaponOnShip := TWeaponGetList(ListWeaponOnShip[i]);
+
+        if Assigned(WeaponOnShip) then
+        begin
+          with lvWeaponSelect.Items.Add do
+          begin
+            Caption := IntToStr(WeaponOnShip.IDWeapon);
+            SubItems.Add(DataModule1.GetNameWeaponByID(WeaponOnShip.IDWeapon));
+            SubItems.Add(IntToStr(WeaponOnShip.IDDetail));
+            SubItems.Add(IntToStr(WeaponOnShip.ID));
+          end;
+        end;
+      end;
+    end;
+    {$ENDREGION}
+
+     {$REGION ' lvDetail '}
+
+     {$ENDREGION}
+  end;
+end;
+
 procedure TfrmGameController.lvWeaponMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
   var
@@ -7080,6 +7257,90 @@ begin
 
     pmLvWeapon.Popup(p.X , p.Y);
   end;
+end;
+
+procedure TfrmGameController.lvWeaponSelectClick(Sender: TObject);
+var
+ ListWeaponOnShip : TList;
+ WeaponOnShip     : TWeaponGetList;
+
+ ListWeaponDetail : Tlist;
+ WeaponDetail     : TWeaponDetail;
+
+ IDweapon,
+ IDDetail : Integer;
+
+ i : Integer;
+ o: TObject;
+begin
+//
+//  if lvWeaponSelect.Selected = nil then
+//  begin
+//    ClearAllDetail;
+//    Exit;
+//  end;
+//
+//  ClearAllDetail;
+//
+//  IDweapon := StrToInt(lvWeaponSelect.Selected.Caption);
+//  IDDetail := StrToInt(lvWeaponSelect.Selected.SubItems[1]);
+//
+//  ListWeaponOnShip := TList.Create;
+//  ListWeaponDetail := TList.Create;
+//
+//  try
+//
+//    DataModule1.GetListWeaponOnShip(Ship_ID, ListWeaponOnShip);
+//    DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail,  ListWeaponDetail);
+//
+//    for i:= 0 to ListWeaponOnShip.Count-1 do
+//    begin
+//      if Assigned(ListWeaponOnShip.Items[i]) then begin
+//        WeaponOnShip := TWeaponGetList(ListWeaponOnShip.Items[i]);
+//        if (WeaponOnShip.IDShip = Ship_ID) and
+//           (WeaponOnShip.IDWeapon = IDweapon) and
+//           (WeaponOnShip.IDDetail = IDDetail)
+//        then
+//        begin
+//          edtModelBody.Text   := DataModule1.GetModelNameByID(WeaponOnShip.IDModel1);
+//          edtModelSpout.Text  := DataModule1.GetModelNameByID(WeaponOnShip.IDModel2);
+//          edtDOF1.Text        := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof1);
+//          edtDOF2.Text        := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof2);
+//          edtSwitch.Text      := DataModule1.GetSwitchNameByID(WeaponOnShip.IDSwitch);
+//          edtPosPitch.Text    := IntToStr(WeaponOnShip.Pos_P);
+//          edtPosHeading.Text  := IntToStr(WeaponOnShip.Pos_H);
+//          Edit2.Text := FloatToStr(DataModule1.GetLethalityByID(IDweapon));
+//          case WeaponOnShip.Is3DActor of
+//            0 : edt3DActor.Text := 'NO';
+//            1 : edt3DActor.Text := 'YES';
+//          end;
+//          Break;
+//        end;
+//      end;
+//    end;
+//
+//    for i := 0 to ListWeaponDetail.Count - 1 do
+//    begin
+//      if Assigned(ListWeaponDetail.Items[i]) then begin
+//        WeaponDetail := TWeaponDetail(ListWeaponDetail.Items[i]);
+//        with lvDetail.Items.Add do
+//        begin
+//          Caption := IntToStr(WeaponDetail.IDType);
+//          SubItems.Add(WeaponDetail.DetName);
+//          SubItems.Add(FloatToStr(WeaponDetail.StartAngle));
+//          SubItems.Add(FloatToStr(WeaponDetail.EndAngle));
+//          SubItems.Add(FloatToStr(WeaponDetail.LowRange));
+//          SubItems.Add(FloatToStr(WeaponDetail.HighRange));
+//        end;
+//      end;
+//    end;
+//
+//  finally
+//    ClearAList(ListWeaponOnShip);
+//    ListWeaponOnShip.Free;
+//    ClearAList(ListWeaponDetail);
+//    ListWeaponDetail.Free;
+//  end;
 end;
 
 procedure TfrmGameController.On1Click(Sender: TObject);
@@ -8929,6 +9190,21 @@ begin
   end;
 end;
 
+procedure TfrmGameController.ClearListShipData(const aListView: TListView);
+var
+  i: Integer;
+begin
+  for i := 0 to aListView.Items.Count - 1 do
+  begin
+    if Assigned(aListView.Items[i].Data) then
+    begin
+      TObject(aListView.Items[i].Data).Free;
+      aListView.Items[i].Data:= nil;
+    end;
+  end;
+  aListView.Clear;
+end;
+
 procedure TfrmGameController.ClearListViewData(const aListView: TListView);
 var
   i: Integer;
@@ -8979,6 +9255,49 @@ begin
   VrWindDirection.Position := 0;
   VrCurrentDirection.Position := 0;
   {$ENDREGION}
+end;
+
+procedure TfrmGameController.ClearShipData;
+begin
+  cveShipName.Text  := '';
+  cveClass.Text     := '';
+
+  edtShipLength.Text  := '';
+  edtShipwidth.Text   := '';
+  edtShipHeight.Text  := '';
+
+  edtShipMaxSpeed.Text         := '';
+  edtShipMaxSpeedAstern.Text   := '';
+  edtDamageSustainability.Text := '';
+  edtShipRudderSwingRate.Text  := '';
+  edtShipThrottleRate.Text     := '';
+  edtShipDisplacement.Text     := '';
+  edtShipHeelFactor.Text       := '';
+  edtShipShaftUp.Text          := '';
+  edtShipTacDiameter.Text      := '';
+  edtShipTrimFactor.Text       := '';
+
+  edtShipName.Text    := '';
+
+  edtModelBody.Text   := '';
+  edtDOF1.Text        := '';
+  edtPosPitch.Text    := '';
+  edtSwitch.Text      := '';
+  edtLethality.Text   := '';
+  edtModelSpout.Text  := '';
+  edtDOF2.Text        := '';
+  edtPosHeading.Text  := '';
+  edt3DActor.Text     := '';
+
+  edtDetailName.Text  := '';
+  edtStartDegree.Text := '';
+  edtEndDegree.Text   := '';
+  edtMinRange.Text    := '';
+  edtMaxRange.Text    := '';
+
+  ClearListShipData (lvWeaponSelect);
+  ClearListShipData (lvDetail);
+
 end;
 
 end.
