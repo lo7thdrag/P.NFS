@@ -4717,6 +4717,14 @@ var
   i             : Integer;
   ClientConsole : TClientList;
   weaponPic     : string;
+
+  ListWeaponOnShip : TList;
+
+  ListWeaponDetail : Tlist;
+  WeaponDetail     : TWeaponDetail;
+
+  IDweapon,
+  IDDetail : Integer;
 begin
   if (TListView(sender).Selected <> nil) then
   begin
@@ -4825,7 +4833,153 @@ begin
         imageCannon35.Picture.LoadFromFile(weaponPic);
         imageCannonAK230.Picture.LoadFromFile(weaponPic);
         imageCannon730.Picture.LoadFromFile(weaponPic);
+        imageRBUDigital.Picture.LoadFromFile(weaponPic);
       end;
+
+      IDweapon := TWeapon(TListView(sender).Selected.Data).WeaponID;
+      IDDetail := StrToInt(lvWeapon.Selected.SubItems[0]);
+
+      ListWeaponOnShip := TList.Create;
+      ListWeaponDetail := TList.Create;
+
+      DataModule1.GetListWeaponOnShip(Ship_ID, ListWeaponOnShip);
+      DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail,  ListWeaponDetail);
+
+      for i := 0 to ListWeaponDetail.Count - 1 do
+      begin
+        if Assigned(ListWeaponDetail.Items[i]) then begin
+          WeaponDetail := TWeaponDetail(ListWeaponDetail.Items[i]);
+
+          {$REGION 'BlackShark/SUT'}
+          lblStartSUT.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndSUT.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinSUT.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxSUT.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'RBU 6000 Analog'}
+          lblStartRBU.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndRBU.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinRBU.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxRBU.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Torpedo A244S'}
+          lblStartA244s.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndA244s.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinA244s.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxA244s.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Cannon 76'}
+          lblStartCannon76.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndCannon76.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinCannon76.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxCannon76.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Tetral'}
+          lblStartTetral.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndTetral.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinTetral.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxTetral.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Exocet MM40'}
+          lblStartMM40.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndMM40.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinMM40.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxMM40.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Yakhont'}
+          lblStartYakhont.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndYakhont.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinYakhont.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxYakhont.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'C802'}
+          lblStartDegC802.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndDegC802.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinRangeC802.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxRangeC802.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Cannon 57'}
+          lblStartCannon57.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndCannon57.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinCannon57.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxCannon57.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Exocet MM38'}
+          lblStartMM38.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndMM38.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinMM38.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxMM38.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Cannon 35'}
+          lblStartCannon35.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndCannon35.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinCannon35.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxCannon35.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Cannon AK230'}
+          lblStartAK230.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndAK230.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinAK230.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxAK230.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Cannon Type 730'}
+          lblStartCannon730.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndCannon730.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinCannon730.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxCannon730.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Cannon 76'}
+          lblStartCannon76.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndCannon76.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinCannon76.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxCannon76.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Cannon 40'}
+          lblStartCannon40.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndCannon40.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinCannon40.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxCannon40.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Cannon 120'}
+          lblStartCannon120.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndCannon120.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinCannon120.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxCannon120.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'RBU 6000 Digital'}
+          lblStartRBUDigital.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndRBUDigital.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinRBUDigital.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxRBUDigital.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'VL MICA'}
+          lblStartVlMica.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndVlMica.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinVlMica.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxVlMica.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+        end;
+      end;
+
+
     end;
 
   end
