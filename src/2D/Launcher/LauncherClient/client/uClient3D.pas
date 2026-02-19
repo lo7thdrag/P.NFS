@@ -331,9 +331,9 @@ var
 begin
   path := GetSettingDirectory;
   mDBServer := sDB;
-  if DataModule1.InitZDB(mDBServer, mDBProto, mDBName, mDBUser, mDBPass) then begin
+  if DataModule1.InitZDB(mDBServer, mDBProto, mDBName, mDBUser, mDBPass, '3306') then begin
     AddToLogs('set DB Server on ' + mDBServer + ' and connected.');
-    SaveDefault_DBConfig(path, mDBServer, mDBProto, mDBName, mDBUser, mDBPass);
+    SaveDefault_DBConfig(path, mDBServer, mDBProto, mDBName, mDBUser, mDBPass, '3306');
     spbDBServer.Caption := 'DB SERVER :: ONLINE';
     StatusDB := 'DB SERVER :: ONLINE';
   end
@@ -836,7 +836,7 @@ begin
 
   path := GetSettingDirectory;
   InitDefault_GameServerConfig(path, m2DServerIP, m2DServerPort, m3DServerIP, m3DServerPort);
-  InitDefault_DBConfig(path, mDBServer, mDBProto, mDBName, mDBUser, mDBPass);
+  InitDefault_DBConfig(path, mDBServer, mDBProto, mDBName, mDBUser, mDBPass, '3306');
   cmdClientApp := TDosCommand.Create(Self);
   cmdClientApp.OnNewLine := OnNewLine;
   AddToLogs('3D :: Launcher');

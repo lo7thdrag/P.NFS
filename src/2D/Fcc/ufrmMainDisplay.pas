@@ -8,7 +8,7 @@ uses
   System.ImageList, Vcl.ImgList,Vcl.OleCtrls, MapXLib_TLB, uBaseFunctionFCC, uObjectVisual,
   uCoordConverter, uMapXUnitConverter, system.math, TFlatCheckBoxUnit, uFccManager, uBridgeSet,
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
-  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw;
+  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, MSHTML, ActiveX;
 
 type
   TfrmMainFCC = class(TForm)
@@ -532,13 +532,16 @@ type
   private
     { Private declarations }
     FBitmapBackground : TBitmap;
+    BitMapLampGrey, BitMapLampGreen, BitMapLampRed  : TBitmap;
+    InsideZone, FireAllow, IsFiring : BOOL;
+    FCurrBearing, FCurrElev, FTargetBearing, FTargetElev : Double;
     FLyrDraw: CMapXLayer;
     FNorthAngle : Double;
     FMapCanvas     : TCanvas;
     FMapConverter : TMapXUnitConverter;
     FFlag       : Byte;
     FIndexRange : Integer;
-    FCurrentRange : Double;  // meter
+    FCurrentRange, FBearingVal, FElevVal : Double;  // meter
     FShipHeading : Integer;
 
     { Property On TDA }
@@ -560,7 +563,7 @@ type
     FCircleR     : Integer; // radius pixel lingkaran peta
 
     FIsWeatherAuto : Boolean;
-    FIsNavAuto : Boolean;
+    FIsNavAuto, FSelectedVehicleState : Boolean;
 
     //setting parameter
     pCurrentScenID  : integer;
@@ -1107,14 +1110,14 @@ begin
 
     case vFccSetting.FccMode of
     1 : //FCC1 Mode
-    begin
-      RecSend.mModeID             := 3;
+      begin
+        RecSend.mModeID             := 3;
+      end;
+      2 : //FCC2 Mode
+      begin
+        RecSend.mModeID             := 1;
+      end;
     end;
-    2 : //FCC2 Mode
-    begin
-      RecSend.mModeID             := 1;
-    end;
-  end;
 
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
@@ -1185,6 +1188,7 @@ begin
     rangeX := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
     dH     := v.PosZ;    // target 20 m lebih rendah
     v0     := 1035;    // m/s
+    FSelectedVehicleState := true;
 
     if Assigned(FCCManager) then
     begin
@@ -1193,6 +1197,10 @@ begin
 //      edtLowPR.Text := FormatFloat('0.00', aLow);
 //      edtHighPR.Text := FormatFloat('0.00', aHigh);
     end;
+  end
+  else
+  begin
+    FSelectedVehicleState := false;
   end;
 end;
 
@@ -1211,7 +1219,7 @@ var
   CorrectBearing,
   CorrectElev : Double;
   aLow, aHigh: Double;
-  range,rangem, bearing : Double;
+  range,rangem, bearing  : Double;
 begin
   if Assigned(fccmanager.SelectedVehicle) then
   begin
@@ -1221,8 +1229,9 @@ begin
     bearing := bearing - FCCManager.xShip.Heading;
     if bearing < 0 then
     bearing := bearing + 360;
+    FBearingVal := bearing;
     // range = 3000 m, target lebih rendah 25 m
-    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 350, aLow, aHigh);
 
     if (aLow <= 80 ) and (aLow >= 0 )then
     begin
@@ -1230,6 +1239,8 @@ begin
       aLow := FMod(aLow, 360);
       if aLow < 0 then
         aLow := aLow + 360;
+
+      FElevVal := aLow;
 
       RecSend.ShipID          := FCCManager.ShipID;
       RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
@@ -1245,10 +1256,33 @@ begin
         1 : //FCC1 Mode
         begin
           RecSend.mModeID             := 3;
+          if (bearing < 135) or (bearing > 225) then
+          begin
+            imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampGreen;
+            InsideZone := True;
+          end
+          else
+          begin
+            imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampred;
+            InsideZone := False;
+            Exit;
+          end;
         end;
         2 : //FCC2 Mode
         begin
           RecSend.mModeID             := 1;
+
+          if (bearing > 315) or (bearing < 45) then
+          begin
+            imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampRed;
+            InsideZone := False;
+            Exit;
+          end
+          else
+          begin
+            imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampGreen;
+            InsideZone := True;
+          end;
         end;
       end;
       RecSend.mAutoCorrectElev    := aLow;
@@ -1259,6 +1293,7 @@ begin
 
 
       RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+
       FCCManager.NetSendTo3D_OrderCannon(RecSend);
     end
     else if (aLow >= 350 )then
@@ -1266,6 +1301,8 @@ begin
       alow := FMod(alow, 360);
       if alow < 0 then
         alow := alow + 360;
+
+      FElevVal := aLow;
 
       RecSend.ShipID          := FCCManager.ShipID;
       RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
@@ -1285,6 +1322,9 @@ begin
         2 : //FCC2 Mode
         begin
           RecSend.mModeID             := 1;
+
+          if (bearing > 315) and (bearing < 45) then
+            Exit;
         end;
       end;
 
@@ -1300,8 +1340,45 @@ begin
 
 
     end;
-    edtGpABE1.text := bearing.ToString();
-    edtGpaEL1.Text := alow.ToString();
+
+    //IND Data
+    edtIndDataBatchNo.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
+    case FCCManager.SelectedVehicle.Domain of
+      1://surface
+      begin
+        edtIndDataType.Text := 'Surface';
+      end;
+      2://air
+      begin
+        edtIndDataType.Text := 'Air';
+      end;
+    end;
+    edtIndDataD.Text := rangem.ToString();
+    edtIndDataAZ.Text := bearing.ToString();
+    edtIndDataEL.Text := alow.ToString();
+    edtIndDataCourse.Text := FCCManager.SelectedVehicle.HeadingDeg.ToString();
+    edtIndDataSpeed.Text := FCCManager.SelectedVehicle.Speed_mps.ToString();
+
+    if not FSelectedVehicleState then
+    begin
+      edtIndDataBatchNo.Text := '0';
+      edtIndDataType.Text := '--';
+      edtIndDataD.Text := '0';
+      edtIndDataAZ.Text := '0';
+      edtIndDataEL.Text := '0';
+      edtIndDataCourse.Text := '0';
+      edtIndDataSpeed.Text := '0';
+    end;
+    // END IND Data
+
+    FTargetBearing := bearing;
+    FTargetElev := aLow;
+    edtCtrlDataBeInc.Text := (ftargetbearing - fcurrbearing).ToString();
+    edtCtrlDataElInc.Text := (FTargetElev - fcurrelev).ToString();
+    edtCtrlDataBeInc1.Text := (ftargetbearing - fcurrbearing).ToString();
+    edtCtrlDataElInc1.Text := (FTargetElev - fcurrelev).ToString();
+//    edtGpABE1.text := bearing.ToString();
+//    edtGpaEL1.Text := alow.ToString();
   end;
 end;
 
@@ -1312,6 +1389,7 @@ var
   ShipClassName,
   ShipCallSign: string;
   V: TVehicle;
+  rgnOuter, rgnInner: HRGN;
 begin
   BeginGame_FCC;
   FCCManager := TFCCManager.Create;
@@ -1458,12 +1536,20 @@ begin
       pnlFCC1.BringToFront;
       pnlTrackerFCC1.BringToFront;
       pnlBiteControlFCC1.BringToFront;
+      FCurrBearing := 0;
+      FCurrElev := 0;
+      FTargetBearing := 0;
+      FTargetElev := 0;
     end;
     2 : //FCC2 Mode
     begin
       pnlFCC2.BringToFront;
       pnlTrackerFCC2.BringToFront;
       pnlBiteControlFCC2.BringToFront;
+      FCurrBearing := 180;
+      FCurrElev := 0;
+      FTargetBearing := 180;
+      FTargetElev := 0;
     end;
   end;
 
@@ -1518,6 +1604,12 @@ begin
 //
 //      edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
 //    end;
+    FireAllow := True;
+    rgnOuter := CreateRectRgn(0,0,Width,Height);
+    rgnInner := CreateRectRgn(825,1,1280,413);
+
+    CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+    SetWindowRgn(Handle, rgnOuter, True);
 
     FCCManager.Running := True;
   end;
@@ -1535,6 +1627,10 @@ begin
 //  FRangeRing.Free;
   VehicleMgr.Free;
   FCCManager.FinalizeSimulation;
+
+  BitMapLampGrey.Free;
+  BitMapLampGreen.Free;
+  BitMapLampRed.Free;
 
   FNorthInd.Free;
   FBearing0.Free;
@@ -1559,11 +1655,19 @@ begin
 end;
 
 procedure TfrmMainFCC.FormShow(Sender: TObject);
-var
-  ChromeHandle: HWND;
-  WindowHandle: HWND;
+//var
 begin
+//  WebTest.Navigate('https://www.google.com');
+//  WebTest.Navigate('http://192.168.0.193:8000/index.html');
+//  if WebTest.Document <> nil then
+//  begin
+//    Doc := WebTest.Document as IHTMLDocument2;
+//    Win := Doc.parentWindow;
+//    Win.execScript(Script, 'JavaScript');
+//  end;
+
   // jalankan chrome
+
 //  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
 //    '--app="https://google.com"');
 
@@ -1731,58 +1835,66 @@ begin
   //  5 red
   //  6 yellow
 
+//  BitMapLampGrey
+  BitMapLampGrey := TBitmap.Create;
+  BitMapLampGreen := TBitmap.Create;
+  BitMapLampRed := TBitmap.Create;
+  imgListLight.GetBitmap(0, BitMapLampGrey);
+  imgListLight.GetBitmap(1, BitMapLampGreen);
+  imgListLight.GetBitmap(2, BitMapLampRed);
+
   case vFccSetting.FccMode of
     1: //FCC1
     begin
       //  initialize panel indikator control state
-      imgListLight.GetBitmap(1, imgCtrlStateFCC.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateTracked.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgCtrlStateDataReady.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgCtrlStateAimed.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateLimitZone.Picture.Bitmap);
-      imgListLight.GetBitmap(2, imgCtrlStateFireAllow.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgCtrlStateFiring.Picture.Bitmap);
+      imgCtrlStateFCC.Picture.Bitmap := BitMapLampGreen;
+      imgCtrlStateTracked.Picture.Bitmap := BitMapLampGreen;
+      imgCtrlStateDataReady.Picture.Bitmap := BitMapLampGrey;
+      imgCtrlStateAimed.Picture.Bitmap :=  BitMapLampGrey;
+      imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampGreen;
+      imgCtrlStateFireAllow.Picture.Bitmap := BitMapLampGreen;
+      imgCtrlStateFiring.Picture.Bitmap := BitMapLampGrey;
 
       //  initialize panel indikator Gun state
-      imgListLight.GetBitmap(1, imgGunStateCtrlBy.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgGunStateServo.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgGunStateFC.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgGunStateReturnZero.Picture.Bitmap);
+      imgGunStateCtrlBy.Picture.Bitmap := BitMapLampGreen;
+      imgGunStateServo.Picture.Bitmap := BitMapLampGreen;
+      imgGunStateFC.Picture.Bitmap := BitMapLampGreen;
+      imgGunStateReturnZero.Picture.Bitmap := BitMapLampGrey;
 
       //  initialize panel indikator Bite Device state
-      imgListLight.GetBitmap(1, imgBiteDvcStateFCC.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcState730B.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgBiteDvcStateEO.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateTR.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateTCC.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateSIE.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateSR.Picture.Bitmap);
+      imgBiteDvcStateFCC.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcState730B.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcStateEO.Picture.Bitmap := BitMapLampGrey;
+      imgBiteDvcStateTR.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcStateTCC.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcStateSIE.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcStateSR.Picture.Bitmap := BitMapLampGreen;
     end;
     2: //FCC2
     begin
       //  initialize panel indikator control state
-      imgListLight.GetBitmap(1, imgCtrlStateFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgCtrlStateTrackedFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgCtrlStateDataReadyFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgCtrlStateAimedFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgCtrlStateLimitZoneFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(2, imgCtrlStateFireAllowFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgCtrlStateFiringFCC2.Picture.Bitmap);
+      imgCtrlStateFCC2.Picture.Bitmap :=  BitMapLampGreen;
+      imgCtrlStateTrackedFCC2.Picture.Bitmap := BitMapLampGrey;
+      imgCtrlStateDataReadyFCC2.Picture.Bitmap := BitMapLampGrey;
+      imgCtrlStateAimedFCC2.Picture.Bitmap := BitMapLampGrey;
+      imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampGreen;
+      imgCtrlStateFireAllowFCC2.Picture.Bitmap := BitMapLampGreen;
+      imgCtrlStateFiringFCC2.Picture.Bitmap := BitMapLampGrey;
 
       //  initialize panel indikator Gun state
-      imgListLight.GetBitmap(1, imgGunStateCtrlByFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgGunStateServoFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgGunStateFCFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgGunStateReturnZeroFCC2.Picture.Bitmap);
+      imgGunStateCtrlByFCC2.Picture.Bitmap := BitMapLampGreen;
+      imgGunStateServoFCC2.Picture.Bitmap := BitMapLampGreen;
+      imgGunStateFCFCC2.Picture.Bitmap := BitMapLampGrey;
+      imgGunStateReturnZeroFCC2.Picture.Bitmap := BitMapLampGrey;
 
       //  initialize panel indikator Bite Device state
-      imgListLight.GetBitmap(1, imgBiteDvcStateFCC2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcState57.Picture.Bitmap);
-      imgListLight.GetBitmap(0, imgBiteDvcStateEOFcc2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateTRFcc2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateTCCFcc2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateSIEFcc2.Picture.Bitmap);
-      imgListLight.GetBitmap(1, imgBiteDvcStateSRFcc2.Picture.Bitmap);
+      imgBiteDvcStateFCC2.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcState57.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcStateEOFcc2.Picture.Bitmap := BitMapLampGrey;
+      imgBiteDvcStateTRFcc2.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcStateTCCFcc2.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcStateSIEFcc2.Picture.Bitmap := BitMapLampGreen;
+      imgBiteDvcStateSRFcc2.Picture.Bitmap := BitMapLampGreen;
     end;
   end;
 
@@ -1849,6 +1961,8 @@ var
 begin
   if Assigned(FCCManager.SelectedVehicle) then
   begin
+    if not InsideZone then
+    Exit;
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
     bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
@@ -1885,10 +1999,10 @@ begin
     RecSend.mOrderID := __ORD_CANNON_START_F;
     FCCManager.NetSendTo3D_OrderCannon(RecSend);
 
-    bmp := TBitmap.Create;
-    imgListLight.GetBitmap(1, bmp);
-    imgCtrlStateFiringFCC2.Picture.Bitmap := bmp;
-    bmp.Free;
+//    IsFiring := True;
+
+    imgCtrlStateFiringFCC2.Picture.Bitmap := BitMapLampGreen;
+    imgCtrlStateFiring.Picture.Bitmap := BitMapLampGreen;
 
     // PEMISAH ANTARA START FIRE AND STOP FIRE
 
@@ -1906,12 +2020,13 @@ begin
       1 : //FCC1 Mode
       begin
         RecSend.mModeID             := 3;
+        Application.ProcessMessages;
         Sleep(1000);
       end;
       2 : //FCC2 Mode
       begin
         RecSend.mModeID             := 1;
-
+        Application.ProcessMessages;
         if  (edtLowRR.Text = '0') or (edtHighRR.text = '0') then
           Exit;
         Sleep(500);
@@ -1939,10 +2054,10 @@ begin
     RecSend.mOrderID := __ORD_CANNON_STOP_F;
     FCCManager.NetSendTo3D_OrderCannon(RecSend);
 
-    bmp := TBitmap.Create;
-    imgListLight.GetBitmap(0, bmp);
-    imgCtrlStateFiringFCC2.Picture.Bitmap := bmp;
-    bmp.Free;
+//    IsFiring := false;
+
+    imgCtrlStateFiringFCC2.Picture.Bitmap := BitMapLampGrey;
+    imgCtrlStateFiring.Picture.Bitmap := BitMapLampgrey;
   end;
 end;
 
@@ -2104,7 +2219,194 @@ procedure TfrmMainFCC.tmrUpdateHeadingTimer(Sender: TObject);
 var
   i : Integer;
   RandomDeltaX,RandomDeltaY : Double;
+  lastBearing, lastElev, DiffBearing, DiffElev : Double;
 begin
+  DiffBearing := 0;
+  case vFccSetting.FccMode of
+    1 : //FCC1 Mode
+      begin
+        if FTargetElev > FCurrElev then  // change elev
+        begin
+          if FTargetElev - 0.4 < FCurrElev then
+          begin
+            DiffElev := Abs(FTargetElev - FCurrElev);
+            DiffElev := DiffElev * 100;
+            FCurrElev := FTargetElev;
+            edtGpaEL.text := FCurrElev.ToString();
+            edtCtrlDataEL.Text := FCurrElev.ToString();
+          end
+          else
+          begin
+            DiffElev := 0.4 * 100;
+            FCurrElev := FCurrElev + 0.4;
+            edtGpaEL.text := FCurrElev.ToString();
+            edtCtrlDataEL.Text := FCurrElev.ToString();
+          end;
+        end
+
+        else if FTargetElev < FCurrElev then
+        begin
+          if FTargetElev + 0.4 > FCurrElev then
+          begin
+            DiffElev := Abs(FTargetElev - FCurrElev);
+            FCurrElev := FTargetElev;
+            edtGpaEL.text := FCurrElev.ToString();
+            edtCtrlDataEL.Text := FCurrElev.ToString();
+          end
+
+          else
+          begin
+            DiffElev := 0.4 * 100;
+            FCurrElev := FCurrElev - 0.4;
+            edtGpaEL.text := FCurrElev.ToString();
+            edtCtrlDataEL.Text := FCurrElev.ToString();
+          end;
+        end;
+
+        if FTargetBearing > FCurrBearing then // change bearing
+        begin
+          if FTargetBearing - 0.5 < FCurrBearing then
+          begin
+            DiffBearing := Abs(FTargetBearing - FCurrBearing);
+            DiffBearing := DiffBearing * 100;
+            FCurrBearing := FTargetBearing;
+            edtGpABE.text := FCurrBearing.ToString();
+            edtCtrlDataBE.Text := FCurrBearing.ToString();
+          end
+          else
+          begin
+            DiffBearing := 0.5 * 100;
+            FCurrBearing := FCurrBearing + 0.5;
+            edtGpABE.text := FCurrBearing.ToString();
+            edtCtrlDataBE.Text := FCurrBearing.ToString();
+          end;
+        end
+
+        else if FTargetBearing < FCurrBearing then
+        begin
+          if FTargetBearing + 0.5 > FCurrBearing then
+          begin
+            DiffBearing := Abs(FTargetBearing - FCurrBearing);
+            FCurrBearing := FTargetBearing;
+            edtGpABE.text := FCurrBearing.ToString();
+            edtCtrlDataBE.Text := FCurrBearing.ToString();
+          end
+
+          else
+          begin
+            DiffBearing := 0.5 * 100;
+            FCurrBearing := FCurrBearing - 0.5;
+            edtGpABE.text := FCurrBearing.ToString();
+            edtCtrlDataBE.Text := FCurrBearing.ToString();
+          end;
+        end;
+
+        edtCtrlDataBeS.Text := diffbearing.ToString();
+        edtCtrlDataElS.Text := diffelev.ToString();
+
+        if FSelectedVehicleState then
+        begin
+          imgCtrlStateTracked.Picture.Bitmap := BitMapLampGreen;
+        end
+        else
+        begin
+          imgCtrlStateTracked.Picture.Bitmap := BitMapLampGrey;
+        end;
+
+      end;
+    2 : //FCC2 Mode
+      begin
+        if FTargetElev > FCurrElev then  // change elev
+        begin
+          if FTargetElev - 0.4 < FCurrElev then
+          begin
+            DiffElev := Abs(FTargetElev - FCurrElev);
+            DiffElev := DiffElev * 100;
+            FCurrElev := FTargetElev;
+            edtGpaEL1.text := FCurrElev.ToString();
+            edtCtrlDataEL1.Text := FCurrElev.ToString();
+          end
+          else
+          begin
+            DiffElev := 0.4 * 100;
+            FCurrElev := FCurrElev + 0.4;
+            edtGpaEL1.text := FCurrElev.ToString();
+            edtCtrlDataEL1.Text := FCurrElev.ToString();
+          end;
+        end
+
+        else if FTargetElev < FCurrElev then
+        begin
+          if FTargetElev + 0.4 > FCurrElev then
+          begin
+            DiffElev := Abs(FTargetElev - FCurrElev);
+            FCurrElev := FTargetElev;
+            edtGpaEL1.text := FCurrElev.ToString();
+            edtCtrlDataEL1.Text := FCurrElev.ToString();
+          end
+
+          else
+          begin
+            DiffElev := 0.4 * 100;
+            FCurrElev := FCurrElev - 0.4;
+            edtGpaEL1.text := FCurrElev.ToString();
+            edtCtrlDataEL1.Text := FCurrElev.ToString();
+          end;
+        end;
+
+        if FTargetBearing > FCurrBearing then // change bearing
+        begin
+          if FTargetBearing - 0.5 < FCurrBearing then
+          begin
+            DiffBearing := Abs(FTargetBearing - FCurrBearing);
+            DiffBearing := DiffBearing * 100;
+            FCurrBearing := FTargetBearing;
+            edtGpABE1.text := FCurrBearing.ToString();
+            edtCtrlDataBE1.Text := FCurrBearing.ToString();
+          end
+          else
+          begin
+            DiffBearing := 0.5 * 100;
+            FCurrBearing := FCurrBearing + 0.5;
+            edtGpABE1.text := FCurrBearing.ToString();
+            edtCtrlDataBE1.Text := FCurrBearing.ToString();
+          end;
+        end
+
+        else if FTargetBearing < FCurrBearing then
+        begin
+          if FTargetBearing + 0.5 > FCurrBearing then
+          begin
+            DiffBearing := Abs(FTargetBearing - FCurrBearing);
+            FCurrBearing := FTargetBearing;
+            edtGpABE1.text := FCurrBearing.ToString();
+            edtCtrlDataBE1.Text := FCurrBearing.ToString();
+          end
+
+          else
+          begin
+            DiffBearing := 0.5 * 100;
+            FCurrBearing := FCurrBearing - 0.5;
+            edtGpABE1.text := FCurrBearing.ToString();
+            edtCtrlDataBE1.Text := FCurrBearing.ToString();
+          end;
+        end;
+
+        edtCtrlDataBeS1.Text := diffbearing.ToString();
+        edtCtrlDataElS1.Text := diffelev.ToString();
+
+        if FSelectedVehicleState then
+        begin
+          imgCtrlStateTrackedFCC2.Picture.Bitmap := BitMapLampGreen;
+        end
+        else
+        begin
+          imgCtrlStateTrackedFCC2.Picture.Bitmap := BitMapLampGrey;
+        end;
+
+      end;
+  end;
+
 //  for i := 0 to TargetMgr.Count - 1 do
 //  begin
 //    RandomDeltaX := RandomRange(0, 1 + 1) * 0.01;

@@ -6,9 +6,8 @@ object frmMain: TfrmMain
   BorderStyle = bsNone
   Caption = '3D :: Launcher'
   ClientHeight = 513
-  ClientWidth = 355
+  ClientWidth = 367
   Color = clGray
-  TransparentColor = True
   TransparentColorValue = clGray
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -26,7 +25,7 @@ object frmMain: TfrmMain
   object pnlMain: TAdvSmoothPanel
     Left = 0
     Top = 0
-    Width = 355
+    Width = 367
     Height = 513
     Cursor = crDefault
     Caption.HTMLFont.Charset = DEFAULT_CHARSET
@@ -59,7 +58,7 @@ object frmMain: TfrmMain
   object Panel3: TPanel
     Left = 0
     Top = 0
-    Width = 355
+    Width = 367
     Height = 513
     Align = alClient
     BevelOuter = bvNone
@@ -71,7 +70,7 @@ object frmMain: TfrmMain
     object Panel1: TPanel
       Left = 1
       Top = 1
-      Width = 353
+      Width = 365
       Height = 511
       Align = alClient
       BevelOuter = bvNone
@@ -80,7 +79,7 @@ object frmMain: TfrmMain
       object Panel2: TPanel
         Left = 0
         Top = 0
-        Width = 353
+        Width = 365
         Height = 60
         Align = alTop
         BevelOuter = bvNone
@@ -92,7 +91,7 @@ object frmMain: TfrmMain
         object pnlMenu: TAdvSmoothPanel
           Left = 0
           Top = 23
-          Width = 353
+          Width = 365
           Height = 37
           Cursor = crDefault
           Caption.Location = plCenterLeft
@@ -165,12 +164,12 @@ object frmMain: TfrmMain
           OnClick = btnCloseClick
         end
         object cbDebug: TCheckBox
-          Left = 311
-          Top = 33
-          Width = 41
+          Left = 315
+          Top = 34
+          Width = 45
           Height = 17
           Alignment = taLeftJustify
-          Caption = 'test'
+          Caption = 'Debug'
           TabOrder = 2
           Visible = False
           OnClick = cbDebugClick
@@ -199,7 +198,7 @@ object frmMain: TfrmMain
         object pnlStatus: TPanel
           Left = 0
           Top = 0
-          Width = 353
+          Width = 365
           Height = 23
           Align = alTop
           BevelOuter = bvNone
@@ -217,7 +216,7 @@ object frmMain: TfrmMain
       object pnl1: TPanel
         Left = 0
         Top = 60
-        Width = 353
+        Width = 365
         Height = 451
         Align = alClient
         BevelOuter = bvNone
@@ -229,7 +228,7 @@ object frmMain: TfrmMain
         object pnlMemo: TPanel
           Left = 1
           Top = 1
-          Width = 351
+          Width = 363
           Height = 449
           Align = alClient
           BevelOuter = bvNone
@@ -238,7 +237,7 @@ object frmMain: TfrmMain
           object Memo1: TMemo
             Left = 0
             Top = 0
-            Width = 351
+            Width = 363
             Height = 356
             Align = alClient
             BevelInner = bvNone
@@ -259,7 +258,7 @@ object frmMain: TfrmMain
           object Memo2: TMemo
             Left = 0
             Top = 356
-            Width = 351
+            Width = 363
             Height = 93
             Align = alBottom
             BevelInner = bvNone
@@ -282,14 +281,14 @@ object frmMain: TfrmMain
       end
     end
   end
-  object Timer1: TTimer
+  object TmrCheckConnect: TTimer
     Enabled = False
-    OnTimer = Timer1Timer
-    Left = 88
+    OnTimer = TmrCheckConnectTimer
+    Left = 64
     Top = 104
   end
   object PopupMenu1: TPopupMenu
-    Left = 128
+    Left = 152
     Top = 104
     object ShowHideScroll1: TMenuItem
       Caption = 'Show/Hide Scroll'
