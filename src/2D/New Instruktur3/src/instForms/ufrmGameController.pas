@@ -3008,7 +3008,8 @@ begin
 
                if (StrToFloat(edtC802_TBearing.Text) > rangDeg.startDeg ) and  (StrToFloat(edtC802_TBearing.Text) < rangDeg.endDeg ) then
                begin
-                 RecSend.OrderID := __ORD_C802_FIRE;
+//                 RecSend.OrderID := __ORD_C802_FIRE;
+                 RecSend.OrderID := __ORD_C802_TAKE_OFF;
                  SimManager.NetSendTo3D_OrderMissile_C802(RecSend);
                end;
 
