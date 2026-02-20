@@ -4588,7 +4588,7 @@ begin
 
             cbbrbuLauncherId.Text := launcher;
          end;
-     C_DBID_TORPEDO_SUT : begin
+     C_DBID_TORPEDO_SUT, C_DBID_TORPEDO_BLACKSHARK : begin
             if launcherID = 1 then begin
               launcher := 'kiri';
               frmMainInstruktur.searchTorpSUT(1);
@@ -4640,8 +4640,7 @@ begin
             cbbA244Launcher.ItemIndex := launcherID-1;
             wtrChange;
         end;
-     C_DBID_CANNON35, C_DBID_CANNON40, C_DBID_CANNON57,
-     C_DBID_CANNON76, C_DBID_CANNON120 : begin
+     C_DBID_CANNON76 : begin
             pgtwWCCCannon.TabVisible         := True;
 
             if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
@@ -4652,6 +4651,96 @@ begin
             else begin
               pgWeapon.Enabled := True;
               pgWeapon.ActivePage  := pgtwWCCCannon ;
+            end;
+
+            edtCannonLauncherID.Text         := IntToStr(launcherID);
+        end;
+     C_DBID_CANNON35 : begin
+            pgtwCannon35.TabVisible         := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Cannon is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwCannon35 ;
+            end;
+
+            edtCannonLauncherID.Text         := IntToStr(launcherID);
+        end;
+     C_DBID_CANNON40 : begin
+            pgtwCannon40.TabVisible         := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Cannon is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwCannon40 ;
+            end;
+
+            edtCannonLauncherID.Text         := IntToStr(launcherID);
+        end;
+     C_DBID_CANNON57 : begin
+            pgtwCannon57.TabVisible         := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Cannon is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwCannon57 ;
+            end;
+
+            edtCannonLauncherID.Text         := IntToStr(launcherID);
+        end;
+     C_DBID_CANNON120 : begin
+            pgtwCannon120.TabVisible         := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Cannon is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwCannon120 ;
+            end;
+
+            edtCannonLauncherID.Text         := IntToStr(launcherID);
+        end;
+     C_DBID_CANNON_AK230: begin
+            pgtwCannonAK230.TabVisible         := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Cannon is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwCannonAK230 ;
+            end;
+
+            edtCannonLauncherID.Text         := IntToStr(launcherID);
+        end;
+     C_DBID_CANNON_TYPE_730 : begin
+            pgtwCannon730.TabVisible         := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Cannon is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwCannon730 ;
             end;
 
             edtCannonLauncherID.Text         := IntToStr(launcherID);
@@ -4832,23 +4921,49 @@ begin
 
             cbbTetralLaunch.Text    := launcher;
         end;
+     C_DBID_EXOCET_MM38 : begin
+            if launcherID = 1 then
+            begin
+              launcher := 'kanan';
+              end
+            else if launcherID = 2 then
+            begin
+              launcher := 'kiri';
+            end;
+            pgtwExocetMM38.TabVisible        := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+            begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Exocet MM40 is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else
+            begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwExocetMM38 ;
+            end;
+
+            cbbExxocetLauncher.Text          := launcher;
+            //cbbExocet40_LauncherID.ItemIndex := Weapon.launcherID - 1;
+        end;
      C_DBID_VLMICA : begin
 
-//            pgtwTetral.TabVisible   := True;
-//
-//            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-//            begin
-//              pgWeapon.ActivePage  := pgtwDefault ;
-//              lblInfo.Caption := 'Tetral is not ready to use';
-//              pgWeapon.Enabled := False;
-//            end
-//            else
-//            begin
-//              pgWeapon.Enabled := True;
-//              pgWeapon.ActivePage  := pgtwTetral ;
-//            end;
-//
-//            cbbTetralLaunch.Text    := launcher;
+            pgtwVlMica.TabVisible   := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+            begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Tetral is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else
+            begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwVlMica ;
+            end;
+
+            cbbTetralLaunch.Text    := launcher;
         end;
   else
        begin
@@ -4970,6 +5085,7 @@ begin
         imageC802.Picture.LoadFromFile(weaponPic);
         imageYahkont.Picture.LoadFromFile(weaponPic);
         imageTetral.Picture.LoadFromFile(weaponPic);
+        imageMistral.Picture.LoadFromFile(weaponPic);
         imageCannon76.Picture.LoadFromFile(weaponPic);
         imageCannon120.Picture.LoadFromFile(weaponPic);
         imageCannon40.Picture.LoadFromFile(weaponPic);
