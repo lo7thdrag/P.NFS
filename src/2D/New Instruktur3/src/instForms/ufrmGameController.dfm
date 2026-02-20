@@ -183295,7 +183295,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              010001180100001013C10401000000D4E097001C000000000000000000000000
+              010001180100001013C1040100000015F52F751C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183311,8 +183311,8 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000D1AFA0470000000004
-              E59700B4E09700000000006688CE50000200006B88CE50000000000000000000
+              000000000000000000000000000000000000000000000000000000C8E7970078
+              E39700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -206804,6 +206804,8 @@ object frmGameController: TfrmGameController
                 TabOrder = 0
                 ViewStyle = vsReport
                 OnClick = lvRuntimeShipClick
+                ExplicitLeft = 3
+                ExplicitTop = 1
               end
             end
             object tsSelectWeapon: TAdvSmoothTabPage
@@ -247507,7 +247509,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwWCCCannon
+              ActivePage = pgtwYAHKONT
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -254500,9 +254502,9 @@ object frmGameController: TfrmGameController
                   object lbl171: TLabel
                     Left = 78
                     Top = 185
-                    Width = 76
+                    Width = 70
                     Height = 16
-                    Caption = 'Koordinat X'
+                    Caption = 'Longtitude'
                     Font.Charset = ANSI_CHARSET
                     Font.Color = clWindow
                     Font.Height = -13
@@ -254513,9 +254515,9 @@ object frmGameController: TfrmGameController
                   object lbl172: TLabel
                     Left = 78
                     Top = 218
-                    Width = 76
+                    Width = 54
                     Height = 16
-                    Caption = 'Koordinat Y'
+                    Caption = 'Latitude'
                     Font.Charset = ANSI_CHARSET
                     Font.Color = clWindow
                     Font.Height = -13
@@ -254722,8 +254724,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnYahkont_Fire_: TAdvSmoothButton
                     Tag = 1
-                    Left = 239
-                    Top = 259
+                    Left = 213
+                    Top = 258
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -254866,8 +254868,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnLoadingYakhont: TAdvSmoothButton
                     Tag = 2
-                    Left = 178
-                    Top = 399
+                    Left = 346
+                    Top = 257
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -254896,7 +254898,6 @@ object frmGameController: TfrmGameController
                     Color = clBlack
                     ParentFont = False
                     TabOrder = 13
-                    Visible = False
                     Version = '2.1.3.0'
                     OnClick = btnYahkont_Fire_Click
                     TMSStyle = 0
@@ -255103,9 +255104,9 @@ object frmGameController: TfrmGameController
                   object lbl38: TLabel
                     Left = 79
                     Top = 155
-                    Width = 76
+                    Width = 70
                     Height = 16
-                    Caption = 'Koordinat X'
+                    Caption = 'Longtitude'
                     Font.Charset = ANSI_CHARSET
                     Font.Color = clWindow
                     Font.Height = -13
@@ -255116,9 +255117,9 @@ object frmGameController: TfrmGameController
                   object lbl65: TLabel
                     Left = 79
                     Top = 189
-                    Width = 76
+                    Width = 54
                     Height = 16
-                    Caption = 'Koordinat Y'
+                    Caption = 'Latitude'
                     Font.Charset = ANSI_CHARSET
                     Font.Color = clWindow
                     Font.Height = -13
