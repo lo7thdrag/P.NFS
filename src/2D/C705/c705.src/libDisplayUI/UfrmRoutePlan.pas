@@ -9,7 +9,8 @@ uses
   Vcl.Buttons, Vcl.OleCtrls, Vcl.Menus, MapXLib_TLB, Math, uCoordConverter,
   uBaseFunction, uBaseConst, uMapXUnitConverter, uLibConst, OverbyteIcsWSocket,
   uTCPDatatype, uC705SimManager, uLibSettings, uScriptC705, uShipModel,
-  uVehicleManager, SpeedButtonImage, AdvGroupBox, AdvPageControl, Vcl.ComCtrls;
+  uVehicleManager, SpeedButtonImage, AdvGroupBox, AdvPageControl, Vcl.ComCtrls,
+  VrButtons, AdvOfficeButtons;
 
 type
   TfrmRoutePlan = class(TForm)
@@ -80,84 +81,177 @@ type
     Bevel4: TBevel;
     Bevel5: TBevel;
     Bevel6: TBevel;
-    btnExitRoutePl: TSpeedButtonImage;
-    btnOperatingMode: TSpeedButtonImage;
-    btnOptimalProportion: TSpeedButtonImage;
-    btnRuler: TSpeedButtonImage;
-    btnZoomIn: TSpeedButtonImage;
-    btnZoomOut: TSpeedButtonImage;
-    btnMoveMap: TSpeedButtonImage;
-    btnManualRoutePl: TSpeedButtonImage;
-    btnObstacleAvoidance: TSpeedButtonImage;
-    btnChangeMode: TSpeedButtonImage;
-    btnDisplayChannel: TSpeedButtonImage;
-    btnEditIsland: TSpeedButtonImage;
-    btnObstacleInfo: TSpeedButtonImage;
-    btnTargetParamDisplay: TSpeedButtonImage;
-    btnRouteCmdWindow: TSpeedButtonImage;
     advpgcTargetParam: TAdvPageControl;
     advtsPage1: TAdvTabSheet;
     advtsPage2: TAdvTabSheet;
     advtsPage3: TAdvTabSheet;
     advtsPage4: TAdvTabSheet;
-    AdvGroupBox1: TAdvGroupBox;
-    AdvGroupBox2: TAdvGroupBox;
+    advgrpbxTgtInfoPg3: TAdvGroupBox;
+    advgrpbxRouteInfoPg3: TAdvGroupBox;
     Label13: TLabel;
     Label14: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    edtTgtNoPg3: TEdit;
+    edtTgtLongPg3: TEdit;
     Label15: TLabel;
-    Edit3: TEdit;
+    edtTgtLatPg3: TEdit;
     Label16: TLabel;
-    Edit4: TEdit;
+    edtPortAnglePg3: TEdit;
     Label17: TLabel;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
+    edtStbdAnglePg3: TEdit;
+    edtTgtRngPg3: TEdit;
+    edtTgtAzimuPg3: TEdit;
+    edtTgtHeightPg3: TEdit;
     Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
     Label26: TLabel;
-    Edit9: TEdit;
+    edtRouTotalPg3: TEdit;
     Label27: TLabel;
-    Edit10: TEdit;
+    edtRouNoPg3: TEdit;
     Label28: TLabel;
-    Edit11: TEdit;
+    edtFlyRngPg3: TEdit;
     Label29: TLabel;
-    Edit12: TEdit;
+    edtAttackAPg3: TEdit;
     Label30: TLabel;
-    Edit13: TEdit;
+    edtRouStatusPg3: TEdit;
     Label31: TLabel;
     Label32: TLabel;
     Label33: TLabel;
     Label34: TLabel;
-    edtLong1: TEdit;
-    edtLat1: TEdit;
+    edtLong1Pg3: TEdit;
+    edtLat1Pg3: TEdit;
     Label35: TLabel;
-    edtLong2: TEdit;
-    edtLat2: TEdit;
+    edtLong2Pg3: TEdit;
+    edtLat2Pg3: TEdit;
     Label36: TLabel;
-    edtLong3: TEdit;
-    edtLat4: TEdit;
-    edtLong4: TEdit;
+    edtLong3Pg3: TEdit;
+    edtLat4Pg3: TEdit;
+    edtLong4Pg3: TEdit;
     Label37: TLabel;
-    edtLat3: TEdit;
+    edtLat3Pg3: TEdit;
     Label38: TLabel;
-    Image2: TImage;
+    imgUpRoutNoPg3: TImage;
+    imgDownRoutNoPg3: TImage;
+    btnOperatingMode: TSpeedButton;
+    btnOptimalProportion: TSpeedButton;
+    btnRuler: TSpeedButton;
+    btnZoomIn: TSpeedButton;
+    btnZoomOut: TSpeedButton;
+    btnMoveMap: TSpeedButton;
+    btnObstacleAvoidance: TSpeedButton;
+    btnChangeMode: TSpeedButton;
+    btnDisplayChannel: TSpeedButton;
+    btnEditIsland: TSpeedButton;
+    btnObstacleInfo: TSpeedButton;
+    btnTargetParamDisplay: TSpeedButton;
+    btnRouteCmdWindow: TSpeedButton;
+    btnExitRoutePl: TSpeedButton;
+    btnManualRoutePl: TSpeedButton;
+    pnlRoutePlanControlCmd: TPanel;
+    advpgcRoutePlanCmd: TAdvPageControl;
+    advtsCmdSet: TAdvTabSheet;
+    advtsRouteSet: TAdvTabSheet;
+    AdvGroupBox1: TAdvGroupBox;
+    btnExitRoutePlanCmd: TSpeedButtonImage;
+    Label39: TLabel;
+    edtTgtNumber: TEdit;
+    advrbDirectAttack: TAdvOfficeRadioButton;
+    advrbRoutePlan1: TAdvOfficeRadioButton;
+    Label40: TLabel;
+    edtNumber1: TEdit;
+    Image4: TImage;
+    Image5: TImage;
+    advrbRoutePlan2: TAdvOfficeRadioButton;
+    Label41: TLabel;
+    edtNumber2: TEdit;
+    Label42: TLabel;
+    edtAngle1: TEdit;
+    Label43: TLabel;
+    edtAngle3: TEdit;
+    edtAngle2: TEdit;
+    edtAngle4: TEdit;
+    advrbAutoRoutePl: TAdvOfficeRadioButton;
+    advrbManualRoutePl: TAdvOfficeRadioButton;
+    btnOkRoutePlanCmd: TVrDemoButton;
+    btnCancelRoutePlanCmd: TVrDemoButton;
+    pnlWaypointLvl2: TPanel;
+    btnCloseWaypointLvl2: TSpeedButton;
+    btnAddNewRoute: TSpeedButton;
+    btnMoveWaypoint: TSpeedButton;
+    btnDeleteWaypoint: TSpeedButton;
+    btnAddWaypoint: TSpeedButton;
+    btnDelRoute: TSpeedButton;
+    pnlIslandLvl2: TPanel;
+    btnCloseIslandLvl2: TSpeedButton;
+    btnManualDrawIsland: TSpeedButton;
+    btnAutoChooseIsland: TSpeedButton;
+    btnDeleteIsland: TSpeedButton;
+    advgrpbxTgtInfoPg1: TAdvGroupBox;
+    Label44: TLabel;
+    Label45: TLabel;
+    Label46: TLabel;
+    Label47: TLabel;
+    Label48: TLabel;
+    Label49: TLabel;
+    Label50: TLabel;
+    Label51: TLabel;
+    Label52: TLabel;
+    edtTgtNoPg1: TEdit;
+    edtTgtLongPg1: TEdit;
+    edtTgtLatPg1: TEdit;
+    edtTgtSpdPg1: TEdit;
+    edtTgtCrsPg1: TEdit;
+    edtTgtRngPg1: TEdit;
+    edtTgtAzimuPg1: TEdit;
+    edtTgtHeightPg1: TEdit;
+    advgrpbxRouteInfoPg1: TAdvGroupBox;
+    Label53: TLabel;
+    Label54: TLabel;
+    Label55: TLabel;
+    Label56: TLabel;
+    Label57: TLabel;
+    Label58: TLabel;
+    Label59: TLabel;
+    Label60: TLabel;
+    Label61: TLabel;
+    Label62: TLabel;
+    Label63: TLabel;
+    Label64: TLabel;
+    imgUpRoutNoPg1: TImage;
+    imgDownRoutNoPg1: TImage;
+    edtRoutTotalPg1: TEdit;
+    edtRoutNoPg1: TEdit;
+    edtFlyRngPg1: TEdit;
+    edtAttackAPg1: TEdit;
+    edtRoutStatusPg1: TEdit;
+    edtLong1Pg1: TEdit;
+    edtLat1Pg1: TEdit;
+    edtLong2Pg1: TEdit;
+    edtLat2Pg1: TEdit;
+    edtLong3Pg1: TEdit;
+    edtLat4Pg1: TEdit;
+    edtLong4Pg1: TEdit;
+    edtLat3Pg1: TEdit;
+    btnExitTargetParam: TSpeedButtonImage;
+    advrbWayPt: TAdvOfficeRadioButton;
+    advrbStartPt: TAdvOfficeRadioButton;
+    pnlShowNav: TPanel;
+    pnlShowMapInfo: TPanel;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Panel1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure Close1Click(Sender: TObject);
     procedure WCC1Click(Sender: TObject);
-    procedure btnZoomInClick(Sender: TObject);
-    procedure btnZoomOutClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
     procedure FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
     procedure tmrMapTimer(Sender: TObject);
-    procedure btnMoveMapClick(Sender: TObject);
+    procedure btnToolBarsClick(Sender: TObject);
+    procedure advpgcTargetParamChange(Sender: TObject);
+    procedure btnExitSubWindowClick(Sender: TObject);
+    procedure pnlShowNavClick(Sender: TObject);
+    procedure pnlShowMapInfoClick(Sender: TObject);
   protected
     //procedure DrawAngle(aCnv: TCanvas);
     //procedure DrawCompass(aCnv: TCanvas);
@@ -169,24 +263,6 @@ type
     FMapRect: TRect;
 
     FCanvas: TCanvas;
-
-    { Image List for Button }
-    imgListClose,
-    imgListOperatingMode,
-    imgListOptimalProportion,
-    imgListRuler,
-    imgListZoomIn,
-    imgListZoomOut,
-    imgListMoveMap,
-    imgListManualRoutePl,
-    imgListObstacleAvoidance,
-    imgListDisplayChannel,
-    imgListChangeMode,
-    imgListEditIsland,
-    imgListRouteCmdWindow,
-    imgListObstacleInfo,
-    imgListTargetParamDisplay,
-    imgListExitRoutePl : TImageList;
 
     { Map }
     FBitmapBackground: TBitmap;
@@ -201,6 +277,10 @@ type
     procedure LoadInitMap;
     procedure LoadGeoset(const aGst: string); virtual;
     procedure DrawAll(aCnv: TCanvas; aCvt: TCoordConverter);
+
+    procedure MapZoomIn;
+    procedure MapZoomOut;
+    procedure MapMove;
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
@@ -294,6 +374,20 @@ begin
   //
 end;
 
+procedure TfrmRoutePlan.FormDestroy(Sender: TObject);
+begin
+  if Assigned(FMapCanvas) then
+    FreeAndNil(FMapCanvas);
+  if Assigned(FMapConverter) then
+    FreeAndNil(FMapConverter);
+  if Assigned(FBitmapBackground) then
+    FreeAndNil(FBitmapBackground);
+
+  FreeAndNil(FCanvas);
+
+  EndC705;
+end;
+
 procedure TfrmRoutePlan.FormCreate(Sender: TObject);
 begin
   Self.DoubleBuffered := False;
@@ -312,37 +406,7 @@ begin
   tmrMap.Enabled := True;
 
   { Load Button Image }
-  //SetImgBtn;
-end;
-
-procedure TfrmRoutePlan.FormDestroy(Sender: TObject);
-begin
-  if Assigned(FMapCanvas) then
-    FreeAndNil(FMapCanvas);
-  if Assigned(FMapConverter) then
-    FreeAndNil(FMapConverter);
-  if Assigned(FBitmapBackground) then
-    FreeAndNil(FBitmapBackground);
-
-  FreeAndNil(FCanvas);
-
-  FreeAndNil(imgListClose);
-  FreeAndNil(imgListOperatingMode);
-  FreeAndNil(imgListOptimalProportion);
-  FreeAndNil(imgListRuler);
-  FreeAndNil(imgListZoomIn);
-  FreeAndNil(imgListZoomOut);
-  FreeAndNil(imgListMoveMap);
-  FreeAndNil(imgListManualRoutePl);
-  FreeAndNil(imgListObstacleAvoidance);
-  FreeAndNil(imgListDisplayChannel);
-  FreeAndNil(imgListChangeMode);
-  FreeAndNil(imgListEditIsland);
-  FreeAndNil(imgListRouteCmdWindow);
-  FreeAndNil(imgListObstacleInfo);
-  FreeAndNil(imgListTargetParamDisplay);
-
-  EndC705;
+  SetImgBtn;
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
@@ -362,17 +426,38 @@ begin
   FMapRect.Bottom := Height - 5;
 
   //FMap.Visible := False;
+
+  lblStatusMap.Caption := '';
+
+  advpgcRoutePlanCmd.ActivePage := advtsCmdSet;
+  advpgcTargetParam.ActivePage := advtsPage1;
+
+  pnlNavInfo.Visible := False;
+
+  pnlRoutePlanControlCmd.Left := pnlParamDisplay.Left;
+  pnlRoutePlanControlCmd.Top := pnlPromptBoxMap.Top;
+  pnlRoutePlanControlCmd.Visible := False;
+
+  pnlParamDisplay.Visible := False;
+
+  pnlWaypointLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
+  pnlWaypointLvl2.Left := btnMoveMap.Left;
+  pnlWaypointLvl2.Visible := False;
+
+  pnlIslandLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
+  pnlIslandLvl2.Left := btnDisplayChannel.Left;
+  pnlIslandLvl2.Visible := False;
 end;
 
 {$REGION 'Map Section'}
-procedure TfrmRoutePlan.btnMoveMapClick(Sender: TObject);
+procedure TfrmRoutePlan.MapMove;
 begin
   FMap.CurrentTool := miPanTool;
 
   lblStatusMap.Caption := 'Move Map';
 end;
 
-procedure TfrmRoutePlan.btnZoomInClick(Sender: TObject);
+procedure TfrmRoutePlan.MapZoomIn;
 begin
   if self.FIndexRange > 0 then
   begin
@@ -385,7 +470,7 @@ begin
   FMap.ZoomTo((Self.FCurrentRange * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
 end;
 
-procedure TfrmRoutePlan.btnZoomOutClick(Sender: TObject);
+procedure TfrmRoutePlan.MapZoomOut;
 begin
   if self.FIndexRange < CCountRange - 1 then
   begin
@@ -572,355 +657,202 @@ var
   BMap: TBitmap;
   strPath: string;
 begin
-  strPath := '.\img\icon\Route Plan - Tool Bar';
+  strPath := '.\img\icon\Route Plan - Tool Bar\';
 
   {$REGION ' Button Exit Sub Window (Map Info dan Navigation Info '}
-  imgListClose := TImageList.Create(Self);
-  imgListClose.Width := btnExit_MapInfo.Width;
-  imgListClose.Height := btnExit_MapInfo.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strPath + 'btn_close.bmp');
-  finally
-    imgListClose.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnExit_MapInfo.ImageList := imgListClose;
-  btnExit_MapInfo.ImageIndex := 0;
-
-  btnExit_NavInfo.ImageList := imgListClose;
-  btnExit_MapInfo.ImageIndex := 0;
+  btnExit_MapInfo.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
+  btnExit_NavInfo.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
+  btnExitRoutePlanCmd.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
+  btnExitTargetParam.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
   {$ENDREGION}
 
   {$REGION ' Button Operating Mode '}
-  imgListOperatingMode := TImageList.Create(Self);
-  imgListOperatingMode.Width := btnOperatingMode.Width;
-  imgListOperatingMode.Height := btnOperatingMode.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Operating Mode.bmp');
-  finally
-    imgListOperatingMode.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnOperatingMode.ImageList := imgListOperatingMode;
-  btnOperatingMode.ImageIndex := 0;
+  btnOperatingMode.Glyph.LoadFromFile(strpath + 'Button Operating Mode.bmp');
   {$ENDREGION}
 
   {$REGION ' Button Optimal Proportion '}
-  imgListOptimalProportion := TImageList.Create(Self);
-  imgListOptimalProportion.Width := btnOptimalProportion.Width;
-  imgListOptimalProportion.Height := btnOptimalProportion.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Optimal Prop - Available.bmp');
-  finally
-    imgListOptimalProportion.Add(BMap, nil); // available state
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Optimal Prop - Unavailable.bmp');  // unavailable state
-  finally
-    imgListOptimalProportion.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnOptimalProportion.ImageList := imgListOptimalProportion;
-  btnOptimalProportion.ImageIndex := 0; // available state
+  btnOptimalProportion.Glyph.LoadFromFile(strpath + 'Button Optimal Prop - Available.bmp'); // available state
   {$ENDREGION}
 
   {$REGION ' Button Ruler (Measuring Range) '}
-  imgListRuler := TImageList.Create(Self);
-  imgListRuler.Width := btnRuler.Width;
-  imgListRuler.Height := btnRuler.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Range - Available.bmp');  // available state
-  finally
-    imgListRuler.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Range - Unavailable.bmp');  // unavailable state
-  finally
-    imgListRuler.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnRuler.ImageList := imgListRuler;
-  btnRuler.ImageIndex := 0; // available state
+  btnRuler.Glyph.LoadFromFile(strpath + 'Button Range - Available.bmp');  // available state
   {$ENDREGION}
 
   {$REGION ' Button Zoom In '}
-  imgListZoomIn := TImageList.Create(Self);
-  imgListZoomIn.Width := btnZoomIn.Width;
-  imgListZoomIn.Height := btnZoomIn.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Zoom In - Available.bmp');  // available state
-  finally
-    imgListZoomIn.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Zoom In - Unavailable.bmp');  // available state
-  finally
-    imgListZoomIn.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnZoomIn.ImageList := imgListZoomIn;
-  btnZoomIn.ImageIndex := 0; // available state
+  btnZoomIn.Glyph.LoadFromFile(strpath + 'Button Zoom In - Available.bmp');  // available state
   {$ENDREGION}
 
   {$REGION ' Button Zoom Out '}
-  imgListZoomOut:= TImageList.Create(Self);
-  imgListZoomOut.Width := btnZoomOut.Width;
-  imgListZoomOut.Height := btnZoomOut.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Zoom Out - Available.bmp');  // available state
-  finally
-    imgListZoomOut.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Zoom Out - Unavailable.bmp');  // available state
-  finally
-    imgListZoomOut.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnZoomOut.ImageList := imgListZoomOut;
-  btnZoomOut.ImageIndex := 0; // available state
+  btnZoomOut.Glyph.LoadFromFile(strpath + 'Button Zoom Out - Available.bmp');  // available state
   {$ENDREGION}
 
   {$REGION ' Button Move Map '}
-  imgListMoveMap := TImageList.Create(Self);
-  imgListMoveMap.Width := btnMoveMap.Width;
-  imgListMoveMap.Height := btnMoveMap.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Move Map - Available.bmp');  // available state
-  finally
-    imgListMoveMap.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Move Map - Unavailable.bmp');  // unavailable state
-  finally
-    imgListMoveMap.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnMoveMap.ImageList := imgListMoveMap;
-  btnMoveMap.ImageIndex := 0; // available state
+  btnMoveMap.Glyph.LoadFromFile(strpath + 'Button Move Map - Available.bmp');  // available state
   {$ENDREGION}
 
   {$REGION ' Button Manual Route Planning '}
-  imgListManualRoutePl := TImageList.Create(Self);
-  imgListManualRoutePl.Width := btnManualRoutePl.Width;
-  imgListManualRoutePl.Height := btnManualRoutePl.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Manual Route Plan - Available.bmp');  // available state
-  finally
-    imgListManualRoutePl.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Manual Route Plan - Unavailable.bmp');  // unavailable state
-  finally
-    imgListManualRoutePl.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnManualRoutePl.ImageList := imgListManualRoutePl;
-  btnManualRoutePl.ImageIndex := 0; // available state
+  btnManualRoutePl.Glyph.LoadFromFile(strpath + 'Button Manual Route Plan - Available.bmp');  // available state
   {$ENDREGION}
 
   {$REGION ' Button Obstacle Avoidance '}
-  imgListObstacleAvoidance := TImageList.Create(Self);
-  imgListObstacleAvoidance.Width := btnObstacleAvoidance.Width;
-  imgListObstacleAvoidance.Height := btnObstacleAvoidance.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Obstacle Avoidance.bmp');  // obstacle avoidance check
-  finally
-    imgListObstacleAvoidance.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Obstacle Avoidance - Exit.bmp');  // exit obstacle avoidance
-  finally
-    imgListObstacleAvoidance.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnObstacleAvoidance.ImageList := imgListObstacleAvoidance;
-  btnObstacleAvoidance.ImageIndex := 0; // obstacle avoidance check
+  btnObstacleAvoidance.Glyph.LoadFromFile(strpath + 'Button Obstacle Avoidance.bmp');  // obstacle avoidance check
   {$ENDREGION}
 
   {$REGION ' Button Change Mode (Day Mode & Night Mode '}
-  imgListChangeMode := TImageList.Create(Self);
-  imgListChangeMode.Width := btnChangeMode.Width;
-  imgListChangeMode.Height := btnChangeMode.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Change Mode - Day.bmp');  // Night Mode
-  finally
-    imgListChangeMode.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Change Mode - Night.bmp');  // Night Mode
-  finally
-    imgListChangeMode.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnChangeMode.ImageList := imgListChangeMode;
-  btnChangeMode.ImageIndex := 0; // Night Mode
+  btnChangeMode.Glyph.LoadFromFile(strpath + 'Button Change Mode - Day.bmp');  // Night Mode
   {$ENDREGION}
 
   {$REGION ' Button Display Channel '}
-  imgListDisplayChannel := TImageList.Create(Self);
-  imgListDisplayChannel.Width := btnDisplayChannel.Width;
-  imgListDisplayChannel.Height := btnDisplayChannel.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Display Channel.bmp');  // display channel
-  finally
-    imgListDisplayChannel.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Hide Channel.bmp');  // hide channel
-  finally
-    imgListDisplayChannel.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnDisplayChannel.ImageList := imgListDisplayChannel;
-  btnDisplayChannel.ImageIndex := 0; // display channel
+  btnDisplayChannel.Glyph.LoadFromFile(strpath + 'Button Display Channel.bmp');  // display channel
   {$ENDREGION}
 
   {$REGION ' Button Edit Island/ Edit Pulau '}
-  imgListEditIsland := TImageList.Create(Self);
-  imgListEditIsland.Width := btnEditIsland.Width;
-  imgListEditIsland.Height := btnEditIsland.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Edit Island.bmp');
-  finally
-    imgListEditIsland.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnEditIsland.ImageList := imgListEditIsland;
-  btnEditIsland.ImageIndex := 0;
+  btnEditIsland.Glyph.LoadFromFile(strpath + 'Button Edit Island.bmp');
   {$ENDREGION}
 
   {$REGION ' Button Obstacle Information Display '}
-  imgListObstacleInfo := TImageList.Create(Self);
-  imgListObstacleInfo.Width := btnObstacleInfo.Width;
-  imgListObstacleInfo.Height := btnObstacleInfo.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Obstacle Information Window - Available.bmp');  // available state
-  finally
-    imgListObstacleInfo.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Obstacle Information Window - Unavailable.bmp');  // unavailable state
-  finally
-    imgListObstacleInfo.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnObstacleInfo.ImageList := imgListObstacleInfo;
-  btnObstacleInfo.ImageIndex := 0; // available state
+  btnObstacleInfo.Glyph.LoadFromFile(strpath + 'Button Obstacle Information Window - Available.bmp');  // available state
   {$ENDREGION}
 
   {$REGION ' Button Target Parameter '}
-  imgListTargetParamDisplay := TImageList.Create(Self);
-  imgListTargetParamDisplay.Width := btnTargetParamDisplay.Width;
-  imgListTargetParamDisplay.Height := btnTargetParamDisplay.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Target Param Window.bmp');
-  finally
-    imgListTargetParamDisplay.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnTargetParamDisplay.ImageList := imgListTargetParamDisplay;
-  btnTargetParamDisplay.ImageIndex := 0;
+  btnTargetParamDisplay.Glyph.LoadFromFile(strpath + 'Button Target Param Window.bmp');
   {$ENDREGION}
 
   {$REGION ' Button Route Control Command '}
-  imgListRouteCmdWindow := TImageList.Create(Self);
-  imgListRouteCmdWindow.Width := btnRouteCmdWindow.Width;
-  imgListRouteCmdWindow.Height := btnRouteCmdWindow.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Route Comand Window - Available.bmp');
-  finally
-    imgListRouteCmdWindow.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Route Comand Window - Unavailable.bmp');
-  finally
-    imgListRouteCmdWindow.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnRouteCmdWindow.ImageList := imgListRouteCmdWindow;
-  btnRouteCmdWindow.ImageIndex := 0;
+  btnRouteCmdWindow.Glyph.LoadFromFile(strpath + 'Button Route Comand Window - Available.bmp');
   {$ENDREGION}
 
   {$REGION ' Button Exit Rotue Plan '}
-  imgListExitRoutePl := TImageList.Create(Self);
-  imgListExitRoutePl.Width := btnExitRoutePl.Width;
-  imgListExitRoutePl.Height := btnExitRoutePl.Height;
-  try
-    BMap := TBitmap.Create;
-    BMap.LoadFromFile(strpath + 'Button Exit Route Plan.bmp');
-  finally
-    imgListExitRoutePl.Add(BMap, nil);
-    BMap.Free;
-  end;
-
-  btnExitRoutePl.ImageList := imgListExitRoutePl;
-  btnExitRoutePl.ImageIndex := 0;
+  btnExitRoutePl.Glyph.LoadFromFile(strpath + 'Button Exit Route Plan.bmp');
   {$ENDREGION}
 end;
+
+procedure TfrmRoutePlan.advpgcTargetParamChange(Sender: TObject);
+begin
+  btnExitTargetParam.Parent := advpgcTargetParam.ActivePage;
+  advrbWayPt.Parent := advpgcTargetParam.ActivePage;
+  advrbStartPt.Parent := advpgcTargetParam.ActivePage;
+end;
+
+procedure TfrmRoutePlan.pnlShowMapInfoClick(Sender: TObject);
+begin
+  pnlShowMapInfo.Visible := False;
+  pnlMapInfo.Visible := True;
+end;
+
+procedure TfrmRoutePlan.pnlShowNavClick(Sender: TObject);
+begin
+  pnlShowNav.Visible := False;
+  pnlNavInfo.Visible := True;
+end;
+
+procedure TfrmRoutePlan.btnExitSubWindowClick(Sender: TObject);
+begin
+  case (Sender as TSpeedButtonImage).Tag of
+    1: begin
+      // Map Info
+      pnlMapInfo.Visible := False;
+      pnlShowMapInfo.Visible := True;
+    end;
+    2: begin
+      // Navigation Info
+      pnlNavInfo.Visible := False;
+      pnlShowNav.Visible := True;
+    end;
+    3: begin
+      // Target Param
+      pnlParamDisplay.Visible := False;
+    end;
+    4: begin
+      // Route Plan Command
+      pnlRoutePlanControlCmd.Visible := False;
+    end;
+  end;
+end;
+
+{$REGION 'Tool Bar'}
+procedure TfrmRoutePlan.btnToolBarsClick(Sender: TObject);
+begin
+  case (Sender as TSpeedButton).Tag of
+    0: begin
+      {$REGION 'Operating Mode'}
+      FMap.CurrentTool := miArrowTool;
+      {$ENDREGION}
+    end;
+    1: begin
+      {$REGION 'Optimal Proportion'}
+      //
+      {$ENDREGION}
+    end;
+    2: begin
+      {$REGION 'Ruler (Measuring Range)'}
+      //
+      {$ENDREGION}
+    end;
+    3: begin
+      {$REGION 'Zoom In'}
+      MapZoomIn;
+      {$ENDREGION}
+    end;
+    4: begin
+      {$REGION 'Zoom Out'}
+      MapZoomOut;
+      {$ENDREGION}
+    end;
+    5: begin
+      {$REGION 'Move Map'}
+      MapMove;
+      {$ENDREGION}
+    end;
+    6: begin
+      {$REGION 'Manual Route Plan'}
+      pnlWaypointLvl2.Visible := not pnlWaypointLvl2.Visible;
+      {$ENDREGION}
+    end;
+    7: begin
+      {$REGION 'Obstacle Avoidance'}
+      //
+      {$ENDREGION}
+    end;
+    8: begin
+      {$REGION 'Change Mode'}
+      //
+      {$ENDREGION}
+    end;
+    9: begin
+      {$REGION 'Display Channel'}
+      //
+      {$ENDREGION}
+    end;
+    10: begin
+      {$REGION 'Edit Island'}
+      pnlIslandLvl2.Visible := not pnlIslandLvl2.Visible;
+      {$ENDREGION}
+    end;
+    11: begin
+      {$REGION 'Obstacle Information Display'}
+      //
+      {$ENDREGION}
+    end;
+    12: begin
+      {$REGION 'Target Param Display'}
+      pnlParamDisplay.Visible := not pnlParamDisplay.Visible;
+      {$ENDREGION}
+    end;
+    13: begin
+      {$REGION 'Route Control Command'}
+      pnlRoutePlanControlCmd.Visible := not pnlRoutePlanControlCmd.Visible;
+      {$ENDREGION}
+    end;
+    14: begin
+      {$REGION 'Exit Route Plan'}
+      Application.Terminate;
+      {$ENDREGION}
+    end;
+  end;
+
+end;
+{$ENDREGION}
 
 procedure TfrmRoutePlan.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 begin
