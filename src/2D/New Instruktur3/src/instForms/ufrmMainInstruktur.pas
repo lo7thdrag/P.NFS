@@ -1997,8 +1997,16 @@ begin
               frmGameController.lblcoorXyakhont.Caption := FormatFloat('0.00',mX);
               frmGameController.lblcoorYyakhont.Caption := FormatFloat('0.00',mY);
 
-
-
+              if (StrToFloat(frmGameController.edtYahkont_TRange.Text) < 162.00) then
+              begin
+                frmGameController.pnlRangeYakhont.Caption := 'In Range';
+                frmGameController.pnlRangeYakhont.Color   := clGreen;
+              end
+              else
+              begin
+                frmGameController.pnlRangeYakhont.Caption := 'Not In Range';
+                frmGameController.pnlRangeYakhont.Color   := clRed;
+              end;
             end;
           end;
 //          DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail,  ListWeaponDetail);

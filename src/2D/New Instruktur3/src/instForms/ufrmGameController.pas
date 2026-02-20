@@ -1091,6 +1091,7 @@ type
     edtEndDegree: TEdit;
     edtMinRange: TEdit;
     edtMaxRange: TEdit;
+    pnlRangeYakhont: TPanel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);

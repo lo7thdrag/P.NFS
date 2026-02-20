@@ -175,9 +175,9 @@ object frmeControl: TfrmeControl
         Version = '1.6.1.0'
       end
       object lblShipName: TAdvSmoothLabel
-        Left = 96
+        Left = 16
         Top = 10
-        Width = 164
+        Width = 329
         Height = 26
         Fill.ColorMirror = clNone
         Fill.ColorMirrorTo = clNone
