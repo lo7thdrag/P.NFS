@@ -1258,6 +1258,7 @@ type
 
     scenarioGameName : string;
 
+    procedure ClearScenarioDescData;
     procedure ClearListViewData(const aListView: TListView);
     procedure ClearListShipData(const aListView: TListView);
 
@@ -1715,16 +1716,20 @@ procedure TfrmGameController.SetFormLayout;
 var
   i : integer;
 begin
-   { Set Game Controller }
-   DefaultMonitor := dmDesktop;
-   Height       := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Height;
-   Top          := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Top;
-   Left         := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Left;
-   width        := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Width;
+  { Set Game Controller }
+  DefaultMonitor := dmDesktop;
 
-   FillClientList;
+  if SimManager.instMonitorSet.ContollerDisplay > Screen.MonitorCount then
+    SimManager.instMonitorSet.ContollerDisplay := 0;
 
-   Show;
+  Height       := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Height;
+  Top          := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Top;
+  Left         := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Left;
+  width        := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Width;
+
+  FillClientList;
+
+  Show;
 end;
 
 procedure TfrmGameController.TabMainChange(Sender: TObject);
@@ -7213,7 +7218,7 @@ begin
   SceEnvi := TScenario.Create;
 
   try
-    DataModule1.GetEnviBySceID(ScenarioId, SceEnvi);
+    DataModule1.GetScenarioDefByID(ScenarioId, SceEnvi);
 
     mmoKetSce.Lines.Add(SceEnvi.Scenario_Desc);
     cbbPort.ItemIndex := SceEnvi.Scenario_Port;
@@ -7295,8 +7300,8 @@ begin
               3: SubItems.Add('Subsurface');
             end;
 
-            SubItems.Add(FloatToStr(ShipDetail.Vehicle_X));
-            SubItems.Add(FloatToStr(ShipDetail.Vehicle_Y));
+            SubItems.Add(ConvLL_To_Str(ShipDetail.Vehicle_X, '0'));
+            SubItems.Add(ConvLL_To_Str(ShipDetail.Vehicle_Y, '1'));
             SubItems.Add(FloatToStr(ShipDetail.Vehicle_Z));
             SubItems.Add(FloatToStr(ShipDetail.Vehicle_Heading));
             SubItems.Add(FloatToStr(ShipDetail.Vehicle_Speed));
@@ -9459,6 +9464,11 @@ begin
   VrWindDirection.Position := 0;
   VrCurrentDirection.Position := 0;
   {$ENDREGION}
+end;
+
+procedure TfrmGameController.ClearScenarioDescData;
+begin
+
 end;
 
 procedure TfrmGameController.ClearShipData;

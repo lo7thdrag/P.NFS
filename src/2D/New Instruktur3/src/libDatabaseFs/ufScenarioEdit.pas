@@ -14,16 +14,16 @@ uses
   ufWeaponList, ufListScenario, uClassDatabase, uDataModule, uInstrukturManager,
   uInstrukturObjects, uSimulationManager, uTCPDatatype, uBaseConstan,
   uBaseFunction,
-  ufEnvi, uGlobalVar;
+  ufEnvi, uGlobalVar, VrControls, VrWheel;
 
 type
   TfrmSceEditor = class(TForm)
     pmConsole: TPopupMenu;
     pmConsole2: TPopupMenu;
     pnlMain: TAdvSmoothPanel;
-    pnlMainUp: TAdvSmoothPanel;
+    pnlGeneral: TAdvSmoothPanel;
     pnlMainBottom: TAdvSmoothPanel;
-    pnlMainBody: TAdvSmoothPanel;
+    pnlPlatform: TAdvSmoothPanel;
     pnlPicture: TAdvSmoothPanel;
     TabSelection: TAdvSmoothTabPager;
     tsShipKRI: TAdvSmoothTabPage;
@@ -50,29 +50,19 @@ type
     advsmthlbl1: TAdvSmoothLabel;
     advsmthlbl2: TAdvSmoothLabel;
     advsmthlbl3: TAdvSmoothLabel;
-    btnAddTargetSurface: TAdvSmoothButton;
-    btnRemoveTargetSurface: TAdvSmoothButton;
     btnAddTargetSubsurface: TAdvSmoothButton;
     btnRemoveTargetSubsurface: TAdvSmoothButton;
     btnAddTargetAir: TAdvSmoothButton;
     btnRemoveTargetAir: TAdvSmoothButton;
     imgShip: TImage;
     btnWeaponListGeneral: TAdvSmoothButton;
-    btnWeaponListTarget: TAdvSmoothButton;
     pnlScenarioList: TAdvSmoothPanel;
     lvWarShipAll: TListView;
-    lblGameName: TLabel;
     AdvSmoothPanel1: TAdvSmoothPanel;
     lvWarShipSelect: TListView;
-    AdvSmoothPanel3: TAdvSmoothPanel;
-    lvTargetSurfaceAll: TListView;
-    Label1: TLabel;
     lvWeaponSelected: TListView;
-    btnEnableWeapon: TAdvSmoothButton;
     AdvSmoothLabel1: TAdvSmoothLabel;
     AdvSmoothLabel2: TAdvSmoothLabel;
-    AdvSmoothPanel4: TAdvSmoothPanel;
-    lvTargetSurfaceSelect: TListView;
     AdvSmoothPanel5: TAdvSmoothPanel;
     AdvSmoothPanel2: TAdvSmoothPanel;
     AdvSmoothPanel6: TAdvSmoothPanel;
@@ -86,11 +76,58 @@ type
     AdvSmoothPanel9: TAdvSmoothPanel;
     AdvSmoothPanel8: TAdvSmoothPanel;
     lvGeneralShipAll: TListView;
-    Label4: TLabel;
     lvGeneralShipSelect: TListView;
     AdvSmoothPanel10: TAdvSmoothPanel;
     lvConsole: TListView;
     Label5: TLabel;
+    pnlEnvirontment: TAdvSmoothPanel;
+    AdvSmoothLabel3: TAdvSmoothLabel;
+    AdvSmoothLabel4: TAdvSmoothLabel;
+    AdvSmoothLabel5: TAdvSmoothLabel;
+    advsmthlbl4: TAdvSmoothLabel;
+    AdvSmoothLabel14: TAdvSmoothLabel;
+    AdvSmoothLabel15: TAdvSmoothLabel;
+    advsmthlbl5: TAdvSmoothLabel;
+    advsmthlbl7: TAdvSmoothLabel;
+    advsmthlbl6: TAdvSmoothLabel;
+    advsmthlbl8: TAdvSmoothLabel;
+    tbFogH: TTrackBar;
+    tbHumidity: TTrackBar;
+    tbBaroPressure: TTrackBar;
+    tbTemp: TTrackBar;
+    vrwhlSeaDirection: TVrWheel;
+    vrwhlWindDirec: TVrWheel;
+    tbSeaSpeed: TTrackBar;
+    tbWindSpeed: TTrackBar;
+    tbSeaState: TTrackBar;
+    Label62: TLabel;
+    AdvSmoothPanel12: TAdvSmoothPanel;
+    Label6: TLabel;
+    AdvSmoothPanel11: TAdvSmoothPanel;
+    Label7: TLabel;
+    AdvSmoothPanel13: TAdvSmoothPanel;
+    Label8: TLabel;
+    edtSeaState: TEdit;
+    edtWindSpeed: TEdit;
+    edtCurrentSpeed: TEdit;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    AdvSmoothLabel6: TAdvSmoothLabel;
+    AdvSmoothButton1: TAdvSmoothButton;
+    AdvSmoothLabel7: TAdvSmoothLabel;
+    AdvSmoothLabel8: TAdvSmoothLabel;
+    AdvSmoothPanel3: TAdvSmoothPanel;
+    lvTargetShipAll: TListView;
+    AdvSmoothPanel4: TAdvSmoothPanel;
+    lvTargetSurfaceSelect: TListView;
+    btnAddTargetSurface: TAdvSmoothButton;
+    btnRemoveTargetSurface: TAdvSmoothButton;
+    btnWeaponListTarget: TAdvSmoothButton;
+    AdvSmoothLabel10: TAdvSmoothLabel;
+    AdvSmoothLabel11: TAdvSmoothLabel;
+    AdvSmoothLabel9: TAdvSmoothLabel;
     procedure btnWeaponListClick(Sender: TObject);
     procedure btnEditDatabaseClick(Sender: TObject);
     procedure lvGeneralShipAllClick(Sender: TObject);
@@ -112,6 +149,7 @@ type
     procedure TabSelectionChange(Sender: TObject);
     procedure TabTargetShipChange(Sender: TObject);
     procedure pnlMainBottomClick(Sender: TObject);
+    procedure AdvSmoothButton1Click(Sender: TObject);
   private
     { Private declarations }
 
@@ -155,6 +193,10 @@ type
 
     WeaponListScenario: TList;
 
+    LastName: string;
+
+    function CekInput: boolean;
+
     procedure ClearWeaponListScenario;
     procedure FillWeaponList(shipID: Integer);
     procedure UpdateWeaponList(shipID, SceID: Integer);
@@ -163,6 +205,9 @@ type
 
     procedure GetAllVehicle;
     procedure UpdateVisualForm;
+    procedure ClearVisualForm;
+
+    procedure setVelueVehicle(var ShipTemp : TVehicle; Vehicle: TVehicle);
 
     procedure UpdateListViewCoor(const Mx, My: Double; shipID: Integer);
     procedure UpdateListViewHeading(const Heading: Double; shipID: Integer);
@@ -209,7 +254,7 @@ end;
 { Form Setting }
 procedure TfrmSceEditor.SetFormEnvironment;
 begin
-  TabSelection.TabSettings.Width := (TabSelection.Width - 10) div 5;
+//  TabSelection.TabSettings.Width := (TabSelection.Width - 10) div 3;
 
   { Ship KRI }
 //  lvWarShipAll.Height := tsShipKRI.Height - 20;
@@ -336,34 +381,52 @@ end;
 
 { -------------------------------------------------------------------------- }
 { Listview Event Handler }
-procedure TfrmSceEditor.ListViewAdd(aListView, aListView2: TListView;
-  aVehicle: TVehicle; aMode: Integer);
+procedure TfrmSceEditor.ListViewAdd(aListView, aListView2: TListView; aVehicle: TVehicle; aMode: Integer);
 var
   i: Integer;
   Ship: TInsObject;
+
 begin
-  // yoga tandai berooo
 
   case aMode of
-    1:
+    1: {Add to list}
       begin
+        {$REGION ' Add vehicle ke list vehicle on scenario '}
+
         with aListView.Items.Add do
         begin
           Data := aVehicle;
-          Caption := IntToStr(lvConsole.Items.Count);
-          SubItems.Add('0');
-          SubItems.Add('0');
+          Caption := aVehicle.Vehicle_Name;
+
+          case aVehicle.Vehicle_Type of
+            1: SubItems.Add('Surface');
+            2: SubItems.Add('Air');
+            3: SubItems.Add('Subsurface');
+          end;
+
+          SubItems.Add(ConvLL_To_Str(0, '0'));
+          SubItems.Add(ConvLL_To_Str(0, '1'));
           SubItems.Add('0');
           SubItems.Add('90');
           SubItems.Add('0');
         end;
 
-        { create ship for drawing }
+        {$ENDREGION}
+
+        {$REGION ' Add list weapon on vehicle '}
+
+        FillWeaponList(aVehicle.Vehicle_ID);
+
+        {$ENDREGION}
+
+        {$REGION ' create ship for drawing '}
+
         SimManager.CreateShipForDatabse(aVehicle.Vehicle_ID);
         AddMenuWithShipID(aVehicle.Vehicle_ID);
 
-        { fill Weapon }
-        FillWeaponList(aVehicle.Vehicle_ID);
+        {$ENDREGION}
+
+        {$REGION ' Delete vehicle from list available vehicle '}
 
         for i := aListView2.Items.Count - 1 downto 0 do
         begin
@@ -377,15 +440,26 @@ begin
             end;
           end;
         end;
+
+        {$ENDREGION}
       end;
 
-    2:
+    2: {Remove}
       begin
+
+        {$REGION ' Remove vehicle from list vehicle on scenario '}
         with aListView.Items.Add do
         begin
           Data := aVehicle;
           Caption := aVehicle.Vehicle_Name;
+
+          case aVehicle.Vehicle_Type of
+            1: SubItems.Add('Surface');
+            2: SubItems.Add('Air');
+            3: SubItems.Add('Subsurface');
+          end;
         end;
+        {$ENDREGION}
 
         for i := 0 to SimManager.MainObjList.ItemCount - 1 do
         begin
@@ -430,22 +504,34 @@ begin
         end;
       end;
 
-    3:
+    3: {Edit}
       begin
+        {$REGION ' Add vehicle ke list vehicle on scenario '}
+
         with aListView.Items.Add do
         begin
           Data := aVehicle;
           Caption := aVehicle.Vehicle_Name;
-          SubItems.Add(FloatToStr(aVehicle.Vehicle_X));
-          SubItems.Add(FloatToStr(aVehicle.Vehicle_Y));
+
+          case aVehicle.Vehicle_Type of
+            1: SubItems.Add('Surface');
+            2: SubItems.Add('Air');
+            3: SubItems.Add('Subsurface');
+          end;
+
+          SubItems.Add(ConvLL_To_Str(aVehicle.Vehicle_X, '0'));
+          SubItems.Add(ConvLL_To_Str(aVehicle.Vehicle_Y, '1'));
           SubItems.Add(FloatToStr(aVehicle.Vehicle_Z));
           SubItems.Add(FloatToStr(aVehicle.Vehicle_Heading));
           SubItems.Add(FloatToStr(aVehicle.Vehicle_Speed));
         end;
 
-        { create ship for drawing }
+        {$ENDREGION}
+
+        {$REGION ' create ship for drawing '}
         SimManager.CreateShipForDatabse(aVehicle.Vehicle_ID);
         AddMenuWithShipID(aVehicle.Vehicle_ID);
+        {$ENDREGION}
 
         { update caption }
         for i := 0 to SimManager.MainObjList.ItemCount - 1 do
@@ -590,6 +676,20 @@ begin
   end;
 end;
 
+procedure TfrmSceEditor.setVelueVehicle(var ShipTemp: TVehicle; Vehicle: TVehicle);
+begin
+  ShipTemp.Vehicle_ID := Vehicle.Vehicle_ID;
+  ShipTemp.Vehicle_Name := Vehicle.Vehicle_Name;
+  ShipTemp.Vehicle_Ctgr := Vehicle.Vehicle_Ctgr;
+  ShipTemp.Vehicle_No := Vehicle.Vehicle_No;
+  ShipTemp.Vehicle_Type := Vehicle.Vehicle_Type;
+  ShipTemp.Vehicle_X := Vehicle.Vehicle_X;
+  ShipTemp.Vehicle_Y := Vehicle.Vehicle_Y;
+  ShipTemp.Vehicle_Z := Vehicle.Vehicle_Z;
+  ShipTemp.Vehicle_Heading := Vehicle.Vehicle_Heading;
+  ShipTemp.Vehicle_Speed := Vehicle.Vehicle_Speed;
+end;
+
 procedure TfrmSceEditor.ListViewCompare(Sender: TObject;
   Item1, Item2: TListItem; Data: Integer; var Compare: Integer);
 var
@@ -639,7 +739,7 @@ begin
       4:
         lvGeneralShipAll.Selected := nil;
       6:
-        lvTargetSurfaceAll.Selected := nil;
+        lvTargetShipAll.Selected := nil;
       8:
         lvTargetSubsurfaceAll.Selected := nil;
       10:
@@ -659,18 +759,16 @@ var
   ShipDetail: TVehicle;
 begin
   frmMainInstruktur.SetDefaultMapTool;
-  if (TListView(Sender).Selected <> nil) and
-    Assigned(TListView(Sender).Selected.Data) then
+
+  if (TListView(Sender).Selected <> nil) and Assigned(TListView(Sender).Selected.Data) then
   begin
     ShipDetail := TVehicle.Create;
-    ShipDetail.Vehicle_ID := TVehicle(TListView(Sender).Selected.Data)
-      .Vehicle_ID;
-    ShipDetail.Vehicle_Name := TVehicle(TListView(Sender).Selected.Data)
-      .Vehicle_Name;
-    ShipDetail.Vehicle_Ctgr := TVehicle(TListView(Sender).Selected.Data)
-      .Vehicle_Ctgr;
-    ShipDetail.Vehicle_No := TVehicle(TListView(Sender).Selected.Data)
-      .Vehicle_No;
+    ShipDetail := TVehicle(TListView(Sender).Selected.Data);
+//    ShipDetail := TVehicle.Create;
+//    ShipDetail.Vehicle_ID := TVehicle(TListView(Sender).Selected.Data).Vehicle_ID;
+//    ShipDetail.Vehicle_Name := TVehicle(TListView(Sender).Selected.Data).Vehicle_Name;
+//    ShipDetail.Vehicle_Ctgr := TVehicle(TListView(Sender).Selected.Data).Vehicle_Ctgr;
+//    ShipDetail.Vehicle_No := TVehicle(TListView(Sender).Selected.Data).Vehicle_No;
 
     case TListView(Sender).Tag of
       { Add To Selected }
@@ -682,7 +780,7 @@ begin
         ListViewAdd(lvGeneralShipSelect, lvGeneralShipAll, ShipDetail, 1);
       { listView Surface all }
       5:
-        ListViewAdd(lvTargetSurfaceSelect, lvTargetSurfaceAll, ShipDetail, 1);
+        ListViewAdd(lvTargetSurfaceSelect, lvTargetShipAll, ShipDetail, 1);
       { listView Subsurface all }
       7:
         ListViewAdd(lvTargetSubsurfaceSelect, lvTargetSubsurfaceAll,
@@ -700,7 +798,7 @@ begin
         ListViewAdd(lvGeneralShipAll, lvGeneralShipSelect, ShipDetail, 2);
       { listView Surface Select }
       6:
-        ListViewAdd(lvTargetSurfaceAll, lvTargetSurfaceSelect, ShipDetail, 2);
+        ListViewAdd(lvTargetShipAll, lvTargetSurfaceSelect, ShipDetail, 2);
       { listView Subsurface Select }
       8:
         ListViewAdd(lvTargetSubsurfaceAll, lvTargetSubsurfaceSelect,
@@ -732,7 +830,7 @@ begin
       3:
         cnt := lvGeneralShipAll.Items.Count;
       5:
-        cnt := lvTargetSurfaceAll.Items.Count;
+        cnt := lvTargetShipAll.Items.Count;
       7:
         cnt := lvTargetSubsurfaceAll.Items.Count;
       9:
@@ -747,7 +845,7 @@ begin
         3:
           aListItem := lvGeneralShipAll.Items[ii];
         5:
-          aListItem := lvTargetSurfaceAll.Items[ii];
+          aListItem := lvTargetShipAll.Items[ii];
         7:
           aListItem := lvTargetSubsurfaceAll.Items[ii];
         9:
@@ -766,10 +864,7 @@ begin
       if isselected then
       begin
         ShipDetail := TVehicle.Create;
-        ShipDetail.Vehicle_ID := TVehicle(selectedListItem.Data).Vehicle_ID;
-        ShipDetail.Vehicle_Name := TVehicle(selectedListItem.Data).Vehicle_Name;
-        ShipDetail.Vehicle_Ctgr := TVehicle(selectedListItem.Data).Vehicle_Ctgr;
-        ShipDetail.Vehicle_No := TVehicle(selectedListItem.Data).Vehicle_No;
+        ShipDetail := TVehicle(selectedListItem.Data);
 
         case TComponent(Sender).Tag of
           1:
@@ -777,11 +872,9 @@ begin
           3:
             ListViewAdd(lvGeneralShipSelect, lvGeneralShipAll, ShipDetail, 1);
           5:
-            ListViewAdd(lvTargetSurfaceSelect, lvTargetSurfaceAll,
-              ShipDetail, 1);
+            ListViewAdd(lvTargetSurfaceSelect, lvTargetShipAll, ShipDetail, 1);
           7:
-            ListViewAdd(lvTargetSubsurfaceSelect, lvTargetSubsurfaceAll,
-              ShipDetail, 1);
+            ListViewAdd(lvTargetSubsurfaceSelect, lvTargetSubsurfaceAll, ShipDetail, 1);
           9:
             ListViewAdd(lvTargetAirSelect, lvTargetAirAll, ShipDetail, 1);
 
@@ -848,10 +941,7 @@ begin
       if isselected then
       begin
         ShipDetail := TVehicle.Create;
-        ShipDetail.Vehicle_ID := TVehicle(selectedListItem.Data).Vehicle_ID;
-        ShipDetail.Vehicle_Name := TVehicle(selectedListItem.Data).Vehicle_Name;
-        ShipDetail.Vehicle_Ctgr := TVehicle(selectedListItem.Data).Vehicle_Ctgr;
-        ShipDetail.Vehicle_No := TVehicle(selectedListItem.Data).Vehicle_No;
+        ShipDetail := TVehicle(selectedListItem.Data);
 
         case TComponent(Sender).Tag of
           2:
@@ -859,11 +949,9 @@ begin
           4:
             ListViewAdd(lvGeneralShipAll, lvGeneralShipSelect, ShipDetail, 2);
           6:
-            ListViewAdd(lvTargetSurfaceAll, lvTargetSurfaceSelect,
-              ShipDetail, 2);
+            ListViewAdd(lvTargetShipAll, lvTargetSurfaceSelect, ShipDetail, 2);
           8:
-            ListViewAdd(lvTargetSubsurfaceAll, lvTargetSubsurfaceSelect,
-              ShipDetail, 2);
+            ListViewAdd(lvTargetSubsurfaceAll, lvTargetSubsurfaceSelect, ShipDetail, 2);
           10:
             ListViewAdd(lvTargetAirAll, lvTargetAirSelect, ShipDetail, 2);
         end;
@@ -875,6 +963,11 @@ begin
 end;
 
 { -------------------------------------------------------------------------- }
+
+procedure TfrmSceEditor.AdvSmoothButton1Click(Sender: TObject);
+begin
+  Close;
+end;
 
 procedure TfrmSceEditor.btnEditDatabaseClick(Sender: TObject);
 begin
@@ -920,255 +1013,174 @@ begin
   case TButton(Sender).Tag of
     0:
       begin
+        {$REGION ' Save Scenario '}
+
+        if not CekInput then
+          Exit;
+
         RecSceSave := TScenario.Create;
-        { save new scenario }
-        if edtScenarioName.Text <> '' then
+
+        {$REGION ' Description Scenario '}
+
+        RecSceSave.Scenario_Name := edtScenarioName.Text;
+        RecSceSave.Scenario_Port := cbbPort.ItemIndex;
+        RecSceSave.Scenario_Building := frmMoreEnvi.Building;
+        RecSceSave.Scenario_StaticShip := frmMoreEnvi.StaticShip;
+        RecSceSave.Scenario_Buoy := frmMoreEnvi.Buoy;
+        RecSceSave.Scenario_Theme := frmMoreEnvi.Theme;
+        RecSceSave.Scenario_Desc := mmoKetSce.Text;
+
+        {$ENDREGION}
+
+        {$REGION ' Environment '}
+        RecSceSave.Scenario_SeaState := frmMoreEnvi.SeaState;
+        RecSceSave.Scenario_WindSpeed := frmMoreEnvi.WindSpeed;
+
+        { Wind Calc }
+        RecSceSave.Scenario_WindDir_X := cos(DegToRad(frmMoreEnvi.WindDir));
+        RecSceSave.Scenario_WindDir_Y := sin(DegToRad(frmMoreEnvi.WindDir));
+        RecSceSave.Scenario_WindDir_Deg := frmMoreEnvi.WindDir;
+        RecSceSave.Scenario_CurrSpeed := frmMoreEnvi.CurrentSpeed;
+        RecSceSave.Scenario_CurrDir_X := cos(DegToRad(frmMoreEnvi.WindDir));
+        RecSceSave.Scenario_CurrDir_Y := sin(DegToRad(frmMoreEnvi.WindDir));
+        RecSceSave.Scenario_CurrDir_Deg := frmMoreEnvi.CurrentDir;
+        RecSceSave.Scenario_Temperature := frmMoreEnvi.Temperature;
+        RecSceSave.Scenario_BaroPressure := frmMoreEnvi.BaroPressure;
+        RecSceSave.Scenario_Humidity := frmMoreEnvi.Humidity;
+
+        { Fog Calculation }
+        lowerBound := 0.00005;
+        upperBound := 0.08;
+        boundary := upperBound - lowerBound;
+        position := ((frmMoreEnvi.tbFogH.Max) - (frmMoreEnvi.tbFogH.position)) / (frmMoreEnvi.tbFogH.Max);
+        posPercentage := log10(frmMoreEnvi.tbFogH.Max * position) / log10(frmMoreEnvi.tbFogH.Max);
+        Val := lowerBound + ((boundary - (posPercentage * boundary)));
+
+        RecSceSave.Scenario_FogHeight := Val;
+        RecSceSave.Scenario_FogHeight_Persen := frmMoreEnvi.FogHeight;
+
+        {$ENDREGION}
+
+        {$REGION ' Ship '}
+
+        ListShip := TList.Create;
+
+        {$REGION ' KRI Ship '}
+        for i := 0 to lvWarShipSelect.Items.Count - 1 do
         begin
-          ListScenario := TList.Create;
-          DataModule1.GettAllScenario(ListScenario);
-
-          isFound := false;
-          for i := 0 to ListScenario.Count - 1 do
+          if Assigned(lvWarShipSelect.Items[i].Data) then
           begin
-            Scenario := TScenarioList(ListScenario[i]);
+            RecShipsave := TVehicle.Create;
+            RecShipsave.Vehicle_ID := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_ID;
+            // RecShipsave.Vehicle_X       := StrToFloat(lvWarShipSelect.Items[i].SubItems[0]);
+            // RecShipsave.Vehicle_Y       := StrToFloat(lvWarShipSelect.Items[i].SubItems[1]);
+            RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_X;
+            RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_Y;
+            RecShipsave.Vehicle_Z := StrToFloat(lvWarShipSelect.Items[i].SubItems[3]);
+            RecShipsave.Vehicle_Heading := StrToFloat(lvWarShipSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_Speed := StrToFloat(lvWarShipSelect.Items[i].SubItems[5]);
 
-            if LowerCase(Scenario.Scenario_Name)
-              = LowerCase(edtScenarioName.Text) then
-            begin
-              isFound := true;
-              break;
-            end;
+            ListShip.Add(RecShipsave);
           end;
+        end;
+        {$ENDREGION}
 
-          if not isFound then
+        {$REGION ' General Ship '}
+        for i := 0 to lvGeneralShipSelect.Items.Count - 1 do
+        begin
+          if Assigned(lvGeneralShipSelect.Items[i].Data) then
           begin
+            RecShipsave := TVehicle.Create;
+            RecShipsave.Vehicle_ID := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_ID;
+            RecShipsave.Vehicle_X := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_X;
+            RecShipsave.Vehicle_Y := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_Y;
+            // RecShipsave.Vehicle_X       := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[0]);
+            // RecShipsave.Vehicle_Y       := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[1]);
+            RecShipsave.Vehicle_Z := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[3]);
+            RecShipsave.Vehicle_Heading := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_Speed := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[5]);
 
-            with RecSceSave do
-            begin
-              Scenario_Name := edtScenarioName.Text;
-              Scenario_Port := cbbPort.ItemIndex;
-              Scenario_Building := frmMoreEnvi.Building;
-              Scenario_StaticShip := frmMoreEnvi.StaticShip;
-              Scenario_Buoy := frmMoreEnvi.Buoy;
-              Scenario_Theme := frmMoreEnvi.Theme;
-              Scenario_Desc := mmoKetSce.Text;
-
-              { Environment }
-              Scenario_SeaState := frmMoreEnvi.SeaState;
-              Scenario_WindSpeed := frmMoreEnvi.WindSpeed;
-
-              { Wind Calc }
-              Scenario_WindDir_X := cos(DegToRad(frmMoreEnvi.WindDir));
-              Scenario_WindDir_Y := sin(DegToRad(frmMoreEnvi.WindDir));
-              Scenario_WindDir_Deg := frmMoreEnvi.WindDir;
-              Scenario_CurrSpeed := frmMoreEnvi.CurrentSpeed;
-              Scenario_CurrDir_X := cos(DegToRad(frmMoreEnvi.WindDir));
-              Scenario_CurrDir_Y := sin(DegToRad(frmMoreEnvi.WindDir));
-              Scenario_CurrDir_Deg := frmMoreEnvi.CurrentDir;
-              Scenario_Temperature := frmMoreEnvi.Temperature;
-              Scenario_BaroPressure := frmMoreEnvi.BaroPressure;
-              Scenario_Humidity := frmMoreEnvi.Humidity;
-
-              { Fog Calculation }
-              lowerBound := 0.00005;
-              upperBound := 0.08;
-              boundary := upperBound - lowerBound;
-              position :=
-                ((frmMoreEnvi.tbFogH.Max) - (frmMoreEnvi.tbFogH.position)) /
-                (frmMoreEnvi.tbFogH.Max);
-              posPercentage := log10(frmMoreEnvi.tbFogH.Max * position) /
-                log10(frmMoreEnvi.tbFogH.Max);
-              Val := lowerBound + ((boundary - (posPercentage * boundary)));
-
-              Scenario_FogHeight := Val;
-              Scenario_FogHeight_Persen := frmMoreEnvi.FogHeight;
-            end;
-
-            ListShip := TList.Create;
-
-            { save KRI Ship Configuration }
-            for i := 0 to lvWarShipSelect.Items.Count - 1 do
-            begin
-              if Assigned(lvWarShipSelect.Items[i].Data) then
-              begin
-                RecShipsave := TVehicle.Create;
-                RecShipsave.Vehicle_ID :=
-                  TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_ID;
-                // RecShipsave.Vehicle_X       := StrToFloat(lvWarShipSelect.Items[i].SubItems[0]);
-                // RecShipsave.Vehicle_Y       := StrToFloat(lvWarShipSelect.Items[i].SubItems[1]);
-                RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_X;
-                RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_Y;
-                RecShipsave.Vehicle_Z :=
-                  StrToFloat(lvWarShipSelect.Items[i].SubItems[2]);
-                RecShipsave.Vehicle_Heading :=
-                  StrToFloat(lvWarShipSelect.Items[i].SubItems[3]);
-                RecShipsave.Vehicle_Speed :=
-                  StrToFloat(lvWarShipSelect.Items[i].SubItems[4]);
-
-                ListShip.Add(RecShipsave);
-              end;
-            end;
-
-            { Save General Ship Configuration }
-            for i := 0 to lvGeneralShipSelect.Items.Count - 1 do
-            begin
-              if Assigned(lvGeneralShipSelect.Items[i].Data) then
-              begin
-                RecShipsave := TVehicle.Create;
-                RecShipsave.Vehicle_ID :=
-                  TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_ID;
-                RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_X;
-                RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_Y;
-                // RecShipsave.Vehicle_X       := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[0]);
-                // RecShipsave.Vehicle_Y       := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[1]);
-                RecShipsave.Vehicle_Z :=
-                  StrToFloat(lvGeneralShipSelect.Items[i].SubItems[2]);
-                RecShipsave.Vehicle_Heading :=
-                  StrToFloat(lvGeneralShipSelect.Items[i].SubItems[3]);
-                RecShipsave.Vehicle_Speed :=
-                  StrToFloat(lvGeneralShipSelect.Items[i].SubItems[4]);
-
-                ListShip.Add(RecShipsave);
-              end;
-            end;
-
-            { Save Target Surface Ship Configuration }
-            for i := 0 to lvTargetSurfaceSelect.Items.Count - 1 do
-            begin
-              if Assigned(lvTargetSurfaceSelect.Items[i].Data) then
-              begin
-                RecShipsave := TVehicle.Create;
-                RecShipsave.Vehicle_ID :=
-                  TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_ID;
-                RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_X;
-                RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_Y;
-                // RecShipsave.Vehicle_X       := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[0]);
-                // RecShipsave.Vehicle_Y       := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[1]);
-                RecShipsave.Vehicle_Z :=
-                  StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[2]);
-                RecShipsave.Vehicle_Heading :=
-                  StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[3]);
-                RecShipsave.Vehicle_Speed :=
-                  StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[4]);
-
-                ListShip.Add(RecShipsave);
-              end;
-            end;
-
-            { Save Target Subsurface Ship Configuration }
-            for i := 0 to lvTargetSubsurfaceSelect.Items.Count - 1 do
-            begin
-              if Assigned(lvTargetSubsurfaceSelect.Items[i].Data) then
-              begin
-                RecShipsave := TVehicle.Create;
-                RecShipsave.Vehicle_ID :=
-                  TVehicle(lvTargetSubsurfaceSelect.Items[i].Data).Vehicle_ID;
-                RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_X;
-                RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_Y;
-                // RecShipsave.Vehicle_X       := StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[0]);
-                // RecShipsave.Vehicle_Y       := StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[1]);
-                RecShipsave.Vehicle_Z :=
-                  StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[2]);
-                RecShipsave.Vehicle_Heading :=
-                  StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[3]);
-                RecShipsave.Vehicle_Speed :=
-                  StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[4]);
-
-                ListShip.Add(RecShipsave);
-              end;
-            end;
-
-            { Save Target Air Ship Configuration }
-            for i := 0 to lvTargetAirSelect.Items.Count - 1 do
-            begin
-              if Assigned(lvTargetAirSelect.Items[i].Data) then
-              begin
-                RecShipsave := TVehicle.Create;
-                RecShipsave.Vehicle_ID :=
-                  TVehicle(lvTargetAirSelect.Items[i].Data).Vehicle_ID;
-                RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_X;
-                RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data)
-                  .Vehicle_Y;
-                // RecShipsave.Vehicle_X       := StrToFloat(lvTargetAirSelect.Items[i].SubItems[0]);
-                // RecShipsave.Vehicle_Y       := StrToFloat(lvTargetAirSelect.Items[i].SubItems[1]);
-                RecShipsave.Vehicle_Z :=
-                  StrToFloat(lvTargetAirSelect.Items[i].SubItems[2]);
-                RecShipsave.Vehicle_Heading :=
-                  StrToFloat(lvTargetAirSelect.Items[i].SubItems[3]);
-                RecShipsave.Vehicle_Speed :=
-                  StrToFloat(lvTargetAirSelect.Items[i].SubItems[4]);
-
-                ListShip.Add(RecShipsave);
-              end;
-            end;
-
-            { Save Setting Console }
-            ListConsole := TList.Create;
-            for i := 0 to lvConsole.Items.Count - 1 do
-            begin
-              if lvConsole.Items[i].SubItems[4] <> '' then
-              begin
-                RecConsoleSave := TSaveConsole.Create;
-                RecConsoleSave.ConsoleID :=
-                  StrToInt(lvConsole.Items[i].Caption);
-                RecConsoleSave.shipID :=
-                  StrToInt(lvConsole.Items[i].SubItems[5]);
-                RecConsoleSave.LauncherID :=
-                  StrToInt(lvConsole.Items[i].SubItems[6]);
-
-                ListConsole.Add(RecConsoleSave);
-              end;
-            end;
-
-            // { Save Scenario Weapon}
-            // WeaponListScenario := TList.Create;
-            // for i := 0 to lvWeaponSelected.Items.Count - 1 do begin
-            // if lvWeaponSelected.Items[i].SubItems[0] <> nil then begin
-            // recWeaponSave   :=
-            // end;
-            // end;
-
-            if ListShip.Count > 0 then
-            begin
-              DataModule1.SaveScenario(RecSceSave, ListShip, ListConsole,
-                WeaponListScenario);
-
-              ClearAList(ListShip);
-              SimManager.MainObjList.ClearObject;
-              Close;
-            end
-            else
-            begin
-              ShowMessage('Add Ship First');
-            end;
-          end
-          else
-          begin
-            ShowMessage('Scenario Name Already Exist');
+            ListShip.Add(RecShipsave);
           end;
+        end;
+        {$ENDREGION}
 
+        {$REGION ' Target Ship '}
+        { Save Target Surface Ship Configuration }
+        for i := 0 to lvTargetSurfaceSelect.Items.Count - 1 do
+        begin
+          if Assigned(lvTargetSurfaceSelect.Items[i].Data) then
+          begin
+            RecShipsave := TVehicle.Create;
+            RecShipsave.Vehicle_ID := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_ID;
+            RecShipsave.Vehicle_X := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_X;
+            RecShipsave.Vehicle_Y := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_Y;
+            // RecShipsave.Vehicle_X       := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[0]);
+            // RecShipsave.Vehicle_Y       := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[1]);
+            RecShipsave.Vehicle_Z := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[3]);
+            RecShipsave.Vehicle_Heading := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_Speed := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[5]);
+
+            ListShip.Add(RecShipsave);
+          end;
+        end;
+        {$ENDREGION}
+
+        {$ENDREGION}
+
+        {$REGION ' Console '}
+        ListConsole := TList.Create;
+        for i := 0 to lvConsole.Items.Count - 1 do
+        begin
+          if lvConsole.Items[i].SubItems[4] <> '' then
+          begin
+            RecConsoleSave := TSaveConsole.Create;
+            RecConsoleSave.ConsoleID := StrToInt(lvConsole.Items[i].Caption);
+            RecConsoleSave.shipID := StrToInt(lvConsole.Items[i].SubItems[5]);
+            RecConsoleSave.LauncherID :=
+              StrToInt(lvConsole.Items[i].SubItems[6]);
+
+            ListConsole.Add(RecConsoleSave);
+          end;
+        end;
+        {$ENDREGION}
+
+        if ListShip.Count > 0 then
+        begin
+          DataModule1.SaveScenario(RecSceSave, ListShip, ListConsole, WeaponListScenario);
+
+          ClearAList(ListShip);
+
+          ShowMessage('New Scenario has been saved');
+
+          SimManager.MainObjList.ClearObject;
+
+          frmGameController.ShowScenario;
+          frmGameController.ClearScenarioData;
+          Close;
         end
         else
         begin
-          ShowMessage('Please Fill Scenario Name');
+          ShowMessage('Add Ship First');
         end;
+
         SimManager.isFirstRequest := false;
         RecSceSave.Free;
+        {$ENDREGION}
       end;
 
     1:
       begin
         { update Scenario }
         SceEnvi := TScenario.Create;
+
+        {$REGION ' Description Scenario '}
+
+        SceEnvi.Scenario_Desc := mmoKetSce.Text;
+
+        {$ENDREGION}
+
+        {$REGION ' Environment '}
         try
           SceEnvi.Scenario_Building := frmMoreEnvi.Building;
           SceEnvi.Scenario_StaticShip := frmMoreEnvi.StaticShip;
@@ -1199,19 +1211,26 @@ begin
           begin
             position := 0.001;
           end;
-          posPercentage := log10(frmMoreEnvi.tbFogH.Max * position) /
-            log10(frmMoreEnvi.tbFogH.Max);
+          posPercentage := log10(frmMoreEnvi.tbFogH.Max * position) / log10(frmMoreEnvi.tbFogH.Max);
           Val := lowerBound + ((boundary - (posPercentage * boundary)));
           SceEnvi.Scenario_FogHeight := Val;
           SceEnvi.Scenario_FogHeight_Persen := frmMoreEnvi.FogHeight;
 
           { Update }
           DataModule1.UpdateEnvi(Scenario_ID, SceEnvi);
+
         finally
           SceEnvi.Free;
         end;
 
+        {$ENDREGION}
+
+        {$REGION ' Ship '}
+
         ListShip := TList.Create;
+
+        {$ENDREGION}
+
 
         { save KRI Ship Configuration }
         for i := 0 to lvWarShipSelect.Items.Count - 1 do
@@ -1219,18 +1238,14 @@ begin
           if Assigned(lvWarShipSelect.Items[i].Data) then
           begin
             RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID := TVehicle(lvWarShipSelect.Items[i].Data)
-              .Vehicle_ID;
-            RecShipsave.Vehicle_X :=
-              StrToFloat(lvWarShipSelect.Items[i].SubItems[0]);
-            RecShipsave.Vehicle_Y :=
-              StrToFloat(lvWarShipSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_Z :=
-              StrToFloat(lvWarShipSelect.Items[i].SubItems[2]);
-            RecShipsave.Vehicle_Heading :=
-              StrToFloat(lvWarShipSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Speed :=
-              StrToFloat(lvWarShipSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_ID := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_ID;
+            RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_X;
+            RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_Y;
+//            RecShipsave.Vehicle_X := StrToFloat(lvWarShipSelect.Items[i].SubItems[1]);
+//            RecShipsave.Vehicle_Y := StrToFloat(lvWarShipSelect.Items[i].SubItems[2]);
+            RecShipsave.Vehicle_Z := StrToFloat(lvWarShipSelect.Items[i].SubItems[3]);
+            RecShipsave.Vehicle_Heading := StrToFloat(lvWarShipSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_Speed := StrToFloat(lvWarShipSelect.Items[i].SubItems[5]);
 
             ListShip.Add(RecShipsave);
           end;
@@ -1242,18 +1257,14 @@ begin
           if Assigned(lvGeneralShipSelect.Items[i].Data) then
           begin
             RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID :=
-              TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_ID;
-            RecShipsave.Vehicle_X :=
-              StrToFloat(lvGeneralShipSelect.Items[i].SubItems[0]);
-            RecShipsave.Vehicle_Y :=
-              StrToFloat(lvGeneralShipSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_Z :=
-              StrToFloat(lvGeneralShipSelect.Items[i].SubItems[2]);
-            RecShipsave.Vehicle_Heading :=
-              StrToFloat(lvGeneralShipSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Speed :=
-              StrToFloat(lvGeneralShipSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_ID := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_ID;
+            RecShipsave.Vehicle_X := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_X;
+            RecShipsave.Vehicle_Y := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_Y;
+//            RecShipsave.Vehicle_X := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[1]);
+//            RecShipsave.Vehicle_Y := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[2]);
+            RecShipsave.Vehicle_Z := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[3]);
+            RecShipsave.Vehicle_Heading := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_Speed := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[5]);
 
             ListShip.Add(RecShipsave);
           end;
@@ -1265,64 +1276,14 @@ begin
           if Assigned(lvTargetSurfaceSelect.Items[i].Data) then
           begin
             RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID :=
-              TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_ID;
-            RecShipsave.Vehicle_X :=
-              StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[0]);
-            RecShipsave.Vehicle_Y :=
-              StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_Z :=
-              StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[2]);
-            RecShipsave.Vehicle_Heading :=
-              StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Speed :=
-              StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[4]);
-
-            ListShip.Add(RecShipsave);
-          end;
-        end;
-
-        { Save Target Subsurface Ship Configuration }
-        for i := 0 to lvTargetSubsurfaceSelect.Items.Count - 1 do
-        begin
-          if Assigned(lvTargetSubsurfaceSelect.Items[i].Data) then
-          begin
-            RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID :=
-              TVehicle(lvTargetSubsurfaceSelect.Items[i].Data).Vehicle_ID;
-            RecShipsave.Vehicle_X :=
-              StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[0]);
-            RecShipsave.Vehicle_Y :=
-              StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_Z :=
-              StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[2]);
-            RecShipsave.Vehicle_Heading :=
-              StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Speed :=
-              StrToFloat(lvTargetSubsurfaceSelect.Items[i].SubItems[4]);
-
-            ListShip.Add(RecShipsave);
-          end;
-        end;
-
-        { Save Target Air Ship Configuration }
-        for i := 0 to lvTargetAirSelect.Items.Count - 1 do
-        begin
-          if Assigned(lvTargetAirSelect.Items[i].Data) then
-          begin
-            RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID := TVehicle(lvTargetAirSelect.Items[i].Data)
-              .Vehicle_ID;
-            RecShipsave.Vehicle_X :=
-              StrToFloat(lvTargetAirSelect.Items[i].SubItems[0]);
-            RecShipsave.Vehicle_Y :=
-              StrToFloat(lvTargetAirSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_Z :=
-              StrToFloat(lvTargetAirSelect.Items[i].SubItems[2]);
-            RecShipsave.Vehicle_Heading :=
-              StrToFloat(lvTargetAirSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Speed :=
-              StrToFloat(lvTargetAirSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_ID := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_ID;
+            RecShipsave.Vehicle_X := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_X;
+            RecShipsave.Vehicle_Y := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_Y;
+//            RecShipsave.Vehicle_X := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[0]);
+//            RecShipsave.Vehicle_Y := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[1]);
+            RecShipsave.Vehicle_Z := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[3]);
+            RecShipsave.Vehicle_Heading := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[4]);
+            RecShipsave.Vehicle_Speed := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[5]);
 
             ListShip.Add(RecShipsave);
           end;
@@ -1346,10 +1307,14 @@ begin
 
         if ListShip.Count > 0 then
         begin
-          DataModule1.UpdateCurrentDatabase(Scenario_ID, ListShip, ListConsole,
-            WeaponListScenario);
+          DataModule1.UpdateCurrentDatabase(Scenario_ID, ListShip, ListConsole, WeaponListScenario);
+
+          ShowMessage('Update Succes');
 
           SimManager.MainObjList.ClearObject;
+
+          frmGameController.ShowScenario;
+          frmGameController.ClearScenarioData;
           Close;
         end
         else
@@ -1504,7 +1469,7 @@ begin
   ClearListViewData(lvWarShipSelect);
   ClearListViewData(lvGeneralShipAll);
   ClearListViewData(lvGeneralShipSelect);
-  ClearListViewData(lvTargetSurfaceAll);
+  ClearListViewData(lvTargetShipAll);
   ClearListViewData(lvTargetSurfaceSelect);
   ClearListViewData(lvTargetSubsurfaceAll);
   ClearListViewData(lvTargetSubsurfaceSelect);
@@ -1851,46 +1816,61 @@ var
   i: Integer;
 
   { KRI, General, Target[Surface, Subsurface, Air] }
-  listShipKRI, listShipGeneral, listTargetSurface, listTargetSubsurface,
-    listTargetAir: TList;
+  listShipKRI,
+  listShipGeneral,
+  listTargetSurface,
+  listTargetSubsurface,
+  listTargetAir: TList;
 
-  ShipDetail, WarShip, GeneralShip, TargetSurfaceShip, TargetSubsurfaceShip,
-    TargetAirShip: TVehicle;
+  ShipDetail,
+  WarShip,
+  GeneralShip,
+  TargetSurfaceShip,
+  TargetSubsurfaceShip,
+  TargetAirShip: TVehicle;
+
 begin
   try
-    listShipKRI := TList.Create;
-    listShipGeneral := TList.Create;
-    listTargetSurface := TList.Create;
+
     listTargetSubsurface := TList.Create;
     listTargetAir := TList.Create;
 
-    DataModule1.GetAllWarShip(listShipKRI);
-    DataModule1.GetAllGeneralShip(listShipGeneral);
-    DataModule1.GetAllTargetSurface(listTargetSurface);
     DataModule1.GetAllTargetSubsurface(listTargetSubsurface);
     DataModule1.GetAllTargetAir(listTargetAir);
 
-    { Ship KRI }
+    {$REGION ' Load KRI '}
+    listShipKRI := TList.Create;
+    DataModule1.GetAllWarShip(listShipKRI);
+
     for i := 0 to listShipKRI.Count - 1 do
     begin
       WarShip := TVehicle(listShipKRI.Items[i]);
+
       if Assigned(WarShip) then
       begin
         with lvWarShipAll.Items.Add do
         begin
           ShipDetail := TVehicle.Create;
-          ShipDetail.Vehicle_ID := WarShip.Vehicle_ID;
-          ShipDetail.Vehicle_Name := WarShip.Vehicle_Name;
-          ShipDetail.Vehicle_Ctgr := WarShip.Vehicle_Ctgr;
-          ShipDetail.Vehicle_No := WarShip.Vehicle_No;
+
+          setVelueVehicle(ShipDetail, WarShip);
+
+          Caption := ShipDetail.Vehicle_Name;
+          case ShipDetail.Vehicle_Type of
+            1: SubItems.Add('Surface');
+            2: SubItems.Add('Air');
+            3: SubItems.Add('Subsurface');
+          end;
 
           Data := ShipDetail;
-          Caption := WarShip.Vehicle_Name;
         end;
       end;
     end;
+    {$ENDREGION}
 
-    { Ship General }
+    {$REGION ' Load General '}
+    listShipGeneral := TList.Create;
+    DataModule1.GetAllGeneralShip(listShipGeneral);
+
     for i := 0 to listShipGeneral.Count - 1 do
     begin
       GeneralShip := TVehicle(listShipGeneral.Items[i]);
@@ -1899,77 +1879,117 @@ begin
         with lvGeneralShipAll.Items.Add do
         begin
           ShipDetail := TVehicle.Create;
-          ShipDetail.Vehicle_ID := GeneralShip.Vehicle_ID;
-          ShipDetail.Vehicle_Name := GeneralShip.Vehicle_Name;
-          ShipDetail.Vehicle_Ctgr := GeneralShip.Vehicle_Ctgr;
-          ShipDetail.Vehicle_No := GeneralShip.Vehicle_No;
+
+          setVelueVehicle(ShipDetail, GeneralShip);
+
+          Caption := ShipDetail.Vehicle_Name;
+          case ShipDetail.Vehicle_Type of
+            1: SubItems.Add('Surface');
+            2: SubItems.Add('Air');
+            3: SubItems.Add('Subsurface');
+          end;
 
           Data := ShipDetail;
-          Caption := GeneralShip.Vehicle_Name;
         end;
       end;
-
     end;
+    {$ENDREGION}
 
-    { Target Surface }
+    {$REGION ' Load Target Surface '}
+    listTargetSurface := TList.Create;
+    DataModule1.GetAllTarget(listTargetSurface);
+
     for i := 0 to listTargetSurface.Count - 1 do
     begin
       TargetSurfaceShip := TVehicle(listTargetSurface.Items[i]);
       if Assigned(TargetSurfaceShip) then
       begin
-        with lvTargetSurfaceAll.Items.Add do
+        with lvTargetShipAll.Items.Add do
         begin
           ShipDetail := TVehicle.Create;
-          ShipDetail.Vehicle_ID := TargetSurfaceShip.Vehicle_ID;
-          ShipDetail.Vehicle_Name := TargetSurfaceShip.Vehicle_Name;
-          ShipDetail.Vehicle_Ctgr := TargetSurfaceShip.Vehicle_Ctgr;
-          ShipDetail.Vehicle_No := TargetSurfaceShip.Vehicle_No;
 
-          Data := ShipDetail;
+          setVelueVehicle(ShipDetail, TargetSurfaceShip);
+
           Caption := TargetSurfaceShip.Vehicle_Name;
-        end;
-      end;
-    end;
-
-    { Target Subsurface }
-    for i := 0 to listTargetSubsurface.Count - 1 do
-    begin
-      TargetSubsurfaceShip := TVehicle(listTargetSubsurface.Items[i]);
-      if Assigned(TargetSubsurfaceShip) then
-      begin
-        with lvTargetSubsurfaceAll.Items.Add do
-        begin
-          ShipDetail := TVehicle.Create;
-          ShipDetail.Vehicle_ID := TargetSubsurfaceShip.Vehicle_ID;
-          ShipDetail.Vehicle_Name := TargetSubsurfaceShip.Vehicle_Name;
-          ShipDetail.Vehicle_Ctgr := TargetSubsurfaceShip.Vehicle_Ctgr;
-          ShipDetail.Vehicle_No := TargetSubsurfaceShip.Vehicle_No;
+          case ShipDetail.Vehicle_Type of
+            1: SubItems.Add('Surface');
+            2: SubItems.Add('Air');
+            3: SubItems.Add('Subsurface');
+          end;
 
           Data := ShipDetail;
-          Caption := TargetSubsurfaceShip.Vehicle_Name;
         end;
       end;
     end;
+    {$ENDREGION}
 
-    { Target Air }
-    for i := 0 to listTargetAir.Count - 1 do
-    begin
-      TargetAirShip := TVehicle(listTargetAir.Items[i]);
-      if Assigned(TargetAirShip) then
-      begin
-        with lvTargetAirAll.Items.Add do
-        begin
-          ShipDetail := TVehicle.Create;
-          ShipDetail.Vehicle_ID := TargetAirShip.Vehicle_ID;
-          ShipDetail.Vehicle_Name := TargetAirShip.Vehicle_Name;
-          ShipDetail.Vehicle_Ctgr := TargetAirShip.Vehicle_Ctgr;
-          ShipDetail.Vehicle_No := TargetAirShip.Vehicle_No;
-
-          Data := ShipDetail;
-          Caption := TargetAirShip.Vehicle_Name;
-        end;
-      end;
-    end;
+//    {$REGION ' Load Target Surface '}
+//    listTargetSurface := TList.Create;
+//    DataModule1.GetAllTargetSurface(listTargetSurface);
+//
+//    for i := 0 to listTargetSurface.Count - 1 do
+//    begin
+//      TargetSurfaceShip := TVehicle(listTargetSurface.Items[i]);
+//      if Assigned(TargetSurfaceShip) then
+//      begin
+//        with lvTargetSurfaceAll.Items.Add do
+//        begin
+//          ShipDetail := TVehicle.Create;
+//
+//          setVelueVehicle(ShipDetail, TargetSurfaceShip);
+//
+//          Caption := TargetSurfaceShip.Vehicle_Name;
+//          case ShipDetail.Vehicle_Type of
+//            1: SubItems.Add('Surface');
+//            2: SubItems.Add('Air');
+//            3: SubItems.Add('Subsurface');
+//          end;
+//
+//          Data := ShipDetail;
+//        end;
+//      end;
+//    end;
+//    {$ENDREGION}
+//
+//    { Target Subsurface }
+//    for i := 0 to listTargetSubsurface.Count - 1 do
+//    begin
+//      TargetSubsurfaceShip := TVehicle(listTargetSubsurface.Items[i]);
+//      if Assigned(TargetSubsurfaceShip) then
+//      begin
+//        with lvTargetSubsurfaceAll.Items.Add do
+//        begin
+//          ShipDetail := TVehicle.Create;
+//          ShipDetail.Vehicle_ID := TargetSubsurfaceShip.Vehicle_ID;
+//          ShipDetail.Vehicle_Name := TargetSubsurfaceShip.Vehicle_Name;
+//          ShipDetail.Vehicle_Ctgr := TargetSubsurfaceShip.Vehicle_Ctgr;
+//          ShipDetail.Vehicle_No := TargetSubsurfaceShip.Vehicle_No;
+//
+//          Data := ShipDetail;
+//          Caption := TargetSubsurfaceShip.Vehicle_Name;
+//        end;
+//      end;
+//    end;
+//
+//    { Target Air }
+//    for i := 0 to listTargetAir.Count - 1 do
+//    begin
+//      TargetAirShip := TVehicle(listTargetAir.Items[i]);
+//      if Assigned(TargetAirShip) then
+//      begin
+//        with lvTargetAirAll.Items.Add do
+//        begin
+//          ShipDetail := TVehicle.Create;
+//          ShipDetail.Vehicle_ID := TargetAirShip.Vehicle_ID;
+//          ShipDetail.Vehicle_Name := TargetAirShip.Vehicle_Name;
+//          ShipDetail.Vehicle_Ctgr := TargetAirShip.Vehicle_Ctgr;
+//          ShipDetail.Vehicle_No := TargetAirShip.Vehicle_No;
+//
+//          Data := ShipDetail;
+//          Caption := TargetAirShip.Vehicle_Name;
+//        end;
+//      end;
+//    end;
 
   finally
     ClearAList(listShipKRI);
@@ -1985,11 +2005,46 @@ begin
   end;
 end;
 
+procedure TfrmSceEditor.ClearVisualForm;
+begin
+  ClearWeaponListScenario;
+
+  {$REGION ' General '}
+  edtScenarioName.Text := '';
+  mmoKetSce.Clear;
+  cbbPort.ItemIndex := 0;
+  {$ENDREGION}
+
+  {$REGION ' Environment '}
+  {$ENDREGION}
+
+  {$REGION ' Platform '}
+  ClearListViewData(lvWarShipAll);
+  ClearListViewData(lvWarShipSelect);
+  ClearListViewData(lvGeneralShipAll);
+  ClearListViewData(lvGeneralShipSelect);
+  ClearListViewData(lvTargetShipAll);
+  ClearListViewData(lvTargetSurfaceSelect);
+  ClearListViewData(lvTargetSubsurfaceAll);
+  ClearListViewData(lvTargetSubsurfaceSelect);
+  ClearListViewData(lvTargetAirAll);
+  ClearListViewData(lvTargetAirSelect);
+  ClearListViewData(lvConsole);
+  ClearListViewData(lvWeaponSelected);
+  {$ENDREGION}
+
+  pmConsole.Items.Clear;
+  pmConsole2.Items.Clear;
+
+  SimManager.MainObjList.ClearObject;
+end;
+
 procedure TfrmSceEditor.UpdateVisualForm;
 var
   listAllShip, listAllConsole: TList;
 
   ShipDetail, AllShip: TVehicle;
+//  RecSceSave: TScenario;
 
   AllConsole: TClientConsole;
   i: Integer;
@@ -2008,47 +2063,14 @@ var
   Console_ID: Integer;
 
   { Envi }
-  SceEnvi: TScenario;
+  scenTemp: TScenario;
 
   ClientList: TClientList;
 begin
-  { First Initialize }
-  ClearWeaponListScenario;
 
-  edtScenarioName.Text := '';
-  edtScenarioName.Text := '';
-  mmoKetSce.Clear;
+  ClearVisualForm;
 
-  ClearListViewData(lvWarShipAll);
-  ClearListViewData(lvWarShipSelect);
-  ClearListViewData(lvGeneralShipAll);
-  ClearListViewData(lvGeneralShipSelect);
-  ClearListViewData(lvTargetSurfaceAll);
-  ClearListViewData(lvTargetSurfaceSelect);
-  ClearListViewData(lvTargetSubsurfaceAll);
-  ClearListViewData(lvTargetSubsurfaceSelect);
-  ClearListViewData(lvTargetAirAll);
-  ClearListViewData(lvTargetAirSelect);
-  ClearListViewData(lvConsole);
-  ClearListViewData(lvWeaponSelected);
-
-//  lvWarShipAll.Items.Clear;
-//  lvWarShipSelect.Items.Clear;
-//  lvGeneralShipAll.Items.Clear;
-//  lvGeneralShipSelect.Items.Clear;
-//  lvTargetSurfaceAll.Items.Clear;
-//  lvTargetSurfaceSelect.Items.Clear;
-//  lvTargetSubsurfaceAll.Items.Clear;
-//  lvTargetSubsurfaceSelect.Items.Clear;
-//  lvTargetAirAll.Items.Clear;
-//  lvTargetAirSelect.Items.Clear;
-//  lvConsole.Items.Clear;
-//  lvWeaponSelected.Items.Clear;
-
-  pmConsole.Items.Clear;
-  pmConsole2.Items.Clear;
-
-  SimManager.MainObjList.ClearObject;
+  {$REGION ' Console '}
 
   listAllConsole := TList.Create;
   DataModule1.GetPC_Client(listAllConsole);
@@ -2142,25 +2164,27 @@ begin
   ClearAList(listAllConsole);
   listAllConsole.Free;
 
+  {$ENDREGION}
+
   if isNew then
   begin
     { New Scenario }
 
-    btnSaveScenario.Caption := 'Save New Scenario';
+//    btnSaveScenario.Caption := 'Save New Scenario';
     btnSaveScenario.Tag := 0;
 
     edtScenarioName.Enabled := true;
     cbbPort.Enabled := true;
 
-    frmMoreEnvi.tbWindSpeed.position := 0;
-    frmMoreEnvi.tbSeaSpeed.position := 0;
-    frmMoreEnvi.tbTemp.position := 0;
-    frmMoreEnvi.tbSeaState.position := 0;
-    frmMoreEnvi.tbBaroPressure.position := 0;
-    frmMoreEnvi.tbHumidity.position := 0;
-    frmMoreEnvi.tbFogH.position := 0;
-    frmMoreEnvi.vrwhlWindDirec.position := 180;
-    frmMoreEnvi.vrwhlSeaDirection.position := 180;
+//    frmMoreEnvi.tbWindSpeed.position := 0;
+//    frmMoreEnvi.tbSeaSpeed.position := 0;
+//    frmMoreEnvi.tbTemp.position := 0;
+//    frmMoreEnvi.tbSeaState.position := 0;
+//    frmMoreEnvi.tbBaroPressure.position := 0;
+//    frmMoreEnvi.tbHumidity.position := 0;
+//    frmMoreEnvi.tbFogH.position := 0;
+//    frmMoreEnvi.vrwhlWindDirec.position := 180;
+//    frmMoreEnvi.vrwhlSeaDirection.position := 180;
 
     GetAllVehicle;
   end
@@ -2171,95 +2195,97 @@ begin
     edtScenarioName.Text := ScenarioName;
     cbbPort.Enabled := false;
 
-    btnSaveScenario.Caption := 'Save Scenario';
     btnSaveScenario.Tag := 1;
 
-    { --------------------------------------------------------------------- }
-    { Environment }
-    SceEnvi := TScenario.Create;
+    scenTemp := TScenario.Create;
     try
-      DataModule1.GetEnviBySceID(Scenario_ID, SceEnvi);
+      DataModule1.GetScenarioDefByID(Scenario_ID, scenTemp);
 
-      frmMoreEnvi.eBuilding.ItemIndex := SceEnvi.Scenario_Building;
-      frmMoreEnvi.eStaticShips.ItemIndex := SceEnvi.Scenario_StaticShip;
-      frmMoreEnvi.eBuoy.ItemIndex := SceEnvi.Scenario_Buoy;
-      frmMoreEnvi.eTree.ItemIndex := SceEnvi.Scenario_Tree;
-      frmMoreEnvi.eTheme.ItemIndex := SceEnvi.Scenario_Theme;
-      frmMoreEnvi.Building := SceEnvi.Scenario_Building;
-      frmMoreEnvi.StaticShip := SceEnvi.Scenario_StaticShip;
-      frmMoreEnvi.Buoy := SceEnvi.Scenario_Buoy;
-      frmMoreEnvi.Tree := SceEnvi.Scenario_Tree;
-      frmMoreEnvi.Theme := SceEnvi.Scenario_Theme;
+      {$REGION ' Load General '}
 
-      frmMoreEnvi.lblSeaState.Caption := FloatToStr(SceEnvi.Scenario_SeaState);
-      frmMoreEnvi.lblWindSpeed.Caption :=
-        FloatToStr(SceEnvi.Scenario_WindSpeed);
-      frmMoreEnvi.lblCurrentSpeed.Caption :=
-        FloatToStr(SceEnvi.Scenario_CurrSpeed);
-      frmMoreEnvi.lblWindDirection.Caption :=
-        FloatToStr(SceEnvi.Scenario_WindDir_Deg);
-      frmMoreEnvi.lblCurrentDirection.Caption :=
-        FloatToStr(SceEnvi.Scenario_CurrDir_Deg);
-      frmMoreEnvi.lblTemperature.Caption :=
-        FloatToStr(SceEnvi.Scenario_Temperature);
-      frmMoreEnvi.lblBaroPressure.Caption :=
-        FloatToStr(SceEnvi.Scenario_BaroPressure);
-      frmMoreEnvi.lblHumidity.Caption := FloatToStr(SceEnvi.Scenario_Humidity);
-      frmMoreEnvi.lblFogHeight.Caption :=
-        FloatToStr(SceEnvi.Scenario_FogHeight_Persen);
-      frmMoreEnvi.SeaState := Round(SceEnvi.Scenario_SeaState);
-      frmMoreEnvi.WindSpeed := Round(SceEnvi.Scenario_WindSpeed);
-      frmMoreEnvi.CurrentSpeed := Round(SceEnvi.Scenario_CurrSpeed);
-      frmMoreEnvi.WindDir := Round(SceEnvi.Scenario_WindDir_Deg);
-      frmMoreEnvi.CurrentDir := Round(SceEnvi.Scenario_CurrDir_Deg);
-      frmMoreEnvi.Temperature := Round(SceEnvi.Scenario_Temperature);
-      frmMoreEnvi.BaroPressure := Round(SceEnvi.Scenario_BaroPressure);
-      frmMoreEnvi.Humidity := Round(SceEnvi.Scenario_Humidity);
-      frmMoreEnvi.FogHeight := Round(SceEnvi.Scenario_FogHeight_Persen);
+      mmoKetSce.Lines.Add(scenTemp.Scenario_Desc);
 
-      frmMoreEnvi.tbSeaState.position := Round(SceEnvi.Scenario_SeaState);
-      frmMoreEnvi.tbWindSpeed.position := Round(SceEnvi.Scenario_WindSpeed);
-      frmMoreEnvi.tbSeaSpeed.position := Round(SceEnvi.Scenario_CurrSpeed);
-      frmMoreEnvi.tbTemp.position := Round(SceEnvi.Scenario_Temperature);
-      frmMoreEnvi.tbBaroPressure.position :=
-        Round(SceEnvi.Scenario_BaroPressure);
-      frmMoreEnvi.tbHumidity.position := Round(SceEnvi.Scenario_Humidity);
-      frmMoreEnvi.tbFogH.position := Round(SceEnvi.Scenario_FogHeight_Persen);
+      cbbPort.ItemIndex := Round(scenTemp.Scenario_Port);
 
-      if SceEnvi.Scenario_WindDir_Deg > 180 then
-        frmMoreEnvi.vrwhlWindDirec.position :=
-          (Round(SceEnvi.Scenario_WindDir_Deg) - 180)
-      else
-        frmMoreEnvi.vrwhlWindDirec.position :=
-          (Round(SceEnvi.Scenario_WindDir_Deg) + 180);
+      {Game Center}
+//      DataModule1.GetSceneOffSetFromPortID(DataModule1.GetMapById(Scenario_ID), Dx, Dy);
+      DataModule1.GetSceneOffSetFromPortID(scenTemp.Scenario_Port, Dx, Dy);
 
-      if SceEnvi.Scenario_CurrDir_Deg > 180 then
-        frmMoreEnvi.vrwhlSeaDirection.position :=
-          (Round(SceEnvi.Scenario_CurrDir_Deg) - 180)
-      else
-        frmMoreEnvi.vrwhlSeaDirection.position :=
-          (Round(SceEnvi.Scenario_CurrDir_Deg) + 180);
-    finally
-      SceEnvi.Free;
-    end;
-    { --------------------------------------------------------------------- }
-
-    ListScenario := TList.Create;
-    DataModule1.GettAllScenario(ListScenario);
-    for i := 0 to ListScenario.Count - 1 do
-    begin
-      if Assigned(ListScenario[i]) then
+      if ((SimManager.instMapSet.xOffset <> Dx) and
+        (SimManager.instMapSet.yOffset <> Dy)) then
       begin
-        Scenario := TScenarioList(ListScenario[i]);
-        if Scenario.Scenario_ID = Scenario_ID then
-        begin
-          cbbPort.ItemIndex := Round(Scenario.ENV_PETA);
-          break;
-        end;
+        SimManager.instMapSet.useOffset := true;
+        SimManager.instMapSet.xOffset := Dx;
+        SimManager.instMapSet.yOffset := Dy;
+        SimManager.instMapSet.xCenter := Dx;
+        SimManager.instMapSet.yCenter := Dy;
+
+        frmMainInstruktur.MainMap.ZoomTo(frmMainInstruktur.MainMap.Zoom, Dx, Dy);
       end;
+
+      {$ENDREGION}
+
+      {$REGION ' Load Environment '}
+
+      frmMoreEnvi.eBuilding.ItemIndex := scenTemp.Scenario_Building;
+      frmMoreEnvi.eStaticShips.ItemIndex := scenTemp.Scenario_StaticShip;
+      frmMoreEnvi.eBuoy.ItemIndex := scenTemp.Scenario_Buoy;
+      frmMoreEnvi.eTree.ItemIndex := scenTemp.Scenario_Tree;
+      frmMoreEnvi.eTheme.ItemIndex := scenTemp.Scenario_Theme;
+      frmMoreEnvi.Building := scenTemp.Scenario_Building;
+      frmMoreEnvi.StaticShip := scenTemp.Scenario_StaticShip;
+      frmMoreEnvi.Buoy := scenTemp.Scenario_Buoy;
+      frmMoreEnvi.Tree := scenTemp.Scenario_Tree;
+      frmMoreEnvi.Theme := scenTemp.Scenario_Theme;
+
+      frmMoreEnvi.lblSeaState.Caption := FloatToStr(scenTemp.Scenario_SeaState);
+      frmMoreEnvi.lblWindSpeed.Caption := FloatToStr(scenTemp.Scenario_WindSpeed);
+      frmMoreEnvi.lblCurrentSpeed.Caption := FloatToStr(scenTemp.Scenario_CurrSpeed);
+      frmMoreEnvi.lblWindDirection.Caption := FloatToStr(scenTemp.Scenario_WindDir_Deg);
+      frmMoreEnvi.lblCurrentDirection.Caption := FloatToStr(scenTemp.Scenario_CurrDir_Deg);
+      frmMoreEnvi.lblTemperature.Caption := FloatToStr(scenTemp.Scenario_Temperature);
+      frmMoreEnvi.lblBaroPressure.Caption := FloatToStr(scenTemp.Scenario_BaroPressure);
+      frmMoreEnvi.lblHumidity.Caption := FloatToStr(scenTemp.Scenario_Humidity);
+      frmMoreEnvi.lblFogHeight.Caption := FloatToStr(scenTemp.Scenario_FogHeight_Persen);
+      frmMoreEnvi.SeaState := Round(scenTemp.Scenario_SeaState);
+      frmMoreEnvi.WindSpeed := Round(scenTemp.Scenario_WindSpeed);
+      frmMoreEnvi.CurrentSpeed := Round(scenTemp.Scenario_CurrSpeed);
+      frmMoreEnvi.WindDir := Round(scenTemp.Scenario_WindDir_Deg);
+      frmMoreEnvi.CurrentDir := Round(scenTemp.Scenario_CurrDir_Deg);
+      frmMoreEnvi.Temperature := Round(scenTemp.Scenario_Temperature);
+      frmMoreEnvi.BaroPressure := Round(scenTemp.Scenario_BaroPressure);
+      frmMoreEnvi.Humidity := Round(scenTemp.Scenario_Humidity);
+      frmMoreEnvi.FogHeight := Round(scenTemp.Scenario_FogHeight_Persen);
+
+      frmMoreEnvi.tbSeaState.position := Round(scenTemp.Scenario_SeaState);
+      frmMoreEnvi.tbWindSpeed.position := Round(scenTemp.Scenario_WindSpeed);
+      frmMoreEnvi.tbSeaSpeed.position := Round(scenTemp.Scenario_CurrSpeed);
+      frmMoreEnvi.tbTemp.position := Round(scenTemp.Scenario_Temperature);
+      frmMoreEnvi.tbBaroPressure.position := Round(scenTemp.Scenario_BaroPressure);
+      frmMoreEnvi.tbHumidity.position := Round(scenTemp.Scenario_Humidity);
+      frmMoreEnvi.tbFogH.position := Round(scenTemp.Scenario_FogHeight_Persen);
+
+      if scenTemp.Scenario_WindDir_Deg > 180 then
+        frmMoreEnvi.vrwhlWindDirec.position :=
+          (Round(scenTemp.Scenario_WindDir_Deg) - 180)
+      else
+        frmMoreEnvi.vrwhlWindDirec.position :=
+          (Round(scenTemp.Scenario_WindDir_Deg) + 180);
+
+      if scenTemp.Scenario_CurrDir_Deg > 180 then
+        frmMoreEnvi.vrwhlSeaDirection.position :=
+          (Round(scenTemp.Scenario_CurrDir_Deg) - 180)
+      else
+        frmMoreEnvi.vrwhlSeaDirection.position :=
+          (Round(scenTemp.Scenario_CurrDir_Deg) + 180);
+
+      {$ENDREGION}
+
+    finally
+      scenTemp.Free;
     end;
-    ClearAList(ListScenario);
-    ListScenario.Free;
+
+    {$REGION ' Load Console '}
 
     ListConsole := TList.Create;
     DataModule1.GetConsoleListBySceID(Scenario_ID, ListConsole);
@@ -2275,8 +2301,7 @@ begin
 
           if Console.ConsoleID = Console_ID then
           begin
-            lvConsole.Items[j].SubItems[4] :=
-              DataModule1.GetShipName(Console.shipID);
+            lvConsole.Items[j].SubItems[4] := DataModule1.GetShipName(Console.shipID);
             lvConsole.Items[j].SubItems[5] := IntToStr(Console.shipID);
             lvConsole.Items[j].SubItems[6] := IntToStr(Console.LauncherID);
 
@@ -2288,26 +2313,15 @@ begin
     ClearAList(ListConsole);
     ListConsole.Free;
 
-    mmoKetSce.Lines.Add(DataModule1.GetDesById(Scenario_ID));
-    DataModule1.GetSceneOffSetFromPortID
-      (DataModule1.GetMapById(Scenario_ID), Dx, Dy);
+    {$ENDREGION}
 
-    if ((SimManager.instMapSet.xOffset <> Dx) and
-      (SimManager.instMapSet.yOffset <> Dy)) then
-    begin
-      SimManager.instMapSet.useOffset := true;
-      SimManager.instMapSet.xOffset := Dx;
-      SimManager.instMapSet.yOffset := Dy;
-      SimManager.instMapSet.xCenter := Dx;
-      SimManager.instMapSet.yCenter := Dy;
-
-      frmMainInstruktur.MainMap.ZoomTo(frmMainInstruktur.MainMap.Zoom, Dx, Dy);
-    end;
+    {$REGION ' Load Ship '}
 
     GetAllVehicle;
 
     listAllShip := TList.Create;
     DataModule1.GetAllShipFromScen(Scenario_ID, listAllShip);
+
     for i := 0 to listAllShip.Count - 1 do
     begin
       if Assigned(listAllShip[i]) then
@@ -2315,56 +2329,44 @@ begin
         AllShip := TVehicle(listAllShip[i]);
 
         ShipDetail := TVehicle.Create;
-        ShipDetail.Vehicle_ID := AllShip.Vehicle_ID;
-        ShipDetail.Vehicle_Name := AllShip.Vehicle_Name;
-        ShipDetail.Vehicle_Ctgr := AllShip.Vehicle_Ctgr;
-        ShipDetail.Vehicle_No := AllShip.Vehicle_No;
-        ShipDetail.Vehicle_X := AllShip.Vehicle_X;
-        ShipDetail.Vehicle_Y := AllShip.Vehicle_Y;
-        ShipDetail.Vehicle_Z := AllShip.Vehicle_Z;
-        ShipDetail.Vehicle_Heading := AllShip.Vehicle_Heading;
-        ShipDetail.Vehicle_Speed := AllShip.Vehicle_Speed;
 
-        { KRI SHIP }
-        if (AllShip.Vehicle_Ctgr <> 0) and (AllShip.Vehicle_Type = 1) and
-          (AllShip.Vehicle_Target = 0) then
+        setVelueVehicle(ShipDetail, AllShip);
+
+        if (AllShip.Vehicle_Ctgr <> 0) and (AllShip.Vehicle_Type = 1) and (AllShip.Vehicle_Target = 0) then
         begin
-          { Get KRI Ship }
+          {$REGION ' Load KRI'}
           ListViewAdd(lvWarShipSelect, lvWarShipAll, ShipDetail, 3);
+          {$ENDREGION}
         end
-        else
-          { General SHIP }
-          if (AllShip.Vehicle_Ctgr = 0) and (AllShip.Vehicle_Type = 1) and
-            (AllShip.Vehicle_Target = 0) then
-          begin
-            { Get KRI Ship }
-            ListViewAdd(lvGeneralShipSelect, lvGeneralShipAll, ShipDetail, 3);
-          end
-          else
-            { Target Surface }
-            if (AllShip.Vehicle_Type = 1) and (AllShip.Vehicle_Target = 1) then
-            begin
-              { Get KRI Ship }
-              ListViewAdd(lvTargetSurfaceSelect, lvTargetSurfaceAll,
-                ShipDetail, 3);
-            end
-            else
-              { Target Subsurface }
-              if (AllShip.Vehicle_Type = 3) and (AllShip.Vehicle_Target = 1)
-              then
-              begin
-                { Get KRI Ship }
-                ListViewAdd(lvTargetSubsurfaceSelect, lvTargetSubsurfaceAll,
-                  ShipDetail, 3);
-              end
-              else
-                { Target Subsurface }
-                if (AllShip.Vehicle_Type = 2) and (AllShip.Vehicle_Target = 1)
-                then
-                begin
-                  { Get KRI Ship }
-                  ListViewAdd(lvTargetAirSelect, lvTargetAirAll, ShipDetail, 3);
-                end;
+        else  if (AllShip.Vehicle_Ctgr = 0) and (AllShip.Vehicle_Type = 1) and (AllShip.Vehicle_Target = 0) then
+        begin
+          {$REGION ' Load General'}
+          ListViewAdd(lvGeneralShipSelect, lvGeneralShipAll, ShipDetail, 3);
+          {$ENDREGION}
+        end
+        else if (AllShip.Vehicle_Target = 1) then
+        begin
+          {$REGION ' Load Target'}
+          ListViewAdd(lvTargetSurfaceSelect, lvTargetShipAll, ShipDetail, 3);
+          {$ENDREGION}
+        end;
+//            else
+//              { Target Subsurface }
+//              if (AllShip.Vehicle_Type = 3) and (AllShip.Vehicle_Target = 1)
+//              then
+//              begin
+//                { Get KRI Ship }
+//                ListViewAdd(lvTargetSubsurfaceSelect, lvTargetSubsurfaceAll,
+//                  ShipDetail, 3);
+//              end
+//              else
+//                { Target Subsurface }
+//                if (AllShip.Vehicle_Type = 2) and (AllShip.Vehicle_Target = 1)
+//                then
+//                begin
+//                  { Get KRI Ship }
+//                  ListViewAdd(lvTargetAirSelect, lvTargetAirAll, ShipDetail, 3);
+//                end;
 
         { Set Environment Object }
         Mx := AllShip.Vehicle_X;
@@ -2392,6 +2394,9 @@ begin
     end;
     ClearAList(listAllShip);
     listAllShip.Free;
+
+    {$ENDREGION}
+
   end;
 end;
 
@@ -2407,18 +2412,12 @@ end;
 
 procedure TfrmSceEditor.FormDestroy(Sender: TObject);
 begin
-//  ClearListViewData(lvTargetAirSelect);
-//  ClearListViewData(lvTargetSubsurfaceSelect);
-//  ClearListViewData(lvTargetSurfaceSelect);
-//  ClearListViewData(lvGeneralShipSelect);
-//  ClearListViewData(lvWarShipSelect);
-//  ClearListViewData(lvConsole);
 
   ClearListViewData(lvWarShipAll);
   ClearListViewData(lvWarShipSelect);
   ClearListViewData(lvGeneralShipAll);
   ClearListViewData(lvGeneralShipSelect);
-  ClearListViewData(lvTargetSurfaceAll);
+  ClearListViewData(lvTargetShipAll);
   ClearListViewData(lvTargetSurfaceSelect);
   ClearListViewData(lvTargetSubsurfaceAll);
   ClearListViewData(lvTargetSubsurfaceSelect);
@@ -2566,10 +2565,10 @@ var
   WeaponID, LauncherID, shipID: Integer;
   ClientConsole: TClientList;
 begin
-  if btnEnableWeapon.Tag = 0 then
-    isEnable := false
-  else
-    isEnable := true;
+//  if btnEnableWeapon.Tag = 0 then
+//    isEnable := false
+//  else
+//    isEnable := true;
 
   if lvWarShipSelect.Selected <> nil then
   begin
@@ -2645,14 +2644,14 @@ begin
     // ShowMessage(lvWeaponSelected.Selected.SubItems[0]);
     if lvWeaponSelected.Selected.SubItems[1] = 'Enable' then
     begin
-      btnEnableWeapon.Tag := 0;
-      btnEnableWeapon.Caption := 'Disable';
+//      btnEnableWeapon.Tag := 0;
+//      btnEnableWeapon.Caption := 'Disable';
     end
 
     else if lvWeaponSelected.Selected.SubItems[1] = 'Disable' then
     begin
-      btnEnableWeapon.Tag := 1;
-      btnEnableWeapon.Caption := 'Enable';
+//      btnEnableWeapon.Tag := 1;
+//      btnEnableWeapon.Caption := 'Enable';
     end;
   end;
 end;
@@ -3175,51 +3174,55 @@ begin
   lvWarShipSelect.Tag := 2;
   lvGeneralShipAll.Tag := 3;
   lvGeneralShipSelect.Tag := 4;
-  lvTargetSurfaceAll.Tag := 5;
+  lvTargetShipAll.Tag := 5;
   lvTargetSurfaceSelect.Tag := 6;
   lvTargetSubsurfaceAll.Tag := 7;
   lvTargetSubsurfaceSelect.Tag := 8;
   lvTargetAirAll.Tag := 9;
   lvTargetAirSelect.Tag := 10;
+
   { OnCompare }
   lvWarShipAll.OnCompare := ListViewCompare;
   lvWarShipSelect.OnCompare := ListViewCompare;
   lvGeneralShipAll.OnCompare := ListViewCompare;
   lvGeneralShipSelect.OnCompare := ListViewCompare;
-  lvTargetSurfaceAll.OnCompare := ListViewCompare;
+  lvTargetShipAll.OnCompare := ListViewCompare;
   lvTargetSurfaceSelect.OnCompare := ListViewCompare;
   lvTargetSubsurfaceAll.OnCompare := ListViewCompare;
   lvTargetSubsurfaceSelect.OnCompare := ListViewCompare;
   lvTargetAirAll.OnCompare := ListViewCompare;
   lvTargetAirSelect.OnCompare := ListViewCompare;
+
   { OnSelectitem }
   lvWarShipAll.OnSelectItem := ListViewSelectItem;
   lvWarShipSelect.OnSelectItem := ListViewSelectItem;
   lvGeneralShipAll.OnSelectItem := ListViewSelectItem;
   lvGeneralShipSelect.OnSelectItem := ListViewSelectItem;
-  lvTargetSurfaceAll.OnSelectItem := ListViewSelectItem;
+  lvTargetShipAll.OnSelectItem := ListViewSelectItem;
   lvTargetSurfaceSelect.OnSelectItem := ListViewSelectItem;
   lvTargetSubsurfaceAll.OnSelectItem := ListViewSelectItem;
   lvTargetSubsurfaceSelect.OnSelectItem := ListViewSelectItem;
   lvTargetAirAll.OnSelectItem := ListViewSelectItem;
   lvTargetAirSelect.OnSelectItem := ListViewSelectItem;
+
   { OnDblClick }
   lvWarShipAll.OnDblClick := ListViewDblClick;
   lvWarShipSelect.OnDblClick := ListViewDblClick;
   lvGeneralShipAll.OnDblClick := ListViewDblClick;
   lvGeneralShipSelect.OnDblClick := ListViewDblClick;
-  lvTargetSurfaceAll.OnDblClick := ListViewDblClick;
+  lvTargetShipAll.OnDblClick := ListViewDblClick;
   lvTargetSurfaceSelect.OnDblClick := ListViewDblClick;
   lvTargetSubsurfaceAll.OnDblClick := ListViewDblClick;
   lvTargetSubsurfaceSelect.OnDblClick := ListViewDblClick;
   lvTargetAirAll.OnDblClick := ListViewDblClick;
   lvTargetAirSelect.OnDblClick := ListViewDblClick;
+
   { OnClick }
   lvWarShipAll.OnClick := ListViewClick;
   lvWarShipSelect.OnClick := ListViewClick;
   lvGeneralShipAll.OnClick := ListViewClick;
   lvGeneralShipSelect.OnClick := ListViewClick;
-  lvTargetSurfaceAll.OnClick := ListViewClick;
+  lvTargetShipAll.OnClick := ListViewClick;
   lvTargetSurfaceSelect.OnClick := ListViewClick;
   lvTargetSubsurfaceAll.OnClick := ListViewClick;
   lvTargetSubsurfaceSelect.OnClick := ListViewClick;
@@ -3237,6 +3240,7 @@ begin
   btnRemoveTargetSubsurface.Tag := 8;
   btnAddTargetAir.Tag := 9;
   btnRemoveTargetAir.Tag := 10;
+
   { Add Button }
   btnAddWarShip.Enabled := false;
   btnAddGnrShip.Enabled := false;
@@ -3248,6 +3252,7 @@ begin
   btnAddTargetSurface.OnClick := ButtonAddShip;
   btnAddTargetSubsurface.OnClick := ButtonAddShip;
   btnAddTargetAir.OnClick := ButtonAddShip;
+
   { Remove Button }
   btnRemoveWarShip.Enabled := false;
   btnRemoveGnrShip.Enabled := false;
@@ -3311,6 +3316,57 @@ procedure TfrmSceEditor.pnlMainBottomClick(Sender: TObject);
 begin
   // if GetAsyncKeyState(16) <> 0 then btnWeaponList.Visible := True
   // else btnWeaponList.Visible := False;
+end;
+
+function TfrmSceEditor.CekInput: boolean;
+var
+  i, chkSpace, numSpace: Integer;
+begin
+  result := false;
+
+  { Jika inputan scenario name kosong }
+  if (edtScenarioName.Text = '') then
+  begin
+    ShowMessage('Please insert scenario name');
+    Exit;
+  end;
+
+  { Jika berisi spasi semua }
+  if Copy(edtScenarioName.Text, 1, 1) = ' ' then
+  begin
+    chkSpace := Length(edtScenarioName.Text);
+    numSpace := 0;
+
+    for i := 1 to chkSpace do
+    begin
+      if edtScenarioName.Text[i] = #32 then
+        numSpace := numSpace + 1;
+    end;
+
+    if chkSpace = numSpace then
+    begin
+      ShowMessage('Please use another scenario name');
+      Exit;
+    end;
+  end;
+
+  { Jika scenario name sudah ada }
+  if DataModule1.GetScenarioByName(edtScenarioName.Text) then
+  begin
+    { Jika inputan baru }
+    if isNew then
+    begin
+      ShowMessage('Please use another scenario name');
+      Exit;
+    end
+    else if LastName <> edtScenarioName.Text then
+    begin
+      ShowMessage('Please use another scenario name');
+      Exit;
+    end;
+  end;
+
+  result := true;
 end;
 
 procedure TfrmSceEditor.ClearListViewData(const aListView: TListView);

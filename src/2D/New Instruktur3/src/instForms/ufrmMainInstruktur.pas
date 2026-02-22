@@ -287,13 +287,17 @@ end;
 
 procedure TfrmMainInstruktur.SetFormLayout;
 begin
-   { Set Main Instrukutur }
-   DefaultMonitor := dmDesktop;
-   Height         := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Height;
-   Top            := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Top;
-   Left           := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Left;
-   width          := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Width;
-   Show;
+  { Set Main Instrukutur }
+  DefaultMonitor := dmDesktop;
+
+  if SimManager.instMonitorSet.MapDisplay > Screen.MonitorCount then
+    SimManager.instMonitorSet.MapDisplay := 0;
+
+  Height         := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Height;
+  Top            := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Top;
+  Left           := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Left;
+  width          := Screen.Monitors[SimManager.instMonitorSet.MapDisplay].Width;
+  Show;
 end;
 
 procedure TfrmMainInstruktur.FormCreate(Sender: TObject);

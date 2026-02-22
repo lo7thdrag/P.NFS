@@ -395,7 +395,7 @@ begin
 
       RecEnvy := TScenario.Create;
       try
-        DataModule1.GetEnviBySceID(CurrentScenarioID, RecEnvy);
+        DataModule1.GetScenarioDefByID(CurrentScenarioID, RecEnvy);
         DataModule1.GetPortNameNoById(RecEnvy.Scenario_Port);
 
 
@@ -1741,7 +1741,7 @@ var
 begin
   RecEnvy := TScenario.Create;
   try
-    DataModule1.GetEnviBySceID(CurrentScenarioID, RecEnvy);
+    DataModule1.GetScenarioDefByID(CurrentScenarioID, RecEnvy);
     DataModule1.GetPortNameNoById(RecEnvy.Scenario_Port);
 
 

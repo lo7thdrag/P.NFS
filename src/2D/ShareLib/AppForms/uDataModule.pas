@@ -20,7 +20,11 @@ type
     DGen: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
+
   public
+
+    function AssigenedShipData(const DS: TZQuery; var aRec: Tlist): Integer;
+
     {$REGION ' Platform '}
     function GetShipByID(const shipid: integer): TVehicle;
     {$ENDREGION}
@@ -62,13 +66,24 @@ type
     function GetListWeaponDetail(const IdWeapon, idDet: integer;
       var aRec: Tlist): integer;
 
+    {$REGION ' Get Ship '}
     function GetAllShipFromScen(const SceID: integer; var aRec: Tlist): integer;
     function GetAllShip(var aRec: Tlist): integer;
     function GetAllWarShip(var aRec: Tlist): integer;
     function GetAllGeneralShip(var aRec: Tlist): integer;
+    function GetAllTarget(var aRec: Tlist): integer;
     function GetAllTargetSurface(var aRec: Tlist): integer;
     function GetAllTargetSubsurface(var aRec: Tlist): integer;
     function GetAllTargetAir(var aRec: Tlist): integer;
+    {$ENDREGION}
+
+    {$REGION ' Scenario Procedure '}
+    function GettAllScenario(var aRec: Tlist): integer;
+    function GetScenarioByID(IdScenario: integer): string;
+    function GetScenarioByName(NameScenario: string): Boolean;
+
+    procedure GetScenarioDefByID(const SceID: integer; var rec: TScenario);
+    {$ENDREGION}
 
     function GetAllPort(var aRec: Tlist): integer;
     function GetAllWeapon(var aRec: Tlist): integer;
@@ -88,7 +103,7 @@ type
       var aRec: Tlist): integer;
     function GetGeneralShipInScenario(const ScenarioID: integer;
       var aRec: Tlist): integer;
-    function GettAllScenario(var aRec: Tlist): integer;
+
     function GetAllGame(var aRec: Tlist): integer;
     function GetShipNoById(const shipid: integer): integer;
     function GetMapById(const Sce_ID: integer): integer;
@@ -119,7 +134,7 @@ type
 
     procedure UpdateEnvi(const SceID: integer; const SceEnvi: TScenario);
 
-    procedure GetEnviBySceID(const SceID: integer; var rec: TScenario);
+
 
     function GetCanonTOFbyRange(GuntType: integer; iRange: Double): single;
 
@@ -135,7 +150,7 @@ type
     function GetScenarioIDByName(NameScen: String; aRec: Tlist): integer;
     function GetGameID(ScenID: integer): integer;
     function GameNameAlreadyExist(aGameName: string): boolean;
-    function GetScenarioByID(IdScenario: integer): string;
+
     function GetMessageFromEventID(IDConsole, IDEvent: integer): string;
     function GetShipNameByID(idShip: integer): string;
     function GetShipCallsignByID(idShip: integer): string;
@@ -436,6 +451,7 @@ begin
   if DS.RecordCount > 0 then
   begin
     rec := TVehicle.Create;
+
     rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
     rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
     rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
@@ -457,7 +473,6 @@ begin
     rec.Vehicle_LENGTH  := DS.FieldByName('DIM_LENGTH').AsFloat;
     rec.Vehicle_WIDTH   := DS.FieldByName('DIM_WIDTH').AsFloat;
     rec.Vehicle_HEIGHT  := DS.FieldByName('DIM_HEIGHT').AsFloat;
-
 
     Result := rec;
   end;
@@ -1057,21 +1072,7 @@ begin
 
   if not DS.IsEmpty then
   begin
-    if not Assigned(aRec) then
-      aRec := Tlist.Create
-    else
-      aRec.Clear;
-
-    while not DS.Eof do
-    begin
-      rec := TVehicle.Create;
-      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-
-      aRec.Add(rec);
-      DS.Next;
-    end;
+    AssigenedShipData(DS, aRec);
   end;
 end;
 
@@ -1139,7 +1140,7 @@ begin
       rec.WeaponID := DQ.FieldByName('WeaponID').AsInteger;
       rec.PC_MAC := DQ.FieldByName('PC_MAC').AsString;
       rec.APP_NAME_2 := DQ.FieldByName('APP_NAME_2').AsString;
-      rec.GAME_TIPE := DQ.FieldByName('Game_Type').AsInteger;
+//      rec.GAME_TIPE := DQ.FieldByName('Game_Type').AsInteger;
 
       aRec.Add(rec);
       DQ.Next;
@@ -1221,14 +1222,7 @@ begin
 
     while not DS.Eof do
     begin
-      rec := TVehicle.Create;
-      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-      rec.Vehicle_No := DS.FieldByName('SHIP_NO').AsInteger;
-      rec.Vehicle_Type := DS.FieldByName('SHIP_TYPE').AsInteger;
-      aRec.Add(rec);
-      DS.Next;
+      AssigenedShipData(DS, aRec);
     end;
   end;
 end;
@@ -1281,6 +1275,35 @@ begin
       aRec.Add(rec);
       DQ.Next;
     end;
+  end;
+end;
+
+function TDataModule1.GetAllTarget(var aRec: Tlist): integer;
+var
+  rec: TVehicle;
+  i: integer;
+begin
+  Result := -1;
+
+  with DS do
+  begin
+    Close;
+
+    SQL.Clear;
+    SQL.Add('SELECT *');
+    SQL.Add('FROM m_ship');
+    SQL.Add('WHERE ISTARGET = 1 ');
+    SQL.Add('ORDER BY SHIP_ID');
+
+    Open;
+    DS.First;
+  end;
+
+  Result := DS.RecordCount;
+
+  if not DS.IsEmpty then
+  begin
+    AssigenedShipData(DS, aRec);
   end;
 end;
 
@@ -1395,21 +1418,7 @@ begin
 
   if not DS.IsEmpty then
   begin
-    if not Assigned(aRec) then
-      aRec := Tlist.Create
-    else
-      aRec.Clear;
-
-    while not DS.Eof do
-    begin
-      rec := TVehicle.Create;
-      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-      rec.Vehicle_No := DS.FieldByName('SHIP_NO').AsInteger;
-      aRec.Add(rec);
-      DS.Next;
-    end;
+    AssigenedShipData(DS, aRec);
   end;
 end;
 
@@ -1438,21 +1447,7 @@ begin
 
   if not DS.IsEmpty then
   begin
-    if not Assigned(aRec) then
-      aRec := Tlist.Create
-    else
-      aRec.Clear;
-
-    while not DS.Eof do
-    begin
-      rec := TVehicle.Create;
-      rec.Vehicle_ID := DS.FieldByName('SHIP_ID').AsInteger;
-      rec.Vehicle_Name := DS.FieldByName('SHIP_NAME').AsString;
-      rec.Vehicle_Ctgr := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-      rec.Vehicle_No := DS.FieldByName('SHIP_NO').AsInteger;
-      aRec.Add(rec);
-      DS.Next;
-    end;
+    AssigenedShipData(DS, aRec);
   end;
 end;
 
@@ -1499,7 +1494,7 @@ begin
       rec.C_Status := 'OFFLINE';
       rec.C_WeaponID := DS.FieldByName('WeaponID').AsInteger;
       rec.C_Ship := DS.FieldByName('Ship_Name').AsString; // dendy tes
-      rec.C_GameType := DS.FieldByName('Game_Type').AsInteger;
+//      rec.C_GameType := DS.FieldByName('Game_Type').AsInteger;
 
       case DS.FieldByName('APP_TIPE').AsInteger of
         0:
@@ -2068,6 +2063,7 @@ begin
 
     SQL.Add('UPDATE sce_main set ');
 
+    SQL.Add('KET=' + QuotedStr(SceEnvi.Scenario_Desc) + ',');
     SQL.Add('ENV_BUILDING=' + IntToStr(SceEnvi.Scenario_Building) + ',');
     SQL.Add('ENV_SSHIPS=' + IntToStr(SceEnvi.Scenario_StaticShip) + ',');
     SQL.Add('ENV_BUOY=' + IntToStr(SceEnvi.Scenario_Buoy) + ',');
@@ -2100,7 +2096,7 @@ begin
   end;
 end;
 
-procedure TDataModule1.GetEnviBySceID(const SceID: integer; var rec: TScenario);
+procedure TDataModule1.GetScenarioDefByID(const SceID: integer; var rec: TScenario);
 begin
   with DS do
   begin
@@ -2237,7 +2233,7 @@ var
 begin
   SceEnvi := TScenario.Create;
   try
-    GetEnviBySceID(SceID, SceEnvi);
+    GetScenarioDefByID(SceID, SceEnvi);
 
     // Scenario Main
     with DQ do
@@ -2929,6 +2925,23 @@ begin
     Result := DS.FieldByName('NAMA').AsString;
 end;
 
+function TDataModule1.GetScenarioByName(NameScenario: string): Boolean;
+begin
+  Result := False;
+
+  with DS do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT * FROM sce_main');
+    SQL.Add('WHERE NAMA LIKE ' + QuotedStr(NameScenario));
+
+    Open;
+
+    Result := RecordCount > 0;
+  end;
+end;
+
 function TDataModule1.GetScenarioIDByName(NameScen: String;
   aRec: Tlist): integer;
 var
@@ -3265,6 +3278,49 @@ begin
 
   if DS.RecordCount > 0 then
     Result := DS.Fields[0].AsInteger;
+end;
+
+function TDataModule1.AssigenedShipData(const DS: TZQuery; var aRec: Tlist): Integer;
+var
+  rec : TVehicle;
+
+begin
+  if not Assigned(aRec) then
+    aRec := Tlist.Create
+  else
+    aRec.Clear;
+
+  while not DS.Eof do
+  begin
+    rec := TVehicle.Create;
+
+    rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
+    rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
+    rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
+    rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
+    rec.Vehicle_Type  := DS.FieldByName('SHIP_TYPE').AsInteger;
+
+    rec.Vehicle_TrimFactor      := DS.FieldByName('SHIP_TRIM_FACTOR').AsFloat;
+    rec.Vehicle_TacDiameter     := DS.FieldByName('SHIP_TACTICAL_DIAMETER').AsFloat;
+    rec.Vehicle_ShaftUp         := DS.FieldByName('SHIP_SHAFT_UP').AsFloat;
+    rec.Vehicle_HeelFactor      := DS.FieldByName('SHIP_HEEL_FACTOR').AsFloat;
+    rec.Vehicle_Displacement    := DS.FieldByName('SHIP_DISPLACEMENT').AsFloat;
+    rec.Vehicle_ThrottleRate    := DS.FieldByName('SHIP_THROTTLE_RATE').AsFloat;
+    rec.Vehicle_RudderSwingRate := DS.FieldByName('SHIP_RUDDER_SWING_RATE').AsFloat;
+
+    rec.Vehicle_SUSTAINABILITY  := DS.FieldByName('DAMAGE_SUSTAINABILITY').AsFloat;
+    rec.Vehicle_Maxspeed        := DS.FieldByName('SHIP_MAX_SPEED').AsFloat;
+    rec.Vehicle_MaxspeedAstern  := DS.FieldByName('SHIP_MAX_SPEED_ASTERN').AsFloat;
+
+    rec.Vehicle_LENGTH  := DS.FieldByName('DIM_LENGTH').AsFloat;
+    rec.Vehicle_WIDTH   := DS.FieldByName('DIM_WIDTH').AsFloat;
+    rec.Vehicle_HEIGHT  := DS.FieldByName('DIM_HEIGHT').AsFloat;
+
+    aRec.Add(rec);
+    DS.Next;
+  end;
+
+  Result := aRec.Count;
 end;
 
 function TDataModule1.CheckObjectCatDomain(const shipid: integer): integer;
