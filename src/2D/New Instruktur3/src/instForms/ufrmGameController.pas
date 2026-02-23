@@ -1081,12 +1081,12 @@ type
     AdvSmoothLabel44: TAdvSmoothLabel;
     lvDetail: TListView;
     pnlRangeYakhont: TPanel;
-    btnCannonAssigned23: TAdvSmoothButton;
-    btnCannonDeassign23: TAdvSmoothButton;
+    btnCannonAssigend23: TAdvSmoothButton;
+    btnCannonDeassigned23: TAdvSmoothButton;
     btnCannonFire23: TAdvSmoothButton;
     btnCannonStartFire23: TAdvSmoothButton;
-    btnSelectCannonTarget23: TSpeedButton;
-    btnCannonStopFire: TAdvSmoothButton;
+    btnSelectCanonTarget23: TSpeedButton;
+    btnWCannonCease23: TAdvSmoothButton;
     cbbCannonBalistikID23: TComboBox;
     cbbCannonModeID23: TComboBox;
     cbbSalvoRate23: TComboBox;
@@ -1096,21 +1096,21 @@ type
     edtCannonMissileID23: TEdit;
     edtCannonMissileNumber23: TEdit;
     edtCannonTargetID23: TEdit;
-    lbl1: TLabel;
-    lbl3: TLabel;
-    lbl28: TLabel;
-    lbl30: TLabel;
-    lbl35: TLabel;
-    lbl36: TLabel;
-    lbl37: TLabel;
-    lbl39: TLabel;
-    lbl40: TLabel;
-    lbl41: TLabel;
-    lbl43: TLabel;
-    lbl57: TLabel;
-    lbl84: TLabel;
-    lbl90: TLabel;
-    lbl180: TLabel;
+    Label70: TLabel;
+    Label78: TLabel;
+    Label83: TLabel;
+    Label86: TLabel;
+    Label91: TLabel;
+    Label94: TLabel;
+    Label97: TLabel;
+    Label99: TLabel;
+    Label101: TLabel;
+    Label102: TLabel;
+    Label105: TLabel;
+    Label107: TLabel;
+    Label109: TLabel;
+    Label111: TLabel;
+    Label112: TLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1135,23 +1135,10 @@ type
     procedure btnMistral_FireClick(Sender: TObject);
     procedure btnStrella_FireClick(Sender: TObject);
     procedure btnCannonStartFireClick(Sender: TObject);
+    procedure btnCannonStartFire23Click(Sender: TObject);
     procedure btnYahkont_Fire_Click(Sender: TObject);
     procedure btnC802_FireClick(Sender : Tobject);
-    procedure lvWeaponClick(Sender: TObject);
-    procedure mni3Click(Sender: TObject);
-    procedure btnCamViewOldLeftClick(Sender: TObject);
-    procedure btnCamRotateOldLeftMouseDown(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure btnCamRotateOldLeftMouseUp(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure btnPlayerCameraLockClick(Sender: TObject);
     procedure btnPlayerCameraUnlockClick(Sender: TObject);
-    procedure cbSelectIDCameraChange(Sender: TObject);
-    procedure btnCamViewLeftClick(Sender: TObject);
-    procedure btnCamMoveLefMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure btnCamMoveLefMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure vrWheelCameraRotateXChange(Sender: TObject);
     procedure vrWheelCameraRotateYChange(Sender: TObject);
     procedure vrWheelCameraRotateYMouseUp(Sender: TObject;
@@ -3621,6 +3608,11 @@ begin
   end;
 end;
 
+procedure TfrmGameController.btnPlayerCameraUnlockClick(Sender: TObject);
+begin
+
+end;
+
 { Tetral }
 procedure TfrmGameController.btnTetral_FireClick(Sender: TObject);
 var
@@ -3724,6 +3716,101 @@ begin
 end;
 
 { Cannon }
+procedure TfrmGameController.btnCannonStartFire23Click(Sender: TObject);
+var
+  Item : TListItem;
+  ItemWeapon : TListItem;
+
+  isValid : Boolean;
+
+  ShipID, salvoRate,
+  WeaponID,
+  LauncherID,
+  MissileID,
+  MissileNumber : Integer;
+
+  TargetID,
+  ModeID,
+  BalistikID : integer;
+
+  CorrectBearing,
+  CorrectElev : Double;
+
+  RecSend : TRec3DSetWCC;
+
+  Weapon : TWeapon;
+begin
+  isValid := True;
+
+  if not Assigned(lvRuntimeShip.Selected) then Exit;
+  if not Assigned(lvWeapon.Selected) then Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvWeapon.Selected.Data) then Exit;
+  ShipID    := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+  WeaponID  := TWeapon(lvWeapon.Selected.Data).WeaponID;
+
+  if not TryStrToInt(edtCannonLauncherID23.Text , LauncherID) then isValid := False;
+  if not TryStrToInt(edtCannonMissileID23.Text, MissileID) then isValid := false;
+  if not TryStrToInt(edtCannonLauncherID23.Text, LauncherID) then isValid := False;
+  if not TryStrToInt(edtCannonMissileNumber23.Text, MissileNumber) then isValid := false;
+
+  if not TryStrToInt(edtCannonTargetID23.Text, TargetID) then isValid := false;
+  if not TryStrToFloat(edtCannonCorrElev23.Text, CorrectElev) then isValid := false;
+  if not TryStrToFloat(edtCannonCorrBearing23.Text, CorrectBearing) then isValid := False;
+  if not TryStrToInt(cbbSalvoRate23.Text , salvoRate) then isValid := False;
+
+  ModeID := cbbCannonModeID23.ItemIndex + 1;
+  BalistikID := cbbCannonBalistikID23.ItemIndex;
+
+  if isValid then
+  begin
+    RecSend.ShipID          := ShipID;
+    RecSend.mWeaponID       := WeaponID;
+    RecSend.mLauncherID     := LauncherID;
+    RecSend.mMissileID      := MissileID;
+    RecSend.mMissileNumber  := MissileNumber;
+    RecSend.mOrderID        := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := TargetID;
+    RecSend.mModeID             := ModeID;
+    RecSend.mAutoCorrectElev    := CorrectElev;
+    RecSend.mAutoCorrectBearing := CorrectBearing;
+
+    RecSend.mBalistikID         := BalistikID;
+    RecSend.mSalvoRate          := salvoRate;
+
+    case TComponent(sender).Tag of
+      //fire
+      1 : begin
+            RecSend.mOrderID := __ORD_CANNON_START_F;
+            SimManager.NetSendTo3D_OrderCannon(RecSend);
+          end;
+      //Cease
+      2 : begin
+            RecSend.mOrderID := __ORD_CANNON_STOP_F;
+            SimManager.NetSendTo3D_OrderCannon(RecSend);
+          end;
+      //Assigned
+      3 : begin
+            RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+            SimManager.NetSendTo3D_OrderCannon(RecSend);
+          end;
+      //Deassigned
+      4 : begin
+            RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
+            SimManager.NetSendTo3D_OrderCannon(RecSend);
+          end;
+      //Fire
+      5 : begin
+            RecSend.mOrderID := __ORD_CANNON_F;
+            SimManager.NetSendTo3D_OrderCannon(RecSend);
+          end;
+
+    end;
+  end;
+end;
+
 procedure TfrmGameController.btnCannonStartFireClick(Sender: TObject);
 var
   Item : TListItem;
@@ -7156,6 +7243,11 @@ begin
   SimManager.NetSendTo3D_SetCommandOrder(0, ORD_WINDDIRECTION, newDir, 0,0,0,0);
 end;
 
+procedure TfrmGameController.WakeOnLan(const AMacAddress: string);
+begin
+
+end;
+
 procedure TfrmGameController.vrwhlSeaDirectionMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
@@ -8975,6 +9067,24 @@ begin
   FTrajectory.WidthCanvas := frmGameController.imgTrajectory.Width;
   FTrajectory.heightCanvas := frmGameController.imgTrajectory.Height;
   FTrajectory.aCanvas := frmGameController.imgTrajectory.Canvas;
+end;
+
+procedure TfrmGameController.CurrentShipItemSendCommandPlayerCamera(
+  const orderID, LockID: integer);
+begin
+
+end;
+
+procedure TfrmGameController.CurrentShipItemSendCommandPlayerLockSideCamera(
+  const orderID, TypeLock, LockID: integer);
+begin
+
+end;
+
+procedure TfrmGameController.CurrentShipItemSendCommanPlayerEvent(const orderID,
+  valInt: Integer; const valDbl: double);
+begin
+
 end;
 
 procedure TfrmGameController.DestroyTrajectory;
