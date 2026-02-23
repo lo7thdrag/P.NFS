@@ -819,7 +819,7 @@ var
 
   o: TObject;
 
-  ShipClassID: Integer;
+//  ShipClassID: Integer;
 begin
   // client socket received. server socket rebroadcast.
   // receive from 3D, send to 3D panel
@@ -947,16 +947,16 @@ begin
         then
         begin
 
-          dmMain.Ds.Close;
-          dmMain.Ds.SQL.Clear;
-          dmMain.Ds.SQL.Add('SELECT SHIP_CLASS_ID');
-          dmMain.Ds.SQL.Add('FROM m_ship');
-          dmMain.Ds.SQL.Add('WHERE Ship_ID=' + IntToStr(recA244^.ShipID));
-          dmMain.Ds.Open;
-          dmMain.Ds.First;
-          ShipClassID:= 0;
-          if dmMain.Ds.RecordCount>0 then
-            ShipClassID:= dmMain.DS.FieldByName('SHIP_CLASS_ID').AsInteger;
+//          dmMain.Ds.Close;
+//          dmMain.Ds.SQL.Clear;
+//          dmMain.Ds.SQL.Add('SELECT SHIP_CLASS_ID');
+//          dmMain.Ds.SQL.Add('FROM m_ship');
+//          dmMain.Ds.SQL.Add('WHERE Ship_ID=' + IntToStr(recA244^.ShipID));
+//          dmMain.Ds.Open;
+//          dmMain.Ds.First;
+//          ShipClassID:= 0;
+//          if dmMain.Ds.RecordCount>0 then
+//            ShipClassID:= dmMain.DS.FieldByName('SHIP_CLASS_ID').AsInteger;
 
           RecSend3DMissilePos.ShipID := recA244^.ShipID;
           RecSend3DMissilePos.WeaponID := recA244^.mWeaponID;
@@ -967,7 +967,7 @@ begin
           case recSendA244.OrderID of
             _ORD_SPS_FIRE:
               begin
-                if ShipClassID=10 then
+//                if ShipClassID=10 then
                   RecSend3DMissilePos.status:= ST_MISSILE_RUN;
               end;
             _ORD_SPS_LOADING: RecSend3DMissilePos.status := ST_MISSILE_LOADED;
@@ -1316,16 +1316,16 @@ begin
         then
         begin
 
-          dmMain.Ds.Close;
-          dmMain.Ds.SQL.Clear;
-          dmMain.Ds.SQL.Add('SELECT SHIP_CLASS_ID');
-          dmMain.Ds.SQL.Add('FROM m_ship');
-          dmMain.Ds.SQL.Add('WHERE Ship_ID=' + IntToStr(recA244^.ShipID));
-          dmMain.Ds.Open;
-          dmMain.Ds.First;
-          ShipClassID:= 0;
-          if dmMain.Ds.RecordCount>0 then
-            ShipClassID:= dmMain.DS.FieldByName('SHIP_CLASS_ID').AsInteger;
+//          dmMain.Ds.Close;
+//          dmMain.Ds.SQL.Clear;
+//          dmMain.Ds.SQL.Add('SELECT SHIP_CLASS_ID');
+//          dmMain.Ds.SQL.Add('FROM m_ship');
+//          dmMain.Ds.SQL.Add('WHERE Ship_ID=' + IntToStr(recA244^.ShipID));
+//          dmMain.Ds.Open;
+//          dmMain.Ds.First;
+//          ShipClassID:= 0;
+//          if dmMain.Ds.RecordCount>0 then
+//            ShipClassID:= dmMain.DS.FieldByName('SHIP_CLASS_ID').AsInteger;
 
           RecSend3DMissilePos.ShipID := recExocetMM40.ShipID;
           RecSend3DMissilePos.WeaponID := recExocetMM40.mWeaponID;
@@ -1336,7 +1336,7 @@ begin
           case recExocetMM40.sOrder of
             __ORD_EXOCET_40_FIRE:
               begin
-                if ShipClassID=10 then
+//                if ShipClassID=10 then
                   RecSend3DMissilePos.status:= ST_MISSILE_RUN;
               end;
             __ORD_EXOCET_40_LOADING:
