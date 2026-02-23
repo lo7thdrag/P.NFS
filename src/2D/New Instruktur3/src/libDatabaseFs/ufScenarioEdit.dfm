@@ -478,6 +478,8 @@ object frmSceEditor: TfrmSceEditor
       Version = '1.6.0.1'
       Align = alClient
       TabOrder = 1
+      ExplicitLeft = -3
+      ExplicitTop = 277
       DesignSize = (
         576
         771)
@@ -806,7 +808,6 @@ object frmSceEditor: TfrmSceEditor
         Width = 100
         Height = 100
         MaxValue = 360
-        Position = 180
         BackImage.Data = {
           66750000424D6675000000000000360000002800000064000000640000000100
           18000000000030750000C30E0000C30E00000000000000000000009600009600
@@ -1760,11 +1761,10 @@ object frmSceEditor: TfrmSceEditor
       end
       object vrwhlWindDirec: TVrWheel
         Left = 120
-        Top = 324
+        Top = 321
         Width = 100
         Height = 100
         MaxValue = 360
-        Position = 180
         BackImage.Data = {
           66750000424D6675000000000000360000002800000064000000640000000100
           18000000000030750000C30E0000C30E00000000000000000000009600009600
@@ -2714,40 +2714,53 @@ object frmSceEditor: TfrmSceEditor
           0000333000333000000033099903300000003099999030000000309999903000
           0000307999903000000033077903300000003330003330000000333333333000
           0000}
+        OnChange = vrwhlWindDirecChange
         Anchors = [akTop, akRight]
       end
       object tbFogH: TTrackBar
         Left = 20
-        Top = 671
+        Top = 673
         Width = 489
         Height = 28
         Max = 100
+        Min = 1
+        Position = 1
         TabOrder = 0
+        OnChange = tbFogHChange
       end
       object tbHumidity: TTrackBar
-        Left = 20
+        Left = 18
         Top = 609
         Width = 489
         Height = 28
         Max = 100
+        Min = 1
+        Position = 1
         TabOrder = 1
+        OnChange = tbHumidityChange
       end
       object tbBaroPressure: TTrackBar
-        Left = 20
-        Top = 547
+        Left = 18
+        Top = 549
         Width = 489
         Height = 28
         Max = 5000
+        Min = 1
         Frequency = 100
+        Position = 1
         TabOrder = 2
+        OnChange = tbBaroPressureChange
       end
       object tbTemp: TTrackBar
-        Left = 20
-        Top = 485
+        Left = 18
+        Top = 487
         Width = 489
         Height = 28
         Max = 100
+        Min = 1
+        Position = 1
         TabOrder = 3
+        OnChange = tbTempChange
       end
       object tbSeaSpeed: TTrackBar
         Left = 20
@@ -2755,15 +2768,21 @@ object frmSceEditor: TfrmSceEditor
         Width = 489
         Height = 28
         Max = 50
+        Min = 1
+        Position = 1
         TabOrder = 4
+        OnChange = tbSeaSpeedChange
       end
       object tbWindSpeed: TTrackBar
         Left = 20
-        Top = 163
+        Top = 165
         Width = 489
         Height = 28
         Max = 50
+        Min = 1
+        Position = 1
         TabOrder = 5
+        OnChange = tbWindSpeedChange
       end
       object tbSeaState: TTrackBar
         Left = 20
@@ -2774,6 +2793,7 @@ object frmSceEditor: TfrmSceEditor
         Min = 1
         Position = 1
         TabOrder = 6
+        OnChange = tbSeaStateChange
       end
       object AdvSmoothPanel11: TAdvSmoothPanel
         Left = 0
@@ -2834,75 +2854,103 @@ object frmSceEditor: TfrmSceEditor
           ExplicitHeight = 18
         end
       end
-      object edtSeaState: TEdit
+      object edtBaroPressure: TEdit
         Left = 513
-        Top = 550
+        Top = 552
         Width = 38
         Height = 21
         Alignment = taCenter
-        ReadOnly = True
+        MaxLength = 4
+        NumbersOnly = True
         TabOrder = 8
-        Text = '0'
+        OnKeyPress = edtBaroPressureKeyPress
       end
-      object edtWindSpeed: TEdit
+      object edtHumidity: TEdit
         Left = 513
         Top = 612
         Width = 38
         Height = 21
         Alignment = taCenter
-        ReadOnly = True
+        MaxLength = 3
+        NumbersOnly = True
         TabOrder = 9
-        Text = '0'
+        OnKeyPress = edtHumidityKeyPress
       end
-      object edtCurrentSpeed: TEdit
+      object edtFogH: TEdit
         Left = 513
-        Top = 674
+        Top = 676
         Width = 38
         Height = 21
         Alignment = taCenter
-        ReadOnly = True
+        MaxLength = 3
+        NumbersOnly = True
         TabOrder = 10
-        Text = '0'
+        OnKeyPress = edtFogHKeyPress
       end
-      object Edit1: TEdit
+      object edtTemp: TEdit
         Left = 513
-        Top = 488
+        Top = 490
         Width = 38
         Height = 21
         Alignment = taCenter
-        ReadOnly = True
+        MaxLength = 3
+        NumbersOnly = True
         TabOrder = 11
-        Text = '0'
+        OnKeyPress = edtTempKeyPress
       end
-      object Edit2: TEdit
+      object edtSeaSpeed: TEdit
         Left = 513
         Top = 228
         Width = 38
         Height = 21
         Alignment = taCenter
-        ReadOnly = True
+        MaxLength = 2
+        NumbersOnly = True
         TabOrder = 12
-        Text = '0'
+        OnKeyPress = edtSeaSpeedKeyPress
       end
-      object Edit3: TEdit
+      object edtWindSpeed: TEdit
         Left = 513
-        Top = 167
+        Top = 168
         Width = 38
         Height = 21
         Alignment = taCenter
-        ReadOnly = True
+        MaxLength = 2
+        NumbersOnly = True
         TabOrder = 13
-        Text = '0'
+        OnKeyPress = edtWindSpeedKeyPress
       end
-      object Edit4: TEdit
+      object edtSeaState: TEdit
         Left = 513
         Top = 104
         Width = 38
         Height = 21
         Alignment = taCenter
-        ReadOnly = True
+        MaxLength = 1
+        NumbersOnly = True
         TabOrder = 14
+        OnKeyPress = edtSeaStateKeyPress
+      end
+      object edtSeaDirection: TEdit
+        Left = 458
+        Top = 363
+        Width = 47
+        Height = 21
+        MaxLength = 3
+        TabOrder = 15
         Text = '0'
+        OnKeyPress = edtSeaDirectionKeyPress
+      end
+      object edtWindDirec: TEdit
+        Left = 226
+        Top = 363
+        Width = 47
+        Height = 21
+        MaxLength = 3
+        NumbersOnly = True
+        TabOrder = 16
+        Text = '0'
+        OnKeyPress = edtWindDirecKeyPress
       end
     end
   end
@@ -3487,7 +3535,6 @@ object frmSceEditor: TfrmSceEditor
           Visible = False
           OnChange = TabTargetShipChange
           TabOrder = 0
-          ExplicitLeft = 2
           TMSStyle = 0
           object tsSurface: TAdvSmoothTabPage
             Left = 1
