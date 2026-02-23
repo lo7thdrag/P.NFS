@@ -1081,7 +1081,7 @@ type
     AdvSmoothLabel44: TAdvSmoothLabel;
     lvDetail: TListView;
     pnlRangeYakhont: TPanel;
-    btnCannonAssigend23: TAdvSmoothButton;
+    btnCannonAssigned23: TAdvSmoothButton;
     btnCannonDeassigned23: TAdvSmoothButton;
     btnCannonFire23: TAdvSmoothButton;
     btnCannonStartFire23: TAdvSmoothButton;
@@ -1245,6 +1245,20 @@ type
     procedure ClearAllDetail;
     procedure lvWeaponSelectSelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);
+    procedure lvWeaponClick(Sender: TObject);
+    procedure btnPlayerCameraLockClick(Sender: TObject);
+    procedure btnCamViewOldLeftClick(Sender: TObject);
+    procedure btnCamViewLeftClick(Sender: TObject);
+    procedure btnCamMoveLefMouseDown(Sender: TObject;
+      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnCamRotateOldLeftMouseDown(Sender: TObject;
+      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnCamMoveLefMouseUp(Sender: TObject;
+      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnCamRotateOldLeftMouseUp(Sender: TObject;
+      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure cbSelectIDCameraChange(Sender: TObject);
+    procedure mni3Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -3608,10 +3622,6 @@ begin
   end;
 end;
 
-procedure TfrmGameController.btnPlayerCameraUnlockClick(Sender: TObject);
-begin
-
-end;
 
 { Tetral }
 procedure TfrmGameController.btnTetral_FireClick(Sender: TObject);
@@ -4754,8 +4764,8 @@ begin
             wtrChange;
         end;
      C_DBID_CANNON76 : begin
-     C_DBID_CANNON35, C_DBID_CANNON40, //C_DBID_CANNON57,
-     C_DBID_CANNON76, C_DBID_CANNON120 : begin
+//     C_DBID_CANNON35, C_DBID_CANNON40, //C_DBID_CANNON57,
+//     C_DBID_CANNON76, C_DBID_CANNON120 : begin
             pgtwWCCCannon.TabVisible         := True;
 
             if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
@@ -4800,21 +4810,21 @@ begin
 
             edtCannonLauncherID.Text         := IntToStr(launcherID);
         end;
-     C_DBID_CANNON57 : begin
-            pgtwCannon57.TabVisible         := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwCannon57 ;
-            end;
-
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
-        end;
+//     C_DBID_CANNON57 : begin
+//            pgtwCannon57.TabVisible         := True;
+//
+//            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+//              pgWeapon.ActivePage  := pgtwDefault ;
+//              lblInfo.Caption := 'Cannon is not ready to use';
+//              pgWeapon.Enabled := False;
+//            end
+//            else begin
+//              pgWeapon.Enabled := True;
+//              pgWeapon.ActivePage  := pgtwCannon57 ;
+//            end;
+//
+//            edtCannonLauncherID.Text         := IntToStr(launcherID);
+//        end;
      C_DBID_CANNON120 : begin
             pgtwCannon120.TabVisible         := True;
 
@@ -4830,36 +4840,36 @@ begin
 
             edtCannonLauncherID.Text         := IntToStr(launcherID);
         end;
-     C_DBID_CANNON_AK230: begin
-            pgtwCannonAK230.TabVisible         := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwCannonAK230 ;
-            end;
-
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
-        end;
-     C_DBID_CANNON_TYPE_730 : begin
-            pgtwCannon730.TabVisible         := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwCannon730 ;
-            end;
-
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
-        end;
+//     C_DBID_CANNON_AK230: begin
+//            pgtwCannonAK230.TabVisible         := True;
+//
+//            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+//              pgWeapon.ActivePage  := pgtwDefault ;
+//              lblInfo.Caption := 'Cannon is not ready to use';
+//              pgWeapon.Enabled := False;
+//            end
+//            else begin
+//              pgWeapon.Enabled := True;
+//              pgWeapon.ActivePage  := pgtwCannonAK230 ;
+//            end;
+//
+//            edtCannonLauncherID.Text         := IntToStr(launcherID);
+//        end;
+//     C_DBID_CANNON_TYPE_730 : begin
+//            pgtwCannon730.TabVisible         := True;
+//
+//            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+//              pgWeapon.ActivePage  := pgtwDefault ;
+//              lblInfo.Caption := 'Cannon is not ready to use';
+//              pgWeapon.Enabled := False;
+//            end
+//            else begin
+//              pgWeapon.Enabled := True;
+//              pgWeapon.ActivePage  := pgtwCannon730 ;
+//            end;
+//
+//            edtCannonLauncherID.Text         := IntToStr(launcherID);
+//        end;
      C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL,
      C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730 :
         begin
@@ -7243,11 +7253,6 @@ begin
   SimManager.NetSendTo3D_SetCommandOrder(0, ORD_WINDDIRECTION, newDir, 0,0,0,0);
 end;
 
-procedure TfrmGameController.WakeOnLan(const AMacAddress: string);
-begin
-
-end;
-
 procedure TfrmGameController.vrwhlSeaDirectionMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
@@ -9069,23 +9074,6 @@ begin
   FTrajectory.aCanvas := frmGameController.imgTrajectory.Canvas;
 end;
 
-procedure TfrmGameController.CurrentShipItemSendCommandPlayerCamera(
-  const orderID, LockID: integer);
-begin
-
-end;
-
-procedure TfrmGameController.CurrentShipItemSendCommandPlayerLockSideCamera(
-  const orderID, TypeLock, LockID: integer);
-begin
-
-end;
-
-procedure TfrmGameController.CurrentShipItemSendCommanPlayerEvent(const orderID,
-  valInt: Integer; const valDbl: double);
-begin
-
-end;
 
 procedure TfrmGameController.DestroyTrajectory;
 begin
