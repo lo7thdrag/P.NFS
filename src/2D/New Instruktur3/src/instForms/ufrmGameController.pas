@@ -1092,6 +1092,36 @@ type
     edtMinRange: TEdit;
     edtMaxRange: TEdit;
     pnlRangeYakhont: TPanel;
+    btnCannonAssigned23: TAdvSmoothButton;
+    btnCannonDeassign23: TAdvSmoothButton;
+    btnCannonFire23: TAdvSmoothButton;
+    btnCannonStartFire23: TAdvSmoothButton;
+    btnSelectCannonTarget23: TSpeedButton;
+    btnCannonStopFire: TAdvSmoothButton;
+    cbbCannonBalistikID23: TComboBox;
+    cbbCannonModeID23: TComboBox;
+    cbbSalvoRate23: TComboBox;
+    edtCannonCorrBearing23: TEdit;
+    edtCannonCorrElev23: TEdit;
+    edtCannonLauncherID23: TEdit;
+    edtCannonMissileID23: TEdit;
+    edtCannonMissileNumber23: TEdit;
+    edtCannonTargetID23: TEdit;
+    lbl1: TLabel;
+    lbl3: TLabel;
+    lbl28: TLabel;
+    lbl30: TLabel;
+    lbl35: TLabel;
+    lbl36: TLabel;
+    lbl37: TLabel;
+    lbl39: TLabel;
+    lbl40: TLabel;
+    lbl41: TLabel;
+    lbl43: TLabel;
+    lbl57: TLabel;
+    lbl84: TLabel;
+    lbl90: TLabel;
+    lbl180: TLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -4647,6 +4677,8 @@ begin
             wtrChange;
         end;
      C_DBID_CANNON76 : begin
+     C_DBID_CANNON35, C_DBID_CANNON40, //C_DBID_CANNON57,
+     C_DBID_CANNON76, C_DBID_CANNON120 : begin
             pgtwWCCCannon.TabVisible         := True;
 
             if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
@@ -4747,6 +4779,31 @@ begin
             else begin
               pgWeapon.Enabled := True;
               pgWeapon.ActivePage  := pgtwCannon730 ;
+            end;
+
+            edtCannonLauncherID.Text         := IntToStr(launcherID);
+        end;
+     C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL,
+     C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730 :
+        begin
+            pgtwCannonAK230.TabVisible         := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'Cannon is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else begin
+              case WeaponID of
+                C_DBID_CANNON57 : pgtwCannonAK230.Caption := 'Cannon 57';
+                C_DBID_CANNON_AK230 : pgtwCannonAK230.Caption := 'Cannon AK230';
+                C_DBID_CANNON_TYPE_730 : pgtwCannonAK230.Caption := 'Cannon Type 730';
+                C_DBID_CANNON57_DIGITAL : pgtwCannonAK230.Caption := 'Cannon 57';
+                else
+                  pgtwCannonAK230.Caption := 'Cannon';
+              end;
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwCannonAK230 ;
             end;
 
             edtCannonLauncherID.Text         := IntToStr(launcherID);
@@ -5081,6 +5138,42 @@ begin
             else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
                 AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57, Weapon.launcherID,0, True);
+            end;
+          end
+          else
+          if (ClientConsole.WeaponID = C_DBID_CANNON_AK230) then
+          begin
+            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_AK230, Weapon.launcherID,0, False);
+            end
+            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_AK230, Weapon.launcherID,0, True);
+            end;
+          end
+          else
+          if (ClientConsole.WeaponID = C_DBID_CANNON_TYPE_730) then
+          begin
+            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_TYPE_730, Weapon.launcherID,0, False);
+            end
+            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_TYPE_730, Weapon.launcherID,0, True);
+            end;
+          end
+          else
+          if (ClientConsole.WeaponID = C_DBID_CANNON57_DIGITAL) then
+          begin
+            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57_DIGITAL, Weapon.launcherID,0, False);
+            end
+            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57_DIGITAL, Weapon.launcherID,0, True);
             end;
           end;
         end;
@@ -8007,7 +8100,10 @@ begin
     else if (lvWeapon.Selected.Caption = 'Cannon 40') or
             (lvWeapon.Selected.Caption = 'Cannon 76') or
             (lvWeapon.Selected.Caption = 'Cannon 120') or
-            (lvWeapon.Selected.Caption = 'Cannon 57') then
+            (lvWeapon.Selected.Caption = 'Cannon 57') or
+            (lvWeapon.Selected.Caption = 'Cannon 57 Digital') or
+            (lvWeapon.Selected.Caption = 'Cannon AK230') or
+            (lvWeapon.Selected.Caption = 'Cannon Type 730') then
     begin
       pgWeapon.ActivePage := pgtwWCCCannon;
       if onOffMode = 1 then
@@ -8097,6 +8193,75 @@ begin
         begin
           ShipID                  := temp;
           mWeaponID               := C_DBID_CANNON57;
+          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID              := 1;
+          mMissileNumber          := 1;
+          mOrderID                := __ORD_CANNON_ON;
+
+          mTargetID               := 0;
+          mModeID                 := 0;
+          mUpDown                 := 0;
+          mAutoCorrectElev        := 0;
+          mAutoCorrectBearing     := 0;
+          mBalistikID             := 0;
+
+        end;
+        SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
+      end
+      else if lvWeapon.Selected.Caption = 'Cannon AK230' then
+      begin
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_AK230 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+
+        with RecSendCannon do
+        begin
+          ShipID                  := temp;
+          mWeaponID               := C_DBID_CANNON_AK230;
+          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID              := 1;
+          mMissileNumber          := 1;
+          mOrderID                := __ORD_CANNON_ON;
+
+          mTargetID               := 0;
+          mModeID                 := 0;
+          mUpDown                 := 0;
+          mAutoCorrectElev        := 0;
+          mAutoCorrectBearing     := 0;
+          mBalistikID             := 0;
+
+        end;
+        SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
+      end
+      else if lvWeapon.Selected.Caption = 'Cannon Type 730' then
+      begin
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_TYPE_730 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+
+        with RecSendCannon do
+        begin
+          ShipID                  := temp;
+          mWeaponID               := C_DBID_CANNON_TYPE_730;
+          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID              := 1;
+          mMissileNumber          := 1;
+          mOrderID                := __ORD_CANNON_ON;
+
+          mTargetID               := 0;
+          mModeID                 := 0;
+          mUpDown                 := 0;
+          mAutoCorrectElev        := 0;
+          mAutoCorrectBearing     := 0;
+          mBalistikID             := 0;
+
+        end;
+        SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
+      end
+      else if lvWeapon.Selected.Caption = 'Cannon 57 Digital' then
+      begin
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57_DIGITAL , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+
+        with RecSendCannon do
+        begin
+          ShipID                  := temp;
+          mWeaponID               := C_DBID_CANNON57_DIGITAL;
           mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
           mMissileID              := 1;
           mMissileNumber          := 1;
@@ -8418,7 +8583,10 @@ begin
     else if (lvWeapon.Selected.Caption = 'Cannon 40') or
             (lvWeapon.Selected.Caption = 'Cannon 76') or
             (lvWeapon.Selected.Caption = 'Cannon 120') or
-            (lvWeapon.Selected.Caption = 'Cannon 57') then
+            (lvWeapon.Selected.Caption = 'Cannon 57') or
+            (lvWeapon.Selected.Caption = 'Cannon 57 Digital') or
+            (lvWeapon.Selected.Caption = 'Cannon AK230') or
+            (lvWeapon.Selected.Caption = 'Cannon Type 730')then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
       if lvWeapon.Selected.Caption = 'Cannon 40' then
@@ -8498,6 +8666,75 @@ begin
         begin
           ShipID                  := temp;
           mWeaponID               := C_DBID_CANNON57;
+          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID              := 1;
+          mMissileNumber          := 1;
+          mOrderID                := __ORD_CANNON_OFF;
+
+          mTargetID               := 0;
+          mModeID                 := 0;
+          mUpDown                 := 0;
+          mAutoCorrectElev        := 0;
+          mAutoCorrectBearing     := 0;
+          mBalistikID             := 0;
+
+        end;
+        SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
+      end
+      else if lvWeapon.Selected.Caption = 'Cannon AK230' then
+      begin
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_AK230 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+
+        with RecSendCannon do
+        begin
+          ShipID                  := temp;
+          mWeaponID               := C_DBID_CANNON_AK230;
+          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID              := 1;
+          mMissileNumber          := 1;
+          mOrderID                := __ORD_CANNON_OFF;
+
+          mTargetID               := 0;
+          mModeID                 := 0;
+          mUpDown                 := 0;
+          mAutoCorrectElev        := 0;
+          mAutoCorrectBearing     := 0;
+          mBalistikID             := 0;
+
+        end;
+        SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
+      end
+      else if lvWeapon.Selected.Caption = 'Cannon Type 730' then
+      begin
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_TYPE_730 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+
+        with RecSendCannon do
+        begin
+          ShipID                  := temp;
+          mWeaponID               := C_DBID_CANNON_TYPE_730;
+          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID              := 1;
+          mMissileNumber          := 1;
+          mOrderID                := __ORD_CANNON_OFF;
+
+          mTargetID               := 0;
+          mModeID                 := 0;
+          mUpDown                 := 0;
+          mAutoCorrectElev        := 0;
+          mAutoCorrectBearing     := 0;
+          mBalistikID             := 0;
+
+        end;
+        SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
+      end
+      else if lvWeapon.Selected.Caption = 'Cannon 57 Digital' then
+      begin
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57_DIGITAL , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+
+        with RecSendCannon do
+        begin
+          ShipID                  := temp;
+          mWeaponID               := C_DBID_CANNON57_DIGITAL;
           mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
           mMissileID              := 1;
           mMissileNumber          := 1;
@@ -8885,6 +9122,8 @@ var
   WeaponMistral   : TWeaponOn_Mistral;
   WeaponCannon57  : TWeaponOn_Cannon57;
   WeaponCannon40  : TWeaponOn_Cannon40;
+  WeaponCannonAK230 : TWeaponOn_CannonAK230;
+  WeaponCannonType730 : TWeaponOn_CannonType730;
 
 begin
   for i := 0 to SimManager.MainObjList.ItemCount-1 do
@@ -8956,6 +9195,43 @@ begin
                 end;
                 RefreshFormWeapon(WeaponShip.Weapon_Name);
             end
+            else if (WeaponShip is TWeaponOn_Cannon57) and (WeaponID = C_DBID_CANNON57_DIGITAL) then
+            begin
+                WeaponCannon57 := TWeaponOn_Cannon57(WeaponShip);
+                case LauncherID of
+                  2 :
+                  begin
+                    WeaponCannon57.AssignStatusLauncher2 := AssignStatus;
+                  end;
+
+                end;
+                RefreshFormWeapon(WeaponShip.Weapon_Name);
+            end
+            else if (WeaponShip is TWeaponOn_CannonAK230) and (WeaponID = C_DBID_CANNON_AK230) then
+            begin
+                WeaponCannonAK230 := TWeaponOn_CannonAK230(WeaponShip);
+                case LauncherID of
+                  2 :
+                  begin
+                    WeaponCannonAK230.AssignStatusLauncher2 := AssignStatus;
+                  end;
+
+                end;
+                RefreshFormWeapon(WeaponShip.Weapon_Name);
+            end
+            else if (WeaponShip is TWeaponOn_CannonType730) and (WeaponID = C_DBID_CANNON_TYPE_730) then
+            begin
+                WeaponCannonType730 := TWeaponOn_CannonType730(WeaponShip);
+                case LauncherID of
+                  2 :
+                  begin
+                    WeaponCannonType730.AssignStatusLauncher2 := AssignStatus;
+                  end;
+
+                end;
+                RefreshFormWeapon(WeaponShip.Weapon_Name);
+            end;
+
           end;
 
         end;
@@ -8979,6 +9255,8 @@ var
   WeaponCannon40 : TWeaponOn_Cannon40;
   WeaponStrela   : TWeaponOn_Strella;
   WeaponMistral  : TWeaponOn_Mistral;
+  WeaponCannonAK230 : TWeaponOn_CannonAK230;
+  WeaponCannonType730 : TWeaponOn_CannonType730;
 begin
   if not Assigned(SimManager.TrackObject) then
     Exit;
@@ -9032,14 +9310,36 @@ begin
               end;
             end;
           end;
-          C_DBID_CANNON57 :
+          C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL :
           begin
             if weaponship is TWeaponOn_Cannon57 then
             begin
               WeaponCannon57 := TWeaponOn_Cannon57(weaponship);
               case WeaponCannon57.AssignStatusLauncher2 of
-                False : btnCannonAssigned.Enabled := False;
-                True  : btnCannonAssigned.Enabled := True;
+                False : btnCannonAssigned23.Enabled := False;
+                True  : btnCannonAssigned23.Enabled := True;
+              end;
+            end;
+          end;
+          C_DBID_CANNON_AK230 :
+          begin
+            if weaponship is TWeaponOn_CannonAK230 then
+            begin
+              WeaponCannonAK230 := TWeaponOn_CannonAK230(weaponship);
+              case WeaponCannonAK230.AssignStatusLauncher2 of
+                False : btnCannonAssigned23.Enabled := False;
+                True  : btnCannonAssigned23.Enabled := True;
+              end;
+            end;
+          end;
+          C_DBID_CANNON_TYPE_730 :
+          begin
+            if weaponship is TWeaponOn_CannonType730 then
+            begin
+              WeaponCannonType730 := TWeaponOn_CannonType730(weaponship);
+              case WeaponCannonType730.AssignStatusLauncher2 of
+                False : btnCannonAssigned23.Enabled := False;
+                True  : btnCannonAssigned23.Enabled := True;
               end;
             end;
           end;

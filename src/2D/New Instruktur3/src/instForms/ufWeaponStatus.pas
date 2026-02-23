@@ -532,6 +532,11 @@ type
     imgLoadExocetMM40Port3: TImage;
     lblExocetMM40PortLauncher4: TLabel;
     imgLoadExocetMM40Port4: TImage;
+    rzgrpCannonAK230: TRzGroup;
+    scrlbxCannonAK230: TScrollBox;
+    lbl22: TLabel;
+    bvl2: TBevel;
+    chkCannonAK230enableWeapon: TCheckBox;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -629,6 +634,11 @@ type
     { VL MICA }
     procedure VLMicaChkClick(sender : TObject);
 
+    { Cannon AK230 }
+    procedure CannonAK230ChkClick(Sender : TObject);
+
+    { Cannon Type 730 }
+    procedure CannonType730ChkClick(Sender : TObject);
 
     procedure btnTrackObject(Sender : Tobject);
   public
@@ -2819,6 +2829,86 @@ begin
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_CANNON76, id , aParam);
 end;
 
+procedure TfWeaponStatus.CannonAK230ChkClick(Sender: TObject);
+var
+  aTag : integer;
+  ShipStrID : string;
+  aParam : Integer;
+
+  i, id : Integer;
+  Weaponship  : TWeaponOnShip;
+  WeaponCannonAK230  : TWeaponOn_CannonAK230;
+begin
+  if SimManager.TrackObject = nil then exit;
+  id := TCheckBox(sender).Tag;
+
+  //set object
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
+  begin
+    weaponship := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+    if weaponship.Weapon_ID = C_DBID_CANNON_AK230 then
+    begin
+      if weaponship is TWeaponOn_CannonAK230 then
+      begin
+        WeaponCannonAK230 := TWeaponOn_CannonAK230(weaponship);
+
+        case id of
+          __STAT_CANNONAK230_ENABLE : WeaponCannonAK230.EnableCannonAK230    := TCheckBox(sender).Checked;
+        end;
+      end;
+    end;
+  end;
+
+  ShipStrID := dbID_to_UniqueID(SimManager.TrackObject.FDataBaseID);
+
+  if TCheckBox(sender).Checked = True then
+    aParam := 1
+  else
+    aParam := 2;
+
+  SimManager.NetSendStatConsole(ShipStrID, C_DBID_CANNON_AK230, id , aParam);
+end;
+
+procedure TfWeaponStatus.CannonType730ChkClick(Sender: TObject);
+var
+  aTag : integer;
+  ShipStrID : string;
+  aParam : Integer;
+
+  i, id : Integer;
+  Weaponship  : TWeaponOnShip;
+  WeaponCannonType730  : TWeaponOn_CannonType730;
+begin
+  if SimManager.TrackObject = nil then exit;
+  id := TCheckBox(sender).Tag;
+
+  //set object
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
+  begin
+    weaponship := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+    if weaponship.Weapon_ID = C_DBID_CANNON_TYPE_730 then
+    begin
+      if weaponship is TWeaponOn_CannonType730 then
+      begin
+        WeaponCannonType730 := TWeaponOn_CannonType730(weaponship);
+
+        case id of
+          __STAT_CANNONAK230_ENABLE : WeaponCannonType730.EnableCannonType730    := TCheckBox(sender).Checked;
+        end;
+      end;
+    end;
+  end;
+
+  ShipStrID := dbID_to_UniqueID(SimManager.TrackObject.FDataBaseID);
+
+  if TCheckBox(sender).Checked = True then
+    aParam := 1
+  else
+    aParam := 2;
+
+  SimManager.NetSendStatConsole(ShipStrID, C_DBID_CANNON_TYPE_730, id , aParam);
+end;
+
 { Exocet MM40 }
 procedure TfWeaponStatus.Exocet40ChkClick(sender: TObject);
 var
@@ -3031,6 +3121,8 @@ var
   WeaponStrela   : TWeaponOn_Strella;
   WeaponMistral  : TWeaponOn_Mistral;
   WeaponVLMica   : TWeaponOn_VLMICA;
+  WeaponCannonAK230 : TWeaponOn_CannonAK230;
+  WeaponCAnnonType730 : TWeaponOn_CannonType730;
 
 begin
   //pnlBlank.BringToFront;
@@ -3189,7 +3281,7 @@ begin
           end;
         end;
 
-        C_DBID_RBU6000 :
+        C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL :
         begin
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
@@ -4249,7 +4341,7 @@ begin
           end;
         end;
 
-        C_DBID_CANNON57  :
+        C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL  :
         begin
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
@@ -4265,6 +4357,36 @@ begin
            // chkCannon57enableWeaphon.OnClick := nil;
             //chkCannon57enableWeaphon.Checked := WeaponCannon57.EnableCannon57;
            // chkCannon57enableWeaphon.OnClick := Cannon57ChkClick;
+          end;
+        end;
+
+        C_DBID_CANNON_AK230  :
+        begin
+          if frmMainInstruktur.cekStatusWeapon = 1 then
+          begin
+
+          end;
+          frmMainInstruktur.cekStatusWeapon := 1;
+
+          if weaponship is TWeaponOn_CannonAK230 then
+          begin
+            WeaponCannonAK230 := TWeaponOn_CannonAK230(weaponship);
+
+          end;
+        end;
+
+        C_DBID_CANNON_TYPE_730  :
+        begin
+          if frmMainInstruktur.cekStatusWeapon = 1 then
+          begin
+
+          end;
+          frmMainInstruktur.cekStatusWeapon := 1;
+
+          if weaponship is TWeaponOn_CannonType730 then
+          begin
+            WeaponCAnnonType730 := TWeaponOn_CannonType730(weaponship);
+
           end;
         end;
 

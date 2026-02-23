@@ -563,6 +563,26 @@ interface
       destructor Destroy; override;
    end;
 
+   TWeaponOn_CannonAK230 = class(TWeaponOnShip)
+    private
+
+    public
+      EnableCannonAK230 : Boolean;
+      AssignStatusLauncher2       : Boolean;
+      constructor Create(Const aParent : TInsObject; aMap: TMap); override;
+      destructor Destroy; override;
+   end;
+
+   TWeaponOn_CannonType730 = class(TWeaponOnShip)
+    private
+
+    public
+      EnableCannonType730 : Boolean;
+      AssignStatusLauncher2       : Boolean;
+      constructor Create(Const aParent : TInsObject; aMap: TMap); override;
+      destructor Destroy; override;
+   end;
+
    TWeaponOn_Cannon76 = class(TWeaponOnShip)
     private
 
@@ -1774,6 +1794,37 @@ begin
 end;
 
 destructor TWeaponOn_VLMICA.Destroy;
+begin
+
+  inherited;
+end;
+
+{ TWeaponOn_CannonAK230 }
+
+constructor TWeaponOn_CannonAK230.Create(const aParent: TInsObject; aMap: TMap);
+begin
+  AssignStatusLauncher2 := True;
+  inherited;
+
+end;
+
+destructor TWeaponOn_CannonAK230.Destroy;
+begin
+
+  inherited;
+end;
+
+{ TWeaponOn_CannonType730 }
+
+constructor TWeaponOn_CannonType730.Create(const aParent: TInsObject;
+  aMap: TMap);
+begin
+  AssignStatusLauncher2 := True;
+  inherited;
+
+end;
+
+destructor TWeaponOn_CannonType730.Destroy;
 begin
 
   inherited;

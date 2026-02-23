@@ -1096,6 +1096,8 @@ var
   WeaponMoc         : TWeaponOn_MOC;
   WeaponMocPKR      : TWeaponOn_MOCPKR;
   WeaponVLMica      : TWeaponOn_VLMICA;
+  WeaponCannonAK230 : TWeaponOn_CannonAK230;
+  WEaponCannonType730 : TWeaponOn_CannonType730;
 
   WeaponStat      : Boolean;
 begin
@@ -1136,7 +1138,7 @@ begin
             end;
           end;
 
-          C_DBID_RBU6000 :
+          C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL :
           begin
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_RBU then
@@ -1394,7 +1396,7 @@ begin
 
           end;
 
-          C_DBID_CANNON57 :
+          C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL :
           begin
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Cannon57 then
@@ -1470,6 +1472,30 @@ begin
                   __STAT_VLMICA_AMMOTEST : WeaponVLMica.Ammo_Test:= WeaponStat;
                   __STAT_VLMICA_CAP : WeaponVLMica.CAP:= WeaponStat;
               end;
+            end;
+          end;
+
+          C_DBID_CANNON_AK230 :
+          begin
+            frmMainInstruktur.cekStatusWeapon := 0;
+            if WeaponOnShip is TWeaponOn_CannonAK230 then
+            begin
+               WeaponCannonAK230 := TWeaponOn_CannonAK230(WeaponOnShip);
+                case Rec.ErrorID of
+                  __STAT_CANNONAK230_ENABLE : WeaponCannonAK230.EnableCannonAK230 := WeaponStat;
+                end;
+            end;
+          end;
+
+          C_DBID_CANNON_TYPE_730 :
+          begin
+            frmMainInstruktur.cekStatusWeapon := 0;
+            if WeaponOnShip is TWeaponOn_CannonType730 then
+            begin
+               WEaponCannonType730:= TWeaponOn_CannonType730(WeaponOnShip);
+                case Rec.ErrorID of
+                  __STAT_CANNONTYPE730_ENABLE : WEaponCannonType730.EnableCannonType730 := WeaponStat;
+                end;
             end;
           end;
         end;

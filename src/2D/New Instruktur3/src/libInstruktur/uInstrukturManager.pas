@@ -342,12 +342,14 @@ begin
   case WeaponID of
     C_DBID_EXOCET_MM38   : result := 'EXOCET_MM38';
     C_DBID_ASROC         : result := 'ASROC';
-    C_DBID_RBU6000       : result := 'RBU6000';
+    C_DBID_RBU6000,
+    C_DBID_RBU6000_DIGITAL       : result := 'RBU6000';
     C_DBID_TORPEDO_SUT   : result := 'TORPEDO SUT';
     C_DBID_TORPEDO_A244S : result := 'TORPEDO A244';
     C_DBID_CANNON35      : result := 'CANNON35';
     C_DBID_CANNON40      : result := 'CANNON40';
-    C_DBID_CANNON57      : result := 'CANNON57';
+    C_DBID_CANNON57,
+    C_DBID_CANNON57_DIGITAL      : result := 'CANNON57';
     C_DBID_CANNON76      : result := 'CANNON76';
     C_DBID_CANNON120     : result := 'CANNON120';
     C_DBID_YAKHONT       : Result := 'YAKHONT';
@@ -357,8 +359,10 @@ begin
     C_DBID_EXOCET_MM40   : Result := 'EXOCET_MM40';
     C_DBID_TETRAL        : Result := 'TETRAL';
     C_DBID_VLMICA        : Result := 'VLMICA';
+    C_DBID_CANNON_AK230  : Result := 'CANNON_AK230';
+    C_DBID_CANNON_TYPE_730 : Result := 'CANNON_TYPE730';
   end;
-  
+
   result := result + '-' +
             IntToStr(LauncherID) + '-' +
             IntToStr(MissileID) + '-' +
@@ -386,6 +390,10 @@ begin
     C_DBID_CANNON76       : result := #109;
     C_DBID_CANNON120      : result := #109;
     C_DBID_VLMICA         : result := #109;
+    C_DBID_CANNON_AK230   : Result := #109;
+    C_DBID_CANNON_TYPE_730 : Result := #109;
+    C_DBID_RBU6000_DIGITAL : Result := #109;
+    C_DBID_CANNON57_DIGITAL : Result := #109;
   end;
 end;
 
@@ -824,7 +832,7 @@ begin
             Color  := TColor($8A00B8); //ungu
           end;
 
-          C_DBID_RBU6000 :
+          C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL :
           begin
             WeaponShip := TWeaponOn_RBU.Create(Result, Fmap);
             Color  := TColor($CC0099); //magenta
@@ -905,7 +913,7 @@ begin
             Color := TColor($668099);   // abu-abu gelap
           end;
 
-          C_DBID_CANNON57  :
+          C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL  :
           begin
             WeaponShip := TWeaponOn_Cannon57.Create(Result, Fmap);
             Color := clBlue;
@@ -939,6 +947,18 @@ begin
           begin
             WeaponShip := TWeaponOn_VLMICA.Create(Result, Fmap);
             Color  := clGreen;
+          end;
+
+          C_DBID_CANNON_AK230  :
+          begin
+            WeaponShip := TWeaponOn_CannonAK230.Create(Result, Fmap);
+            Color := clBlue;
+          end;
+
+          C_DBID_CANNON_TYPE_730  :
+          begin
+            WeaponShip := TWeaponOn_CannonType730.Create(Result, Fmap);
+            Color := clBlue;
           end;
         end;
 
