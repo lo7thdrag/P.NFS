@@ -1052,7 +1052,7 @@ type
     edtShipThrottleRate: TEdit;
     edtShipRudderSwingRate: TEdit;
     pnlPicture1: TAdvSmoothPanel;
-    Image4: TImage;
+    ImgKRI: TImage;
     AdvSmoothPanel9: TAdvSmoothPanel;
     AdvSmoothPanel12: TAdvSmoothPanel;
     Label62: TLabel;
@@ -1078,19 +1078,8 @@ type
     edtModelSpout: TEdit;
     edtLethality: TEdit;
     pnl2DRelated: TAdvSmoothPanel;
-    advsmthlbl10: TAdvSmoothLabel;
-    advsmthlbl11: TAdvSmoothLabel;
-    advsmthlbl12: TAdvSmoothLabel;
-    AdvSmoothLabel41: TAdvSmoothLabel;
-    AdvSmoothLabel42: TAdvSmoothLabel;
     AdvSmoothLabel44: TAdvSmoothLabel;
-    AdvSmoothLabel43: TAdvSmoothLabel;
     lvDetail: TListView;
-    edtDetailName: TEdit;
-    edtStartDegree: TEdit;
-    edtEndDegree: TEdit;
-    edtMinRange: TEdit;
-    edtMaxRange: TEdit;
     pnlRangeYakhont: TPanel;
     btnCannonAssigned23: TAdvSmoothButton;
     btnCannonDeassign23: TAdvSmoothButton;
@@ -1266,8 +1255,9 @@ type
     procedure btnLoadScenarioClick(Sender: TObject);
     procedure btnStopScenarioClick(Sender: TObject);
     procedure lvShipListClick(Sender: TObject);
-    procedure lvWeaponSelectClick(Sender: TObject);
     procedure ClearAllDetail;
+    procedure lvWeaponSelectSelectItem(Sender: TObject; Item: TListItem;
+      Selected: Boolean);
 
   private
     { Private declarations }
@@ -2918,10 +2908,10 @@ end;
 
 procedure TfrmGameController.lvListScenKeyPress(Sender: TObject; var Key: Char);
 begin
-  if Key = #13 then
-  begin
-//    btnOkClick(btnOK);
-  end;
+//  if Key = #13 then
+//  begin
+////    btnOkClick(btnOK);
+//  end;
 end;
 
 { --------------------------------------------------------------------- }
@@ -6479,12 +6469,6 @@ begin
 //
 //  btnUpdate.Visible       := false;
 
-  edtDetailName.Text  := '';
-  edtStartDegree.Text := '';
-  edtEndDegree.Text   := '';
-  edtMinRange.Text    := '';
-  edtMaxRange.Text    := '';
-
   lvDetail.Items.Clear;
   pnlDetail.BringToFront;
 end;
@@ -7460,7 +7444,7 @@ end;
 procedure TfrmGameController.UpdateShipData;
 var
   i : Integer;
-  ShipId : Integer;
+//  ShipId : Integer;
   AllShip : TList;
   ShipTemp: TVehicle;
 
@@ -7475,20 +7459,28 @@ begin
 
   {Membuat objek penampung}
   ShipTemp := TVehicle.Create;
+  Ship_ID := StrToInt(lvShipList.Selected.Caption);
 
-  ShipId := StrToInt(lvShipList.Selected.Caption);
-
-  ShipTemp := DataModule1.GetShipByID(ShipId);
+  ShipTemp := DataModule1.GetShipByID(Ship_ID);
 
   if Assigned(ShipTemp) then
   begin
     cveShipName.Text :=  lvShipList.Selected.SubItems[0];
-    cveClass.Text    :=  lvShipList.Selected.Caption;
+    cveClass.Text    :=  DataModule1.IDclassbyName(Ship_ID);
 
     {$REGION ' Dimensions '}
     edtShipLength.Text   := FloatToStr(ShipTemp.Vehicle_LENGTH);
     edtShipwidth.Text    := FloatToStr(ShipTemp.Vehicle_WIDTH);
     edtShipHeight.Text   := FloatToStr(ShipTemp.Vehicle_HEIGHT);
+    {$ENDREGION}
+
+    {$REGION ' Load Image '}
+    strPicture := '..\Data\imageship\' + ShipTemp.Vehicle_Name + '.png';
+
+      if FileExists(strPicture) then
+      begin
+        imgKRI.Picture.LoadFromFile(strPicture);
+      end;
     {$ENDREGION}
 
     {$REGION ' Properties '}
@@ -7510,12 +7502,13 @@ begin
 
     ListWeaponOnShip := TList.Create;
 
-    DataModule1.GetListWeaponOnShip(ShipId, ListWeaponOnShip);
+    DataModule1.GetListWeaponOnShip(Ship_ID, ListWeaponOnShip);
 
     if Assigned(ListWeaponOnShip) then
     begin
       for i := 0 to ListWeaponOnShip.Count-1 do
       begin
+        WeaponOnShip := TWeaponGetList.Create;
         WeaponOnShip := TWeaponGetList(ListWeaponOnShip[i]);
 
         if Assigned(WeaponOnShip) then
@@ -7526,6 +7519,7 @@ begin
             SubItems.Add(DataModule1.GetNameWeaponByID(WeaponOnShip.IDWeapon));
             SubItems.Add(IntToStr(WeaponOnShip.IDDetail));
             SubItems.Add(IntToStr(WeaponOnShip.ID));
+            Data := WeaponOnShip;
           end;
         end;
       end;
@@ -7561,88 +7555,74 @@ begin
   end;
 end;
 
-procedure TfrmGameController.lvWeaponSelectClick(Sender: TObject);
-var
- ListWeaponOnShip : TList;
- WeaponOnShip     : TWeaponGetList;
+procedure TfrmGameController.lvWeaponSelectSelectItem(Sender: TObject;
+  Item: TListItem; Selected: Boolean);
+  var
+    ListWeaponDetail : Tlist;
+    WeaponDetail     : TWeaponDetail;
 
- ListWeaponDetail : Tlist;
- WeaponDetail     : TWeaponDetail;
+    ListWeaponOnShip : TList;
+    WeaponOnShip     : TWeaponGetList;
 
- IDweapon,
- IDDetail : Integer;
+    IDweapon,
+    IDDetail : Integer;
 
- i : Integer;
- o: TObject;
+    i : Integer;
 begin
-//
-//  if lvWeaponSelect.Selected = nil then
-//  begin
-//    ClearAllDetail;
-//    Exit;
-//  end;
-//
-//  ClearAllDetail;
-//
-//  IDweapon := StrToInt(lvWeaponSelect.Selected.Caption);
-//  IDDetail := StrToInt(lvWeaponSelect.Selected.SubItems[1]);
-//
-//  ListWeaponOnShip := TList.Create;
-//  ListWeaponDetail := TList.Create;
-//
-//  try
-//
-//    DataModule1.GetListWeaponOnShip(Ship_ID, ListWeaponOnShip);
-//    DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail,  ListWeaponDetail);
-//
-//    for i:= 0 to ListWeaponOnShip.Count-1 do
-//    begin
-//      if Assigned(ListWeaponOnShip.Items[i]) then begin
-//        WeaponOnShip := TWeaponGetList(ListWeaponOnShip.Items[i]);
-//        if (WeaponOnShip.IDShip = Ship_ID) and
-//           (WeaponOnShip.IDWeapon = IDweapon) and
-//           (WeaponOnShip.IDDetail = IDDetail)
-//        then
-//        begin
-//          edtModelBody.Text   := DataModule1.GetModelNameByID(WeaponOnShip.IDModel1);
-//          edtModelSpout.Text  := DataModule1.GetModelNameByID(WeaponOnShip.IDModel2);
-//          edtDOF1.Text        := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof1);
-//          edtDOF2.Text        := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof2);
-//          edtSwitch.Text      := DataModule1.GetSwitchNameByID(WeaponOnShip.IDSwitch);
-//          edtPosPitch.Text    := IntToStr(WeaponOnShip.Pos_P);
-//          edtPosHeading.Text  := IntToStr(WeaponOnShip.Pos_H);
-//          Edit2.Text := FloatToStr(DataModule1.GetLethalityByID(IDweapon));
-//          case WeaponOnShip.Is3DActor of
-//            0 : edt3DActor.Text := 'NO';
-//            1 : edt3DActor.Text := 'YES';
-//          end;
-//          Break;
-//        end;
-//      end;
-//    end;
-//
-//    for i := 0 to ListWeaponDetail.Count - 1 do
-//    begin
-//      if Assigned(ListWeaponDetail.Items[i]) then begin
-//        WeaponDetail := TWeaponDetail(ListWeaponDetail.Items[i]);
-//        with lvDetail.Items.Add do
-//        begin
-//          Caption := IntToStr(WeaponDetail.IDType);
-//          SubItems.Add(WeaponDetail.DetName);
-//          SubItems.Add(FloatToStr(WeaponDetail.StartAngle));
-//          SubItems.Add(FloatToStr(WeaponDetail.EndAngle));
-//          SubItems.Add(FloatToStr(WeaponDetail.LowRange));
-//          SubItems.Add(FloatToStr(WeaponDetail.HighRange));
-//        end;
-//      end;
-//    end;
-//
-//  finally
-//    ClearAList(ListWeaponOnShip);
-//    ListWeaponOnShip.Free;
-//    ClearAList(ListWeaponDetail);
-//    ListWeaponDetail.Free;
-//  end;
+
+  if lvWeaponSelect.Selected = nil then
+    Exit;
+
+  IDweapon := StrToInt(lvWeaponSelect.Selected.Caption);
+  IDDetail := StrToInt(lvWeaponSelect.Selected.SubItems[1]);
+
+  lvDetail.Items.Clear;
+  ListWeaponDetail := TList.Create;
+  ListWeaponOnShip := TList.Create;
+
+  DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail,  ListWeaponDetail);
+  DataModule1.GetListWeaponOnShip(Ship_ID, ListWeaponOnShip);
+
+  for i := 0 to ListWeaponDetail.Count - 1 do
+  begin
+    WeaponDetail := TWeaponDetail(ListWeaponDetail[i]);
+    if Assigned(WeaponDetail) then
+    begin
+      with lvDetail.Items.Add do
+      begin
+        Caption := IntToStr(WeaponDetail.IDType);
+        SubItems.Add(WeaponDetail.DetName);
+        SubItems.Add(FloatToStr(WeaponDetail.StartAngle));
+        SubItems.Add(FloatToStr(WeaponDetail.EndAngle));
+        SubItems.Add(FloatToStr(WeaponDetail.LowRange));
+        SubItems.Add(FloatToStr(WeaponDetail.HighRange));
+      end;
+    end;
+  end;
+
+  for i := 0 to ListWeaponOnShip.Count - 1 do
+  begin
+    if Assigned(ListWeaponOnShip.Items[i]) then
+    WeaponOnShip := TWeaponGetList(ListWeaponOnShip[i]);
+    if (WeaponOnShip.IDShip = Ship_ID) and (WeaponOnShip.IDWeapon = IDweapon) and
+        (WeaponOnShip.IDDetail = IDDetail)
+    then
+    begin
+      edtModelBody.Text   := DataModule1.GetModelNameByID(WeaponOnShip.IDModel1);
+      edtModelSpout.Text  := DataModule1.GetModelNameByID(WeaponOnShip.IDModel2);
+      edtDOF1.Text        := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof1);
+      edtDOF2.Text        := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof2);
+      edtSwitch.Text      := DataModule1.GetSwitchNameByID(WeaponOnShip.IDSwitch);
+      edtPosPitch.Text    := IntToStr(WeaponOnShip.Pos_P);
+      edtPosHeading.Text  := IntToStr(WeaponOnShip.Pos_H);
+      edtLethality.Text   := FloatToStr(DataModule1.GetLethalityByID(IDweapon));
+      case WeaponOnShip.Is3DActor of
+        0 : edt3DActor.Text := 'NO';
+        1 : edt3DActor.Text := 'YES';
+      end;
+      Break;
+    end;
+  end;
 end;
 
 procedure TfrmGameController.On1Click(Sender: TObject);
@@ -9800,12 +9780,6 @@ begin
   edtDOF2.Text        := '';
   edtPosHeading.Text  := '';
   edt3DActor.Text     := '';
-
-  edtDetailName.Text  := '';
-  edtStartDegree.Text := '';
-  edtEndDegree.Text   := '';
-  edtMinRange.Text    := '';
-  edtMaxRange.Text    := '';
 
   ClearListShipData (lvWeaponSelect);
   ClearListShipData (lvDetail);

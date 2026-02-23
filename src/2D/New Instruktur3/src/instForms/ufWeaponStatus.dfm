@@ -3547,7 +3547,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 923
+          Height = 943
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -4208,8 +4208,8 @@ object fWeaponStatus: TfWeaponStatus
               end
               object btn8: TButton
                 Tag = 4
-                Left = 192
-                Top = 104
+                Left = 193
+                Top = 101
                 Width = 75
                 Height = 25
                 Caption = 'Load'
@@ -5332,7 +5332,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 943
           Align = alClient
           Color = clGray
           ParentColor = False

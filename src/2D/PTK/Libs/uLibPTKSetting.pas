@@ -9,6 +9,7 @@ type
   TPTKSetting = record
     isFullScreen : Boolean;
     MonitorPos : Integer;
+    FccMode : Integer;
   end;
   TNetworkSetting = record
     ipConnect : string;
@@ -70,6 +71,8 @@ begin
   with iniF, PtkSetting do begin
     WriteBool('PtkSetting', 'isFullScreen', True);
     WriteInteger('PtkSetting', 'MonitorPos',  0 );
+    WriteInteger('PtkSetting', 'FccMode',  0 );
+
   end;
   inif.Free;
 
@@ -87,6 +90,7 @@ begin
     with PtkSetting do begin
       isFullScreen := INIFReadBool(iniF, 'PtkSetting', 'isFullScreen', True);
       MonitorPos := INIFReadInteger(iniF, 'PtkSetting', 'MonitorPos', 0);
+      FccMode := INIFReadInteger(iniF, 'PtkSetting', 'FccMode', 0);
     end;
   finally
     iniF.Free;

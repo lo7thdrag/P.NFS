@@ -252,15 +252,15 @@ begin
         case v.Domain of
           1://surface
           begin
-            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
+            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SurfaceUnknown.bmp');
           end;
           2://air
           begin
-            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\AirUnknown.bmp');
+            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\AirUnknown.bmp');
           end;
           3://subsurface
           begin
-            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SubsurfaceUnknown.bmp');
+            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SubsurfaceUnknown.bmp');
           end;
         end;
 

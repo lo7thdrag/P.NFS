@@ -157,7 +157,8 @@ procedure ClearAList(const AList: TList);
 var i: Integer;
 begin
   for i := 0 to AList.Count-1 do
-    if Assigned(AList[i]) then begin
+    if Assigned(AList[i]) then
+    begin
       TObject(AList[i]).Free;
       AList[i]:= nil;
     end;

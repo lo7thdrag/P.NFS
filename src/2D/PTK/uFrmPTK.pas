@@ -264,6 +264,31 @@ begin
   begin
     pnlNumKey.BringToFront;
   end
+  else if TSpeedButtonImage(Sender).Name = 'btn_Wait' then
+  begin
+    FOperationMode := omWait;
+    SetOperationModeDisplay;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_Ind' then
+  begin
+    FOperationMode := omInd;
+    SetOperationModeDisplay;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_Autonomous' then
+  begin
+    FOperationMode := omAutonomous;
+    SetOperationModeDisplay;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_DAttack' then
+  begin
+    FOperationMode := omDAttack;
+    SetOperationModeDisplay;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_VFire' then
+  begin
+    FOperationMode := omVFire;
+    SetOperationModeDisplay;
+  end
   else if TSpeedButtonImage(Sender).Name = 'btn_IndSetting' then
   begin
     FBtnArray[0].Color := clBlack;
@@ -319,6 +344,7 @@ begin
   begin
     GenerateCaptionByMenu('LockScreen');
   end;
+
 
   SendToServerPTK(TSpeedButtonImage(Sender).Name);
 end;
@@ -403,6 +429,7 @@ begin
 
     FisFullScreen := PtkSetting.isFullScreen;
     FServiceIndex := PtkSetting.MonitorPos;
+    FMode := PtkSetting.FccMode;
   end
   else
   begin
@@ -417,6 +444,7 @@ begin
 
     FisFullScreen := PtkSetting.isFullScreen;
     FServiceIndex := PtkSetting.MonitorPos;
+    FMode := PtkSetting.FccMode;
   end;
 
 //  try
@@ -433,7 +461,7 @@ begin
 //    iniF.Free;
 //  end;
 
-  FMode := 1;
+//  FMode := 1;
 
   if FisFullScreen then
   begin

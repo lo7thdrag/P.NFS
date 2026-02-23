@@ -131,6 +131,7 @@ const
   REC_3D_MISSILEPOS = 50;
   REC_3D_SETCONTROL               = 51;           // SPAWN PAS RUN SKENARIO
   REC_3D_UTIL_TOOLS               = 53;
+  REC_3D_STAT_ORDER_CONSOLE       = 55;
   REC_SPSS_ORDER			            = 57;
     _ORD_SPS_FIRE           = 1;
     _ORD_SPS_LOADING        = 3;
@@ -158,6 +159,17 @@ type
 //    [BsonElement('StatusConnect')]
 //    StatusConnect: byte;
 //  end;
+
+  TRecStatus_Console3D = record
+    [BsonElement('ShipID')]
+    ShipID: word;
+    [BsonElement('WeaponID')]
+    WeaponID: word;
+    [BsonElement('ErrorID')]
+    ErrorID: word;
+    [BsonElement('ParamError')]
+    ParamError: Byte;
+  end;
 
   TRecDataPosition3D = record
     [BsonElement('ShipID')]

@@ -45,7 +45,14 @@ uses
   uVehicle in 'LibFCCObject\uVehicle.pas',
   uVehicleManager in 'uVehicleManager.pas',
   uPtkReceiver in 'LibNetworkPTK\uPtkReceiver.pas',
-  uPtkServer in 'LibNetworkPTK\uPtkServer.pas';
+  uPtkServer in 'LibNetworkPTK\uPtkServer.pas',
+  Grijjy.BinaryCoding in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.BinaryCoding.pas',
+  Grijjy.Bson.IO in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.IO.pas',
+  Grijjy.Bson in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.pas',
+  Grijjy.Bson.Serialization in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.Serialization.pas',
+  Grijjy.Collections in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Collections.pas',
+  Grijjy.DateUtils in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.DateUtils.pas',
+  Grijjy.SysUtils in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.SysUtils.pas';
 
 {$R *.res}
 
