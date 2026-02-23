@@ -8,9 +8,27 @@ uses
   System.ImageList, Vcl.ImgList,Vcl.OleCtrls, MapXLib_TLB, uBaseFunctionFCC, uObjectVisual,
   uCoordConverter, uMapXUnitConverter, system.math, TFlatCheckBoxUnit, uFccManager, uBridgeSet,
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
-  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, MSHTML, ActiveX, uClassDatabase;
+  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, MSHTML, ActiveX,
+  uClassDatabase, System.IOUtils, Grijjy.Bson.Serialization, ShellAPI;
 
 type
+  TSetting = record
+  public
+    [BsonElement('Host')]
+    Host: string;
+    [BsonElement('Port')]
+    Port: string;
+    [BsonElement('Video')]
+    Video: string;
+    [BsonElement('PosX')]
+    PosX: Integer;
+    [BsonElement('PosY')]
+    PosY: Integer;
+    [BsonElement('Width')]
+    Width: Integer;
+    [BsonElement('Height')]
+    Height: Integer;
+  end;
   TfrmMainFCC = class(TForm)
     pnlSituationZone: TPanel;
     pnlUpper: TPanel;
@@ -533,6 +551,9 @@ type
     { Private declarations }
     FBitmapBackground : TBitmap;
     BitMapLampGrey, BitMapLampGreen, BitMapLampRed  : TBitmap;
+    config: TSetting;
+    ExecInfo: TShellExecuteInfo;
+//    FProcessInfo: TProcessInformation;
     InsideZone, FireAllow, IsFiring : BOOL;
     FCurrBearing, FCurrElev, FTargetBearing, FTargetElev : Double;
     FLyrDraw: CMapXLayer;
@@ -1255,6 +1276,13 @@ begin
       case vFccSetting.FccMode of
         1 : //FCC1 Mode
         begin
+          if rangem > 3000 then
+          begin
+            imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampred;
+            InsideZone := False;
+            Exit;
+          end;
+
           RecSend.mModeID             := 3;
           if (bearing < 135) or (bearing > 225) then
           begin
@@ -1270,6 +1298,13 @@ begin
         end;
         2 : //FCC2 Mode
         begin
+          if rangem > 6500 then
+          begin
+            imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampRed;
+            InsideZone := False;
+            Exit;
+          end;
+
           RecSend.mModeID             := 1;
 
           if (bearing > 315) or (bearing < 45) then
@@ -1391,6 +1426,8 @@ var
   V: TVehicle;
   rgnOuter, rgnInner: HRGN;
   envSce : tscenario;
+  setting: string;
+  StartupInfo: TStartupInfo;
 begin
   BeginGame_FCC;
   FCCManager := TFCCManager.Create;
@@ -1428,7 +1465,7 @@ begin
   imgCompas.Picture.Assign(FBitmapBackground);
   InitializeForm;
 //  LoadGeoset('.\data\tcms_map\Indonesia.gst');
-  LoadGeoset('.\data\maps\IndonesiaNoGrid.gst');
+  LoadGeoset('..\data\maps\IndonesiaNoGrid.gst');
 //  SimCenter.LoadGeoset('.\data\maps\IndonesiaNoGrid.gst');
   setRegionCircle;
 
@@ -1615,6 +1652,26 @@ begin
     FCCManager.Running := True;
   end;
 
+  setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
+  TgoBsonSerializer.Deserialize(setting, config);
+  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
+  // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
+  // untuk testing awal tidak perlu diubah dulu
+  TgoBsonSerializer.Serialize(config, setting);
+  tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
+
+  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+  ExecInfo.cbSize := SizeOf(ExecInfo);
+  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecInfo.Wnd := Handle;
+  ExecInfo.lpVerb := 'open';
+  ExecInfo.lpFile := PChar('Viewer.exe');
+  ExecInfo.nShow := SW_SHOW;
+
+  if not ShellExecuteEx(@ExecInfo) then
+    RaiseLastOSError;
+
+
   envSce := TScenario.Create;
   DataModule1.GetEnviBySceID(FCCManager.CurrentScenID, envSce);
   edtWeatherDataWs.Text := envSce.Scenario_WindSpeed.ToString();
@@ -1634,6 +1691,10 @@ procedure TfrmMainFCC.FormDestroy(Sender: TObject);
 var
   i : Integer;
 begin
+
+  TerminateProcess(ExecInfo.hProcess, 0);
+  CloseHandle(ExecInfo.hProcess);
+  ExecInfo.hProcess := 0;
 //  FRangeRing.Free;
   VehicleMgr.Free;
   FCCManager.FinalizeSimulation;
@@ -1708,7 +1769,43 @@ begin
 
   if Token = '' then Exit;
 
-  if (Token = 'CalSetting') or (Token = 'btnCalSetting') or (Token = 'btn_CalSetting')  then
+  if (Token = 'SysCtrl') then
+  begin
+    pnlSysCtrl.Caption := 'Sys Ctrl';
+  end
+  else if (Token = 'LocalCtrl') then
+  begin
+    pnlSysCtrl.Caption := 'Local Ctrl';
+  end
+  else if (Token = 'Check') then
+  begin
+    pnlCombatLs.Caption := 'Check';
+  end
+  else if (Token = 'Combat') then
+  begin
+    pnlCombatLs.Caption := 'Combat';
+  end
+  else if (Token = 'Wait') then
+  begin
+    pnlWaitLs.Caption := 'Wait';
+  end
+  else if (Token = 'Ind') then
+  begin
+    pnlWaitLs.Caption := 'IND';
+  end
+  else if (Token = 'Autonomous') then
+  begin
+    pnlWaitLs.Caption := 'Autonomous';
+  end
+  else if (Token = 'DAttack') then
+  begin
+    pnlWaitLs.Caption := 'D.Attack';
+  end
+  else if (Token = 'VFire') then
+  begin
+    pnlWaitLs.Caption := 'V.Fire';
+  end
+  else if (Token = 'CalSetting') or (Token = 'btnCalSetting') or (Token = 'btn_CalSetting')  then
   begin
     pnlCalSetting.BringToFront;
     activePanel := 1;
@@ -1984,12 +2081,25 @@ begin
     edtWeatherSettingHumi.Text := envSce.Scenario_Humidity.ToString();
     edtWeatherSettingAirP.Text := envSce.Scenario_BaroPressure.ToString();
     envSce.Free;
+    edtWeatherSettingWs.Enabled := False;
+    edtWeatherSettingWd.Enabled := False;
+    edtWeatherSettingTemp.Enabled := False;
+    edtWeatherSettingHumi.Enabled := False;
+    edtWeatherSettingAirP.Enabled := False;
 
     FIsWeatherAuto := True;
   end;
 
   if rbWeatherManual.Checked then
+  begin
+    edtWeatherSettingWs.Enabled := True;
+    edtWeatherSettingWd.Enabled := True;
+    edtWeatherSettingTemp.Enabled := True;
+    edtWeatherSettingHumi.Enabled := True;
+    edtWeatherSettingAirP.Enabled := True;
+
     FIsWeatherAuto := False;
+  end;
 end;
 
 procedure TfrmMainFCC.pnlFireFcc2Click(Sender: TObject);

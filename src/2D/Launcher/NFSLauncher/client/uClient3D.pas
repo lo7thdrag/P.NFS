@@ -1088,12 +1088,25 @@ end;
 
 procedure TfrmMain.OnConnected(msg: string);
 begin
+//  TmrCheckConnect.Enabled:= False;
+  AddToLogs('Connected');
+
+//  spb2DServer.Caption := '2D SERVER :: ONLINE';
+//  Status2D := '2D SERVER :: ONLINE';
+//  pnlStatus.Caption := FormatDateTime('DD-MM-YY HH:MM:SS', now);
+//  pnlMenu.Caption.Text := Status2D + '   ' + StatusDB;
+
   ClientNotifyServerConnect(theClient);
 end;
 
 procedure TfrmMain.OnDisconnected(msg: string);
 begin
-  //
+//  TmrCheckConnect.Enabled:= True;
+//  spb2DServer.Caption := '2D SERVER :: OFFLINE';
+//  Status2D := '2D SERVER :: OFFLINE';
+//  pnlStatus.Caption := 'Connecting ' + DupeString('.', cicle_time_connect);
+//  pnlMenu.Caption.Text := Status2D + '   ' + StatusDB;
+  AddToLogs('Disconnected');
 end;
 
 procedure TfrmMain.OnNewLine(Sender: TObject; NewLine: string;
@@ -1234,11 +1247,13 @@ begin
   if (theClient.State <> wsConnected) then
   begin
     inc(cicle_time_connect);
-    if cicle_time_connect >= 10 then
+    if cicle_time_connect >= 15 then
     begin
       try
         // TheClient.Disconnect;
+        AddToLogs('Try To Connect ...');
         theClient.Connect(m2DServerIP, m2DServerPort);
+//        TmrCheckConnect.Enabled:= False;
       finally
         // ClientNotifyServerConnect(TheClient);
       end;

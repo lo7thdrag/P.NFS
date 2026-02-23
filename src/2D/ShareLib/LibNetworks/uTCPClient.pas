@@ -97,6 +97,8 @@ begin
   WSocket.OnSessionClosed := WSocket_OnSessionClosed;
   WSocket.OnDataSent := WSocket_OnDataSent;
 
+
+
   FRealLog := TStringList.Create;
   FLog := FRealLog;
   // pLogPointer:= pointer(FLog);
@@ -159,11 +161,11 @@ end;
 procedure TTCPClient.Disconnect;
 begin
   // FreeMem(FBuffer);
-  FLog.Add(DateTimeToStr(Now) + ': ' + 'Disconnecting ...');
+//  FLog.Add(DateTimeToStr(Now) + ': ' + 'Disconnecting ...');
   WSocket.OnDataAvailable := nil;
   WSocket.Close;
 
-  FLog.Add(DateTimeToStr(Now) + ': ' + 'Disconnected');
+//  FLog.Add(DateTimeToStr(Now) + ': ' + 'Disconnected');
 end;
 
 procedure TTCPClient.sendData(buffer: PAnsiChar; size: integer);
@@ -426,7 +428,8 @@ begin
     FBuffer := nil;
   end;
   if Assigned(FOnDisconnected) then
-    FOnDisconnected('Disconnected from '+WSocket.GetPeerAddr+':'+WSocket.GetPeerPort);
+//    FOnDisconnected('Disconnected from '+WSocket.GetPeerAddr+':'+WSocket.GetPeerPort);
+    FOnDisconnected('Disconnected.');
 end;
 
 procedure TTCPClient.WSocket_OnSessionConnected(Sender: TObject; Error: Word);
@@ -434,7 +437,8 @@ begin
   if not Assigned(FBuffer) then
     GetMem(FBuffer, BUFFER_SIZE);
   if Assigned(FOnConnected) then
-    FOnConnected('Connected to '+WSocket.GetPeerAddr+':'+WSocket.GetPeerPort);
+//    FOnConnected('Connected to '+WSocket.GetPeerAddr+':'+WSocket.GetPeerPort);
+    FOnConnected('Connected.');
 end;
 
 procedure TTCPClient.PacketRecognizer(aP: PAnsiChar; aSize: integer);
