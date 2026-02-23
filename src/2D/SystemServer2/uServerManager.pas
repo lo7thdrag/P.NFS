@@ -874,6 +874,27 @@ begin
         recSendRBU.mCorrBearing := recRBU^.mCorrBearing;
         recSendRBU.mCorrElev := recRBU^.mCorrElev;
 
+        if (recRBU^.OrderID = __ORD_RBU_LOADING) then
+        begin
+          RecSend3DMissilePos.ShipID := recRBU^.ShipID;
+          RecSend3DMissilePos.WeaponID := recRBU^.mWeaponID;
+          RecSend3DMissilePos.launcherID := recRBU^.mLauncherID;
+          RecSend3DMissilePos.missileID := recRBU^.mMissileID;
+          RecSend3DMissilePos.MissileNumber := recRBU^.mMissileNumber;
+          RecSend3DMissilePos.status := 0;
+          case recRBU^.OrderID of
+            __ORD_RBU_LOADING:
+              RecSend3DMissilePos.status := ST_MISSILE_LOADED;
+          end;
+          RecSend3DMissilePos.X := 0;
+          RecSend3DMissilePos.y := 0;
+          RecSend3DMissilePos.z := 0;
+          RecSend3DMissilePos.heading := 0.0;
+          RecSend3DMissilePos.speed := 0.0;
+
+          FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
+        end;
+
         TcpServer3D.SendData(REC_3D_RBU, recSendRBU);
       end;
     REC_SPSS_ORDER:

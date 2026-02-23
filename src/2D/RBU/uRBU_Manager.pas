@@ -207,7 +207,7 @@ begin
   begin
     StandAloneMode := false ;
     InitDefault_AllConfigFromInstruktur(pServer_Ip,pServer_Port,
-    pDBServer, pDBServerPort, pDBProto, pDBName, pDBUser,pDBPass, pShipID, pCurrentScenID );
+    pDBServer, pDBProto, pDBName, pDBUser, pDBPass, pShipID, pCurrentScenID);
 
     if DataModule1.InitZDB(pDBServer, pDBProto, pDBName, pDBUser, pDBPass, '3306'{pDBServerPort}) then
     begin

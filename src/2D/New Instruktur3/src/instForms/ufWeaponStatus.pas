@@ -563,11 +563,19 @@ type
     RecSendYakhont : TRecData_Yakhont;
     RecSendSPS     : TRecDataTorperdo;
     RecSendVLMica  : TRec3DSetVLMica;
+    RecSendRBU     : TRecSetRBU;
 
     C802StatusLoad_1 : Boolean;
     C802StatusLoad_2 : Boolean;
     C802StatusLoad_3 : Boolean;
     C802StatusLoad_4 : Boolean;
+
+    RBUStatusLoad_1, RBUStatusLoad_2,
+    RBUStatusLoad_3, RBUStatusLoad_4,
+    RBUStatusLoad_5, RBUStatusLoad_6,
+    RBUStatusLoad_7, RBUStatusLoad_8,
+    RBUStatusLoad_9, RBUStatusLoad_10,
+    RBUStatusLoad_11, RBUStatusLoad_12 : Boolean;
 
     SPSStatusLoadport     : Boolean;
     SPSStatusLoadStaboard : Boolean;
@@ -671,6 +679,7 @@ const
   tmr_YAKHONT          = 25;
   tmr_SPS              = 30;
   tmr_VLMica           = 40;
+  tmr_RBU              = 55;
 
 
 
@@ -1971,7 +1980,7 @@ procedure TfWeaponStatus.btnRBUAssignClick(Sender: TObject);
 var
   iObj : TInsObject;
 
-  i, launcherID,
+  i,y, launcherID,
   salvo         : Integer;
   WeaponShip    : TWeaponOnShip;
   WeaponRBU     : TWeaponOn_RBU;
@@ -1991,67 +2000,101 @@ begin
     begin
       WeaponRBU := TWeaponOn_RBU(WeaponShip);
 
-      if (TComponent(Sender).Tag = 3) or (TComponent(Sender).Tag = 4) then begin
-        recLoading.ShipID          := SimManager.TrackObject.FDataBaseID;
-        recLoading.mWeaponID       := WeaponRBU.Weapon_ID;
-
-        if TComponent(Sender).Tag = 3 then begin
-          launcherID := 1;
-        end
-        else if TComponent(Sender).Tag = 4 then begin
-          launcherID := 2;
-        end;
-        recLoading.mLauncherID     := launcherID;
-        recLoading.mMissileID      := 1;
-        recLoading.mMissileNumber  := 1;
-        recLoading.OrderID         := __ORD_RBU_LOADING;
-        recLoading.mCount          := 12;
-        recLoading.mMissileType    := 0;
-        recLoading.mTargetID       := 0;
-        recLoading.mLncrBearing    := 0;
-        recLoading.mLncRange       := 0;
-        recLoading.mTargetDepth    := 0;
-        recLoading.mCorrBearing    := 0;
-        recLoading.mCorrElev       := 0;
-
-        SimManager.NetSendTo3D_OrderMissileRBU6000(recLoading);
-      end;
-
-
-      if Assigned(WeaponRBU.RBU_TrackObject) then
+      if (TComponent(Sender).Tag = 3) and (chkRBUAlirKapal.Checked = True) and (chkRBU_Unformer1Left.Checked = true)
+      and (chkRBU_Unformer2Left.Checked = true) then
       begin
-        case TComponent(sender).Tag of
-          //Assign
-          1 :
+        RecSendRBU.ShipID         := SimManager.TrackObject.FDataBaseID;
+        RecSendRBU.mMissileNumber := 1;
+        RecSendRBU.OrderID        := __ORD_RBU_LOADING;
+        RecSendRBU.mLauncherID    := 1;
+        RecSendRBU.mLncrBearing   := 0;
+        RecSendRBU.mLncRange      := 0;
+        RecSendRBU.mWeaponID      := WeaponRBU.Weapon_ID;
+
+          if WeaponRBU.Weapon_Status = 1 then
           begin
-            recAssign.OWN_SHIP_UID    := SimManager.TrackObject.UniqueID;
-            recAssign.TARGET_SHIP_UID := WeaponRBU.RBU_TrackObject.UniqueID;
-            recAssign.Mode := True;
-            SimManager.NetSendRBU_TrackObject(recAssign);
-
-            btnRBUAssign.Enabled    := False;
-            btnRBUDeAssign.Enabled  := True;
+            RBUStatusLoad_1 := True;
+            RBUStatusLoad_2 := True;
+            RBUStatusLoad_3 := True;
+            RBUStatusLoad_4 := True;
+            RBUStatusLoad_5 := True;
+            RBUStatusLoad_6 := True;
+            RBUStatusLoad_7 := True;
+            RBUStatusLoad_8 := True;
+            RBUStatusLoad_9 := True;
+            RBUStatusLoad_10 := True;
+            RBUStatusLoad_11 := True;
+            RBUStatusLoad_12 := True;
           end;
+          CountLoading := tmr_RBU;
+          tmrLoading.Enabled := True;
+          Break;
+      end
+      else if (TComponent(Sender).Tag = 4) and (chkRBUAlirKapal.Checked = True) and (chkRBU_Unformer1Right.Checked = true)
+      and (chkRBU_Unformer2Right.Checked = true) then
+      begin
+        RecSendRBU.ShipID         := SimManager.TrackObject.FDataBaseID;
+        RecSendRBU.mMissileNumber := 1;
+        RecSendRBU.OrderID        := __ORD_RBU_LOADING;
+        RecSendRBU.mLauncherID    := 2;
+        RecSendRBU.mLncrBearing   := 0;
+        RecSendRBU.mLncRange      := 0;
+        RecSendRBU.mWeaponID      := WeaponRBU.Weapon_ID;
 
-          //Deassign
-          2 :
+          if WeaponRBU.Weapon_Status = 1 then
           begin
-            recAssign.OWN_SHIP_UID    := SimManager.TrackObject.UniqueID;
-            recAssign.TARGET_SHIP_UID := WeaponRBU.RBU_TrackObject.UniqueID;
-            recAssign.Mode := false;
-
-            SimManager.NetSendRBU_TrackObject(recAssign);
-
-            WeaponRBU.RBU_TrackObject := nil;
-            btnRBUAssign.Enabled      := True;
-            btnRBUDeAssign.Enabled    := false;
-            edtRBUTrackLabel.Text     := '';
+            RBUStatusLoad_1 := True;
+            RBUStatusLoad_2 := True;
+            RBUStatusLoad_3 := True;
+            RBUStatusLoad_4 := True;
+            RBUStatusLoad_5 := True;
+            RBUStatusLoad_6 := True;
+            RBUStatusLoad_7 := True;
+            RBUStatusLoad_8 := True;
+            RBUStatusLoad_9 := True;
+            RBUStatusLoad_10 := True;
+            RBUStatusLoad_11 := True;
+            RBUStatusLoad_12 := True;
           end;
+          CountLoading := tmr_RBU;
+          tmrLoading.Enabled := True;
+          Break;
+      end
+    end;
+
+    if Assigned(WeaponRBU.RBU_TrackObject) then
+    begin
+      case TComponent(sender).Tag of
+        //Assign
+        1 :
+        begin
+          recAssign.OWN_SHIP_UID    := SimManager.TrackObject.UniqueID;
+          recAssign.TARGET_SHIP_UID := WeaponRBU.RBU_TrackObject.UniqueID;
+          recAssign.Mode := True;
+          SimManager.NetSendRBU_TrackObject(recAssign);
+
+          btnRBUAssign.Enabled    := False;
+          btnRBUDeAssign.Enabled  := True;
+        end;
+
+        //Deassign
+        2 :
+        begin
+          recAssign.OWN_SHIP_UID    := SimManager.TrackObject.UniqueID;
+          recAssign.TARGET_SHIP_UID := WeaponRBU.RBU_TrackObject.UniqueID;
+          recAssign.Mode := false;
+
+          SimManager.NetSendRBU_TrackObject(recAssign);
+
+          WeaponRBU.RBU_TrackObject := nil;
+          btnRBUAssign.Enabled      := True;
+          btnRBUDeAssign.Enabled    := false;
+          edtRBUTrackLabel.Text     := '';
         end;
       end;
-
-      Break;
     end;
+
+    Break;
   end;
 end;
 
@@ -5847,6 +5890,106 @@ begin
     RecSendVLMica.mMissileID  := 12;
     SimManager.NetSendTo3D_OrderMissileVLMica(RecSendVLMica);
     tmrLoading.Enabled := False;
+  end
+
+  //loading RBU
+  else if CountLoading = tmr_RBU + 1 then
+  begin
+    if RBUStatusLoad_1 then
+    begin
+      RecSendRBU.mMissileID := 1;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 2 then
+  begin
+    if RBUStatusLoad_2 then
+    begin
+      RecSendRBU.mMissileID := 2;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 3 then
+  begin
+    if RBUStatusLoad_3 then
+    begin
+      RecSendRBU.mMissileID := 3;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 4 then
+  begin
+    if RBUStatusLoad_4 then
+    begin
+      RecSendRBU.mMissileID := 4;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 5 then
+  begin
+    if RBUStatusLoad_5 then
+    begin
+      RecSendRBU.mMissileID := 5;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 6 then
+  begin
+    if RBUStatusLoad_6 then
+    begin
+      RecSendRBU.mMissileID := 6;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 7 then
+  begin
+    if RBUStatusLoad_7 then
+    begin
+      RecSendRBU.mMissileID := 7;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 8 then
+  begin
+    if RBUStatusLoad_8 then
+    begin
+      RecSendRBU.mMissileID := 8;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 9 then
+  begin
+    if RBUStatusLoad_9 then
+    begin
+      RecSendRBU.mMissileID := 9;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 10 then
+  begin
+    if RBUStatusLoad_10 then
+    begin
+      RecSendRBU.mMissileID := 10;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 11 then
+  begin
+    if RBUStatusLoad_11 then
+    begin
+      RecSendRBU.mMissileID := 11;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+  end
+  else if CountLoading = tmr_RBU + 12 then
+  begin
+    if RBUStatusLoad_12 then
+    begin
+      RecSendRBU.mMissileID  := 12;
+      SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+    end;
+
+      tmrLoading.Enabled := False;
   end
 
 end;

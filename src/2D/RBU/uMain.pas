@@ -25,7 +25,7 @@ type
     mniN108Kanan1: TMenuItem;
     pnl1: TPanel;
     btnConnect: TSpeedButton;
-    procedure EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
+//    procedure EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure FormCreate(Sender: TObject);
     procedure mniExitClick(Sender: TObject);
     procedure mniNetSettingClick(Sender: TObject);
@@ -116,10 +116,10 @@ begin
 end;
 
 
-procedure  Tfrm_Main.EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
-  var  aRec: ^TRecDataPosition;
-begin
-end;
+//procedure  Tfrm_Main.EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
+//  var  aRec: ^TRecDataPosition;
+//begin
+//end;
 
 
 end.
