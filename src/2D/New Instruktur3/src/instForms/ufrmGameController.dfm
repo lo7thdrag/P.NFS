@@ -183311,8 +183311,8 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000009CE49700FC525177EC
-              E4970000040000CCE39700186B311F040000001CE99700000000000000000000
+              0000000000000000000000000000000000000000000000FC525177C8CC970000
+              040000A8CB9700186B311F04000000F8D0970000020000000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -256329,7 +256329,7 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 3
                   end
-                  object btnCannonAssigend23: TAdvSmoothButton
+                  object btnCannonAssigned23: TAdvSmoothButton
                     Tag = 3
                     Left = 25
                     Top = 378
@@ -258116,6 +258116,7 @@ object frmGameController: TfrmGameController
             ParentFont = False
             TabOrder = 0
             ViewStyle = vsReport
+            OnClick = lvWeaponClick
             OnMouseDown = lvWeaponMouseDown
           end
         end
