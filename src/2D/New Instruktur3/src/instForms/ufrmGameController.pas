@@ -3961,7 +3961,7 @@ begin
    if not TryStrToFloat(eRBU6000Range.Text, range) then valid := false;
    if not TryStrToInt(eRBU6000MissilieID.Text, missileID) then valid := false;
    if not TryStrToInt(Idlauncher, launcherID) then valid := false;
-//   if not TryStrToInt(eRBU6000Balistik.Text, MissileType) then valid := False;
+   if not TryStrToInt(eRBU6000Balistik.Text, MissileType) then valid := False;
    if not TryStrToInt(eRBU6000Number.Text, MissileNumber) then valid := False;
    if not TryStrToInt(eRBUTargetID.Text, TargetID) then valid := False;
    if not TryStrToInt(cbbRBUSalvoCount.Text, CountSalvo) then valid := False;
