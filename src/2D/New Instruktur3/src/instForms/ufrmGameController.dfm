@@ -183295,7 +183295,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              010001180100002075BF0A01000000000000001C000000000000000000000000
+              01000118010000104F462A0100000024E897001C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183304,15 +183304,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              0100002075BF0A0100000048130E001C00000000000000000000000000000000
+              010000104F462A01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000FC525177C8CC970000
-              040000A8CB9700186B311F04000000F8D0970000020000000000000000000000
+              0000000000000000000000000000000000000000000000A9C970340000000054
+              EC970004E89700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -206499,7 +206499,7 @@ object frmGameController: TfrmGameController
             Fill.Glow = gmNone
             Transparent = False
             Align = alClient
-            ActivePage = tsSelectShip
+            ActivePage = tsSelectWeapon
             TabSettings.LeftMargin = 0
             TabSettings.RightMargin = 0
             TabSettings.StartMargin = 0
@@ -247268,7 +247268,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwCannonAK230
+              ActivePage = pgtwRBU6000
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -248986,8 +248986,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl47: TLabel
-                    Left = 26
-                    Top = 290
+                    Left = 566
+                    Top = 194
                     Width = 61
                     Height = 16
                     Caption = 'Target ID'
@@ -249000,8 +249000,8 @@ object frmGameController: TfrmGameController
                     Visible = False
                   end
                   object lbl34: TLabel
-                    Left = 287
-                    Top = 321
+                    Left = 827
+                    Top = 225
                     Width = 49
                     Height = 16
                     Caption = 'Decimal'
@@ -249014,8 +249014,8 @@ object frmGameController: TfrmGameController
                     Visible = False
                   end
                   object lbl33: TLabel
-                    Left = 287
-                    Top = 258
+                    Left = 827
+                    Top = 162
                     Width = 49
                     Height = 16
                     Caption = 'Decimal'
@@ -249067,8 +249067,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl104: TLabel
-                    Left = 25
-                    Top = 258
+                    Left = 565
+                    Top = 162
                     Width = 78
                     Height = 16
                     Caption = 'Launcher ID'
@@ -249081,8 +249081,8 @@ object frmGameController: TfrmGameController
                     Visible = False
                   end
                   object lbl105: TLabel
-                    Left = 26
-                    Top = 321
+                    Left = 566
+                    Top = 225
                     Width = 60
                     Height = 16
                     Caption = 'Missile ID'
@@ -249121,8 +249121,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object lbl108: TLabel
-                    Left = 287
-                    Top = 353
+                    Left = 827
+                    Top = 257
                     Width = 49
                     Height = 16
                     Caption = 'Decimal'
@@ -249135,8 +249135,8 @@ object frmGameController: TfrmGameController
                     Visible = False
                   end
                   object lbl109: TLabel
-                    Left = 26
-                    Top = 353
+                    Left = 566
+                    Top = 257
                     Width = 95
                     Height = 16
                     Caption = 'Missile Number'
@@ -249384,8 +249384,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object eRBUTargetID: TEdit
-                    Left = 162
-                    Top = 287
+                    Left = 702
+                    Top = 191
                     Width = 115
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -249399,8 +249399,8 @@ object frmGameController: TfrmGameController
                     Visible = False
                   end
                   object eRBU6000MissilieID: TEdit
-                    Left = 162
-                    Top = 318
+                    Left = 702
+                    Top = 222
                     Width = 114
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -249484,8 +249484,8 @@ object frmGameController: TfrmGameController
                     TabOrder = 6
                   end
                   object eRBU6000Number: TEdit
-                    Left = 162
-                    Top = 350
+                    Left = 702
+                    Top = 254
                     Width = 114
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -249536,7 +249536,7 @@ object frmGameController: TfrmGameController
                     TMSStyle = 0
                   end
                   object btnRBU6000Fire: TAdvSmoothButton
-                    Tag = 3
+                    Tag = 6
                     Left = 159
                     Top = 480
                     Width = 119
@@ -249682,7 +249682,7 @@ object frmGameController: TfrmGameController
                     TMSStyle = 0
                   end
                   object btnRBUStartFire: TAdvSmoothButton
-                    Tag = 6
+                    Tag = 3
                     Left = 58
                     Top = 350
                     Width = 119
@@ -249755,8 +249755,8 @@ object frmGameController: TfrmGameController
                     TMSStyle = 0
                   end
                   object cbbrbuLauncherId: TComboBox
-                    Left = 161
-                    Top = 255
+                    Left = 701
+                    Top = 159
                     Width = 109
                     Height = 21
                     TabOrder = 15

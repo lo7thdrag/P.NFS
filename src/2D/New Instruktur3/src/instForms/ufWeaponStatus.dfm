@@ -2144,7 +2144,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 943
           object Bevel2: TBevel
             Left = 45
             Top = 24
@@ -2609,7 +2608,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object pnlWCCIner: TPanel
             Left = 0
             Top = 0
@@ -2626,8 +2624,6 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
-            ExplicitWidth = 393
-            ExplicitHeight = 26
             object bvl3: TBevel
               Left = 45
               Top = 41
@@ -2779,7 +2775,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl16: TLabel
             Left = 144
             Top = 11
@@ -3266,7 +3261,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl1: TLabel
             Left = 159
             Top = 11
@@ -3547,12 +3541,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 943
+          Height = 923
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl23: TLabel
             Left = 159
             Top = 11
@@ -3574,7 +3567,7 @@ object fWeaponStatus: TfWeaponStatus
           end
           object AssignRBU6000: TGroupBox
             Left = 22
-            Top = 530
+            Top = 208
             Width = 316
             Height = 105
             Caption = 'Assign RBU 6000'
@@ -3703,7 +3696,7 @@ object fWeaponStatus: TfWeaponStatus
           end
           object grp4: TGroupBox
             Left = 23
-            Top = 383
+            Top = 55
             Width = 313
             Height = 138
             Caption = 'Console Status'
@@ -3821,8 +3814,8 @@ object fWeaponStatus: TfWeaponStatus
             end
           end
           object grp5: TGroupBox
-            Left = 21
-            Top = 55
+            Left = 22
+            Top = 338
             Width = 316
             Height = 321
             Caption = 'Launcher Status'
@@ -3833,6 +3826,7 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 2
+            Visible = False
             object grp2: TGroupBox
               Left = 21
               Top = 16
@@ -4239,12 +4233,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblNameSPS: TLabel
             Left = 159
             Top = 11
@@ -5020,12 +5013,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl4: TLabel
             Left = 145
             Top = 11
@@ -5144,12 +5136,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl200: TLabel
             Left = 145
             Top = 11
@@ -5332,12 +5323,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 943
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblExocetMM40Title: TLabel
             Left = 121
             Top = 11
@@ -5853,12 +5843,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblCannon76: TLabel
             Left = 146
             Top = 11
@@ -6071,12 +6060,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl3: TLabel
             Left = 146
             Top = 11
@@ -6132,12 +6120,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblVLMicaTitle: TLabel
             Left = 159
             Top = 11
@@ -6579,12 +6566,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblMilleniumGun35Title: TLabel
             Left = 104
             Top = 12
@@ -6659,7 +6645,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl22: TLabel
             Left = 146
             Top = 11

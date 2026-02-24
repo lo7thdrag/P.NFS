@@ -212,7 +212,6 @@ type
     Val_ElevKedalaman,
     LastVal_ElevKedalaman : Single;
 
-
     { Public declarations }
 
   end;
@@ -443,6 +442,33 @@ end;
 procedure TfrmBurjaBawah.FormShow(Sender: TObject);
 begin
  // vrjgmtrKORCuaca.Scale.Position := vr
+
+  {$REGION 'Burja Aliran Kapal'}
+    uRBU_Manager.RBU_MAnager.frm108Kiri.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108 + 'lampu indikator off.bmp');  //__STAT_ALIRAN_KAPAL = 305;
+    uRBU_Manager.RBU_MAnager.frm108Kanan.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108 + 'lampu indikator off.bmp');
+
+    uRBU_Manager.RBU_MAnager.frm108Kiri.ShipLink_is_On := false;
+    uRBU_Manager.RBU_MAnager.frm108Kanan.ShipLink_is_On := false;
+
+    uRBU_Manager.RBU_MAnager.SendEvenRBU(9);
+  {$ENDREGION}
+
+  {$REGION '__STAT_RBU_UNFORMER_I_LEFT'}
+  stLEFT_UNFORMER1:= False;
+  {$ENDREGION}
+
+  {$REGION '__STAT_RBU_UNFORMER_II_LEFT'}
+  stLEFT_UNFORMER2:= False;
+  {$ENDREGION}
+
+  {$REGION '__STAT_RBU_UNFORMER_I_RIGHT'}
+  stRIGHT_UNFORMER1:= False;
+  {$ENDREGION}
+
+  {$REGION '__STAT_RBU_UNFORMER_II_RIGHT'}
+  stRIGHT_UNFORMER2:= False;
+  {$ENDREGION}
+
 end;
 
 procedure TfrmBurjaBawah.pnl30MouseDown(Sender: TObject; Button: TMouseButton;
