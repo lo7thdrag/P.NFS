@@ -1,0 +1,1 @@
+RBU6000.exe -10.10.10.200 -2120 -10.10.10.200 -MySQL -dbNSuFs -root -Admin -1 -13
