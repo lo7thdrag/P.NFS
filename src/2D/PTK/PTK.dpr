@@ -25,10 +25,11 @@ uses
 {$R *.res}
 
 begin
+  ReportMemoryLeaksOnShutdown:= True;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPTK, frmPTK);
-  Application.CreateForm(TfrmLogPDK, frmLogPDK);
-  Application.CreateForm(TfrmMainPDK, frmMainPDK);
+//  Application.CreateForm(TfrmLogPDK, frmLogPDK);
+//  Application.CreateForm(TfrmMainPDK, frmMainPDK);
   Application.Run;
 end.

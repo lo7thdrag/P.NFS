@@ -19,3 +19,4 @@ bin/2D/bin/Bridge.exe
 bin/2D/bin/SystemServer.exe
 bin/2D/bin/SystemServer.log
 bin/2D/bin/debug.log
+bin/2D/bin/runtimes/win-x64/native/libcef.dll

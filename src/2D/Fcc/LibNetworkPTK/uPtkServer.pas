@@ -140,7 +140,7 @@ begin
 //  Display('Client connecting: ' + AConnection.PeerAddr);
   FLog.Add(DateTimeToStr(Now) + ': ' + ('Client connecting: ' + AConnection.PeerAddr));
   AConnection.LineMode := True;
-  AConnection.LineEdit := True;
+//  AConnection.LineEdit := True;
   AConnection.LineEnd := #13#10;
   AConnection.OnDataAvailable := ClientDataAvailableHandler;
   AConnection.OnBgException := ClientBgExceptionHandler;
@@ -152,17 +152,47 @@ end;
 
 procedure TListener.ClientDisconnectHandler(Sender: TObject;
   Client: TWSocketClient; Error: Word);
-//var
-//  AConnection: TConnection;
+var
+  AConnection: TConnection;
 begin
-//  AConnection := Client as TConnection;
+  AConnection := Client as TConnection;
 //  ShowMessage('Client disconnecting: ' + AConnection.PeerAddr + '   ' +
 //      'Duration: ' + FormatDateTime('hh:nn:ss',
 //      Now - AConnection.ConnectTime));
 //  Display('Client disconnecting: ' + AConnection.PeerAddr + '   ' +
 //      'Duration: ' + FormatDateTime('hh:nn:ss',
 //      Now - AConnection.ConnectTime));
+  AConnection.OnDataAvailable:= nil;
 end;
+
+//procedure TListener.ClientDataAvailableHandler(Sender: TObject; Error: Word);
+//var
+//  AConnection: TConnection;
+//  msg : string;
+//begin
+//  AConnection := Sender as TConnection;
+//  { We use line mode. We will receive complete lines }
+//  AConnection.RcvdLine := AConnection.ReceiveStr;
+//  { Remove trailing CR/LF }
+//  while (Length(AConnection.RcvdLine) > 0) and IsCharInSysCharSet
+//    (AConnection.RcvdLine[Length(AConnection.RcvdLine)], [#13, #10])
+//  do
+//    AConnection.RcvdLine := Copy(AConnection.RcvdLine, 1,
+//      Length(AConnection.RcvdLine) - 1);
+//      msg := AConnection.RcvdLine;
+//
+////  ShowMessage(msg);
+//  if Assigned(FOnNetReceive) then
+//    FOnNetReceive(msg);
+//
+////  Display('Received from ' + AConnection.GetPeerAddr + ': ' +
+////      AConnection.RcvdLine + #13#10);
+//  FLog.Add(DateTimeToStr(Now) + ': ' + 'Received from ' + AConnection.GetPeerAddr + ': ' +
+//      AConnection.RcvdLine + #13#10);
+//
+//  // AConnection.SendStr('Hai' + #13#10);
+//  // ProcessData(Sender as TConnection);
+//end;
 
 procedure TListener.ClientDataAvailableHandler(Sender: TObject; Error: Word);
 var
@@ -172,13 +202,15 @@ begin
   AConnection := Sender as TConnection;
   { We use line mode. We will receive complete lines }
   AConnection.RcvdLine := AConnection.ReceiveStr;
+
   { Remove trailing CR/LF }
-  while (Length(AConnection.RcvdLine) > 0) and IsCharInSysCharSet
-    (AConnection.RcvdLine[Length(AConnection.RcvdLine)], [#13, #10])
-  do
-    AConnection.RcvdLine := Copy(AConnection.RcvdLine, 1,
-      Length(AConnection.RcvdLine) - 1);
-      msg := AConnection.RcvdLine;
+//  while (Length(AConnection.RcvdLine) > 0) and IsCharInSysCharSet
+//    (AConnection.RcvdLine[Length(AConnection.RcvdLine)], [#13, #10])
+//  do
+//    AConnection.RcvdLine := Copy(AConnection.RcvdLine, 1,
+//      Length(AConnection.RcvdLine) - 1);
+//      msg := AConnection.RcvdLine;
+  msg:= StringReplace(AConnection.RcvdLine, #13#10, '', [rfIgnoreCase]);
 
 //  ShowMessage(msg);
   if Assigned(FOnNetReceive) then
@@ -216,7 +248,7 @@ end;
 
 procedure TListener.Shutdown;
 begin
-  Send('shutdown');
+  //Send('shutdown');
   FSocket.Close;
 end;
 

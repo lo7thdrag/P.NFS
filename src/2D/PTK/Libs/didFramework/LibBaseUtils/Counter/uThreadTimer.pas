@@ -3,14 +3,14 @@ unit uThreadTimer;
 interface
 
 uses
-  Classes, Windows;
+  Classes, Windows, Vcl.ExtCtrls;
 
 type
 
 //==============================================================================
   TRunningEvent = procedure(const dt: double) of object;
 
-  TMSTimer = class(TThread)
+  TThreadedMSTimer = class(TThread)
   private
     FLastPerfCount,
       FPerfFreq: Int64;
@@ -41,13 +41,13 @@ type
   end;
 
 //==============================================================================
-  TZTimer = class(TMSTimer)
+  TZTimer = class(TThreadedMSTimer)
   protected
     procedure Execute; override;
   end;
 
 //==============================================================================
-  TPrecisseTimer = class (TMSTimer)
+  TPrecisseTimer = class (TThreadedMSTimer)
   protected
     FMilliCounter: double;
     FLastDelta : double;
@@ -63,15 +63,56 @@ type
   end;
 
 
+  TMSTimer = class
+  private
+    FMainTimer: TTimer;
+    FLastPerfCount,
+    FPerfFreq   : Int64;
+
+    procedure TimerHandler(Sender: TObject);
+
+    function GetEnabled: boolean;
+    procedure SetEnabled(const Value: boolean);
+    function GetSuspended: Boolean;
+
+  protected
+    FInterval : Word;                               // millisecond;
+    FOnTimer  : TNotifyEvent;
+    FOnRunning : TRunningEvent;
+
+    procedure SetInterval(const Value: Word);
+
+//    procedure Execute; override;
+    procedure DoByMySelf;
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+
+    procedure Suspend;
+    procedure Resume;
+
+  published
+    property OnTimer  : TNotifyEvent read FOnTimer write FOnTimer;
+    property OnRunning: TRunningEvent read FOnRunning write FOnRunning;
+    property Interval: Word read FInterval write SetInterval;
+    property Suspended: Boolean read GetSuspended;
+
+
+    property Enabled: boolean read GetEnabled write SetEnabled;
+
+  end;
+
+
 implementation
 
 uses
   MMSystem;
 
 //==============================================================================
-{ TMSTimer }
+{ TThreadedMSTimer }
 
-constructor TMSTimer.Create;
+constructor TThreadedMSTimer.Create;
 begin
   FOnTimer := nil;
   FOnRunning := nil;
@@ -85,7 +126,7 @@ begin
   inherited Create(TRUE);
 end;
 
-destructor TMSTimer.Destroy;
+destructor TThreadedMSTimer.Destroy;
 begin
   FOnTimer := nil;
   FOnRunning := nil;
@@ -94,7 +135,7 @@ begin
   inherited;
 end;
 
-procedure TMSTimer.DoByMySelf;
+procedure TThreadedMSTimer.DoByMySelf;
 var
   Count: Int64;
   Sec: double;
@@ -107,7 +148,7 @@ begin
   end;
 end;
 
-procedure TMSTimer.Execute;
+procedure TThreadedMSTimer.Execute;
 begin
   while not Terminated do begin
     Synchronize(DoByMySelf);
@@ -116,17 +157,17 @@ begin
   end;
 end;
 
-procedure TMSTimer.SetInterval(const Value: LongWord);
+procedure TThreadedMSTimer.SetInterval(const Value: LongWord);
 begin
   FInterval := Value;
 end;
 
-function TMSTimer.GetEnabled: boolean;
+function TThreadedMSTimer.GetEnabled: boolean;
 begin
   result := not Suspended;
 end;
 
-procedure TMSTimer.SetEnabled(const Value: boolean);
+procedure TThreadedMSTimer.SetEnabled(const Value: boolean);
 begin
   if Value <> Suspended then Exit;
   Suspended := not Value;
@@ -207,6 +248,98 @@ begin
     Sleep(1);
 //    Sleep(1);
   end;
+end;
+
+{ TMSTimer }
+
+constructor TMSTimer.Create;
+begin
+  FInterval := 16;
+
+  FMainTimer:= TTimer.Create(nil);
+  FMainTimer.Interval:= FInterval;
+  FMainTimer.OnTimer:= TimerHandler;
+
+  QueryPerformanceFrequency(FPerfFreq);
+  QueryPerformanceCounter(FLastPerfCount);
+
+  inherited;
+end;
+
+destructor TMSTimer.Destroy;
+begin
+  FOnTimer := nil;
+  FMainTimer.Enabled:= False;
+  FMainTImer.Free;
+
+  inherited;
+end;
+
+
+procedure TMSTimer.DoByMySelf;
+var Count     : Int64;
+    MilliSec  : double;
+begin
+
+  if Assigned(FOnTimer) then FOnTimer(self);
+
+  if Assigned(FOnRunning) then begin
+    QueryPerformanceCounter(Count);
+    MilliSec := 1000.0 * (Count - FLastPerfCount) / FPerfFreq;
+    FLastPerfCount := Count;
+    FOnRunning(MilliSec);
+  end;
+
+end;
+
+//procedure TMSTimer.Execute;
+//begin
+//  while not Terminated do begin
+//    Synchronize(DoByMySelf);
+//
+//    Sleep(FInterval);
+//  end;
+//end;
+
+procedure TMSTimer.SetInterval(const Value: Word);
+begin
+  FInterval := Value;
+  FMainTimer.Interval:= FInterval;
+end;
+
+procedure TMSTimer.Suspend;
+begin
+  FMainTimer.Enabled:= False;
+end;
+
+procedure TMSTimer.TimerHandler(Sender: TObject);
+begin
+  DoByMySelf;
+end;
+
+function TMSTimer.GetEnabled: boolean;
+begin
+  result := FMainTimer.Enabled;
+end;
+
+function TMSTimer.GetSuspended: Boolean;
+begin
+  Result:= not FMainTimer.Enabled;
+end;
+
+procedure TMSTimer.Resume;
+begin
+  FMainTimer.Enabled:= True;
+end;
+
+procedure TMSTimer.SetEnabled(const Value: boolean);
+begin
+//  Suspended  := not Value;
+  FMainTimer.Enabled:= Value;
+
+  if Value then
+    QueryPerformanceCounter(FLastPerfCount);
+
 end;
 
 end.

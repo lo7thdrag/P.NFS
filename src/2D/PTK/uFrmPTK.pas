@@ -14,12 +14,12 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure WSocket1SocksConnected(Sender: TObject; ErrCode: Word);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Network Connecttion }
     FipConnect : string;
     FPortConnect : string;
-    FTimerConnect : TPrecisseTimer;
+    FTimerConnect : TMSTimer;
     FSocketTCPClient : TWSocket;
     FBuffer : array [0..1023] of AnsiChar;
 
@@ -55,6 +55,8 @@ type
     FisScreenLocked : Boolean;
     FisLocalCtrl : Boolean;
     FisCheckStart : Boolean;
+    FisCtrlGun : Boolean;
+    FisRightDrum : Boolean;
 
     procedure GenerateCaption;
     procedure GenerateNames;
@@ -83,6 +85,7 @@ type
 
     { Network Handler}
     procedure OnTimerConnectOnTime(const dt : Double);
+    procedure SocketClientSessionConnected(Sender: TObject; ErrCode: Word);
     procedure SocketClientSessionClosed(Sender: TObject; ErrCode: Word);
     procedure SocketClientDataAvailable(Sender: TObject; ErrCode: Word);
     procedure SetRole(Msg : String);
@@ -169,29 +172,41 @@ begin
         FBtnArray[i].Color := clBlack;
       end;
       FBtnArray[1].Color := clLime;
-      if FLocalCtrlState = lcCombat then
+      if FisCtrlGun then
       begin
-        FBtnArray[7].Color := clLime;
-        SetOperationModeDisplay;
-      end
-      else if FLocalCtrlState = lcCheck then
-      begin
-        FBtnArray[8].Color := clLime;
-        if FisCheckStart then
+        if FisRightDrum then
         begin
-          FBtnArray[7].Enabled := False;
-          FBtnArray[28].Color := clLime;
-          FBtnArray[29].Color := clBlack;
+          FBtnArray[11].Color := clLime;
         end
-        else
+        else FBtnArray[10].Color := clLime;
+
+      end
+
+      else
+      begin
+        if FLocalCtrlState = lcCombat then
         begin
-          FBtnArray[7].Enabled := True;
-          FBtnArray[28].Color := clBlack;
-          FBtnArray[29].Color := clLime;
+          FBtnArray[7].Color := clLime;
+          SetOperationModeDisplay;
+        end
+        else if FLocalCtrlState = lcCheck then
+        begin
+          FBtnArray[8].Color := clLime;
+          if FisCheckStart then
+          begin
+            FBtnArray[7].Enabled := False;
+            FBtnArray[28].Color := clLime;
+            FBtnArray[29].Color := clBlack;
+          end
+          else
+          begin
+            FBtnArray[7].Enabled := True;
+            FBtnArray[28].Color := clBlack;
+            FBtnArray[29].Color := clLime;
+          end;
+
         end;
-
       end;
-
     end
     else
     begin
@@ -210,6 +225,7 @@ begin
     FBtnArray[0].Color := clLime;
     FBtnArray[1].Color := clBlack;
     FisLocalCtrl := False;
+    FisCtrlGun := False;
     GenerateCaptionByMenu('SysCtrl');
   end
   else if TSpeedButtonImage(Sender).Name = 'btn_LocalCtrl' then
@@ -218,6 +234,7 @@ begin
     FBtnArray[1].Color := clLime;
     FBtnArray[0].Color := clBlack;
     FisLocalCtrl := True;
+    FisCtrlGun := False;
     GenerateCaptionByMenu('LocalCtrl');
     if FLocalCtrlState = lcCombat then
     begin
@@ -261,6 +278,10 @@ begin
     pnlNumKey.BringToFront;
   end
   else if TSpeedButtonImage(Sender).Name = 'btn_CalSetting' then
+  begin
+    pnlNumKey.BringToFront;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_RrSetting' then
   begin
     pnlNumKey.BringToFront;
   end
@@ -329,14 +350,35 @@ begin
   end
   else if TSpeedButtonImage(Sender).Name = 'btn_CtrlGun' then
   begin
+    FisCtrlGun := True;
+    if FisRightDrum then
+    begin
+      FBtnArray[11].Color := clLime;
+    end
+    else FBtnArray[10].Color := clLime;
+
     GenerateCaptionByMenu('CtrlGun');
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_LDrum' then
+  begin
+    FisRightDrum := False;
+    FBtnArray[11].Color := clBlack;
+    FBtnArray[10].Color := clLime;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_RDrum' then
+  begin
+    FisRightDrum := True;
+    FBtnArray[10].Color := clBlack;
+    FBtnArray[11].Color := clLime;
   end
   else if TSpeedButtonImage(Sender).Name = 'btn_Video' then
   begin
+    FisCtrlGun := False;
     GenerateCaptionByMenu('Video');
   end
   else if TSpeedButtonImage(Sender).Name = 'btn_DataRecord' then
   begin
+    FisCtrlGun := False;
     GenerateCaptionByMenu('DataRecord');
   end;
 
@@ -374,6 +416,13 @@ begin
 
 end;
 
+procedure TfrmPTK.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FTimerConnect.Enabled := False;
+  FSocketTCPClient.Close;
+end;
+
 procedure TfrmPTK.FormCreate(Sender: TObject);
 var
   iniF : TIniFile;
@@ -407,9 +456,9 @@ begin
   FFont_Btn := 10;
 
   { Create Network Handler }
-  FSocketTCPClient := TWSocket.Create(nil);
+  FSocketTCPClient := TWSocket.Create(Self);
 
-  FTimerConnect := TPrecisseTimer.Create;
+  FTimerConnect := TMSTimer.Create;
   FTimerConnect.OnRunning := OnTimerConnectOnTime;
   FTimerConnect.Interval := 5000;
   FTimerConnect.Enabled := True;
@@ -512,10 +561,10 @@ procedure TfrmPTK.FormDestroy(Sender: TObject);
 begin
 //
   if Assigned(FTimerConnect) then
-  begin
-    FTimerConnect.Enabled := False;
-    FTimerConnect.Free;
-  end;
+    FreeAndNil(FTimerConnect);
+
+  if Assigned(FSocketTCPClient) then
+    FreeAndNil(FSocketTCPClient);
 end;
 
 procedure TfrmPTK.FormMouseDown(Sender: TObject; Button: TMouseButton;
@@ -871,7 +920,7 @@ begin
   FBtnArray[16].Name := 'btn_Middle';
   FBtnArray[17].Name := 'btn_Low';
   FBtnArray[18].Name := 'btn_18';
-  FBtnArray[19].Name := 'btn_19';
+  FBtnArray[19].Name := 'btn_ReturnZero';
   FBtnArray[20].Name := 'btn_20';
   FBtnArray[21].Name := 'btn_RrSetting';
   FBtnArray[22].Name := 'btn_22';
@@ -1392,19 +1441,20 @@ begin
       FSocketTCPClient.Port := FPortConnect;
       FSocketTCPClient.Addr := FipConnect;
       FSocketTCPClient.LineMode := True;
-      FSocketTCPClient.LineEdit := True;
+//      FSocketTCPClient.LineEdit := True;
       FSocketTCPClient.LineEnd := #10#13;
+      FSocketTCPClient.OnSessionConnected:= SocketClientSessionConnected;
       FSocketTCPClient.OnSessionClosed := SocketClientSessionClosed;
       FSocketTCPClient.OnDataAvailable := SocketClientDataAvailable;
-      FSocketTCPClient.OnSocksConnected := WSocket1SocksConnected;
       FSocketTCPClient.Connect;
-    end;
-
-    if FSocketTCPClient.State = wsConnected then
-    begin
-      ShowMessage('Socket Connected');
       FTimerConnect.Enabled := False;
     end;
+
+//    if FSocketTCPClient.State = wsConnected then
+//    begin
+//      ShowMessage('Socket Connected');
+//      FTimerConnect.Enabled := False;
+//    end;
   end;
 end;
 
@@ -1419,7 +1469,7 @@ begin
   begin
     if FSocketTCPClient.State = wsConnected then
     begin
-      FSocketTCPClient.SendLine(str + #10#13);
+      FSocketTCPClient.SendLine(str + #13#10);
     end;
   end;
 end;
@@ -1476,20 +1526,22 @@ begin
 end;
 
 procedure TfrmPTK.SocketClientDataAvailable(Sender: TObject; ErrCode: Word);
+var
+  s: string;
 begin
+  s:= FSocketTCPClient.ReceiveStr;
+end;
 
+procedure TfrmPTK.SocketClientSessionConnected(Sender: TObject; ErrCode: Word);
+begin
+  FTimerConnect.Enabled := False;
+//  ShowMessage('Socket Connected');
 end;
 
 procedure TfrmPTK.SocketClientSessionClosed(Sender: TObject; ErrCode: Word);
 begin
   FTimerConnect.Enabled := True;
 //  ShowMessage('Socket Disconnected');
-end;
-
-procedure TfrmPTK.WSocket1SocksConnected(Sender: TObject; ErrCode: Word);
-begin
-  inherited;
-//  ShowMessage('Socket Connected');
 end;
 
 end.

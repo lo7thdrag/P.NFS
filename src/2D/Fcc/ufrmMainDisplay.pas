@@ -518,6 +518,12 @@ type
     lblNavSettingSatuanLat: TLabel;
     rbNavAuto: TRadioButton;
     rbNavrManual: TRadioButton;
+    pnlRRSetting: TPanel;
+    lblRRSettingLeftDrum: TLabel;
+    lblRRSettingRightDrum: TLabel;
+    pnlRRSettingHeader: TPanel;
+    edtRRSettingLeftDrum: TEdit;
+    edtRRSettingRightDrum: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -553,8 +559,10 @@ type
     BitMapLampGrey, BitMapLampGreen, BitMapLampRed  : TBitmap;
     config: TSetting;
     ExecInfo: TShellExecuteInfo;
+    LeftDrum, RightDrum, TargetRoundInDrum: Integer;
+    DrumPosState : BOOL; // False untuk left drum, True untuk right drum
 //    FProcessInfo: TProcessInformation;
-    InsideZone, FireAllow, IsFiring : BOOL;
+    InsideZone, FireAllow, IsFiring, IsReturnZero : BOOL;
     FCurrBearing, FCurrElev, FTargetBearing, FTargetElev : Double;
     FLyrDraw: CMapXLayer;
     FNorthAngle : Double;
@@ -1287,6 +1295,7 @@ begin
           if (bearing < 135) or (bearing > 225) then
           begin
             imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampGreen;
+            imgGunStateReturnZero.Picture.Bitmap := BitMapLampGrey;
             InsideZone := True;
           end
           else
@@ -1316,6 +1325,7 @@ begin
           else
           begin
             imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampGreen;
+            imgGunStateReturnZeroFCC2.Picture.Bitmap := BitMapLampGrey;
             InsideZone := True;
           end;
         end;
@@ -1405,6 +1415,8 @@ begin
       edtIndDataSpeed.Text := '0';
     end;
     // END IND Data
+
+    IsReturnZero := False;
 
     FTargetBearing := bearing;
     FTargetElev := aLow;
@@ -1578,6 +1590,9 @@ begin
       FCurrElev := 0;
       FTargetBearing := 0;
       FTargetElev := 0;
+      LeftDrum := 250;
+      RightDrum := 250;
+      TargetRoundInDrum := 250;
     end;
     2 : //FCC2 Mode
     begin
@@ -1588,6 +1603,9 @@ begin
       FCurrElev := 0;
       FTargetBearing := 180;
       FTargetElev := 0;
+      LeftDrum := 200;
+      RightDrum := 200;
+      TargetRoundInDrum := 200;
     end;
   end;
 
@@ -1673,7 +1691,7 @@ begin
 
 
   envSce := TScenario.Create;
-  DataModule1.GetEnviBySceID(FCCManager.CurrentScenID, envSce);
+  DataModule1.GetScenarioDefByID(FCCManager.CurrentScenID, envSce);
   edtWeatherDataWs.Text := envSce.Scenario_WindSpeed.ToString();
   edtWeatherDataWd.Text := envSce.Scenario_WindDir_Deg.ToString();
   edtWeatherDataTemp.Text := envSce.Scenario_Temperature.ToString();
@@ -1764,6 +1782,7 @@ procedure TfrmMainFCC.HandleKeyByBtnName(const BtnName: string);
 var
   Token: string;
   C: Char;
+  RecSend : TRec3DSetWCC;
 begin
   Token := ExtractToken(BtnName);
 
@@ -1805,6 +1824,62 @@ begin
   begin
     pnlWaitLs.Caption := 'V.Fire';
   end
+  else if (Token = 'LDrum') then
+  begin
+    DrumPosState := False;
+    TargetRoundInDrum := LeftDrum;
+  end
+  else if (Token = 'RDrum') then
+  begin
+    DrumPosState := True;
+    TargetRoundInDrum := RightDrum;
+  end
+  else if (Token = 'ReturnZero') then
+  begin
+    // Send Deassign ke 3D, matikan tracked sama aimed dan nyalain return zero
+    IsReturnZero := True;
+    case vFccSetting.FccMode of
+      1 : //FCC1 Mode
+      begin
+        FTargetBearing := 0;
+        imgGunStateReturnZero.Picture.Bitmap := BitMapLampGreen;
+        imgCtrlStateTracked.Picture.Bitmap := BitMapLampGrey;
+      end;
+      2 : //FCC2 Mode
+      begin
+        FTargetBearing := 180;
+        imgGunStateReturnZeroFCC2.Picture.Bitmap := BitMapLampGreen;
+        imgCtrlStateTrackedFCC2.Picture.Bitmap := BitMapLampGrey;
+      end;
+    end;
+
+    FTargetElev := 0;
+    edtCtrlDataBeInc.Text := (0 - fcurrbearing).ToString();
+    edtCtrlDataElInc.Text := (0 - fcurrelev).ToString();
+    edtCtrlDataBeInc1.Text := (0 - fcurrbearing).ToString();
+    edtCtrlDataElInc1.Text := (0 - fcurrelev).ToString();
+
+    RecSend.ShipID              := FCCManager.ShipID;
+    RecSend.mWeaponID           := FCCManager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID         := 0;
+    RecSend.mMissileID          := 0;
+    RecSend.mMissileNumber      := 0;
+    RecSend.mOrderID            := 0;
+
+    RecSend.mUpDown             := 0;
+    RecSend.mTargetID           := 0;
+
+    RecSend.mModeID             := 0;
+    RecSend.mAutoCorrectElev    := 0;
+    RecSend.mAutoCorrectBearing := 0;
+
+    RecSend.mBalistikID         := 0;
+    RecSend.mSalvoRate          := 0;
+
+
+    RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
+    FCCManager.NetSendTo3D_OrderCannon(RecSend);
+  end
   else if (Token = 'CalSetting') or (Token = 'btnCalSetting') or (Token = 'btn_CalSetting')  then
   begin
     pnlCalSetting.BringToFront;
@@ -1818,13 +1893,35 @@ begin
     edtWeatherSettingHumi.Text := edtWeatherDataHumi.Text;
     edtWeatherSettingAirP.Text := edtWeatherDataAirP.Text;
 
+    onRbWeatherSetting(Self);
+
     pnlWeatherSetting.BringToFront;
+//    edtWeatherSettingWs.SetFocus;
     activePanel := 2;
   end
   else if (Token = 'avSetting') or (Token = 'btnNavSetting') or (Token = 'btn_NavSetting')  then
   begin
+    edtNavSettingHeading.Text := edtNavDataHeading.Text;
+    edtNavSettingPitch.Text := edtNavDataPitch.Text;
+    edtNavSettingLON.Text := edtNavDataLON.Text;
+    edtNavSettingALT.Text := '0.00';
+    edtNavSettingSpeed.Text := edtNavDataSpeed.Text;
+    edtNavSettingRoll.Text := edtNavDataRoll.Text;
+    edtNavSettingLAT.Text := edtNavDataLAT.Text;
+
+    onRbNavSetting(Self);
+
     pnlNavSetting.BringToFront;
+
     activePanel := 3;
+  end
+  else if (Token = 'RrSetting') or (Token = 'btnRrSetting') or (Token = 'btn_RrSetting')  then
+  begin // harus bikin global variabel buat left drum dan right drum fcc 1 dan fcc 2
+    edtRRSettingLeftDrum.Text := leftdrum.ToString();
+    edtRRSettingRightDrum.Text := rightdrum.ToString();
+
+    pnlRRSetting.BringToFront;
+    activePanel := 4;
   end
   else if (Token = 'btnVFireSetting')  then
   begin
@@ -1860,6 +1957,16 @@ begin
         edtNavDataRoll.Text := edtNavSettingRoll.Text;
         edtNavDataLON.Text := edtNavSettingLON.Text;
         edtNavDataLAT.Text := edtNavSettingLAT.Text;
+        pnlIndWth.BringToFront;
+      end;
+      4: // RR Setting
+      begin
+        if not DrumPosState then
+          TargetRoundInDrum := StrToInt(edtRRSettingLeftDrum.Text)
+        else
+          TargetRoundInDrum := StrToInt(edtRRSettingRightDrum.Text);
+        LeftDrum := StrToInt(edtRRSettingLeftDrum.Text);
+        RightDrum := StrToInt(edtRRSettingRightDrum.Text);
         pnlIndWth.BringToFront;
       end;
     end;
@@ -1913,10 +2020,10 @@ begin
 
   // ---------------- ARROWS ----------------
   else if Token = 'Up' then
-    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_UP, 0)
+    SelectNext(ActiveControl, False, True)
 
   else if Token = 'Down' then
-    PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_DOWN, 0)
+    SelectNext(ActiveControl, True, True)
 
   else if Token = 'Left' then
     PostMessage(ActiveControl.Handle, WM_KEYDOWN, VK_LEFT, 0)
@@ -2061,10 +2168,40 @@ end;
 procedure TfrmMainFCC.onRbNavSetting(Sender: TObject);
 begin
   if rbNavAuto.Checked then
+  begin
+    edtNavSettingHeading.Text := FormatFloat('0.00', FCCManager.xShip.Heading);
+    edtNavSettingPitch.Text := FormatFloat('0.00', FCCManager.xShip.Pitch);
+    edtNavSettingLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
+    edtNavSettingALT.Text := FormatFloat('0.00', FCCManager.xShip.PositionZ);
+    edtNavSettingSpeed.Text := FormatFloat('0.00', FCCManager.xShip.Speed);
+    edtNavSettingRoll.Text := FormatFloat('0.00', FCCManager.xShip.Roll);
+    edtNavSettingLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
+
+    edtNavSettingHeading.Enabled := False;
+    edtNavSettingPitch.Enabled := False;
+    edtNavSettingLON.Enabled := False;
+    edtNavSettingALT.Enabled := False;
+    edtNavSettingSpeed.Enabled := False;
+    edtNavSettingRoll.Enabled := False;
+    edtNavSettingLAT.Enabled := False;
+
     FIsNavAuto := True;
+  end;
+
 
   if rbNavrManual.Checked then
+  begin
+    edtNavSettingHeading.Enabled := True;
+    edtNavSettingPitch.Enabled := True;
+    edtNavSettingLON.Enabled := True;
+    edtNavSettingALT.Enabled := True;
+    edtNavSettingSpeed.Enabled := True;
+    edtNavSettingRoll.Enabled := True;
+    edtNavSettingLAT.Enabled := True;
+
     FIsNavAuto := False;
+  end;
+
 end;
 
 procedure TfrmMainFCC.onRbWeatherSetting(Sender: TObject);
@@ -2074,7 +2211,7 @@ begin
   if rbWeatherAuto.Checked then
   begin
     envSce := TScenario.Create;
-    DataModule1.GetEnviBySceID(FCCManager.CurrentScenID, envSce);
+    DataModule1.GetScenarioDefByID(FCCManager.CurrentScenID, envSce);
     edtWeatherSettingWs.Text := envSce.Scenario_WindSpeed.ToString();
     edtWeatherSettingWd.Text := envSce.Scenario_WindDir_Deg.ToString();
     edtWeatherSettingTemp.Text := envSce.Scenario_Temperature.ToString();
@@ -2092,11 +2229,14 @@ begin
 
   if rbWeatherManual.Checked then
   begin
+
     edtWeatherSettingWs.Enabled := True;
     edtWeatherSettingWd.Enabled := True;
     edtWeatherSettingTemp.Enabled := True;
     edtWeatherSettingHumi.Enabled := True;
     edtWeatherSettingAirP.Enabled := True;
+
+    edtWeatherSettingWs.SetFocus;
 
     FIsWeatherAuto := False;
   end;
@@ -2171,7 +2311,16 @@ begin
       begin
         RecSend.mModeID             := 3;
         Application.ProcessMessages;
+        if not DrumPosState then // kurangi left drum
+        begin
+          TargetRoundInDrum := LeftDrum - 35;
+        end
+        else if DrumPosState then // kurangi right drum
+        begin
+          TargetRoundInDrum := RightDrum - 35;
+        end;
         Sleep(1000);
+
       end;
       2 : //FCC2 Mode
       begin
@@ -2181,16 +2330,25 @@ begin
           Exit;
         Sleep(500);
 
-        edtLowPR.Text := IntToStr(StrToInt(edtLowPR.Text) + 1);
-        edtLowRR.Text := IntToStr(StrToInt(edtLowRR.Text) - 1);
+        if not DrumPosState then // kurangi left drum
+        begin
+          TargetRoundInDrum := LeftDrum - 4;
+        end
+        else if DrumPosState then // kurangi right drum
+        begin
+          TargetRoundInDrum := RightDrum - 4;
+        end;
 
         Sleep(500);
+        if not DrumPosState then // kurangi left drum
+        begin
+          TargetRoundInDrum := LeftDrum - 4;
+        end
+        else if DrumPosState then // kurangi right drum
+        begin
+          TargetRoundInDrum := RightDrum - 4;
+        end;
 
-        edtHighPR.Text := IntToStr(StrToInt(edtHighPR.Text) + 1);
-        edtHighRR.Text := IntToStr(StrToInt(edtHighRR.Text) - 1);
-
-//        edtHighPR := edtHighPR + 1;
-//        edtHighRR := edtHighRR - 1;
 
       end;
     end;
@@ -2368,7 +2526,7 @@ end;
 
 procedure TfrmMainFCC.tmrUpdateHeadingTimer(Sender: TObject);
 var
-  i : Integer;
+  i, tempPR : Integer;
   RandomDeltaX,RandomDeltaY : Double;
   lastBearing, lastElev, DiffBearing, DiffElev : Double;
 begin
@@ -2464,6 +2622,23 @@ begin
           imgCtrlStateTracked.Picture.Bitmap := BitMapLampGrey;
         end;
 
+        if not DrumPosState and (TargetRoundInDrum < LeftDrum) then // kurangi left drum
+        begin
+          tempPR := StrToInt(pnlGpPr.Caption);
+          tempPR := tempPR +1;
+          pnlGpPr.Caption := tempPR.ToString();
+          LeftDrum := LeftDrum - 1;
+        end
+        else if DrumPosState and (TargetRoundInDrum < RightDrum) then // kurangi right drum
+        begin
+          tempPR := StrToInt(pnlGpPr.Caption);
+          tempPR := tempPR +1;
+          pnlGpPr.Caption := tempPR.ToString();
+          RightDrum := RightDrum - 1;
+        end;
+
+        pnlGpRr.Caption := (LeftDrum + RightDrum).ToString();
+
       end;
     2 : //FCC2 Mode
       begin
@@ -2546,7 +2721,7 @@ begin
         edtCtrlDataBeS1.Text := diffbearing.ToString();
         edtCtrlDataElS1.Text := diffelev.ToString();
 
-        if FSelectedVehicleState then
+        if FSelectedVehicleState and not IsReturnZero then
         begin
           imgCtrlStateTrackedFCC2.Picture.Bitmap := BitMapLampGreen;
         end
@@ -2554,6 +2729,24 @@ begin
         begin
           imgCtrlStateTrackedFCC2.Picture.Bitmap := BitMapLampGrey;
         end;
+
+        if not DrumPosState and (TargetRoundInDrum < LeftDrum) then // kurangi left drum
+        begin
+          tempPR := StrToInt(edtLowPR.Text);
+          tempPR := tempPR +1;
+          edtLowPR.Text := tempPR.ToString();
+          LeftDrum := LeftDrum - 1;
+        end
+        else if DrumPosState and (TargetRoundInDrum < RightDrum) then // kurangi right drum
+        begin
+          tempPR := StrToInt(edtHighPR.Text);
+          tempPR := tempPR +1;
+          edtHighPR.Text := tempPR.ToString();
+          RightDrum := RightDrum - 1;
+        end;
+
+        edtLowRR.Text := LeftDrum.ToString();
+        edtHighRR.Text := RightDrum.ToString();
 
       end;
   end;
