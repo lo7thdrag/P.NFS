@@ -2643,7 +2643,7 @@ begin
           begin
             if WeaponC802.Weapon_Status = 1 then
             begin
-              RecSendYakhont.mLauncherID  := WeaponC802.Weapon_Launcher;
+              recSendC802.mLauncherID  := WeaponC802.Weapon_Launcher;
               C802StatusLoad_1 := True;
             end;
           end
@@ -2651,7 +2651,7 @@ begin
           begin
             if WeaponC802.Weapon_Status = 1 then
             begin
-              RecSendYakhont.mLauncherID  := WeaponC802.Weapon_Launcher;
+              recSendC802.mLauncherID  := WeaponC802.Weapon_Launcher;
               C802StatusLoad_2 := True;
             end;
           end
@@ -2659,7 +2659,7 @@ begin
           begin
             if WeaponC802.Weapon_Status = 1 then
             begin
-              RecSendYakhont.mLauncherID  := WeaponC802.Weapon_Launcher;
+              recSendC802.mLauncherID  := WeaponC802.Weapon_Launcher;
               C802StatusLoad_3 := True;
             end;
           end
@@ -2667,7 +2667,7 @@ begin
           begin
             if WeaponC802.Weapon_Status = 1 then
             begin
-              RecSendYakhont.mLauncherID  := WeaponC802.Weapon_Launcher;
+              recSendC802.mLauncherID  := WeaponC802.Weapon_Launcher;
               C802StatusLoad_4 := True;
             end;
             CountLoading := tmr_C802;
