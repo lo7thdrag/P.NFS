@@ -478,8 +478,6 @@ object frmSceEditor: TfrmSceEditor
       Version = '1.6.0.1'
       Align = alClient
       TabOrder = 1
-      ExplicitLeft = -3
-      ExplicitTop = 277
       DesignSize = (
         576
         771)
@@ -804,7 +802,7 @@ object frmSceEditor: TfrmSceEditor
       end
       object vrwhlSeaDirection: TVrWheel
         Left = 352
-        Top = 324
+        Top = 321
         Width = 100
         Height = 100
         MaxValue = 360
@@ -1757,6 +1755,7 @@ object frmSceEditor: TfrmSceEditor
           0000333000333000000033099903300000003099999030000000309999903000
           0000307999903000000033077903300000003330003330000000333333333000
           0000}
+        OnChange = vrwhlSeaDirectionChange
         Anchors = [akTop, akRight]
       end
       object vrwhlWindDirec: TVrWheel
@@ -2723,18 +2722,16 @@ object frmSceEditor: TfrmSceEditor
         Width = 489
         Height = 28
         Max = 100
-        Min = 1
         Position = 1
         TabOrder = 0
         OnChange = tbFogHChange
       end
       object tbHumidity: TTrackBar
         Left = 18
-        Top = 609
+        Top = 611
         Width = 489
         Height = 28
         Max = 100
-        Min = 1
         Position = 1
         TabOrder = 1
         OnChange = tbHumidityChange
@@ -2745,9 +2742,8 @@ object frmSceEditor: TfrmSceEditor
         Width = 489
         Height = 28
         Max = 5000
-        Min = 1
         Frequency = 100
-        Position = 1
+        Position = 101
         TabOrder = 2
         OnChange = tbBaroPressureChange
       end
@@ -2757,7 +2753,6 @@ object frmSceEditor: TfrmSceEditor
         Width = 489
         Height = 28
         Max = 100
-        Min = 1
         Position = 1
         TabOrder = 3
         OnChange = tbTempChange
@@ -2768,7 +2763,6 @@ object frmSceEditor: TfrmSceEditor
         Width = 489
         Height = 28
         Max = 50
-        Min = 1
         Position = 1
         TabOrder = 4
         OnChange = tbSeaSpeedChange
@@ -2779,7 +2773,6 @@ object frmSceEditor: TfrmSceEditor
         Width = 489
         Height = 28
         Max = 50
-        Min = 1
         Position = 1
         TabOrder = 5
         OnChange = tbWindSpeedChange
@@ -2867,7 +2860,7 @@ object frmSceEditor: TfrmSceEditor
       end
       object edtHumidity: TEdit
         Left = 513
-        Top = 612
+        Top = 614
         Width = 38
         Height = 21
         Alignment = taCenter
@@ -2889,7 +2882,7 @@ object frmSceEditor: TfrmSceEditor
       end
       object edtTemp: TEdit
         Left = 513
-        Top = 490
+        Top = 491
         Width = 38
         Height = 21
         Alignment = taCenter
@@ -2937,6 +2930,7 @@ object frmSceEditor: TfrmSceEditor
         Width = 47
         Height = 21
         MaxLength = 3
+        NumbersOnly = True
         TabOrder = 15
         Text = '0'
         OnKeyPress = edtSeaDirectionKeyPress

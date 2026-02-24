@@ -169,17 +169,11 @@ type
     procedure vrwhlWindDirecChange(Sender: TObject);
     procedure edtWindDirecKeyPress(Sender: TObject; var Key: Char);
     procedure edtSeaDirectionKeyPress(Sender: TObject; var Key: Char);
-
-
-
-  
-
-
+    procedure vrwhlSeaDirectionChange(Sender: TObject);
 
 
   private
     { Private declarations }
-
     Ship_ID: Integer;
     Ship_Name: string;
     ship_MaxSpeed: Integer;
@@ -2033,6 +2027,10 @@ begin
 end;
 
 procedure TfrmSceEditor.ClearVisualForm;
+var
+  valTemp : Integer;
+  dirTemp : Integer;
+
 begin
   ClearWeaponListScenario;
 
@@ -2043,6 +2041,42 @@ begin
   {$ENDREGION}
 
   {$REGION ' Environment '}
+  tbSeaState.Position := 1;
+  edtSeaState.Text := '1';
+  tbWindSpeed.Position := 0;
+  edtWindSpeed.Text := '0';
+  tbSeaSpeed.Position := 0;
+  edtSeaSpeed.Text := '0';
+  tbTemp.Position := 0;
+  edtTemp.Text := '0';
+  tbBaroPressure.Position := 0;
+  edtBaroPressure.Text := '0';
+  tbHumidity.Position := 0;
+  edtHumidity.Text := '0';
+  tbFogH.Position := 0;
+  edtFogH.Text := '0';
+
+  valTemp := 0;
+
+  if valTemp < 180 then
+  begin
+    dirTemp := (180 + valTemp);
+
+    vrwhlWindDirec.Position := dirTemp;
+  end;
+  edtWindDirec.Text := IntToStr(valTemp);
+
+  valTemp := 0;
+
+  if valTemp < 180 then
+  begin
+    dirTemp := (180 + valTemp);
+
+    vrwhlSeaDirection.Position :=dirTemp;
+  end;
+  edtSeaDirection.Text:= IntToStr(valTemp);
+
+
   {$ENDREGION}
 
   {$REGION ' Platform '}
@@ -2489,7 +2523,7 @@ var
 begin
   if Key = #13 then
   begin
-    val := StrToInt(edtBaroPressure.text);
+    val := StrToIntDef(edtBaroPressure.Text, 0);
 
 
     if val > 5000 then
@@ -2497,7 +2531,8 @@ begin
     else if val < 1 then
          val := 1 ;
 
-    tbBaroPressure.Position := StrToInt(edtBaroPressure.text);
+    edtBaroPressure.Text := IntToStr(val);
+    tbBaroPressure.Position := StrToIntDef(edtBaroPressure.Text, 0);
   end;
 
 end;
@@ -2509,15 +2544,15 @@ var
 begin
   if Key = #13 then
   begin
-    val := StrToInt(edtFogH.text);
+    val := StrToIntDef(edtFogH.Text, 0);
 
 
     if val > 100 then
       val := 100
     else if val < 1 then
          val := 1 ;
-
-    tbFogH.Position := StrToInt(edtFogH.Text);
+    edtFogH.Text := IntToStr(val);
+    tbFogH.Position := StrToIntDef(edtFogH.Text, 0);
   end;
 end;
 
@@ -2527,38 +2562,40 @@ procedure TfrmSceEditor.edtHumidityKeyPress(Sender: TObject; var Key: Char);
 begin
     if Key = #13 then
   begin
-    val := StrToInt(edtHumidity.Text);
+    val := StrToIntDef(edtHumidity.Text, 0);
 
     if val > 100 then
       val := 100
     else if val < 1 then
       val := 1;
-
-    tbHumidity.Position := StrToInt(edtHumidity.Text);
+    edtHumidity.Text := IntToStr(val);
+    tbHumidity.Position := StrToIntDef(edtHumidity.Text, 0);
   end;
 
 end;
 
 procedure TfrmSceEditor.edtSeaDirectionKeyPress(Sender: TObject; var Key: Char);
-  var
+ var
     val : Integer;
 
 begin
   if Key = #13 then
   begin
-    val := StrToInt(edtSeaDirection.Text);
+    val := StrToIntDef(edtSeaDirection.Text, 0);
 
-    if val > 360 then
-      val := 360
-    else if val < 0 then
-      val := 0;
+    if val < 180 then
+    begin
+      val := (180 + val);
 
-     if val > 0 then
-        vrwhlSeaDirection.position := Round(val - 0)
-     else
-        vrwhlSeaDirection.position := Round(val + 0);
+      vrwhlSeaDirection.Position := val;
+    end
+    else
+    begin
+      val := (val - 180);
+
+      vrwhlSeaDirection.Position := val;
+    end;
   end;
-
 end;
 
 procedure TfrmSceEditor.edtSeaSpeedKeyPress(Sender: TObject; var Key: Char);
@@ -2568,16 +2605,17 @@ procedure TfrmSceEditor.edtSeaSpeedKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
   begin
-    val := StrToInt(edtSeaSpeed.Text);
+    val := StrToIntDef(edtSeaSpeed.Text, 0);
 
     if val > 50 then
       val := 50
     else if val < 1 then
       val := 1;
-
-    tbSeaSpeed.Position := StrToInt(edtSeaSpeed.Text);
+    edtSeaSpeed.Text := IntToStr(val);
+    tbSeaSpeed.Position := StrToIntDef(edtSeaSpeed.Text, 0);
   end;
 end;
+
 
 procedure TfrmSceEditor.edtSeaStateKeyPress(Sender: TObject; var Key: Char);
 var
@@ -2586,17 +2624,18 @@ var
 begin
   if Key = #13 then
   begin
-    val := StrToInt(edtSeaState.Text);
+    val := StrToIntDef(edtSeaState.Text, 0);
 
     if val > 5 then
       val := 5
     else if val < 1 then
       val := 1;
 
-    tbSeaState.Position := StrToInt(edtSeaState.Text);
+    edtSeaState.Text := inttostr(val);
+
+    tbSeaState.Position := StrToIntDef(edtSeaState.Text, 0);
   end;
 end;
-
 
 procedure TfrmSceEditor.edtTempKeyPress(Sender: TObject; var Key: Char);
 var
@@ -2605,14 +2644,16 @@ var
 begin
   if Key = #13 then
   begin
-    val := StrToInt(edtTemp.text);
+     val := StrToIntDef(edtTemp.Text, 0);
 
     if val > 100 then
       val := 100
     else
     if val < 1 then
       val := 1;
-    tbTemp.Position := StrToInt(edtTemp.Text);
+
+    edtTemp.Text := IntToStr(val);
+    tbTemp.Position := StrToIntDef(edtTemp.Text,0);
   end;
 end;
 
@@ -2621,21 +2662,22 @@ procedure TfrmSceEditor.edtWindDirecKeyPress(Sender: TObject; var Key: Char);
     val : Integer;
 
 begin
-  if Key = #13 then
+   if Key = #13 then
   begin
-    val := StrToInt(edtWindDirec.Text);
+    val := StrToIntDef(edtWindDirec.Text, 0);
 
-    if val > 360 then
-      val := 360
-    else if val < 0 then
-      val := 0;
+    if val < 180 then
+    begin
+      val := (180 + val);
 
-     if val > 0 then
-        vrwhlWindDirec.position := Round(val - 0)
-     else
-        vrwhlWindDirec.position := Round(val + 0);
+      vrwhlWindDirec.Position := val;
+    end
+    else
+    begin
+      val := (val - 180);
 
-//    tbWindSpeed.Position := StrToInt(edtWindSpeed.Text);
+      vrwhlWindDirec.Position := val;
+    end;
   end;
 end;
 
@@ -2646,14 +2688,13 @@ Procedure TfrmSceEditor.edtWindSpeedKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
   begin
-    val := StrToInt(edtWindSpeed.Text);
-
+    val := StrToIntDef(edtWindSpeed.Text, 0);
     if val > 50 then
       val := 50
     else if val < 1 then
       val := 1;
-
-    tbWindSpeed.Position := StrToInt(edtWindSpeed.Text);
+    edtWindSpeed.Text := IntToStr(val);
+    tbWindSpeed.Position := StrToIntDef(edtWindSpeed.Text, 0);
   end;
 end;
 
@@ -2911,9 +2952,36 @@ begin
   end;
 end;
 
-procedure TfrmSceEditor.vrwhlWindDirecChange(Sender: TObject);
+procedure TfrmSceEditor.vrwhlSeaDirectionChange(Sender: TObject);
+var
+  valTemp : Integer;
+
 begin
-  edtWindDirec.Text := IntToStr(vrwhlWindDirec.Position);
+  if vrwhlSeaDirection.Position < 180 then
+  begin
+    valTemp := (180 + vrwhlSeaDirection.Position);
+  end
+  else
+  begin
+    valTemp := (vrwhlSeaDirection.Position - 180);
+  end;
+  edtSeaDirection.Text := IntToStr(valTemp);
+end;
+
+procedure TfrmSceEditor.vrwhlWindDirecChange(Sender: TObject);
+var
+  valTemp : Integer;
+
+begin
+  if vrwhlWindDirec.Position < 180 then
+  begin
+    valTemp := (180 + vrwhlWindDirec.Position);
+  end
+  else
+  begin
+    valTemp := (vrwhlWindDirec.Position - 180);
+  end;
+  edtWindDirec.Text := IntToStr(valTemp);
 end;
 
 // dendy
