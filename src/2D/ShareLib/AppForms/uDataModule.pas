@@ -1494,7 +1494,7 @@ begin
       rec.C_Status := 'OFFLINE';
       rec.C_WeaponID := DS.FieldByName('WeaponID').AsInteger;
       rec.C_Ship := DS.FieldByName('Ship_Name').AsString; // dendy tes
-//      rec.C_GameType := DS.FieldByName('Game_Type').AsInteger;
+      rec.C_GameType := DS.FieldByName('Game_Type').AsInteger;
 
       case DS.FieldByName('APP_TIPE').AsInteger of
         0:
