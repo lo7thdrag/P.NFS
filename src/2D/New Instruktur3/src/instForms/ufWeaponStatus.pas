@@ -1816,6 +1816,7 @@ begin
           begin
             if WeaponYAKHONT.Weapon_Status = 1 then
             begin
+              RecSendYakhont.mLauncherID    := WeaponYAKHONT.Weapon_Launcher;
               RecSendYakhont.mMissile1 := 1;
             end;
           end
@@ -1823,6 +1824,7 @@ begin
           begin
             if WeaponYAKHONT.Weapon_Status = 1 then
             begin
+              RecSendYakhont.mLauncherID    := WeaponYAKHONT.Weapon_Launcher;
               RecSendYakhont.mMissile2 := 1;
             end;
           end
@@ -1830,6 +1832,7 @@ begin
           begin
             if WeaponYAKHONT.Weapon_Status = 1 then
             begin
+              RecSendYakhont.mLauncherID    := WeaponYAKHONT.Weapon_Launcher;
               RecSendYakhont.mMissile3 := 1;
             end;
           end
@@ -1837,12 +1840,14 @@ begin
           begin
             if WeaponYAKHONT.Weapon_Status = 1 then
             begin
+              RecSendYakhont.mLauncherID    := WeaponYAKHONT.Weapon_Launcher;
               RecSendYakhont.mMissile4 := 1;
             end;
             CountLoading := tmr_YAKHONT;
-            tmrLoading.Enabled := True;
-            Break;
+//            tmrLoading.Enabled := True;
+//            Break;
           end;
+          SimManager.NetSendTo3D_OrderMissile_YAHKONT(RecSendYakhont);
         end
         else
         begin
@@ -5743,7 +5748,7 @@ procedure TfWeaponStatus.tmrLoadingTimer(Sender: TObject);
 begin
   CountLoading := CountLoading + 1;
 
-  //loading strella staboard
+  {$REGION ' loading strella staboard '}
   if CountLoading = tmr_STRELLA_STABOARD + 1 then
   begin
     recSendStrella.mMissileID := 1;
@@ -5765,8 +5770,9 @@ begin
     SimManager.NetSendTo3D_OrderMissileStrella(recSendStrella);
     tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
-  //loading strella port
+  {$REGION ' loading strella port '}
   else if CountLoading = tmr_STRELLA_PORT + 1 then
   begin
     recSendStrella.mMissileID := 1;
@@ -5788,8 +5794,9 @@ begin
     SimManager.NetSendTo3D_OrderMissileStrella(recSendStrella);
     tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
-  //loading C802
+  {$REGION ' loading C802 '}
   else if CountLoading = tmr_C802 + 1 then
   begin
     if C802StatusLoad_1 then
@@ -5823,8 +5830,9 @@ begin
     end;
     tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
-  //loading TETRAL FWD
+  {$REGION ' loading TETRAL FWD '}
   else if CountLoading = tmr_TETRAL_FWD + 1 then
   begin
     recSendTetral.mMissileID  := 1;
@@ -5846,8 +5854,9 @@ begin
     SimManager.NetSendTo3D_OrderMissileTetral(recSendTetral);
     tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
-  //loading TETRAL AFT
+  {$REGION ' loading TETRAL AFT '}
   else if CountLoading = tmr_TETRAL_AFT + 1 then
   begin
     recSendTetral.mMissileID  := 1;
@@ -5869,8 +5878,9 @@ begin
     SimManager.NetSendTo3D_OrderMissileTetral(recSendTetral);
     tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
-  //Loading Yakhont
+  {$REGION ' Loading Yakhont '}
   else if CountLoading = tmr_YAKHONT + 1 then
   begin
     if RecSendYakhont.mMissile1 = 1 then
@@ -5893,8 +5903,9 @@ begin
 
       tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
-  //loading SPS
+  {$REGION ' loading SPS '}
   else if CountLoading = tmr_SPS + 1 then
   begin
     if SPSStatusLoadStaboard then
@@ -5950,8 +5961,9 @@ begin
     end;
     tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
-  //loading VL Mica
+  {$REGION ' loading VL Mica '}
   else if CountLoading = tmr_VLMica + 1 then
   begin
     RecSendVLMica.mMissileID := 1;
@@ -6013,8 +6025,9 @@ begin
     SimManager.NetSendTo3D_OrderMissileVLMica(RecSendVLMica);
     tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
-  //loading RBU
+  {$REGION ' loading RBU '}
   else if CountLoading = tmr_RBU + 1 then
   begin
     if RBUStatusLoad_1 then
@@ -6113,6 +6126,7 @@ begin
 
       tmrLoading.Enabled := False;
   end
+  {$ENDREGION}
 
 end;
 

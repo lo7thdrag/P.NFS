@@ -13,7 +13,7 @@ uses
 
   uClassDatabase, ufrmMainInstruktur, ufScenarioEdit, uDataModule, uGlobalVar,
   uInstrukturManager, uTCPDatatype, uCMSetting, uBaseCoordSystem, uBaseConstan, ufReportEvent ,
-  ufInstLog, uBaseFunction, uInstrukturObjects, uTrajectory, uSimulationManager,
+  ufInstLog, uBaseFunction, uInstrukturObjects, uTrajectory, uSimulationManager, uQuery,
   RzPanel, ufrmTrajectoryView, AdvTrackBar, SpeedButtonImage,
   Vcl.Imaging.pngimage;
 
@@ -5771,6 +5771,7 @@ var
   RecSend : TRecData2DOrder;
   ipSPS   : string;
   ipMOC1  : string;
+  AppData : tDataApplication;
 begin
   if lvClient.Selected = nil then Exit;
 
@@ -5798,6 +5799,15 @@ begin
       else begin
         SimManager.InstrukturSendStopCommandIP(ip);
         //DataModule1.updateShipName(ip, '');
+
+        AppData := GetPCConfigFromIPAddress(ip);
+
+        RecSend.orderID   := _CM_CLIENT_MANAGE;
+        RecSend.numValue  := __CM_CLIENT_STOP;
+        RecSend.strValue  := ExtractFileName(AppData.c_app_name);
+        RecSend.ipConsole := ip;
+
+        SimManager.SendCommand2D_Order(RecSend);
       end;
     end;
 
@@ -5868,8 +5878,20 @@ begin
 
     -2 :
     begin
-      WakeOnLan(DataModule1.getMacAddress(lvClient.Selected.SubItems[3]));
+//      WakeOnLan(DataModule1.getMacAddress(lvClient.Selected.SubItems[3]));
+      AppData := GetPCConfigFromIPAddress(ip);
 
+      WakeOnLan(AppData.c_mac);
+
+//      RecSend.orderID   := _CM_CLIENT_MANAGE;
+      RecSend.orderID   := _CM_CLIENT_APP;
+      RecSend.numValue  := __CM_CLIENT_LAUNCH;
+      RecSend.strValue  := ExtractFileName(AppData.c_app_name);
+      RecSend.strValue2 := AppData.c_app_params;
+      RecSend.strValue3 := AppData.c_app_name_2;
+      RecSend.ipConsole := ip;
+
+      SimManager.SendCommand2D_Order(RecSend);
     end;
   end;
   AutoRefresh;
