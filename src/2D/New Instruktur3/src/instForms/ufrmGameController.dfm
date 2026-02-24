@@ -183295,7 +183295,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000060EBF31101000000D4E097001C000000000000000000000000
+              0100011801000040FFC5470100000015F52F751C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183304,15 +183304,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              01000060EBF31101000000000000001C00000000000000000000000000000000
+              01000040FFC54701000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000612F5E440000000004
-              E59700B4E09700000000006688CE50000200006B88CE50000000000000000000
+              000000000000000000000000000000000000000000000000000000C8E7970078
+              E39700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -247268,7 +247268,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwYAHKONT
+              ActivePage = pgtwC802
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -247294,10 +247294,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxTOCOS: TScrollBox
                   Left = 0
                   Top = 0
@@ -248148,10 +248144,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 1
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxAsroc: TScrollBox
                   Left = 0
                   Top = 0
@@ -249876,10 +249868,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 5
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxTorpedoA244: TScrollBox
                   Tag = 1
                   Left = 0
@@ -250655,10 +250643,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 3
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object lblInfo: TLabel
                   Left = 307
                   Top = 136
@@ -250680,10 +250664,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 6
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxWCC: TScrollBox
                   Left = 0
                   Top = 0
@@ -251428,10 +251408,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxTetral: TScrollBox
                   Left = 0
                   Top = 0
@@ -251987,10 +251963,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxMistral: TScrollBox
                   Left = 0
                   Top = 0
@@ -252546,10 +252518,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxStrella: TScrollBox
                   Left = 0
                   Top = 0
@@ -253107,10 +253075,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxExocetMM40: TScrollBox
                   Left = 0
                   Top = 0
@@ -254815,10 +254779,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxC802: TScrollBox
                   Left = 0
                   Top = 0
@@ -254827,8 +254787,8 @@ object frmGameController: TfrmGameController
                   Align = alClient
                   TabOrder = 0
                   object lbl173: TLabel
-                    Left = 78
-                    Top = 256
+                    Left = 85
+                    Top = 449
                     Width = 60
                     Height = 16
                     Caption = 'Missile ID'
@@ -254838,10 +254798,11 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl174: TLabel
-                    Left = 78
-                    Top = 290
+                    Left = 85
+                    Top = 483
                     Width = 95
                     Height = 16
                     Caption = 'Missile Number'
@@ -254851,10 +254812,11 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl175: TLabel
-                    Left = 79
-                    Top = 222
+                    Left = 86
+                    Top = 415
                     Width = 60
                     Height = 16
                     Caption = 'Launcher'
@@ -254864,10 +254826,11 @@ object frmGameController: TfrmGameController
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
                     ParentFont = False
+                    Visible = False
                   end
                   object lbl176: TLabel
                     Left = 79
-                    Top = 88
+                    Top = 147
                     Width = 96
                     Height = 16
                     Caption = 'Target Bearing'
@@ -254880,7 +254843,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl177: TLabel
                     Left = 301
-                    Top = 123
+                    Top = 182
                     Width = 94
                     Height = 16
                     Caption = 'Nauctical Miles'
@@ -254893,7 +254856,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl178: TLabel
                     Left = 300
-                    Top = 89
+                    Top = 148
                     Width = 47
                     Height = 16
                     Caption = 'Degree'
@@ -254906,7 +254869,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl179: TLabel
                     Left = 79
-                    Top = 121
+                    Top = 180
                     Width = 88
                     Height = 16
                     Caption = 'Target Range'
@@ -254919,7 +254882,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl38: TLabel
                     Left = 79
-                    Top = 155
+                    Top = 214
                     Width = 70
                     Height = 16
                     Caption = 'Longtitude'
@@ -254932,7 +254895,7 @@ object frmGameController: TfrmGameController
                   end
                   object lbl65: TLabel
                     Left = 79
-                    Top = 189
+                    Top = 248
                     Width = 54
                     Height = 16
                     Caption = 'Latitude'
@@ -254945,7 +254908,7 @@ object frmGameController: TfrmGameController
                   end
                   object lblKoorYc802: TLabel
                     Left = 200
-                    Top = 189
+                    Top = 248
                     Width = 5
                     Height = 13
                     Caption = '-'
@@ -254958,7 +254921,7 @@ object frmGameController: TfrmGameController
                   end
                   object lblkoorXc802: TLabel
                     Left = 200
-                    Top = 155
+                    Top = 214
                     Width = 5
                     Height = 13
                     Caption = '-'
@@ -255083,8 +255046,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object edtC802_Number: TEdit
-                    Left = 192
-                    Top = 287
+                    Left = 199
+                    Top = 480
                     Width = 108
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -255095,10 +255058,11 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 0
                     Text = '1'
+                    Visible = False
                   end
                   object edtC802_Missile: TEdit
-                    Left = 192
-                    Top = 253
+                    Left = 199
+                    Top = 446
                     Width = 108
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -255109,14 +255073,16 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 1
                     Text = '1'
+                    Visible = False
                   end
                   object cbbC802Launcher: TComboBox
-                    Left = 192
-                    Top = 221
+                    Left = 199
+                    Top = 414
                     Width = 107
                     Height = 21
                     TabOrder = 2
                     Text = 'kanan 1'
+                    Visible = False
                     Items.Strings = (
                       'kanan 1'
                       'kiri 1'
@@ -255126,7 +255092,7 @@ object frmGameController: TfrmGameController
                   object btnC802_Fire: TAdvSmoothButton
                     Tag = 1
                     Left = 206
-                    Top = 353
+                    Top = 288
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -255160,7 +255126,7 @@ object frmGameController: TfrmGameController
                   end
                   object edtC802_TBearing: TEdit
                     Left = 189
-                    Top = 85
+                    Top = 144
                     Width = 100
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -255175,7 +255141,7 @@ object frmGameController: TfrmGameController
                   object btnSetPosC802: TAdvSmoothButton
                     Tag = -1
                     Left = 79
-                    Top = 353
+                    Top = 288
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -255210,7 +255176,7 @@ object frmGameController: TfrmGameController
                   end
                   object edtC802_TRange: TEdit
                     Left = 190
-                    Top = 118
+                    Top = 177
                     Width = 100
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -255224,7 +255190,7 @@ object frmGameController: TfrmGameController
                   end
                   object txt1: TStaticText
                     Left = 174
-                    Top = 155
+                    Top = 214
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -255238,7 +255204,7 @@ object frmGameController: TfrmGameController
                   end
                   object txt2: TStaticText
                     Left = 174
-                    Top = 189
+                    Top = 248
                     Width = 8
                     Height = 17
                     Caption = ':'
@@ -255253,7 +255219,7 @@ object frmGameController: TfrmGameController
                   object btnLoadingC802: TAdvSmoothButton
                     Tag = 2
                     Left = 333
-                    Top = 353
+                    Top = 288
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -255350,10 +255316,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxCannon57: TScrollBox
                   Left = 0
                   Top = 0
@@ -255540,10 +255502,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxExocetMM38: TScrollBox
                   Left = 0
                   Top = 0
@@ -255730,10 +255688,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxCannon35: TScrollBox
                   Left = 0
                   Top = 0
@@ -255920,10 +255874,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxCannonAK230: TScrollBox
                   Left = 0
                   Top = 0
@@ -256670,10 +256620,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxCannon730: TScrollBox
                   Left = 0
                   Top = 0
@@ -256860,10 +256806,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object ScrollBox1: TScrollBox
                   Left = 0
                   Top = 0
@@ -257050,10 +256992,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object ScrollBox2: TScrollBox
                   Left = 0
                   Top = 0
@@ -257240,10 +257178,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object ScrollBox3: TScrollBox
                   Left = 0
                   Top = 0
@@ -257430,10 +257364,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object ScrollBox4: TScrollBox
                   Left = 0
                   Top = 0
@@ -258172,15 +258102,17 @@ object frmGameController: TfrmGameController
             Columns = <
               item
                 Caption = 'Weapon Name'
-                Width = 120
+                Width = 150
               end
               item
+                Alignment = taCenter
                 Caption = 'Launcher'
-                Width = 80
+                Width = 100
               end
               item
+                Alignment = taCenter
                 Caption = 'Status'
-                Width = 60
+                Width = 100
               end>
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText

@@ -2036,6 +2036,8 @@ var
   status        : string;
   sceWeapon     : TScenarioWeapon;
   strPicture    : string;
+
+  weaponOnShipTemp :  TWeaponOnShip;
 begin
   VisibleStatusShip(false, 1);
   lvRuntimeMissile.Selected := nil;
@@ -2081,83 +2083,48 @@ begin
 
     ShowDefaultPageWeapon(true);
 
-//    for i:=lvWeapon.Items.Count -1 downto 0 do
-//    begin
-//      if Assigned(lvWeapon.Items[i].Data) then
-//      begin
-//        Weapon := TWeapon(lvWeapon.Items[i].Data);
-//        Weapon.Free;
-//      end;
-//      lvWeapon.Items[i].Delete;
-//    end;
-//    lvWeapon.Items.Clear;
-
     ClearListViewData(lvWeapon);
 
     try
-      //status := 'On';
-      ListWeapon := TList.Create;
-      listWeaponSce := TList.Create;
-
-      DataModule1.GetListWeaponOnShip(Vehicle.Vehicle_ID, ListWeapon);
-
-
-      if onOffMode = 0 then
+      if Assigned(SimManager.TrackObject) then
       begin
-        DataModule1.GetListWeaponOnShipBySceID(sceIDINI, Vehicle.Vehicle_ID, listWeaponSce);
-      end
-      else if onOffMode = 1 then
-      begin
-        DataModule1.GetListWeaponOnShipBySceID(0, Vehicle.Vehicle_ID, listWeaponSce);
-      end;
-
-
-      for i:= 0 to ListWeapon.Count -1 do
-      begin
-
-        status := 'Off';
-
-        WeaponShip := TWeaponGetList(ListWeapon.Items[i]);
-
-        Weapon := TWeapon.Create;
-        Weapon.ParentName  := DataModule1.GetShipName(WeaponShip.IDShip);
-        Weapon.MissileName := DataModule1.GetNameWeaponByID(WeaponShip.IDWeapon);
-        Weapon.WeaponID    := WeaponShip.IDWeapon;
-        Weapon.launcherID  := WeaponShip.IDDetail;
-        
-        //dendy mampir
-        for j := 0 to listWeaponSce.Count -1 do
+        for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count-1 do
         begin
-          if Assigned(listWeaponSce.Items[j]) then begin
-            sceWeapon := TScenarioWeapon(listWeaponSce.Items[j]);
-            if(sceWeapon.WeaponID = Weapon.WeaponID) and (sceWeapon.LauncherID = Weapon.launcherID)
-             and (sceWeapon.ShipID = WeaponShip.IDShip) then
-            begin
-              status := 'On';
-              Break;
-            end
-          end;
-        end;
+          weaponOnShipTemp := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
 
-        with lvWeapon.Items.Add do
-        begin
-          Data := Weapon;
+          Weapon := TWeapon.Create;
 
-          if not (Weapon.MissileName = 'Moc Console')
-            or not (Weapon.MissileName = 'Moc PKR Console') then  // moc nya di lewati (visible dulu)
+          Weapon.WeaponID := weaponOnShipTemp.Weapon_ID;
+          Weapon.MissileName := weaponOnShipTemp.Weapon_Name;
+
+          with lvWeapon.Items.Add do
           begin
-            Caption := Weapon.MissileName;
-            SubItems.Add(IntToStr(Weapon.launcherID));
-            SubItems.Add(status);
+            Data := Weapon;
+            Caption := weaponOnShipTemp.Weapon_Name;
+            SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
+
+            if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
+               (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
+               (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
+               (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'CANNON AK230')or
+               (weaponOnShipTemp.Weapon_Name = 'CANNON 35') or (weaponOnShipTemp.Weapon_Name = 'CANNON TYPE 730') or
+               (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+            begin
+              SubItems.Add('Automatic')
+            end
+            else
+            begin
+              if weaponOnShipTemp.Weapon_Status = 1 then
+                SubItems.Add('On')
+              else
+                SubItems.Add('Off')
+            end;
           end;
         end;
       end;
 
     finally
-      ClearAList(ListWeapon);
-      ListWeapon.Free;
-      ClearAList(listWeaponSce);
-      listWeaponSce.Free;
+
     end;
   end
   else
@@ -5337,6 +5304,20 @@ begin
           lblMaxTetral.Caption := (FloatToStr(weaponDetail.HighRange));
           {$ENDREGION}
 
+          {$REGION 'Mistral'}
+          lblStartMistral.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndMistral.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinMistral.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxMistral.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'Strela'}
+          lblStartStrella.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndStrella.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinStrella.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxStrella.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
           {$REGION 'Exocet MM40'}
           lblStartMM40.Caption := (FloatToStr(weaponDetail.StartAngle));
           lblEndMM40.Caption   := (FloatToStr(weaponDetail.EndAngle));
@@ -7661,7 +7642,12 @@ begin
   begin
     GetCursorPos(p);
 
-    if lvWeapon.Selected.SubItems[1] = 'On' then begin
+    if lvWeapon.Selected.SubItems[1] = 'Automatic' then
+    begin
+      Exit;
+    end;
+    if lvWeapon.Selected.SubItems[1] = 'On' then
+    begin
       pmLvWeapon.Items[0].Enabled := False;
       pmLvWeapon.Items[1].Enabled := True;
     end
@@ -7799,11 +7785,13 @@ begin
 //  end;
 
 
-  if lvWeapon.Selected = nil then Exit;
-  if lvRuntimeShip.Selected = nil then Exit;
+  if lvWeapon.Selected = nil then
+    Exit;
 
-  if Assigned(lvWeapon.Selected.Data) and
-   Assigned(lvRuntimeShip.Selected.Data) then
+  if lvRuntimeShip.Selected = nil then
+     Exit;
+
+  if Assigned(lvWeapon.Selected.Data) and Assigned(lvRuntimeShip.Selected.Data) then
   begin
     Weapon  := TWeapon(lvWeapon.Selected.Data);
     Vehicle := TVehicle(lvRuntimeShip.Selected.Data);
@@ -8860,45 +8848,37 @@ end;
 
 procedure TfrmGameController.StatusWeapon(shipid : Integer; weaponid : Byte ; value : Single; launcher :Byte);
 var
-  shipname : string;
-  i,j        : Integer ;
+  i: Integer;
+
+  objTemp : TObject;
+  shipTemp : TInsObject;
+  weaponTemp : TWeaponOnShip;
+
 begin
-  if value = 1 then
+  for i:= 0 to SimManager.MainObjList.ItemCount -1 do
   begin
-   shipname := DataModule1.GetShipNameByID(shipid);
-   for i := 0 to lvRuntimeShip.Items.Count -1 do
-   begin
-     if lvRuntimeShip.Items[i].Caption = shipname then
-     begin
-       for j:= 0 to lvWeapon.Items.Count-1 do
-       begin
-         if (lvWeapon.Items[j].Caption = DataModule1.GetNameWeaponByID(weaponid)) and (StrToInt(lvWeapon.Items[j].SubItems[0]) = launcher)   then
-         begin
-            lvWeapon.Items[j].SubItems[1] := 'On';
-         end;
-       end;
+    objTemp:= SimManager.MainObjList.getObject(i);
+    if Assigned(objTemp) and (TInsObject(objTemp).FDataBaseID = shipid) then
+    begin
+      shipTemp := TInsObject(objTemp);
+      Break;
+    end;
+  end;
 
-     end;
-   end;
-
-  end
-  else
+  if Assigned(shipTemp) then
   begin
-   shipname := DataModule1.GetShipNameByID(shipid);
-   for i := 0 to lvRuntimeShip.Items.Count -1 do
-   begin
-     if lvRuntimeShip.Items[i].Caption = shipname then
-     begin
-       for j:= 0 to lvWeapon.Items.Count-1 do
-       begin
-         if (lvWeapon.Items[j].Caption = DataModule1.GetNameWeaponByID(weaponid)) and (StrToInt(lvWeapon.Items[j].SubItems[0]) = launcher)   then
-         begin
-            lvWeapon.Items[j].SubItems[1] := 'Off';
-         end;
-       end;
+    for i:= 0 to shipTemp.WeaponOnShip_List.Count - 1  do
+    begin
+      weaponTemp := shipTemp.WeaponOnShip_List.Items[i];
 
-     end;
-   end;
+      if Assigned(weaponTemp) then
+      begin
+        if (weaponTemp.Weapon_ID = weaponid) and (weaponTemp.Weapon_Launcher = launcher) then
+        begin
+          weaponTemp.Weapon_Status := Round(value);
+        end;
+      end;
+    end;
   end;
 end;
 
