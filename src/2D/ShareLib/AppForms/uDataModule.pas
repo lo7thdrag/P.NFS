@@ -2131,7 +2131,7 @@ begin
     rec.Scenario_CurrSpeed := DS.FieldByName('ENV_CURSPEED').AsFloat;
     rec.Scenario_CurrDir_X := DS.FieldByName('ENV_CURDIR_X').AsFloat;
     rec.Scenario_WindDir_Y := DS.FieldByName('ENV_CURDIR_Y').AsFloat;
-    rec.Scenario_WindDir_Deg := DS.FieldByName('ENV_CURDIR_DEG').AsFloat;
+    rec.Scenario_CurrDir_Deg := DS.FieldByName('ENV_CURDIR_DEG').AsFloat;
 
     rec.Scenario_Temperature := DS.FieldByName('ENV_TEMP').AsFloat;
     rec.Scenario_BaroPressure := DS.FieldByName('ENV_BAROPRESSURE').AsFloat;
