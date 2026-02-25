@@ -4898,7 +4898,8 @@ begin
 
       if weaponExocet.Weapon_Launcher = launcherID then
       begin
-        if weaponExocet.Weapon_Status = 1 then
+        //if weaponExocet.Weapon_Status = 1 then
+        if weaponExocet.EnableExocet40 then
         begin
           if ((cbbExocetMM40StarBoard.Text = '1') and (launcherID = 1))
           or ((cbbExocetMM40Port.Text = '1') and (launcherID = 2)) then
