@@ -1990,6 +1990,7 @@ begin
           Weapon := TWeapon.Create;
 
           Weapon.WeaponID := weaponOnShipTemp.Weapon_ID;
+          Weapon.launcherID := weaponOnShipTemp.Weapon_Launcher;
           Weapon.MissileName := weaponOnShipTemp.Weapon_Name;
 
           with lvWeapon.Items.Add do
@@ -5144,8 +5145,6 @@ begin
 
         end;
       end;
-
-
     end;
 
   end
