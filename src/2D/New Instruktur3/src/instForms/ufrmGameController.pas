@@ -869,51 +869,6 @@ type
     lblMaxAsroc: TLabel;
     StaticText44: TStaticText;
     Label103: TLabel;
-    pgtwCannon57: TAdvTabSheet;
-    scrlbxCannon57: TScrollBox;
-    imageCannon57: TImage;
-    Label115: TLabel;
-    lblStartCannon57: TLabel;
-    Label117: TLabel;
-    lblEndCannon57: TLabel;
-    Label119: TLabel;
-    lblMinCannon57: TLabel;
-    Label121: TLabel;
-    lblMaxCannon57: TLabel;
-    StaticText47: TStaticText;
-    StaticText48: TStaticText;
-    StaticText49: TStaticText;
-    StaticText50: TStaticText;
-    pgtwExocetMM38: TAdvTabSheet;
-    scrlbxExocetMM38: TScrollBox;
-    imageExocetMM38: TImage;
-    Label104: TLabel;
-    lblStartMM38: TLabel;
-    Label106: TLabel;
-    lblEndMM38: TLabel;
-    Label108: TLabel;
-    lblMinMM38: TLabel;
-    Label110: TLabel;
-    lblMaxMM38: TLabel;
-    StaticText45: TStaticText;
-    StaticText46: TStaticText;
-    StaticText51: TStaticText;
-    StaticText52: TStaticText;
-    pgtwCannon35: TAdvTabSheet;
-    scrlbxCannon35: TScrollBox;
-    imageCannon35: TImage;
-    Label15: TLabel;
-    lblStartCannon35: TLabel;
-    Label29: TLabel;
-    lblEndCannon35: TLabel;
-    Label33: TLabel;
-    lblMinCannon35: TLabel;
-    Label37: TLabel;
-    lblMaxCannon35: TLabel;
-    StaticText53: TStaticText;
-    StaticText54: TStaticText;
-    StaticText55: TStaticText;
-    StaticText56: TStaticText;
     pgtwCannonAK230: TAdvTabSheet;
     scrlbxCannonAK230: TScrollBox;
     imageCannonAK230: TImage;
@@ -929,66 +884,6 @@ type
     StaticText58: TStaticText;
     StaticText59: TStaticText;
     StaticText60: TStaticText;
-    pgtwCannon730: TAdvTabSheet;
-    scrlbxCannon730: TScrollBox;
-    imageCannon730: TImage;
-    Label30: TLabel;
-    lblStartCannon730: TLabel;
-    Label43: TLabel;
-    lblEndCannon730: TLabel;
-    Label49: TLabel;
-    lblMinCannon730: TLabel;
-    Label53: TLabel;
-    lblMaxCannon730: TLabel;
-    StaticText61: TStaticText;
-    StaticText62: TStaticText;
-    StaticText63: TStaticText;
-    StaticText64: TStaticText;
-    pgtwCannon40: TAdvTabSheet;
-    ScrollBox1: TScrollBox;
-    imageCannon40: TImage;
-    Label38: TLabel;
-    lblStartCannon40: TLabel;
-    Label50: TLabel;
-    lblEndCannon40: TLabel;
-    Label57: TLabel;
-    lblMinCannon40: TLabel;
-    Label61: TLabel;
-    lblMaxCannon40: TLabel;
-    StaticText65: TStaticText;
-    StaticText66: TStaticText;
-    StaticText67: TStaticText;
-    StaticText68: TStaticText;
-    pgtwCannon120: TAdvTabSheet;
-    ScrollBox2: TScrollBox;
-    imageCannon120: TImage;
-    Label65: TLabel;
-    lblStartCannon120: TLabel;
-    Label69: TLabel;
-    lblEndCannon120: TLabel;
-    Label73: TLabel;
-    lblMinCannon120: TLabel;
-    Label77: TLabel;
-    lblMaxCannon120: TLabel;
-    StaticText69: TStaticText;
-    StaticText70: TStaticText;
-    StaticText71: TStaticText;
-    StaticText72: TStaticText;
-    pgtwRBU6000Digital: TAdvTabSheet;
-    ScrollBox3: TScrollBox;
-    imageRBUDigital: TImage;
-    Label81: TLabel;
-    lblStartRBUDigital: TLabel;
-    Label85: TLabel;
-    lblEndRBUDigital: TLabel;
-    Label89: TLabel;
-    lblMinRBUDigital: TLabel;
-    Label93: TLabel;
-    lblMaxRBUDigital: TLabel;
-    StaticText73: TStaticText;
-    StaticText74: TStaticText;
-    StaticText75: TStaticText;
-    StaticText76: TStaticText;
     pgtwVlMica: TAdvTabSheet;
     ScrollBox4: TScrollBox;
     imageVlMica: TImage;
@@ -4657,7 +4552,7 @@ begin
 
             eAsrocLauncherID.Text := IntToStr(launcherID);
          end;
-     C_DBID_RBU6000 : begin
+     C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL : begin
             if launcherID = 1 then begin
               launcher := 'kanan';
             end
@@ -4672,6 +4567,10 @@ begin
               pgWeapon.Enabled := False;
             end
             else begin
+              case WeaponID of
+                C_DBID_RBU6000 : pgtwRBU6000.Caption := 'RBU 6000 Manual';
+                C_DBID_RBU6000_DIGITAL : pgtwRBU6000.Caption := 'RBU 6000 Digital';
+              end;
               pgWeapon.Enabled := True;
               pgWeapon.ActivePage  := pgtwRBU6000 ;
            end;
@@ -4747,98 +4646,9 @@ begin
 
             edtCannonLauncherID.Text         := IntToStr(launcherID);
         end;
-     C_DBID_CANNON35 : begin
-            pgtwCannon35.TabVisible         := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwCannon35 ;
-            end;
-
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
-        end;
-     C_DBID_CANNON40 : begin
-            pgtwCannon40.TabVisible         := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwCannon40 ;
-            end;
-
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
-        end;
-//     C_DBID_CANNON57 : begin
-//            pgtwCannon57.TabVisible         := True;
-//
-//            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-//              pgWeapon.ActivePage  := pgtwDefault ;
-//              lblInfo.Caption := 'Cannon is not ready to use';
-//              pgWeapon.Enabled := False;
-//            end
-//            else begin
-//              pgWeapon.Enabled := True;
-//              pgWeapon.ActivePage  := pgtwCannon57 ;
-//            end;
-//
-//            edtCannonLauncherID.Text         := IntToStr(launcherID);
-//        end;
-     C_DBID_CANNON120 : begin
-            pgtwCannon120.TabVisible         := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwCannon120 ;
-            end;
-
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
-        end;
-//     C_DBID_CANNON_AK230: begin
-//            pgtwCannonAK230.TabVisible         := True;
-//
-//            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-//              pgWeapon.ActivePage  := pgtwDefault ;
-//              lblInfo.Caption := 'Cannon is not ready to use';
-//              pgWeapon.Enabled := False;
-//            end
-//            else begin
-//              pgWeapon.Enabled := True;
-//              pgWeapon.ActivePage  := pgtwCannonAK230 ;
-//            end;
-//
-//            edtCannonLauncherID.Text         := IntToStr(launcherID);
-//        end;
-//     C_DBID_CANNON_TYPE_730 : begin
-//            pgtwCannon730.TabVisible         := True;
-//
-//            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-//              pgWeapon.ActivePage  := pgtwDefault ;
-//              lblInfo.Caption := 'Cannon is not ready to use';
-//              pgWeapon.Enabled := False;
-//            end
-//            else begin
-//              pgWeapon.Enabled := True;
-//              pgWeapon.ActivePage  := pgtwCannon730 ;
-//            end;
-//
-//            edtCannonLauncherID.Text         := IntToStr(launcherID);
-//        end;
      C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL,
-     C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730 :
+     C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730,
+     C_DBID_CANNON35, C_DBID_CANNON40, C_DBID_CANNON120 :
         begin
             pgtwCannonAK230.TabVisible         := True;
 
@@ -4853,6 +4663,9 @@ begin
                 C_DBID_CANNON_AK230 : pgtwCannonAK230.Caption := 'Cannon AK230';
                 C_DBID_CANNON_TYPE_730 : pgtwCannonAK230.Caption := 'Cannon Type 730';
                 C_DBID_CANNON57_DIGITAL : pgtwCannonAK230.Caption := 'Cannon 57';
+                C_DBID_CANNON35 : pgtwCannonAK230.Caption := 'Cannon 35';
+                C_DBID_CANNON40 : pgtwCannonAK230.Caption := 'Cannon 40';
+                C_DBID_CANNON120 : pgtwCannonAK230.Caption := 'Cannon 120';
                 else
                   pgtwCannonAK230.Caption := 'Cannon';
               end;
@@ -4904,8 +4717,6 @@ begin
               pgWeapon.Enabled := True;
               pgWeapon.ActivePage  := pgtwYAHKONT ;
             end;
-
-
         end;
      C_DBID_C802 : begin
             if launcherID = 1 then begin
@@ -4987,7 +4798,7 @@ begin
 
             cbbStrellaLauncher.Text   := launcher;
         end;
-     C_DBID_EXOCET_MM40 : begin
+     C_DBID_EXOCET_MM40, C_DBID_EXOCET_MM38 : begin
             if launcherID = 1 then
             begin
               launcher := 'kanan';
@@ -5006,6 +4817,10 @@ begin
             end
             else
             begin
+              case WeaponID of
+                C_DBID_EXOCET_MM40 : pgtwExocetMM40.Caption := 'Exocet MM40';
+                C_DBID_EXOCET_MM38 : pgtwExocetMM40.Caption := 'Exocet MM38';
+              end;
               pgWeapon.Enabled := True;
               pgWeapon.ActivePage  := pgtwExocetMM40 ;
             end;
@@ -5037,32 +4852,6 @@ begin
             end;
 
             cbbTetralLaunch.Text    := launcher;
-        end;
-     C_DBID_EXOCET_MM38 : begin
-            if launcherID = 1 then
-            begin
-              launcher := 'kanan';
-              end
-            else if launcherID = 2 then
-            begin
-              launcher := 'kiri';
-            end;
-            pgtwExocetMM38.TabVisible        := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Exocet MM40 is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else
-            begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwExocetMM38 ;
-            end;
-
-            cbbExxocetLauncher.Text          := launcher;
-            //cbbExocet40_LauncherID.ItemIndex := Weapon.launcherID - 1;
         end;
      C_DBID_VLMICA : begin
 
@@ -5240,19 +5029,12 @@ begin
         imageTetral.Picture.LoadFromFile(weaponPic);
         imageMistral.Picture.LoadFromFile(weaponPic);
         imageCannon76.Picture.LoadFromFile(weaponPic);
-        imageCannon120.Picture.LoadFromFile(weaponPic);
-        imageCannon40.Picture.LoadFromFile(weaponPic);
-        imageCannon57.Picture.LoadFromFile(weaponPic);
         imageTorpedoSUT.Picture.LoadFromFile(weaponPic);
         imageRBU6000.Picture.LoadFromFile(weaponPic);
         imageTpoA244.Picture.LoadFromFile(weaponPic);
         imageExocetMM40.Picture.LoadFromFile(weaponPic);
-        imageExocetMM38.Picture.LoadFromFile(weaponPic);
         imageVLMica.Picture.LoadFromFile(weaponPic);
-        imageCannon35.Picture.LoadFromFile(weaponPic);
         imageCannonAK230.Picture.LoadFromFile(weaponPic);
-        imageCannon730.Picture.LoadFromFile(weaponPic);
-        imageRBUDigital.Picture.LoadFromFile(weaponPic);
       end;
 
       IDweapon := TWeapon(TListView(sender).Selected.Data).WeaponID;
@@ -5339,27 +5121,6 @@ begin
           lblMaxRangeC802.Caption := (FloatToStr(weaponDetail.HighRange));
           {$ENDREGION}
 
-          {$REGION 'Cannon 57'}
-          lblStartCannon57.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndCannon57.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinCannon57.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxCannon57.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
-          {$REGION 'Exocet MM38'}
-          lblStartMM38.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndMM38.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinMM38.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxMM38.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
-          {$REGION 'Cannon 35'}
-          lblStartCannon35.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndCannon35.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinCannon35.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxCannon35.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
           {$REGION 'Cannon AK230'}
           lblStartAK230.Caption := (FloatToStr(weaponDetail.StartAngle));
           lblEndAK230.Caption   := (FloatToStr(weaponDetail.EndAngle));
@@ -5367,39 +5128,11 @@ begin
           lblMaxAK230.Caption := (FloatToStr(weaponDetail.HighRange));
           {$ENDREGION}
 
-          {$REGION 'Cannon Type 730'}
-          lblStartCannon730.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndCannon730.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinCannon730.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxCannon730.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
           {$REGION 'Cannon 76'}
           lblStartCannon76.Caption := (FloatToStr(weaponDetail.StartAngle));
           lblEndCannon76.Caption   := (FloatToStr(weaponDetail.EndAngle));
           lblMinCannon76.Caption := (FloatToStr(weaponDetail.LowRange));
           lblMaxCannon76.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
-          {$REGION 'Cannon 40'}
-          lblStartCannon40.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndCannon40.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinCannon40.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxCannon40.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
-          {$REGION 'Cannon 120'}
-          lblStartCannon120.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndCannon120.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinCannon120.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxCannon120.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
-          {$REGION 'RBU 6000 Digital'}
-          lblStartRBUDigital.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndRBUDigital.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinRBUDigital.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxRBUDigital.Caption := (FloatToStr(weaponDetail.HighRange));
           {$ENDREGION}
 
           {$REGION 'VL MICA'}
