@@ -50,7 +50,7 @@ interface
     FObjClassName: string;
     FObjName     : string;
 
-    FCourse, FSpeed : double;
+    FCourse, FSpeed, FSpeedMax : double;
 
     FMover: TMover;
 
@@ -115,6 +115,7 @@ interface
     property Speed: double  index 2 read getPropDouble write setPropDouble;
     property Pitch: double index 3 read getPropDouble write setPropDouble;
     property Roll: double index 4 read getPropDouble write setPropDouble;
+    property SpeedMax: double index 5 read getPropDouble write setPropDouble;
 
     property ThrotlePosLeft   : integer read FThrotlePosLeft write SetThrotlePosLeft;
     property ThrotlePosRight  : integer read FThrotlePosRight write SetThrotlePosRight;
@@ -938,6 +939,7 @@ begin
     2 : result := FSpeed;
     3 : result := FDataPosition.pitch;
     4 : result := FDataPosition.roll;
+    5 : result := FSpeedMax;
   end;
 end;
 
@@ -958,6 +960,7 @@ begin
     end;
     3: FDataPosition.pitch := Value;
     4: FDataPosition.roll  := Value;
+    5: FSpeedMax := Value;
 
   end;
 

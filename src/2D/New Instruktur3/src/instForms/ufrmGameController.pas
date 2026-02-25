@@ -2213,7 +2213,6 @@ begin
     frmSceEditor.isNew := false;
     frmSceEditor.UpdateVisualForm;
     frmSceEditor.SetFormLayout;
-    frmSceEditor.SetFormEnvironment;
     frmMainInstruktur.lblCekRunning.Caption := 'Editing';
     frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
 
@@ -7078,7 +7077,7 @@ begin
     RecSkenario.Scenario_WindDir_Deg := vrwhlWindDirec.Position;
     RecSkenario.Scenario_CurrDir_Deg := vrwhlSeaDirection.Position;
 
-    DataModule1.UpdateEnvi(0, RecSkenario);
+    DataModule1.UpdateScenario(0, RecSkenario);
   finally
     RecSkenario.Free;
   end;

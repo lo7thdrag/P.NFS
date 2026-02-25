@@ -709,6 +709,7 @@ begin
   ShipTemp.Vehicle_Z := Vehicle.Vehicle_Z;
   ShipTemp.Vehicle_Heading := Vehicle.Vehicle_Heading;
   ShipTemp.Vehicle_Speed := Vehicle.Vehicle_Speed;
+  ShipTemp.Vehicle_Maxspeed := Vehicle.Vehicle_Maxspeed;
 end;
 
 procedure TfrmSceEditor.ListViewCompare(Sender: TObject;
@@ -1014,10 +1015,10 @@ var
   i, j: Integer;
   isFound: boolean;
 
-  RecSceSave: TScenario;
-  RecShipsave: TVehicle;
-  RecConsoleSave: TSaveConsole;
-  recWeaponSave: TScenarioWeapon;
+  scenTemp: TScenario;
+  shipTemp: TVehicle;
+  weaponTemp: TScenarioWeapon;
+  consoleTemp: TSaveConsole;
 
   ListShip: TList;
   ListConsole: TList;
@@ -1026,7 +1027,6 @@ var
   lowerBound, upperBound, boundary, posPercentage, position: Double;
   Val: single;
 
-  scenTemp: TScenario;
 begin
   frmMainInstruktur.Caption := frmMainInstruktur.cekCaption;
   frmMainInstruktur.lblCekRunning.Caption := frmMainInstruktur.cekStatusKonek;
@@ -1039,37 +1039,33 @@ begin
         if not CekInput then
           Exit;
 
-        RecSceSave := TScenario.Create;
+        scenTemp := TScenario.Create;
 
         {$REGION ' Description Scenario '}
 
-        RecSceSave.Scenario_Name := edtScenarioName.Text;
-        RecSceSave.Scenario_Port := cbbPort.ItemIndex;
-//        RecSceSave.Scenario_Building := frmMoreEnvi.Building;
-//        RecSceSave.Scenario_StaticShip := frmMoreEnvi.StaticShip;
-//        RecSceSave.Scenario_Buoy := frmMoreEnvi.Buoy;
-//        RecSceSave.Scenario_Theme := frmMoreEnvi.Theme;
-        RecSceSave.Scenario_Desc := mmoKetSce.Text;
+        scenTemp.Scenario_Name := edtScenarioName.Text;
+        scenTemp.Scenario_Port := cbbPort.ItemIndex;
+        scenTemp.Scenario_Desc := mmoKetSce.Text;
 
         {$ENDREGION}
 
         {$REGION ' Environment '}
-        RecSceSave.Scenario_SeaState := tbSeaState.Position;
-        RecSceSave.Scenario_WindSpeed := tbWindSpeed.Position;
-        RecSceSave.Scenario_CurrSpeed:= tbSeaSpeed.Position;
-        RecSceSave.Scenario_Temperature:= tbTemp.Position;
-        RecSceSave.Scenario_BaroPressure:= tbBaroPressure.Position;
-        RecSceSave.Scenario_Humidity:= tbHumidity.Position;
-        RecSceSave.Scenario_FogHeight:= tbFogH.Position;
+        scenTemp.Scenario_SeaState := tbSeaState.Position;
+        scenTemp.Scenario_WindSpeed := tbWindSpeed.Position;
+        scenTemp.Scenario_CurrSpeed:= tbSeaSpeed.Position;
+        scenTemp.Scenario_Temperature:= tbTemp.Position;
+        scenTemp.Scenario_BaroPressure:= tbBaroPressure.Position;
+        scenTemp.Scenario_Humidity:= tbHumidity.Position;
+        scenTemp.Scenario_FogHeight:= tbFogH.Position;
 
         scenTemp.Scenario_WindDir_Deg:= StrToFloat(edtWindDirec.Text);
         scenTemp.Scenario_CurrDir_Deg:= StrToFloat(edtSeaDirection.Text);
 
         { Wind Calc }
-        RecSceSave.Scenario_WindDir_X := cos(DegToRad(vrwhlWindDirec.Position));
-        RecSceSave.Scenario_WindDir_Y := sin(DegToRad(vrwhlWindDirec.Position));
-        RecSceSave.Scenario_CurrDir_X := cos(DegToRad(vrwhlSeaDirection.Position));
-        RecSceSave.Scenario_CurrDir_Y := sin(DegToRad(vrwhlSeaDirection.Position));
+        scenTemp.Scenario_WindDir_X := cos(DegToRad(vrwhlWindDirec.Position));
+        scenTemp.Scenario_WindDir_Y := sin(DegToRad(vrwhlWindDirec.Position));
+        scenTemp.Scenario_CurrDir_X := cos(DegToRad(vrwhlSeaDirection.Position));
+        scenTemp.Scenario_CurrDir_Y := sin(DegToRad(vrwhlSeaDirection.Position));
 
         { Fog Calculation }
         lowerBound := 0.00005;
@@ -1085,7 +1081,7 @@ begin
         posPercentage := log10(tbFogH.Max * position) / log10(tbFogH.Max);
         Val := lowerBound + ((boundary - (posPercentage * boundary)));
 
-        RecSceSave.Scenario_FogHeight_Persen := Val;
+        scenTemp.Scenario_FogHeight_Persen := Val;
 
         {$ENDREGION}
 
@@ -1098,17 +1094,15 @@ begin
         begin
           if Assigned(lvWarShipSelect.Items[i].Data) then
           begin
-            RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_ID;
-            // RecShipsave.Vehicle_X       := StrToFloat(lvWarShipSelect.Items[i].SubItems[0]);
-            // RecShipsave.Vehicle_Y       := StrToFloat(lvWarShipSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_X;
-            RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_Y;
-            RecShipsave.Vehicle_Z := StrToFloat(lvWarShipSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Heading := StrToFloat(lvWarShipSelect.Items[i].SubItems[4]);
-            RecShipsave.Vehicle_Speed := StrToFloat(lvWarShipSelect.Items[i].SubItems[5]);
+            shipTemp := TVehicle.Create;
+            shipTemp.Vehicle_ID := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_ID;
+            shipTemp.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_X;
+            shipTemp.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_Y;
+            shipTemp.Vehicle_Z := StrToFloat(lvWarShipSelect.Items[i].SubItems[3]);
+            shipTemp.Vehicle_Heading := StrToFloat(lvWarShipSelect.Items[i].SubItems[4]);
+            shipTemp.Vehicle_Speed := StrToFloat(lvWarShipSelect.Items[i].SubItems[5]);
 
-            ListShip.Add(RecShipsave);
+            ListShip.Add(shipTemp);
           end;
         end;
         {$ENDREGION}
@@ -1118,17 +1112,15 @@ begin
         begin
           if Assigned(lvGeneralShipSelect.Items[i].Data) then
           begin
-            RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_ID;
-            RecShipsave.Vehicle_X := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_X;
-            RecShipsave.Vehicle_Y := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_Y;
-            // RecShipsave.Vehicle_X       := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[0]);
-            // RecShipsave.Vehicle_Y       := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_Z := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Heading := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[4]);
-            RecShipsave.Vehicle_Speed := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[5]);
+            shipTemp := TVehicle.Create;
+            shipTemp.Vehicle_ID := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_ID;
+            shipTemp.Vehicle_X := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_X;
+            shipTemp.Vehicle_Y := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_Y;
+            shipTemp.Vehicle_Z := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[3]);
+            shipTemp.Vehicle_Heading := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[4]);
+            shipTemp.Vehicle_Speed := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[5]);
 
-            ListShip.Add(RecShipsave);
+            ListShip.Add(shipTemp);
           end;
         end;
         {$ENDREGION}
@@ -1139,17 +1131,15 @@ begin
         begin
           if Assigned(lvTargetSurfaceSelect.Items[i].Data) then
           begin
-            RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_ID;
-            RecShipsave.Vehicle_X := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_X;
-            RecShipsave.Vehicle_Y := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_Y;
-            // RecShipsave.Vehicle_X       := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[0]);
-            // RecShipsave.Vehicle_Y       := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_Z := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Heading := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[4]);
-            RecShipsave.Vehicle_Speed := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[5]);
+            shipTemp := TVehicle.Create;
+            shipTemp.Vehicle_ID := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_ID;
+            shipTemp.Vehicle_X := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_X;
+            shipTemp.Vehicle_Y := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_Y;
+            shipTemp.Vehicle_Z := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[3]);
+            shipTemp.Vehicle_Heading := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[4]);
+            shipTemp.Vehicle_Speed := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[5]);
 
-            ListShip.Add(RecShipsave);
+            ListShip.Add(shipTemp);
           end;
         end;
         {$ENDREGION}
@@ -1162,20 +1152,20 @@ begin
         begin
           if lvConsole.Items[i].SubItems[4] <> '' then
           begin
-            RecConsoleSave := TSaveConsole.Create;
-            RecConsoleSave.ConsoleID := StrToInt(lvConsole.Items[i].Caption);
-            RecConsoleSave.shipID := StrToInt(lvConsole.Items[i].SubItems[5]);
-            RecConsoleSave.LauncherID :=
+            consoleTemp := TSaveConsole.Create;
+            consoleTemp.ConsoleID := StrToInt(lvConsole.Items[i].Caption);
+            consoleTemp.shipID := StrToInt(lvConsole.Items[i].SubItems[5]);
+            consoleTemp.LauncherID :=
               StrToInt(lvConsole.Items[i].SubItems[6]);
 
-            ListConsole.Add(RecConsoleSave);
+            ListConsole.Add(consoleTemp);
           end;
         end;
         {$ENDREGION}
 
         if ListShip.Count > 0 then
         begin
-          DataModule1.SaveScenario(RecSceSave, ListShip, ListConsole, WeaponListScenario);
+          DataModule1.SaveScenario(scenTemp, ListShip, ListConsole, WeaponListScenario);
 
           ClearAList(ListShip);
 
@@ -1193,28 +1183,29 @@ begin
         end;
 
         SimManager.isFirstRequest := false;
-        RecSceSave.Free;
+        scenTemp.Free;
         {$ENDREGION}
       end;
     1:
       begin
+
         {$Region ' Update Scenario ' }
+
+        if not CekInput then
+          Exit;
+
         scenTemp := TScenario.Create;
 
         {$REGION ' Description Scenario '}
 
+        scenTemp.Scenario_Name := edtScenarioName.Text;
+        scenTemp.Scenario_Port := cbbPort.ItemIndex;
         scenTemp.Scenario_Desc := mmoKetSce.Text;
 
         {$ENDREGION}
 
         {$REGION ' Environment '}
         try
-//          scenTemp.Scenario_Building := frmMoreEnvi.Building;
-//          scenTemp.Scenario_StaticShip := frmMoreEnvi.StaticShip;
-//          scenTemp.Scenario_Buoy := frmMoreEnvi.Buoy;
-//          scenTemp.Scenario_Tree := frmMoreEnvi.Tree;
-//          scenTemp.Scenario_Theme := frmMoreEnvi.Theme;
-          { Environment }
           scenTemp.Scenario_SeaState := tbSeaState.Position;
           scenTemp.Scenario_WindSpeed := tbWindSpeed.Position;
           scenTemp.Scenario_CurrSpeed := tbSeaSpeed.Position;
@@ -1246,11 +1237,10 @@ begin
           posPercentage := log10(tbFogH.Max * position) / log10(tbFogH.Max);
           Val := lowerBound + ((boundary - (posPercentage * boundary)));
 
-//          scenTemp.Scenario_FogHeight := Val;
           scenTemp.Scenario_FogHeight_Persen := Val;
 
           { Update }
-          DataModule1.UpdateEnvi(Scenario_ID, scenTemp);
+          DataModule1.UpdateScenario(Scenario_ID, scenTemp);
 
         finally
           scenTemp.Free;
@@ -1262,24 +1252,20 @@ begin
 
         ListShip := TList.Create;
 
-        {$ENDREGION}
-
         { save KRI Ship Configuration }
         for i := 0 to lvWarShipSelect.Items.Count - 1 do
         begin
           if Assigned(lvWarShipSelect.Items[i].Data) then
           begin
-            RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_ID;
-            RecShipsave.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_X;
-            RecShipsave.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_Y;
-//            RecShipsave.Vehicle_X := StrToFloat(lvWarShipSelect.Items[i].SubItems[1]);
-//            RecShipsave.Vehicle_Y := StrToFloat(lvWarShipSelect.Items[i].SubItems[2]);
-            RecShipsave.Vehicle_Z := StrToFloat(lvWarShipSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Heading := StrToFloat(lvWarShipSelect.Items[i].SubItems[4]);
-            RecShipsave.Vehicle_Speed := StrToFloat(lvWarShipSelect.Items[i].SubItems[5]);
+            shipTemp := TVehicle.Create;
+            shipTemp.Vehicle_ID := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_ID;
+            shipTemp.Vehicle_X := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_X;
+            shipTemp.Vehicle_Y := TVehicle(lvWarShipSelect.Items[i].Data).Vehicle_Y;
+            shipTemp.Vehicle_Z := StrToFloat(lvWarShipSelect.Items[i].SubItems[3]);
+            shipTemp.Vehicle_Heading := StrToFloat(lvWarShipSelect.Items[i].SubItems[4]);
+            shipTemp.Vehicle_Speed := StrToFloat(lvWarShipSelect.Items[i].SubItems[5]);
 
-            ListShip.Add(RecShipsave);
+            ListShip.Add(shipTemp);
           end;
         end;
 
@@ -1288,17 +1274,15 @@ begin
         begin
           if Assigned(lvGeneralShipSelect.Items[i].Data) then
           begin
-            RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_ID;
-            RecShipsave.Vehicle_X := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_X;
-            RecShipsave.Vehicle_Y := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_Y;
-//            RecShipsave.Vehicle_X := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[1]);
-//            RecShipsave.Vehicle_Y := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[2]);
-            RecShipsave.Vehicle_Z := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Heading := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[4]);
-            RecShipsave.Vehicle_Speed := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[5]);
+            shipTemp := TVehicle.Create;
+            shipTemp.Vehicle_ID := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_ID;
+            shipTemp.Vehicle_X := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_X;
+            shipTemp.Vehicle_Y := TVehicle(lvGeneralShipSelect.Items[i].Data).Vehicle_Y;
+            shipTemp.Vehicle_Z := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[3]);
+            shipTemp.Vehicle_Heading := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[4]);
+            shipTemp.Vehicle_Speed := StrToFloat(lvGeneralShipSelect.Items[i].SubItems[5]);
 
-            ListShip.Add(RecShipsave);
+            ListShip.Add(shipTemp);
           end;
         end;
 
@@ -1307,35 +1291,36 @@ begin
         begin
           if Assigned(lvTargetSurfaceSelect.Items[i].Data) then
           begin
-            RecShipsave := TVehicle.Create;
-            RecShipsave.Vehicle_ID := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_ID;
-            RecShipsave.Vehicle_X := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_X;
-            RecShipsave.Vehicle_Y := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_Y;
-//            RecShipsave.Vehicle_X := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[0]);
-//            RecShipsave.Vehicle_Y := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[1]);
-            RecShipsave.Vehicle_Z := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[3]);
-            RecShipsave.Vehicle_Heading := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[4]);
-            RecShipsave.Vehicle_Speed := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[5]);
+            shipTemp := TVehicle.Create;
+            shipTemp.Vehicle_ID := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_ID;
+            shipTemp.Vehicle_X := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_X;
+            shipTemp.Vehicle_Y := TVehicle(lvTargetSurfaceSelect.Items[i].Data).Vehicle_Y;
+            shipTemp.Vehicle_Z := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[3]);
+            shipTemp.Vehicle_Heading := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[4]);
+            shipTemp.Vehicle_Speed := StrToFloat(lvTargetSurfaceSelect.Items[i].SubItems[5]);
 
-            ListShip.Add(RecShipsave);
+            ListShip.Add(shipTemp);
           end;
         end;
 
-        { Save Setting Console }
+        {$ENDREGION}
+
+        {$REGION ' Console '}
         ListConsole := TList.Create;
         for i := 0 to lvConsole.Items.Count - 1 do
         begin
           if lvConsole.Items[i].SubItems[4] <> '' then
           begin
-            RecConsoleSave := TSaveConsole.Create;
-            RecConsoleSave.ConsoleID := StrToInt(lvConsole.Items[i].Caption);
-            RecConsoleSave.shipID := StrToInt(lvConsole.Items[i].SubItems[5]);
-            RecConsoleSave.LauncherID :=
+            consoleTemp := TSaveConsole.Create;
+            consoleTemp.ConsoleID := StrToInt(lvConsole.Items[i].Caption);
+            consoleTemp.shipID := StrToInt(lvConsole.Items[i].SubItems[5]);
+            consoleTemp.LauncherID :=
               StrToInt(lvConsole.Items[i].SubItems[6]);
 
-            ListConsole.Add(RecConsoleSave);
+            ListConsole.Add(consoleTemp);
           end;
         end;
+        {$ENDREGION}
 
         if ListShip.Count > 0 then
         begin
@@ -1686,8 +1671,9 @@ begin
 
           Vehicle.Vehicle_X := Mx;
           Vehicle.Vehicle_Y := My;
-          ListView.Items[j].SubItems[0] := Format('%2.8f', [Mx]);
-          ListView.Items[j].SubItems[1] := Format('%2.8f', [My]);
+          ListView.Items[j].SubItems[1] := ConvLL_To_Str(Mx, '0');
+          ListView.Items[j].SubItems[2] := ConvLL_To_Str(My, '1');
+
           // ListView.Items[j].SubItems[0] := FormatFloat('0',(Mx-SimManager.instMapSet.xOffset) * C_Degree_to_Meter);
           // ListView.Items[j].SubItems[1] := FormatFloat('0',(My-SimManager.instMapSet.yOffset) * C_Degree_to_Meter);
 
@@ -1737,7 +1723,7 @@ begin
         begin
           isFound := true;
 
-          ListView.Items[j].SubItems[2] := FloatToStr(Depth);
+          ListView.Items[j].SubItems[3] := FloatToStr(Depth);
 
           break;
         end;
@@ -1785,7 +1771,7 @@ begin
         begin
           isFound := true;
 
-          ListView.Items[j].SubItems[4] := FloatToStr(Speed);
+          ListView.Items[j].SubItems[5] := FloatToStr(Speed);
 
           break;
         end;
@@ -1833,7 +1819,7 @@ begin
         begin
           isFound := true;
 
-          ListView.Items[j].SubItems[3] := FloatToStr(Heading);
+          ListView.Items[j].SubItems[4] := FloatToStr(Heading);
 
           break;
         end;
@@ -2244,34 +2230,20 @@ begin
   begin
     { New Scenario }
 
-//    btnSaveScenario.Caption := 'Save New Scenario';
     btnSaveScenario.Tag := 0;
-
-    edtScenarioName.Enabled := true;
-    cbbPort.Enabled := true;
-
-//    frmMoreEnvi.tbWindSpeed.position := 0;
-//    frmMoreEnvi.tbSeaSpeed.position := 0;
-//    frmMoreEnvi.tbTemp.position := 0;
-//    frmMoreEnvi.tbSeaState.position := 0;
-//    frmMoreEnvi.tbBaroPressure.position := 0;
-//    frmMoreEnvi.tbHumidity.position := 0;
-//    frmMoreEnvi.tbFogH.position := 0;
-//    frmMoreEnvi.vrwhlWindDirec.position := 180;
-//    frmMoreEnvi.vrwhlSeaDirection.position := 180;
 
     GetAllVehicle;
   end
   else
   begin
     { Edit Scenario }
-    edtScenarioName.Enabled := false;
+    LastName := ScenarioName;
     edtScenarioName.Text := ScenarioName;
-    cbbPort.Enabled := false;
 
     btnSaveScenario.Tag := 1;
 
     scenTemp := TScenario.Create;
+
     try
       {ngambil data dari database}
       DataModule1.GetScenarioDefByID(Scenario_ID, scenTemp);
@@ -2283,7 +2255,6 @@ begin
       cbbPort.ItemIndex := Round(scenTemp.Scenario_Port);
 
       {Game Center}
-//      DataModule1.GetSceneOffSetFromPortID(DataModule1.GetMapById(Scenario_ID), Dx, Dy);
       DataModule1.GetSceneOffSetFromPortID(scenTemp.Scenario_Port, Dx, Dy);
 
       if ((SimManager.instMapSet.xOffset <> Dx) and
@@ -2301,17 +2272,6 @@ begin
       {$ENDREGION}
 
       {$REGION ' Load Environment '}
-
-//      frmMoreEnvi.eBuilding.ItemIndex := scenTemp.Scenario_Building;
-//      frmMoreEnvi.eStaticShips.ItemIndex := scenTemp.Scenario_StaticShip;
-//      frmMoreEnvi.eBuoy.ItemIndex := scenTemp.Scenario_Buoy;
-//      frmMoreEnvi.eTree.ItemIndex := scenTemp.Scenario_Tree;
-//      frmMoreEnvi.eTheme.ItemIndex := scenTemp.Scenario_Theme;
-//      frmMoreEnvi.Building := scenTemp.Scenario_Building;
-//      frmMoreEnvi.StaticShip := scenTemp.Scenario_StaticShip;
-//      frmMoreEnvi.Buoy := scenTemp.Scenario_Buoy;
-//      frmMoreEnvi.Tree := scenTemp.Scenario_Tree;
-//      frmMoreEnvi.Theme := scenTemp.Scenario_Theme;
 
       tbSeaState.position := Round(scenTemp.Scenario_SeaState);
       tbWindSpeed.position := Round(scenTemp.Scenario_WindSpeed);
@@ -2402,23 +2362,6 @@ begin
           ListViewAdd(lvTargetSurfaceSelect, lvTargetShipAll, ShipDetail, 3);
           {$ENDREGION}
         end;
-//            else
-//              { Target Subsurface }
-//              if (AllShip.Vehicle_Type = 3) and (AllShip.Vehicle_Target = 1)
-//              then
-//              begin
-//                { Get KRI Ship }
-//                ListViewAdd(lvTargetSubsurfaceSelect, lvTargetSubsurfaceAll,
-//                  ShipDetail, 3);
-//              end
-//              else
-//                { Target Subsurface }
-//                if (AllShip.Vehicle_Type = 2) and (AllShip.Vehicle_Target = 1)
-//                then
-//                begin
-//                  { Get KRI Ship }
-//                  ListViewAdd(lvTargetAirSelect, lvTargetAirAll, ShipDetail, 3);
-//                end;
 
         { Set Environment Object }
         Mx := AllShip.Vehicle_X;

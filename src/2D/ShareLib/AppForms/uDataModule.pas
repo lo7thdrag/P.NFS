@@ -83,6 +83,9 @@ type
     function GetScenarioByName(NameScenario: string): Boolean;
 
     procedure GetScenarioDefByID(const SceID: integer; var rec: TScenario);
+
+    procedure SaveScenario(const rec: TScenario; ListShip, ListConsole, ListWeapon: Tlist);
+    procedure UpdateScenario(const SceID: integer; const SceEnvi: TScenario);
     {$ENDREGION}
 
     function GetAllPort(var aRec: Tlist): integer;
@@ -114,8 +117,7 @@ type
     procedure DeleteDefaultScenario;
     procedure FillListDefaultScenario(SceID: integer);
 
-    procedure SaveScenario(const rec: TScenario;
-      ListShip, ListConsole, ListWeapon: Tlist);
+
     procedure SaveWeaponShip(const rec: TWeaponGetList);
     procedure UpdateWeaponShip(const rec: TWeaponGetList;
       const IDNumber: integer);
@@ -131,10 +133,6 @@ type
       ListShip, ListConsole, ListWeapon: Tlist);
 
     function GetPC_Client(var aRec: Tlist): integer;
-
-    procedure UpdateEnvi(const SceID: integer; const SceEnvi: TScenario);
-
-
 
     function GetCanonTOFbyRange(GuntType: integer; iRange: Double): single;
 
@@ -1269,6 +1267,7 @@ begin
       rec.Vehicle_Heading := DQ.FieldByName('HEADING').AsInteger;
       rec.Vehicle_Speed := DQ.FieldByName('SPEED').AsInteger;
       rec.Vehicle_Console := DQ.FieldByName('IDCONSOLES').AsInteger;
+      rec.Vehicle_Maxspeed := GetShipMaxSpeed(rec.Vehicle_ID);
       rec.Vehicle_Type := GetShipDomain(rec.Vehicle_ID);
       rec.Vehicle_Target := GetShipTarget(rec.Vehicle_ID);
 
@@ -2053,8 +2052,7 @@ begin
   end;
 end;
 
-procedure TDataModule1.UpdateEnvi(const SceID: integer;
-  const SceEnvi: TScenario);
+procedure TDataModule1.UpdateScenario(const SceID: integer; const SceEnvi: TScenario);
 begin
   with DQ do
   begin
@@ -2063,6 +2061,8 @@ begin
 
     SQL.Add('UPDATE sce_main set ');
 
+    SQL.Add('NAMA=' + QuotedStr(SceEnvi.Scenario_Name) + ',');
+    SQL.Add('ENV_PETA=' + IntToStr(SceEnvi.Scenario_Port) + ',');
     SQL.Add('KET=' + QuotedStr(SceEnvi.Scenario_Desc) + ',');
     SQL.Add('ENV_BUILDING=' + IntToStr(SceEnvi.Scenario_Building) + ',');
     SQL.Add('ENV_SSHIPS=' + IntToStr(SceEnvi.Scenario_StaticShip) + ',');

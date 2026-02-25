@@ -766,7 +766,7 @@ var
    fname: string;
    sClassID, sCategoryID  : integer;
    sName, sClassname: string;
-   aMaxAhead, aMinAstern, aMaxRudder, aMinRudder,
+   aMaxSpeed, aMaxAhead, aMinAstern, aMaxRudder, aMinRudder,
    aPanjang, aLebar, aTinggi: double;
    WeaponShip : TWeaponOnShip;
    ListWeapon  : Tlist;
@@ -783,6 +783,7 @@ begin
   sName         := DataModule1.GetShipName(sid);
   sClassID      := DataModule1.GetShipType(sid, sClassName);
   sCategoryID   := DataModule1.GetShipCategoryID(sid);
+  aMaxSpeed     := DataModule1.GetShipMaxSpeed(sid);
 
   DataModule1.GetShipData_symbol(sClassID, sChar, fName);
   DataModule1.GetSteeringProfile(sid, aMaxAhead, aMinAstern, aMaxRudder, aMinRudder, aPanjang, aLebar, aTinggi );
@@ -809,6 +810,7 @@ begin
     ObjName         := sName;
     ObjClassName    := sClassName;
     ObjClassID      := sClassID;
+    SpeedMax        := aMaxSpeed;
 
     VHistory.Color  := Colors[FCLColor];
 

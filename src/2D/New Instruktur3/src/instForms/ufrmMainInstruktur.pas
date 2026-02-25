@@ -3076,7 +3076,10 @@ begin
   inHead := InputBox('Change Course ' + SimManager.DatabaseObject.ObjName, 'New Course: ', strHead);
 
   if ConvertToFloat(inHead, newhead) then
+  begin
+    newhead := ValidateDegree(newhead);
     SimManager.DatabaseObject.Course := newHead;
+  end;
 
   if SimManager.isDatabaseMode then
     frmSceEditor.UpdateListViewHeading(newHead, SimManager.DatabaseObject.FDataBaseID);
@@ -3087,26 +3090,54 @@ var
   strSpeed, inSpeed : string;
   newSpeed          : Double;
 begin
-  if Assigned(SimManager.DatabaseObject) and
-    (SimManager.DatabaseObject is TIAirCraftObject) then begin
+  if Assigned(SimManager.DatabaseObject) and (SimManager.DatabaseObject is TIAirCraftObject) then
+  begin
     strSpeed := Format('%2.2f', [SimManager.DatabaseObject.Speed]);
     inSpeed := strSpeed;
-    while flag = 0 do begin
-      ShowMessage('Aircraft speed minimum is 50 knot');
+
+    while flag = 0 do
+    begin
+
       inSpeed := InputBox('Change Speed ' + SimManager.DatabaseObject.ObjName, 'New Speed: ', strSpeed);
       flag := 1;
-      if StrToFloat(inSpeed) < 50 then begin
+
+      if StrToFloat(inSpeed) < 50 then
+      begin
+        ShowMessage('Aircraft speed minimum is 50 knot');
         flag := 0;
-      end;
+      end
+      else if StrToFloat(inSpeed) > SimManager.DatabaseObject.SpeedMax then
+      begin
+        ShowMessage('Aircraft speed maximum is ' + FloatToStr(SimManager.DatabaseObject.SpeedMax) + ' knot');
+        flag := 0;
+      end
+
     end;
+
     if ConvertToFloat(inSpeed, newSpeed) then
       SimManager.DatabaseObject.Speed := newSpeed;
     if SimManager.isDatabaseMode then
       frmSceEditor.updateListViewSpeed(newSpeed, SimManager.DatabaseObject.FDataBaseID);
   end
-  else begin
+  else
+  begin
     strSpeed := Format('%2.2f', [SimManager.DatabaseObject.Speed]);
-    inSpeed := InputBox('Change Speed ' + SimManager.DatabaseObject.ObjName, 'New Speed: ', strSpeed);
+    inSpeed := strSpeed;//InputBox('Change Speed ' + SimManager.DatabaseObject.ObjName, 'New Speed: ', strSpeed);
+
+    while flag = 0 do
+    begin
+
+      inSpeed := InputBox('Change Speed ' + SimManager.DatabaseObject.ObjName, 'New Speed: ', strSpeed);
+      flag := 1;
+
+      if StrToFloat(inSpeed) > SimManager.DatabaseObject.SpeedMax then
+      begin
+        ShowMessage('Speed maximum is ' + FloatToStr(SimManager.DatabaseObject.SpeedMax) + ' knot');
+        flag := 0;
+      end
+
+    end;
+
     if ConvertToFloat(inSpeed, newSpeed) then
       SimManager.DatabaseObject.Speed := newSpeed;
     if SimManager.isDatabaseMode then
