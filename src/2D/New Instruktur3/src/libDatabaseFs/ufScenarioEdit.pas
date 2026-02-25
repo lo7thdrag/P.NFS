@@ -1026,7 +1026,7 @@ var
   lowerBound, upperBound, boundary, posPercentage, position: Double;
   Val: single;
 
-  SceEnvi: TScenario;
+  scenTemp: TScenario;
 begin
   frmMainInstruktur.Caption := frmMainInstruktur.cekCaption;
   frmMainInstruktur.lblCekRunning.Caption := frmMainInstruktur.cekStatusKonek;
@@ -1045,10 +1045,10 @@ begin
 
         RecSceSave.Scenario_Name := edtScenarioName.Text;
         RecSceSave.Scenario_Port := cbbPort.ItemIndex;
-        RecSceSave.Scenario_Building := frmMoreEnvi.Building;
-        RecSceSave.Scenario_StaticShip := frmMoreEnvi.StaticShip;
-        RecSceSave.Scenario_Buoy := frmMoreEnvi.Buoy;
-        RecSceSave.Scenario_Theme := frmMoreEnvi.Theme;
+//        RecSceSave.Scenario_Building := frmMoreEnvi.Building;
+//        RecSceSave.Scenario_StaticShip := frmMoreEnvi.StaticShip;
+//        RecSceSave.Scenario_Buoy := frmMoreEnvi.Buoy;
+//        RecSceSave.Scenario_Theme := frmMoreEnvi.Theme;
         RecSceSave.Scenario_Desc := mmoKetSce.Text;
 
         {$ENDREGION}
@@ -1056,29 +1056,36 @@ begin
         {$REGION ' Environment '}
         RecSceSave.Scenario_SeaState := tbSeaState.Position;
         RecSceSave.Scenario_WindSpeed := tbWindSpeed.Position;
+        RecSceSave.Scenario_CurrSpeed:= tbSeaSpeed.Position;
+        RecSceSave.Scenario_Temperature:= tbTemp.Position;
+        RecSceSave.Scenario_BaroPressure:= tbBaroPressure.Position;
+        RecSceSave.Scenario_Humidity:= tbHumidity.Position;
+        RecSceSave.Scenario_FogHeight:= tbFogH.Position;
+
+        scenTemp.Scenario_WindDir_Deg:= StrToFloat(edtWindDirec.Text);
+        scenTemp.Scenario_CurrDir_Deg:= StrToFloat(edtSeaDirection.Text);
 
         { Wind Calc }
-        RecSceSave.Scenario_WindDir_X := cos(DegToRad(frmMoreEnvi.WindDir));
-        RecSceSave.Scenario_WindDir_Y := sin(DegToRad(frmMoreEnvi.WindDir));
-        RecSceSave.Scenario_WindDir_Deg := frmMoreEnvi.WindDir;
-        RecSceSave.Scenario_CurrSpeed := frmMoreEnvi.CurrentSpeed;
-        RecSceSave.Scenario_CurrDir_X := cos(DegToRad(frmMoreEnvi.WindDir));
-        RecSceSave.Scenario_CurrDir_Y := sin(DegToRad(frmMoreEnvi.WindDir));
-        RecSceSave.Scenario_CurrDir_Deg := frmMoreEnvi.CurrentDir;
-        RecSceSave.Scenario_Temperature := frmMoreEnvi.Temperature;
-        RecSceSave.Scenario_BaroPressure := frmMoreEnvi.BaroPressure;
-        RecSceSave.Scenario_Humidity := frmMoreEnvi.Humidity;
+        RecSceSave.Scenario_WindDir_X := cos(DegToRad(vrwhlWindDirec.Position));
+        RecSceSave.Scenario_WindDir_Y := sin(DegToRad(vrwhlWindDirec.Position));
+        RecSceSave.Scenario_CurrDir_X := cos(DegToRad(vrwhlSeaDirection.Position));
+        RecSceSave.Scenario_CurrDir_Y := sin(DegToRad(vrwhlSeaDirection.Position));
 
         { Fog Calculation }
         lowerBound := 0.00005;
         upperBound := 0.08;
         boundary := upperBound - lowerBound;
-        position := ((frmMoreEnvi.tbFogH.Max) - (frmMoreEnvi.tbFogH.position)) / (frmMoreEnvi.tbFogH.Max);
-        posPercentage := log10(frmMoreEnvi.tbFogH.Max * position) / log10(frmMoreEnvi.tbFogH.Max);
+        position := ((tbFogH.Max) - (tbFogH.position))/ (tbFogH.Max);
+
+        if position = 0 then
+        begin
+          position := 0.001;
+        end;
+
+        posPercentage := log10(tbFogH.Max * position) / log10(tbFogH.Max);
         Val := lowerBound + ((boundary - (posPercentage * boundary)));
 
-        RecSceSave.Scenario_FogHeight := Val;
-        RecSceSave.Scenario_FogHeight_Persen := frmMoreEnvi.FogHeight;
+        RecSceSave.Scenario_FogHeight_Persen := Val;
 
         {$ENDREGION}
 
@@ -1189,59 +1196,64 @@ begin
         RecSceSave.Free;
         {$ENDREGION}
       end;
-
     1:
       begin
-        { update Scenario }
-        SceEnvi := TScenario.Create;
+        {$Region ' Update Scenario ' }
+        scenTemp := TScenario.Create;
 
         {$REGION ' Description Scenario '}
 
-        SceEnvi.Scenario_Desc := mmoKetSce.Text;
+        scenTemp.Scenario_Desc := mmoKetSce.Text;
 
         {$ENDREGION}
 
         {$REGION ' Environment '}
         try
-          SceEnvi.Scenario_Building := frmMoreEnvi.Building;
-          SceEnvi.Scenario_StaticShip := frmMoreEnvi.StaticShip;
-          SceEnvi.Scenario_Buoy := frmMoreEnvi.Buoy;
-          SceEnvi.Scenario_Tree := frmMoreEnvi.Tree;
-          SceEnvi.Scenario_Theme := frmMoreEnvi.Theme;
+//          scenTemp.Scenario_Building := frmMoreEnvi.Building;
+//          scenTemp.Scenario_StaticShip := frmMoreEnvi.StaticShip;
+//          scenTemp.Scenario_Buoy := frmMoreEnvi.Buoy;
+//          scenTemp.Scenario_Tree := frmMoreEnvi.Tree;
+//          scenTemp.Scenario_Theme := frmMoreEnvi.Theme;
           { Environment }
-          SceEnvi.Scenario_SeaState := frmMoreEnvi.SeaState;
-          SceEnvi.Scenario_WindSpeed := frmMoreEnvi.WindSpeed;
+          scenTemp.Scenario_SeaState := tbSeaState.Position;
+          scenTemp.Scenario_WindSpeed := tbWindSpeed.Position;
+          scenTemp.Scenario_CurrSpeed := tbSeaSpeed.Position;
+          scenTemp.Scenario_Temperature:= tbTemp.Position;
+          scenTemp.Scenario_BaroPressure := tbBaroPressure.Position;
+          scenTemp.Scenario_Humidity := tbHumidity.Position;
+          scenTemp.Scenario_FogHeight := tbFogH.Position;
+
+          scenTemp.Scenario_WindDir_Deg:= StrToFloat(edtWindDirec.Text);
+          scenTemp.Scenario_CurrDir_Deg:= StrToFloat(edtSeaDirection.Text);
+
           { Wind Calc }
-          SceEnvi.Scenario_WindDir_X := cos(DegToRad(frmMoreEnvi.WindDir));
-          SceEnvi.Scenario_WindDir_Y := sin(DegToRad(frmMoreEnvi.WindDir));
-          SceEnvi.Scenario_WindDir_Deg := frmMoreEnvi.WindDir;
-          SceEnvi.Scenario_CurrSpeed := frmMoreEnvi.CurrentSpeed;
-          SceEnvi.Scenario_CurrDir_X := cos(DegToRad(frmMoreEnvi.CurrentDir));
-          SceEnvi.Scenario_CurrDir_Y := sin(DegToRad(frmMoreEnvi.CurrentDir));
-          SceEnvi.Scenario_CurrDir_Deg := frmMoreEnvi.CurrentDir;
-          SceEnvi.Scenario_Temperature := frmMoreEnvi.Temperature;
-          SceEnvi.Scenario_BaroPressure := frmMoreEnvi.BaroPressure;
-          SceEnvi.Scenario_Humidity := frmMoreEnvi.Humidity;
+          scenTemp.Scenario_WindDir_X := cos(DegToRad(scenTemp.Scenario_WindDir_Deg));
+          scenTemp.Scenario_WindDir_Y := sin(DegToRad(vrwhlWindDirec.Position));
+          scenTemp.Scenario_CurrDir_X := cos(DegToRad(vrwhlSeaDirection.Position));
+          scenTemp.Scenario_CurrDir_Y := sin(DegToRad(vrwhlSeaDirection.Position));
+
           { Fog Calculation }
           lowerBound := 0.00005;
           upperBound := 0.08;
           boundary := upperBound - lowerBound;
-          position := ((frmMoreEnvi.tbFogH.Max) - (frmMoreEnvi.tbFogH.position))
-            / (frmMoreEnvi.tbFogH.Max);
+          position := ((tbFogH.Max) - (tbFogH.position))/ (tbFogH.Max);
+
           if position = 0 then
           begin
             position := 0.001;
           end;
-          posPercentage := log10(frmMoreEnvi.tbFogH.Max * position) / log10(frmMoreEnvi.tbFogH.Max);
+
+          posPercentage := log10(tbFogH.Max * position) / log10(tbFogH.Max);
           Val := lowerBound + ((boundary - (posPercentage * boundary)));
-          SceEnvi.Scenario_FogHeight := Val;
-          SceEnvi.Scenario_FogHeight_Persen := frmMoreEnvi.FogHeight;
+
+//          scenTemp.Scenario_FogHeight := Val;
+          scenTemp.Scenario_FogHeight_Persen := Val;
 
           { Update }
-          DataModule1.UpdateEnvi(Scenario_ID, SceEnvi);
+          DataModule1.UpdateEnvi(Scenario_ID, scenTemp);
 
         finally
-          SceEnvi.Free;
+          scenTemp.Free;
         end;
 
         {$ENDREGION}
@@ -1251,7 +1263,6 @@ begin
         ListShip := TList.Create;
 
         {$ENDREGION}
-
 
         { save KRI Ship Configuration }
         for i := 0 to lvWarShipSelect.Items.Count - 1 do
@@ -1344,6 +1355,8 @@ begin
         end;
 
         SimManager.isFirstRequest := false;
+
+        {$ENDREGION}
       end;
 
   end;
@@ -2260,6 +2273,7 @@ begin
 
     scenTemp := TScenario.Create;
     try
+      {ngambil data dari database}
       DataModule1.GetScenarioDefByID(Scenario_ID, scenTemp);
 
       {$REGION ' Load General '}
@@ -2288,57 +2302,34 @@ begin
 
       {$REGION ' Load Environment '}
 
-      frmMoreEnvi.eBuilding.ItemIndex := scenTemp.Scenario_Building;
-      frmMoreEnvi.eStaticShips.ItemIndex := scenTemp.Scenario_StaticShip;
-      frmMoreEnvi.eBuoy.ItemIndex := scenTemp.Scenario_Buoy;
-      frmMoreEnvi.eTree.ItemIndex := scenTemp.Scenario_Tree;
-      frmMoreEnvi.eTheme.ItemIndex := scenTemp.Scenario_Theme;
-      frmMoreEnvi.Building := scenTemp.Scenario_Building;
-      frmMoreEnvi.StaticShip := scenTemp.Scenario_StaticShip;
-      frmMoreEnvi.Buoy := scenTemp.Scenario_Buoy;
-      frmMoreEnvi.Tree := scenTemp.Scenario_Tree;
-      frmMoreEnvi.Theme := scenTemp.Scenario_Theme;
+//      frmMoreEnvi.eBuilding.ItemIndex := scenTemp.Scenario_Building;
+//      frmMoreEnvi.eStaticShips.ItemIndex := scenTemp.Scenario_StaticShip;
+//      frmMoreEnvi.eBuoy.ItemIndex := scenTemp.Scenario_Buoy;
+//      frmMoreEnvi.eTree.ItemIndex := scenTemp.Scenario_Tree;
+//      frmMoreEnvi.eTheme.ItemIndex := scenTemp.Scenario_Theme;
+//      frmMoreEnvi.Building := scenTemp.Scenario_Building;
+//      frmMoreEnvi.StaticShip := scenTemp.Scenario_StaticShip;
+//      frmMoreEnvi.Buoy := scenTemp.Scenario_Buoy;
+//      frmMoreEnvi.Tree := scenTemp.Scenario_Tree;
+//      frmMoreEnvi.Theme := scenTemp.Scenario_Theme;
 
-      frmMoreEnvi.lblSeaState.Caption := FloatToStr(scenTemp.Scenario_SeaState);
-      frmMoreEnvi.lblWindSpeed.Caption := FloatToStr(scenTemp.Scenario_WindSpeed);
-      frmMoreEnvi.lblCurrentSpeed.Caption := FloatToStr(scenTemp.Scenario_CurrSpeed);
-      frmMoreEnvi.lblWindDirection.Caption := FloatToStr(scenTemp.Scenario_WindDir_Deg);
-      frmMoreEnvi.lblCurrentDirection.Caption := FloatToStr(scenTemp.Scenario_CurrDir_Deg);
-      frmMoreEnvi.lblTemperature.Caption := FloatToStr(scenTemp.Scenario_Temperature);
-      frmMoreEnvi.lblBaroPressure.Caption := FloatToStr(scenTemp.Scenario_BaroPressure);
-      frmMoreEnvi.lblHumidity.Caption := FloatToStr(scenTemp.Scenario_Humidity);
-      frmMoreEnvi.lblFogHeight.Caption := FloatToStr(scenTemp.Scenario_FogHeight_Persen);
-      frmMoreEnvi.SeaState := Round(scenTemp.Scenario_SeaState);
-      frmMoreEnvi.WindSpeed := Round(scenTemp.Scenario_WindSpeed);
-      frmMoreEnvi.CurrentSpeed := Round(scenTemp.Scenario_CurrSpeed);
-      frmMoreEnvi.WindDir := Round(scenTemp.Scenario_WindDir_Deg);
-      frmMoreEnvi.CurrentDir := Round(scenTemp.Scenario_CurrDir_Deg);
-      frmMoreEnvi.Temperature := Round(scenTemp.Scenario_Temperature);
-      frmMoreEnvi.BaroPressure := Round(scenTemp.Scenario_BaroPressure);
-      frmMoreEnvi.Humidity := Round(scenTemp.Scenario_Humidity);
-      frmMoreEnvi.FogHeight := Round(scenTemp.Scenario_FogHeight_Persen);
-
-      frmMoreEnvi.tbSeaState.position := Round(scenTemp.Scenario_SeaState);
-      frmMoreEnvi.tbWindSpeed.position := Round(scenTemp.Scenario_WindSpeed);
-      frmMoreEnvi.tbSeaSpeed.position := Round(scenTemp.Scenario_CurrSpeed);
-      frmMoreEnvi.tbTemp.position := Round(scenTemp.Scenario_Temperature);
-      frmMoreEnvi.tbBaroPressure.position := Round(scenTemp.Scenario_BaroPressure);
-      frmMoreEnvi.tbHumidity.position := Round(scenTemp.Scenario_Humidity);
-      frmMoreEnvi.tbFogH.position := Round(scenTemp.Scenario_FogHeight_Persen);
+      tbSeaState.position := Round(scenTemp.Scenario_SeaState);
+      tbWindSpeed.position := Round(scenTemp.Scenario_WindSpeed);
+      tbSeaSpeed.position := Round(scenTemp.Scenario_CurrSpeed);
+      tbTemp.position := Round(scenTemp.Scenario_Temperature);
+      tbBaroPressure.position := Round(scenTemp.Scenario_BaroPressure);
+      tbHumidity.position := Round(scenTemp.Scenario_Humidity);
+      tbFogH.position := Round(scenTemp.Scenario_FogHeight);
 
       if scenTemp.Scenario_WindDir_Deg > 180 then
-        frmMoreEnvi.vrwhlWindDirec.position :=
-          (Round(scenTemp.Scenario_WindDir_Deg) - 180)
+        vrwhlWindDirec.position := (Round(scenTemp.Scenario_WindDir_Deg) - 180)
       else
-        frmMoreEnvi.vrwhlWindDirec.position :=
-          (Round(scenTemp.Scenario_WindDir_Deg) + 180);
+       vrwhlWindDirec.position := (Round(scenTemp.Scenario_WindDir_Deg) + 180);
 
       if scenTemp.Scenario_CurrDir_Deg > 180 then
-        frmMoreEnvi.vrwhlSeaDirection.position :=
-          (Round(scenTemp.Scenario_CurrDir_Deg) - 180)
+       vrwhlSeaDirection.position := (Round(scenTemp.Scenario_CurrDir_Deg) - 180)
       else
-        frmMoreEnvi.vrwhlSeaDirection.position :=
-          (Round(scenTemp.Scenario_CurrDir_Deg) + 180);
+       vrwhlSeaDirection.position := (Round(scenTemp.Scenario_CurrDir_Deg) + 180);
 
       {$ENDREGION}
 

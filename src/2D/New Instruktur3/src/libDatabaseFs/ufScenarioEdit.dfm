@@ -547,7 +547,7 @@ object frmSceEditor: TfrmSceEditor
       object AdvSmoothLabel5: TAdvSmoothLabel
         Left = 26
         Top = 139
-        Width = 109
+        Width = 88
         Height = 20
         AutoSize = True
         Fill.ColorMirror = clNone
@@ -558,7 +558,7 @@ object frmSceEditor: TfrmSceEditor
         Fill.Rounding = 0
         Fill.ShadowOffset = 0
         Fill.Glow = gmNone
-        Caption.Text = 'Wind Direction'
+        Caption.Text = 'Wind Speed'
         Caption.Font.Charset = DEFAULT_CHARSET
         Caption.Font.Color = clWindowText
         Caption.Font.Height = -13
@@ -566,7 +566,7 @@ object frmSceEditor: TfrmSceEditor
         Caption.Font.Style = [fsBold]
         Caption.ColorStart = clSilver
         Caption.ColorEnd = clWhite
-        CaptionShadow.Text = 'AdvSmoothLabel'
+        CaptionShadow.Text = 'Wind Speed'
         CaptionShadow.Font.Charset = DEFAULT_CHARSET
         CaptionShadow.Font.Color = clWindowText
         CaptionShadow.Font.Height = -27
@@ -574,7 +574,6 @@ object frmSceEditor: TfrmSceEditor
         CaptionShadow.Font.Style = []
         Version = '1.6.1.0'
         Anchors = [akTop, akRight]
-        ExplicitLeft = 20
       end
       object advsmthlbl4: TAdvSmoothLabel
         Left = 26
@@ -2882,7 +2881,7 @@ object frmSceEditor: TfrmSceEditor
       end
       object edtTemp: TEdit
         Left = 513
-        Top = 491
+        Top = 493
         Width = 38
         Height = 21
         Alignment = taCenter
