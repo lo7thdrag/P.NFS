@@ -75,6 +75,10 @@ type
     function GetAllTargetSurface(var aRec: Tlist): integer;
     function GetAllTargetSubsurface(var aRec: Tlist): integer;
     function GetAllTargetAir(var aRec: Tlist): integer;
+
+    function UpdateShipEditor(const shipid: integer; const vehicle: TVehicle): integer;
+    function SaveShip(const vehicle: TVehicle): integer;
+    function InsertShipEditor(const vehicle: TVehicle): integer;
     {$ENDREGION}
 
     {$REGION ' Scenario Procedure '}
@@ -117,7 +121,8 @@ type
     procedure DeleteDefaultScenario;
     procedure FillListDefaultScenario(SceID: integer);
 
-
+//    procedure SaveScenario(const rec: TScenario;
+//      ListShip, ListConsole, ListWeapon: Tlist);
     procedure SaveWeaponShip(const rec: TWeaponGetList);
     procedure UpdateWeaponShip(const rec: TWeaponGetList;
       const IDNumber: integer);
@@ -185,8 +190,7 @@ type
       IdWeapon: integer; idDet: integer);
     procedure deleteSceWeapon(idScen: integer; idShip: integer;
       IdWeapon: integer; idDet: integer);
-    function UpdateShipEditor(const shipid: integer;
-      const vehicle: TVehicle): integer;
+//    function UpdateShipEditor(const shipid: integer; const vehicle: TVehicle): integer;
     function IDclassbyName(shipid: integer): String;
   end;
 
@@ -453,7 +457,7 @@ begin
     rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
     rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
     rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-    rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
+//    rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
     rec.Vehicle_Type  := DS.FieldByName('SHIP_TYPE').AsInteger;
 
     rec.Vehicle_TrimFactor      := DS.FieldByName('SHIP_TRIM_FACTOR').AsFloat;
@@ -560,6 +564,11 @@ begin
       exit;
     end
   end;
+end;
+
+function TDataModule1.InsertShipEditor(const vehicle: TVehicle): integer;
+begin
+
 end;
 
 function TDataModule1.GetStatusconDB: boolean;
@@ -1793,6 +1802,94 @@ begin
       end;
     end;
 
+  end;
+end;
+
+function TDataModule1.SaveShip(const vehicle: TVehicle): integer;
+var
+  mID: integer;
+begin
+  with DS do
+  begin
+    Close;
+    SQL.Clear;
+
+    SQL.Add('SELECT MAX(SHIP_ID) FROM m_ship');
+
+    Open;
+    DS.First;
+  end;
+
+  if not DS.IsEmpty then
+    mID := DS.FieldByName('MAX(SHIP_ID)').AsInteger + 1
+  else
+    mID := 1;
+
+  with DS do
+  begin
+    begin
+      Close;
+      SQL.Clear;
+
+      SQL.Add('INSERT INTO m_ship (');
+      SQL.Add('SHIP_ID, ');
+      SQL.Add('SHIP_CLASS_ID, ');
+      SQL.Add('SHIP_CATEGORY_ID, ');
+      SQL.Add('SHIP_CALLSIGN, ');
+      SQL.Add('SHIP_NO, ');
+      SQL.Add('SHIP_NAME, ');
+      SQL.Add('DIM_LENGTH, ');
+      SQL.Add('DIM_WIDTH, ');
+      SQL.Add('DIM_HEIGHT, ');
+      SQL.Add('SHIP_MAX_SPEED, ');
+      SQL.Add('SHIP_MAX_SPEED_ASTERN, ');
+      SQL.Add('DAMAGE_SUSTAINABILITY, ');
+      SQL.Add('SHIP_RUDDER_SWING_RATE, ');
+      SQL.Add('SHIP_THROTTLE_RATE, ');
+      SQL.Add('SHIP_DISPLACEMENT, ');
+      SQL.Add('SHIP_HEEL_FACTOR, ');
+      SQL.Add('SHIP_SHAFT_UP, ');
+      SQL.Add('SHIP_TACTICAL_DIAMETER, ');
+      SQL.Add('SHIP_TRIM_FACTOR, ');
+      SQL.Add('SHIP_N_THROTTLE, ');
+      SQL.Add('SHIP_RUDDER, ');
+      SQL.Add('SHIP_3D_TYPE, ');
+      SQL.Add('SHIP_CTRL_TYPE, ');
+      SQL.Add('IDMODEL, ');
+      SQL.Add('ISTARGET, ');
+      SQL.Add('SHIP_TYPE) ');
+
+      SQL.Add('VALUES ( ');
+
+      SQL.Add(IntToStr(mID) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_SHIP_CLASS_ID) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_SHIP_CATEGORY_ID) + ',');
+      SQL.Add(QuotedStr(vehicle.Vehicle_Name) + ',');
+      SQL.Add(QuotedStr(vehicle.Vehicle_SHIP_CALLSIGN) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_No) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_LENGTH) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_WIDTH) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_HEIGHT) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_Maxspeed) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_MaxspeedAstern) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_SUSTAINABILITY) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_RudderSwingRate) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_ThrottleRate) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_Displacement) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_HeelFactor) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_ShaftUp) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_TacDiameter) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_TrimFactor) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_N_Throttle) + ',');
+      SQL.Add(FloatToStr(vehicle.Vehicle_Rudder) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_3D_Type) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_CTRL_Type) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_IDM_Model) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_ISTarget) + ',');
+      SQL.Add(IntToStr(vehicle.Vehicle_Ship_Type) + ')');
+
+      ExecSQL;
+    end;
   end;
 end;
 
@@ -3297,7 +3394,7 @@ begin
     rec.Vehicle_ID    := DS.FieldByName('SHIP_ID').AsInteger;
     rec.Vehicle_Name  := DS.FieldByName('SHIP_NAME').AsString;
     rec.Vehicle_Ctgr  := DS.FieldByName('SHIP_CATEGORY_ID').AsInteger;
-    rec.Vehicle_No    := DS.FieldByName('SHIP_NO').AsInteger;
+//    rec.Vehicle_No    := strtoInt(DS.FieldByName('SHIP_NO').AsString);
     rec.Vehicle_Type  := DS.FieldByName('SHIP_TYPE').AsInteger;
 
     rec.Vehicle_TrimFactor      := DS.FieldByName('SHIP_TRIM_FACTOR').AsFloat;
@@ -3650,28 +3747,21 @@ begin
     Close;
     SQL.Clear;
     SQL.Add('UPDATE m_ship SET ');
+    SQL.Add('SHIP_NAME =' + QuotedStr(vehicle.Vehicle_Name) + ',');
     SQL.Add('DIM_LENGTH =' + FloatToStr(vehicle.Vehicle_LENGTH) + ',');
     SQL.Add('DIM_WIDTH =' + FloatToStr(vehicle.Vehicle_WIDTH) + ',');
     SQL.Add('DIM_HEIGHT =' + FloatToStr(vehicle.Vehicle_HEIGHT) + ',');
     SQL.Add('SHIP_MAX_SPEED =' + FloatToStr(vehicle.Vehicle_Maxspeed) + ',');
-    SQL.Add('SHIP_MAX_SPEED_ASTERN =' +
-      FloatToStr(vehicle.Vehicle_Minspeed) + ',');
-    SQL.Add('DAMAGE_SUSTAINABILITY =' +
-      FloatToStr(vehicle.Vehicle_SUSTAINABILITY) + ',');
+    SQL.Add('SHIP_MAX_SPEED_ASTERN =' + FloatToStr(vehicle.Vehicle_Minspeed) + ',');
+    SQL.Add('DAMAGE_SUSTAINABILITY =' + FloatToStr(vehicle.Vehicle_SUSTAINABILITY) + ',');
 
-    SQL.Add('SHIP_RUDDER_SWING_RATE =' +
-      FloatToStr(vehicle.Vehicle_RudderSwingRate) + ',');
-    SQL.Add('SHIP_THROTTLE_RATE =' +
-      FloatToStr(vehicle.Vehicle_ThrottleRate) + ',');
-    SQL.Add('SHIP_DISPLACEMENT =' +
-      FloatToStr(vehicle.Vehicle_Displacement) + ',');
-    SQL.Add('SHIP_HEEL_FACTOR =' +
-      FloatToStr(vehicle.Vehicle_HeelFactor) + ',');
+    SQL.Add('SHIP_RUDDER_SWING_RATE =' + FloatToStr(vehicle.Vehicle_RudderSwingRate) + ',');
+    SQL.Add('SHIP_THROTTLE_RATE =' + FloatToStr(vehicle.Vehicle_ThrottleRate) + ',');
+    SQL.Add('SHIP_DISPLACEMENT =' + FloatToStr(vehicle.Vehicle_Displacement) + ',');
+    SQL.Add('SHIP_HEEL_FACTOR =' + FloatToStr(vehicle.Vehicle_HeelFactor) + ',');
     SQL.Add('SHIP_SHAFT_UP =' + FloatToStr(vehicle.Vehicle_ShaftUp) + ',');
-    SQL.Add('SHIP_TACTICAL_DIAMETER =' +
-      FloatToStr(vehicle.Vehicle_TacDiameter) + ',');
-    SQL.Add('SHIP_TRIM_FACTOR =' +
-      FloatToStr(vehicle.Vehicle_TrimFactor) + ' ');
+    SQL.Add('SHIP_TACTICAL_DIAMETER =' + FloatToStr(vehicle.Vehicle_TacDiameter) + ',');
+    SQL.Add('SHIP_TRIM_FACTOR =' + FloatToStr(vehicle.Vehicle_TrimFactor) + ' ');
 
     SQL.Add('where SHIP_ID=' + IntToStr(shipid));
     ExecSQL;

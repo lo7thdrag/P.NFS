@@ -19,7 +19,7 @@ type
     advsmthlbl1: TAdvSmoothLabel;
     advsmthlbl2: TAdvSmoothLabel;
     lvWeaponSelect: TListView;
-    edtShipName: TCurvyEdit;
+    edtShipName1: TCurvyEdit;
     btnRemove: TAdvSmoothButton;
     btnAddWeapon: TAdvSmoothButton;
     btnAddMissile: TAdvSmoothButton;
@@ -80,49 +80,48 @@ type
     AdvSmoothLabel13: TAdvSmoothLabel;
     AdvSmoothLabel15: TAdvSmoothLabel;
     imgShip: TImage;
-    CurvyEdit1: TCurvyEdit;
-    AdvSmoothPanel2: TAdvSmoothPanel;
+    edtClassName: TCurvyEdit;
+    btnSaveShip: TAdvSmoothButton;
+    AdvSmoothButton1: TAdvSmoothButton;
+    edtShipName: TCurvyEdit;
+    AdvSmoothLabel14: TAdvSmoothLabel;
+    edtLethality: TEdit;
+    AdvSmoothButton2: TAdvSmoothButton;
+    pnlPicture1: TAdvSmoothPanel;
+    AdvSmoothPanel11: TAdvSmoothPanel;
     AdvSmoothLabel16: TAdvSmoothLabel;
     AdvSmoothLabel18: TAdvSmoothLabel;
     AdvSmoothLabel20: TAdvSmoothLabel;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit7: TEdit;
-    AdvSmoothPanel3: TAdvSmoothPanel;
-    AdvSmoothLabel25: TAdvSmoothLabel;
-    AdvSmoothLabel27: TAdvSmoothLabel;
-    Edit14: TEdit;
-    Edit16: TEdit;
-    btnSetPosition: TAdvSmoothButton;
-    AdvSmoothButton1: TAdvSmoothButton;
-    CurvyEdit2: TCurvyEdit;
-    AdvSmoothLabel14: TAdvSmoothLabel;
-    Edit2: TEdit;
-    AdvSmoothLabel17: TAdvSmoothLabel;
-    Edit1: TEdit;
-    AdvSmoothLabel19: TAdvSmoothLabel;
-    AdvSmoothLabel21: TAdvSmoothLabel;
     AdvSmoothLabel23: TAdvSmoothLabel;
     AdvSmoothLabel24: TAdvSmoothLabel;
     AdvSmoothLabel26: TAdvSmoothLabel;
+    AdvSmoothLabel17: TAdvSmoothLabel;
+    AdvSmoothLabel25: TAdvSmoothLabel;
+    AdvSmoothLabel27: TAdvSmoothLabel;
+    AdvSmoothLabel19: TAdvSmoothLabel;
     AdvSmoothLabel28: TAdvSmoothLabel;
     AdvSmoothLabel29: TAdvSmoothLabel;
-    AdvSmoothButton2: TAdvSmoothButton;
-    pnlPicture1: TAdvSmoothPanel;
-    edtShipRudderSwingRate: TEdit;
+    AdvSmoothLabel21: TAdvSmoothLabel;
     AdvSmoothLabel22: TAdvSmoothLabel;
-    edtShipThrottleRate: TEdit;
     AdvSmoothLabel30: TAdvSmoothLabel;
-    edtShipDisplacement: TEdit;
     AdvSmoothLabel31: TAdvSmoothLabel;
-    edtShipTrimFactor: TEdit;
-    AdvSmoothLabel32: TAdvSmoothLabel;
+    AdvSmoothLabel35: TAdvSmoothLabel;
+    AdvSmoothLabel34: TAdvSmoothLabel;
     AdvSmoothLabel33: TAdvSmoothLabel;
+    AdvSmoothLabel32: TAdvSmoothLabel;
+    edtShipHeight: TEdit;
+    edtShipwidth: TEdit;
+    edtShipLength: TEdit;
+    edtShipMaxSpeed: TEdit;
+    edtShipMaxSpeedAstern: TEdit;
+    edtDamageSustainability: TEdit;
+    edtShipTrimFactor: TEdit;
     edtShipTacDiameter: TEdit;
     edtShipShaftUp: TEdit;
-    AdvSmoothLabel34: TAdvSmoothLabel;
-    AdvSmoothLabel35: TAdvSmoothLabel;
     edtShipHeelFactor: TEdit;
+    edtShipDisplacement: TEdit;
+    edtShipThrottleRate: TEdit;
+    edtShipRudderSwingRate: TEdit;
     procedure btnAddweaponClick(Sender: TObject);
     procedure btnRemoveClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -138,25 +137,32 @@ type
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure Edit1KeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure AdvSmoothButton1Click(Sender: TObject);
+    procedure btnCancel(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
     procedure Edit2KeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure TrackBar1Change(Sender: TObject);
     procedure AdvSmoothButton2Click(Sender: TObject);
-    procedure getVehicleProperties;
-    procedure btnSetPositionClick(Sender: TObject);
+    procedure UpdateVisualForm;
+    procedure ClearVisualForm;
+    procedure btnSaveShipClick(Sender: TObject);
     procedure ToClose;
+
+    procedure ClearListShipData (const aListView: TListView);
   private
     { Private declarations }
   public
+    isNew: boolean;
+
     Ship_Name : string;
     Ship_ID : Integer;
 
     procedure ShowWeapon;
     procedure ClearAllDetail;
     procedure GetALL_Dof_Model_Switch;
+
+    procedure SetFormWeapon;
     function CekLauncherAvailable(cListView: TListView; idLauncher: integer): boolean;
 
     { Public declarations }
@@ -353,11 +359,80 @@ begin
   pnlDetail.BringToFront;
 end;
 
+procedure TfrmWeaponList.ClearListShipData(const aListView: TListView);
+var
+  i: Integer;
+begin
+  for i := 0 to aListView.Items.Count - 1 do
+  begin
+    if Assigned(aListView.Items[i].Data) then
+    begin
+      TObject(aListView.Items[i].Data).Free;
+      aListView.Items[i].Data:= nil;
+    end;
+  end;
+  aListView.Clear;
+end;
+
+procedure TfrmWeaponList.ClearVisualForm;
+
+begin
+  edtShipName.Text  := '';
+  edtClassName.Text     := '';
+
+  edtShipLength.Text  := '0';
+  edtShipwidth.Text   := '0';
+  edtShipHeight.Text  := '0';
+
+  edtShipMaxSpeed.Text         := '0';
+  edtShipMaxSpeedAstern.Text   := '0';
+  edtDamageSustainability.Text := '0';
+  edtShipRudderSwingRate.Text  := '1';
+  edtShipThrottleRate.Text     := '1';
+  edtShipDisplacement.Text     := '1';
+  edtShipHeelFactor.Text       := '1';
+  edtShipShaftUp.Text          := '1';
+  edtShipTacDiameter.Text      := '1';
+  edtShipTrimFactor.Text       := '1';
+
+  edtModelBody.Text   := '';
+  edtDOF1.Text        := '';
+  edtPosPitch.Text    := '';
+  edtSwitch.Text      := '';
+  edtLethality.Text   := '';
+  edtModelSpout.Text  := '';
+  edtDOF2.Text        := '';
+  edtPosHeading.Text  := '';
+  edt3DActor.Text     := '';
+
+  ClearListShipData (lvWeaponSelect);
+  ClearListShipData (lvDetail);
+end;
+
 procedure TfrmWeaponList.FormShow(Sender: TObject);
 begin
   ShowWeapon;
   GetALL_Dof_Model_Switch;
-  getVehicleProperties;
+  UpdateVisualForm;
+end;
+
+procedure TfrmWeaponList.SetFormWeapon;
+var
+  i: Integer;
+begin
+  if Screen.MonitorCount > 1 then
+    i := 1
+  else
+    i := 0;
+
+  frmWeaponList.Top     := 2;
+  frmWeaponList.Left    := 2;
+  AdvSmoothPanel1.Top   := 2;
+  AdvSmoothPanel1.Left  := 2;
+  AdvSmoothPanel1.Height:= 734;
+  AdvSmoothPanel1.Width := 928;
+
+  Show;
 end;
 
 procedure TfrmWeaponList.ShowWeapon;
@@ -367,7 +442,7 @@ var
   i: Integer;
   strPicture : string;
 begin
-  edtShipName.Text := Ship_Name;
+  edtShipName1.Text := Ship_Name;
   lvWeaponSelect.Items.Clear;
   ListWeaponOnShip := TList.Create;
   try
@@ -442,7 +517,7 @@ begin
           edtSwitch.Text      := DataModule1.GetSwitchNameByID(WeaponOnShip.IDSwitch);
           edtPosPitch.Text    := IntToStr(WeaponOnShip.Pos_P);
           edtPosHeading.Text  := IntToStr(WeaponOnShip.Pos_H);
-          Edit2.Text := FloatToStr(DataModule1.GetLethalityByID(IDweapon));
+          edtLethality.Text := FloatToStr(DataModule1.GetLethalityByID(IDweapon));
           case WeaponOnShip.Is3DActor of
             0 : edt3DActor.Text := 'NO';
             1 : edt3DActor.Text := 'YES';
@@ -771,12 +846,12 @@ end;
 
 procedure TfrmWeaponList.tbSeaSpeedChange(Sender: TObject);
 begin
-  edit1.Text := IntToStr((sender as TTrackBar).Position);
+  edtDamageSustainability.Text := IntToStr((sender as TTrackBar).Position);
 end;
 
 procedure TfrmWeaponList.Edit1Change(Sender: TObject);
 begin
-  if (Edit1.Text <> '') then
+  if (edtDamageSustainability.Text <> '') then
   begin
     try
     except
@@ -794,23 +869,23 @@ begin
     Key := #0;
 
   if key = #13 then
-    Edit1.Text := FormatFloat('0.00', StrToFloat(Edit1.Text));
+    edtDamageSustainability.Text := FormatFloat('0.00', StrToFloat(edtDamageSustainability.Text));
 end;
 
 procedure TfrmWeaponList.Edit1KeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if Edit1.Text = '' then
+  if edtDamageSustainability.Text = '' then
     Exit;
 
-   if (StrToFloat(Edit1.Text) > 200)  then
+   if (StrToFloat(edtDamageSustainability.Text) > 200)  then
     begin
       ShowMessage('Incorrect value');
-      Edit1.Text := '200';
+      edtDamageSustainability.Text := '200';
     end;
 end;
 
-procedure TfrmWeaponList.AdvSmoothButton1Click(Sender: TObject);
+procedure TfrmWeaponList.btnCancel(Sender: TObject);
 begin
  // ToClose;
   Close;
@@ -818,7 +893,7 @@ end;
 
 procedure TfrmWeaponList.Edit2Change(Sender: TObject);
 begin
-  if (Edit2.Text <> '') then
+  if (edtLethality.Text <> '') then
   begin
     try
       // TrackBar1.Position := StrToInt(Edit2.Text);
@@ -837,24 +912,24 @@ begin
     Key := #0;
 
   if key = #13 then
-    Edit2.Text := FormatFloat('0.00', StrToFloat(Edit2.Text));
+    edtLethality.Text := FormatFloat('0.00', StrToFloat(edtLethality.Text));
 end;
 
 procedure TfrmWeaponList.Edit2KeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if Edit2.Text = '' then
+  if edtLethality.Text = '' then
     Exit;
 
-   if (StrToFloat(Edit2.Text) > 100)  then
+   if (StrToFloat(edtLethality.Text) > 100)  then
     begin
       ShowMessage('Incorrect value');
-      Edit2.Text := '100';
+      edtLethality.Text := '100';
     end;
 end;
 procedure TfrmWeaponList.TrackBar1Change(Sender: TObject);
 begin
-  edit2.Text := IntToStr((sender as TTrackBar).Position);
+  edtLethality.Text := IntToStr((sender as TTrackBar).Position);
 end;
 
 procedure TfrmWeaponList.AdvSmoothButton2Click(Sender: TObject);
@@ -862,46 +937,110 @@ begin
     Close;
 end;
 
-procedure TfrmWeaponList.getVehicleProperties;
+procedure TfrmWeaponList.UpdateVisualForm;
 var
-  aVec : TVehicle;
-begin
-  CurvyEdit2.Text :=  Ship_Name;
-  CurvyEdit1.Text := DataModule1.IDclassbyName(Ship_ID);
-  Edit7.Text := FloatToStr(DataModule1.GetShipDemensiLENGTHByID(Ship_ID));
-  Edit5.Text := FloatToStr(DataModule1.GetShipDemensiWIDTHByID(Ship_ID));
-  Edit4.Text := FloatToStr(DataModule1.GetShipDemensiHEIGHTByID(Ship_ID));
-  Edit16.Text := FloatToStr(DataModule1.GetShipMaxSpeed(Ship_ID));
-  Edit14.Text := FloatToStr(DataModule1.GetShipMinSpeed(Ship_ID));
-  Edit1.Text := FloatToStr(DataModule1.GetShipDamageByID(Ship_ID));
-  Edit2.Text := '';
+  i : Integer;
+  ShipTemp : TVehicle;
 
-  aVec := DataModule1.GetVehicleProperties(Ship_ID);
-  if Assigned(aVec) then begin
-    edtShipRudderSwingRate.Text := FloatToStr(aVec.Vehicle_RudderSwingRate);
-    edtShipThrottleRate.Text := FloatToStr(aVec.Vehicle_ThrottleRate);
-    edtShipDisplacement.Text := FloatToStr(aVec.Vehicle_Displacement);
-    edtShipHeelFactor.Text := FloatToStr(aVec.Vehicle_HeelFactor);
-    edtShipShaftUp.Text := FloatToStr(aVec.Vehicle_ShaftUp);
-    edtShipTacDiameter.Text := FloatToStr(aVec.Vehicle_TacDiameter);
-    edtShipTrimFactor.Text := FloatToStr(aVec.Vehicle_TrimFactor);
-    aVec.Free;
+  {Var lvWeapon}
+  ListWeaponOnShip : TList;
+  WeaponOnShip : TWeaponGetList;
+  strPicture : string;
+
+begin
+  {Membersihkan form}
+  ClearVisualForm;
+
+  {Membuat objek penampung}
+  ShipTemp := TVehicle.Create;
+
+  {Mengambil data dari database}
+  ShipTemp := DataModule1.GetShipByID(Ship_ID);
+
+  if Assigned(ShipTemp) then
+  begin
+    {$REGION ' General Ship Editor '}
+    edtShipName.Text     :=  ShipTemp.Vehicle_Name;
+    edtClassName.Text    :=  DataModule1.IDclassbyName(ShipTemp.Vehicle_ID);
+
+    edtShipLength.Text   := FloatToStr(ShipTemp.Vehicle_LENGTH);
+    edtShipwidth.Text    := FloatToStr(ShipTemp.Vehicle_WIDTH);
+    edtShipHeight.Text   := FloatToStr(ShipTemp.Vehicle_HEIGHT);
+
+    edtShipMaxSpeed.Text         := FloatToStr(ShipTemp.Vehicle_Maxspeed);
+    edtShipMaxSpeedAstern.Text   := FloatToStr(ShipTemp.Vehicle_MaxspeedAstern);
+    edtDamageSustainability.Text := FloatToStr(ShipTemp.Vehicle_SUSTAINABILITY);
+
+    edtShipRudderSwingRate.Text  := FloatToStr(ShipTemp.Vehicle_RudderSwingRate);
+    edtShipThrottleRate.Text     := FloatToStr(ShipTemp.Vehicle_ThrottleRate);
+    edtShipDisplacement.Text     := FloatToStr(ShipTemp.Vehicle_Displacement);
+    edtShipHeelFactor.Text       := FloatToStr(ShipTemp.Vehicle_HeelFactor);
+    edtShipShaftUp.Text          := FloatToStr(ShipTemp.Vehicle_ShaftUp);
+    edtShipTacDiameter.Text      := FloatToStr(ShipTemp.Vehicle_TacDiameter);
+    edtShipTrimFactor.Text       := FloatToStr(ShipTemp.Vehicle_TrimFactor);
+    {$ENDREGION}
+
+    {$REGION ' Load Image '}
+    strPicture := '..\Data\imageship\' + ShipTemp.Vehicle_Name + '.png';
+
+    if FileExists(strPicture) then
+    begin
+      imgShip.Picture.LoadFromFile(strPicture);
+    end;
+    {$ENDREGION}
+
+    {$REGION ' Weapon Editor '}
+    lvWeaponSelect.Items.Clear;
+
+    ListWeaponOnShip := TList.Create;
+
+    DataModule1.GetListWeaponOnShip(Ship_ID, ListWeaponOnShip);
+
+    if Assigned(ListWeaponOnShip) then
+    begin
+      for i := 0 to ListWeaponOnShip.Count-1 do
+      begin
+        WeaponOnShip := TWeaponGetList.Create;
+        WeaponOnShip := TWeaponGetList(ListWeaponOnShip[i]);
+
+        if Assigned(WeaponOnShip) then
+        begin
+          with lvWeaponSelect.Items.Add do
+          begin
+            Caption := IntToStr(WeaponOnShip.IDWeapon);
+            SubItems.Add(DataModule1.GetNameWeaponByID(WeaponOnShip.IDWeapon));
+            SubItems.Add(IntToStr(WeaponOnShip.IDDetail));
+            SubItems.Add(IntToStr(WeaponOnShip.ID));
+            Data := WeaponOnShip;
+          end;
+        end;
+      end;
+    end;
+    {$ENDREGION}
   end;
+
+
 end;
 
-procedure TfrmWeaponList.btnSetPositionClick(Sender: TObject);
-var vehicle : TVehicle;
-begin
-  vehicle                 := TVehicle.Create;
-  try
-    with vehicle do begin
+procedure TfrmWeaponList.btnSaveShipClick(Sender: TObject);
+var
+  vehicle     : TVehicle;
 
-      Vehicle_LENGTH          := StrToFloat(Edit7.Text);
-      Vehicle_WIDTH           := StrToFloat(Edit5.Text);
-      Vehicle_HEIGHT          := StrToFloat(Edit4.Text);
-      Vehicle_SUSTAINABILITY  := StrToFloat(Edit1.Text);
-      Vehicle_Maxspeed        := StrToFloat(Edit16.Text);
-      Vehicle_Minspeed        := StrToFloat(Edit14.Text);
+begin
+
+  vehicle := TVehicle.Create;
+
+  try
+    {Memasukkan data dari form ke penampung}
+    with vehicle do
+    begin
+      Vehicle_Name            := edtShipName.Text;
+      Vehicle_LENGTH          := StrToFloat(edtShipLength.Text);
+      Vehicle_WIDTH           := StrToFloat(edtShipwidth.Text);
+      Vehicle_HEIGHT          := StrToFloat(edtShipHeight.Text);
+      Vehicle_SUSTAINABILITY  := StrToFloat(edtDamageSustainability.Text);
+      Vehicle_Maxspeed        := StrToFloat(edtShipMaxSpeed.Text);
+      Vehicle_Minspeed        := StrToFloat(edtShipMaxSpeedAstern.Text);
 
       Vehicle_RudderSwingRate := StrToFloat(edtShipRudderSwingRate.Text);
       Vehicle_ThrottleRate    := StrToFloat(edtShipThrottleRate.Text);
@@ -911,22 +1050,33 @@ begin
       Vehicle_TacDiameter     := StrToFloat(edtShipTacDiameter.Text);
       Vehicle_TrimFactor      := StrToFloat(edtShipTrimFactor.Text);
     end;
-    DataModule1.UpdateShipEditor(Ship_ID,vehicle);
+
+    if isNew = True then
+    begin
+      {Isi sintak insert baru}
+      DataModule1.SaveShip(vehicle);
+    end
+    else
+    begin
+      {isi sintak update data}
+      DataModule1.UpdateShipEditor(Ship_ID,vehicle);
+    end;
+
   finally
     vehicle.Free;
   end;
- // ToClose;
+
   close;
 end;
 
 procedure TfrmWeaponList.ToClose;
 begin
-  Edit7.Enabled := False;
-  Edit4.Enabled := False;
-  Edit5.Enabled := False;
-  Edit1.Enabled := False;
-  Edit14.Enabled := False;
-  Edit16.Enabled := False;
+  edtShipLength.Enabled := False;
+  edtShipHeight.Enabled := False;
+  edtShipwidth.Enabled := False;
+  edtDamageSustainability.Enabled := False;
+  edtShipMaxSpeedAstern.Enabled := False;
+  edtShipMaxSpeed.Enabled := False;
 end;
 
 end.

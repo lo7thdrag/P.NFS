@@ -40,6 +40,17 @@ type
     Vehicle_TacDiameter      : Double;
     Vehicle_TrimFactor       : Double;
 
+    Vehicle_SHIP_CLASS_ID           : Integer;
+    Vehicle_SHIP_CATEGORY_ID        : Integer;
+    Vehicle_N_Throttle              : Integer;
+    Vehicle_3D_Type                 : Integer;
+    Vehicle_CTRL_Type               : Integer;
+    Vehicle_IDM_Model               : Integer;
+    Vehicle_ISTarget                : Integer;
+    Vehicle_Ship_Type               : Integer;
+    Vehicle_SHIP_CALLSIGN           : string;
+
+
     { For Scenario Editor }
     Vehicle_Console  : Integer;
   end;

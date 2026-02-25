@@ -2,8 +2,8 @@ object frmWeaponList: TfrmWeaponList
   Left = 320
   Top = 175
   Caption = 'Ship Editor'
-  ClientHeight = 795
-  ClientWidth = 1292
+  ClientHeight = 778
+  ClientWidth = 934
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,8 @@ object frmWeaponList: TfrmWeaponList
   object TabSelection: TAdvSmoothTabPager
     Left = 0
     Top = 0
-    Width = 1300
-    Height = 800
+    Width = 935
+    Height = 780
     Fill.ColorMirror = clNone
     Fill.ColorMirrorTo = clNone
     Fill.GradientType = gtVertical
@@ -28,7 +28,7 @@ object frmWeaponList: TfrmWeaponList
     Fill.ShadowOffset = 0
     Fill.Glow = gmNone
     Transparent = False
-    ActivePage = tsShipTarget
+    ActivePage = tsShipKRI
     Color = 7301478
     TabPosition = tpTopLeft
     TabSettings.LeftMargin = 0
@@ -43,8 +43,8 @@ object frmWeaponList: TfrmWeaponList
     object tsShipKRI: TAdvSmoothTabPage
       Left = 1
       Top = 40
-      Width = 1298
-      Height = 758
+      Width = 933
+      Height = 738
       Caption = 'General Ship information'
       PageAppearance.Color = 7301478
       PageAppearance.ColorTo = clSilver
@@ -90,10 +90,10 @@ object frmWeaponList: TfrmWeaponList
       TabAppearance.ColorDisabled = 7301478
       TMSStyle = 0
       object AdvSmoothPanel1: TAdvSmoothPanel
-        Left = -2
-        Top = -4
-        Width = 1300
-        Height = 800
+        Left = 2
+        Top = 2
+        Width = 927
+        Height = 733
         Cursor = crDefault
         Caption.Location = plTopCenter
         Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -129,8 +129,8 @@ object frmWeaponList: TfrmWeaponList
         TabOrder = 0
         TMSStyle = 0
         object AdvSmoothLabel13: TAdvSmoothLabel
-          Left = 84
-          Top = 63
+          Left = 13
+          Top = 21
           Width = 105
           Height = 33
           Fill.ColorMirror = clNone
@@ -158,8 +158,8 @@ object frmWeaponList: TfrmWeaponList
           Version = '1.6.1.0'
         end
         object AdvSmoothLabel15: TAdvSmoothLabel
-          Left = 81
-          Top = 101
+          Left = 13
+          Top = 58
           Width = 104
           Height = 33
           Fill.ColorMirror = clNone
@@ -187,8 +187,8 @@ object frmWeaponList: TfrmWeaponList
           Version = '1.6.1.0'
         end
         object pnlPicture1: TAdvSmoothPanel
-          Left = 813
-          Top = 161
+          Left = 530
+          Top = 234
           Width = 378
           Height = 248
           Cursor = crDefault
@@ -236,22 +236,21 @@ object frmWeaponList: TfrmWeaponList
             Stretch = True
           end
         end
-        object CurvyEdit1: TCurvyEdit
-          Left = 200
-          Top = 104
-          Width = 562
+        object edtClassName: TCurvyEdit
+          Left = 117
+          Top = 62
+          Width = 389
           Height = 24
           TabOrder = 4
           TabStop = False
           Version = '1.2.1.2'
           Controls = <>
-          Enabled = False
           ImeName = ''
           Text = ''
         end
-        object btnSetPosition: TAdvSmoothButton
-          Left = 808
-          Top = 658
+        object btnSaveShip: TAdvSmoothButton
+          Left = 326
+          Top = 614
           Width = 180
           Height = 50
           Cursor = crHandPoint
@@ -281,12 +280,12 @@ object frmWeaponList: TfrmWeaponList
           ParentFont = False
           TabOrder = 2
           Version = '2.1.3.0'
-          OnClick = btnSetPositionClick
+          OnClick = btnSaveShipClick
           TMSStyle = 0
         end
         object AdvSmoothButton1: TAdvSmoothButton
-          Left = 1007
-          Top = 657
+          Left = 13
+          Top = 614
           Width = 175
           Height = 50
           Cursor = crHandPoint
@@ -316,800 +315,771 @@ object frmWeaponList: TfrmWeaponList
           ParentFont = False
           TabOrder = 3
           Version = '2.1.3.0'
-          OnClick = AdvSmoothButton1Click
+          OnClick = btnCancel
           TMSStyle = 0
         end
-        object CurvyEdit2: TCurvyEdit
-          Left = 200
-          Top = 68
-          Width = 562
+        object edtShipName: TCurvyEdit
+          Left = 117
+          Top = 25
+          Width = 389
           Height = 24
           TabOrder = 0
           TabStop = False
           Version = '1.2.1.2'
           Controls = <>
-          Enabled = False
           ImeName = ''
           Text = ''
         end
-      end
-      object AdvSmoothPanel2: TAdvSmoothPanel
-        Left = 87
-        Top = 160
-        Width = 676
-        Height = 152
-        Cursor = crDefault
-        Caption.Location = plTopCenter
-        Caption.HatchStyle = HatchStyleDiagonalBrick
-        Caption.HTMLFont.Charset = DEFAULT_CHARSET
-        Caption.HTMLFont.Color = clWindowText
-        Caption.HTMLFont.Height = -13
-        Caption.HTMLFont.Name = 'Tahoma'
-        Caption.HTMLFont.Style = []
-        Caption.Font.Charset = DEFAULT_CHARSET
-        Caption.Font.Color = clWindowText
-        Caption.Font.Height = -16
-        Caption.Font.Name = 'Tahoma'
-        Caption.Font.Style = [fsBold]
-        Caption.Top = 20
-        Caption.ColorStart = clWhite
-        Caption.ColorEnd = clWhite
-        Caption.GradientType = gtHorizontal
-        Caption.LineColor = clBlack
-        Caption.Line = False
-        Fill.Color = 7301478
-        Fill.ColorTo = 10066329
-        Fill.ColorMirror = 10066329
-        Fill.ColorMirrorTo = 7301478
-        Fill.GradientType = gtVertical
-        Fill.GradientMirrorType = gtVertical
-        Fill.BorderColor = clSilver
-        Fill.BorderWidth = 5
-        Fill.Rounding = 10
-        Fill.ShadowColor = clNone
-        Fill.ShadowOffset = 10
-        Fill.Glow = gmNone
-        Version = '1.6.0.1'
-        TabOrder = 1
-        TMSStyle = 0
-        object AdvSmoothLabel16: TAdvSmoothLabel
-          Left = 43
-          Top = 44
-          Width = 111
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Length  :'
-          Caption.Location = plTopLeft
+        object AdvSmoothPanel11: TAdvSmoothPanel
+          Left = 13
+          Top = 118
+          Width = 493
+          Height = 484
+          Cursor = crDefault
+          Caption.Location = plTopCenter
+          Caption.HatchStyle = HatchStyleDiagonalBrick
+          Caption.HTMLFont.Charset = DEFAULT_CHARSET
+          Caption.HTMLFont.Color = clWindowText
+          Caption.HTMLFont.Height = -13
+          Caption.HTMLFont.Name = 'Tahoma'
+          Caption.HTMLFont.Style = []
           Caption.Font.Charset = DEFAULT_CHARSET
           Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
+          Caption.Font.Height = -16
           Caption.Font.Name = 'Tahoma'
           Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
+          Caption.Top = 20
+          Caption.ColorStart = clWhite
           Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel18: TAdvSmoothLabel
-          Left = 42
-          Top = 72
-          Width = 103
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
+          Caption.GradientType = gtHorizontal
+          Caption.LineColor = clBlack
+          Caption.Line = False
+          Fill.Color = 7301478
+          Fill.ColorTo = 10066329
+          Fill.ColorMirror = 10066329
+          Fill.ColorMirrorTo = 7301478
           Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
+          Fill.GradientMirrorType = gtVertical
+          Fill.BorderColor = clSilver
+          Fill.BorderWidth = 5
+          Fill.Rounding = 10
+          Fill.ShadowColor = clNone
+          Fill.ShadowOffset = 10
           Fill.Glow = gmNone
-          Caption.Text = 'Ship Width    :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel20: TAdvSmoothLabel
-          Left = 42
-          Top = 106
-          Width = 104
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Height   :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel19: TAdvSmoothLabel
-          Left = 295
-          Top = 16
-          Width = 111
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Dimensions'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel23: TAdvSmoothLabel
-          Left = 518
-          Top = 47
-          Width = 36
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Feet'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel24: TAdvSmoothLabel
-          Left = 518
-          Top = 73
-          Width = 36
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Feet'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel26: TAdvSmoothLabel
-          Left = 518
-          Top = 105
-          Width = 36
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Feet'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object Edit4: TEdit
-          Left = 215
-          Top = 105
-          Width = 240
-          Height = 21
-          TabOrder = 0
-        end
-        object Edit5: TEdit
-          Left = 215
-          Top = 75
-          Width = 240
-          Height = 21
-          TabOrder = 1
-        end
-        object Edit7: TEdit
-          Left = 215
-          Top = 46
-          Width = 240
-          Height = 21
-          TabOrder = 2
-        end
-      end
-      object AdvSmoothPanel3: TAdvSmoothPanel
-        Left = 86
-        Top = 318
-        Width = 676
-        Height = 388
-        Cursor = crDefault
-        Caption.Location = plTopCenter
-        Caption.HatchStyle = HatchStyleDiagonalBrick
-        Caption.HTMLFont.Charset = DEFAULT_CHARSET
-        Caption.HTMLFont.Color = clWindowText
-        Caption.HTMLFont.Height = -13
-        Caption.HTMLFont.Name = 'Tahoma'
-        Caption.HTMLFont.Style = []
-        Caption.Font.Charset = DEFAULT_CHARSET
-        Caption.Font.Color = clWindowText
-        Caption.Font.Height = -16
-        Caption.Font.Name = 'Tahoma'
-        Caption.Font.Style = [fsBold]
-        Caption.Top = 20
-        Caption.ColorStart = clWhite
-        Caption.ColorEnd = clWhite
-        Caption.GradientType = gtHorizontal
-        Caption.LineColor = clBlack
-        Caption.Line = False
-        Fill.Color = 7301478
-        Fill.ColorTo = 10066329
-        Fill.ColorMirror = 10066329
-        Fill.ColorMirrorTo = 7301478
-        Fill.GradientType = gtVertical
-        Fill.GradientMirrorType = gtVertical
-        Fill.BorderColor = clSilver
-        Fill.BorderWidth = 5
-        Fill.Rounding = 10
-        Fill.ShadowColor = clNone
-        Fill.ShadowOffset = 10
-        Fill.Glow = gmNone
-        Version = '1.6.0.1'
-        TabOrder = 2
-        TMSStyle = 0
-        object AdvSmoothLabel25: TAdvSmoothLabel
-          Left = 35
-          Top = 49
-          Width = 176
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Max Speed             :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel27: TAdvSmoothLabel
-          Left = 35
-          Top = 76
-          Width = 192
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Max Speed Astern :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel17: TAdvSmoothLabel
-          Left = 36
-          Top = 103
-          Width = 190
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Damage Sustainability   :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel21: TAdvSmoothLabel
-          Left = 294
-          Top = 16
-          Width = 94
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Properties'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel28: TAdvSmoothLabel
-          Left = 510
-          Top = 46
-          Width = 46
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Knot'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel29: TAdvSmoothLabel
-          Left = 508
-          Top = 72
-          Width = 46
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Knot'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel22: TAdvSmoothLabel
-          Left = 30
-          Top = 149
-          Width = 190
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Rudder Swing Rate :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel30: TAdvSmoothLabel
-          Left = 30
-          Top = 182
-          Width = 190
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Throttle Rate          :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel31: TAdvSmoothLabel
-          Left = 28
-          Top = 213
-          Width = 190
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Shhip Displacement        :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel32: TAdvSmoothLabel
-          Left = 30
-          Top = 342
-          Width = 190
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Trim Factor             :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel33: TAdvSmoothLabel
-          Left = 31
-          Top = 310
-          Width = 190
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Tactical Diameter   :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel34: TAdvSmoothLabel
-          Left = 31
-          Top = 275
-          Width = 190
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship Shaft up                 :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object AdvSmoothLabel35: TAdvSmoothLabel
-          Left = 30
-          Top = 242
-          Width = 190
-          Height = 17
-          Fill.ColorMirror = clNone
-          Fill.ColorMirrorTo = clNone
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtSolid
-          Fill.BorderColor = clNone
-          Fill.Rounding = 0
-          Fill.ShadowOffset = 0
-          Fill.Glow = gmNone
-          Caption.Text = 'Ship heel Factor             :'
-          Caption.Location = plTopLeft
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -13
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.ColorStart = clSilver
-          Caption.ColorEnd = clWhite
-          CaptionShadow.Text = 'AdvSmoothLabel'
-          CaptionShadow.Font.Charset = DEFAULT_CHARSET
-          CaptionShadow.Font.Color = clWindowText
-          CaptionShadow.Font.Height = -27
-          CaptionShadow.Font.Name = 'Tahoma'
-          CaptionShadow.Font.Style = []
-          Version = '1.6.1.0'
-        end
-        object Edit14: TEdit
-          Left = 214
-          Top = 73
-          Width = 240
-          Height = 21
-          TabOrder = 0
-        end
-        object Edit16: TEdit
-          Left = 216
-          Top = 46
-          Width = 240
-          Height = 21
-          TabOrder = 1
-        end
-        object Edit1: TEdit
-          Left = 213
-          Top = 101
-          Width = 240
-          Height = 21
-          TabOrder = 2
-        end
-        object edtShipRudderSwingRate: TEdit
-          Left = 213
-          Top = 149
-          Width = 240
-          Height = 21
-          TabOrder = 3
-        end
-        object edtShipThrottleRate: TEdit
-          Left = 214
-          Top = 178
-          Width = 240
-          Height = 21
-          TabOrder = 4
-        end
-        object edtShipDisplacement: TEdit
-          Left = 213
-          Top = 210
-          Width = 240
-          Height = 21
+          Version = '1.6.0.1'
           TabOrder = 5
-        end
-        object edtShipTrimFactor: TEdit
-          Left = 212
-          Top = 339
-          Width = 240
-          Height = 21
-          TabOrder = 6
-        end
-        object edtShipTacDiameter: TEdit
-          Left = 213
-          Top = 307
-          Width = 240
-          Height = 21
-          TabOrder = 7
-        end
-        object edtShipShaftUp: TEdit
-          Left = 214
-          Top = 274
-          Width = 240
-          Height = 21
-          TabOrder = 8
-        end
-        object edtShipHeelFactor: TEdit
-          Left = 213
-          Top = 243
-          Width = 240
-          Height = 21
-          TabOrder = 9
+          TMSStyle = 0
+          object AdvSmoothLabel16: TAdvSmoothLabel
+            Left = 21
+            Top = 58
+            Width = 111
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Length  :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel18: TAdvSmoothLabel
+            Left = 20
+            Top = 84
+            Width = 103
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Width    :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel20: TAdvSmoothLabel
+            Left = 20
+            Top = 110
+            Width = 104
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Height   :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel23: TAdvSmoothLabel
+            Left = 373
+            Top = 58
+            Width = 36
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Feet'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel24: TAdvSmoothLabel
+            Left = 373
+            Top = 84
+            Width = 36
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Feet'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel26: TAdvSmoothLabel
+            Left = 373
+            Top = 110
+            Width = 36
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Feet'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel17: TAdvSmoothLabel
+            Left = 12
+            Top = 19
+            Width = 104
+            Height = 33
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Dimensions'
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Dimensions'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel25: TAdvSmoothLabel
+            Left = 20
+            Top = 186
+            Width = 176
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Max Speed             :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Ship Max Speed             :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel27: TAdvSmoothLabel
+            Left = 20
+            Top = 212
+            Width = 192
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Max Speed Astern  :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Ship Max Speed Astern  :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel19: TAdvSmoothLabel
+            Left = 20
+            Top = 238
+            Width = 190
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Damage Sustainability    :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Damage Sustainability    :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel28: TAdvSmoothLabel
+            Left = 373
+            Top = 186
+            Width = 46
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Knot'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel29: TAdvSmoothLabel
+            Left = 373
+            Top = 212
+            Width = 46
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Knot'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel21: TAdvSmoothLabel
+            Left = 21
+            Top = 152
+            Width = 94
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Properties'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel22: TAdvSmoothLabel
+            Left = 20
+            Top = 288
+            Width = 190
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Rudder Swing Rate :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel30: TAdvSmoothLabel
+            Left = 20
+            Top = 314
+            Width = 190
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Throttle Rate          :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Ship Throttle Rate          :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel31: TAdvSmoothLabel
+            Left = 20
+            Top = 340
+            Width = 190
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Shhip Displacement        :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Shhip Displacement        :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel35: TAdvSmoothLabel
+            Left = 20
+            Top = 366
+            Width = 190
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship heel Factor              :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Ship heel Factor              :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel34: TAdvSmoothLabel
+            Left = 20
+            Top = 392
+            Width = 190
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Shaft up                  :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Ship Shaft up                  :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel33: TAdvSmoothLabel
+            Left = 20
+            Top = 418
+            Width = 190
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Tactical Diameter    :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Ship Tactical Diameter    :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object AdvSmoothLabel32: TAdvSmoothLabel
+            Left = 20
+            Top = 444
+            Width = 190
+            Height = 17
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Ship Trim Factor              :'
+            Caption.Location = plTopLeft
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Ship Trim Factor              :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object edtShipHeight: TEdit
+            Left = 193
+            Top = 108
+            Width = 120
+            Height = 21
+            TabOrder = 2
+            Text = '0'
+          end
+          object edtShipwidth: TEdit
+            Left = 193
+            Top = 82
+            Width = 120
+            Height = 21
+            TabOrder = 1
+            Text = '0'
+          end
+          object edtShipLength: TEdit
+            Left = 193
+            Top = 56
+            Width = 120
+            Height = 21
+            TabOrder = 0
+            Text = '0'
+          end
+          object edtShipMaxSpeed: TEdit
+            Left = 193
+            Top = 184
+            Width = 120
+            Height = 21
+            TabOrder = 3
+            Text = '0'
+          end
+          object edtShipMaxSpeedAstern: TEdit
+            Left = 193
+            Top = 210
+            Width = 120
+            Height = 21
+            TabOrder = 4
+            Text = '0'
+          end
+          object edtDamageSustainability: TEdit
+            Left = 193
+            Top = 235
+            Width = 120
+            Height = 21
+            TabOrder = 5
+            Text = '0'
+          end
+          object edtShipTrimFactor: TEdit
+            Left = 193
+            Top = 442
+            Width = 120
+            Height = 21
+            TabOrder = 12
+            Text = '1'
+          end
+          object edtShipTacDiameter: TEdit
+            Left = 193
+            Top = 416
+            Width = 120
+            Height = 21
+            TabOrder = 11
+            Text = '1'
+          end
+          object edtShipShaftUp: TEdit
+            Left = 193
+            Top = 390
+            Width = 120
+            Height = 21
+            TabOrder = 10
+            Text = '1'
+          end
+          object edtShipHeelFactor: TEdit
+            Left = 193
+            Top = 365
+            Width = 120
+            Height = 21
+            TabOrder = 9
+            Text = '1'
+          end
+          object edtShipDisplacement: TEdit
+            Left = 193
+            Top = 338
+            Width = 120
+            Height = 21
+            TabOrder = 8
+            Text = '1'
+          end
+          object edtShipThrottleRate: TEdit
+            Left = 193
+            Top = 312
+            Width = 120
+            Height = 21
+            TabOrder = 7
+            Text = '1'
+          end
+          object edtShipRudderSwingRate: TEdit
+            Left = 193
+            Top = 286
+            Width = 120
+            Height = 21
+            TabOrder = 6
+            Text = '1'
+          end
         end
       end
     end
     object tsShipTarget: TAdvSmoothTabPage
       Left = 1
       Top = 40
-      Width = 1298
-      Height = 758
+      Width = 933
+      Height = 738
       Caption = 'Weapon Editor'
       PageAppearance.Color = 7301478
       PageAppearance.ColorTo = clSilver
@@ -1157,8 +1127,8 @@ object frmWeaponList: TfrmWeaponList
       object pnlMainUp: TAdvSmoothPanel
         Left = 2
         Top = 2
-        Width = 1294
-        Height = 754
+        Width = 929
+        Height = 734
         Cursor = crDefault
         Caption.Location = plTopCenter
         Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -1195,8 +1165,8 @@ object frmWeaponList: TfrmWeaponList
         TabOrder = 0
         TMSStyle = 0
         object lblShipName: TAdvSmoothLabel
-          Left = 78
-          Top = 53
+          Left = 13
+          Top = 21
           Width = 81
           Height = 17
           Fill.ColorMirror = clNone
@@ -1225,8 +1195,8 @@ object frmWeaponList: TfrmWeaponList
           Version = '1.6.1.0'
         end
         object advsmthlbl1: TAdvSmoothLabel
-          Left = 210
-          Top = 335
+          Left = 682
+          Top = 21
           Width = 95
           Height = 17
           Fill.ColorMirror = clNone
@@ -1255,8 +1225,8 @@ object frmWeaponList: TfrmWeaponList
           Version = '1.6.1.0'
         end
         object advsmthlbl2: TAdvSmoothLabel
-          Left = 814
-          Top = 332
+          Left = 226
+          Top = 409
           Width = 95
           Height = 17
           Fill.ColorMirror = clNone
@@ -1285,10 +1255,10 @@ object frmWeaponList: TfrmWeaponList
           Version = '1.6.1.0'
         end
         object lvWeaponSelect: TListView
-          Left = 76
-          Top = 80
-          Width = 505
-          Height = 222
+          Left = 13
+          Top = 44
+          Width = 500
+          Height = 288
           Columns = <
             item
               Caption = 'ID'
@@ -1317,28 +1287,27 @@ object frmWeaponList: TfrmWeaponList
           ViewStyle = vsReport
           OnClick = lvWeaponSelectClick
         end
-        object edtShipName: TCurvyEdit
-          Left = 159
-          Top = 49
-          Width = 377
+        object edtShipName1: TCurvyEdit
+          Left = 94
+          Top = 17
+          Width = 417
           Height = 24
           TabOrder = 0
           TabStop = False
           Version = '1.2.1.2'
           Controls = <>
-          Enabled = False
           ImeName = ''
           Text = ''
         end
         object btnRemove: TAdvSmoothButton
-          Left = 635
-          Top = 129
-          Width = 150
+          Left = 141
+          Top = 340
+          Width = 122
           Height = 46
           Cursor = crHandPoint
           Appearance.Font.Charset = ANSI_CHARSET
           Appearance.Font.Color = clBlack
-          Appearance.Font.Height = -13
+          Appearance.Font.Height = -12
           Appearance.Font.Name = 'Tahoma'
           Appearance.Font.Style = [fsBold]
           Status.Caption = '0'
@@ -1366,14 +1335,14 @@ object frmWeaponList: TfrmWeaponList
           TMSStyle = 0
         end
         object btnAddWeapon: TAdvSmoothButton
-          Left = 635
-          Top = 81
-          Width = 150
+          Left = 13
+          Top = 340
+          Width = 122
           Height = 46
           Cursor = crHandPoint
           Appearance.Font.Charset = ANSI_CHARSET
           Appearance.Font.Color = clBlack
-          Appearance.Font.Height = -13
+          Appearance.Font.Height = -12
           Appearance.Font.Name = 'Tahoma'
           Appearance.Font.Style = [fsBold]
           Status.Caption = '0'
@@ -1401,14 +1370,14 @@ object frmWeaponList: TfrmWeaponList
           TMSStyle = 0
         end
         object btnAddMissile: TAdvSmoothButton
-          Left = 635
-          Top = 201
-          Width = 150
+          Left = 391
+          Top = 340
+          Width = 122
           Height = 46
           Cursor = crHandPoint
           Appearance.Font.Charset = ANSI_CHARSET
           Appearance.Font.Color = clBlack
-          Appearance.Font.Height = -13
+          Appearance.Font.Height = -12
           Appearance.Font.Name = 'Tahoma'
           Appearance.Font.Style = [fsBold]
           Status.Caption = '0'
@@ -1436,8 +1405,8 @@ object frmWeaponList: TfrmWeaponList
           TMSStyle = 0
         end
         object pnl3DRelated: TAdvSmoothPanel
-          Left = 72
-          Top = 355
+          Left = 545
+          Top = 44
           Width = 369
           Height = 288
           Cursor = crDefault
@@ -2234,7 +2203,7 @@ object frmWeaponList: TfrmWeaponList
               Enabled = False
               TabOrder = 7
             end
-            object Edit2: TEdit
+            object edtLethality: TEdit
               Left = 26
               Top = 244
               Width = 145
@@ -2245,8 +2214,8 @@ object frmWeaponList: TfrmWeaponList
           end
         end
         object btnEditWeapon: TAdvSmoothButton
-          Left = 77
-          Top = 651
+          Left = 73
+          Top = 650
           Width = 184
           Height = 46
           Cursor = crHandPoint
@@ -2280,9 +2249,9 @@ object frmWeaponList: TfrmWeaponList
           TMSStyle = 0
         end
         object pnl2DRelated: TAdvSmoothPanel
-          Left = 460
-          Top = 357
-          Width = 793
+          Left = 13
+          Top = 432
+          Width = 520
           Height = 289
           Cursor = crDefault
           Caption.Text = 'pnl2DRelated'
@@ -2320,8 +2289,8 @@ object frmWeaponList: TfrmWeaponList
           TabOrder = 7
           TMSStyle = 0
           object advsmthlbl10: TAdvSmoothLabel
-            Left = 537
-            Top = 31
+            Left = 293
+            Top = 59
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2348,10 +2317,11 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
+            Visible = False
           end
           object advsmthlbl11: TAdvSmoothLabel
-            Left = 536
-            Top = 54
+            Left = 292
+            Top = 82
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2378,10 +2348,11 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
+            Visible = False
           end
           object advsmthlbl12: TAdvSmoothLabel
-            Left = 536
-            Top = 79
+            Left = 292
+            Top = 107
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2408,10 +2379,11 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
+            Visible = False
           end
           object AdvSmoothLabel11: TAdvSmoothLabel
-            Left = 536
-            Top = 103
+            Left = 292
+            Top = 131
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2438,10 +2410,11 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
+            Visible = False
           end
           object AdvSmoothLabel12: TAdvSmoothLabel
-            Left = 536
-            Top = 129
+            Left = 292
+            Top = 157
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2468,6 +2441,83 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
+            Visible = False
+          end
+          object btnAddDetail: TAdvSmoothButton
+            Left = 398
+            Top = 196
+            Width = 122
+            Height = 45
+            Cursor = crHandPoint
+            Appearance.Font.Charset = ANSI_CHARSET
+            Appearance.Font.Color = clBlack
+            Appearance.Font.Height = -12
+            Appearance.Font.Name = 'Tahoma'
+            Appearance.Font.Style = [fsBold]
+            Status.Caption = '0'
+            Status.Appearance.Fill.Color = clRed
+            Status.Appearance.Fill.ColorMirror = clNone
+            Status.Appearance.Fill.ColorMirrorTo = clNone
+            Status.Appearance.Fill.GradientType = gtSolid
+            Status.Appearance.Fill.GradientMirrorType = gtSolid
+            Status.Appearance.Fill.BorderColor = clGray
+            Status.Appearance.Fill.Rounding = 0
+            Status.Appearance.Fill.ShadowOffset = 0
+            Status.Appearance.Fill.Glow = gmNone
+            Status.Appearance.Font.Charset = DEFAULT_CHARSET
+            Status.Appearance.Font.Color = clWhite
+            Status.Appearance.Font.Height = -11
+            Status.Appearance.Font.Name = 'Tahoma'
+            Status.Appearance.Font.Style = []
+            BevelColor = clGray
+            Caption = 'Add Detail'
+            Color = clSilver
+            ParentFont = False
+            TabOrder = 1
+            Visible = False
+            Version = '2.1.3.0'
+            OnClick = btnAddDetailClick
+            TMSStyle = 0
+          end
+          object edtDetailName: TEdit
+            Left = 396
+            Top = 58
+            Width = 121
+            Height = 21
+            TabOrder = 2
+            Visible = False
+          end
+          object edtStartDegree: TEdit
+            Left = 396
+            Top = 82
+            Width = 121
+            Height = 21
+            TabOrder = 3
+            Visible = False
+          end
+          object edtEndDegree: TEdit
+            Left = 396
+            Top = 107
+            Width = 121
+            Height = 21
+            TabOrder = 4
+            Visible = False
+          end
+          object edtMinRange: TEdit
+            Left = 396
+            Top = 131
+            Width = 121
+            Height = 21
+            TabOrder = 5
+            Visible = False
+          end
+          object edtMaxRange: TEdit
+            Left = 396
+            Top = 155
+            Width = 121
+            Height = 21
+            TabOrder = 6
+            Visible = False
           end
           object lvDetail: TListView
             Left = 0
@@ -2511,86 +2561,16 @@ object frmWeaponList: TfrmWeaponList
             TabOrder = 0
             ViewStyle = vsReport
           end
-          object btnAddDetail: TAdvSmoothButton
-            Left = 642
-            Top = 168
-            Width = 122
-            Height = 45
-            Cursor = crHandPoint
-            Appearance.Font.Charset = ANSI_CHARSET
-            Appearance.Font.Color = clBlack
-            Appearance.Font.Height = -13
-            Appearance.Font.Name = 'Tahoma'
-            Appearance.Font.Style = [fsBold]
-            Status.Caption = '0'
-            Status.Appearance.Fill.Color = clRed
-            Status.Appearance.Fill.ColorMirror = clNone
-            Status.Appearance.Fill.ColorMirrorTo = clNone
-            Status.Appearance.Fill.GradientType = gtSolid
-            Status.Appearance.Fill.GradientMirrorType = gtSolid
-            Status.Appearance.Fill.BorderColor = clGray
-            Status.Appearance.Fill.Rounding = 0
-            Status.Appearance.Fill.ShadowOffset = 0
-            Status.Appearance.Fill.Glow = gmNone
-            Status.Appearance.Font.Charset = DEFAULT_CHARSET
-            Status.Appearance.Font.Color = clWhite
-            Status.Appearance.Font.Height = -11
-            Status.Appearance.Font.Name = 'Tahoma'
-            Status.Appearance.Font.Style = []
-            BevelColor = clGray
-            Caption = 'Add Detail'
-            Color = clSilver
-            ParentFont = False
-            TabOrder = 1
-            Version = '2.1.3.0'
-            OnClick = btnAddDetailClick
-            TMSStyle = 0
-          end
-          object edtDetailName: TEdit
-            Left = 640
-            Top = 30
-            Width = 121
-            Height = 21
-            TabOrder = 2
-          end
-          object edtStartDegree: TEdit
-            Left = 640
-            Top = 54
-            Width = 121
-            Height = 21
-            TabOrder = 3
-          end
-          object edtEndDegree: TEdit
-            Left = 640
-            Top = 79
-            Width = 121
-            Height = 21
-            TabOrder = 4
-          end
-          object edtMinRange: TEdit
-            Left = 640
-            Top = 103
-            Width = 121
-            Height = 21
-            TabOrder = 5
-          end
-          object edtMaxRange: TEdit
-            Left = 640
-            Top = 127
-            Width = 121
-            Height = 21
-            TabOrder = 6
-          end
         end
         object btnRemoveDetail: TAdvSmoothButton
-          Left = 829
-          Top = 653
-          Width = 150
+          Left = 540
+          Top = 484
+          Width = 122
           Height = 46
           Cursor = crHandPoint
           Appearance.Font.Charset = ANSI_CHARSET
           Appearance.Font.Color = clBlack
-          Appearance.Font.Height = -13
+          Appearance.Font.Height = -12
           Appearance.Font.Name = 'Tahoma'
           Appearance.Font.Style = [fsBold]
           Status.Caption = '0'
@@ -2618,14 +2598,14 @@ object frmWeaponList: TfrmWeaponList
           TMSStyle = 0
         end
         object btnUpdate: TAdvSmoothButton
-          Left = 268
-          Top = 651
-          Width = 175
+          Left = 540
+          Top = 432
+          Width = 122
           Height = 46
           Cursor = crHandPoint
           Appearance.Font.Charset = ANSI_CHARSET
           Appearance.Font.Color = clBlack
-          Appearance.Font.Height = -13
+          Appearance.Font.Height = -12
           Appearance.Font.Name = 'Tahoma'
           Appearance.Font.Style = [fsBold]
           Status.Caption = '0'
@@ -2653,14 +2633,14 @@ object frmWeaponList: TfrmWeaponList
           TMSStyle = 0
         end
         object AdvSmoothButton2: TAdvSmoothButton
-          Left = 635
-          Top = 248
-          Width = 150
+          Left = 540
+          Top = 675
+          Width = 122
           Height = 46
           Cursor = crHandPoint
           Appearance.Font.Charset = ANSI_CHARSET
           Appearance.Font.Color = clBlack
-          Appearance.Font.Height = -13
+          Appearance.Font.Height = -12
           Appearance.Font.Name = 'Tahoma'
           Appearance.Font.Style = [fsBold]
           Status.Caption = '0'
