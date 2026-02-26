@@ -524,6 +524,86 @@ type
     pnlRRSettingHeader: TPanel;
     edtRRSettingLeftDrum: TEdit;
     edtRRSettingRightDrum: TEdit;
+    pnlTimeSetting: TPanel;
+    lblTimeSettingTime: TLabel;
+    lblTimeSettingSatuanTime: TLabel;
+    pnlTimeSettingHeader: TPanel;
+    edtTimeSettingTime: TEdit;
+    pnlIndSetting: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Panel2: TPanel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    rbIndAir: TRadioButton;
+    RadioButton2: TRadioButton;
+    pnlDAttackSetting: TPanel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    Panel4: TPanel;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    Edit14: TEdit;
+    RadioButton3: TRadioButton;
+    RadioButton4: TRadioButton;
+    pnlVFireSetting: TPanel;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
+    Label34: TLabel;
+    Label35: TLabel;
+    Label36: TLabel;
+    Label37: TLabel;
+    Label38: TLabel;
+    Label39: TLabel;
+    Label40: TLabel;
+    Label41: TLabel;
+    Label42: TLabel;
+    Panel6: TPanel;
+    Edit15: TEdit;
+    Edit16: TEdit;
+    Edit17: TEdit;
+    Edit18: TEdit;
+    Edit19: TEdit;
+    Edit20: TEdit;
+    Edit21: TEdit;
+    RadioButton5: TRadioButton;
+    RadioButton6: TRadioButton;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -560,7 +640,9 @@ type
     config: TSetting;
     ExecInfo: TShellExecuteInfo;
     LeftDrum, RightDrum, TargetRoundInDrum: Integer;
-    DrumPosState : BOOL; // False untuk left drum, True untuk right drum
+    DrumPosState, IsServoOn : Boolean; // False untuk left drum, True untuk right drum
+    HighFR, MiddleFR, LowFR : Boolean; // fire rate
+    FireTime : Single;
 //    FProcessInfo: TProcessInformation;
     InsideZone, FireAllow, IsFiring, IsReturnZero : BOOL;
     FCurrBearing, FCurrElev, FTargetBearing, FTargetElev : Double;
@@ -1252,6 +1334,9 @@ var
 begin
   if Assigned(fccmanager.SelectedVehicle) then
   begin
+    if not IsServoOn then
+    Exit;
+
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
     bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
@@ -1701,6 +1786,7 @@ begin
 
   FIsWeatherAuto := True;
   FIsNavAuto := True;
+  FireTime := 1.00;
 
   FMap.ZoomTo((Self.FCurrentRange  * 0.0008) * 2, FMap.CenterX, FMap.CenterY);
 end;
@@ -1834,6 +1920,45 @@ begin
     DrumPosState := True;
     TargetRoundInDrum := RightDrum;
   end
+  else if (Token = 'High') then
+  begin
+    pnlGpRate.Caption := 'High';
+    HighFR := True;
+    MiddleFR := False;
+    LowFR := False;
+
+  end
+  else if (Token = 'Middle') then
+  begin
+    pnlGpRate.Caption := 'Middle';
+    HighFR := False;
+    MiddleFR := True;
+    LowFR := False;
+
+  end
+  else if (Token = 'Low') then
+  begin
+    pnlGpRate.Caption := 'Low';
+    HighFR := False;
+    MiddleFR := False;
+    LowFR := True;
+
+  end
+  else if (Token = 'ServoOn') then
+  begin
+    if IsServoOn then
+    begin
+      IsServoOn := False;
+      imgGunStateServoFCC2.Picture.Bitmap := BitMapLampRed;
+      imgGunStateServo.Picture.Bitmap := BitMapLampRed;
+    end
+    else
+    begin
+      IsServoOn := True;
+      imgGunStateServoFCC2.Picture.Bitmap := BitMapLampGreen;
+      imgGunStateServo.Picture.Bitmap := BitMapLampGreen;
+    end;
+  end
   else if (Token = 'ReturnZero') then
   begin
     // Send Deassign ke 3D, matikan tracked sama aimed dan nyalain return zero
@@ -1883,6 +2008,7 @@ begin
   else if (Token = 'CalSetting') or (Token = 'btnCalSetting') or (Token = 'btn_CalSetting')  then
   begin
     pnlCalSetting.BringToFront;
+    edtDeltaBESetting.SetFocus;
     activePanel := 1;
   end
   else if (Token = 'WeatherSetting') or (Token = 'btnWeatherSetting') or (Token = 'btn_WeatherSetting')  then
@@ -1921,7 +2047,17 @@ begin
     edtRRSettingRightDrum.Text := rightdrum.ToString();
 
     pnlRRSetting.BringToFront;
+    edtRRSettingLeftDrum.SetFocus;
     activePanel := 4;
+  end
+  else if (Token = 'TimeSetting') or (Token = 'btnTimeSetting') or (Token = 'btn_TimeSetting')  then
+  begin
+    edtTimeSettingTime.Text := FormatFloat('0.00', StrToFloat(pnlGpTime.Caption));
+
+    pnlTimeSetting.BringToFront;
+    edtTimeSettingTime.SetFocus;
+
+    activePanel := 5;
   end
   else if (Token = 'btnVFireSetting')  then
   begin
@@ -1932,13 +2068,13 @@ begin
     case activePanel of
       1: //cal setting
       begin
-        edtLastDeltaBE.Text := edtDeltaBESetting.Text;
-        edtLastDeltaEL.Text := edtDeltaELSetting.Text;
-        edtLastDeltaD.Text := edtDeltaDSetting.Text;
+        edtLastDeltaBE.Text := FormatFloat('0.00', StrToFloat(edtDeltaBESetting.Text));
+        edtLastDeltaEL.Text := FormatFloat('0.00', StrToFloat(edtDeltaELSetting.Text));
+        edtLastDeltaD.Text := FormatFloat('0.00', StrToFloat(edtDeltaDSetting.Text));
 
-        edtLastDeltaBE1.Text := edtDeltaBESetting.Text;
-        edtLastDeltaEL1.Text := edtDeltaELSetting.Text;
-        edtLastDeltaD1.Text := edtDeltaDSetting.Text;
+        edtLastDeltaBE1.Text := FormatFloat('0.00', StrToFloat(edtDeltaBESetting.Text));
+        edtLastDeltaEL1.Text := FormatFloat('0.00', StrToFloat(edtDeltaELSetting.Text));
+        edtLastDeltaD1.Text := FormatFloat('0.00', StrToFloat(edtDeltaDSetting.Text));
         pnlIndWth.BringToFront;
       end;
       2: // weather setting
@@ -1967,6 +2103,12 @@ begin
           TargetRoundInDrum := StrToInt(edtRRSettingRightDrum.Text);
         LeftDrum := StrToInt(edtRRSettingLeftDrum.Text);
         RightDrum := StrToInt(edtRRSettingRightDrum.Text);
+        pnlIndWth.BringToFront;
+      end;
+      5: // Time Setting
+      begin
+        FireTime := StrToFloat(edtTimeSettingTime.Text);
+        pnlGpTime.Caption := FormatFloat('0.00', FireTime);
         pnlIndWth.BringToFront;
       end;
     end;
@@ -2079,7 +2221,7 @@ begin
 
       //  initialize panel indikator Gun state
       imgGunStateCtrlBy.Picture.Bitmap := BitMapLampGreen;
-      imgGunStateServo.Picture.Bitmap := BitMapLampGreen;
+      imgGunStateServo.Picture.Bitmap := BitMapLampRed;
       imgGunStateFC.Picture.Bitmap := BitMapLampGreen;
       imgGunStateReturnZero.Picture.Bitmap := BitMapLampGrey;
 
@@ -2105,7 +2247,7 @@ begin
 
       //  initialize panel indikator Gun state
       imgGunStateCtrlByFCC2.Picture.Bitmap := BitMapLampGreen;
-      imgGunStateServoFCC2.Picture.Bitmap := BitMapLampGreen;
+      imgGunStateServoFCC2.Picture.Bitmap := BitMapLampRed;
       imgGunStateFCFCC2.Picture.Bitmap := BitMapLampGrey;
       imgGunStateReturnZeroFCC2.Picture.Bitmap := BitMapLampGrey;
 
@@ -2198,6 +2340,8 @@ begin
     edtNavSettingSpeed.Enabled := True;
     edtNavSettingRoll.Enabled := True;
     edtNavSettingLAT.Enabled := True;
+
+    edtNavSettingHeading.setfocus;
 
     FIsNavAuto := False;
   end;

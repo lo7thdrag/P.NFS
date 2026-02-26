@@ -723,6 +723,8 @@ begin
   TcpServer3D.RegisterProcedure(REC_3D_MISSILEPOS, ClientRecv_3D_MissilePos);
   TcpServer3D.RegisterProcedure(REC_STAT_CANNON_SPLASH,
     ServerRecv_3D_Server2DSend);
+  TcpServer3D.RegisterProcedure(C_REC_CANNON,
+    ServerRecv_3D_Server2DSend);
 
   // For Utility
   TcpServer3D.RegisterProcedure(REC_3D_ORDER, ServerRecv_3D_Server2DSend);

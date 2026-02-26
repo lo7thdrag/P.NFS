@@ -56,7 +56,9 @@ type
     FisLocalCtrl : Boolean;
     FisCheckStart : Boolean;
     FisCtrlGun : Boolean;
-    FisRightDrum : Boolean;
+    FisRightDrum : Boolean; // jika false, berarti pake left drum, jika true berarti pakai kanan, defaultnya false
+    FisVideo, FisDataRecord, FisLockScreen : Boolean;
+    FisServoOn, FisCoordinationControl, FisHighFR, FisMiddleFR, FisLowFR : Boolean;
 
     procedure GenerateCaption;
     procedure GenerateNames;
@@ -174,11 +176,35 @@ begin
       FBtnArray[1].Color := clLime;
       if FisCtrlGun then
       begin
+        if FisServoOn then
+        FBtnArray[7].Color := clLime;
+
         if FisRightDrum then
         begin
           FBtnArray[11].Color := clLime;
         end
         else FBtnArray[10].Color := clLime;
+        if FisHighFR then
+        begin
+          FBtnArray[15].Color := clLime;
+        end
+        else if FisMiddleFR then
+        begin
+          FBtnArray[16].Color := clLime;
+        end
+        else if FisLowFR then
+        begin
+          FBtnArray[17].Color := clLime;
+        end;
+      end
+
+      else if FisVideo then
+      begin
+
+      end
+
+      else if FisDataRecord then
+      begin
 
       end
 
@@ -285,6 +311,10 @@ begin
   begin
     pnlNumKey.BringToFront;
   end
+  else if TSpeedButtonImage(Sender).Name = 'btn_TimeSetting' then
+  begin
+    pnlNumKey.BringToFront;
+  end
   else if TSpeedButtonImage(Sender).Name = 'btn_Wait' then
   begin
     FOperationMode := omWait;
@@ -351,11 +381,39 @@ begin
   else if TSpeedButtonImage(Sender).Name = 'btn_CtrlGun' then
   begin
     FisCtrlGun := True;
+    FisVideo := false;
+    FisDataRecord := False;
+    FisLockScreen := false;
     if FisRightDrum then
     begin
       FBtnArray[11].Color := clLime;
     end
     else FBtnArray[10].Color := clLime;
+
+    if FisServoOn then
+    begin
+      FBtnArray[7].Color := clLime;
+    end
+    else FBtnArray[7].Color := clBlack;
+
+    if FisHighFR then
+    begin
+      FBtnArray[15].Color := clLime;
+      FBtnArray[16].Color := clBlack;
+      FBtnArray[17].Color := clBlack;
+    end
+    else if FisMiddleFR then
+    begin
+      FBtnArray[15].Color := clblack;
+      FBtnArray[16].Color := clLime;
+      FBtnArray[17].Color := clBlack;
+    end
+    else if FisLowFR then
+    begin
+      FBtnArray[15].Color := clblack;
+      FBtnArray[16].Color := clBlack;
+      FBtnArray[17].Color := clLime;
+    end;
 
     GenerateCaptionByMenu('CtrlGun');
   end
@@ -371,19 +429,70 @@ begin
     FBtnArray[10].Color := clBlack;
     FBtnArray[11].Color := clLime;
   end
+  else if TSpeedButtonImage(Sender).Name = 'btn_High' then
+  begin
+    FisHighFR := True;
+    FisMiddleFR := False;
+    FisLowFR := False;
+    FBtnArray[15].Color := clLime;
+    FBtnArray[16].Color := clBlack;
+    FBtnArray[17].Color := clBlack;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_Middle' then
+  begin
+    FisHighFR := False;
+    FisMiddleFR := True;
+    FisLowFR := False;
+    FBtnArray[15].Color := clblack;
+    FBtnArray[16].Color := clLime;
+    FBtnArray[17].Color := clBlack;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_Low' then
+  begin
+    FisHighFR := False;
+    FisMiddleFR := False;
+    FisLowFR := True;
+    FBtnArray[15].Color := clBlack;
+    FBtnArray[16].Color := clBlack;
+    FBtnArray[17].Color := clLime;
+  end
+  else if TSpeedButtonImage(Sender).Name = 'btn_ServoOn' then
+  begin
+    if FisServoOn then
+    begin
+      FisServoOn := False;
+      FBtnArray[7].Color := clBlack;
+    end
+    else
+    begin
+      FisServoOn := True;
+      FBtnArray[7].Color := clLime;
+    end;
+
+  end
   else if TSpeedButtonImage(Sender).Name = 'btn_Video' then
   begin
     FisCtrlGun := False;
+    FisVideo := True;
+    FisDataRecord := False;
+    FisLockScreen := False;
     GenerateCaptionByMenu('Video');
   end
   else if TSpeedButtonImage(Sender).Name = 'btn_DataRecord' then
   begin
     FisCtrlGun := False;
+    FisVideo := false;
+    FisDataRecord := True;
+    FisLockScreen := False;
     GenerateCaptionByMenu('DataRecord');
   end;
 
   if TSpeedButtonImage(Sender).Name = 'btn_LockScreen' then
   begin
+    FisCtrlGun := False;
+    FisVideo := false;
+    FisDataRecord := False;
+    FisLockScreen := True;
     GenerateCaptionByMenu('LockScreen');
   end;
 
@@ -555,6 +664,7 @@ begin
   FisCooEnableed := False;
   FisLocalCtrl := False;
   FisCheckStart := False;
+  FisHighFR := True;
 end;
 
 procedure TfrmPTK.FormDestroy(Sender: TObject);
