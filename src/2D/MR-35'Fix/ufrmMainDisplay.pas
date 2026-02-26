@@ -11,9 +11,28 @@ uses
   System.ImageList, Vcl.ImgList,Vcl.OleCtrls, MapXLib_TLB, uBaseFunctionFCC, uObjectVisual,
   uCoordConverter, uMapXUnitConverter, system.math, TFlatCheckBoxUnit, uFccManager, uBridgeSet,
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
-  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, NLDJoystick;
+  uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, NLDJoystick, System.IOUtils,
+  Grijjy.Bson.Serialization, ShellAPI;
 
 type
+    TSetting = record
+  public
+    [BsonElement('Host')]
+    Host: string;
+    [BsonElement('Port')]
+    Port: string;
+    [BsonElement('Video')]
+    Video: string;
+    [BsonElement('PosX')]
+    PosX: Integer;
+    [BsonElement('PosY')]
+    PosY: Integer;
+    [BsonElement('Width')]
+    Width: Integer;
+    [BsonElement('Height')]
+    Height: Integer;
+  end;
+
   TfrmMainFCC = class(TForm)
     pnlSituationZone: TPanel;
     pnlUpper: TPanel;
@@ -148,6 +167,9 @@ type
     FIndexRange : Integer;
     FCurrentRange : Double;  // meter
     FShipHeading : Integer;
+
+    config: TSetting;
+    ExecInfo: TShellExecuteInfo;
 
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
     FXAxis, FYAxis, FZAxis : Boolean;
@@ -859,6 +881,8 @@ var
   ShipClassName,
   ShipCallSign: string;
   V: TVehicle;
+  setting : string;
+  StartupInfo: TStartupInfo;
 begin
   BeginGame_FCC;
   FCCManager := TFCCManager.Create;
@@ -896,7 +920,7 @@ begin
   imgCompas.Picture.Assign(FBitmapBackground);
   InitializeForm;
 //  LoadGeoset('.\data\tcms_map\Indonesia.gst');
-  LoadGeoset('.\data\maps\IndonesiaNoGrid.gst');
+  LoadGeoset('..\data\maps\IndonesiaNoGrid.gst');
 //  SimCenter.LoadGeoset('.\data\maps\IndonesiaNoGrid.gst');
   setRegionCircle;
 
@@ -1037,6 +1061,25 @@ begin
 
     FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
   end;
+
+  setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
+  TgoBsonSerializer.Deserialize(setting, config);
+  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
+  // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
+  // untuk testing awal tidak perlu diubah dulu
+  TgoBsonSerializer.Serialize(config, setting);
+  tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
+
+  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+  ExecInfo.cbSize := SizeOf(ExecInfo);
+  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecInfo.Wnd := Handle;
+  ExecInfo.lpVerb := 'open';
+  ExecInfo.lpFile := PChar('Viewer.exe');
+  ExecInfo.nShow := SW_SHOW;
+
+  if not ShellExecuteEx(@ExecInfo) then
+    RaiseLastOSError;
 
 end;
 
