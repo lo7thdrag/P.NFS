@@ -20,6 +20,7 @@ type
     DGen: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
+    function InsertShipEditor(const vehicle: TVehicle): integer;
 
   public
 
@@ -77,8 +78,10 @@ type
     function GetAllTargetAir(var aRec: Tlist): integer;
 
     function UpdateShipEditor(const shipid: integer; const vehicle: TVehicle): integer;
+    function ClassShipEditor(const shipid: integer; const vehicle: TVehicle): integer;
     function SaveShip(const vehicle: TVehicle): integer;
-    function InsertShipEditor(const vehicle: TVehicle): integer;
+
+    procedure DeleteShipEditor(const shipid: integer);
     {$ENDREGION}
 
     {$REGION ' Scenario Procedure '}
@@ -262,6 +265,36 @@ begin
     Result := 4
   else
     Result := 1;
+end;
+
+function TDataModule1.ClassShipEditor(const shipid: integer;
+  const vehicle: TVehicle): integer;
+begin
+  Result := 1;
+  with DQ do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('UPDATE m_ship SET ');
+    SQL.Add('SHIP_NAME =' + QuotedStr(vehicle.Vehicle_Name) + ',');
+    SQL.Add('DIM_LENGTH =' + FloatToStr(vehicle.Vehicle_LENGTH) + ',');
+    SQL.Add('DIM_WIDTH =' + FloatToStr(vehicle.Vehicle_WIDTH) + ',');
+    SQL.Add('DIM_HEIGHT =' + FloatToStr(vehicle.Vehicle_HEIGHT) + ',');
+    SQL.Add('SHIP_MAX_SPEED =' + FloatToStr(vehicle.Vehicle_Maxspeed) + ',');
+    SQL.Add('SHIP_MAX_SPEED_ASTERN =' + FloatToStr(vehicle.Vehicle_Minspeed) + ',');
+    SQL.Add('DAMAGE_SUSTAINABILITY =' + FloatToStr(vehicle.Vehicle_SUSTAINABILITY) + ',');
+
+    SQL.Add('SHIP_RUDDER_SWING_RATE =' + FloatToStr(vehicle.Vehicle_RudderSwingRate) + ',');
+    SQL.Add('SHIP_THROTTLE_RATE =' + FloatToStr(vehicle.Vehicle_ThrottleRate) + ',');
+    SQL.Add('SHIP_DISPLACEMENT =' + FloatToStr(vehicle.Vehicle_Displacement) + ',');
+    SQL.Add('SHIP_HEEL_FACTOR =' + FloatToStr(vehicle.Vehicle_HeelFactor) + ',');
+    SQL.Add('SHIP_SHAFT_UP =' + FloatToStr(vehicle.Vehicle_ShaftUp) + ',');
+    SQL.Add('SHIP_TACTICAL_DIAMETER =' + FloatToStr(vehicle.Vehicle_TacDiameter) + ',');
+    SQL.Add('SHIP_TRIM_FACTOR =' + FloatToStr(vehicle.Vehicle_TrimFactor) + ' ');
+
+    SQL.Add('where SHIP_ID=' + IntToStr(shipid));
+    ExecSQL;
+  end;
 end;
 
 function TDataModule1.GetShipClassID(const shipid: integer): integer;
@@ -983,6 +1016,31 @@ begin
 
     ExecSQL;
   end;
+end;
+
+procedure TDataModule1.DeleteShipEditor(const shipid: integer);
+begin
+  // delete Ship_Editor
+  with DS do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('DELETE FROM m_ship WHERE SHIP_ID=' + FloatToStr(shipid));
+    ExecSQL;
+  end;
+
+  //Menghapus yang dari Weapon
+  // delete Ship Id Weapon
+  with DS do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('DELETE FROM m_weapon_range_det WHERE SHIP_ID=' + FloatToStr(shipid));
+    ExecSQL;
+  end;
+
+
+
 end;
 
 procedure TDataModule1.DeleteWeaponShip(const idShip, IdWeapon, idLauncher,
@@ -1835,7 +1893,7 @@ begin
       SQL.Add('SHIP_ID, ');
       SQL.Add('SHIP_CLASS_ID, ');
       SQL.Add('SHIP_CATEGORY_ID, ');
-      SQL.Add('SHIP_CALLSIGN, ');
+//      SQL.Add('SHIP_CALLSIGN, ');
       SQL.Add('SHIP_NO, ');
       SQL.Add('SHIP_NAME, ');
       SQL.Add('DIM_LENGTH, ');
@@ -1864,9 +1922,9 @@ begin
       SQL.Add(IntToStr(mID) + ',');
       SQL.Add(IntToStr(vehicle.Vehicle_SHIP_CLASS_ID) + ',');
       SQL.Add(IntToStr(vehicle.Vehicle_SHIP_CATEGORY_ID) + ',');
-      SQL.Add(QuotedStr(vehicle.Vehicle_Name) + ',');
-      SQL.Add(QuotedStr(vehicle.Vehicle_SHIP_CALLSIGN) + ',');
+//      SQL.Add(QuotedStr(vehicle.Vehicle_SHIP_CALLSIGN) + ',');
       SQL.Add(IntToStr(vehicle.Vehicle_No) + ',');
+      SQL.Add(QuotedStr(vehicle.Vehicle_Name) + ',');
       SQL.Add(FloatToStr(vehicle.Vehicle_LENGTH) + ',');
       SQL.Add(FloatToStr(vehicle.Vehicle_WIDTH) + ',');
       SQL.Add(FloatToStr(vehicle.Vehicle_HEIGHT) + ',');

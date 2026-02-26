@@ -1161,6 +1161,7 @@ type
     procedure mni3Click(Sender: TObject);
     procedure btnNewShipClick(Sender: TObject);
     procedure btnEditShipClick(Sender: TObject);
+    procedure btnDeleteShipClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -2227,12 +2228,12 @@ procedure TfrmGameController.imgDeleteClick(Sender: TObject);
 var
   id : Integer;
 begin
-  if lvShipList.Selected <> nil then
+  if lvListScen.Selected <> nil then
   begin
-    id :=  StrToInt(lvShipList.Selected.Caption);
+    id :=  StrToInt(lvListScen.Selected.Caption);
     DataModule1.DeleteScenario(id);
 
-    ShowMessage('Scenario ' + lvShipList.Selected.SubItems[0] + ' successfully deleted');
+    ShowMessage('Scenario ' + lvListScen.Selected.SubItems[0] + ' successfully deleted');
 
     ClearScenarioData;
 
@@ -2240,7 +2241,7 @@ begin
   else
     ShowMessage('Select Scenario First');
 
-  ShowScenario;
+  ShowShip;
 end;
 
 procedure TfrmGameController.imgEditClick(Sender: TObject);
@@ -9235,6 +9236,26 @@ procedure TfrmGameController.btnCanonTest3DMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
 //  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
+end;
+
+procedure TfrmGameController.btnDeleteShipClick(Sender: TObject);
+var
+  id : Integer;
+begin
+  if lvShipList.Selected <> nil then
+  begin
+    id :=  StrToInt(lvShipList.Selected.Caption);
+    DataModule1.DeleteShipEditor(id);
+
+    ShowMessage('Ship Editor ' + lvShipList.Selected.SubItems[0] + ' successfully deleted');
+
+//    ClearVisualForm;
+
+  end
+  else
+    ShowMessage('Select Ship editor First');
+
+  ShowShip;
 end;
 
 procedure TfrmGameController.btnstoprotateClick(Sender: TObject);

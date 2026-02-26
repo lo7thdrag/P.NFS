@@ -237,12 +237,13 @@ object frmWeaponList: TfrmWeaponList
           end
         end
         object edtClassName: TCurvyEdit
-          Left = 117
+          Left = 376
           Top = 62
-          Width = 389
+          Width = 130
           Height = 24
           TabOrder = 4
           TabStop = False
+          Visible = False
           Version = '1.2.1.2'
           Controls = <>
           ImeName = ''
@@ -329,6 +330,7 @@ object frmWeaponList: TfrmWeaponList
           Controls = <>
           ImeName = ''
           Text = ''
+          OnClick = cbbClassClick
         end
         object AdvSmoothPanel11: TAdvSmoothPanel
           Left = 13
@@ -1073,6 +1075,18 @@ object frmWeaponList: TfrmWeaponList
             Text = '1'
           end
         end
+        object cbbClass: TComboBox
+          Left = 117
+          Top = 64
+          Width = 145
+          Height = 21
+          TabOrder = 6
+          OnClick = cbbClassClick
+          Items.Strings = (
+            'Surface'
+            'Air'
+            'SubSurface')
+        end
       end
     end
     object tsShipTarget: TAdvSmoothTabPage
@@ -1193,6 +1207,7 @@ object frmWeaponList: TfrmWeaponList
           CaptionShadow.Font.Name = 'Tahoma'
           CaptionShadow.Font.Style = []
           Version = '1.6.1.0'
+          Visible = False
         end
         object advsmthlbl1: TAdvSmoothLabel
           Left = 682
@@ -1294,6 +1309,7 @@ object frmWeaponList: TfrmWeaponList
           Height = 24
           TabOrder = 0
           TabStop = False
+          Visible = False
           Version = '1.2.1.2'
           Controls = <>
           ImeName = ''
@@ -2251,7 +2267,7 @@ object frmWeaponList: TfrmWeaponList
         object pnl2DRelated: TAdvSmoothPanel
           Left = 13
           Top = 432
-          Width = 520
+          Width = 758
           Height = 289
           Cursor = crDefault
           Caption.Text = 'pnl2DRelated'
@@ -2289,8 +2305,8 @@ object frmWeaponList: TfrmWeaponList
           TabOrder = 7
           TMSStyle = 0
           object advsmthlbl10: TAdvSmoothLabel
-            Left = 293
-            Top = 59
+            Left = 527
+            Top = 36
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2317,11 +2333,10 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
-            Visible = False
           end
           object advsmthlbl11: TAdvSmoothLabel
-            Left = 292
-            Top = 82
+            Left = 527
+            Top = 60
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2348,11 +2363,10 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
-            Visible = False
           end
           object advsmthlbl12: TAdvSmoothLabel
-            Left = 292
-            Top = 107
+            Left = 527
+            Top = 85
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2379,11 +2393,10 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
-            Visible = False
           end
           object AdvSmoothLabel11: TAdvSmoothLabel
-            Left = 292
-            Top = 131
+            Left = 527
+            Top = 109
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2410,11 +2423,10 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
-            Visible = False
           end
           object AdvSmoothLabel12: TAdvSmoothLabel
-            Left = 292
-            Top = 157
+            Left = 527
+            Top = 133
             Width = 97
             Height = 17
             Fill.ColorMirror = clNone
@@ -2441,83 +2453,6 @@ object frmWeaponList: TfrmWeaponList
             CaptionShadow.Font.Name = 'Tahoma'
             CaptionShadow.Font.Style = []
             Version = '1.6.1.0'
-            Visible = False
-          end
-          object btnAddDetail: TAdvSmoothButton
-            Left = 398
-            Top = 196
-            Width = 122
-            Height = 45
-            Cursor = crHandPoint
-            Appearance.Font.Charset = ANSI_CHARSET
-            Appearance.Font.Color = clBlack
-            Appearance.Font.Height = -12
-            Appearance.Font.Name = 'Tahoma'
-            Appearance.Font.Style = [fsBold]
-            Status.Caption = '0'
-            Status.Appearance.Fill.Color = clRed
-            Status.Appearance.Fill.ColorMirror = clNone
-            Status.Appearance.Fill.ColorMirrorTo = clNone
-            Status.Appearance.Fill.GradientType = gtSolid
-            Status.Appearance.Fill.GradientMirrorType = gtSolid
-            Status.Appearance.Fill.BorderColor = clGray
-            Status.Appearance.Fill.Rounding = 0
-            Status.Appearance.Fill.ShadowOffset = 0
-            Status.Appearance.Fill.Glow = gmNone
-            Status.Appearance.Font.Charset = DEFAULT_CHARSET
-            Status.Appearance.Font.Color = clWhite
-            Status.Appearance.Font.Height = -11
-            Status.Appearance.Font.Name = 'Tahoma'
-            Status.Appearance.Font.Style = []
-            BevelColor = clGray
-            Caption = 'Add Detail'
-            Color = clSilver
-            ParentFont = False
-            TabOrder = 1
-            Visible = False
-            Version = '2.1.3.0'
-            OnClick = btnAddDetailClick
-            TMSStyle = 0
-          end
-          object edtDetailName: TEdit
-            Left = 396
-            Top = 58
-            Width = 121
-            Height = 21
-            TabOrder = 2
-            Visible = False
-          end
-          object edtStartDegree: TEdit
-            Left = 396
-            Top = 82
-            Width = 121
-            Height = 21
-            TabOrder = 3
-            Visible = False
-          end
-          object edtEndDegree: TEdit
-            Left = 396
-            Top = 107
-            Width = 121
-            Height = 21
-            TabOrder = 4
-            Visible = False
-          end
-          object edtMinRange: TEdit
-            Left = 396
-            Top = 131
-            Width = 121
-            Height = 21
-            TabOrder = 5
-            Visible = False
-          end
-          object edtMaxRange: TEdit
-            Left = 396
-            Top = 155
-            Width = 121
-            Height = 21
-            TabOrder = 6
-            Visible = False
           end
           object lvDetail: TListView
             Left = 0
@@ -2561,9 +2496,79 @@ object frmWeaponList: TfrmWeaponList
             TabOrder = 0
             ViewStyle = vsReport
           end
+          object btnAddDetail: TAdvSmoothButton
+            Left = 620
+            Top = 158
+            Width = 122
+            Height = 45
+            Cursor = crHandPoint
+            Appearance.Font.Charset = ANSI_CHARSET
+            Appearance.Font.Color = clBlack
+            Appearance.Font.Height = -12
+            Appearance.Font.Name = 'Tahoma'
+            Appearance.Font.Style = [fsBold]
+            Status.Caption = '0'
+            Status.Appearance.Fill.Color = clRed
+            Status.Appearance.Fill.ColorMirror = clNone
+            Status.Appearance.Fill.ColorMirrorTo = clNone
+            Status.Appearance.Fill.GradientType = gtSolid
+            Status.Appearance.Fill.GradientMirrorType = gtSolid
+            Status.Appearance.Fill.BorderColor = clGray
+            Status.Appearance.Fill.Rounding = 0
+            Status.Appearance.Fill.ShadowOffset = 0
+            Status.Appearance.Fill.Glow = gmNone
+            Status.Appearance.Font.Charset = DEFAULT_CHARSET
+            Status.Appearance.Font.Color = clWhite
+            Status.Appearance.Font.Height = -11
+            Status.Appearance.Font.Name = 'Tahoma'
+            Status.Appearance.Font.Style = []
+            BevelColor = clGray
+            Caption = 'Add Detail'
+            Color = clSilver
+            ParentFont = False
+            TabOrder = 1
+            Version = '2.1.3.0'
+            OnClick = btnAddDetailClick
+            TMSStyle = 0
+          end
+          object edtDetailName: TEdit
+            Left = 621
+            Top = 34
+            Width = 121
+            Height = 21
+            TabOrder = 2
+          end
+          object edtStartDegree: TEdit
+            Left = 621
+            Top = 58
+            Width = 121
+            Height = 21
+            TabOrder = 3
+          end
+          object edtEndDegree: TEdit
+            Left = 621
+            Top = 83
+            Width = 121
+            Height = 21
+            TabOrder = 4
+          end
+          object edtMinRange: TEdit
+            Left = 621
+            Top = 107
+            Width = 121
+            Height = 21
+            TabOrder = 5
+          end
+          object edtMaxRange: TEdit
+            Left = 621
+            Top = 131
+            Width = 121
+            Height = 21
+            TabOrder = 6
+          end
         end
         object btnRemoveDetail: TAdvSmoothButton
-          Left = 540
+          Left = 777
           Top = 484
           Width = 122
           Height = 46
@@ -2598,7 +2603,7 @@ object frmWeaponList: TfrmWeaponList
           TMSStyle = 0
         end
         object btnUpdate: TAdvSmoothButton
-          Left = 540
+          Left = 777
           Top = 432
           Width = 122
           Height = 46
@@ -2633,8 +2638,8 @@ object frmWeaponList: TfrmWeaponList
           TMSStyle = 0
         end
         object AdvSmoothButton2: TAdvSmoothButton
-          Left = 540
-          Top = 675
+          Left = 777
+          Top = 670
           Width = 122
           Height = 46
           Cursor = crHandPoint
