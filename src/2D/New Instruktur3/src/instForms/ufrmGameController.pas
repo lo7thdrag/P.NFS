@@ -899,18 +899,17 @@ type
     StaticText78: TStaticText;
     StaticText79: TStaticText;
     StaticText80: TStaticText;
-    AdvSmoothPanel7: TAdvSmoothPanel;
+    pnlListShip: TAdvSmoothPanel;
     Label54: TLabel;
     btnNewShip: TImage;
     btnEditShip: TImage;
     btnDeleteShip: TImage;
     lvShipList: TListView;
-    AdvSmoothPanel8: TAdvSmoothPanel;
-    AdvSmoothLabel13: TAdvSmoothLabel;
+    pnlDetailShip: TAdvSmoothPanel;
     AdvSmoothLabel7: TAdvSmoothLabel;
-    AdvSmoothPanel10: TAdvSmoothPanel;
-    lblGeneralShip: TLabel;
-    AdvSmoothPanel11: TAdvSmoothPanel;
+    pnlHeaderShip: TAdvSmoothPanel;
+    lblShipName1: TLabel;
+    pnlDimension: TAdvSmoothPanel;
     AdvSmoothLabel16: TAdvSmoothLabel;
     AdvSmoothLabel18: TAdvSmoothLabel;
     AdvSmoothLabel20: TAdvSmoothLabel;
@@ -923,10 +922,7 @@ type
     edtShipLength: TEdit;
     pnlPicture1: TAdvSmoothPanel;
     ImgKRI: TImage;
-    AdvSmoothPanel9: TAdvSmoothPanel;
-    AdvSmoothPanel12: TAdvSmoothPanel;
-    Label62: TLabel;
-    lvWeaponSelect: TListView;
+    pnlDetailWeapon: TAdvSmoothPanel;
     pnlDetail: TAdvSmoothPanel;
     AdvSmoothLabel11: TAdvSmoothLabel;
     AdvSmoothLabel12: TAdvSmoothLabel;
@@ -981,9 +977,7 @@ type
     Label109: TLabel;
     Label111: TLabel;
     Label112: TLabel;
-    edtShipName: TEdit;
-    cbbClass: TComboBox;
-    AdvSmoothPanel13: TAdvSmoothPanel;
+    pnlProperties: TAdvSmoothPanel;
     AdvSmoothLabel52: TAdvSmoothLabel;
     AdvSmoothLabel21: TAdvSmoothLabel;
     AdvSmoothLabel25: TAdvSmoothLabel;
@@ -1008,6 +1002,15 @@ type
     AdvSmoothLabel31: TAdvSmoothLabel;
     edtShipDisplacement: TEdit;
     AdvSmoothLabel9: TAdvSmoothLabel;
+    AdvSmoothLabel29: TAdvSmoothLabel;
+    AdvSmoothPanel14: TAdvSmoothPanel;
+    AdvSmoothLabel42: TAdvSmoothLabel;
+    lvWeaponSelect: TListView;
+    pnl2: TPanel;
+    pnl3: TPanel;
+    pnlMainShip: TAdvSmoothPanel;
+    edtClass: TEdit;
+    pnl4: TPanel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -7341,8 +7344,8 @@ begin
 
   if Assigned(ShipTemp) then
   begin
-    edtShipName.Text :=  lvShipList.Selected.SubItems[0];
-    cbbClass.Text    :=  DataModule1.IDclassbyName(Ship_ID);
+    lblShipName1.Caption :=  lvShipList.Selected.SubItems[0];
+    edtClass.Text    :=  DataModule1.IDclassbyName(Ship_ID);
 
     {$REGION ' Dimensions '}
     edtShipLength.Text   := FloatToStr(ShipTemp.Vehicle_LENGTH);
@@ -7353,10 +7356,13 @@ begin
     {$REGION ' Load Image '}
     strPicture := '..\Data\imageship\' + ShipTemp.Vehicle_Name + '.png';
 
-      if FileExists(strPicture) then
-      begin
-        imgKRI.Picture.LoadFromFile(strPicture);
-      end;
+    if FileExists(strPicture) then
+    begin
+      imgKRI.Picture.LoadFromFile(strPicture);
+    end
+    else
+      imgKRI.Picture.LoadFromFile('..\Data\imageship\NoModel.bmp');
+
     {$ENDREGION}
 
     {$REGION ' Properties '}
@@ -7401,10 +7407,6 @@ begin
       end;
     end;
     {$ENDREGION}
-
-     {$REGION ' lvDetail '}
-
-     {$ENDREGION}
   end;
 end;
 
@@ -9629,8 +9631,8 @@ end;
 
 procedure TfrmGameController.ClearShipData;
 begin
-  edtShipName.Text  := '';
-  cbbClass.Text     := '';
+  lblShipName1.Caption  := '---';
+  edtClass.Text     := '';
 
   edtShipLength.Text  := '';
   edtShipwidth.Text   := '';
