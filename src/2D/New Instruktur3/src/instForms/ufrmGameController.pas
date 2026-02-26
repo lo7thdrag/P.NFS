@@ -910,8 +910,6 @@ type
     AdvSmoothLabel7: TAdvSmoothLabel;
     AdvSmoothPanel10: TAdvSmoothPanel;
     lblGeneralShip: TLabel;
-    cveShipName: TCurvyEdit;
-    cveClass: TCurvyEdit;
     AdvSmoothPanel11: TAdvSmoothPanel;
     AdvSmoothLabel16: TAdvSmoothLabel;
     AdvSmoothLabel18: TAdvSmoothLabel;
@@ -920,32 +918,9 @@ type
     AdvSmoothLabel24: TAdvSmoothLabel;
     AdvSmoothLabel26: TAdvSmoothLabel;
     AdvSmoothLabel8: TAdvSmoothLabel;
-    AdvSmoothLabel25: TAdvSmoothLabel;
-    AdvSmoothLabel27: TAdvSmoothLabel;
-    AdvSmoothLabel17: TAdvSmoothLabel;
-    AdvSmoothLabel28: TAdvSmoothLabel;
-    AdvSmoothLabel29: TAdvSmoothLabel;
-    AdvSmoothLabel21: TAdvSmoothLabel;
-    AdvSmoothLabel22: TAdvSmoothLabel;
-    AdvSmoothLabel30: TAdvSmoothLabel;
-    AdvSmoothLabel31: TAdvSmoothLabel;
-    AdvSmoothLabel35: TAdvSmoothLabel;
-    AdvSmoothLabel34: TAdvSmoothLabel;
-    AdvSmoothLabel33: TAdvSmoothLabel;
-    AdvSmoothLabel32: TAdvSmoothLabel;
     edtShipHeight: TEdit;
     edtShipwidth: TEdit;
     edtShipLength: TEdit;
-    edtShipMaxSpeed: TEdit;
-    edtShipMaxSpeedAstern: TEdit;
-    edtDamageSustainability: TEdit;
-    edtShipTrimFactor: TEdit;
-    edtShipTacDiameter: TEdit;
-    edtShipShaftUp: TEdit;
-    edtShipHeelFactor: TEdit;
-    edtShipDisplacement: TEdit;
-    edtShipThrottleRate: TEdit;
-    edtShipRudderSwingRate: TEdit;
     pnlPicture1: TAdvSmoothPanel;
     ImgKRI: TImage;
     AdvSmoothPanel9: TAdvSmoothPanel;
@@ -1006,6 +981,33 @@ type
     Label109: TLabel;
     Label111: TLabel;
     Label112: TLabel;
+    edtShipName: TEdit;
+    cbbClass: TComboBox;
+    AdvSmoothPanel13: TAdvSmoothPanel;
+    AdvSmoothLabel52: TAdvSmoothLabel;
+    AdvSmoothLabel21: TAdvSmoothLabel;
+    AdvSmoothLabel25: TAdvSmoothLabel;
+    AdvSmoothLabel27: TAdvSmoothLabel;
+    AdvSmoothLabel17: TAdvSmoothLabel;
+    edtShipMaxSpeed: TEdit;
+    edtShipMaxSpeedAstern: TEdit;
+    edtDamageSustainability: TEdit;
+    AdvSmoothLabel28: TAdvSmoothLabel;
+    AdvSmoothLabel22: TAdvSmoothLabel;
+    AdvSmoothLabel30: TAdvSmoothLabel;
+    AdvSmoothLabel35: TAdvSmoothLabel;
+    edtShipHeelFactor: TEdit;
+    AdvSmoothLabel34: TAdvSmoothLabel;
+    edtShipShaftUp: TEdit;
+    AdvSmoothLabel33: TAdvSmoothLabel;
+    edtShipTacDiameter: TEdit;
+    AdvSmoothLabel32: TAdvSmoothLabel;
+    edtShipTrimFactor: TEdit;
+    edtShipRudderSwingRate: TEdit;
+    edtShipThrottleRate: TEdit;
+    AdvSmoothLabel31: TAdvSmoothLabel;
+    edtShipDisplacement: TEdit;
+    AdvSmoothLabel9: TAdvSmoothLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -7339,8 +7341,8 @@ begin
 
   if Assigned(ShipTemp) then
   begin
-    cveShipName.Text :=  lvShipList.Selected.SubItems[0];
-    cveClass.Text    :=  DataModule1.IDclassbyName(Ship_ID);
+    edtShipName.Text :=  lvShipList.Selected.SubItems[0];
+    cbbClass.Text    :=  DataModule1.IDclassbyName(Ship_ID);
 
     {$REGION ' Dimensions '}
     edtShipLength.Text   := FloatToStr(ShipTemp.Vehicle_LENGTH);
@@ -9627,8 +9629,8 @@ end;
 
 procedure TfrmGameController.ClearShipData;
 begin
-  cveShipName.Text  := '';
-  cveClass.Text     := '';
+  edtShipName.Text  := '';
+  cbbClass.Text     := '';
 
   edtShipLength.Text  := '';
   edtShipwidth.Text   := '';
