@@ -97,6 +97,7 @@ type
     ImgNum1: TImage;
     PntBxKolonka: TPaintBox;
     PntBxElevasi: TPaintBox;
+    tmrBtnArrow: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure ImageStateClick(Sender: TObject);
@@ -117,6 +118,11 @@ type
     procedure RzBmpBtnFireMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure RzBmpBtnFireMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure BtnArrowMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure tmrBtnArrowTimer(Sender: TObject);
+    procedure BtnArrowMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
@@ -958,6 +964,19 @@ begin
        FBufferKolonka.Canvas.Handle, 0, 0, SRCCOPY);
 end;
 
+procedure TForm1.BtnArrowMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  tmrBtnArrow.Tag := (Sender as TComponent).Tag;
+    tmrBtnArrow.Enabled := True;
+end;
+
+procedure TForm1.BtnArrowMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  tmrBtnArrow.Enabled := False;
+end;
+
 procedure TForm1.RzBmpBtnElevasiClick(Sender: TObject);
 var
   isValid : Boolean;
@@ -1182,6 +1201,65 @@ begin
 
     lblTimeValue.Caption := FormatDateTime('hh:nn:ss',now);
     lblDateValue.Caption := FormatDateTime('dd-mm-yyyy',now);
+end;
+
+procedure TForm1.tmrBtnArrowTimer(Sender: TObject);
+var
+  value : double;
+begin
+  case (Sender as TComponent).Tag of
+    0://arrow left
+    begin
+      value := StrToFloat(edtTraining.Text);
+      value := value - 0.01;
+
+      if value < 0 then
+        value := 0;
+
+      edtTraining.Text := FormatFloat('0.00', value);
+
+      FTargetAngleKolonka := StrToFloatDef(edtTraining.Text, 0);
+      FTargetAngleKolonka := FMod(FTargetAngleKolonka, 360);
+      if FTargetAngleKolonka < 0 then
+        FTargetAngleKolonka := FTargetAngleKolonka + 360;
+    end;
+    1://arrow right
+    begin
+      value := StrToFloat(edtTraining.Text);
+      value := value + 0.01;
+      edtTraining.Text := FormatFloat('0.00', value);
+
+      FTargetAngleKolonka := StrToFloatDef(edtTraining.Text, 0);
+      FTargetAngleKolonka := FMod(FTargetAngleKolonka, 360);
+      if FTargetAngleKolonka < 0 then
+        FTargetAngleKolonka := FTargetAngleKolonka + 360;
+    end;
+    2://arrow up
+    begin
+      value := StrToFloat(edtElevasi.Text);
+      value := value + 0.01;
+      edtElevasi.Text := FormatFloat('0.00', value);
+
+      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
+      FTargetAngleElevasi := FMod(FTargetAngleElevasi, 360);
+      if FTargetAngleElevasi < 0 then
+        FTargetAngleElevasi := FTargetAngleElevasi + 360;
+    end;
+    3://arrow down
+    begin
+      value := StrToFloat(edtElevasi.Text);
+      value := value - 0.01;
+      if value < 0 then
+        value := 0;
+
+      edtElevasi.Text := FormatFloat('0.00', value);
+
+      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
+      FTargetAngleElevasi := FMod(FTargetAngleElevasi, 360);
+      if FTargetAngleElevasi < 0 then
+        FTargetAngleElevasi := FTargetAngleElevasi + 360;
+    end;
+  end;
 end;
 
 procedure TForm1.UpdateAngle;
