@@ -179,6 +179,8 @@ type
       function FindViewByPosition(const pt: TPoint; var v: TActiveView): boolean;
       procedure BringToFront(var s: TSimulationClass);
 
+      function FindShipByID(aShipID: Integer): TInsObject;
+
       { Property Event Handler }
       property OnNewObject            : TNotifyEvent                read FOnNewObject            write  FOnNewObject;
       property OnClearObject          : TNotifyEvent                read FOnClearObject          write  FOnClearObject;
@@ -217,6 +219,8 @@ type
       function CreateMissilenView(const mShipID, mWeaponID, mlauncherID, mMissileID, mMissileNumber : integer): TIMissileObject;
       function CreateCannonSplashnView(const mShipID, mWeaponID, mlauncherID : integer): TICannonBlast;
       procedure DrawAllOnMapXCanvas(aCnv: TCanvas);     override;
+
+      procedure DrawWeaponOnShip(aCnv: TCanvas; Ship: TInsObject);
 
       { clear All Object in Instruktur }
       procedure ClearAllObjects;
@@ -334,7 +338,7 @@ var
 implementation
 
 uses
-   uQuery, uBaseFunction;
+   uQuery, uBaseFunction, ufrmMainInstruktur;
 
 function GetMissileName(const WeaponID, LauncherID, MissileID, MissileNumber: integer): string;
 begin
@@ -2163,6 +2167,10 @@ begin
         try
           obj.ConvertViewsPosition;
           obj.ViewContainer.DrawAllView(aCnv);
+
+          if obj is TInsObject then
+            DrawWeaponOnShip(aCnv, TInsObject(obj));
+
         except
           SimManager.LogFile.Log('Error Convert Coord', 'Name ' +   obj.UniqueID  +
                                                         ' X : ' + FloatToStr(obj.PositionX) +
@@ -2175,8 +2183,55 @@ begin
     MainObjList.ReturnList;
   end;
 
-
   VRuler.DrawView(aCnv);
+end;
+
+procedure TSimManager.DrawWeaponOnShip(aCnv: TCanvas; Ship: TInsObject);
+var
+  i        : Integer;
+  weapon   : TWeaponOnShip;
+  heading  : Double;
+  rad      : Double;
+  rotX     : Double;
+  rotY     : Double;
+  worldX   : Double;
+  worldY   : Double;
+  sx, sy   : Single;
+begin
+  if not Assigned(Ship) then Exit;
+  if Ship.WeaponOnShip_List.Count = 0 then Exit;
+
+  heading := Ship.Course;
+  rad := DegToRad(heading);
+
+  for i := 0 to Ship.WeaponOnShip_List.Count - 1 do
+  begin
+    weapon := TWeaponOnShip(Ship.WeaponOnShip_List[i]);
+
+    case weapon.Weapon_Status of
+      0: aCnv.Brush.Color := clGray;
+      1: aCnv.Brush.Color := clLime;
+    else
+      aCnv.Brush.Color := clSilver;
+    end;
+
+    rotX := weapon.OffsetX * Cos(rad) - weapon.OffsetY * Sin(rad);
+    rotY := weapon.OffsetX * Sin(rad) + weapon.OffsetY * Cos(rad);
+
+    worldX := Ship.PositionX + rotX;
+    worldY := Ship.PositionY + rotY;
+
+    frmMainInstruktur.MainMap.ConvertCoord(sx, sy, worldX, worldY, miMapToScreen);
+
+    aCnv.Pen.Color := clBlack;
+    aCnv.Ellipse(Round(sx - 5), Round(sy - 5), Round(sx + 5), Round(sy + 5));
+
+    aCnv.Font.Size := 12;
+    aCnv.TextOut(Round(sx + 6), Round(sy - 6), 'L' + IntToStr(weapon.Weapon_Launcher));
+
+    if weapon.Weapon_Status = 1 then
+      aCnv.TextOut(Round(sx + 6), Round(sy + 6), weapon.Weapon_Name);
+  end;
 end;
 
 procedure TSimManager.EventOnMainTimer(const dt: double);
@@ -2280,6 +2335,35 @@ begin
   finally
     MainObjList.ReturnList;
   end;
+end;
+
+function TSimManager.FindShipByID(aShipID: Integer): TInsObject;
+var
+  i : Integer;
+  l : TList;
+  obj : TSimClassOnMapX;
+begin
+  Result := nil;
+
+  l := MainObjList.GetList;
+  try
+    for i := 0 to l.Count - 1 do
+    begin
+      obj := l[i];
+
+      if obj is TInsObject then
+      begin
+        if TInsObject(obj).FDataBaseID = aShipID then
+        begin
+          Result := TInsObject(obj);
+          Exit;
+        end;
+      end;
+    end;
+  finally
+    MainObjList.ReturnList;
+  end;
+
 end;
 
 function TSimManager.FindViewByPosition(const pt: TPoint;

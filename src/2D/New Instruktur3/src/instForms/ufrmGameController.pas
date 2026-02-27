@@ -2246,30 +2246,22 @@ end;
 
 procedure TfrmGameController.imgEditClick(Sender: TObject);
 begin
-  if lvShipList.Selected <> nil then
+  if lvListScen.Selected <> nil then
   begin
-//    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
-//    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
-//
-//    frmSceEditor.isNew := false;
-//    frmSceEditor.UpdateVisualForm;
-//    frmSceEditor.SetFormLayout;
-//    frmMainInstruktur.lblCekRunning.Caption := 'Editing';
-//    frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
-      frmWeaponList.SetFormWeapon;
-      frmWeaponList.isNew := false;
+    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
+    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
 
-      frmWeaponList.Ship_Name := lvShipList.Selected.SubItems[0];
-      frmWeaponList.Ship_ID := StrToInt(lvShipList.Selected.Caption);
+    frmSceEditor.isNew := false;
+    frmSceEditor.UpdateVisualForm;
+    frmSceEditor.SetFormLayout;
+    frmMainInstruktur.lblCekRunning.Caption := 'Editing';
+    frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
 
-      frmWeaponList.UpdateVisualForm;
-      frmMainInstruktur.lblCekRunning.Caption := 'Editing';
-//
-//    Close;
+    Close;
   end
   else
   begin
-    ShowMessage('Select Ship Name First');
+    ShowMessage('Select Scenario First');
   end;
 end;
 
