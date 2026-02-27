@@ -42,7 +42,7 @@ uses
   ufEnvi in 'libDatabaseFs\ufEnvi.pas' {frmMoreEnvi},
   ufListScenario in 'libDatabaseFs\ufListScenario.pas' {frmListScenario},
   ufrmSceEditor in 'libDatabaseFs\ufrmSceEditor.pas' {frmSceEditor},
-  ufWeaponList in 'libDatabaseFs\ufWeaponList.pas' {frmWeaponList},
+  ufrmShipEditor in 'libDatabaseFs\ufrmShipEditor.pas' {frmShipEditor},
   ufDBSetting in '..\..\ShareLib\AppForms\ufDBSetting.pas' {frmDBSetting},
   uScriptManager in 'libInstruktur\uScriptManager.pas',
   uEventManager in 'libInstruktur\uEventManager.pas',
@@ -90,7 +90,7 @@ begin
   Application.CreateForm(TfrmMoreEnvi, frmMoreEnvi);
   Application.CreateForm(TfrmListScenario, frmListScenario);
   Application.CreateForm(TfrmSceEditor, frmSceEditor);
-  Application.CreateForm(TfrmWeaponList, frmWeaponList);
+  Application.CreateForm(TfrmShipEditor, frmShipEditor);
   Application.CreateForm(TfrmDBSetting, frmDBSetting);
   Application.CreateForm(TfrmAddShipRuntime, frmAddShipRuntime);
   Application.CreateForm(TfrmDistance, frmDistance);

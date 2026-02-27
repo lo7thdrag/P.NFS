@@ -20,7 +20,7 @@ unit ufrmMainInstruktur;
   ufEnvi.pas
   ufListScenario.pas
   ufrmSceEditor.pas
-  ufWeaponList.pas
+  ufrmShipEditor.pas
 }
 
 interface

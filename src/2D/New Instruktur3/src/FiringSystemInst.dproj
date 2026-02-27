@@ -161,8 +161,8 @@
         <DCCReference Include="libDatabaseFs\ufrmSceEditor.pas">
             <Form>frmSceEditor</Form>
         </DCCReference>
-        <DCCReference Include="libDatabaseFs\ufWeaponList.pas">
-            <Form>frmWeaponList</Form>
+        <DCCReference Include="libDatabaseFs\ufrmShipEditor.pas">
+            <Form>frmShipEditor</Form>
         </DCCReference>
         <DCCReference Include="..\..\ShareLib\AppForms\ufDBSetting.pas">
             <Form>frmDBSetting</Form>

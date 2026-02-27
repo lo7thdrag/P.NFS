@@ -1,4 +1,4 @@
-unit ufWeaponList;
+unit ufrmShipEditor;
 
 interface
 
@@ -7,21 +7,72 @@ uses
   Dialogs, StdCtrls, ComCtrls, ExtCtrls, AdvSmoothButton
 
   , uDataModule, uClassDatabase, AdvSmoothLabel, CurvyControls,
-  AdvSmoothPanel, AdvSmoothTabPager, jpeg;
+  AdvSmoothPanel, AdvSmoothTabPager, jpeg, Vcl.Imaging.pngimage;
 
 type
-  TfrmWeaponList = class(TForm)
-    TabSelection: TAdvSmoothTabPager;
-    tsShipKRI: TAdvSmoothTabPage;
-    tsShipTarget: TAdvSmoothTabPage;
+  TfrmShipEditor = class(TForm)
+    pnlMain: TAdvSmoothPanel;
+    pnlGeneral: TAdvSmoothPanel;
+    pnlPicture: TAdvSmoothPanel;
+    img1: TImage;
+    edtShipName: TCurvyEdit;
+    AdvSmoothPanel13: TAdvSmoothPanel;
+    lbl1: TLabel;
+    pnlPhysical: TAdvSmoothPanel;
+    pnlMainBottom: TAdvSmoothPanel;
+    pnlPlatform: TAdvSmoothPanel;
+    lbl3: TLabel;
+    AdvSmoothPanel15: TAdvSmoothPanel;
+    lbl7: TLabel;
+    cbbClass: TComboBox;
+    AdvSmoothLabel13: TAdvSmoothLabel;
+    AdvSmoothLabel15: TAdvSmoothLabel;
+    AdvSmoothPanel2: TAdvSmoothPanel;
+    lbl2: TLabel;
+    AdvSmoothLabel16: TAdvSmoothLabel;
+    AdvSmoothLabel18: TAdvSmoothLabel;
+    AdvSmoothLabel20: TAdvSmoothLabel;
+    edtShipLength: TEdit;
+    edtShipwidth: TEdit;
+    edtShipHeight: TEdit;
+    AdvSmoothLabel23: TAdvSmoothLabel;
+    AdvSmoothLabel24: TAdvSmoothLabel;
+    AdvSmoothLabel26: TAdvSmoothLabel;
+    AdvSmoothLabel25: TAdvSmoothLabel;
+    AdvSmoothLabel27: TAdvSmoothLabel;
+    edtShipMaxSpeed: TEdit;
+    edtShipMaxSpeedAstern: TEdit;
+    AdvSmoothLabel28: TAdvSmoothLabel;
+    AdvSmoothLabel29: TAdvSmoothLabel;
+    AdvSmoothLabel34: TAdvSmoothLabel;
+    edtShipShaftUp: TEdit;
+    AdvSmoothLabel22: TAdvSmoothLabel;
+    edtShipRudderSwingRate: TEdit;
+    AdvSmoothLabel30: TAdvSmoothLabel;
+    edtShipThrottleRate: TEdit;
+    AdvSmoothLabel31: TAdvSmoothLabel;
+    edtShipDisplacement: TEdit;
+    AdvSmoothLabel35: TAdvSmoothLabel;
+    edtShipHeelFactor: TEdit;
+    AdvSmoothLabel33: TAdvSmoothLabel;
+    edtShipTacDiameter: TEdit;
+    AdvSmoothLabel32: TAdvSmoothLabel;
+    edtShipTrimFactor: TEdit;
+    AdvSmoothLabel19: TAdvSmoothLabel;
+    edtDamageSustainability: TEdit;
+    AdvSmoothPanel16: TAdvSmoothPanel;
+    AdvSmoothPanel17: TAdvSmoothPanel;
+    img2: TImage;
+    AdvSmoothPanel18: TAdvSmoothPanel;
+    lbl8: TLabel;
+    imgShip: TImage;
+    btnLoadImage: TAdvSmoothButton;
+    btn1: TAdvSmoothButton;
+    btnSaveShip: TAdvSmoothButton;
     pnlMainUp: TAdvSmoothPanel;
-    lblShipName: TAdvSmoothLabel;
     advsmthlbl1: TAdvSmoothLabel;
     advsmthlbl2: TAdvSmoothLabel;
     lvWeaponSelect: TListView;
-    edtShipName1: TCurvyEdit;
-    btnRemove: TAdvSmoothButton;
-    btnAddWeapon: TAdvSmoothButton;
     btnAddMissile: TAdvSmoothButton;
     pnl3DRelated: TAdvSmoothPanel;
     pnlEdit: TAdvSmoothPanel;
@@ -42,7 +93,7 @@ type
     cbbModelBody: TComboBox;
     cbbDOF_II: TComboBox;
     cbbDOF_I: TComboBox;
-    cb3DActor: TCheckBox;
+    chkcb3DActor: TCheckBox;
     pnlDetail: TAdvSmoothPanel;
     AdvSmoothLabel1: TAdvSmoothLabel;
     advsmthlbl3: TAdvSmoothLabel;
@@ -52,6 +103,7 @@ type
     advsmthlbl7: TAdvSmoothLabel;
     advsmthlbl8: TAdvSmoothLabel;
     advsmthlbl9: TAdvSmoothLabel;
+    AdvSmoothLabel14: TAdvSmoothLabel;
     edtSwitch: TEdit;
     edt3DActor: TEdit;
     edtPosHeading: TEdit;
@@ -60,6 +112,7 @@ type
     edtDOF2: TEdit;
     edtModelBody: TEdit;
     edtModelSpout: TEdit;
+    edtLethality: TEdit;
     btnEditWeapon: TAdvSmoothButton;
     pnl2DRelated: TAdvSmoothPanel;
     advsmthlbl10: TAdvSmoothLabel;
@@ -67,7 +120,6 @@ type
     advsmthlbl12: TAdvSmoothLabel;
     AdvSmoothLabel11: TAdvSmoothLabel;
     AdvSmoothLabel12: TAdvSmoothLabel;
-    lvDetail: TListView;
     btnAddDetail: TAdvSmoothButton;
     edtDetailName: TEdit;
     edtStartDegree: TEdit;
@@ -76,55 +128,12 @@ type
     edtMaxRange: TEdit;
     btnRemoveDetail: TAdvSmoothButton;
     btnUpdate: TAdvSmoothButton;
+    imgAddWeapon: TImage;
+    imgRemove: TImage;
+    lvDetail: TListView;
     AdvSmoothPanel1: TAdvSmoothPanel;
-    AdvSmoothLabel13: TAdvSmoothLabel;
-    AdvSmoothLabel15: TAdvSmoothLabel;
-    imgShip: TImage;
-    edtClassName: TCurvyEdit;
-    btnSaveShip: TAdvSmoothButton;
-    AdvSmoothButton1: TAdvSmoothButton;
-    edtShipName: TCurvyEdit;
-    AdvSmoothLabel14: TAdvSmoothLabel;
-    edtLethality: TEdit;
-    AdvSmoothButton2: TAdvSmoothButton;
-    pnlPicture1: TAdvSmoothPanel;
-    AdvSmoothPanel11: TAdvSmoothPanel;
-    AdvSmoothLabel16: TAdvSmoothLabel;
-    AdvSmoothLabel18: TAdvSmoothLabel;
-    AdvSmoothLabel20: TAdvSmoothLabel;
-    AdvSmoothLabel23: TAdvSmoothLabel;
-    AdvSmoothLabel24: TAdvSmoothLabel;
-    AdvSmoothLabel26: TAdvSmoothLabel;
-    AdvSmoothLabel17: TAdvSmoothLabel;
-    AdvSmoothLabel25: TAdvSmoothLabel;
-    AdvSmoothLabel27: TAdvSmoothLabel;
-    AdvSmoothLabel19: TAdvSmoothLabel;
-    AdvSmoothLabel28: TAdvSmoothLabel;
-    AdvSmoothLabel29: TAdvSmoothLabel;
-    AdvSmoothLabel21: TAdvSmoothLabel;
-    AdvSmoothLabel22: TAdvSmoothLabel;
-    AdvSmoothLabel30: TAdvSmoothLabel;
-    AdvSmoothLabel31: TAdvSmoothLabel;
-    AdvSmoothLabel35: TAdvSmoothLabel;
-    AdvSmoothLabel34: TAdvSmoothLabel;
-    AdvSmoothLabel33: TAdvSmoothLabel;
-    AdvSmoothLabel32: TAdvSmoothLabel;
-    edtShipHeight: TEdit;
-    edtShipwidth: TEdit;
-    edtShipLength: TEdit;
-    edtShipMaxSpeed: TEdit;
-    edtShipMaxSpeedAstern: TEdit;
-    edtDamageSustainability: TEdit;
-    edtShipTrimFactor: TEdit;
-    edtShipTacDiameter: TEdit;
-    edtShipShaftUp: TEdit;
-    edtShipHeelFactor: TEdit;
-    edtShipDisplacement: TEdit;
-    edtShipThrottleRate: TEdit;
-    edtShipRudderSwingRate: TEdit;
-    cbbClass: TComboBox;
-    procedure btnAddweaponClick(Sender: TObject);
-    procedure btnRemoveClick(Sender: TObject);
+    procedure imgAddWeaponClick(Sender: TObject);
+    procedure imgRemoveClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure lvWeaponSelectClick(Sender: TObject);
     procedure btnAddMissileClick(Sender: TObject);
@@ -144,7 +153,7 @@ type
     procedure Edit2KeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure TrackBar1Change(Sender: TObject);
-    procedure AdvSmoothButton2Click(Sender: TObject);
+    procedure btn2Click(Sender: TObject);
     procedure UpdateVisualForm;
     procedure ClearVisualForm;
     procedure btnSaveShipClick(Sender: TObject);
@@ -171,7 +180,7 @@ type
   end;
 
 var
-  frmWeaponList: TfrmWeaponList;
+  frmShipEditor: TfrmShipEditor;
 
 implementation
 
@@ -179,14 +188,14 @@ uses uBaseFunction, ufassignweapon, ufassignmissile, Math, ufrmGameController;
 
 {$R *.dfm}
 
-procedure TfrmWeaponList.btnAddweaponClick(Sender: TObject);
+procedure TfrmShipEditor.imgAddWeaponClick(Sender: TObject);
 begin
   frmAssignWeapon.shipID        := Ship_ID;
   frmAssignWeapon.aListView     := lvWeaponSelect;
   frmAssignWeapon.Show;
 end;
 
-function TfrmWeaponList.CekLauncherAvailable(cListView: TListView;
+function TfrmShipEditor.CekLauncherAvailable(cListView: TListView;
   idLauncher: integer): boolean;
 var
   i: Integer;
@@ -212,7 +221,7 @@ begin
     Result := True;
 end;
 
-procedure TfrmWeaponList.btnEditWeaponClick(Sender: TObject);
+procedure TfrmShipEditor.btnEditWeaponClick(Sender: TObject);
 var
   IDweapon,
   IDDetail : Integer;
@@ -294,8 +303,8 @@ begin
              edtLauncher.Text      := IntToStr(WeaponOnShip.IDDetail);
 
              case WeaponOnShip.Is3DActor of
-                0 : cb3DActor.Checked := False;
-                1 : cb3DActor.Checked := true;
+                0 : chkcb3DActor.Checked := False;
+                1 : chkcb3DActor.Checked := true;
              end;
 
              Break;
@@ -310,7 +319,7 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.btnRemoveClick(Sender: TObject);
+procedure TfrmShipEditor.imgRemoveClick(Sender: TObject);
 begin
   if lvWeaponSelect.Selected <> nil then
   begin
@@ -328,7 +337,7 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.ClearAllDetail;
+procedure TfrmShipEditor.ClearAllDetail;
 begin
   edtPosPitch.Text    := '';
   edtPosHeading.Text  := '';
@@ -361,7 +370,7 @@ begin
   pnlDetail.BringToFront;
 end;
 
-procedure TfrmWeaponList.ClearListShipData(const aListView: TListView);
+procedure TfrmShipEditor.ClearListShipData(const aListView: TListView);
 var
   i: Integer;
 begin
@@ -376,11 +385,11 @@ begin
   aListView.Clear;
 end;
 
-procedure TfrmWeaponList.ClearVisualForm;
+procedure TfrmShipEditor.ClearVisualForm;
 
 begin
   edtShipName.Text  := '';
-  edtClassName.Text := '';
+//  edtClassName.Text := '';
 
   edtShipLength.Text  := '0';
   edtShipwidth.Text   := '0';
@@ -411,14 +420,14 @@ begin
   ClearListShipData (lvDetail);
 end;
 
-procedure TfrmWeaponList.FormShow(Sender: TObject);
+procedure TfrmShipEditor.FormShow(Sender: TObject);
 begin
   ShowWeapon;
   GetALL_Dof_Model_Switch;
   UpdateVisualForm;
 end;
 
-procedure TfrmWeaponList.SetFormWeapon;
+procedure TfrmShipEditor.SetFormWeapon;
 var
   i: Integer;
 begin
@@ -427,24 +436,24 @@ begin
   else
     i := 0;
 
-  frmWeaponList.Top     := 2;
-  frmWeaponList.Left    := 2;
-  AdvSmoothPanel1.Top   := 2;
-  AdvSmoothPanel1.Left  := 2;
-  AdvSmoothPanel1.Height:= 734;
-  AdvSmoothPanel1.Width := 928;
+//  frmShipEditor.Top     := 2;
+//  frmShipEditor.Left    := 2;
+//  AdvSmoothPanel1.Top   := 2;
+//  AdvSmoothPanel1.Left  := 2;
+//  AdvSmoothPanel1.Height:= 734;
+//  AdvSmoothPanel1.Width := 928;
 
   Show;
 end;
 
-procedure TfrmWeaponList.ShowWeapon;
+procedure TfrmShipEditor.ShowWeapon;
 var
   ListWeaponOnShip : TList;
   WeaponOnShip : TWeaponGetList;
   i: Integer;
   strPicture : string;
 begin
-  edtShipName1.Text := Ship_Name;
+//  edtShipName1.Text := Ship_Name;
   lvWeaponSelect.Items.Clear;
   ListWeaponOnShip := TList.Create;
   try
@@ -469,7 +478,7 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.lvWeaponSelectClick(Sender: TObject);
+procedure TfrmShipEditor.lvWeaponSelectClick(Sender: TObject);
 var
  ListWeaponOnShip : TList;
  WeaponOnShip     : TWeaponGetList;
@@ -553,7 +562,7 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.btnAddMissileClick(Sender: TObject);
+procedure TfrmShipEditor.btnAddMissileClick(Sender: TObject);
 begin
   if lvWeaponSelect.Selected <> nil then
   begin
@@ -571,7 +580,7 @@ begin
 
 end;
 
-procedure TfrmWeaponList.GetALL_Dof_Model_Switch;
+procedure TfrmShipEditor.GetALL_Dof_Model_Switch;
 var
   listModel,
   listDOF,
@@ -641,7 +650,7 @@ begin
 
 end;
 
-procedure TfrmWeaponList.btnUpdateClick(Sender: TObject);
+procedure TfrmShipEditor.btnUpdateClick(Sender: TObject);
 var
   isvalid,
   isError,
@@ -678,7 +687,7 @@ begin
 
       if isAvailableLauncher then
       begin
-        if cb3DActor.Checked then
+        if chkcb3DActor.Checked then
         begin
           if cbbModelBody.ItemIndex = 0 then isError := True;
           if cbbModelSpout.ItemIndex = 0 then isError := True;
@@ -704,7 +713,7 @@ begin
             WeaponOnShip.IDWeapon := StrToInt(lvWeaponSelect.Selected.Caption);
             WeaponOnShip.IDDetail := launcherID;
 
-            if cb3DActor.Checked then
+            if chkcb3DActor.Checked then
             begin
               mModel1ID     := DataModule1.GetModelIDByName(cbbModelBody.Text);
               mModel2ID     := DataModule1.GetModelIDByName(cbbModelSpout.Text);
@@ -759,9 +768,9 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.cb3DActorClick(Sender: TObject);
+procedure TfrmShipEditor.cb3DActorClick(Sender: TObject);
 begin
-  if not cb3DActor.Checked then
+  if not chkcb3DActor.Checked then
   begin
     cbbModelBody.ItemIndex  := 0;
     cbbModelSpout.ItemIndex := 0;
@@ -771,7 +780,7 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.cbbClassClick(Sender: TObject);
+procedure TfrmShipEditor.cbbClassClick(Sender: TObject);
 begin
 //  cbbClass.Items.Clear;
 //
@@ -781,7 +790,7 @@ begin
 //  end;
 end;
 
-procedure TfrmWeaponList.btnRemoveDetailClick(Sender: TObject);
+procedure TfrmShipEditor.btnRemoveDetailClick(Sender: TObject);
 var
   WeaponDetail : TWeaponDetail;
 begin
@@ -806,7 +815,7 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.btnAddDetailClick(Sender: TObject);
+procedure TfrmShipEditor.btnAddDetailClick(Sender: TObject);
 var
   WeaponDetail : TWeaponDetail;
 
@@ -856,12 +865,12 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.tbSeaSpeedChange(Sender: TObject);
+procedure TfrmShipEditor.tbSeaSpeedChange(Sender: TObject);
 begin
   edtDamageSustainability.Text := IntToStr((sender as TTrackBar).Position);
 end;
 
-procedure TfrmWeaponList.Edit1Change(Sender: TObject);
+procedure TfrmShipEditor.Edit1Change(Sender: TObject);
 begin
   if (edtDamageSustainability.Text <> '') then
   begin
@@ -872,7 +881,7 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.Edit1KeyPress(Sender: TObject; var Key: Char);
+procedure TfrmShipEditor.Edit1KeyPress(Sender: TObject; var Key: Char);
 var
   tmpFloat : Double;
 begin
@@ -884,7 +893,7 @@ begin
     edtDamageSustainability.Text := FormatFloat('0.00', StrToFloat(edtDamageSustainability.Text));
 end;
 
-procedure TfrmWeaponList.Edit1KeyUp(Sender: TObject; var Key: Word;
+procedure TfrmShipEditor.Edit1KeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if edtDamageSustainability.Text = '' then
@@ -897,13 +906,13 @@ begin
     end;
 end;
 
-procedure TfrmWeaponList.btnCancel(Sender: TObject);
+procedure TfrmShipEditor.btnCancel(Sender: TObject);
 begin
  // ToClose;
   Close;
 end;
 
-procedure TfrmWeaponList.Edit2Change(Sender: TObject);
+procedure TfrmShipEditor.Edit2Change(Sender: TObject);
 begin
   if (edtLethality.Text <> '') then
   begin
@@ -915,7 +924,7 @@ begin
   end;
 end;
 
-procedure TfrmWeaponList.Edit2KeyPress(Sender: TObject; var Key: Char);
+procedure TfrmShipEditor.Edit2KeyPress(Sender: TObject; var Key: Char);
 var
   tmpFloat : Double;
 begin
@@ -927,7 +936,7 @@ begin
     edtLethality.Text := FormatFloat('0.00', StrToFloat(edtLethality.Text));
 end;
 
-procedure TfrmWeaponList.Edit2KeyUp(Sender: TObject; var Key: Word;
+procedure TfrmShipEditor.Edit2KeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if edtLethality.Text = '' then
@@ -939,17 +948,17 @@ begin
       edtLethality.Text := '100';
     end;
 end;
-procedure TfrmWeaponList.TrackBar1Change(Sender: TObject);
+procedure TfrmShipEditor.TrackBar1Change(Sender: TObject);
 begin
   edtLethality.Text := IntToStr((sender as TTrackBar).Position);
 end;
 
-procedure TfrmWeaponList.AdvSmoothButton2Click(Sender: TObject);
+procedure TfrmShipEditor.btn2Click(Sender: TObject);
 begin
     Close;
 end;
 
-procedure TfrmWeaponList.UpdateVisualForm;
+procedure TfrmShipEditor.UpdateVisualForm;
 var
   i : Integer;
   ShipTemp : TVehicle;
@@ -973,7 +982,7 @@ begin
   begin
     {$REGION ' General Ship Editor '}
     edtShipName.Text     :=  ShipTemp.Vehicle_Name;
-    edtClassName.Text    :=  DataModule1.IDclassbyName(ShipTemp.Vehicle_ID);
+//    edtClassName.Text    :=  DataModule1.IDclassbyName(ShipTemp.Vehicle_ID);
 
     edtShipLength.Text   := FloatToStr(ShipTemp.Vehicle_LENGTH);
     edtShipwidth.Text    := FloatToStr(ShipTemp.Vehicle_WIDTH);
@@ -1034,7 +1043,7 @@ begin
 
 end;
 
-procedure TfrmWeaponList.btnSaveShipClick(Sender: TObject);
+procedure TfrmShipEditor.btnSaveShipClick(Sender: TObject);
 var
   vehicle     : TVehicle;
 
@@ -1086,7 +1095,7 @@ begin
   close;
 end;
 
-procedure TfrmWeaponList.ToClose;
+procedure TfrmShipEditor.ToClose;
 begin
   edtShipLength.Enabled := False;
   edtShipHeight.Enabled := False;

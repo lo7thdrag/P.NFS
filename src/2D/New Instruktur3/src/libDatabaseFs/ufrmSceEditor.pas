@@ -11,7 +11,7 @@ uses
   jpeg,
 
   {lib uses}
-  ufWeaponList, ufListScenario, uClassDatabase, uDataModule, uInstrukturManager,
+  ufrmShipEditor, ufListScenario, uClassDatabase, uDataModule, uInstrukturManager,
   uInstrukturObjects, uSimulationManager, uTCPDatatype, uBaseConstan,
   uBaseFunction,
   ufEnvi, uGlobalVar, VrControls, VrWheel;
@@ -771,7 +771,7 @@ begin
     if FileExists(strPicture) then
     begin
       imgShip.Picture.LoadFromFile(strPicture);
-      frmWeaponList.imgShip.Picture.LoadFromFile(strPicture);
+      frmShipEditor.imgShip.Picture.LoadFromFile(strPicture);
     end;
   end;
 end;
@@ -1393,9 +1393,9 @@ procedure TfrmSceEditor.btnWeaponListClick(Sender: TObject);
 begin
   if (lvWarShipAll.Selected <> nil) or (lvWarShipSelect.Selected <> nil) then
   begin
-    frmWeaponList.Ship_ID := Ship_ID;
-    frmWeaponList.Ship_Name := Ship_Name;
-    frmWeaponList.Show;
+    frmShipEditor.Ship_ID := Ship_ID;
+    frmShipEditor.Ship_Name := Ship_Name;
+    frmShipEditor.Show;
   end
   else
   begin

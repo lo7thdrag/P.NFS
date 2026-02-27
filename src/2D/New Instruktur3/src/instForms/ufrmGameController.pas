@@ -1284,7 +1284,7 @@ var
 
 implementation
 
-uses DateUtils, ufListScenario, Math, ufrmeLeftControl, ufEnvi, ufWeaponList;
+uses DateUtils, ufListScenario, Math, ufrmeLeftControl, ufEnvi, ufrmShipEditor;
 
 {$R *.dfm}
 
@@ -2195,11 +2195,13 @@ end;
 
 procedure TfrmGameController.btnNewShipClick(Sender: TObject);
 begin
-  frmWeaponList.SetFormWeapon;
+
   SimManager.isDatabaseMode := True;
 
-  frmWeaponList.ClearVisualForm;
-  frmWeaponList.isNew := True;
+  frmShipEditor.isNew := True;
+
+  frmShipEditor.SetFormWeapon;
+  frmShipEditor.ClearVisualForm;
 
   frmMainInstruktur.lblCekRunning.Caption := 'Editing';
 //  frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
@@ -2209,13 +2211,13 @@ procedure TfrmGameController.btnEditShipClick(Sender: TObject);
 begin
   if lvShipList.Selected <> nil then
   begin
-    frmWeaponList.SetFormWeapon;
-    frmWeaponList.isNew := false;
+    frmShipEditor.SetFormWeapon;
+    frmShipEditor.isNew := false;
 
-    frmWeaponList.Ship_Name := lvShipList.Selected.SubItems[0];
-    frmWeaponList.Ship_ID := StrToInt(lvShipList.Selected.Caption);
+    frmShipEditor.Ship_Name := lvShipList.Selected.SubItems[0];
+    frmShipEditor.Ship_ID := StrToInt(lvShipList.Selected.Caption);
 
-    frmWeaponList.UpdateVisualForm;
+    frmShipEditor.UpdateVisualForm;
     frmMainInstruktur.lblCekRunning.Caption := 'Editing';
   end
   else

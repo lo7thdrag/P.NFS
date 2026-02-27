@@ -62,7 +62,7 @@ var
 
 implementation
 
-uses uBaseFunction, ufWeaponList, uTCPDatatype, Math;
+uses uBaseFunction, ufrmShipEditor, uTCPDatatype, Math;
 
 {$R *.dfm}
 
@@ -185,7 +185,7 @@ begin
     end;
   end;
 
-  frmWeaponList.ShowWeapon;
+  frmShipEditor.ShowWeapon;
 end;
 
 function TfrmAssignWeapon.CekLauncherAvailable(cListView: TListView;
@@ -216,7 +216,7 @@ end;
 
 procedure TfrmAssignWeapon.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  frmWeaponList.ShowWeapon;
+  frmShipEditor.ShowWeapon;
 end;
 
 procedure TfrmAssignWeapon.FormShow(Sender: TObject);
