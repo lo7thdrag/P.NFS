@@ -1120,6 +1120,7 @@ type
     cmd : Byte;
     valueInt : Integer;
     valueDbl : Double;
+    valueStr : string[20];
   end;
 
 const
@@ -1425,6 +1426,12 @@ const
   __ORD_ID_CAMCON_VISION           = 9;
   __ORD_ID_CAMCON_StartMove        = 10;
   __ORD_ID_CAMCON_StopMove         = 11;
+  __ORD_ID_CAMCON_Joystick_Left    = 12;
+  __ORD_ID_CAMCON_Joystick_Up      = 13;
+  __ORD_ID_CAMCON_Joystick_Right   = 14;
+  __ORD_ID_CAMCON_Joystick_Down    = 15;
+  __ORD_ID_CAMCON_Joystick_ZoomIn  = 16;
+  __ORD_ID_CAMCON_Joystick_ZoomOut = 17;
 
   REC_CMD_COM_CONSOLE = 71;
 

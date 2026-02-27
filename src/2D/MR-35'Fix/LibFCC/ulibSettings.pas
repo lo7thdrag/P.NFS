@@ -5,7 +5,7 @@ uses
   IniFiles, SysUtils, uIniFilesProcs, uCodecBase64;
 const
   c_image = 'image';
-  c_fccSetting = 'FccSetting';
+  c_fccSetting = 'MRSetting';
 type
   TPathImageSetting = record
     ImgPath: string;
@@ -105,7 +105,7 @@ implementation
   function getFileSetting: string;
   begin
   //  result := ChangeFileExt(ParamStr(0), '.ini');
-    result := ExtractFilePath(ParamStr(0)) + 'FCCsetting.ini';
+    result := ExtractFilePath(ParamStr(0)) + 'MRsetting.ini';
   end;
   //==============================================================================
 
@@ -160,7 +160,7 @@ implementation
 
     with FccSet do
     begin
-      FccMode := StrToInt(ForceReadString(iniF, c_fccSetting, 'FccMode', '1'));
+      FccMode := StrToInt(ForceReadString(iniF, c_fccSetting, 'MRMode', '1'));
     end;
 
     Result := True;
@@ -172,7 +172,7 @@ implementation
   begin
     ini := TIniFile.Create(vSettingFile);
     with ini do begin
-      WriteString(c_fccSetting, 'FccMode', '1');
+      WriteString(c_fccSetting, 'MRMode', '1');
     end;
     ini.Free;
   end;

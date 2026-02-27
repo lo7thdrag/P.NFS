@@ -12,7 +12,7 @@ uses
   uCoordConverter, uMapXUnitConverter, system.math, TFlatCheckBoxUnit, uFccManager, uBridgeSet,
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
   uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, NLDJoystick, System.IOUtils,
-  Grijjy.Bson.Serialization, ShellAPI;
+  Grijjy.Bson.Serialization, ShellAPI, DateUtils;
 
 type
     TSetting = record
@@ -78,32 +78,15 @@ type
     Label39: TLabel;
     lblTgtCourse: TLabel;
     Label41: TLabel;
-    Label17: TLabel;
-    lblProfile: TLabel;
-    Label21: TLabel;
-    Label20: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
     Label7: TLabel;
     lblLongtitude: TLabel;
     lblLatitude: TLabel;
     Label9: TLabel;
-    Label18: TLabel;
     Label22: TLabel;
     lblEta: TLabel;
-    lblTtg: TLabel;
     Label25: TLabel;
-    Label26: TLabel;
     Label11: TLabel;
     Label12: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    lblRange: TLabel;
-    lblBearing: TLabel;
-    Label1: TLabel;
-    Label2: TLabel;
     Label3: TLabel;
     lblSpeed: TLabel;
     Label8: TLabel;
@@ -113,14 +96,21 @@ type
     tmrUpdateShipPos: TTimer;
     tmrUpdateForm: TTimer;
     NLDJoystick1: TNLDJoystick;
-    lblJoystickVal: TLabel;
-    lblJoystick: TLabel;
+    Label1: TLabel;
+    lblUTCTime: TLabel;
+    Label5: TLabel;
+    Label2: TLabel;
+    lblLatTgt: TLabel;
     Label10: TLabel;
-    lblJoystickVal1: TLabel;
-    Label23: TLabel;
-    lblJoystickVal2: TLabel;
-    Label28: TLabel;
-    Shape1: TShape;
+    Label13: TLabel;
+    lblLonTgt: TLabel;
+    Label15: TLabel;
+    lblRadar: TLabel;
+    lblRadarVal: TLabel;
+    Label6: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    lblFrequencyVal: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -342,32 +332,32 @@ begin
     0 :
     begin
       pnlMap1point5km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     1 :
     begin
       pnlMap3km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     2 :
     begin
       pnlMap6km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     3 :
     begin
       pnlMap12km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     4 :
     begin
       pnlMap24km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     5 :
     begin
       pnlMap48km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
   end;
 
@@ -391,32 +381,32 @@ begin
     0 :
     begin
       pnlMap1point5km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     1 :
     begin
       pnlMap3km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     2 :
     begin
       pnlMap6km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     3 :
     begin
       pnlMap12km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     4 :
     begin
       pnlMap24km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
     5 :
     begin
       pnlMap48km.Color := clYellow;
-      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//      lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
     end;
   end;
 
@@ -800,10 +790,12 @@ begin
 
     lblTgtNo.Caption := FCCManager.SelectedVehicle.ShipID.ToString();
 //    lblTgtDistance.Caption := rangem.ToString();
+    lblLatTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posy]);
+    lblLonTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posx]);
     lblTgtDistance.Caption := format('%.2f', [rangekm]);
     lblTgtAzimut.Caption := format('%.2f', [bearing]);
-    lblTgtSpd.Caption := (FCCManager.SelectedVehicle.Speed_mps * 1.943844).ToString();
-    lblTgtCourse.Caption := FCCManager.SelectedVehicle.HeadingDeg.ToString();
+    lblTgtSpd.Caption := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.943844]);
+    lblTgtCourse.Caption := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
 
 //    if (aLow <= 80 ) and (aLow >= 0 )then
 //    begin
@@ -892,7 +884,7 @@ begin
   FCCManager.initEvent;
 
   FNorthAngle := 0;
-  FMapCanvas         := TCanvas.Create;
+  FMapCanvas := TCanvas.Create;
   FMapConverter := TMapXUnitConverter.Create;
   FMapConverter.FMap := FMap;
   FIndexRange := 3;
@@ -961,6 +953,7 @@ begin
 
   FShipHeading := 0; // awal
 
+
   FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
 
 //  TargetMgr := TRadarTargetManager.Create;
@@ -990,21 +983,6 @@ begin
 //  // pakai bitmap tint: hitam -> kuning
 //  V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
 //  V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
-
-  case vFccSetting.FccMode of
-    1 : //FCC1 Mode
-    begin
-//      pnlFCC1.BringToFront;
-//      pnlTrackerFCC1.BringToFront;
-//      pnlBiteControlFCC1.BringToFront;
-    end;
-    2 : //FCC2 Mode
-    begin
-//      pnlFCC2.BringToFront;
-//      pnlTrackerFCC2.BringToFront;
-//      pnlBiteControlFCC2.BringToFront;
-    end;
-  end;
 
   n := ParamCount ;
   if n < max_param then
@@ -1047,7 +1025,45 @@ begin
     end;
     FCCManager.Env_Map := DataModule1.GetMapById(FCCManager.CurrentScenID);
 
-    FCCManager.Get57WeaponAssigned;
+    case vFccSetting.FccMode of
+    1 : //FCC1 Mode
+    begin
+//      pnlFCC1.BringToFront;
+//      pnlTrackerFCC1.BringToFront;
+//      pnlBiteControlFCC1.BringToFront;
+      FCCManager.Get730WeaponAssigned;
+      lblRadarVal.Caption := 'TR47C';
+      lblFrequencyVal.Caption := 'J-Band';
+    end;
+    2 : //FCC2 Mode
+    begin
+//      pnlFCC2.BringToFront;
+//      pnlTrackerFCC2.BringToFront;
+//      pnlBiteControlFCC2.BringToFront;
+      FCCManager.Get57WeaponAssigned;
+      lblRadarVal.Caption := 'MR36A';
+      lblFrequencyVal.Caption := 'G-Band';
+    end;
+    3 : //FCC2 Manual Mode
+    begin
+//      pnlFCC2.BringToFront;
+//      pnlTrackerFCC2.BringToFront;
+//      pnlBiteControlFCC2.BringToFront;
+      FCCManager.Get57WeaponAssigned;
+      lblRadarVal.Caption := 'MR103';
+      lblFrequencyVal.Caption := 'J-Band';
+    end;
+    4 : //FCC2 Mode
+    begin
+//      pnlFCC2.BringToFront;
+//      pnlTrackerFCC2.BringToFront;
+//      pnlBiteControlFCC2.BringToFront;
+      FCCManager.Get57WeaponAssigned;
+      lblRadarVal.Caption := 'MR302';
+      lblFrequencyVal.Caption := 'F-Band';
+    end;
+  end;
+
 //
 //    if Assigned(FCCManager.AssignedWeapon) then
 //    begin
@@ -1062,24 +1078,27 @@ begin
     FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
   end;
 
-  setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
-  TgoBsonSerializer.Deserialize(setting, config);
-  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
-  // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
-  // untuk testing awal tidak perlu diubah dulu
-  TgoBsonSerializer.Serialize(config, setting);
-  tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
+  if vFccSetting.FccMode <> 4 then
+  begin
+    setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
+    TgoBsonSerializer.Deserialize(setting, config);
+    config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
+    // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
+    // untuk testing awal tidak perlu diubah dulu
+    TgoBsonSerializer.Serialize(config, setting);
+    tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
 
-  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-  ExecInfo.cbSize := SizeOf(ExecInfo);
-  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-  ExecInfo.Wnd := Handle;
-  ExecInfo.lpVerb := 'open';
-  ExecInfo.lpFile := PChar('Viewer.exe');
-  ExecInfo.nShow := SW_SHOW;
+    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+    ExecInfo.cbSize := SizeOf(ExecInfo);
+    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+    ExecInfo.Wnd := Handle;
+    ExecInfo.lpVerb := 'open';
+    ExecInfo.lpFile := PChar('Viewer.exe');
+    ExecInfo.nShow := SW_SHOW;
 
-  if not ShellExecuteEx(@ExecInfo) then
-    RaiseLastOSError;
+    if not ShellExecuteEx(@ExecInfo) then
+      RaiseLastOSError;
+  end;
 
 end;
 
@@ -1087,6 +1106,13 @@ procedure TfrmMainFCC.FormDestroy(Sender: TObject);
 var
   i : Integer;
 begin
+  if vFccSetting.FccMode <> 4 then
+  begin
+    TerminateProcess(ExecInfo.hProcess, 0);
+    CloseHandle(ExecInfo.hProcess);
+    ExecInfo.hProcess := 0;
+  end;
+
 //  FRangeRing.Free;
   VehicleMgr.Free;
   FCCManager.FinalizeSimulation;
@@ -1334,116 +1360,172 @@ procedure TfrmMainFCC.NLDJoystick1ButtonDown(Sender: TNLDJoystick;
 begin
     // Check Buttons (e.g., button 1)
   if JoyBtn1 in Buttons then
-    Shape1.Brush.Color := clRed
+//    Shape1.Brush.Color := clRed
 end;
 
 procedure TfrmMainFCC.NLDJoystick1ButtonUp(Sender: TNLDJoystick;
   const Buttons: TJoyButtons);
 begin
   if not (JoyBtn1 in Buttons) then
-    Shape1.Brush.Color := clWhite
+//    Shape1.Brush.Color := clWhite
 end;
 
 procedure TfrmMainFCC.NLDJoystick1Move(Sender: TNLDJoystick;
   const JoyPos: TJoyRelPos; const Buttons: TJoyButtons);
+var
+RecSend : TRec_CameraController;
 begin
-    // Read Axes
-//  lblJoystickVal.Caption := joypos.X.ToString; // x positif kiri x negatif kanan
-//  lblJoystickVal1.Caption := joypos.Y.ToString; // y positif bawah y negatif atas
-//  lblJoystickVal2.Caption := joypos.Z.ToString; // z positif putar ke kanan (zoom in) z negatif putar ke kiri (zoom out)
 
-//  FXAxis := False;
-//  FYAxis := False;
-//  FZAxis := False;
-//  FisAtas := FisKiri := FisKanan := FisBawah := FisZoomIn := FisZoomOut:= False;
+  if vFccSetting.FccMode = 4 then
+  Exit;
 
-  if JoyPos.X > 0.25 then
+
+  if JoyPos.X > 0.35 then
   begin
-//    FXAxis := True;
     FisKanan := True;
   end
-  else if JoyPos.X < -0.25 then
+  else if JoyPos.X < -0.35 then
   begin
-//    FXAxis := True;
     FisKiri := True;
   end
-  else if (JoyPos.X < 0.25) and (JoyPos.x > -0.25) then
+  else if (JoyPos.X < 0.35) and (JoyPos.x > 0) and FisKanan then
+  begin
+    FXAxis := False;
+    FisKanan := False;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_Right;
+    RecSend.valueInt := 0;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
+  end
+  else if (JoyPos.X < 0) and (JoyPos.x > -0.35) and FisKiri then
   begin
     FXAxis := False;
     FisKiri := False;
-    FisKanan := False;
-//    lblJoystickVal.Caption := '--';
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_Left;
+    RecSend.valueInt := 0;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
 
   if FisKanan and not FXAxis then
   begin
-//    lblJoystickVal.Caption := 'Kanan';
     FXAxis := true;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_Right;
+    RecSend.valueInt := 1;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
   else if FisKiri and not FXAxis then
   begin
-//    lblJoystickVal.Caption := 'Kiri';
     FXAxis := true;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_Left;
+    RecSend.valueInt := 1;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
 
 
 
-  if JoyPos.Y > 0.25 then
+  if JoyPos.Y > 0.35 then
   begin
     FisBawah := True;
   end
-  else if JoyPos.Y < -0.25 then
+  else if JoyPos.Y < -0.35 then
   begin
     FisAtas := True;
   end
-  else if (JoyPos.Y < 0.25) and (JoyPos.Y > -0.25) then
+  else if (JoyPos.Y < 0.35) and (JoyPos.Y > 0) and FisBawah then
   begin
     FYAxis := False;
     FisBawah := False;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_Down;
+    RecSend.valueInt := 0;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
+  end
+  else if (JoyPos.Y < 0) and (JoyPos.Y > -0.35) and FisAtas then
+  begin
+    FYAxis := False;
     FisAtas := False;
-//    lblJoystickVal1.Caption := '--';
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_Up;
+    RecSend.valueInt := 0;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
 
   if FisBawah and not FYAxis then
   begin
-//    lblJoystickVal1.Caption := 'Bawah';
     FYAxis := true;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_Down;
+    RecSend.valueInt := 1;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
   else if FisAtas and not FYAxis then
   begin
-//    lblJoystickVal1.Caption := 'Atas';
     FYAxis := true;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_Up;
+    RecSend.valueInt := 1;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
 
 
 
-  if JoyPos.Z > 0.25 then
+  if JoyPos.Z > 0.35 then
   begin
-//    FXAxis := True;
     FisZoomIn := True;
   end
-  else if JoyPos.Z < -0.25 then
+  else if JoyPos.Z < -0.35 then
   begin
-//    FXAxis := True;
     FisZoomOut := True;
   end
-  else if (JoyPos.Z < 0.25) and (JoyPos.Z > -0.25) then
+  else if (JoyPos.Z < 0.35) and (JoyPos.Z > 0) and FisZoomIn then
   begin
     FZAxis := False;
     FisZoomIn := False;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomIn;
+    RecSend.valueInt := 0;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
+  end
+  else if (JoyPos.Z < 0) and (JoyPos.Z > -0.35) and FisZoomOut then
+  begin
+    FZAxis := False;
     FisZoomOut := False;
-//    lblJoystickVal2.Caption := '--';
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomOut;
+    RecSend.valueInt := 0;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
 
   if FisZoomIn and not FZAxis then
   begin
-//    lblJoystickVal2.Caption := 'Zoom In';
     FZAxis := true;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomIn;
+    RecSend.valueInt := 1;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
   else if FisZoomOut and not FZAxis then
   begin
-//    lblJoystickVal2.Caption := 'Zoom Out';
     FZAxis := true;
+    RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomOut;
+    RecSend.valueInt := 1;
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSend)
   end;
 
 end;
@@ -1516,7 +1598,7 @@ begin
   Self.FIndexRange := TPanel(Sender).Tag;
   self.FCurrentRange := CRangeOperation[TPanel(Sender).Tag];
   FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
-  lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
+//  lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
 end;
 
 procedure TfrmMainFCC.ptkCommand(const str: string);
@@ -1682,14 +1764,15 @@ begin
 
 
 
-  lblBearing.Caption := Format('0',[FBearing0.BearingDeg]);
-  lblRange.Caption := Format('0.00', [FCurrentRange * C_Meter_To_NauticalMile]);
-  lblLongtitude.Caption := FormatFloat('0.000', FCCManager.xShip.PositionX);
-  lblLatitude.Caption := FormatFloat('0.000', FCCManager.xShip.PositionY);
+//  lblBearing.Caption := Format('0',[FBearing0.BearingDeg]);
+//  lblRange.Caption := Format('0.00', [FCurrentRange * C_Meter_To_NauticalMile]);
+  lblLongtitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionX);
+  lblLatitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionY);
   lblSpeed.Caption := FormatFloat('00.0', FCCManager.xShip.Speed);
   lblHeading.Caption := FormatFloat('0', FCCManager.xShip.Heading);
   lblEta.Caption := FormatDateTime('hh:nn:ss',now);
-  lblTtg.Caption := FormatDateTime('hh:nn',now);
+  lblUTCTime.Caption := FormatDateTime('hh:nn:ss',TTimeZone.Local.ToUniversalTime(Now));
+//  lblTtg.Caption := FormatDateTime('hh:nn',now);
 end;
 
 end.

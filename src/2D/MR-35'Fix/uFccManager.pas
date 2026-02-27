@@ -38,12 +38,14 @@ type
     FOnPtkCommand: TGetStrProc;
     FSelectedVehicle: TVehicle;
   protected
+    procedure  Event_OrderCamera(apRec: PAnsiChar; aSize: integer);
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
     procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
   public
     procedure Get57WeaponAssigned;
+    procedure Get730WeaponAssigned;
 
     constructor Create;
     destructor Destroy; override;
@@ -53,6 +55,7 @@ type
 
     //send to network
     procedure NetSendTo3D_OrderCannon(rec : TRec3DSetWCC);
+    procedure NetSendTo3D_OrderCameraControl(rec : TRec_CameraController);
 
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
@@ -281,6 +284,11 @@ begin
 
 end;
 
+procedure TFCCManager.Event_OrderCamera(apRec: PAnsiChar; aSize: integer);
+begin
+
+end;
+
 procedure TFCCManager.Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
 begin
 
@@ -316,6 +324,30 @@ begin
   ListWeaponAssigned.Free;
 end;
 
+procedure TFCCManager.Get730WeaponAssigned;
+var WeaponAssigned : TWeaponGetList;
+    ListWeaponAssigned : TList;
+    I : Integer;
+begin
+  ListWeaponAssigned := TList.Create;
+  DataModule1.GetListWeaponOnShip(FShipID , ListWeaponAssigned);
+  if ListWeaponAssigned.Count > 0 then
+  begin
+    for I := 0 to ListWeaponAssigned.Count - 1 do begin
+      WeaponAssigned := TWeaponGetList.Create;
+      WeaponAssigned := TWeaponGetList(ListWeaponAssigned.Items[I]);
+      if WeaponAssigned.IDWeapon = C_DBID_CANNON_TYPE_730 then begin
+        FAssignedWeapon := TWeaponGetList.Create;
+        FAssignedWeapon := TWeaponGetList(ListWeaponAssigned.Items[I]);
+        Break;
+      end;
+
+       WeaponAssigned.Free;
+    end;
+  end;
+  ListWeaponAssigned.Free;
+end;
+
 procedure TFCCManager.initEvent;
 begin
   if Assigned(FPtkHandler) then
@@ -328,17 +360,20 @@ end;
 procedure TFCCManager.InitializeSimulation;
 begin
   inherited;
+  NetComm.RegisterProcedure(
+    Rec_CMD_CAMERA_CONTROLLER ,Event_OrderCamera            , sizeof(TRec_CameraController));
+
     NetComm.RegisterProcedure(
-      REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
+      REC_3D_POSITION         , EventonReceiveDataPosition  , SizeOf(TRecData3DPosition));
 
   NetComm.RegisterProcedure(
-    C_REC_CANNON          ,Event_OrderRecognizer, sizeof(TRecMeriam));
+    C_REC_CANNON              ,Event_OrderRecognizer        , sizeof(TRecMeriam));
 
   NetComm.RegisterProcedure(
-    REC_MISSILEPOS        ,EventonRecMissilePosAvailable,  sizeof(TRecMissilePos));
+    REC_MISSILEPOS            ,EventonRecMissilePosAvailable,  sizeof(TRecMissilePos));
 
   NetComm.RegisterProcedure(
-    REC_STAT_CANNON_SPLASH  ,EventonReceiveSplashPoint  ,  sizeof(TRecSplashCannon));
+    REC_STAT_CANNON_SPLASH    ,EventonReceiveSplashPoint    ,  sizeof(TRecSplashCannon));
 
   FxShip       := TXShip.Create;
   FxShip.PositionX := 112.75;
@@ -348,6 +383,12 @@ begin
 
   if not IsStandAlone then
     Net_Connect;
+end;
+
+procedure TFCCManager.NetSendTo3D_OrderCameraControl(rec: TRec_CameraController);
+begin
+  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+      TCPClient.sendDataEx(Rec_CMD_CAMERA_CONTROLLER, @rec);
 end;
 
 procedure TFCCManager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);

@@ -150,6 +150,23 @@ const
   __ORD_ID_A244_BREAK = 2;
 
   REC_CMD_SET_CAMERA_TARGET_3D = 110;
+  __ORD_ID_CAMCON_MODE             = 1;
+  __ORD_ID_CAMCON_SHOW_PLATFORM    = 2;
+  __ORD_ID_CAMCON_POS_AZIMUTH      = 3;
+  __ORD_ID_CAMCON_POS_RANGE        = 4;
+  __ORD_ID_CAMCON_POS_ELEVATION    = 5;
+  __ORD_ID_CAMCON_REPOS_LAT        = 6;
+  __ORD_ID_CAMCON_REPOS_LONG       = 7;
+  __ORD_ID_CAMCON_TRACK_POS        = 8;
+  __ORD_ID_CAMCON_VISION           = 9;
+  __ORD_ID_CAMCON_StartMove        = 10;
+  __ORD_ID_CAMCON_StopMove         = 11;
+  __ORD_ID_CAMCON_Joystick_Left    = 12;
+  __ORD_ID_CAMCON_Joystick_Up      = 13;
+  __ORD_ID_CAMCON_Joystick_Right   = 14;
+  __ORD_ID_CAMCON_Joystick_Down    = 15;
+  __ORD_ID_CAMCON_Joystick_ZoomIn  = 16;
+  __ORD_ID_CAMCON_Joystick_ZoomOut = 17;
 
 type
 
@@ -876,6 +893,8 @@ type
     valueInt : Integer;
     [BsonElement('vdb')]
     valueDbl : Double;
+    [BsonElement('vsr')]
+    valueStr : String;
   end;
 
 implementation

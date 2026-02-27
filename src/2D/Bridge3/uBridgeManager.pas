@@ -818,7 +818,8 @@ begin
       recCmdSetCameraController:= @apRec^;
       OnLogPacket(('Rec_CMD_CAMERA_CONTROLLER' + #13#10 +
             'cmd : ' + IntToStr(recCmdSetCameraController^.cmd)+ #13#10 +
-            'ValInt : ' + IntToStr(recCmdSetCameraController^.valueInt)+ #13#10));
+            'ValInt : ' + IntToStr(recCmdSetCameraController^.valueInt)+ #13#10 +
+            'ValDouble : ' + FloatToStr(recCmdSetCameraController^.valueDbl)+ #13#10));
     end
     else
     begin

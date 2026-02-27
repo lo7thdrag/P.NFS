@@ -19,6 +19,32 @@ object frmMainFCC: TfrmMainFCC
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object Label6: TLabel
+    Left = 28
+    Top = 235
+    Width = 39
+    Height = 16
+    Caption = 'Radar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label16: TLabel
+    Left = 132
+    Top = 235
+    Width = 24
+    Height = 16
+    Caption = '----'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object pnlUpper: TPanel
     Left = 0
     Top = 0
@@ -361,7 +387,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100006025872A01000000CC9156771C000000000000000000000000
+          010001180100004014761201000000CC9156771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -370,7 +396,7 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100006025872A01000000881300C01C00000000000000000000000000000000
+          0100004014761201000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
@@ -378,7 +404,7 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000000000000000000000000000000000000088CB97003D8BDC7621
-          00000000000000208BDC7618CD62082E60BA56C8CB9700000000000000000000
+          00000000000000208BDC7660E9471246A694DBC8CB9700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -419,7 +445,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label30: TLabel
       Left = 20
-      Top = 83
+      Top = 86
       Width = 19
       Height = 16
       Caption = 'Dis'
@@ -432,7 +458,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblTgtDistance: TLabel
       Left = 124
-      Top = 83
+      Top = 86
       Width = 24
       Height = 16
       Caption = '----'
@@ -445,7 +471,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label32: TLabel
       Left = 197
-      Top = 83
+      Top = 86
       Width = 19
       Height = 16
       Caption = 'Km'
@@ -458,7 +484,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label33: TLabel
       Left = 20
-      Top = 115
+      Top = 117
       Width = 28
       Height = 16
       Caption = 'Azm'
@@ -471,7 +497,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblTgtAzimut: TLabel
       Left = 124
-      Top = 115
+      Top = 117
       Width = 24
       Height = 16
       Caption = '----'
@@ -484,7 +510,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label35: TLabel
       Left = 197
-      Top = 115
+      Top = 117
       Width = 11
       Height = 16
       Caption = ' '#176
@@ -573,6 +599,86 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Label2: TLabel
+      Left = 20
+      Top = 220
+      Width = 24
+      Height = 16
+      Caption = 'LAT'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblLatTgt: TLabel
+      Left = 124
+      Top = 220
+      Width = 24
+      Height = 16
+      Caption = '----'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 197
+      Top = 220
+      Width = 8
+      Height = 16
+      Caption = 'N'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Visible = False
+    end
+    object Label13: TLabel
+      Left = 197
+      Top = 258
+      Width = 7
+      Height = 16
+      Caption = 'E'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Visible = False
+    end
+    object lblLonTgt: TLabel
+      Left = 124
+      Top = 258
+      Width = 24
+      Height = 16
+      Caption = '----'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label15: TLabel
+      Left = 20
+      Top = 252
+      Width = 24
+      Height = 16
+      Caption = 'LON'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object Panel1: TPanel
       Left = 0
       Top = 0
@@ -599,113 +705,9 @@ object frmMainFCC: TfrmMainFCC
     Color = clSilver
     ParentBackground = False
     TabOrder = 1
-    object Label17: TLabel
-      Left = 20
-      Top = 368
-      Width = 51
-      Height = 16
-      Caption = 'PROFILE'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblProfile: TLabel
-      Left = 124
-      Top = 368
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label21: TLabel
-      Left = 124
-      Top = 335
-      Width = 72
-      Height = 16
-      Caption = 'TX MASTER'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label20: TLabel
-      Left = 20
-      Top = 335
-      Width = 39
-      Height = 16
-      Caption = 'STATE'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label13: TLabel
-      Left = 20
-      Top = 306
-      Width = 74
-      Height = 16
-      Caption = 'FREQ. BAND'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label14: TLabel
-      Left = 124
-      Top = 306
-      Width = 50
-      Height = 16
-      Caption = 'X-BAND'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label15: TLabel
-      Left = 20
-      Top = 277
-      Width = 47
-      Height = 16
-      Caption = 'RADAR'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label16: TLabel
-      Left = 124
-      Top = 277
-      Width = 50
-      Height = 16
-      Caption = 'NAVR-S'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
     object Label7: TLabel
       Left = 20
-      Top = 196
+      Top = 171
       Width = 24
       Height = 16
       Caption = 'LON'
@@ -718,7 +720,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblLongtitude: TLabel
       Left = 124
-      Top = 196
+      Top = 171
       Width = 24
       Height = 16
       Caption = '----'
@@ -731,7 +733,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblLatitude: TLabel
       Left = 124
-      Top = 168
+      Top = 143
       Width = 24
       Height = 16
       Caption = '----'
@@ -744,7 +746,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label9: TLabel
       Left = 20
-      Top = 168
+      Top = 143
       Width = 24
       Height = 16
       Caption = 'LAT'
@@ -755,25 +757,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label18: TLabel
-      Left = 20
-      Top = 134
-      Width = 22
-      Height = 16
-      Caption = 'TTG'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
     object Label22: TLabel
       Left = 20
-      Top = 106
-      Width = 24
+      Top = 61
+      Width = 66
       Height = 16
-      Caption = 'ETA'
+      Caption = 'Local Time'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -783,20 +772,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblEta: TLabel
       Left = 124
-      Top = 106
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblTtg: TLabel
-      Left = 124
-      Top = 134
+      Top = 61
       Width = 24
       Height = 16
       Caption = '----'
@@ -809,7 +785,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label25: TLabel
       Left = 197
-      Top = 106
+      Top = 61
       Width = 62
       Height = 16
       Caption = 'hh:mm:ss'
@@ -820,22 +796,9 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label26: TLabel
-      Left = 197
-      Top = 134
-      Width = 43
-      Height = 16
-      Caption = 'hh:mm'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
     object Label11: TLabel
       Left = 197
-      Top = 168
+      Top = 143
       Width = 8
       Height = 16
       Caption = 'N'
@@ -845,10 +808,11 @@ object frmMainFCC: TfrmMainFCC
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      Visible = False
     end
     object Label12: TLabel
       Left = 197
-      Top = 196
+      Top = 171
       Width = 7
       Height = 16
       Caption = 'E'
@@ -858,88 +822,11 @@ object frmMainFCC: TfrmMainFCC
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-    end
-    object Label5: TLabel
-      Left = 197
-      Top = 50
-      Width = 19
-      Height = 16
-      Caption = 'NM'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label6: TLabel
-      Left = 197
-      Top = 78
-      Width = 18
-      Height = 16
-      Caption = ' '#176'T'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblRange: TLabel
-      Left = 124
-      Top = 50
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblBearing: TLabel
-      Left = 124
-      Top = 78
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label1: TLabel
-      Left = 20
-      Top = 50
-      Width = 25
-      Height = 16
-      Caption = 'RNG'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label2: TLabel
-      Left = 20
-      Top = 78
-      Width = 25
-      Height = 16
-      Caption = 'BRG'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
+      Visible = False
     end
     object Label3: TLabel
       Left = 20
-      Top = 222
+      Top = 199
       Width = 25
       Height = 16
       Caption = 'SPD'
@@ -952,7 +839,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblSpeed: TLabel
       Left = 124
-      Top = 222
+      Top = 199
       Width = 24
       Height = 16
       Caption = '----'
@@ -965,7 +852,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label8: TLabel
       Left = 197
-      Top = 222
+      Top = 199
       Width = 16
       Height = 16
       Caption = 'Kn'
@@ -978,7 +865,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label4: TLabel
       Left = 20
-      Top = 250
+      Top = 117
       Width = 26
       Height = 16
       Caption = 'HDG'
@@ -991,7 +878,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblHeading: TLabel
       Left = 124
-      Top = 250
+      Top = 117
       Width = 24
       Height = 16
       Caption = '----'
@@ -1004,7 +891,7 @@ object frmMainFCC: TfrmMainFCC
     end
     object Label29: TLabel
       Left = 197
-      Top = 250
+      Top = 117
       Width = 11
       Height = 16
       Caption = ' '#176
@@ -1015,9 +902,22 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object lblJoystickVal: TLabel
+    object Label1: TLabel
+      Left = 20
+      Top = 89
+      Width = 56
+      Height = 16
+      Caption = 'UTC Time'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblUTCTime: TLabel
       Left = 124
-      Top = 400
+      Top = 89
       Width = 24
       Height = 16
       Caption = '----'
@@ -1027,39 +927,62 @@ object frmMainFCC: TfrmMainFCC
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      Visible = False
     end
-    object lblJoystick: TLabel
+    object Label5: TLabel
+      Left = 197
+      Top = 89
+      Width = 62
+      Height = 16
+      Caption = 'hh:mm:ss'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblRadar: TLabel
       Left = 20
-      Top = 400
+      Top = 227
+      Width = 39
+      Height = 16
+      Caption = 'Radar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblRadarVal: TLabel
+      Left = 124
+      Top = 227
       Width = 52
       Height = 16
-      Caption = 'Joystick'
+      Caption = 'MR 302 '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      Visible = False
     end
-    object Label10: TLabel
-      Left = 164
-      Top = 400
-      Width = 8
+    object Label17: TLabel
+      Left = 20
+      Top = 256
+      Width = 67
       Height = 16
-      Caption = '0'
+      Caption = 'Frequency'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      Visible = False
     end
-    object lblJoystickVal1: TLabel
+    object lblFrequencyVal: TLabel
       Left = 124
-      Top = 422
+      Top = 256
       Width = 24
       Height = 16
       Caption = '----'
@@ -1069,56 +992,6 @@ object frmMainFCC: TfrmMainFCC
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
-      Visible = False
-    end
-    object Label23: TLabel
-      Left = 164
-      Top = 422
-      Width = 8
-      Height = 16
-      Caption = '1'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Visible = False
-    end
-    object lblJoystickVal2: TLabel
-      Left = 124
-      Top = 444
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Visible = False
-    end
-    object Label28: TLabel
-      Left = 164
-      Top = 444
-      Width = 8
-      Height = 16
-      Caption = '2'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Visible = False
-    end
-    object Shape1: TShape
-      Left = 200
-      Top = 414
-      Width = 33
-      Height = 32
-      Visible = False
     end
     object pnl160: TPanel
       Left = 0
@@ -1139,7 +1012,7 @@ object frmMainFCC: TfrmMainFCC
     end
   end
   object tmrUpdateShipPos: TTimer
-    Interval = 100
+    Interval = 500
     OnTimer = UpdatePosition
     Left = 624
     Top = 496
@@ -1150,7 +1023,6 @@ object frmMainFCC: TfrmMainFCC
     Top = 233
   end
   object NLDJoystick1: TNLDJoystick
-    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move

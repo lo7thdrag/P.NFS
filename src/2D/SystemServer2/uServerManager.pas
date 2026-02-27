@@ -1691,6 +1691,7 @@ begin
         RecCmdSetCameraControl3D.cmd := RecCmdSetCameraControl^.cmd;
         RecCmdSetCameraControl3D.valueInt := RecCmdSetCameraControl^.valueInt;
         RecCmdSetCameraControl3D.valueDbl := RecCmdSetCameraControl^.valueDbl;
+        RecCmdSetCameraControl3D.valueStr := RecCmdSetCameraControl^.valueStr;
 
         TcpServer3D.SendData(REC_CMD_SET_CAMERA_TARGET_3D, RecCmdSetCameraControl3D);
       end;
