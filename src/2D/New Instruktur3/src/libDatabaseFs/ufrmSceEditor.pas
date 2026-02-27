@@ -1,4 +1,4 @@
-unit ufScenarioEdit;
+unit ufrmSceEditor;
 
 interface
 

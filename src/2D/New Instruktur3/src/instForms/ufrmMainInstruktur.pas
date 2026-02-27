@@ -19,7 +19,7 @@ unit ufrmMainInstruktur;
   ufassignweapon.pas
   ufEnvi.pas
   ufListScenario.pas
-  ufScenarioEdit.pas
+  ufrmSceEditor.pas
   ufWeaponList.pas
 }
 
@@ -31,7 +31,7 @@ uses
   AdvSmoothLabel, StdCtrls, AdvSmoothPanel, Math ,
 
   uInstrukturManager, ufrmeLeftControl, uBaseConstan, ufGuidance, uTCPDatatype,
-  ufWeaponStatus, uInstrukturObjects, uInstrukturViews, uBaseFunction, Contnrs, ufScenarioEdit,
+  ufWeaponStatus, uInstrukturObjects, uInstrukturViews, uBaseFunction, Contnrs, ufrmSceEditor,
   uGlobalVar, uDistance , uCustomZoom, uBaseSimulationObject, uClassDatabase, uSimulationManager,
   System.ImageList;
 

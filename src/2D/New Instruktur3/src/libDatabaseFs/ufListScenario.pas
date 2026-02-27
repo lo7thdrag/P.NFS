@@ -52,7 +52,7 @@ var
 implementation
 
 uses
-  ufScenarioEdit, ufrmMainInstruktur,uTCPDatatype, ufrmGameController;
+  ufrmSceEditor, ufrmMainInstruktur,uTCPDatatype, ufrmGameController;
 
 {$R *.dfm}
 

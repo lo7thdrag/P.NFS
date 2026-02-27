@@ -158,7 +158,7 @@
         <DCCReference Include="libDatabaseFs\ufListScenario.pas">
             <Form>frmListScenario</Form>
         </DCCReference>
-        <DCCReference Include="libDatabaseFs\ufScenarioEdit.pas">
+        <DCCReference Include="libDatabaseFs\ufrmSceEditor.pas">
             <Form>frmSceEditor</Form>
         </DCCReference>
         <DCCReference Include="libDatabaseFs\ufWeaponList.pas">

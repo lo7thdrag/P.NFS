@@ -11,7 +11,7 @@ uses
   AdvSmoothPanel, OleCtrls, AdvSmoothLabel, StdCtrls, IniFiles,
   AdvPageControl,RzButton, {acPNG,} jpeg, Buttons, VrTrackBar, Mask, MaskEdEx, AdvEdit,
 
-  uClassDatabase, ufrmMainInstruktur, ufScenarioEdit, uDataModule, uGlobalVar,
+  uClassDatabase, ufrmMainInstruktur, ufrmSceEditor, uDataModule, uGlobalVar,
   uInstrukturManager, uTCPDatatype, uCMSetting, uBaseCoordSystem, uBaseConstan, ufReportEvent ,
   ufInstLog, uBaseFunction, uInstrukturObjects, uTrajectory, uSimulationManager, uQuery,
   RzPanel, ufrmTrajectoryView, AdvTrackBar, SpeedButtonImage,

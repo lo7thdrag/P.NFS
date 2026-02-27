@@ -41,7 +41,7 @@ uses
   ufassignweapon in 'libDatabaseFs\ufassignweapon.pas' {frmAssignWeapon},
   ufEnvi in 'libDatabaseFs\ufEnvi.pas' {frmMoreEnvi},
   ufListScenario in 'libDatabaseFs\ufListScenario.pas' {frmListScenario},
-  ufScenarioEdit in 'libDatabaseFs\ufScenarioEdit.pas' {frmSceEditor},
+  ufrmSceEditor in 'libDatabaseFs\ufrmSceEditor.pas' {frmSceEditor},
   ufWeaponList in 'libDatabaseFs\ufWeaponList.pas' {frmWeaponList},
   ufDBSetting in '..\..\ShareLib\AppForms\ufDBSetting.pas' {frmDBSetting},
   uScriptManager in 'libInstruktur\uScriptManager.pas',
@@ -83,7 +83,7 @@ begin
   Application.CreateForm(TfrmRecordsList, frmRecordsList);
   Application.CreateForm(TfrmTrjectoryView, frmTrjectoryView);
   Application.CreateForm(TfrmLoadingScreen, frmLoadingScreen);
-//  Application.CreateForm(TfrmFiringCommand, frmFiringCommand);
+  //  Application.CreateForm(TfrmFiringCommand, frmFiringCommand);
   Application.CreateForm(TfrmGameController, frmGameController);
   Application.CreateForm(TfrmAssignMisille, frmAssignMisille);
   Application.CreateForm(TfrmAssignWeapon, frmAssignWeapon);
