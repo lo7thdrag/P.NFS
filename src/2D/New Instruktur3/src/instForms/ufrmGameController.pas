@@ -7017,27 +7017,21 @@ begin
 //   position   := ((tbFogH.MaxValue)-(tbFogH.Position-1))/ (tbFogH.MaxValue);
 //   posPercentage := log10(tbFogH.MaxValue * position) / log10(tbFogH.MaxValue);
 //   Val  := lowerBound + ((boundary - (posPercentage * boundary)));
-   Val := tbFogH.Position;
+//   Val := tbFogH.Position;
 
    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_ENVI, Val, 0,0,0,0);
 
-  if vrwhlWindDirec.Position < 180 then
-  begin
-   newDir := Round(180 + vrwhlWindDirec.Position);
-  end
-  else
-  begin
-   newDir := Round(vrwhlWindDirec.Position - 180);
-  end;
-  UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_WINDDIRECTION, newDir, 0,0,0,0);
+//  if vrwhlWindDirec.Position < 180 then
+//  begin
+//   newDir := Round(180 + vrwhlWindDirec.Position);
+//  end
+//  else
+//  begin
+//   newDir := Round(vrwhlWindDirec.Position - 180);
+//  end;
+//  UpdateEnvy;
+//  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_WINDDIRECTION, newDir, 0,0,0,0);
 end;
-
-procedure TfrmGameController.vrwhlSeaDirectionMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var
-newDir : Integer;
-begin
 
 //procedure TfrmGameController.vrwhlSeaDirectionMouseUp(Sender: TObject;
 //  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -7045,17 +7039,23 @@ begin
 //newDir : Integer;
 //begin
 //
-//  if vrwhlSeaDirection.Position < 180 then
-//  begin
-//   newDir := Round(180 + vrwhlSeaDirection.Position);
-//  end
-//  else
-//  begin
-//   newDir := Round(vrwhlSeaDirection.Position - 180);
-//  end;
-//  UpdateEnvy;
-//  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_CURDIRECTION, newDir, 0,0,0,0);
-//end;
+////procedure TfrmGameController.vrwhlSeaDirectionMouseUp(Sender: TObject;
+////  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+////var
+////newDir : Integer;
+////begin
+////
+////  if vrwhlSeaDirection.Position < 180 then
+////  begin
+////   newDir := Round(180 + vrwhlSeaDirection.Position);
+////  end
+////  else
+////  begin
+////   newDir := Round(vrwhlSeaDirection.Position - 180);
+////  end;
+////  UpdateEnvy;
+////  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_CURDIRECTION, newDir, 0,0,0,0);
+////end;
 
 procedure TfrmGameController.wheelAzimutChange(Sender: TObject);
 var

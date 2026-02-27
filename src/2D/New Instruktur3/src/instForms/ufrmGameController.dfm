@@ -183295,7 +183295,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000070A97B0F0100000015F5F9761C000000000000000000000000
+              01000118010000588F93040100000005FA65751C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183304,15 +183304,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              01000070A97B0F01000000000000001C00000000000000000000000000000000
+              010000588F930401000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000030F39700E0
-              EE9700000000006688CE50000200006B88CE506688CE50000000000000000000
+              000000000000000000000000000000000000000000000000000000B0CF970060
+              CB9700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -224732,7 +224732,7 @@ object frmGameController: TfrmGameController
                   object lblStartSUT: TLabel
                     Left = 669
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -224758,7 +224758,7 @@ object frmGameController: TfrmGameController
                   object lblEndSUT: TLabel
                     Left = 669
                     Top = 492
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -224784,7 +224784,7 @@ object frmGameController: TfrmGameController
                   object lblMinSUT: TLabel
                     Left = 988
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -224797,7 +224797,7 @@ object frmGameController: TfrmGameController
                   object lblMaxSUT: TLabel
                     Left = 988
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -225589,7 +225589,7 @@ object frmGameController: TfrmGameController
                   object lblStartAsroc: TLabel
                     Left = 673
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -225615,7 +225615,7 @@ object frmGameController: TfrmGameController
                   object lblEndAsroc: TLabel
                     Left = 673
                     Top = 484
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -225641,7 +225641,7 @@ object frmGameController: TfrmGameController
                   object lblMinAsroc: TLabel
                     Left = 992
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -225654,7 +225654,7 @@ object frmGameController: TfrmGameController
                   object lblMaxAsroc: TLabel
                     Left = 992
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -226396,7 +226396,7 @@ object frmGameController: TfrmGameController
                   object lblStartRBU: TLabel
                     Left = 665
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -226422,7 +226422,7 @@ object frmGameController: TfrmGameController
                   object lblEndRBU: TLabel
                     Left = 665
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -226448,7 +226448,7 @@ object frmGameController: TfrmGameController
                   object lblMinRBU: TLabel
                     Left = 984
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -226461,7 +226461,7 @@ object frmGameController: TfrmGameController
                   object lblMaxRBU: TLabel
                     Left = 984
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -227257,7 +227257,7 @@ object frmGameController: TfrmGameController
                   object lblStartA244s: TLabel
                     Left = 664
                     Top = 453
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -227270,7 +227270,7 @@ object frmGameController: TfrmGameController
                   object lblEndA244s: TLabel
                     Left = 664
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -227309,7 +227309,7 @@ object frmGameController: TfrmGameController
                   object lblMinA244s: TLabel
                     Left = 983
                     Top = 453
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -227322,7 +227322,7 @@ object frmGameController: TfrmGameController
                   object lblMaxA244s: TLabel
                     Left = 983
                     Top = 485
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228081,7 +228081,7 @@ object frmGameController: TfrmGameController
                   object lblStartCannon76: TLabel
                     Left = 675
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228107,7 +228107,7 @@ object frmGameController: TfrmGameController
                   object lblEndCannon76: TLabel
                     Left = 675
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228133,7 +228133,7 @@ object frmGameController: TfrmGameController
                   object lblMinCannon76: TLabel
                     Left = 994
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228146,7 +228146,7 @@ object frmGameController: TfrmGameController
                   object lblMaxCannon76: TLabel
                     Left = 994
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228688,7 +228688,7 @@ object frmGameController: TfrmGameController
                   object lblStartTetral: TLabel
                     Left = 667
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228701,7 +228701,7 @@ object frmGameController: TfrmGameController
                   object lblEndTetral: TLabel
                     Left = 667
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228740,7 +228740,7 @@ object frmGameController: TfrmGameController
                   object lblMinTetral: TLabel
                     Left = 986
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228753,7 +228753,7 @@ object frmGameController: TfrmGameController
                   object lblMaxTetral: TLabel
                     Left = 986
                     Top = 484
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229243,7 +229243,7 @@ object frmGameController: TfrmGameController
                   object lblStartMistral: TLabel
                     Left = 675
                     Top = 451
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229269,7 +229269,7 @@ object frmGameController: TfrmGameController
                   object lblEndMistral: TLabel
                     Left = 675
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229295,7 +229295,7 @@ object frmGameController: TfrmGameController
                   object lblMinMistral: TLabel
                     Left = 994
                     Top = 451
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229308,7 +229308,7 @@ object frmGameController: TfrmGameController
                   object lblMaxMistral: TLabel
                     Left = 994
                     Top = 483
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229798,7 +229798,7 @@ object frmGameController: TfrmGameController
                   object lblStartStrella: TLabel
                     Left = 665
                     Top = 454
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229824,7 +229824,7 @@ object frmGameController: TfrmGameController
                   object lblEndStrella: TLabel
                     Left = 665
                     Top = 486
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229850,7 +229850,7 @@ object frmGameController: TfrmGameController
                   object lblMinStrella: TLabel
                     Left = 984
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229863,7 +229863,7 @@ object frmGameController: TfrmGameController
                   object lblMaxStrella: TLabel
                     Left = 984
                     Top = 486
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230465,7 +230465,7 @@ object frmGameController: TfrmGameController
                   object lblStartMM40: TLabel
                     Left = 661
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230491,7 +230491,7 @@ object frmGameController: TfrmGameController
                   object lblEndMM40: TLabel
                     Left = 661
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230517,7 +230517,7 @@ object frmGameController: TfrmGameController
                   object lblMinMM40: TLabel
                     Left = 980
                     Top = 454
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230530,7 +230530,7 @@ object frmGameController: TfrmGameController
                   object lblMaxMM40: TLabel
                     Left = 980
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231388,7 +231388,7 @@ object frmGameController: TfrmGameController
                   object lblcoorXyakhont: TLabel
                     Left = 195
                     Top = 187
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231401,7 +231401,7 @@ object frmGameController: TfrmGameController
                   object lblcoorYyakhont: TLabel
                     Left = 195
                     Top = 220
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231436,7 +231436,7 @@ object frmGameController: TfrmGameController
                   object lblStartYakhont: TLabel
                     Left = 657
                     Top = 457
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231449,7 +231449,7 @@ object frmGameController: TfrmGameController
                   object lblEndYakhont: TLabel
                     Left = 657
                     Top = 490
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231488,7 +231488,7 @@ object frmGameController: TfrmGameController
                   object lblMinYakhont: TLabel
                     Left = 976
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231501,7 +231501,7 @@ object frmGameController: TfrmGameController
                   object lblMaxYakhont: TLabel
                     Left = 976
                     Top = 490
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232010,7 +232010,7 @@ object frmGameController: TfrmGameController
                   object lblKoorYc802: TLabel
                     Left = 200
                     Top = 248
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232023,7 +232023,7 @@ object frmGameController: TfrmGameController
                   object lblkoorXc802: TLabel
                     Left = 200
                     Top = 214
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232058,7 +232058,7 @@ object frmGameController: TfrmGameController
                   object lblStartDegC802: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232084,7 +232084,7 @@ object frmGameController: TfrmGameController
                   object lblEndDegC802: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232110,7 +232110,7 @@ object frmGameController: TfrmGameController
                   object lblMinRangeC802: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232136,7 +232136,7 @@ object frmGameController: TfrmGameController
                   object lblMaxRangeC802: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232451,7 +232451,7 @@ object frmGameController: TfrmGameController
                   object lblStartAK230: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232477,7 +232477,7 @@ object frmGameController: TfrmGameController
                   object lblEndAK230: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232503,7 +232503,7 @@ object frmGameController: TfrmGameController
                   object lblMinAK230: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232529,7 +232529,7 @@ object frmGameController: TfrmGameController
                   object lblMaxAK230: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233197,7 +233197,7 @@ object frmGameController: TfrmGameController
                   object lblStartVlMica: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233223,7 +233223,7 @@ object frmGameController: TfrmGameController
                   object lblEndVlMica: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233249,7 +233249,7 @@ object frmGameController: TfrmGameController
                   object lblMinVlMica: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233275,7 +233275,7 @@ object frmGameController: TfrmGameController
                   object lblMaxVlMica: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250641,7 +250641,7 @@ object frmGameController: TfrmGameController
         end
       end
     end
-    object pnlEnvironment: TPanel
+    object pnlPlatform: TPanel
       Left = 0
       Top = 0
       Width = 1923
@@ -250649,19 +250649,268 @@ object frmGameController: TfrmGameController
       Align = alClient
       BevelOuter = bvNone
       Color = clMedGray
-      TabOrder = 3
-      object lblPortEnv: TLabel
-        Left = 331
-        Top = 96
-        Width = 3
-        Height = 13
-        Caption = '-'
-        Transparent = True
-      end
-      object AdvSmoothPanel6: TAdvSmoothPanel
+      TabOrder = 5
+      object pnlListShip: TAdvSmoothPanel
         Left = 0
         Top = 0
-        Width = 1923
+        Width = 434
+        Height = 911
+        Cursor = crDefault
+        Caption.HTMLFont.Charset = DEFAULT_CHARSET
+        Caption.HTMLFont.Color = clWindowText
+        Caption.HTMLFont.Height = -11
+        Caption.HTMLFont.Name = 'Tahoma'
+        Caption.HTMLFont.Style = []
+        Caption.Font.Charset = DEFAULT_CHARSET
+        Caption.Font.Color = clWindowText
+        Caption.Font.Height = -16
+        Caption.Font.Name = 'Tahoma'
+        Caption.Font.Style = []
+        Fill.Color = 7301478
+        Fill.ColorTo = 10066329
+        Fill.ColorMirror = 10066329
+        Fill.ColorMirrorTo = 7301478
+        Fill.GradientType = gtVertical
+        Fill.GradientMirrorType = gtVertical
+        Fill.BorderColor = clSilver
+        Fill.BorderWidth = 5
+        Fill.Rounding = 10
+        Fill.ShadowColor = clNone
+        Fill.ShadowOffset = 10
+        Fill.Glow = gmNone
+        Version = '1.6.0.1'
+        Align = alLeft
+        TabOrder = 0
+        TMSStyle = 4
+        object Label54: TLabel
+          Left = 21
+          Top = 31
+          Width = 74
+          Height = 18
+          Caption = 'Ship List :'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object btnNewShip: TImage
+          Left = 310
+          Top = 26
+          Width = 30
+          Height = 30
+          Cursor = crHandPoint
+          Hint = 'Create Scenario'
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
+            001E08060000003B30AEA2000000097048597300002E2300002E230178A53F76
+            000004A44944415478DABD576F4C9555187F0E6C2CFA505F4A082A53CB490A72
+            092F82CA54E6D6409B51967F724484142C46A6CC39281B2CD3CC484345C6D4CC
+            A29C91039A0637EB43CA85022EB0E4F2275BC896486D7E28261B9CCE79CF9FF7
+            3CAFAFF441E673EFB9E73DE73DE7F93DFFCE799E4B4A779503A7B25D256B5857
+            C8DA22D6EE87E9A51BACB5B17680E1D5F30952F24E1994BF5B5AC69E4BA619EC
+            7654CE304B097BC860AD2134341456A4AD82B885F1101E7EAF5842B9688E6D72
+            8ECA9E50394FF016D1B35F4AE0DFB17FA03BD00917BE6F86898909BE2C9DAF69
+            662D2D6DD5D3E04D4A0622995A3DFB70C6828960472D3083355B400C640548A5
+            4084C8B5ECEBF75F025FD3793EDD4CA4FDEF2BDA5A0CF784871BAA114345530B
+            350368E4FE1EAF191B1B838FF7EFB57CAE678B77BECD34A1DA8C4273024260C3
+            AEEC1B0C5E86FAB37596D9B88B9E599B094FCC8D914B1C3ED0AE108CF7EC2EC3
+            E26CDF51E27490AD3135B4670C9ABF3B071DED3F6B9D9216A740EAF2958E4050
+            7C08E2F1C19E720CFC56F14E17E318CFDAEFCC414DE720D0D16E0027C3D2D415
+            4860191102D008D00FF7BE87F9BEB96D871540D4C56728C0D983CF771E029D1D
+            9A99D7BB1896A42E3743D0DE6F60F3F147FBDEC7C03CB814A48247816298ED82
+            AF09BA02367022075E9A7A8BB5849570B85588E0B2D7BD51B46D4A53136A070C
+            3F8FDD5D9D36F0A2244859B24CC720DE678408A38315FB304641E156ED471D1E
+            B7A08BFEC71F7CD0D31DD0CC1212BD909CBC0C8C432F78013633FFA93CB81F03
+            E7171409033364BE7FF0B70118B9F627B8D1D0D01F307A7D448F23221F82A8A8
+            68D7B5111191307BCEE35A8943951518382FBF50BF240CF9E891433039390177
+            4AFC9CBFBA255FFBA0EAF0010C9C9B578036545755DE31A8A22D8CB70ADCEAAA
+            4F30704EEEEB8643018ED51C611A4F4E8BC62FBF922747146AAA0F63E0EC9CD7
+            D019FEFDCA15181D1D01B75B7878F82AFCFDD7A866FEE08C08888C8C02F3D8E8
+            770FCC80998FCDD2917DBCA60A036765E7EA3B5A0AA73BA25396E8FC2D3F41B0
+            F757CD3C362E1E3C095E2BAAF585A1F63BA2FAD3E3D5187873568E58488DDB8A
+            E013A276F85B2E421F4B148A16C42E048F27510806F61E67AEE0F29F3C518381
+            37BE946D4F18E7D08D5A5B2F417F5FAF1E3F393F0EE23D4FC90444E5C5894909
+            7FEAB3631878FDC62CEBD1B9C95984F0F12F6D2DD0DF1F34806359E59260664E
+            7CC74B81F86CEDE72730F08B1B364F616A4320C281FD3030D0A7816362163060
+            0F32B59BD09CBEAC3D8981D7BDB0C9D60AD552AAC0B2A9BDBD0D060DE079F3E6
+            5B01E69E4F319DFEEA147EFDFCBA0D22992995CD240E98E1F0D52168F55FB4CE
+            79484808ABD552203AFA11239AEC3A4BED51D17EE6F4171838F3B9F5F63A5549
+            02D829522774EA5044A4513B0608569CCAEC2C6D5E77A656035BC55E7AC65A08
+            0B0BBBAD6FA60A38430657F32A1A1F1F876F1BBFE18F377479CBCFE2EC3973ED
+            0AC2696A157886CFA995C9A871FC44B9ABC4227A93089CC1C120F4F474F159AB
+            BC4D67AD91FB8A47E7C38FCED49A13FABFB1E2B8518D55B240E36EB8397ED34A
+            A5BD977BD4FD9F4E56AFC98486FAAFEFEA5F1886594A32563F6B8D1A1BEAEECA
+            9F368667FD69FB0FAAF80DE3EA7BCC1B0000000049454E44AE426082}
+          Proportional = True
+          ShowHint = True
+          Stretch = True
+          OnClick = btnNewShipClick
+        end
+        object btnEditShip: TImage
+          Left = 346
+          Top = 26
+          Width = 30
+          Height = 30
+          Cursor = crHandPoint
+          Hint = 'Edit Scenario'
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
+            001E08060000003B30AEA2000000097048597300002E2300002E230178A53F76
+            000005674944415478DABD577B4CD5551CFF1CE1F2102A0353B014E225102CFF
+            49039F40BCAFD36826C3301D63CC52F3515A0DCA92F53033B31C638CB1344B67
+            39175CDE0F9F95A38D8DD7858BFEA3B5042CF38F74DE2BFC3AE777CEEF717E17
+            D73FCE03E7DEF3FA9ECFF97EBE8F732EA9D8B31700C1DE3DE52B69632BADCFD1
+            FA181E6CB9456B37AD872AF654D6B30152FEFE5E547E50C1D0CB1F30D8FD4A25
+            C5AC20B4914F6B838F8F0FD2D23391BC60010203A78398972AF49F305E14FA47
+            E439B160AA7145E512B8FDEF6DF4F5F6A0ABB31D1313136C2A8F8DB7D39A9191
+            998D45CFA79884E846AAA422F515F0BE01A3A8BB6B2010B3DA61A0F079267BE9
+            D22FE8686B610BDA89E0FFD16D3B76514D03F50D14690B98B655BC4615DCBF10
+            7168F679E7CE1D7C79609F6A735D6EF73BEFF15312F9DCEA18E799534DDB8470
+            EEC5B058030CF4F5A2ADB509A1A133B122231373E746E80763324C76DFC71FCA
+            077E6B77B9D8C5449AA0DA383538752086A49019E8EF4393A39E4E73FDA74D9B
+            86EC5C3B929292C51A6E8FCF3EAD948177EE7A57A68D99C684EFE531A63238D0
+            87E6C6061D54678C6EB0666D11E6CE8BD0C73EDFF7910CBC7DE7DB2A9062D9D8
+            DB864478372FCE817EB4343BBC40B5327B76188A8A37E8FB7CB1FF1379DF37A8
+            73991531B108580FA4706D9C83FD686D69BC2F282B369B0DAF6DD9AE0309E732
+            80B76C7BD3A28BECC7564F1D1C1CA0A1D18CF0394F223131091DED2D5352FD42
+            560EE2139ED14D77E8E07E19F8F5AD3B8C8E22A358C3CBE91C4427050A0F9F03
+            FBAA0255ABCBAE61497B06CA72C3FCF989DC8442FEF0A10332F0A6CDDB649EA7
+            F226FA353C3488AE8E36843150FB6A1554338593B270A6AB4D054DCFC8425C7C
+            82AEA966AAAAAF0FCAC0659BB68ACD457ED42675BE15B88687E8C6ED080B0B47
+            6EFE2AD8FC6CD0F2E93D8F1B0EC74F18BDFEA79A7A63E3E22D1ECAB5A9AEFA4A
+            062E2DDB3C856B18DABA5C433877A603B329680E8D4F9BCD4F17F650D0E6C67A
+            8C8E5EC7F2B40CC4C6C64F91FD78AFA6FAB00C5C52BAC9DC15B98327D911970B
+            E7CF75AAA191956D3734A5EB3D1E0F0DA7068C51D065CBD311131B67714345AC
+            E4EDDA9A2A1978634999B86178FA23844F8D8C0CE3E2F9B398358B81E6C1D7E6
+            AB93E1B9E7511D6A7C6C144B97A5213A26568A07E668C41C1AB45D575B2D03AF
+            DF502A2FA2E5F265177EBE780EA1339F40764E3E7C7C7DC58D05B8DD1E1A4E4D
+            181F1FC3E2252B10151363CDA2BAD39933E091BA1A19B8787D8921443FC64647
+            A9363C23050404D0D0C845C8E321C2A61EEAD92D2A68EAE265888A8E91A38158
+            52BA62F070F448AD0CBCEE958D521A760D3BD1DDFDAB6E2D7F069E918DE0E047
+            E885DE8A1B37C69192BA149151D1DA950DE1129076B678D9B1A375327061D1AB
+            20A6453D3DBF61C83920F9B8BF7F0082828371F3EFBFB02865099E8E8C92738D
+            F620300D1ACAF087C1F1EFBE9181D716164B20172E9CC51FBF5FF50A30E6740B
+            17A52292827ADF20F20D63BE8739988213C7BF9581D7BCBCCE2446D0D6E6C03F
+            376F7A832E4CC5BC8848396204CF0ABBBB15CBB8C5F6274F1C93815F5A536478
+            012D2DCDF56A92080A0AC6F4A020FA1D841933421012122A69CA0EC3F3BB22A7
+            3AF510C444080FAD1F4E7E2F031714141A8BC4B189EE2DC4F013CB03C4505C11
+            D953BBE30C7A15C108A3FDD48F277460F5B197974F13BE9F9FFCB8F8BF979CA5
+            48169E42D6ED76A3D1719A356FE9CFDBA4E467111D1DA7AAA4E8094EBBE24CD7
+            253125086D5250CD092266B64D21A6E0CA1517FAFB7B59477DDEE6D1EA608FB3
+            8484243C455F867E7EFED0DECB922A2627E16F6CB3B1E57973DB7DF72EAE5DBB
+            4AC3B31F9393936C348FD85716A0A1FED443FD0943312B48BEFD45F5788E86D3
+            0FE5475B9E7D753D33E47FA0E550E3812334AB0000000049454E44AE426082}
+          Proportional = True
+          ShowHint = True
+          Stretch = True
+          Transparent = True
+          OnClick = btnEditShipClick
+        end
+        object btnDeleteShip: TImage
+          Left = 382
+          Top = 26
+          Width = 30
+          Height = 30
+          Cursor = crHandPoint
+          Hint = 'Delete Scenario'
+          ParentShowHint = False
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
+            001E08060000003B30AEA2000000097048597300002E2300002E230178A53F76
+            000005194944415478DABD577D505455143F177061C180EABFC6001184050494
+            2004AC315113D009BF86D27488A1341B2287CC7160B281718ACC2C34871C5353
+            D32293096824C1C6211106543E17B016019BFE2A03C365583E5EE7EE7BF7EEBD
+            FB96FCC7F1CCDCB7EF9E7BF6FCCE39F79C73EF23457B4B8052F1DEC2D5F89387
+            231E871F3C5C1AC1D182E373C4ABA20C52F87E31947C50548CEF850F196C262A
+            41CC22822FE938AADDDDDD61E90BCB213A36168C5EDE68127215057F895D5AA1
+            56E253C127612A54A64C2E7856EB7DE86C6F835F2ED7C1D4D41465A551913A1C
+            CB5257BC080909892A90FDCF9A0685416A5A0951670AD100144D3D9365C02885
+            7342886A3FCA35375F83FA4BB574B18E68F1F7CDDFB90B8C462357331311014A
+            9D338E1A8FFF931C1BB3C267074AED7BCE57DFDB53C4C3A4A0378479A3A8220A
+            F554515513A2F11435A684382260F792C75A110C40C350AE745FB16CD6BBBB0B
+            A53D158DF5989C00235AFBAFAF2F076058CE7BFBD8BD611833FAC0E4AC597C9B
+            44818F3F2A91810B76ED7119666F045C5953057EC3FF4053F212E80D8FE469E0
+            BC0561E66E486C6C8061FFC7A1367D0D8C79197589F649E93E19F89D82DD0E86
+            66A861620232AA2AC11F41193526A5405F788423289AACA9C70C8BAFFDCAE528
+            F88F6B3261CAC3430AE0A7FB3F9481DFC6E41283421FFE2323B0BEB2421785C6
+            C464E80937F1B9A9D70C494D8D3AB98AB51BE09EAF1F2F12BA355A723980F3F2
+            0BC4C2E0EF917D3D908C65E04C579F4D82EEB07088E8EB8594E64617EB8BC13C
+            DF24E70152D9C1FD32C68EBC9DDC5D2208D3C528AABCA549A7DC121804F30607
+            74FC86F84430A351CC7A311F0E971D9081B7EFC8572B51C86A4721A0E7BFF5C1
+            73ADCDF0206A884F80AE907056854E554EE0C8E18332F01B6FE6E9CD23C0BB14
+            654753F01B2D33825E894B80CED0F9B21ED17ACCDAF223653270EEB6B79CEA4E
+            3440E18A56355D85D03B433A915B4F07C0C5C41481A33612C5A9891C2D3F2403
+            E7E46E975DD5B90F1063F91D96B65D9FD1E3CB0BE3A02338C4D94D49EFB1A35F
+            C8C0D939DBD45D60094164DF63FA2DB0ACFDC603F7B83E360EDAE706AB3A9C13
+            15E727BE2A9781B766E7F24576BAA8E142D0DBFDB0BCE3A60EA4EFA93910F6E7
+            1F3A7E5DF44268A3E0ACCFF318123879E24B1978F3961C57BB0BB183B7614567
+            9B8EFF73540CB40505C3A2817E48ED6AD7AD5F5A100B3703E7F20D63BA4F7D7D
+            4C067E65733610614BE8CF93F747E1F52BF57AD0C868B88E4A5960160DA071DD
+            1D3AB9F2E753E1AE8F8FA4F7CCE9E33270D6A6ADDAB1E7F0DB303509AF61D3A7
+            0630AA8D5800AD014142BAA8143734002BCD9D9CFFB7CF6C389EB4046CEE1E3C
+            D854F6EC372765E08D59AFBA0CB58F6D1CB660D7A2E0174D51D08A65A368C793
+            742AE2E499A14158D5D3057F21E869EC5EA3064F5DA8BF3D774A06DEB0719394
+            FD8E6220E0393D09B3C76D70D7DBE858145D16E64F58AD30EAE9859EBA39F410
+            E08956F1DD19F96FEBD6BFAC77572C47EE9AC8566F15847729F59EC5DEC58EC5
+            E8FCF76765E0CC7559DA954EBC553A3967EF9EC28A547A82659A6A5E4CDC6D80
+            0BE7CF7160FB652F2DFD2530180CD2DFB93A670B5C45650612F5D86C36F8A9A6
+            92BE8EF0EB6D24D665C8BC5010A2261DE0C03A2FBB08F20EA7F09B30BF69B2B6
+            A7303DAA8CC5720BBABAEC6567BFDEA6E1A8717373031366ED9C804087E76C3F
+            0520D6F8795FD380C5C388075C9BD8C6C7E10E1E2CBD98F1D3D3D39495463256
+            AF85EAAA1F1EE9270C621691F48C4CFBACA6FAC223F968433CFB47DB7F96D01C
+            E3556521AB0000000049454E44AE426082}
+          Proportional = True
+          ShowHint = True
+          Stretch = True
+          Transparent = True
+          OnClick = btnDeleteShipClick
+        end
+        object lvShipList: TListView
+          Left = 21
+          Top = 65
+          Width = 392
+          Height = 840
+          Columns = <
+            item
+              Caption = 'ID'
+            end
+            item
+              Caption = 'Ship Name'
+              Width = 200
+            end
+            item
+              Alignment = taCenter
+              Caption = 'Domain'
+              Width = 110
+            end>
+          GridLines = True
+          ReadOnly = True
+          RowSelect = True
+          TabOrder = 0
+          ViewStyle = vsReport
+          OnClick = lvShipListClick
+          OnKeyPress = lvListScenKeyPress
+        end
+      end
+      object pnl3: TPanel
+        Left = 434
+        Top = 0
+        Width = 3
+        Height = 911
+        Align = alLeft
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+      end
+      object pnlMainShip: TAdvSmoothPanel
+        Left = 437
+        Top = 0
+        Width = 1486
         Height = 911
         Cursor = crDefault
         Caption.Location = plTopCenter
@@ -250696,16 +250945,13 @@ object frmGameController: TfrmGameController
         Fill.Glow = gmNone
         Version = '1.6.0.1'
         Align = alClient
-        TabOrder = 0
-        DesignSize = (
-          1923
-          911)
+        TabOrder = 2
         TMSStyle = 0
-        object AdvSmoothPanel5: TAdvSmoothPanel
-          Left = 138
-          Top = 62
-          Width = 1072
-          Height = 788
+        object pnlHeaderShip: TAdvSmoothPanel
+          Left = 0
+          Top = 0
+          Width = 1486
+          Height = 74
           Cursor = crDefault
           Caption.Location = plTopCenter
           Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -250737,812 +250983,56 @@ object frmGameController: TfrmGameController
           Fill.ShadowColor = clNone
           Fill.ShadowOffset = 10
           Fill.Glow = gmNone
-          Fill.GlowGradientColor = 7301478
-          Fill.GlowRadialColor = 7301478
           Version = '1.6.0.1'
-          Anchors = [akTop, akRight]
+          Align = alTop
           TabOrder = 0
           TMSStyle = 0
-          object Label8: TLabel
-            Left = 58
-            Top = 146
-            Width = 62
-            Height = 18
-            Caption = 'Sea State'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label9: TLabel
-            Left = 58
-            Top = 229
-            Width = 80
-            Height = 18
-            Caption = 'Wind Speed'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label10: TLabel
-            Left = 58
-            Top = 312
-            Width = 93
-            Height = 18
-            Caption = 'Current Speed'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label11: TLabel
-            Left = 58
-            Top = 395
-            Width = 86
-            Height = 18
-            Caption = 'Temperature'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label12: TLabel
-            Left = 58
-            Top = 478
-            Width = 129
-            Height = 18
-            Caption = 'Barometer Pressure'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label13: TLabel
-            Left = 58
-            Top = 561
-            Width = 60
-            Height = 18
-            Caption = 'Humidity'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label14: TLabel
-            Left = 58
-            Top = 644
-            Width = 82
-            Height = 18
-            Caption = 'Fog Intensity'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblSeaState: TLabel
-            Left = 904
-            Top = 146
-            Width = 9
-            Height = 19
-            Caption = '1'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblWindSpeed: TLabel
-            Left = 904
-            Top = 228
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblCurrentSpeed: TLabel
-            Left = 904
-            Top = 311
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblTemperature: TLabel
-            Left = 904
-            Top = 394
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblBaroPresure: TLabel
-            Left = 904
-            Top = 477
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblHumidity: TLabel
-            Left = 904
-            Top = 560
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblFogHeight: TLabel
-            Left = 904
-            Top = 643
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label21: TLabel
-            Left = 957
-            Top = 148
-            Width = 35
-            Height = 15
-            Caption = 'State'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label22: TLabel
-            Left = 956
-            Top = 230
-            Width = 35
-            Height = 15
-            Caption = 'Knots'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label23: TLabel
-            Left = 956
-            Top = 313
-            Width = 35
-            Height = 15
-            Caption = 'Knots'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label24: TLabel
-            Left = 953
-            Top = 396
-            Width = 49
-            Height = 15
-            Caption = 'Celcius'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label25: TLabel
-            Left = 954
-            Top = 479
-            Width = 49
-            Height = 15
-            Caption = 'MiliBar'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label26: TLabel
-            Left = 953
-            Top = 562
-            Width = 42
-            Height = 15
-            Caption = 'Persen'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label27: TLabel
-            Left = 959
-            Top = 645
-            Width = 28
-            Height = 15
-            Caption = 'Feet'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-            Visible = False
-          end
-          object Label28: TLabel
-            Left = 58
-            Top = 85
-            Width = 39
-            Height = 18
-            Caption = 'Port :'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB Demi'
-            Font.Style = [fsBold]
-            ParentFont = False
-            Transparent = True
-          end
-          object grpSeaState: TGroupBox
-            Left = 213
-            Top = 126
-            Width = 637
-            Height = 58
-            DragKind = dkDock
+          object lblShipName1: TLabel
+            Left = 0
+            Top = 0
+            Width = 1486
+            Height = 74
+            Align = alClient
+            Alignment = taCenter
+            Caption = 'Ship Name'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
+            Font.Color = clWhite
+            Font.Height = -15
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
-            TabOrder = 0
-            object tbSeaState: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 5
-              MinValue = 1
-              Position = 1
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              OnChange = tbSeaStateChange
-              TabOrder = 0
-              OnMouseUp = tbSeaStateMouseUp
-            end
-          end
-          object GroupBox2: TGroupBox
-            Left = 212
-            Top = 209
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 1
-            object tbWindSpeed: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 50
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbWindSpeedMouseUp
-            end
-          end
-          object grpCurrentSpeed: TGroupBox
-            Left = 216
-            Top = 292
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 2
-            object tbSeaSpeed: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 50
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbSeaSpeedMouseUp
-            end
-          end
-          object GroupBox4: TGroupBox
-            Left = 216
-            Top = 375
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 3
-            object tbTemp: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              Position = 1
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbTempMouseUp
-            end
-          end
-          object GroupBox5: TGroupBox
-            Left = 216
-            Top = 458
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 4
-            object tbBaroPressure: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 5000
-              Position = 1
-              Frequency = 100
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbBaroPressureMouseUp
-            end
-          end
-          object GroupBox6: TGroupBox
-            Left = 217
-            Top = 624
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 5
-            object tbFogH: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 3
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              OnChange = tbFogHChange
-              TabOrder = 0
-              OnMouseUp = tbFogHMouseUp
-            end
-          end
-          object GroupBox7: TGroupBox
-            Left = 216
-            Top = 541
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 6
-            object tbHumidity: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              Position = 1
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbHumidityMouseUp
-            end
+            Layout = tlCenter
+            ExplicitWidth = 80
+            ExplicitHeight = 18
           end
         end
-        object AdvSmoothPanel4: TAdvSmoothPanel
-          Left = 1348
-          Top = 62
-          Width = 436
-          Height = 377
-          Cursor = crDefault
-          Caption.Location = plTopCenter
-          Caption.HatchStyle = HatchStyleDiagonalBrick
-          Caption.HTMLFont.Charset = DEFAULT_CHARSET
-          Caption.HTMLFont.Color = clWindowText
-          Caption.HTMLFont.Height = -13
-          Caption.HTMLFont.Name = 'Tahoma'
-          Caption.HTMLFont.Style = []
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -16
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.Top = 20
-          Caption.ColorStart = clWhite
-          Caption.ColorEnd = clWhite
-          Caption.GradientType = gtHorizontal
-          Caption.LineColor = clBlack
-          Caption.Line = False
-          Fill.Color = 7301478
-          Fill.ColorTo = 10066329
-          Fill.ColorMirror = 10066329
-          Fill.ColorMirrorTo = 7301478
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtVertical
-          Fill.BorderColor = clSilver
-          Fill.BorderWidth = 5
-          Fill.Rounding = 10
-          Fill.ShadowColor = clNone
-          Fill.ShadowOffset = 10
-          Fill.Glow = gmNone
-          Version = '1.6.0.1'
-          Anchors = [akTop, akRight]
+        object pnl2: TPanel
+          Left = 0
+          Top = 74
+          Width = 1486
+          Height = 3
+          Align = alTop
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
           TabOrder = 1
-          TMSStyle = 0
-          object Label4: TLabel
-            Left = 156
-            Top = 63
-            Width = 100
-            Height = 17
-            Caption = 'Wind Direction'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Segoe UI Symbol'
-            Font.Style = [fsBold]
-            ParentFont = False
-            Transparent = True
-          end
-          object vrwhlWindDirec: TVrWheel
-            Tag = 9
-            Left = 108
-            Top = 117
-            Width = 85
-            Height = 85
-            MaxValue = 360
-            Position = 180
-            BackImage.Data = {
-              120F0000424D120F000000000000760000002800000055000000550000000100
-              0400000000009C0E000000000000000000001000000000000000000000000000
-              80000080000000808000800000008000800080800000C0C0C000808080000000
-              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-              3333333333333333333333333333333333333333333333333333333333333333
-              3333333330003333333333333333333333333333333333333333333333333333
-              3333333333333333333333333333333330003333333333333333333333333333
-              3333333333333333333333333333333333333333333333333333333330003333
-              3333333333333333333333333333333333333333333333333333333333333333
-              3333333333333333300033333333333333333333333333333333333000000000
-              0000033333333333333333333333333333333333300033333333333333333333
-              3333333333300008888888888888800003333333333333333333333333333333
-              3000333333333333333333333333333300088888888888888888888880003333
-              3333333333333333333333333000333333333333333333333333300088888888
-              8888888888888888888800033333333333333333333333333000333333333333
-              3333333333300888888888887777777777778888888888800333333333333333
-              3333333330003333333333333333333333088888888877777777777777777777
-              8888888880333333333333333333333330003333333333333333333300888888
-              8777777777777777777777777778888888003333333333333333333330003333
-              3333333333333330888888877777777777777777777777777777788888880333
-              3333333333333333300033333333333333333008888887777777777777777777
-              7777777777777778888880033333333333333333300033333333333333330888
-              8887777777777777777777777777777777777777788888803333333333333333
-              3000333333333333333088888877777777777777777777777777777777777777
-              7788888803333333333333333000333333333333330888887777777777777777
-              7777777777777777777777777777888880333333333333333000333333333333
-              30F8888777777777777777777777777777777777777777777777788888033333
-              3333333330003333333333330FF8887777777777777777777777777777777777
-              777777777777778888803333333333333000333333333330FFFFF77777777777
-              7777777777777777777777777777777777777778888803333333333330003333
-              3333330FFFFF7777777777777777777777777777777777777777777777777777
-              8888803333333333300033333333330FFFF77777777777777777777777777777
-              777777777777777777777777788880333333333330003333333330FFFF777777
-              7777777777777777777777777777777777777777777777777788880333333333
-              3000333333330FFFF77777777777777777777777777777777777777777777777
-              7777777777788880333333333000333333330FFFF77777777777777777777777
-              777777777777777777777777777777777778888033333333300033333330FFFF
-              7777777777777777777777777777777777777777777777777777777777778888
-              0333333330003333330FFFF77777777777777777777777777777777777777777
-              7777777777777777777778888033333330003333330FFFF77777777777777777
-              7777777777777777777777777777777777777777777778888033333330003333
-              30FFFF7777777777777777777777777777777777777777777777777777777777
-              77777788880333333000333330FFFF7777777777777777777777777777777777
-              77777777777777777777777777777788880333333000333330FFF77777777777
-              7777777777777777777777777777777777777777777777777777777888033333
-              300033330FFFF777777777777777777777777777777777777777777777777777
-              777777777777777888803333300033330FFF7777777777777777777777777777
-              777777777777777777777777777777777777777788803333300033330FFF7777
-              7777777777777777777777777777777777777777777777777777777777777777
-              8880333330003330FFFF77777777777777777777777777777777777777777777
-              7777777777777777777777778888033330003330FFF777777777777777777777
-              7777777777777777777777777777777777777777777777777888033330003330
-              FFF7777777777777777777777777777777777777777777777777777777777777
-              777777777888033330003330FFF7777777777777777777777777777777777777
-              77777777777777777777777777777777788803333000330FFFF7777777777777
-              7777777777777777777777777777777777777777777777777777777778888033
-              3000330FFF777777777777777777777777777777777777777777777777777777
-              7777777777777777778880333000330FFF777777777777777777777777777777
-              7777777777777777777777777777777777777777778880333000330FFF777777
-              7777777777777777777777777777777777777777777777777777777777777777
-              778880333000330FFF7777777777777777777777777777777777777777777777
-              777777777777777777777777778880333000330FFF7777777777777777777777
-              777777777777777777777777777777777777777777777777778880333000330F
-              FF77777777777777777777777777777777777777777777777777777777777777
-              77777777778880333000330FFF77777777777777777777777777777777777777
-              77777777777777777777777777777777778880333000330FFF77777777777777
-              7777777777777777777777777777777777777777777777777777777777888033
-              3000330FFF777777777777777777777777777777777777777777777777777777
-              7777777777777777778880333000330FFF777777777777777777777777777777
-              7777777777777777777777777777777777777777778880333000330FFF777777
-              7777777777777777777777777777777777777777777777777777777777777777
-              778880333000330FFFF777777777777777777777777777777777777777777777
-              777777777777777777777777788880333000330FFFF777777777777777777777
-              7777777777777777777777777777777777777777777777777888803330003330
-              FFF7777777777777777777777777777777777777777777777777777777777777
-              777777777888033330003330FFF7777777777777777777777777777777777777
-              777777777777777777777777777777777888033330003330FFFF777777777777
-              7777777777777777777777777777777777777777777777777777777788880333
-              30003330FFFF7777777777777777777777777777777777777777777777777777
-              777777777777777788880333300033330FFF7777777777777777777777777777
-              777777777777777777777777777777777777777788803333300033330FFFF777
-              7777777777777777777777777777777777777777777777777777777777777778
-              88803333300033330FFFF7777777777777777777777777777777777777777777
-              777777777777777777777778888033333000333330FFFF777777777777777777
-              7777777777777777777777777777777777777777777777888803333330003333
-              30FFFF7777777777777777777777777777777777777777777777777777777777
-              77777788880333333000333330FFFFF777777777777777777777777777777777
-              777777777777777777777777777778888803333330003333330FFFF777777777
-              7777777777777777777777777777777777777777777777777777788880333333
-              30003333330FFFFF777777777777777777777777777777777777777777777777
-              777777777777888880333333300033333330FFFFF77777777777777777777777
-              7777777777777777777777777777777777788888033333333000333333330FFF
-              F777777777777777777777777777777777777777777777777777777777788880
-              333333333000333333330FFFFF77777777777777777777777777777777777777
-              7777777777777777778888803333333330003333333330FFFFF7777777777777
-              7777777777777777777777777777777777777777788888033333333330003333
-              3333330FFFFF7777777777777777777777777777777777777777777777777777
-              8888803333333333300033333333330FFFFFF777777777777777777777777777
-              77777777777777777777777788888033333333333000333333333330FFFFFF77
-              7777777777777777777777777777777777777777777777FF8888033333333333
-              30003333333333330FFFFFF77777777777777777777777777777777777777777
-              77777FFF8880333333333333300033333333333330FFFFFF7777777777777777
-              7777777777777777777777777777FFFFFF033333333333333000333333333333
-              330FFFFFF777777777777777777777777777777777777777777FFFFFF0333333
-              3333333330003333333333333330FFFFFFF77777777777777777777777777777
-              777777777FFFFFFF0333333333333333300033333333333333330FFFFFFF7777
-              77777777777777777777777777777777FFFFFFF0333333333333333330003333
-              333333333333300FFFFFFF77777777777777777777777777777777FFFFFFF003
-              3333333333333333300033333333333333333330FFFFFFFF7777777777777777
-              777777777777FFFFFFFF03333333333333333333300033333333333333333333
-              00FFFFFFFF777777777777777777777777FFFFFFFF0033333333333333333333
-              300033333333333333333333330FFFFFFFFFF777777777777777777FFFFFFFFF
-              F0333333333333333333333330003333333333333333333333300FFFFFFFFFFF
-              F7777777777FFFFFFFFFFFF00333333333333333333333333000333333333333
-              3333333333333000FFFFFFFFFFFFFFFFFFFFFFFFFFFF00033333333333333333
-              3333333330003333333333333333333333333333000FFFFFFFFFFFFFFFFFFFFF
-              F000333333333333333333333333333330003333333333333333333333333333
-              3330000FFFFFFFFFFFFFF0000333333333333333333333333333333330003333
-              3333333333333333333333333333333000000000000003333333333333333333
-              3333333333333333300033333333333333333333333333333333333333333333
-              33333333333333333333333333333333333333333000}
-            HandleImage.Data = {
-              BE000000424DBE00000000000000760000002800000009000000090000000100
-              0400000000004800000000000000000000001000000000000000000000000000
-              80000080000000808000800000008000800080800000C0C0C000808080000000
-              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
-              0000333000333000000033099903300000003099999030000000309999903000
-              0000307999903000000033077903300000003330003330000000333333333000
-              0000}
-            OnChange = vrwhlWindDirecChange
-          end
-          object lblWindDirection: TLabel
-            Left = 313
-            Top = 319
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label6: TLabel
-            Left = 345
-            Top = 317
-            Width = 50
-            Height = 21
-            Caption = 'Degree'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
         end
-        object AdvSmoothPanel3: TAdvSmoothPanel
-          Left = 1348
-          Top = 473
-          Width = 436
-          Height = 377
+        object pnlDetailWeapon: TAdvSmoothPanel
+          Left = 592
+          Top = 77
+          Width = 894
+          Height = 834
           Cursor = crDefault
-          Caption.Location = plTopCenter
-          Caption.HatchStyle = HatchStyleDiagonalBrick
           Caption.HTMLFont.Charset = DEFAULT_CHARSET
           Caption.HTMLFont.Color = clWindowText
-          Caption.HTMLFont.Height = -13
+          Caption.HTMLFont.Height = -11
           Caption.HTMLFont.Name = 'Tahoma'
           Caption.HTMLFont.Style = []
           Caption.Font.Charset = DEFAULT_CHARSET
           Caption.Font.Color = clWindowText
           Caption.Font.Height = -16
           Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.Top = 20
-          Caption.ColorStart = clWhite
-          Caption.ColorEnd = clWhite
-          Caption.GradientType = gtHorizontal
-          Caption.LineColor = clBlack
-          Caption.Line = False
+          Caption.Font.Style = []
           Fill.Color = 7301478
           Fill.ColorTo = 10066329
           Fill.ColorMirror = 10066329
@@ -251556,191 +251046,1650 @@ object frmGameController: TfrmGameController
           Fill.ShadowOffset = 10
           Fill.Glow = gmNone
           Version = '1.6.0.1'
-          Anchors = [akTop, akRight]
+          Align = alClient
           TabOrder = 2
-          TMSStyle = 0
-          object Label1: TLabel
-            Left = 156
-            Top = 66
-            Width = 116
-            Height = 17
-            Caption = 'Current Direction'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Segoe UI Symbol'
-            Font.Style = [fsBold]
-            ParentFont = False
-            Transparent = True
+          TMSStyle = 4
+          object pnl2DRelated: TAdvSmoothPanel
+            Left = 16
+            Top = 653
+            Width = 858
+            Height = 190
+            Cursor = crDefault
+            Caption.Location = plTopCenter
+            Caption.HatchStyle = HatchStyleDiagonalBrick
+            Caption.HTMLFont.Charset = DEFAULT_CHARSET
+            Caption.HTMLFont.Color = clWindowText
+            Caption.HTMLFont.Height = -13
+            Caption.HTMLFont.Name = 'Tahoma'
+            Caption.HTMLFont.Style = []
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -16
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.Top = 20
+            Caption.ColorStart = clWhite
+            Caption.ColorEnd = clWhite
+            Caption.GradientType = gtHorizontal
+            Caption.LineColor = clBlack
+            Caption.Line = False
+            Fill.Color = 7301478
+            Fill.ColorTo = 10066329
+            Fill.ColorMirror = 10066329
+            Fill.ColorMirrorTo = 7301478
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtVertical
+            Fill.BorderColor = clSilver
+            Fill.BorderWidth = 5
+            Fill.Rounding = 10
+            Fill.ShadowColor = clNone
+            Fill.ShadowOffset = 10
+            Fill.Glow = gmNone
+            Version = '1.6.0.1'
+            TabOrder = 1
+            TMSStyle = 0
+            object AdvSmoothLabel44: TAdvSmoothLabel
+              Left = 332
+              Top = 333
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = '2D Relevant'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = '2D Relevant'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel29: TAdvSmoothLabel
+              Left = 19
+              Top = 27
+              Width = 50
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Range'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Range'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object lvDetail: TListView
+              Left = 42
+              Top = 65
+              Width = 774
+              Height = 100
+              Columns = <
+                item
+                  Caption = 'Type'
+                  Width = 40
+                end
+                item
+                  Caption = 'Detail Name'
+                  Width = 250
+                end
+                item
+                  Alignment = taCenter
+                  Caption = 'Start Degree'
+                  Width = 110
+                end
+                item
+                  Alignment = taCenter
+                  Caption = 'End Degree'
+                  Width = 110
+                end
+                item
+                  Alignment = taCenter
+                  Caption = 'Min Range'
+                  Width = 110
+                end
+                item
+                  Alignment = taCenter
+                  Caption = 'Max Range'
+                  Width = 110
+                end>
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              GridLines = True
+              RowSelect = True
+              ParentFont = False
+              TabOrder = 0
+              ViewStyle = vsReport
+            end
           end
-          object vrwhlSeaDirection: TVrWheel
-            Tag = 9
-            Left = 118
-            Top = 118
-            Width = 85
-            Height = 85
-            MaxValue = 360
-            Position = 180
-            BackImage.Data = {
-              120F0000424D120F000000000000760000002800000055000000550000000100
-              0400000000009C0E000000000000000000001000000000000000000000000000
-              80000080000000808000800000008000800080800000C0C0C000808080000000
-              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-              3333333333333333333333333333333333333333333333333333333333333333
-              3333333330003333333333333333333333333333333333333333333333333333
-              3333333333333333333333333333333330003333333333333333333333333333
-              3333333333333333333333333333333333333333333333333333333330003333
-              3333333333333333333333333333333333333333333333333333333333333333
-              3333333333333333300033333333333333333333333333333333333000000000
-              0000033333333333333333333333333333333333300033333333333333333333
-              3333333333300008888888888888800003333333333333333333333333333333
-              3000333333333333333333333333333300088888888888888888888880003333
-              3333333333333333333333333000333333333333333333333333300088888888
-              8888888888888888888800033333333333333333333333333000333333333333
-              3333333333300888888888887777777777778888888888800333333333333333
-              3333333330003333333333333333333333088888888877777777777777777777
-              8888888880333333333333333333333330003333333333333333333300888888
-              8777777777777777777777777778888888003333333333333333333330003333
-              3333333333333330888888877777777777777777777777777777788888880333
-              3333333333333333300033333333333333333008888887777777777777777777
-              7777777777777778888880033333333333333333300033333333333333330888
-              8887777777777777777777777777777777777777788888803333333333333333
-              3000333333333333333088888877777777777777777777777777777777777777
-              7788888803333333333333333000333333333333330888887777777777777777
-              7777777777777777777777777777888880333333333333333000333333333333
-              30F8888777777777777777777777777777777777777777777777788888033333
-              3333333330003333333333330FF8887777777777777777777777777777777777
-              777777777777778888803333333333333000333333333330FFFFF77777777777
-              7777777777777777777777777777777777777778888803333333333330003333
-              3333330FFFFF7777777777777777777777777777777777777777777777777777
-              8888803333333333300033333333330FFFF77777777777777777777777777777
-              777777777777777777777777788880333333333330003333333330FFFF777777
-              7777777777777777777777777777777777777777777777777788880333333333
-              3000333333330FFFF77777777777777777777777777777777777777777777777
-              7777777777788880333333333000333333330FFFF77777777777777777777777
-              777777777777777777777777777777777778888033333333300033333330FFFF
-              7777777777777777777777777777777777777777777777777777777777778888
-              0333333330003333330FFFF77777777777777777777777777777777777777777
-              7777777777777777777778888033333330003333330FFFF77777777777777777
-              7777777777777777777777777777777777777777777778888033333330003333
-              30FFFF7777777777777777777777777777777777777777777777777777777777
-              77777788880333333000333330FFFF7777777777777777777777777777777777
-              77777777777777777777777777777788880333333000333330FFF77777777777
-              7777777777777777777777777777777777777777777777777777777888033333
-              300033330FFFF777777777777777777777777777777777777777777777777777
-              777777777777777888803333300033330FFF7777777777777777777777777777
-              777777777777777777777777777777777777777788803333300033330FFF7777
-              7777777777777777777777777777777777777777777777777777777777777777
-              8880333330003330FFFF77777777777777777777777777777777777777777777
-              7777777777777777777777778888033330003330FFF777777777777777777777
-              7777777777777777777777777777777777777777777777777888033330003330
-              FFF7777777777777777777777777777777777777777777777777777777777777
-              777777777888033330003330FFF7777777777777777777777777777777777777
-              77777777777777777777777777777777788803333000330FFFF7777777777777
-              7777777777777777777777777777777777777777777777777777777778888033
-              3000330FFF777777777777777777777777777777777777777777777777777777
-              7777777777777777778880333000330FFF777777777777777777777777777777
-              7777777777777777777777777777777777777777778880333000330FFF777777
-              7777777777777777777777777777777777777777777777777777777777777777
-              778880333000330FFF7777777777777777777777777777777777777777777777
-              777777777777777777777777778880333000330FFF7777777777777777777777
-              777777777777777777777777777777777777777777777777778880333000330F
-              FF77777777777777777777777777777777777777777777777777777777777777
-              77777777778880333000330FFF77777777777777777777777777777777777777
-              77777777777777777777777777777777778880333000330FFF77777777777777
-              7777777777777777777777777777777777777777777777777777777777888033
-              3000330FFF777777777777777777777777777777777777777777777777777777
-              7777777777777777778880333000330FFF777777777777777777777777777777
-              7777777777777777777777777777777777777777778880333000330FFF777777
-              7777777777777777777777777777777777777777777777777777777777777777
-              778880333000330FFFF777777777777777777777777777777777777777777777
-              777777777777777777777777788880333000330FFFF777777777777777777777
-              7777777777777777777777777777777777777777777777777888803330003330
-              FFF7777777777777777777777777777777777777777777777777777777777777
-              777777777888033330003330FFF7777777777777777777777777777777777777
-              777777777777777777777777777777777888033330003330FFFF777777777777
-              7777777777777777777777777777777777777777777777777777777788880333
-              30003330FFFF7777777777777777777777777777777777777777777777777777
-              777777777777777788880333300033330FFF7777777777777777777777777777
-              777777777777777777777777777777777777777788803333300033330FFFF777
-              7777777777777777777777777777777777777777777777777777777777777778
-              88803333300033330FFFF7777777777777777777777777777777777777777777
-              777777777777777777777778888033333000333330FFFF777777777777777777
-              7777777777777777777777777777777777777777777777888803333330003333
-              30FFFF7777777777777777777777777777777777777777777777777777777777
-              77777788880333333000333330FFFFF777777777777777777777777777777777
-              777777777777777777777777777778888803333330003333330FFFF777777777
-              7777777777777777777777777777777777777777777777777777788880333333
-              30003333330FFFFF777777777777777777777777777777777777777777777777
-              777777777777888880333333300033333330FFFFF77777777777777777777777
-              7777777777777777777777777777777777788888033333333000333333330FFF
-              F777777777777777777777777777777777777777777777777777777777788880
-              333333333000333333330FFFFF77777777777777777777777777777777777777
-              7777777777777777778888803333333330003333333330FFFFF7777777777777
-              7777777777777777777777777777777777777777788888033333333330003333
-              3333330FFFFF7777777777777777777777777777777777777777777777777777
-              8888803333333333300033333333330FFFFFF777777777777777777777777777
-              77777777777777777777777788888033333333333000333333333330FFFFFF77
-              7777777777777777777777777777777777777777777777FF8888033333333333
-              30003333333333330FFFFFF77777777777777777777777777777777777777777
-              77777FFF8880333333333333300033333333333330FFFFFF7777777777777777
-              7777777777777777777777777777FFFFFF033333333333333000333333333333
-              330FFFFFF777777777777777777777777777777777777777777FFFFFF0333333
-              3333333330003333333333333330FFFFFFF77777777777777777777777777777
-              777777777FFFFFFF0333333333333333300033333333333333330FFFFFFF7777
-              77777777777777777777777777777777FFFFFFF0333333333333333330003333
-              333333333333300FFFFFFF77777777777777777777777777777777FFFFFFF003
-              3333333333333333300033333333333333333330FFFFFFFF7777777777777777
-              777777777777FFFFFFFF03333333333333333333300033333333333333333333
-              00FFFFFFFF777777777777777777777777FFFFFFFF0033333333333333333333
-              300033333333333333333333330FFFFFFFFFF777777777777777777FFFFFFFFF
-              F0333333333333333333333330003333333333333333333333300FFFFFFFFFFF
-              F7777777777FFFFFFFFFFFF00333333333333333333333333000333333333333
-              3333333333333000FFFFFFFFFFFFFFFFFFFFFFFFFFFF00033333333333333333
-              3333333330003333333333333333333333333333000FFFFFFFFFFFFFFFFFFFFF
-              F000333333333333333333333333333330003333333333333333333333333333
-              3330000FFFFFFFFFFFFFF0000333333333333333333333333333333330003333
-              3333333333333333333333333333333000000000000003333333333333333333
-              3333333333333333300033333333333333333333333333333333333333333333
-              33333333333333333333333333333333333333333000}
-            HandleImage.Data = {
-              BE000000424DBE00000000000000760000002800000009000000090000000100
-              0400000000004800000000000000000000001000000000000000000000000000
-              80000080000000808000800000008000800080800000C0C0C000808080000000
-              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
-              0000333000333000000033099903300000003099999030000000309999903000
-              0000307999903000000033077903300000003330003330000000333333333000
-              0000}
-            OnChange = vrwhlSeaDirectionChange
+          object AdvSmoothPanel14: TAdvSmoothPanel
+            Left = 16
+            Top = 20
+            Width = 465
+            Height = 618
+            Cursor = crDefault
+            Caption.Location = plTopCenter
+            Caption.HatchStyle = HatchStyleDiagonalBrick
+            Caption.HTMLFont.Charset = DEFAULT_CHARSET
+            Caption.HTMLFont.Color = clWindowText
+            Caption.HTMLFont.Height = -13
+            Caption.HTMLFont.Name = 'Tahoma'
+            Caption.HTMLFont.Style = []
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -16
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.Top = 20
+            Caption.ColorStart = clWhite
+            Caption.ColorEnd = clWhite
+            Caption.GradientType = gtHorizontal
+            Caption.LineColor = clBlack
+            Caption.Line = False
+            Fill.Color = 7301478
+            Fill.ColorTo = 10066329
+            Fill.ColorMirror = 10066329
+            Fill.ColorMirrorTo = 7301478
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtVertical
+            Fill.BorderColor = clSilver
+            Fill.BorderWidth = 5
+            Fill.Rounding = 10
+            Fill.ShadowColor = clNone
+            Fill.ShadowOffset = 10
+            Fill.Glow = gmNone
+            Version = '1.6.0.1'
+            TabOrder = 2
+            TMSStyle = 0
+            object AdvSmoothLabel42: TAdvSmoothLabel
+              Left = 19
+              Top = 19
+              Width = 63
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Weapon'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Weapon'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object lvWeaponSelect: TListView
+              Left = 34
+              Top = 54
+              Width = 397
+              Height = 531
+              Columns = <
+                item
+                  Caption = 'ID'
+                  Width = 40
+                end
+                item
+                  Caption = 'Weapon Name'
+                  Width = 150
+                end
+                item
+                  Alignment = taCenter
+                  Caption = 'Launcher'
+                  Width = 80
+                end
+                item
+                  Alignment = taCenter
+                  Caption = 'Number #'
+                  Width = 80
+                end>
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = [fsBold]
+              GridLines = True
+              RowSelect = True
+              ParentFont = False
+              TabOrder = 0
+              ViewStyle = vsReport
+              OnSelectItem = lvWeaponSelectSelectItem
+            end
           end
-          object Label2: TLabel
-            Left = 345
-            Top = 321
-            Width = 50
+          object pnlDetail: TAdvSmoothPanel
+            Left = 495
+            Top = 20
+            Width = 383
+            Height = 612
+            Cursor = crDefault
+            Caption.Location = plTopCenter
+            Caption.HatchStyle = HatchStyleDiagonalBrick
+            Caption.HTMLFont.Charset = DEFAULT_CHARSET
+            Caption.HTMLFont.Color = clWindowText
+            Caption.HTMLFont.Height = -13
+            Caption.HTMLFont.Name = 'Tahoma'
+            Caption.HTMLFont.Style = []
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -16
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.Top = 20
+            Caption.ColorStart = clWhite
+            Caption.ColorEnd = clWhite
+            Caption.GradientType = gtHorizontal
+            Caption.LineColor = clBlack
+            Caption.Line = False
+            Fill.Color = 7301478
+            Fill.ColorTo = 10066329
+            Fill.ColorMirror = 10066329
+            Fill.ColorMirrorTo = 7301478
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtVertical
+            Fill.BorderColor = clSilver
+            Fill.BorderWidth = 5
+            Fill.Rounding = 10
+            Fill.ShadowColor = clNone
+            Fill.ShadowOffset = 10
+            Fill.Glow = gmNone
+            Version = '1.6.0.1'
+            TabOrder = 0
+            TMSStyle = 0
+            object AdvSmoothLabel11: TAdvSmoothLabel
+              Left = 34
+              Top = 54
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Model Body'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel12: TAdvSmoothLabel
+              Left = 34
+              Top = 112
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Model Spout'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel19: TAdvSmoothLabel
+              Left = 34
+              Top = 170
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'DOF 1'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel36: TAdvSmoothLabel
+              Left = 34
+              Top = 228
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'DOF 2'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel37: TAdvSmoothLabel
+              Left = 34
+              Top = 344
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Pos Pitch'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel38: TAdvSmoothLabel
+              Left = 34
+              Top = 460
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Pos Heading'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel39: TAdvSmoothLabel
+              Left = 34
+              Top = 286
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Switch'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object advsmthlbl9: TAdvSmoothLabel
+              Left = 34
+              Top = 402
+              Width = 127
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Using 3D Actor'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel40: TAdvSmoothLabel
+              Left = 34
+              Top = 518
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Lethality'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel10: TAdvSmoothLabel
+              Left = 19
+              Top = 19
+              Width = 95
+              Height = 17
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = '3D Relevant'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object edtSwitch: TEdit
+              Left = 34
+              Top = 308
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 0
+            end
+            object edt3DActor: TEdit
+              Left = 34
+              Top = 424
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 1
+            end
+            object edtPosHeading: TEdit
+              Left = 34
+              Top = 482
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 2
+            end
+            object edtPosPitch: TEdit
+              Left = 34
+              Top = 366
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 3
+            end
+            object edtDOF1: TEdit
+              Left = 34
+              Top = 192
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 4
+            end
+            object edtDOF2: TEdit
+              Left = 34
+              Top = 250
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 5
+            end
+            object edtModelBody: TEdit
+              Left = 34
+              Top = 76
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 6
+            end
+            object edtModelSpout: TEdit
+              Left = 34
+              Top = 134
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 7
+            end
+            object edtLethality: TEdit
+              Left = 34
+              Top = 540
+              Width = 319
+              Height = 21
+              Enabled = False
+              ReadOnly = True
+              TabOrder = 8
+            end
+          end
+        end
+        object pnlDetailShip: TAdvSmoothPanel
+          Left = 0
+          Top = 77
+          Width = 589
+          Height = 834
+          Cursor = crDefault
+          Caption.HTMLFont.Charset = DEFAULT_CHARSET
+          Caption.HTMLFont.Color = clWindowText
+          Caption.HTMLFont.Height = -11
+          Caption.HTMLFont.Name = 'Tahoma'
+          Caption.HTMLFont.Style = []
+          Caption.Font.Charset = DEFAULT_CHARSET
+          Caption.Font.Color = clWindowText
+          Caption.Font.Height = -16
+          Caption.Font.Name = 'Tahoma'
+          Caption.Font.Style = []
+          Fill.Color = 7301478
+          Fill.ColorTo = 10066329
+          Fill.ColorMirror = 10066329
+          Fill.ColorMirrorTo = 7301478
+          Fill.GradientType = gtVertical
+          Fill.GradientMirrorType = gtVertical
+          Fill.BorderColor = clSilver
+          Fill.BorderWidth = 5
+          Fill.Rounding = 10
+          Fill.ShadowColor = clNone
+          Fill.ShadowOffset = 10
+          Fill.Glow = gmNone
+          Version = '1.6.0.1'
+          Align = alLeft
+          TabOrder = 3
+          TMSStyle = 4
+          object AdvSmoothLabel7: TAdvSmoothLabel
+            Left = 17
+            Top = 21
+            Width = 67
+            Height = 20
+            AutoSize = True
+            Fill.ColorMirror = clNone
+            Fill.ColorMirrorTo = clNone
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtSolid
+            Fill.BorderColor = clNone
+            Fill.Rounding = 0
+            Fill.ShadowOffset = 0
+            Fill.Glow = gmNone
+            Caption.Text = 'Class     :'
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -13
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.ColorStart = clSilver
+            Caption.ColorEnd = clWhite
+            CaptionShadow.Text = 'Class     :'
+            CaptionShadow.Font.Charset = DEFAULT_CHARSET
+            CaptionShadow.Font.Color = clWindowText
+            CaptionShadow.Font.Height = -27
+            CaptionShadow.Font.Name = 'Tahoma'
+            CaptionShadow.Font.Style = []
+            Version = '1.6.1.0'
+          end
+          object pnlDimension: TAdvSmoothPanel
+            Left = 18
+            Top = 56
+            Width = 554
+            Height = 102
+            Cursor = crDefault
+            Caption.Location = plTopCenter
+            Caption.HatchStyle = HatchStyleDiagonalBrick
+            Caption.HTMLFont.Charset = DEFAULT_CHARSET
+            Caption.HTMLFont.Color = clWindowText
+            Caption.HTMLFont.Height = -13
+            Caption.HTMLFont.Name = 'Tahoma'
+            Caption.HTMLFont.Style = []
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -16
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.Top = 20
+            Caption.ColorStart = clWhite
+            Caption.ColorEnd = clWhite
+            Caption.GradientType = gtHorizontal
+            Caption.LineColor = clBlack
+            Caption.Line = False
+            Fill.Color = 7301478
+            Fill.ColorTo = 10066329
+            Fill.ColorMirror = 10066329
+            Fill.ColorMirrorTo = 7301478
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtVertical
+            Fill.BorderColor = clSilver
+            Fill.BorderWidth = 5
+            Fill.Rounding = 10
+            Fill.ShadowColor = clNone
+            Fill.ShadowOffset = 10
+            Fill.Glow = gmNone
+            Version = '1.6.0.1'
+            TabOrder = 0
+            TMSStyle = 0
+            object AdvSmoothLabel16: TAdvSmoothLabel
+              Left = 32
+              Top = 54
+              Width = 63
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Length :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Length :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel18: TAdvSmoothLabel
+              Left = 203
+              Top = 54
+              Width = 57
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Width :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Width :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel20: TAdvSmoothLabel
+              Left = 378
+              Top = 54
+              Width = 61
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Height :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Height :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel23: TAdvSmoothLabel
+              Left = 141
+              Top = 54
+              Width = 36
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Feet'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel24: TAdvSmoothLabel
+              Left = 306
+              Top = 54
+              Width = 36
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Feet'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel26: TAdvSmoothLabel
+              Left = 485
+              Top = 54
+              Width = 36
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Feet'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel8: TAdvSmoothLabel
+              Left = 20
+              Top = 19
+              Width = 87
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Dimensions'
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Dimensions'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object edtShipHeight: TEdit
+              Left = 444
+              Top = 53
+              Width = 39
+              Height = 21
+              ReadOnly = True
+              TabOrder = 0
+            end
+            object edtShipwidth: TEdit
+              Left = 265
+              Top = 54
+              Width = 39
+              Height = 21
+              ReadOnly = True
+              TabOrder = 1
+            end
+            object edtShipLength: TEdit
+              Left = 100
+              Top = 54
+              Width = 39
+              Height = 21
+              ReadOnly = True
+              TabOrder = 2
+              Text = '1000'
+            end
+          end
+          object pnlPicture1: TAdvSmoothPanel
+            Left = 18
+            Top = 458
+            Width = 554
+            Height = 385
+            Cursor = crDefault
+            Caption.Location = plTopCenter
+            Caption.HatchStyle = HatchStyleDiagonalBrick
+            Caption.HTMLFont.Charset = DEFAULT_CHARSET
+            Caption.HTMLFont.Color = clWindowText
+            Caption.HTMLFont.Height = -13
+            Caption.HTMLFont.Name = 'Tahoma'
+            Caption.HTMLFont.Style = []
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -16
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.Top = 20
+            Caption.ColorStart = clWhite
+            Caption.ColorEnd = clWhite
+            Caption.GradientType = gtHorizontal
+            Caption.LineColor = clBlack
+            Caption.Line = False
+            Fill.Color = 7301478
+            Fill.ColorTo = 10066329
+            Fill.ColorMirror = 10066329
+            Fill.ColorMirrorTo = 7301478
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtVertical
+            Fill.BorderColor = clSilver
+            Fill.BorderWidth = 5
+            Fill.Rounding = 10
+            Fill.ShadowColor = clNone
+            Fill.ShadowOffset = 10
+            Fill.Glow = gmNone
+            Version = '1.6.0.1'
+            TabOrder = 1
+            TMSStyle = 0
+            object ImgKRI: TImage
+              Left = 63
+              Top = 62
+              Width = 427
+              Height = 308
+              ParentShowHint = False
+              Proportional = True
+              ShowHint = True
+            end
+            object AdvSmoothLabel9: TAdvSmoothLabel
+              Left = 19
+              Top = 27
+              Width = 48
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Model'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Model'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+          end
+          object pnlProperties: TAdvSmoothPanel
+            Left = 19
+            Top = 178
+            Width = 554
+            Height = 261
+            Cursor = crDefault
+            Caption.Location = plTopCenter
+            Caption.HatchStyle = HatchStyleDiagonalBrick
+            Caption.HTMLFont.Charset = DEFAULT_CHARSET
+            Caption.HTMLFont.Color = clWindowText
+            Caption.HTMLFont.Height = -13
+            Caption.HTMLFont.Name = 'Tahoma'
+            Caption.HTMLFont.Style = []
+            Caption.Font.Charset = DEFAULT_CHARSET
+            Caption.Font.Color = clWindowText
+            Caption.Font.Height = -16
+            Caption.Font.Name = 'Tahoma'
+            Caption.Font.Style = [fsBold]
+            Caption.Top = 20
+            Caption.ColorStart = clWhite
+            Caption.ColorEnd = clWhite
+            Caption.GradientType = gtHorizontal
+            Caption.LineColor = clBlack
+            Caption.Line = False
+            Fill.Color = 7301478
+            Fill.ColorTo = 10066329
+            Fill.ColorMirror = 10066329
+            Fill.ColorMirrorTo = 7301478
+            Fill.GradientType = gtVertical
+            Fill.GradientMirrorType = gtVertical
+            Fill.BorderColor = clSilver
+            Fill.BorderWidth = 5
+            Fill.Rounding = 10
+            Fill.ShadowColor = clNone
+            Fill.ShadowOffset = 10
+            Fill.Glow = gmNone
+            Version = '1.6.0.1'
+            TabOrder = 2
+            TMSStyle = 0
+            object AdvSmoothLabel52: TAdvSmoothLabel
+              Left = 258
+              Top = 81
+              Width = 39
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Knot'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel21: TAdvSmoothLabel
+              Left = 19
+              Top = 19
+              Width = 78
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Properties'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel25: TAdvSmoothLabel
+              Left = 31
+              Top = 54
+              Width = 163
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Max Speed                   :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Max Speed                   :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel27: TAdvSmoothLabel
+              Left = 31
+              Top = 81
+              Width = 164
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Max Speed Astern       :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Max Speed Astern       :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel17: TAdvSmoothLabel
+              Left = 33
+              Top = 210
+              Width = 171
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Damage Sustainability :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Damage Sustainability :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel28: TAdvSmoothLabel
+              Left = 258
+              Top = 54
+              Width = 39
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Knot'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'AdvSmoothLabel'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel22: TAdvSmoothLabel
+              Left = 31
+              Top = 132
+              Width = 168
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Rudder Swing Rate      :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Rudder Swing Rate      :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel30: TAdvSmoothLabel
+              Left = 345
+              Top = 158
+              Width = 111
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Throttle Rate  :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Throttle Rate  :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel35: TAdvSmoothLabel
+              Left = 345
+              Top = 183
+              Width = 114
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Heel Factor      :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Heel Factor      :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel34: TAdvSmoothLabel
+              Left = 345
+              Top = 131
+              Width = 111
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Shaft Up          :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Shaft Up          :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel33: TAdvSmoothLabel
+              Left = 31
+              Top = 184
+              Width = 169
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Tactical Diameter         :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Tactical Diameter         :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel32: TAdvSmoothLabel
+              Left = 31
+              Top = 158
+              Width = 169
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Ship Trim Factor           :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Ship Trim Factor           :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object AdvSmoothLabel31: TAdvSmoothLabel
+              Left = 345
+              Top = 210
+              Width = 117
+              Height = 20
+              AutoSize = True
+              Fill.ColorMirror = clNone
+              Fill.ColorMirrorTo = clNone
+              Fill.GradientType = gtVertical
+              Fill.GradientMirrorType = gtSolid
+              Fill.BorderColor = clNone
+              Fill.Rounding = 0
+              Fill.ShadowOffset = 0
+              Fill.Glow = gmNone
+              Caption.Text = 'Displacement   :'
+              Caption.Location = plTopLeft
+              Caption.Font.Charset = DEFAULT_CHARSET
+              Caption.Font.Color = clWindowText
+              Caption.Font.Height = -13
+              Caption.Font.Name = 'Tahoma'
+              Caption.Font.Style = [fsBold]
+              Caption.ColorStart = clSilver
+              Caption.ColorEnd = clWhite
+              CaptionShadow.Text = 'Displacement   :'
+              CaptionShadow.Font.Charset = DEFAULT_CHARSET
+              CaptionShadow.Font.Color = clWindowText
+              CaptionShadow.Font.Height = -27
+              CaptionShadow.Font.Name = 'Tahoma'
+              CaptionShadow.Font.Style = []
+              Version = '1.6.1.0'
+            end
+            object edtShipMaxSpeed: TEdit
+              Left = 200
+              Top = 54
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 0
+            end
+            object edtShipMaxSpeedAstern: TEdit
+              Left = 200
+              Top = 80
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 1
+            end
+            object edtDamageSustainability: TEdit
+              Left = 200
+              Top = 210
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 2
+            end
+            object edtShipHeelFactor: TEdit
+              Left = 461
+              Top = 183
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 3
+            end
+            object edtShipShaftUp: TEdit
+              Left = 461
+              Top = 131
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 4
+            end
+            object edtShipTacDiameter: TEdit
+              Left = 200
+              Top = 183
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 5
+            end
+            object edtShipTrimFactor: TEdit
+              Left = 200
+              Top = 157
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 6
+            end
+            object edtShipRudderSwingRate: TEdit
+              Left = 200
+              Top = 131
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 7
+            end
+            object edtShipThrottleRate: TEdit
+              Left = 461
+              Top = 157
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 8
+            end
+            object edtShipDisplacement: TEdit
+              Left = 461
+              Top = 209
+              Width = 56
+              Height = 21
+              ReadOnly = True
+              TabOrder = 9
+            end
+          end
+          object edtClass: TEdit
+            Left = 90
+            Top = 20
+            Width = 480
             Height = 21
-            Caption = 'Degree'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
+            AutoSize = False
+            ReadOnly = True
+            TabOrder = 3
           end
-          object lblCurrentDirection: TLabel
-            Left = 313
-            Top = 322
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
+        end
+        object pnl4: TPanel
+          Left = 589
+          Top = 77
+          Width = 3
+          Height = 834
+          Align = alLeft
+          BevelOuter = bvNone
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 4
         end
       end
     end
@@ -254989,7 +255938,7 @@ object frmGameController: TfrmGameController
         end
       end
     end
-    object pnlPlatform: TPanel
+    object pnlEnvironment: TPanel
       Left = 0
       Top = 0
       Width = 1923
@@ -254997,268 +255946,19 @@ object frmGameController: TfrmGameController
       Align = alClient
       BevelOuter = bvNone
       Color = clMedGray
-      TabOrder = 5
-      object pnlListShip: TAdvSmoothPanel
+      TabOrder = 3
+      object lblPortEnv: TLabel
+        Left = 331
+        Top = 96
+        Width = 3
+        Height = 13
+        Caption = '-'
+        Transparent = True
+      end
+      object AdvSmoothPanel6: TAdvSmoothPanel
         Left = 0
         Top = 0
-        Width = 434
-        Height = 911
-        Cursor = crDefault
-        Caption.HTMLFont.Charset = DEFAULT_CHARSET
-        Caption.HTMLFont.Color = clWindowText
-        Caption.HTMLFont.Height = -11
-        Caption.HTMLFont.Name = 'Tahoma'
-        Caption.HTMLFont.Style = []
-        Caption.Font.Charset = DEFAULT_CHARSET
-        Caption.Font.Color = clWindowText
-        Caption.Font.Height = -16
-        Caption.Font.Name = 'Tahoma'
-        Caption.Font.Style = []
-        Fill.Color = 7301478
-        Fill.ColorTo = 10066329
-        Fill.ColorMirror = 10066329
-        Fill.ColorMirrorTo = 7301478
-        Fill.GradientType = gtVertical
-        Fill.GradientMirrorType = gtVertical
-        Fill.BorderColor = clSilver
-        Fill.BorderWidth = 5
-        Fill.Rounding = 10
-        Fill.ShadowColor = clNone
-        Fill.ShadowOffset = 10
-        Fill.Glow = gmNone
-        Version = '1.6.0.1'
-        Align = alLeft
-        TabOrder = 0
-        TMSStyle = 4
-        object Label54: TLabel
-          Left = 21
-          Top = 31
-          Width = 74
-          Height = 18
-          Caption = 'Ship List :'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object btnNewShip: TImage
-          Left = 310
-          Top = 26
-          Width = 30
-          Height = 30
-          Cursor = crHandPoint
-          Hint = 'Create Scenario'
-          ParentShowHint = False
-          Picture.Data = {
-            0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
-            001E08060000003B30AEA2000000097048597300002E2300002E230178A53F76
-            000004A44944415478DABD576F4C9555187F0E6C2CFA505F4A082A53CB490A72
-            092F82CA54E6D6409B51967F724484142C46A6CC39281B2CD3CC484345C6D4CC
-            A29C91039A0637EB43CA85022EB0E4F2275BC896486D7E28261B9CCE79CF9FF7
-            3CAFAFF441E673EFB9E73DE73DE7F93DFFCE799E4B4A779503A7B25D256B5857
-            C8DA22D6EE87E9A51BACB5B17680E1D5F30952F24E1994BF5B5AC69E4BA619EC
-            7654CE304B097BC860AD2134341456A4AD82B885F1101E7EAF5842B9688E6D72
-            8ECA9E50394FF016D1B35F4AE0DFB17FA03BD00917BE6F86898909BE2C9DAF69
-            662D2D6DD5D3E04D4A0622995A3DFB70C6828960472D3083355B400C640548A5
-            4084C8B5ECEBF75F025FD3793EDD4CA4FDEF2BDA5A0CF784871BAA114345530B
-            350368E4FE1EAF191B1B838FF7EFB57CAE678B77BECD34A1DA8C4273024260C3
-            AEEC1B0C5E86FAB37596D9B88B9E599B094FCC8D914B1C3ED0AE108CF7EC2EC3
-            E26CDF51E27490AD3135B4670C9ABF3B071DED3F6B9D9216A740EAF2958E4050
-            7C08E2F1C19E720CFC56F14E17E318CFDAEFCC414DE720D0D16E0027C3D2D415
-            4860191102D008D00FF7BE87F9BEB96D871540D4C56728C0D983CF771E029D1D
-            9A99D7BB1896A42E3743D0DE6F60F3F147FBDEC7C03CB814A48247816298ED82
-            AF09BA02367022075E9A7A8BB5849570B85588E0B2D7BD51B46D4A53136A070C
-            3F8FDD5D9D36F0A2244859B24CC720DE678408A38315FB304641E156ED471D1E
-            B7A08BFEC71F7CD0D31DD0CC1212BD909CBC0C8C432F78013633FFA93CB81F03
-            E7171409033364BE7FF0B70118B9F627B8D1D0D01F307A7D448F23221F82A8A8
-            68D7B5111191307BCEE35A8943951518382FBF50BF240CF9E891433039390177
-            4AFC9CBFBA255FFBA0EAF0010C9C9B578036545755DE31A8A22D8CB70ADCEAAA
-            4F30704EEEEB8643018ED51C611A4F4E8BC62FBF922747146AAA0F63E0EC9CD7
-            D019FEFDCA15181D1D01B75B7878F82AFCFDD7A866FEE08C08888C8C02F3D8E8
-            770FCC80998FCDD2917DBCA60A036765E7EA3B5A0AA73BA25396E8FC2D3F41B0
-            F757CD3C362E1E3C095E2BAAF585A1F63BA2FAD3E3D5187873568E58488DDB8A
-            E013A276F85B2E421F4B148A16C42E048F27510806F61E67AEE0F29F3C518381
-            37BE946D4F18E7D08D5A5B2F417F5FAF1E3F393F0EE23D4FC90444E5C5894909
-            7FEAB3631878FDC62CEBD1B9C95984F0F12F6D2DD0DF1F34806359E59260664E
-            7CC74B81F86CEDE72730F08B1B364F616A4320C281FD3030D0A7816362163060
-            0F32B59BD09CBEAC3D8981D7BDB0C9D60AD552AAC0B2A9BDBD0D060DE079F3E6
-            5B01E69E4F319DFEEA147EFDFCBA0D22992995CD240E98E1F0D52168F55FB4CE
-            79484808ABD552203AFA11239AEC3A4BED51D17EE6F4171838F3B9F5F63A5549
-            02D829522774EA5044A4513B0608569CCAEC2C6D5E77A656035BC55E7AC65A08
-            0B0BBBAD6FA60A38430657F32A1A1F1F876F1BBFE18F377479CBCFE2EC3973ED
-            0AC2696A157886CFA995C9A871FC44B9ABC4227A93089CC1C120F4F474F159AB
-            BC4D67AD91FB8A47E7C38FCED49A13FABFB1E2B8518D55B240E36EB8397ED34A
-            A5BD977BD4FD9F4E56AFC98486FAAFEFEA5F1886594A32563F6B8D1A1BEAEECA
-            9F368667FD69FB0FAAF80DE3EA7BCC1B0000000049454E44AE426082}
-          Proportional = True
-          ShowHint = True
-          Stretch = True
-          OnClick = btnNewShipClick
-        end
-        object btnEditShip: TImage
-          Left = 346
-          Top = 26
-          Width = 30
-          Height = 30
-          Cursor = crHandPoint
-          Hint = 'Edit Scenario'
-          ParentShowHint = False
-          Picture.Data = {
-            0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
-            001E08060000003B30AEA2000000097048597300002E2300002E230178A53F76
-            000005674944415478DABD577B4CD5551CFF1CE1F2102A0353B014E225102CFF
-            49039F40BCAFD36826C3301D63CC52F3515A0DCA92F53033B31C638CB1344B67
-            39175CDE0F9F95A38D8DD7858BFEA3B5042CF38F74DE2BFC3AE777CEEF717E17
-            D73FCE03E7DEF3FA9ECFF97EBE8F732EA9D8B31700C1DE3DE52B69632BADCFD1
-            FA181E6CB9456B37AD872AF654D6B30152FEFE5E547E50C1D0CB1F30D8FD4A25
-            C5AC20B4914F6B838F8F0FD2D23391BC60010203A78398972AF49F305E14FA47
-            E439B160AA7145E512B8FDEF6DF4F5F6A0ABB31D1313136C2A8F8DB7D39A9191
-            998D45CFA79884E846AAA422F515F0BE01A3A8BB6B2010B3DA61A0F079267BE9
-            D22FE8686B610BDA89E0FFD16D3B76514D03F50D14690B98B655BC4615DCBF10
-            7168F679E7CE1D7C79609F6A735D6EF73BEFF15312F9DCEA18E799534DDB8470
-            EEC5B058030CF4F5A2ADB509A1A133B122231373E746E80763324C76DFC71FCA
-            077E6B77B9D8C5449AA0DA383538752086A49019E8EF4393A39E4E73FDA74D9B
-            86EC5C3B929292C51A6E8FCF3EAD948177EE7A57A68D99C684EFE531A63238D0
-            87E6C6061D54678C6EB0666D11E6CE8BD0C73EDFF7910CBC7DE7DB2A9062D9D8
-            DB864478372FCE817EB4343BBC40B5327B76188A8A37E8FB7CB1FF1379DF37A8
-            73991531B108580FA4706D9C83FD686D69BC2F282B369B0DAF6DD9AE0309E732
-            80B76C7BD3A28BECC7564F1D1C1CA0A1D18CF0394F223131091DED2D5352FD42
-            560EE2139ED14D77E8E07E19F8F5AD3B8C8E22A358C3CBE91C4427050A0F9F03
-            FBAA0255ABCBAE61497B06CA72C3FCF989DC8442FEF0A10332F0A6CDDB649EA7
-            F226FA353C3488AE8E36843150FB6A1554338593B270A6AB4D054DCFC8425C7C
-            82AEA966AAAAAF0FCAC0659BB68ACD457ED42675BE15B88687E8C6ED080B0B47
-            6EFE2AD8FC6CD0F2E93D8F1B0EC74F18BDFEA79A7A63E3E22D1ECAB5A9AEFA4A
-            062E2DDB3C856B18DABA5C433877A603B329680E8D4F9BCD4F17F650D0E6C67A
-            8C8E5EC7F2B40CC4C6C64F91FD78AFA6FAB00C5C52BAC9DC15B98327D911970B
-            E7CF75AAA191956D3734A5EB3D1E0F0DA7068C51D065CBD311131B67714345AC
-            E4EDDA9A2A1978634999B86178FA23844F8D8C0CE3E2F9B398358B81E6C1D7E6
-            AB93E1B9E7511D6A7C6C144B97A5213A26568A07E668C41C1AB45D575B2D03AF
-            DF502A2FA2E5F265177EBE780EA1339F40764E3E7C7C7DC58D05B8DD1E1A4E4D
-            181F1FC3E2252B10151363CDA2BAD39933E091BA1A19B8787D8921443FC64647
-            A9363C23050404D0D0C845C8E321C2A61EEAD92D2A68EAE265888A8E91A38158
-            52BA62F070F448AD0CBCEE958D521A760D3BD1DDFDAB6E2D7F069E918DE0E047
-            E885DE8A1B37C69192BA149151D1DA950DE1129076B678D9B1A375327061D1AB
-            20A6453D3DBF61C83920F9B8BF7F0082828371F3EFBFB02865099E8E8C92738D
-            F620300D1ACAF087C1F1EFBE9181D716164B20172E9CC51FBF5FF50A30E6740B
-            17A52292827ADF20F20D63BE8739988213C7BF9581D7BCBCCE2446D0D6E6C03F
-            376F7A832E4CC5BC8848396204CF0ABBBB15CBB8C5F6274F1C93815F5A536478
-            012D2DCDF56A92080A0AC6F4A020FA1D841933421012122A69CA0EC3F3BB22A7
-            3AF510C444080FAD1F4E7E2F031714141A8BC4B189EE2DC4F013CB03C4505C11
-            D953BBE30C7A15C108A3FDD48F277460F5B197974F13BE9F9FFCB8F8BF979CA5
-            48169E42D6ED76A3D1719A356FE9CFDBA4E467111D1DA7AAA4E8094EBBE24CD7
-            253125086D5250CD092266B64D21A6E0CA1517FAFB7B59477DDEE6D1EA608FB3
-            8484243C455F867E7EFED0DECB922A2627E16F6CB3B1E57973DB7DF72EAE5DBB
-            4AC3B31F9393936C348FD85716A0A1FED443FD0943312B48BEFD45F5788E86D3
-            0FE5475B9E7D753D33E47FA0E550E3812334AB0000000049454E44AE426082}
-          Proportional = True
-          ShowHint = True
-          Stretch = True
-          Transparent = True
-          OnClick = btnEditShipClick
-        end
-        object btnDeleteShip: TImage
-          Left = 382
-          Top = 26
-          Width = 30
-          Height = 30
-          Cursor = crHandPoint
-          Hint = 'Delete Scenario'
-          ParentShowHint = False
-          Picture.Data = {
-            0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
-            001E08060000003B30AEA2000000097048597300002E2300002E230178A53F76
-            000005194944415478DABD577D505455143F177061C180EABFC6001184050494
-            2004AC315113D009BF86D27488A1341B2287CC7160B281718ACC2C34871C5353
-            D32293096824C1C6211106543E17B016019BFE2A03C365583E5EE7EE7BF7EEBD
-            FB96FCC7F1CCDCB7EF9E7BF6FCCE39F79C73EF23457B4B8052F1DEC2D5F89387
-            231E871F3C5C1AC1D182E373C4ABA20C52F87E31947C50548CEF850F196C262A
-            41CC22822FE938AADDDDDD61E90BCB213A36168C5EDE68127215057F895D5AA1
-            56E253C127612A54A64C2E7856EB7DE86C6F835F2ED7C1D4D41465A551913A1C
-            CB5257BC080909892A90FDCF9A0685416A5A0951670AD100144D3D9365C02885
-            7342886A3FCA35375F83FA4BB574B18E68F1F7CDDFB90B8C462357331311014A
-            9D338E1A8FFF931C1BB3C267074AED7BCE57DFDB53C4C3A4A0378479A3A8220A
-            F554515513A2F11435A684382260F792C75A110C40C350AE745FB16CD6BBBB0B
-            A53D158DF5989C00235AFBAFAF2F076058CE7BFBD8BD611833FAC0E4AC597C9B
-            44818F3F2A91810B76ED7119666F045C5953057EC3FF4053F212E80D8FE469E0
-            BC0561E66E486C6C8061FFC7A1367D0D8C79197589F649E93E19F89D82DD0E86
-            66A861620232AA2AC11F41193526A5405F788423289AACA9C70C8BAFFDCAE528
-            F88F6B3261CAC3430AE0A7FB3F9481DFC6E41283421FFE2323B0BEB2421785C6
-            C464E80937F1B9A9D70C494D8D3AB98AB51BE09EAF1F2F12BA355A723980F3F2
-            0BC4C2E0EF917D3D908C65E04C579F4D82EEB07088E8EB8594E64617EB8BC13C
-            DF24E70152D9C1FD32C68EBC9DDC5D2208D3C528AABCA549A7DC121804F30607
-            74FC86F84430A351CC7A311F0E971D9081B7EFC8572B51C86A4721A0E7BFF5C1
-            73ADCDF0206A884F80AE907056854E554EE0C8E18332F01B6FE6E9CD23C0BB14
-            654753F01B2D33825E894B80CED0F9B21ED17ACCDAF223653270EEB6B79CEA4E
-            3440E18A56355D85D03B433A915B4F07C0C5C41481A33612C5A9891C2D3F2403
-            E7E46E975DD5B90F1063F91D96B65D9FD1E3CB0BE3A02338C4D94D49EFB1A35F
-            C8C0D939DBD45D60094164DF63FA2DB0ACFDC603F7B83E360EDAE706AB3A9C13
-            15E727BE2A9781B766E7F24576BAA8E142D0DBFDB0BCE3A60EA4EFA93910F6E7
-            1F3A7E5DF44268A3E0ACCFF318123879E24B1978F3961C57BB0BB183B7614567
-            9B8EFF73540CB40505C3A2817E48ED6AD7AD5F5A100B3703E7F20D63BA4F7D7D
-            4C067E65733610614BE8CF93F747E1F52BF57AD0C868B88E4A5960160DA071DD
-            1D3AB9F2E753E1AE8F8FA4F7CCE9E33270D6A6ADDAB1E7F0DB303509AF61D3A7
-            0630AA8D5800AD014142BAA8143734002BCD9D9CFFB7CF6C389EB4046CEE1E3C
-            D854F6EC372765E08D59AFBA0CB58F6D1CB660D7A2E0174D51D08A65A368C793
-            742AE2E499A14158D5D3057F21E869EC5EA3064F5DA8BF3D774A06DEB0719394
-            FD8E6220E0393D09B3C76D70D7DBE858145D16E64F58AD30EAE9859EBA39F410
-            E08956F1DD19F96FEBD6BFAC77572C47EE9AC8566F15847729F59EC5DEC58EC5
-            E8FCF76765E0CC7559DA954EBC553A3967EF9EC28A547A82659A6A5E4CDC6D80
-            0BE7CF7160FB652F2DFD2530180CD2DFB93A670B5C45650612F5D86C36F8A9A6
-            92BE8EF0EB6D24D665C8BC5010A2261DE0C03A2FBB08F20EA7F09B30BF69B2B6
-            A7303DAA8CC5720BBABAEC6567BFDEA6E1A8717373031366ED9C804087E76C3F
-            0520D6F8795FD380C5C388075C9BD8C6C7E10E1E2CBD98F1D3D3D39495463256
-            AF85EAAA1F1EE9270C621691F48C4CFBACA6FAC223F968433CFB47DB7F96D01C
-            E3556521AB0000000049454E44AE426082}
-          Proportional = True
-          ShowHint = True
-          Stretch = True
-          Transparent = True
-          OnClick = btnDeleteShipClick
-        end
-        object lvShipList: TListView
-          Left = 21
-          Top = 65
-          Width = 392
-          Height = 840
-          Columns = <
-            item
-              Caption = 'ID'
-            end
-            item
-              Caption = 'Ship Name'
-              Width = 200
-            end
-            item
-              Alignment = taCenter
-              Caption = 'Domain'
-              Width = 110
-            end>
-          GridLines = True
-          ReadOnly = True
-          RowSelect = True
-          TabOrder = 0
-          ViewStyle = vsReport
-          OnClick = lvShipListClick
-          OnKeyPress = lvListScenKeyPress
-        end
-      end
-      object pnl3: TPanel
-        Left = 434
-        Top = 0
-        Width = 3
-        Height = 911
-        Align = alLeft
-        BevelOuter = bvNone
-        Color = clWhite
-        ParentBackground = False
-        TabOrder = 1
-      end
-      object pnlMainShip: TAdvSmoothPanel
-        Left = 437
-        Top = 0
-        Width = 1486
+        Width = 1923
         Height = 911
         Cursor = crDefault
         Caption.Location = plTopCenter
@@ -255293,13 +255993,611 @@ object frmGameController: TfrmGameController
         Fill.Glow = gmNone
         Version = '1.6.0.1'
         Align = alClient
-        TabOrder = 2
+        TabOrder = 0
+        DesignSize = (
+          1923
+          911)
         TMSStyle = 0
-        object pnlHeaderShip: TAdvSmoothPanel
-          Left = 0
-          Top = 0
-          Width = 1486
-          Height = 74
+        object AdvSmoothPanel5: TAdvSmoothPanel
+          Left = 138
+          Top = 62
+          Width = 1072
+          Height = 788
+          Cursor = crDefault
+          Caption.Location = plTopCenter
+          Caption.HatchStyle = HatchStyleDiagonalBrick
+          Caption.HTMLFont.Charset = DEFAULT_CHARSET
+          Caption.HTMLFont.Color = clWindowText
+          Caption.HTMLFont.Height = -13
+          Caption.HTMLFont.Name = 'Tahoma'
+          Caption.HTMLFont.Style = []
+          Caption.Font.Charset = DEFAULT_CHARSET
+          Caption.Font.Color = clWindowText
+          Caption.Font.Height = -16
+          Caption.Font.Name = 'Tahoma'
+          Caption.Font.Style = [fsBold]
+          Caption.Top = 20
+          Caption.ColorStart = clWhite
+          Caption.ColorEnd = clWhite
+          Caption.GradientType = gtHorizontal
+          Caption.LineColor = clBlack
+          Caption.Line = False
+          Fill.Color = 7301478
+          Fill.ColorTo = 10066329
+          Fill.ColorMirror = 10066329
+          Fill.ColorMirrorTo = 7301478
+          Fill.GradientType = gtVertical
+          Fill.GradientMirrorType = gtVertical
+          Fill.BorderColor = clSilver
+          Fill.BorderWidth = 5
+          Fill.Rounding = 10
+          Fill.ShadowColor = clNone
+          Fill.ShadowOffset = 10
+          Fill.Glow = gmNone
+          Fill.GlowGradientColor = 7301478
+          Fill.GlowRadialColor = 7301478
+          Version = '1.6.0.1'
+          Anchors = [akTop, akRight]
+          TabOrder = 0
+          TMSStyle = 0
+          object Label8: TLabel
+            Left = 58
+            Top = 146
+            Width = 62
+            Height = 18
+            Caption = 'Sea State'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label9: TLabel
+            Left = 58
+            Top = 229
+            Width = 80
+            Height = 18
+            Caption = 'Wind Speed'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label10: TLabel
+            Left = 58
+            Top = 312
+            Width = 93
+            Height = 18
+            Caption = 'Current Speed'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label11: TLabel
+            Left = 58
+            Top = 395
+            Width = 86
+            Height = 18
+            Caption = 'Temperature'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label12: TLabel
+            Left = 58
+            Top = 478
+            Width = 129
+            Height = 18
+            Caption = 'Barometer Pressure'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label13: TLabel
+            Left = 58
+            Top = 561
+            Width = 60
+            Height = 18
+            Caption = 'Humidity'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label14: TLabel
+            Left = 58
+            Top = 644
+            Width = 82
+            Height = 18
+            Caption = 'Fog Intensity'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblSeaState: TLabel
+            Left = 904
+            Top = 146
+            Width = 9
+            Height = 19
+            Caption = '1'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblWindSpeed: TLabel
+            Left = 904
+            Top = 228
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblCurrentSpeed: TLabel
+            Left = 904
+            Top = 311
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblTemperature: TLabel
+            Left = 904
+            Top = 394
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblBaroPresure: TLabel
+            Left = 904
+            Top = 477
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblHumidity: TLabel
+            Left = 904
+            Top = 560
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblFogHeight: TLabel
+            Left = 904
+            Top = 643
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label21: TLabel
+            Left = 957
+            Top = 148
+            Width = 35
+            Height = 15
+            Caption = 'State'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label22: TLabel
+            Left = 956
+            Top = 230
+            Width = 35
+            Height = 15
+            Caption = 'Knots'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label23: TLabel
+            Left = 956
+            Top = 313
+            Width = 35
+            Height = 15
+            Caption = 'Knots'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label24: TLabel
+            Left = 953
+            Top = 396
+            Width = 49
+            Height = 15
+            Caption = 'Celcius'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label25: TLabel
+            Left = 954
+            Top = 479
+            Width = 49
+            Height = 15
+            Caption = 'MiliBar'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label26: TLabel
+            Left = 953
+            Top = 562
+            Width = 42
+            Height = 15
+            Caption = 'Persen'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label27: TLabel
+            Left = 959
+            Top = 645
+            Width = 28
+            Height = 15
+            Caption = 'Feet'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+            Visible = False
+          end
+          object Label28: TLabel
+            Left = 58
+            Top = 85
+            Width = 39
+            Height = 18
+            Caption = 'Port :'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB Demi'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+          object grpSeaState: TGroupBox
+            Left = 213
+            Top = 126
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 0
+            object tbSeaState: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 5
+              MinValue = 1
+              Position = 1
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              OnChange = tbSeaStateChange
+              TabOrder = 0
+              OnMouseUp = tbSeaStateMouseUp
+            end
+          end
+          object GroupBox2: TGroupBox
+            Left = 212
+            Top = 209
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 1
+            object tbWindSpeed: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 50
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbWindSpeedMouseUp
+            end
+          end
+          object grpCurrentSpeed: TGroupBox
+            Left = 216
+            Top = 292
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
+            object tbSeaSpeed: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 50
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbSeaSpeedMouseUp
+            end
+          end
+          object GroupBox4: TGroupBox
+            Left = 216
+            Top = 375
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 3
+            object tbTemp: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              Position = 1
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbTempMouseUp
+            end
+          end
+          object GroupBox5: TGroupBox
+            Left = 216
+            Top = 458
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 4
+            object tbBaroPressure: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 5000
+              Position = 1
+              Frequency = 100
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbBaroPressureMouseUp
+            end
+          end
+          object GroupBox6: TGroupBox
+            Left = 217
+            Top = 624
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 5
+            object tbFogH: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 3
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              OnChange = tbFogHChange
+              TabOrder = 0
+              OnMouseUp = tbFogHMouseUp
+            end
+          end
+          object GroupBox7: TGroupBox
+            Left = 216
+            Top = 541
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 6
+            object tbHumidity: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              Position = 1
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbHumidityMouseUp
+            end
+          end
+        end
+        object AdvSmoothPanel4: TAdvSmoothPanel
+          Left = 1348
+          Top = 62
+          Width = 436
+          Height = 377
           Cursor = crDefault
           Caption.Location = plTopCenter
           Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -255332,1712 +256630,414 @@ object frmGameController: TfrmGameController
           Fill.ShadowOffset = 10
           Fill.Glow = gmNone
           Version = '1.6.0.1'
-          Align = alTop
-          TabOrder = 0
+          Anchors = [akTop, akRight]
+          TabOrder = 1
           TMSStyle = 0
-          object lblShipName1: TLabel
-            Left = 0
-            Top = 0
-            Width = 1486
-            Height = 74
-            Align = alClient
-            Alignment = taCenter
-            Caption = 'Ship Name'
-            Font.Charset = DEFAULT_CHARSET
+          object Label4: TLabel
+            Left = 156
+            Top = 63
+            Width = 100
+            Height = 17
+            Caption = 'Wind Direction'
+            Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
-            Font.Height = -15
-            Font.Name = 'Tahoma'
+            Font.Height = -13
+            Font.Name = 'Segoe UI Symbol'
             Font.Style = [fsBold]
             ParentFont = False
-            Layout = tlCenter
-            ExplicitWidth = 80
-            ExplicitHeight = 18
+            Transparent = True
           end
-        end
-        object pnl2: TPanel
-          Left = 0
-          Top = 74
-          Width = 1486
-          Height = 3
-          Align = alTop
-          BevelOuter = bvNone
-          Color = clWhite
-          ParentBackground = False
-          TabOrder = 1
-        end
-        object pnlDetailWeapon: TAdvSmoothPanel
-          Left = 592
-          Top = 77
-          Width = 894
-          Height = 834
-          Cursor = crDefault
-          Caption.HTMLFont.Charset = DEFAULT_CHARSET
-          Caption.HTMLFont.Color = clWindowText
-          Caption.HTMLFont.Height = -11
-          Caption.HTMLFont.Name = 'Tahoma'
-          Caption.HTMLFont.Style = []
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -16
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = []
-          Fill.Color = 7301478
-          Fill.ColorTo = 10066329
-          Fill.ColorMirror = 10066329
-          Fill.ColorMirrorTo = 7301478
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtVertical
-          Fill.BorderColor = clSilver
-          Fill.BorderWidth = 5
-          Fill.Rounding = 10
-          Fill.ShadowColor = clNone
-          Fill.ShadowOffset = 10
-          Fill.Glow = gmNone
-          Version = '1.6.0.1'
-          Align = alClient
-          TabOrder = 2
-          TMSStyle = 4
-          object pnl2DRelated: TAdvSmoothPanel
-            Left = 16
-            Top = 653
-            Width = 858
-            Height = 190
-            Cursor = crDefault
-            Caption.Location = plTopCenter
-            Caption.HatchStyle = HatchStyleDiagonalBrick
-            Caption.HTMLFont.Charset = DEFAULT_CHARSET
-            Caption.HTMLFont.Color = clWindowText
-            Caption.HTMLFont.Height = -13
-            Caption.HTMLFont.Name = 'Tahoma'
-            Caption.HTMLFont.Style = []
-            Caption.Font.Charset = DEFAULT_CHARSET
-            Caption.Font.Color = clWindowText
-            Caption.Font.Height = -16
-            Caption.Font.Name = 'Tahoma'
-            Caption.Font.Style = [fsBold]
-            Caption.Top = 20
-            Caption.ColorStart = clWhite
-            Caption.ColorEnd = clWhite
-            Caption.GradientType = gtHorizontal
-            Caption.LineColor = clBlack
-            Caption.Line = False
-            Fill.Color = 7301478
-            Fill.ColorTo = 10066329
-            Fill.ColorMirror = 10066329
-            Fill.ColorMirrorTo = 7301478
-            Fill.GradientType = gtVertical
-            Fill.GradientMirrorType = gtVertical
-            Fill.BorderColor = clSilver
-            Fill.BorderWidth = 5
-            Fill.Rounding = 10
-            Fill.ShadowColor = clNone
-            Fill.ShadowOffset = 10
-            Fill.Glow = gmNone
-            Version = '1.6.0.1'
-            TabOrder = 1
-            TMSStyle = 0
-            object AdvSmoothLabel44: TAdvSmoothLabel
-              Left = 332
-              Top = 333
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = '2D Relevant'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = '2D Relevant'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel29: TAdvSmoothLabel
-              Left = 19
-              Top = 27
-              Width = 50
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Range'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Range'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object lvDetail: TListView
-              Left = 42
-              Top = 65
-              Width = 774
-              Height = 100
-              Columns = <
-                item
-                  Caption = 'Type'
-                  Width = 40
-                end
-                item
-                  Caption = 'Detail Name'
-                  Width = 250
-                end
-                item
-                  Alignment = taCenter
-                  Caption = 'Start Degree'
-                  Width = 110
-                end
-                item
-                  Alignment = taCenter
-                  Caption = 'End Degree'
-                  Width = 110
-                end
-                item
-                  Alignment = taCenter
-                  Caption = 'Min Range'
-                  Width = 110
-                end
-                item
-                  Alignment = taCenter
-                  Caption = 'Max Range'
-                  Width = 110
-                end>
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'Tahoma'
-              Font.Style = [fsBold]
-              GridLines = True
-              RowSelect = True
-              ParentFont = False
-              TabOrder = 0
-              ViewStyle = vsReport
-            end
+          object vrwhlWindDirec: TVrWheel
+            Tag = 9
+            Left = 108
+            Top = 117
+            Width = 85
+            Height = 85
+            MaxValue = 360
+            Position = 180
+            BackImage.Data = {
+              120F0000424D120F000000000000760000002800000055000000550000000100
+              0400000000009C0E000000000000000000001000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+              3333333333333333333333333333333333333333333333333333333333333333
+              3333333330003333333333333333333333333333333333333333333333333333
+              3333333333333333333333333333333330003333333333333333333333333333
+              3333333333333333333333333333333333333333333333333333333330003333
+              3333333333333333333333333333333333333333333333333333333333333333
+              3333333333333333300033333333333333333333333333333333333000000000
+              0000033333333333333333333333333333333333300033333333333333333333
+              3333333333300008888888888888800003333333333333333333333333333333
+              3000333333333333333333333333333300088888888888888888888880003333
+              3333333333333333333333333000333333333333333333333333300088888888
+              8888888888888888888800033333333333333333333333333000333333333333
+              3333333333300888888888887777777777778888888888800333333333333333
+              3333333330003333333333333333333333088888888877777777777777777777
+              8888888880333333333333333333333330003333333333333333333300888888
+              8777777777777777777777777778888888003333333333333333333330003333
+              3333333333333330888888877777777777777777777777777777788888880333
+              3333333333333333300033333333333333333008888887777777777777777777
+              7777777777777778888880033333333333333333300033333333333333330888
+              8887777777777777777777777777777777777777788888803333333333333333
+              3000333333333333333088888877777777777777777777777777777777777777
+              7788888803333333333333333000333333333333330888887777777777777777
+              7777777777777777777777777777888880333333333333333000333333333333
+              30F8888777777777777777777777777777777777777777777777788888033333
+              3333333330003333333333330FF8887777777777777777777777777777777777
+              777777777777778888803333333333333000333333333330FFFFF77777777777
+              7777777777777777777777777777777777777778888803333333333330003333
+              3333330FFFFF7777777777777777777777777777777777777777777777777777
+              8888803333333333300033333333330FFFF77777777777777777777777777777
+              777777777777777777777777788880333333333330003333333330FFFF777777
+              7777777777777777777777777777777777777777777777777788880333333333
+              3000333333330FFFF77777777777777777777777777777777777777777777777
+              7777777777788880333333333000333333330FFFF77777777777777777777777
+              777777777777777777777777777777777778888033333333300033333330FFFF
+              7777777777777777777777777777777777777777777777777777777777778888
+              0333333330003333330FFFF77777777777777777777777777777777777777777
+              7777777777777777777778888033333330003333330FFFF77777777777777777
+              7777777777777777777777777777777777777777777778888033333330003333
+              30FFFF7777777777777777777777777777777777777777777777777777777777
+              77777788880333333000333330FFFF7777777777777777777777777777777777
+              77777777777777777777777777777788880333333000333330FFF77777777777
+              7777777777777777777777777777777777777777777777777777777888033333
+              300033330FFFF777777777777777777777777777777777777777777777777777
+              777777777777777888803333300033330FFF7777777777777777777777777777
+              777777777777777777777777777777777777777788803333300033330FFF7777
+              7777777777777777777777777777777777777777777777777777777777777777
+              8880333330003330FFFF77777777777777777777777777777777777777777777
+              7777777777777777777777778888033330003330FFF777777777777777777777
+              7777777777777777777777777777777777777777777777777888033330003330
+              FFF7777777777777777777777777777777777777777777777777777777777777
+              777777777888033330003330FFF7777777777777777777777777777777777777
+              77777777777777777777777777777777788803333000330FFFF7777777777777
+              7777777777777777777777777777777777777777777777777777777778888033
+              3000330FFF777777777777777777777777777777777777777777777777777777
+              7777777777777777778880333000330FFF777777777777777777777777777777
+              7777777777777777777777777777777777777777778880333000330FFF777777
+              7777777777777777777777777777777777777777777777777777777777777777
+              778880333000330FFF7777777777777777777777777777777777777777777777
+              777777777777777777777777778880333000330FFF7777777777777777777777
+              777777777777777777777777777777777777777777777777778880333000330F
+              FF77777777777777777777777777777777777777777777777777777777777777
+              77777777778880333000330FFF77777777777777777777777777777777777777
+              77777777777777777777777777777777778880333000330FFF77777777777777
+              7777777777777777777777777777777777777777777777777777777777888033
+              3000330FFF777777777777777777777777777777777777777777777777777777
+              7777777777777777778880333000330FFF777777777777777777777777777777
+              7777777777777777777777777777777777777777778880333000330FFF777777
+              7777777777777777777777777777777777777777777777777777777777777777
+              778880333000330FFFF777777777777777777777777777777777777777777777
+              777777777777777777777777788880333000330FFFF777777777777777777777
+              7777777777777777777777777777777777777777777777777888803330003330
+              FFF7777777777777777777777777777777777777777777777777777777777777
+              777777777888033330003330FFF7777777777777777777777777777777777777
+              777777777777777777777777777777777888033330003330FFFF777777777777
+              7777777777777777777777777777777777777777777777777777777788880333
+              30003330FFFF7777777777777777777777777777777777777777777777777777
+              777777777777777788880333300033330FFF7777777777777777777777777777
+              777777777777777777777777777777777777777788803333300033330FFFF777
+              7777777777777777777777777777777777777777777777777777777777777778
+              88803333300033330FFFF7777777777777777777777777777777777777777777
+              777777777777777777777778888033333000333330FFFF777777777777777777
+              7777777777777777777777777777777777777777777777888803333330003333
+              30FFFF7777777777777777777777777777777777777777777777777777777777
+              77777788880333333000333330FFFFF777777777777777777777777777777777
+              777777777777777777777777777778888803333330003333330FFFF777777777
+              7777777777777777777777777777777777777777777777777777788880333333
+              30003333330FFFFF777777777777777777777777777777777777777777777777
+              777777777777888880333333300033333330FFFFF77777777777777777777777
+              7777777777777777777777777777777777788888033333333000333333330FFF
+              F777777777777777777777777777777777777777777777777777777777788880
+              333333333000333333330FFFFF77777777777777777777777777777777777777
+              7777777777777777778888803333333330003333333330FFFFF7777777777777
+              7777777777777777777777777777777777777777788888033333333330003333
+              3333330FFFFF7777777777777777777777777777777777777777777777777777
+              8888803333333333300033333333330FFFFFF777777777777777777777777777
+              77777777777777777777777788888033333333333000333333333330FFFFFF77
+              7777777777777777777777777777777777777777777777FF8888033333333333
+              30003333333333330FFFFFF77777777777777777777777777777777777777777
+              77777FFF8880333333333333300033333333333330FFFFFF7777777777777777
+              7777777777777777777777777777FFFFFF033333333333333000333333333333
+              330FFFFFF777777777777777777777777777777777777777777FFFFFF0333333
+              3333333330003333333333333330FFFFFFF77777777777777777777777777777
+              777777777FFFFFFF0333333333333333300033333333333333330FFFFFFF7777
+              77777777777777777777777777777777FFFFFFF0333333333333333330003333
+              333333333333300FFFFFFF77777777777777777777777777777777FFFFFFF003
+              3333333333333333300033333333333333333330FFFFFFFF7777777777777777
+              777777777777FFFFFFFF03333333333333333333300033333333333333333333
+              00FFFFFFFF777777777777777777777777FFFFFFFF0033333333333333333333
+              300033333333333333333333330FFFFFFFFFF777777777777777777FFFFFFFFF
+              F0333333333333333333333330003333333333333333333333300FFFFFFFFFFF
+              F7777777777FFFFFFFFFFFF00333333333333333333333333000333333333333
+              3333333333333000FFFFFFFFFFFFFFFFFFFFFFFFFFFF00033333333333333333
+              3333333330003333333333333333333333333333000FFFFFFFFFFFFFFFFFFFFF
+              F000333333333333333333333333333330003333333333333333333333333333
+              3330000FFFFFFFFFFFFFF0000333333333333333333333333333333330003333
+              3333333333333333333333333333333000000000000003333333333333333333
+              3333333333333333300033333333333333333333333333333333333333333333
+              33333333333333333333333333333333333333333000}
+            HandleImage.Data = {
+              BE000000424DBE00000000000000760000002800000009000000090000000100
+              0400000000004800000000000000000000001000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
+              0000333000333000000033099903300000003099999030000000309999903000
+              0000307999903000000033077903300000003330003330000000333333333000
+              0000}
+            OnChange = vrwhlWindDirecChange
           end
-          object AdvSmoothPanel14: TAdvSmoothPanel
-            Left = 16
-            Top = 20
-            Width = 465
-            Height = 618
-            Cursor = crDefault
-            Caption.Location = plTopCenter
-            Caption.HatchStyle = HatchStyleDiagonalBrick
-            Caption.HTMLFont.Charset = DEFAULT_CHARSET
-            Caption.HTMLFont.Color = clWindowText
-            Caption.HTMLFont.Height = -13
-            Caption.HTMLFont.Name = 'Tahoma'
-            Caption.HTMLFont.Style = []
-            Caption.Font.Charset = DEFAULT_CHARSET
-            Caption.Font.Color = clWindowText
-            Caption.Font.Height = -16
-            Caption.Font.Name = 'Tahoma'
-            Caption.Font.Style = [fsBold]
-            Caption.Top = 20
-            Caption.ColorStart = clWhite
-            Caption.ColorEnd = clWhite
-            Caption.GradientType = gtHorizontal
-            Caption.LineColor = clBlack
-            Caption.Line = False
-            Fill.Color = 7301478
-            Fill.ColorTo = 10066329
-            Fill.ColorMirror = 10066329
-            Fill.ColorMirrorTo = 7301478
-            Fill.GradientType = gtVertical
-            Fill.GradientMirrorType = gtVertical
-            Fill.BorderColor = clSilver
-            Fill.BorderWidth = 5
-            Fill.Rounding = 10
-            Fill.ShadowColor = clNone
-            Fill.ShadowOffset = 10
-            Fill.Glow = gmNone
-            Version = '1.6.0.1'
-            TabOrder = 2
-            TMSStyle = 0
-            object AdvSmoothLabel42: TAdvSmoothLabel
-              Left = 19
-              Top = 19
-              Width = 63
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Weapon'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Weapon'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object lvWeaponSelect: TListView
-              Left = 34
-              Top = 54
-              Width = 397
-              Height = 531
-              Columns = <
-                item
-                  Caption = 'ID'
-                  Width = 40
-                end
-                item
-                  Caption = 'Weapon Name'
-                  Width = 150
-                end
-                item
-                  Alignment = taCenter
-                  Caption = 'Launcher'
-                  Width = 80
-                end
-                item
-                  Alignment = taCenter
-                  Caption = 'Number #'
-                  Width = 80
-                end>
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'Tahoma'
-              Font.Style = [fsBold]
-              GridLines = True
-              RowSelect = True
-              ParentFont = False
-              TabOrder = 0
-              ViewStyle = vsReport
-              OnSelectItem = lvWeaponSelectSelectItem
-            end
+          object lblWindDirection: TLabel
+            Left = 313
+            Top = 319
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
           end
-          object pnlDetail: TAdvSmoothPanel
-            Left = 495
-            Top = 20
-            Width = 383
-            Height = 612
-            Cursor = crDefault
-            Caption.Location = plTopCenter
-            Caption.HatchStyle = HatchStyleDiagonalBrick
-            Caption.HTMLFont.Charset = DEFAULT_CHARSET
-            Caption.HTMLFont.Color = clWindowText
-            Caption.HTMLFont.Height = -13
-            Caption.HTMLFont.Name = 'Tahoma'
-            Caption.HTMLFont.Style = []
-            Caption.Font.Charset = DEFAULT_CHARSET
-            Caption.Font.Color = clWindowText
-            Caption.Font.Height = -16
-            Caption.Font.Name = 'Tahoma'
-            Caption.Font.Style = [fsBold]
-            Caption.Top = 20
-            Caption.ColorStart = clWhite
-            Caption.ColorEnd = clWhite
-            Caption.GradientType = gtHorizontal
-            Caption.LineColor = clBlack
-            Caption.Line = False
-            Fill.Color = 7301478
-            Fill.ColorTo = 10066329
-            Fill.ColorMirror = 10066329
-            Fill.ColorMirrorTo = 7301478
-            Fill.GradientType = gtVertical
-            Fill.GradientMirrorType = gtVertical
-            Fill.BorderColor = clSilver
-            Fill.BorderWidth = 5
-            Fill.Rounding = 10
-            Fill.ShadowColor = clNone
-            Fill.ShadowOffset = 10
-            Fill.Glow = gmNone
-            Version = '1.6.0.1'
-            TabOrder = 0
-            TMSStyle = 0
-            object AdvSmoothLabel11: TAdvSmoothLabel
-              Left = 34
-              Top = 54
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Model Body'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel12: TAdvSmoothLabel
-              Left = 34
-              Top = 112
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Model Spout'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel19: TAdvSmoothLabel
-              Left = 34
-              Top = 170
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'DOF 1'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel36: TAdvSmoothLabel
-              Left = 34
-              Top = 228
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'DOF 2'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel37: TAdvSmoothLabel
-              Left = 34
-              Top = 344
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Pos Pitch'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel38: TAdvSmoothLabel
-              Left = 34
-              Top = 460
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Pos Heading'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel39: TAdvSmoothLabel
-              Left = 34
-              Top = 286
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Switch'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object advsmthlbl9: TAdvSmoothLabel
-              Left = 34
-              Top = 402
-              Width = 127
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Using 3D Actor'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel40: TAdvSmoothLabel
-              Left = 34
-              Top = 518
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Lethality'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel10: TAdvSmoothLabel
-              Left = 19
-              Top = 19
-              Width = 95
-              Height = 17
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = '3D Relevant'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object edtSwitch: TEdit
-              Left = 34
-              Top = 308
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 0
-            end
-            object edt3DActor: TEdit
-              Left = 34
-              Top = 424
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 1
-            end
-            object edtPosHeading: TEdit
-              Left = 34
-              Top = 482
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 2
-            end
-            object edtPosPitch: TEdit
-              Left = 34
-              Top = 366
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 3
-            end
-            object edtDOF1: TEdit
-              Left = 34
-              Top = 192
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 4
-            end
-            object edtDOF2: TEdit
-              Left = 34
-              Top = 250
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 5
-            end
-            object edtModelBody: TEdit
-              Left = 34
-              Top = 76
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 6
-            end
-            object edtModelSpout: TEdit
-              Left = 34
-              Top = 134
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 7
-            end
-            object edtLethality: TEdit
-              Left = 34
-              Top = 540
-              Width = 319
-              Height = 21
-              Enabled = False
-              ReadOnly = True
-              TabOrder = 8
-            end
-          end
-        end
-        object pnlDetailShip: TAdvSmoothPanel
-          Left = 0
-          Top = 77
-          Width = 589
-          Height = 834
-          Cursor = crDefault
-          Caption.HTMLFont.Charset = DEFAULT_CHARSET
-          Caption.HTMLFont.Color = clWindowText
-          Caption.HTMLFont.Height = -11
-          Caption.HTMLFont.Name = 'Tahoma'
-          Caption.HTMLFont.Style = []
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -16
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = []
-          Fill.Color = 7301478
-          Fill.ColorTo = 10066329
-          Fill.ColorMirror = 10066329
-          Fill.ColorMirrorTo = 7301478
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtVertical
-          Fill.BorderColor = clSilver
-          Fill.BorderWidth = 5
-          Fill.Rounding = 10
-          Fill.ShadowColor = clNone
-          Fill.ShadowOffset = 10
-          Fill.Glow = gmNone
-          Version = '1.6.0.1'
-          Align = alLeft
-          TabOrder = 3
-          TMSStyle = 4
-          object AdvSmoothLabel7: TAdvSmoothLabel
-            Left = 17
-            Top = 21
-            Width = 67
-            Height = 20
-            AutoSize = True
-            Fill.ColorMirror = clNone
-            Fill.ColorMirrorTo = clNone
-            Fill.GradientType = gtVertical
-            Fill.GradientMirrorType = gtSolid
-            Fill.BorderColor = clNone
-            Fill.Rounding = 0
-            Fill.ShadowOffset = 0
-            Fill.Glow = gmNone
-            Caption.Text = 'Class     :'
-            Caption.Font.Charset = DEFAULT_CHARSET
-            Caption.Font.Color = clWindowText
-            Caption.Font.Height = -13
-            Caption.Font.Name = 'Tahoma'
-            Caption.Font.Style = [fsBold]
-            Caption.ColorStart = clSilver
-            Caption.ColorEnd = clWhite
-            CaptionShadow.Text = 'Class     :'
-            CaptionShadow.Font.Charset = DEFAULT_CHARSET
-            CaptionShadow.Font.Color = clWindowText
-            CaptionShadow.Font.Height = -27
-            CaptionShadow.Font.Name = 'Tahoma'
-            CaptionShadow.Font.Style = []
-            Version = '1.6.1.0'
-          end
-          object pnlDimension: TAdvSmoothPanel
-            Left = 18
-            Top = 56
-            Width = 554
-            Height = 102
-            Cursor = crDefault
-            Caption.Location = plTopCenter
-            Caption.HatchStyle = HatchStyleDiagonalBrick
-            Caption.HTMLFont.Charset = DEFAULT_CHARSET
-            Caption.HTMLFont.Color = clWindowText
-            Caption.HTMLFont.Height = -13
-            Caption.HTMLFont.Name = 'Tahoma'
-            Caption.HTMLFont.Style = []
-            Caption.Font.Charset = DEFAULT_CHARSET
-            Caption.Font.Color = clWindowText
-            Caption.Font.Height = -16
-            Caption.Font.Name = 'Tahoma'
-            Caption.Font.Style = [fsBold]
-            Caption.Top = 20
-            Caption.ColorStart = clWhite
-            Caption.ColorEnd = clWhite
-            Caption.GradientType = gtHorizontal
-            Caption.LineColor = clBlack
-            Caption.Line = False
-            Fill.Color = 7301478
-            Fill.ColorTo = 10066329
-            Fill.ColorMirror = 10066329
-            Fill.ColorMirrorTo = 7301478
-            Fill.GradientType = gtVertical
-            Fill.GradientMirrorType = gtVertical
-            Fill.BorderColor = clSilver
-            Fill.BorderWidth = 5
-            Fill.Rounding = 10
-            Fill.ShadowColor = clNone
-            Fill.ShadowOffset = 10
-            Fill.Glow = gmNone
-            Version = '1.6.0.1'
-            TabOrder = 0
-            TMSStyle = 0
-            object AdvSmoothLabel16: TAdvSmoothLabel
-              Left = 32
-              Top = 54
-              Width = 63
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Length :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Length :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel18: TAdvSmoothLabel
-              Left = 203
-              Top = 54
-              Width = 57
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Width :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Width :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel20: TAdvSmoothLabel
-              Left = 378
-              Top = 54
-              Width = 61
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Height :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Height :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel23: TAdvSmoothLabel
-              Left = 141
-              Top = 54
-              Width = 36
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Feet'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel24: TAdvSmoothLabel
-              Left = 306
-              Top = 54
-              Width = 36
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Feet'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel26: TAdvSmoothLabel
-              Left = 485
-              Top = 54
-              Width = 36
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Feet'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel8: TAdvSmoothLabel
-              Left = 20
-              Top = 19
-              Width = 87
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Dimensions'
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Dimensions'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object edtShipHeight: TEdit
-              Left = 444
-              Top = 53
-              Width = 39
-              Height = 21
-              ReadOnly = True
-              TabOrder = 0
-            end
-            object edtShipwidth: TEdit
-              Left = 265
-              Top = 54
-              Width = 39
-              Height = 21
-              ReadOnly = True
-              TabOrder = 1
-            end
-            object edtShipLength: TEdit
-              Left = 100
-              Top = 54
-              Width = 39
-              Height = 21
-              ReadOnly = True
-              TabOrder = 2
-              Text = '1000'
-            end
-          end
-          object pnlPicture1: TAdvSmoothPanel
-            Left = 18
-            Top = 458
-            Width = 554
-            Height = 385
-            Cursor = crDefault
-            Caption.Location = plTopCenter
-            Caption.HatchStyle = HatchStyleDiagonalBrick
-            Caption.HTMLFont.Charset = DEFAULT_CHARSET
-            Caption.HTMLFont.Color = clWindowText
-            Caption.HTMLFont.Height = -13
-            Caption.HTMLFont.Name = 'Tahoma'
-            Caption.HTMLFont.Style = []
-            Caption.Font.Charset = DEFAULT_CHARSET
-            Caption.Font.Color = clWindowText
-            Caption.Font.Height = -16
-            Caption.Font.Name = 'Tahoma'
-            Caption.Font.Style = [fsBold]
-            Caption.Top = 20
-            Caption.ColorStart = clWhite
-            Caption.ColorEnd = clWhite
-            Caption.GradientType = gtHorizontal
-            Caption.LineColor = clBlack
-            Caption.Line = False
-            Fill.Color = 7301478
-            Fill.ColorTo = 10066329
-            Fill.ColorMirror = 10066329
-            Fill.ColorMirrorTo = 7301478
-            Fill.GradientType = gtVertical
-            Fill.GradientMirrorType = gtVertical
-            Fill.BorderColor = clSilver
-            Fill.BorderWidth = 5
-            Fill.Rounding = 10
-            Fill.ShadowColor = clNone
-            Fill.ShadowOffset = 10
-            Fill.Glow = gmNone
-            Version = '1.6.0.1'
-            TabOrder = 1
-            TMSStyle = 0
-            object ImgKRI: TImage
-              Left = 63
-              Top = 62
-              Width = 427
-              Height = 308
-              ParentShowHint = False
-              Proportional = True
-              ShowHint = True
-            end
-            object AdvSmoothLabel9: TAdvSmoothLabel
-              Left = 19
-              Top = 27
-              Width = 48
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Model'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Model'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-          end
-          object pnlProperties: TAdvSmoothPanel
-            Left = 19
-            Top = 178
-            Width = 554
-            Height = 261
-            Cursor = crDefault
-            Caption.Location = plTopCenter
-            Caption.HatchStyle = HatchStyleDiagonalBrick
-            Caption.HTMLFont.Charset = DEFAULT_CHARSET
-            Caption.HTMLFont.Color = clWindowText
-            Caption.HTMLFont.Height = -13
-            Caption.HTMLFont.Name = 'Tahoma'
-            Caption.HTMLFont.Style = []
-            Caption.Font.Charset = DEFAULT_CHARSET
-            Caption.Font.Color = clWindowText
-            Caption.Font.Height = -16
-            Caption.Font.Name = 'Tahoma'
-            Caption.Font.Style = [fsBold]
-            Caption.Top = 20
-            Caption.ColorStart = clWhite
-            Caption.ColorEnd = clWhite
-            Caption.GradientType = gtHorizontal
-            Caption.LineColor = clBlack
-            Caption.Line = False
-            Fill.Color = 7301478
-            Fill.ColorTo = 10066329
-            Fill.ColorMirror = 10066329
-            Fill.ColorMirrorTo = 7301478
-            Fill.GradientType = gtVertical
-            Fill.GradientMirrorType = gtVertical
-            Fill.BorderColor = clSilver
-            Fill.BorderWidth = 5
-            Fill.Rounding = 10
-            Fill.ShadowColor = clNone
-            Fill.ShadowOffset = 10
-            Fill.Glow = gmNone
-            Version = '1.6.0.1'
-            TabOrder = 2
-            TMSStyle = 0
-            object AdvSmoothLabel52: TAdvSmoothLabel
-              Left = 258
-              Top = 81
-              Width = 39
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Knot'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel21: TAdvSmoothLabel
-              Left = 19
-              Top = 19
-              Width = 78
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Properties'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel25: TAdvSmoothLabel
-              Left = 31
-              Top = 54
-              Width = 163
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Max Speed                   :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Max Speed                   :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel27: TAdvSmoothLabel
-              Left = 31
-              Top = 81
-              Width = 164
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Max Speed Astern       :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Max Speed Astern       :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel17: TAdvSmoothLabel
-              Left = 33
-              Top = 210
-              Width = 171
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Damage Sustainability :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Damage Sustainability :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel28: TAdvSmoothLabel
-              Left = 258
-              Top = 54
-              Width = 39
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Knot'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'AdvSmoothLabel'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel22: TAdvSmoothLabel
-              Left = 31
-              Top = 132
-              Width = 168
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Rudder Swing Rate      :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Rudder Swing Rate      :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel30: TAdvSmoothLabel
-              Left = 345
-              Top = 158
-              Width = 111
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Throttle Rate  :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Throttle Rate  :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel35: TAdvSmoothLabel
-              Left = 345
-              Top = 183
-              Width = 114
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Heel Factor      :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Heel Factor      :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel34: TAdvSmoothLabel
-              Left = 345
-              Top = 131
-              Width = 111
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Shaft Up          :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Shaft Up          :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel33: TAdvSmoothLabel
-              Left = 31
-              Top = 184
-              Width = 169
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Tactical Diameter         :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Tactical Diameter         :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel32: TAdvSmoothLabel
-              Left = 31
-              Top = 158
-              Width = 169
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Ship Trim Factor           :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Ship Trim Factor           :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object AdvSmoothLabel31: TAdvSmoothLabel
-              Left = 345
-              Top = 210
-              Width = 117
-              Height = 20
-              AutoSize = True
-              Fill.ColorMirror = clNone
-              Fill.ColorMirrorTo = clNone
-              Fill.GradientType = gtVertical
-              Fill.GradientMirrorType = gtSolid
-              Fill.BorderColor = clNone
-              Fill.Rounding = 0
-              Fill.ShadowOffset = 0
-              Fill.Glow = gmNone
-              Caption.Text = 'Displacement   :'
-              Caption.Location = plTopLeft
-              Caption.Font.Charset = DEFAULT_CHARSET
-              Caption.Font.Color = clWindowText
-              Caption.Font.Height = -13
-              Caption.Font.Name = 'Tahoma'
-              Caption.Font.Style = [fsBold]
-              Caption.ColorStart = clSilver
-              Caption.ColorEnd = clWhite
-              CaptionShadow.Text = 'Displacement   :'
-              CaptionShadow.Font.Charset = DEFAULT_CHARSET
-              CaptionShadow.Font.Color = clWindowText
-              CaptionShadow.Font.Height = -27
-              CaptionShadow.Font.Name = 'Tahoma'
-              CaptionShadow.Font.Style = []
-              Version = '1.6.1.0'
-            end
-            object edtShipMaxSpeed: TEdit
-              Left = 200
-              Top = 54
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 0
-            end
-            object edtShipMaxSpeedAstern: TEdit
-              Left = 200
-              Top = 80
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 1
-            end
-            object edtDamageSustainability: TEdit
-              Left = 200
-              Top = 210
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 2
-            end
-            object edtShipHeelFactor: TEdit
-              Left = 461
-              Top = 183
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 3
-            end
-            object edtShipShaftUp: TEdit
-              Left = 461
-              Top = 131
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 4
-            end
-            object edtShipTacDiameter: TEdit
-              Left = 200
-              Top = 183
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 5
-            end
-            object edtShipTrimFactor: TEdit
-              Left = 200
-              Top = 157
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 6
-            end
-            object edtShipRudderSwingRate: TEdit
-              Left = 200
-              Top = 131
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 7
-            end
-            object edtShipThrottleRate: TEdit
-              Left = 461
-              Top = 157
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 8
-            end
-            object edtShipDisplacement: TEdit
-              Left = 461
-              Top = 209
-              Width = 56
-              Height = 21
-              ReadOnly = True
-              TabOrder = 9
-            end
-          end
-          object edtClass: TEdit
-            Left = 90
-            Top = 20
-            Width = 480
+          object Label6: TLabel
+            Left = 345
+            Top = 317
+            Width = 50
             Height = 21
-            AutoSize = False
-            ReadOnly = True
-            TabOrder = 3
+            Caption = 'Degree'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
           end
         end
-        object pnl4: TPanel
-          Left = 589
-          Top = 77
-          Width = 3
-          Height = 834
-          Align = alLeft
-          BevelOuter = bvNone
-          Color = clWhite
-          ParentBackground = False
-          TabOrder = 4
+        object AdvSmoothPanel3: TAdvSmoothPanel
+          Left = 1348
+          Top = 473
+          Width = 436
+          Height = 377
+          Cursor = crDefault
+          Caption.Location = plTopCenter
+          Caption.HatchStyle = HatchStyleDiagonalBrick
+          Caption.HTMLFont.Charset = DEFAULT_CHARSET
+          Caption.HTMLFont.Color = clWindowText
+          Caption.HTMLFont.Height = -13
+          Caption.HTMLFont.Name = 'Tahoma'
+          Caption.HTMLFont.Style = []
+          Caption.Font.Charset = DEFAULT_CHARSET
+          Caption.Font.Color = clWindowText
+          Caption.Font.Height = -16
+          Caption.Font.Name = 'Tahoma'
+          Caption.Font.Style = [fsBold]
+          Caption.Top = 20
+          Caption.ColorStart = clWhite
+          Caption.ColorEnd = clWhite
+          Caption.GradientType = gtHorizontal
+          Caption.LineColor = clBlack
+          Caption.Line = False
+          Fill.Color = 7301478
+          Fill.ColorTo = 10066329
+          Fill.ColorMirror = 10066329
+          Fill.ColorMirrorTo = 7301478
+          Fill.GradientType = gtVertical
+          Fill.GradientMirrorType = gtVertical
+          Fill.BorderColor = clSilver
+          Fill.BorderWidth = 5
+          Fill.Rounding = 10
+          Fill.ShadowColor = clNone
+          Fill.ShadowOffset = 10
+          Fill.Glow = gmNone
+          Version = '1.6.0.1'
+          Anchors = [akTop, akRight]
+          TabOrder = 2
+          TMSStyle = 0
+          object Label1: TLabel
+            Left = 156
+            Top = 66
+            Width = 116
+            Height = 17
+            Caption = 'Current Direction'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Segoe UI Symbol'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+          object vrwhlSeaDirection: TVrWheel
+            Tag = 9
+            Left = 118
+            Top = 118
+            Width = 85
+            Height = 85
+            MaxValue = 360
+            Position = 180
+            BackImage.Data = {
+              120F0000424D120F000000000000760000002800000055000000550000000100
+              0400000000009C0E000000000000000000001000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+              3333333333333333333333333333333333333333333333333333333333333333
+              3333333330003333333333333333333333333333333333333333333333333333
+              3333333333333333333333333333333330003333333333333333333333333333
+              3333333333333333333333333333333333333333333333333333333330003333
+              3333333333333333333333333333333333333333333333333333333333333333
+              3333333333333333300033333333333333333333333333333333333000000000
+              0000033333333333333333333333333333333333300033333333333333333333
+              3333333333300008888888888888800003333333333333333333333333333333
+              3000333333333333333333333333333300088888888888888888888880003333
+              3333333333333333333333333000333333333333333333333333300088888888
+              8888888888888888888800033333333333333333333333333000333333333333
+              3333333333300888888888887777777777778888888888800333333333333333
+              3333333330003333333333333333333333088888888877777777777777777777
+              8888888880333333333333333333333330003333333333333333333300888888
+              8777777777777777777777777778888888003333333333333333333330003333
+              3333333333333330888888877777777777777777777777777777788888880333
+              3333333333333333300033333333333333333008888887777777777777777777
+              7777777777777778888880033333333333333333300033333333333333330888
+              8887777777777777777777777777777777777777788888803333333333333333
+              3000333333333333333088888877777777777777777777777777777777777777
+              7788888803333333333333333000333333333333330888887777777777777777
+              7777777777777777777777777777888880333333333333333000333333333333
+              30F8888777777777777777777777777777777777777777777777788888033333
+              3333333330003333333333330FF8887777777777777777777777777777777777
+              777777777777778888803333333333333000333333333330FFFFF77777777777
+              7777777777777777777777777777777777777778888803333333333330003333
+              3333330FFFFF7777777777777777777777777777777777777777777777777777
+              8888803333333333300033333333330FFFF77777777777777777777777777777
+              777777777777777777777777788880333333333330003333333330FFFF777777
+              7777777777777777777777777777777777777777777777777788880333333333
+              3000333333330FFFF77777777777777777777777777777777777777777777777
+              7777777777788880333333333000333333330FFFF77777777777777777777777
+              777777777777777777777777777777777778888033333333300033333330FFFF
+              7777777777777777777777777777777777777777777777777777777777778888
+              0333333330003333330FFFF77777777777777777777777777777777777777777
+              7777777777777777777778888033333330003333330FFFF77777777777777777
+              7777777777777777777777777777777777777777777778888033333330003333
+              30FFFF7777777777777777777777777777777777777777777777777777777777
+              77777788880333333000333330FFFF7777777777777777777777777777777777
+              77777777777777777777777777777788880333333000333330FFF77777777777
+              7777777777777777777777777777777777777777777777777777777888033333
+              300033330FFFF777777777777777777777777777777777777777777777777777
+              777777777777777888803333300033330FFF7777777777777777777777777777
+              777777777777777777777777777777777777777788803333300033330FFF7777
+              7777777777777777777777777777777777777777777777777777777777777777
+              8880333330003330FFFF77777777777777777777777777777777777777777777
+              7777777777777777777777778888033330003330FFF777777777777777777777
+              7777777777777777777777777777777777777777777777777888033330003330
+              FFF7777777777777777777777777777777777777777777777777777777777777
+              777777777888033330003330FFF7777777777777777777777777777777777777
+              77777777777777777777777777777777788803333000330FFFF7777777777777
+              7777777777777777777777777777777777777777777777777777777778888033
+              3000330FFF777777777777777777777777777777777777777777777777777777
+              7777777777777777778880333000330FFF777777777777777777777777777777
+              7777777777777777777777777777777777777777778880333000330FFF777777
+              7777777777777777777777777777777777777777777777777777777777777777
+              778880333000330FFF7777777777777777777777777777777777777777777777
+              777777777777777777777777778880333000330FFF7777777777777777777777
+              777777777777777777777777777777777777777777777777778880333000330F
+              FF77777777777777777777777777777777777777777777777777777777777777
+              77777777778880333000330FFF77777777777777777777777777777777777777
+              77777777777777777777777777777777778880333000330FFF77777777777777
+              7777777777777777777777777777777777777777777777777777777777888033
+              3000330FFF777777777777777777777777777777777777777777777777777777
+              7777777777777777778880333000330FFF777777777777777777777777777777
+              7777777777777777777777777777777777777777778880333000330FFF777777
+              7777777777777777777777777777777777777777777777777777777777777777
+              778880333000330FFFF777777777777777777777777777777777777777777777
+              777777777777777777777777788880333000330FFFF777777777777777777777
+              7777777777777777777777777777777777777777777777777888803330003330
+              FFF7777777777777777777777777777777777777777777777777777777777777
+              777777777888033330003330FFF7777777777777777777777777777777777777
+              777777777777777777777777777777777888033330003330FFFF777777777777
+              7777777777777777777777777777777777777777777777777777777788880333
+              30003330FFFF7777777777777777777777777777777777777777777777777777
+              777777777777777788880333300033330FFF7777777777777777777777777777
+              777777777777777777777777777777777777777788803333300033330FFFF777
+              7777777777777777777777777777777777777777777777777777777777777778
+              88803333300033330FFFF7777777777777777777777777777777777777777777
+              777777777777777777777778888033333000333330FFFF777777777777777777
+              7777777777777777777777777777777777777777777777888803333330003333
+              30FFFF7777777777777777777777777777777777777777777777777777777777
+              77777788880333333000333330FFFFF777777777777777777777777777777777
+              777777777777777777777777777778888803333330003333330FFFF777777777
+              7777777777777777777777777777777777777777777777777777788880333333
+              30003333330FFFFF777777777777777777777777777777777777777777777777
+              777777777777888880333333300033333330FFFFF77777777777777777777777
+              7777777777777777777777777777777777788888033333333000333333330FFF
+              F777777777777777777777777777777777777777777777777777777777788880
+              333333333000333333330FFFFF77777777777777777777777777777777777777
+              7777777777777777778888803333333330003333333330FFFFF7777777777777
+              7777777777777777777777777777777777777777788888033333333330003333
+              3333330FFFFF7777777777777777777777777777777777777777777777777777
+              8888803333333333300033333333330FFFFFF777777777777777777777777777
+              77777777777777777777777788888033333333333000333333333330FFFFFF77
+              7777777777777777777777777777777777777777777777FF8888033333333333
+              30003333333333330FFFFFF77777777777777777777777777777777777777777
+              77777FFF8880333333333333300033333333333330FFFFFF7777777777777777
+              7777777777777777777777777777FFFFFF033333333333333000333333333333
+              330FFFFFF777777777777777777777777777777777777777777FFFFFF0333333
+              3333333330003333333333333330FFFFFFF77777777777777777777777777777
+              777777777FFFFFFF0333333333333333300033333333333333330FFFFFFF7777
+              77777777777777777777777777777777FFFFFFF0333333333333333330003333
+              333333333333300FFFFFFF77777777777777777777777777777777FFFFFFF003
+              3333333333333333300033333333333333333330FFFFFFFF7777777777777777
+              777777777777FFFFFFFF03333333333333333333300033333333333333333333
+              00FFFFFFFF777777777777777777777777FFFFFFFF0033333333333333333333
+              300033333333333333333333330FFFFFFFFFF777777777777777777FFFFFFFFF
+              F0333333333333333333333330003333333333333333333333300FFFFFFFFFFF
+              F7777777777FFFFFFFFFFFF00333333333333333333333333000333333333333
+              3333333333333000FFFFFFFFFFFFFFFFFFFFFFFFFFFF00033333333333333333
+              3333333330003333333333333333333333333333000FFFFFFFFFFFFFFFFFFFFF
+              F000333333333333333333333333333330003333333333333333333333333333
+              3330000FFFFFFFFFFFFFF0000333333333333333333333333333333330003333
+              3333333333333333333333333333333000000000000003333333333333333333
+              3333333333333333300033333333333333333333333333333333333333333333
+              33333333333333333333333333333333333333333000}
+            HandleImage.Data = {
+              BE000000424DBE00000000000000760000002800000009000000090000000100
+              0400000000004800000000000000000000001000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
+              0000333000333000000033099903300000003099999030000000309999903000
+              0000307999903000000033077903300000003330003330000000333333333000
+              0000}
+            OnChange = vrwhlSeaDirectionChange
+          end
+          object Label2: TLabel
+            Left = 345
+            Top = 321
+            Width = 50
+            Height = 21
+            Caption = 'Degree'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblCurrentDirection: TLabel
+            Left = 313
+            Top = 322
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
         end
       end
     end

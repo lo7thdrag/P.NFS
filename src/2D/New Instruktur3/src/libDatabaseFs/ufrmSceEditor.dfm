@@ -422,8 +422,8 @@ object frmSceEditor: TfrmSceEditor
         object Label8: TLabel
           Left = 0
           Top = 0
-          Width = 59
-          Height = 18
+          Width = 576
+          Height = 55
           Align = alClient
           Alignment = taCenter
           Caption = 'General'
@@ -434,6 +434,8 @@ object frmSceEditor: TfrmSceEditor
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
+          ExplicitWidth = 59
+          ExplicitHeight = 18
         end
       end
     end
@@ -768,7 +770,7 @@ object frmSceEditor: TfrmSceEditor
       object advsmthlbl8: TAdvSmoothLabel
         Left = 26
         Top = 647
-        Width = 82
+        Width = 98
         Height = 20
         AutoSize = True
         Fill.ColorMirror = clNone
@@ -779,7 +781,7 @@ object frmSceEditor: TfrmSceEditor
         Fill.Rounding = 0
         Fill.ShadowOffset = 0
         Fill.Glow = gmNone
-        Caption.Text = 'Fog Height'
+        Caption.Text = 'Fog Intensity'
         Caption.Font.Charset = DEFAULT_CHARSET
         Caption.Font.Color = clWindowText
         Caption.Font.Height = -13
@@ -787,7 +789,7 @@ object frmSceEditor: TfrmSceEditor
         Caption.Font.Style = [fsBold]
         Caption.ColorStart = clSilver
         Caption.ColorEnd = clWhite
-        CaptionShadow.Text = 'AdvSmoothLabel'
+        CaptionShadow.Text = 'Fog Intensity'
         CaptionShadow.Font.Charset = DEFAULT_CHARSET
         CaptionShadow.Font.Color = clWindowText
         CaptionShadow.Font.Height = -27
@@ -795,7 +797,6 @@ object frmSceEditor: TfrmSceEditor
         CaptionShadow.Font.Style = []
         Version = '1.6.1.0'
         Anchors = [akTop, akRight]
-        ExplicitLeft = 20
       end
       object vrwhlSeaDirection: TVrWheel
         Left = 352
@@ -2718,7 +2719,7 @@ object frmSceEditor: TfrmSceEditor
         Top = 673
         Width = 489
         Height = 28
-        Max = 100
+        Max = 3
         Position = 1
         TabOrder = 0
         OnChange = tbFogHChange
@@ -2828,8 +2829,8 @@ object frmSceEditor: TfrmSceEditor
         object Label7: TLabel
           Left = 0
           Top = 0
-          Width = 94
-          Height = 18
+          Width = 576
+          Height = 55
           Align = alClient
           Alignment = taCenter
           Caption = 'Environment'
@@ -2840,6 +2841,8 @@ object frmSceEditor: TfrmSceEditor
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
+          ExplicitWidth = 94
+          ExplicitHeight = 18
         end
       end
       object edtBaroPressure: TEdit
@@ -2877,7 +2880,7 @@ object frmSceEditor: TfrmSceEditor
       end
       object edtTemp: TEdit
         Left = 513
-        Top = 493
+        Top = 491
         Width = 38
         Height = 21
         Alignment = taCenter
@@ -5003,8 +5006,8 @@ object frmSceEditor: TfrmSceEditor
       object Label6: TLabel
         Left = 0
         Top = 0
-        Width = 65
-        Height = 18
+        Width = 1350
+        Height = 55
         Align = alClient
         Alignment = taCenter
         Caption = 'Platform'
@@ -5015,6 +5018,8 @@ object frmSceEditor: TfrmSceEditor
         Font.Style = [fsBold]
         ParentFont = False
         Layout = tlCenter
+        ExplicitWidth = 65
+        ExplicitHeight = 18
       end
     end
   end

@@ -2481,10 +2481,10 @@ begin
     val := StrToIntDef(edtFogH.Text, 0);
 
 
-    if val > 100 then
-      val := 100
-    else if val < 1 then
-         val := 1 ;
+    if val > 3 then
+      val := 3
+    else if val < 0 then
+         val := 0 ;
     edtFogH.Text := IntToStr(val);
     tbFogH.Position := StrToIntDef(edtFogH.Text, 0);
   end;
