@@ -250830,9 +250830,9 @@ object frmGameController: TfrmGameController
           object Label14: TLabel
             Left = 58
             Top = 644
-            Width = 72
+            Width = 82
             Height = 18
-            Caption = 'Fog Height'
+            Caption = 'Fog Intensity'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -16
@@ -250930,7 +250930,7 @@ object frmGameController: TfrmGameController
             Top = 643
             Width = 9
             Height = 19
-            Caption = '1'
+            Caption = '0'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -16
@@ -251036,6 +251036,7 @@ object frmGameController: TfrmGameController
             Font.Style = []
             ParentFont = False
             Transparent = True
+            Visible = False
           end
           object Label28: TLabel
             Left = 58
@@ -251243,8 +251244,7 @@ object frmGameController: TfrmGameController
               Top = 15
               Width = 614
               Height = 28
-              MinValue = 1
-              Position = 1
+              MaxValue = 3
               Frequency = 1
               GutterBevel.InnerShadow = clBtnShadow
               GutterBevel.InnerHighlight = clBtnHighlight
@@ -251352,8 +251352,8 @@ object frmGameController: TfrmGameController
           end
           object vrwhlWindDirec: TVrWheel
             Tag = 9
-            Left = 113
-            Top = 118
+            Left = 108
+            Top = 117
             Width = 85
             Height = 85
             MaxValue = 360
@@ -251488,10 +251488,10 @@ object frmGameController: TfrmGameController
               0000333000333000000033099903300000003099999030000000309999903000
               0000307999903000000033077903300000003330003330000000333333333000
               0000}
-            OnMouseUp = vrwhlSeaDirectionMouseUp
+            OnChange = vrwhlWindDirecChange
           end
           object lblWindDirection: TLabel
-            Left = 321
+            Left = 313
             Top = 319
             Width = 9
             Height = 19
@@ -251711,7 +251711,7 @@ object frmGameController: TfrmGameController
               0000333000333000000033099903300000003099999030000000309999903000
               0000307999903000000033077903300000003330003330000000333333333000
               0000}
-            OnMouseUp = vrwhlSeaDirectionMouseUp
+            OnChange = vrwhlSeaDirectionChange
           end
           object Label2: TLabel
             Left = 345
@@ -251728,7 +251728,7 @@ object frmGameController: TfrmGameController
             Transparent = True
           end
           object lblCurrentDirection: TLabel
-            Left = 321
+            Left = 313
             Top = 322
             Width = 9
             Height = 19
@@ -254789,7 +254789,7 @@ object frmGameController: TfrmGameController
           object advsmthlbl8: TAdvSmoothLabel
             Left = 23
             Top = 685
-            Width = 82
+            Width = 98
             Height = 20
             AutoSize = True
             Fill.ColorMirror = clNone
@@ -254800,7 +254800,7 @@ object frmGameController: TfrmGameController
             Fill.Rounding = 0
             Fill.ShadowOffset = 0
             Fill.Glow = gmNone
-            Caption.Text = 'Fog Height'
+            Caption.Text = 'Fog Intensity'
             Caption.Font.Charset = DEFAULT_CHARSET
             Caption.Font.Color = clWindowText
             Caption.Font.Height = -13
@@ -254808,7 +254808,7 @@ object frmGameController: TfrmGameController
             Caption.Font.Style = [fsBold]
             Caption.ColorStart = clSilver
             Caption.ColorEnd = clWhite
-            CaptionShadow.Text = 'AdvSmoothLabel'
+            CaptionShadow.Text = 'Fog Intensity'
             CaptionShadow.Font.Charset = DEFAULT_CHARSET
             CaptionShadow.Font.Color = clWindowText
             CaptionShadow.Font.Height = -27
@@ -254830,7 +254830,7 @@ object frmGameController: TfrmGameController
             OnChange = tbSeaStateChange
           end
           object trckBarCurrentSpeed: TTrackBar
-            Left = 18
+            Left = 14
             Top = 190
             Width = 390
             Height = 29
@@ -254881,7 +254881,7 @@ object frmGameController: TfrmGameController
             Width = 390
             Height = 29
             Enabled = False
-            Max = 100
+            Max = 3
             TabOrder = 6
             OnChange = tbFogHChange
           end

@@ -1081,10 +1081,10 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure tbFogHMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure vrwhlWindDirecMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure vrwhlSeaDirectionMouseUp(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+//    procedure vrwhlWindDirecMouseUp(Sender: TObject; Button: TMouseButton;
+//      Shift: TShiftState; X, Y: Integer);
+//    procedure vrwhlSeaDirectionMouseUp(Sender: TObject;
+//      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure lvWeaponMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure On1Click(Sender: TObject);
@@ -6472,9 +6472,18 @@ end;
 
 procedure TfrmGameController.vrwhlSeaDirectionChange(Sender: TObject);
 var
-newDir : Integer;
+  valTemp : Integer;
+
 begin
-//  lblCurrentDirection.Caption := IntToStr(vrwhlSeaDirection.Position);
+  if vrwhlSeaDirection.Position < 180 then
+  begin
+    valTemp := (180 + vrwhlSeaDirection.Position);
+  end
+  else
+  begin
+    valTemp := (vrwhlSeaDirection.Position - 180);
+  end;
+  lblCurrentDirection.Caption := IntToStr(valTemp);
 end;
 
 procedure TfrmGameController.execPDF(Sender : TObject);
@@ -7002,21 +7011,15 @@ var
    Val: single ;
 begin
    UpdateEnvy;
-   lowerBound := 0.00005;
-   upperBound := 0.08;
-   boundary   := upperBound - lowerBound;
-   position   := ((tbFogH.MaxValue)-(tbFogH.Position-1))/ (tbFogH.MaxValue);
-   posPercentage := log10(tbFogH.MaxValue * position) / log10(tbFogH.MaxValue);
-   Val  := lowerBound + ((boundary - (posPercentage * boundary)));
+//   lowerBound := 0.00005;
+//   upperBound := 0.08;
+//   boundary   := upperBound - lowerBound;
+//   position   := ((tbFogH.MaxValue)-(tbFogH.Position-1))/ (tbFogH.MaxValue);
+//   posPercentage := log10(tbFogH.MaxValue * position) / log10(tbFogH.MaxValue);
+//   Val  := lowerBound + ((boundary - (posPercentage * boundary)));
+   Val := tbFogH.Position;
+
    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_ENVI, Val, 0,0,0,0);
-
-end;
-
-procedure TfrmGameController.vrwhlWindDirecMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var
-newDir : Integer;
-begin
 
   if vrwhlWindDirec.Position < 180 then
   begin
@@ -7036,17 +7039,23 @@ var
 newDir : Integer;
 begin
 
-  if vrwhlSeaDirection.Position < 180 then
-  begin
-   newDir := Round(180 + vrwhlSeaDirection.Position);
-  end
-  else
-  begin
-   newDir := Round(vrwhlSeaDirection.Position - 180);
-  end;
-  UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_CURDIRECTION, newDir, 0,0,0,0);
-end;
+//procedure TfrmGameController.vrwhlSeaDirectionMouseUp(Sender: TObject;
+//  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+//var
+//newDir : Integer;
+//begin
+//
+//  if vrwhlSeaDirection.Position < 180 then
+//  begin
+//   newDir := Round(180 + vrwhlSeaDirection.Position);
+//  end
+//  else
+//  begin
+//   newDir := Round(vrwhlSeaDirection.Position - 180);
+//  end;
+//  UpdateEnvy;
+//  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_CURDIRECTION, newDir, 0,0,0,0);
+//end;
 
 procedure TfrmGameController.wheelAzimutChange(Sender: TObject);
 var
@@ -7195,8 +7204,8 @@ begin
     trckBarFogHeight.Position := Round (SceEnvi.Scenario_FogHeight);
     edtFogHeight.Text := FloatToStr(SceEnvi.Scenario_FogHeight);
 
-    edtWindDirection.Text := FloatToStr(SceEnvi.Scenario_WindDir_Deg);
-    edtCurrentDirection.Text := FloatToStr(SceEnvi.Scenario_CurrDir_Deg);
+    VrWindDirection.Position := Round (SceEnvi.Scenario_WindDir_Deg);
+    VrCurrentDirection.Position := Round (SceEnvi.Scenario_CurrDir_Deg);
 
     if SceEnvi.Scenario_WindDir_Deg > 180 then
      VrWindDirection.position := (Round(SceEnvi.Scenario_WindDir_Deg) - 180)
@@ -8753,8 +8762,19 @@ begin
 end;
 
 procedure TfrmGameController.vrwhlWindDirecChange(Sender: TObject);
+var
+  valTemp : Integer;
+
 begin
-//  lblWindDirection.Caption := IntToStr(vrwhlWindDirec.Position);
+  if vrwhlWindDirec.Position < 180 then
+  begin
+    valTemp := (180 + vrwhlWindDirec.Position);
+  end
+  else
+  begin
+    valTemp := (vrwhlWindDirec.Position - 180);
+  end;
+  lblWindDirection.Caption := IntToStr(valTemp);
 end;
 
 procedure TfrmGameController.RestartAllCommunication1Click(
