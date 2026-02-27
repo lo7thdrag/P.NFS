@@ -11,7 +11,7 @@ uses
 
   MapXLib_TLB, uClassDatabase, uTCPDatatype, ufrmMainInstruktur, ufrmGameController, uInstrukturManager, ufWeaponStatus, uReplayControl,
   uDataModule, uInstrukturObjects, uGlobalVar, uBridgeSet, uBaseSimulationObject, ufEventLog, uDistance, ufInstLog, Dialogs,
-  uTrajectory, Forms, ufrmTrajectoryView ;
+  uTrajectory, Forms, ufrmTrajectoryView, ShellAPI;
 
 const
   SockStateS: array[TSocketState] of string
@@ -340,6 +340,9 @@ var
   i : Integer;
   Dx, Dy : Double;
   RecEnvy : TScenario;
+
+  ExePath : string;
+  Params  : string;
 begin
   case Rec.OrderID of
 
@@ -380,6 +383,14 @@ begin
         begin
 
         end;
+
+//        __CM_CLIENT_LAUNCH :
+//        begin
+//          ExePath := string(Rec.strValue);
+//          Params  := string(Rec.strValue2);
+//
+//          ShellExecute(0, 'open', PChar(ExePath), PChar(Params), PChar(ExtractFileDir(ExePath)), SW_SHOWNORMAL);
+//        end;
       end;
     end;
 
@@ -784,6 +795,25 @@ begin
     begin
       // cek status Green
       frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.LoadingStatus(shipID, WeaponID, LauncherID, MissileID, tsLoading);
+
+      shipInst := SimManager.FindShipByID(shipID);
+
+      if Assigned(shipInst) then
+      begin
+        for i := 0 to shipInst.WeaponOnShip_List.Count - 1 do
+        begin
+          weaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List[i]);
+
+          if (weaponShip.Weapon_ID = WeaponID) and
+             (weaponShip.Weapon_Launcher = LauncherID) then
+          begin
+            weaponShip.Weapon_Status := 1;
+            Break;
+          end;
+        end;
+      end;
+
+      frmMainInstruktur.MainMap.Repaint;
     end;
   end;
 end;

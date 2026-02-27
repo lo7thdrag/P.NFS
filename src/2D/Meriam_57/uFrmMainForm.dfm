@@ -4134,7 +4134,8 @@ object Form1: TForm1
               000000000000000000000000000000000000}
             Color = clBtnFace
             TabOrder = 0
-            OnClick = ArrowBmpButtonClick
+            OnMouseDown = BtnArrowMouseDown
+            OnMouseUp = BtnArrowMouseUp
           end
           object RzBmpBtnArrowRight: TRzBmpButton
             Tag = 1
@@ -4716,7 +4717,8 @@ object Form1: TForm1
               000000000000000000000000000000000000}
             Color = clBtnFace
             TabOrder = 1
-            OnClick = ArrowBmpButtonClick
+            OnMouseDown = BtnArrowMouseDown
+            OnMouseUp = BtnArrowMouseUp
           end
           object RzBmpBtnArrowUp: TRzBmpButton
             Tag = 2
@@ -5298,7 +5300,8 @@ object Form1: TForm1
               0000000000000000000000000000}
             Color = clBtnFace
             TabOrder = 2
-            OnClick = ArrowBmpButtonClick
+            OnMouseDown = BtnArrowMouseDown
+            OnMouseUp = BtnArrowMouseUp
           end
           object RzBmpBtnArrowDown: TRzBmpButton
             Tag = 3
@@ -5880,7 +5883,8 @@ object Form1: TForm1
               0000000000000000000000000000}
             Color = clBtnFace
             TabOrder = 3
-            OnClick = ArrowBmpButtonClick
+            OnMouseDown = BtnArrowMouseDown
+            OnMouseUp = BtnArrowMouseUp
           end
         end
         object pnlCenterRight: TPanel
@@ -10747,5 +10751,12 @@ object Form1: TForm1
     OnTimer = Timer1Timer
     Left = 88
     Top = 32
+  end
+  object tmrBtnArrow: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = tmrBtnArrowTimer
+    Left = 105
+    Top = 297
   end
 end

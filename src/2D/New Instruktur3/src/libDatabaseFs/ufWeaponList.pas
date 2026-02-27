@@ -122,6 +122,7 @@ type
     edtShipDisplacement: TEdit;
     edtShipThrottleRate: TEdit;
     edtShipRudderSwingRate: TEdit;
+    cbbClass: TComboBox;
     procedure btnAddweaponClick(Sender: TObject);
     procedure btnRemoveClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -150,6 +151,7 @@ type
     procedure ToClose;
 
     procedure ClearListShipData (const aListView: TListView);
+    procedure cbbClassClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -173,7 +175,7 @@ var
 
 implementation
 
-uses uBaseFunction, ufassignweapon, ufassignmissile, Math;
+uses uBaseFunction, ufassignweapon, ufassignmissile, Math, ufrmGameController;
 
 {$R *.dfm}
 
@@ -378,7 +380,7 @@ procedure TfrmWeaponList.ClearVisualForm;
 
 begin
   edtShipName.Text  := '';
-  edtClassName.Text     := '';
+  edtClassName.Text := '';
 
   edtShipLength.Text  := '0';
   edtShipwidth.Text   := '0';
@@ -769,6 +771,16 @@ begin
   end;
 end;
 
+procedure TfrmWeaponList.cbbClassClick(Sender: TObject);
+begin
+//  cbbClass.Items.Clear;
+//
+//  with DataModule1.GetShipClassName do
+//  begin
+//    cbbClass.Items.Add(FieldByName('SHIP_CLASS_NAME').AsString)
+//  end;
+end;
+
 procedure TfrmWeaponList.btnRemoveDetailClick(Sender: TObject);
 var
   WeaponDetail : TWeaponDetail;
@@ -1027,7 +1039,11 @@ var
   vehicle     : TVehicle;
 
 begin
-
+  if cbbClass.ItemIndex = -1 then
+  begin
+    ShowMessage('Please Select Ship Class First!');
+    Exit;
+  end;
   vehicle := TVehicle.Create;
 
   try
@@ -1035,6 +1051,7 @@ begin
     with vehicle do
     begin
       Vehicle_Name            := edtShipName.Text;
+      Vehicle_Ship_Type       := cbbClass.ItemIndex + 1;
       Vehicle_LENGTH          := StrToFloat(edtShipLength.Text);
       Vehicle_WIDTH           := StrToFloat(edtShipwidth.Text);
       Vehicle_HEIGHT          := StrToFloat(edtShipHeight.Text);
@@ -1061,11 +1078,11 @@ begin
       {isi sintak update data}
       DataModule1.UpdateShipEditor(Ship_ID,vehicle);
     end;
-
   finally
     vehicle.Free;
   end;
 
+  frmGameController.ShowShip;
   close;
 end;
 

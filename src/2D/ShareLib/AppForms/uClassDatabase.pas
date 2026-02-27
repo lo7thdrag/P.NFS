@@ -48,7 +48,7 @@ type
     Vehicle_IDM_Model               : Integer;
     Vehicle_ISTarget                : Integer;
     Vehicle_Ship_Type               : Integer;
-    Vehicle_SHIP_CALLSIGN           : string;
+//    Vehicle_SHIP_CALLSIGN           : string;
 
 
     { For Scenario Editor }

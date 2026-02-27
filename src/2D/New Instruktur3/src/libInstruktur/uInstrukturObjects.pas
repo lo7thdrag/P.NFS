@@ -147,19 +147,25 @@ interface
 
   TWeaponOnShip = class
     private
+    public
+      ListDetail : TList;
+
       FParent      : TInsObject;
       FWeapon_Name : string;
       FWeapon_ID   : Integer;
       FWeapon_Launcher : Integer;
       FWeapon_Status  : integer;  //1= on, 2=off
-    public
-      ListDetail : TList;
+
+      OffsetX         : Double;
+      OffsetY         : Double;
 
       constructor Create(Const aParent : TInsObject; aMap: TMap); virtual;
       destructor Destroy; override;
 
       procedure SetEnvironment;
       procedure addDetail(aObj : TWeaponRangeDetail);
+
+      procedure SetLauncherOffset;
 
       property Parent : TInsObject read FParent;
       property Weapon_Name : string read FWeapon_Name write FWeapon_Name;
@@ -895,10 +901,9 @@ begin
 
   VLabel.Line3 := ' ' + IntToStr(Round(Course));
   VLabel.Line4 := ' ' + IntToStr(Round(Speed)) + ' knot';
-  //VLabel.Line5 := ' ' + IntToStr(Round(PositionZ * C_Degree_To_Feet))+ ' feet';
+//  VLabel.Line5 := ' ' + IntToStr(Round(PositionZ * C_Degree_To_Feet))+ ' feet';
   VLabel.Line5 := ' ' + IntToStr(Round(PositionZ))+ ' meter';
 end;
-
 
 function TInsObject.FindViewByPosition(const x, y: integer;
   var av: TActiveView): boolean;
@@ -1135,9 +1140,12 @@ end;
 
 constructor TWeaponOnShip.Create(Const aParent : TInsObject; aMap: TMap);
 begin
+  inherited Create;
   FParent        := aParent;
   FWeapon_Status := 2;
   ListDetail     := TList.Create;
+
+  SetLauncherOffset;
 end;
 
 destructor TWeaponOnShip.Destroy;
@@ -1161,6 +1169,34 @@ end;
 procedure TWeaponOnShip.SetEnvironment;
 begin
   
+end;
+
+procedure TWeaponOnShip.SetLauncherOffset;
+begin
+  case FWeapon_Launcher of
+    1: begin // depan
+         OffsetX := 0;
+         OffsetY := 0.002;
+       end;
+
+    2: begin // kiri
+         OffsetX := -0.0015;
+         OffsetY := 0;
+       end;
+
+    3: begin // kanan
+         OffsetX := 0.0015;
+         OffsetY := 0;
+       end;
+
+    4: begin // belakang
+         OffsetX := 0;
+         OffsetY := -0.002;
+       end;
+  else
+    OffsetX := 0;
+    OffsetY := 0;
+  end;
 end;
 
 procedure TWeaponOnShip.addDetail(aObj: TWeaponRangeDetail);

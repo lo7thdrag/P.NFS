@@ -1161,6 +1161,7 @@ type
     procedure mni3Click(Sender: TObject);
     procedure btnNewShipClick(Sender: TObject);
     procedure btnEditShipClick(Sender: TObject);
+    procedure btnDeleteShipClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -2227,12 +2228,12 @@ procedure TfrmGameController.imgDeleteClick(Sender: TObject);
 var
   id : Integer;
 begin
-  if lvShipList.Selected <> nil then
+  if lvListScen.Selected <> nil then
   begin
-    id :=  StrToInt(lvShipList.Selected.Caption);
+    id :=  StrToInt(lvListScen.Selected.Caption);
     DataModule1.DeleteScenario(id);
 
-    ShowMessage('Scenario ' + lvShipList.Selected.SubItems[0] + ' successfully deleted');
+    ShowMessage('Scenario ' + lvListScen.Selected.SubItems[0] + ' successfully deleted');
 
     ClearScenarioData;
 
@@ -2240,35 +2241,27 @@ begin
   else
     ShowMessage('Select Scenario First');
 
-  ShowScenario;
+  ShowShip;
 end;
 
 procedure TfrmGameController.imgEditClick(Sender: TObject);
 begin
-  if lvShipList.Selected <> nil then
+  if lvListScen.Selected <> nil then
   begin
-//    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
-//    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
-//
-//    frmSceEditor.isNew := false;
-//    frmSceEditor.UpdateVisualForm;
-//    frmSceEditor.SetFormLayout;
-//    frmMainInstruktur.lblCekRunning.Caption := 'Editing';
-//    frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
-      frmWeaponList.SetFormWeapon;
-      frmWeaponList.isNew := false;
+    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
+    frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
 
-      frmWeaponList.Ship_Name := lvShipList.Selected.SubItems[0];
-      frmWeaponList.Ship_ID := StrToInt(lvShipList.Selected.Caption);
+    frmSceEditor.isNew := false;
+    frmSceEditor.UpdateVisualForm;
+    frmSceEditor.SetFormLayout;
+    frmMainInstruktur.lblCekRunning.Caption := 'Editing';
+    frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
 
-      frmWeaponList.UpdateVisualForm;
-      frmMainInstruktur.lblCekRunning.Caption := 'Editing';
-//
-//    Close;
+    Close;
   end
   else
   begin
-    ShowMessage('Select Ship Name First');
+    ShowMessage('Select Scenario First');
   end;
 end;
 
@@ -9235,6 +9228,26 @@ procedure TfrmGameController.btnCanonTest3DMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
 //  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
+end;
+
+procedure TfrmGameController.btnDeleteShipClick(Sender: TObject);
+var
+  id : Integer;
+begin
+  if lvShipList.Selected <> nil then
+  begin
+    id :=  StrToInt(lvShipList.Selected.Caption);
+    DataModule1.DeleteShipEditor(id);
+
+    ShowMessage('Ship Editor ' + lvShipList.Selected.SubItems[0] + ' successfully deleted');
+
+//    ClearVisualForm;
+
+  end
+  else
+    ShowMessage('Select Ship editor First');
+
+  ShowShip;
 end;
 
 procedure TfrmGameController.btnstoprotateClick(Sender: TObject);
