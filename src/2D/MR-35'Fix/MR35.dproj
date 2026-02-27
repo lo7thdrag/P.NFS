@@ -83,11 +83,11 @@
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <DCC_ExeOutput>.\bin\</DCC_ExeOutput>
+        <DCC_ExeOutput>..\..\..\bin\2D\bin\</DCC_ExeOutput>
         <DCC_DcuOutput>.\bin\comp</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Debugger_RunParams>-192.168.0.210 -2120 -127.0.0.1 -mysql -dbNSuFs -root -T3server! -10 -10</Debugger_RunParams>
+        <Debugger_RunParams>-192.168.0.231 -2120 -127.0.0.1 -mysql -dbNSuFs -root -T3server! -13 -10</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -154,6 +154,13 @@
         <DCCReference Include="uVehicleManager.pas"/>
         <DCCReference Include="LibNetworkPTK\uPtkReceiver.pas"/>
         <DCCReference Include="LibNetworkPTK\uPtkServer.pas"/>
+        <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.BinaryCoding.pas"/>
+        <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.IO.pas"/>
+        <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.pas"/>
+        <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.Serialization.pas"/>
+        <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Collections.pas"/>
+        <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.DateUtils.pas"/>
+        <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.SysUtils.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
