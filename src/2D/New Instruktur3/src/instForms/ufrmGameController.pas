@@ -925,7 +925,6 @@ type
     pnlDetailWeapon: TAdvSmoothPanel;
     pnlDetail: TAdvSmoothPanel;
     AdvSmoothLabel11: TAdvSmoothLabel;
-    AdvSmoothLabel12: TAdvSmoothLabel;
     AdvSmoothLabel19: TAdvSmoothLabel;
     AdvSmoothLabel36: TAdvSmoothLabel;
     AdvSmoothLabel37: TAdvSmoothLabel;
@@ -1011,6 +1010,8 @@ type
     pnlMainShip: TAdvSmoothPanel;
     edtClass: TEdit;
     pnl4: TPanel;
+    edtWindDirection: TEdit;
+    edtCurrentDirection: TEdit;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -7192,8 +7193,8 @@ begin
     trckBarFogHeight.Position := Round (SceEnvi.Scenario_FogHeight);
     edtFogHeight.Text := FloatToStr(SceEnvi.Scenario_FogHeight);
 
-    VrWindDirection.Position := Round (SceEnvi.Scenario_WindDir_Deg);
-    VrCurrentDirection.Position := Round (SceEnvi.Scenario_CurrDir_Deg);
+    edtWindDirection.Text := FloatToStr(SceEnvi.Scenario_WindDir_Deg);
+    edtCurrentDirection.Text := FloatToStr(SceEnvi.Scenario_CurrDir_Deg);
 
     if SceEnvi.Scenario_WindDir_Deg > 180 then
      VrWindDirection.position := (Round(SceEnvi.Scenario_WindDir_Deg) - 180)
@@ -9242,7 +9243,6 @@ begin
     ShowMessage('Ship Editor ' + lvShipList.Selected.SubItems[0] + ' successfully deleted');
 
 //    ClearVisualForm;
-
   end
   else
     ShowMessage('Select Ship editor First');
