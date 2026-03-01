@@ -580,6 +580,16 @@ interface
       destructor Destroy; override;
    end;
 
+   TWeaponOn_Blackshark = class(TWeaponOnShip)
+    private
+
+    public
+      EnableBlackshark : Boolean;
+      AssignStatusLauncher2       : Boolean;
+      constructor Create(Const aParent : TInsObject; aMap: TMap); override;
+      destructor Destroy; override;
+   end;
+
    TWeaponOn_CannonType730 = class(TWeaponOnShip)
     private
 
@@ -1848,6 +1858,21 @@ begin
 end;
 
 destructor TWeaponOn_CannonAK230.Destroy;
+begin
+
+  inherited;
+end;
+
+{ TWeaponOn_Blackshark }
+
+constructor TWeaponOn_Blackshark.Create(const aParent: TInsObject; aMap: TMap);
+begin
+  AssignStatusLauncher2 := True;
+  inherited;
+
+end;
+
+destructor TWeaponOn_Blackshark.Destroy;
 begin
 
   inherited;

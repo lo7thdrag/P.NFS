@@ -537,6 +537,11 @@ type
     lbl22: TLabel;
     bvl2: TBevel;
     chkCannonAK230enableWeapon: TCheckBox;
+    rzgrpBlackshark: TRzGroup;
+    scrlbxTorpedoBlackshark: TScrollBox;
+    lblBlackShark: TLabel;
+    Bevel5: TBevel;
+    chkBlacksharkEnableWeapon: TCheckBox;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -641,6 +646,9 @@ type
 
     { VL MICA }
     procedure VLMicaChkClick(sender : TObject);
+
+    { Blackshark }
+    procedure BlacksharkChkClick(sender : TObject);
 
     { Cannon AK230 }
     procedure CannonAK230ChkClick(Sender : TObject);
@@ -865,6 +873,22 @@ begin
   chkRBU_Unformer2Left.OnClick  := RBUCbbClick;
   chkRBU_Unformer1Right.OnClick := RBUCbbClick;
   chkRBU_Unformer2Right.OnClick := RBUCbbClick;
+
+  { =========================================================== }
+
+  { ==============================BLACKSHARK========================== }
+  { BLACKSHARK }
+  chkBlacksharkEnableWeapon.Tag       := __STAT_BLACKSHARK_ENABLE;
+//  chkRBU_Unformer1Left.Tag  := __STAT_RBU_UNFORMER_I_LEFT;
+//  chkRBU_Unformer2Left.Tag  := __STAT_RBU_UNFORMER_II_LEFT;
+//  chkRBU_Unformer1Right.Tag := __STAT_RBU_UNFORMER_I_RIGHT;
+//  chkRBU_Unformer2Right.Tag := __STAT_RBU_UNFORMER_II_RIGHT;
+
+  chkBlacksharkEnableWeapon.OnClick       := BlacksharkChkClick;
+//  chkRBU_Unformer1Left.OnClick  := RBUCbbClick;
+//  chkRBU_Unformer2Left.OnClick  := RBUCbbClick;
+//  chkRBU_Unformer1Right.OnClick := RBUCbbClick;
+//  chkRBU_Unformer2Right.OnClick := RBUCbbClick;
 
   { =========================================================== }
 
@@ -2922,6 +2946,46 @@ begin
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_CANNON_AK230, id , aParam);
 end;
 
+procedure TfWeaponStatus.BlacksharkChkClick(sender: TObject);
+var
+  aTag : integer;
+  ShipStrID : string;
+  aParam : Integer;
+
+  i, id : Integer;
+  Weaponship  : TWeaponOnShip;
+  WeaponBlackshark  : TWeaponOn_Blackshark;
+begin
+  if SimManager.TrackObject = nil then exit;
+  id := TCheckBox(sender).Tag;
+
+  //set object
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
+  begin
+    weaponship := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+    if weaponship.Weapon_ID = C_DBID_TORPEDO_BLACKSHARK then
+    begin
+      if weaponship is TWeaponOn_Blackshark then
+      begin
+        WeaponBlackshark := TWeaponOn_Blackshark(weaponship);
+
+        case id of
+          __STAT_BLACKSHARK_ENABLE : WeaponBlackshark.EnableBlackshark    := TCheckBox(sender).Checked;
+        end;
+      end;
+    end;
+  end;
+
+  ShipStrID := dbID_to_UniqueID(SimManager.TrackObject.FDataBaseID);
+
+  if TCheckBox(sender).Checked = True then
+    aParam := 1
+  else
+    aParam := 2;
+
+  SimManager.NetSendStatConsole(ShipStrID, __STAT_BLACKSHARK_ENABLE, id , aParam);
+end;
+
 procedure TfWeaponStatus.CannonType730ChkClick(Sender: TObject);
 var
   aTag : integer;
@@ -3175,6 +3239,7 @@ var
   WeaponMistral  : TWeaponOn_Mistral;
   WeaponVLMica   : TWeaponOn_VLMICA;
   WeaponCannonAK230 : TWeaponOn_CannonAK230;
+  WeaponBlackshark : TWeaponOn_Blackshark;
   WeaponCAnnonType730 : TWeaponOn_CannonType730;
 
 begin
@@ -4424,6 +4489,21 @@ begin
           if weaponship is TWeaponOn_CannonAK230 then
           begin
             WeaponCannonAK230 := TWeaponOn_CannonAK230(weaponship);
+
+          end;
+        end;
+
+        C_DBID_TORPEDO_BLACKSHARK  :
+        begin
+          if frmMainInstruktur.cekStatusWeapon = 1 then
+          begin
+
+          end;
+          frmMainInstruktur.cekStatusWeapon := 1;
+
+          if weaponship is TWeaponOn_Blackshark then
+          begin
+            WeaponBlackshark := TWeaponOn_Blackshark(weaponship);
 
           end;
         end;

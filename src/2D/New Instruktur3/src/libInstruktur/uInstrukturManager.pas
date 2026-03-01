@@ -344,27 +344,28 @@ function GetMissileName(const WeaponID, LauncherID, MissileID, MissileNumber: in
 begin
   result := 'MISSILE ';
   case WeaponID of
-    C_DBID_EXOCET_MM38   : result := 'EXOCET_MM38';
-    C_DBID_ASROC         : result := 'ASROC';
+    C_DBID_EXOCET_MM38        : result := 'EXOCET_MM38';
+    C_DBID_ASROC              : result := 'ASROC';
     C_DBID_RBU6000,
-    C_DBID_RBU6000_DIGITAL       : result := 'RBU6000';
-    C_DBID_TORPEDO_SUT   : result := 'TORPEDO SUT';
-    C_DBID_TORPEDO_A244S : result := 'TORPEDO A244';
-    C_DBID_CANNON35      : result := 'CANNON35';
-    C_DBID_CANNON40      : result := 'CANNON40';
+    C_DBID_RBU6000_DIGITAL    : result := 'RBU6000';
+    C_DBID_TORPEDO_SUT        : result := 'TORPEDO SUT';
+    C_DBID_TORPEDO_A244S      : result := 'TORPEDO A244';
+    C_DBID_CANNON35           : result := 'CANNON35';
+    C_DBID_CANNON40           : result := 'CANNON40';
     C_DBID_CANNON57,
-    C_DBID_CANNON57_DIGITAL      : result := 'CANNON57';
-    C_DBID_CANNON76      : result := 'CANNON76';
-    C_DBID_CANNON120     : result := 'CANNON120';
-    C_DBID_YAKHONT       : Result := 'YAKHONT';
-    C_DBID_C802          : Result := 'C802';
-    C_DBID_MISTRAL       : Result := 'MISTRAL';
-    C_DBID_STRELA        : Result := 'STRELLA';
-    C_DBID_EXOCET_MM40   : Result := 'EXOCET_MM40';
-    C_DBID_TETRAL        : Result := 'TETRAL';
-    C_DBID_VLMICA        : Result := 'VLMICA';
-    C_DBID_CANNON_AK230  : Result := 'CANNON_AK230';
-    C_DBID_CANNON_TYPE_730 : Result := 'CANNON_TYPE730';
+    C_DBID_CANNON57_DIGITAL   : result := 'CANNON57';
+    C_DBID_CANNON76           : result := 'CANNON76';
+    C_DBID_CANNON120          : result := 'CANNON120';
+    C_DBID_YAKHONT            : Result := 'YAKHONT';
+    C_DBID_C802               : Result := 'C802';
+    C_DBID_MISTRAL            : Result := 'MISTRAL';
+    C_DBID_STRELA             : Result := 'STRELLA';
+    C_DBID_EXOCET_MM40        : Result := 'EXOCET_MM40';
+    C_DBID_TETRAL             : Result := 'TETRAL';
+    C_DBID_VLMICA             : Result := 'VLMICA';
+    C_DBID_CANNON_AK230       : Result := 'CANNON_AK230';
+    C_DBID_CANNON_TYPE_730    : Result := 'CANNON_TYPE730';
+    C_DBID_TORPEDO_BLACKSHARK : Result := 'TORPEDO BLACKSHARK';
   end;
 
   result := result + '-' +
@@ -377,27 +378,28 @@ function GetMissileSymbol(const tid: integer): char;
 begin
   result := #46;
   case tid of
-    C_DBID_ASROC          : result := #109;
-    C_DBID_RBU6000        : result := #109;
-    C_DBID_TORPEDO_A244S  : result := #109;
-    C_DBID_TORPEDO_SUT    : result := #109;
-    C_DBID_TETRAL         : result := #109;
-    C_DBID_YAKHONT        : result := #109;
-    C_DBID_C802           : result := #109;
-    C_DBID_MISTRAL        : result := #109;
-    C_DBID_STRELA         : result := #109;
-    C_DBID_EXOCET_MM40    : result := #109;
-    C_DBID_EXOCET_MM38    : result := #109;
-    C_DBID_CANNON35       : result := #109;
-    C_DBID_CANNON40       : result := #109;
-    C_DBID_CANNON57       : result := #109;
-    C_DBID_CANNON76       : result := #109;
-    C_DBID_CANNON120      : result := #109;
-    C_DBID_VLMICA         : result := #109;
-    C_DBID_CANNON_AK230   : Result := #109;
-    C_DBID_CANNON_TYPE_730 : Result := #109;
-    C_DBID_RBU6000_DIGITAL : Result := #109;
-    C_DBID_CANNON57_DIGITAL : Result := #109;
+    C_DBID_ASROC                : result := #109;
+    C_DBID_RBU6000              : result := #109;
+    C_DBID_TORPEDO_A244S        : result := #109;
+    C_DBID_TORPEDO_SUT          : result := #109;
+    C_DBID_TETRAL               : result := #109;
+    C_DBID_YAKHONT              : result := #109;
+    C_DBID_C802                 : result := #109;
+    C_DBID_MISTRAL              : result := #109;
+    C_DBID_STRELA               : result := #109;
+    C_DBID_EXOCET_MM40          : result := #109;
+    C_DBID_EXOCET_MM38          : result := #109;
+    C_DBID_CANNON35             : result := #109;
+    C_DBID_CANNON40             : result := #109;
+    C_DBID_CANNON57             : result := #109;
+    C_DBID_CANNON76             : result := #109;
+    C_DBID_CANNON120            : result := #109;
+    C_DBID_VLMICA               : result := #109;
+    C_DBID_CANNON_AK230         : Result := #109;
+    C_DBID_TORPEDO_BLACKSHARK   : Result := #109;
+    C_DBID_CANNON_TYPE_730      : Result := #109;
+    C_DBID_RBU6000_DIGITAL      : Result := #109;
+    C_DBID_CANNON57_DIGITAL     : Result := #109;
   end;
 end;
 
@@ -955,10 +957,16 @@ begin
             Color  := clGreen;
           end;
 
-          C_DBID_CANNON_AK230  :
+             C_DBID_CANNON_AK230  :
           begin
             WeaponShip := TWeaponOn_CannonAK230.Create(Result, Fmap);
             Color := clBlue;
+          end;
+
+          C_DBID_TORPEDO_BLACKSHARK  :
+          begin
+            WeaponShip := TWeaponOn_Blackshark.Create(Result, Fmap);
+            Color := clRed;
           end;
 
           C_DBID_CANNON_TYPE_730  :

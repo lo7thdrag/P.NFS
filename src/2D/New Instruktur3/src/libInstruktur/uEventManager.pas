@@ -1148,6 +1148,7 @@ var
   WeaponMocPKR      : TWeaponOn_MOCPKR;
   WeaponVLMica      : TWeaponOn_VLMICA;
   WeaponCannonAK230 : TWeaponOn_CannonAK230;
+  WeaponBlackshark  : TWeaponOn_Blackshark;
   WEaponCannonType730 : TWeaponOn_CannonType730;
 
   WeaponStat      : Boolean;
@@ -1534,6 +1535,18 @@ begin
                WeaponCannonAK230 := TWeaponOn_CannonAK230(WeaponOnShip);
                 case Rec.ErrorID of
                   __STAT_CANNONAK230_ENABLE : WeaponCannonAK230.EnableCannonAK230 := WeaponStat;
+                end;
+            end;
+          end;
+
+          C_DBID_TORPEDO_BLACKSHARK :
+          begin
+            frmMainInstruktur.cekStatusWeapon := 0;
+            if WeaponOnShip is TWeaponOn_Blackshark then
+            begin
+               WeaponBlackshark := TWeaponOn_Blackshark(WeaponOnShip);
+                case Rec.ErrorID of
+                  __STAT_BLACKSHARK_ENABLE : WeaponBlackshark.EnableBlackshark := WeaponStat;
                 end;
             end;
           end;

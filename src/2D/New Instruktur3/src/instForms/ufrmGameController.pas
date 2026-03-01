@@ -1163,6 +1163,7 @@ type
     procedure btnNewShipClick(Sender: TObject);
     procedure btnEditShipClick(Sender: TObject);
     procedure btnDeleteShipClick(Sender: TObject);
+    procedure AdvSmoothPanel2Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -8983,6 +8984,11 @@ begin
   begin
      AdvSmoothTabPage1.TabEnabled := True;
   end;
+end;
+
+procedure TfrmGameController.AdvSmoothPanel2Click(Sender: TObject);
+begin
+  frmMainInstruktur.show;
 end;
 
 procedure TfrmGameController.AssignStatus(ShipID, WeaponID, LauncherID,
