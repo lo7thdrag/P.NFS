@@ -5072,6 +5072,7 @@ begin
         imageYahkont.Picture.LoadFromFile(weaponPic);
         imageTetral.Picture.LoadFromFile(weaponPic);
         imageMistral.Picture.LoadFromFile(weaponPic);
+        imageStrella.Picture.LoadFromFile(weaponPic);
         imageCannon76.Picture.LoadFromFile(weaponPic);
         imageTorpedoSUT.Picture.LoadFromFile(weaponPic);
         imageRBU6000.Picture.LoadFromFile(weaponPic);
@@ -5170,13 +5171,6 @@ begin
           lblEndAK230.Caption   := (FloatToStr(weaponDetail.EndAngle));
           lblMinAK230.Caption := (FloatToStr(weaponDetail.LowRange));
           lblMaxAK230.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
-          {$REGION 'Cannon 76'}
-          lblStartCannon76.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndCannon76.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinCannon76.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxCannon76.Caption := (FloatToStr(weaponDetail.HighRange));
           {$ENDREGION}
 
           {$REGION 'VL MICA'}
@@ -7367,7 +7361,7 @@ begin
       imgKRI.Picture.LoadFromFile(strPicture);
     end
     else
-      imgKRI.Picture.LoadFromFile('..\Data\imageship\NoModel.bmp');
+      imgKRI.Picture.LoadFromFile('..\Data\imageship\NoModel.png');
 
     {$ENDREGION}
 
