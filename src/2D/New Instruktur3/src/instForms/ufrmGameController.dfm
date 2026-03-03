@@ -183312,7 +183312,7 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000031FBED2D00000000B4
+              0000000000000000000000000000000000000000000000E928AB3C00000000B4
               EC970064E89700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
@@ -256146,7 +256146,7 @@ object frmGameController: TfrmGameController
             Top = 146
             Width = 9
             Height = 19
-            Caption = '1'
+            Caption = '0'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
             Font.Height = -16
@@ -256371,7 +256371,6 @@ object frmGameController: TfrmGameController
               Width = 614
               Height = 28
               MaxValue = 5
-              MinValue = 1
               Position = 1
               Frequency = 1
               GutterBevel.InnerShadow = clBtnShadow
@@ -256475,7 +256474,6 @@ object frmGameController: TfrmGameController
               Top = 15
               Width = 614
               Height = 28
-              Position = 1
               Frequency = 1
               GutterBevel.InnerShadow = clBtnShadow
               GutterBevel.InnerHighlight = clBtnHighlight
@@ -256579,7 +256577,6 @@ object frmGameController: TfrmGameController
               Top = 15
               Width = 614
               Height = 28
-              Position = 1
               Frequency = 1
               GutterBevel.InnerShadow = clBtnShadow
               GutterBevel.InnerHighlight = clBtnHighlight
