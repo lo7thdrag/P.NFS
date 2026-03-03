@@ -1164,6 +1164,8 @@ type
     procedure btnEditShipClick(Sender: TObject);
     procedure btnDeleteShipClick(Sender: TObject);
     procedure AdvSmoothPanel2Click(Sender: TObject);
+    procedure VrWindDirectionChange(Sender: TObject);
+    procedure VrCurrentDirectionChange(Sender: TObject);
 
   private
     { Private declarations }
@@ -1895,6 +1897,22 @@ begin
       lblRollVal.Visible    := aValue;
     end;
   end;
+end;
+
+procedure TfrmGameController.VrCurrentDirectionChange(Sender: TObject);
+var
+  valTemp : Integer;
+
+begin
+  if VrCurrentDirection.Position < 180 then
+  begin
+    valTemp := (180 + VrCurrentDirection.Position);
+  end
+  else
+  begin
+    valTemp := (VrCurrentDirection.Position - 180);
+  end;
+  edtCurrentDirection.Text := IntToStr(valTemp);
 end;
 
 procedure TfrmGameController.lvRuntimeMissileClick(Sender: TObject);
@@ -8770,6 +8788,22 @@ begin
     valTemp := (vrwhlWindDirec.Position - 180);
   end;
   lblWindDirection.Caption := IntToStr(valTemp);
+end;
+
+procedure TfrmGameController.VrWindDirectionChange(Sender: TObject);
+var
+  valTemp : Integer;
+
+begin
+  if VrWindDirection.Position < 180 then
+  begin
+    valTemp := (180 + VrWindDirection.Position);
+  end
+  else
+  begin
+    valTemp := (VrWindDirection.Position - 180);
+  end;
+  edtWindDirection.Text := IntToStr(valTemp);
 end;
 
 procedure TfrmGameController.RestartAllCommunication1Click(
