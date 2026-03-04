@@ -6506,6 +6506,7 @@ begin
     valTemp := (vrwhlSeaDirection.Position - 180);
   end;
   lblCurrentDirection.Caption := IntToStr(valTemp);
+  OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.execPDF(Sender : TObject);
@@ -8883,13 +8884,29 @@ RecSend : TRecDataEnvironment;
 begin
   RecSend.seaState := tbSeaState.Position;
   RecSend.windVelocity := tbWindSpeed.Position;
-  RecSend.windHeading := tbWindSpeed.Position;
-  RecSend.seaCurrentVelocity := tbWindSpeed.Position;
-  RecSend.seaCurrentHeading := tbWindSpeed.Position;
-  RecSend.temperature := tbWindSpeed.Position;
-  RecSend.humidity := tbWindSpeed.Position;
-  RecSend.surfacePressure := tbWindSpeed.Position;
-  RecSend.fogIntensity := tbWindSpeed.Position;
+  if vrwhlWindDirec.Position < 180 then
+  begin
+    RecSend.windHeading := (180 + vrwhlWindDirec.Position);
+  end
+  else
+  begin
+    RecSend.windHeading := (vrwhlWindDirec.Position - 180);
+  end;
+  RecSend.seaCurrentVelocity := tbSeaSpeed.Position;
+
+  if vrwhlSeaDirection.Position < 180 then
+  begin
+    RecSend.seaCurrentHeading := (180 + vrwhlSeaDirection.Position);
+  end
+  else
+  begin
+    RecSend.seaCurrentHeading := (vrwhlSeaDirection.Position - 180);
+  end;
+
+  RecSend.temperature := tbTemp.Position;
+  RecSend.humidity := tbHumidity.Position;
+  RecSend.surfacePressure := tbBaroPressure.Position;
+  RecSend.fogIntensity := tbFogIntensity.Position;
 
   SimManager.NetSendTo3D_OrderEnvironment(RecSend);
 
@@ -8899,43 +8916,43 @@ procedure TfrmGameController.tbSeaStateChange(Sender: TObject);
 
 begin
   edtPortSeaState.Text := IntToStr(tbSeaState.Position);
-  OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbWindSpeedChange(Sender: TObject);
 begin
  edtPortWindSpeed.Text := IntToStr(tbWindSpeed.Position);
- OnChangeEnvironment;
+ if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbSeaSpeedChange(Sender: TObject);
 begin
   edtPortCurrentSpeed.Text := IntToStr(tbSeaSpeed.Position);
-  OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbTempChange(Sender: TObject);
 begin
   edtPortTemp.Text := IntToStr(tbTemp.Position);
-  OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbBaroPressureChange(Sender: TObject);
 begin
   edtPortBarometer.Text := IntToStr(tbBaroPressure.Position);
-  OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbHumidityChange(Sender: TObject);
 begin
   edtPortHumidity.Text := IntToStr(tbHumidity.Position);
-  OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbFogIntensityChange(Sender: TObject);
 begin
   edtFogIntensity.Text := IntToStr(tbFogIntensity.Position);
-  OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.vrwhlWindDirecChange(Sender: TObject);
@@ -8952,6 +8969,7 @@ begin
     valTemp := (vrwhlWindDirec.Position - 180);
   end;
   lblWindDirection.Caption := IntToStr(valTemp);
+  OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.VrWindDirectionChange(Sender: TObject);

@@ -1078,7 +1078,7 @@ begin
   TCPClient.RegisterProcedure(REC_EVENT_LOG,                ClientRecv_EventLog,            SizeOf(TRecEventLog));
 
   {Utility}
-  tcpClient.RegisterProcedure(REC_ENVIRONMENT,              nil,                            sizeof(TRecDataEnvironment));
+//  tcpClient.RegisterProcedure(REC_ENVIRONMENT,              nil,                            sizeof(TRecDataEnvironment));
   tcpClient.RegisterProcedure(REC_3D_ORDER,                 ClientRecv_3D_Order,            sizeOf(TRecData3DOrder));
   tcpClient.RegisterProcedure(REC_3D_SETCONTROL,            nil,                            sizeOf(spActorsController));
   tcpClient.RegisterProcedure(REC_3D_UTIL_TOOLS,            nil,                            sizeOf(spUtilityTools));

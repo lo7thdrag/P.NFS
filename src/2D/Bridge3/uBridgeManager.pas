@@ -516,6 +516,9 @@ begin
   TcpClient.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, nil,
       sizeof(TRec_CameraController));
 
+  TcpClient.RegisterProcedure(REC_ENVI, nil,
+      sizeof(TRecDataEnvironment));
+
 end;
 
 procedure TBridgeManager.RunSimulation;
