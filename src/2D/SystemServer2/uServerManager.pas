@@ -701,7 +701,7 @@ end;
 procedure TServerManager.Prepare_As_Server3D;
 begin
   TcpServer3D.RegisterProcedure(REC_SCEID, RecvReqSce);
-  TcpServer3D.RegisterProcedure(REC_REQENVI, RecvReqSce);
+  TcpServer3D.RegisterProcedure(REC_REQENVI, RecvReqEnv);
   TcpServer3D.RegisterProcedure(REC_SCESTAT, nil);
 
   // TcpServer3D.RegisterProcedure(REC3D_STATUS_GAME, NetHandler_Recv_3DStatus);
@@ -739,6 +739,7 @@ begin
   TcpServer3D.RegisterProcedure(REC_3D_UTIL_TOOLS, ServerRecv_3D_Server2DSend);
   TcpServer3D.RegisterProcedure(REC_STATUS_MESSAGE, ServerRecv_3D_Server2DSend);
   TcpServer3D.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET_3D, nil);
+  TcpServer3D.RegisterProcedure(REC_ENVI_3D, nil);
 
 end;
 
