@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000A8498E1301000000D4E097001C000000000000000000000000
+              0100011801000040A0A40F0100000005FAB4761C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              010000A8498E1301000000000000001C00000000000000000000000000000000
+              01000040A0A40F01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000E9CA31310000000004
-              E59700B4E09700000000006688CE50000200006B88CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000060CE970010
+              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -244078,7 +244078,7 @@ object frmGameController: TfrmGameController
                   object lblStartSUT: TLabel
                     Left = 669
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -244104,7 +244104,7 @@ object frmGameController: TfrmGameController
                   object lblEndSUT: TLabel
                     Left = 669
                     Top = 492
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -244130,7 +244130,7 @@ object frmGameController: TfrmGameController
                   object lblMinSUT: TLabel
                     Left = 988
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -244143,7 +244143,7 @@ object frmGameController: TfrmGameController
                   object lblMaxSUT: TLabel
                     Left = 988
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -244935,7 +244935,7 @@ object frmGameController: TfrmGameController
                   object lblStartAsroc: TLabel
                     Left = 673
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -244961,7 +244961,7 @@ object frmGameController: TfrmGameController
                   object lblEndAsroc: TLabel
                     Left = 673
                     Top = 484
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -244987,7 +244987,7 @@ object frmGameController: TfrmGameController
                   object lblMinAsroc: TLabel
                     Left = 992
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -245000,7 +245000,7 @@ object frmGameController: TfrmGameController
                   object lblMaxAsroc: TLabel
                     Left = 992
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -245742,7 +245742,7 @@ object frmGameController: TfrmGameController
                   object lblStartRBU: TLabel
                     Left = 665
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -245768,7 +245768,7 @@ object frmGameController: TfrmGameController
                   object lblEndRBU: TLabel
                     Left = 665
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -245794,7 +245794,7 @@ object frmGameController: TfrmGameController
                   object lblMinRBU: TLabel
                     Left = 984
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -245807,7 +245807,7 @@ object frmGameController: TfrmGameController
                   object lblMaxRBU: TLabel
                     Left = 984
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -246603,7 +246603,7 @@ object frmGameController: TfrmGameController
                   object lblStartA244s: TLabel
                     Left = 664
                     Top = 453
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -246616,7 +246616,7 @@ object frmGameController: TfrmGameController
                   object lblEndA244s: TLabel
                     Left = 664
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -246655,7 +246655,7 @@ object frmGameController: TfrmGameController
                   object lblMinA244s: TLabel
                     Left = 983
                     Top = 453
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -246668,7 +246668,7 @@ object frmGameController: TfrmGameController
                   object lblMaxA244s: TLabel
                     Left = 983
                     Top = 485
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -247427,7 +247427,7 @@ object frmGameController: TfrmGameController
                   object lblStartCannon76: TLabel
                     Left = 675
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -247453,7 +247453,7 @@ object frmGameController: TfrmGameController
                   object lblEndCannon76: TLabel
                     Left = 675
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -247479,7 +247479,7 @@ object frmGameController: TfrmGameController
                   object lblMinCannon76: TLabel
                     Left = 994
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -247492,7 +247492,7 @@ object frmGameController: TfrmGameController
                   object lblMaxCannon76: TLabel
                     Left = 994
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248034,7 +248034,7 @@ object frmGameController: TfrmGameController
                   object lblStartTetral: TLabel
                     Left = 667
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248047,7 +248047,7 @@ object frmGameController: TfrmGameController
                   object lblEndTetral: TLabel
                     Left = 667
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248086,7 +248086,7 @@ object frmGameController: TfrmGameController
                   object lblMinTetral: TLabel
                     Left = 986
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248099,7 +248099,7 @@ object frmGameController: TfrmGameController
                   object lblMaxTetral: TLabel
                     Left = 986
                     Top = 484
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248589,7 +248589,7 @@ object frmGameController: TfrmGameController
                   object lblStartMistral: TLabel
                     Left = 675
                     Top = 451
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248615,7 +248615,7 @@ object frmGameController: TfrmGameController
                   object lblEndMistral: TLabel
                     Left = 675
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248641,7 +248641,7 @@ object frmGameController: TfrmGameController
                   object lblMinMistral: TLabel
                     Left = 994
                     Top = 451
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -248654,7 +248654,7 @@ object frmGameController: TfrmGameController
                   object lblMaxMistral: TLabel
                     Left = 994
                     Top = 483
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249144,7 +249144,7 @@ object frmGameController: TfrmGameController
                   object lblStartStrella: TLabel
                     Left = 665
                     Top = 454
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249170,7 +249170,7 @@ object frmGameController: TfrmGameController
                   object lblEndStrella: TLabel
                     Left = 665
                     Top = 486
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249196,7 +249196,7 @@ object frmGameController: TfrmGameController
                   object lblMinStrella: TLabel
                     Left = 984
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249209,7 +249209,7 @@ object frmGameController: TfrmGameController
                   object lblMaxStrella: TLabel
                     Left = 984
                     Top = 486
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249811,7 +249811,7 @@ object frmGameController: TfrmGameController
                   object lblStartMM40: TLabel
                     Left = 661
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249837,7 +249837,7 @@ object frmGameController: TfrmGameController
                   object lblEndMM40: TLabel
                     Left = 661
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249863,7 +249863,7 @@ object frmGameController: TfrmGameController
                   object lblMinMM40: TLabel
                     Left = 980
                     Top = 454
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -249876,7 +249876,7 @@ object frmGameController: TfrmGameController
                   object lblMaxMM40: TLabel
                     Left = 980
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250734,7 +250734,7 @@ object frmGameController: TfrmGameController
                   object lblcoorXyakhont: TLabel
                     Left = 195
                     Top = 187
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250747,7 +250747,7 @@ object frmGameController: TfrmGameController
                   object lblcoorYyakhont: TLabel
                     Left = 195
                     Top = 220
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250782,7 +250782,7 @@ object frmGameController: TfrmGameController
                   object lblStartYakhont: TLabel
                     Left = 657
                     Top = 457
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250795,7 +250795,7 @@ object frmGameController: TfrmGameController
                   object lblEndYakhont: TLabel
                     Left = 657
                     Top = 490
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250834,7 +250834,7 @@ object frmGameController: TfrmGameController
                   object lblMinYakhont: TLabel
                     Left = 976
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -250847,7 +250847,7 @@ object frmGameController: TfrmGameController
                   object lblMaxYakhont: TLabel
                     Left = 976
                     Top = 490
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251356,7 +251356,7 @@ object frmGameController: TfrmGameController
                   object lblKoorYc802: TLabel
                     Left = 200
                     Top = 248
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251369,7 +251369,7 @@ object frmGameController: TfrmGameController
                   object lblkoorXc802: TLabel
                     Left = 200
                     Top = 214
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251404,7 +251404,7 @@ object frmGameController: TfrmGameController
                   object lblStartDegC802: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251430,7 +251430,7 @@ object frmGameController: TfrmGameController
                   object lblEndDegC802: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251456,7 +251456,7 @@ object frmGameController: TfrmGameController
                   object lblMinRangeC802: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251482,7 +251482,7 @@ object frmGameController: TfrmGameController
                   object lblMaxRangeC802: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251797,7 +251797,7 @@ object frmGameController: TfrmGameController
                   object lblStartAK230: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251823,7 +251823,7 @@ object frmGameController: TfrmGameController
                   object lblEndAK230: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251849,7 +251849,7 @@ object frmGameController: TfrmGameController
                   object lblMinAK230: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -251875,7 +251875,7 @@ object frmGameController: TfrmGameController
                   object lblMaxAK230: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252543,7 +252543,7 @@ object frmGameController: TfrmGameController
                   object lblStartVlMica: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252569,7 +252569,7 @@ object frmGameController: TfrmGameController
                   object lblEndVlMica: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252595,7 +252595,7 @@ object frmGameController: TfrmGameController
                   object lblMinVlMica: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -252621,7 +252621,7 @@ object frmGameController: TfrmGameController
                   object lblMaxVlMica: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
