@@ -6943,8 +6943,8 @@ begin
     begin
       val := StrToIntDef(edtPortTemp.Text, 0);
 
-      if val > 50 then
-        val := 50
+      if val > 100 then
+        val := 100
       else if val <0 then
         val := 0;
       edtPortTemp.Text := IntToStr(val);
@@ -9049,7 +9049,7 @@ begin
   edtPortTemp.Text := '0';
   edtPortBarometer.Text := '0';
   edtPortHumidity.Text := '0';
-  edtFogIntensity.Text := '1';
+  edtFogIntensity.Text := '0';
   lblWindDirection.Caption := '0';
   lblCurrentDirection.Caption := '0';
 end;

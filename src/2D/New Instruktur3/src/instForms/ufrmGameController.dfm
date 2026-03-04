@@ -183312,8 +183312,8 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000060CE970010
-              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000038CA9700E8
+              C59700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -256002,7 +256002,7 @@ object frmGameController: TfrmGameController
           911)
         TMSStyle = 0
         object AdvSmoothPanel5: TAdvSmoothPanel
-          Left = 138
+          Left = 139
           Top = 62
           Width = 1072
           Height = 788
@@ -256045,7 +256045,7 @@ object frmGameController: TfrmGameController
           TMSStyle = 0
           object Label8: TLabel
             Left = 58
-            Top = 146
+            Top = 140
             Width = 62
             Height = 18
             Caption = 'Sea State'
@@ -256059,7 +256059,7 @@ object frmGameController: TfrmGameController
           end
           object Label9: TLabel
             Left = 58
-            Top = 229
+            Top = 228
             Width = 80
             Height = 18
             Caption = 'Wind Speed'
@@ -256073,7 +256073,7 @@ object frmGameController: TfrmGameController
           end
           object Label10: TLabel
             Left = 58
-            Top = 312
+            Top = 316
             Width = 93
             Height = 18
             Caption = 'Current Speed'
@@ -256087,7 +256087,7 @@ object frmGameController: TfrmGameController
           end
           object Label11: TLabel
             Left = 58
-            Top = 395
+            Top = 404
             Width = 86
             Height = 18
             Caption = 'Temperature'
@@ -256101,7 +256101,7 @@ object frmGameController: TfrmGameController
           end
           object Label12: TLabel
             Left = 58
-            Top = 478
+            Top = 492
             Width = 129
             Height = 18
             Caption = 'Barometer Pressure'
@@ -256115,7 +256115,7 @@ object frmGameController: TfrmGameController
           end
           object Label13: TLabel
             Left = 58
-            Top = 561
+            Top = 580
             Width = 60
             Height = 18
             Caption = 'Humidity'
@@ -256129,7 +256129,7 @@ object frmGameController: TfrmGameController
           end
           object Label14: TLabel
             Left = 58
-            Top = 644
+            Top = 668
             Width = 82
             Height = 18
             Caption = 'Fog Intensity'
@@ -256142,8 +256142,8 @@ object frmGameController: TfrmGameController
             Transparent = True
           end
           object Label21: TLabel
-            Left = 957
-            Top = 148
+            Left = 954
+            Top = 142
             Width = 35
             Height = 15
             Caption = 'State'
@@ -256156,8 +256156,8 @@ object frmGameController: TfrmGameController
             Transparent = True
           end
           object Label22: TLabel
-            Left = 956
-            Top = 230
+            Left = 954
+            Top = 229
             Width = 35
             Height = 15
             Caption = 'Knots'
@@ -256170,8 +256170,8 @@ object frmGameController: TfrmGameController
             Transparent = True
           end
           object Label23: TLabel
-            Left = 956
-            Top = 313
+            Left = 954
+            Top = 317
             Width = 35
             Height = 15
             Caption = 'Knots'
@@ -256184,8 +256184,8 @@ object frmGameController: TfrmGameController
             Transparent = True
           end
           object Label24: TLabel
-            Left = 953
-            Top = 396
+            Left = 954
+            Top = 405
             Width = 49
             Height = 15
             Caption = 'Celcius'
@@ -256199,7 +256199,7 @@ object frmGameController: TfrmGameController
           end
           object Label25: TLabel
             Left = 954
-            Top = 479
+            Top = 493
             Width = 49
             Height = 15
             Caption = 'MiliBar'
@@ -256212,8 +256212,8 @@ object frmGameController: TfrmGameController
             Transparent = True
           end
           object Label26: TLabel
-            Left = 953
-            Top = 562
+            Left = 954
+            Top = 581
             Width = 42
             Height = 15
             Caption = 'Persen'
@@ -256226,8 +256226,8 @@ object frmGameController: TfrmGameController
             Transparent = True
           end
           object Label27: TLabel
-            Left = 959
-            Top = 646
+            Left = 954
+            Top = 669
             Width = 28
             Height = 15
             Caption = 'Feet'
@@ -256242,7 +256242,7 @@ object frmGameController: TfrmGameController
           end
           object Label28: TLabel
             Left = 58
-            Top = 85
+            Top = 79
             Width = 39
             Height = 18
             Caption = 'Port :'
@@ -256256,7 +256256,7 @@ object frmGameController: TfrmGameController
           end
           object grpSeaState: TGroupBox
             Left = 213
-            Top = 126
+            Top = 120
             Width = 637
             Height = 58
             DragKind = dkDock
@@ -256290,8 +256290,8 @@ object frmGameController: TfrmGameController
             end
           end
           object GroupBox2: TGroupBox
-            Left = 212
-            Top = 209
+            Left = 213
+            Top = 208
             Width = 637
             Height = 58
             DragKind = dkDock
@@ -256325,8 +256325,8 @@ object frmGameController: TfrmGameController
             end
           end
           object grpCurrentSpeed: TGroupBox
-            Left = 216
-            Top = 292
+            Left = 213
+            Top = 296
             Width = 637
             Height = 58
             DragKind = dkDock
@@ -256359,8 +256359,8 @@ object frmGameController: TfrmGameController
             end
           end
           object GroupBox4: TGroupBox
-            Left = 216
-            Top = 375
+            Left = 213
+            Top = 384
             Width = 637
             Height = 58
             DragKind = dkDock
@@ -256392,8 +256392,8 @@ object frmGameController: TfrmGameController
             end
           end
           object GroupBox5: TGroupBox
-            Left = 216
-            Top = 458
+            Left = 213
+            Top = 472
             Width = 637
             Height = 58
             DragKind = dkDock
@@ -256427,8 +256427,8 @@ object frmGameController: TfrmGameController
             end
           end
           object GroupBox6: TGroupBox
-            Left = 216
-            Top = 624
+            Left = 213
+            Top = 648
             Width = 637
             Height = 58
             DragKind = dkDock
@@ -256462,8 +256462,8 @@ object frmGameController: TfrmGameController
             end
           end
           object GroupBox7: TGroupBox
-            Left = 216
-            Top = 541
+            Left = 213
+            Top = 560
             Width = 637
             Height = 58
             DragKind = dkDock
@@ -256495,54 +256495,95 @@ object frmGameController: TfrmGameController
             end
           end
           object edtPortCurrentSpeed: TEdit
-            Left = 884
-            Top = 311
-            Width = 51
+            Left = 886
+            Top = 314
+            Width = 45
             Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
             MaxLength = 2
             NumbersOnly = True
             TabOrder = 7
             OnKeyPress = edtPortCurrentSpeedKeyPress
           end
           object edtPortTemp: TEdit
-            Left = 884
-            Top = 394
-            Width = 51
+            Left = 886
+            Top = 402
+            Width = 45
             Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
             MaxLength = 3
             NumbersOnly = True
             TabOrder = 8
             OnKeyPress = edtPortTempKeyPress
           end
           object edtPortBarometer: TEdit
-            Left = 884
-            Top = 477
-            Width = 51
+            Left = 886
+            Top = 490
+            Width = 45
             Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
             MaxLength = 4
             NumbersOnly = True
             TabOrder = 9
             OnKeyPress = edtPortBarometerKeyPress
           end
           object edtPortHumidity: TEdit
-            Left = 884
-            Top = 560
-            Width = 51
+            Left = 886
+            Top = 578
+            Width = 45
             Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
             MaxLength = 3
             NumbersOnly = True
             TabOrder = 10
             OnKeyPress = edtPortHumidityKeyPress
           end
           object edtFogIntensity: TEdit
-            Left = 884
-            Top = 643
-            Width = 51
+            Left = 886
+            Top = 666
+            Width = 45
             Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
             MaxLength = 1
             NumbersOnly = True
             TabOrder = 11
             OnKeyPress = edtFogIntensityKeyPress
+          end
+          object edtPortSeaState: TEdit
+            Left = 886
+            Top = 139
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 1
+            NumbersOnly = True
+            TabOrder = 12
+            OnKeyPress = edtPortSeaStateKeyPress
+          end
+          object edtPortWindSpeed: TEdit
+            Left = 886
+            Top = 227
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 2
+            NumbersOnly = True
+            TabOrder = 13
+            OnKeyPress = edtPortWindSpeedKeyPress
           end
         end
         object AdvSmoothPanel4: TAdvSmoothPanel
@@ -256993,26 +257034,6 @@ object frmGameController: TfrmGameController
         end
       end
     end
-  end
-  object edtPortSeaState: TEdit
-    Left = 1022
-    Top = 289
-    Width = 51
-    Height = 21
-    MaxLength = 1
-    NumbersOnly = True
-    TabOrder = 5
-    OnKeyPress = edtPortSeaStateKeyPress
-  end
-  object edtPortWindSpeed: TEdit
-    Left = 1022
-    Top = 372
-    Width = 51
-    Height = 21
-    MaxLength = 2
-    NumbersOnly = True
-    TabOrder = 6
-    OnKeyPress = edtPortWindSpeedKeyPress
   end
   object mmfrmMain: TMainMenu
     Left = 230
