@@ -133,6 +133,9 @@ interface
     function ConvDegree_To_Georef(B, L: Double): string;
     function  ReadValConsoleSetting(val : integer): Boolean;
 
+    function ComputeBallisticAngleVacuum(const RangeX, DeltaHeight, V0: Double;
+    out AngleLowDeg, AngleHighDeg: Double): Boolean;
+
 
     function WindowsExit(RebootParam: Longword): Boolean;
     {Conversion Range To Elev For GUN}
@@ -1006,6 +1009,40 @@ begin
    aRec.param2    := prm2;
    aRec.param3    := prm3;
    ClientTCP.sendDataEx(REC_EVENT_LOG, @aRec);
+end;
+
+
+function ComputeBallisticAngleVacuum(const RangeX, DeltaHeight, V0: Double;
+  out AngleLowDeg, AngleHighDeg: Double): Boolean;
+var
+  g, x, y, v2, v4, D, tanLow, tanHigh: Double;
+begin
+  Result := False;
+  AngleLowDeg := 0;
+  AngleHighDeg := 0;
+
+  g := 9.80665;
+  x := RangeX;
+  y := DeltaHeight;
+
+  if (V0 <= 0) or (x <= 0) then
+    Exit;
+
+  v2 := Sqr(V0);
+  v4 := v2 * v2;
+
+  D := v4 - g * (g * Sqr(x) + 2 * y * v2);
+  if D < 0 then Exit;
+
+  D := Sqrt(D);
+
+  tanLow  := (v2 - D) / (g * x);
+  tanHigh := (v2 + D) / (g * x);
+
+  AngleLowDeg  := RadToDeg(ArcTan(tanLow));
+  AngleHighDeg := RadToDeg(ArcTan(tanHigh));
+
+  Result := True;
 end;
 
 end.

@@ -2038,8 +2038,8 @@ begin
             if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
                (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
                (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
-               (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'CANNON AK230')or
-               (weaponOnShipTemp.Weapon_Name = 'CANNON 35') or (weaponOnShipTemp.Weapon_Name = 'CANNON TYPE 730') or
+               (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
+               (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
                (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
             begin
               SubItems.Add('Automatic')
@@ -3787,7 +3787,7 @@ begin
   ShipID    := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
   WeaponID  := TWeapon(lvWeapon.Selected.Data).WeaponID;
 
-  if not TryStrToInt(edtCannonLauncherID.Text , LauncherID) then isValid := False;
+//  if not TryStrToInt(edtCannonLauncherID.Text , LauncherID) then isValid := False;
   if not TryStrToInt(edtCannonMissileID.Text, MissileID) then isValid := false;
   if not TryStrToInt(edtCannonLauncherID.Text, LauncherID) then isValid := False;
   if not TryStrToInt(edtCannonMissileNumber.Text, MissileNumber) then isValid := false;
@@ -4700,9 +4700,10 @@ begin
             cbbA244Launcher.ItemIndex := launcherID-1;
             wtrChange;
         end;
-     C_DBID_CANNON76 : begin
-//     C_DBID_CANNON35, C_DBID_CANNON40, //C_DBID_CANNON57,
-//     C_DBID_CANNON76, C_DBID_CANNON120 : begin
+     C_DBID_CANNON76, C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL,
+     C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730,
+     C_DBID_CANNON35, C_DBID_CANNON40, C_DBID_CANNON120 :
+        begin
             pgtwWCCCannon.TabVisible         := True;
 
             if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
@@ -4711,40 +4712,24 @@ begin
               pgWeapon.Enabled := False;
             end
             else begin
+              case WeaponID of
+                C_DBID_CANNON76 : pgtwWCCCannon.Caption := 'Cannon 76';
+                C_DBID_CANNON57 : pgtwWCCCannon.Caption := 'Cannon 57';
+                C_DBID_CANNON_AK230 : pgtwWCCCannon.Caption := 'Cannon AK230';
+                C_DBID_CANNON_TYPE_730 : pgtwWCCCannon.Caption := 'Cannon Type 730';
+                C_DBID_CANNON57_DIGITAL : pgtwWCCCannon.Caption := 'Cannon 57';
+                C_DBID_CANNON35 : pgtwWCCCannon.Caption := 'Cannon 35';
+                C_DBID_CANNON40 : pgtwWCCCannon.Caption := 'Cannon 40';
+                C_DBID_CANNON120 : pgtwWCCCannon.Caption := 'Cannon 120';
+                else
+                  pgtwWCCCannon.Caption := 'Cannon';
+              end;
               pgWeapon.Enabled := True;
               pgWeapon.ActivePage  := pgtwWCCCannon ;
             end;
 
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
-        end;
-     C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL,
-     C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730,
-     C_DBID_CANNON35, C_DBID_CANNON40, C_DBID_CANNON120 :
-        begin
-            pgtwCannonAK230.TabVisible         := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              case WeaponID of
-                C_DBID_CANNON57 : pgtwCannonAK230.Caption := 'Cannon 57';
-                C_DBID_CANNON_AK230 : pgtwCannonAK230.Caption := 'Cannon AK230';
-                C_DBID_CANNON_TYPE_730 : pgtwCannonAK230.Caption := 'Cannon Type 730';
-                C_DBID_CANNON57_DIGITAL : pgtwCannonAK230.Caption := 'Cannon 57';
-                C_DBID_CANNON35 : pgtwCannonAK230.Caption := 'Cannon 35';
-                C_DBID_CANNON40 : pgtwCannonAK230.Caption := 'Cannon 40';
-                C_DBID_CANNON120 : pgtwCannonAK230.Caption := 'Cannon 120';
-                else
-                  pgtwCannonAK230.Caption := 'Cannon';
-              end;
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwCannonAK230 ;
-            end;
-
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
+//            edtCannonLauncherID.Text         := IntToStr(launcherID);
+              edtCannonLauncherID.Text         := '0';
         end;
      C_DBID_YAKHONT : begin
 
