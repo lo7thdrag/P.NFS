@@ -548,6 +548,7 @@ type
   // REC_ENVIRONMENT             = REC_ENVI;
   TRecDataEnvironment = packed record
     Pc: TPacketCheck;
+    seaState : word;
     windVelocity: double;
     windHeading: double;
     seaCurrentVelocity: double;
@@ -555,6 +556,7 @@ type
     temperature: double;
     humidity: double;
     surfacePressure: double;
+    fogIntensity : word;
   end;
 
   // REC_MISSILEPOS              = 50;  ----------------------------------------

@@ -689,6 +689,9 @@ begin
   FServer2D.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, Server2DReceive_Server3DSend,
       sizeof(TRec_CameraController));
 
+  FServer2D.RegisterProcedure(REC_ENVI_3D, Server2DReceive_Server3DSend,
+      sizeof(TRecDataEnvironment));
+
   // GUIDANCE VEHICLE
   FServer2D.RegisterProcedure(REC_GUIDANCE, Server2DReceive_Server3DSend,
     SizeOf(TRecGuidance));
@@ -818,6 +821,9 @@ var
 
   RecCmdSetCameraControl: ^TRec_CameraController;
   RecCmdSetCameraControl3D: TRec_CameraController3D;
+
+  RecCmdSetEnvi: ^TRecDataEnvironment;
+  RecCmdSetEnvi3D: TRecDataEnvironment3D;
 
   o: TObject;
 
@@ -1694,6 +1700,35 @@ begin
         RecCmdSetCameraControl3D.valueStr := RecCmdSetCameraControl^.valueStr;
 
         TcpServer3D.SendData(REC_CMD_SET_CAMERA_TARGET_3D, RecCmdSetCameraControl3D);
+      end;
+
+    REC_ENVI_3D:
+      begin
+        RecCmdSetEnvi := @apRec^;
+
+        if Assigned(OnLogReceived2D) then
+          OnLogReceived2D('Rec_CMD_ENVI_3D' + #13#10 +
+            'seaState : ' + IntToStr(recCmdSetEnvi^.seaState)+ #13#10 +
+            'windVelocity : ' + FloatToStr(recCmdSetEnvi^.windVelocity)+ #13#10 +
+            'windHeading : ' + FloatToStr(recCmdSetEnvi^.windHeading)+ #13#10 +
+            'seaCurrentVelocity : ' + FloatToStr(recCmdSetEnvi^.seaCurrentVelocity)+ #13#10 +
+            'seaCurrentHeading : ' + FloatToStr(recCmdSetEnvi^.seaCurrentHeading)+ #13#10 +
+            'temperature : ' + FloatToStr(recCmdSetEnvi^.temperature)+ #13#10 +
+            'humidity : ' + FloatToStr(recCmdSetEnvi^.humidity)+ #13#10 +
+            'surfacePressure : ' + FloatToStr(recCmdSetEnvi^.surfacePressure)+ #13#10 +
+            'fogIntensity : ' + IntToStr(recCmdSetEnvi^.fogIntensity)+ #13#10);
+
+        RecCmdSetEnvi3D.seaState := RecCmdSetEnvi^.seaState;
+        RecCmdSetEnvi3D.windVelocity := RecCmdSetEnvi^.windVelocity;
+        RecCmdSetEnvi3D.windHeading := RecCmdSetEnvi^.windHeading;
+        RecCmdSetEnvi3D.seaCurrentVelocity := RecCmdSetEnvi^.seaCurrentVelocity;
+        RecCmdSetEnvi3D.seaCurrentHeading := RecCmdSetEnvi^.seaCurrentHeading;
+        RecCmdSetEnvi3D.temperature := RecCmdSetEnvi^.temperature;
+        RecCmdSetEnvi3D.humidity := RecCmdSetEnvi^.humidity;
+        RecCmdSetEnvi3D.surfacePressure := RecCmdSetEnvi^.surfacePressure;
+        RecCmdSetEnvi3D.fogIntensity := RecCmdSetEnvi^.fogIntensity;
+
+        TcpServer3D.SendData(REC_ENVI_3D, RecCmdSetEnvi3D);
       end;
 
     { REC_CMD_MISTRAL:

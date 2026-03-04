@@ -429,7 +429,7 @@ begin
 
 
     // For Utility
-    RegisterProcedure(REC_ENVIRONMENT, nil, sizeof(TRecDataEnvironment));
+    RegisterProcedure(REC_ENVIRONMENT, ServerReceive_ClientSend, sizeof(TRecDataEnvironment)); // rozak add send to 3d
     RegisterProcedure(REC_3D_UTIL_TOOLS, ServerReceive_ClientSend,
       sizeof(spUtilityTools));
     RegisterProcedure(REC_3D_SETCONTROL, ServerReceive_ClientSend,
@@ -559,6 +559,8 @@ var
   recCmdSetCameraTarget: ^TRecCmdSetCameraTarget;
 
   recCmdSetCameraController: ^TRec_CameraController;
+
+  recCmdSetEnvi: ^TRecDataEnvironment;
 
   xTarget_3D, yTarget_3D, zTarget_3D: Double;
 
@@ -820,6 +822,22 @@ begin
             'cmd : ' + IntToStr(recCmdSetCameraController^.cmd)+ #13#10 +
             'ValInt : ' + IntToStr(recCmdSetCameraController^.valueInt)+ #13#10 +
             'ValDouble : ' + FloatToStr(recCmdSetCameraController^.valueDbl)+ #13#10));
+    end
+    else if pc.ID = REC_ENVIRONMENT then
+    begin
+      OnLogPacket('Rec_CMD_ENVI, ' + IntToStr(pc.ID) +
+        ' --> Send Back To Server 3D');
+      recCmdSetEnvi:= @apRec^;
+      OnLogPacket(('Rec_CMD_ENVI' + #13#10 +
+            'seaState : ' + IntToStr(recCmdSetEnvi^.seaState)+ #13#10 +
+            'windVelocity : ' + FloatToStr(recCmdSetEnvi^.windVelocity)+ #13#10 +
+            'windHeading : ' + FloatToStr(recCmdSetEnvi^.windHeading)+ #13#10 +
+            'seaCurrentVelocity : ' + FloatToStr(recCmdSetEnvi^.seaCurrentVelocity)+ #13#10 +
+            'seaCurrentHeading : ' + FloatToStr(recCmdSetEnvi^.seaCurrentHeading)+ #13#10 +
+            'temperature : ' + FloatToStr(recCmdSetEnvi^.temperature)+ #13#10 +
+            'humidity : ' + FloatToStr(recCmdSetEnvi^.humidity)+ #13#10 +
+            'surfacePressure : ' + FloatToStr(recCmdSetEnvi^.surfacePressure)+ #13#10 +
+            'fogIntensity : ' + IntToStr(recCmdSetEnvi^.fogIntensity)+ #13#10));
     end
     else
     begin

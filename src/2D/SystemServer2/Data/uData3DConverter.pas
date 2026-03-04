@@ -121,6 +121,8 @@ const
     __ORD_EXOCET_40_ON      = 3;
     __ORD_EXOCET_40_OFF     = 4;
 
+  REC_ENVI_3D               = 34;
+
   REC_CMD_VLMICA = 41;
     __ORD_VLMICA_FIRE = 1;
     __ORD_VLMICA_ASSIGN = 2;
@@ -186,6 +188,27 @@ type
     ErrorID: word;
     [BsonElement('ParamError')]
     ParamError: Byte;
+  end;
+
+  TRecDataEnvironment3D =  record
+    [BsonElement('sst')]
+    seaState : word;
+    [BsonElement('wvl')]
+    windVelocity: double;
+    [BsonElement('whd')]
+    windHeading: double;
+    [BsonElement('scv')]
+    seaCurrentVelocity: double;
+    [BsonElement('sch')]
+    seaCurrentHeading: double;
+    [BsonElement('tmp')]
+    temperature: double;
+    [BsonElement('hmd')]
+    humidity: double;
+    [BsonElement('sps')]
+    surfacePressure: double;
+    [BsonElement('fog')]
+    fogIntensity : word;
   end;
 
   TRecDataPosition3D = record
