@@ -130,12 +130,13 @@
         <DCCReference Include="uServerManager.pas"/>
         <DCCReference Include="uStateManager.pas"/>
         <DCCReference Include="uStateObject.pas"/>
+        <DCCReference Include="..\ShareLib\LibObject\Logger.pas"/>
+        <DCCReference Include="..\ShareLib\AppForms\uClassDatabase.pas"/>
         <DCCReference Include="uDataModule.pas">
             <Form>dmMain</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\ShareLib\LibObject\Logger.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

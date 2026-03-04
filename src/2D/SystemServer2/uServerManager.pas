@@ -1840,7 +1840,7 @@ var
   RecCmdSetEnvi3D: TRecDataEnvironment3D;
 begin
   scenTemp := TScenario.Create;
-  DataModule1.GetScenarioDefByID(FLastScenarioActive, scenTemp);
+  dmMain.GetScenarioDefByID(FLastScenarioActive, scenTemp);
 
   RecCmdSetEnvi3D.seaState := Round(scenTemp.Scenario_SeaState);
   RecCmdSetEnvi3D.windVelocity := Round(scenTemp.Scenario_WindSpeed);
