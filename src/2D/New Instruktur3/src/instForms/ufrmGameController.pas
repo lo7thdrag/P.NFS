@@ -689,13 +689,6 @@ type
     Label12: TLabel;
     Label13: TLabel;
     Label14: TLabel;
-    lblSeaState: TLabel;
-    lblWindSpeed: TLabel;
-    lblCurrentSpeed: TLabel;
-    lblTemperature: TLabel;
-    lblBaroPresure: TLabel;
-    lblHumidity: TLabel;
-    lblFogHeight: TLabel;
     Label21: TLabel;
     Label22: TLabel;
     Label23: TLabel;
@@ -715,7 +708,7 @@ type
     GroupBox5: TGroupBox;
     tbBaroPressure: TVrTrackBar;
     GroupBox6: TGroupBox;
-    tbFogH: TVrTrackBar;
+    tbFogIntensity: TVrTrackBar;
     GroupBox7: TGroupBox;
     tbHumidity: TVrTrackBar;
     AdvSmoothPanel4: TAdvSmoothPanel;
@@ -1012,6 +1005,13 @@ type
     pnl4: TPanel;
     edtWindDirection: TEdit;
     edtCurrentDirection: TEdit;
+    edtPortSeaState: TEdit;
+    edtPortWindSpeed: TEdit;
+    edtPortCurrentSpeed: TEdit;
+    edtPortTemp: TEdit;
+    edtPortBarometer: TEdit;
+    edtPortHumidity: TEdit;
+    edtFogIntensity: TEdit;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1079,7 +1079,7 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure tbHumidityMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure tbFogHMouseUp(Sender: TObject; Button: TMouseButton;
+    procedure tbFogIntensityMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
 //    procedure vrwhlWindDirecMouseUp(Sender: TObject; Button: TMouseButton;
 //      Shift: TShiftState; X, Y: Integer);
@@ -1096,7 +1096,7 @@ type
     procedure tbTempChange(Sender: TObject);
     procedure tbBaroPressureChange(Sender: TObject);
     procedure tbHumidityChange(Sender: TObject);
-    procedure tbFogHChange(Sender: TObject);
+    procedure tbFogIntensityChange(Sender: TObject);
     procedure vrwhlWindDirecChange(Sender: TObject);
     procedure RestartAllCommunication1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
@@ -1166,6 +1166,13 @@ type
     procedure AdvSmoothPanel2Click(Sender: TObject);
     procedure VrWindDirectionChange(Sender: TObject);
     procedure VrCurrentDirectionChange(Sender: TObject);
+    procedure edtPortSeaStateKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortWindSpeedKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortCurrentSpeedKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortTempKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortBarometerKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortHumidityKeyPress(Sender: TObject; var Key: Char);
+    procedure edtFogIntensityKeyPress(Sender: TObject; var Key: Char);
 
   private
     { Private declarations }
@@ -1189,6 +1196,7 @@ type
     procedure ClearScenarioDescData;
     procedure ClearListViewData(const aListView: TListView);
     procedure ClearListShipData(const aListView: TListView);
+    procedure OnChangeEnvironment;
 
     procedure WakeOnLan(const AMacAddress : string); //yoga
     procedure UpdateEnvy;
@@ -2092,6 +2100,7 @@ begin
     end;
   end;
 end;
+
 
 function TfrmGameController.IsMenuItem2Exist(
   const shipID: integer): boolean;
@@ -6834,6 +6843,135 @@ begin
   end;
 end;
 
+procedure TfrmGameController.edtFogIntensityKeyPress(Sender: TObject;
+  var Key: Char);
+  var
+    val : Integer;
+  begin
+    if Key = #13 then
+    begin
+      val := StrToIntDef(edtFogIntensity.Text, 0);
+
+      if val > 3 then
+        val := 3
+      else if val < 0 then
+        val := 0;
+      edtFogIntensity.Text := IntToStr(val);
+      tbFogIntensity.Position := StrToIntDef(edtFogIntensity.Text,0);
+  end;
+  end;
+
+procedure TfrmGameController.edtPortBarometerKeyPress(Sender: TObject;
+  var Key: Char);
+   var
+    val : integer;
+  begin
+    if Key = #13 then
+    begin
+      val := StrToIntDef(edtPortBarometer.Text, 0);
+
+      if val > 5000 then
+        val := 5000
+      else if val < 0 then
+        val := 0;
+      edtPortBarometer.Text := IntToStr(val);
+      tbBaroPressure.Position := StrToIntDef(edtPortBarometer.Text,0);
+
+    end;
+  end;
+
+procedure TfrmGameController.edtPortCurrentSpeedKeyPress(Sender: TObject;
+  var Key: Char);
+   var
+    val : Integer;
+  begin
+    if Key= #13 then
+    begin
+      val := StrToIntDef(edtPortCurrentSpeed.Text, 0) ;
+      if val > 50 then
+        val := 50
+      else if val < 0 then
+           val := 0;
+      edtPortCurrentSpeed.Text := IntToStr(val);
+      tbSeaSpeed.Position := StrToIntDef(edtPortCurrentSpeed.Text, 0);
+
+    end;
+  end;
+
+procedure TfrmGameController.edtPortHumidityKeyPress(Sender: TObject;
+  var Key: Char);
+  var
+    val : Integer;
+  begin
+     if Key= #13 then
+    begin
+      val := StrToIntDef(edtPortHumidity.Text, 0) ;
+      if val > 100 then
+        val := 100
+      else if val < 0 then
+           val := 0;
+      edtPortHumidity.Text := IntToStr(val);
+      tbHumidity.Position := StrToIntDef(edtPortHumidity.Text, 0);
+  end;
+  end;
+
+procedure TfrmGameController.edtPortSeaStateKeyPress(Sender: TObject;
+  var Key: Char);
+
+   var
+    val : Integer;
+  begin
+    if Key= #13 then
+    begin
+      val := StrToIntDef(edtPortSeaState.Text, 0) ;
+      if val > 5 then
+        val := 5
+      else if val < 0 then
+           val := 0;
+      edtPortSeaState.Text := IntToStr(val);
+      tbSeaState.Position := StrToIntDef(edtPortSeaState.Text, 0);
+
+    end;
+  end;
+
+procedure TfrmGameController.edtPortTempKeyPress(Sender: TObject;
+  var Key: Char);
+  var
+    val : integer;
+begin
+    if Key = #13 then
+    begin
+      val := StrToIntDef(edtPortTemp.Text, 0);
+
+      if val > 50 then
+        val := 50
+      else if val <0 then
+        val := 0;
+      edtPortTemp.Text := IntToStr(val);
+      tbTemp.Position := StrToIntDef(edtPortTemp.Text,0);
+
+    end;
+end;
+
+procedure TfrmGameController.edtPortWindSpeedKeyPress(Sender: TObject;
+  var Key: Char);
+   var
+    val : Integer;
+  begin
+    if Key= #13 then
+    begin
+      val := StrToIntDef(edtPortWindSpeed.Text, 0) ;
+      if val > 50 then
+        val := 50
+      else if val < 0 then
+           val := 0;
+      edtPortWindSpeed.Text := IntToStr(val);
+      tbWindSpeed.Position := StrToIntDef(edtPortWindSpeed.Text, 0);
+
+    end;
+  end;
+
+
 procedure TfrmGameController.edtRangeValueExit(Sender: TObject);
 var
   rec : TRec_CameraController;
@@ -7017,7 +7155,7 @@ begin
   SimManager.NetSendTo3D_SetCommandOrder(0, ORD_HUMIDITY, tbHumidity.Position, 0,0,0,0) ;
 end;
 
-procedure TfrmGameController.tbFogHMouseUp(Sender: TObject;
+procedure TfrmGameController.tbFogIntensityMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
    lowerBound, upperBound, boundary, posPercentage, position : double;
@@ -7137,7 +7275,7 @@ begin
     RecSkenario.Scenario_Temperature := tbTemp.Position;
     RecSkenario.Scenario_BaroPressure := tbBaroPressure.Position;
     RecSkenario.Scenario_Humidity := tbHumidity.Position;
-    RecSkenario.Scenario_FogHeight := tbFogH.Position;
+    RecSkenario.Scenario_FogHeight := tbFogIntensity.Position;
     RecSkenario.Scenario_WindDir_Deg := vrwhlWindDirec.Position;
     RecSkenario.Scenario_CurrDir_Deg := vrwhlSeaDirection.Position;
 
@@ -8641,7 +8779,6 @@ begin
 end;
 
 
-
 procedure TfrmGameController.StatusWeapon(shipid : Integer; weaponid : Byte ; value : Single; launcher :Byte);
 var
   i: Integer;
@@ -8739,39 +8876,66 @@ begin
   tmrRBU.Enabled            := False;
 end;
 
-procedure TfrmGameController.tbSeaStateChange(Sender: TObject);
+
+procedure TfrmGameController.OnChangeEnvironment;
+var
+RecSend : TRecDataEnvironment;
 begin
-  lblSeaState.Caption := IntToStr(tbSeaState.Position)
+  RecSend.seaState := tbSeaState.Position;
+  RecSend.windVelocity := tbWindSpeed.Position;
+  RecSend.windHeading := tbWindSpeed.Position;
+  RecSend.seaCurrentVelocity := tbWindSpeed.Position;
+  RecSend.seaCurrentHeading := tbWindSpeed.Position;
+  RecSend.temperature := tbWindSpeed.Position;
+  RecSend.humidity := tbWindSpeed.Position;
+  RecSend.surfacePressure := tbWindSpeed.Position;
+  RecSend.fogIntensity := tbWindSpeed.Position;
+
+  SimManager.NetSendTo3D_OrderEnvironment(RecSend);
+
+end;
+
+procedure TfrmGameController.tbSeaStateChange(Sender: TObject);
+
+begin
+  edtPortSeaState.Text := IntToStr(tbSeaState.Position);
+  OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbWindSpeedChange(Sender: TObject);
 begin
-  lblWindSpeed.Caption := IntToStr(tbWindSpeed.Position)
+ edtPortWindSpeed.Text := IntToStr(tbWindSpeed.Position);
+ OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbSeaSpeedChange(Sender: TObject);
 begin
-  lblCurrentDirection.Caption := IntToStr(tbSeaSpeed.Position)
+  edtPortCurrentSpeed.Text := IntToStr(tbSeaSpeed.Position);
+  OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbTempChange(Sender: TObject);
 begin
-  lblTemperature.Caption := IntToStr(tbTemp.Position);
+  edtPortTemp.Text := IntToStr(tbTemp.Position);
+  OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbBaroPressureChange(Sender: TObject);
 begin
-  lblBaroPresure.Caption := IntToStr(tbBaroPressure.Position);
+  edtPortBarometer.Text := IntToStr(tbBaroPressure.Position);
+  OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbHumidityChange(Sender: TObject);
 begin
-  lblHumidity.Caption := IntToStr(tbHumidity.Position);
+  edtPortHumidity.Text := IntToStr(tbHumidity.Position);
+  OnChangeEnvironment;
 end;
 
-procedure TfrmGameController.tbFogHChange(Sender: TObject);
+procedure TfrmGameController.tbFogIntensityChange(Sender: TObject);
 begin
-  lblFogHeight.Caption := IntToStr(tbFogH.Position);
+  edtFogIntensity.Text := IntToStr(tbFogIntensity.Position);
+  OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.vrwhlWindDirecChange(Sender: TObject);
@@ -8880,13 +9044,12 @@ end;
 procedure TfrmGameController.SetDefaultEnvirontment;
 begin
   lblPortEnv.Caption := '-';
-  lblSeaState.Caption := '1';
-  lblWindSpeed.Caption := '0';
-  lblCurrentSpeed.Caption := '0';
-  lblTemperature.Caption := '0';
-  lblBaroPresure.Caption := '0';
-  lblHumidity.Caption := '0';
-  lblFogHeight.Caption := '1';
+  edtPortWindSpeed.Text := '0';
+  edtPortCurrentSpeed.Text := '0';
+  edtPortTemp.Text := '0';
+  edtPortBarometer.Text := '0';
+  edtPortHumidity.Text := '0';
+  edtFogIntensity.Text := '1';
   lblWindDirection.Caption := '0';
   lblCurrentDirection.Caption := '0';
 end;

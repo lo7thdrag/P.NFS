@@ -1217,8 +1217,9 @@ begin
           scenTemp.Scenario_WindDir_Deg:= StrToFloat(edtWindDirec.Text);
           scenTemp.Scenario_CurrDir_Deg:= StrToFloat(edtSeaDirection.Text);
 
+
           { Wind Calc }
-          scenTemp.Scenario_WindDir_X := cos(DegToRad(scenTemp.Scenario_WindDir_Deg));
+          scenTemp.Scenario_WindDir_X := cos(DegToRad(vrwhlWindDirec.Position));
           scenTemp.Scenario_WindDir_Y := sin(DegToRad(vrwhlWindDirec.Position));
           scenTemp.Scenario_CurrDir_X := cos(DegToRad(vrwhlSeaDirection.Position));
           scenTemp.Scenario_CurrDir_Y := sin(DegToRad(vrwhlSeaDirection.Position));

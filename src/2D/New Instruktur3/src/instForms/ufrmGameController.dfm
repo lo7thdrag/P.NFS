@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000038E0ED2A0100000084E897001C000000000000000000000000
+              0100011801000040A0A40F0100000005FAB4761C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              01000038E0ED2A01000000000000001C00000000000000000000000000000000
+              01000040A0A40F01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000E928AB3C00000000B4
-              EC970064E89700000000006688CE50000200006B88CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000060CE970010
+              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -243715,7 +243715,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwTorpedoSUT
+              ActivePage = pgtwWCCCannon
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -255835,7 +255835,7 @@ object frmGameController: TfrmGameController
             Enabled = False
             Max = 3
             TabOrder = 6
-            OnChange = tbFogHChange
+            OnChange = tbFogIntensityChange
           end
           object edtWindSpeed: TEdit
             Left = 418
@@ -256141,104 +256141,6 @@ object frmGameController: TfrmGameController
             ParentFont = False
             Transparent = True
           end
-          object lblSeaState: TLabel
-            Left = 904
-            Top = 146
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblWindSpeed: TLabel
-            Left = 904
-            Top = 228
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblCurrentSpeed: TLabel
-            Left = 904
-            Top = 311
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblTemperature: TLabel
-            Left = 904
-            Top = 394
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblBaroPresure: TLabel
-            Left = 904
-            Top = 477
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblHumidity: TLabel
-            Left = 904
-            Top = 560
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblFogHeight: TLabel
-            Left = 904
-            Top = 643
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
           object Label21: TLabel
             Left = 957
             Top = 148
@@ -256325,7 +256227,7 @@ object frmGameController: TfrmGameController
           end
           object Label27: TLabel
             Left = 959
-            Top = 645
+            Top = 646
             Width = 28
             Height = 15
             Caption = 'Feet'
@@ -256371,7 +256273,6 @@ object frmGameController: TfrmGameController
               Width = 614
               Height = 28
               MaxValue = 5
-              Position = 1
               Frequency = 1
               GutterBevel.InnerShadow = clBtnShadow
               GutterBevel.InnerHighlight = clBtnHighlight
@@ -256418,6 +256319,7 @@ object frmGameController: TfrmGameController
               GutterBevel.OuterHighlight = clBtnHighlight
               GutterBevel.OuterStyle = bsLowered
               GutterBevel.OuterOutline = osNone
+              OnChange = tbWindSpeedChange
               TabOrder = 0
               OnMouseUp = tbWindSpeedMouseUp
             end
@@ -256525,7 +256427,7 @@ object frmGameController: TfrmGameController
             end
           end
           object GroupBox6: TGroupBox
-            Left = 217
+            Left = 216
             Top = 624
             Width = 637
             Height = 58
@@ -256537,7 +256439,7 @@ object frmGameController: TfrmGameController
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 5
-            object tbFogH: TVrTrackBar
+            object tbFogIntensity: TVrTrackBar
               Left = 12
               Top = 15
               Width = 614
@@ -256554,9 +256456,9 @@ object frmGameController: TfrmGameController
               GutterBevel.OuterHighlight = clBtnHighlight
               GutterBevel.OuterStyle = bsLowered
               GutterBevel.OuterOutline = osNone
-              OnChange = tbFogHChange
+              OnChange = tbFogIntensityChange
               TabOrder = 0
-              OnMouseUp = tbFogHMouseUp
+              OnMouseUp = tbFogIntensityMouseUp
             end
           end
           object GroupBox7: TGroupBox
@@ -256591,6 +256493,56 @@ object frmGameController: TfrmGameController
               TabOrder = 0
               OnMouseUp = tbHumidityMouseUp
             end
+          end
+          object edtPortCurrentSpeed: TEdit
+            Left = 884
+            Top = 311
+            Width = 51
+            Height = 21
+            MaxLength = 2
+            NumbersOnly = True
+            TabOrder = 7
+            OnKeyPress = edtPortCurrentSpeedKeyPress
+          end
+          object edtPortTemp: TEdit
+            Left = 884
+            Top = 394
+            Width = 51
+            Height = 21
+            MaxLength = 3
+            NumbersOnly = True
+            TabOrder = 8
+            OnKeyPress = edtPortTempKeyPress
+          end
+          object edtPortBarometer: TEdit
+            Left = 884
+            Top = 477
+            Width = 51
+            Height = 21
+            MaxLength = 4
+            NumbersOnly = True
+            TabOrder = 9
+            OnKeyPress = edtPortBarometerKeyPress
+          end
+          object edtPortHumidity: TEdit
+            Left = 884
+            Top = 560
+            Width = 51
+            Height = 21
+            MaxLength = 3
+            NumbersOnly = True
+            TabOrder = 10
+            OnKeyPress = edtPortHumidityKeyPress
+          end
+          object edtFogIntensity: TEdit
+            Left = 884
+            Top = 643
+            Width = 51
+            Height = 21
+            MaxLength = 1
+            NumbersOnly = True
+            TabOrder = 11
+            OnKeyPress = edtFogIntensityKeyPress
           end
         end
         object AdvSmoothPanel4: TAdvSmoothPanel
@@ -257041,6 +256993,26 @@ object frmGameController: TfrmGameController
         end
       end
     end
+  end
+  object edtPortSeaState: TEdit
+    Left = 1022
+    Top = 289
+    Width = 51
+    Height = 21
+    MaxLength = 1
+    NumbersOnly = True
+    TabOrder = 5
+    OnKeyPress = edtPortSeaStateKeyPress
+  end
+  object edtPortWindSpeed: TEdit
+    Left = 1022
+    Top = 372
+    Width = 51
+    Height = 21
+    MaxLength = 2
+    NumbersOnly = True
+    TabOrder = 6
+    OnKeyPress = edtPortWindSpeedKeyPress
   end
   object mmfrmMain: TMainMenu
     Left = 230

@@ -1384,6 +1384,16 @@ const
 
   REC_ENVI = 34;
   REC_ENVIRONMENT = REC_ENVI;
+//  ORD_ENVI_seaState = 0;
+//  ORD_ENVI_windVelocity = 1;
+//  ORD_ENVI_windHeading = 2;
+//  ORD_ENVI_seaCurrentVelocity = 3;
+//  ORD_ENVI_seaCurrentHeading = 4;
+//  ORD_ENVI_temperature = 5;
+//  ORD_ENVI_humidity = 6;
+//  ORD_ENVI_surfacePressure = 7;
+//  ORD_ENVI_fogIntensity = 8;
+
 
   REC_ORD_NOVAL = 40;
   REC_ORDER_NOVAL = REC_ORD_NOVAL;

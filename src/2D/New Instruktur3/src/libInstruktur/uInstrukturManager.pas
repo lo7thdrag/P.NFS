@@ -268,6 +268,7 @@ type
       procedure NetSendTo3D_OrderMissileStrella(rec : TRec3DSetStrella);
       procedure NetSendTo3D_OrderMissileTorpedo(rec : TRecDataTorperdo);
       procedure NetSendTo3D_OrderMissileVLMica(Rec : TRec3DSetVLMica);
+      procedure NetSendTo3D_OrderEnvironment(Rec : TRecDataEnvironment);
       procedure NetSendEnableWeapon(shipid : Integer; weaponid : Byte; valuez : Single; launcher : Byte);
       procedure NetSendAsroc_MissileType(rec : TRecAsrocMissileType);
       { For Console }
@@ -1063,6 +1064,7 @@ begin
   tcpClient.RegisterProcedure(REC_3D_TORPEDO_SUT,           nil,                            Sizeof(TRecSetTorpedoSUT));
   tcpClient.RegisterProcedure(C_REC_FIRE_CONTROL,           nil,                            Sizeof(TRecFireControlOrder));
   TCPClient.RegisterProcedure(REC_CMD_VLMICA,               nil,                            SizeOf(TRec3DSetVLMica));
+  TCPClient.RegisterProcedure(REC_ENVI,               nil,                                  SizeOf(TRecDataEnvironment));
 
   {Position}
   tcpClient.RegisterProcedure(REC_3D_POSITION,              ClientRecv_3D_ShipPos ,         sizeOf(TRecData3DPosition));
@@ -1501,6 +1503,12 @@ procedure TSimManager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
     TCPClient.sendDataEx(C_REC_CANNON, @Rec);
+end;
+
+procedure TSimManager.NetSendTo3D_OrderEnvironment(Rec: TRecDataEnvironment);
+begin
+   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+    TCPClient.sendDataEx(REC_ENVI, @Rec);
 end;
 
 procedure TSimManager.NetSendTo3D_OrderMissile_C802(rec: TRecData_C802);
