@@ -10,7 +10,7 @@ uses
   uBridgeSet,
   Logger,
   uDataModule,
-  uStateManager,
+  uStateManager, uClassDatabase,
   uStateObject;
 
 type
@@ -83,6 +83,7 @@ type
     procedure RecvReqSce(AHeader: TPacketHeader; AContent: string);
     // procedure NetHandler_Recv_3DStatus(AHeader: TPacketHeader;
     // AContent: string);
+    procedure RecvReqEnv(AHeader: TPacketHeader; AContent: string);
     procedure ClientRecv_3D_MissilePos(AHeader: TPacketHeader;
       AContent: string);
     procedure ClientRecv_3D_ShipPos(AHeader: TPacketHeader; AContent: string);
@@ -700,6 +701,7 @@ end;
 procedure TServerManager.Prepare_As_Server3D;
 begin
   TcpServer3D.RegisterProcedure(REC_SCEID, RecvReqSce);
+  TcpServer3D.RegisterProcedure(REC_REQENVI, RecvReqSce);
   TcpServer3D.RegisterProcedure(REC_SCESTAT, nil);
 
   // TcpServer3D.RegisterProcedure(REC3D_STATUS_GAME, NetHandler_Recv_3DStatus);
@@ -1829,6 +1831,29 @@ end;
 // begin
 // //
 // end;
+
+procedure TServerManager.RecvReqEnv(AHeader: TPacketHeader; AContent: string);
+var
+  incoming_data: TRecReqEnvi3D;
+  RecSend: TRecDataEnvironment3D;   // kirim dari database
+  scenTemp: TScenario;
+  RecCmdSetEnvi3D: TRecDataEnvironment3D;
+begin
+  scenTemp := TScenario.Create;
+  DataModule1.GetScenarioDefByID(FLastScenarioActive, scenTemp);
+
+  RecCmdSetEnvi3D.seaState := Round(scenTemp.Scenario_SeaState);
+  RecCmdSetEnvi3D.windVelocity := Round(scenTemp.Scenario_WindSpeed);
+  RecCmdSetEnvi3D.windHeading := Round(scenTemp.Scenario_WindDir_Deg);
+  RecCmdSetEnvi3D.seaCurrentVelocity := Round(scenTemp.Scenario_CurrSpeed);
+  RecCmdSetEnvi3D.seaCurrentHeading := Round(scenTemp.Scenario_CurrDir_Deg);
+  RecCmdSetEnvi3D.temperature := Round(scenTemp.Scenario_Temperature);
+  RecCmdSetEnvi3D.humidity := Round(scenTemp.Scenario_Humidity);
+  RecCmdSetEnvi3D.surfacePressure := Round(scenTemp.Scenario_BaroPressure);
+  RecCmdSetEnvi3D.fogIntensity := Round(scenTemp.Scenario_FogHeight);
+
+  TcpServer3D.SendData(REC_ENVI_3D, RecCmdSetEnvi3D);
+end;
 
 procedure TServerManager.RecvReqSce(AHeader: TPacketHeader; AContent: string);
 var

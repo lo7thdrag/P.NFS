@@ -146,6 +146,7 @@ const
   REC_STATUS_MESSAGE              = 87;
 
   REC_SCESTAT = 100;
+  REC_REQENVI = 101;
 
   REC_CMD_DESIG_A244_3D = 107;
   __ORD_ID_A244_DESIG = 1;
@@ -188,6 +189,11 @@ type
     ErrorID: word;
     [BsonElement('ParamError')]
     ParamError: Byte;
+  end;
+
+  TRecReqEnvi3D =  record
+    [BsonElement('req')]
+    EnviReq : word;
   end;
 
   TRecDataEnvironment3D =  record
