@@ -161,6 +161,16 @@
         <DCCReference Include="LibSutBlacksharkObject\uTrackView.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uVehicle.pas"/>
         <DCCReference Include="LibBaseSystem\uBaseFunctionSutBlackshark.pas"/>
+        <DCCReference Include="ufrmTacticalScreen.pas">
+            <Form>FrmTacticalScreen</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmSupportScreen.pas">
+            <Form>FrmSupportScreen</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\ShareLib\LibUtil\uSettingFormToMonitorWith_ini.pas"/>
+        <DCCReference Include="..\ShareLib\LibUtil\uFormUtil.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -1902,7 +1902,7 @@ begin
 //      edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
 //    end;
     FireAllow := True;
-    rgnOuter := CreateRectRgn(0,0,Width,Height);
+    rgnOuter := CreateRectRgn(0,0,Width,Height);  // bolongin form biar masuk 3d
     rgnInner := CreateRectRgn(825,1,1280,413);
 
     CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);

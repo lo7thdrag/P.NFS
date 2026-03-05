@@ -52,7 +52,11 @@ uses
   uScriptCommon in 'LibSutBlackshark\uScriptCommon.pas',
   uTrackView in 'LibSutBlacksharkObject\uTrackView.pas',
   uVehicle in 'LibSutBlacksharkObject\uVehicle.pas',
-  uBaseFunctionSutBlackshark in 'LibBaseSystem\uBaseFunctionSutBlackshark.pas';
+  uBaseFunctionSutBlackshark in 'LibBaseSystem\uBaseFunctionSutBlackshark.pas',
+  ufrmTacticalScreen in 'ufrmTacticalScreen.pas' {FrmTacticalScreen},
+  ufrmSupportScreen in 'ufrmSupportScreen.pas' {FrmSupportScreen},
+  uSettingFormToMonitorWith_ini in '..\ShareLib\LibUtil\uSettingFormToMonitorWith_ini.pas',
+  uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas';
 
 {$R *.res}
 
@@ -60,6 +64,8 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
-  Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
+//    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
+  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+  Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
   Application.Run;
 end.

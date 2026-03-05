@@ -15,6 +15,7 @@ const
 
 
   //Status Range
+  CRangeOperationBS : array[0..6] of double = (1,2,4,8,16,32,64);
   CRangeOperation : array[0..5] of double = (1500,3000,6000,12000,24000,48000);
 	CCountRange = 6;
 type
