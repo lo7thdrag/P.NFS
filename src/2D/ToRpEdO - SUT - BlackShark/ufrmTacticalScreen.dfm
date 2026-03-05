@@ -1731,17 +1731,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
       BevelOuter = bvLowered
       TabOrder = 1
       ExplicitTop = 138
-      object imgBackgrounSituationZone: TImage
-        Left = 1
-        Top = 1
-        Width = 1462
-        Height = 709
-        Align = alClient
-        ExplicitLeft = 680
-        ExplicitTop = 328
-        ExplicitWidth = 105
-        ExplicitHeight = 105
-      end
       object FMap: TMap
         Left = 1
         Top = 1

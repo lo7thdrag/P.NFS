@@ -138,7 +138,6 @@ type
     FMap: TMap;
     Panel1: TPanel;
     imgListLight: TImageList;
-    imgBackgrounSituationZone: TImage;
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -279,9 +278,9 @@ begin
     FRings.Draw(aCnv);
 
     // BEARING 0°
-    FBearing0.CircleRect := FCircleRect;
-    FBearing0.ConvertCoord(aCvt);
-    FBearing0.Draw(aCnv);
+//    FBearing0.CircleRect := FCircleRect;
+//    FBearing0.ConvertCoord(aCvt);
+//    FBearing0.Draw(aCnv);
 
 //    TargetMgr.Draw(aCnv);
 
@@ -321,23 +320,25 @@ begin
   VehicleMgr := TVehicleManager.Create;
   VehicleMgr.CoordConverter := FMapConverter;
 
-  EnableComposited(pnlMap);
-  FBitmapBackground := TBitmap.Create;
-  FBitmapBackground.Height := pnlMap.Height;
-  FBitmapBackground.Width := pnlMap.Width;
-  FBitmapBackground.Canvas.Brush.Color := clBlack; // new color
-  FBitmapBackground.Canvas.FillRect(
-   Rect(
-     0,
-     0,
-     FBitmapBackground.Width,
-     FBitmapBackground.Height
-    )
-  );
-
-  imgBackgrounSituationZone.Picture.Assign(FBitmapBackground);
+//  EnableComposited(pnlMap);
+//  FBitmapBackground := TBitmap.Create;
+//  FBitmapBackground.Height := imgBackgrounSituationZone.Height;
+//  FBitmapBackground.Width := imgBackgrounSituationZone.Width;
+//  FBitmapBackground.Canvas.Brush.Color := clBlack; // new color
+//  FBitmapBackground.Canvas.FillRect(
+//   Rect(
+//     0,
+//     0,
+//     FBitmapBackground.Width,
+//     FBitmapBackground.Height
+//    )
+//  );
+//
+//  imgBackgrounSituationZone.Picture.Assign(FBitmapBackground);
 
   LoadGeoset('..\data\maps\IndonesiaBlackShark.gst');
+
+  setRegionCircle;
 
   FRings := TRadarRangeRings.Create;
   FRings.Visible := True;
@@ -346,7 +347,7 @@ begin
 
   FShipHeading := 0; // awal
 
-  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
+//  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
 
   FMap.ZoomTo((Self.FCurrentRange) * 2, FMap.CenterX, FMap.CenterY);
 
