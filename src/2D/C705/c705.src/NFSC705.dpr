@@ -37,7 +37,11 @@ uses
   uBaseSimObjects in '..\didFramework\LibSims\uBaseSimObjects.pas',
   uSimObjects in '..\didFramework\LibSims\uSimObjects.pas',
   uCoordDataTypes in 'LibBaseSystem\uCoordDataTypes.pas',
-  uVehicleManager in 'libMgr\uVehicleManager.pas';
+  uVehicleManager in 'libMgr\uVehicleManager.pas',
+  uWaypointModel in 'LibMapX\uWaypointModel.pas',
+  uWaypointView in 'libObjects\uWaypointView.pas',
+  uMapViewManager in 'libObjects\uMapViewManager.pas',
+  uMapViewBase in 'libObjects\uMapViewBase.pas';
 
 {$R *.res}
 

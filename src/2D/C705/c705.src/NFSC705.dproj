@@ -87,6 +87,7 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_DcuOutput>..\c705.bin\comp</DCC_DcuOutput>
+        <Debugger_RunParams>-127.0.0.1 -2120 -localhost -mysql -dbNSuFs -root -T3server! -29 -11</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -172,6 +173,10 @@
         <DCCReference Include="..\didFramework\LibSims\uSimObjects.pas"/>
         <DCCReference Include="LibBaseSystem\uCoordDataTypes.pas"/>
         <DCCReference Include="libMgr\uVehicleManager.pas"/>
+        <DCCReference Include="LibMapX\uWaypointModel.pas"/>
+        <DCCReference Include="libObjects\uWaypointView.pas"/>
+        <DCCReference Include="libObjects\uMapViewManager.pas"/>
+        <DCCReference Include="libObjects\uMapViewBase.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

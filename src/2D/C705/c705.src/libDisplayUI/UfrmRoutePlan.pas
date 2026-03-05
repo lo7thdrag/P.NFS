@@ -4,19 +4,22 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.ExtCtrls, Vcl.StdCtrls, VrControls, VrDesign, Vcl.Imaging.pngimage,
-  Vcl.Buttons, Vcl.OleCtrls, Vcl.Menus, MapXLib_TLB, Math, uCoordConverter,
-  uBaseFunction, uBaseConst, uMapXUnitConverter, uLibConst, OverbyteIcsWSocket,
-  uTCPDatatype, uC705SimManager, uLibSettings, uScriptC705, uShipModel,
-  uVehicleManager, SpeedButtonImage, AdvGroupBox, AdvPageControl, Vcl.ComCtrls,
-  VrButtons, AdvOfficeButtons;
+  System.Generics.Collections, System.Classes, Vcl.Graphics, Vcl.Controls,
+  Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, VrControls, VrDesign,
+  Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.OleCtrls, Vcl.Menus, MapXLib_TLB, Math,
+  uCoordConverter, uBaseFunction, uBaseConst, uMapXUnitConverter, uLibConst,
+  OverbyteIcsWSocket, uTCPDatatype, uC705SimManager, uLibSettings, uScriptC705,
+  uShipModel, uVehicleManager, SpeedButtonImage, AdvGroupBox, AdvPageControl,
+  Vcl.ComCtrls, VrButtons, AdvOfficeButtons,
+  uWaypointModel, uWaypointView;
 
 type
+  TEditMode = (edNone, edAddWaypoint, edMoveWaypoint, edDeleteWaypoint, edAddRoute, edDeleteRoute);
+
   TfrmRoutePlan = class(TForm)
     {$REGION 'Components'}
     pnlBase: TPanel;
-    Panel2: TPanel;
+    pnlRight: TPanel;
     img1: TImage;
     pnlEmergencyLaunch: TPanel;
     pnlTakeOff: TPanel;
@@ -40,7 +43,7 @@ type
     SpeedButton6: TSpeedButton;
     Label7: TLabel;
     btnSimTrain: TSpeedButton;
-    Panel1: TPanel;
+    pnlHeaderTitle: TPanel;
     pnlToolBar: TPanel;
     pnlBaseMap: TPanel;
     FMap: TMap;
@@ -152,7 +155,7 @@ type
     advtsCmdSet: TAdvTabSheet;
     advtsRouteSet: TAdvTabSheet;
     AdvGroupBox1: TAdvGroupBox;
-    btnExitRoutePlanCmd: TSpeedButtonImage;
+    btnExit_RoutePlanCmd: TSpeedButtonImage;
     Label39: TLabel;
     edtTgtNumber: TEdit;
     advrbDirectAttack: TAdvOfficeRadioButton;
@@ -232,15 +235,53 @@ type
     edtLat4Pg1: TEdit;
     edtLong4Pg1: TEdit;
     edtLat3Pg1: TEdit;
-    btnExitTargetParam: TSpeedButtonImage;
+    btnExit_TargetParam: TSpeedButtonImage;
     advrbWayPt: TAdvOfficeRadioButton;
     advrbStartPt: TAdvOfficeRadioButton;
     pnlShowNav: TPanel;
     pnlShowMapInfo: TPanel;
+    pnlObstacleInfo: TPanel;
+    advpgcObstacleInfo: TAdvPageControl;
+    advtsNoFly: TAdvTabSheet;
+    advtsPoint: TAdvTabSheet;
+    advtsIsl: TAdvTabSheet;
+    advtsLand: TAdvTabSheet;
+    advgrpbxLandTgt1: TAdvGroupBox;
+    Label65: TLabel;
+    Label66: TLabel;
+    Label67: TLabel;
+    edtInputHigh1: TEdit;
+    edtObsHigh1: TEdit;
+    edtTgt1: TEdit;
+    advgrpbxLandTgt2: TAdvGroupBox;
+    Label68: TLabel;
+    Label69: TLabel;
+    Label70: TLabel;
+    edtInputHigh2: TEdit;
+    edtObsHigh2: TEdit;
+    edtTgt2: TEdit;
+    advgrpbxLandTgt3: TAdvGroupBox;
+    Label71: TLabel;
+    Label72: TLabel;
+    Label73: TLabel;
+    edtInputHigh3: TEdit;
+    edtObsHigh3: TEdit;
+    edtTgt3: TEdit;
+    advgrpbxLandTgt4: TAdvGroupBox;
+    Label74: TLabel;
+    Label75: TLabel;
+    Label76: TLabel;
+    edtInputHigh4: TEdit;
+    edtObsHigh4: TEdit;
+    edtTgt4: TEdit;
+    btnExit_ObstacleInfo: TSpeedButtonImage;
+    btnOkObstacleInfo: TVrDemoButton;
+    pnlModeOperasi: TPanel;
+    tmrForm: TTimer;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure Panel1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure pnlHeaderTitleMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure Close1Click(Sender: TObject);
     procedure WCC1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -252,6 +293,10 @@ type
     procedure btnExitSubWindowClick(Sender: TObject);
     procedure pnlShowNavClick(Sender: TObject);
     procedure pnlShowMapInfoClick(Sender: TObject);
+    procedure advpgcObstacleInfoChange(Sender: TObject);
+    procedure tmrFormTimer(Sender: TObject);
+    procedure btnWaypointLvl2Click(Sender: TObject);
+    procedure FMapMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
   protected
     //procedure DrawAngle(aCnv: TCanvas);
     //procedure DrawCompass(aCnv: TCanvas);
@@ -261,8 +306,10 @@ type
   private
     { Private declarations }
     FMapRect: TRect;
-
     FCanvas: TCanvas;
+
+    strPath: string;
+    FisMapDayMode: Boolean;
 
     { Map }
     FBitmapBackground: TBitmap;
@@ -271,6 +318,16 @@ type
     FCurrentRange: Double;  // meter
     FIndexRange: Integer;
     FMapConverter: TMapXUnitConverter;
+
+    { Route Plan Waypoint }
+    FEditMode: TEditMode;
+    FSelectedRoute: TRoutePlanning;
+    FSelectedWaypoint: TWaypoint;
+
+    FRouteList: TObjectList<TRoutePlanning>;
+    FWaypointViews: TObjectList<TWaypointView>;
+
+    function FindWaypointAtScreen(X, Y: Integer): TWaypoint;
 
     procedure SetImgBtn;
 
@@ -346,6 +403,31 @@ begin
   //Result := imgBackgroundZone.Width;
 end;
 
+function TfrmRoutePlan.FindWaypointAtScreen(X, Y: Integer): TWaypoint;
+var
+  i, j: Integer;
+  wp: TWaypoint;
+  scrX, scrY: Integer;
+begin
+  Result := nil;
+
+  for i := 0 to FRouteList.Count - 1 do
+  begin
+    for j := 0 to FRouteList[i].Waypoints.Count - 1 do
+    begin
+      wp := FRouteList[i].Waypoints[j];
+
+      FMapConverter.ConvertToScreen(wp.Long, wp.Lat, scrX, scrY);
+
+      if (Abs(scrX - X) < 6) and (Abs(scrY - Y) < 6) then
+      begin
+        FSelectedRoute := FRouteList[i];
+        Exit(wp);
+      end;
+    end;
+  end;
+end;
+
 procedure EnableComposited(WinControl: TWinControl);
 var
   i: Integer;
@@ -357,16 +439,6 @@ begin
   for i := 0 to WinControl.ControlCount - 1 do
     if WinControl.Controls[i] is TWinControl then
       EnableComposited(TWinControl(WinControl.Controls[i]));
-end;
-
-procedure TfrmRoutePlan.FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
-begin
-  if not Assigned(FCanvas) then
-    Exit;
-
-  FCanvas.Handle := hOutputDC;
-
-  DrawAll(FCanvas, FMapConverter);
 end;
 
 procedure TfrmRoutePlan.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -382,6 +454,11 @@ begin
     FreeAndNil(FMapConverter);
   if Assigned(FBitmapBackground) then
     FreeAndNil(FBitmapBackground);
+
+  if Assigned(FWaypointViews) then
+    FreeAndNil(FWaypointViews);
+  if Assigned(FRouteList) then
+    FreeAndNil(FRouteList);
 
   FreeAndNil(FCanvas);
 
@@ -405,8 +482,19 @@ begin
   tmrMap.Interval := 250;
   tmrMap.Enabled := True;
 
+  tmrForm.Interval := 1000;
+  tmrForm.Enabled := True;
+
   { Load Button Image }
+  strPath := '.\img\icon\Route Plan - Tool Bar\';
   SetImgBtn;
+
+  FisMapDayMode := True;  // Tampilan Peta Siang Hari (Day)
+
+  { Route Plan Waypoint }
+  FEditMode := edNone;
+  FRouteList := TObjectList<TRoutePlanning>.Create(True);
+  FWaypointViews := TObjectList<TWaypointView>.Create(True);
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
@@ -421,7 +509,7 @@ begin
   pnlBasemap.Align := alClient;
 
   FMapRect.Left := 5;
-  FMapRect.Top := Panel1.Top + Panel1.Height + 5;
+  FMapRect.Top := pnlHeaderTitle.Top + pnlHeaderTitle.Height + 5;
   FMapRect.Right := Width - 5;
   FMapRect.Bottom := Height - 5;
 
@@ -432,13 +520,30 @@ begin
   advpgcRoutePlanCmd.ActivePage := advtsCmdSet;
   advpgcTargetParam.ActivePage := advtsPage1;
 
-  pnlNavInfo.Visible := False;
+  pnlModeOperasi.Top := pnlHeaderTitle.Top + pnlHeaderTitle.Height;
+  pnlModeOperasi.Left := pnlBase.Left;
+  pnlModeOperasi.Caption := 'Passive Mode';   // default mode operasi route plan
+
+  // Panel Parameter Display / Sub Window-3
+  pnlParamDisplay.Left := pnlBase.Width - pnlParamDisplay.Width;
+  pnlParamDisplay.Top := pnlHeaderTitle.Top + pnlHeaderTitle.Height;
+  pnlParamDisplay.Visible := False;
+
+  // Panel Obstacle Information / Sub Window-4
+  pnlObstacleInfo.Left := pnlParamDisplay.Left;
+  pnlObstacleInfo.Top := pnlParamDisplay.Top;
+  pnlObstacleInfo.Visible := False;
 
   pnlRoutePlanControlCmd.Left := pnlParamDisplay.Left;
-  pnlRoutePlanControlCmd.Top := pnlPromptBoxMap.Top;
+  pnlRoutePlanControlCmd.Top := pnlParamDisplay.Top;
   pnlRoutePlanControlCmd.Visible := False;
 
-  pnlParamDisplay.Visible := False;
+  // Panel Map Info / Sub window-1
+  pnlMapInfo.Left := pnlBase.Left;
+  pnlMapInfo.Visible := True;
+  lblZoomRateMap.Caption := Format('%8.2f', [Self.FCurrentRange * C_Meter_To_NauticalMile]);
+
+  pnlNavInfo.Visible := False;
 
   pnlWaypointLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
   pnlWaypointLvl2.Left := btnMoveMap.Left;
@@ -450,6 +555,7 @@ begin
 end;
 
 {$REGION 'Map Section'}
+
 procedure TfrmRoutePlan.MapMove;
 begin
   FMap.CurrentTool := miPanTool;
@@ -468,6 +574,9 @@ begin
     self.FCurrentRange := CRangeOperation[0];
 
   FMap.ZoomTo((Self.FCurrentRange * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
+
+  //lblZoomRateMap.Caption := FloatToStr(Self.FCurrentRange * C_Meter_To_NauticalMile);
+  lblZoomRateMap.Caption := Format('%8.2f', [Self.FCurrentRange * C_Meter_To_NauticalMile]);
 end;
 
 procedure TfrmRoutePlan.MapZoomOut;
@@ -481,6 +590,8 @@ begin
     self.FCurrentRange := CRangeOperation[CCountRange - 1];
 
   FMap.ZoomTo((Self.FCurrentRange * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
+
+  lblZoomRateMap.Caption := Format('%8.2f', [Self.FCurrentRange * C_Meter_To_NauticalMile]);
 end;
 
 procedure TfrmRoutePlan.LoadGeoset(const aGst: string);
@@ -608,13 +719,72 @@ begin
       x1 := x;
       y1 := y;
       x2 := x;
-      y2 := y - 2*radiusShip;
+      y2 := y - 2 * radiusShip;
       FCanvas.MoveTo(x1, y1);
       FCanvas.LineTo(x2, y2);
 
-      FCanvas.TextOut(Round(xCntr), Round(yCntr) + 2*radiusShip, Ship.ID.ToString);
+      FCanvas.TextOut(Round(xCntr), Round(yCntr) + 2 * radiusShip, Ship.ID.ToString);
     end;
   end;
+
+  { ========================= }
+  { DRAW ROUTE & WAYPOINT     }
+  { ========================= }
+
+  if Assigned(FRouteList) then
+  begin
+    for i := 0 to FRouteList.Count - 1 do
+    begin
+      var Route := FRouteList[i];
+
+      if (Route <> nil) and (Route.Waypoints <> nil) then
+      begin
+        FCanvas.Pen.Color := clBlue;
+        FCanvas.Pen.Width := 2;
+        FCanvas.Brush.Color := clYellow;
+        FCanvas.Brush.Style := bsSolid;
+
+        for var j := 0 to Route.Waypoints.Count - 1 do
+        begin
+          var WP := Route.Waypoints[j];
+
+          if WP = nil then
+            Continue;
+
+          // Convert lat/lon ke screen
+          FMap.ConvertCoord(xCntr, yCntr, WP.Long, WP.Lat, miMapToScreen);
+
+          x := Round(xCntr);
+          y := Round(yCntr);
+
+          // Gambar titik waypoint (lingkaran kecil)
+          FCanvas.Ellipse(x - 5, y - 5, x + 5, y + 5);
+
+          // Gambar garis antar waypoint
+          if j > 0 then
+          begin
+            var PrevWP := Route.Waypoints[j - 1];
+            var px, py: Single;
+
+            FMap.ConvertCoord(px, py, PrevWP.Long, PrevWP.Lat, miMapToScreen);
+
+            FCanvas.MoveTo(Round(px), Round(py));
+            FCanvas.LineTo(x, y);
+          end;
+        end;
+      end;
+    end;
+  end;
+
+end;
+
+procedure TfrmRoutePlan.tmrFormTimer(Sender: TObject);
+begin
+  if SimManager.RoutePlanMode = mPassive then
+  begin
+    pnlModeOperasi.Caption := 'Passive Mode';
+  end;
+
 end;
 
 procedure TfrmRoutePlan.tmrMapTimer(Sender: TObject);
@@ -622,48 +792,211 @@ begin
   FMap.Repaint;
 end;
 
-{$ENDREGION}
-
-procedure TfrmRoutePlan.Panel1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmRoutePlan.FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
 begin
-  // Show Images instead of Map
-  if (ssShift in Shift) then
-  begin
-    imgMapBackground.Visible := not imgMapBackground.Visible;
+  if not Assigned(FCanvas) then
+    Exit;
 
-//    if imgMap.Visible = False then
-//      pnlBaseMap.Visible := False
-//    else
-//      pnlBaseMap.Visible := True;
+  FCanvas.Handle := hOutputDC;
 
-    imgMapBackground.BringToFront;
+  DrawAll(FCanvas, FMapConverter);
+end;
+
+procedure TfrmRoutePlan.FMapMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  dLong, dLat: Double;
+  wp: TWaypoint;
+  idx: Integer;
+begin
+  if Button <> mbLeft then
+    Exit;
+
+  // Pixel -> Map Coordinate (World)
+  FMapConverter.ConvertToMap(X, Y, dLong, dLat);
+
+  case FEditMode of
+    edNone:
+      ;
+
+    {$REGION 'Add Route'}
+    { ===== ===== }
+    edAddRoute: begin
+      if FRouteList.Count >= 4 then
+      begin
+        ShowMessage('Maximum 4 routes allowed.');
+        Exit;
+      end;
+
+      if Assigned(FSelectedRoute) then
+      begin
+        ShowMessage('Finish current route first.');
+        Exit;
+      end;
+
+      FSelectedRoute := TRoutePlanning.Create;
+      FRouteList.Add(FSelectedRoute);
+
+      // titik pertama
+      FSelectedRoute.AddWaypoint(dLat, dLong);
+
+      ShowMessage('Route created. Switch to Add Waypoint mode to continue.');
+
+      FMap.Refresh;
+      {
+      if FRouteList.Count >= 4 then
+      begin
+        ShowMessage('Maximum 4 routes allowed');
+        Exit;
+      end;
+
+      FSelectedRoute := TRoutePlanning.Create;
+      FRouteList.Add(FSelectedRoute);
+
+      FSelectedRoute.AddWaypoint(dLat, dLong); // first point
+
+      FSelectedWaypoint := nil;
+
+      // Draw Waypoint
+      FWaypointViews.Add(
+        TWaypointView.Create(FMap, FMapConverter, FSelectedRoute)
+      );
+
+      FMap.Refresh;
+      }
+    end;
+    {$ENDREGION}
+
+    {$REGION 'Add Waypoint'}
+    { ===== ===== }
+    edAddWaypoint: begin
+      // Kalau belum ada route aktif ? buat baru otomatis
+      if not Assigned(FSelectedRoute) then
+      begin
+        ShowMessage('No active route. Switch to Add Route mode first.');
+        Exit;
+      end;
+
+      if FSelectedRoute.Waypoints.Count >= 4 then
+      begin
+        ShowMessage('Maximum 4 waypoints per route reached. Switch to Add Route mode to create a new route.');
+        Exit;
+      end;
+
+      FSelectedRoute.AddWaypoint(dLat, dLong);
+      if FSelectedRoute.Waypoints.Count = 4 then
+      begin
+        ShowMessage('Route completed.');
+        FSelectedRoute := nil;
+      end;
+
+      FMap.Refresh;
+      {
+      if not Assigned(FSelectedRoute) then
+        Exit;
+
+      if FSelectedRoute.Waypoints.Count >= 4 then
+      begin
+        ShowMessage('Maximum 4 waypoint per route.');
+        Exit;
+      end;
+
+      FSelectedRoute.AddWaypoint(dLat, dLong);
+      FMap.Invalidate;
+      }
+    end;
+    {$ENDREGION}
+
+    {$REGION 'Move Waypoint'}
+    { ===== ===== }
+    edMoveWaypoint: begin
+      // kalau belum ada yang dipilih lalu pilih dulu
+      if not Assigned(FSelectedWaypoint) then
+      begin
+        wp := FindWaypointAtScreen(X, Y);
+        if Assigned(wp) then
+          FSelectedWaypoint := wp;
+      end
+      else
+      begin
+        // kalau sudah ada yang dipilih -> pindahkan
+        FSelectedWaypoint.Lat := dLat;
+        FSelectedWaypoint.Long := dLong;
+
+        FSelectedWaypoint := nil;   // selesai waypoint
+
+        FMap.Refresh;
+      end;
+//      if Assigned(FSelectedWaypoint) then
+//      begin
+//        FSelectedWaypoint.Lat := dLat;
+//        FSelectedWaypoint.Long := dLong;
+//
+//        FMap.Invalidate;
+//      end;
+    end;
+    {$ENDREGION}
+
+    {$REGION 'Delete Waypoint'}
+    { ===== ===== }
+    edDeleteWaypoint: begin
+      wp := FindWaypointAtScreen(X, Y);
+
+      if Assigned(wp) and Assigned(FSelectedRoute) then
+      begin
+        //FSelectedRoute.Waypoints.Remove(wp);
+
+        idx := FSelectedRoute.Waypoints.IndexOf(wp);
+        if idx >= 0 then
+          FSelectedRoute.Waypoints.Delete(idx);
+
+        FSelectedWaypoint := nil;
+
+        FMap.Refresh;
+      end;
+
+    end;
+    {$ENDREGION}
+
+    {$REGION 'Delete Route'}
+    { ===== ===== }
+    edDeleteRoute: begin
+      idx := FRouteList.IndexOf(FSelectedRoute);
+
+      if Assigned(FSelectedRoute) then
+      begin
+        //FRouteList.Remove(FSelectedRoute);
+
+        if idx >= 0 then
+          FRouteList.Delete(idx);
+
+        // Delete list View nya juga
+        if FWaypointViews.Count > 0 then
+          FWaypointViews.Delete(FWaypointViews.Count - 1);
+
+        FSelectedRoute := nil;
+        FSelectedWaypoint := nil;
+
+        FMap.Refresh;
+      end;
+
+    end;
+    {$ENDREGION}
   end;
 end;
 
-procedure TfrmRoutePlan.Close1Click(Sender: TObject);
-begin
-  Application.Terminate;
-  //Close;
-end;
-
-procedure TfrmRoutePlan.WCC1Click(Sender: TObject);
-begin
-  // pindah ke form WCC ketika 1 monitor menggunakan PopupMenu
-  SwitchView(vmWCC);
-end;
+{$ENDREGION}
 
 procedure TfrmRoutePlan.SetImgBtn;
 var
   BMap: TBitmap;
-  strPath: string;
 begin
-  strPath := '.\img\icon\Route Plan - Tool Bar\';
 
   {$REGION ' Button Exit Sub Window (Map Info dan Navigation Info '}
   btnExit_MapInfo.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
   btnExit_NavInfo.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
-  btnExitRoutePlanCmd.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
-  btnExitTargetParam.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
+  btnExit_RoutePlanCmd.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
+  btnExit_TargetParam.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
+  btnExit_ObstacleInfo.Glyph.LoadFromFile(strPath + 'btn_close.bmp');
   {$ENDREGION}
 
   {$REGION ' Button Operating Mode '}
@@ -699,7 +1032,8 @@ begin
   {$ENDREGION}
 
   {$REGION ' Button Change Mode (Day Mode & Night Mode '}
-  btnChangeMode.Glyph.LoadFromFile(strpath + 'Button Change Mode - Day.bmp');  // Night Mode
+  if FisMapDayMode then
+    btnChangeMode.Glyph.LoadFromFile(strpath + 'Button Change Mode - Day.bmp');  // Day Mode
   {$ENDREGION}
 
   {$REGION ' Button Display Channel '}
@@ -727,13 +1061,6 @@ begin
   {$ENDREGION}
 end;
 
-procedure TfrmRoutePlan.advpgcTargetParamChange(Sender: TObject);
-begin
-  btnExitTargetParam.Parent := advpgcTargetParam.ActivePage;
-  advrbWayPt.Parent := advpgcTargetParam.ActivePage;
-  advrbStartPt.Parent := advpgcTargetParam.ActivePage;
-end;
-
 procedure TfrmRoutePlan.pnlShowMapInfoClick(Sender: TObject);
 begin
   pnlShowMapInfo.Visible := False;
@@ -746,31 +1073,8 @@ begin
   pnlNavInfo.Visible := True;
 end;
 
-procedure TfrmRoutePlan.btnExitSubWindowClick(Sender: TObject);
-begin
-  case (Sender as TSpeedButtonImage).Tag of
-    1: begin
-      // Map Info
-      pnlMapInfo.Visible := False;
-      pnlShowMapInfo.Visible := True;
-    end;
-    2: begin
-      // Navigation Info
-      pnlNavInfo.Visible := False;
-      pnlShowNav.Visible := True;
-    end;
-    3: begin
-      // Target Param
-      pnlParamDisplay.Visible := False;
-    end;
-    4: begin
-      // Route Plan Command
-      pnlRoutePlanControlCmd.Visible := False;
-    end;
-  end;
-end;
-
 {$REGION 'Tool Bar'}
+
 procedure TfrmRoutePlan.btnToolBarsClick(Sender: TObject);
 begin
   case (Sender as TSpeedButton).Tag of
@@ -815,8 +1119,19 @@ begin
       {$ENDREGION}
     end;
     8: begin
-      {$REGION 'Change Mode'}
-      //
+      {$REGION 'Change Mode (Tampilan Peta'}
+      if FisMapDayMode then
+      begin
+        FisMapDayMode := False;
+        btnChangeMode.Glyph.LoadFromFile(strpath + 'Button Change Mode - Night.bmp');   // set to Night
+        //LoadGeoset('.\data\MapNightMode\tcms_world_lama.gst');
+      end
+      else if not FisMapDayMode then
+      begin
+        FisMapDayMode := True;
+        btnChangeMode.Glyph.LoadFromFile(strpath + 'Button Change Mode - Day.bmp');   // set to Day
+        //LoadGeoset('.\data\mapsea\Indonesia.gst');
+      end;
       {$ENDREGION}
     end;
     9: begin
@@ -831,16 +1146,34 @@ begin
     end;
     11: begin
       {$REGION 'Obstacle Information Display'}
-      //
+      if not pnlObstacleInfo.Visible then
+      begin
+        pnlRoutePlanControlCmd.Visible := False;
+        pnlParamDisplay.Visible := False;
+      end;
+
+      pnlObstacleInfo.Visible := not pnlObstacleInfo.Visible;
       {$ENDREGION}
     end;
     12: begin
       {$REGION 'Target Param Display'}
+      if not pnlParamDisplay.Visible then
+      begin
+        pnlObstacleInfo.Visible := False;
+        pnlRoutePlanControlCmd.Visible := False;
+      end;
+
       pnlParamDisplay.Visible := not pnlParamDisplay.Visible;
       {$ENDREGION}
     end;
     13: begin
       {$REGION 'Route Control Command'}
+      if not pnlRoutePlanControlCmd.Visible then
+      begin
+        pnlObstacleInfo.Visible := False;
+        pnlParamDisplay.Visible := False;
+      end;
+
       pnlRoutePlanControlCmd.Visible := not pnlRoutePlanControlCmd.Visible;
       {$ENDREGION}
     end;
@@ -852,7 +1185,85 @@ begin
   end;
 
 end;
+
+procedure TfrmRoutePlan.btnWaypointLvl2Click(Sender: TObject);
+begin
+  case (Sender as TSpeedButton).Tag of
+    0: pnlWaypointLvl2.Visible := False;  // Hide Panel Waypoint Level 2
+    1: FEditMode := edAddRoute;           // Add New Route
+    2: FEditMode := edMoveWaypoint;       // Move Waypoint
+    3: FEditMode := edDeleteWaypoint;     // Delete Waypoint
+    4: FEditMode := edAddWaypoint;        // Add New Waypoint
+    5: FEditMode := edDeleteRoute;        // Delete Route
+  end;
+end;
+
+procedure TfrmRoutePlan.btnExitSubWindowClick(Sender: TObject);
+begin
+  case (Sender as TSpeedButtonImage).Tag of
+    1:  begin
+      // Map Info
+      pnlMapInfo.Visible := False;
+      pnlShowMapInfo.Visible := True;
+    end;
+    2: begin
+      // Navigation Info
+      pnlNavInfo.Visible := False;
+      pnlShowNav.Visible := True;
+    end;
+    3: begin
+      // Target Param
+      pnlParamDisplay.Visible := False;
+    end;
+    4: begin
+      // Route Plan Command
+      pnlRoutePlanControlCmd.Visible := False;
+    end;
+  end;
+end;
+
+procedure TfrmRoutePlan.advpgcObstacleInfoChange(Sender: TObject);
+begin
+  btnExit_ObstacleInfo.Parent := advpgcObstacleInfo.ActivePage;
+  btnOkObstacleInfo.Parent := advpgcObstacleInfo.ActivePage;
+end;
+
+procedure TfrmRoutePlan.advpgcTargetParamChange(Sender: TObject);
+begin
+  btnExit_TargetParam.Parent := advpgcTargetParam.ActivePage;
+  advrbWayPt.Parent := advpgcTargetParam.ActivePage;
+  advrbStartPt.Parent := advpgcTargetParam.ActivePage;
+end;
+
 {$ENDREGION}
+
+procedure TfrmRoutePlan.pnlHeaderTitleMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  // Show Images instead of Map
+  if (ssShift in Shift) then
+  begin
+    imgMapBackground.Visible := not imgMapBackground.Visible;
+
+//    if imgMap.Visible = False then
+//      pnlBaseMap.Visible := False
+//    else
+//      pnlBaseMap.Visible := True;
+
+    imgMapBackground.BringToFront;
+  end;
+end;
+
+procedure TfrmRoutePlan.Close1Click(Sender: TObject);
+begin
+  Application.Terminate;
+  //Close;
+end;
+
+procedure TfrmRoutePlan.WCC1Click(Sender: TObject);
+begin
+  // pindah ke form WCC ketika 1 monitor menggunakan PopupMenu
+  SwitchView(vmWCC);
+end;
 
 procedure TfrmRoutePlan.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 begin

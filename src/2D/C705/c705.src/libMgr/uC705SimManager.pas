@@ -7,6 +7,8 @@ uses
   uTCPDatatype, uLibSettings, uShipModel, uVehicleManager;
 
 type
+  TRoutePlanMode = (mPassive, mActive);
+
   GameSimManager = class
   private
     { NFS Dependencies }
@@ -23,11 +25,14 @@ type
     procedure netNFS_OnDeleteShip(apRec: PAnsiChar; aSize: integer);
 
   public
+    FRoutePlanMode: TRoutePlanMode;
+
     NFSNetRecv: TTCPClient;
 
     constructor Create;
     destructor Destroy; override;
 
+    property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
   published
     {
       Main Function of Simulation
@@ -59,6 +64,9 @@ begin
   FAutoConnectToBridgeTimer.Interval := 5000;
   FAutoConnectToBridgeTimer.OnTimer := tmrAutoConnectToBridgeTimer;
   FAutoConnectToBridgeTimer.Enabled := True;
+
+  // Default Operation Route Planning
+  FRoutePlanMode := mPassive;
 end;
 
 destructor GameSimManager.Destroy;
