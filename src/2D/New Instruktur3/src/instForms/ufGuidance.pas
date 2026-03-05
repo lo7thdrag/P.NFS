@@ -764,6 +764,11 @@ begin
     if not Assigned(SimManager.TrackObject) then
       Exit;
 
+    if strtoint(TEdit(Sender).Text) > 20 then
+      TEdit(Sender).Text := '20'
+    else if  strtoint(TEdit(Sender).Text) < 0  then
+      TEdit(Sender).Text := '0';
+
     sID := UniqueID_To_dbID(SimManager.TrackObject.UniqueID);
     if TryStrToFloat(TEdit(Sender).Text, speed) then
     begin
@@ -880,6 +885,11 @@ begin
   begin
     if not Assigned(SimManager.TrackObject) then
       Exit;
+
+    if strtoint(TEdit(Sender).Text) > 500 then
+      TEdit(Sender).Text := '500'
+    else if  strtoint(TEdit(Sender).Text) < 0  then
+      TEdit(Sender).Text := '0';
 
     sID := UniqueID_To_dbID(SimManager.TrackObject.UniqueID);
 
