@@ -47,15 +47,96 @@ object frmMainFCC: TfrmMainFCC
   end
   object pnlUpper: TPanel
     Left = 0
-    Top = 0
-    Width = 1008
-    Height = 1024
+    Top = -1
+    Width = 1280
+    Height = 1027
     TabOrder = 0
+    object lblRulerBottomLeft10: TLabel
+      Left = 265
+      Top = 507
+      Width = 12
+      Height = 13
+      Caption = '10'
+    end
+    object lblRulerBottomLeft20: TLabel
+      Left = 199
+      Top = 507
+      Width = 12
+      Height = 13
+      Caption = '20'
+    end
+    object lblRulerBottomLeft30: TLabel
+      Left = 137
+      Top = 507
+      Width = 12
+      Height = 13
+      Caption = '30'
+    end
+    object lblRulerBottomLeft40: TLabel
+      Left = 75
+      Top = 507
+      Width = 12
+      Height = 13
+      Caption = '40'
+    end
+    object lblRulerRight0: TLabel
+      Left = 667
+      Top = 245
+      Width = 12
+      Height = 13
+      AutoSize = False
+      Caption = '0'
+    end
+    object lblRulerRightTop10: TLabel
+      Left = 664
+      Top = 183
+      Width = 12
+      Height = 13
+      Caption = '10'
+    end
+    object lblRulerRightTop20: TLabel
+      Left = 667
+      Top = 118
+      Width = 12
+      Height = 13
+      Caption = '20'
+    end
+    object lblRulerRightBtm10: TLabel
+      Left = 664
+      Top = 309
+      Width = 12
+      Height = 13
+      Caption = '10'
+    end
+    object lblRulerRightBtm20: TLabel
+      Left = 664
+      Top = 374
+      Width = 12
+      Height = 13
+      Caption = '20'
+    end
+    object lblRulerRightBtm30: TLabel
+      Left = 663
+      Top = 436
+      Width = 12
+      Height = 13
+      Caption = '30'
+    end
+    object lblRulerRightTop30: TLabel
+      Left = 667
+      Top = 53
+      Width = 12
+      Height = 13
+      Caption = '30'
+    end
     object pnlSituationZone: TPanel
-      Left = 1
-      Top = 1
-      Width = 1008
-      Height = 1020
+      Left = 684
+      Top = 33
+      Width = 596
+      Height = 467
+      BevelInner = bvRaised
+      BevelOuter = bvLowered
+      BevelWidth = 2
       Color = clMedGray
       ParentBackground = False
       TabOrder = 0
@@ -67,11 +148,13 @@ object frmMainFCC: TfrmMainFCC
         Stretch = True
       end
       object imgBackgrounSituationZone: TImage
-        Left = 1
-        Top = 1
-        Width = 1006
-        Height = 1018
+        Left = 4
+        Top = 4
+        Width = 588
+        Height = 459
         Align = alClient
+        ExplicitLeft = 1
+        ExplicitTop = 1
         ExplicitWidth = 822
         ExplicitHeight = 798
       end
@@ -360,10 +443,10 @@ object frmMainFCC: TfrmMainFCC
         Version = '1.6.1.0'
       end
       object FMap: TMap
-        Left = 1
-        Top = 1
-        Width = 1006
-        Height = 1018
+        Left = 4
+        Top = 4
+        Width = 588
+        Height = 459
         ParentColor = False
         Align = alClient
         TabOrder = 0
@@ -372,22 +455,24 @@ object frmMainFCC: TfrmMainFCC
         OnMouseMove = FMapMouseMove
         OnMouseDown = FMapMouseDown
         OnDrawUserLayer = FMapDrawUserLayer
-        ExplicitWidth = 822
-        ExplicitHeight = 653
+        ExplicitLeft = 121
+        ExplicitTop = 58
+        ExplicitWidth = 654
+        ExplicitHeight = 414
         ControlData = {
-          8A1A0600F96700003769000001000000FFFFFF000D47656F44696374696F6E61
+          8A1A0600C63C0000702F000001000000FFFFFF000D47656F44696374696F6E61
           727905456D70747900E8030000000000000000000002000E001E000000000000
           0000000000000000000000000000000000000000000600010000000000500001
           010000640000000001F4010000050000800C000000000000000000000000FFFF
           FF000100000000000000000000000000000000000000000000000352E30B918F
-          CE119DE300AA004BB85101000000900194C90B0005417269616C000352E30B91
+          CE119DE300AA004BB851010000009001F460050005417269616C000352E30B91
           8FCE119DE300AA004BB851010000009001348C030005417269616C0000000000
           00000000000000000000000000000000000000000000000000000000000000FF
           FFFF000000000000000001370000000000FFFFFF000000000000000352E30B91
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100004014761201000000CC9156771C000000000000000000000000
+          01000118010000F025011001000000010000001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -396,638 +481,2029 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100004014761201000000881300C01C00000000000000000000000000000000
+          010000F025011001000000000000001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000088CB97003D8BDC7621
-          00000000000000208BDC7660E9471246A694DBC8CB9700000000000000000000
+          0000000000000000000000000000000000000000000000C8BED150D8F5970095
+          52D150A0221D22F04559035C251008577CFC76AB06B3CD000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
+    object pnlViewer3D: TPanel
+      Left = 8
+      Top = 1
+      Width = 649
+      Height = 501
+      Caption = 'pnlViewer3D'
+      Color = clBlack
+      ParentBackground = False
+      TabOrder = 1
+      object Shape1: TShape
+        Left = 325
+        Top = 0
+        Width = 1
+        Height = 501
+        Pen.Color = clWhite
+      end
+      object Shape2: TShape
+        Left = 0
+        Top = 251
+        Width = 649
+        Height = 1
+        Pen.Color = clWhite
+      end
+    end
+    object advRulerBottomRight: TAdvRangeSlider
+      Left = 325
+      Top = 501
+      Width = 265
+      Height = 30
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      BorderColor = clNone
+      BorderColorDisabled = clNone
+      ColorTo = clNone
+      ColorDisabled = clNone
+      ColorDisabledTo = clNone
+      Direction = gdHorizontal
+      DragCursor = crArrow
+      Color = clNone
+      Max = 40
+      ParentShowHint = False
+      PositionRight = 40
+      ShowHint = False
+      Slider.BorderColor = clNone
+      Slider.BorderColorDisabled = clNone
+      Slider.Color = clNone
+      Slider.ColorTo = clNone
+      Slider.ColorDisabled = clNone
+      Slider.ColorDisabledTo = clBlack
+      Slider.ColorCompleted = clNone
+      Slider.ColorCompletedTo = clNone
+      Slider.ColorCompletedDisabled = clNone
+      Slider.ColorCompletedDisabledTo = clNone
+      Slider.Direction = gdHorizontal
+      Slider.Offset = -12
+      Slider.ColorRemaining = clNone
+      Slider.ColorRemainingTo = clNone
+      Slider.ColorRemainingDisabled = clNone
+      Slider.ColorRemainingDisabledTo = clNone
+      TabOrder = 2
+      ThumbLeft.BorderColor = clNone
+      ThumbLeft.BorderColorHot = 10079963
+      ThumbLeft.BorderColorDown = 4548219
+      ThumbLeft.BorderColorDisabled = clBlack
+      ThumbLeft.Color = clNone
+      ThumbLeft.ColorTo = 16178633
+      ThumbLeft.ColorDown = 7778289
+      ThumbLeft.ColorDownTo = 4296947
+      ThumbLeft.ColorHot = 15465983
+      ThumbLeft.ColorHotTo = 11332863
+      ThumbLeft.ColorDisabled = clBlack
+      ThumbLeft.ColorDisabledTo = clBlack
+      ThumbLeft.ColorMirror = 15586496
+      ThumbLeft.ColorMirrorTo = 16245200
+      ThumbLeft.ColorMirrorHot = 5888767
+      ThumbLeft.ColorMirrorHotTo = 10807807
+      ThumbLeft.ColorMirrorDown = 946929
+      ThumbLeft.ColorMirrorDownTo = 5021693
+      ThumbLeft.ColorMirrorDisabled = clBlack
+      ThumbLeft.ColorMirrorDisabledTo = clBlack
+      ThumbLeft.Gradient = ggVertical
+      ThumbLeft.GradientMirror = ggRadial
+      ThumbLeft.Shape = tsPointer
+      ThumbRight.BorderColor = clNone
+      ThumbRight.BorderColorHot = 10079963
+      ThumbRight.BorderColorDown = 4548219
+      ThumbRight.BorderColorDisabled = clNone
+      ThumbRight.Color = clNone
+      ThumbRight.ColorTo = 16178633
+      ThumbRight.ColorDown = 7778289
+      ThumbRight.ColorDownTo = 4296947
+      ThumbRight.ColorHot = 15465983
+      ThumbRight.ColorHotTo = 11332863
+      ThumbRight.ColorDisabled = clBlack
+      ThumbRight.ColorDisabledTo = clBlack
+      ThumbRight.ColorMirror = 15586496
+      ThumbRight.ColorMirrorTo = 16245200
+      ThumbRight.ColorMirrorHot = 5888767
+      ThumbRight.ColorMirrorHotTo = 10807807
+      ThumbRight.ColorMirrorDown = 946929
+      ThumbRight.ColorMirrorDownTo = 5021693
+      ThumbRight.ColorMirrorDisabled = clBlack
+      ThumbRight.ColorMirrorDisabledTo = clBlack
+      ThumbRight.Gradient = ggVertical
+      ThumbRight.GradientMirror = ggRadial
+      ThumbRight.Size = 0
+      ThumbRight.Width = 0
+      ThumbRight.Shape = tsPointer
+      TickMark.Color = clBlack
+      TickMark.ColorDisabled = clBlack
+      TickMark.Font.Charset = DEFAULT_CHARSET
+      TickMark.Font.Color = clWindowText
+      TickMark.Font.Height = -11
+      TickMark.Font.Name = 'Tahoma'
+      TickMark.Font.Style = []
+      TickMark.ShowText = True
+      TickMark.ShowImageAtSteps = 10
+      TickMark.Size = 6
+      TrackHint = False
+      TrackLabel.Position = lpBottomLeft
+      TrackLabel.Font.Charset = DEFAULT_CHARSET
+      TrackLabel.Font.Color = clWindowText
+      TrackLabel.Font.Height = -11
+      TrackLabel.Font.Name = 'Tahoma'
+      TrackLabel.Font.Style = []
+      TrackLabel.Spacing = 0
+      Version = '1.6.10.2'
+    end
+    object advSliderBottomLeft: TAdvRangeSlider
+      Left = 77
+      Top = 501
+      Width = 265
+      Height = 9
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      BorderColor = clNone
+      BorderColorDisabled = clNone
+      ColorTo = clNone
+      ColorDisabled = clNone
+      ColorDisabledTo = clNone
+      Direction = gdHorizontal
+      DragCursor = crArrow
+      Color = clNone
+      Max = 40
+      ParentShowHint = False
+      PositionLeft = 40
+      PositionRight = 40
+      ShowHint = False
+      Slider.BorderColor = clNone
+      Slider.BorderColorDisabled = clNone
+      Slider.Color = clNone
+      Slider.ColorTo = clNone
+      Slider.ColorDisabled = clNone
+      Slider.ColorDisabledTo = clBlack
+      Slider.ColorCompleted = clNone
+      Slider.ColorCompletedTo = clNone
+      Slider.ColorCompletedDisabled = clNone
+      Slider.ColorCompletedDisabledTo = clNone
+      Slider.Direction = gdHorizontal
+      Slider.Offset = -12
+      Slider.ColorRemaining = clNone
+      Slider.ColorRemainingTo = clNone
+      Slider.ColorRemainingDisabled = clNone
+      Slider.ColorRemainingDisabledTo = clNone
+      TabOrder = 3
+      ThumbLeft.BorderColor = clNone
+      ThumbLeft.BorderColorHot = 10079963
+      ThumbLeft.BorderColorDown = 4548219
+      ThumbLeft.BorderColorDisabled = clBlack
+      ThumbLeft.Color = clNone
+      ThumbLeft.ColorTo = 16178633
+      ThumbLeft.ColorDown = 7778289
+      ThumbLeft.ColorDownTo = 4296947
+      ThumbLeft.ColorHot = 15465983
+      ThumbLeft.ColorHotTo = 11332863
+      ThumbLeft.ColorDisabled = clBlack
+      ThumbLeft.ColorDisabledTo = clBlack
+      ThumbLeft.ColorMirror = 15586496
+      ThumbLeft.ColorMirrorTo = 16245200
+      ThumbLeft.ColorMirrorHot = 5888767
+      ThumbLeft.ColorMirrorHotTo = 10807807
+      ThumbLeft.ColorMirrorDown = 946929
+      ThumbLeft.ColorMirrorDownTo = 5021693
+      ThumbLeft.ColorMirrorDisabled = clBlack
+      ThumbLeft.ColorMirrorDisabledTo = clBlack
+      ThumbLeft.Gradient = ggVertical
+      ThumbLeft.GradientMirror = ggRadial
+      ThumbLeft.Shape = tsPointer
+      ThumbRight.BorderColor = clNone
+      ThumbRight.BorderColorHot = 10079963
+      ThumbRight.BorderColorDown = 4548219
+      ThumbRight.BorderColorDisabled = clNone
+      ThumbRight.Color = clNone
+      ThumbRight.ColorTo = 16178633
+      ThumbRight.ColorDown = 7778289
+      ThumbRight.ColorDownTo = 4296947
+      ThumbRight.ColorHot = 15465983
+      ThumbRight.ColorHotTo = 11332863
+      ThumbRight.ColorDisabled = clBlack
+      ThumbRight.ColorDisabledTo = clBlack
+      ThumbRight.ColorMirror = 15586496
+      ThumbRight.ColorMirrorTo = 16245200
+      ThumbRight.ColorMirrorHot = 5888767
+      ThumbRight.ColorMirrorHotTo = 10807807
+      ThumbRight.ColorMirrorDown = 946929
+      ThumbRight.ColorMirrorDownTo = 5021693
+      ThumbRight.ColorMirrorDisabled = clBlack
+      ThumbRight.ColorMirrorDisabledTo = clBlack
+      ThumbRight.Gradient = ggVertical
+      ThumbRight.GradientMirror = ggRadial
+      ThumbRight.Size = 0
+      ThumbRight.Width = 0
+      ThumbRight.Shape = tsPointer
+      TickMark.Color = clBlack
+      TickMark.ColorDisabled = clBlack
+      TickMark.Font.Charset = DEFAULT_CHARSET
+      TickMark.Font.Color = clWindowText
+      TickMark.Font.Height = -11
+      TickMark.Font.Name = 'Tahoma'
+      TickMark.Font.Style = []
+      TickMark.RotateFontVert = False
+      TickMark.ShowImageAtSteps = 10
+      TickMark.Size = 6
+      TrackHint = False
+      TrackLabel.Position = lpBottomLeft
+      TrackLabel.Font.Charset = DEFAULT_CHARSET
+      TrackLabel.Font.Color = clWindowText
+      TrackLabel.Font.Height = -11
+      TrackLabel.Font.Name = 'Tahoma'
+      TrackLabel.Font.Style = []
+      TrackLabel.Spacing = 0
+      Version = '1.6.10.2'
+    end
+    object AdvRangeSlider1: TAdvRangeSlider
+      Left = 657
+      Top = 52
+      Width = 7
+      Height = 399
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      BorderColor = clNone
+      BorderColorDisabled = clNone
+      ColorTo = clNone
+      ColorDisabled = clNone
+      ColorDisabledTo = clNone
+      Direction = gdHorizontal
+      DragCursor = crArrow
+      Color = clNone
+      Max = 60
+      Orientation = trVertical
+      ParentShowHint = False
+      PositionRight = 40
+      ShowHint = False
+      Slider.BorderColor = clNone
+      Slider.BorderColorDisabled = clNone
+      Slider.Color = clNone
+      Slider.ColorTo = clNone
+      Slider.ColorDisabled = clNone
+      Slider.ColorDisabledTo = clBlack
+      Slider.ColorCompleted = clNone
+      Slider.ColorCompletedTo = clNone
+      Slider.ColorCompletedDisabled = clNone
+      Slider.ColorCompletedDisabledTo = clNone
+      Slider.Direction = gdHorizontal
+      Slider.Offset = -12
+      Slider.ColorRemaining = clNone
+      Slider.ColorRemainingTo = clNone
+      Slider.ColorRemainingDisabled = clNone
+      Slider.ColorRemainingDisabledTo = clNone
+      TabOrder = 4
+      ThumbLeft.BorderColor = clNone
+      ThumbLeft.BorderColorHot = 10079963
+      ThumbLeft.BorderColorDown = 4548219
+      ThumbLeft.BorderColorDisabled = clBlack
+      ThumbLeft.Color = clNone
+      ThumbLeft.ColorTo = 16178633
+      ThumbLeft.ColorDown = 7778289
+      ThumbLeft.ColorDownTo = 4296947
+      ThumbLeft.ColorHot = 15465983
+      ThumbLeft.ColorHotTo = 11332863
+      ThumbLeft.ColorDisabled = clBlack
+      ThumbLeft.ColorDisabledTo = clBlack
+      ThumbLeft.ColorMirror = 15586496
+      ThumbLeft.ColorMirrorTo = 16245200
+      ThumbLeft.ColorMirrorHot = 5888767
+      ThumbLeft.ColorMirrorHotTo = 10807807
+      ThumbLeft.ColorMirrorDown = 946929
+      ThumbLeft.ColorMirrorDownTo = 5021693
+      ThumbLeft.ColorMirrorDisabled = clBlack
+      ThumbLeft.ColorMirrorDisabledTo = clBlack
+      ThumbLeft.Gradient = ggVertical
+      ThumbLeft.GradientMirror = ggRadial
+      ThumbLeft.Shape = tsPointer
+      ThumbRight.BorderColor = clNone
+      ThumbRight.BorderColorHot = 10079963
+      ThumbRight.BorderColorDown = 4548219
+      ThumbRight.BorderColorDisabled = clNone
+      ThumbRight.Color = clNone
+      ThumbRight.ColorTo = 16178633
+      ThumbRight.ColorDown = 7778289
+      ThumbRight.ColorDownTo = 4296947
+      ThumbRight.ColorHot = 15465983
+      ThumbRight.ColorHotTo = 11332863
+      ThumbRight.ColorDisabled = clBlack
+      ThumbRight.ColorDisabledTo = clBlack
+      ThumbRight.ColorMirror = 15586496
+      ThumbRight.ColorMirrorTo = 16245200
+      ThumbRight.ColorMirrorHot = 5888767
+      ThumbRight.ColorMirrorHotTo = 10807807
+      ThumbRight.ColorMirrorDown = 946929
+      ThumbRight.ColorMirrorDownTo = 5021693
+      ThumbRight.ColorMirrorDisabled = clBlack
+      ThumbRight.ColorMirrorDisabledTo = clBlack
+      ThumbRight.Gradient = ggVertical
+      ThumbRight.GradientMirror = ggRadial
+      ThumbRight.Size = 0
+      ThumbRight.Width = 0
+      ThumbRight.Shape = tsPointer
+      TickMark.Color = clBlack
+      TickMark.ColorDisabled = clBlack
+      TickMark.Font.Charset = DEFAULT_CHARSET
+      TickMark.Font.Color = clWindowText
+      TickMark.Font.Height = -11
+      TickMark.Font.Name = 'Tahoma'
+      TickMark.Font.Style = []
+      TickMark.RotateFontVert = False
+      TickMark.ShowImageAtSteps = 10
+      TickMark.Size = 6
+      TrackHint = False
+      TrackLabel.Position = lpBottomLeft
+      TrackLabel.Font.Charset = DEFAULT_CHARSET
+      TrackLabel.Font.Color = clWindowText
+      TrackLabel.Font.Height = -11
+      TrackLabel.Font.Name = 'Tahoma'
+      TrackLabel.Font.Style = []
+      TrackLabel.Format = 'PosLeft: %d  PosRight: %d'
+      TrackLabel.Spacing = 0
+      Version = '1.6.10.2'
+    end
   end
-  object pnlTarget: TPanel
-    Left = 1008
-    Top = 512
-    Width = 272
-    Height = 512
-    Color = clSilver
+  object pnlBite: TPanel
+    Left = 829
+    Top = 704
+    Width = 451
+    Height = 321
     ParentBackground = False
     TabOrder = 2
-    object Label27: TLabel
-      Left = 20
-      Top = 55
-      Width = 41
-      Height = 16
-      Caption = 'TgtNo.'
+    object pnlHaeaderBite: TPanel
+      Left = 1
+      Top = 1
+      Width = 449
+      Height = 28
+      Align = alTop
+      Caption = 'BITE'
+      Color = clHighlight
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
+      Font.Color = clWhite
+      Font.Height = -16
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblTgtNo: TLabel
-      Left = 124
-      Top = 55
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label30: TLabel
-      Left = 20
-      Top = 86
-      Width = 19
-      Height = 16
-      Caption = 'Dis'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblTgtDistance: TLabel
-      Left = 124
-      Top = 86
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label32: TLabel
-      Left = 197
-      Top = 86
-      Width = 19
-      Height = 16
-      Caption = 'Km'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label33: TLabel
-      Left = 20
-      Top = 117
-      Width = 28
-      Height = 16
-      Caption = 'Azm'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblTgtAzimut: TLabel
-      Left = 124
-      Top = 117
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label35: TLabel
-      Left = 197
-      Top = 117
-      Width = 11
-      Height = 16
-      Caption = ' '#176
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label36: TLabel
-      Left = 20
-      Top = 151
-      Width = 24
-      Height = 16
-      Caption = 'Spd'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblTgtSpd: TLabel
-      Left = 124
-      Top = 151
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label38: TLabel
-      Left = 197
-      Top = 151
-      Width = 16
-      Height = 16
-      Caption = 'Kn'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label39: TLabel
-      Left = 20
-      Top = 187
-      Width = 24
-      Height = 16
-      Caption = 'Cou'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblTgtCourse: TLabel
-      Left = 124
-      Top = 187
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label41: TLabel
-      Left = 197
-      Top = 187
-      Width = 11
-      Height = 16
-      Caption = ' '#176
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label2: TLabel
-      Left = 20
-      Top = 220
-      Width = 24
-      Height = 16
-      Caption = 'LAT'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblLatTgt: TLabel
-      Left = 124
-      Top = 220
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label10: TLabel
-      Left = 197
-      Top = 220
-      Width = 8
-      Height = 16
-      Caption = 'N'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Visible = False
-    end
-    object Label13: TLabel
-      Left = 197
-      Top = 258
-      Width = 7
-      Height = 16
-      Caption = 'E'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Visible = False
-    end
-    object lblLonTgt: TLabel
-      Left = 124
-      Top = 258
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label15: TLabel
-      Left = 20
-      Top = 252
-      Width = 24
-      Height = 16
-      Caption = 'LON'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Panel1: TPanel
-      Left = 0
-      Top = 0
-      Width = 273
-      Height = 44
-      BevelInner = bvLowered
-      Caption = 'Informasi Kapal Target'
-      Color = clGray
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
+      ExplicitLeft = 2
+      ExplicitTop = 5
+      ExplicitWidth = 448
+    end
+    object AdvPageControl1: TAdvPageControl
+      Left = 1
+      Top = 29
+      Width = 449
+      Height = 291
+      ActivePage = AdvTabMR35
+      ActiveFont.Charset = DEFAULT_CHARSET
+      ActiveFont.Color = clWindowText
+      ActiveFont.Height = -11
+      ActiveFont.Name = 'Tahoma'
+      ActiveFont.Style = []
+      Align = alClient
+      DoubleBuffered = True
+      TabBackGroundColor = clBtnFace
+      TabMargin.RightMargin = 0
+      TabOverlap = 0
+      Version = '2.0.2.0'
+      PersistPagesState.Location = plRegistry
+      PersistPagesState.Enabled = False
+      TabOrder = 1
+      object AdvTabMR35: TAdvTabSheet
+        Caption = 'MR35'
+        Color = clBtnFace
+        ColorTo = clNone
+        TabColor = clBtnFace
+        TabColorTo = clNone
+        ExplicitLeft = 2
+        object lblMR35FCC2: TLabel
+          Left = 3
+          Top = 33
+          Width = 30
+          Height = 16
+          Caption = 'FCC2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblMR35FCC2Val: TLabel
+          Left = 176
+          Top = 33
+          Width = 57
+          Height = 16
+          Caption = 'Undefined'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblMR35Time: TLabel
+          Left = 3
+          Top = 11
+          Width = 29
+          Height = 16
+          Caption = 'Time'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblMR35TimeVal: TLabel
+          Left = 176
+          Top = 10
+          Width = 57
+          Height = 16
+          Caption = 'Undefined'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblMR35MR35: TLabel
+          Left = 3
+          Top = 58
+          Width = 32
+          Height = 16
+          Caption = 'MR35'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblMR35MR35Val: TLabel
+          Left = 176
+          Top = 58
+          Width = 41
+          Height = 16
+          Caption = 'Normal'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
+      object AdvTabTrans: TAdvTabSheet
+        Caption = 'Trans'
+        Color = clBtnFace
+        ColorTo = clNone
+        TabColor = clBtnFace
+        TabColorTo = clNone
+        ExplicitLeft = 24
+        ExplicitTop = 0
+        ExplicitWidth = 100
+        ExplicitHeight = 100
+      end
+      object AdvTabRev: TAdvTabSheet
+        Caption = 'Rev'
+        Color = clBtnFace
+        ColorTo = clNone
+        TabColor = clBtnFace
+        TabColorTo = clNone
+        ExplicitLeft = 24
+        ExplicitTop = 0
+        ExplicitWidth = 100
+        ExplicitHeight = 100
+      end
+      object AdvTabServo: TAdvTabSheet
+        Caption = 'Servo'
+        Color = clBtnFace
+        ColorTo = clNone
+        TabColor = clBtnFace
+        TabColorTo = clNone
+        ExplicitLeft = 24
+        ExplicitTop = 0
+        ExplicitWidth = 100
+        ExplicitHeight = 100
+      end
+      object AdvTabCon: TAdvTabSheet
+        Caption = 'Con'
+        Color = clBtnFace
+        ColorTo = clNone
+        TabColor = clBtnFace
+        TabColorTo = clNone
+        ExplicitLeft = 24
+        ExplicitTop = 0
+        ExplicitWidth = 100
+        ExplicitHeight = 100
+      end
+      object AdvTabTVLS: TAdvTabSheet
+        Caption = 'TV-LS'
+        Color = clBtnFace
+        ColorTo = clNone
+        TabColor = clBtnFace
+        TabColorTo = clNone
+        ExplicitLeft = 24
+        ExplicitTop = 0
+        ExplicitWidth = 100
+        ExplicitHeight = 100
+      end
     end
   end
-  object pnlOwnShip: TPanel
-    Left = 1008
-    Top = 0
-    Width = 272
-    Height = 512
-    Color = clSilver
+  object pnlExteriorData: TPanel
+    Left = 832
+    Top = 505
+    Width = 449
+    Height = 202
     ParentBackground = False
     TabOrder = 1
-    object Label7: TLabel
-      Left = 20
-      Top = 171
-      Width = 24
-      Height = 16
-      Caption = 'LON'
+    object pnlHeaderExteriorData: TPanel
+      Left = 1
+      Top = 1
+      Width = 447
+      Height = 28
+      Align = alTop
+      Caption = 'EXTERIOR DATA &&  INTERNAL COMMUNICATIONS'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 0
+      ExplicitTop = 3
+      ExplicitWidth = 446
+    end
+    object pnlExteriorDataLeft: TPanel
+      Left = 1
+      Top = 29
+      Width = 225
+      Height = 172
+      Align = alLeft
+      TabOrder = 1
+      ExplicitLeft = 0
+      ExplicitTop = 35
+      ExplicitHeight = 166
+      object advControlPageExtDat: TAdvPageControl
+        Left = 1
+        Top = 1
+        Width = 223
+        Height = 170
+        ActivePage = advTabNAVI
+        ActiveFont.Charset = DEFAULT_CHARSET
+        ActiveFont.Color = clWindowText
+        ActiveFont.Height = -11
+        ActiveFont.Name = 'Tahoma'
+        ActiveFont.Style = []
+        Align = alClient
+        DoubleBuffered = True
+        TabBackGroundColor = clBtnFace
+        TabMargin.RightMargin = 0
+        TabOverlap = 0
+        Version = '2.0.2.0'
+        PersistPagesState.Location = plRegistry
+        PersistPagesState.Enabled = False
+        TabOrder = 0
+        object advTabNAVI: TAdvTabSheet
+          Caption = 'NAVI'
+          Color = clBtnFace
+          ColorTo = clNone
+          TabColor = clBtnFace
+          TabColorTo = clNone
+          ExplicitLeft = 3
+          ExplicitTop = 22
+          object lblHeadingNAVI: TLabel
+            Left = 3
+            Top = 13
+            Width = 46
+            Height = 16
+            Caption = 'Heading'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblHeadingNAVIsat: TLabel
+            Left = 201
+            Top = 11
+            Width = 10
+            Height = 16
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblSpeedNAVI: TLabel
+            Left = 3
+            Top = 45
+            Width = 36
+            Height = 16
+            Caption = 'Speed'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblSpeedNAVIsat: TLabel
+            Left = 201
+            Top = 44
+            Width = 13
+            Height = 16
+            Caption = 'kn'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblRollNAVI: TLabel
+            Left = 3
+            Top = 79
+            Width = 21
+            Height = 16
+            Caption = 'Roll'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblRollNAVIsat: TLabel
+            Left = 200
+            Top = 76
+            Width = 10
+            Height = 16
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblPitchNAVI: TLabel
+            Left = 4
+            Top = 109
+            Width = 27
+            Height = 16
+            Caption = 'Pitch'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblPitchNAVIsat: TLabel
+            Left = 200
+            Top = 107
+            Width = 10
+            Height = 16
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object EdtHeadingNAVIVal: TEdit
+            Left = 84
+            Top = 8
+            Width = 115
+            Height = 24
+            Alignment = taCenter
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+            Text = '0.000'
+          end
+          object EdtSpeedNAVIVal: TEdit
+            Left = 84
+            Top = 41
+            Width = 115
+            Height = 24
+            Alignment = taCenter
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            Text = '0.00'
+          end
+          object EdtRollNAVIVal: TEdit
+            Left = 84
+            Top = 73
+            Width = 115
+            Height = 24
+            Alignment = taCenter
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 2
+            Text = '0.000'
+          end
+          object EdtPitchNAVIVal: TEdit
+            Left = 84
+            Top = 105
+            Width = 115
+            Height = 24
+            Alignment = taCenter
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 3
+            Text = '0.000'
+          end
+        end
+        object AdvTabIND: TAdvTabSheet
+          Caption = 'IND'
+          Color = clBtnFace
+          ColorTo = clNone
+          TabColor = clBtnFace
+          TabColorTo = clNone
+          ExplicitLeft = 24
+          ExplicitTop = 0
+          ExplicitWidth = 100
+          ExplicitHeight = 100
+          object lblIDTargetIND: TLabel
+            Left = 3
+            Top = 13
+            Width = 54
+            Height = 16
+            Caption = 'Batch No.'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblHeadingIND: TLabel
+            Left = 3
+            Top = 77
+            Width = 46
+            Height = 16
+            Caption = 'Heading'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblHeadingINDsat: TLabel
+            Left = 200
+            Top = 76
+            Width = 10
+            Height = 16
+            Caption = ' '#176
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblSpeedIND: TLabel
+            Left = 3
+            Top = 45
+            Width = 36
+            Height = 16
+            Caption = 'Speed'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object lblSpeedINDsat: TLabel
+            Left = 201
+            Top = 44
+            Width = 13
+            Height = 16
+            Caption = 'kn'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtIDTargetVal: TEdit
+            Left = 84
+            Top = 11
+            Width = 115
+            Height = 24
+            Alignment = taCenter
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+            Text = '0'
+          end
+          object edtHeadingINDVal: TEdit
+            Left = 84
+            Top = 73
+            Width = 115
+            Height = 24
+            Alignment = taCenter
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            Text = '0.000'
+          end
+          object edtSpeedINDVal: TEdit
+            Left = 84
+            Top = 43
+            Width = 115
+            Height = 24
+            Alignment = taCenter
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 2
+            Text = '0.00'
+          end
+        end
+        object AdvTabDEVI: TAdvTabSheet
+          Caption = 'DEVI'
+          Color = clBtnFace
+          ColorTo = clNone
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabColor = clBtnFace
+          TabColorTo = clNone
+          ExplicitLeft = 24
+          ExplicitTop = 0
+          ExplicitWidth = 100
+          ExplicitHeight = 100
+        end
+      end
+    end
+    object pnlExteriorDataRight: TPanel
+      Left = 226
+      Top = 29
+      Width = 222
+      Height = 172
+      Align = alClient
+      TabOrder = 2
+      ExplicitLeft = 224
+      ExplicitTop = 35
+      ExplicitWidth = 225
+      ExplicitHeight = 166
+      object lblRev: TLabel
+        Left = 29
+        Top = 42
+        Width = 21
+        Height = 16
+        Caption = 'Rev'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblServo: TLabel
+        Left = 89
+        Top = 42
+        Width = 33
+        Height = 16
+        Caption = 'Servo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblTV: TLabel
+        Left = 160
+        Top = 42
+        Width = 16
+        Height = 16
+        Caption = 'TV'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblSystemControl: TLabel
+        Left = 62
+        Top = 71
+        Width = 87
+        Height = 16
+        Caption = 'System Control'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblType: TLabel
+        Left = 6
+        Top = 140
+        Width = 28
+        Height = 16
+        Caption = 'Type'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblOrder: TLabel
+        Left = 6
+        Top = 98
+        Width = 33
+        Height = 16
+        Caption = 'Order'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object pnlIndcTV: TPanel
+        Left = 152
+        Top = 6
+        Width = 30
+        Height = 30
+        BevelInner = bvRaised
+        Color = clGreen
+        ParentBackground = False
+        TabOrder = 0
+      end
+      object pnlIndcServo: TPanel
+        Left = 88
+        Top = 6
+        Width = 30
+        Height = 30
+        BevelInner = bvRaised
+        Color = clGreen
+        ParentBackground = False
+        TabOrder = 1
+      end
+      object pnlIndcRev: TPanel
+        Left = 24
+        Top = 6
+        Width = 30
+        Height = 30
+        BevelInner = bvRaised
+        Color = clGreen
+        ParentBackground = False
+        TabOrder = 2
+      end
+      object edtOrderVal: TEdit
+        Left = 64
+        Top = 93
+        Width = 145
+        Height = 24
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 3
+        Text = 'None'
+      end
+      object edtTypeVal: TEdit
+        Left = 64
+        Top = 136
+        Width = 145
+        Height = 24
+        BiDiMode = bdLeftToRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBiDiMode = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 4
+        Text = 'None'
+      end
+    end
+  end
+  object pnlStatus: TPanel
+    Left = 605
+    Top = 701
+    Width = 221
+    Height = 323
+    ParentBackground = False
+    TabOrder = 3
+    object lblStatusGain: TLabel
+      Left = 11
+      Top = 168
+      Width = 28
+      Height = 18
+      Caption = 'Gain'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
     end
-    object lblLongtitude: TLabel
-      Left = 124
-      Top = 171
-      Width = 24
-      Height = 16
-      Caption = '----'
+    object lblStatusLaser: TLabel
+      Left = 11
+      Top = 200
+      Width = 35
+      Height = 18
+      Caption = 'Laser'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
     end
-    object lblLatitude: TLabel
-      Left = 124
-      Top = 143
-      Width = 24
-      Height = 16
-      Caption = '----'
+    object lblStatusTrans: TLabel
+      Left = 11
+      Top = 136
+      Width = 38
+      Height = 18
+      Caption = 'Trans'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
     end
-    object Label9: TLabel
-      Left = 20
-      Top = 143
-      Width = 24
-      Height = 16
-      Caption = 'LAT'
+    object lblStatusType: TLabel
+      Left = 11
+      Top = 104
+      Width = 34
+      Height = 18
+      Caption = 'Type'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
     end
-    object Label22: TLabel
-      Left = 20
-      Top = 61
-      Width = 66
-      Height = 16
-      Caption = 'Local Time'
+    object lblStatusDetect: TLabel
+      Left = 11
+      Top = 72
+      Width = 43
+      Height = 18
+      Caption = 'Detect'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
     end
-    object lblEta: TLabel
-      Left = 124
-      Top = 61
-      Width = 24
-      Height = 16
-      Caption = '----'
+    object lblStatusControl: TLabel
+      Left = 11
+      Top = 40
+      Width = 45
+      Height = 18
+      Caption = 'Control'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
     end
-    object Label25: TLabel
-      Left = 197
-      Top = 61
-      Width = 62
-      Height = 16
-      Caption = 'hh:mm:ss'
+    object lblStatusRecord: TLabel
+      Left = 11
+      Top = 232
+      Width = 45
+      Height = 18
+      Caption = 'Record'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
     end
-    object Label11: TLabel
-      Left = 197
-      Top = 143
-      Width = 8
-      Height = 16
-      Caption = 'N'
+    object lblHeaderStatus: TPanel
+      Left = 1
+      Top = 1
+      Width = 219
+      Height = 28
+      Align = alTop
+      Caption = 'STATUS'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 0
+      ExplicitTop = 0
+    end
+    object edtStatusGain: TEdit
+      Left = 102
+      Top = 163
+      Width = 111
+      Height = 26
+      Alignment = taCenter
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
-      Visible = False
+      TabOrder = 1
+      Text = '100'
     end
-    object Label12: TLabel
-      Left = 197
-      Top = 171
-      Width = 7
-      Height = 16
-      Caption = 'E'
+    object edtStatusLaser: TEdit
+      Left = 102
+      Top = 195
+      Width = 111
+      Height = 26
+      Alignment = taCenter
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
-      Visible = False
+      TabOrder = 2
+      Text = 'PowerOff'
     end
-    object Label3: TLabel
-      Left = 20
-      Top = 199
-      Width = 25
-      Height = 16
-      Caption = 'SPD'
+    object edtStatusTrans: TEdit
+      Left = 102
+      Top = 131
+      Width = 111
+      Height = 26
+      Alignment = taCenter
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
+      TabOrder = 3
+      Text = 'Silent'
     end
-    object lblSpeed: TLabel
-      Left = 124
-      Top = 199
-      Width = 24
-      Height = 16
-      Caption = '----'
+    object edtStatusType: TEdit
+      Left = 102
+      Top = 99
+      Width = 111
+      Height = 26
+      Alignment = taCenter
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
+      TabOrder = 4
+      Text = 'Surface'
     end
-    object Label8: TLabel
-      Left = 197
-      Top = 199
-      Width = 16
-      Height = 16
-      Caption = 'Kn'
+    object edtStatusDetect: TEdit
+      Left = 102
+      Top = 67
+      Width = 111
+      Height = 26
+      Alignment = taCenter
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
+      TabOrder = 5
+      Text = 'Static'
     end
-    object Label4: TLabel
-      Left = 20
-      Top = 117
-      Width = 26
-      Height = 16
-      Caption = 'HDG'
+    object edtStatusControl: TEdit
+      Left = 102
+      Top = 35
+      Width = 111
+      Height = 26
+      Alignment = taCenter
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
+      TabOrder = 6
+      Text = 'M_Search'
     end
-    object lblHeading: TLabel
-      Left = 124
-      Top = 117
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label29: TLabel
-      Left = 197
-      Top = 117
-      Width = 11
-      Height = 16
-      Caption = ' '#176
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label1: TLabel
-      Left = 20
-      Top = 89
-      Width = 56
-      Height = 16
-      Caption = 'UTC Time'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblUTCTime: TLabel
-      Left = 124
-      Top = 89
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label5: TLabel
-      Left = 197
-      Top = 89
-      Width = 62
-      Height = 16
-      Caption = 'hh:mm:ss'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object lblRadar: TLabel
-      Left = 20
+    object edtStatusRecord: TEdit
+      Left = 102
       Top = 227
-      Width = 39
-      Height = 16
-      Caption = 'Radar'
+      Width = 111
+      Height = 26
+      Alignment = taCenter
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -15
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
       ParentFont = False
+      TabOrder = 7
+      Text = 'Stop'
     end
-    object lblRadarVal: TLabel
-      Left = 124
-      Top = 227
-      Width = 52
-      Height = 16
-      Caption = 'MR 302 '
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
+  end
+  object pnlCrosshair: TPanel
+    Left = 605
+    Top = 525
+    Width = 221
+    Height = 170
+    BevelInner = bvLowered
+    BevelWidth = 2
+    ParentBackground = False
+    TabOrder = 4
+    object shpCrossVrtcl: TShape
+      Left = 111
+      Top = 16
+      Width = 1
+      Height = 140
     end
-    object Label17: TLabel
-      Left = 20
-      Top = 256
-      Width = 67
-      Height = 16
-      Caption = 'Frequency'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
+    object shpCrossHrzntl: TShape
+      Left = 15
+      Top = 88
+      Width = 193
+      Height = 1
     end
-    object lblFrequencyVal: TLabel
-      Left = 124
-      Top = 256
-      Width = 24
-      Height = 16
-      Caption = '----'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
+  end
+  object pnlPosture: TPanel
+    Left = 684
+    Top = 3
+    Width = 596
+    Height = 28
+    Caption = 'POSTURE'
+    Color = clHighlight
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 5
+  end
+  object pnlLaser: TPanel
+    Left = 0
+    Top = 525
+    Width = 599
+    Height = 137
+    BevelInner = bvLowered
+    ParentBackground = False
+    TabOrder = 6
+    object lblKmLaser: TLabel
+      Left = 544
+      Top = 116
+      Width = 13
+      Height = 13
+      Caption = 'km'
     end
-    object pnl160: TPanel
+    object advRulerLaser: TAdvRangeSlider
       Left = 0
+      Top = 108
+      Width = 545
+      Height = 30
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      BorderColor = clNone
+      BorderColorDisabled = clNone
+      ColorTo = clNone
+      ColorDisabled = clNone
+      ColorDisabledTo = clNone
+      Direction = gdHorizontal
+      DragCursor = crArrow
+      Color = clNone
+      Max = 40
+      ParentShowHint = False
+      PositionRight = 40
+      ShowHint = False
+      Slider.BorderColor = clNone
+      Slider.BorderColorDisabled = clNone
+      Slider.Color = clNone
+      Slider.ColorTo = clNone
+      Slider.ColorDisabled = clNone
+      Slider.ColorDisabledTo = clBlack
+      Slider.ColorCompleted = clNone
+      Slider.ColorCompletedTo = clNone
+      Slider.ColorCompletedDisabled = clNone
+      Slider.ColorCompletedDisabledTo = clNone
+      Slider.Direction = gdHorizontal
+      Slider.Offset = -12
+      Slider.ColorRemaining = clNone
+      Slider.ColorRemainingTo = clNone
+      Slider.ColorRemainingDisabled = clNone
+      Slider.ColorRemainingDisabledTo = clNone
+      TabOrder = 0
+      ThumbLeft.BorderColor = clNone
+      ThumbLeft.BorderColorHot = 10079963
+      ThumbLeft.BorderColorDown = 4548219
+      ThumbLeft.BorderColorDisabled = clBlack
+      ThumbLeft.Color = clNone
+      ThumbLeft.ColorTo = 16178633
+      ThumbLeft.ColorDown = 7778289
+      ThumbLeft.ColorDownTo = 4296947
+      ThumbLeft.ColorHot = 15465983
+      ThumbLeft.ColorHotTo = 11332863
+      ThumbLeft.ColorDisabled = clBlack
+      ThumbLeft.ColorDisabledTo = clBlack
+      ThumbLeft.ColorMirror = 15586496
+      ThumbLeft.ColorMirrorTo = 16245200
+      ThumbLeft.ColorMirrorHot = 5888767
+      ThumbLeft.ColorMirrorHotTo = 10807807
+      ThumbLeft.ColorMirrorDown = 946929
+      ThumbLeft.ColorMirrorDownTo = 5021693
+      ThumbLeft.ColorMirrorDisabled = clBlack
+      ThumbLeft.ColorMirrorDisabledTo = clBlack
+      ThumbLeft.Gradient = ggVertical
+      ThumbLeft.GradientMirror = ggRadial
+      ThumbLeft.Shape = tsPointer
+      ThumbRight.BorderColor = clNone
+      ThumbRight.BorderColorHot = 10079963
+      ThumbRight.BorderColorDown = 4548219
+      ThumbRight.BorderColorDisabled = clNone
+      ThumbRight.Color = clNone
+      ThumbRight.ColorTo = 16178633
+      ThumbRight.ColorDown = 7778289
+      ThumbRight.ColorDownTo = 4296947
+      ThumbRight.ColorHot = 15465983
+      ThumbRight.ColorHotTo = 11332863
+      ThumbRight.ColorDisabled = clBlack
+      ThumbRight.ColorDisabledTo = clBlack
+      ThumbRight.ColorMirror = 15586496
+      ThumbRight.ColorMirrorTo = 16245200
+      ThumbRight.ColorMirrorHot = 5888767
+      ThumbRight.ColorMirrorHotTo = 10807807
+      ThumbRight.ColorMirrorDown = 946929
+      ThumbRight.ColorMirrorDownTo = 5021693
+      ThumbRight.ColorMirrorDisabled = clBlack
+      ThumbRight.ColorMirrorDisabledTo = clBlack
+      ThumbRight.Gradient = ggVertical
+      ThumbRight.GradientMirror = ggRadial
+      ThumbRight.Size = 0
+      ThumbRight.Width = 0
+      ThumbRight.Shape = tsPointer
+      TickMark.Color = clBlack
+      TickMark.ColorDisabled = clBlack
+      TickMark.Font.Charset = DEFAULT_CHARSET
+      TickMark.Font.Color = clWindowText
+      TickMark.Font.Height = -11
+      TickMark.Font.Name = 'Tahoma'
+      TickMark.Font.Style = []
+      TickMark.ShowText = True
+      TickMark.ShowImageAtSteps = 5
+      TickMark.Size = 6
+      TrackHint = False
+      TrackLabel.Position = lpBottomLeft
+      TrackLabel.Font.Charset = DEFAULT_CHARSET
+      TrackLabel.Font.Color = clWindowText
+      TrackLabel.Font.Height = -11
+      TrackLabel.Font.Name = 'Tahoma'
+      TrackLabel.Font.Style = []
+      TrackLabel.Format = 'PosLeft: %d  PosRight: %d'
+      TrackLabel.Spacing = 0
+      Version = '1.6.10.2'
+    end
+    object pnlLaserGraph: TPanel
+      Left = 1
       Top = 0
-      Width = 273
-      Height = 44
+      Width = 540
+      Height = 105
+      Color = clBlack
+      ParentBackground = False
+      TabOrder = 1
+    end
+    object pnl4X: TPanel
+      Left = 547
+      Top = 1
+      Width = 43
+      Height = 23
       BevelInner = bvLowered
-      Caption = 'Own Ship'
-      Color = clGray
+      Caption = '4X'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -13
       Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+    end
+    object pnl2X: TPanel
+      Left = 547
+      Top = 27
+      Width = 43
+      Height = 23
+      BevelInner = bvLowered
+      Caption = '2X'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+    end
+    object pnl1X: TPanel
+      Left = 547
+      Top = 53
+      Width = 43
+      Height = 23
+      BevelInner = bvLowered
+      Caption = '1X'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+    end
+    object panel12X: TPanel
+      Left = 547
+      Top = 79
+      Width = 43
+      Height = 23
+      BevelInner = bvLowered
+      Caption = '1/2X'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+  end
+  object pnlRadar: TPanel
+    Left = 1
+    Top = 668
+    Width = 599
+    Height = 137
+    BevelInner = bvLowered
+    ParentBackground = False
+    TabOrder = 7
+    object lblKmRadar: TLabel
+      Left = 444
+      Top = 115
+      Width = 13
+      Height = 13
+      Caption = 'km'
+    end
+    object Label1: TLabel
+      Left = 488
+      Top = 19
+      Width = 18
+      Height = 19
+      Caption = 'FC'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 478
+      Top = 53
+      Width = 32
+      Height = 19
+      Caption = 'AGC'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 463
+      Top = 90
+      Width = 41
+      Height = 19
+      Caption = 'GATE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 575
+      Top = 90
+      Width = 14
+      Height = 19
+      Caption = 'm'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object AdvRangeSlider2: TAdvRangeSlider
+      Left = 12
+      Top = 107
+      Width = 435
+      Height = 30
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      BorderColor = clNone
+      BorderColorDisabled = clNone
+      ColorTo = clNone
+      ColorDisabled = clNone
+      ColorDisabledTo = clNone
+      Direction = gdHorizontal
+      DragCursor = crArrow
+      Color = clNone
+      Max = 2
+      Min = -2
+      ParentShowHint = False
+      PositionRight = 40
+      ShowHint = False
+      Slider.BorderColor = clNone
+      Slider.BorderColorDisabled = clNone
+      Slider.Color = clNone
+      Slider.ColorTo = clNone
+      Slider.ColorDisabled = clNone
+      Slider.ColorDisabledTo = clBlack
+      Slider.ColorCompleted = clNone
+      Slider.ColorCompletedTo = clNone
+      Slider.ColorCompletedDisabled = clNone
+      Slider.ColorCompletedDisabledTo = clNone
+      Slider.Direction = gdHorizontal
+      Slider.Offset = -12
+      Slider.ColorRemaining = clNone
+      Slider.ColorRemainingTo = clNone
+      Slider.ColorRemainingDisabled = clNone
+      Slider.ColorRemainingDisabledTo = clNone
+      TabOrder = 0
+      ThumbLeft.BorderColor = clNone
+      ThumbLeft.BorderColorHot = 10079963
+      ThumbLeft.BorderColorDown = 4548219
+      ThumbLeft.BorderColorDisabled = clBlack
+      ThumbLeft.Color = clNone
+      ThumbLeft.ColorTo = 16178633
+      ThumbLeft.ColorDown = 7778289
+      ThumbLeft.ColorDownTo = 4296947
+      ThumbLeft.ColorHot = 15465983
+      ThumbLeft.ColorHotTo = 11332863
+      ThumbLeft.ColorDisabled = clBlack
+      ThumbLeft.ColorDisabledTo = clBlack
+      ThumbLeft.ColorMirror = 15586496
+      ThumbLeft.ColorMirrorTo = 16245200
+      ThumbLeft.ColorMirrorHot = 5888767
+      ThumbLeft.ColorMirrorHotTo = 10807807
+      ThumbLeft.ColorMirrorDown = 946929
+      ThumbLeft.ColorMirrorDownTo = 5021693
+      ThumbLeft.ColorMirrorDisabled = clBlack
+      ThumbLeft.ColorMirrorDisabledTo = clBlack
+      ThumbLeft.Gradient = ggVertical
+      ThumbLeft.GradientMirror = ggRadial
+      ThumbLeft.Shape = tsPointer
+      ThumbRight.BorderColor = clNone
+      ThumbRight.BorderColorHot = 10079963
+      ThumbRight.BorderColorDown = 4548219
+      ThumbRight.BorderColorDisabled = clNone
+      ThumbRight.Color = clNone
+      ThumbRight.ColorTo = 16178633
+      ThumbRight.ColorDown = 7778289
+      ThumbRight.ColorDownTo = 4296947
+      ThumbRight.ColorHot = 15465983
+      ThumbRight.ColorHotTo = 11332863
+      ThumbRight.ColorDisabled = clBlack
+      ThumbRight.ColorDisabledTo = clBlack
+      ThumbRight.ColorMirror = 15586496
+      ThumbRight.ColorMirrorTo = 16245200
+      ThumbRight.ColorMirrorHot = 5888767
+      ThumbRight.ColorMirrorHotTo = 10807807
+      ThumbRight.ColorMirrorDown = 946929
+      ThumbRight.ColorMirrorDownTo = 5021693
+      ThumbRight.ColorMirrorDisabled = clBlack
+      ThumbRight.ColorMirrorDisabledTo = clBlack
+      ThumbRight.Gradient = ggVertical
+      ThumbRight.GradientMirror = ggRadial
+      ThumbRight.Size = 0
+      ThumbRight.Width = 0
+      ThumbRight.Shape = tsPointer
+      TickMark.Color = clBlack
+      TickMark.ColorDisabled = clBlack
+      TickMark.Font.Charset = DEFAULT_CHARSET
+      TickMark.Font.Color = clWindowText
+      TickMark.Font.Height = -11
+      TickMark.Font.Name = 'Tahoma'
+      TickMark.Font.Style = []
+      TickMark.ShowText = True
+      TickMark.Size = 6
+      TrackHint = False
+      TrackLabel.Position = lpBottomLeft
+      TrackLabel.Font.Charset = DEFAULT_CHARSET
+      TrackLabel.Font.Color = clWindowText
+      TrackLabel.Font.Height = -11
+      TrackLabel.Font.Name = 'Tahoma'
+      TrackLabel.Font.Style = []
+      TrackLabel.Format = 'PosLeft: %d  PosRight: %d'
+      TrackLabel.Spacing = 0
+      Version = '1.6.10.2'
+    end
+    object Panel1: TPanel
+      Left = 1
+      Top = 2
+      Width = 456
+      Height = 105
+      Color = clBlack
+      ParentBackground = False
+      TabOrder = 1
+    end
+    object Edit1: TEdit
+      Left = 531
+      Top = 16
+      Width = 58
+      Height = 26
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      Text = '0'
+    end
+    object Edit2: TEdit
+      Left = 531
+      Top = 49
+      Width = 58
+      Height = 26
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      Text = '0'
+    end
+    object Edit3: TEdit
+      Left = 510
+      Top = 85
+      Width = 58
+      Height = 26
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+      Text = '0'
+    end
+  end
+  object pnlTargetLocation: TPanel
+    Left = 0
+    Top = 808
+    Width = 599
+    Height = 137
+    BevelInner = bvLowered
+    ParentBackground = False
+    TabOrder = 8
+    object lblRAzimuth: TLabel
+      Left = 39
+      Top = 56
+      Width = 71
+      Height = 18
+      Caption = 'R. Azimuth'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblRAzimuthsat: TLabel
+      Left = 136
+      Top = 83
+      Width = 12
+      Height = 18
+      Caption = ' '#176
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblElevation: TLabel
+      Left = 193
+      Top = 56
+      Width = 57
+      Height = 18
+      Caption = 'Elevation'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblElevationsat: TLabel
+      Left = 280
+      Top = 83
+      Width = 12
+      Height = 18
+      Caption = ' '#176
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblRDRange: TLabel
+      Left = 333
+      Top = 56
+      Width = 65
+      Height = 18
+      Caption = 'RD Range'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblRDRangesat: TLabel
+      Left = 424
+      Top = 83
+      Width = 18
+      Height = 18
+      Caption = ' m'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLSRange: TLabel
+      Left = 479
+      Top = 56
+      Width = 61
+      Height = 18
+      Caption = 'LS Range'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLSRangesat: TLabel
+      Left = 570
+      Top = 83
+      Width = 18
+      Height = 18
+      Caption = ' m'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object pnlTargetLocationHeader: TPanel
+      Left = 2
+      Top = 2
+      Width = 595
+      Height = 28
+      Align = alTop
+      Caption = 'TARGET LOCATION'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
+      ExplicitLeft = 1
+      ExplicitTop = 0
+      ExplicitWidth = 219
+    end
+    object edtRAzimuthVal: TEdit
+      Left = 19
+      Top = 80
+      Width = 115
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 1
+      Text = '0.000'
+    end
+    object edtElevationVal: TEdit
+      Left = 163
+      Top = 80
+      Width = 115
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 2
+      Text = '0.000'
+    end
+    object edtRDRangeVal: TEdit
+      Left = 307
+      Top = 80
+      Width = 115
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 3
+      Text = '0'
+    end
+    object edtLSRangeVal: TEdit
+      Left = 453
+      Top = 80
+      Width = 115
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 4
+      Text = '0'
+    end
+  end
+  object pnlInformation: TPanel
+    Left = 0
+    Top = 951
+    Width = 599
+    Height = 72
+    BevelInner = bvLowered
+    ParentBackground = False
+    TabOrder = 9
+    object lblSystemTime: TLabel
+      Left = 19
+      Top = 22
+      Width = 75
+      Height = 16
+      Caption = 'System Time'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblRunTime: TLabel
+      Left = 19
+      Top = 38
+      Width = 55
+      Height = 16
+      Caption = 'Run Time'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblRunTimeVal: TLabel
+      Left = 119
+      Top = 38
+      Width = 52
+      Height = 16
+      Caption = '00:00:00'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSystemTimeVal: TLabel
+      Left = 119
+      Top = 22
+      Width = 52
+      Height = 16
+      Caption = '00:00:00'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
   end
   object tmrUpdateShipPos: TTimer
     Interval = 500
     OnTimer = UpdatePosition
-    Left = 624
-    Top = 496
+    Left = 328
+    Top = 112
   end
   object tmrUpdateForm: TTimer
     OnTimer = tmrUpdateFormTimer
-    Left = 513
-    Top = 233
-  end
-  object NLDJoystick1: TNLDJoystick
-    OnButtonDown = NLDJoystick1ButtonDown
-    OnButtonUp = NLDJoystick1ButtonUp
-    OnMove = NLDJoystick1Move
-    PollingInterval = -1
-    Left = 713
-    Top = 345
+    Left = 217
+    Top = 113
   end
 end
