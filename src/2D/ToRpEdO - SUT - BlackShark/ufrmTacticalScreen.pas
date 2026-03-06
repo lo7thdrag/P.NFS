@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, uSettingFormToMonitorWith_ini, uFormUtil, ufrmSupportScreen,
   Vcl.StdCtrls, System.ImageList, Vcl.ImgList, Vcl.OleCtrls, MapXLib_TLB, uBaseFunction, uLibConst,
   uBaseConst, uRadarVisual, uMapXUnitConverter, uCoordConverter, System.Math, uSutBlacksharkManager, uRadarNorthIndicator,
-  uVehicleManager, uScriptSutBlackshark, uSimulationManager;
+  uVehicleManager, uScriptSutBlackshark, uSimulationManager, uBridgeSet, ulibSettings, uDataModule, uVehicle;
 
 type
   TFrmTacticalScreen = class(TForm)
@@ -138,6 +138,8 @@ type
     FMap: TMap;
     Panel1: TPanel;
     imgListLight: TImageList;
+    imgBackgrounSituationZone: TImage;
+    Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -146,6 +148,16 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch;
       hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
+    procedure FormPaint(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
+
+  protected
+    procedure DrawAngle(aCnv: TCanvas);
+    function Rotate(Width, Height, Radius: Integer; Degrees: Double): Winapi.Windows.TPoint;
+    function MeterWidth: Integer;
+    function MeterHeight: Integer;
+    procedure DrawLine(Canvas: TCanvas; X1, Y1, X2, Y2: Integer;Color: TColor; Width: Integer);
 
   private
     { Private declarations }
@@ -170,6 +182,20 @@ type
 
     FFlag       : Byte;
     FBitmapBackground : TBitmap;
+
+        //setting parameter
+    pCurrentScenID  : integer;
+    pServer_Ip,
+    pServer_Port,               //TriD_IP, TriD_Port,
+    pDBServer,
+    pDBProto,
+    pDBName,
+    pDBUser,
+    pDBPass,
+    pShipName,
+    pClassName      : string;
+    pShipID,
+    pClassID        : Integer;
 
 
     procedure SubmodeSelect(Sender: Tobject);
@@ -289,6 +315,134 @@ end;
 
 
 
+procedure TFrmTacticalScreen.DrawAngle(aCnv: TCanvas);
+var
+  I,Size,Enlarge,StartAngle,AngleRadius: Integer;
+  ticksMax,ticks,ticksEnlarge,ticksMin :integer;
+  labels,decimals,labelsoffset: integer;
+  Angle,AngleOffset,BaseAngle : integer;
+  Increment,Degrees,CurValue,IncValue: Double;
+  R: TRect;
+  P1, P2: Winapi.Windows.TPoint;
+  Mask,StrValue: string;
+  ticksColor : TColor;
+  labelsfont : TFont;
+
+  left,top,right,bottom : Integer;
+  diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
+begin
+  Angle := 0;
+  baseAngle := round(CBaseAngle);
+  AngleOffset := round(CBaseAngle);
+  labelsfont := TFont.Create();
+  labelsfont.Color := clYellow;
+  labelsfont.Size := 10;
+  StartAngle := BaseAngle + Angle;
+
+  diffBeetwinWH := (FMap.Width - FMap.Height) div 2;
+
+  top := 50;
+  bottom := FMap.Height - top;
+  left := diffBeetwinWH + top;
+  right := FMap.Width - left;
+  with aCnv do
+  begin
+		Pen.Color := CForegroundColor;
+
+    Brush.Style := bsClear;
+//    R := Rect(0,0, Map.Width, Map.Height);
+    R := Rect(left,top, right, bottom);
+    AngleRadius := (R.right - R.left) div 2;
+//    AngleRadius := 280;
+    ticksmax := 16;
+    ticks := round(24);
+    ticksEnlarge := 5;
+    ticksMin := 8;
+    ticksColor := clGreen;
+    labels := 24;
+    decimals := 0;
+    labelsoffset := 30;
+
+    {jarum derajat}
+
+    if Ticks >= 1 then
+    begin
+      Enlarge := TicksEnlarge;
+      Degrees := StartAngle;
+      Increment := AngleOffset/Ticks;
+      aCnv.Pen.Color := clRed;
+      aCnv.Pen.Width := 3;
+      aCnv.Ellipse(R.Left, R.Top, R.Right, R.Bottom);
+      for I := 1 to Ticks + 1 do
+      begin
+//        if (Enlarge mod TicksEnlarge = 0) then
+//          Size := TicksMax else Size := TicksMin;
+        Size := TicksMax;
+        Inc(Enlarge);
+        P1 := Rotate(MeterWidth, MeterHeight, AngleRadius, Degrees);
+        P2 := Rotate(MeterWidth, MeterHeight, AngleRadius + Size, Degrees);
+        DrawLine(aCnv, P1.X, P1.Y, P2.X, P2.Y, TicksColor, 2);
+        Degrees := Degrees + Increment;
+      end;
+    end;
+
+
+    {angka}
+
+    if Labels >= 1 then
+    begin
+      Font := LabelsFont;
+      CurValue := 0;
+      IncValue := (360 - 0)/labels;
+      Degrees := StartAngle;
+      Increment := AngleOffset/labels;
+      Mask := '%.' + IntToStr(Decimals) + 'f';
+      for I := 1 to Labels  do
+      begin
+//        P1 := Rotate(MeterWidth, MeterHeight, AngleRadius + LabelsOffset, Degrees);
+        P1 := Rotate(MeterWidth, MeterHeight, AngleRadius + LabelsOffset, Degrees);
+
+//        if strlen(pchar(floattostr(CurValue))) <= 2 then
+//          begin
+//          if curValue = 0 then
+//             StrValue := '00'+Format(Mask, [CurValue])
+//          else
+//             StrValue := '0'+Format(Mask, [CurValue]);
+//          end
+//        else
+        if round(CurValue) mod 30 = 0 then
+        begin
+          if CurValue > 180 then
+             StrValue := Format(Mask, [CurValue - 360]) + '°'
+          else
+            StrValue := Format(Mask, [CurValue]) + '°';
+
+          P1.X := P1.X - TextWidth(StrValue) div 2;
+          P1.Y := P1.Y - TextHeight(StrValue) div 2;
+          TextOut(P1.X, P1.Y, StrValue);
+          Degrees := Degrees + Increment;
+          CurValue := 0 + (IncValue*I);
+        end
+        else
+        begin
+          Degrees := Degrees + Increment;
+          CurValue := 0 + (IncValue*I);
+        end;
+      end;
+    end;
+  end;
+
+end;
+
+procedure TFrmTacticalScreen.DrawLine(Canvas: TCanvas; X1, Y1, X2, Y2: Integer;
+  Color: TColor; Width: Integer);
+begin
+  Canvas.Pen.Color := Color;
+  Canvas.Pen.Width := Width;
+  Canvas.MoveTo(X1, Y1);
+  Canvas.LineTo(X2, Y2);
+end;
+
 procedure TFrmTacticalScreen.FMapDrawUserLayer(ASender: TObject;
   const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull,
   RectInvalid: IDispatch);
@@ -298,6 +452,12 @@ begin
 end;
 
 procedure TFrmTacticalScreen.FormCreate(Sender: TObject);
+var
+  n : Integer;
+//  T: TRadarTargetSymbol;
+  ShipClassName,
+  ShipCallSign: string;
+  V: TVehicle;
 begin
   SetLayoutForm;
   ResetSubmodeTools;
@@ -320,21 +480,21 @@ begin
   VehicleMgr := TVehicleManager.Create;
   VehicleMgr.CoordConverter := FMapConverter;
 
-//  EnableComposited(pnlMap);
-//  FBitmapBackground := TBitmap.Create;
-//  FBitmapBackground.Height := imgBackgrounSituationZone.Height;
-//  FBitmapBackground.Width := imgBackgrounSituationZone.Width;
-//  FBitmapBackground.Canvas.Brush.Color := clBlack; // new color
-//  FBitmapBackground.Canvas.FillRect(
-//   Rect(
-//     0,
-//     0,
-//     FBitmapBackground.Width,
-//     FBitmapBackground.Height
-//    )
-//  );
-//
-//  imgBackgrounSituationZone.Picture.Assign(FBitmapBackground);
+  EnableComposited(pnlMap);
+  FBitmapBackground := TBitmap.Create;
+  FBitmapBackground.Height := imgBackgrounSituationZone.Height;
+  FBitmapBackground.Width := imgBackgrounSituationZone.Width;
+  FBitmapBackground.Canvas.Brush.Color := clNone; // new color
+  FBitmapBackground.Canvas.FillRect(
+   Rect(
+     0,
+     0,
+     FBitmapBackground.Width,
+     FBitmapBackground.Height
+    )
+  );
+
+  imgBackgrounSituationZone.Picture.Assign(FBitmapBackground);
 
   LoadGeoset('..\data\maps\IndonesiaBlackShark.gst');
 
@@ -369,7 +529,66 @@ begin
   imgWTSRC.Picture.Bitmap := BitMapLampRed;
   imgTBI.Picture.Bitmap := BitMapLampRed;
 
+  n := ParamCount ;
+  if n < max_param then
+  begin
+    SutBlacksharkManager.IsStandAlone := true ;
+  end;
 
+  if not SutBlacksharkManager.IsStandAlone then
+  begin
+      InitDefault_AllConfigFromInstruktur(pServer_Ip,pServer_Port,
+    pDBServer, pDBProto, pDBName, pDBUser,
+    pDBPass, pShipID, pCurrentScenID);
+
+    SutBlacksharkManager.CurrentScenID := pCurrentScenID;
+    SutBlacksharkManager.Server_Ip := pServer_Ip;
+    SutBlacksharkManager.Server_Port := pServer_Port;               //TriD_IP, TriD_Port,
+    SutBlacksharkManager.DBServer := vDbServer.mDBServer;
+    SutBlacksharkManager.DBProto := vDbServer.mDBProto;
+    SutBlacksharkManager.DBName := vDbServer.mDBName;
+    SutBlacksharkManager.DBUser := vDbServer.mDBUser;
+    SutBlacksharkManager.DBPass := vDbServer.mDBPass;
+    SutBlacksharkManager.ShipID := pShipID;
+    SutBlacksharkManager.ClassID := pClassID;
+
+    SutBlacksharkManager.ServerIp := vBridgeServer.m2D_IP;
+    SutBlacksharkManager.ServerPort := vBridgeServer.m2D_Port;
+
+    SutBlacksharkManager.InitializeSimulation;
+
+    if DataModule1.InitZDB(vDbServer.mDBServer, vDbServer.mDBProto, vDbServer.mDBName, vDbServer.mDBUser, vDbServer.mDBPass, vDbServer.mDBPort) then
+    begin
+      SutBlacksharkManager.ShipClassID  := DataModule1.GetShipType(SutBlacksharkManager.ShipID, ShipClassName);
+      SutBlacksharkManager.ShipName     := DataModule1.GetShipName(SutBlacksharkManager.ShipID);
+      SutBlacksharkManager.ShipNumber := DataModule1.GetShipNoById(SutBlacksharkManager.ShipID);
+      SutBlacksharkManager.ShipCallSign := DataModule1.GetShipCallsignByID(SutBlacksharkManager.ShipID);
+
+      SutBlacksharkManager.xShip.UniqueID := dbID_to_UniqueID(SutBlacksharkManager.ShipID);
+
+//      lblKriName.Caption := 'KRI ' + Meriam57Manager.ShipCallSign + '-' + IntToStr(Meriam57Manager.ShipNumber);
+    end;
+    SutBlacksharkManager.Env_Map := DataModule1.GetMapById(SutBlacksharkManager.CurrentScenID);
+
+    SutBlacksharkManager.Get57WeaponAssigned;
+
+//
+//    if Assigned(FCCManager.AssignedWeapon) then
+//    begin
+//      FTargetAngleKolonka := Meriam57Manager.AssignedWeapon.Pos_H;
+//      FAngleKolonka := Meriam57Manager.AssignedWeapon.Pos_H;
+//
+//      edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
+//    end;
+//    FireAllow := True;
+//    rgnOuter := CreateRectRgn(0,0,Width,Height);  // bolongin form biar masuk 3d
+//    rgnInner := CreateRectRgn(825,1,1280,413);
+//
+//    CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+//    SetWindowRgn(Handle, rgnOuter, True);
+
+    SutBlacksharkManager.Running := True;
+  end;
 
 end;
 
@@ -378,6 +597,16 @@ begin
   BitMapLampGrey.Free;
   BitMapLampGreen.Free;
   BitMapLampRed.Free;
+end;
+
+procedure TFrmTacticalScreen.FormPaint(Sender: TObject);
+begin
+  DrawAngle(imgBackgrounSituationZone.Canvas);
+end;
+
+procedure TFrmTacticalScreen.Label1Click(Sender: TObject);
+begin
+//  Invalidate;
 end;
 
 procedure TFrmTacticalScreen.LoadGeoset(const aGst: string);
@@ -402,6 +631,16 @@ begin
     fmap.CenterY := -7.2;
     FMap.ZoomTo(Self.FCurrentRange * 2, FMap.CenterX, FMap.CenterY);
   end
+end;
+
+function TFrmTacticalScreen.MeterHeight: Integer;
+begin
+  Result := FMap.Height;
+end;
+
+function TFrmTacticalScreen.MeterWidth: Integer;
+begin
+  Result := FMap.Width;
 end;
 
 procedure TFrmTacticalScreen.pnlSubmodeTools0MouseDown(Sender: TObject;
@@ -487,6 +726,39 @@ begin
   lblSubmodeTools19.Caption := '';
 end;
 
+function TFrmTacticalScreen.Rotate(Width, Height, Radius: Integer;
+  Degrees: Double): Winapi.Windows.TPoint;
+var
+  Angle: Double;
+  W, H: Integer;
+//  HeadingView : THeadingRadarView;
+begin
+//  if Assigned(NavSimCenter.NAV_Radar.HeadingView) then
+//  begin
+//   HeadingView := uRadarNavManager.NavSimCenter.NAV_Radar.getHeadingLine;
+//   if HeadingView.HeadingMode = sbmCourseUp then
+//   begin
+//       Angle := HeadingView.Heading;
+//       if Angle < 0 then Angle := CBaseAngle - Angle;
+//       Angle := CBaseAngle - Angle;
+//       Angle := ConvCompass_To_Cartesian(Angle);
+//       Angle := ConvCustomAngleStart(degrees,Angle);
+//       Angle := Angle*C_DegToRad;
+//   end
+//   else
+//   //if HeadingView.HeadingMode = sbmCourseUp then
+//      Angle  := ConvCartesian_To_Compass(Degrees)*C_DegToRad;
+//  end
+//  else
+     Angle := ConvCartesian_To_Compass(Degrees)*C_DegToRad;
+
+  W := Width div 2;
+  H := Height div 2;
+  Result.X := W + Round(Cos(Angle) * Radius);
+  Result.Y := H + Round(Sin(Angle) * Radius);
+  Result.Y := (H * 2) - Result.Y;
+end;
+
 procedure TFrmTacticalScreen.SetLayoutForm;
 var
   path : string;
@@ -505,13 +777,11 @@ begin
         begin
           AlignFormToMonitor(0, apLeftTop, 0, 0, TForm(frmTacticalScreen));
           AlignFormToMonitor(0, apLeftTop, 0, 0, TForm(frmSupportScreen));
-
         end;
       2,3 :
         begin
-          AlignFormToMonitor(idxPanelAtas, apLeftTop, 0, 0, TForm(frmTacticalScreen));
-          AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(frmSupportScreen));
-
+          AlignFormToMonitor(0, apLeftTop, 0, 0, TForm(frmSupportScreen));
+          AlignFormToMonitor(2, apLeftTop, 0, 0, TForm(frmTacticalScreen));
         end;
     end;
 end;
@@ -528,12 +798,12 @@ begin
   rCYMap := FMap.Height shr 1;
 
 //  r := Rect(222,50, FMap.Height + 110, FMap.Height - 50);
-  diffBeetwinWH := (pnlMap.Width - pnlMap.Height) div 2;
+  diffBeetwinWH := (FMap.Width - FMap.Height) div 2;
 
   top := 50;
-  bottom := pnlMap.Height - top;
+  bottom := FMap.Height - top;
   left := diffBeetwinWH + top;
-  right := pnlMap.Width - left;
+  right := FMap.Width - left;
 
   FCircleRect  := Rect(left,top, right, bottom);
 
@@ -606,6 +876,12 @@ begin
       pnlSubmodeTools19.Enabled := True;
     end;
   end;
+end;
+
+procedure TFrmTacticalScreen.Timer1Timer(Sender: TObject);
+begin
+  //imgBackgrounSituationZone.Repaint;
+  Invalidate;
 end;
 
 end.

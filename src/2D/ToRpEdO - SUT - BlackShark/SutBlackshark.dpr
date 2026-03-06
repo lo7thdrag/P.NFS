@@ -67,5 +67,7 @@ begin
 //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
+//  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+
   Application.Run;
 end.

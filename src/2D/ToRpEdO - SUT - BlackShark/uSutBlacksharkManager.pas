@@ -243,7 +243,7 @@ begin
     begin
       vdomain := DataModule1.GetShipDomain(aRec.ShipID);
 
-      if (vdomain = 1) or (vdomain = 2) then
+      if (vdomain = 1) or (vdomain = 2) or (vdomain = 3) then
       begin
         V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);

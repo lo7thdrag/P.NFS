@@ -14,6 +14,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
   OldCreateOrder = False
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnPaint = FormPaint
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTEP: TPanel
@@ -30,8 +31,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = 943
-    ExplicitWidth = 1914
     object pnlTacticalBtn: TPanel
       Left = 3
       Top = 6
@@ -1169,7 +1168,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 1
-    ExplicitHeight = 972
   end
   object pnlBaseKiri: TPanel
     Left = 0
@@ -1185,7 +1183,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 2
-    ExplicitHeight = 972
     object pnlInfoAtas: TPanel
       Left = 0
       Top = 0
@@ -1200,8 +1197,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
       Color = clBlack
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = -2
-      ExplicitTop = -2
       object lblTanggaljam: TLabel
         Left = 16
         Top = 8
@@ -1240,6 +1235,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        OnClick = Label1Click
       end
       object Label2: TLabel
         Left = 16
@@ -1730,7 +1726,17 @@ object FrmTacticalScreen: TFrmTacticalScreen
       Align = alClient
       BevelOuter = bvLowered
       TabOrder = 1
-      ExplicitTop = 138
+      object imgBackgrounSituationZone: TImage
+        Left = 1
+        Top = 1
+        Width = 1462
+        Height = 709
+        Align = alClient
+        ExplicitLeft = 680
+        ExplicitTop = 328
+        ExplicitWidth = 105
+        ExplicitHeight = 105
+      end
       object FMap: TMap
         Left = 1
         Top = 1
@@ -1740,10 +1746,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         TabOrder = 0
         OnDrawUserLayer = FMapDrawUserLayer
-        ExplicitLeft = 0
+        ExplicitLeft = -2
         ExplicitTop = 4
-        ExplicitWidth = 400
-        ExplicitHeight = 300
         ControlData = {
           8A1A06001A9700004749000001000000010000FF0D47656F44696374696F6E61
           727905456D70747900E8030000000000000000000002000E001E000000000000
@@ -1757,7 +1761,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000F0F9CD2A01000000CC9108771C000000000000000000000000
+          01000118010000B071461201000000CC91C4771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1766,15 +1770,15 @@ object FrmTacticalScreen: TFrmTacticalScreen
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000F0F9CD2A01000000881300C01C00000000000000000000000000000000
+          010000B071461201000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000070CB97003D8BDC7621
-          00000000000000208BDC7640C96412642592E3B0CB9700000000000000000000
+          000000000000000000000000000000000000000000000070CB97003D8B737521
+          00000000000000208B7375E80D5D12D70C42F1B0CB9700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object Panel1: TPanel
@@ -1785,9 +1789,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alBottom
         Caption = 'Panel1'
         TabOrder = 1
-        ExplicitLeft = 640
-        ExplicitTop = 360
-        ExplicitWidth = 185
       end
     end
   end
@@ -1796,7 +1797,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Left = 377
     Top = 249
     Bitmap = {
-      494C010107000800040010001000FFFFFFFF2100FFFFFFFFFFFFFFFF424D3600
+      494C010107000800040010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -2064,6 +2065,12 @@ object FrmTacticalScreen: TFrmTacticalScreen
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000}
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000}
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 944
+    Top = 528
   end
 end
