@@ -1,0 +1,1 @@
+SPS115.exe -192.168.0.231 -2120 -192.168.0.231 -mysql -dbNSuFs -root -T3server! -41 -1
