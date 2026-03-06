@@ -1150,6 +1150,7 @@ var
   WeaponCannonAK230 : TWeaponOn_CannonAK230;
   WeaponBlackshark  : TWeaponOn_Blackshark;
   WEaponCannonType730 : TWeaponOn_CannonType730;
+  WeaponC705        : TWeaponOn_C705;
 
   WeaponStat      : Boolean;
 begin
@@ -1559,6 +1560,21 @@ begin
                WEaponCannonType730:= TWeaponOn_CannonType730(WeaponOnShip);
                 case Rec.ErrorID of
                   __STAT_CANNONTYPE730_ENABLE : WEaponCannonType730.EnableCannonType730 := WeaponStat;
+                end;
+            end;
+          end;
+
+          C_DBID_C705 :
+          begin
+            frmMainInstruktur.cekStatusWeapon := 0;
+            if WeaponOnShip is TWeaponOn_C705 then
+            begin
+               WeaponC705 := TWeaponOn_C705(WeaponOnShip);
+                case Rec.ErrorID of
+                  __STAT_C705_ENABLE   : WeaponC705.EnableC705  := WeaponStat;
+                  __STAT_C705_Unknown  : WeaponC705.Unknown     := WeaponStat;
+                  __STAT_C705_Unknown2 : WeaponC705.Unknown2    := WeaponStat;
+                  __STAT_C705_Firing   : WeaponC705.Firing      := WeaponStat;
                 end;
             end;
           end;

@@ -542,6 +542,26 @@ type
     lblBlackShark: TLabel;
     Bevel5: TBevel;
     chkBlacksharkEnableWeapon: TCheckBox;
+    rzgrpC705: TRzGroup;
+    scrlbxTOCOSC705: TScrollBox;
+    lblC705Title: TLabel;
+    Bevel6: TBevel;
+    grpAssignC705: TGroupBox;
+    btnC705Track: TSpeedButton;
+    edtC705Track: TEdit;
+    btnC705Assign: TButton;
+    btnC705DeAssign: TButton;
+    grpC705StatusLauncher: TGroupBox;
+    grpC705StatusConsole: TGroupBox;
+    chkC705Enable: TCheckBox;
+    chkC7052: TCheckBox;
+    lblC705PortLauncher1: TLabel;
+    imgLoadC705Launcher1: TImage;
+    lblC705PortLauncher2: TLabel;
+    imgLoadC705Launcher2: TImage;
+    cbbC705Port: TComboBox;
+    btnLoadC705PortLoading: TButton;
+    chkC7051: TCheckBox;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -655,6 +675,9 @@ type
 
     { Cannon Type 730 }
     procedure CannonType730ChkClick(Sender : TObject);
+
+    { C705 }
+    procedure C705ChkClick(Sender : TObject);
 
     procedure btnTrackObject(Sender : Tobject);
   public
@@ -1144,6 +1167,18 @@ begin
   chkVLMicaFA.Tag := __STAT_VLMICA_FA;
   chkVLMicaAmmoTest.Tag := __STAT_VLMICA_AMMOTEST;
   chkVLMicaCAP.Tag := __STAT_VLMICA_CAP;
+
+  { =========================================================== }
+
+  { ===========================C705======================== }
+  { C705 }
+  chkC705Enable.OnClick := C705ChkClick;
+  chkC7051.OnClick      := C705ChkClick;
+  chkC7052.OnClick      := C705ChkClick;
+
+  chkC705Enable.Tag     := __STAT_C705_ENABLE;
+  chkC7051.Tag          := __STAT_C705_Unknown;
+  chkC7052.Tag          := __STAT_C705_Unknown2;
 
   { =========================================================== }
 
@@ -3161,7 +3196,7 @@ begin
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_MOCPKRCONSOLE, id , aParam);
 end;
 
-{ Exocet MM40 }
+{ VLMICA }
 procedure TfWeaponStatus.VLMicaChkClick(sender: TObject);
 var
   aTag : integer;
@@ -3206,6 +3241,49 @@ begin
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_VLMICA, id , aParam);
 end;
 
+{ C705 }
+ procedure TfWeaponStatus.C705ChkClick(Sender: TObject);
+var
+  aTag : integer;
+  ShipStrID : string;
+  aParam : Integer;
+
+  i, id : Integer;
+  Weaponship  : TWeaponOnShip;
+  WeaponC705  : TWeaponOn_C705;
+begin
+  if SimManager.TrackObject = nil then exit;
+  id := TCheckBox(sender).Tag;
+
+  //set object
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
+  begin
+    weaponship := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+    if weaponship.Weapon_ID = C_DBID_C705 then
+    begin
+      if weaponship is TWeaponOn_C705 then
+      begin
+        WeaponC705 := TWeaponOn_C705(weaponship);
+
+        case id of
+          __STAT_C705_ENABLE    : WeaponC705.EnableC705   := TCheckBox(sender).Checked;
+          __STAT_C705_Unknown   : WeaponC705.Unknown      := TCheckBox(sender).Checked;
+          __STAT_C705_Unknown2  : WeaponC705.Unknown2     := TCheckBox(sender).Checked;
+        end;
+      end;
+    end;
+  end;
+
+  ShipStrID := dbID_to_UniqueID(SimManager.TrackObject.FDataBaseID);
+
+  if TCheckBox(sender).Checked = True then
+    aParam := 1
+  else
+    aParam := 2;
+
+  SimManager.NetSendStatConsole(ShipStrID, __STAT_C705_ENABLE, id , aParam);
+end;
+
 { ======================================================================= }
 
 { ======================================================================= }
@@ -3241,7 +3319,7 @@ var
   WeaponCannonAK230 : TWeaponOn_CannonAK230;
   WeaponBlackshark : TWeaponOn_Blackshark;
   WeaponCAnnonType730 : TWeaponOn_CannonType730;
-
+  WeaponC705 : TWeaponOn_C705;
 begin
   //pnlBlank.BringToFront;
 
@@ -4744,6 +4822,77 @@ begin
               tsOff : LoadImageLight(imgLoadVLMica12, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadVLMica12, LoadImgLoading);
               tsLaunch : LoadImageLight(imgLoadVLMica12, LoadImgRunning);
+            end;
+
+          end;
+        end;
+
+        C_DBID_C705 :
+        begin
+          if frmMainInstruktur.cekStatusWeapon = 1 then
+          begin
+             rzgrpC705.Visible := True;
+             //rzgrpExocetMM40.Opened := True;
+          end;
+          frmMainInstruktur.cekStatusWeapon := 1;
+
+          lblC705PortLauncher1.Visible := False;
+          lblC705PortLauncher2.Visible := False;
+          imgLoadC705Launcher1.Visible := False;
+          imgLoadC705Launcher2.Visible := False;
+
+          cbbC705Port.Clear;
+          cbbC705Port.Items.Add('1');
+          cbbC705Port.Items.Add('2');
+
+          if SimManager.TrackObject.ObjClassID = 23 then begin // C_DBID_C705 = 23
+            lblC705PortLauncher1.Visible := True;
+            lblC705PortLauncher2.Visible := True;
+            imgLoadC705Launcher1.Visible := True;
+            imgLoadC705Launcher2.Visible := True;
+          end;
+
+
+          if weaponship is TWeaponOn_C705 then
+          begin
+            WeaponC705 := TWeaponOn_C705(weaponship);
+
+            chkC705Enable.OnClick := nil;
+            chkC7051.OnClick := nil;
+            chkC7052.OnClick := nil;
+
+            chkC705Enable.Checked := WeaponC705.EnableC705;
+            chkC7051.Checked := WeaponC705.Unknown;
+            chkC7052.Checked := WeaponC705.Unknown2;
+
+            chkC705Enable.OnClick := C705ChkClick;
+            chkC7051.OnClick := C705ChkClick;
+            chkC7052.OnClick := C705ChkClick;
+
+            // ?? tentative
+            if WeaponC705.Firing then
+            begin
+              chkC7051.Enabled   := True;
+              chkC7052.Enabled   := True;
+            end
+            else
+            begin
+              chkC7051.Enabled   := False;
+              chkC7052.Enabled   := False;
+            end;
+
+            //loading Launcher 1
+            case WeaponC705.LauncherMissile1 of
+              tsOff : LoadImageLight(imgLoadC705Launcher1, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadC705Launcher1, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadC705Launcher1, LoadImgRunning);
+            end;
+
+            //loading Launcher 2
+            case WeaponC705.LauncherMissile2 of
+              tsOff : LoadImageLight(imgLoadC705Launcher2, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadC705Launcher2, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadC705Launcher2, LoadImgRunning);
             end;
 
           end;

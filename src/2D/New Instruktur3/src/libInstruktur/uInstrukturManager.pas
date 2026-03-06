@@ -367,6 +367,7 @@ begin
     C_DBID_CANNON_AK230       : Result := 'CANNON_AK230';
     C_DBID_CANNON_TYPE_730    : Result := 'CANNON_TYPE730';
     C_DBID_TORPEDO_BLACKSHARK : Result := 'TORPEDO BLACKSHARK';
+    C_DBID_C705               : Result := 'C705';
   end;
 
   result := result + '-' +
@@ -401,6 +402,7 @@ begin
     C_DBID_CANNON_TYPE_730      : Result := #109;
     C_DBID_RBU6000_DIGITAL      : Result := #109;
     C_DBID_CANNON57_DIGITAL     : Result := #109;
+    C_DBID_C705                 : Result := #109;
   end;
 end;
 
@@ -974,6 +976,12 @@ begin
           begin
             WeaponShip := TWeaponOn_CannonType730.Create(Result, Fmap);
             Color := clBlue;
+          end;
+
+          C_DBID_C705   :
+          begin
+            WeaponShip := TWeaponOn_C705.Create(Result, Fmap);
+            Color := TColor($B3FF00);   //hijau lemon  ; tentative??
           end;
         end;
 

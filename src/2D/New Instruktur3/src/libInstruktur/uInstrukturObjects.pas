@@ -681,6 +681,25 @@ interface
     published
   end;
 
+  // C705
+  TWeaponOn_C705 = class(TWeaponOnShip)
+    private
+
+    public
+       EnableC705 : Boolean;
+       Unknown    : Boolean;
+       Unknown2   : Boolean;
+       Firing     : Boolean;
+       {CAP        : Boolean;}
+
+       LauncherMissile1,
+       LauncherMissile2: TStatusWeapon;
+
+      constructor Create(Const aParent : TInsObject; aMap: TMap); override;
+      destructor Destroy; override;
+    published
+  end;
+
 
 
 //==============================================================================
@@ -1889,6 +1908,27 @@ begin
 end;
 
 destructor TWeaponOn_CannonType730.Destroy;
+begin
+
+  inherited;
+end;
+
+{ TWeaponOn_C705 }
+
+constructor TWeaponOn_C705.Create(const aParent: TInsObject; aMap: TMap);
+begin
+  inherited;
+
+  EnableC705 := false;
+  {Firing := True;
+  CAP := False;}
+
+  LauncherMissile1 := tsOff;
+  LauncherMissile2 := tsOff;
+
+end;
+
+destructor TWeaponOn_C705.Destroy;
 begin
 
   inherited;
