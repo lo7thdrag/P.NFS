@@ -1,0 +1,1 @@
+Jangan menghapus file yang ada di dalam folder ini!!!
