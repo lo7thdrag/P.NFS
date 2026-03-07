@@ -1168,6 +1168,119 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 1
+    object AdvStringGrid1: TAdvStringGrid
+      Left = 4
+      Top = 8
+      Width = 445
+      Height = 250
+      Cursor = crDefault
+      Color = clBlack
+      DrawingStyle = gdsClassic
+      FixedColor = clBlue
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ScrollBars = ssBoth
+      TabOrder = 0
+      HoverRowColor = clBtnShadow
+      HoverRowCells = [hcNormal, hcSelected]
+      ActiveCellFont.Charset = DEFAULT_CHARSET
+      ActiveCellFont.Color = clWindowText
+      ActiveCellFont.Height = -11
+      ActiveCellFont.Name = 'Tahoma'
+      ActiveCellFont.Style = [fsBold]
+      BorderColor = clGray
+      CellNode.Color = clGreen
+      ControlLook.FixedGradientHoverFrom = clGray
+      ControlLook.FixedGradientHoverTo = clWhite
+      ControlLook.FixedGradientDownFrom = clGray
+      ControlLook.FixedGradientDownTo = clSilver
+      ControlLook.DropDownHeader.Font.Charset = DEFAULT_CHARSET
+      ControlLook.DropDownHeader.Font.Color = clWindowText
+      ControlLook.DropDownHeader.Font.Height = -11
+      ControlLook.DropDownHeader.Font.Name = 'Tahoma'
+      ControlLook.DropDownHeader.Font.Style = []
+      ControlLook.DropDownHeader.Visible = True
+      ControlLook.DropDownHeader.Buttons = <>
+      ControlLook.DropDownFooter.Font.Charset = DEFAULT_CHARSET
+      ControlLook.DropDownFooter.Font.Color = clWindowText
+      ControlLook.DropDownFooter.Font.Height = -11
+      ControlLook.DropDownFooter.Font.Name = 'Tahoma'
+      ControlLook.DropDownFooter.Font.Style = []
+      ControlLook.DropDownFooter.Visible = True
+      ControlLook.DropDownFooter.Buttons = <>
+      Filter = <>
+      FilterDropDown.Font.Charset = DEFAULT_CHARSET
+      FilterDropDown.Font.Color = clWindowText
+      FilterDropDown.Font.Height = -11
+      FilterDropDown.Font.Name = 'Tahoma'
+      FilterDropDown.Font.Style = []
+      FilterDropDown.TextChecked = 'Checked'
+      FilterDropDown.TextUnChecked = 'Unchecked'
+      FilterDropDownClear = '(All)'
+      FilterEdit.TypeNames.Strings = (
+        'Starts with'
+        'Ends with'
+        'Contains'
+        'Not contains'
+        'Equal'
+        'Not equal'
+        'Larger than'
+        'Smaller than'
+        'Clear')
+      FixedRowHeight = 22
+      FixedFont.Charset = DEFAULT_CHARSET
+      FixedFont.Color = clWindowText
+      FixedFont.Height = -11
+      FixedFont.Name = 'Tahoma'
+      FixedFont.Style = [fsBold]
+      FloatFormat = '%.2f'
+      HoverButtons.Buttons = <>
+      HoverButtons.Position = hbLeftFromColumnLeft
+      HTMLSettings.ImageFolder = 'images'
+      HTMLSettings.ImageBaseName = 'img'
+      PrintSettings.DateFormat = 'dd/mm/yyyy'
+      PrintSettings.Font.Charset = DEFAULT_CHARSET
+      PrintSettings.Font.Color = clWindowText
+      PrintSettings.Font.Height = -11
+      PrintSettings.Font.Name = 'Tahoma'
+      PrintSettings.Font.Style = []
+      PrintSettings.FixedFont.Charset = DEFAULT_CHARSET
+      PrintSettings.FixedFont.Color = clWindowText
+      PrintSettings.FixedFont.Height = -11
+      PrintSettings.FixedFont.Name = 'Tahoma'
+      PrintSettings.FixedFont.Style = []
+      PrintSettings.HeaderFont.Charset = DEFAULT_CHARSET
+      PrintSettings.HeaderFont.Color = clWindowText
+      PrintSettings.HeaderFont.Height = -11
+      PrintSettings.HeaderFont.Name = 'Tahoma'
+      PrintSettings.HeaderFont.Style = []
+      PrintSettings.FooterFont.Charset = DEFAULT_CHARSET
+      PrintSettings.FooterFont.Color = clWindowText
+      PrintSettings.FooterFont.Height = -11
+      PrintSettings.FooterFont.Name = 'Tahoma'
+      PrintSettings.FooterFont.Style = []
+      PrintSettings.PageNumSep = '/'
+      SearchFooter.FindNextCaption = 'Find &next'
+      SearchFooter.FindPrevCaption = 'Find &previous'
+      SearchFooter.Font.Charset = DEFAULT_CHARSET
+      SearchFooter.Font.Color = clWindowText
+      SearchFooter.Font.Height = -11
+      SearchFooter.Font.Name = 'Tahoma'
+      SearchFooter.Font.Style = []
+      SearchFooter.HighLightCaption = 'Highlight'
+      SearchFooter.HintClose = 'Close'
+      SearchFooter.HintFindNext = 'Find next occurrence'
+      SearchFooter.HintFindPrev = 'Find previous occurrence'
+      SearchFooter.HintHighlight = 'Highlight occurrences'
+      SearchFooter.MatchCaseCaption = 'Match case'
+      SearchFooter.ResultFormat = '(%d of %d)'
+      SortSettings.DefaultFormat = ssAutomatic
+      Version = '8.4.7.0'
+    end
   end
   object pnlBaseKiri: TPanel
     Left = 0
@@ -1200,9 +1313,9 @@ object FrmTacticalScreen: TFrmTacticalScreen
       object lblTanggaljam: TLabel
         Left = 16
         Top = 8
-        Width = 120
+        Width = 136
         Height = 16
-        Caption = '.../.../...   ... : ... : ...'
+        Caption = '... / ... / ...   ... : ... : ...'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Height = -13
@@ -1210,7 +1323,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Font.Style = []
         ParentFont = False
       end
-      object lblHeadingVal: TLabel
+      object lblOwnshipHeadingVal: TLabel
         Left = 97
         Top = 31
         Width = 12
@@ -1250,7 +1363,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Font.Style = []
         ParentFont = False
       end
-      object Label3: TLabel
+      object lblOwnshipLatPosVal: TLabel
         Left = 97
         Top = 53
         Width = 12
@@ -1276,7 +1389,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Font.Style = []
         ParentFont = False
       end
-      object Label5: TLabel
+      object lblOwnshipLongPosVal: TLabel
         Left = 97
         Top = 75
         Width = 12
@@ -1302,7 +1415,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Font.Style = []
         ParentFont = False
       end
-      object Label7: TLabel
+      object lblOwnshipSpeedVal: TLabel
         Left = 249
         Top = 31
         Width = 12
@@ -1367,7 +1480,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Font.Style = []
         ParentFont = False
       end
-      object Label12: TLabel
+      object lblOwnshipDepth: TLabel
         Left = 249
         Top = 53
         Width = 12
@@ -1761,7 +1874,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000B071461201000000CC91C4771C000000000000000000000000
+          01000118010000903C152B01000000CC910A771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1770,15 +1883,15 @@ object FrmTacticalScreen: TFrmTacticalScreen
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000B071461201000000881300C01C00000000000000000000000000000000
+          010000903C152B01000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000070CB97003D8B737521
-          00000000000000208B7375E80D5D12D70C42F1B0CB9700000000000000000000
+          000000000000000000000000000000000000000000000070CB97003D8BD97621
+          00000000000000208BD97648CBE72A3CA9549AB0CB9700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object Panel1: TPanel
@@ -1789,6 +1902,195 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alBottom
         Caption = 'Panel1'
         TabOrder = 1
+        object ImageButton1: TImageButton
+          Left = 740
+          Top = 11
+          Width = 20
+          Height = 20
+          Picture.Data = {
+            82060000424D8206000000000000420000002800000014000000140000000100
+            20000300000040060000130B0000130B000000000000000000000000FF0000FF
+            0000FF0000000B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF020202FF0202
+            02FF020202FF020202FF020202FF020202FF020202FF020202FF020202FF0202
+            02FF020202FF020202FF020202FF020202FF020202FF020202FF020202FF0202
+            02FF0B0B0BFF0B0B0BFF020202FF020202FF020202FF020202FF020202FF0202
+            02FF020202FF020202FF020202FF020202FF020202FF020202FF020202FF0202
+            02FF020202FF313131FFD0D0D0FF020202FF0B0B0BFF0B0B0BFF020202FF0202
+            02FF020202FF020202FF020202FF020202FF222222FF414141FF616161FF3131
+            31FF020202FF020202FF020202FF020202FF313131FFDFDFDFFF313131FF0202
+            02FF0B0B0BFF0B0B0BFF020202FF020202FF020202FF020202FF616161FFCFCF
+            CFFFDFDFDFFFC0C0C0FFA0A0A0FFD0D0D0FFEFEFEFFF808080FF121212FF3131
+            31FFDFDFDFFF313131FF020202FF020202FF0B0B0BFF0B0B0BFF020202FF0202
+            02FF020202FF909090FFDFDFDFFF414141FF020202FF020202FF020202FF0202
+            02FF222222FFA0A0A0FFDFDFDFFFDFDFDFFF313131FF020202FF020202FF0202
+            02FF0B0B0BFF0B0B0BFF020202FF020202FF808080FFD0D0D0FF121212FF0202
+            02FF020202FF020202FF020202FF020202FF020202FF020202FF818181FFDFDF
+            DFFF020202FF020202FF020202FF020202FF0B0B0BFF0B0B0BFF020202FF4141
+            41FFEFEFEFFF121212FF020202FF020202FF020202FF020202FF121212FF0202
+            02FF020202FF020202FF020202FFA0A0A0FF808080FF020202FF020202FF0202
+            02FF0B0B0BFF0B0B0BFF020202FF909090FF808080FF020202FF020202FF0202
+            02FF020202FF616161FF9F9F9FFF020202FF020202FF020202FF020202FF2222
+            22FFDFDFDFFF020202FF020202FF020202FF0B0B0BFF0B0B0BFF020202FFE0E0
+            E0FF212121FF020202FF020202FF020202FF020202FF616161FF9F9F9FFF0202
+            02FF020202FF020202FF020202FF020202FFD0D0D0FF414141FF020202FF0202
+            02FF0B0B0BFF0B0B0BFF020202FFFFFFFFFF020202FF020202FF020202FF8080
+            80FF9F9F9FFFBFBFBFFFDFDFDFFF9F9F9FFF9F9F9FFF121212FF020202FF0202
+            02FFB0B0B0FF515151FF020202FF020202FF0B0B0BFF0B0B0BFF020202FFFFFF
+            FFFF020202FF020202FF020202FF414141FF616161FFA0A0A0FFC0C0C0FF6161
+            61FF515151FF020202FF020202FF020202FFB0B0B0FF515151FF020202FF0202
+            02FF0B0B0BFF0B0B0BFF020202FFD0D0D0FF414141FF020202FF020202FF0202
+            02FF020202FF616161FF9F9F9FFF020202FF020202FF020202FF020202FF0202
+            02FFEFEFEFFF212121FF020202FF020202FF0B0B0BFF0B0B0BFF020202FF6161
+            61FFA0A0A0FF020202FF020202FF020202FF020202FF414141FF717171FF0202
+            02FF020202FF020202FF020202FF414141FFC0C0C0FF020202FF020202FF0202
+            02FF0B0B0BFF0B0B0BFF020202FF222222FFE0E0E0FF313131FF020202FF0202
+            02FF020202FF020202FF020202FF020202FF020202FF020202FF121212FFE0E0
+            E0FF414141FF020202FF020202FF020202FF0B0B0BFF0B0B0BFF020202FF0202
+            02FF515151FFDFDFDFFF414141FF020202FF020202FF020202FF020202FF0202
+            02FF020202FF222222FFD0D0D0FF909090FF020202FF020202FF020202FF0202
+            02FF0B0B0BFF0B0B0BFF020202FF020202FF020202FF414141FFEFEFEFFFA0A0
+            A0FF414141FF121212FF020202FF313131FF616161FFE0E0E0FF818181FF0202
+            02FF020202FF020202FF020202FF020202FF0B0B0BFF0B0B0BFF020202FF0202
+            02FF020202FF020202FF121212FF818181FFC0C0C0FFEFEFEFFFFFFFFFFFD0D0
+            D0FFA0A0A0FF212121FF020202FF020202FF020202FF020202FF020202FF0202
+            02FF0B0B0BFF0B0B0BFF020202FF020202FF020202FF020202FF020202FF0202
+            02FF020202FF020202FF020202FF020202FF020202FF020202FF020202FF0202
+            02FF020202FF020202FF020202FF020202FF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF}
+        end
+        object ImageButton2: TImageButton
+          Left = 713
+          Top = 11
+          Width = 20
+          Height = 20
+          Picture.Data = {
+            82060000424D8206000000000000420000002800000014000000140000000100
+            20000300000040060000130B0000130B000000000000000000000000FF0000FF
+            0000FF0000000B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF000000FF0000
+            00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF0B0B0BFF0B0B0BFF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF303030FFCFCFCFFF000000FF0B0B0BFF0B0B0BFF000000FF0000
+            00FF000000FF000000FF000000FF000000FF202020FF3F3F3FFF5F5F5FFF3030
+            30FF000000FF000000FF000000FF000000FF303030FFDFDFDFFF303030FF0000
+            00FF0B0B0BFF0B0B0BFF000000FF000000FF000000FF000000FF606060FFCFCF
+            CFFFDFDFDFFFBFBFBFFF9F9F9FFFCFCFCFFFEFEFEFFF7F7F7FFF101010FF3030
+            30FFDFDFDFFF303030FF000000FF000000FF0B0B0BFF0B0B0BFF000000FF0000
+            00FF000000FF8F8F8FFFDFDFDFFF404040FF000000FF000000FF000000FF0000
+            00FF202020FF9F9F9FFFDFDFDFFFDFDFDFFF303030FF000000FF000000FF0000
+            00FF0B0B0BFF0B0B0BFF000000FF000000FF7F7F7FFFCFCFCFFF101010FF0000
+            00FF000000FF000000FF000000FF000000FF000000FF000000FF808080FFDFDF
+            DFFF000000FF000000FF000000FF000000FF0B0B0BFF0B0B0BFF000000FF4040
+            40FFEFEFEFFF101010FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF9F9F9FFF7F7F7FFF000000FF000000FF0000
+            00FF0B0B0BFF0B0B0BFF000000FF8F8F8FFF7F7F7FFF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF2020
+            20FFDFDFDFFF000000FF000000FF000000FF0B0B0BFF0B0B0BFF000000FFDFDF
+            DFFF1F1F1FFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000FFCFCFCFFF3F3F3FFF000000FF0000
+            00FF0B0B0BFF0B0B0BFF000000FFFFFFFFFF000000FF000000FF000000FF7F7F
+            7FFF9F9F9FFF9F9F9FFF9F9F9FFF9F9F9FFF9F9F9FFF101010FF000000FF0000
+            00FFAFAFAFFF4F4F4FFF000000FF000000FF0B0B0BFF0B0B0BFF000000FFFFFF
+            FFFF000000FF000000FF000000FF404040FF606060FF606060FF606060FF6060
+            60FF505050FF000000FF000000FF000000FFAFAFAFFF4F4F4FFF000000FF0000
+            00FF0B0B0BFF0B0B0BFF000000FFCFCFCFFF3F3F3FFF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FFEFEFEFFF1F1F1FFF000000FF000000FF0B0B0BFF0B0B0BFF000000FF6060
+            60FF9F9F9FFF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF404040FFBFBFBFFF000000FF000000FF0000
+            00FF0B0B0BFF0B0B0BFF000000FF202020FFDFDFDFFF303030FF000000FF0000
+            00FF000000FF000000FF000000FF000000FF000000FF000000FF101010FFDFDF
+            DFFF404040FF000000FF000000FF000000FF0B0B0BFF0B0B0BFF000000FF0000
+            00FF505050FFDFDFDFFF3F3F3FFF000000FF000000FF000000FF000000FF0000
+            00FF000000FF202020FFCFCFCFFF8F8F8FFF000000FF000000FF000000FF0000
+            00FF0B0B0BFF0B0B0BFF000000FF000000FF000000FF404040FFEFEFEFFF9F9F
+            9FFF3F3F3FFF101010FF000000FF303030FF606060FFDFDFDFFF808080FF0000
+            00FF000000FF000000FF000000FF000000FF0B0B0BFF0B0B0BFF000000FF0000
+            00FF000000FF000000FF101010FF808080FFBFBFBFFFEFEFEFFFFFFFFFFFCFCF
+            CFFF9F9F9FFF202020FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF0B0B0BFF0B0B0BFF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000FF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B0BFF0B0B
+            0BFF0B0B0BFF}
+        end
+        object Label3: TLabel
+          Left = 895
+          Top = 14
+          Width = 14
+          Height = 13
+          Caption = 'nm'
+          Color = clBtnFace
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object AdvComboBox1: TAdvComboBox
+          Left = 777
+          Top = 10
+          Width = 112
+          Height = 21
+          Color = clBlack
+          Version = '1.9.4.0'
+          Visible = True
+          ButtonWidth = 17
+          EmptyTextStyle = []
+          DropWidth = 0
+          Enabled = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clGreen
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ItemIndex = -1
+          LabelFont.Charset = DEFAULT_CHARSET
+          LabelFont.Color = clWindowText
+          LabelFont.Height = -11
+          LabelFont.Name = 'Tahoma'
+          LabelFont.Style = []
+          ParentFont = False
+          TabOrder = 0
+          Text = '16'
+        end
+        object cbbMotionMode: TAdvComboBox
+          Left = 579
+          Top = 10
+          Width = 112
+          Height = 21
+          Color = clBlack
+          Version = '1.9.4.0'
+          Visible = True
+          ButtonWidth = 17
+          EmptyTextStyle = []
+          DropWidth = 0
+          Enabled = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clGreen
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ItemIndex = -1
+          LabelFont.Charset = DEFAULT_CHARSET
+          LabelFont.Color = clWindowText
+          LabelFont.Height = -11
+          LabelFont.Name = 'Tahoma'
+          LabelFont.Style = []
+          ParentFont = False
+          TabOrder = 1
+          Text = 'Relative Motion'
+        end
       end
     end
   end
@@ -2072,5 +2374,16 @@ object FrmTacticalScreen: TFrmTacticalScreen
     OnTimer = Timer1Timer
     Left = 944
     Top = 528
+  end
+  object tmrUpdateForm: TTimer
+    OnTimer = tmrUpdateFormTimer
+    Left = 880
+    Top = 544
+  end
+  object tmrUpdateDataPos: TTimer
+    Interval = 100
+    OnTimer = tmrUpdateDataPosTimer
+    Left = 808
+    Top = 520
   end
 end

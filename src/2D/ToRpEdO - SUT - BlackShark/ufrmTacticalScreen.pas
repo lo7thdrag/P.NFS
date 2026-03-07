@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, uSettingFormToMonitorWith_ini, uFormUtil, ufrmSupportScreen,
   Vcl.StdCtrls, System.ImageList, Vcl.ImgList, Vcl.OleCtrls, MapXLib_TLB, uBaseFunction, uLibConst,
   uBaseConst, uRadarVisual, uMapXUnitConverter, uCoordConverter, System.Math, uSutBlacksharkManager, uRadarNorthIndicator,
-  uVehicleManager, uScriptSutBlackshark, uSimulationManager, uBridgeSet, ulibSettings, uDataModule, uVehicle;
+  uVehicleManager, uScriptSutBlackshark, uSimulationManager, uBridgeSet, ulibSettings, uDataModule, uVehicle,
+  ImageButton, AdvCombo, Vcl.Grids, AdvUtil, AdvObj, BaseGrid, AdvGrid;
 
 type
   TFrmTacticalScreen = class(TForm)
@@ -91,19 +92,19 @@ type
     lblIntercom: TLabel;
     lblAckAlert: TLabel;
     lblTanggaljam: TLabel;
-    lblHeadingVal: TLabel;
+    lblOwnshipHeadingVal: TLabel;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
+    lblOwnshipLatPosVal: TLabel;
     Label4: TLabel;
-    Label5: TLabel;
+    lblOwnshipLongPosVal: TLabel;
     Label6: TLabel;
-    Label7: TLabel;
+    lblOwnshipSpeedVal: TLabel;
     Label8: TLabel;
     Label9: TLabel;
     Label10: TLabel;
     Label11: TLabel;
-    Label12: TLabel;
+    lblOwnshipDepth: TLabel;
     Label13: TLabel;
     Label14: TLabel;
     Label15: TLabel;
@@ -140,6 +141,14 @@ type
     imgListLight: TImageList;
     imgBackgrounSituationZone: TImage;
     Timer1: TTimer;
+    tmrUpdateForm: TTimer;
+    tmrUpdateDataPos: TTimer;
+    ImageButton1: TImageButton;
+    ImageButton2: TImageButton;
+    AdvComboBox1: TAdvComboBox;
+    Label3: TLabel;
+    cbbMotionMode: TAdvComboBox;
+    AdvStringGrid1: TAdvStringGrid;
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -151,6 +160,8 @@ type
     procedure FormPaint(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Label1Click(Sender: TObject);
+    procedure tmrUpdateFormTimer(Sender: TObject);
+    procedure tmrUpdateDataPosTimer(Sender: TObject);
 
   protected
     procedure DrawAngle(aCnv: TCanvas);
@@ -882,6 +893,50 @@ procedure TFrmTacticalScreen.Timer1Timer(Sender: TObject);
 begin
   //imgBackgrounSituationZone.Repaint;
   Invalidate;
+end;
+
+procedure TFrmTacticalScreen.tmrUpdateDataPosTimer(Sender: TObject);
+begin
+  lblTanggaljam.Caption := FormatDateTime('dd/mm/yyyy hh:nn:ss',now);
+  lblOwnshipHeadingVal.Caption := SutBlacksharkManager.xShip.Heading.ToString;
+  lblOwnshipLatPosVal.Caption := FormatFloat('0.0000', SutBlacksharkManager.xShip.PositionY);
+  lblOwnshipLongPosVal.Caption := FormatFloat('0.0000', SutBlacksharkManager.xShip.PositionX);
+  lblOwnshipSpeedVal.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.Speed);
+  lblOwnshipDepth.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.PositionZ );
+
+end;
+
+procedure TFrmTacticalScreen.tmrUpdateFormTimer(Sender: TObject);
+begin
+//  if FNorthAngle < 360 then
+//    Inc(FNorthAngle)
+//  else
+//    FNorthAngle := 0;
+
+//  imgCompas.Repaint;
+
+//  lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
+
+  if Assigned(SutBlacksharkManager) then
+  begin
+    if Assigned(SutBlacksharkManager.xShip) then
+    begin
+//      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
+//      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
+
+      if not SutBlacksharkManager.IsTrueMotion then begin
+        Fmap.CenterX := SutBlacksharkManager.xShip.PositionX;
+        Fmap.CenterY := SutBlacksharkManager.xShip.PositionY;
+      //    FMap.Rotation := 0;
+        FNorthAngle := 0;
+      end
+      else
+      begin
+        FNorthAngle := -SutBlacksharkManager.xShip.Heading;;
+      //    FMap.Rotation := -FCCManager.xShip.Heading;
+      end;
+    end;
+  end;
 end;
 
 end.
