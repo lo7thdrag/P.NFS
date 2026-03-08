@@ -3,7 +3,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
   Top = 0
   BorderStyle = bsNone
   Caption = 'FrmTacticalScreen'
-  ClientHeight = 1080
+  ClientHeight = 1089
   ClientWidth = 1920
   Color = clBackground
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
   TextHeight = 13
   object pnlTEP: TPanel
     Left = 0
-    Top = 888
+    Top = 897
     Width = 1920
     Height = 192
     Margins.Left = 1
@@ -74,6 +74,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -105,6 +107,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -136,6 +140,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -167,6 +173,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -432,6 +440,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -463,6 +473,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -494,6 +506,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -525,6 +539,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -808,6 +824,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -839,6 +857,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -870,6 +890,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -901,6 +923,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -932,6 +956,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -960,10 +986,12 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Height = 84
         Align = alClient
         Alignment = taCenter
-        Caption = 'lblSubmodeTools0'
+        Caption = 'label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
-        ExplicitWidth = 103
+        ExplicitWidth = 34
         ExplicitHeight = 13
       end
     end
@@ -992,6 +1020,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -1023,6 +1053,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -1054,6 +1086,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -1085,6 +1119,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -1116,6 +1152,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -1147,6 +1185,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
+        Color = clBtnFace
+        ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
         ExplicitWidth = 37
@@ -1158,7 +1198,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Left = 1464
     Top = 0
     Width = 456
-    Height = 888
+    Height = 897
     Margins.Left = 1
     Margins.Top = 1
     Margins.Right = 1
@@ -1286,7 +1326,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Left = 0
     Top = 0
     Width = 1464
-    Height = 888
+    Height = 897
     Margins.Left = 1
     Margins.Top = 1
     Margins.Right = 1
@@ -1831,7 +1871,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       Left = 0
       Top = 136
       Width = 1464
-      Height = 752
+      Height = 761
       Margins.Left = 1
       Margins.Top = 1
       Margins.Right = 1
@@ -1843,7 +1883,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Left = 1
         Top = 1
         Width = 1462
-        Height = 709
+        Height = 718
         Align = alClient
         ExplicitLeft = 680
         ExplicitTop = 328
@@ -1854,27 +1894,30 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Left = 1
         Top = 1
         Width = 1462
-        Height = 709
+        Height = 718
         ParentColor = False
         Align = alClient
         TabOrder = 0
+        OnMouseUp = FMapMouseUp
+        OnMouseDown = FMapMouseDown
         OnDrawUserLayer = FMapDrawUserLayer
         ExplicitLeft = -2
         ExplicitTop = 4
+        ExplicitHeight = 709
         ControlData = {
-          8A1A06001A9700004749000001000000010000FF0D47656F44696374696F6E61
+          8A1A06001A970000354A000001000000010000FF0D47656F44696374696F6E61
           727905456D70747900E8030000000000000000000002000E001E000000000000
           0000000000000000000000000000000000000000000600010000000000500001
           010000640000000001F4010000050000800C000000000000000000000000FFFF
           FF000100000000000000000000000000000000000000000000000352E30B918F
-          CE119DE300AA004BB8510100000090011420080005417269616C000352E30B91
+          CE119DE300AA004BB851010000009001603D080005417269616C000352E30B91
           8FCE119DE300AA004BB851010000009001348C030005417269616C0000000000
           00000000000000000000000000000000000000000000000000000000000000FF
           FFFF000000000000000001370000000000FFFFFF000000000000000352E30B91
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000903C152B01000000CC910A771C000000000000000000000000
+          0100011801000020B43F1001000000CC91F5761C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1883,20 +1926,20 @@ object FrmTacticalScreen: TFrmTacticalScreen
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000903C152B01000000881300C01C00000000000000000000000000000000
+          01000020B43F1001000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000070CB97003D8BD97621
-          00000000000000208BD97648CBE72A3CA9549AB0CB9700000000000000000000
+          000000000000000000000000000000000000000000000014E297001AB23670E4
+          E1970000000000FFFFFFFF27B2367068D2F35528E29700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object Panel1: TPanel
         Left = 1
-        Top = 710
+        Top = 719
         Width = 1462
         Height = 41
         Align = alBottom

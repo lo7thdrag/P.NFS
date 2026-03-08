@@ -8,7 +8,7 @@ uses
   Vcl.StdCtrls, System.ImageList, Vcl.ImgList, Vcl.OleCtrls, MapXLib_TLB, uBaseFunction, uLibConst,
   uBaseConst, uRadarVisual, uMapXUnitConverter, uCoordConverter, System.Math, uSutBlacksharkManager, uRadarNorthIndicator,
   uVehicleManager, uScriptSutBlackshark, uSimulationManager, uBridgeSet, ulibSettings, uDataModule, uVehicle,
-  ImageButton, AdvCombo, Vcl.Grids, AdvUtil, AdvObj, BaseGrid, AdvGrid;
+  ImageButton, AdvCombo, Vcl.Grids, AdvUtil, AdvObj, BaseGrid, AdvGrid, uTCPDatatype;
 
 type
   TFrmTacticalScreen = class(TForm)
@@ -162,6 +162,10 @@ type
     procedure Label1Click(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
     procedure tmrUpdateDataPosTimer(Sender: TObject);
+    procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure FMapMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
 
   protected
     procedure DrawAngle(aCnv: TCanvas);
@@ -172,7 +176,7 @@ type
 
   private
     { Private declarations }
-    Submode : Byte;
+    Submode, SubmodeTools : Byte;
     BitMapLampGrey, BitMapLampGreen, BitMapLampRed : TBitmap;
     FLyrDraw: CMapXLayer;
     FCurrentRange, FBearingVal, FElevVal : Double;  // meter
@@ -208,8 +212,11 @@ type
     pShipID,
     pClassID        : Integer;
 
+    FSelectedVehicleState : Boolean;
+
 
     procedure SubmodeSelect(Sender: Tobject);
+    procedure SubmodeToolsSelect(Sender: Tobject);
     procedure SetLayoutForm;
     procedure ResetSubmodeTools;
     procedure LoadGeoset(const aGst: string); virtual;
@@ -462,6 +469,148 @@ begin
   DrawAll(FMapCanvas, FMapConverter, FFlag);
 end;
 
+procedure TFrmTacticalScreen.FMapMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+//  Sel: TRadarTargetSymbol;
+  v : TVehicle;
+  rangeX, dH, v0: Double;
+  aLow, aHigh, aEnv: Double;
+  ok: Boolean;
+begin
+  if Button <> mbLeft then Exit;
+
+//  Sel := TargetMgr.SelectAt(X, Y);
+
+  v := VehicleMgr.SelectAt(X, Y);
+
+
+  FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
+
+  if Assigned(v) then
+  begin
+    // misalnya tampilkan info target
+    // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
+
+    SutBlacksharkManager.SelectedVehicle := v;
+    rangeX := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
+    dH     := v.PosZ;    // target 20 m lebih rendah
+    v0     := 1035;    // m/s
+
+    FSelectedVehicleState := true;
+
+    if Assigned(SutBlacksharkManager) then
+    begin
+      // 1) Tanpa environment (vakum)
+      ok := SutBlacksharkManager.ComputeGunElevationVacuum(rangeX, dH, v0, aLow, aHigh);
+//      edtLowPR.Text := FormatFloat('0.00', aLow);
+//      edtHighPR.Text := FormatFloat('0.00', aHigh);
+    end;
+  end
+  else
+    FSelectedVehicleState := false;
+end;
+
+procedure TFrmTacticalScreen.FMapMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  isValid : Boolean;
+  RecSend : TRecSetTorpedoSUT;
+
+  CorrectBearing,
+  CorrectElev : Double;
+  aLow, aHigh: Double;
+  range,rangem, bearing : Double;
+begin
+
+  if FSelectedVehicleState = false then
+  begin
+    RecSend.ShipID              := SutBlacksharkManager.ShipID;
+    RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID         := 0;
+    RecSend.mMissileID          := 0;
+    RecSend.mMissileNumber      := 0;
+//      RecSend.OrderID             := 0;
+
+    RecSend.mTorpedoSpeed       := 0;
+    RecSend.mT_ID               := 0;
+    RecSend.mMissileType        := 0;
+    RecSend.mTorpedoDepth       := 0;
+    RecSend.mTorpedoCourse      := 0;
+
+    RecSend.mTargetType         := 0;
+//      RecSend.mSalvoRate          := 30;
+
+
+    RecSend.OrderID := __ORD_TORPEDOSUT_MANUAL;
+    SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+    Exit;
+  end;
+
+  if (Assigned(SutBlacksharkManager.SelectedVehicle)) and (FSelectedVehicleState = true)then
+  begin
+    range := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
+    rangem := range * C_NauticalMile_To_Metre;
+    bearing := CalcBearing(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
+    // range = 3000 m, target lebih rendah 25 m
+    ComputeBallisticAngleVacuum(rangem, SutBlacksharkManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+
+    if (aLow <= 80 ) and (aLow >= 0 )then
+    begin
+//      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
+      aLow := FMod(aLow, 360);
+      if aLow < 0 then
+        aLow := aLow + 360;
+
+      RecSend.ShipID              := SutBlacksharkManager.ShipID;
+      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID         := 0;
+      RecSend.mMissileID          := 0;
+      RecSend.mMissileNumber      := 0;
+//      RecSend.OrderID             := 0;
+
+      RecSend.mTorpedoSpeed       := 0;
+      RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
+      RecSend.mMissileType        := 0;
+      RecSend.mTorpedoDepth       := aLow;
+      RecSend.mTorpedoCourse      := bearing;
+
+      RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
+//      RecSend.mSalvoRate          := 30;
+
+
+      RecSend.OrderID := __ORD_TORPEDOSUT_NAVIGATE;
+      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+    end
+    else if (aLow >= 350 )then
+    begin
+      alow := FMod(alow, 360);
+      if alow < 0 then
+        alow := alow + 360;
+
+      RecSend.ShipID              := SutBlacksharkManager.ShipID;
+      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID         := 0;
+      RecSend.mMissileID          := 0;
+      RecSend.mMissileNumber      := 0;
+//      RecSend.OrderID             := 0;
+
+      RecSend.mTorpedoSpeed       := 0;
+      RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
+      RecSend.mMissileType        := 0;
+      RecSend.mTorpedoDepth       := aLow;
+      RecSend.mTorpedoCourse      := bearing;
+
+      RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
+//      RecSend.mSalvoRate          := 30;
+
+
+      RecSend.OrderID := __ORD_TORPEDOSUT_NAVIGATE;
+      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+    end;
+  end;
+end;
+
 procedure TFrmTacticalScreen.FormCreate(Sender: TObject);
 var
   n : Integer;
@@ -473,6 +622,7 @@ begin
   SetLayoutForm;
   ResetSubmodeTools;
   Submode := 7;
+  SubmodeTools := 20;
 
   BeginGame_SutBlackshark;
   SutBlacksharkManager := TSutBlacksharkManager.Create;
@@ -581,7 +731,7 @@ begin
     end;
     SutBlacksharkManager.Env_Map := DataModule1.GetMapById(SutBlacksharkManager.CurrentScenID);
 
-    SutBlacksharkManager.Get57WeaponAssigned;
+    SutBlacksharkManager.GetTorpedoWeaponAssigned;
 
 //
 //    if Assigned(FCCManager.AssignedWeapon) then
@@ -658,6 +808,8 @@ procedure TFrmTacticalScreen.pnlSubmodeTools0MouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
 //   TPanel(TLabel(Sender).Parent).Color := clLime;
+
+  SubmodeToolsSelect(Sender);
 end;
 
 procedure TFrmTacticalScreen.pnlTacticalBtnMouseDown(Sender: TObject;
@@ -831,6 +983,38 @@ begin
   rCy := rCYMap + FMap.Top;
 end;
 
+procedure TFrmTacticalScreen.SubmodeToolsSelect(Sender: Tobject);
+begin
+  if TLabel(Sender).Tag = SubmodeTools then Exit;
+
+  if TLabel(Sender).Enabled = false then Exit;
+
+  pnlSubmodeTools0.Color := clBlack;
+  pnlSubmodeTools1.Color := clBlack;
+  pnlSubmodeTools2.Color := clBlack;
+  pnlSubmodeTools3.Color := clBlack;
+  pnlSubmodeTools4.Color := clBlack;
+  pnlSubmodeTools5.Color := clBlack;
+  pnlSubmodeTools6.Color := clBlack;
+  pnlSubmodeTools7.Color := clBlack;
+  pnlSubmodeTools8.Color := clBlack;
+  pnlSubmodeTools9.Color := clBlack;
+  pnlSubmodeTools10.Color := clBlack;
+  pnlSubmodeTools11.Color := clBlack;
+  pnlSubmodeTools12.Color := clBlack;
+  pnlSubmodeTools13.Color := clBlack;
+  pnlSubmodeTools14.Color := clBlack;
+  pnlSubmodeTools15.Color := clBlack;
+  pnlSubmodeTools16.Color := clBlack;
+  pnlSubmodeToolS17.Color := clBlack;
+  pnlSubmodeTools18.Color := clBlack;
+  pnlSubmodeTools19.Color := clBlack;
+
+  TLabel(Sender).Color := clLime;
+  SubmodeTools := TLabel(Sender).Tag;
+//
+end;
+
 procedure TFrmTacticalScreen.SubmodeSelect(Sender: Tobject);
 begin
   if TPanel(Sender).Tag = submode then Exit;
@@ -847,44 +1031,279 @@ begin
   TPanel(Sender).Color := clLime;
   Submode := TPanel(Sender).Tag;
 
-
-
-
   case Submode of
     0:
     begin
       lblSubmodeTools0.Caption := 'Drop' + #13#10 + 'Sonar' + #13#10 + 'Track';
       pnlSubmodeTools0.Enabled := True;
+      lblSubmodeTools0.Enabled := True;
 
       lblSubmodeTools2.Caption := 'RESM' + #13#10 + 'Data' + #13#10 + 'Control';
       pnlSubmodeTools2.Enabled := True;
+      lblSubmodeTools2.Enabled := True;
 
       lblSubmodeTools5.Caption := 'Classi-' + #13#10 + 'fication';
       pnlSubmodeTools5.Enabled := True;
+      lblSubmodeTools5.Enabled := True;
+
 
       lblSubmodeTools6.Caption := 'CEP';
       pnlSubmodeTools6.Enabled := True;
+      lblSubmodeTools6.Enabled := True;
 
       lblSubmodeTools7.Caption := 'Threat' + #13#10 + 'Eval';
       pnlSubmodeTools7.Enabled := True;
+      lblSubmodeTools7.Enabled := True;
 
       lblSubmodeTools9.Caption := 'SPA';
       pnlSubmodeTools9.Enabled := True;
+      lblSubmodeTools9.Enabled := True;
 
       lblSubmodeTools11.Caption := 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing';
       pnlSubmodeTools11.Enabled := True;
+      lblSubmodeTools11.Enabled := True;
 
       lblSubmodeTools12.Caption := 'Torp' + #13#10 + 'Alloc';
       pnlSubmodeTools12.Enabled := True;
+      lblSubmodeTools12.Enabled := True;
 
       lblSubmodeTools17.Caption := 'Sim';
       pnlSubmodeTools17.Enabled := True;
+      lblSubmodeTools17.Enabled := True;
 
       lblSubmodeTools18.Caption := 'Data' + #13#10 + 'Export' + #13#10 + 'Setup';
       pnlSubmodeTools18.Enabled := True;
+      lblSubmodeTools18.Enabled := True;
 
       lblSubmodeTools19.Caption := 'Cove-' + #13#10 + 'rage';
       pnlSubmodeTools19.Enabled := True;
+      lblSubmodeTools19.Enabled := True;
+    end;
+    1:
+    begin
+      lblSubmodeTools0.Caption := 'Drop' + #13#10 + 'Sonar' + #13#10 + 'Track';
+      pnlSubmodeTools0.Enabled := True;
+      lblSubmodeTools0.Enabled := True;
+
+      lblSubmodeTools3.Caption := 'RESM' + #13#10 + 'Data' + #13#10 + 'Control';
+      pnlSubmodeTools3.Enabled := True;
+      lblSubmodeTools3.Enabled := True;
+
+      lblSubmodeTools5.Caption := 'Classi-' + #13#10 + 'fication';
+      pnlSubmodeTools5.Enabled := True;
+      lblSubmodeTools5.Enabled := True;
+
+      lblSubmodeTools6.Caption := 'CEP';
+      pnlSubmodeTools6.Enabled := True;
+      lblSubmodeTools6.Enabled := True;
+
+      lblSubmodeTools8.Caption := 'Torp' + #13#10 + 'Contact' + #13#10 + 'Mngmnt';
+      pnlSubmodeTools8.Enabled := True;
+      lblSubmodeTools8.Enabled := True;
+
+      lblSubmodeTools9.Caption := 'SPA';
+      pnlSubmodeTools9.Enabled := True;
+      lblSubmodeTools9.Enabled := True;
+
+      lblSubmodeTools10.Caption := 'Display' + #13#10 + 'Calc';
+      pnlSubmodeTools10.Enabled := True;
+      lblSubmodeTools10.Enabled := True;
+
+      lblSubmodeTools11.Caption := 'Display' + #13#10 + 'Trial';
+      pnlSubmodeTools11.Enabled := True;
+      lblSubmodeTools11.Enabled := True;
+
+      lblSubmodeTools12.Caption := 'Initial' + #13#10 + 'Range';
+      pnlSubmodeTools12.Enabled := True;
+      lblSubmodeTools12.Enabled := True;
+
+      lblSubmodeTools14.Caption := 'Excl' + #13#10 + 'OS' + #13#10 + 'Mnvr';
+      pnlSubmodeTools14.Enabled := True;
+      lblSubmodeTools14.Enabled := True;
+
+      lblSubmodeTools15.Caption := 'Select' + #13#10 + '4' + #13#10 + 'Brngs';
+      pnlSubmodeTools15.Enabled := True;
+      lblSubmodeTools15.Enabled := True;
+
+      lblSubmodeTools16.Caption := 'Set' + #13#10 + 'Tgt' + #13#10 + 'Mnvr';
+      pnlSubmodeTools16.Enabled := True;
+      lblSubmodeTools16.Enabled := True;
+
+      lblSubmodeTools17.Caption := 'Set' + #13#10 + 'BBRF' + #13#10 + 'Official';
+      pnlSubmodeTools17.Enabled := True;
+      lblSubmodeTools17.Enabled := True;
+
+      lblSubmodeTools18.Caption := 'Auto' + #13#10 + 'Select' + #13#10 + 'Official';
+      pnlSubmodeTools18.Enabled := True;
+      lblSubmodeTools18.Enabled := True;
+
+      lblSubmodeTools19.Caption := 'Cove-' + #13#10 + 'rage';
+      pnlSubmodeTools19.Enabled := True;
+      lblSubmodeTools19.Enabled := True;
+    end;
+    2:
+    begin
+      lblSubmodeTools0.Caption := 'ToSo' + #13#10 + 'Audio';
+      pnlSubmodeTools0.Enabled := True;
+      lblSubmodeTools0.Enabled := True;
+
+      lblSubmodeTools5.Caption := 'Classi-' + #13#10 + 'fication';
+      pnlSubmodeTools5.Enabled := True;
+      lblSubmodeTools5.Enabled := True;
+
+      lblSubmodeTools7.Caption := 'Torp' + #13#10 + 'Vert' + #13#10 + 'View';
+      pnlSubmodeTools7.Enabled := True;
+      lblSubmodeTools7.Enabled := True;
+
+      lblSubmodeTools8.Caption := 'Torp' + #13#10 + 'Contact' + #13#10 + 'Mngmnt';
+      pnlSubmodeTools8.Enabled := True;
+      lblSubmodeTools8.Enabled := True;
+
+      lblSubmodeTools9.Caption := 'SPA';
+      pnlSubmodeTools9.Enabled := True;
+      lblSubmodeTools9.Enabled := True;
+
+      lblSubmodeTools10.Caption := 'Torp' + #13#10 + 'Exercise' + #13#10 + 'Mode';
+      pnlSubmodeTools10.Enabled := True;
+      lblSubmodeTools10.Enabled := True;
+
+      lblSubmodeTools11.Caption := 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing';
+      pnlSubmodeTools11.Enabled := True;
+      lblSubmodeTools11.Enabled := True;
+
+      lblSubmodeTools12.Caption := 'Torp' + #13#10 + 'Alloc';
+      pnlSubmodeTools12.Enabled := True;
+      lblSubmodeTools12.Enabled := True;
+
+      lblSubmodeTools13.Caption := 'Launch' + #13#10 + 'Salvo';
+      pnlSubmodeTools13.Enabled := True;
+      lblSubmodeTools13.Enabled := True;
+
+      lblSubmodeTools14.Caption := 'Torp' + #13#10 + 'Emerg' + #13#10 + 'Exe';
+      pnlSubmodeTools14.Enabled := True;
+      lblSubmodeTools14.Enabled := True;
+
+      lblSubmodeTools15.Caption := 'Mark' + #13#10 + 'Special' + #13#10 + 'Event';
+      pnlSubmodeTools15.Enabled := True;
+      lblSubmodeTools15.Enabled := True;
+
+      lblSubmodeTools16.Caption := 'Torp' + #13#10 + 'Ctrl';
+      pnlSubmodeTools16.Enabled := True;
+      lblSubmodeTools16.Enabled := True;
+
+      lblSubmodeTools17.Caption := 'Sim';
+      pnlSubmodeTools17.Enabled := True;
+      lblSubmodeTools17.Enabled := True;
+
+      lblSubmodeTools18.Caption := 'Preset' + #13#10 + 'Torp' + #13#10 + 'Params';
+      pnlSubmodeTools18.Enabled := True;
+      lblSubmodeTools18.Enabled := True;
+
+      lblSubmodeTools19.Caption := 'Cove-' + #13#10 + 'rage';
+      pnlSubmodeTools19.Enabled := True;
+      lblSubmodeTools19.Enabled := True;
+    end;
+    3:
+    begin
+      lblSubmodeTools0.Caption := 'SERO' + #13#10 + '400' + #13#10 + 'Ctrl';
+      pnlSubmodeTools0.Enabled := True;
+      lblSubmodeTools0.Enabled := True;
+
+      lblSubmodeTools1.Caption := 'OMS' + #13#10 + '100' + #13#10 + 'Ctrl';
+      pnlSubmodeTools1.Enabled := True;
+      lblSubmodeTools1.Enabled := True;
+
+      lblSubmodeTools2.Caption := 'Replay';
+      pnlSubmodeTools2.Enabled := True;
+      lblSubmodeTools2.Enabled := True;
+    end;
+    4:
+    begin
+      lblSubmodeTools3.Caption := 'RESM' + #13#10 + 'Data' + #13#10 + 'Control';
+      pnlSubmodeTools3.Enabled := True;
+      lblSubmodeTools0.Enabled := True;
+
+      lblSubmodeTools1.Caption := 'Classi-' + #13#10 + 'fication';
+      pnlSubmodeTools1.Enabled := True;
+      lblSubmodeTools1.Enabled := True;
+    end;
+    5:
+    begin
+      lblSubmodeTools0.Caption := 'Assign' + #13#10 + 'Track';
+      pnlSubmodeTools0.Enabled := True;
+      lblSubmodeTools0.Enabled := True;
+
+      lblSubmodeTools1.Caption := 'Deassign' + #13#10 + 'Track';
+      pnlSubmodeTools1.Enabled := True;
+      lblSubmodeTools1.Enabled := True;
+
+      lblSubmodeTools2.Caption := 'Wipe' + #13#10 + 'Track';
+      pnlSubmodeTools2.Enabled := True;
+      lblSubmodeTools2.Enabled := True;
+
+      lblSubmodeTools3.Caption := 'Engage-' + #13#10 + 'Ments';
+      pnlSubmodeTools3.Enabled := True;
+      lblSubmodeTools3.Enabled := True;
+
+      lblSubmodeTools4.Caption := 'Conflict';
+      pnlSubmodeTools4.Enabled := True;
+      lblSubmodeTools4.Enabled := True;
+
+      lblSubmodeTools5.Caption := 'Settings';
+      pnlSubmodeTools5.Enabled := True;
+      lblSubmodeTools5.Enabled := True;
+
+      lblSubmodeTools6.Caption := 'Free' + #13#10 + 'Text';
+      pnlSubmodeTools6.Enabled := True;
+      lblSubmodeTools6.Enabled := True;
+
+      lblSubmodeTools7.Caption := 'Link' + #13#10 + 'Freeze' + #13#10 + 'Tracks';
+      pnlSubmodeTools7.Enabled := True;
+      lblSubmodeTools7.Enabled := True;
+
+      lblSubmodeTools8.Caption := 'CDO';
+      pnlSubmodeTools8.Enabled := True;
+      lblSubmodeTools8.Enabled := True;
+
+      lblSubmodeTools9.Caption := 'Test';
+      pnlSubmodeTools9.Enabled := True;
+      lblSubmodeTools9.Enabled := True;
+
+      lblSubmodeTools10.Caption := 'Corr' + #13#10 + 'List';
+      pnlSubmodeTools10.Enabled := True;
+      lblSubmodeTools10.Enabled := True;
+
+      lblSubmodeTools11.Caption := 'Set' + #13#10 + 'Track' + #13#10 + 'Alert';
+      pnlSubmodeTools11.Enabled := True;
+      lblSubmodeTools11.Enabled := True;
+
+      lblSubmodeTools12.Caption := 'PU' + #13#10 + 'Update' + #13#10 + 'Request';
+      pnlSubmodeTools12.Enabled := True;
+      lblSubmodeTools12.Enabled := True;
+
+      lblSubmodeTools13.Caption := 'PU' + #13#10 + 'Retrans' + #13#10 + 'Request';
+      pnlSubmodeTools13.Enabled := True;
+      lblSubmodeTools13.Enabled := True;
+
+      lblSubmodeTools14.Caption := 'Orders';
+      pnlSubmodeTools14.Enabled := True;
+      lblSubmodeTools14.Enabled := True;
+
+      lblSubmodeTools15.Caption := 'Init' + #13#10 + 'Pointer';
+      pnlSubmodeTools15.Enabled := True;
+      lblSubmodeTools15.Enabled := True;
+
+      lblSubmodeTools16.Caption := 'Delete' + #13#10 + 'Pointer';
+      pnlSubmodeTools16.Enabled := True;
+      lblSubmodeTools16.Enabled := True;
+
+      lblSubmodeTools17.Caption := 'IFF' + #13#10 + 'Clear' + #13#10 + 'Mode';
+      pnlSubmodeTools17.Enabled := True;
+      lblSubmodeTools17.Enabled := True;
+
+      lblSubmodeTools18.Caption := 'IFF' + #13#10 + 'Update' + #13#10 + 'Request';
+      pnlSubmodeTools18.Enabled := True;
+      lblSubmodeTools18.Enabled := True;
     end;
   end;
 end;

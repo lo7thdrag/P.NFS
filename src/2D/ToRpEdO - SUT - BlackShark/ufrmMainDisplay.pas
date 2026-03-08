@@ -1891,7 +1891,7 @@ begin
     end;
     SutBlacksharkManager.Env_Map := DataModule1.GetMapById(SutBlacksharkManager.CurrentScenID);
 
-    SutBlacksharkManager.Get57WeaponAssigned;
+    SutBlacksharkManager.GetTorpedoWeaponAssigned;
 
 //
 //    if Assigned(FCCManager.AssignedWeapon) then

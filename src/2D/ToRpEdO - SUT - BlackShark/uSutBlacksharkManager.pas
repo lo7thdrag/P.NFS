@@ -43,7 +43,7 @@ type
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
           procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
   public
-    procedure Get57WeaponAssigned;
+    procedure GetTorpedoWeaponAssigned;
 
     constructor Create;
     destructor Destroy; override;
@@ -53,6 +53,8 @@ type
 
     //send to network
     procedure NetSendTo3D_OrderCannon(rec : TRec3DSetWCC);
+
+    procedure NetSendTo3D_OrderSutTorpedo(rec : TRecSetTorpedoSUT);
 
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
@@ -293,7 +295,7 @@ begin
 
 end;
 
-procedure TSutBlacksharkManager.Get57WeaponAssigned;
+procedure TSutBlacksharkManager.GetTorpedoWeaponAssigned;
 var WeaponAssigned : TWeaponGetList;
     ListWeaponAssigned : TList;
     I : Integer;
@@ -307,7 +309,7 @@ begin
       case vSutBlacksharkSetting.ConsoleMode of
       1 : //Console 1 Mode
         begin
-          if WeaponAssigned.IDWeapon = C_DBID_CANNON_TYPE_730 then begin
+          if WeaponAssigned.IDWeapon = C_DBID_TORPEDO_BLACKSHARK then begin
             FAssignedWeapon := TWeaponGetList.Create;
             FAssignedWeapon := TWeaponGetList(ListWeaponAssigned.Items[I]);
             Break;
@@ -315,7 +317,7 @@ begin
         end;
         2 : //Console 2 Mode
         begin
-          if WeaponAssigned.IDWeapon = C_DBID_CANNON57 then begin
+          if WeaponAssigned.IDWeapon = C_DBID_TORPEDO_SUT then begin
           FAssignedWeapon := TWeaponGetList.Create;
           FAssignedWeapon := TWeaponGetList(ListWeaponAssigned.Items[I]);
           Break;
@@ -347,6 +349,9 @@ begin
     C_REC_CANNON          ,Event_OrderRecognizer, sizeof(TRecMeriam));
 
   NetComm.RegisterProcedure(
+    REC_3D_TORPEDO_SUT          ,Event_OrderRecognizer, sizeof(TRecSetTorpedoSUT));
+
+  NetComm.RegisterProcedure(
     REC_MISSILEPOS        ,EventonRecMissilePosAvailable,  sizeof(TRecMissilePos));
 
   NetComm.RegisterProcedure(
@@ -366,6 +371,13 @@ procedure TSutBlacksharkManager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
       TCPClient.sendDataEx(C_REC_CANNON, @Rec);
+end;
+
+procedure TSutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(
+  rec: TRecSetTorpedoSUT);
+begin
+  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+      TCPClient.sendDataEx(REC_3D_TORPEDO_SUT, @Rec);
 end;
 
 end.
