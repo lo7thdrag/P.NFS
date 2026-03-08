@@ -280,6 +280,8 @@ type
     pClassID        : Integer;
     FSelectedVehicleState : Boolean;
 
+    FStartTime: TDateTime;
+
     procedure LoadGeoset(const aGst: string); virtual;
     procedure InitializeForm();
     procedure setRegionCircle;
@@ -871,14 +873,16 @@ begin
     // range = 3000 m, target lebih rendah 25 m
     ComputeBallisticAngleVacuum(rangekm *1000, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
 
-    lblTgtNo.Caption := FCCManager.SelectedVehicle.ShipID.ToString();
-//    lblTgtDistance.Caption := rangem.ToString();
-    lblLatTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posy]);
-    lblLonTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posx]);
-    lblTgtDistance.Caption := format('%.2f', [rangekm]);
-    lblTgtAzimut.Caption := format('%.2f', [bearing]);
-    lblTgtSpd.Caption := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.943844]);
-    lblTgtCourse.Caption := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
+    edtRDRangeVal.Text := format('%.2f', [rangekm]);
+    edtRAzimuthVal.Text := format('%.2f', [bearing]);
+    edtElevationVal.Text := format('%.4f', [FCCManager.SelectedVehicle.PosZ]);
+
+//    lblTgtNo.Caption := FCCManager.SelectedVehicle.ShipID.ToString();
+//    lblLatTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posy]);
+//    lblLonTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posx]);
+//
+//    lblTgtSpd.Caption := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.943844]);
+//    lblTgtCourse.Caption := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
 
 //    if (aLow <= 80 ) and (aLow >= 0 )then
 //    begin
@@ -937,12 +941,12 @@ begin
   if not FSelectedVehicleState then
   begin
     begin
-    lblTgtNo.Caption := '...';
+    edtRAzimuthVal.Text := '-';
 //    lblTgtDistance.Caption := rangem.ToString();
-    lblTgtDistance.Caption := '...';
-    lblTgtAzimut.Caption := '...';
-    lblTgtSpd.Caption := '...';
-    lblTgtCourse.Caption := '...';
+    edtElevationVal.Text := '-';
+    edtRDRangeVal.Text := '-';
+    edtLSRangeVal.Text := '-';
+//    lblTgtCourse.Caption := '...';
   end;
   end;
 
@@ -1108,44 +1112,44 @@ begin
     end;
     FCCManager.Env_Map := DataModule1.GetMapById(FCCManager.CurrentScenID);
 
-    case vFccSetting.FccMode of
-    1 : //FCC1 Mode
-    begin
-//      pnlFCC1.BringToFront;
-//      pnlTrackerFCC1.BringToFront;
-//      pnlBiteControlFCC1.BringToFront;
-      FCCManager.Get730WeaponAssigned;
-      lblRadarVal.Caption := 'TR47C';
-      lblFrequencyVal.Caption := 'J-Band';
-    end;
-    2 : //FCC2 Mode
-    begin
-//      pnlFCC2.BringToFront;
-//      pnlTrackerFCC2.BringToFront;
-//      pnlBiteControlFCC2.BringToFront;
-      FCCManager.Get57WeaponAssigned;
-      lblRadarVal.Caption := 'MR36A';
-      lblFrequencyVal.Caption := 'G-Band';
-    end;
-    3 : //FCC2 Manual Mode
-    begin
-//      pnlFCC2.BringToFront;
-//      pnlTrackerFCC2.BringToFront;
-//      pnlBiteControlFCC2.BringToFront;
-      FCCManager.Get57WeaponAssigned;
-      lblRadarVal.Caption := 'MR103';
-      lblFrequencyVal.Caption := 'J-Band';
-    end;
-    4 : //FCC2 Mode
-    begin
-//      pnlFCC2.BringToFront;
-//      pnlTrackerFCC2.BringToFront;
-//      pnlBiteControlFCC2.BringToFront;
-      FCCManager.Get57WeaponAssigned;
-      lblRadarVal.Caption := 'MR302';
-      lblFrequencyVal.Caption := 'F-Band';
-    end;
-  end;
+//    case vFccSetting.FccMode of
+//    1 : //FCC1 Mode
+//    begin
+////      pnlFCC1.BringToFront;
+////      pnlTrackerFCC1.BringToFront;
+////      pnlBiteControlFCC1.BringToFront;
+//      FCCManager.Get730WeaponAssigned;
+//      lblRadarVal.Caption := 'TR47C';
+//      lblFrequencyVal.Caption := 'J-Band';
+//    end;
+//    2 : //FCC2 Mode
+//    begin
+////      pnlFCC2.BringToFront;
+////      pnlTrackerFCC2.BringToFront;
+////      pnlBiteControlFCC2.BringToFront;
+//      FCCManager.Get57WeaponAssigned;
+//      lblRadarVal.Caption := 'MR36A';
+//      lblFrequencyVal.Caption := 'G-Band';
+//    end;
+//    3 : //FCC2 Manual Mode
+//    begin
+////      pnlFCC2.BringToFront;
+////      pnlTrackerFCC2.BringToFront;
+////      pnlBiteControlFCC2.BringToFront;
+//      FCCManager.Get57WeaponAssigned;
+//      lblRadarVal.Caption := 'MR103';
+//      lblFrequencyVal.Caption := 'J-Band';
+//    end;
+//    4 : //FCC2 Mode
+//    begin
+////      pnlFCC2.BringToFront;
+////      pnlTrackerFCC2.BringToFront;
+////      pnlBiteControlFCC2.BringToFront;
+//      FCCManager.Get57WeaponAssigned;
+//      lblRadarVal.Caption := 'MR302';
+//      lblFrequencyVal.Caption := 'F-Band';
+//    end;
+//  end;
 
 //
 //    if Assigned(FCCManager.AssignedWeapon) then
@@ -1161,27 +1165,27 @@ begin
     FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
   end;
 
-  if vFccSetting.FccMode <> 4 then
-  begin
-    setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
-    TgoBsonSerializer.Deserialize(setting, config);
-    config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
-    // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
-    // untuk testing awal tidak perlu diubah dulu
-    TgoBsonSerializer.Serialize(config, setting);
-    tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
-
-    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-    ExecInfo.cbSize := SizeOf(ExecInfo);
-    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-    ExecInfo.Wnd := Handle;
-    ExecInfo.lpVerb := 'open';
-    ExecInfo.lpFile := PChar('Viewer.exe');
-    ExecInfo.nShow := SW_SHOW;
-
-    if not ShellExecuteEx(@ExecInfo) then
-      RaiseLastOSError;
-  end;
+//  if vFccSetting.FccMode <> 4 then
+//  begin
+//    setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
+//    TgoBsonSerializer.Deserialize(setting, config);
+//    config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
+//    // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
+//    // untuk testing awal tidak perlu diubah dulu
+//    TgoBsonSerializer.Serialize(config, setting);
+//    tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
+//
+//    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+//    ExecInfo.cbSize := SizeOf(ExecInfo);
+//    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+//    ExecInfo.Wnd := Handle;
+//    ExecInfo.lpVerb := 'open';
+//    ExecInfo.lpFile := PChar('Viewer.exe');
+//    ExecInfo.nShow := SW_SHOW;
+//
+//    if not ShellExecuteEx(@ExecInfo) then
+//      RaiseLastOSError;
+//  end;
 
 end;
 
@@ -1228,6 +1232,8 @@ var
   WindowHandle: HWND;
 begin
   UpdatePosition(Self);
+
+  FStartTime := Now;
 //  // jalankan chrome
 //  RunAppInPanel(pnlBaseVideoZone, 'C:\Program Files\Google\Chrome\Application\chrome.exe',
 //    '--app="https://google.com"');
@@ -1785,11 +1791,18 @@ begin
 end;
 
 procedure TfrmMainFCC.tmrUpdateFormTimer(Sender: TObject);
+var
+duration : TDateTime;
 begin
 //  if FNorthAngle < 360 then
 //    Inc(FNorthAngle)
 //  else
 //    FNorthAngle := 0;
+
+  duration := Now - FStartTime;
+  lblRunTimeVal.Caption := FormatDateTime('hh:nn:ss', duration);
+
+  lblSystemTimeVal.Caption := FormatDateTime('hh:nn:ss',now);
 
   imgCompas.Repaint;
 
@@ -1849,12 +1862,14 @@ begin
 
 //  lblBearing.Caption := Format('0',[FBearing0.BearingDeg]);
 //  lblRange.Caption := Format('0.00', [FCurrentRange * C_Meter_To_NauticalMile]);
-  lblLongtitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionX);
-  lblLatitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionY);
-  lblSpeed.Caption := FormatFloat('00.0', FCCManager.xShip.Speed);
-  lblHeading.Caption := FormatFloat('0', FCCManager.xShip.Heading);
-  lblEta.Caption := FormatDateTime('hh:nn:ss',now);
-  lblUTCTime.Caption := FormatDateTime('hh:nn:ss',TTimeZone.Local.ToUniversalTime(Now));
+//  lblLongtitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionX);
+//  lblLatitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionY);
+  EdtSpeedNAVIVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
+  edtSpeedINDVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
+  EdtHeadingNAVIVal.Text := FormatFloat('0', FCCManager.xShip.Heading);
+  edtHeadingINDVal.Text := FormatFloat('0', FCCManager.xShip.Heading);
+//  lblEta.Caption := FormatDateTime('hh:nn:ss',now);
+//  lblUTCTime.Caption := FormatDateTime('hh:nn:ss',TTimeZone.Local.ToUniversalTime(Now));
 //  lblTtg.Caption := FormatDateTime('hh:nn',now);
 end;
 

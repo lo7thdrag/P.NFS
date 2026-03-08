@@ -472,7 +472,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000F025011001000000010000001C000000000000000000000000
+          010001180100000800FF0F0100000054F097001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -481,15 +481,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000F025011001000000000000001C00000000000000000000000000000000
+          0100000800FF0F010000006594BD001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000C8BED150D8F5970095
-          52D150A0221D22F04559035C251008577CFC76AB06B3CD000000000000000000
+          0000000000000000000000000000000000000000000000E0A59F04FEFFFFFF00
+          0000002CF09700EB458577DC5078741933817760F19700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -620,6 +620,7 @@ object frmMainFCC: TfrmMainFCC
       TrackLabel.Font.Height = -11
       TrackLabel.Font.Name = 'Tahoma'
       TrackLabel.Font.Style = []
+      TrackLabel.Format = 'PosLeft: %d  PosRight: %d'
       TrackLabel.Spacing = 0
       Version = '1.6.10.2'
     end
@@ -727,6 +728,7 @@ object frmMainFCC: TfrmMainFCC
       TrackLabel.Font.Height = -11
       TrackLabel.Font.Name = 'Tahoma'
       TrackLabel.Font.Style = []
+      TrackLabel.Format = 'PosLeft: %d  PosRight: %d'
       TrackLabel.Spacing = 0
       Version = '1.6.10.2'
     end
@@ -862,9 +864,6 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 2
-      ExplicitTop = 5
-      ExplicitWidth = 448
     end
     object AdvPageControl1: TAdvPageControl
       Left = 1
@@ -892,7 +891,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 2
         object lblMR35FCC2: TLabel
           Left = 3
           Top = 33
@@ -978,10 +976,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
       end
       object AdvTabRev: TAdvTabSheet
         Caption = 'Rev'
@@ -989,10 +983,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
       end
       object AdvTabServo: TAdvTabSheet
         Caption = 'Servo'
@@ -1000,10 +990,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
       end
       object AdvTabCon: TAdvTabSheet
         Caption = 'Con'
@@ -1011,10 +997,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
       end
       object AdvTabTVLS: TAdvTabSheet
         Caption = 'TV-LS'
@@ -1022,10 +1004,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
       end
     end
   end
@@ -1052,8 +1030,6 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = 3
-      ExplicitWidth = 446
     end
     object pnlExteriorDataLeft: TPanel
       Left = 1
@@ -1062,15 +1038,12 @@ object frmMainFCC: TfrmMainFCC
       Height = 172
       Align = alLeft
       TabOrder = 1
-      ExplicitLeft = 0
-      ExplicitTop = 35
-      ExplicitHeight = 166
       object advControlPageExtDat: TAdvPageControl
         Left = 1
         Top = 1
         Width = 223
         Height = 170
-        ActivePage = advTabNAVI
+        ActivePage = AdvTabDEVI
         ActiveFont.Charset = DEFAULT_CHARSET
         ActiveFont.Color = clWindowText
         ActiveFont.Height = -11
@@ -1091,8 +1064,6 @@ object frmMainFCC: TfrmMainFCC
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 3
-          ExplicitTop = 22
           object lblHeadingNAVI: TLabel
             Left = 3
             Top = 13
@@ -1268,10 +1239,6 @@ object frmMainFCC: TfrmMainFCC
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 24
-          ExplicitTop = 0
-          ExplicitWidth = 100
-          ExplicitHeight = 100
           object lblIDTargetIND: TLabel
             Left = 3
             Top = 13
@@ -1398,10 +1365,6 @@ object frmMainFCC: TfrmMainFCC
           ParentFont = False
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 24
-          ExplicitTop = 0
-          ExplicitWidth = 100
-          ExplicitHeight = 100
         end
       end
     end
@@ -1412,10 +1375,6 @@ object frmMainFCC: TfrmMainFCC
       Height = 172
       Align = alClient
       TabOrder = 2
-      ExplicitLeft = 224
-      ExplicitTop = 35
-      ExplicitWidth = 225
-      ExplicitHeight = 166
       object lblRev: TLabel
         Left = 29
         Top = 42
@@ -1672,7 +1631,6 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = 0
     end
     object edtStatusGain: TEdit
       Left = 102
@@ -2097,7 +2055,7 @@ object frmMainFCC: TfrmMainFCC
       Max = 2
       Min = -2
       ParentShowHint = False
-      PositionRight = 40
+      PositionRight = 2
       ShowHint = False
       Slider.BorderColor = clNone
       Slider.BorderColorDisabled = clNone
@@ -2365,9 +2323,6 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 1
-      ExplicitTop = 0
-      ExplicitWidth = 219
     end
     object edtRAzimuthVal: TEdit
       Left = 19
