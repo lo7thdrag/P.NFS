@@ -902,7 +902,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 903
           object Bevel1: TBevel
             Left = 45
             Top = 41
@@ -1616,7 +1615,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblYakhontStatus: TLabel
             Left = 151
             Top = 11
@@ -2086,7 +2084,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl2: TLabel
             Left = 143
             Top = 10
@@ -2147,7 +2144,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object Bevel2: TBevel
             Left = 45
             Top = 24
@@ -2612,7 +2608,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object pnlWCCIner: TPanel
             Left = 0
             Top = 0
@@ -2629,8 +2624,6 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
-            ExplicitWidth = 393
-            ExplicitHeight = 26
             object bvl3: TBevel
               Left = 45
               Top = 41
@@ -2782,7 +2775,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl16: TLabel
             Left = 144
             Top = 11
@@ -3269,7 +3261,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl1: TLabel
             Left = 159
             Top = 11
@@ -3555,7 +3546,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl23: TLabel
             Left = 159
             Top = 11
@@ -4248,7 +4238,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblNameSPS: TLabel
             Left = 159
             Top = 11
@@ -5029,7 +5018,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl4: TLabel
             Left = 145
             Top = 11
@@ -5153,7 +5141,7 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
+          ExplicitHeight = 883
           object lbl200: TLabel
             Left = 145
             Top = 11
@@ -6757,6 +6745,11 @@ object fWeaponStatus: TfWeaponStatus
         end
       end
       object rzgrpC705: TRzGroup
+        CaptionFont.Charset = DEFAULT_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = -11
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = [fsBold]
         Color = clGray
         ColorDefault = False
         Items = <>
@@ -6780,9 +6773,9 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
+          ExplicitHeight = 0
           object lblC705Title: TLabel
-            Left = 179
+            Left = 171
             Top = 11
             Width = 35
             Height = 19
@@ -6795,13 +6788,13 @@ object fWeaponStatus: TfWeaponStatus
             ParentFont = False
           end
           object Bevel6: TBevel
-            Left = 62
+            Left = 54
             Top = 41
             Width = 268
             Height = 1
           end
           object grpAssignC705: TGroupBox
-            Left = 79
+            Left = 71
             Top = 191
             Width = 234
             Height = 105
@@ -6934,7 +6927,7 @@ object fWeaponStatus: TfWeaponStatus
             end
           end
           object grpC705StatusLauncher: TGroupBox
-            Left = 22
+            Left = 14
             Top = 52
             Width = 136
             Height = 121
@@ -7020,9 +7013,9 @@ object fWeaponStatus: TfWeaponStatus
             end
           end
           object grpC705StatusConsole: TGroupBox
-            Left = 164
+            Left = 156
             Top = 54
-            Width = 207
+            Width = 176
             Height = 120
             Caption = 'Status Console'
             Font.Charset = DEFAULT_CHARSET
@@ -7033,7 +7026,7 @@ object fWeaponStatus: TfWeaponStatus
             ParentFont = False
             TabOrder = 2
             object chkC705Enable: TCheckBox
-              Left = 45
+              Left = 34
               Top = 27
               Width = 92
               Height = 17
@@ -7047,7 +7040,7 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 0
             end
             object chkC7052: TCheckBox
-              Left = 62
+              Left = 51
               Top = 69
               Width = 91
               Height = 17
@@ -7062,7 +7055,7 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 1
             end
             object chkC7051: TCheckBox
-              Left = 62
+              Left = 51
               Top = 51
               Width = 91
               Height = 17

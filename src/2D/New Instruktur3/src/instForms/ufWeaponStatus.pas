@@ -5897,6 +5897,8 @@ begin
       rzgrpMOCPKR.Opened:= True;
       rzgrpVLMica.Opened:= True;
       rzgrpMilleniumGun35.Opened:= True;
+      rzgrpBlackshark.Opened := True;
+      rzgrpC705.Opened := True;
       firstCekOpenGroupBar := True;
     end;
 
@@ -5918,6 +5920,8 @@ begin
     rzgrpMOCPKR.Visible:= False;
     rzgrpMilleniumGun35.Visible:= False;
     rzgrpVLMica.Visible:= False;
+    rzgrpBlackshark.Visible := False;
+    rzgrpC705.Visible := False;
 end;
 
 procedure TfWeaponStatus.WeaponStatusOpen(Sender: TObject);
