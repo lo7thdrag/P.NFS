@@ -2,6 +2,7 @@ program NFSC705;
 
 uses
   Vcl.Forms,
+  Winapi.Windows,
   UfrmRoutePlan in 'libDisplayUI\UfrmRoutePlan.pas' {frmRoutePlan},
   UfrmWCC in 'libDisplayUI\UfrmWCC.pas' {frmWCC},
   uLibSettings in 'uLibSettings.pas',
@@ -41,19 +42,30 @@ uses
   uWaypointModel in 'LibMapX\uWaypointModel.pas',
   uWaypointView in 'libObjects\uWaypointView.pas',
   uMapViewManager in 'libObjects\uMapViewManager.pas',
-  uMapViewBase in 'libObjects\uMapViewBase.pas';
+  uMapViewBase in 'libObjects\uMapViewBase.pas',
+  uShipView in 'libObjects\uShipView.pas';
 
 {$R *.res}
 
+var
+  MutexHandle: THandle;
 begin
   ReportMemoryLeaksOnShutdown := True;
+
+  MutexHandle := CreateMutex(nil, True, 'MY_UNIQUE_APP_MUTEX');
+  if (MutexHandle = 0) or (GetLastError = ERROR_ALREADY_EXISTS) then
+  begin
+    // aplikasi sudah berjalan
+    Halt;
+  end;
+
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
   Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);
   Application.CreateForm(TfrmWCC, frmWCC);
+  Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   //Application.CreateForm(TfrmPnlArea3AFoeFriend, frmPnlArea3AFoeFriend);
   //Application.CreateForm(TfrmParamSetting, frmParamSetting);
   //Application.CreateForm(TfrmRadar, frmRadar);

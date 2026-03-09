@@ -64,10 +64,10 @@ begin
   else
   begin
     // dual monitor atau di Console
-    frmWCC.SetMonitor(VMonitorSetting.MonitorKanan,
-                              VMonitorTopLeft.MonBot_Left, VMonitorTopLeft.MonBot_Top);
     frmRoutePlan.SetMonitor(VMonitorSetting.MonitorKiri,
                               VMonitorTopLeft.MonTop_Left, VMonitorTopLeft.MonTop_Top);
+    frmWCC.SetMonitor(VMonitorSetting.MonitorKanan,
+                              VMonitorTopLeft.MonBot_Left, VMonitorTopLeft.MonBot_Top);
     frmKeyboardCalcLaunch.SetMonitor(VMonitorSetting.MonitorMini,
                               VMonitorTopLeft.MonMini_Left, VMonitorTopLeft.MonMini_Top);
 

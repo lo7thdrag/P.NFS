@@ -3,7 +3,8 @@ unit uMapViewManager;
 interface
 
 uses
-  System.Generics.Collections, System.Contnrs, uMapViewBase, Vcl.Graphics;
+  System.Generics.Collections, System.Contnrs, uMapViewBase, Vcl.Graphics,
+    uCoordConverter;
 
 type
   TMapViewManager = class
@@ -15,7 +16,7 @@ type
     destructor Destroy; override;
 
     procedure AddView(aView: TMapViewBase);
-    procedure DrawAll(aCnv: TCanvas);
+    procedure DrawAll(aCnv: TCanvas; aCvt: TCoordConverter);
   end;
 
 implementation
@@ -38,12 +39,12 @@ begin
   FViews.Add(aView);
 end;
 
-procedure TMapViewManager.DrawAll(aCnv: TCanvas);
+procedure TMapViewManager.DrawAll(aCnv: TCanvas; aCvt: TCoordConverter);
 var
-  v: TMapViewBase;
+  aView: TMapViewBase;
 begin
-  for v in FViews do
-    v.Draw(aCnv);
+  for aView in FViews do
+    aView.Draw(aCnv, aCvt);
 end;
 
 end.

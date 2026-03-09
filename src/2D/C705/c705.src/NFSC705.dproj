@@ -105,11 +105,9 @@
         </DelphiCompile>
         <DCCReference Include="libDisplayUI\UfrmRoutePlan.pas">
             <Form>frmRoutePlan</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\UfrmWCC.pas">
             <Form>frmWCC</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uLibSettings.pas"/>
         <DCCReference Include="..\didFramework\LibBaseUtils\StringUtils\uCodecBase64.pas"/>
@@ -125,23 +123,18 @@
         <DCCReference Include="libMgr\uFormMgr.pas"/>
         <DCCReference Include="libDisplayUI\UfrmFoeFriendSituationPage.pas">
             <Form>frmFoeFriendSituationPage</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmMissileInformation.pas">
             <Form>frmMissileInformation</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\uFrmKeyboardCalcLaunch.pas">
             <Form>frmKeyboardCalcLaunch</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmFireDistribution.pas">
             <Form>frmFireDistribution</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmMissileMonitor.pas">
             <Form>frmMissileMonitor</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmLaunchData.pas">
             <Form>frmLaunchData</Form>
@@ -156,17 +149,14 @@
         <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseDataType.pas"/>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmINSTest.pas">
             <Form>frmINSTest</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="LibMapX\uShipModel.pas"/>
         <DCCReference Include="LibMapX\uRadarSensor.pas"/>
         <DCCReference Include="libDisplayUI\FrmTab\UfrmRadar.pas">
             <Form>frmRadar</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmParamSetting.pas">
             <Form>frmParamSetting</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\ShareLib\LibSetting\uBridgeSet.pas"/>
         <DCCReference Include="..\didFramework\LibSims\uBaseSimObjects.pas"/>
@@ -177,6 +167,7 @@
         <DCCReference Include="libObjects\uWaypointView.pas"/>
         <DCCReference Include="libObjects\uMapViewManager.pas"/>
         <DCCReference Include="libObjects\uMapViewBase.pas"/>
+        <DCCReference Include="libObjects\uShipView.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

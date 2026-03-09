@@ -4,7 +4,7 @@ interface
 
 uses
   MapXLib_TLB, Vcl.Graphics,
-    uMapXUnitConverter, uMapViewBase, uWaypointModel;
+    uMapXUnitConverter, uMapViewBase, uWaypointModel, uCoordConverter;
 
 type
   TWaypointView = class(TMapViewBase)
@@ -16,7 +16,7 @@ type
                         aConverter: TMapXUnitConverter;
                         aRoute: TRoutePlanning); reintroduce;
 
-    procedure Draw(aCnv: TCanvas); override;
+    procedure Draw(aCnv: TCanvas; aCvt: TCoordConverter); override;
   end;
 
 implementation
@@ -32,7 +32,7 @@ begin
   FRoute := aRoute;
 end;
 
-procedure TWaypointView.Draw(aCnv: TCanvas);
+procedure TWaypointView.Draw(aCnv: TCanvas; aCvt: TCoordConverter);
 var
   i: Integer;
   pt: TWaypoint;

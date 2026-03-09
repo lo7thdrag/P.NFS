@@ -8,12 +8,15 @@ uses
 
 type
   TRoutePlanMode = (mPassive, mActive);
+  TOnMapInit = procedure(const GeosetPath: string) of object;
 
   GameSimManager = class
   private
     { NFS Dependencies }
     FNFSObjectList: TObjectList;
     FAutoConnectToBridgeTimer: TTimer;
+
+    FOnMapInit: TOnMapInit;
 
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
     procedure OnConnected(msg: string);
@@ -32,7 +35,10 @@ type
     constructor Create;
     destructor Destroy; override;
 
+    procedure InitializeMap;
+
     property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
+    property OnMapInit: TOnMapInit read FOnMapInit write FOnMapInit;
   published
     {
       Main Function of Simulation
@@ -85,6 +91,13 @@ begin
   end;
 
   inherited;
+end;
+
+// LoadMap, LoadGeoset pakai path
+procedure GameSimManager.InitializeMap;
+begin
+  if Assigned(FOnMapInit) then
+    FOnMapInit(VMapSetting.MapGeosetDay);
 end;
 
 {$REGION 'NFS Socket'}

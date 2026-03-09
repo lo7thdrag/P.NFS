@@ -11,7 +11,7 @@ uses
   OverbyteIcsWSocket, uTCPDatatype, uC705SimManager, uLibSettings, uScriptC705,
   uShipModel, uVehicleManager, SpeedButtonImage, AdvGroupBox, AdvPageControl,
   Vcl.ComCtrls, VrButtons, AdvOfficeButtons,
-  uWaypointModel, uWaypointView;
+  uWaypointModel, uWaypointView, uMapViewManager, uShipView;
 
 type
   TEditMode = (edNone, edAddWaypoint, edMoveWaypoint, edDeleteWaypoint, edAddRoute, edDeleteRoute);
@@ -324,6 +324,7 @@ type
     FSelectedRoute: TRoutePlanning;
     FSelectedWaypoint: TWaypoint;
 
+    FMapViewManager: TMapViewManager;
     FRouteList: TObjectList<TRoutePlanning>;
     FWaypointViews: TObjectList<TWaypointView>;
 
@@ -340,6 +341,8 @@ type
     procedure MapMove;
   public
     { Public declarations }
+    procedure InitMapMainForm(const GeosetPath: string);
+
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 
   end;
@@ -459,6 +462,8 @@ begin
     FreeAndNil(FWaypointViews);
   if Assigned(FRouteList) then
     FreeAndNil(FRouteList);
+  if Assigned(FMapViewManager) then
+    FreeAndNil(FMapViewManager);
 
   FreeAndNil(FCanvas);
 
@@ -466,6 +471,8 @@ begin
 end;
 
 procedure TfrmRoutePlan.FormCreate(Sender: TObject);
+var
+  i: Integer;
 begin
   Self.DoubleBuffered := False;
   EnableComposited(pnlBasemap);
@@ -495,6 +502,7 @@ begin
   FEditMode := edNone;
   FRouteList := TObjectList<TRoutePlanning>.Create(True);
   FWaypointViews := TObjectList<TWaypointView>.Create(True);
+
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
@@ -552,6 +560,18 @@ begin
   pnlIslandLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
   pnlIslandLvl2.Left := btnDisplayChannel.Left;
   pnlIslandLvl2.Visible := False;
+end;
+
+procedure TfrmRoutePlan.InitMapMainForm(const GeosetPath: string);
+begin
+  { View Draw Object di Map }
+  FMapViewManager := TMapViewManager.Create;
+
+  FMapViewManager.AddView(
+    TShipView.Create(FMap, VehicleMgr)
+  );
+
+  LoadGeoset(GeosetPath);
 end;
 
 {$REGION 'Map Section'}
@@ -649,7 +669,7 @@ begin
 
   imgMapBackground.Picture.Assign(FBitmapBackground);
 
-  LoadGeoset('.\data\mapsea\Indonesia.gst');
+  //LoadGeoset('.\data\mapsea\Indonesia.gst');
 //  LoadGeoset('.\.\.\.\bin\2D\data\mapsea\Indonesia.gst');
 end;
 
@@ -799,7 +819,9 @@ begin
 
   FCanvas.Handle := hOutputDC;
 
-  DrawAll(FCanvas, FMapConverter);
+  FMapViewManager.DrawAll(FCanvas, FMapConverter);
+
+  //DrawAll(FCanvas, FMapConverter);
 end;
 
 procedure TfrmRoutePlan.FMapMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -823,13 +845,15 @@ begin
     edAddRoute: begin
       if FRouteList.Count >= 4 then
       begin
-        ShowMessage('Maximum 4 routes allowed.');
+        lblStatusMap.Caption := 'Maximum 4 routes allowed.';
+        //ShowMessage('Maximum 4 routes allowed.');
         Exit;
       end;
 
       if Assigned(FSelectedRoute) then
       begin
-        ShowMessage('Finish current route first.');
+        lblStatusMap.Caption := 'Finish current route first.';
+        //ShowMessage('Finish current route first.');
         Exit;
       end;
 
@@ -839,13 +863,19 @@ begin
       // titik pertama
       FSelectedRoute.AddWaypoint(dLat, dLong);
 
-      ShowMessage('Route created. Switch to Add Waypoint mode to continue.');
+      // Create View Manager untuk route ini
+      FMapViewManager.AddView(
+        TWaypointView.Create(FMap, FMapConverter, FSelectedRoute)
+      );
+
+      lblStatusMap.Caption := 'Route created. Switch to Add Waypoint mode to continue.';
+      //ShowMessage('Route created. Switch to Add Waypoint mode to continue.');
 
       FMap.Refresh;
       {
       if FRouteList.Count >= 4 then
       begin
-        ShowMessage('Maximum 4 routes allowed');
+        //ShowMessage('Maximum 4 routes allowed');
         Exit;
       end;
 
@@ -872,20 +902,23 @@ begin
       // Kalau belum ada route aktif ? buat baru otomatis
       if not Assigned(FSelectedRoute) then
       begin
-        ShowMessage('No active route. Switch to Add Route mode first.');
+        lblStatusMap.Caption := 'No active route. Switch to Add Route mode first.';
+        //ShowMessage('No active route. Switch to Add Route mode first.');
         Exit;
       end;
 
       if FSelectedRoute.Waypoints.Count >= 4 then
       begin
-        ShowMessage('Maximum 4 waypoints per route reached. Switch to Add Route mode to create a new route.');
+        lblStatusMap.Caption := 'Maximum 4 waypoints per route reached. Switch to Add Route mode to create a new route.';
+        //ShowMessage('Maximum 4 waypoints per route reached. Switch to Add Route mode to create a new route.');
         Exit;
       end;
 
       FSelectedRoute.AddWaypoint(dLat, dLong);
       if FSelectedRoute.Waypoints.Count = 4 then
       begin
-        ShowMessage('Route completed.');
+        lblStatusMap.Caption := 'Route completed.';
+        //ShowMessage('Route completed.');
         FSelectedRoute := nil;
       end;
 
@@ -896,7 +929,7 @@ begin
 
       if FSelectedRoute.Waypoints.Count >= 4 then
       begin
-        ShowMessage('Maximum 4 waypoint per route.');
+        //ShowMessage('Maximum 4 waypoint per route.');
         Exit;
       end;
 
@@ -1124,13 +1157,13 @@ begin
       begin
         FisMapDayMode := False;
         btnChangeMode.Glyph.LoadFromFile(strpath + 'Button Change Mode - Night.bmp');   // set to Night
-        //LoadGeoset('.\data\MapNightMode\tcms_world_lama.gst');
+        //LoadGeoset(VMapSetting.MapGeosetNight);
       end
       else if not FisMapDayMode then
       begin
         FisMapDayMode := True;
         btnChangeMode.Glyph.LoadFromFile(strpath + 'Button Change Mode - Day.bmp');   // set to Day
-        //LoadGeoset('.\data\mapsea\Indonesia.gst');
+        //LoadGeoset(VMapSetting.MapGeosetDay);
       end;
       {$ENDREGION}
     end;
