@@ -134,9 +134,11 @@ object frmMainFCC: TfrmMainFCC
       Top = 33
       Width = 596
       Height = 467
-      BevelInner = bvRaised
-      BevelOuter = bvLowered
-      BevelWidth = 2
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      BevelOuter = bvNone
       Color = clMedGray
       ParentBackground = False
       TabOrder = 0
@@ -148,10 +150,10 @@ object frmMainFCC: TfrmMainFCC
         Stretch = True
       end
       object imgBackgrounSituationZone: TImage
-        Left = 4
-        Top = 4
-        Width = 588
-        Height = 459
+        Left = 0
+        Top = 0
+        Width = 596
+        Height = 467
         Align = alClient
         ExplicitLeft = 1
         ExplicitTop = 1
@@ -443,10 +445,10 @@ object frmMainFCC: TfrmMainFCC
         Version = '1.6.1.0'
       end
       object FMap: TMap
-        Left = 4
-        Top = 4
-        Width = 588
-        Height = 459
+        Left = 0
+        Top = 0
+        Width = 596
+        Height = 467
         ParentColor = False
         Align = alClient
         TabOrder = 0
@@ -455,24 +457,23 @@ object frmMainFCC: TfrmMainFCC
         OnMouseMove = FMapMouseMove
         OnMouseDown = FMapMouseDown
         OnDrawUserLayer = FMapDrawUserLayer
-        ExplicitLeft = 121
-        ExplicitTop = 58
-        ExplicitWidth = 654
-        ExplicitHeight = 414
+        ExplicitTop = 2
+        ExplicitWidth = 592
+        ExplicitHeight = 463
         ControlData = {
-          8A1A0600C63C0000702F000001000000FFFFFF000D47656F44696374696F6E61
+          8A1A0600993D00004430000001000000FFFFFF000D47656F44696374696F6E61
           727905456D70747900E8030000000000000000000002000E001E000000000000
           0000000000000000000000000000000000000000000600010000000000500001
           010000640000000001F4010000050000800C000000000000000000000000FFFF
           FF000100000000000000000000000000000000000000000000000352E30B918F
-          CE119DE300AA004BB851010000009001F460050005417269616C000352E30B91
+          CE119DE300AA004BB851010000009001407E050005417269616C000352E30B91
           8FCE119DE300AA004BB851010000009001348C030005417269616C0000000000
           00000000000000000000000000000000000000000000000000000000000000FF
           FFFF000000000000000001370000000000FFFFFF000000000000000352E30B91
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100000800FF0F0100000054F097001C000000000000000000000000
+          01000118010000F88B4F1201000000CC9166771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -481,15 +482,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100000800FF0F010000006594BD001C00000000000000000000000000000000
+          010000F88B4F1201000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E0A59F04FEFFFFFF00
-          0000002CF09700EB458577DC5078741933817760F19700000000000000000000
+          000000000000000000000000000000000000000000000088CB97003D8B1D7721
+          00000000000000208B1D7700C0432A35B79640C8CB9700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -508,6 +509,7 @@ object frmMainFCC: TfrmMainFCC
         Width = 1
         Height = 501
         Pen.Color = clWhite
+        Visible = False
       end
       object Shape2: TShape
         Left = 0
@@ -515,6 +517,153 @@ object frmMainFCC: TfrmMainFCC
         Width = 649
         Height = 1
         Pen.Color = clWhite
+        Visible = False
+      end
+      object tableReceiveBITE: TAdvStringGrid
+        Left = 1
+        Top = 24
+        Width = 647
+        Height = 476
+        Cursor = crDefault
+        Align = alBottom
+        Color = clNone
+        ColCount = 3
+        DrawingStyle = gdsClassic
+        FixedColor = clRed
+        FixedCols = 0
+        RowCount = 20
+        FixedRows = 0
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        GradientStartColor = clBlack
+        ParentFont = False
+        ScrollBars = ssBoth
+        TabOrder = 0
+        GridFixedLineColor = clRed
+        HoverRowCells = [hcNormal, hcSelected]
+        ActiveCellFont.Charset = DEFAULT_CHARSET
+        ActiveCellFont.Color = clWhite
+        ActiveCellFont.Height = -11
+        ActiveCellFont.Name = 'Tahoma'
+        ActiveCellFont.Style = [fsBold]
+        ActiveCellColor = clBlack
+        ColumnSize.Stretch = True
+        ColumnSize.StretchColumn = 1
+        ControlLook.FixedGradientHoverFrom = clGray
+        ControlLook.FixedGradientHoverTo = clWhite
+        ControlLook.FixedGradientDownFrom = clGray
+        ControlLook.FixedGradientDownTo = clSilver
+        ControlLook.DropDownHeader.Font.Charset = DEFAULT_CHARSET
+        ControlLook.DropDownHeader.Font.Color = clWindowText
+        ControlLook.DropDownHeader.Font.Height = -11
+        ControlLook.DropDownHeader.Font.Name = 'Tahoma'
+        ControlLook.DropDownHeader.Font.Style = []
+        ControlLook.DropDownHeader.Visible = True
+        ControlLook.DropDownHeader.Buttons = <>
+        ControlLook.DropDownFooter.Font.Charset = DEFAULT_CHARSET
+        ControlLook.DropDownFooter.Font.Color = clWindowText
+        ControlLook.DropDownFooter.Font.Height = -11
+        ControlLook.DropDownFooter.Font.Name = 'Tahoma'
+        ControlLook.DropDownFooter.Font.Style = []
+        ControlLook.DropDownFooter.Visible = True
+        ControlLook.DropDownFooter.Buttons = <>
+        Filter = <>
+        FilterDropDown.Font.Charset = DEFAULT_CHARSET
+        FilterDropDown.Font.Color = clWindowText
+        FilterDropDown.Font.Height = -11
+        FilterDropDown.Font.Name = 'Tahoma'
+        FilterDropDown.Font.Style = []
+        FilterDropDown.TextChecked = 'Checked'
+        FilterDropDown.TextUnChecked = 'Unchecked'
+        FilterDropDownClear = '(All)'
+        FilterEdit.TypeNames.Strings = (
+          'Starts with'
+          'Ends with'
+          'Contains'
+          'Not contains'
+          'Equal'
+          'Not equal'
+          'Larger than'
+          'Smaller than'
+          'Clear')
+        FixedRowHeight = 22
+        FixedFont.Charset = DEFAULT_CHARSET
+        FixedFont.Color = clWhite
+        FixedFont.Height = -11
+        FixedFont.Name = 'Tahoma'
+        FixedFont.Style = [fsBold]
+        FloatFormat = '%.2f'
+        HoverButtons.Buttons = <>
+        HoverButtons.Position = hbLeftFromColumnLeft
+        HTMLSettings.ImageFolder = 'images'
+        HTMLSettings.ImageBaseName = 'img'
+        PrintSettings.DateFormat = 'dd/mm/yyyy'
+        PrintSettings.Font.Charset = DEFAULT_CHARSET
+        PrintSettings.Font.Color = clWindowText
+        PrintSettings.Font.Height = -11
+        PrintSettings.Font.Name = 'Tahoma'
+        PrintSettings.Font.Style = []
+        PrintSettings.FixedFont.Charset = DEFAULT_CHARSET
+        PrintSettings.FixedFont.Color = clWindowText
+        PrintSettings.FixedFont.Height = -11
+        PrintSettings.FixedFont.Name = 'Tahoma'
+        PrintSettings.FixedFont.Style = []
+        PrintSettings.HeaderFont.Charset = DEFAULT_CHARSET
+        PrintSettings.HeaderFont.Color = clWindowText
+        PrintSettings.HeaderFont.Height = -11
+        PrintSettings.HeaderFont.Name = 'Tahoma'
+        PrintSettings.HeaderFont.Style = []
+        PrintSettings.FooterFont.Charset = DEFAULT_CHARSET
+        PrintSettings.FooterFont.Color = clWindowText
+        PrintSettings.FooterFont.Height = -11
+        PrintSettings.FooterFont.Name = 'Tahoma'
+        PrintSettings.FooterFont.Style = []
+        PrintSettings.PageNumSep = '/'
+        SearchFooter.FindNextCaption = 'Find &next'
+        SearchFooter.FindPrevCaption = 'Find &previous'
+        SearchFooter.Font.Charset = DEFAULT_CHARSET
+        SearchFooter.Font.Color = clWindowText
+        SearchFooter.Font.Height = -11
+        SearchFooter.Font.Name = 'Tahoma'
+        SearchFooter.Font.Style = []
+        SearchFooter.HighLightCaption = 'Highlight'
+        SearchFooter.HintClose = 'Close'
+        SearchFooter.HintFindNext = 'Find next occurrence'
+        SearchFooter.HintFindPrev = 'Find previous occurrence'
+        SearchFooter.HintHighlight = 'Highlight occurrences'
+        SearchFooter.MatchCaseCaption = 'Match case'
+        SearchFooter.ResultFormat = '(%d of %d)'
+        SelectionColor = clBlack
+        SelectionTextColor = clWhite
+        ShowDesignHelper = False
+        SortSettings.DefaultFormat = ssAutomatic
+        Version = '8.4.7.0'
+        ColWidths = (
+          64
+          515
+          64)
+      end
+      object pnlReceiveBiteHeader: TPanel
+        Left = 1
+        Top = 1
+        Width = 647
+        Height = 23
+        Align = alClient
+        Caption = 'Receive BITE'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+        ExplicitLeft = 232
+        ExplicitTop = 232
+        ExplicitWidth = 185
+        ExplicitHeight = 41
       end
     end
     object advRulerBottomRight: TAdvRangeSlider
@@ -1043,7 +1192,7 @@ object frmMainFCC: TfrmMainFCC
         Top = 1
         Width = 223
         Height = 170
-        ActivePage = AdvTabDEVI
+        ActivePage = advTabNAVI
         ActiveFont.Charset = DEFAULT_CHARSET
         ActiveFont.Color = clWindowText
         ActiveFont.Height = -11
@@ -1322,7 +1471,7 @@ object frmMainFCC: TfrmMainFCC
           end
           object edtHeadingINDVal: TEdit
             Left = 84
-            Top = 73
+            Top = 74
             Width = 115
             Height = 24
             Alignment = taCenter
@@ -1983,7 +2132,7 @@ object frmMainFCC: TfrmMainFCC
       Height = 13
       Caption = 'km'
     end
-    object Label1: TLabel
+    object lblRadarFC: TLabel
       Left = 488
       Top = 19
       Width = 18
@@ -1996,7 +2145,7 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblRadarAGC: TLabel
       Left = 478
       Top = 53
       Width = 32
@@ -2009,7 +2158,7 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label3: TLabel
+    object lblRadarGate: TLabel
       Left = 463
       Top = 90
       Width = 41
@@ -2022,7 +2171,7 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label4: TLabel
+    object lblRadarGATEsat: TLabel
       Left = 575
       Top = 90
       Width = 14
@@ -2035,7 +2184,7 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object AdvRangeSlider2: TAdvRangeSlider
+    object rulerRadarBottom: TAdvRangeSlider
       Left = 12
       Top = 107
       Width = 435
@@ -2142,7 +2291,7 @@ object frmMainFCC: TfrmMainFCC
       TrackLabel.Spacing = 0
       Version = '1.6.10.2'
     end
-    object Panel1: TPanel
+    object pnlRadarGraph: TPanel
       Left = 1
       Top = 2
       Width = 456
@@ -2151,7 +2300,7 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       TabOrder = 1
     end
-    object Edit1: TEdit
+    object edtRadarFC: TEdit
       Left = 531
       Top = 16
       Width = 58
@@ -2165,7 +2314,7 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 2
       Text = '0'
     end
-    object Edit2: TEdit
+    object edtRadarAGC: TEdit
       Left = 531
       Top = 49
       Width = 58
@@ -2179,7 +2328,7 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 3
       Text = '0'
     end
-    object Edit3: TEdit
+    object edtRadarGate: TEdit
       Left = 510
       Top = 85
       Width = 58
@@ -2453,12 +2602,12 @@ object frmMainFCC: TfrmMainFCC
   object tmrUpdateShipPos: TTimer
     Interval = 500
     OnTimer = UpdatePosition
-    Left = 328
-    Top = 112
+    Left = 720
+    Top = 576
   end
   object tmrUpdateForm: TTimer
     OnTimer = tmrUpdateFormTimer
-    Left = 217
-    Top = 113
+    Left = 649
+    Top = 561
   end
 end

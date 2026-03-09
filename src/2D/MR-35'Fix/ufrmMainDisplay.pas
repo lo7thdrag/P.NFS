@@ -13,7 +13,7 @@ uses
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
   uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, NLDJoystick, System.IOUtils,
   Grijjy.Bson.Serialization, ShellAPI, DateUtils, AdvTrackBar, AdvPageControl,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls, AdvUtil, Vcl.Grids, AdvObj, BaseGrid, AdvGrid;
 
 type
     TSetting = record
@@ -148,16 +148,16 @@ type
     pnl2X: TPanel;
     pnl1X: TPanel;
     panel12X: TPanel;
-    AdvRangeSlider2: TAdvRangeSlider;
-    Panel1: TPanel;
+    rulerRadarBottom: TAdvRangeSlider;
+    pnlRadarGraph: TPanel;
     lblKmRadar: TLabel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
+    lblRadarFC: TLabel;
+    lblRadarAGC: TLabel;
+    lblRadarGate: TLabel;
+    lblRadarGATEsat: TLabel;
+    edtRadarFC: TEdit;
+    edtRadarAGC: TEdit;
+    edtRadarGate: TEdit;
     edtRAzimuthVal: TEdit;
     lblRAzimuth: TLabel;
     lblRAzimuthsat: TLabel;
@@ -194,6 +194,8 @@ type
     lblMR35TimeVal: TLabel;
     lblMR35MR35: TLabel;
     lblMR35MR35Val: TLabel;
+    tableReceiveBITE: TAdvStringGrid;
+    pnlReceiveBiteHeader: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -285,6 +287,7 @@ type
     procedure LoadGeoset(const aGst: string); virtual;
     procedure InitializeForm();
     procedure setRegionCircle;
+    procedure setReceiveBITETable;
 
     procedure ResetColorRange();
 
@@ -447,7 +450,7 @@ begin
   end;
 
 //  fmap.Zoom := self.FCurrentRange;
-  FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
+  FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
 end;
 
 procedure TfrmMainFCC.btnMapIncrementClick(Sender: TObject);
@@ -497,7 +500,7 @@ begin
 
 
 //  fmap.Zoom := self.FCurrentRange;
-  FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
+  FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
 end;
 
 procedure TfrmMainFCC.DrawAll(aCnv: TCanvas; aCvt: TCoordConverter;
@@ -620,9 +623,9 @@ begin
     FRings.Draw(aCnv);
 
     // BEARING 0°
-    FBearing0.CircleRect := FCircleRect;
-    FBearing0.ConvertCoord(aCvt);
-    FBearing0.Draw(aCnv);
+//    FBearing0.CircleRect := FCircleRect;
+//    FBearing0.ConvertCoord(aCvt);
+//    FBearing0.Draw(aCnv);
 
 //    TargetMgr.Draw(aCnv);
 
@@ -863,19 +866,24 @@ var
   CorrectBearing,
   CorrectElev : Double;
   aLow, aHigh: Double;
-  range,rangekm, bearing : Double;
+  range,rangem, bearing : Double;
 begin
   if Assigned(fccmanager.SelectedVehicle) then
   begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
-    rangekm := range * C_NauticalMile_To_Metre * 0.001;
+    rangem := range * C_NauticalMile_To_Metre;
     bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     // range = 3000 m, target lebih rendah 25 m
-    ComputeBallisticAngleVacuum(rangekm *1000, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
 
-    edtRDRangeVal.Text := format('%.2f', [rangekm]);
+    edtRDRangeVal.Text := format('%.2f', [rangem]);
+    edtRadarGate.Text := format('%.2f', [rangem]);
     edtRAzimuthVal.Text := format('%.2f', [bearing]);
-    edtElevationVal.Text := format('%.4f', [FCCManager.SelectedVehicle.PosZ]);
+    edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
+
+    edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
+    edtSpeedINDVal.Text := (FCCManager.SelectedVehicle.Speed_mps * 1.944).ToString;
+    edtHeadingINDVal.Text := FCCManager.SelectedVehicle.HeadingDeg.ToString;
 
 //    lblTgtNo.Caption := FCCManager.SelectedVehicle.ShipID.ToString();
 //    lblLatTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posy]);
@@ -959,6 +967,7 @@ var
 //  T: TRadarTargetSymbol;
   ShipClassName,
   ShipCallSign: string;
+  rgnOuter, rgnInner: HRGN;
   V: TVehicle;
   setting : string;
   StartupInfo: TStartupInfo;
@@ -1041,7 +1050,8 @@ begin
   FShipHeading := 0; // awal
 
 
-  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
+//  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
+  setReceiveBITETable;
 
 //  TargetMgr := TRadarTargetManager.Create;
 //  TargetMgr.CoordConverter := FMapConverter;
@@ -1112,44 +1122,41 @@ begin
     end;
     FCCManager.Env_Map := DataModule1.GetMapById(FCCManager.CurrentScenID);
 
-//    case vFccSetting.FccMode of
-//    1 : //FCC1 Mode
-//    begin
-////      pnlFCC1.BringToFront;
-////      pnlTrackerFCC1.BringToFront;
-////      pnlBiteControlFCC1.BringToFront;
-//      FCCManager.Get730WeaponAssigned;
+    case vFccSetting.FccMode of
+    1 : //MR 35
+    begin
+//      pnlFCC1.BringToFront;
+//      pnlTrackerFCC1.BringToFront;
+//      pnlBiteControlFCC1.BringToFront;
+      FCCManager.Get57WeaponAssigned;
+      AdvTabMR35.Caption := 'MR35';
+      lblMR35MR35.Caption := 'MR35';
 //      lblRadarVal.Caption := 'TR47C';
 //      lblFrequencyVal.Caption := 'J-Band';
-//    end;
-//    2 : //FCC2 Mode
-//    begin
-////      pnlFCC2.BringToFront;
-////      pnlTrackerFCC2.BringToFront;
-////      pnlBiteControlFCC2.BringToFront;
-//      FCCManager.Get57WeaponAssigned;
+    end;
+    2 : //MR 103
+    begin
+//      pnlFCC2.BringToFront;
+//      pnlTrackerFCC2.BringToFront;
+//      pnlBiteControlFCC2.BringToFront;
+      FCCManager.Get57WeaponAssigned;
+      AdvTabMR35.Caption := 'MR103';
+      lblMR35MR35.Caption := 'MR103';
 //      lblRadarVal.Caption := 'MR36A';
 //      lblFrequencyVal.Caption := 'G-Band';
-//    end;
-//    3 : //FCC2 Manual Mode
-//    begin
-////      pnlFCC2.BringToFront;
-////      pnlTrackerFCC2.BringToFront;
-////      pnlBiteControlFCC2.BringToFront;
-//      FCCManager.Get57WeaponAssigned;
+    end;
+    3 : //MR 302
+    begin
+//      pnlFCC2.BringToFront;
+//      pnlTrackerFCC2.BringToFront;
+//      pnlBiteControlFCC2.BringToFront;
+      FCCManager.Get57WeaponAssigned;
+      AdvTabMR35.Caption := 'MR302';
+      lblMR35MR35.Caption := 'MR302';
 //      lblRadarVal.Caption := 'MR103';
 //      lblFrequencyVal.Caption := 'J-Band';
-//    end;
-//    4 : //FCC2 Mode
-//    begin
-////      pnlFCC2.BringToFront;
-////      pnlTrackerFCC2.BringToFront;
-////      pnlBiteControlFCC2.BringToFront;
-//      FCCManager.Get57WeaponAssigned;
-//      lblRadarVal.Caption := 'MR302';
-//      lblFrequencyVal.Caption := 'F-Band';
-//    end;
-//  end;
+    end;
+  end;
 
 //
 //    if Assigned(FCCManager.AssignedWeapon) then
@@ -1162,30 +1169,41 @@ begin
 
     FCCManager.Running := True;
 
-    FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
+    FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
   end;
 
-//  if vFccSetting.FccMode <> 4 then
-//  begin
-//    setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
-//    TgoBsonSerializer.Deserialize(setting, config);
-//    config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
-//    // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
-//    // untuk testing awal tidak perlu diubah dulu
-//    TgoBsonSerializer.Serialize(config, setting);
-//    tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
-//
-//    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-//    ExecInfo.cbSize := SizeOf(ExecInfo);
-//    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-//    ExecInfo.Wnd := Handle;
-//    ExecInfo.lpVerb := 'open';
-//    ExecInfo.lpFile := PChar('Viewer.exe');
-//    ExecInfo.nShow := SW_SHOW;
-//
-//    if not ShellExecuteEx(@ExecInfo) then
-//      RaiseLastOSError;
-//  end;
+  FCCManager.Running := True;
+
+  if vFccSetting.FccMode <> 3 then
+  begin
+    rgnOuter := CreateRectRgn(0,0,Width,Height);
+    rgnInner := CreateRectRgn(8, 0, 657, 501);
+
+    CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+    SetWindowRgn(Handle, rgnOuter, True);
+
+    // dicek apakah ini mr302 atau bukan, kalau mr302 tidak usah tampil 3d
+    setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
+    TgoBsonSerializer.Deserialize(setting, config);
+    config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
+    // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
+    // untuk testing awal tidak perlu diubah dulu
+    TgoBsonSerializer.Serialize(config, setting);
+    tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
+
+    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+    ExecInfo.cbSize := SizeOf(ExecInfo);
+    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+    ExecInfo.Wnd := Handle;
+    ExecInfo.lpVerb := 'open';
+    ExecInfo.lpFile := PChar('Viewer.exe');
+    ExecInfo.nShow := SW_SHOW;
+
+    if not ShellExecuteEx(@ExecInfo) then
+      RaiseLastOSError;
+  end;
+
+
 
 end;
 
@@ -1428,7 +1446,7 @@ begin
     FMap.MapUnit := miUnitNauticalMile;
     FMap.CenterX := 112.75;
     fmap.CenterY := -7.2;
-    FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
+    FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
   end
 end;
 
@@ -1686,7 +1704,7 @@ begin
 
   Self.FIndexRange := TPanel(Sender).Tag;
   self.FCurrentRange := CRangeOperation[TPanel(Sender).Tag];
-  FMap.ZoomTo((Self.FCurrentRange  * 0.00058) * 2, FMap.CenterX, FMap.CenterY);
+  FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
 //  lblRange.Caption := Format('%2.2f', [FCurrentRange * C_Meter_To_NauticalMile]);
 end;
 
@@ -1736,6 +1754,89 @@ begin
   Result.X := W + Round(Cos(Angle) * Radius);
   Result.Y := H + Round(Sin(Angle) * Radius);
   Result.Y := (H * 2) - Result.Y;
+end;
+
+procedure TfrmMainFCC.setReceiveBITETable;
+begin
+  tableReceiveBITE.Cells[0,0] := '1';
+  tableReceiveBITE.Cells[1,0] := 'DC Power + 5V2A,-6V2A';
+  tableReceiveBITE.Cells[2,0] := 'Normal';
+
+  tableReceiveBITE.Cells[0,1] := '2';
+  tableReceiveBITE.Cells[1,1] := 'DC Power + 15V3A';
+  tableReceiveBITE.Cells[2,1] := 'Normal';
+
+  tableReceiveBITE.Cells[0,2] := '3';
+  tableReceiveBITE.Cells[1,2] := 'DC Power + 3.3V30A + 5V5A';
+  tableReceiveBITE.Cells[2,2] := 'Normal';
+
+  tableReceiveBITE.Cells[0,3] := '4';
+  tableReceiveBITE.Cells[1,3] := 'Timer Board';
+  tableReceiveBITE.Cells[2,3] := 'Normal';
+
+  tableReceiveBITE.Cells[0,4] := '5';
+  tableReceiveBITE.Cells[1,4] := 'Range Interface Board';
+  tableReceiveBITE.Cells[2,4] := 'Normal';
+
+  tableReceiveBITE.Cells[0,5] := '6';
+  tableReceiveBITE.Cells[1,5] := 'Fire Calibration Channel A/D';
+  tableReceiveBITE.Cells[2,5] := 'Normal';
+
+  tableReceiveBITE.Cells[0,6] := '7';
+  tableReceiveBITE.Cells[1,6] := 'Difference Channel A/D';
+  tableReceiveBITE.Cells[2,6] := 'Normal';
+
+  tableReceiveBITE.Cells[0,7] := '8';
+  tableReceiveBITE.Cells[1,7] := 'Sum Channel A/D';
+  tableReceiveBITE.Cells[2,7] := 'Normal';
+
+  tableReceiveBITE.Cells[0,8] := '9';
+  tableReceiveBITE.Cells[1,8] := 'Fire Calibration Azimuth Main IF Amplifier';
+  tableReceiveBITE.Cells[2,8] := 'Normal';
+
+  tableReceiveBITE.Cells[0,9] := '10';
+  tableReceiveBITE.Cells[1,9] := 'Fire Calibration Main IF Amplifier';
+  tableReceiveBITE.Cells[2,9] := 'Normal';
+
+  tableReceiveBITE.Cells[0,10] := '11';
+  tableReceiveBITE.Cells[1,10] := 'Elevation Main IF Amplifier';
+  tableReceiveBITE.Cells[2,10] := 'Normal';
+
+  tableReceiveBITE.Cells[0,11] := '12';
+  tableReceiveBITE.Cells[1,11] := 'Azimuth Main IF Amplifier';
+  tableReceiveBITE.Cells[2,11] := 'Normal';
+
+  tableReceiveBITE.Cells[0,12] := '13';
+  tableReceiveBITE.Cells[1,12] := 'Sum Channel Main IF Amplifier';
+  tableReceiveBITE.Cells[2,12] := 'Normal';
+
+  tableReceiveBITE.Cells[0,13] := '14';
+  tableReceiveBITE.Cells[1,13] := 'Sum Channel Processing Board';
+  tableReceiveBITE.Cells[2,13] := 'Normal';
+
+  tableReceiveBITE.Cells[0,14] := '15';
+  tableReceiveBITE.Cells[1,14] := 'Difference Channel Processing Board';
+  tableReceiveBITE.Cells[2,14] := 'Normal';
+
+  tableReceiveBITE.Cells[0,15] := '16';
+  tableReceiveBITE.Cells[1,15] := 'Fire Calibration Channel Processing Board';
+  tableReceiveBITE.Cells[2,15] := 'Normal';
+
+  tableReceiveBITE.Cells[0,16] := '17';
+  tableReceiveBITE.Cells[1,16] := 'Sum Channel RF';
+  tableReceiveBITE.Cells[2,16] := 'Normal';
+
+  tableReceiveBITE.Cells[0,17] := '18';
+  tableReceiveBITE.Cells[1,17] := 'Azimuth RF';
+  tableReceiveBITE.Cells[2,17] := 'Normal';
+
+  tableReceiveBITE.Cells[0,18] := '19';
+  tableReceiveBITE.Cells[1,18] := 'Elevation RF';
+  tableReceiveBITE.Cells[2,18] := 'Normal';
+
+  tableReceiveBITE.Cells[0,19] := '20';
+  tableReceiveBITE.Cells[1,19] := 'AGC';
+  tableReceiveBITE.Cells[2,19] := 'Normal';
 end;
 
 procedure TfrmMainFCC.setRegionCircle;
@@ -1856,6 +1957,11 @@ end;
 
 
 procedure TfrmMainFCC.UpdatePosition(Sender: TObject);
+var
+  CorrectBearing,
+  CorrectElev : Double;
+  aLow, aHigh: Double;
+  range,rangem, bearing : Double;
 begin
 
 
@@ -1865,12 +1971,29 @@ begin
 //  lblLongtitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionX);
 //  lblLatitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionY);
   EdtSpeedNAVIVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
-  edtSpeedINDVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
+//  edtSpeedINDVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
   EdtHeadingNAVIVal.Text := FormatFloat('0', FCCManager.xShip.Heading);
-  edtHeadingINDVal.Text := FormatFloat('0', FCCManager.xShip.Heading);
+//  edtHeadingINDVal.Text := FormatFloat('0', FCCManager.xShip.Heading);
 //  lblEta.Caption := FormatDateTime('hh:nn:ss',now);
 //  lblUTCTime.Caption := FormatDateTime('hh:nn:ss',TTimeZone.Local.ToUniversalTime(Now));
 //  lblTtg.Caption := FormatDateTime('hh:nn',now);
+  if Assigned(fccmanager.SelectedVehicle) and (FSelectedVehicleState = True) then
+  begin
+    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    rangem := range * C_NauticalMile_To_Metre;
+    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    // range = 3000 m, target lebih rendah 25 m
+    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+
+    edtRDRangeVal.Text := format('%.2f', [rangem]);
+    edtRadarGate.Text := format('%.2f', [rangem]);
+    edtRAzimuthVal.Text := format('%.2f', [bearing]);
+    edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
+
+    edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
+    edtSpeedINDVal.Text := (FCCManager.SelectedVehicle.Speed_mps * 1.944).ToString;
+    edtHeadingINDVal.Text := FCCManager.SelectedVehicle.HeadingDeg.ToString;
+  end;
 end;
 
 end.
