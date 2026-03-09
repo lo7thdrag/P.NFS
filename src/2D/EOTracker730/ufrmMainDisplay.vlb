@@ -4,17 +4,11 @@ Coordinates=116,282,53,58
 [Label16]
 Coordinates=649,146,60,58
 
-[pnlHeaderExteriorData]
-Coordinates=513,78,146,58
-
 [tmrUpdateShipPos]
 Coordinates=1436,1,122,36
 
 [pnlUpper]
 Coordinates=775,10,67,58
-
-[pnlExteriorData]
-Coordinates=613,486,104,58
 
 [pnlBite]
 Coordinates=773,418,54,58
@@ -37,4 +31,10 @@ Visible=True
 
 [pnlViewer3DTV]
 Coordinates=303,10,87,58
+
+[pnlState]
+Coordinates=613,486,104,58
+
+[pnlStateHeader]
+Coordinates=513,78,146,58
 
