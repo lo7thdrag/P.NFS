@@ -7015,7 +7015,7 @@ object fWeaponStatus: TfWeaponStatus
           object grpC705StatusConsole: TGroupBox
             Left = 156
             Top = 54
-            Width = 176
+            Width = 181
             Height = 120
             Caption = 'Status Console'
             Font.Charset = DEFAULT_CHARSET
@@ -7027,7 +7027,7 @@ object fWeaponStatus: TfWeaponStatus
             TabOrder = 2
             object chkC705Enable: TCheckBox
               Left = 34
-              Top = 27
+              Top = 30
               Width = 92
               Height = 17
               Caption = 'Enable C705'
@@ -7039,12 +7039,12 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
               TabOrder = 0
             end
-            object chkC7052: TCheckBox
-              Left = 51
-              Top = 69
-              Width = 91
+            object chkOpenCoverLauncherC705: TCheckBox
+              Left = 42
+              Top = 52
+              Width = 127
               Height = 17
-              Caption = 'Unknown-yet'
+              Caption = 'Open Cover Launcher'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
@@ -7054,12 +7054,12 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
               TabOrder = 1
             end
-            object chkC7051: TCheckBox
-              Left = 51
-              Top = 51
-              Width = 91
+            object chkSafetyIgnitionC705: TCheckBox
+              Left = 42
+              Top = 73
+              Width = 126
               Height = 17
-              Caption = 'Unknown-yet'
+              Caption = 'Booster Safety Ignition'
               Enabled = False
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite

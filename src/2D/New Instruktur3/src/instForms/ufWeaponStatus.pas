@@ -554,14 +554,14 @@ type
     grpC705StatusLauncher: TGroupBox;
     grpC705StatusConsole: TGroupBox;
     chkC705Enable: TCheckBox;
-    chkC7052: TCheckBox;
+    chkOpenCoverLauncherC705: TCheckBox;
     lblC705PortLauncher1: TLabel;
     imgLoadC705Launcher1: TImage;
     lblC705PortLauncher2: TLabel;
     imgLoadC705Launcher2: TImage;
     cbbC705Port: TComboBox;
     btnLoadC705PortLoading: TButton;
-    chkC7051: TCheckBox;
+    chkSafetyIgnitionC705: TCheckBox;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -1173,12 +1173,12 @@ begin
   { ===========================C705======================== }
   { C705 }
   chkC705Enable.OnClick := C705ChkClick;
-  chkC7051.OnClick      := C705ChkClick;
-  chkC7052.OnClick      := C705ChkClick;
+  chkSafetyIgnitionC705.OnClick      := C705ChkClick;
+  chkOpenCoverLauncherC705.OnClick      := C705ChkClick;
 
   chkC705Enable.Tag     := __STAT_C705_ENABLE;
-  chkC7051.Tag          := __STAT_C705_Unknown;
-  chkC7052.Tag          := __STAT_C705_Unknown2;
+  chkSafetyIgnitionC705.Tag          := __STAT_C705_Unknown;
+  chkOpenCoverLauncherC705.Tag          := __STAT_C705_Unknown2;
 
   { =========================================================== }
 
@@ -4832,7 +4832,7 @@ begin
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpC705.Visible := True;
-             //rzgrpExocetMM40.Opened := True;
+             rzgrpC705.Opened := True;
           end;
           frmMainInstruktur.cekStatusWeapon := 1;
 
@@ -4845,7 +4845,7 @@ begin
           cbbC705Port.Items.Add('1');
           cbbC705Port.Items.Add('2');
 
-          if SimManager.TrackObject.ObjClassID = 23 then begin // C_DBID_C705 = 23
+          if SimManager.TrackObject.ObjClassID = 5 then begin // C_DBID_C705 = 23
             lblC705PortLauncher1.Visible := True;
             lblC705PortLauncher2.Visible := True;
             imgLoadC705Launcher1.Visible := True;
@@ -4858,27 +4858,27 @@ begin
             WeaponC705 := TWeaponOn_C705(weaponship);
 
             chkC705Enable.OnClick := nil;
-            chkC7051.OnClick := nil;
-            chkC7052.OnClick := nil;
+            chkSafetyIgnitionC705.OnClick := nil;
+            chkOpenCoverLauncherC705.OnClick := nil;
 
             chkC705Enable.Checked := WeaponC705.EnableC705;
-            chkC7051.Checked := WeaponC705.Unknown;
-            chkC7052.Checked := WeaponC705.Unknown2;
+            chkSafetyIgnitionC705.Checked := WeaponC705.Unknown;
+            chkOpenCoverLauncherC705.Checked := WeaponC705.Unknown2;
 
             chkC705Enable.OnClick := C705ChkClick;
-            chkC7051.OnClick := C705ChkClick;
-            chkC7052.OnClick := C705ChkClick;
+            chkSafetyIgnitionC705.OnClick := C705ChkClick;
+            chkOpenCoverLauncherC705.OnClick := C705ChkClick;
 
             // ?? tentative
             if WeaponC705.Firing then
             begin
-              chkC7051.Enabled   := True;
-              chkC7052.Enabled   := True;
+              chkSafetyIgnitionC705.Enabled   := True;
+              chkOpenCoverLauncherC705.Enabled   := True;
             end
             else
             begin
-              chkC7051.Enabled   := False;
-              chkC7052.Enabled   := False;
+              chkSafetyIgnitionC705.Enabled   := False;
+              chkOpenCoverLauncherC705.Enabled   := False;
             end;
 
             //loading Launcher 1

@@ -87843,6 +87843,13 @@ object frmWCC: TfrmWCC
         ParentFont = False
         OnClick = lblMenuClick
       end
+      object Bevel1: TBevel
+        Left = 292
+        Top = 74
+        Width = 377
+        Height = 9
+        Shape = bsBottomLine
+      end
       object Label12: TLabel
         Left = 335
         Top = 45
@@ -87855,13 +87862,6 @@ object frmWCC: TfrmWCC
         Font.Name = 'Verdana'
         Font.Style = []
         ParentFont = False
-      end
-      object Bevel1: TBevel
-        Left = 292
-        Top = 74
-        Width = 377
-        Height = 9
-        Shape = bsBottomLine
       end
       object pnlSoftwareExit: TPanel
         Tag = 5
@@ -88249,10 +88249,10 @@ object frmWCC: TfrmWCC
       end
       object pnlRealTimeCombat: TPanel
         Tag = 1
-        Left = 353
-        Top = 199
-        Width = 185
-        Height = 41
+        Left = 352
+        Top = 197
+        Width = 553
+        Height = 500
         BevelOuter = bvNone
         TabOrder = 3
       end
