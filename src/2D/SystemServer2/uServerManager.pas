@@ -301,6 +301,7 @@ var
   // apRec: TRecData3DPosition;
   o: TObject;
   so: TShipObject;
+  Obj: TShipObject;
 begin
   if Length(AContent) > 0 then
   begin
@@ -341,7 +342,23 @@ begin
         so.roll := incoming_data.roll;
         so.rudder := incoming_data.rudder;
       end;
+    end
+    else   // jika nambah kapal
+    begin
+      Obj := TShipObject.Create;
+      Obj.IDShip := incoming_data.ShipID;
+      Obj.X := incoming_data.X;
+      Obj.y := incoming_data.Y;
+      Obj.z := incoming_data.Z;
+      Obj.heading := incoming_data.Heading;
+      Obj.pitch := 0.0;
+      Obj.roll := 0.0;
+      Obj.speed := dmMain.Ds.FieldByName('SPEED').AsInteger;
+      Obj.rudder := 0.0;
+
+      FStateManager.Add(Obj);
     end;
+
   end;
 end;
 
@@ -1447,6 +1464,14 @@ begin
     REC_3D_SETCONTROL:
       begin
         recActorController3d := @apRec^;
+
+        if Assigned(OnLogReceived2D) then
+          OnLogReceived2D('REC_3D_SETCONTROL' + #13#10 + 'ShipID : ' +
+            IntToStr(recActorController3d^.ShipID) + #13#10 + 'X : ' +
+            FloatToStr(recActorController3d^.X) + #13#10 + 'Y : ' +
+            FloatToStr(recActorController3d^.y) + #13#10 + 'Z : ' +
+            FloatToStr(recActorController3d^.z) + #13#10);
+
         recSendActorController3d.ShipID := recActorController3d^.ShipID;
         recSendActorController3d.TypeID := recActorController3d^.TypeID;
 

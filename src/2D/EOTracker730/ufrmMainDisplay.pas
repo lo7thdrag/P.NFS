@@ -44,7 +44,7 @@ type
     Label16: TLabel;
     pnlViewer3DTV: TPanel;
     pnlStateHeader: TPanel;
-    pnlHaeaderBite: TPanel;
+    pnlHeaderEOData: TPanel;
     Shape1: TShape;
     Shape2: TShape;
     pnlBearElev: TPanel;
@@ -56,7 +56,7 @@ type
     pnlValBearElev: TPanel;
     pnlValBearingBottom: TPanel;
     pnlValElevBottom: TPanel;
-    Panel1: TPanel;
+    pnlViewerTV: TPanel;
     lblValBearTop: TPanel;
     lblValElevTop: TPanel;
     lblValRangeTop: TPanel;
@@ -79,49 +79,58 @@ type
     pnlIndicationHeader: TPanel;
     pnlInformation: TPanel;
     imgListLight: TImageList;
-    Label1: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Label2: TLabel;
-    Label3: TLabel;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Label4: TLabel;
-    Edit5: TEdit;
-    Label5: TLabel;
-    Label7: TLabel;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Label8: TLabel;
-    Edit8: TEdit;
-    Label9: TLabel;
-    Edit9: TEdit;
-    Label10: TLabel;
+    lblCtlMode: TLabel;
+    edtCtlModeVal: TEdit;
+    edtWorkModeVal: TEdit;
+    lblWorkMode: TLabel;
+    lblWorkState: TLabel;
+    edtWorkStateVal: TEdit;
+    edtTrackStateVal: TEdit;
+    lblTrackState: TLabel;
+    edtEOStateVal: TEdit;
+    lblEOState: TLabel;
+    lblCtlState: TLabel;
+    edtCtlStateVal: TEdit;
+    edtEODistanceVal: TEdit;
+    lblEODistance: TLabel;
+    edtBEDifVal: TEdit;
+    lblBEDif: TLabel;
+    edtELDifVal: TEdit;
+    lblELDif: TLabel;
     Label11: TLabel;
-    Edit10: TEdit;
-    Label12: TLabel;
-    Edit11: TEdit;
-    Label13: TLabel;
+    edtNavCourseVal: TEdit;
+    lblNavPitch: TLabel;
+    edtNavPitchVal: TEdit;
+    lblNavRoll: TLabel;
     Edit12: TEdit;
-    Label14: TLabel;
-    Edit13: TEdit;
-    Label15: TLabel;
-    Edit14: TEdit;
-    Label17: TLabel;
-    Edit15: TEdit;
-    Label18: TLabel;
-    Image1: TImage;
-    Label19: TLabel;
-    Edit16: TEdit;
+    lblIndDistance: TLabel;
+    edtIndDistanceVal: TEdit;
+    lblIndAzimuth: TLabel;
+    edtIndAzimuthVal: TEdit;
+    lblIndElev: TLabel;
+    edtIndElevVal: TEdit;
+    lblNavState: TLabel;
+    imgNavState: TImage;
+    lblIndType: TLabel;
+    edtIndTypeVal: TEdit;
     Image2: TImage;
-    Label20: TLabel;
-    Edit17: TEdit;
-    Label21: TLabel;
-    Edit18: TEdit;
-    Label22: TLabel;
-    Edit19: TEdit;
-    Label23: TLabel;
-    Label24: TLabel;
+    lblControlTrack: TLabel;
+    edtControlTrackVal: TEdit;
+    lblControlAction: TLabel;
+    edtControlActionVal: TEdit;
+    lblControlSensor: TLabel;
+    edtControlSensorVal: TEdit;
+    lblDateNow: TLabel;
+    lblTimeNow: TLabel;
+    lblEODistancesat: TLabel;
+    lblBEDifsat: TLabel;
+    lblELDifsat: TLabel;
+    lblNavRollsat: TLabel;
+    lblNavPitchsat: TLabel;
+    lblNavCoursesat: TLabel;
+    lblIndElevsat: TLabel;
+    lblIndAzimuthsat: TLabel;
+    lblIndDistancesat: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -861,62 +870,42 @@ begin
     end;
     FCCManager.Env_Map := DataModule1.GetMapById(FCCManager.CurrentScenID);
 
-    case vFccSetting.FccMode of
-    1 : //MR 35
-    begin
-      FCCManager.Get57WeaponAssigned;
-//      AdvTabMR35.Caption := 'MR35';
-//      lblMR35MR35.Caption := 'MR35';
-    end;
-    2 : //MR 103
-    begin
-      FCCManager.Get57WeaponAssigned;
-//      AdvTabMR35.Caption := 'MR103';
-//      lblMR35MR35.Caption := 'MR103';
-    end;
-    3 : //MR 302
-    begin
-      FCCManager.Get57WeaponAssigned;
-//      AdvTabMR35.Caption := 'MR302';
-//      lblMR35MR35.Caption := 'MR302';
-    end;
   end;
 
-    FCCManager.Running := True;
-  end;
+  FCCManager.Get730WeaponAssigned;
 
   FCCManager.Running := True;
 
-  if vFccSetting.FccMode <> 3 then
-  begin
-//    rgnOuter := CreateRectRgn(0,0,Width,Height);
-//    rgnInner := CreateRectRgn(8, 0, 657, 501);
+  rgnOuter := CreateRectRgn(0,0,Width,Height);
+  rgnInner := CreateRectRgn(0, 0, 640, 450);
+
+  CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+  SetWindowRgn(Handle, rgnOuter, True);
+
+//  rgnOuter := CreateRectRgn(0,0,Width,Height);
+//  rgnInner := CreateRectRgn(640, 0, 1280, 450);
 //
-//    CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
-//    SetWindowRgn(Handle, rgnOuter, True);
-  //
-  //
-  //
-    // perlu dicek apakah ini mr302 atau bukan, kalau mr302 tidak usah tampil 3d
-//    setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
-//    TgoBsonSerializer.Deserialize(setting, config);
-//    config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
-//    // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
-//    // untuk testing awal tidak perlu diubah dulu
-//    TgoBsonSerializer.Serialize(config, setting);
-//    tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
-//
-//    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-//    ExecInfo.cbSize := SizeOf(ExecInfo);
-//    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-//    ExecInfo.Wnd := Handle;
-//    ExecInfo.lpVerb := 'open';
-//    ExecInfo.lpFile := PChar('Viewer.exe');
-//    ExecInfo.nShow := SW_SHOW;
-//
-//    if not ShellExecuteEx(@ExecInfo) then
-//      RaiseLastOSError;
-  end;
+//  CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+//  SetWindowRgn(Handle, rgnOuter, True);
+
+  setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
+  TgoBsonSerializer.Deserialize(setting, config);
+  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
+  // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
+  // untuk testing awal tidak perlu diubah dulu
+  TgoBsonSerializer.Serialize(config, setting);
+  tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
+
+  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+  ExecInfo.cbSize := SizeOf(ExecInfo);
+  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecInfo.Wnd := Handle;
+  ExecInfo.lpVerb := 'open';
+  ExecInfo.lpFile := PChar('Viewer.exe');
+  ExecInfo.nShow := SW_SHOW;
+
+  if not ShellExecuteEx(@ExecInfo) then
+    RaiseLastOSError;
 
 
 
@@ -1461,6 +1450,8 @@ begin
 //
 //  lblSystemTimeVal.Caption := FormatDateTime('hh:nn:ss',now);
 
+  lblTimeNow.Caption := FormatDateTime('hh:nn:ss',now);
+  lblDateNow.Caption := FormatDateTime('yyyy/mm/dd',now);
 
 //  lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
 

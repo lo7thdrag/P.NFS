@@ -76,23 +76,20 @@ object frmMainFCC: TfrmMainFCC
         Pen.Color = clWhite
         Visible = False
       end
-      object Panel1: TPanel
+      object pnlViewerTV: TPanel
         Left = 0
-        Top = 439
+        Top = 448
         Width = 640
-        Height = 41
+        Height = 32
         Align = alBottom
         BevelOuter = bvNone
-        Caption = 'pnlValBearElev'
         TabOrder = 0
-        ExplicitLeft = 232
-        ExplicitTop = 224
-        ExplicitWidth = 185
+        ExplicitTop = 450
         object lblValBearTop: TPanel
           Left = 185
           Top = 0
           Width = 176
-          Height = 41
+          Height = 32
           Align = alClient
           BevelOuter = bvNone
           Caption = 'BE 000.00'
@@ -105,12 +102,13 @@ object frmMainFCC: TfrmMainFCC
           TabOrder = 0
           ExplicitLeft = 0
           ExplicitWidth = 361
+          ExplicitHeight = 41
         end
         object lblValElevTop: TPanel
           Left = 361
           Top = 0
           Width = 279
-          Height = 41
+          Height = 32
           Align = alRight
           BevelOuter = bvNone
           Caption = 'EL:    0.00 deg'
@@ -121,12 +119,13 @@ object frmMainFCC: TfrmMainFCC
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 1
+          ExplicitHeight = 41
         end
         object lblValRangeTop: TPanel
           Left = 0
           Top = 0
           Width = 185
-          Height = 41
+          Height = 32
           Align = alLeft
           BevelOuter = bvNone
           Caption = 'R 00000'
@@ -138,6 +137,7 @@ object frmMainFCC: TfrmMainFCC
           ParentFont = False
           TabOrder = 2
           ExplicitLeft = 88
+          ExplicitHeight = 41
         end
       end
     end
@@ -176,12 +176,12 @@ object frmMainFCC: TfrmMainFCC
     Height = 351
     ParentBackground = False
     TabOrder = 2
-    object Label8: TLabel
-      Left = 16
+    object lblEODistance: TLabel
+      Left = 7
       Top = 120
-      Width = 52
+      Width = 55
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Distance'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -189,12 +189,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label9: TLabel
-      Left = 16
+    object lblBEDif: TLabel
+      Left = 7
       Top = 176
-      Width = 52
+      Width = 39
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'BE Dif'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -202,12 +202,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label10: TLabel
-      Left = 16
+    object lblELDif: TLabel
+      Left = 7
       Top = 232
-      Width = 52
+      Width = 37
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'EL Dif'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -215,7 +215,46 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object pnlHaeaderBite: TPanel
+    object lblEODistancesat: TLabel
+      Left = 176
+      Top = 120
+      Width = 13
+      Height = 18
+      Caption = 'm'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblBEDifsat: TLabel
+      Left = 176
+      Top = 176
+      Width = 34
+      Height = 18
+      Caption = 'mrad'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblELDifsat: TLabel
+      Left = 176
+      Top = 232
+      Width = 34
+      Height = 18
+      Caption = 'mrad'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object pnlHeaderEOData: TPanel
       Left = 1
       Top = 1
       Width = 211
@@ -233,8 +272,8 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 0
       ExplicitWidth = 449
     end
-    object Edit7: TEdit
-      Left = 88
+    object edtEODistanceVal: TEdit
+      Left = 79
       Top = 117
       Width = 97
       Height = 24
@@ -247,10 +286,10 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 1
-      Text = '-'
+      Text = '00000'
     end
-    object Edit8: TEdit
-      Left = 88
+    object edtBEDifVal: TEdit
+      Left = 79
       Top = 173
       Width = 97
       Height = 24
@@ -263,10 +302,10 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 2
-      Text = '-'
+      Text = '00.00'
     end
-    object Edit9: TEdit
-      Left = 88
+    object edtELDifVal: TEdit
+      Left = 79
       Top = 229
       Width = 97
       Height = 24
@@ -279,7 +318,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 3
-      Text = '-'
+      Text = '00.00'
     end
   end
   object pnlState: TPanel
@@ -289,7 +328,7 @@ object frmMainFCC: TfrmMainFCC
     Height = 143
     ParentBackground = False
     TabOrder = 1
-    object Label1: TLabel
+    object lblCtlMode: TLabel
       Left = 16
       Top = 48
       Width = 52
@@ -302,12 +341,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblWorkMode: TLabel
       Left = 16
       Top = 96
-      Width = 52
+      Width = 70
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'WorkMode'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -315,12 +354,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label3: TLabel
+    object lblWorkState: TLabel
       Left = 216
       Top = 48
-      Width = 52
+      Width = 68
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'WorkState'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -328,12 +367,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label4: TLabel
+    object lblTrackState: TLabel
       Left = 216
       Top = 96
-      Width = 52
+      Width = 71
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'TrackState'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -341,12 +380,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label5: TLabel
+    object lblEOState: TLabel
       Left = 424
       Top = 48
-      Width = 52
+      Width = 53
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'EOState'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -354,12 +393,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label7: TLabel
+    object lblCtlState: TLabel
       Left = 424
       Top = 96
-      Width = 52
+      Width = 50
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'CtlState'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -385,7 +424,7 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 0
       ExplicitWidth = 447
     end
-    object Edit1: TEdit
+    object edtCtlModeVal: TEdit
       Left = 88
       Top = 45
       Width = 105
@@ -399,9 +438,9 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 1
-      Text = '-'
+      Text = 'Local'
     end
-    object Edit2: TEdit
+    object edtWorkModeVal: TEdit
       Left = 88
       Top = 93
       Width = 105
@@ -415,9 +454,9 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 2
-      Text = '-'
+      Text = 'Combat'
     end
-    object Edit3: TEdit
+    object edtWorkStateVal: TEdit
       Left = 288
       Top = 45
       Width = 105
@@ -431,9 +470,9 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 3
-      Text = '-'
+      Text = 'Wait'
     end
-    object Edit4: TEdit
+    object edtTrackStateVal: TEdit
       Left = 288
       Top = 93
       Width = 105
@@ -447,9 +486,9 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 4
-      Text = '-'
+      Text = 'Lost'
     end
-    object Edit5: TEdit
+    object edtEOStateVal: TEdit
       Left = 496
       Top = 45
       Width = 105
@@ -463,9 +502,9 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 5
-      Text = '-'
+      Text = 'Normal'
     end
-    object Edit6: TEdit
+    object edtCtlStateVal: TEdit
       Left = 496
       Top = 93
       Width = 105
@@ -479,7 +518,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 6
-      Text = '-'
+      Text = 'None'
     end
   end
   object pnlBearElev: TPanel
@@ -541,7 +580,7 @@ object frmMainFCC: TfrmMainFCC
       Spacing = 30
       Ticks = 360
       TicksMin = 1
-      TicksMax = 3
+      TicksMax = 4
       TicksEnlarge = 5
       ColorZone1 = clRed
       ColorZone2 = clLime
@@ -765,12 +804,12 @@ object frmMainFCC: TfrmMainFCC
       Width = 36
       Height = 36
     end
-    object Label20: TLabel
+    object lblControlTrack: TLabel
       Left = 8
       Top = 36
-      Width = 52
+      Width = 37
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Track'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -778,12 +817,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label21: TLabel
+    object lblControlAction: TLabel
       Left = 192
       Top = 36
-      Width = 52
+      Width = 39
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Action'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -791,12 +830,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label22: TLabel
+    object lblControlSensor: TLabel
       Left = 382
       Top = 36
-      Width = 52
+      Width = 44
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Sensor'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -824,7 +863,7 @@ object frmMainFCC: TfrmMainFCC
       ExplicitTop = 49
       ExplicitWidth = 450
     end
-    object Edit17: TEdit
+    object edtControlTrackVal: TEdit
       Left = 80
       Top = 35
       Width = 97
@@ -838,9 +877,9 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 1
-      Text = '-'
+      Text = 'Auto'
     end
-    object Edit18: TEdit
+    object edtControlActionVal: TEdit
       Left = 264
       Top = 35
       Width = 97
@@ -854,9 +893,9 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 2
-      Text = '-'
+      Text = 'None'
     end
-    object Edit19: TEdit
+    object edtControlSensorVal: TEdit
       Left = 454
       Top = 35
       Width = 97
@@ -870,7 +909,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 3
-      Text = '-'
+      Text = 'TV'
     end
   end
   object pnlNavData: TPanel
@@ -881,11 +920,11 @@ object frmMainFCC: TfrmMainFCC
     ParentBackground = False
     TabOrder = 5
     object Label11: TLabel
-      Left = 16
+      Left = 10
       Top = 120
-      Width = 52
+      Width = 45
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Course'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -893,12 +932,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label12: TLabel
-      Left = 16
+    object lblNavPitch: TLabel
+      Left = 10
       Top = 176
-      Width = 52
+      Width = 30
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Pitch'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -906,12 +945,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label13: TLabel
-      Left = 16
+    object lblNavRoll: TLabel
+      Left = 10
       Top = 232
-      Width = 52
+      Width = 21
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Roll'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -919,12 +958,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label18: TLabel
+    object lblNavState: TLabel
       Left = 16
       Top = 64
-      Width = 52
+      Width = 34
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'State'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -932,11 +971,50 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Image1: TImage
+    object imgNavState: TImage
       Left = 95
       Top = 53
       Width = 36
       Height = 36
+    end
+    object lblNavRollsat: TLabel
+      Left = 180
+      Top = 232
+      Width = 24
+      Height = 18
+      Caption = 'deg'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblNavPitchsat: TLabel
+      Left = 180
+      Top = 176
+      Width = 24
+      Height = 18
+      Caption = 'deg'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblNavCoursesat: TLabel
+      Left = 180
+      Top = 120
+      Width = 24
+      Height = 18
+      Caption = 'deg'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object pnlNavDataHeader: TPanel
       Left = 1
@@ -955,8 +1033,8 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       TabOrder = 0
     end
-    object Edit10: TEdit
-      Left = 88
+    object edtNavCourseVal: TEdit
+      Left = 82
       Top = 117
       Width = 97
       Height = 24
@@ -969,10 +1047,10 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 1
-      Text = '-'
+      Text = '000.00'
     end
-    object Edit11: TEdit
-      Left = 88
+    object edtNavPitchVal: TEdit
+      Left = 82
       Top = 173
       Width = 97
       Height = 24
@@ -985,10 +1063,10 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 2
-      Text = '-'
+      Text = '000.00'
     end
     object Edit12: TEdit
-      Left = 88
+      Left = 82
       Top = 229
       Width = 97
       Height = 24
@@ -1001,7 +1079,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 3
-      Text = '-'
+      Text = '000.00'
     end
   end
   object pnlIndication: TPanel
@@ -1011,12 +1089,12 @@ object frmMainFCC: TfrmMainFCC
     Height = 351
     ParentBackground = False
     TabOrder = 6
-    object Label14: TLabel
-      Left = 24
+    object lblIndDistance: TLabel
+      Left = 11
       Top = 120
-      Width = 52
+      Width = 55
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Distance'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -1024,12 +1102,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label15: TLabel
-      Left = 24
+    object lblIndAzimuth: TLabel
+      Left = 11
       Top = 176
       Width = 52
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Azimuth'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -1037,12 +1115,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label17: TLabel
-      Left = 24
+    object lblIndElev: TLabel
+      Left = 11
       Top = 232
-      Width = 52
+      Width = 57
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Elevation'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -1050,14 +1128,53 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object Label19: TLabel
-      Left = 24
+    object lblIndType: TLabel
+      Left = 11
       Top = 64
-      Width = 52
+      Width = 34
       Height = 18
-      Caption = 'CtlMode'
+      Caption = 'Type'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblIndElevsat: TLabel
+      Left = 182
+      Top = 232
+      Width = 24
+      Height = 18
+      Caption = 'deg'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblIndAzimuthsat: TLabel
+      Left = 182
+      Top = 176
+      Width = 24
+      Height = 18
+      Caption = 'deg'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblIndDistancesat: TLabel
+      Left = 182
+      Top = 120
+      Width = 13
+      Height = 18
+      Caption = 'm'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMaroon
       Font.Height = -15
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -1081,8 +1198,8 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 0
       ExplicitWidth = 211
     end
-    object Edit13: TEdit
-      Left = 96
+    object edtIndDistanceVal: TEdit
+      Left = 83
       Top = 117
       Width = 97
       Height = 24
@@ -1095,10 +1212,10 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 1
-      Text = '-'
+      Text = '00000'
     end
-    object Edit14: TEdit
-      Left = 96
+    object edtIndAzimuthVal: TEdit
+      Left = 83
       Top = 173
       Width = 97
       Height = 24
@@ -1111,10 +1228,10 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 2
-      Text = '-'
+      Text = '000.00'
     end
-    object Edit15: TEdit
-      Left = 96
+    object edtIndElevVal: TEdit
+      Left = 83
       Top = 229
       Width = 97
       Height = 24
@@ -1127,10 +1244,10 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 3
-      Text = '-'
+      Text = '000.00'
     end
-    object Edit16: TEdit
-      Left = 96
+    object edtIndTypeVal: TEdit
+      Left = 83
       Top = 61
       Width = 97
       Height = 24
@@ -1143,7 +1260,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 4
-      Text = '-'
+      Text = 'None'
     end
   end
   object pnlInformation: TPanel
@@ -1153,29 +1270,29 @@ object frmMainFCC: TfrmMainFCC
     Height = 49
     ParentBackground = False
     TabOrder = 7
-    object Label23: TLabel
+    object lblDateNow: TLabel
       Left = 41
       Top = 13
-      Width = 94
-      Height = 23
+      Width = 92
+      Height = 22
       Caption = '2026/12/31'
-      Font.Charset = DEFAULT_CHARSET
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
     end
-    object Label24: TLabel
+    object lblTimeNow: TLabel
       Left = 497
       Top = 13
-      Width = 74
-      Height = 23
+      Width = 72
+      Height = 22
       Caption = '12:30:30'
-      Font.Charset = DEFAULT_CHARSET
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
     end

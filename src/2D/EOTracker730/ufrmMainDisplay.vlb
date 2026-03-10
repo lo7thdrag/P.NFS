@@ -22,9 +22,6 @@ Coordinates=10,622,59,36
 [tmrUpdateForm]
 Coordinates=401,749,104,36
 
-[pnlHaeaderBite]
-Coordinates=10,146,103,58
-
 []
 Coordinates=788,668,115,36
 Visible=True
@@ -37,4 +34,7 @@ Coordinates=613,486,104,58
 
 [pnlStateHeader]
 Coordinates=513,78,146,58
+
+[pnlHeaderEOData]
+Coordinates=10,146,103,58
 

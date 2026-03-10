@@ -565,6 +565,8 @@ var
 
   recCmdSetEnvi: ^TRecDataEnvironment;
 
+  recCmdAddShip : ^spActorsController;
+
   xTarget_3D, yTarget_3D, zTarget_3D: Double;
 
   xOffsetMap, yOffsetMap: Double;
@@ -797,6 +799,13 @@ begin
     begin
       OnLogPacket('REC_3D_SETCONTROL, ' + IntToStr(pc.ID) +
         ' --> Send Back To Server 3D');
+      recCmdAddShip:= @apRec^;
+      OnLogPacket(('Rec_CMD_ENVI' + #13#10 +
+            'ShipID : ' + IntToStr(recCmdAddShip^.ShipID)+ #13#10 +
+            'OrderID : ' + FloatToStr(recCmdAddShip^.OrderID)+ #13#10 +
+            'X : ' + FloatToStr(recCmdAddShip^.X)+ #13#10 +
+            'Y : ' + FloatToStr(recCmdAddShip^.Y)+ #13#10 +
+            'Z : ' + FloatToStr(recCmdAddShip^.Z)+ #13#10));
     end
     else if pc.ID = REC_3D_POSITION then
     begin

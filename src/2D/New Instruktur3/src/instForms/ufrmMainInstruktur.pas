@@ -2545,6 +2545,9 @@ begin
 
       frmAddShipRuntime.Longitude.Text  := ConvLL_To_Str(mx, '0');
       frmAddShipRuntime.Latitude.Text   := ConvLL_To_Str(my, '1');
+
+      frmaddshipruntime.PosX := mx;
+      frmaddshipruntime.PosY := my;
      end;
     end;
   end
