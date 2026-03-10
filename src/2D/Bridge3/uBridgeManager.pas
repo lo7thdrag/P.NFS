@@ -461,6 +461,10 @@ begin
 
     RegisterProcedure(REC_VIEW_RANGE_WEAPON, ServerReceive_ServerSend,
       sizeof(TRec_View_Range_Weapon));
+
+    // C705 console; angga
+    RegisterProcedure(Rec_Data_C705, ServerReceive_ClientSend,
+      sizeof(TRec_Data_C705));
   end;
 end;
 

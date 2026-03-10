@@ -1177,8 +1177,8 @@ begin
   chkOpenCoverLauncherC705.OnClick      := C705ChkClick;
 
   chkC705Enable.Tag     := __STAT_C705_ENABLE;
-  chkSafetyIgnitionC705.Tag          := __STAT_C705_Unknown;
-  chkOpenCoverLauncherC705.Tag          := __STAT_C705_Unknown2;
+  chkSafetyIgnitionC705.Tag          := __STAT_C705_OpenCoverLauncherC705;
+  chkOpenCoverLauncherC705.Tag          := __STAT_C705_SafetyIgnition;
 
   { =========================================================== }
 
@@ -3267,8 +3267,8 @@ begin
 
         case id of
           __STAT_C705_ENABLE    : WeaponC705.EnableC705   := TCheckBox(sender).Checked;
-          __STAT_C705_Unknown   : WeaponC705.Unknown      := TCheckBox(sender).Checked;
-          __STAT_C705_Unknown2  : WeaponC705.Unknown2     := TCheckBox(sender).Checked;
+          __STAT_C705_OpenCoverLauncherC705   : WeaponC705.Unknown      := TCheckBox(sender).Checked;
+          __STAT_C705_SafetyIgnition  : WeaponC705.Unknown2     := TCheckBox(sender).Checked;
         end;
       end;
     end;
@@ -3281,7 +3281,7 @@ begin
   else
     aParam := 2;
 
-  SimManager.NetSendStatConsole(ShipStrID, __STAT_C705_ENABLE, id , aParam);
+  SimManager.NetSendStatConsole(ShipStrID, C_DBID_C705, id , aParam);
 end;
 
 { ======================================================================= }

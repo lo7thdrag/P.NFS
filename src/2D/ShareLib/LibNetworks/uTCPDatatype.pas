@@ -1125,6 +1125,36 @@ type
     valueStr : string[20];
   end;
 
+  // for C705 Console; angga
+  TRecStatus_Console_C705 = packed record
+    Pc: TPacketCheck;
+
+    OWN_SHIP_UID: string[15];
+    ErrorID: word;
+    ParamError: Byte;
+    LauncherNum: Byte;
+  end;
+
+  TRec_Data_C705 = packed record     // Rec_Data_C705 = 69 -> CPID
+    Pc: TPacketCheck;
+
+    // Add New
+    ShipID: word;     // ownship
+    mWeaponID: word; // Diisi sesuai Database
+    mLauncherID: word;
+    mMissileID: word;
+    mMissileNumber: word; // Diisi 0 aj...nanti instruktur yang ngisi ulan
+
+    OrderID: Byte;
+
+    //mTargetHeading : Single;
+    //mTargetSpeed : Single;
+
+    mTargetBearing: single;
+    mTargetRange: single;
+    mTargetId : Integer;
+  end;
+
 const
 
   // aldy map
@@ -1444,6 +1474,9 @@ const
   __ORD_ID_CAMCON_Joystick_Down    = 15;
   __ORD_ID_CAMCON_Joystick_ZoomIn  = 16;
   __ORD_ID_CAMCON_Joystick_ZoomOut = 17;
+
+  { C705; angga }
+  Rec_Data_C705 = 69;
 
   REC_CMD_COM_CONSOLE = 71;
 
@@ -1813,8 +1846,8 @@ const
 
   // ERROR FOR C705
   __STAT_C705_ENABLE = 2101;
-  __STAT_C705_Unknown = 2102;
-  __STAT_C705_Unknown2 = 2103;
+  __STAT_C705_OpenCoverLauncherC705 = 2102;
+  __STAT_C705_SafetyIgnition = 2103;
   __STAT_C705_Firing = 2104;
   __PARAM_C705_ON = 1;
   __PARAM_C705_OFF = 2;

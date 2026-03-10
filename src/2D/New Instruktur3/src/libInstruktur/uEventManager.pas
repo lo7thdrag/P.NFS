@@ -1572,8 +1572,8 @@ begin
                WeaponC705 := TWeaponOn_C705(WeaponOnShip);
                 case Rec.ErrorID of
                   __STAT_C705_ENABLE   : WeaponC705.EnableC705  := WeaponStat;
-                  __STAT_C705_Unknown  : WeaponC705.Unknown     := WeaponStat;
-                  __STAT_C705_Unknown2 : WeaponC705.Unknown2    := WeaponStat;
+                  __STAT_C705_OpenCoverLauncherC705  : WeaponC705.Unknown     := WeaponStat;
+                  __STAT_C705_SafetyIgnition : WeaponC705.Unknown2    := WeaponStat;
                   __STAT_C705_Firing   : WeaponC705.Firing      := WeaponStat;
                 end;
             end;

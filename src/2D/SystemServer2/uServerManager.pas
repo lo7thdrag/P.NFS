@@ -713,6 +713,10 @@ begin
   // GUIDANCE VEHICLE
   FServer2D.RegisterProcedure(REC_GUIDANCE, Server2DReceive_Server3DSend,
     SizeOf(TRecGuidance));
+
+  // C705; angga
+  FServer2D.RegisterProcedure(Rec_Data_C705, Server2DReceive_Server3DSend,
+      sizeof(TRec_Data_C705));
 end;
 
 procedure TServerManager.Prepare_As_Server3D;
@@ -844,6 +848,9 @@ var
 
   RecCmdSetEnvi: ^TRecDataEnvironment;
   RecCmdSetEnvi3D: TRecDataEnvironment3D;
+
+  RecDataFireC705: ^TRec_Data_C705;
+  RecDataFireC7053D: TRecData_C7053D;
 
   o: TObject;
 
@@ -1758,6 +1765,64 @@ begin
 
         TcpServer3D.SendData(REC_ENVI_3D, RecCmdSetEnvi3D);
       end;
+
+    REC_Data_C705: begin
+      RecDataFireC705 := @apRec^;
+
+      if Assigned(OnLogReceived2D) then
+      begin
+
+        OnLogReceived2D('ShipID :' + IntToStr(RecDataFireC705^.ShipID));
+        OnLogReceived2D('mTargetId :' + IntToStr(RecDataFireC705^.mTargetID));
+        OnLogReceived2D('mWeaponID :' + IntToStr(RecDataFireC705^.mWeaponID));
+        OnLogReceived2D('mLauncherID :' + IntToStr(RecDataFireC705^.mLauncherID));
+        OnLogReceived2D('mMissileID :' + IntToStr(RecDataFireC705^.mMissileID));
+        OnLogReceived2D('mMissileNumber :' +
+          IntToStr(RecDataFireC705^.mMissileNumber));
+        OnLogReceived2D('OrderID :' + IntToStr(RecDataFireC705^.OrderID) +
+          'kalo 1 itu OrdID_C802_launch(1)');
+        OnLogReceived2D('mTargetBearing :' +
+          FloatToStr(RecDataFireC705^.mTargetBearing));
+        OnLogReceived2D('mTargetRange :' + FloatToStr(RecDataFireC705^.mTargetRange));
+
+      end;
+
+      RecDataFireC7053D.ShipID := RecDataFireC705^.ShipID;
+      RecDataFireC7053D.mTargetID := RecDataFireC705^.mTargetID;
+      RecDataFireC7053D.mWeaponID := RecDataFireC705^.mWeaponID; // Diisi sesuai Database
+      RecDataFireC7053D.mLauncherID := RecDataFireC705^.mLauncherID;
+      RecDataFireC7053D.mMissileID := RecDataFireC705^.mMissileID;
+      RecDataFireC7053D.mMissileNumber := RecDataFireC705^.mMissileNumber;
+      // Diisi 0 aj...nanti instruktur yang ngisi ulan
+
+      RecDataFireC7053D.OrderID := RecDataFireC705^.OrderID;
+
+      RecDataFireC7053D.mTargetBearing := RecDataFireC705^.mTargetBearing;
+      RecDataFireC7053D.mTargetRange := RecDataFireC705^.mTargetRange;
+      TcpServer3D.SendData(RecDataFireC705, RecDataFireC7053D);
+
+      { // add if needed
+      if (RecDataFireC705^.OrderID = __ORD_C802_LOADING) then
+      begin
+        RecSend3DMissilePos.ShipID := RecDataFireC705^.ShipID;
+        RecSend3DMissilePos.WeaponID := RecDataFireC705^.mWeaponID;
+        RecSend3DMissilePos.launcherID := RecDataFireC705^.mLauncherID;
+        RecSend3DMissilePos.missileID := RecDataFireC705^.mMissileID;
+        RecSend3DMissilePos.MissileNumber := RecDataFireC705^.mMissileNumber;
+        RecSend3DMissilePos.status := 0;
+        case RecDataFireC705^.OrderID of
+          __ORD_C802_LOADING:
+            RecSend3DMissilePos.status := ST_MISSILE_LOADED;
+        end;
+        RecSend3DMissilePos.X := 0;
+        RecSend3DMissilePos.y := 0;
+        RecSend3DMissilePos.z := 0;
+        RecSend3DMissilePos.heading := 0.0;
+        RecSend3DMissilePos.speed := 0.0;
+
+        FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
+      end;}
+    end;
 
     { REC_CMD_MISTRAL:
       begin

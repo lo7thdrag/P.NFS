@@ -141,6 +141,15 @@ const
     __ORD_SPS_OFF           = 5;
 
   REC_3D_WCC        = 63;
+
+  REC_DATA_C7053D         = 69; //------- End C705 -----------
+//    __ORD_C705_FIRE          = 1;
+//    __ORD_C705_RADAR_ASSIGN  = 2;
+//    __ORD_C705_LOADING       = 3;
+//    __ORD_C705_ON            = 4;
+//    __ORD_C705_OFF           = 5;
+//    __ORD_C705_TAKE_OFF      = 6;
+
   REC_GUIDANCE                    = 77;
   REC3D_STATUS_GAME = 84;
   REC_STATUS_MESSAGE              = 87;
@@ -925,6 +934,30 @@ type
     [BsonElement('vsr')]
     valueStr : String;
   end;
+
+  TRecData_C7053D = record
+     //Add New
+     [BsonElement('ShipID')]
+     ShipID          : word;
+     [BsonElement('mTargetId')]
+     mTargetId       : Integer;
+     [BsonElement('mWeaponID')]
+     mWeaponID       : Word; //Diisi sesuai Database
+     [BsonElement('mLauncherID')]
+     mLauncherID     : word;
+     [BsonElement('mMissileID')]
+     mMissileID      : word;
+     [BsonElement('mMissileNumber')]
+     mMissileNumber  : Word; //Diisi 0 aj...nanti instruktur yang ngisi ulan
+
+     [BsonElement('OrderID')]
+     OrderID         : Byte;
+
+     [BsonElement('mTargetBearing')]
+     mTargetBearing  : Single;
+     [BsonElement('mTargetRange')]
+     mTargetRange    : Single;
+   end;
 
 implementation
 

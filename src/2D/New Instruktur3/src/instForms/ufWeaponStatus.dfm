@@ -5141,7 +5141,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 883
           object lbl200: TLabel
             Left = 145
             Top = 11
@@ -5329,7 +5328,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblExocetMM40Title: TLabel
             Left = 121
             Top = 11
@@ -5850,7 +5848,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblCannon76: TLabel
             Left = 146
             Top = 11
@@ -6068,7 +6065,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl3: TLabel
             Left = 146
             Top = 11
@@ -6129,7 +6125,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblVLMicaTitle: TLabel
             Left = 159
             Top = 11
@@ -6576,7 +6571,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblMilleniumGun35Title: TLabel
             Left = 104
             Top = 12
@@ -6773,7 +6767,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
           object lblC705Title: TLabel
             Left = 171
             Top = 11
@@ -7055,8 +7048,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 1
             end
             object chkSafetyIgnitionC705: TCheckBox
-              Left = 42
-              Top = 73
+              Left = 44
+              Top = 74
               Width = 126
               Height = 17
               Caption = 'Booster Safety Ignition'
