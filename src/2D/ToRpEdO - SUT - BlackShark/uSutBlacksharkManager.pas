@@ -238,6 +238,7 @@ begin
       v.PosY := aRec.Y;
       v.PosZ := aRec.Z;
       v.SetSpeedKts(aRec.speed);
+      v.ShipID := aRec.ShipID;
 
       v.HeadingDeg  := aRec.heading;
     end

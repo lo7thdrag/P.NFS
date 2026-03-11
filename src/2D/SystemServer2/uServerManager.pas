@@ -1799,7 +1799,7 @@ begin
 
       RecDataFireC7053D.mTargetBearing := RecDataFireC705^.mTargetBearing;
       RecDataFireC7053D.mTargetRange := RecDataFireC705^.mTargetRange;
-      TcpServer3D.SendData(RecDataFireC705, RecDataFireC7053D);
+//      TcpServer3D.SendData(RecDataFireC705, RecDataFireC7053D);
 
       { // add if needed
       if (RecDataFireC705^.OrderID = __ORD_C802_LOADING) then

@@ -43,14 +43,14 @@ const
     M_IndBomb_BlindBomb = 2;
     M_AirTarget         = 3;
   REC_3D_TORPEDO_MK44             = 8;
-  REC_3D_TORPEDO_SUT              = 9;
+  REC_3D_TORPEDO_SUT              = 9;  //CPID
 
     {ORD TORP SUT}
-    __ORD_TORPEDOSUT_FIRED		  = 1;  // FIRE
-    __ORD_TORPEDOSUT_NAVIGATE   = 2;  // NAVIGATE -> UPDATE COURSE, ENDIS DAN DEPTH
+    __ORD_TORPEDOSUT_FIRED		  = 1;  // FIRE cok
+    __ORD_TORPEDOSUT_NAVIGATE   = 2;  // NAVIGATE -> (Assign Target) atau UPDATE COURSE, ENDIS DAN DEPTH
     __ORD_TORPEDOSUT_HOMING     = 3;  // HOMMING ->
     __ORD_TORPEDOSUT_SEARCH     = 4;  // ACTIVE SEARCH SONAR TORPEDO -> Pergerakan based on Intercept or Bearing mode
-    __ORD_TORPEDOSUT_MANUAL     = 5;  // MANUALY UPDATE COURSE DAN DEPTH
+    __ORD_TORPEDOSUT_MANUAL     = 5;  // (Deassign Target) atau MANUALY UPDATE COURSE DAN DEPTH
     __ORD_TORPEDOSUT_SHUTDOWN   = 6;  // KILL TORP SUT
     __ORD_TORPEDOSUT_LOADING    = 7;  // LOADING
     __ORD_TORPEDOSUT_ON         = 8;
