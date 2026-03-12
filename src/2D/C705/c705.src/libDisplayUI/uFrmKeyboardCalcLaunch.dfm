@@ -2481,6 +2481,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     ParentBackground = False
     TabOrder = 0
     object imgLaunch2: TImage
+      Tag = 2
       Left = 7
       Top = 53
       Width = 72
@@ -2620,6 +2621,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       Stretch = True
     end
     object imgLaunch1: TImage
+      Tag = 1
       Left = 115
       Top = 53
       Width = 72
@@ -2751,6 +2753,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
         C7FF8CC7BC440A22C0934E13C64D69FEEA6C59BEA5407B5661F83F5634424A84
         A0B0F80000000049454E44AE426082}
       Stretch = True
+      OnClick = imgLaunchClick
     end
     object imgCancel2: TImage
       Left = 7

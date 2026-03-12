@@ -523,6 +523,9 @@ begin
   TcpClient.RegisterProcedure(REC_ENVI, nil,
       sizeof(TRecDataEnvironment));
 
+  TcpClient.RegisterProcedure(Rec_Data_C705, nil,
+  sizeof(TRec_Data_C705));
+
 end;
 
 procedure TBridgeManager.RunSimulation;
@@ -571,6 +574,8 @@ var
 
   recCmdAddShip : ^spActorsController;
 
+  recCmdC705 : ^TRec_Data_C705;
+
   xTarget_3D, yTarget_3D, zTarget_3D: Double;
 
   xOffsetMap, yOffsetMap: Double;
@@ -590,6 +595,26 @@ begin
       recTorpedoSut := @apRec^;
       OnLogPacket('REC_3D_TORPEDO_SUT, ' + IntToStr(pc.ID) +
         ' --> Send Back To Server 3D');
+    end
+    else if pc.ID = Rec_Data_C705 then
+    begin
+      OnLogPacket('Rec_Data_C705, ' + IntToStr(pc.ID) +
+        ' --> Send Back To Server 3D');
+
+      recCmdC705 := @apRec^;
+
+      OnLogPacket('ShipID :' + IntToStr(recCmdC705^.ShipID));
+      OnLogPacket('mWeaponID :' + IntToStr(recCmdC705^.mWeaponID));
+      OnLogPacket('mLauncherID :' + IntToStr(recCmdC705^.mLauncherID));
+      OnLogPacket('mMissileID :' + IntToStr(recCmdC705^.mMissileID));
+      OnLogPacket('mMissileNumber :' + IntToStr(recCmdC705^.mMissileNumber));
+
+//      OnLogPacket('mMissileType :' + IntToStr(recCmdC705^.mMissileType));
+      OnLogPacket('mTargetID :' + IntToStr(recCmdC705^.mTargetID));
+      OnLogPacket('OrderID :' + FloatToStr(recCmdC705^.orderID));
+
+      OnLogPacket('mLncrBearing :' + FloatToStr(recCmdC705^.mTargetBearing));
+      OnLogPacket('mLncRange :' + FloatToStr(recCmdC705^.mTargetRange));
     end
     else if pc.ID = REC_3D_RBU then
     begin

@@ -67,6 +67,11 @@ type
     MapColor : TColor;
   end;
 
+  TShipSetting = record
+    ShipID: Integer;
+    WeaponId: Integer;
+  end;
+
 //  TTcmsNetwork = record
 //    GamePort : Integer;
 //    BCAddress : string;
@@ -80,6 +85,7 @@ type
   procedure LoadMapSetting;
   procedure LoadMonitorSetting;
   procedure LoadMonitorTopLeft;
+  procedure LoadOwnShips;
 
 var
   VNfsNetwork : TNFSNetwork;
@@ -87,6 +93,7 @@ var
   VMapSetting : TMapSetting;
   VMonitorSetting : TMonitorSetting;
   VMonitorTopLeft : TMonitorTopLeft;
+  VOwnShip : TShipSetting;
 
 implementation
 
@@ -205,6 +212,23 @@ begin
       MonBot_Top := INIFReadInteger(iniF, 'TopLeft', 'MonBot_Top', 0);
       MonMini_Left := INIFReadInteger(iniF, 'TopLeft', 'MonMini_Left', 0);
       MonMini_Top := INIFReadInteger(iniF, 'TopLeft', 'MonMini_Top', 0);
+    end;
+  finally
+    iniF.Free;
+  end;
+end;
+
+procedure LoadOwnShips;
+var
+  iniF: TIniFile;
+begin
+  iniF := TIniFile.Create(getFileSetting);
+
+  try
+    with VOwnShip do
+    begin
+      ShipID := INIFReadInteger(iniF, 'SHIPS', 'SHIPID', 0);
+      WeaponId := INIFReadInteger(iniF, 'SHIPS', 'WEAPONID', 0);
     end;
   finally
     iniF.Free;

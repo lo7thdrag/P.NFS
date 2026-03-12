@@ -118,7 +118,6 @@
         <DCCReference Include="LibUtils\uLibConst.pas"/>
         <DCCReference Include="LibMapX\uMapXUnitConverter.pas"/>
         <DCCReference Include="LibBaseSystem\uBaseConst.pas"/>
-        <DCCReference Include="LibBaseSystem\uBaseFunction.pas"/>
         <DCCReference Include="LibBaseSystem\uCoordConverter.pas"/>
         <DCCReference Include="libMgr\uFormMgr.pas"/>
         <DCCReference Include="libDisplayUI\UfrmFoeFriendSituationPage.pas">
@@ -168,6 +167,8 @@
         <DCCReference Include="libObjects\uMapViewManager.pas"/>
         <DCCReference Include="libObjects\uMapViewBase.pas"/>
         <DCCReference Include="libObjects\uShipView.pas"/>
+        <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseFunction.pas"/>
+        <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseConstan.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

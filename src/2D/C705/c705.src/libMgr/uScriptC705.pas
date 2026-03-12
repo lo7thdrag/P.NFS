@@ -37,6 +37,7 @@ begin
   LoadNFSNetwork;
   LoadMonitorTopLeft;
   LoadMapSetting;
+  LoadOwnShips;
 
   //LoadNFSDBConfig;
 
