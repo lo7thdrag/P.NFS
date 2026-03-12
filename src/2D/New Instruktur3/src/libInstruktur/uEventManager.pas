@@ -224,9 +224,9 @@ begin
   begin
 
       //frmGameController.tbSeaState.OnMouseUp := nil;
-      frmGameController.tbSeaState.Position := Round(Rec.mValue)+1;
+      frmGameController.tbSeaState.Position := Round(Rec.mValue);
       //frmGameController.tbSeaState.OnMouseUp := frmGameController.tbSeaStateChange;
-      frmGameController.edtPortSeaState.Text := IntToStr(Round(Rec.mValue)+1);
+      frmGameController.edtPortSeaState.Text := IntToStr(Round(Rec.mValue));
 
   end
   else

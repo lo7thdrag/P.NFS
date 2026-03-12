@@ -2041,8 +2041,8 @@ begin
   {$ENDREGION}
 
   {$REGION ' Environment '}
-  tbSeaState.Position := 1;
-  edtSeaState.Text := '1';
+  tbSeaState.Position := 0;
+  edtSeaState.Text := '0';
   tbWindSpeed.Position := 0;
   edtWindSpeed.Text := '0';
   tbSeaSpeed.Position := 0;
@@ -2463,8 +2463,8 @@ begin
 
     if val > 5000 then
       val := 5000
-    else if val < 1 then
-         val := 1 ;
+    else if val < 0 then
+         val := 0 ;
 
     edtBaroPressure.Text := IntToStr(val);
     tbBaroPressure.Position := StrToIntDef(edtBaroPressure.Text, 0);
@@ -2501,8 +2501,8 @@ begin
 
     if val > 100 then
       val := 100
-    else if val < 1 then
-      val := 1;
+    else if val < 0 then
+      val := 0;
     edtHumidity.Text := IntToStr(val);
     tbHumidity.Position := StrToIntDef(edtHumidity.Text, 0);
   end;
@@ -2544,8 +2544,8 @@ begin
 
     if val > 50 then
       val := 50
-    else if val < 1 then
-      val := 1;
+    else if val < 0 then
+      val := 0;
     edtSeaSpeed.Text := IntToStr(val);
     tbSeaSpeed.Position := StrToIntDef(edtSeaSpeed.Text, 0);
   end;
@@ -2563,8 +2563,8 @@ begin
 
     if val > 5 then
       val := 5
-    else if val < 1 then
-      val := 1;
+    else if val < 0 then
+      val := 0;
 
     edtSeaState.Text := inttostr(val);
 
@@ -2584,8 +2584,8 @@ begin
     if val > 100 then
       val := 100
     else
-    if val < 1 then
-      val := 1;
+    if val < 0 then
+      val := 0;
 
     edtTemp.Text := IntToStr(val);
     tbTemp.Position := StrToIntDef(edtTemp.Text,0);
@@ -2626,8 +2626,8 @@ begin
     val := StrToIntDef(edtWindSpeed.Text, 0);
     if val > 50 then
       val := 50
-    else if val < 1 then
-      val := 1;
+    else if val < 0 then
+      val := 0;
     edtWindSpeed.Text := IntToStr(val);
     tbWindSpeed.Position := StrToIntDef(edtWindSpeed.Text, 0);
   end;
