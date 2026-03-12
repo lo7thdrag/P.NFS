@@ -635,6 +635,7 @@ var
   ShipClassName,
   ShipCallSign: string;
   V: TVehicle;
+  i : Integer;
 begin
   SetLayoutForm;
   ResetSubmodeTools;
@@ -765,9 +766,21 @@ begin
 //    CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
 //    SetWindowRgn(Handle, rgnOuter, True);
 
+      // Header
+
+      for i := 0 to AdvStringGrid1.ColCount - 1 do
+      begin
+        AdvStringGrid1.Alignments[i,0] := taCenter;
+        AdvStringGrid1.FontStyles[i,0] := [fsBold];
+      end;
+
+      AdvStringGrid1.Cells[0,0] := 'Target';
+      AdvStringGrid1.Cells[1,0] := 'Salvo';
+      AdvStringGrid1.Cells[2,0] := 'Torpedo';
+      AdvStringGrid1.Cells[3,0] := 'Console';
+
     SutBlacksharkManager.Running := True;
   end;
-
 end;
 
 procedure TFrmTacticalScreen.FormDestroy(Sender: TObject);
@@ -883,6 +896,27 @@ begin
   pnlSubmodeTools17.Enabled := False;
   pnlSubmodeTools18.Enabled := False;
   pnlSubmodeTools19.Enabled := False;
+
+  lblSubmodeTools0.Enabled := False;
+  lblSubmodeTools1.Enabled := False;
+  lblSubmodeTools2.Enabled := False;
+  lblSubmodeTools3.Enabled := False;
+  lblSubmodeTools4.Enabled := False;
+  lblSubmodeTools5.Enabled := False;
+  lblSubmodeTools6.Enabled := False;
+  lblSubmodeTools7.Enabled := False;
+  lblSubmodeTools8.Enabled := False;
+  lblSubmodeTools9.Enabled := False;
+  lblSubmodeTools10.Enabled := False;
+  lblSubmodeTools11.Enabled := False;
+  lblSubmodeTools12.Enabled := False;
+  lblSubmodeTools13.Enabled := False;
+  lblSubmodeTools14.Enabled := False;
+  lblSubmodeTools15.Enabled := False;
+  lblSubmodeTools16.Enabled := False;
+  lblSubmodeTools17.Enabled := False;
+  lblSubmodeTools18.Enabled := False;
+  lblSubmodeTools19.Enabled := False;
 
   lblSubmodeTools0.Caption := '';
   lblSubmodeTools1.Caption := '';
@@ -1449,7 +1483,7 @@ end;
 procedure TFrmTacticalScreen.tmrUpdateDataPosTimer(Sender: TObject);
 begin
   lblTanggaljam.Caption := FormatDateTime('dd/mm/yyyy hh:nn:ss',now);
-  lblOwnshipHeadingVal.Caption := SutBlacksharkManager.xShip.Heading.ToString;
+  lblOwnshipHeadingVal.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.Heading);
   lblOwnshipLatPosVal.Caption := FormatFloat('0.0000', SutBlacksharkManager.xShip.PositionY);
   lblOwnshipLongPosVal.Caption := FormatFloat('0.0000', SutBlacksharkManager.xShip.PositionX);
   lblOwnshipSpeedVal.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.Speed);
