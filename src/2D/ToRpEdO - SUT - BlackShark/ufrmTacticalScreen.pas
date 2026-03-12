@@ -1001,10 +1001,37 @@ begin
 end;
 
 procedure TFrmTacticalScreen.SubmodeToolsSelect(Sender: Tobject);
-begin
-  if TLabel(Sender).Tag = SubmodeTools then Exit;
+var
+  L: TLabel;
+  P: TPanel;
+  isValid : Boolean;
+  RecSend : TRecSetTorpedoSUT;
 
-  if TLabel(Sender).Enabled = false then Exit;
+  CorrectBearing,
+  CorrectElev : Double;
+  aLow, aHigh: Double;
+  range,rangem, bearing : Double;
+begin
+
+  if not (Sender is TLabel) then Exit;
+
+  if TLabel(Sender).Enabled = False then Exit;
+
+  L := TLabel(Sender);
+
+  if not (L.Parent is TPanel) then Exit;
+
+  P := TPanel(L.Parent);
+
+  if not P.Enabled then
+    Exit;
+
+//  if not (TLabel(Sender).Parent is TPanel) then
+//  Exit;
+//
+//  if TPanel((Sender as TLabel).Parent).Enabled = false then Exit;
+
+  if TPanel((Sender as TLabel).Parent).Tag = SubmodeTools then Exit;
 
   pnlSubmodeTools0.Color := clBlack;
   pnlSubmodeTools1.Color := clBlack;
@@ -1028,7 +1055,77 @@ begin
   pnlSubmodeTools19.Color := clBlack;
 
   TLabel(Sender).Color := clLime;
-  SubmodeTools := TLabel(Sender).Tag;
+//  TLabel(Sender).paren
+  TPanel((Sender as TLabel).Parent).Color := clLime;
+  SubmodeTools := TPanel((Sender as TLabel).Parent).Tag;
+
+  if (SubmodeTools = 11) and (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
+      and (lblSubmodeTools11.Enabled = true) then
+  begin
+    if (Assigned(SutBlacksharkManager.SelectedVehicle)) and (FSelectedVehicleState = true)then
+  begin
+    range := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
+    rangem := range * C_NauticalMile_To_Metre;
+    bearing := CalcBearing(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
+    // range = 3000 m, target lebih rendah 25 m
+    ComputeBallisticAngleVacuum(rangem, SutBlacksharkManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+
+    if (aLow <= 80 ) and (aLow >= 0 )then
+    begin
+//      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
+      aLow := FMod(aLow, 360);
+      if aLow < 0 then
+        aLow := aLow + 360;
+
+      RecSend.ShipID              := SutBlacksharkManager.ShipID;
+      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID         := 1;
+      RecSend.mMissileID          := 0;
+      RecSend.mMissileNumber      := 0;
+//      RecSend.OrderID             := 0;
+
+      RecSend.mTorpedoSpeed       := 0;
+      RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
+      RecSend.mMissileType        := 0;
+      RecSend.mTorpedoDepth       := aLow;
+      RecSend.mTorpedoCourse      := bearing;
+
+      RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
+//      RecSend.mSalvoRate          := 30;
+
+
+      RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
+      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+    end
+    else if (aLow >= 350 )then
+    begin
+      alow := FMod(alow, 360);
+      if alow < 0 then
+        alow := alow + 360;
+
+      RecSend.ShipID              := SutBlacksharkManager.ShipID;
+      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID         := 1;
+      RecSend.mMissileID          := 0;
+      RecSend.mMissileNumber      := 0;
+//      RecSend.OrderID             := 0;
+
+      RecSend.mTorpedoSpeed       := 0;
+      RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
+      RecSend.mMissileType        := 0;
+      RecSend.mTorpedoDepth       := aLow;
+      RecSend.mTorpedoCourse      := bearing;
+
+      RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
+//      RecSend.mSalvoRate          := 30;
+
+
+      RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
+      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+    end;
+  end;
+  end;
+
 //
 end;
 
@@ -1238,7 +1335,7 @@ begin
     begin
       lblSubmodeTools3.Caption := 'RESM' + #13#10 + 'Data' + #13#10 + 'Control';
       pnlSubmodeTools3.Enabled := True;
-      lblSubmodeTools0.Enabled := True;
+      lblSubmodeTools3.Enabled := True;
 
       lblSubmodeTools1.Caption := 'Classi-' + #13#10 + 'fication';
       pnlSubmodeTools1.Enabled := True;
