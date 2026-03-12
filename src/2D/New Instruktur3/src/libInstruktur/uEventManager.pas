@@ -1103,6 +1103,19 @@ begin
   frmMainInstruktur.lblConnect.Caption.Text := SockStateS[newState];
   frmMainInstruktur.SetStatusServer(frmMainInstruktur.lblConnect.Caption.Text);
 
+  for i := 0 to frmGameController.lvClient.Items.Count -1 do
+  begin
+    if (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or
+       (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
+       (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
+    begin
+      if NewState = wsConnected then
+        frmGameController.lvClient.Items[i].SubItems[4] := 'RUNNING'
+      else if NewState = wsClosed then
+        frmGameController.lvClient.Items[i].SubItems[4] := 'OFFLINE';
+    end;
+  end;
+
   if (OldState = wsConnected) and (NewState = wsClosed) then
   begin
     if (SimManager <> nil) then
