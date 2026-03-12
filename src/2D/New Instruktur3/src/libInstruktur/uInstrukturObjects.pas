@@ -155,6 +155,7 @@ interface
       FWeapon_ID   : Integer;
       FWeapon_Launcher : Integer;
       FWeapon_Status  : integer;  //1= on, 2=off
+      FWeapon_Fire : Integer;
 
       OffsetX         : Double;
       OffsetY         : Double;
@@ -172,6 +173,7 @@ interface
       property Weapon_ID   : Integer read FWeapon_ID write FWeapon_ID;
       property Weapon_Launcher : Integer read FWeapon_Launcher write FWeapon_Launcher;
       property Weapon_Status  : integer read FWeapon_Status write FWeapon_Status;
+      property Weapon_Fire  : integer read FWeapon_Fire write FWeapon_Fire;
   end;
 
   //for SPS115, Torpedo a244

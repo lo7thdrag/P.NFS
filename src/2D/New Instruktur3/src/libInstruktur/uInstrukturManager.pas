@@ -67,7 +67,6 @@ type
       FOnStatusReplay           : TOnStatusReplay;
       FOnTrajectoryView         : TOnTrajectoryView;
 
-
       procedure EventOnMainTimer(const dt: double); override;
 
       procedure FActionRepainter(sender: TObject);              // Draw All Element
@@ -221,6 +220,7 @@ type
       procedure DrawAllOnMapXCanvas(aCnv: TCanvas);     override;
 
       procedure DrawWeaponOnShip(aCnv: TCanvas; Ship: TInsObject);
+      procedure HandleWeapon3DOrder(RecSend: TRecData_Yakhont);
 
       { clear All Object in Instruktur }
       procedure ClearAllObjects;
@@ -1016,7 +1016,6 @@ begin
         WeaponShip.Weapon_ID        := Weapon.IDWeapon;
         WeaponShip.Weapon_Launcher  := Weapon.IDDetail;
         WeaponShip.Weapon_Status    := 2;
-
 
         listSceWeapon := TList.Create;
         try
@@ -2232,12 +2231,10 @@ begin
   begin
     weapon := TWeaponOnShip(Ship.WeaponOnShip_List[i]);
 
-    case weapon.Weapon_Status of
-      0: aCnv.Brush.Color := clGray;
-      1: aCnv.Brush.Color := clLime;
-    else
-      aCnv.Brush.Color := clSilver;
-    end;
+    if weapon.Weapon_Fire = 0 then
+      Continue;
+
+    aCnv.Brush.Color := clSilver;
 
     rotX := weapon.OffsetX * Cos(rad) - weapon.OffsetY * Sin(rad);
     rotY := weapon.OffsetX * Sin(rad) + weapon.OffsetY * Cos(rad);
@@ -2253,9 +2250,38 @@ begin
     aCnv.Font.Size := 12;
     aCnv.TextOut(Round(sx + 6), Round(sy - 6), 'L' + IntToStr(weapon.Weapon_Launcher));
 
-    if weapon.Weapon_Status = 1 then
-      aCnv.TextOut(Round(sx + 6), Round(sy + 6), weapon.Weapon_Name);
+//    if weapon.Weapon_Status = 1 then
+//      aCnv.TextOut(Round(sx + 6), Round(sy + 6), weapon.Weapon_Name);
   end;
+end;
+
+procedure TSimManager.HandleWeapon3DOrder(RecSend: TRecData_Yakhont);
+var
+  ship: TInsObject;
+  WeaponShip: TWeaponOnShip;
+  i: Integer;
+begin
+  ship := FindShipByID(RecSend.ShipID);
+  if not Assigned(ship) then Exit;
+
+  if RecSend.OrderID in [
+      __ORD_Yahkont_FIRE, __ORD_C802_FIRE, __ORD_EXOCET_40_FIRE,
+      __ORD_CANNON_F, __ORD_RBU_FIRE, __ORD_TORPEDOSUT_FIRED,
+      __ORD_ASROCK_FIRE, __ORD_TETRAL_FIRE, __ORD_MISTRAL_FIRE,
+      __ORD_STRELLA_FIRE, __ORD_VLMICA_FIRE] then
+  begin
+    for i := 0 to ship.WeaponOnShip_List.Count - 1 do
+    begin
+      WeaponShip := TWeaponOnShip(ship.WeaponOnShip_List[i]);
+
+      if (WeaponShip.Weapon_ID = RecSend.mWeaponID) and
+         (WeaponShip.Weapon_Launcher = RecSend.mLauncherID) then
+      begin
+        WeaponShip.Weapon_Fire := 1;
+        Break;
+      end;
+    end;
+  end
 end;
 
 procedure TSimManager.EventOnMainTimer(const dt: double);

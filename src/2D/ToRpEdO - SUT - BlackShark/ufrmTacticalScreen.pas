@@ -149,6 +149,7 @@ type
     Label3: TLabel;
     cbbMotionMode: TAdvComboBox;
     AdvStringGrid1: TAdvStringGrid;
+    TimerBlink: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -166,6 +167,7 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure FMapMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure TimerBlinkTimer(Sender: TObject);
 
   protected
     procedure DrawAngle(aCnv: TCanvas);
@@ -213,6 +215,9 @@ type
     pClassID        : Integer;
 
     FSelectedVehicleState : Boolean;
+
+    FBlinkPanel: TPanel;
+    FBlinkState: Boolean;
 
 
     procedure SubmodeSelect(Sender: Tobject);
@@ -499,6 +504,10 @@ begin
 
     FSelectedVehicleState := true;
 
+    FBlinkPanel := pnlSubmodeTools11;
+    FBlinkState := False;
+    TimerBlink.Enabled := True;
+
     if Assigned(SutBlacksharkManager) then
     begin
       // 1) Tanpa environment (vakum)
@@ -508,7 +517,15 @@ begin
     end;
   end
   else
+  begin
     FSelectedVehicleState := false;
+    if (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
+      and (lblSubmodeTools11.Enabled = true)then
+    begin
+      TimerBlink.Enabled := False;
+      pnlSubmodeTools11.Color := clBlack;
+    end;
+  end;
 end;
 
 procedure TFrmTacticalScreen.FMapMouseUp(Sender: TObject; Button: TMouseButton;
@@ -527,7 +544,7 @@ begin
   begin
     RecSend.ShipID              := SutBlacksharkManager.ShipID;
     RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-    RecSend.mLauncherID         := 0;
+    RecSend.mLauncherID         := 1;
     RecSend.mMissileID          := 0;
     RecSend.mMissileNumber      := 0;
 //      RecSend.OrderID             := 0;
@@ -564,7 +581,7 @@ begin
 
       RecSend.ShipID              := SutBlacksharkManager.ShipID;
       RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-      RecSend.mLauncherID         := 0;
+      RecSend.mLauncherID         := 1;
       RecSend.mMissileID          := 0;
       RecSend.mMissileNumber      := 0;
 //      RecSend.OrderID             := 0;
@@ -590,7 +607,7 @@ begin
 
       RecSend.ShipID              := SutBlacksharkManager.ShipID;
       RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-      RecSend.mLauncherID         := 0;
+      RecSend.mLauncherID         := 1;
       RecSend.mMissileID          := 0;
       RecSend.mMissileNumber      := 0;
 //      RecSend.OrderID             := 0;
@@ -1312,6 +1329,24 @@ procedure TFrmTacticalScreen.Timer1Timer(Sender: TObject);
 begin
   //imgBackgrounSituationZone.Repaint;
   Invalidate;
+end;
+
+procedure TFrmTacticalScreen.TimerBlinkTimer(Sender: TObject);
+begin
+  if FBlinkPanel = nil then Exit;
+
+  if FSelectedVehicleState = false then Exit;
+
+  if (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
+      and (lblSubmodeTools11.Enabled = true)then
+  begin
+    FBlinkState := not FBlinkState;
+
+    if FBlinkState then
+      FBlinkPanel.Color := clRed
+    else
+      FBlinkPanel.Color := clBlack;
+  end;
 end;
 
 procedure TFrmTacticalScreen.tmrUpdateDataPosTimer(Sender: TObject);
