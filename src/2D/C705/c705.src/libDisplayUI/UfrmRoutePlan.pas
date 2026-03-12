@@ -341,6 +341,9 @@ type
     procedure MapMove;
   public
     { Public declarations }
+    FSelectMode : Boolean;
+    FSelectedBearing, FSelectedRange : Double;
+
     procedure InitMapMainForm(const GeosetPath: string);
 
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
@@ -829,6 +832,9 @@ var
   dLong, dLat: Double;
   wp: TWaypoint;
   idx: Integer;
+  OwnShip: TShipContact;
+  range, bearing : Double;
+  Long, Lati : Double;
 begin
   if Button <> mbLeft then
     Exit;
@@ -1015,6 +1021,17 @@ begin
     end;
     {$ENDREGION}
   end;
+
+  if FSelectMode then
+  begin
+    OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
+//    FMap.ConvertCoord(X, Y, Long, Lati, miMapToScreen);
+    range := CalcRange(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
+    FSelectedRange := range * C_NauticalMile_To_Metre;
+    FSelectedBearing := CalcBearing(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
+
+  end;
+
 end;
 
 {$ENDREGION}
@@ -1110,10 +1127,12 @@ end;
 
 procedure TfrmRoutePlan.btnToolBarsClick(Sender: TObject);
 begin
+  FSelectMode := False;
   case (Sender as TSpeedButton).Tag of
     0: begin
       {$REGION 'Operating Mode'}
       FMap.CurrentTool := miArrowTool;
+      FSelectMode := True;
       {$ENDREGION}
     end;
     1: begin

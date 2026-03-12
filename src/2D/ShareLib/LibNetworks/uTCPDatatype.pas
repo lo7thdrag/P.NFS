@@ -1868,7 +1868,7 @@ const
     { 21 }
     'REC_TETRAL', 'REC_MISTRAL', 'REC_STRELLA', 'REC_DATA_Yakhont', '',
 
-    '', 'REC_EXOCET40', '', '', 'C_REC_HARPOON_SETTING',
+    'REC_CMD_Yakhont', 'REC_EXOCET40', '', '', 'C_REC_HARPOON_SETTING',
 
     { 31 }
     'REC_DB_ORDER', '', '', 'REC_ENVI', '',
@@ -1891,7 +1891,7 @@ const
     'REC_RBU_SONARMODE',
 
     'RecRBU_SonarMode_ORDER', 'REC_CMD_C802', 'REC_DATA_C802',
-    'REC_CMD_Yakhont', 'REC_DATA_Yakhont',
+    'Rec_Data_C705', '',
     { 71 }
     'REC_CMD_COM_CONSOLE', 'REC_STAT_ORDER_CONSOLE_C802',
     'REC_STAT_ASSIGN_OBJECT', 'REC_MAP_COMMAND', 'REC_WEAPON_SHOW_RANGE',

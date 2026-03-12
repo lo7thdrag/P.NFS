@@ -14,7 +14,6 @@ uses
   uLibConst in 'LibUtils\uLibConst.pas',
   uMapXUnitConverter in 'LibMapX\uMapXUnitConverter.pas',
   uBaseConst in 'LibBaseSystem\uBaseConst.pas',
-  uBaseFunction in 'LibBaseSystem\uBaseFunction.pas',
   uCoordConverter in 'LibBaseSystem\uCoordConverter.pas',
   uFormMgr in 'libMgr\uFormMgr.pas',
   UfrmFoeFriendSituationPage in 'libDisplayUI\UfrmFoeFriendSituationPage.pas' {frmFoeFriendSituationPage},
@@ -43,7 +42,9 @@ uses
   uWaypointView in 'libObjects\uWaypointView.pas',
   uMapViewManager in 'libObjects\uMapViewManager.pas',
   uMapViewBase in 'libObjects\uMapViewBase.pas',
-  uShipView in 'libObjects\uShipView.pas';
+  uShipView in 'libObjects\uShipView.pas',
+  uBaseFunction in '..\..\ShareLib\LibBaseSystem\uBaseFunction.pas',
+  uBaseConstan in '..\..\ShareLib\LibBaseSystem\uBaseConstan.pas';
 
 {$R *.res}
 

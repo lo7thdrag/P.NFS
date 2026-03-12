@@ -743,6 +743,7 @@ begin
   TcpServer3D.RegisterProcedure(REC_CMD_EXOCET_40, nil);
   TcpServer3D.RegisterProcedure(REC_CMD_DESIG_A244_3D, nil);
   TcpServer3D.RegisterProcedure(REC_CMD_VLMICA, nil);
+  TcpServer3D.RegisterProcedure(REC_DATA_C7053D, nil);
 
   // For Position
   TcpServer3D.RegisterProcedure(REC3D_POSITION, ClientRecv_3D_ShipPos);
@@ -1799,7 +1800,7 @@ begin
 
       RecDataFireC7053D.mTargetBearing := RecDataFireC705^.mTargetBearing;
       RecDataFireC7053D.mTargetRange := RecDataFireC705^.mTargetRange;
-//      TcpServer3D.SendData(RecDataFireC705, RecDataFireC7053D);
+      TcpServer3D.SendData(REC_DATA_C7053D, RecDataFireC7053D);
 
       { // add if needed
       if (RecDataFireC705^.OrderID = __ORD_C802_LOADING) then
