@@ -753,7 +753,7 @@ begin
 
   // RANGE RINGS
   FRings.CircleRect    := FCircleRect;
-  FRings.CurrentRange_m := FCurrentRange;
+  FRings.CurrentRange_m := 6000;
   FRings.ConvertCoord(aCvt);
   FRings.Draw(aCnv);
 
@@ -1350,7 +1350,12 @@ begin
     FLyrDraw := FMap.Layers.Add(mInfo, 1);
     FMap.Layers.AnimationLayer := FLyrDraw;
 //    FMap.MapUnit := miUnitKilometer;
-    FMap.BackColor := CBackgroundMapColor;
+//    FMap.BackColor := CBackgroundMapColor;
+    FMap.BackColor := clmaroon;
+    FMap.MapUnit := miUnitMeter;
+    FMap.CenterX := 112.75;
+    fmap.CenterY := -7.2;
+    FMap.ZoomTo(6400*2, FMap.CenterX, FMap.CenterY);
   end;
 end;
 
@@ -1636,7 +1641,8 @@ begin
   top := 50;
   bottom := pnlCenter.Height - top;
   left := diffBeetwinWH + top;
-  right := pnlCenter.Width - left;
+//  right := pnlCenter.Width - left;
+  right := 1005;
 
   FCircleRect  := Rect(left,top, right, bottom);
 
@@ -1659,6 +1665,8 @@ begin
   edtTimeValue.Text := FormatDateTime('hh:mm:ss ampm', Now);
 
   FVTgtHdngShp := RBU_MAnager.Heading;
+  Fmap.CenterX := OwnShip.position.X;
+  Fmap.CenterY := OwnShip.position.Y;
 end;
 
 procedure TfrmMainDisplay.tmrRotateTimer(Sender: TObject);

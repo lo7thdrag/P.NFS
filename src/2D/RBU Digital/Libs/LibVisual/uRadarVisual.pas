@@ -140,7 +140,8 @@ begin
   ACanvas.Font.Color  := FontColor;
   ACanvas.Font.Size   := 7;
 
-  incKm := (CurrentRange_m / 1000.0) / NumRings;
+//  incKm := (CurrentRange_m / 1000.0) / NumRings;
+  incKm := (CurrentRange_m) / NumRings;
 
   for i := 1 to NumRings do
   begin
@@ -153,16 +154,24 @@ begin
 
     // label jarak di kanan ring
     distKm := incKm * i;
-    s := FormatFloat('0.0', distKm);
+    s := FormatFloat('0', distKm);
     ACanvas.TextOut(
       FCenterX + radius + 4,
+      FCenterY - (ACanvas.TextHeight(s) div 2),
+      s
+    );
+
+    distKm := incKm * i;
+    s := FormatFloat('-0', distKm);
+    ACanvas.TextOut(
+      FCenterX - radius - 27,
       FCenterY - (ACanvas.TextHeight(s) div 2),
       s
     );
   end;
 
   // label outer range
-  s := FormatFloat('0.0', CurrentRange_m / 1000.0) + ' km';
+  s := FormatFloat('0', CurrentRange_m) + ' m';
   ACanvas.TextOut(
     FCenterX - (ACanvas.TextWidth(s) div 2),
     FCenterY + FOuterRadiusPx + 4,

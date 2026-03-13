@@ -353,7 +353,7 @@ begin
       Obj.heading := incoming_data.Heading;
       Obj.pitch := 0.0;
       Obj.roll := 0.0;
-      Obj.speed := dmMain.Ds.FieldByName('SPEED').AsInteger;
+      Obj.speed := 0;
       Obj.rudder := 0.0;
 
       FStateManager.Add(Obj);
