@@ -1,10 +1,10 @@
 object TFLogBridge: TTFLogBridge
-  Left = 419
+  Left = 1145
   Top = 484
   BorderStyle = bsNone
   Caption = 'Bridge'
-  ClientHeight = 333
-  ClientWidth = 250
+  ClientHeight = 293
+  ClientWidth = 150
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,17 +23,17 @@ object TFLogBridge: TTFLogBridge
   object pnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 250
-    Height = 333
+    Width = 150
+    Height = 293
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 284
-    ExplicitHeight = 261
+    ExplicitWidth = 250
+    ExplicitHeight = 333
     object Splitter1: TSplitter
       Left = 257
       Top = 1
       Width = 4
-      Height = 300
+      Height = 260
       ExplicitLeft = 253
       ExplicitTop = 0
       ExplicitHeight = 292
@@ -42,7 +42,7 @@ object TFLogBridge: TTFLogBridge
       Left = 525
       Top = 1
       Width = 4
-      Height = 300
+      Height = 260
       ExplicitTop = 2
       ExplicitHeight = 292
     end
@@ -50,7 +50,7 @@ object TFLogBridge: TTFLogBridge
       Left = 795
       Top = 1
       Width = 4
-      Height = 300
+      Height = 260
       ExplicitTop = 0
       ExplicitHeight = 292
     end
@@ -58,20 +58,20 @@ object TFLogBridge: TTFLogBridge
       Left = 1
       Top = 1
       Width = 256
-      Height = 300
+      Height = 260
       Align = alLeft
       TabOrder = 0
-      ExplicitHeight = 259
+      ExplicitHeight = 300
       object mLogClient: TMemo
         Left = 1
         Top = 50
         Width = 254
-        Height = 208
+        Height = 168
         Align = alClient
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitHeight = 167
+        ExplicitHeight = 208
       end
       object pnlClientUp: TPanel
         Left = 1
@@ -84,33 +84,33 @@ object TFLogBridge: TTFLogBridge
       end
       object pnlClientBottom: TPanel
         Left = 1
-        Top = 258
+        Top = 218
         Width = 254
         Height = 41
         Align = alBottom
         Caption = 'Status : Not Connected'
         TabOrder = 2
-        ExplicitTop = 217
+        ExplicitTop = 258
       end
     end
     object pnlServer: TPanel
       Left = 261
       Top = 1
       Width = 264
-      Height = 300
+      Height = 260
       Align = alLeft
       TabOrder = 1
-      ExplicitHeight = 259
+      ExplicitHeight = 300
       object mLogServer: TMemo
         Left = 1
         Top = 50
         Width = 262
-        Height = 249
+        Height = 209
         Align = alClient
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitHeight = 208
+        ExplicitHeight = 249
       end
       object pnlServerUp: TPanel
         Left = 1
@@ -126,10 +126,10 @@ object TFLogBridge: TTFLogBridge
       Left = 529
       Top = 1
       Width = 266
-      Height = 300
+      Height = 260
       Align = alLeft
       TabOrder = 2
-      ExplicitHeight = 259
+      ExplicitHeight = 300
       object pnlSettingUp: TPanel
         Left = 1
         Top = 1
@@ -143,24 +143,23 @@ object TFLogBridge: TTFLogBridge
         Left = 1
         Top = 50
         Width = 264
-        Height = 249
+        Height = 209
         Align = alClient
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 1
-        ExplicitHeight = 208
+        ExplicitHeight = 249
       end
     end
     object pnlPacket: TPanel
       Left = 799
       Top = 1
       Width = 232
-      Height = 300
+      Height = 260
       Align = alClient
       Caption = 'pnlPacket'
       TabOrder = 3
-      ExplicitWidth = 257
-      ExplicitHeight = 259
+      ExplicitHeight = 300
       object pnlUppacket: TPanel
         Left = 1
         Top = 1
@@ -169,36 +168,34 @@ object TFLogBridge: TTFLogBridge
         Align = alTop
         Caption = 'Packet'
         TabOrder = 0
-        ExplicitWidth = 255
       end
       object mmoPacket: TMemo
         Left = 1
         Top = 50
         Width = 230
-        Height = 249
+        Height = 209
         Align = alClient
         Alignment = taCenter
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 1
-        ExplicitWidth = 255
-        ExplicitHeight = 208
+        ExplicitHeight = 249
       end
     end
     object Panel1: TPanel
       Left = 1
-      Top = 301
-      Width = 248
+      Top = 261
+      Width = 148
       Height = 31
       Align = alBottom
       TabOrder = 4
-      ExplicitTop = 477
-      ExplicitWidth = 967
+      ExplicitTop = 301
+      ExplicitWidth = 248
       DesignSize = (
-        248
+        148
         31)
       object btnBack: TButton
-        Left = 156
+        Left = 56
         Top = 3
         Width = 75
         Height = 25
@@ -206,15 +203,15 @@ object TFLogBridge: TTFLogBridge
         Caption = 'Back'
         TabOrder = 0
         OnClick = btnBackClick
-        ExplicitLeft = 875
+        ExplicitLeft = 156
       end
     end
   end
   object pnl1Home: TAdvSmoothPanel
     Left = 0
     Top = 0
-    Width = 250
-    Height = 333
+    Width = 150
+    Height = 293
     Cursor = crDefault
     Caption.Location = plTopCenter
     Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -249,31 +246,32 @@ object TFLogBridge: TTFLogBridge
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 1032
-    ExplicitHeight = 509
+    ExplicitWidth = 250
+    ExplicitHeight = 333
     TMSStyle = 0
     object lbljudul: TLabel
       Left = 0
       Top = 0
-      Width = 250
-      Height = 301
+      Width = 150
+      Height = 261
       Align = alClient
       Alignment = taCenter
-      Caption = 'BRIGDE NAFS'
+      Caption = 'BRIGDE'#13#10'NAFS'
       Font.Charset = ANSI_CHARSET
       Font.Color = 5788239
-      Font.Height = -40
+      Font.Height = -33
       Font.Name = 'Deusex'
       Font.Style = []
       ParentFont = False
       Layout = tlCenter
-      ExplicitWidth = 196
-      ExplicitHeight = 40
+      WordWrap = True
+      ExplicitWidth = 84
+      ExplicitHeight = 66
     end
     object btn1: TButton
       Left = 0
-      Top = 301
-      Width = 250
+      Top = 261
+      Width = 150
       Height = 32
       Align = alBottom
       Caption = 'Show Log'
@@ -285,8 +283,8 @@ object TFLogBridge: TTFLogBridge
       ParentFont = False
       TabOrder = 0
       OnClick = btn1Click
-      ExplicitTop = 229
-      ExplicitWidth = 284
+      ExplicitTop = 301
+      ExplicitWidth = 250
     end
   end
   object tmrShutdownServer: TTimer

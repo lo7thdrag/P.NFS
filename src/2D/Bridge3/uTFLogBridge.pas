@@ -80,8 +80,8 @@ var
   mProject : string;
 
 begin
-  Height := 333;
-  Width := 250;
+  Height := 293;
+  Width := 150;
 
   pnl1Home.BringToFront;
   BorderStyle := bsNone;
@@ -90,18 +90,18 @@ begin
 
   if mProject = 'NAFS' then
   begin
-    Top   := 20;
-    Left  := 1032;
+    Top   := 10;
+    Left  := 1145;
   end
   else if mProject = 'NSFS' then
   begin
-    Top   := 363;
-    Left  := 1032;
+    Top   := 313;
+    Left  := 1145;
   end
   else
   begin
-    Top   := 706;
-    Left  := 1032;
+    Top   := 616;
+    Left  := 1145;
   end;
 end;
 
@@ -169,8 +169,8 @@ begin
     pnlSettingUp.Color := $00D0875A;
     pnlUppacket.Color := $00D0875A;
 
-    Top   := 20;
-    Left  := 1292;
+    Top   := 10;
+    Left  := 1145;
   end
   else if mProject = 'NSFS' then
   begin
@@ -186,8 +186,8 @@ begin
     pnlSettingUp.Color := $0040220F;
     pnlUppacket.Color := $0040220F;
 
-    Top   := 363;
-    Left  := 1292;
+    Top   := 313;
+    Left  := 1145;
   end
   else
   begin
@@ -203,8 +203,8 @@ begin
     pnlSettingUp.Color := $0058524F;
     pnlUppacket.Color := $0058524F;
 
-    Top   := 706;
-    Left  := 1292;
+    Top   := 616;
+    Left  := 1145;
   end;
 
 end;
