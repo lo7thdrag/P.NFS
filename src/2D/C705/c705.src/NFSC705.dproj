@@ -87,6 +87,7 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_DcuOutput>..\c705.bin\comp</DCC_DcuOutput>
+        <Debugger_RunParams>-127.0.0.1 -2120 -localhost -mysql -dbNSuFs -root -T3server! -29 -11</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -104,11 +105,9 @@
         </DelphiCompile>
         <DCCReference Include="libDisplayUI\UfrmRoutePlan.pas">
             <Form>frmRoutePlan</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\UfrmWCC.pas">
             <Form>frmWCC</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uLibSettings.pas"/>
         <DCCReference Include="..\didFramework\LibBaseUtils\StringUtils\uCodecBase64.pas"/>
@@ -119,28 +118,22 @@
         <DCCReference Include="LibUtils\uLibConst.pas"/>
         <DCCReference Include="LibMapX\uMapXUnitConverter.pas"/>
         <DCCReference Include="LibBaseSystem\uBaseConst.pas"/>
-        <DCCReference Include="LibBaseSystem\uBaseFunction.pas"/>
         <DCCReference Include="LibBaseSystem\uCoordConverter.pas"/>
         <DCCReference Include="libMgr\uFormMgr.pas"/>
         <DCCReference Include="libDisplayUI\UfrmFoeFriendSituationPage.pas">
             <Form>frmFoeFriendSituationPage</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmMissileInformation.pas">
             <Form>frmMissileInformation</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\uFrmKeyboardCalcLaunch.pas">
             <Form>frmKeyboardCalcLaunch</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmFireDistribution.pas">
             <Form>frmFireDistribution</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmMissileMonitor.pas">
             <Form>frmMissileMonitor</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmLaunchData.pas">
             <Form>frmLaunchData</Form>
@@ -155,23 +148,27 @@
         <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseDataType.pas"/>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmINSTest.pas">
             <Form>frmINSTest</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="LibMapX\uShipModel.pas"/>
         <DCCReference Include="LibMapX\uRadarSensor.pas"/>
         <DCCReference Include="libDisplayUI\FrmTab\UfrmRadar.pas">
             <Form>frmRadar</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmParamSetting.pas">
             <Form>frmParamSetting</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\ShareLib\LibSetting\uBridgeSet.pas"/>
         <DCCReference Include="..\didFramework\LibSims\uBaseSimObjects.pas"/>
         <DCCReference Include="..\didFramework\LibSims\uSimObjects.pas"/>
         <DCCReference Include="LibBaseSystem\uCoordDataTypes.pas"/>
         <DCCReference Include="libMgr\uVehicleManager.pas"/>
+        <DCCReference Include="LibMapX\uWaypointModel.pas"/>
+        <DCCReference Include="libObjects\uWaypointView.pas"/>
+        <DCCReference Include="libObjects\uMapViewManager.pas"/>
+        <DCCReference Include="libObjects\uMapViewBase.pas"/>
+        <DCCReference Include="libObjects\uShipView.pas"/>
+        <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseFunction.pas"/>
+        <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseConstan.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

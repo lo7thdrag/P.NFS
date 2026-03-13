@@ -689,13 +689,6 @@ type
     Label12: TLabel;
     Label13: TLabel;
     Label14: TLabel;
-    lblSeaState: TLabel;
-    lblWindSpeed: TLabel;
-    lblCurrentSpeed: TLabel;
-    lblTemperature: TLabel;
-    lblBaroPresure: TLabel;
-    lblHumidity: TLabel;
-    lblFogHeight: TLabel;
     Label21: TLabel;
     Label22: TLabel;
     Label23: TLabel;
@@ -715,7 +708,7 @@ type
     GroupBox5: TGroupBox;
     tbBaroPressure: TVrTrackBar;
     GroupBox6: TGroupBox;
-    tbFogH: TVrTrackBar;
+    tbFogIntensity: TVrTrackBar;
     GroupBox7: TGroupBox;
     tbHumidity: TVrTrackBar;
     AdvSmoothPanel4: TAdvSmoothPanel;
@@ -1012,6 +1005,13 @@ type
     pnl4: TPanel;
     edtWindDirection: TEdit;
     edtCurrentDirection: TEdit;
+    edtPortSeaState: TEdit;
+    edtPortWindSpeed: TEdit;
+    edtPortCurrentSpeed: TEdit;
+    edtPortTemp: TEdit;
+    edtPortBarometer: TEdit;
+    edtPortHumidity: TEdit;
+    edtFogIntensity: TEdit;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1079,7 +1079,7 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure tbHumidityMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure tbFogHMouseUp(Sender: TObject; Button: TMouseButton;
+    procedure tbFogIntensityMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
 //    procedure vrwhlWindDirecMouseUp(Sender: TObject; Button: TMouseButton;
 //      Shift: TShiftState; X, Y: Integer);
@@ -1096,7 +1096,7 @@ type
     procedure tbTempChange(Sender: TObject);
     procedure tbBaroPressureChange(Sender: TObject);
     procedure tbHumidityChange(Sender: TObject);
-    procedure tbFogHChange(Sender: TObject);
+    procedure tbFogIntensityChange(Sender: TObject);
     procedure vrwhlWindDirecChange(Sender: TObject);
     procedure RestartAllCommunication1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
@@ -1163,6 +1163,16 @@ type
     procedure btnNewShipClick(Sender: TObject);
     procedure btnEditShipClick(Sender: TObject);
     procedure btnDeleteShipClick(Sender: TObject);
+    procedure AdvSmoothPanel2Click(Sender: TObject);
+    procedure VrWindDirectionChange(Sender: TObject);
+    procedure VrCurrentDirectionChange(Sender: TObject);
+    procedure edtPortSeaStateKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortWindSpeedKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortCurrentSpeedKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortTempKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortBarometerKeyPress(Sender: TObject; var Key: Char);
+    procedure edtPortHumidityKeyPress(Sender: TObject; var Key: Char);
+    procedure edtFogIntensityKeyPress(Sender: TObject; var Key: Char);
 
   private
     { Private declarations }
@@ -1186,6 +1196,7 @@ type
     procedure ClearScenarioDescData;
     procedure ClearListViewData(const aListView: TListView);
     procedure ClearListShipData(const aListView: TListView);
+    procedure OnChangeEnvironment;
 
     procedure WakeOnLan(const AMacAddress : string); //yoga
     procedure UpdateEnvy;
@@ -1896,6 +1907,22 @@ begin
   end;
 end;
 
+procedure TfrmGameController.VrCurrentDirectionChange(Sender: TObject);
+var
+  valTemp : Integer;
+
+begin
+  if VrCurrentDirection.Position < 180 then
+  begin
+    valTemp := (180 + VrCurrentDirection.Position);
+  end
+  else
+  begin
+    valTemp := (VrCurrentDirection.Position - 180);
+  end;
+  edtCurrentDirection.Text := IntToStr(valTemp);
+end;
+
 procedure TfrmGameController.lvRuntimeMissileClick(Sender: TObject);
 var
   Weapon : TWeapon;
@@ -2011,8 +2038,8 @@ begin
             if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
                (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
                (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
-               (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'CANNON AK230')or
-               (weaponOnShipTemp.Weapon_Name = 'CANNON 35') or (weaponOnShipTemp.Weapon_Name = 'CANNON TYPE 730') or
+               (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
+               (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
                (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
             begin
               SubItems.Add('Automatic')
@@ -2073,6 +2100,7 @@ begin
     end;
   end;
 end;
+
 
 function TfrmGameController.IsMenuItem2Exist(
   const shipID: integer): boolean;
@@ -3759,7 +3787,7 @@ begin
   ShipID    := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
   WeaponID  := TWeapon(lvWeapon.Selected.Data).WeaponID;
 
-  if not TryStrToInt(edtCannonLauncherID.Text , LauncherID) then isValid := False;
+//  if not TryStrToInt(edtCannonLauncherID.Text , LauncherID) then isValid := False;
   if not TryStrToInt(edtCannonMissileID.Text, MissileID) then isValid := false;
   if not TryStrToInt(edtCannonLauncherID.Text, LauncherID) then isValid := False;
   if not TryStrToInt(edtCannonMissileNumber.Text, MissileNumber) then isValid := false;
@@ -4672,9 +4700,10 @@ begin
             cbbA244Launcher.ItemIndex := launcherID-1;
             wtrChange;
         end;
-     C_DBID_CANNON76 : begin
-//     C_DBID_CANNON35, C_DBID_CANNON40, //C_DBID_CANNON57,
-//     C_DBID_CANNON76, C_DBID_CANNON120 : begin
+     C_DBID_CANNON76, C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL,
+     C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730,
+     C_DBID_CANNON35, C_DBID_CANNON40, C_DBID_CANNON120 :
+        begin
             pgtwWCCCannon.TabVisible         := True;
 
             if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
@@ -4683,40 +4712,24 @@ begin
               pgWeapon.Enabled := False;
             end
             else begin
+              case WeaponID of
+                C_DBID_CANNON76 : pgtwWCCCannon.Caption := 'Cannon 76';
+                C_DBID_CANNON57 : pgtwWCCCannon.Caption := 'Cannon 57';
+                C_DBID_CANNON_AK230 : pgtwWCCCannon.Caption := 'Cannon AK230';
+                C_DBID_CANNON_TYPE_730 : pgtwWCCCannon.Caption := 'Cannon Type 730';
+                C_DBID_CANNON57_DIGITAL : pgtwWCCCannon.Caption := 'Cannon 57';
+                C_DBID_CANNON35 : pgtwWCCCannon.Caption := 'Cannon 35';
+                C_DBID_CANNON40 : pgtwWCCCannon.Caption := 'Cannon 40';
+                C_DBID_CANNON120 : pgtwWCCCannon.Caption := 'Cannon 120';
+                else
+                  pgtwWCCCannon.Caption := 'Cannon';
+              end;
               pgWeapon.Enabled := True;
               pgWeapon.ActivePage  := pgtwWCCCannon ;
             end;
 
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
-        end;
-     C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL,
-     C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730,
-     C_DBID_CANNON35, C_DBID_CANNON40, C_DBID_CANNON120 :
-        begin
-            pgtwCannonAK230.TabVisible         := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              case WeaponID of
-                C_DBID_CANNON57 : pgtwCannonAK230.Caption := 'Cannon 57';
-                C_DBID_CANNON_AK230 : pgtwCannonAK230.Caption := 'Cannon AK230';
-                C_DBID_CANNON_TYPE_730 : pgtwCannonAK230.Caption := 'Cannon Type 730';
-                C_DBID_CANNON57_DIGITAL : pgtwCannonAK230.Caption := 'Cannon 57';
-                C_DBID_CANNON35 : pgtwCannonAK230.Caption := 'Cannon 35';
-                C_DBID_CANNON40 : pgtwCannonAK230.Caption := 'Cannon 40';
-                C_DBID_CANNON120 : pgtwCannonAK230.Caption := 'Cannon 120';
-                else
-                  pgtwCannonAK230.Caption := 'Cannon';
-              end;
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwCannonAK230 ;
-            end;
-
-            edtCannonLauncherID.Text         := IntToStr(launcherID);
+//            edtCannonLauncherID.Text         := IntToStr(launcherID);
+              edtCannonLauncherID.Text         := '0';
         end;
      C_DBID_YAKHONT : begin
 
@@ -5071,6 +5084,7 @@ begin
         imageYahkont.Picture.LoadFromFile(weaponPic);
         imageTetral.Picture.LoadFromFile(weaponPic);
         imageMistral.Picture.LoadFromFile(weaponPic);
+        imageStrella.Picture.LoadFromFile(weaponPic);
         imageCannon76.Picture.LoadFromFile(weaponPic);
         imageTorpedoSUT.Picture.LoadFromFile(weaponPic);
         imageRBU6000.Picture.LoadFromFile(weaponPic);
@@ -5169,13 +5183,6 @@ begin
           lblEndAK230.Caption   := (FloatToStr(weaponDetail.EndAngle));
           lblMinAK230.Caption := (FloatToStr(weaponDetail.LowRange));
           lblMaxAK230.Caption := (FloatToStr(weaponDetail.HighRange));
-          {$ENDREGION}
-
-          {$REGION 'Cannon 76'}
-          lblStartCannon76.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndCannon76.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinCannon76.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxCannon76.Caption := (FloatToStr(weaponDetail.HighRange));
           {$ENDREGION}
 
           {$REGION 'VL MICA'}
@@ -6484,6 +6491,7 @@ begin
     valTemp := (vrwhlSeaDirection.Position - 180);
   end;
   lblCurrentDirection.Caption := IntToStr(valTemp);
+  OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.execPDF(Sender : TObject);
@@ -6821,6 +6829,135 @@ begin
   end;
 end;
 
+procedure TfrmGameController.edtFogIntensityKeyPress(Sender: TObject;
+  var Key: Char);
+  var
+    val : Integer;
+  begin
+    if Key = #13 then
+    begin
+      val := StrToIntDef(edtFogIntensity.Text, 0);
+
+      if val > 3 then
+        val := 3
+      else if val < 0 then
+        val := 0;
+      edtFogIntensity.Text := IntToStr(val);
+      tbFogIntensity.Position := StrToIntDef(edtFogIntensity.Text,0);
+  end;
+  end;
+
+procedure TfrmGameController.edtPortBarometerKeyPress(Sender: TObject;
+  var Key: Char);
+   var
+    val : integer;
+  begin
+    if Key = #13 then
+    begin
+      val := StrToIntDef(edtPortBarometer.Text, 0);
+
+      if val > 5000 then
+        val := 5000
+      else if val < 0 then
+        val := 0;
+      edtPortBarometer.Text := IntToStr(val);
+      tbBaroPressure.Position := StrToIntDef(edtPortBarometer.Text,0);
+
+    end;
+  end;
+
+procedure TfrmGameController.edtPortCurrentSpeedKeyPress(Sender: TObject;
+  var Key: Char);
+   var
+    val : Integer;
+  begin
+    if Key= #13 then
+    begin
+      val := StrToIntDef(edtPortCurrentSpeed.Text, 0) ;
+      if val > 50 then
+        val := 50
+      else if val < 0 then
+           val := 0;
+      edtPortCurrentSpeed.Text := IntToStr(val);
+      tbSeaSpeed.Position := StrToIntDef(edtPortCurrentSpeed.Text, 0);
+
+    end;
+  end;
+
+procedure TfrmGameController.edtPortHumidityKeyPress(Sender: TObject;
+  var Key: Char);
+  var
+    val : Integer;
+  begin
+     if Key= #13 then
+    begin
+      val := StrToIntDef(edtPortHumidity.Text, 0) ;
+      if val > 100 then
+        val := 100
+      else if val < 0 then
+           val := 0;
+      edtPortHumidity.Text := IntToStr(val);
+      tbHumidity.Position := StrToIntDef(edtPortHumidity.Text, 0);
+  end;
+  end;
+
+procedure TfrmGameController.edtPortSeaStateKeyPress(Sender: TObject;
+  var Key: Char);
+
+   var
+    val : Integer;
+  begin
+    if Key= #13 then
+    begin
+      val := StrToIntDef(edtPortSeaState.Text, 0) ;
+      if val > 5 then
+        val := 5
+      else if val < 0 then
+           val := 0;
+      edtPortSeaState.Text := IntToStr(val);
+      tbSeaState.Position := StrToIntDef(edtPortSeaState.Text, 0);
+
+    end;
+  end;
+
+procedure TfrmGameController.edtPortTempKeyPress(Sender: TObject;
+  var Key: Char);
+  var
+    val : integer;
+begin
+    if Key = #13 then
+    begin
+      val := StrToIntDef(edtPortTemp.Text, 0);
+
+      if val > 100 then
+        val := 100
+      else if val <0 then
+        val := 0;
+      edtPortTemp.Text := IntToStr(val);
+      tbTemp.Position := StrToIntDef(edtPortTemp.Text,0);
+
+    end;
+end;
+
+procedure TfrmGameController.edtPortWindSpeedKeyPress(Sender: TObject;
+  var Key: Char);
+   var
+    val : Integer;
+  begin
+    if Key= #13 then
+    begin
+      val := StrToIntDef(edtPortWindSpeed.Text, 0) ;
+      if val > 50 then
+        val := 50
+      else if val < 0 then
+           val := 0;
+      edtPortWindSpeed.Text := IntToStr(val);
+      tbWindSpeed.Position := StrToIntDef(edtPortWindSpeed.Text, 0);
+
+    end;
+  end;
+
+
 procedure TfrmGameController.edtRangeValueExit(Sender: TObject);
 var
   rec : TRec_CameraController;
@@ -7004,11 +7141,11 @@ begin
   SimManager.NetSendTo3D_SetCommandOrder(0, ORD_HUMIDITY, tbHumidity.Position, 0,0,0,0) ;
 end;
 
-procedure TfrmGameController.tbFogHMouseUp(Sender: TObject;
+procedure TfrmGameController.tbFogIntensityMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var
-   lowerBound, upperBound, boundary, posPercentage, position : double;
-   Val: single ;
+//var
+//   lowerBound, upperBound, boundary, posPercentage, position : double;
+//   Val: single ;
 begin
    UpdateEnvy;
 //   lowerBound := 0.00005;
@@ -7019,18 +7156,7 @@ begin
 //   Val  := lowerBound + ((boundary - (posPercentage * boundary)));
 //   Val := tbFogH.Position;
 
-   SimManager.NetSendTo3D_SetCommandOrder(0, ORD_ENVI, Val, 0,0,0,0);
-
-//  if vrwhlWindDirec.Position < 180 then
-//  begin
-//   newDir := Round(180 + vrwhlWindDirec.Position);
-//  end
-//  else
-//  begin
-//   newDir := Round(vrwhlWindDirec.Position - 180);
-//  end;
-//  UpdateEnvy;
-//  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_WINDDIRECTION, newDir, 0,0,0,0);
+   SimManager.NetSendTo3D_SetCommandOrder(0, ORD_ENVI, tbFogIntensity.Position, 0,0,0,0);
 end;
 
 //procedure TfrmGameController.vrwhlSeaDirectionMouseUp(Sender: TObject;
@@ -7124,7 +7250,7 @@ begin
     RecSkenario.Scenario_Temperature := tbTemp.Position;
     RecSkenario.Scenario_BaroPressure := tbBaroPressure.Position;
     RecSkenario.Scenario_Humidity := tbHumidity.Position;
-    RecSkenario.Scenario_FogHeight := tbFogH.Position;
+    RecSkenario.Scenario_FogHeight := tbFogIntensity.Position;
     RecSkenario.Scenario_WindDir_Deg := vrwhlWindDirec.Position;
     RecSkenario.Scenario_CurrDir_Deg := vrwhlSeaDirection.Position;
 
@@ -7366,7 +7492,7 @@ begin
       imgKRI.Picture.LoadFromFile(strPicture);
     end
     else
-      imgKRI.Picture.LoadFromFile('..\Data\imageship\NoModel.bmp');
+      imgKRI.Picture.LoadFromFile('..\Data\imageship\NoModel.png');
 
     {$ENDREGION}
 
@@ -8628,7 +8754,6 @@ begin
 end;
 
 
-
 procedure TfrmGameController.StatusWeapon(shipid : Integer; weaponid : Byte ; value : Single; launcher :Byte);
 var
   i: Integer;
@@ -8726,39 +8851,82 @@ begin
   tmrRBU.Enabled            := False;
 end;
 
-procedure TfrmGameController.tbSeaStateChange(Sender: TObject);
+
+procedure TfrmGameController.OnChangeEnvironment;
+var
+RecSend : TRecDataEnvironment;
 begin
-  lblSeaState.Caption := IntToStr(tbSeaState.Position)
+  RecSend.seaState := tbSeaState.Position;
+  RecSend.windVelocity := tbWindSpeed.Position;
+  if vrwhlWindDirec.Position < 180 then
+  begin
+    RecSend.windHeading := (180 + vrwhlWindDirec.Position);
+  end
+  else
+  begin
+    RecSend.windHeading := (vrwhlWindDirec.Position - 180);
+  end;
+  RecSend.seaCurrentVelocity := tbSeaSpeed.Position;
+
+  if vrwhlSeaDirection.Position < 180 then
+  begin
+    RecSend.seaCurrentHeading := (180 + vrwhlSeaDirection.Position);
+  end
+  else
+  begin
+    RecSend.seaCurrentHeading := (vrwhlSeaDirection.Position - 180);
+  end;
+
+  RecSend.temperature := tbTemp.Position;
+  RecSend.humidity := tbHumidity.Position;
+  RecSend.surfacePressure := tbBaroPressure.Position;
+  RecSend.fogIntensity := tbFogIntensity.Position;
+
+  SimManager.NetSendTo3D_OrderEnvironment(RecSend);
+
+end;
+
+procedure TfrmGameController.tbSeaStateChange(Sender: TObject);
+
+begin
+  edtPortSeaState.Text := IntToStr(tbSeaState.Position);
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbWindSpeedChange(Sender: TObject);
 begin
-  lblWindSpeed.Caption := IntToStr(tbWindSpeed.Position)
+ edtPortWindSpeed.Text := IntToStr(tbWindSpeed.Position);
+ if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbSeaSpeedChange(Sender: TObject);
 begin
-  lblCurrentDirection.Caption := IntToStr(tbSeaSpeed.Position)
+  edtPortCurrentSpeed.Text := IntToStr(tbSeaSpeed.Position);
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbTempChange(Sender: TObject);
 begin
-  lblTemperature.Caption := IntToStr(tbTemp.Position);
+  edtPortTemp.Text := IntToStr(tbTemp.Position);
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbBaroPressureChange(Sender: TObject);
 begin
-  lblBaroPresure.Caption := IntToStr(tbBaroPressure.Position);
+  edtPortBarometer.Text := IntToStr(tbBaroPressure.Position);
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbHumidityChange(Sender: TObject);
 begin
-  lblHumidity.Caption := IntToStr(tbHumidity.Position);
+  edtPortHumidity.Text := IntToStr(tbHumidity.Position);
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
-procedure TfrmGameController.tbFogHChange(Sender: TObject);
+procedure TfrmGameController.tbFogIntensityChange(Sender: TObject);
 begin
-  lblFogHeight.Caption := IntToStr(tbFogH.Position);
+  edtFogIntensity.Text := IntToStr(tbFogIntensity.Position);
+  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.vrwhlWindDirecChange(Sender: TObject);
@@ -8775,6 +8943,23 @@ begin
     valTemp := (vrwhlWindDirec.Position - 180);
   end;
   lblWindDirection.Caption := IntToStr(valTemp);
+  OnChangeEnvironment;
+end;
+
+procedure TfrmGameController.VrWindDirectionChange(Sender: TObject);
+var
+  valTemp : Integer;
+
+begin
+  if VrWindDirection.Position < 180 then
+  begin
+    valTemp := (180 + VrWindDirection.Position);
+  end
+  else
+  begin
+    valTemp := (VrWindDirection.Position - 180);
+  end;
+  edtWindDirection.Text := IntToStr(valTemp);
 end;
 
 procedure TfrmGameController.RestartAllCommunication1Click(
@@ -8851,13 +9036,12 @@ end;
 procedure TfrmGameController.SetDefaultEnvirontment;
 begin
   lblPortEnv.Caption := '-';
-  lblSeaState.Caption := '1';
-  lblWindSpeed.Caption := '0';
-  lblCurrentSpeed.Caption := '0';
-  lblTemperature.Caption := '0';
-  lblBaroPresure.Caption := '0';
-  lblHumidity.Caption := '0';
-  lblFogHeight.Caption := '1';
+  edtPortWindSpeed.Text := '0';
+  edtPortCurrentSpeed.Text := '0';
+  edtPortTemp.Text := '0';
+  edtPortBarometer.Text := '0';
+  edtPortHumidity.Text := '0';
+  edtFogIntensity.Text := '0';
   lblWindDirection.Caption := '0';
   lblCurrentDirection.Caption := '0';
 end;
@@ -8983,6 +9167,11 @@ begin
   begin
      AdvSmoothTabPage1.TabEnabled := True;
   end;
+end;
+
+procedure TfrmGameController.AdvSmoothPanel2Click(Sender: TObject);
+begin
+  frmMainInstruktur.show;
 end;
 
 procedure TfrmGameController.AssignStatus(ShipID, WeaponID, LauncherID,

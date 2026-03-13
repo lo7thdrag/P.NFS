@@ -67,7 +67,6 @@ type
       FOnStatusReplay           : TOnStatusReplay;
       FOnTrajectoryView         : TOnTrajectoryView;
 
-
       procedure EventOnMainTimer(const dt: double); override;
 
       procedure FActionRepainter(sender: TObject);              // Draw All Element
@@ -221,6 +220,7 @@ type
       procedure DrawAllOnMapXCanvas(aCnv: TCanvas);     override;
 
       procedure DrawWeaponOnShip(aCnv: TCanvas; Ship: TInsObject);
+      procedure HandleWeapon3DOrder(RecSend: TRecData_Yakhont);
 
       { clear All Object in Instruktur }
       procedure ClearAllObjects;
@@ -268,6 +268,7 @@ type
       procedure NetSendTo3D_OrderMissileStrella(rec : TRec3DSetStrella);
       procedure NetSendTo3D_OrderMissileTorpedo(rec : TRecDataTorperdo);
       procedure NetSendTo3D_OrderMissileVLMica(Rec : TRec3DSetVLMica);
+      procedure NetSendTo3D_OrderEnvironment(Rec : TRecDataEnvironment);
       procedure NetSendEnableWeapon(shipid : Integer; weaponid : Byte; valuez : Single; launcher : Byte);
       procedure NetSendAsroc_MissileType(rec : TRecAsrocMissileType);
       { For Console }
@@ -344,27 +345,29 @@ function GetMissileName(const WeaponID, LauncherID, MissileID, MissileNumber: in
 begin
   result := 'MISSILE ';
   case WeaponID of
-    C_DBID_EXOCET_MM38   : result := 'EXOCET_MM38';
-    C_DBID_ASROC         : result := 'ASROC';
+    C_DBID_EXOCET_MM38        : result := 'EXOCET_MM38';
+    C_DBID_ASROC              : result := 'ASROC';
     C_DBID_RBU6000,
-    C_DBID_RBU6000_DIGITAL       : result := 'RBU6000';
-    C_DBID_TORPEDO_SUT   : result := 'TORPEDO SUT';
-    C_DBID_TORPEDO_A244S : result := 'TORPEDO A244';
-    C_DBID_CANNON35      : result := 'CANNON35';
-    C_DBID_CANNON40      : result := 'CANNON40';
+    C_DBID_RBU6000_DIGITAL    : result := 'RBU6000';
+    C_DBID_TORPEDO_SUT        : result := 'TORPEDO SUT';
+    C_DBID_TORPEDO_A244S      : result := 'TORPEDO A244';
+    C_DBID_CANNON35           : result := 'CANNON35';
+    C_DBID_CANNON40           : result := 'CANNON40';
     C_DBID_CANNON57,
-    C_DBID_CANNON57_DIGITAL      : result := 'CANNON57';
-    C_DBID_CANNON76      : result := 'CANNON76';
-    C_DBID_CANNON120     : result := 'CANNON120';
-    C_DBID_YAKHONT       : Result := 'YAKHONT';
-    C_DBID_C802          : Result := 'C802';
-    C_DBID_MISTRAL       : Result := 'MISTRAL';
-    C_DBID_STRELA        : Result := 'STRELLA';
-    C_DBID_EXOCET_MM40   : Result := 'EXOCET_MM40';
-    C_DBID_TETRAL        : Result := 'TETRAL';
-    C_DBID_VLMICA        : Result := 'VLMICA';
-    C_DBID_CANNON_AK230  : Result := 'CANNON_AK230';
-    C_DBID_CANNON_TYPE_730 : Result := 'CANNON_TYPE730';
+    C_DBID_CANNON57_DIGITAL   : result := 'CANNON57';
+    C_DBID_CANNON76           : result := 'CANNON76';
+    C_DBID_CANNON120          : result := 'CANNON120';
+    C_DBID_YAKHONT            : Result := 'YAKHONT';
+    C_DBID_C802               : Result := 'C802';
+    C_DBID_MISTRAL            : Result := 'MISTRAL';
+    C_DBID_STRELA             : Result := 'STRELLA';
+    C_DBID_EXOCET_MM40        : Result := 'EXOCET_MM40';
+    C_DBID_TETRAL             : Result := 'TETRAL';
+    C_DBID_VLMICA             : Result := 'VLMICA';
+    C_DBID_CANNON_AK230       : Result := 'CANNON_AK230';
+    C_DBID_CANNON_TYPE_730    : Result := 'CANNON_TYPE730';
+    C_DBID_TORPEDO_BLACKSHARK : Result := 'TORPEDO BLACKSHARK';
+    C_DBID_C705               : Result := 'C705';
   end;
 
   result := result + '-' +
@@ -377,27 +380,29 @@ function GetMissileSymbol(const tid: integer): char;
 begin
   result := #46;
   case tid of
-    C_DBID_ASROC          : result := #109;
-    C_DBID_RBU6000        : result := #109;
-    C_DBID_TORPEDO_A244S  : result := #109;
-    C_DBID_TORPEDO_SUT    : result := #109;
-    C_DBID_TETRAL         : result := #109;
-    C_DBID_YAKHONT        : result := #109;
-    C_DBID_C802           : result := #109;
-    C_DBID_MISTRAL        : result := #109;
-    C_DBID_STRELA         : result := #109;
-    C_DBID_EXOCET_MM40    : result := #109;
-    C_DBID_EXOCET_MM38    : result := #109;
-    C_DBID_CANNON35       : result := #109;
-    C_DBID_CANNON40       : result := #109;
-    C_DBID_CANNON57       : result := #109;
-    C_DBID_CANNON76       : result := #109;
-    C_DBID_CANNON120      : result := #109;
-    C_DBID_VLMICA         : result := #109;
-    C_DBID_CANNON_AK230   : Result := #109;
-    C_DBID_CANNON_TYPE_730 : Result := #109;
-    C_DBID_RBU6000_DIGITAL : Result := #109;
-    C_DBID_CANNON57_DIGITAL : Result := #109;
+    C_DBID_ASROC                : result := #109;
+    C_DBID_RBU6000              : result := #109;
+    C_DBID_TORPEDO_A244S        : result := #109;
+    C_DBID_TORPEDO_SUT          : result := #109;
+    C_DBID_TETRAL               : result := #109;
+    C_DBID_YAKHONT              : result := #109;
+    C_DBID_C802                 : result := #109;
+    C_DBID_MISTRAL              : result := #109;
+    C_DBID_STRELA               : result := #109;
+    C_DBID_EXOCET_MM40          : result := #109;
+    C_DBID_EXOCET_MM38          : result := #109;
+    C_DBID_CANNON35             : result := #109;
+    C_DBID_CANNON40             : result := #109;
+    C_DBID_CANNON57             : result := #109;
+    C_DBID_CANNON76             : result := #109;
+    C_DBID_CANNON120            : result := #109;
+    C_DBID_VLMICA               : result := #109;
+    C_DBID_CANNON_AK230         : Result := #109;
+    C_DBID_TORPEDO_BLACKSHARK   : Result := #109;
+    C_DBID_CANNON_TYPE_730      : Result := #109;
+    C_DBID_RBU6000_DIGITAL      : Result := #109;
+    C_DBID_CANNON57_DIGITAL     : Result := #109;
+    C_DBID_C705                 : Result := #109;
   end;
 end;
 
@@ -955,16 +960,28 @@ begin
             Color  := clGreen;
           end;
 
-          C_DBID_CANNON_AK230  :
+             C_DBID_CANNON_AK230  :
           begin
             WeaponShip := TWeaponOn_CannonAK230.Create(Result, Fmap);
             Color := clBlue;
+          end;
+
+          C_DBID_TORPEDO_BLACKSHARK  :
+          begin
+            WeaponShip := TWeaponOn_Blackshark.Create(Result, Fmap);
+            Color := clRed;
           end;
 
           C_DBID_CANNON_TYPE_730  :
           begin
             WeaponShip := TWeaponOn_CannonType730.Create(Result, Fmap);
             Color := clBlue;
+          end;
+
+          C_DBID_C705   :
+          begin
+            WeaponShip := TWeaponOn_C705.Create(Result, Fmap);
+            Color := TColor($B3FF00);   //hijau lemon  ; tentative??
           end;
         end;
 
@@ -999,7 +1016,6 @@ begin
         WeaponShip.Weapon_ID        := Weapon.IDWeapon;
         WeaponShip.Weapon_Launcher  := Weapon.IDDetail;
         WeaponShip.Weapon_Status    := 2;
-
 
         listSceWeapon := TList.Create;
         try
@@ -1055,6 +1071,7 @@ begin
   tcpClient.RegisterProcedure(REC_3D_TORPEDO_SUT,           nil,                            Sizeof(TRecSetTorpedoSUT));
   tcpClient.RegisterProcedure(C_REC_FIRE_CONTROL,           nil,                            Sizeof(TRecFireControlOrder));
   TCPClient.RegisterProcedure(REC_CMD_VLMICA,               nil,                            SizeOf(TRec3DSetVLMica));
+  TCPClient.RegisterProcedure(REC_ENVI,               nil,                                  SizeOf(TRecDataEnvironment));
 
   {Position}
   tcpClient.RegisterProcedure(REC_3D_POSITION,              ClientRecv_3D_ShipPos ,         sizeOf(TRecData3DPosition));
@@ -1068,7 +1085,7 @@ begin
   TCPClient.RegisterProcedure(REC_EVENT_LOG,                ClientRecv_EventLog,            SizeOf(TRecEventLog));
 
   {Utility}
-  tcpClient.RegisterProcedure(REC_ENVIRONMENT,              nil,                            sizeof(TRecDataEnvironment));
+//  tcpClient.RegisterProcedure(REC_ENVIRONMENT,              nil,                            sizeof(TRecDataEnvironment));
   tcpClient.RegisterProcedure(REC_3D_ORDER,                 ClientRecv_3D_Order,            sizeOf(TRecData3DOrder));
   tcpClient.RegisterProcedure(REC_3D_SETCONTROL,            nil,                            sizeOf(spActorsController));
   tcpClient.RegisterProcedure(REC_3D_UTIL_TOOLS,            nil,                            sizeOf(spUtilityTools));
@@ -1493,6 +1510,12 @@ procedure TSimManager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
     TCPClient.sendDataEx(C_REC_CANNON, @Rec);
+end;
+
+procedure TSimManager.NetSendTo3D_OrderEnvironment(Rec: TRecDataEnvironment);
+begin
+   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+    TCPClient.sendDataEx(REC_ENVI, @Rec);
 end;
 
 procedure TSimManager.NetSendTo3D_OrderMissile_C802(rec: TRecData_C802);
@@ -2208,12 +2231,10 @@ begin
   begin
     weapon := TWeaponOnShip(Ship.WeaponOnShip_List[i]);
 
-    case weapon.Weapon_Status of
-      0: aCnv.Brush.Color := clGray;
-      1: aCnv.Brush.Color := clLime;
-    else
-      aCnv.Brush.Color := clSilver;
-    end;
+    if weapon.Weapon_Fire = 0 then
+      Continue;
+
+    aCnv.Brush.Color := clSilver;
 
     rotX := weapon.OffsetX * Cos(rad) - weapon.OffsetY * Sin(rad);
     rotY := weapon.OffsetX * Sin(rad) + weapon.OffsetY * Cos(rad);
@@ -2229,9 +2250,38 @@ begin
     aCnv.Font.Size := 12;
     aCnv.TextOut(Round(sx + 6), Round(sy - 6), 'L' + IntToStr(weapon.Weapon_Launcher));
 
-    if weapon.Weapon_Status = 1 then
-      aCnv.TextOut(Round(sx + 6), Round(sy + 6), weapon.Weapon_Name);
+//    if weapon.Weapon_Status = 1 then
+//      aCnv.TextOut(Round(sx + 6), Round(sy + 6), weapon.Weapon_Name);
   end;
+end;
+
+procedure TSimManager.HandleWeapon3DOrder(RecSend: TRecData_Yakhont);
+var
+  ship: TInsObject;
+  WeaponShip: TWeaponOnShip;
+  i: Integer;
+begin
+  ship := FindShipByID(RecSend.ShipID);
+  if not Assigned(ship) then Exit;
+
+  if RecSend.OrderID in [
+      __ORD_Yahkont_FIRE, __ORD_C802_FIRE, __ORD_EXOCET_40_FIRE,
+      __ORD_CANNON_F, __ORD_RBU_FIRE, __ORD_TORPEDOSUT_FIRED,
+      __ORD_ASROCK_FIRE, __ORD_TETRAL_FIRE, __ORD_MISTRAL_FIRE,
+      __ORD_STRELLA_FIRE, __ORD_VLMICA_FIRE] then
+  begin
+    for i := 0 to ship.WeaponOnShip_List.Count - 1 do
+    begin
+      WeaponShip := TWeaponOnShip(ship.WeaponOnShip_List[i]);
+
+      if (WeaponShip.Weapon_ID = RecSend.mWeaponID) and
+         (WeaponShip.Weapon_Launcher = RecSend.mLauncherID) then
+      begin
+        WeaponShip.Weapon_Fire := 1;
+        Break;
+      end;
+    end;
+  end
 end;
 
 procedure TSimManager.EventOnMainTimer(const dt: double);

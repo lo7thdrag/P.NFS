@@ -1,0 +1,1 @@
+DCDS.exe -192.168.0.238 -2120 -192.168.0.238 -mysql -dbNSuFs -root -T3server! -7 -7

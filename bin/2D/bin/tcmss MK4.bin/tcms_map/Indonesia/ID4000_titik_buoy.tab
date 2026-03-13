@@ -1,0 +1,15 @@
+!table
+!version 300
+!charset WindowsLatin1
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 8
+    NAME Char (1) ;
+    LAYER Char (29) ;
+    GM_TYPE Char (4) ;
+    OBJL Decimal (2, 0) ;
+    BOYSHP___B Char (21) ;
+    COLOUR___C Char (10) ;
+    OBJNAM___O Char (1) ;
+    COLPAT___C Char (16) ;

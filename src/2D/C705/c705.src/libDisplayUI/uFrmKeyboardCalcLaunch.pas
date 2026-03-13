@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls, uTCPDatatype, uLibSettings, uC705SimManager;
 
 type
   TfrmKeyboardCalcLaunch = class(TForm)
@@ -70,6 +70,7 @@ type
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure imgLaunchClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -80,7 +81,11 @@ type
 var
   frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch;
 
+
 implementation
+
+uses
+  UfrmRoutePlan;
 
 {$R *.dfm}
 
@@ -92,6 +97,26 @@ end;
 procedure TfrmKeyboardCalcLaunch.FormShow(Sender: TObject);
 begin
   //
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgLaunchClick(Sender: TObject);
+var
+recDataC705 : TRec_Data_C705;
+begin
+  //
+//  frmRoutePlan.FSelectedBearing
+  recDataC705.ShipID := VOwnShip.ShipID;
+  recDataC705.mWeaponID := VOwnShip.WeaponId;
+  recDataC705.mLauncherID := (Sender as TImage).Tag;
+  recDataC705.mMissileID := 1;
+  recDataC705.mMissileNumber := 0;
+  recDataC705.OrderID := 0; // harusnya diganti per command, misal fire, atau yang lain
+  recDataC705.mTargetBearing := frmRoutePlan.FSelectedBearing;
+  recDataC705.mTargetRange := frmRoutePlan.FSelectedRange;
+  recDataC705.mTargetId := 0;
+
+  SimManager.netNFS_OnSendDataC705(recDataC705);
+
 end;
 
 procedure TfrmKeyboardCalcLaunch.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);

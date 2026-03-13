@@ -7,11 +7,16 @@ uses
   uTCPDatatype, uLibSettings, uShipModel, uVehicleManager;
 
 type
+  TRoutePlanMode = (mPassive, mActive);
+  TOnMapInit = procedure(const GeosetPath: string) of object;
+
   GameSimManager = class
   private
     { NFS Dependencies }
     FNFSObjectList: TObjectList;
     FAutoConnectToBridgeTimer: TTimer;
+
+    FOnMapInit: TOnMapInit;
 
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
     procedure OnConnected(msg: string);
@@ -22,12 +27,22 @@ type
     procedure netNFS_OnReceive2DOrder(apRec: PAnsiChar; aSize: integer);
     procedure netNFS_OnDeleteShip(apRec: PAnsiChar; aSize: integer);
 
+
+
   public
+    FRoutePlanMode: TRoutePlanMode;
+
     NFSNetRecv: TTCPClient;
 
     constructor Create;
     destructor Destroy; override;
 
+    procedure InitializeMap;
+
+    property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
+    property OnMapInit: TOnMapInit read FOnMapInit write FOnMapInit;
+    // Send Data
+    procedure netNFS_OnSendDataC705(rec: TRec_Data_C705);
   published
     {
       Main Function of Simulation
@@ -54,11 +69,16 @@ begin
   NFSNetRecv.RegisterProcedure(REC_2D_ORDER, netNFS_OnReceive2DOrder, SizeOf(TRecData2DOrder));
   NFSNetRecv.RegisterProcedure(REC_3D_ORDER, netNFS_OnDeleteShip, SizeOf(TRecData3DOrder));
 
+  NFSNetRecv.RegisterProcedure(Rec_Data_C705, nil, SizeOf(TRec_Data_C705));
+
   {Timer untuk Connect ke Bridge}
   FAutoConnectToBridgeTimer := TTimer.Create(nil);
   FAutoConnectToBridgeTimer.Interval := 5000;
   FAutoConnectToBridgeTimer.OnTimer := tmrAutoConnectToBridgeTimer;
   FAutoConnectToBridgeTimer.Enabled := True;
+
+  // Default Operation Route Planning
+  FRoutePlanMode := mPassive;
 end;
 
 destructor GameSimManager.Destroy;
@@ -77,6 +97,13 @@ begin
   end;
 
   inherited;
+end;
+
+// LoadMap, LoadGeoset pakai path
+procedure GameSimManager.InitializeMap;
+begin
+  if Assigned(FOnMapInit) then
+    FOnMapInit(VMapSetting.MapGeosetDay);
 end;
 
 {$REGION 'NFS Socket'}
@@ -137,6 +164,12 @@ var
 begin
   rec := @apRec^;
   VehicleMgr.UpdateObjectList(rec);
+end;
+
+procedure GameSimManager.netNFS_OnSendDataC705(rec: TRec_Data_C705);
+begin
+  if (NFSNetRecv <> nil) and (NFSNetRecv.State in [wsConnected]) then
+      NFSNetRecv.sendDataEx(Rec_Data_C705, @Rec);
 end;
 
 {$ENDREGION}

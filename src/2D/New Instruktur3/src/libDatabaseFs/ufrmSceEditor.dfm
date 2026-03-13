@@ -2781,8 +2781,6 @@ object frmSceEditor: TfrmSceEditor
         Width = 489
         Height = 28
         Max = 5
-        Min = 1
-        Position = 1
         TabOrder = 6
         OnChange = tbSeaStateChange
       end

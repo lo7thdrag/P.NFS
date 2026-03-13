@@ -155,6 +155,7 @@ interface
       FWeapon_ID   : Integer;
       FWeapon_Launcher : Integer;
       FWeapon_Status  : integer;  //1= on, 2=off
+      FWeapon_Fire : Integer;
 
       OffsetX         : Double;
       OffsetY         : Double;
@@ -172,6 +173,7 @@ interface
       property Weapon_ID   : Integer read FWeapon_ID write FWeapon_ID;
       property Weapon_Launcher : Integer read FWeapon_Launcher write FWeapon_Launcher;
       property Weapon_Status  : integer read FWeapon_Status write FWeapon_Status;
+      property Weapon_Fire  : integer read FWeapon_Fire write FWeapon_Fire;
   end;
 
   //for SPS115, Torpedo a244
@@ -580,6 +582,16 @@ interface
       destructor Destroy; override;
    end;
 
+   TWeaponOn_Blackshark = class(TWeaponOnShip)
+    private
+
+    public
+      EnableBlackshark : Boolean;
+      AssignStatusLauncher2       : Boolean;
+      constructor Create(Const aParent : TInsObject; aMap: TMap); override;
+      destructor Destroy; override;
+   end;
+
    TWeaponOn_CannonType730 = class(TWeaponOnShip)
     private
 
@@ -665,6 +677,25 @@ interface
        Missile10,
        Missile11,
        Missile12    : TStatusWeapon;
+
+      constructor Create(Const aParent : TInsObject; aMap: TMap); override;
+      destructor Destroy; override;
+    published
+  end;
+
+  // C705
+  TWeaponOn_C705 = class(TWeaponOnShip)
+    private
+
+    public
+       EnableC705 : Boolean;
+       Unknown    : Boolean;
+       Unknown2   : Boolean;
+       Firing     : Boolean;
+       {CAP        : Boolean;}
+
+       LauncherMissile1,
+       LauncherMissile2: TStatusWeapon;
 
       constructor Create(Const aParent : TInsObject; aMap: TMap); override;
       destructor Destroy; override;
@@ -1853,6 +1884,21 @@ begin
   inherited;
 end;
 
+{ TWeaponOn_Blackshark }
+
+constructor TWeaponOn_Blackshark.Create(const aParent: TInsObject; aMap: TMap);
+begin
+  AssignStatusLauncher2 := True;
+  inherited;
+
+end;
+
+destructor TWeaponOn_Blackshark.Destroy;
+begin
+
+  inherited;
+end;
+
 { TWeaponOn_CannonType730 }
 
 constructor TWeaponOn_CannonType730.Create(const aParent: TInsObject;
@@ -1864,6 +1910,27 @@ begin
 end;
 
 destructor TWeaponOn_CannonType730.Destroy;
+begin
+
+  inherited;
+end;
+
+{ TWeaponOn_C705 }
+
+constructor TWeaponOn_C705.Create(const aParent: TInsObject; aMap: TMap);
+begin
+  inherited;
+
+  EnableC705 := false;
+  {Firing := True;
+  CAP := False;}
+
+  LauncherMissile1 := tsOff;
+  LauncherMissile2 := tsOff;
+
+end;
+
+destructor TWeaponOn_C705.Destroy;
 begin
 
   inherited;

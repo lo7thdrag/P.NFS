@@ -1,0 +1,9 @@
+c_idx_prm_2DServerIP    :  m2DServerIP    := str;
+c_idx_prm_2DServerPort  :  m2DServerPort  := str;
+c_idx_prm_DBServer      :  mDBServer      := str;
+c_idx_prm_DBProto       :  mDBProto       := str;
+c_idx_prm_DBName        :  mDBName        := str;
+c_idx_prm_DBUser        :  mDBUser        := str;
+c_idx_prm_DBPass        :  mDBPass        := str;
+c_idx_prm_CurrentShipID :  mCurrentShipID := StrToInt(str);
+c_idx_prm_CurrentScenID :  mCurrentScenID := StrToInt(str);

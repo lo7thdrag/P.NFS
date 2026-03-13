@@ -27,8 +27,9 @@ uses
   uServerManager in 'uServerManager.pas',
   uStateManager in 'uStateManager.pas',
   uStateObject in 'uStateObject.pas',
-  uDataModule in 'uDataModule.pas' {dmMain: TDataModule},
-  Logger in '..\ShareLib\LibObject\Logger.pas';
+  Logger in '..\ShareLib\LibObject\Logger.pas',
+  uClassDatabase in '..\ShareLib\AppForms\uClassDatabase.pas',
+  uDataModule in 'uDataModule.pas' {dmMain: TDataModule};
 
 {$R *.res}
 

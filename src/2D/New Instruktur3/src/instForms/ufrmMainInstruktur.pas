@@ -1369,6 +1369,9 @@ var
   drawX, drawY : Integer;
   flag   : Integer;
 
+  range, rangeM : Double;
+  aLow, aHigh : Double ;
+
   //contoh
   insObject : TInsObject;
   wayPoint : TWayPoint;
@@ -2387,23 +2390,70 @@ begin
       TOOL_SELECT_CANON_TARGET :
       begin
         {$REGION ' TOOL_SELECT_CANON_TARGET '}
-        SimManager.FindViewByPosition(mptDown, SimManager.selectedView);
-        if not Assigned(SimManager.selectedView) then
-          Exit;
-        if not Assigned(SimManager.selectedObject) then
-          Exit;
-
-        if SimManager.selectedView is TRotateSymbolView then
+        if Assigned(frmGameController.lvRuntimeShip.Selected) then
         begin
+          frmMainInstruktur.SetDefaultMapTool;
 
-          SimManager.BringToFront(SimManager.selectedObject);
-          if (SimManager.selectedObject is TIMissileObject) then
+          sx := X;
+          sy := Y;
+          MainMap.ConvertCoord(sx, sY, mx, my, miScreenToMap);
+          if not Assigned(frmGameController.lvRuntimeShip.Selected.Data) then
             Exit;
-          if SimManager.TrackObject = TInsObject(SimManager.selectedObject) then
+
+          Vehicle := TVehicle(frmGameController.lvRuntimeShip.Selected.Data);
+
+          if Assigned(frmGameController.lvRuntimeShip.Selected.Data) then
+          begin
+            Vehicle := TVehicle(frmGameController.lvRuntimeShip.Selected.Data);
+
+            suid := dbID_to_UniqueID(Vehicle.Vehicle_ID);
+            ShipObject := SimManager.MainObjList.FindObjectByUid(suid);
+
+            if Assigned(ShipObject) then
+            begin
+                if CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )< Vehicle.Vehicle_Heading then
+                begin
+                   frmGameController.edtCannonCorrBearing.Text :=
+                   Format('%.2f', [CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )-(Vehicle.Vehicle_Heading - 360)]);
+
+                end
+                else
+                begin
+                   frmGameController.edtCannonCorrBearing.Text :=
+                   Format('%.2f',[CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )-Vehicle.Vehicle_Heading]);
+                end;
+
+            end;
+          end;
+
+          SimManager.FindViewByPosition(mptDown, SimManager.selectedView);
+          if not Assigned(SimManager.selectedView) then
             Exit;
+          if not Assigned(SimManager.selectedObject) then
+            Exit;
+
+          if SimManager.selectedView is TRotateSymbolView then
+          begin
+
+            SimManager.BringToFront(SimManager.selectedObject);
+            if (SimManager.selectedObject is TIMissileObject) then
+              Exit;
+            if SimManager.TrackObject = TInsObject(SimManager.selectedObject) then
+              Exit;
+          end;
+
+          Range :=  CalcRange(ShipObject.PositionX, ShipObject.PositionY, SimManager.selectedObject.PositionX, SimManager.selectedObject.PositionY );
+          rangeM := Range * C_NauticalMiles_TO_Meter;
+          ComputeBallisticAngleVacuum(rangem, SimManager.selectedObject.PositionZ, 350, aLow, aHigh);
+
+          frmGameController.edtCannonCorrElev.Text := FormatFloat('0.00',(aLow));
+//          frmGameController.edtCannonCorrElev23.Text :=
+//          Format('%.2f',[CalcElevation(Rangem, 0, SimManager.selectedObject.PositionZ)]);
+
+          frmGameController.edtCannonTargetID.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
+//          frmGameController.edtCannonTargetID23.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
+          setArrow;
         end;
-        frmGameController.edtCannonTargetID.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
-        setArrow;
         {$ENDREGION}
       end;
 
@@ -2495,6 +2545,9 @@ begin
 
       frmAddShipRuntime.Longitude.Text  := ConvLL_To_Str(mx, '0');
       frmAddShipRuntime.Latitude.Text   := ConvLL_To_Str(my, '1');
+
+      frmaddshipruntime.PosX := mx;
+      frmaddshipruntime.PosY := my;
      end;
     end;
   end

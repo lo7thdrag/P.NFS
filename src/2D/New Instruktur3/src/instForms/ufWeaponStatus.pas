@@ -537,6 +537,31 @@ type
     lbl22: TLabel;
     bvl2: TBevel;
     chkCannonAK230enableWeapon: TCheckBox;
+    rzgrpBlackshark: TRzGroup;
+    scrlbxTorpedoBlackshark: TScrollBox;
+    lblBlackShark: TLabel;
+    Bevel5: TBevel;
+    chkBlacksharkEnableWeapon: TCheckBox;
+    rzgrpC705: TRzGroup;
+    scrlbxTOCOSC705: TScrollBox;
+    lblC705Title: TLabel;
+    Bevel6: TBevel;
+    grpAssignC705: TGroupBox;
+    btnC705Track: TSpeedButton;
+    edtC705Track: TEdit;
+    btnC705Assign: TButton;
+    btnC705DeAssign: TButton;
+    grpC705StatusLauncher: TGroupBox;
+    grpC705StatusConsole: TGroupBox;
+    chkC705Enable: TCheckBox;
+    chkOpenCoverLauncherC705: TCheckBox;
+    lblC705PortLauncher1: TLabel;
+    imgLoadC705Launcher1: TImage;
+    lblC705PortLauncher2: TLabel;
+    imgLoadC705Launcher2: TImage;
+    cbbC705Port: TComboBox;
+    btnLoadC705PortLoading: TButton;
+    chkSafetyIgnitionC705: TCheckBox;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -642,11 +667,17 @@ type
     { VL MICA }
     procedure VLMicaChkClick(sender : TObject);
 
+    { Blackshark }
+    procedure BlacksharkChkClick(sender : TObject);
+
     { Cannon AK230 }
     procedure CannonAK230ChkClick(Sender : TObject);
 
     { Cannon Type 730 }
     procedure CannonType730ChkClick(Sender : TObject);
+
+    { C705 }
+    procedure C705ChkClick(Sender : TObject);
 
     procedure btnTrackObject(Sender : Tobject);
   public
@@ -865,6 +896,22 @@ begin
   chkRBU_Unformer2Left.OnClick  := RBUCbbClick;
   chkRBU_Unformer1Right.OnClick := RBUCbbClick;
   chkRBU_Unformer2Right.OnClick := RBUCbbClick;
+
+  { =========================================================== }
+
+  { ==============================BLACKSHARK========================== }
+  { BLACKSHARK }
+  chkBlacksharkEnableWeapon.Tag       := __STAT_BLACKSHARK_ENABLE;
+//  chkRBU_Unformer1Left.Tag  := __STAT_RBU_UNFORMER_I_LEFT;
+//  chkRBU_Unformer2Left.Tag  := __STAT_RBU_UNFORMER_II_LEFT;
+//  chkRBU_Unformer1Right.Tag := __STAT_RBU_UNFORMER_I_RIGHT;
+//  chkRBU_Unformer2Right.Tag := __STAT_RBU_UNFORMER_II_RIGHT;
+
+  chkBlacksharkEnableWeapon.OnClick       := BlacksharkChkClick;
+//  chkRBU_Unformer1Left.OnClick  := RBUCbbClick;
+//  chkRBU_Unformer2Left.OnClick  := RBUCbbClick;
+//  chkRBU_Unformer1Right.OnClick := RBUCbbClick;
+//  chkRBU_Unformer2Right.OnClick := RBUCbbClick;
 
   { =========================================================== }
 
@@ -1120,6 +1167,18 @@ begin
   chkVLMicaFA.Tag := __STAT_VLMICA_FA;
   chkVLMicaAmmoTest.Tag := __STAT_VLMICA_AMMOTEST;
   chkVLMicaCAP.Tag := __STAT_VLMICA_CAP;
+
+  { =========================================================== }
+
+  { ===========================C705======================== }
+  { C705 }
+  chkC705Enable.OnClick := C705ChkClick;
+  chkSafetyIgnitionC705.OnClick      := C705ChkClick;
+  chkOpenCoverLauncherC705.OnClick      := C705ChkClick;
+
+  chkC705Enable.Tag     := __STAT_C705_ENABLE;
+  chkSafetyIgnitionC705.Tag          := __STAT_C705_OpenCoverLauncherC705;
+  chkOpenCoverLauncherC705.Tag          := __STAT_C705_SafetyIgnition;
 
   { =========================================================== }
 
@@ -2922,6 +2981,46 @@ begin
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_CANNON_AK230, id , aParam);
 end;
 
+procedure TfWeaponStatus.BlacksharkChkClick(sender: TObject);
+var
+  aTag : integer;
+  ShipStrID : string;
+  aParam : Integer;
+
+  i, id : Integer;
+  Weaponship  : TWeaponOnShip;
+  WeaponBlackshark  : TWeaponOn_Blackshark;
+begin
+  if SimManager.TrackObject = nil then exit;
+  id := TCheckBox(sender).Tag;
+
+  //set object
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
+  begin
+    weaponship := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+    if weaponship.Weapon_ID = C_DBID_TORPEDO_BLACKSHARK then
+    begin
+      if weaponship is TWeaponOn_Blackshark then
+      begin
+        WeaponBlackshark := TWeaponOn_Blackshark(weaponship);
+
+        case id of
+          __STAT_BLACKSHARK_ENABLE : WeaponBlackshark.EnableBlackshark    := TCheckBox(sender).Checked;
+        end;
+      end;
+    end;
+  end;
+
+  ShipStrID := dbID_to_UniqueID(SimManager.TrackObject.FDataBaseID);
+
+  if TCheckBox(sender).Checked = True then
+    aParam := 1
+  else
+    aParam := 2;
+
+  SimManager.NetSendStatConsole(ShipStrID, __STAT_BLACKSHARK_ENABLE, id , aParam);
+end;
+
 procedure TfWeaponStatus.CannonType730ChkClick(Sender: TObject);
 var
   aTag : integer;
@@ -3097,7 +3196,7 @@ begin
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_MOCPKRCONSOLE, id , aParam);
 end;
 
-{ Exocet MM40 }
+{ VLMICA }
 procedure TfWeaponStatus.VLMicaChkClick(sender: TObject);
 var
   aTag : integer;
@@ -3142,6 +3241,49 @@ begin
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_VLMICA, id , aParam);
 end;
 
+{ C705 }
+ procedure TfWeaponStatus.C705ChkClick(Sender: TObject);
+var
+  aTag : integer;
+  ShipStrID : string;
+  aParam : Integer;
+
+  i, id : Integer;
+  Weaponship  : TWeaponOnShip;
+  WeaponC705  : TWeaponOn_C705;
+begin
+  if SimManager.TrackObject = nil then exit;
+  id := TCheckBox(sender).Tag;
+
+  //set object
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
+  begin
+    weaponship := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+    if weaponship.Weapon_ID = C_DBID_C705 then
+    begin
+      if weaponship is TWeaponOn_C705 then
+      begin
+        WeaponC705 := TWeaponOn_C705(weaponship);
+
+        case id of
+          __STAT_C705_ENABLE    : WeaponC705.EnableC705   := TCheckBox(sender).Checked;
+          __STAT_C705_OpenCoverLauncherC705   : WeaponC705.Unknown      := TCheckBox(sender).Checked;
+          __STAT_C705_SafetyIgnition  : WeaponC705.Unknown2     := TCheckBox(sender).Checked;
+        end;
+      end;
+    end;
+  end;
+
+  ShipStrID := dbID_to_UniqueID(SimManager.TrackObject.FDataBaseID);
+
+  if TCheckBox(sender).Checked = True then
+    aParam := 1
+  else
+    aParam := 2;
+
+  SimManager.NetSendStatConsole(ShipStrID, C_DBID_C705, id , aParam);
+end;
+
 { ======================================================================= }
 
 { ======================================================================= }
@@ -3175,8 +3317,9 @@ var
   WeaponMistral  : TWeaponOn_Mistral;
   WeaponVLMica   : TWeaponOn_VLMICA;
   WeaponCannonAK230 : TWeaponOn_CannonAK230;
+  WeaponBlackshark : TWeaponOn_Blackshark;
   WeaponCAnnonType730 : TWeaponOn_CannonType730;
-
+  WeaponC705 : TWeaponOn_C705;
 begin
   //pnlBlank.BringToFront;
 
@@ -4428,6 +4571,21 @@ begin
           end;
         end;
 
+        C_DBID_TORPEDO_BLACKSHARK  :
+        begin
+          if frmMainInstruktur.cekStatusWeapon = 1 then
+          begin
+
+          end;
+          frmMainInstruktur.cekStatusWeapon := 1;
+
+          if weaponship is TWeaponOn_Blackshark then
+          begin
+            WeaponBlackshark := TWeaponOn_Blackshark(weaponship);
+
+          end;
+        end;
+
         C_DBID_CANNON_TYPE_730  :
         begin
           if frmMainInstruktur.cekStatusWeapon = 1 then
@@ -4664,6 +4822,77 @@ begin
               tsOff : LoadImageLight(imgLoadVLMica12, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadVLMica12, LoadImgLoading);
               tsLaunch : LoadImageLight(imgLoadVLMica12, LoadImgRunning);
+            end;
+
+          end;
+        end;
+
+        C_DBID_C705 :
+        begin
+          if frmMainInstruktur.cekStatusWeapon = 1 then
+          begin
+             rzgrpC705.Visible := True;
+             rzgrpC705.Opened := True;
+          end;
+          frmMainInstruktur.cekStatusWeapon := 1;
+
+          lblC705PortLauncher1.Visible := False;
+          lblC705PortLauncher2.Visible := False;
+          imgLoadC705Launcher1.Visible := False;
+          imgLoadC705Launcher2.Visible := False;
+
+          cbbC705Port.Clear;
+          cbbC705Port.Items.Add('1');
+          cbbC705Port.Items.Add('2');
+
+          if SimManager.TrackObject.ObjClassID = 5 then begin // C_DBID_C705 = 23
+            lblC705PortLauncher1.Visible := True;
+            lblC705PortLauncher2.Visible := True;
+            imgLoadC705Launcher1.Visible := True;
+            imgLoadC705Launcher2.Visible := True;
+          end;
+
+
+          if weaponship is TWeaponOn_C705 then
+          begin
+            WeaponC705 := TWeaponOn_C705(weaponship);
+
+            chkC705Enable.OnClick := nil;
+            chkSafetyIgnitionC705.OnClick := nil;
+            chkOpenCoverLauncherC705.OnClick := nil;
+
+            chkC705Enable.Checked := WeaponC705.EnableC705;
+            chkSafetyIgnitionC705.Checked := WeaponC705.Unknown;
+            chkOpenCoverLauncherC705.Checked := WeaponC705.Unknown2;
+
+            chkC705Enable.OnClick := C705ChkClick;
+            chkSafetyIgnitionC705.OnClick := C705ChkClick;
+            chkOpenCoverLauncherC705.OnClick := C705ChkClick;
+
+            // ?? tentative
+            if WeaponC705.Firing then
+            begin
+              chkSafetyIgnitionC705.Enabled   := True;
+              chkOpenCoverLauncherC705.Enabled   := True;
+            end
+            else
+            begin
+              chkSafetyIgnitionC705.Enabled   := False;
+              chkOpenCoverLauncherC705.Enabled   := False;
+            end;
+
+            //loading Launcher 1
+            case WeaponC705.LauncherMissile1 of
+              tsOff : LoadImageLight(imgLoadC705Launcher1, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadC705Launcher1, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadC705Launcher1, LoadImgRunning);
+            end;
+
+            //loading Launcher 2
+            case WeaponC705.LauncherMissile2 of
+              tsOff : LoadImageLight(imgLoadC705Launcher2, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadC705Launcher2, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadC705Launcher2, LoadImgRunning);
             end;
 
           end;
@@ -5668,6 +5897,8 @@ begin
       rzgrpMOCPKR.Opened:= True;
       rzgrpVLMica.Opened:= True;
       rzgrpMilleniumGun35.Opened:= True;
+      rzgrpBlackshark.Opened := True;
+      rzgrpC705.Opened := True;
       firstCekOpenGroupBar := True;
     end;
 
@@ -5689,6 +5920,8 @@ begin
     rzgrpMOCPKR.Visible:= False;
     rzgrpMilleniumGun35.Visible:= False;
     rzgrpVLMica.Visible:= False;
+    rzgrpBlackshark.Visible := False;
+    rzgrpC705.Visible := False;
 end;
 
 procedure TfWeaponStatus.WeaponStatusOpen(Sender: TObject);

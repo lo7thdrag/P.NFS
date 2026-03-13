@@ -69,6 +69,9 @@ procedure TVehicleManager.UpdateObjectList(AShipInfo: PRecData3DPosition);
 var
   Ship: TShipContact;
 begin
+  if FNFSObjectList = nil then
+    Exit;
+
   if (FNFSObjectList <> nil) and (AShipInfo <> nil) then
   begin
     Ship := FindObjectByID(Integer(AShipInfo^.ShipID));

@@ -25,7 +25,7 @@ object frmRoutePlan: TfrmRoutePlan
     Height = 1080
     Align = alLeft
     TabOrder = 0
-    object Panel1: TPanel
+    object pnlHeaderTitle: TPanel
       Left = 1
       Top = 1
       Width = 1438
@@ -42,7 +42,7 @@ object frmRoutePlan: TfrmRoutePlan
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      OnMouseDown = Panel1MouseDown
+      OnMouseDown = pnlHeaderTitleMouseDown
     end
     object pnlToolBar: TPanel
       Left = 1
@@ -3526,8 +3526,8 @@ object frmRoutePlan: TfrmRoutePlan
       end
     end
     object pnlBaseMap: TPanel
-      Left = 96
-      Top = 248
+      Left = 20
+      Top = 500
       Width = 737
       Height = 353
       BevelOuter = bvNone
@@ -10697,6 +10697,7 @@ object frmRoutePlan: TfrmRoutePlan
         ParentColor = False
         Align = alClient
         TabOrder = 0
+        OnMouseDown = FMapMouseDown
         OnDrawUserLayer = FMapDrawUserLayer
         ExplicitWidth = 417
         ExplicitHeight = 229
@@ -10713,7 +10714,7 @@ object frmRoutePlan: TfrmRoutePlan
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000E04C473E01000000CC9166771C000000000000000000000000
+          0100011801000010B0051101000000AC91FB761C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -10722,15 +10723,15 @@ object frmRoutePlan: TfrmRoutePlan
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000E04C473E01000000880300C01C00000000000000000000000000000000
+          01000010B0051101000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000050E897003D8BEC761F
-          00000000000000208BEC76F881CA10110431E590E89700000000000000000000
+          000000000000000000000000000000000000000000000080CB9700FD8ADB751F
+          00000000000000E08ADB75F87AEE10373A3729C0CB9700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -11095,8 +11096,7 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitHeight = 520
-          object btnExitTargetParam: TSpeedButtonImage
+          object btnExit_TargetParam: TSpeedButtonImage
             Tag = 3
             Left = 5
             Top = 524
@@ -11745,7 +11745,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitHeight = 520
         end
         object advtsPage3: TAdvTabSheet
           Caption = 'Page3'
@@ -11753,7 +11752,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitHeight = 520
           object advgrpbxTgtInfoPg3: TAdvGroupBox
             Left = 5
             Top = 3
@@ -12359,7 +12357,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitHeight = 520
         end
       end
     end
@@ -12401,7 +12398,7 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          object btnExitRoutePlanCmd: TSpeedButtonImage
+          object btnExit_RoutePlanCmd: TSpeedButtonImage
             Tag = 4
             Left = 3
             Top = 336
@@ -12798,13 +12795,12 @@ object frmRoutePlan: TfrmRoutePlan
       end
     end
     object pnlWaypointLvl2: TPanel
-      Left = 959
+      Left = 880
       Top = 979
       Width = 288
       Height = 50
       TabOrder = 7
       object btnCloseWaypointLvl2: TSpeedButton
-        Tag = 5
         Left = -1
         Top = 1
         Width = 48
@@ -13029,12 +13025,12 @@ object frmRoutePlan: TfrmRoutePlan
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFCFCFCF0F0F0DBDBDBC2C2C2C0C0C0C0C0C0C0C0C0}
-        OnClick = btnToolBarsClick
+        OnClick = btnWaypointLvl2Click
         ExplicitLeft = 933
         ExplicitTop = 9
       end
       object btnAddNewRoute: TSpeedButton
-        Tag = 5
+        Tag = 1
         Left = 47
         Top = 1
         Width = 48
@@ -13259,12 +13255,12 @@ object frmRoutePlan: TfrmRoutePlan
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFCFCFCF1F1F1DCDCDCC2C2C2C0C0C0C0C0C0C0C0C0}
-        OnClick = btnToolBarsClick
-        ExplicitLeft = 933
-        ExplicitTop = 9
+        OnClick = btnWaypointLvl2Click
+        ExplicitLeft = 53
+        ExplicitTop = -3
       end
       object btnMoveWaypoint: TSpeedButton
-        Tag = 5
+        Tag = 2
         Left = 95
         Top = 1
         Width = 48
@@ -13489,12 +13485,12 @@ object frmRoutePlan: TfrmRoutePlan
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFCFCFCF0F0F0DBDBDBC2C2C2C0C0C0C0C0C0C0C0C0}
-        OnClick = btnToolBarsClick
+        OnClick = btnWaypointLvl2Click
         ExplicitLeft = 933
         ExplicitTop = 9
       end
       object btnDeleteWaypoint: TSpeedButton
-        Tag = 5
+        Tag = 3
         Left = 143
         Top = 1
         Width = 48
@@ -13719,12 +13715,12 @@ object frmRoutePlan: TfrmRoutePlan
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFCFCFCF0F0F0DBDBDBC2C2C2C0C0C0C0C0C0C0C0C0}
-        OnClick = btnToolBarsClick
+        OnClick = btnWaypointLvl2Click
         ExplicitLeft = 933
         ExplicitTop = 9
       end
       object btnAddWaypoint: TSpeedButton
-        Tag = 5
+        Tag = 4
         Left = 191
         Top = 1
         Width = 48
@@ -13949,7 +13945,7 @@ object frmRoutePlan: TfrmRoutePlan
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFCFCFCF0F0F0DBDBDBC2C2C2C0C0C0C0C0C0C0C0C0}
-        OnClick = btnToolBarsClick
+        OnClick = btnWaypointLvl2Click
         ExplicitLeft = 933
         ExplicitTop = 9
       end
@@ -14179,7 +14175,7 @@ object frmRoutePlan: TfrmRoutePlan
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFCFCFCF1F1F1DCDCDCC2C2C2C0C0C0C0C0C0C0C0C0}
-        OnClick = btnToolBarsClick
+        OnClick = btnWaypointLvl2Click
         ExplicitLeft = 933
         ExplicitTop = 9
       end
@@ -15112,8 +15108,411 @@ object frmRoutePlan: TfrmRoutePlan
       TabOrder = 9
       OnClick = pnlShowNavClick
     end
+    object pnlObstacleInfo: TPanel
+      Left = 650
+      Top = 44
+      Width = 222
+      Height = 535
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 10
+      Visible = False
+      object advpgcObstacleInfo: TAdvPageControl
+        Left = 1
+        Top = 1
+        Width = 220
+        Height = 533
+        ActivePage = advtsLand
+        ActiveFont.Charset = DEFAULT_CHARSET
+        ActiveFont.Color = clWindowText
+        ActiveFont.Height = -13
+        ActiveFont.Name = 'Tahoma'
+        ActiveFont.Style = []
+        Align = alClient
+        DoubleBuffered = True
+        TabBackGroundColor = clBtnFace
+        TabMargin.RightMargin = 0
+        TabOverlap = 0
+        Version = '2.0.2.0'
+        PersistPagesState.Location = plRegistry
+        PersistPagesState.Enabled = False
+        TabOrder = 0
+        OnChange = advpgcObstacleInfoChange
+        object advtsNoFly: TAdvTabSheet
+          Caption = 'No. Fly'
+          Color = clBtnFace
+          ColorTo = clNone
+          TabColor = clBtnFace
+          TabColorTo = clNone
+        end
+        object advtsPoint: TAdvTabSheet
+          Caption = 'Point'
+          Color = clBtnFace
+          ColorTo = clNone
+          TabColor = clBtnFace
+          TabColorTo = clNone
+        end
+        object advtsIsl: TAdvTabSheet
+          Caption = 'Isl.'
+          Color = clBtnFace
+          ColorTo = clNone
+          TabColor = clBtnFace
+          TabColorTo = clNone
+        end
+        object advtsLand: TAdvTabSheet
+          Caption = 'Land'
+          Color = clBtnFace
+          ColorTo = clNone
+          TabColor = clBtnFace
+          TabColorTo = clNone
+          object btnExit_ObstacleInfo: TSpeedButtonImage
+            Tag = 3
+            Left = 3
+            Top = 467
+            Width = 30
+            Height = 30
+            Caption = ''
+            Flat = True
+            OnClick = btnExitSubWindowClick
+          end
+          object advgrpbxLandTgt1: TAdvGroupBox
+            Left = 3
+            Top = 3
+            Width = 206
+            Height = 110
+            Caption = 'Land Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 0
+            object Label65: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 1:'
+            end
+            object Label66: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label67: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHigh1: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHigh1: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgt1: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object advgrpbxLandTgt2: TAdvGroupBox
+            Left = 3
+            Top = 119
+            Width = 206
+            Height = 110
+            Caption = 'Land Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 1
+            object Label68: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 2:'
+            end
+            object Label69: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label70: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHigh2: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHigh2: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgt2: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object advgrpbxLandTgt3: TAdvGroupBox
+            Left = 3
+            Top = 235
+            Width = 206
+            Height = 110
+            Caption = 'Land Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 2
+            object Label71: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 3:'
+            end
+            object Label72: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label73: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHigh3: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHigh3: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+              Text = '0'
+            end
+            object edtTgt3: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+              Text = '0'
+            end
+          end
+          object advgrpbxLandTgt4: TAdvGroupBox
+            Left = 3
+            Top = 351
+            Width = 206
+            Height = 110
+            Caption = 'Land Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 3
+            object Label74: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 4:'
+            end
+            object Label75: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label76: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHigh4: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHigh4: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgt4: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object btnOkObstacleInfo: TVrDemoButton
+            Left = 48
+            Top = 470
+            Width = 77
+            Height = 25
+            FontEnter.Charset = DEFAULT_CHARSET
+            FontEnter.Color = 6168865
+            FontEnter.Height = -11
+            FontEnter.Name = 'Verdana'
+            FontEnter.Style = [fsBold]
+            FontLeave.Charset = DEFAULT_CHARSET
+            FontLeave.Color = 6168865
+            FontLeave.Height = -11
+            FontLeave.Name = 'Verdana'
+            FontLeave.Style = [fsBold]
+            Caption = 'OK'
+            Color = clSilver
+            TabOrder = 4
+          end
+        end
+      end
+    end
+    object pnlModeOperasi: TPanel
+      Left = 0
+      Top = 42
+      Width = 185
+      Height = 41
+      Caption = 'Passive Mode'
+      Color = 12828608
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8553090
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 11
+    end
   end
-  object Panel2: TPanel
+  object pnlRight: TPanel
     Left = 1440
     Top = 0
     Width = 480
@@ -24076,7 +24475,13 @@ object frmRoutePlan: TfrmRoutePlan
   object tmrMap: TTimer
     Enabled = False
     OnTimer = tmrMapTimer
-    Left = 152
-    Top = 688
+    Left = 256
+    Top = 984
+  end
+  object tmrForm: TTimer
+    Enabled = False
+    OnTimer = tmrFormTimer
+    Left = 304
+    Top = 976
   end
 end

@@ -74,7 +74,7 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       Fill.Glow = gmNone
       Transparent = False
       Align = alClient
-      ActivePage = tsShipGeneral
+      ActivePage = tsShipKRI
       Color = 7301478
       TabSettings.LeftMargin = 0
       TabSettings.RightMargin = 0

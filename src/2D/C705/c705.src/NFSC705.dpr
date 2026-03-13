@@ -2,6 +2,7 @@ program NFSC705;
 
 uses
   Vcl.Forms,
+  Winapi.Windows,
   UfrmRoutePlan in 'libDisplayUI\UfrmRoutePlan.pas' {frmRoutePlan},
   UfrmWCC in 'libDisplayUI\UfrmWCC.pas' {frmWCC},
   uLibSettings in 'uLibSettings.pas',
@@ -13,7 +14,6 @@ uses
   uLibConst in 'LibUtils\uLibConst.pas',
   uMapXUnitConverter in 'LibMapX\uMapXUnitConverter.pas',
   uBaseConst in 'LibBaseSystem\uBaseConst.pas',
-  uBaseFunction in 'LibBaseSystem\uBaseFunction.pas',
   uCoordConverter in 'LibBaseSystem\uCoordConverter.pas',
   uFormMgr in 'libMgr\uFormMgr.pas',
   UfrmFoeFriendSituationPage in 'libDisplayUI\UfrmFoeFriendSituationPage.pas' {frmFoeFriendSituationPage},
@@ -37,19 +37,36 @@ uses
   uBaseSimObjects in '..\didFramework\LibSims\uBaseSimObjects.pas',
   uSimObjects in '..\didFramework\LibSims\uSimObjects.pas',
   uCoordDataTypes in 'LibBaseSystem\uCoordDataTypes.pas',
-  uVehicleManager in 'libMgr\uVehicleManager.pas';
+  uVehicleManager in 'libMgr\uVehicleManager.pas',
+  uWaypointModel in 'LibMapX\uWaypointModel.pas',
+  uWaypointView in 'libObjects\uWaypointView.pas',
+  uMapViewManager in 'libObjects\uMapViewManager.pas',
+  uMapViewBase in 'libObjects\uMapViewBase.pas',
+  uShipView in 'libObjects\uShipView.pas',
+  uBaseFunction in '..\..\ShareLib\LibBaseSystem\uBaseFunction.pas',
+  uBaseConstan in '..\..\ShareLib\LibBaseSystem\uBaseConstan.pas';
 
 {$R *.res}
 
+var
+  MutexHandle: THandle;
 begin
   ReportMemoryLeaksOnShutdown := True;
+
+  MutexHandle := CreateMutex(nil, True, 'MY_UNIQUE_APP_MUTEX');
+  if (MutexHandle = 0) or (GetLastError = ERROR_ALREADY_EXISTS) then
+  begin
+    // aplikasi sudah berjalan
+    Halt;
+  end;
+
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
   Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);
   Application.CreateForm(TfrmWCC, frmWCC);
+  Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   //Application.CreateForm(TfrmPnlArea3AFoeFriend, frmPnlArea3AFoeFriend);
   //Application.CreateForm(TfrmParamSetting, frmParamSetting);
   //Application.CreateForm(TfrmRadar, frmRadar);

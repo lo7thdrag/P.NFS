@@ -10,7 +10,7 @@ uses
   uBridgeSet,
   Logger,
   uDataModule,
-  uStateManager,
+  uStateManager, uClassDatabase,
   uStateObject;
 
 type
@@ -83,6 +83,7 @@ type
     procedure RecvReqSce(AHeader: TPacketHeader; AContent: string);
     // procedure NetHandler_Recv_3DStatus(AHeader: TPacketHeader;
     // AContent: string);
+    procedure RecvReqEnv(AHeader: TPacketHeader; AContent: string);
     procedure ClientRecv_3D_MissilePos(AHeader: TPacketHeader;
       AContent: string);
     procedure ClientRecv_3D_ShipPos(AHeader: TPacketHeader; AContent: string);
@@ -300,6 +301,7 @@ var
   // apRec: TRecData3DPosition;
   o: TObject;
   so: TShipObject;
+  Obj: TShipObject;
 begin
   if Length(AContent) > 0 then
   begin
@@ -340,7 +342,23 @@ begin
         so.roll := incoming_data.roll;
         so.rudder := incoming_data.rudder;
       end;
+    end
+    else   // jika nambah kapal
+    begin
+      Obj := TShipObject.Create;
+      Obj.IDShip := incoming_data.ShipID;
+      Obj.X := incoming_data.X;
+      Obj.y := incoming_data.Y;
+      Obj.z := incoming_data.Z;
+      Obj.heading := incoming_data.Heading;
+      Obj.pitch := 0.0;
+      Obj.roll := 0.0;
+      Obj.speed := 0;
+      Obj.rudder := 0.0;
+
+      FStateManager.Add(Obj);
     end;
+
   end;
 end;
 
@@ -689,14 +707,22 @@ begin
   FServer2D.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, Server2DReceive_Server3DSend,
       sizeof(TRec_CameraController));
 
+  FServer2D.RegisterProcedure(REC_ENVI_3D, Server2DReceive_Server3DSend,
+      sizeof(TRecDataEnvironment));
+
   // GUIDANCE VEHICLE
   FServer2D.RegisterProcedure(REC_GUIDANCE, Server2DReceive_Server3DSend,
     SizeOf(TRecGuidance));
+
+  // C705; angga
+  FServer2D.RegisterProcedure(Rec_Data_C705, Server2DReceive_Server3DSend,
+      sizeof(TRec_Data_C705));
 end;
 
 procedure TServerManager.Prepare_As_Server3D;
 begin
   TcpServer3D.RegisterProcedure(REC_SCEID, RecvReqSce);
+  TcpServer3D.RegisterProcedure(REC_REQENVI, RecvReqEnv);
   TcpServer3D.RegisterProcedure(REC_SCESTAT, nil);
 
   // TcpServer3D.RegisterProcedure(REC3D_STATUS_GAME, NetHandler_Recv_3DStatus);
@@ -717,6 +743,7 @@ begin
   TcpServer3D.RegisterProcedure(REC_CMD_EXOCET_40, nil);
   TcpServer3D.RegisterProcedure(REC_CMD_DESIG_A244_3D, nil);
   TcpServer3D.RegisterProcedure(REC_CMD_VLMICA, nil);
+  TcpServer3D.RegisterProcedure(REC_DATA_C7053D, nil);
 
   // For Position
   TcpServer3D.RegisterProcedure(REC3D_POSITION, ClientRecv_3D_ShipPos);
@@ -734,6 +761,7 @@ begin
   TcpServer3D.RegisterProcedure(REC_3D_UTIL_TOOLS, ServerRecv_3D_Server2DSend);
   TcpServer3D.RegisterProcedure(REC_STATUS_MESSAGE, ServerRecv_3D_Server2DSend);
   TcpServer3D.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET_3D, nil);
+  TcpServer3D.RegisterProcedure(REC_ENVI_3D, nil);
 
 end;
 
@@ -818,6 +846,12 @@ var
 
   RecCmdSetCameraControl: ^TRec_CameraController;
   RecCmdSetCameraControl3D: TRec_CameraController3D;
+
+  RecCmdSetEnvi: ^TRecDataEnvironment;
+  RecCmdSetEnvi3D: TRecDataEnvironment3D;
+
+  RecDataFireC705: ^TRec_Data_C705;
+  RecDataFireC7053D: TRecData_C7053D;
 
   o: TObject;
 
@@ -1438,6 +1472,14 @@ begin
     REC_3D_SETCONTROL:
       begin
         recActorController3d := @apRec^;
+
+        if Assigned(OnLogReceived2D) then
+          OnLogReceived2D('REC_3D_SETCONTROL' + #13#10 + 'ShipID : ' +
+            IntToStr(recActorController3d^.ShipID) + #13#10 + 'X : ' +
+            FloatToStr(recActorController3d^.X) + #13#10 + 'Y : ' +
+            FloatToStr(recActorController3d^.y) + #13#10 + 'Z : ' +
+            FloatToStr(recActorController3d^.z) + #13#10);
+
         recSendActorController3d.ShipID := recActorController3d^.ShipID;
         recSendActorController3d.TypeID := recActorController3d^.TypeID;
 
@@ -1696,6 +1738,93 @@ begin
         TcpServer3D.SendData(REC_CMD_SET_CAMERA_TARGET_3D, RecCmdSetCameraControl3D);
       end;
 
+    REC_ENVI_3D:
+      begin
+        RecCmdSetEnvi := @apRec^;
+
+        if Assigned(OnLogReceived2D) then
+          OnLogReceived2D('Rec_CMD_ENVI_3D' + #13#10 +
+            'seaState : ' + IntToStr(recCmdSetEnvi^.seaState)+ #13#10 +
+            'windVelocity : ' + FloatToStr(recCmdSetEnvi^.windVelocity)+ #13#10 +
+            'windHeading : ' + FloatToStr(recCmdSetEnvi^.windHeading)+ #13#10 +
+            'seaCurrentVelocity : ' + FloatToStr(recCmdSetEnvi^.seaCurrentVelocity)+ #13#10 +
+            'seaCurrentHeading : ' + FloatToStr(recCmdSetEnvi^.seaCurrentHeading)+ #13#10 +
+            'temperature : ' + FloatToStr(recCmdSetEnvi^.temperature)+ #13#10 +
+            'humidity : ' + FloatToStr(recCmdSetEnvi^.humidity)+ #13#10 +
+            'surfacePressure : ' + FloatToStr(recCmdSetEnvi^.surfacePressure)+ #13#10 +
+            'fogIntensity : ' + IntToStr(recCmdSetEnvi^.fogIntensity)+ #13#10);
+
+        RecCmdSetEnvi3D.seaState := RecCmdSetEnvi^.seaState;
+        RecCmdSetEnvi3D.windVelocity := RecCmdSetEnvi^.windVelocity;
+        RecCmdSetEnvi3D.windHeading := RecCmdSetEnvi^.windHeading;
+        RecCmdSetEnvi3D.seaCurrentVelocity := RecCmdSetEnvi^.seaCurrentVelocity;
+        RecCmdSetEnvi3D.seaCurrentHeading := RecCmdSetEnvi^.seaCurrentHeading;
+        RecCmdSetEnvi3D.temperature := RecCmdSetEnvi^.temperature;
+        RecCmdSetEnvi3D.humidity := RecCmdSetEnvi^.humidity;
+        RecCmdSetEnvi3D.surfacePressure := RecCmdSetEnvi^.surfacePressure;
+        RecCmdSetEnvi3D.fogIntensity := RecCmdSetEnvi^.fogIntensity;
+
+        TcpServer3D.SendData(REC_ENVI_3D, RecCmdSetEnvi3D);
+      end;
+
+    REC_Data_C705: begin
+      RecDataFireC705 := @apRec^;
+
+      if Assigned(OnLogReceived2D) then
+      begin
+
+        OnLogReceived2D('ShipID :' + IntToStr(RecDataFireC705^.ShipID));
+        OnLogReceived2D('mTargetId :' + IntToStr(RecDataFireC705^.mTargetID));
+        OnLogReceived2D('mWeaponID :' + IntToStr(RecDataFireC705^.mWeaponID));
+        OnLogReceived2D('mLauncherID :' + IntToStr(RecDataFireC705^.mLauncherID));
+        OnLogReceived2D('mMissileID :' + IntToStr(RecDataFireC705^.mMissileID));
+        OnLogReceived2D('mMissileNumber :' +
+          IntToStr(RecDataFireC705^.mMissileNumber));
+        OnLogReceived2D('OrderID :' + IntToStr(RecDataFireC705^.OrderID) +
+          'kalo 1 itu OrdID_C802_launch(1)');
+        OnLogReceived2D('mTargetBearing :' +
+          FloatToStr(RecDataFireC705^.mTargetBearing));
+        OnLogReceived2D('mTargetRange :' + FloatToStr(RecDataFireC705^.mTargetRange));
+
+      end;
+
+      RecDataFireC7053D.ShipID := RecDataFireC705^.ShipID;
+      RecDataFireC7053D.mTargetID := RecDataFireC705^.mTargetID;
+      RecDataFireC7053D.mWeaponID := RecDataFireC705^.mWeaponID; // Diisi sesuai Database
+      RecDataFireC7053D.mLauncherID := RecDataFireC705^.mLauncherID;
+      RecDataFireC7053D.mMissileID := RecDataFireC705^.mMissileID;
+      RecDataFireC7053D.mMissileNumber := RecDataFireC705^.mMissileNumber;
+      // Diisi 0 aj...nanti instruktur yang ngisi ulan
+
+      RecDataFireC7053D.OrderID := RecDataFireC705^.OrderID;
+
+      RecDataFireC7053D.mTargetBearing := RecDataFireC705^.mTargetBearing;
+      RecDataFireC7053D.mTargetRange := RecDataFireC705^.mTargetRange;
+      TcpServer3D.SendData(REC_DATA_C7053D, RecDataFireC7053D);
+
+      { // add if needed
+      if (RecDataFireC705^.OrderID = __ORD_C802_LOADING) then
+      begin
+        RecSend3DMissilePos.ShipID := RecDataFireC705^.ShipID;
+        RecSend3DMissilePos.WeaponID := RecDataFireC705^.mWeaponID;
+        RecSend3DMissilePos.launcherID := RecDataFireC705^.mLauncherID;
+        RecSend3DMissilePos.missileID := RecDataFireC705^.mMissileID;
+        RecSend3DMissilePos.MissileNumber := RecDataFireC705^.mMissileNumber;
+        RecSend3DMissilePos.status := 0;
+        case RecDataFireC705^.OrderID of
+          __ORD_C802_LOADING:
+            RecSend3DMissilePos.status := ST_MISSILE_LOADED;
+        end;
+        RecSend3DMissilePos.X := 0;
+        RecSend3DMissilePos.y := 0;
+        RecSend3DMissilePos.z := 0;
+        RecSend3DMissilePos.heading := 0.0;
+        RecSend3DMissilePos.speed := 0.0;
+
+        FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
+      end;}
+    end;
+
     { REC_CMD_MISTRAL:
       begin
       RecMistral := @apRec^;
@@ -1794,6 +1923,29 @@ end;
 // begin
 // //
 // end;
+
+procedure TServerManager.RecvReqEnv(AHeader: TPacketHeader; AContent: string);
+var
+  incoming_data: TRecReqEnvi3D;
+  RecSend: TRecDataEnvironment3D;   // kirim dari database
+  scenTemp: TScenario;
+  RecCmdSetEnvi3D: TRecDataEnvironment3D;
+begin
+  scenTemp := TScenario.Create;
+  dmMain.GetScenarioDefByID(FLastScenarioActive, scenTemp);
+
+  RecCmdSetEnvi3D.seaState := Round(scenTemp.Scenario_SeaState);
+  RecCmdSetEnvi3D.windVelocity := Round(scenTemp.Scenario_WindSpeed);
+  RecCmdSetEnvi3D.windHeading := Round(scenTemp.Scenario_WindDir_Deg);
+  RecCmdSetEnvi3D.seaCurrentVelocity := Round(scenTemp.Scenario_CurrSpeed);
+  RecCmdSetEnvi3D.seaCurrentHeading := Round(scenTemp.Scenario_CurrDir_Deg);
+  RecCmdSetEnvi3D.temperature := Round(scenTemp.Scenario_Temperature);
+  RecCmdSetEnvi3D.humidity := Round(scenTemp.Scenario_Humidity);
+  RecCmdSetEnvi3D.surfacePressure := Round(scenTemp.Scenario_BaroPressure);
+  RecCmdSetEnvi3D.fogIntensity := Round(scenTemp.Scenario_FogHeight);
+
+  TcpServer3D.SendData(REC_ENVI_3D, RecCmdSetEnvi3D);
+end;
 
 procedure TServerManager.RecvReqSce(AHeader: TPacketHeader; AContent: string);
 var

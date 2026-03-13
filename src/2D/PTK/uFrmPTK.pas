@@ -299,6 +299,10 @@ begin
   begin
     pnlNumKey.BringToFront;
   end
+  else if TSpeedButtonImage(Sender).Name = 'btn_DAttackSetting' then
+  begin
+    pnlNumKey.BringToFront;
+  end
   else if TSpeedButtonImage(Sender).Name = 'btn_WeatherSetting' then
   begin
     pnlNumKey.BringToFront;

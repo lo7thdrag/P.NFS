@@ -8,9 +8,25 @@ interface
 implementation
 
 uses
-  Windows, uC705SimManager, uLibSettings, uFormMgr, uVehicleManager;
+  Windows, uC705SimManager, uLibSettings, uFormMgr, uVehicleManager,
+    UfrmRoutePlan;
 
 /// some sub function to keep the main procedure simple;
+
+{ ****
+    Visual flow LoadMap, Load Geoset
+BeginScript
+     ->
+SimManager.OnMapInit := frmRoutePlan.InitMapMainForm
+     ->
+SimManager.InitializeMap
+     ->
+event dipanggil
+     ->
+frmRoutePlan.InitMapMainForm
+     ->
+LoadGeoset di frmRoutePlan
+**** }
 
 
 //main procedure of c705------------------------------------------------------->>
@@ -20,6 +36,8 @@ begin
   LoadMonitorSetting;
   LoadNFSNetwork;
   LoadMonitorTopLeft;
+  LoadMapSetting;
+  LoadOwnShips;
 
   //LoadNFSDBConfig;
 
@@ -27,7 +45,12 @@ begin
 
   { Create SimManager }
   SimManager := GameSimManager.Create;    //create platform & create thread
-  VehicleMgr := TVehicleManager.Create
+
+  VehicleMgr := TVehicleManager.Create;
+
+  if Assigned(frmRoutePlan) then
+    SimManager.OnMapInit := frmRoutePlan.InitMapMainForm;
+  SimManager.InitializeMap;
 end;
 
 procedure EndC705;

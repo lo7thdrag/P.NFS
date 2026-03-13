@@ -429,7 +429,7 @@ begin
 
 
     // For Utility
-    RegisterProcedure(REC_ENVIRONMENT, nil, sizeof(TRecDataEnvironment));
+    RegisterProcedure(REC_ENVIRONMENT, ServerReceive_ClientSend, sizeof(TRecDataEnvironment)); // rozak add send to 3d
     RegisterProcedure(REC_3D_UTIL_TOOLS, ServerReceive_ClientSend,
       sizeof(spUtilityTools));
     RegisterProcedure(REC_3D_SETCONTROL, ServerReceive_ClientSend,
@@ -461,6 +461,10 @@ begin
 
     RegisterProcedure(REC_VIEW_RANGE_WEAPON, ServerReceive_ServerSend,
       sizeof(TRec_View_Range_Weapon));
+
+    // C705 console; angga
+    RegisterProcedure(Rec_Data_C705, ServerReceive_ClientSend,
+      sizeof(TRec_Data_C705));
   end;
 end;
 
@@ -516,6 +520,12 @@ begin
   TcpClient.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, nil,
       sizeof(TRec_CameraController));
 
+  TcpClient.RegisterProcedure(REC_ENVI, nil,
+      sizeof(TRecDataEnvironment));
+
+  TcpClient.RegisterProcedure(Rec_Data_C705, nil,
+  sizeof(TRec_Data_C705));
+
 end;
 
 procedure TBridgeManager.RunSimulation;
@@ -560,6 +570,12 @@ var
 
   recCmdSetCameraController: ^TRec_CameraController;
 
+  recCmdSetEnvi: ^TRecDataEnvironment;
+
+  recCmdAddShip : ^spActorsController;
+
+  recCmdC705 : ^TRec_Data_C705;
+
   xTarget_3D, yTarget_3D, zTarget_3D: Double;
 
   xOffsetMap, yOffsetMap: Double;
@@ -579,6 +595,26 @@ begin
       recTorpedoSut := @apRec^;
       OnLogPacket('REC_3D_TORPEDO_SUT, ' + IntToStr(pc.ID) +
         ' --> Send Back To Server 3D');
+    end
+    else if pc.ID = Rec_Data_C705 then
+    begin
+      OnLogPacket('Rec_Data_C705, ' + IntToStr(pc.ID) +
+        ' --> Send Back To Server 3D');
+
+      recCmdC705 := @apRec^;
+
+      OnLogPacket('ShipID :' + IntToStr(recCmdC705^.ShipID));
+      OnLogPacket('mWeaponID :' + IntToStr(recCmdC705^.mWeaponID));
+      OnLogPacket('mLauncherID :' + IntToStr(recCmdC705^.mLauncherID));
+      OnLogPacket('mMissileID :' + IntToStr(recCmdC705^.mMissileID));
+      OnLogPacket('mMissileNumber :' + IntToStr(recCmdC705^.mMissileNumber));
+
+//      OnLogPacket('mMissileType :' + IntToStr(recCmdC705^.mMissileType));
+      OnLogPacket('mTargetID :' + IntToStr(recCmdC705^.mTargetID));
+      OnLogPacket('OrderID :' + FloatToStr(recCmdC705^.orderID));
+
+      OnLogPacket('mLncrBearing :' + FloatToStr(recCmdC705^.mTargetBearing));
+      OnLogPacket('mLncRange :' + FloatToStr(recCmdC705^.mTargetRange));
     end
     else if pc.ID = REC_3D_RBU then
     begin
@@ -792,6 +828,13 @@ begin
     begin
       OnLogPacket('REC_3D_SETCONTROL, ' + IntToStr(pc.ID) +
         ' --> Send Back To Server 3D');
+      recCmdAddShip:= @apRec^;
+      OnLogPacket(('Rec_CMD_ENVI' + #13#10 +
+            'ShipID : ' + IntToStr(recCmdAddShip^.ShipID)+ #13#10 +
+            'OrderID : ' + FloatToStr(recCmdAddShip^.OrderID)+ #13#10 +
+            'X : ' + FloatToStr(recCmdAddShip^.X)+ #13#10 +
+            'Y : ' + FloatToStr(recCmdAddShip^.Y)+ #13#10 +
+            'Z : ' + FloatToStr(recCmdAddShip^.Z)+ #13#10));
     end
     else if pc.ID = REC_3D_POSITION then
     begin
@@ -820,6 +863,22 @@ begin
             'cmd : ' + IntToStr(recCmdSetCameraController^.cmd)+ #13#10 +
             'ValInt : ' + IntToStr(recCmdSetCameraController^.valueInt)+ #13#10 +
             'ValDouble : ' + FloatToStr(recCmdSetCameraController^.valueDbl)+ #13#10));
+    end
+    else if pc.ID = REC_ENVIRONMENT then
+    begin
+      OnLogPacket('Rec_CMD_ENVI, ' + IntToStr(pc.ID) +
+        ' --> Send Back To Server 3D');
+      recCmdSetEnvi:= @apRec^;
+      OnLogPacket(('Rec_CMD_ENVI' + #13#10 +
+            'seaState : ' + IntToStr(recCmdSetEnvi^.seaState)+ #13#10 +
+            'windVelocity : ' + FloatToStr(recCmdSetEnvi^.windVelocity)+ #13#10 +
+            'windHeading : ' + FloatToStr(recCmdSetEnvi^.windHeading)+ #13#10 +
+            'seaCurrentVelocity : ' + FloatToStr(recCmdSetEnvi^.seaCurrentVelocity)+ #13#10 +
+            'seaCurrentHeading : ' + FloatToStr(recCmdSetEnvi^.seaCurrentHeading)+ #13#10 +
+            'temperature : ' + FloatToStr(recCmdSetEnvi^.temperature)+ #13#10 +
+            'humidity : ' + FloatToStr(recCmdSetEnvi^.humidity)+ #13#10 +
+            'surfacePressure : ' + FloatToStr(recCmdSetEnvi^.surfacePressure)+ #13#10 +
+            'fogIntensity : ' + IntToStr(recCmdSetEnvi^.fogIntensity)+ #13#10));
     end
     else
     begin

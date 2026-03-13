@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   SpeedButtonImage, Vcl.Buttons, TFlatSpeedButtonUnit, TFlatButtonUnit,
-  ImageButton, RzBmpBtn, VrControls, VrTrackBar, acPNG, Vcl.FileCtrl, Vcl.Grids,
+  ImageButton, RzBmpBtn, VrControls, VrTrackBar, {acPNG,} Vcl.FileCtrl, Vcl.Grids,
   Vcl.Samples.DirOutln, VrDesign, RzButton, Vcl.Imaging.pngimage, System.Math,
   uTCPDatatype, uBaseDataType, {uLibAK230,} uLibTDCClass;
 
@@ -847,9 +847,18 @@ begin
   FOriginalPngElevation := TPngImage.Create;
   FOriginalPngHeading := TPngImage.Create;
 
-  FOriginalPngTraining.LoadFromFile('.\data\images\AK230_Turret_Top 180p.png');
-  FOriginalPngElevation.LoadFromFile('.\data\images\AK230_Turret_Side 180p.png');
-  FOriginalPngHeading.LoadFromFile('.\data\images\AK230_heading+num 170p.png');
+  BeginGame_AK230;
+
+
+
+  //FOriginalPngTraining.LoadFromFile('.\data\images\AK230_Turret_Top 180p.png');
+  //FOriginalPngElevation.LoadFromFile('.\data\images\AK230_Turret_Side 180p.png');
+  //FOriginalPngHeading.LoadFromFile('.\data\images\AK230_heading+num 170p.png');
+
+
+  FOriginalPngTraining.LoadFromFile(vPathImageSetting.ImgPath + 'AK230_Turret_Top 180p.png');
+  FOriginalPngElevation.LoadFromFile(vPathImageSetting.ImgPath + 'AK230_Turret_Side 180p.png');
+  FOriginalPngHeading.LoadFromFile(vPathImageSetting.ImgPath + 'AK230_heading+num 170p.png');
 
   tmrRotate.Interval := 250;
   tmrRotate.Enabled := False;
@@ -860,8 +869,6 @@ begin
   FVCurTraining := 0;
   FVCurElevation := 0;
   FVCurHeading := 0;
-
-  BeginGame_AK230;
 
   AK230Manager := TAK230Manager.Create;
 

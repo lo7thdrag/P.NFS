@@ -555,30 +555,16 @@ type
     rbIndAir: TRadioButton;
     RadioButton2: TRadioButton;
     pnlDAttackSetting: TPanel;
-    Label15: TLabel;
-    Label16: TLabel;
     Label17: TLabel;
     Label18: TLabel;
-    Label19: TLabel;
-    Label20: TLabel;
-    Label21: TLabel;
-    Label22: TLabel;
-    Label23: TLabel;
-    Label24: TLabel;
     Label25: TLabel;
     Label26: TLabel;
     Label27: TLabel;
     Label28: TLabel;
-    Panel4: TPanel;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
-    Edit13: TEdit;
-    Edit14: TEdit;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
+    pnlDAttackSetting2: TPanel;
+    edtAltDirectAttack: TEdit;
+    edtLonDirectAttack: TEdit;
+    edtLatDirectAttack: TEdit;
     pnlVFireSetting: TPanel;
     Label29: TLabel;
     Label30: TLabel;
@@ -706,9 +692,12 @@ type
      procedure HandleKeyByBtnName(const BtnName: string);
 
     procedure fireClick();
+
+    procedure DAttackFire();
   public
     { Public declarations }
     rCX, rCY: integer;
+    DAttackState : Boolean;
   end;
 
 var
@@ -1251,7 +1240,7 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
-    RecSend.mModeID             := 0;
+//    RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := aLow;
     RecSend.mAutoCorrectBearing := bearing;
 
@@ -1319,6 +1308,170 @@ procedure TfrmMainFCC.FMapMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
   ShowInfoCursor(X,y);
+end;
+
+procedure TfrmMainFCC.DAttackFire;
+var
+  isValid : Boolean;
+  RecSend : TRec3DSetWCC;
+
+  CorrectBearing,
+  CorrectElev : Double;
+  aLow, aHigh: Double;
+  range,rangem, bearing  : Double;
+begin
+    if not IsServoOn then
+      Exit;
+
+    if (edtLonDirectAttack.Text = '0.00000000') or (edtLatDirectAttack.Text = '0.00000000') or (StrToFloat(edtAltDirectAttack.Text) < 0) or (StrToFloat(edtAltDirectAttack.Text) > 90)then
+      Exit;
+
+    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, StrToFloat(edtLonDirectAttack.text), StrToFloat(edtLatDirectAttack.text));
+    rangem := range * C_NauticalMile_To_Metre;
+    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, StrToFloat(edtLonDirectAttack.text), StrToFloat(edtLatDirectAttack.text));
+    bearing := bearing - FCCManager.xShip.Heading;
+    if bearing < 0 then
+    bearing := bearing + 360;
+    FBearingVal := bearing;
+    // range = 3000 m, target lebih rendah 25 m
+    ComputeBallisticAngleVacuum(rangem, StrToFloat(edtAltDirectAttack.Text), 350, aLow, aHigh);
+
+    if (aLow <= 80 ) and (aLow >= 0 )then
+    begin
+//      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
+      aLow := FMod(aLow, 360);
+      if aLow < 0 then
+        aLow := aLow + 360;
+
+      FElevVal := aLow;
+
+      RecSend.ShipID          := FCCManager.ShipID;
+      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID     := 0;
+      RecSend.mMissileID      := 0;
+      RecSend.mMissileNumber  := 0;
+      RecSend.mOrderID        := 0;
+
+      RecSend.mUpDown             := 0;
+      RecSend.mTargetID           := 0;
+
+      case vFccSetting.FccMode of
+        1 : //FCC1 Mode
+        begin
+          if rangem > 3000 then
+          begin
+            imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampred;
+            InsideZone := False;
+            Exit;
+          end;
+
+          RecSend.mModeID             := 3;
+          if (bearing < 135) or (bearing > 225) then
+          begin
+            imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampGreen;
+            imgGunStateReturnZero.Picture.Bitmap := BitMapLampGrey;
+            InsideZone := True;
+          end
+          else
+          begin
+            imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampred;
+            InsideZone := False;
+            Exit;
+          end;
+        end;
+        2 : //FCC2 Mode
+        begin
+          if rangem > 6500 then
+          begin
+            imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampRed;
+            InsideZone := False;
+            Exit;
+          end;
+
+          RecSend.mModeID             := 1;
+
+          if (bearing > 315) or (bearing < 45) then
+          begin
+            imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampRed;
+            InsideZone := False;
+            Exit;
+          end
+          else
+          begin
+            imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampGreen;
+            imgGunStateReturnZeroFCC2.Picture.Bitmap := BitMapLampGrey;
+            InsideZone := True;
+          end;
+        end;
+      end;
+      RecSend.mAutoCorrectElev    := aLow;
+      RecSend.mAutoCorrectBearing := bearing;
+
+      RecSend.mBalistikID         := 0;
+      RecSend.mSalvoRate          := 30;
+
+
+      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+
+      if not InsideZone then
+        Exit;
+
+      FCCManager.NetSendTo3D_OrderCannon(RecSend);
+    end
+    else if (aLow >= 350 )then
+    begin
+      alow := FMod(alow, 360);
+      if alow < 0 then
+        alow := alow + 360;
+
+      FElevVal := aLow;
+
+      RecSend.ShipID          := FCCManager.ShipID;
+      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID     := 0;
+      RecSend.mMissileID      := 0;
+      RecSend.mMissileNumber  := 0;
+      RecSend.mOrderID        := 0;
+
+      RecSend.mUpDown             := 0;
+      RecSend.mTargetID           := 0;
+
+      case vFccSetting.FccMode of
+        1 : //FCC1 Mode
+        begin
+          RecSend.mModeID             := 0;
+        end;
+        2 : //FCC2 Mode
+        begin
+          RecSend.mModeID             := 0;
+
+          if (bearing > 315) and (bearing < 45) then
+            Exit;
+        end;
+      end;
+
+      RecSend.mAutoCorrectElev    := alow;
+      RecSend.mAutoCorrectBearing := bearing;
+
+      RecSend.mBalistikID         := 0;
+      RecSend.mSalvoRate          := 30;
+
+
+      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+
+      if not InsideZone then
+        Exit;
+
+      IsReturnZero := False;
+
+      FTargetBearing := bearing;
+      FTargetElev := aLow;
+      edtCtrlDataBeInc.Text := (ftargetbearing - fcurrbearing).ToString();
+      edtCtrlDataElInc.Text := (FTargetElev - fcurrelev).ToString();
+      edtCtrlDataBeInc1.Text := (ftargetbearing - fcurrbearing).ToString();
+      edtCtrlDataElInc1.Text := (FTargetElev - fcurrelev).ToString();
+      FCCManager.NetSendTo3D_OrderCannon(RecSend);
+    end;
 end;
 
 procedure TfrmMainFCC.FMapMouseUp(Sender: TObject; Button: TMouseButton;
@@ -1862,6 +2015,8 @@ begin
 //    SetWindowPos(WindowHandle, 0, 0, 0, pnlBaseVideoZone.Width, pnlBaseVideoZone.Height,
 //                 SWP_NOZORDER or SWP_SHOWWINDOW);
 //  end;
+  FSelectedVehicleState := False;
+  DAttackState := False;
 end;
 
 procedure TfrmMainFCC.HandleKeyByBtnName(const BtnName: string);
@@ -1873,6 +2028,11 @@ begin
   Token := ExtractToken(BtnName);
 
   if Token = '' then Exit;
+
+  if (Token <> 'DAttack') then
+  begin
+    DAttackState := False;
+  end;
 
   if (Token = 'SysCtrl') then
   begin
@@ -1905,6 +2065,7 @@ begin
   else if (Token = 'DAttack') then
   begin
     pnlWaitLs.Caption := 'D.Attack';
+    DAttackState := True;
   end
   else if (Token = 'VFire') then
   begin
@@ -2059,6 +2220,15 @@ begin
 
     activePanel := 5;
   end
+  else if (Token = 'DAttackSetting') or (Token = 'btnDAttackSetting') or (Token = 'btn_DAttackSetting')  then
+  begin
+//    edtTimeSettingTime.Text := FormatFloat('0.00', StrToFloat(pnlGpTime.Caption));
+
+    pnlDAttackSetting.BringToFront;
+    edtLonDirectAttack.SetFocus;
+
+    activePanel := 6;
+  end
   else if (Token = 'btnVFireSetting')  then
   begin
     fireClick;
@@ -2111,11 +2281,23 @@ begin
         pnlGpTime.Caption := FormatFloat('0.00', FireTime);
         pnlIndWth.BringToFront;
       end;
+      6: // D.Attack Setting
+      begin
+        pnlIndWth.BringToFront;
+      end;
     end;
   end
   else if Token = 'Cancel' then
+  begin
     pnlIndWth.BringToFront;
 
+    if activePanel = 6 then
+    begin
+      edtLonDirectAttack.Text := '0.00000000';
+      edtLatDirectAttack.Text := '0.00000000';
+      edtAltDirectAttack.Text := '0';
+    end;
+  end;
   if not (ActiveControl is TEdit) then Exit;
 
   // ---------------- LETTERS ----------------
@@ -2395,6 +2577,12 @@ var
 begin
   if Assigned(FCCManager.SelectedVehicle) then
   begin
+    if DAttackState then
+    begin
+      DAttackFire;
+      Exit;
+    end;
+
     if not InsideZone then
     Exit;
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);

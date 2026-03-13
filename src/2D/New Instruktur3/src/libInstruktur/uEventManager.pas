@@ -224,21 +224,21 @@ begin
   begin
 
       //frmGameController.tbSeaState.OnMouseUp := nil;
-      frmGameController.tbSeaState.Position := Round(Rec.mValue)+1;
+      frmGameController.tbSeaState.Position := Round(Rec.mValue);
       //frmGameController.tbSeaState.OnMouseUp := frmGameController.tbSeaStateChange;
-      frmGameController.lblSeaState.Caption := IntToStr(Round(Rec.mValue)+1);
+      frmGameController.edtPortSeaState.Text := IntToStr(Round(Rec.mValue));
 
   end
   else
   if Rec.sOrder = ORD_ENVI then
   begin
 
-      floatTmp :=(((0.08-(Rec.mValue))/0.07995)*2);
+//      floatTmp :=(((0.08-(Rec.mValue))/0.07995)*2);
 
       //frmGameController.tbFogH.OnChange := nil;
-      frmGameController.tbFogH.Position := round(100-(power(10,floatTmp)))+1;
+      frmGameController.tbFogIntensity.Position := Round(Rec.mValue);
       //frmGameController.tbFogH.OnChange := frmGameController.tbFogHChange;
-      frmGameController.lblFogHeight.Caption := inttostr(round(100-(power(10,floatTmp)))+1);
+      frmGameController.edtFogIntensity.Text := IntToStr(Round(Rec.mValue));
 
   end
   else
@@ -248,7 +248,7 @@ begin
       //frmGameController.tbHumidity.OnChange := nil;
       frmGameController.tbHumidity.Position := Round(Rec.mValue);
       //frmGameController.tbHumidity.OnChange := frmGameController.tbHumidityChange;
-      frmGameController.lblHumidity.Caption := IntToStr(Round(Rec.mValue));
+      frmGameController.edtPortHumidity.Text := IntToStr(Round(Rec.mValue));
 
   end
   else
@@ -258,7 +258,7 @@ begin
       //frmGameController.tbBaroPressure.OnChange := nil;
       frmGameController.tbBaroPressure.Position := Round(Rec.mValue);
       //frmGameController.tbBaroPressure.OnChange := frmGameController.tbBaroPressureChange;
-      frmGameController.lblBaroPresure.Caption := IntToStr(Round(Rec.mValue));
+      frmGameController.edtPortBarometer.Text := IntToStr(Round(Rec.mValue));
 
   end
   else
@@ -268,7 +268,7 @@ begin
       //frmGameController.tbSeaSpeed.OnChange := nil;
       frmGameController.tbSeaSpeed.Position := Round(Rec.mValue);
       //frmGameController.tbSeaSpeed.OnChange := frmGameController.tbSeaSpeedChange;
-      frmGameController.lblCurrentSpeed.Caption := IntToStr(Round(Rec.mValue));
+      frmGameController.edtPortCurrentSpeed.Text := IntToStr(Round(Rec.mValue));
 
   end
   else
@@ -278,7 +278,7 @@ begin
       //frmGameController.tbTemp.OnChange := nil;
       frmGameController.tbTemp.Position := Round(Rec.mValue);
       //frmGameController.tbTemp.OnChange := frmGameController.tbTempChange;
-      frmGameController.lblTemperature.Caption := IntToStr(Round(Rec.mValue));
+      frmGameController.edtPortTemp.Text := IntToStr(Round(Rec.mValue));
 
   end
   else
@@ -288,7 +288,7 @@ begin
       //frmGameController.tbWindSpeed.OnChange := nil;
       frmGameController.tbWindSpeed.Position := Round(Rec.mValue);
       //frmGameController.tbWindSpeed.OnChange := frmGameController.tbWindSpeedChange;
-      frmGameController.lblWindSpeed.Caption := IntToStr(Round(Rec.mValue));
+      frmGameController.edtWindSpeed.Text := IntToStr(Round(Rec.mValue));
 
   end
   else
@@ -425,28 +425,28 @@ begin
             frmMainInstruktur.SetScenarioState(frmMainInstruktur.lblCekRunning.Caption);
             //frmMainInstruktur.Caption := 'Firing System Instruktur - '+DataModule1.GetScenarioByID(0);
 
-            frmGameController.lblPortEnv.Caption         := DataModule1.GetPortNameNoById(RecEnvy.Scenario_Port);
+            frmGameController.lblPortEnv.Caption          := DataModule1.GetPortNameNoById(RecEnvy.Scenario_Port);
 
-            frmGameController.tbSeaState.Position        := Round(RecEnvy.Scenario_SeaState);
-            frmGameController.lblSeaState.Caption        := IntToStr(Round(RecEnvy.Scenario_SeaState));
+            frmGameController.tbSeaState.Position         := Round(RecEnvy.Scenario_SeaState);
+            frmGameController.edtPortSeaState.Text        := IntToStr(Round(RecEnvy.Scenario_SeaState));
 
-            frmGameController.tbWindSpeed.Position       := Round(RecEnvy.Scenario_WindSpeed);
-            frmGameController.lblWindSpeed.Caption        := IntToStr(Round(RecEnvy.Scenario_WindSpeed));
+            frmGameController.tbWindSpeed.Position        := Round(RecEnvy.Scenario_WindSpeed);
+            frmGameController.edtPortWindSpeed.Text       := IntToStr(Round(RecEnvy.Scenario_WindSpeed));
 
-            frmGameController.tbSeaSpeed.Position        := Round(RecEnvy.Scenario_CurrSpeed);
-            frmGameController.lblCurrentSpeed.Caption        := IntToStr(Round(RecEnvy.Scenario_CurrSpeed));
+            frmGameController.tbSeaSpeed.Position         := Round(RecEnvy.Scenario_CurrSpeed);
+            frmGameController.edtPortCurrentSpeed.Text    := IntToStr(Round(RecEnvy.Scenario_CurrSpeed));
 
-            frmGameController.tbTemp.Position            := Round(RecEnvy.Scenario_Temperature);
-            frmGameController.lblTemperature.Caption        := IntToStr(Round(RecEnvy.Scenario_Temperature));
+            frmGameController.tbTemp.Position             := Round(RecEnvy.Scenario_Temperature);
+            frmGameController.edtPortTemp.Text            := IntToStr(Round(RecEnvy.Scenario_Temperature));
 
-            frmGameController.tbBaroPressure.Position    := Round(RecEnvy.Scenario_BaroPressure);
-            frmGameController.lblBaroPresure.Caption        := IntToStr(Round(RecEnvy.Scenario_BaroPressure));
+            frmGameController.tbBaroPressure.Position     := Round(RecEnvy.Scenario_BaroPressure);
+            frmGameController.edtPortBarometer.Text       := IntToStr(Round(RecEnvy.Scenario_BaroPressure));
 
-            frmGameController.tbHumidity.Position        := Round(RecEnvy.Scenario_Humidity);
-            frmGameController.lblHumidity.Caption        := IntToStr(Round(RecEnvy.Scenario_Humidity));
+            frmGameController.tbHumidity.Position         := Round(RecEnvy.Scenario_Humidity);
+            frmGameController.edtPortHumidity.Text        := IntToStr(Round(RecEnvy.Scenario_Humidity));
 
-            frmGameController.tbFogH.Position            := Round(RecEnvy.Scenario_FogHeight);
-            frmGameController.lblFogHeight.Caption        := IntToStr(Round(RecEnvy.Scenario_FogHeight));
+            frmGameController.tbFogIntensity.Position     := Round(RecEnvy.Scenario_FogHeight);
+            frmGameController.edtFogIntensity.Text        := IntToStr(Round(RecEnvy.Scenario_FogHeight));
 
             if Round(RecEnvy.Scenario_CurrDir_Deg) < 180 then
             begin
@@ -466,11 +466,11 @@ begin
 
 //            frmGameController.vrwhlWindDirec.Position    := Round(RecEnvy.Scenario_WindDir_Deg);
 
-//            frmGameController.lblWindDirection.Caption := RecEnvy.Scenario_WindDir_Deg.ToString();
-//            frmGameController.lblCurrentDirection.Caption := RecEnvy.Scenario_CurrDir_Deg.ToString();
+            frmGameController.lblWindDirection.Caption := RecEnvy.Scenario_WindDir_Deg.ToString();
+            frmGameController.lblCurrentDirection.Caption := RecEnvy.Scenario_CurrDir_Deg.ToString();
 
-            frmGameController.vrwhlSeaDirection.Position := Round(RecEnvy.Scenario_CurrDir_Deg);
-            frmGameController.vrwhlWindDirec.Position    := Round(RecEnvy.Scenario_WindDir_Deg);
+//            frmGameController.vrwhlSeaDirection.Position := Round(RecEnvy.Scenario_CurrDir_Deg);
+//            frmGameController.vrwhlWindDirec.Position    := Round(RecEnvy.Scenario_WindDir_Deg);
           end;
         end;
 
@@ -1103,6 +1103,19 @@ begin
   frmMainInstruktur.lblConnect.Caption.Text := SockStateS[newState];
   frmMainInstruktur.SetStatusServer(frmMainInstruktur.lblConnect.Caption.Text);
 
+  for i := 0 to frmGameController.lvClient.Items.Count -1 do
+  begin
+    if (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or
+       (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
+       (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
+    begin
+      if NewState = wsConnected then
+        frmGameController.lvClient.Items[i].SubItems[4] := 'RUNNING'
+      else if NewState = wsClosed then
+        frmGameController.lvClient.Items[i].SubItems[4] := 'OFFLINE';
+    end;
+  end;
+
   if (OldState = wsConnected) and (NewState = wsClosed) then
   begin
     if (SimManager <> nil) then
@@ -1148,7 +1161,9 @@ var
   WeaponMocPKR      : TWeaponOn_MOCPKR;
   WeaponVLMica      : TWeaponOn_VLMICA;
   WeaponCannonAK230 : TWeaponOn_CannonAK230;
+  WeaponBlackshark  : TWeaponOn_Blackshark;
   WEaponCannonType730 : TWeaponOn_CannonType730;
+  WeaponC705        : TWeaponOn_C705;
 
   WeaponStat      : Boolean;
 begin
@@ -1538,6 +1553,18 @@ begin
             end;
           end;
 
+          C_DBID_TORPEDO_BLACKSHARK :
+          begin
+            frmMainInstruktur.cekStatusWeapon := 0;
+            if WeaponOnShip is TWeaponOn_Blackshark then
+            begin
+               WeaponBlackshark := TWeaponOn_Blackshark(WeaponOnShip);
+                case Rec.ErrorID of
+                  __STAT_BLACKSHARK_ENABLE : WeaponBlackshark.EnableBlackshark := WeaponStat;
+                end;
+            end;
+          end;
+
           C_DBID_CANNON_TYPE_730 :
           begin
             frmMainInstruktur.cekStatusWeapon := 0;
@@ -1546,6 +1573,21 @@ begin
                WEaponCannonType730:= TWeaponOn_CannonType730(WeaponOnShip);
                 case Rec.ErrorID of
                   __STAT_CANNONTYPE730_ENABLE : WEaponCannonType730.EnableCannonType730 := WeaponStat;
+                end;
+            end;
+          end;
+
+          C_DBID_C705 :
+          begin
+            frmMainInstruktur.cekStatusWeapon := 0;
+            if WeaponOnShip is TWeaponOn_C705 then
+            begin
+               WeaponC705 := TWeaponOn_C705(WeaponOnShip);
+                case Rec.ErrorID of
+                  __STAT_C705_ENABLE   : WeaponC705.EnableC705  := WeaponStat;
+                  __STAT_C705_OpenCoverLauncherC705  : WeaponC705.Unknown     := WeaponStat;
+                  __STAT_C705_SafetyIgnition : WeaponC705.Unknown2    := WeaponStat;
+                  __STAT_C705_Firing   : WeaponC705.Firing      := WeaponStat;
                 end;
             end;
           end;
@@ -1844,19 +1886,35 @@ begin
             frmGameController.tbTemp.Position            := Round(RecEnvy.Scenario_Temperature);
             frmGameController.tbBaroPressure.Position    := Round(RecEnvy.Scenario_BaroPressure);
             frmGameController.tbHumidity.Position        := Round(RecEnvy.Scenario_Humidity);
-            frmGameController.tbFogH.Position            := Round(RecEnvy.Scenario_FogHeight);
-            frmGameController.vrwhlSeaDirection.Position := Round(RecEnvy.Scenario_CurrDir_Deg);
-            frmGameController.vrwhlWindDirec.Position    := Round(RecEnvy.Scenario_WindDir_Deg);
+            frmGameController.tbFogIntensity.Position    := Round(RecEnvy.Scenario_FogHeight);
 
-            frmGameController.lblSeaState.Caption         :=  IntToStr(Round(RecEnvy.Scenario_SeaState));
-            frmGameController.lblWindSpeed.Caption        :=  IntToStr(Round(RecEnvy.Scenario_WindSpeed));
-            frmGameController.lblCurrentSpeed.Caption     :=  IntToStr(Round(RecEnvy.Scenario_CurrSpeed));
-            frmGameController.lblTemperature.Caption      :=  IntToStr(Round(RecEnvy.Scenario_Temperature));
-            frmGameController.lblBaroPresure.Caption      :=  IntToStr(Round(RecEnvy.Scenario_BaroPressure));
-            frmGameController.lblHumidity.Caption         :=  IntToStr(Round(RecEnvy.Scenario_Humidity));
-            frmGameController.lblFogHeight.Caption        :=  IntToStr(Round(RecEnvy.Scenario_FogHeight));
-            frmGameController.lblWindDirection.Caption    :=  IntToStr(Round(RecEnvy.Scenario_CurrDir_Deg));
-            frmGameController.lblCurrentDirection.Caption :=  IntToStr(Round(RecEnvy.Scenario_WindDir_Deg));
+            if Round(RecEnvy.Scenario_CurrDir_Deg) < 180 then
+            begin
+              frmGameController.vrwhlSeaDirection.Position := Round(RecEnvy.Scenario_CurrDir_Deg) + 180;
+            end
+            else
+              frmGameController.vrwhlSeaDirection.Position := Round(RecEnvy.Scenario_CurrDir_Deg) - 180;
+
+//            frmGameController.vrwhlSeaDirection.Position := Round(RecEnvy.Scenario_CurrDir_Deg);
+
+            if Round(RecEnvy.Scenario_WindDir_Deg) < 180 then
+            begin
+              frmGameController.vrwhlWindDirec.Position := Round(RecEnvy.Scenario_WindDir_Deg) + 180;
+            end
+            else
+              frmGameController.vrwhlWindDirec.Position := Round(RecEnvy.Scenario_WindDir_Deg) - 180;
+//            frmGameController.vrwhlSeaDirection.Position := Round(RecEnvy.Scenario_CurrDir_Deg);
+//            frmGameController.vrwhlWindDirec.Position    := Round(RecEnvy.Scenario_WindDir_Deg);
+
+            frmGameController.edtPortSeaState.Text             :=  IntToStr(Round(RecEnvy.Scenario_SeaState));
+            frmGameController.edtPortWindSpeed.Text        :=  IntToStr(Round(RecEnvy.Scenario_WindSpeed));
+            frmGameController.edtPortCurrentSpeed.Text     :=  IntToStr(Round(RecEnvy.Scenario_CurrSpeed));
+            frmGameController.edtPortTemp.Text             :=  IntToStr(Round(RecEnvy.Scenario_Temperature));
+            frmGameController.edtPortBarometer.Text      :=  IntToStr(Round(RecEnvy.Scenario_BaroPressure));
+            frmGameController.edtPortHumidity.Text         :=  IntToStr(Round(RecEnvy.Scenario_Humidity));
+            frmGameController.edtFogIntensity.Text        :=  IntToStr(Round(RecEnvy.Scenario_FogHeight));
+            frmGameController.lblWindDirection.Caption    :=  IntToStr(Round(RecEnvy.Scenario_WindDir_Deg));
+            frmGameController.lblCurrentDirection.Caption :=  IntToStr(Round(RecEnvy.Scenario_CurrDir_Deg));
 
           end;
       2 : begin
@@ -1872,13 +1930,13 @@ begin
             frmMainInstruktur.cekStatusKonek := 'Stop';
 
             frmGameController.lblPortEnv.Caption         := '-';
-            frmGameController.tbSeaState.Position        := 1;
+            frmGameController.tbSeaState.Position        := 0;
             frmGameController.tbWindSpeed.Position       := 0;
             frmGameController.tbSeaSpeed.Position        := 0;
             frmGameController.tbTemp.Position            := 0;
             frmGameController.tbBaroPressure.Position    := 0;
             frmGameController.tbHumidity.Position        := 0;
-            frmGameController.tbFogH.Position            := 1;
+            frmGameController.tbFogIntensity.Position    := 0;
             frmGameController.vrwhlSeaDirection.Position := 180;
             frmGameController.vrwhlWindDirec.Position    := 180;
 

@@ -1,0 +1,29 @@
+!table
+!version 300
+!charset WindowsLatin1
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 22
+    NAME Char (9) ;
+    LAYER Char (29) ;
+    GM_TYPE Char (4) ;
+    RCID Decimal (4, 0) ;
+    PRIM Decimal (1, 0) ;
+    GRUP Decimal (1, 0) ;
+    OBJL Decimal (2, 0) ;
+    RVER Decimal (1, 0) ;
+    AGEN Decimal (3, 0) ;
+    FIDN Decimal (10, 0) ;
+    FIDS Decimal (3, 0) ;
+    KET_1 Char (21) ;
+    KET_2 Char (27) ;
+    KET_3 Char (10) ;
+    KET_4 Char (9) ;
+    CATSPM___C Char (20) ;
+    NATCON___N Char (5) ;
+    NOBJNM___O Char (5) ;
+    OBJNAM___O Char (9) ;
+    INFORM___I Char (38) ;
+    NINFOM___I Char (28) ;
+    COLPAT___C Char (16) ;

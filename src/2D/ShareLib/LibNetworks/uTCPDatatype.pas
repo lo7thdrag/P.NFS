@@ -548,6 +548,7 @@ type
   // REC_ENVIRONMENT             = REC_ENVI;
   TRecDataEnvironment = packed record
     Pc: TPacketCheck;
+    seaState : word;
     windVelocity: double;
     windHeading: double;
     seaCurrentVelocity: double;
@@ -555,6 +556,7 @@ type
     temperature: double;
     humidity: double;
     surfacePressure: double;
+    fogIntensity : word;
   end;
 
   // REC_MISSILEPOS              = 50;  ----------------------------------------
@@ -1123,6 +1125,36 @@ type
     valueStr : string[20];
   end;
 
+  // for C705 Console; angga
+  TRecStatus_Console_C705 = packed record
+    Pc: TPacketCheck;
+
+    OWN_SHIP_UID: string[15];
+    ErrorID: word;
+    ParamError: Byte;
+    LauncherNum: Byte;
+  end;
+
+  TRec_Data_C705 = packed record     // Rec_Data_C705 = 69 -> CPID
+    Pc: TPacketCheck;
+
+    // Add New
+    ShipID: word;     // ownship
+    mWeaponID: word; // Diisi sesuai Database
+    mLauncherID: word;
+    mMissileID: word;
+    mMissileNumber: word; // Diisi 0 aj...nanti instruktur yang ngisi ulan
+
+    OrderID: Byte;
+
+    //mTargetHeading : Single;
+    //mTargetSpeed : Single;
+
+    mTargetBearing: single;
+    mTargetRange: single;
+    mTargetId : Integer;
+  end;
+
 const
 
   // aldy map
@@ -1230,11 +1262,11 @@ const
 
   { ORD TORP SUT }
   __ORD_TORPEDOSUT_FIRED = 1; // FIRE
-  __ORD_TORPEDOSUT_NAVIGATE = 2; // NAVIGATE -> UPDATE COURSE, ENDIS DAN DEPTH
+  __ORD_TORPEDOSUT_NAVIGATE = 2; // NAVIGATE -> Assign Target atau UPDATE COURSE, ENDIS DAN DEPTH
   __ORD_TORPEDOSUT_HOMING = 3; // HOMMING ->
   __ORD_TORPEDOSUT_SEARCH = 4;
   // ACTIVE SEARCH SONAR TORPEDO -> Pergerakan based on Intercept or Bearing mode
-  __ORD_TORPEDOSUT_MANUAL = 5; // MANUALY UPDATE COURSE DAN DEPTH
+  __ORD_TORPEDOSUT_MANUAL = 5; // deassign target atau MANUALY UPDATE COURSE DAN DEPTH
   __ORD_TORPEDOSUT_SHUTDOWN = 6; // KILL TORP SUT
   __ORD_TORPEDOSUT_LOADING = 7; // LOADING
   __ORD_TORPEDOSUT_ON = 8;
@@ -1382,6 +1414,16 @@ const
 
   REC_ENVI = 34;
   REC_ENVIRONMENT = REC_ENVI;
+//  ORD_ENVI_seaState = 0;
+//  ORD_ENVI_windVelocity = 1;
+//  ORD_ENVI_windHeading = 2;
+//  ORD_ENVI_seaCurrentVelocity = 3;
+//  ORD_ENVI_seaCurrentHeading = 4;
+//  ORD_ENVI_temperature = 5;
+//  ORD_ENVI_humidity = 6;
+//  ORD_ENVI_surfacePressure = 7;
+//  ORD_ENVI_fogIntensity = 8;
+
 
   REC_ORD_NOVAL = 40;
   REC_ORDER_NOVAL = REC_ORD_NOVAL;
@@ -1432,6 +1474,9 @@ const
   __ORD_ID_CAMCON_Joystick_Down    = 15;
   __ORD_ID_CAMCON_Joystick_ZoomIn  = 16;
   __ORD_ID_CAMCON_Joystick_ZoomOut = 17;
+
+  { C705; angga }
+  Rec_Data_C705 = 69;
 
   REC_CMD_COM_CONSOLE = 71;
 
@@ -1794,6 +1839,19 @@ const
   __PARAM_CANNONTYPE730_ON = 1;
   __PARAM_CANNONTYPE730_OFF = 2;
 
+    // ERROR FOR Blackshark
+  __STAT_BLACKSHARK_ENABLE = 2001;
+  __PARAM_BLACKSHARK_ON = 1;
+  __PARAM_BLACKSHARK_OFF = 2;
+
+  // ERROR FOR C705
+  __STAT_C705_ENABLE = 2101;
+  __STAT_C705_OpenCoverLauncherC705 = 2102;
+  __STAT_C705_SafetyIgnition = 2103;
+  __STAT_C705_Firing = 2104;
+  __PARAM_C705_ON = 1;
+  __PARAM_C705_OFF = 2;
+
 
   C_REC_PACKETNAME: array [1 .. 100] of string = ('REC_3D_POSITION',
     'REC_POSITION', 'REC_3D_ORDER', 'REC_3D_EXOCET', 'REC_3D_CHAFF',
@@ -1810,7 +1868,7 @@ const
     { 21 }
     'REC_TETRAL', 'REC_MISTRAL', 'REC_STRELLA', 'REC_DATA_Yakhont', '',
 
-    '', 'REC_EXOCET40', '', '', 'C_REC_HARPOON_SETTING',
+    'REC_CMD_Yakhont', 'REC_EXOCET40', '', '', 'C_REC_HARPOON_SETTING',
 
     { 31 }
     'REC_DB_ORDER', '', '', 'REC_ENVI', '',
@@ -1833,7 +1891,7 @@ const
     'REC_RBU_SONARMODE',
 
     'RecRBU_SonarMode_ORDER', 'REC_CMD_C802', 'REC_DATA_C802',
-    'REC_CMD_Yakhont', 'REC_DATA_Yakhont',
+    'Rec_Data_C705', '',
     { 71 }
     'REC_CMD_COM_CONSOLE', 'REC_STAT_ORDER_CONSOLE_C802',
     'REC_STAT_ASSIGN_OBJECT', 'REC_MAP_COMMAND', 'REC_WEAPON_SHOW_RANGE',
@@ -2247,8 +2305,9 @@ const
   C_DBID_CANNON_AK230 = 20;
   C_DBID_TORPEDO_BLACKSHARK = 21;
   C_DBID_CANNON_TYPE_730 = 22;
-  C_DBID_RBU6000_DIGITAL = 23;
-  C_DBID_CANNON57_DIGITAL = 24;
+  C_DBID_C705 = 23;
+  C_DBID_RBU6000_DIGITAL = 24;
+  C_DBID_CANNON57_DIGITAL = 25;
 
   C_TIPEID_MISSILE = 1;
   C_TIPEID_ROCKET = 2;

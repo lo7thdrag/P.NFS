@@ -43,14 +43,14 @@ const
     M_IndBomb_BlindBomb = 2;
     M_AirTarget         = 3;
   REC_3D_TORPEDO_MK44             = 8;
-  REC_3D_TORPEDO_SUT              = 9;
+  REC_3D_TORPEDO_SUT              = 9;  //CPID
 
     {ORD TORP SUT}
-    __ORD_TORPEDOSUT_FIRED		  = 1;  // FIRE
-    __ORD_TORPEDOSUT_NAVIGATE   = 2;  // NAVIGATE -> UPDATE COURSE, ENDIS DAN DEPTH
+    __ORD_TORPEDOSUT_FIRED		  = 1;  // FIRE cok
+    __ORD_TORPEDOSUT_NAVIGATE   = 2;  // NAVIGATE -> (Assign Target) atau UPDATE COURSE, ENDIS DAN DEPTH
     __ORD_TORPEDOSUT_HOMING     = 3;  // HOMMING ->
     __ORD_TORPEDOSUT_SEARCH     = 4;  // ACTIVE SEARCH SONAR TORPEDO -> Pergerakan based on Intercept or Bearing mode
-    __ORD_TORPEDOSUT_MANUAL     = 5;  // MANUALY UPDATE COURSE DAN DEPTH
+    __ORD_TORPEDOSUT_MANUAL     = 5;  // (Deassign Target) atau MANUALY UPDATE COURSE DAN DEPTH
     __ORD_TORPEDOSUT_SHUTDOWN   = 6;  // KILL TORP SUT
     __ORD_TORPEDOSUT_LOADING    = 7;  // LOADING
     __ORD_TORPEDOSUT_ON         = 8;
@@ -121,6 +121,8 @@ const
     __ORD_EXOCET_40_ON      = 3;
     __ORD_EXOCET_40_OFF     = 4;
 
+  REC_ENVI_3D               = 34;
+
   REC_CMD_VLMICA = 41;
     __ORD_VLMICA_FIRE = 1;
     __ORD_VLMICA_ASSIGN = 2;
@@ -139,11 +141,21 @@ const
     __ORD_SPS_OFF           = 5;
 
   REC_3D_WCC        = 63;
+
+  REC_DATA_C7053D         = 69; //------- End C705 -----------
+//    __ORD_C705_FIRE          = 1;
+//    __ORD_C705_RADAR_ASSIGN  = 2;
+//    __ORD_C705_LOADING       = 3;
+//    __ORD_C705_ON            = 4;
+//    __ORD_C705_OFF           = 5;
+//    __ORD_C705_TAKE_OFF      = 6;
+
   REC_GUIDANCE                    = 77;
   REC3D_STATUS_GAME = 84;
   REC_STATUS_MESSAGE              = 87;
 
   REC_SCESTAT = 100;
+  REC_REQENVI = 101;
 
   REC_CMD_DESIG_A244_3D = 107;
   __ORD_ID_A244_DESIG = 1;
@@ -186,6 +198,32 @@ type
     ErrorID: word;
     [BsonElement('ParamError')]
     ParamError: Byte;
+  end;
+
+  TRecReqEnvi3D =  record
+    [BsonElement('req')]
+    EnviReq : word;
+  end;
+
+  TRecDataEnvironment3D =  record
+    [BsonElement('sst')]
+    seaState : word;
+    [BsonElement('wvl')]
+    windVelocity: double;
+    [BsonElement('whd')]
+    windHeading: double;
+    [BsonElement('scv')]
+    seaCurrentVelocity: double;
+    [BsonElement('sch')]
+    seaCurrentHeading: double;
+    [BsonElement('tmp')]
+    temperature: double;
+    [BsonElement('hmd')]
+    humidity: double;
+    [BsonElement('sps')]
+    surfacePressure: double;
+    [BsonElement('fog')]
+    fogIntensity : word;
   end;
 
   TRecDataPosition3D = record
@@ -896,6 +934,30 @@ type
     [BsonElement('vsr')]
     valueStr : String;
   end;
+
+  TRecData_C7053D = record
+     //Add New
+     [BsonElement('ShipID')]
+     ShipID          : word;
+     [BsonElement('mTargetId')]
+     mTargetId       : Integer;
+     [BsonElement('mWeaponID')]
+     mWeaponID       : Word; //Diisi sesuai Database
+     [BsonElement('mLauncherID')]
+     mLauncherID     : word;
+     [BsonElement('mMissileID')]
+     mMissileID      : word;
+     [BsonElement('mMissileNumber')]
+     mMissileNumber  : Word; //Diisi 0 aj...nanti instruktur yang ngisi ulan
+
+     [BsonElement('OrderID')]
+     OrderID         : Byte;
+
+     [BsonElement('mTargetBearing')]
+     mTargetBearing  : Single;
+     [BsonElement('mTargetRange')]
+     mTargetRange    : Single;
+   end;
 
 implementation
 
