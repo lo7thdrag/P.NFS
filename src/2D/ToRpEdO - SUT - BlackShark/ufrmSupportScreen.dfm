@@ -765,6 +765,7 @@ object FrmSupportScreen: TFrmSupportScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 3
+    Visible = False
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
