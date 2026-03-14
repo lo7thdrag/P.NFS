@@ -30,9 +30,6 @@ object FrmSupportScreen: TFrmSupportScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 0
-    ExplicitTop = 0
-    ExplicitWidth = 1464
-    ExplicitHeight = 888
   end
   object pnlInfoAtas: TPanel
     Left = 0
@@ -61,7 +58,7 @@ object FrmSupportScreen: TFrmSupportScreen
       Font.Style = []
       ParentFont = False
     end
-    object lblOwnshipHeadingVal: TLabel
+    object lblOwnshipHeadingVal2: TLabel
       Left = 97
       Top = 31
       Width = 12
@@ -271,8 +268,6 @@ object FrmSupportScreen: TFrmSupportScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 2
-    ExplicitTop = 0
-    ExplicitHeight = 895
     object PaintBox1: TPaintBox
       Left = 304
       Top = 1
@@ -299,7 +294,264 @@ object FrmSupportScreen: TFrmSupportScreen
       Color = clBlack
       ParentBackground = False
       TabOrder = 0
-      ExplicitHeight = 893
+      ExplicitLeft = 1620
+      ExplicitTop = 0
+      object Label25: TLabel
+        Left = 15
+        Top = 15
+        Width = 51
+        Height = 18
+        Caption = 'Supress'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label26: TLabel
+        Left = 15
+        Top = 111
+        Width = 141
+        Height = 18
+        Caption = 'Own Ship Information'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label27: TLabel
+        Left = 15
+        Top = 231
+        Width = 125
+        Height = 18
+        Caption = 'Tracks Information'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label28: TLabel
+        Left = 15
+        Top = 351
+        Width = 68
+        Height = 18
+        Caption = 'Occasional'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RzCheckBox1: TRzCheckBox
+        Left = 40
+        Top = 43
+        Width = 42
+        Height = 18
+        Caption = 'Grid'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 0
+      end
+      object RzCheckBox2: TRzCheckBox
+        Left = 40
+        Top = 69
+        Width = 80
+        Height = 18
+        Caption = 'Annotation'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 1
+      end
+      object RzCheckBox3: TRzCheckBox
+        Left = 40
+        Top = 160
+        Width = 117
+        Height = 18
+        Caption = 'Depth and Speed'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 2
+      end
+      object RzCheckBox4: TRzCheckBox
+        Left = 40
+        Top = 186
+        Width = 65
+        Height = 18
+        Caption = 'Heading'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 3
+      end
+      object RzCheckBox5: TRzCheckBox
+        Left = 16
+        Top = 136
+        Width = 33
+        Height = 18
+        Caption = 'All'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 4
+      end
+      object RzCheckBox6: TRzCheckBox
+        Left = 16
+        Top = 256
+        Width = 33
+        Height = 18
+        Caption = 'All'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 5
+      end
+      object RzCheckBox7: TRzCheckBox
+        Left = 40
+        Top = 280
+        Width = 106
+        Height = 18
+        Caption = 'Track Numbers'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 6
+      end
+      object RzCheckBox8: TRzCheckBox
+        Left = 40
+        Top = 306
+        Width = 124
+        Height = 18
+        Caption = 'Target Manoeuvre'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 7
+      end
+      object RzCheckBox9: TRzCheckBox
+        Left = 16
+        Top = 376
+        Width = 33
+        Height = 18
+        Caption = 'All'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 8
+      end
+      object RzCheckBox10: TRzCheckBox
+        Left = 40
+        Top = 400
+        Width = 98
+        Height = 18
+        Caption = 'Optronic Mast'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 9
+      end
+      object RzCheckBox11: TRzCheckBox
+        Left = 40
+        Top = 426
+        Width = 113
+        Height = 18
+        Caption = 'Attack Periscope'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 10
+      end
+      object RzCheckBox12: TRzCheckBox
+        Left = 40
+        Top = 450
+        Width = 70
+        Height = 18
+        Caption = 'Intercept'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        State = cbUnchecked
+        TabOrder = 11
+      end
     end
     object pnlInfoKiri: TPanel
       Left = 1
@@ -315,7 +567,188 @@ object FrmSupportScreen: TFrmSupportScreen
       Color = clBlack
       ParentBackground = False
       TabOrder = 1
-      ExplicitHeight = 893
+      object Label3: TLabel
+        Left = 15
+        Top = 15
+        Width = 69
+        Height = 18
+        Caption = 'Track Info'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label5: TLabel
+        Left = 32
+        Top = 47
+        Width = 40
+        Height = 16
+        Caption = 'Sensor'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label7: TLabel
+        Left = 32
+        Top = 70
+        Width = 32
+        Height = 16
+        Caption = 'Track'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label12: TLabel
+        Left = 32
+        Top = 92
+        Width = 43
+        Height = 16
+        Caption = 'Bearing'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label15: TLabel
+        Left = 32
+        Top = 116
+        Width = 29
+        Height = 16
+        Caption = 'Time'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label16: TLabel
+        Left = 32
+        Top = 140
+        Width = 96
+        Height = 16
+        Caption = 'Contact Strength'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label17: TLabel
+        Left = 177
+        Top = 47
+        Width = 33
+        Height = 16
+        Caption = 'RESM'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label18: TLabel
+        Left = 177
+        Top = 70
+        Width = 12
+        Height = 16
+        Caption = '...'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label19: TLabel
+        Left = 177
+        Top = 92
+        Width = 12
+        Height = 16
+        Caption = '...'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label20: TLabel
+        Left = 224
+        Top = 92
+        Width = 21
+        Height = 16
+        Caption = 'deg'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label21: TLabel
+        Left = 224
+        Top = 116
+        Width = 21
+        Height = 16
+        Caption = 'deg'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label22: TLabel
+        Left = 177
+        Top = 116
+        Width = 12
+        Height = 16
+        Caption = '...'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label23: TLabel
+        Left = 177
+        Top = 140
+        Width = 18
+        Height = 16
+        Caption = '0.0'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnShadow
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label24: TLabel
+        Left = 224
+        Top = 140
+        Width = 14
+        Height = 16
+        Caption = 'dB'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBtnHighlight
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
     end
   end
   object Panel1: TPanel
@@ -337,5 +770,11 @@ object FrmSupportScreen: TFrmSupportScreen
     OnTimer = Timer1Timer
     Left = 944
     Top = 528
+  end
+  object tmrUpdateShipVal: TTimer
+    Interval = 500
+    OnTimer = tmrUpdateShipValTimer
+    Left = 1016
+    Top = 448
   end
 end

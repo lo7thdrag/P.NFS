@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
+  RzButton, RzRadChk, uSutBlacksharkManager;
 
 const
   MAX_TARGET = 50;
@@ -30,7 +31,7 @@ type
     pnlInfoKiri: TPanel;
     pnlInfoAtas: TPanel;
     lblTanggaljam: TLabel;
-    lblOwnshipHeadingVal: TLabel;
+    lblOwnshipHeadingVal2: TLabel;
     Label1: TLabel;
     Label2: TLabel;
     lblOwnshipLatPosVal: TLabel;
@@ -46,6 +47,37 @@ type
     Label13: TLabel;
     Label14: TLabel;
     Panel1: TPanel;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label12: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    RzCheckBox1: TRzCheckBox;
+    RzCheckBox2: TRzCheckBox;
+    Label26: TLabel;
+    RzCheckBox3: TRzCheckBox;
+    RzCheckBox4: TRzCheckBox;
+    RzCheckBox5: TRzCheckBox;
+    Label27: TLabel;
+    RzCheckBox6: TRzCheckBox;
+    RzCheckBox7: TRzCheckBox;
+    RzCheckBox8: TRzCheckBox;
+    Label28: TLabel;
+    RzCheckBox9: TRzCheckBox;
+    RzCheckBox10: TRzCheckBox;
+    RzCheckBox11: TRzCheckBox;
+    RzCheckBox12: TRzCheckBox;
+    tmrUpdateShipVal: TTimer;
     procedure PaintBox1Paint(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -60,6 +92,7 @@ type
     procedure TrackGainChange(Sender: TObject);
     procedure TrackZoomChange(Sender: TObject);
     procedure ComboSectorChange(Sender: TObject);
+    procedure tmrUpdateShipValTimer(Sender: TObject);
   private
     Waterfall : TBitmap;
 
@@ -78,9 +111,13 @@ type
 
 var
   frmSupportScreen: TFrmSupportScreen;
+//  frmTacticalscreen: TFrmTacticalScreen;
   //TFrmSupportScreen
 
 implementation
+
+uses
+  ufrmTacticalScreen;
 
 {$R *.dfm}
 
@@ -263,6 +300,18 @@ begin
   DrawTimeScale;
 //
 //  PaintBox1.Invalidate;
+
+end;
+
+procedure TFrmSupportScreen.tmrUpdateShipValTimer(Sender: TObject);
+begin
+  lblTanggaljam.Caption := FormatDateTime('dd/mm/yyyy hh:nn:ss',now);
+//  OwnshipHeadingVal, OwnshipLatPosVal, OwnshipLongPosVal, OwnshipSpeedVal, OwnshipDepth
+  lblOwnshipHeadingVal2.Caption := frmTacticalscreen.OwnshipHeadingVal;
+  lblOwnshipLatPosVal.Caption := frmTacticalscreen.OwnshipLatPosVal;
+  lblOwnshipLongPosVal.Caption := frmTacticalscreen.OwnshipLongPosVal;
+  lblOwnshipSpeedVal.Caption := frmTacticalscreen.OwnshipSpeedVal;
+  lblOwnshipDepth.Caption := frmTacticalscreen.OwnshipDepth;
 
 end;
 

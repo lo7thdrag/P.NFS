@@ -214,7 +214,7 @@ type
     pShipID,
     pClassID        : Integer;
 
-    FSelectedVehicleState : Boolean;
+
 
     FBlinkPanel: TPanel;
     FBlinkState: Boolean;
@@ -232,6 +232,8 @@ type
   public
     { Public declarations }
     rCX, rCY: integer;
+    OwnshipHeadingVal, OwnshipLatPosVal, OwnshipLongPosVal, OwnshipSpeedVal, OwnshipDepth : string;
+    SelectedVehicleState : Boolean;
   end;
 
 var
@@ -502,7 +504,7 @@ begin
     dH     := v.PosZ;    // target 20 m lebih rendah
     v0     := 1035;    // m/s
 
-    FSelectedVehicleState := true;
+    SelectedVehicleState := true;
 
     FBlinkPanel := pnlSubmodeTools11;
     FBlinkState := False;
@@ -518,7 +520,7 @@ begin
   end
   else
   begin
-    FSelectedVehicleState := false;
+    SelectedVehicleState := false;
     if (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
       and (lblSubmodeTools11.Enabled = true)then
     begin
@@ -540,7 +542,7 @@ var
   range,rangem, bearing : Double;
 begin
 
-  if FSelectedVehicleState = false then
+  if SelectedVehicleState = false then
   begin
     RecSend.ShipID              := SutBlacksharkManager.ShipID;
     RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
@@ -564,7 +566,7 @@ begin
     Exit;
   end;
 
-  if (Assigned(SutBlacksharkManager.SelectedVehicle)) and (FSelectedVehicleState = true)then
+  if (Assigned(SutBlacksharkManager.SelectedVehicle)) and (SelectedVehicleState = true)then
   begin
     range := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
@@ -1096,7 +1098,7 @@ begin
   if (SubmodeTools = 11) and (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
       and (lblSubmodeTools11.Enabled = true) then
   begin
-    if (Assigned(SutBlacksharkManager.SelectedVehicle)) and (FSelectedVehicleState = true)then
+    if (Assigned(SutBlacksharkManager.SelectedVehicle)) and (SelectedVehicleState = true)then
   begin
     range := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
@@ -1466,7 +1468,7 @@ procedure TFrmTacticalScreen.TimerBlinkTimer(Sender: TObject);
 begin
   if FBlinkPanel = nil then Exit;
 
-  if FSelectedVehicleState = false then Exit;
+  if SelectedVehicleState = false then Exit;
 
   if (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
       and (lblSubmodeTools11.Enabled = true)then
@@ -1488,6 +1490,12 @@ begin
   lblOwnshipLongPosVal.Caption := FormatFloat('0.0000', SutBlacksharkManager.xShip.PositionX);
   lblOwnshipSpeedVal.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.Speed);
   lblOwnshipDepth.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.PositionZ );
+
+  OwnshipHeadingVal := lblOwnshipHeadingVal.Caption;
+  OwnshipLatPosVal := lblOwnshipLatPosVal.Caption;
+  OwnshipLongPosVal:= lblOwnshipLongPosVal.Caption;
+  OwnshipSpeedVal:= lblOwnshipSpeedVal.Caption;
+  OwnshipDepth := lblOwnshipDepth.Caption;
 
 end;
 

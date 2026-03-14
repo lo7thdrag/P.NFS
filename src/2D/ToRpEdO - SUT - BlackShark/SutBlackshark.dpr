@@ -65,7 +65,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
 //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
-//  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
 //  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
 
