@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000038CF99040100000015F5A9761C000000000000000000000000
+              0100011801000038CF990401000000D4E097001C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183312,8 +183312,8 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000050D1970000
-              CD9700000000006688CE50000200006B88CE506688CE50000000000000000000
+              000000000000000000000000000000000000000000000011D074330000000004
+              E59700B4E09700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -256714,14 +256714,14 @@ object frmGameController: TfrmGameController
         end
         object imgMK3NSSFS: TImage
           Left = 190
-          Top = 255
+          Top = 283
           Width = 15
           Height = 15
           Transparent = True
         end
         object imgMK4NSSFS: TImage
           Left = 190
-          Top = 423
+          Top = 450
           Width = 15
           Height = 15
           Transparent = True
@@ -256827,6 +256827,20 @@ object frmGameController: TfrmGameController
         object imgMK3NAFS: TImage
           Left = 1224
           Top = 314
+          Width = 15
+          Height = 15
+          Transparent = True
+        end
+        object imgMK4SPS: TImage
+          Left = 190
+          Top = 372
+          Width = 15
+          Height = 15
+          Transparent = True
+        end
+        object imgMK3SPS: TImage
+          Left = 190
+          Top = 223
           Width = 15
           Height = 15
           Transparent = True

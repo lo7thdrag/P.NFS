@@ -1012,6 +1012,8 @@ type
     edtPortBarometer: TEdit;
     edtPortHumidity: TEdit;
     edtFogIntensity: TEdit;
+    imgMK4SPS: TImage;
+    imgMK3SPS: TImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1216,6 +1218,7 @@ type
 
   public
 
+    ServerState : Byte; // 1: connected; 0: else
     { Public declarations }
     procedure SetFormLayout;
     procedure SetProject;
@@ -2858,6 +2861,13 @@ begin
 
   for i := 0 to lvClient.Items.Count -1 do
   begin
+    if (lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or (lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
+       (lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
+    begin
+      if ServerState = 1 then
+        lvClient.Items[i].SubItems[4] := 'ONLINE';
+    end;
+
     lvClient.Items[i].SubItems[4] := 'OFFLINE';
   end;
 
@@ -6012,6 +6022,17 @@ begin
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
         LoadImageLight(imgMK3NSSFS,LoadImgRunning,RUNNING);
     end
+    else if console = 'MK3 SPS' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgMK3SPS,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgMK3SPS,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgMK3SPS,LoadImgRunning,RUNNING);
+    end
     else if console = 'MK4 NSSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
@@ -6022,6 +6043,17 @@ begin
 
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
         LoadImageLight(imgMK4NSSFS,LoadImgRunning,RUNNING);
+    end
+    else if console = 'MK4 SPS' then
+    begin
+      if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
+        LoadImageLight(imgMK4SPS,LoadImgOff,OFFLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
+        LoadImageLight(imgMK4SPS,LoadImgOn,ONLINE)
+
+      else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
+        LoadImageLight(imgMK4SPS,LoadImgRunning,RUNNING);
     end
     else if console = 'SUT & BLACK SHARK' then
     begin
@@ -7076,6 +7108,13 @@ begin
 
   for i := 0 to lvClient.Items.Count -1 do
   begin
+    if (lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or (lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
+       (lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
+    begin
+      if ServerState = 1 then
+        lvClient.Items[i].SubItems[4] := 'ONLINE';
+    end;
+
     lvClient.Items[i].SubItems[4] := 'OFFLINE';
   end;
 

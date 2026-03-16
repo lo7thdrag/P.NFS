@@ -1058,6 +1058,13 @@ begin
   begin
     if frmGameController.lvClient.Items[i].SubItems[3] = Rec.IpSender then
     begin
+      if (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or
+          (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
+          (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
+      begin
+        Continue;
+      end;
+
       if Assigned(frmGameController.lvClient.Items[i].Data) then
       begin
         Client := TClientList(frmGameController.lvClient.Items[i].Data);
@@ -1103,18 +1110,23 @@ begin
   frmMainInstruktur.lblConnect.Caption.Text := SockStateS[newState];
   frmMainInstruktur.SetStatusServer(frmMainInstruktur.lblConnect.Caption.Text);
 
-  for i := 0 to frmGameController.lvClient.Items.Count -1 do
-  begin
-    if (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or
-       (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
-       (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
-    begin
-      if NewState = wsConnected then
-        frmGameController.lvClient.Items[i].SubItems[4] := 'RUNNING'
-      else if NewState = wsClosed then
-        frmGameController.lvClient.Items[i].SubItems[4] := 'OFFLINE';
-    end;
-  end;
+  if frmMainInstruktur.lblConnect.Caption.Text = ' Connected'  then
+    frmGameController.ServerState := 1
+  else
+    frmGameController.ServerState := 0;
+//
+//  for i := 0 to frmGameController.lvClient.Items.Count -1 do
+//  begin
+//    if (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or
+//       (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
+//       (frmGameController.lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
+//    begin
+//      if frmMainInstruktur.lblConnect.Caption.Text =  ' Connected' then
+//        frmGameController.lvClient.Items[i].SubItems[4] := 'RUNNING'
+//      else
+//        frmGameController.lvClient.Items[i].SubItems[4] := 'OFFLINE';
+//    end;
+//  end;
 
   if (OldState = wsConnected) and (NewState = wsClosed) then
   begin
