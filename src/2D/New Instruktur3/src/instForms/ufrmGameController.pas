@@ -6103,7 +6103,7 @@ begin
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
         LoadImageLight(imgC705,LoadImgRunning,RUNNING);
     end
-    else if console = '57-MANUAL' then
+    else if console = 'FCC-57' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
         LoadImageLight(img57Manual,LoadImgOff,OFFLINE)
