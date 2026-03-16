@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls, ExtCtrls, AdvSmoothButton
 
-  , uDataModule, uClassDatabase, AdvSmoothLabel, CurvyControls,
+  , uDataModule, uClassDatabase, AdvSmoothLabel, CurvyControls, uInstrukturManager,
   AdvSmoothPanel, AdvSmoothTabPager, jpeg, Vcl.Imaging.pngimage;
 
 type
@@ -422,6 +422,14 @@ end;
 
 procedure TfrmShipEditor.FormShow(Sender: TObject);
 begin
+  DefaultMonitor := dmDesktop;
+
+  if SimManager.instMonitorSet.ContollerDisplay > Screen.MonitorCount then
+    SimManager.instMonitorSet.ContollerDisplay := 0;
+
+  Top          := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Top;
+  Left         := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Left;
+
   ShowWeapon;
   GetALL_Dof_Model_Switch;
   UpdateVisualForm;

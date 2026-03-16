@@ -1501,6 +1501,14 @@ end;
 
 procedure TfrmSceEditor.FormShow(Sender: TObject);
 begin
+  DefaultMonitor := dmDesktop;
+
+  if SimManager.instMonitorSet.ContollerDisplay > Screen.MonitorCount then
+    SimManager.instMonitorSet.ContollerDisplay := 0;
+
+  Top          := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Top;
+  Left         := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Left;
+
   cbbPort.Text := frmGameController.lblPortEnv.Caption;
   SimManager.isDatabaseMode := true;
   UpdateVisualForm;

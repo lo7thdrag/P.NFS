@@ -55,9 +55,6 @@ object frmShipEditor: TfrmShipEditor
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitHeight = 1046
     TMSStyle = 0
     object pnlGeneral: TAdvSmoothPanel
       Left = 0
@@ -939,7 +936,6 @@ object frmShipEditor: TfrmShipEditor
         Version = '1.6.0.1'
         Align = alTop
         TabOrder = 0
-        ExplicitTop = 8
         TMSStyle = 0
         object lbl2: TLabel
           Left = 0
@@ -1104,9 +1100,6 @@ object frmShipEditor: TfrmShipEditor
       Version = '1.6.0.1'
       Align = alClient
       TabOrder = 2
-      ExplicitLeft = 5
-      ExplicitTop = 744
-      ExplicitHeight = 210
       TMSStyle = 0
       object imgShip: TImage
         Left = 23
@@ -1305,7 +1298,6 @@ object frmShipEditor: TfrmShipEditor
     Version = '1.6.0.1'
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 1046
     TMSStyle = 0
     object btn1: TAdvSmoothButton
       Left = 1594
@@ -1417,7 +1409,6 @@ object frmShipEditor: TfrmShipEditor
     Version = '1.6.0.1'
     Align = alRight
     TabOrder = 2
-    ExplicitHeight = 1046
     TMSStyle = 0
     object lbl3: TLabel
       Left = 0
@@ -1535,10 +1526,6 @@ object frmShipEditor: TfrmShipEditor
       Version = '1.6.0.1'
       Align = alClient
       TabOrder = 1
-      ExplicitLeft = 2
-      ExplicitTop = 2
-      ExplicitWidth = 929
-      ExplicitHeight = 734
       TMSStyle = 0
       object advsmthlbl1: TAdvSmoothLabel
         Left = 40
@@ -1861,7 +1848,6 @@ object frmShipEditor: TfrmShipEditor
           Version = '1.6.0.1'
           Align = alClient
           TabOrder = 1
-          ExplicitWidth = 369
           TMSStyle = 0
           object AdvSmoothLabel2: TAdvSmoothLabel
             Left = 23
@@ -2247,7 +2233,6 @@ object frmShipEditor: TfrmShipEditor
           Version = '1.6.0.1'
           Align = alClient
           TabOrder = 0
-          ExplicitWidth = 505
           TMSStyle = 0
           object AdvSmoothLabel1: TAdvSmoothLabel
             Left = 16
