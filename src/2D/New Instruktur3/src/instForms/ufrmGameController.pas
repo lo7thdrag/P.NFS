@@ -6235,7 +6235,7 @@ begin
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
         LoadImageLight(imgAK230,LoadImgRunning,RUNNING);
     end
-    else if console = 'MR-203' then
+    else if console = 'MR-302' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
         LoadImageLight(imgMR203,LoadImgOff,OFFLINE)
@@ -6257,7 +6257,7 @@ begin
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
         LoadImageLight(imgCIWS730,LoadImgRunning,RUNNING);
     end
-    else if console = 'TRACKET 730' then
+    else if console = 'EO TRACKER 730' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
         LoadImageLight(imgTracket730,LoadImgOff,OFFLINE)
