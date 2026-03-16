@@ -679,13 +679,14 @@ begin
     AddToLogs('State Test 1');
   case thisComputer.c_app_tipe of
 
-    // APP_3D_Server: begin
-    // if cbDebug.Checked then AddToLogs('State Test 2');
-    // GenerateNeededXML(sceneID, cbDebug.Checked);
-    // if cbDebug.Checked then AddToLogs('State Test 3');
-    // sLine := thisComputer.c_app_name + ' ' + thisComputer.c_app_params + ' --ScenarioID ' + IntToStr(sceneID);
-    // if cbDebug.Checked then AddToLogs('State Test 4');
-    // end;
+     APP_3D_Server:
+     begin
+       if cbDebug.Checked then AddToLogs('State Test 2');
+       GenerateNeededXML(sceneID, cbDebug.Checked);
+       if cbDebug.Checked then AddToLogs('State Test 3');
+       sLine := thisComputer.c_app_name + ' ' + thisComputer.c_app_params + ' --ScenarioID ' + IntToStr(sceneID);
+       if cbDebug.Checked then AddToLogs('State Test 4');
+     end;
 
     APP_3D_Client:
       begin
