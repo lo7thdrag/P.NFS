@@ -2865,7 +2865,11 @@ begin
        (lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
     begin
       if ServerState = 1 then
-        lvClient.Items[i].SubItems[4] := 'ONLINE';
+        lvClient.Items[i].SubItems[4] := 'RUNNING'
+      else
+        lvClient.Items[i].SubItems[4] := 'OFFLINE';
+
+      Continue;
     end;
 
     lvClient.Items[i].SubItems[4] := 'OFFLINE';
@@ -7112,7 +7116,11 @@ begin
        (lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
     begin
       if ServerState = 1 then
-        lvClient.Items[i].SubItems[4] := 'ONLINE';
+        lvClient.Items[i].SubItems[4] := 'RUNNING'
+      else
+        lvClient.Items[i].SubItems[4] := 'OFFLINE';
+
+      Continue;
     end;
 
     lvClient.Items[i].SubItems[4] := 'OFFLINE';
