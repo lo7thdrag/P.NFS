@@ -1502,7 +1502,7 @@ begin
     SQL.Clear;
     SQL.Add('SELECT *');
     SQL.Add('FROM m_ship');
-    SQL.Add('WHERE SHIP_CATEGORY_ID <> 0 AND ISTARGET <> 1 AND SHIP_TYPE = 1');
+    SQL.Add('WHERE SHIP_CATEGORY_ID <> 0 AND ISTARGET <> 1');
     SQL.Add('ORDER BY SHIP_ID');
 
     Open;
