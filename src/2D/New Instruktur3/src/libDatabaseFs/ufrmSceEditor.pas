@@ -2345,13 +2345,13 @@ begin
 
         setVelueVehicle(ShipDetail, AllShip);
 
-        if (AllShip.Vehicle_Ctgr <> 0) and (AllShip.Vehicle_Type = 1) and (AllShip.Vehicle_Target = 0) then
+        if (AllShip.Vehicle_Ctgr <> 0) {and (AllShip.Vehicle_Type = 1)} and (AllShip.Vehicle_Target = 0) then
         begin
           {$REGION ' Load KRI'}
           ListViewAdd(lvWarShipSelect, lvWarShipAll, ShipDetail, 3);
           {$ENDREGION}
         end
-        else  if (AllShip.Vehicle_Ctgr = 0) and (AllShip.Vehicle_Type = 1) and (AllShip.Vehicle_Target = 0) then
+        else  if (AllShip.Vehicle_Ctgr = 0) {and (AllShip.Vehicle_Type = 1)} and (AllShip.Vehicle_Target = 0) then
         begin
           {$REGION ' Load General'}
           ListViewAdd(lvGeneralShipSelect, lvGeneralShipAll, ShipDetail, 3);

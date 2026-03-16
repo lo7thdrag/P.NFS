@@ -73,7 +73,7 @@ uses
 {$R *.res}
 
 begin
-  ReportMemoryLeaksOnShutdown:= True;
+  ReportMemoryLeaksOnShutdown:= False;
   Application.Initialize;
 
   Application.CreateForm(TDataModule1, DataModule1);

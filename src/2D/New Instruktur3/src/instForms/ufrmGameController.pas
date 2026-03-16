@@ -7371,7 +7371,7 @@ begin
         ShipDetail.Vehicle_Heading := vehicleTemp.Vehicle_Heading;
         ShipDetail.Vehicle_Speed := vehicleTemp.Vehicle_Speed;
 
-        if (vehicleTemp.Vehicle_Ctgr <> 0) and (vehicleTemp.Vehicle_Type = 1) and (vehicleTemp.Vehicle_Target = 0) then
+        if (vehicleTemp.Vehicle_Ctgr <> 0) {and (vehicleTemp.Vehicle_Type = 1)} and (vehicleTemp.Vehicle_Target = 0) then
         begin
           {$REGION ' KRI '}
           {Syarat KRI : Vehicle_Ctgr <> 0, Vehicle_Type = 1, Vehicle_Target = 0}
@@ -7394,7 +7394,7 @@ begin
           end;
           {$ENDREGION}
         end
-        else if (vehicleTemp.Vehicle_Ctgr = 0) and (vehicleTemp.Vehicle_Type = 1) and (vehicleTemp.Vehicle_Target <> 1) then
+        else if (vehicleTemp.Vehicle_Ctgr = 0) {and (vehicleTemp.Vehicle_Type = 1)} and (vehicleTemp.Vehicle_Target <> 1) then
         begin
           {$REGION ' General '}
           {Syarat General : Vehicle_Ctgr = 0, Vehicle_Type = 1, Vehicle_Target <> 1}

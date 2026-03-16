@@ -422,8 +422,8 @@ object frmSceEditor: TfrmSceEditor
         object Label8: TLabel
           Left = 0
           Top = 0
-          Width = 576
-          Height = 55
+          Width = 59
+          Height = 18
           Align = alClient
           Alignment = taCenter
           Caption = 'General'
@@ -434,8 +434,6 @@ object frmSceEditor: TfrmSceEditor
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 59
-          ExplicitHeight = 18
         end
       end
     end
@@ -2827,8 +2825,8 @@ object frmSceEditor: TfrmSceEditor
         object Label7: TLabel
           Left = 0
           Top = 0
-          Width = 576
-          Height = 55
+          Width = 94
+          Height = 18
           Align = alClient
           Alignment = taCenter
           Caption = 'Environment'
@@ -2839,8 +2837,6 @@ object frmSceEditor: TfrmSceEditor
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitWidth = 94
-          ExplicitHeight = 18
         end
       end
       object edtBaroPressure: TEdit
@@ -5004,8 +5000,8 @@ object frmSceEditor: TfrmSceEditor
       object Label6: TLabel
         Left = 0
         Top = 0
-        Width = 1350
-        Height = 55
+        Width = 65
+        Height = 18
         Align = alClient
         Alignment = taCenter
         Caption = 'Platform'
@@ -5016,8 +5012,6 @@ object frmSceEditor: TfrmSceEditor
         Font.Style = [fsBold]
         ParentFont = False
         Layout = tlCenter
-        ExplicitWidth = 65
-        ExplicitHeight = 18
       end
     end
   end
