@@ -91,6 +91,7 @@ type
     Scenario_Tree   : Integer;
     Scenario_Theme  : integer;
     Scenario_Desc   : string;
+    Scenario_GameType : Integer;
 
     { Environment }
     Scenario_WindScale,
@@ -209,6 +210,7 @@ type
     XOFFSET     : Double;
     YOFFSET     : Double;
     ENV_PETA    : Double;
+    Game_Type    : Integer;
   end;
 
   TSaveShipWeapon = class

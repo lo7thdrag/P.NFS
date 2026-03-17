@@ -1218,7 +1218,9 @@ type
 
   public
 
-    ServerState : Byte; // 1: connected; 0: else
+    ServerState : Byte; {1: connected; 0: else}
+    GameType : Integer; {0:NAFS; 1:NSFS; 2:NSSFS}
+
     { Public declarations }
     procedure SetFormLayout;
     procedure SetProject;
@@ -1765,23 +1767,25 @@ begin
   {$REGION ' Setting Header '}
   strPath := '..\data\images\NFS instruktur - interface\imageIns\';
 
-  worldproject := SimManager.instProjectSet.World;
-
-  if worldproject = 'NAFS' then
+  if SimManager.instProjectSet.World = 'NAFS' then
   begin
+    GameType := 0;
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nafs_.bmp');
 //    pnlMainMenu.Fill.Color := $00D0875A;
   end
-  else if worldproject = 'NSFS' then
+  else if SimManager.instProjectSet.World = 'NSFS' then
   begin
+    GameType := 1;
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nsfs_.bmp');
 //    pnlMainMenu.Fill.Color := $0040220F;
   end
-  else if worldproject = 'NSSFS' then
+  else if SimManager.instProjectSet.World = 'NSSFS' then
   begin
+    GameType := 2;
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nssfs_.bmp');
 //    pnlMainMenu.Fill.Color := $0058524F;
   end;
+
   {$ENDREGION}
 
   {$REGION ' Setting Panel '}
@@ -2286,6 +2290,7 @@ begin
     frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
 
     frmSceEditor.isNew := false;
+    frmSceEditor.GameType := GameType;
     frmSceEditor.UpdateVisualForm;
     frmSceEditor.SetFormLayout;
     frmMainInstruktur.lblCekRunning.Caption := 'Editing';
@@ -2307,6 +2312,7 @@ begin
   SimManager.isDatabaseMode := True;
 
   frmSceEditor.isNew := True;
+  frmSceEditor.GameType := GameType;
 
   frmSceEditor.SetFormLayout;
   frmSceEditor.SetFormEnvironment;
@@ -4563,11 +4569,14 @@ begin
     if Scenario.Scenario_ID = 0 then
     else
     begin
-      with lvListScen.Items.Add do
+      if GameType = Scenario.Game_Type then
       begin
-        Caption := IntToStr(Scenario.Scenario_ID);
-        SubItems.Add(Scenario.Scenario_Name);
-        SubItems.Add(DataModule1.GetPortNameNoById(Scenario.ENV_PETA));
+        with lvListScen.Items.Add do
+        begin
+          Caption := IntToStr(Scenario.Scenario_ID);
+          SubItems.Add(Scenario.Scenario_Name);
+          SubItems.Add(DataModule1.GetPortNameNoById(Scenario.ENV_PETA));
+        end;
       end;
     end;
   end;

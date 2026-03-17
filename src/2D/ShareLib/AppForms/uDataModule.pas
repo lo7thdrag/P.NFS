@@ -661,7 +661,7 @@ begin
     Close;
 
     SQL.Clear;
-    SQL.Add('SELECT ID, NAMA, ENV_PETA, KET');
+    SQL.Add('SELECT ID, NAMA, ENV_PETA, KET, Game_Type');
     SQL.Add('FROM sce_main');
     SQL.Add('ORDER BY ID');
 
@@ -685,6 +685,7 @@ begin
       rec.Scenario_Name := DS.FieldByName('NAMA').AsString;
       rec.Scenario_KET := DS.FieldByName('KET').AsString;
       rec.ENV_PETA := DS.FieldByName('ENV_PETA').AsInteger;
+      rec.Game_Type := DS.FieldByName('Game_Type').AsInteger;
 
       aRec.Add(rec);
       DS.Next;
@@ -1728,7 +1729,9 @@ begin
       SQL.Add('ENV_WDIR_Y, ');
       SQL.Add('ENV_FOG_H, ');
       SQL.Add('ENV_WDIR_DEG, ');
+      SQL.Add('Game_Type, ');
       SQL.Add('KET, ');
+
 
       SQL.Add('ENV_CURSPEED, ');
       SQL.Add('ENV_CURDIR_X, ');
@@ -1756,6 +1759,7 @@ begin
       SQL.Add(FloatToStr(rec.Scenario_WindDir_Y) + ',');
       SQL.Add(FloatToStr(rec.Scenario_FogHeight) + ',');
       SQL.Add(FloatToStr(rec.Scenario_WindDir_Deg) + ',');
+      SQL.Add(IntToStr(rec.Scenario_GameType) + ',');
       SQL.Add(QuotedStr(rec.Scenario_Desc) + ',');
       SQL.Add(FloatToStr(rec.Scenario_CurrSpeed) + ',');
       SQL.Add(FloatToStr(rec.Scenario_CurrDir_X) + ',');

@@ -210,6 +210,7 @@ type
 
     ScenarioName: string;
     Scenario_ID: Integer;
+    GameType : Integer; {0:NAFS; 1:NSFS; 2:NSSFS}
     MAP_ID: Integer;
 
     WeaponListScenario: TList;
@@ -1046,6 +1047,7 @@ begin
         scenTemp.Scenario_Name := edtScenarioName.Text;
         scenTemp.Scenario_Port := cbbPort.ItemIndex;
         scenTemp.Scenario_Desc := mmoKetSce.Text;
+        scenTemp.Scenario_GameType := GameType;
 
         {$ENDREGION}
 
@@ -1201,6 +1203,7 @@ begin
         scenTemp.Scenario_Name := edtScenarioName.Text;
         scenTemp.Scenario_Port := cbbPort.ItemIndex;
         scenTemp.Scenario_Desc := mmoKetSce.Text;
+        scenTemp.Scenario_GameType := GameType;
 
         {$ENDREGION}
 
