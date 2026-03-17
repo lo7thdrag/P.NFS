@@ -131,6 +131,7 @@ type
     lblIndElevsat: TLabel;
     lblIndAzimuthsat: TLabel;
     lblIndDistancesat: TLabel;
+    NLDJoystick1: TNLDJoystick;
     procedure FormCreate(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -881,6 +882,7 @@ begin
 
   CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
   SetWindowRgn(Handle, rgnOuter, True);
+  NLDJoystick1.Active := True;
 
 //  rgnOuter := CreateRectRgn(0,0,Width,Height);
 //  rgnInner := CreateRectRgn(640, 0, 1280, 450);

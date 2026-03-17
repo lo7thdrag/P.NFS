@@ -196,6 +196,7 @@ type
     lblMR35MR35Val: TLabel;
     tableReceiveBITE: TAdvStringGrid;
     pnlReceiveBiteHeader: TPanel;
+    NLDJoystick: TNLDJoystick;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -1171,6 +1172,8 @@ begin
 
     FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
   end;
+
+  NLDJoystick.Active := True;
 
   FCCManager.Running := True;
 

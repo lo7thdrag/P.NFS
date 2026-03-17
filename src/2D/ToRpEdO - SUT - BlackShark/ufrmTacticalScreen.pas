@@ -996,8 +996,8 @@ begin
         end;
       2,3 :
         begin
-          AlignFormToMonitor(0, apLeftTop, 0, 0, TForm(frmSupportScreen));
-          AlignFormToMonitor(2, apLeftTop, 0, 0, TForm(frmTacticalScreen));
+          AlignFormToMonitor(idxPanelAtas, apLeftTop, 0, 0, TForm(frmTacticalScreen));
+          AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(frmSupportScreen));
         end;
     end;
 end;
@@ -1067,7 +1067,7 @@ begin
 //
 //  if TPanel((Sender as TLabel).Parent).Enabled = false then Exit;
 
-  if TPanel((Sender as TLabel).Parent).Tag = SubmodeTools then Exit;
+//  if TPanel((Sender as TLabel).Parent).Tag = SubmodeTools then Exit;
 
   pnlSubmodeTools0.Color := clBlack;
   pnlSubmodeTools1.Color := clBlack;
