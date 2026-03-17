@@ -84,7 +84,6 @@ object frmMainFCC: TfrmMainFCC
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitTop = 450
         object lblValBearTop: TPanel
           Left = 185
           Top = 0
@@ -100,9 +99,6 @@ object frmMainFCC: TfrmMainFCC
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
-          ExplicitLeft = 0
-          ExplicitWidth = 361
-          ExplicitHeight = 41
         end
         object lblValElevTop: TPanel
           Left = 361
@@ -119,7 +115,6 @@ object frmMainFCC: TfrmMainFCC
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 1
-          ExplicitHeight = 41
         end
         object lblValRangeTop: TPanel
           Left = 0
@@ -136,8 +131,6 @@ object frmMainFCC: TfrmMainFCC
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 2
-          ExplicitLeft = 88
-          ExplicitHeight = 41
         end
       end
     end
@@ -270,7 +263,6 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 449
     end
     object edtEODistanceVal: TEdit
       Left = 79
@@ -422,7 +414,6 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 447
     end
     object edtCtlModeVal: TEdit
       Left = 88
@@ -640,9 +631,6 @@ object frmMainFCC: TfrmMainFCC
       BevelOuter = bvNone
       Caption = 'pnlValBearElev'
       TabOrder = 0
-      ExplicitLeft = 232
-      ExplicitTop = 224
-      ExplicitWidth = 185
       object pnlValBearingBottom: TPanel
         Left = 0
         Top = 0
@@ -674,8 +662,6 @@ object frmMainFCC: TfrmMainFCC
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        ExplicitLeft = 280
-        ExplicitWidth = 360
       end
     end
     object lbl0: TPanel
@@ -859,9 +845,6 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = -119
-      ExplicitTop = 49
-      ExplicitWidth = 450
     end
     object edtControlTrackVal: TEdit
       Left = 80
@@ -1196,7 +1179,6 @@ object frmMainFCC: TfrmMainFCC
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 211
     end
     object edtIndDistanceVal: TEdit
       Left = 83
@@ -1582,5 +1564,14 @@ object frmMainFCC: TfrmMainFCC
       E00F800780078003E00FC00780078003F01FE00FC00FC003FC7FF81FE01FC007
       FFFFFFFFF83FE00FFFFFFFFFFFFFFC7F00000000000000000000000000000000
       000000000000}
+  end
+  object NLDJoystick1: TNLDJoystick
+    Active = True
+    OnButtonDown = NLDJoystick1ButtonDown
+    OnButtonUp = NLDJoystick1ButtonUp
+    OnMove = NLDJoystick1Move
+    PollingInterval = -1
+    Left = 656
+    Top = 400
   end
 end

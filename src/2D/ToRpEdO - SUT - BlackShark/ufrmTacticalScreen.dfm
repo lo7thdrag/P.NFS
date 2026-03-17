@@ -3,7 +3,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
   Top = 0
   BorderStyle = bsNone
   Caption = 'FrmTacticalScreen'
-  ClientHeight = 1089
+  ClientHeight = 1080
   ClientWidth = 1920
   Color = clBackground
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
   TextHeight = 13
   object pnlTEP: TPanel
     Left = 0
-    Top = 897
+    Top = 888
     Width = 1920
     Height = 192
     Margins.Left = 1
@@ -31,6 +31,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 0
+    ExplicitTop = 897
     object pnlTacticalBtn: TPanel
       Left = 3
       Top = 6
@@ -991,8 +992,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
-        ExplicitWidth = 34
-        ExplicitHeight = 13
+        ExplicitLeft = 4
+        ExplicitTop = -1
       end
     end
     object pnlSubmodeTools15: TPanel
@@ -1198,7 +1199,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Left = 1464
     Top = 0
     Width = 456
-    Height = 897
+    Height = 888
     Margins.Left = 1
     Margins.Top = 1
     Margins.Right = 1
@@ -1208,6 +1209,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 1
+    ExplicitHeight = 897
     object AdvStringGrid1: TAdvStringGrid
       Left = 4
       Top = 8
@@ -1341,7 +1343,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Left = 0
     Top = 0
     Width = 1464
-    Height = 897
+    Height = 888
     Margins.Left = 1
     Margins.Top = 1
     Margins.Right = 1
@@ -1351,6 +1353,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 2
+    ExplicitHeight = 897
     object pnlInfoAtas: TPanel
       Left = 0
       Top = 0
@@ -1886,7 +1889,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       Left = 0
       Top = 136
       Width = 1464
-      Height = 761
+      Height = 752
       Margins.Left = 1
       Margins.Top = 1
       Margins.Right = 1
@@ -1894,11 +1897,12 @@ object FrmTacticalScreen: TFrmTacticalScreen
       Align = alClient
       BevelOuter = bvLowered
       TabOrder = 1
+      ExplicitHeight = 761
       object imgBackgrounSituationZone: TImage
         Left = 1
         Top = 1
         Width = 1462
-        Height = 718
+        Height = 709
         Align = alClient
         ExplicitLeft = 680
         ExplicitTop = 328
@@ -1909,7 +1913,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Left = 1
         Top = 1
         Width = 1462
-        Height = 718
+        Height = 709
         ParentColor = False
         Align = alClient
         TabOrder = 0
@@ -1918,21 +1922,20 @@ object FrmTacticalScreen: TFrmTacticalScreen
         OnDrawUserLayer = FMapDrawUserLayer
         ExplicitLeft = -2
         ExplicitTop = 4
-        ExplicitHeight = 709
         ControlData = {
-          8A1A06001A970000354A000001000000010000FF0D47656F44696374696F6E61
+          8A1A06001A9700004749000001000000010000FF0D47656F44696374696F6E61
           727905456D70747900E8030000000000000000000002000E001E000000000000
           0000000000000000000000000000000000000000000600010000000000500001
           010000640000000001F4010000050000800C000000000000000000000000FFFF
           FF000100000000000000000000000000000000000000000000000352E30B918F
-          CE119DE300AA004BB851010000009001603D080005417269616C000352E30B91
+          CE119DE300AA004BB8510100000090011420080005417269616C000352E30B91
           8FCE119DE300AA004BB851010000009001348C030005417269616C0000000000
           00000000000000000000000000000000000000000000000000000000000000FF
           FFFF000000000000000001370000000000FFFFFF000000000000000352E30B91
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100004858760E01000000CC91D3771C000000000000000000000000
+          01000118010000C844862A01000000AC91E2771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1941,25 +1944,26 @@ object FrmTacticalScreen: TFrmTacticalScreen
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100004858760E01000000880300C01C00000000000000000000000000000000
+          010000C844862A01000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E8E197003D8B62771F
-          00000000000000208B62771010800E9E793C5B28E29700000000000000000000
+          000000000000000000000000000000000000000000000060E89700FD8A41751F
+          00000000000000E08A4175E0CE4810FCD372FCA0E89700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object Panel1: TPanel
         Left = 1
-        Top = 719
+        Top = 710
         Width = 1462
         Height = 41
         Align = alBottom
         Caption = 'Panel1'
         TabOrder = 1
+        ExplicitTop = 719
         object ImageButton1: TImageButton
           Left = 740
           Top = 11
