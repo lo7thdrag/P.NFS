@@ -51,6 +51,7 @@ begin
 
   if Assigned(frmRoutePlan) then
     SimManager.OnMapInit := frmRoutePlan.InitMapMainForm;
+
   SimManager.InitializeMap;
 
   frmRoutePlan.strPath := VImgPath.imgPath + '\icon\Route Plan - Tool Bar\';

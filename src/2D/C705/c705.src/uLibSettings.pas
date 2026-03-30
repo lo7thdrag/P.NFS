@@ -77,7 +77,7 @@ type
   end;
 
   TIdentSetting = record
-    ModeHide: Boolean;
+    ModeConsole: Boolean;
     ModeDebug: Boolean;
   end;
 
@@ -273,7 +273,7 @@ begin
   try
     with VIdentSetting do
     begin
-      ModeHide := INIFReadBool(iniF, 'ident', 'ModeH', False);
+      ModeConsole := INIFReadBool(iniF, 'ident', 'ModeC', True);
       ModeDebug := INIFReadBool(iniF, 'ident', 'ModeDebug', False);
     end;
   finally

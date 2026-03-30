@@ -131,43 +131,52 @@ begin
   else
   begin
     // dual monitor atau di Console
-    {
-    frmWCC.SetMonitor(VMonitorSetting.MoniWCC,
+    if not VIdentSetting.ModeConsole then   // bukan diinstall di Console (kantor)
+    begin
+      frmWCC.SetMonitor(VMonitorSetting.MoniWCC,
                               VMonitorTopLeft.MonMiddle_Left, VMonitorTopLeft.MonMiddle_Top);
 
-    frmRoutePlan.SetMonitor(VMonitorSetting.MoniRoutePlan,
-                              VMonitorTopLeft.MonTop_Left, VMonitorTopLeft.MonTop_Top);
+      frmRoutePlan.SetMonitor(VMonitorSetting.MoniRoutePlan,
+                                VMonitorTopLeft.MonTop_Left, VMonitorTopLeft.MonTop_Top);
 
-    frmKeyboardCalcLaunch.SetMonitor(VMonitorSetting.MoniKeyboard,
-                              VMonitorTopLeft.MonMini_Left, VMonitorTopLeft.MonMini_Top);
-                              }
+      frmKeyboardCalcLaunch.SetMonitor(VMonitorSetting.MoniKeyboard,
+                                VMonitorTopLeft.MonMini_Left, VMonitorTopLeft.MonMini_Top);
 
-    frmRoutePlan.SetTopMonitor(VMonitorTopLeft.MonTop_Top);
-    frmRoutePlan.Left := Screen.Monitors[0].WorkareaRect.Left;
-    frmRoutePlan.Top  := VMonitorTopLeft.MonTop_Top;
+      frmWCC.Show;
+      frmRoutePlan.Show;
+      frmKeyboardCalcLaunch.Show;
 
-    if VIdentSetting.ModeDebug then
-    begin
-      ShowMessage(
-        Format('RoutePlan Visible=%s Top=%d',
-          [BoolToStr(frmRoutePlan.Visible, True),
-            frmRoutePlan.Top]));
+      frmRoutePlan.BringToFront;
+    end
+    else begin
+                                    //** instalasi
+
+      frmRoutePlan.SetTopMonitor(VMonitorTopLeft.MonTop_Top);
+      frmRoutePlan.Left := Screen.Monitors[0].WorkareaRect.Left;
+      frmRoutePlan.Top  := VMonitorTopLeft.MonTop_Top;
+
+      if VIdentSetting.ModeDebug then
+      begin
+        ShowMessage(
+          Format('RoutePlan Visible=%s Top=%d',
+            [BoolToStr(frmRoutePlan.Visible, True),
+              frmRoutePlan.Top]));
+      end;
+
+      frmWCC.SetTopMonitor(VMonitorTopLeft.MonMiddle_Top);
+      frmWCC.Left := Screen.Monitors[0].WorkareaRect.Left;
+      frmWCC.Top  := VMonitorTopLeft.MonMiddle_Top;
+
+      frmKeyboardCalcLaunch.SetTopMonitor(VMonitorTopLeft.MonMini_Top);
+
+      frmWCC.Show;
+      frmRoutePlan.Show;
+
+      frmKeyboardCalcLaunch.Show;
+      frmKeyboardCalcLaunch.Left := Screen.Monitors[0].WorkareaRect.Left;
+      frmKeyboardCalcLaunch.Top  := VMonitorTopLeft.MonMini_Top;
     end;
 
-    frmWCC.SetTopMonitor(VMonitorTopLeft.MonMiddle_Top);
-    frmWCC.Left := Screen.Monitors[0].WorkareaRect.Left;
-    frmWCC.Top  := VMonitorTopLeft.MonMiddle_Top;
-
-    frmKeyboardCalcLaunch.SetTopMonitor(VMonitorTopLeft.MonMini_Top);
-
-    frmWCC.Show;
-    frmRoutePlan.Show;
-
-    frmKeyboardCalcLaunch.Show;
-    frmKeyboardCalcLaunch.Left := Screen.Monitors[0].WorkareaRect.Left;
-    frmKeyboardCalcLaunch.Top  := VMonitorTopLeft.MonMini_Top;
-
-    frmRoutePlan.BringToFront;
   end;
 
 
