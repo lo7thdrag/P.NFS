@@ -2,22 +2,24 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 500
-  ClientWidth = 960
+  ClientHeight = 768
+  ClientWidth = 1024
   Color = clBtnFace
+  DefaultMonitor = dmDesktop
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object imgMissCont: TImage
-    Left = 10
-    Top = 380
+    Left = 42
+    Top = 533
     Width = 180
     Height = 50
     Picture.Data = {
@@ -147,8 +149,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgExit: TImage
-    Left = 210
-    Top = 380
+    Left = 242
+    Top = 533
     Width = 180
     Height = 50
     Picture.Data = {
@@ -247,8 +249,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgParSetting: TImage
-    Left = 8
-    Top = 310
+    Left = 40
+    Top = 463
     Width = 180
     Height = 50
     Picture.Data = {
@@ -365,8 +367,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgLaunchDat: TImage
-    Left = 210
-    Top = 310
+    Left = 242
+    Top = 463
     Width = 180
     Height = 51
     Picture.Data = {
@@ -495,8 +497,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgMissInfo: TImage
-    Left = 10
-    Top = 240
+    Left = 42
+    Top = 393
     Width = 180
     Height = 50
     Picture.Data = {
@@ -622,8 +624,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgInsTest: TImage
-    Left = 210
-    Top = 240
+    Left = 242
+    Top = 393
     Width = 180
     Height = 50
     Picture.Data = {
@@ -739,8 +741,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgFireDist: TImage
-    Left = 10
-    Top = 170
+    Left = 42
+    Top = 323
     Width = 180
     Height = 50
     Picture.Data = {
@@ -858,8 +860,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgMissMon: TImage
-    Left = 210
-    Top = 170
+    Left = 242
+    Top = 323
     Width = 180
     Height = 50
     Picture.Data = {
@@ -988,8 +990,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgChanSelect: TImage
-    Left = 210
-    Top = 100
+    Left = 242
+    Top = 253
     Width = 180
     Height = 50
     Picture.Data = {
@@ -1124,8 +1126,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgSituation: TImage
-    Left = 10
-    Top = 100
+    Left = 42
+    Top = 253
     Width = 180
     Height = 50
     Picture.Data = {
@@ -1248,8 +1250,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgSpare: TImage
-    Left = 210
-    Top = 30
+    Left = 242
+    Top = 183
     Width = 180
     Height = 50
     Picture.Data = {
@@ -1319,8 +1321,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object Image12: TImage
-    Left = 10
-    Top = 30
+    Left = 42
+    Top = 183
     Width = 180
     Height = 50
     Picture.Data = {
@@ -1428,8 +1430,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgMinus: TImage
-    Left = 415
-    Top = 30
+    Left = 447
+    Top = 183
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1462,8 +1464,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       27A152774FE588BFE20000000049454E44AE426082}
   end
   object img0: TImage
-    Left = 493
-    Top = 30
+    Left = 525
+    Top = 183
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1505,8 +1507,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       FF1316AA0E4A35D60000000049454E44AE426082}
   end
   object imgPlus: TImage
-    Left = 571
-    Top = 30
+    Left = 603
+    Top = 183
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1541,8 +1543,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       49454E44AE426082}
   end
   object img1: TImage
-    Left = 415
-    Top = 84
+    Left = 447
+    Top = 237
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1578,8 +1580,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       AE426082}
   end
   object img2: TImage
-    Left = 493
-    Top = 84
+    Left = 525
+    Top = 237
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1619,8 +1621,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       0049454E44AE426082}
   end
   object img3: TImage
-    Left = 571
-    Top = 84
+    Left = 603
+    Top = 237
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1661,8 +1663,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       36067BE5363F012946EF9B878737DF0000000049454E44AE426082}
   end
   object img4: TImage
-    Left = 415
-    Top = 138
+    Left = 447
+    Top = 291
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1701,8 +1703,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       1DF59BAB05CB320000000049454E44AE426082}
   end
   object img5: TImage
-    Left = 493
-    Top = 138
+    Left = 525
+    Top = 291
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1741,8 +1743,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       761BADB5769B9F1326E69B1ED91E990000000049454E44AE426082}
   end
   object img6: TImage
-    Left = 571
-    Top = 138
+    Left = 603
+    Top = 291
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1783,8 +1785,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       03068007AA794303D20000000049454E44AE426082}
   end
   object Image22: TImage
-    Left = 415
-    Top = 192
+    Left = 447
+    Top = 345
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1817,8 +1819,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       27A152774FE588BFE20000000049454E44AE426082}
   end
   object Image23: TImage
-    Left = 493
-    Top = 192
+    Left = 525
+    Top = 345
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1860,8 +1862,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       FF1316AA0E4A35D60000000049454E44AE426082}
   end
   object Image24: TImage
-    Left = 571
-    Top = 192
+    Left = 603
+    Top = 345
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1896,8 +1898,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       49454E44AE426082}
   end
   object img7: TImage
-    Left = 415
-    Top = 192
+    Left = 447
+    Top = 345
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1937,8 +1939,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       6B03C89BB6F918D90000000049454E44AE426082}
   end
   object img8: TImage
-    Left = 493
-    Top = 192
+    Left = 525
+    Top = 345
     Width = 48
     Height = 48
     Picture.Data = {
@@ -1982,8 +1984,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       0000000049454E44AE426082}
   end
   object img9: TImage
-    Left = 571
-    Top = 192
+    Left = 603
+    Top = 345
     Width = 48
     Height = 48
     Picture.Data = {
@@ -2025,8 +2027,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       EA1F7873DDC6E2EEBACD6B392007AA887B0D460000000049454E44AE426082}
   end
   object imgTab: TImage
-    Left = 410
-    Top = 247
+    Left = 442
+    Top = 400
     Width = 100
     Height = 40
     Picture.Data = {
@@ -2093,8 +2095,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgBackSp: TImage
-    Left = 525
-    Top = 246
+    Left = 557
+    Top = 399
     Width = 110
     Height = 40
     Picture.Data = {
@@ -2178,8 +2180,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgEsc: TImage
-    Left = 410
-    Top = 297
+    Left = 442
+    Top = 450
     Width = 100
     Height = 40
     Picture.Data = {
@@ -2241,8 +2243,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgEnter: TImage
-    Left = 525
-    Top = 296
+    Left = 557
+    Top = 449
     Width = 110
     Height = 40
     Picture.Data = {
@@ -2317,8 +2319,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     Stretch = True
   end
   object imgArrowUp: TImage
-    Left = 493
-    Top = 352
+    Left = 525
+    Top = 505
     Width = 48
     Height = 32
     Picture.Data = {
@@ -2358,8 +2360,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       82}
   end
   object imgArrowDown: TImage
-    Left = 493
-    Top = 399
+    Left = 525
+    Top = 552
     Width = 48
     Height = 32
     Picture.Data = {
@@ -2398,8 +2400,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       FC459B490675A0F10000000049454E44AE426082}
   end
   object imgArrowLeft: TImage
-    Left = 415
-    Top = 399
+    Left = 447
+    Top = 552
     Width = 48
     Height = 32
     Picture.Data = {
@@ -2435,8 +2437,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       AD49CA9A9A6E0000000049454E44AE426082}
   end
   object imgArrowRight: TImage
-    Left = 571
-    Top = 399
+    Left = 603
+    Top = 552
     Width = 48
     Height = 32
     Picture.Data = {
@@ -2472,8 +2474,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       D765AFFF062FBC834914D023380000000049454E44AE426082}
   end
   object Panel1: TPanel
-    Left = 641
-    Top = 31
+    Left = 673
+    Top = 184
     Width = 194
     Height = 400
     BevelOuter = bvNone
@@ -2619,6 +2621,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
         3BA379E68C356B2DCB1BA54D5F18FC1FF47855D32605E6930000000049454E44
         AE426082}
       Stretch = True
+      OnClick = imgLaunchClick
     end
     object imgLaunch1: TImage
       Tag = 1
@@ -3119,8 +3122,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     end
   end
   object Panel2: TPanel
-    Left = 845
-    Top = 30
+    Left = 877
+    Top = 183
     Width = 107
     Height = 400
     BevelOuter = bvNone

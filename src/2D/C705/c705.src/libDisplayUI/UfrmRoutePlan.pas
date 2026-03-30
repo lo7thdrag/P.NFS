@@ -308,7 +308,6 @@ type
     FMapRect: TRect;
     FCanvas: TCanvas;
 
-    strPath: string;
     FisMapDayMode: Boolean;
 
     { Map }
@@ -319,6 +318,8 @@ type
     FIndexRange: Integer;
     FMapConverter: TMapXUnitConverter;
 
+    TargetObj : TShipContact;
+
     { Route Plan Waypoint }
     FEditMode: TEditMode;
     FSelectedRoute: TRoutePlanning;
@@ -328,9 +329,8 @@ type
     FRouteList: TObjectList<TRoutePlanning>;
     FWaypointViews: TObjectList<TWaypointView>;
 
+    function FindShipAt(X,Y: Integer): TShipContact;
     function FindWaypointAtScreen(X, Y: Integer): TWaypoint;
-
-    procedure SetImgBtn;
 
     procedure LoadInitMap;
     procedure LoadGeoset(const aGst: string); virtual;
@@ -343,10 +343,14 @@ type
     { Public declarations }
     FSelectMode : Boolean;
     FSelectedBearing, FSelectedRange : Double;
+    strPath: string;
 
     procedure InitMapMainForm(const GeosetPath: string);
 
+    procedure SetImgBtn;
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
+    procedure SetTopMonitor(aMoniHeight: Integer);
+    procedure SetFormMonitor(aForm: TForm; aMonitorIndex: Integer);
 
   end;
 
@@ -407,6 +411,39 @@ function TfrmRoutePlan.MeterWidth: Integer;
 begin
   Result := FMap.width;
   //Result := imgBackgroundZone.Width;
+end;
+
+function TfrmRoutePlan.FindShipAt(X, Y: Integer): TShipContact;
+var
+  i: Integer;
+  Ship: TShipContact;
+  xShip, yShip: Single;
+  dist: Double;
+  tolerance: Integer;
+begin
+  Result := nil;
+
+  if (VehicleMgr = nil) or (VehicleMgr.NFSObjectList = nil) then
+    Exit;
+
+  tolerance := 15; // radius klik (pixel)
+
+  for i := 0 to VehicleMgr.NFSObjectList.Count - 1 do
+  begin
+    Ship := VehicleMgr.NFSObjectList[i] as TShipContact;
+
+    // convert posisi kapal ke screen
+    FMap.ConvertCoord(xShip, yShip, Ship.Lon, Ship.Lat, miMapToScreen);
+
+    // hitung jarak pixel
+    dist := Sqrt(Sqr(X - xShip) + Sqr(Y - yShip));
+
+    if dist <= tolerance then
+    begin
+      Result := Ship;
+      Exit;
+    end;
+  end;
 end;
 
 function TfrmRoutePlan.FindWaypointAtScreen(X, Y: Integer): TWaypoint;
@@ -477,6 +514,9 @@ procedure TfrmRoutePlan.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
+  Width := 1920;
+  Height := 1080;
+
   Self.DoubleBuffered := False;
   EnableComposited(pnlBasemap);
 
@@ -486,7 +526,7 @@ begin
   LoadInitMap;
 
   { Form Show }
-  Show;
+  //Show;
 
   { Timer Map }
   tmrMap.Interval := 250;
@@ -496,8 +536,9 @@ begin
   tmrForm.Enabled := True;
 
   { Load Button Image }
-  strPath := '.\img\icon\Route Plan - Tool Bar\';
-  SetImgBtn;
+  //strPath := '.\img\icon\Route Plan - Tool Bar\';
+  //strPath := VImgPath.imgPath + '\icon\Route Plan - Tool Bar\';
+  //SetImgBtn;
 
   FisMapDayMode := True;  // Tampilan Peta Siang Hari (Day)
 
@@ -510,9 +551,6 @@ end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
 begin
-  Width := 1920;
-  Height := 1080;
-
 //  pnlBasemap.Width := Width;
 //  pnlBasemap.Left := 0;
 //  pnlBasemap.Top := Panel1.Top + Panel1.Height;
@@ -1022,6 +1060,14 @@ begin
     {$ENDREGION}
   end;
 
+  TargetObj := FindShipAt(X,Y);
+
+  if Assigned(TargetObj) then
+  begin
+    VehicleMgr.SelectedTargetID := TargetObj.ID;
+    FMap.Refresh;
+  end;
+
   if FSelectMode then
   begin
     OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
@@ -1319,8 +1365,43 @@ end;
 
 procedure TfrmRoutePlan.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 begin
+  Position := poDesigned;
+  WindowState := wsNormal;
+
   Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
   Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage(Format('Route Plan di Monitor %d Top=%d',[aMonitorIdx,Screen.Monitors[aMonitorIdx].Top]));
+end;
+
+procedure TfrmRoutePlan.SetTopMonitor(aMoniHeight: Integer);
+var
+  idxMainMoni: Integer;
+  R: TRect;
+begin
+//  Position := poDesigned;
+//  WindowState := wsNormal;
+
+  idxMainMoni := 0;
+
+  Left := Screen.Monitors[idxMainMoni].WorkareaRect.Left;
+  Top := aMoniHeight;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage('Route Plan Top=' + IntToStr(frmRoutePlan.Top));
+end;
+
+procedure TfrmRoutePlan.SetFormMonitor(aForm: TForm; aMonitorIndex: Integer);
+var
+  M: TMonitor;
+begin
+  if aMonitorIndex >= Screen.MonitorCount then Exit;
+
+  M := Screen.Monitors[aMonitorIndex];
+
+  aForm.Left := M.Left;
+  aForm.Top := M.Top;
 end;
 
 end.

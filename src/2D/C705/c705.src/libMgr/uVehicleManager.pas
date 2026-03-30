@@ -10,7 +10,7 @@ type
   TVehicleManager = class
   private
     FNFSObjectList: TObjectList;
-
+    FSelectedTargetID: Integer;
   public
     constructor Create;
     destructor Destroy; override;
@@ -20,7 +20,7 @@ type
     procedure DeleteObjectByID(AID: Integer);
 
     property NFSObjectList: TObjectList read FNFSObjectList;
-
+    property SelectedTargetID: Integer read FSelectedTargetID write FSelectedTargetID;
 end;
 
 var

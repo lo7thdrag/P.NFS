@@ -19,6 +19,8 @@ const
   C_MAP_LONG    = 112.722778;
   C_MAP_LATT    = -7.198333;
 
+  C_IMG_PATH    = '.\data\img';
+
 type
   TNFSNetwork = record
     GamePort : Integer;
@@ -41,9 +43,9 @@ type
   end;
 
   TMonitorSetting = record
-    MonitorKiri: Integer;
-    MonitorKanan: Integer;
-    MonitorMini: Integer;
+    MoniRoutePlan: Integer;
+    MoniWCC: Integer;
+    MoniKeyboard: Integer;
     MonitorWidth: Integer;
     MonitorHeight: Integer;
   end;
@@ -51,8 +53,6 @@ type
   TMonitorTopLeft = record
     MonTop_Left : Integer;
     MonTop_Top : Integer;
-    MonBot_Left : Integer;
-    MonBot_Top : Integer;
     MonMiddle_Left : Integer;
     MonMiddle_Top : Integer;
     MonMini_Left : Integer;
@@ -72,6 +72,15 @@ type
     WeaponId: Integer;
   end;
 
+  TImagePathDir = record
+    imgPath: string;
+  end;
+
+  TIdentSetting = record
+    ModeHide: Boolean;
+    ModeDebug: Boolean;
+  end;
+
 //  TTcmsNetwork = record
 //    GamePort : Integer;
 //    BCAddress : string;
@@ -86,6 +95,8 @@ type
   procedure LoadMonitorSetting;
   procedure LoadMonitorTopLeft;
   procedure LoadOwnShips;
+  procedure LoadImagePathDir;
+  procedure LoadIdentSetting;
 
 var
   VNfsNetwork : TNFSNetwork;
@@ -94,6 +105,8 @@ var
   VMonitorSetting : TMonitorSetting;
   VMonitorTopLeft : TMonitorTopLeft;
   VOwnShip : TShipSetting;
+  VImgPath: TImagePathDir;
+  VIdentSetting: TIdentSetting;
 
 implementation
 
@@ -186,11 +199,11 @@ begin
 
   try
     with VMonitorSetting do begin
-      MonitorKiri := INIFReadInteger(iniF, 'SetMonitor', 'MonitorAtas', 0);
-      MonitorKanan := INIFReadInteger(iniF, 'SetMonitor', 'MonitorBawah', 0);
-      MonitorMini := INIFReadInteger(iniF, 'SetMonitor', 'MonitorMini', 0);
-      MonitorHeight := INIFReadInteger(iniF, 'SetMonitor', 'MonHeight', 0);
-      MonitorWidth := INIFReadInteger(iniF, 'SetMonitor', 'MonWidth', 0);
+      MoniRoutePlan := INIFReadInteger(iniF, 'SetMonitor', 'MoniRoutePlan', 1);
+      MoniWCC := INIFReadInteger(iniF, 'SetMonitor', 'MoniWCC', 0);
+      MoniKeyboard := INIFReadInteger(iniF, 'SetMonitor', 'MoniKeyboard', 20);
+      //MonitorHeight := INIFReadInteger(iniF, 'SetMonitor', 'MonHeight', 0);
+      //MonitorWidth := INIFReadInteger(iniF, 'SetMonitor', 'MonWidth', 0);
     end;
   finally
     iniF.Free;
@@ -208,8 +221,8 @@ begin
     begin
       MonTop_Left := INIFReadInteger(iniF, 'TopLeft', 'MonTop_Left', 0);
       MonTop_Top := INIFReadInteger(iniF, 'TopLeft', 'MonTop_Top', 0);
-      MonBot_Left := INIFReadInteger(iniF, 'TopLeft', 'MonBot_Left', 0);
-      MonBot_Top := INIFReadInteger(iniF, 'TopLeft', 'MonBot_Top', 0);
+      MonMiddle_Left := INIFReadInteger(iniF, 'TopLeft', 'MonMiddle_Left', 0);
+      MonMiddle_Top := INIFReadInteger(iniF, 'TopLeft', 'MonMiddle_Top', 0);
       MonMini_Left := INIFReadInteger(iniF, 'TopLeft', 'MonMini_Left', 0);
       MonMini_Top := INIFReadInteger(iniF, 'TopLeft', 'MonMini_Top', 0);
     end;
@@ -229,6 +242,39 @@ begin
     begin
       ShipID := INIFReadInteger(iniF, 'SHIPS', 'SHIPID', 0);
       WeaponId := INIFReadInteger(iniF, 'SHIPS', 'WEAPONID', 0);
+    end;
+  finally
+    iniF.Free;
+  end;
+end;
+
+procedure LoadImagePathDir;
+var
+  iniF: TIniFile;
+begin
+  iniF := TIniFile.Create(getFileSetting);
+
+  try
+    with VImgPath do
+    begin
+      imgPath := INIFReadString(inif, 'image','imgPath', C_IMG_PATH);;
+    end;
+  finally
+    iniF.Free;
+  end;
+end;
+
+procedure LoadIdentSetting;
+var
+  iniF: TIniFile;
+begin
+  iniF := TIniFile.Create(getFileSetting);
+
+  try
+    with VIdentSetting do
+    begin
+      ModeHide := INIFReadBool(iniF, 'ident', 'ModeH', False);
+      ModeDebug := INIFReadBool(iniF, 'ident', 'ModeDebug', False);
     end;
   finally
     iniF.Free;

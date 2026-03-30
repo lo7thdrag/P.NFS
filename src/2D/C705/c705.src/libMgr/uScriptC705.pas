@@ -38,10 +38,11 @@ begin
   LoadMonitorTopLeft;
   LoadMapSetting;
   LoadOwnShips;
+  LoadImagePathDir;
+
+  LoadIdentSetting;
 
   //LoadNFSDBConfig;
-
-  InitForms;
 
   { Create SimManager }
   SimManager := GameSimManager.Create;    //create platform & create thread
@@ -51,6 +52,11 @@ begin
   if Assigned(frmRoutePlan) then
     SimManager.OnMapInit := frmRoutePlan.InitMapMainForm;
   SimManager.InitializeMap;
+
+  frmRoutePlan.strPath := VImgPath.imgPath + '\icon\Route Plan - Tool Bar\';
+  frmRoutePlan.SetImgBtn;
+
+  InitForms;
 end;
 
 procedure EndC705;

@@ -76,6 +76,8 @@ type
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
+    procedure SetTopMonitor(aMoniHeight: Integer);
+    procedure SetBottomMonitor;
   end;
 
 var
@@ -91,7 +93,10 @@ uses
 
 procedure TfrmKeyboardCalcLaunch.FormCreate(Sender: TObject);
 begin
-  //
+  Width := 1024;
+  Height := 768;
+
+  //Show;
 end;
 
 procedure TfrmKeyboardCalcLaunch.FormShow(Sender: TObject);
@@ -103,6 +108,10 @@ procedure TfrmKeyboardCalcLaunch.imgLaunchClick(Sender: TObject);
 var
 recDataC705 : TRec_Data_C705;
 begin
+
+  if not SimManager.isReadyToLaunchC705 then
+    Exit;
+
   //
 //  frmRoutePlan.FSelectedBearing
   recDataC705.ShipID := VOwnShip.ShipID;
@@ -117,12 +126,57 @@ begin
 
   SimManager.netNFS_OnSendDataC705(recDataC705);
 
+  if VIdentSetting.ModeDebug then
+    ShowMessage('No, INS Done fire');
+
+end;
+
+procedure TfrmKeyboardCalcLaunch.SetBottomMonitor;
+var
+  m: TMonitor;
+begin
+  Position := poDesigned;
+  WindowState := wsNormal;
+
+  m := Screen.Monitors[0];
+
+  if Screen.Monitors[1].Top > m.Top then m := Screen.Monitors[1];
+  if Screen.Monitors[2].Top > m.Top then m := Screen.Monitors[2];
+
+  Left := m.Left;
+  Top  := m.Top;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage('Keyboard Top=' + IntToStr(frmKeyboardCalcLaunch.Top));
 end;
 
 procedure TfrmKeyboardCalcLaunch.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 begin
+  Position := poDesigned;
+  WindowState := wsNormal;
+
   Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
-  Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop + 1100;
+  Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage(Format('Keyboard di Monitor %d Top=%d',[aMonitorIdx,Screen.Monitors[aMonitorIdx].Top]));
+end;
+
+procedure TfrmKeyboardCalcLaunch.SetTopMonitor(aMoniHeight: Integer);
+var
+  idxMainMoni: Integer;
+  R: TRect;
+begin
+//  Position := poDesigned;
+//  WindowState := wsNormal;
+
+  idxMainMoni := 0;
+
+  Left := Screen.Monitors[idxMainMoni].WorkareaRect.Left;
+  Top := aMoniHeight;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage('Keyboard Top=' + IntToStr(frmKeyboardCalcLaunch.Top));
 end;
 
 end.

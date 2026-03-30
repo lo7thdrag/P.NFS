@@ -4,7 +4,8 @@ interface
 
 uses
   MapXLib_TLB, Vcl.Graphics, Winapi.Windows, System.SysUtils,
-    uMapXUnitConverter, uMapViewBase, uShipModel, uVehicleManager, uCoordConverter;
+    uMapXUnitConverter, uMapViewBase, uShipModel, uVehicleManager, uCoordConverter,
+    uLibSettings;
 
 type
   TShipView = class(TMapViewBase)
@@ -29,8 +30,8 @@ end;
 procedure TShipView.Draw(aCnv: TCanvas; aCvt: TCoordConverter);
 var
   i: Integer;
-  Ship: TShipContact;
-  xCntr, yCntr: Single;
+  Ship, OwnShip, TargetObj: TShipContact;
+  xCntr, yCntr, xOwn, yOwn, xTar, yTar: Single;
   radiusShip, x, y, x1, y1, x2, y2: Integer;
 begin
 
@@ -43,9 +44,19 @@ begin
 
     FMap.ConvertCoord(xCntr, yCntr, Ship.Lon, Ship.Lat, miMapToScreen);
 
-    aCnv.Pen.Color := clRed;
+    { warna ownship }
+    if Ship.ID = VOwnShip.ShipID then begin
+      aCnv.Pen.Color := clGreen;
+      aCnv.Brush.Color := clGreen;
+    end
+    else begin
+      aCnv.Pen.Color := clRed;
+      aCnv.Brush.Color := clRed;
+    end;
+
+    //aCnv.Pen.Color := clRed;
     aCnv.Brush.Style := bsSolid;
-    aCnv.Brush.Color := clRed;
+    //aCnv.Brush.Color := clRed;
     aCnv.Pen.Style := psSolid;
     aCnv.Pen.Width := 2;
 
@@ -93,6 +104,36 @@ begin
       Round(yCntr) + 2 * radiusShip,
       Ship.ID.ToString
     );
+
+    if Ship.ID = FVehicleMgr.SelectedTargetID then
+    begin
+      aCnv.Pen.Color := clYellow;
+      aCnv.Brush.Style := bsClear;
+
+      aCnv.MoveTo(x, y - 15);
+      aCnv.LineTo(x + 15, y);
+      aCnv.LineTo(x, y + 15);
+      aCnv.LineTo(x - 15, y);
+      aCnv.LineTo(x, y - 15);
+    end;
+  end;
+
+  { GAMBAR FIRING LINE }
+  OwnShip := FVehicleMgr.FindObjectByID(VOwnShip.ShipID);
+  TargetObj  := FVehicleMgr.FindObjectByID(FVehicleMgr.SelectedTargetID);
+
+  if Assigned(OwnShip) and Assigned(TargetObj) then
+  begin
+
+    FMap.ConvertCoord(xOwn, yOwn, OwnShip.Lon, OwnShip.Lat, miMapToScreen);
+    FMap.ConvertCoord(xTar, yTar, TargetObj.Lon, TargetObj.Lat, miMapToScreen);
+
+    aCnv.Pen.Color := clLime;
+    aCnv.Pen.Width := 2;
+
+    aCnv.MoveTo(Round(xOwn), Round(yOwn));
+    aCnv.LineTo(Round(xTar), Round(yTar));
+
   end;
 
 end;

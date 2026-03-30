@@ -10,6 +10,12 @@ type
   TRoutePlanMode = (mPassive, mActive);
   TOnMapInit = procedure(const GeosetPath: string) of object;
 
+  TC705Status = record
+    EnableWeapon,
+    OpenCoverLauncher,
+    SafetyIgnition : Boolean;
+  end;
+
   GameSimManager = class
   private
     { NFS Dependencies }
@@ -26,11 +32,12 @@ type
     procedure netNFS_OnReceiveData3DPosition(apRec: PAnsiChar; aSize: integer);
     procedure netNFS_OnReceive2DOrder(apRec: PAnsiChar; aSize: integer);
     procedure netNFS_OnDeleteShip(apRec: PAnsiChar; aSize: integer);
-
-
+    procedure netNFS_OnReceiveStatusConsole(apRec: PAnsiChar; aSize: Integer);
 
   public
     FRoutePlanMode: TRoutePlanMode;
+
+    FC705Status: TC705Status;
 
     NFSNetRecv: TTCPClient;
 
@@ -38,6 +45,8 @@ type
     destructor Destroy; override;
 
     procedure InitializeMap;
+
+    function isReadyToLaunchC705: Boolean;
 
     property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
     property OnMapInit: TOnMapInit read FOnMapInit write FOnMapInit;
@@ -70,6 +79,9 @@ begin
   NFSNetRecv.RegisterProcedure(REC_3D_ORDER, netNFS_OnDeleteShip, SizeOf(TRecData3DOrder));
 
   NFSNetRecv.RegisterProcedure(Rec_Data_C705, nil, SizeOf(TRec_Data_C705));
+
+  // C705 Status
+  NFSNetRecv.RegisterProcedure(REC_STAT_ORDER_CONSOLE, netNFS_OnReceiveStatusConsole, SizeOf(TRecStatus_Console_C705));
 
   {Timer untuk Connect ke Bridge}
   FAutoConnectToBridgeTimer := TTimer.Create(nil);
@@ -166,6 +178,28 @@ begin
   VehicleMgr.UpdateObjectList(rec);
 end;
 
+procedure GameSimManager.netNFS_OnReceiveStatusConsole(apRec: PAnsiChar;
+  aSize: Integer);
+var
+  //rec : ^TRecStatus_Console_C705;
+  rec: ^TRecStatus_Console;
+begin
+  rec := @apRec^;
+
+  case rec^.ErrorID of
+
+    __STAT_C705_ENABLE:
+      FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
+
+    __STAT_C705_OpenCoverLauncherC705:
+      FC705Status.OpenCoverLauncher := rec^.ParamError = __PARAM_C705_ON;
+
+    __STAT_C705_SafetyIgnition:
+      FC705Status.SafetyIgnition := rec^.ParamError = __PARAM_C705_ON;
+
+  end;
+end;
+
 procedure GameSimManager.netNFS_OnSendDataC705(rec: TRec_Data_C705);
 begin
   if (NFSNetRecv <> nil) and (NFSNetRecv.State in [wsConnected]) then
@@ -173,6 +207,13 @@ begin
 end;
 
 {$ENDREGION}
+
+function GameSimManager.IsReadyToLaunchC705: Boolean;
+begin
+  Result :=
+    FC705Status.EnableWeapon and FC705Status.OpenCoverLauncher
+      and FC705Status.SafetyIgnition;
+end;
 
 end.
 

@@ -6,12 +6,14 @@ object frmWCC: TfrmWCC
   ClientHeight = 1080
   ClientWidth = 1920
   Color = clBtnFace
+  DefaultMonitor = dmDesktop
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
@@ -88028,6 +88030,15 @@ object frmWCC: TfrmWCC
           TabOrder = 0
         end
       end
+      object pnlRealTimeCombat: TPanel
+        Tag = 1
+        Left = 352
+        Top = 197
+        Width = 553
+        Height = 500
+        BevelOuter = bvNone
+        TabOrder = 3
+      end
       object pnlHardwareCheck: TPanel
         Tag = 4
         Left = 352
@@ -88246,15 +88257,6 @@ object frmWCC: TfrmWCC
           ParentFont = False
           TabOrder = 0
         end
-      end
-      object pnlRealTimeCombat: TPanel
-        Tag = 1
-        Left = 352
-        Top = 197
-        Width = 553
-        Height = 500
-        BevelOuter = bvNone
-        TabOrder = 3
       end
     end
   end
@@ -92304,5 +92306,11 @@ object frmWCC: TfrmWCC
       Caption = 'Route Plan'
       OnClick = RoutePlan1Click
     end
+  end
+  object tmrHardwareCheck: TTimer
+    Enabled = False
+    OnTimer = tmrHardwareCheckTimer
+    Left = 103
+    Top = 209
   end
 end

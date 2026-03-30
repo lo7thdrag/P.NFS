@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Vcl.Imaging.jpeg;
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Vcl.Imaging.jpeg,
+  uLibSettings;
 
 type
   TfrmWCC = class(TForm)
@@ -82,6 +83,7 @@ type
     lblCheckP105B: TLabel;
     RoutePlan1: TMenuItem;
     pnlRealTimeCombat: TPanel;
+    tmrHardwareCheck: TTimer;
     {$ENDREGION}
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -89,19 +91,26 @@ type
     procedure lblMenuClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure RoutePlan1Click(Sender: TObject);
+    procedure tmrHardwareCheckTimer(Sender: TObject);
 
   private
     { Private declarations }
     FActiveLabel: TLabel;
 
+    { Hardware check }
+    FCheckIndex: Integer;
+
     procedure UpdateHighlight;
     function FindLabelByTag(ATag: Integer): TLabel;
     procedure ShowPanelForMenu(ALabel: TLabel);
+
+    procedure StartCheckHardware;
 
     procedure HideAllPnlContent;
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
+    procedure SetTopMonitor(aMoniHeight: Integer);
   end;
 
 var
@@ -179,6 +188,36 @@ begin
   end;
 end;
 
+procedure TfrmWCC.StartCheckHardware;
+begin
+  lblCheckP105B.Caption := 'CHECKING';
+  lblCheckP301a.Caption := 'CHECKING';
+  lblCheck301b.Caption := 'CHECKING';
+  lblCheckHbFB23a.Caption := 'CHECKING';
+  lblCheckHbFB23b.Caption := 'CHECKING';
+  lblCheckGSWK.Caption := 'CHECKING';
+
+  FCheckIndex := 0;
+  tmrHardwareCheck.Enabled := True;
+end;
+
+procedure TfrmWCC.tmrHardwareCheckTimer(Sender: TObject);
+begin
+  case FCheckIndex of
+    0: lblCheckP105B.Caption := 'PASS';
+    1: lblCheckP301a.Caption := 'PASS';
+    2: lblCheck301b.Caption := 'PASS';
+    3: lblCheckHbFB23a.Caption := 'PASS';
+    4: lblCheckHbFB23b.Caption := 'PASS';
+    5: lblCheckGSWK.Caption := 'PASS';
+  end;
+
+  Inc(FCheckIndex);
+
+  if FCheckIndex > 5 then
+    tmrHardwareCheck.Enabled := False;
+end;
+
 procedure TfrmWCC.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 var
@@ -215,8 +254,12 @@ begin
 
     VK_RETURN:
     begin
-      if NextTag = 1 then
+      if NextTag = 1 then begin
+        if not Assigned(frmFoeFriendSituationPage) then
+          frmFoeFriendSituationPage := TfrmFoeFriendSituationPage.Create(Self);
+
         frmFoeFriendSituationPage.Show;
+      end;
 
       //Exit;
     end;
@@ -249,6 +292,9 @@ end;
 
 procedure TfrmWCC.FormCreate(Sender: TObject);
 begin
+  Width := 1920;
+  Height := 1080;
+
   Self.DoubleBuffered := False;
   //EnableComposited(pnlBasemap);
   //pnlBasemap.DoubleBuffered := False;
@@ -261,12 +307,13 @@ begin
   FActiveLabel := lblRealtimeCombat;
   UpdateHighlight;
 
+  StartCheckHardware;
+
 end;
 
 procedure TfrmWCC.FormShow(Sender: TObject);
 begin
-  Width := 1920;
-  Height := 1080;
+  //
 end;
 
 procedure TfrmWCC.HideAllPnlContent;
@@ -327,8 +374,31 @@ end;
 
 procedure TfrmWCC.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 begin
+  Position := poDesigned;
+  WindowState := wsNormal;
+
   Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
   Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage(Format('WCC di Monitor %d Top=%d',[aMonitorIdx,Screen.Monitors[aMonitorIdx].Top]));
+end;
+
+procedure TfrmWCC.SetTopMonitor(aMoniHeight: Integer);
+var
+  idxMainMoni: Integer;
+  R: TRect;
+begin
+//  Position := poDesigned;
+//  WindowState := wsNormal;
+
+  idxMainMoni := 0;
+
+  Left := Screen.Monitors[idxMainMoni].WorkareaRect.Left;
+  Top := aMoniHeight;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage('WCC form Top=' + IntToStr(frmWCC.Top));
 end;
 
 end.

@@ -63,10 +63,10 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
-  Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);
-  Application.CreateForm(TfrmWCC, frmWCC);
   Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
+  //Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
+  Application.CreateForm(TfrmWCC, frmWCC);
+  Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);
   //Application.CreateForm(TfrmPnlArea3AFoeFriend, frmPnlArea3AFoeFriend);
   //Application.CreateForm(TfrmParamSetting, frmParamSetting);
   //Application.CreateForm(TfrmRadar, frmRadar);
