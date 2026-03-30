@@ -119,7 +119,8 @@ begin
   recDataC705.mLauncherID := (Sender as TImage).Tag;
   recDataC705.mMissileID := 1;
   recDataC705.mMissileNumber := 0;
-  recDataC705.OrderID := 0; // harusnya diganti per command, misal fire, atau yang lain
+  //recDataC705.OrderID := 0; // harusnya diganti per command, misal fire, atau yang lain
+  recDataC705.OrderID := __ORD_ID_Fire_C705;
   recDataC705.mTargetBearing := frmRoutePlan.FSelectedBearing;
   recDataC705.mTargetRange := frmRoutePlan.FSelectedRange;
   recDataC705.mTargetId := 0;

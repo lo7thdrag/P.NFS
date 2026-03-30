@@ -1172,13 +1172,13 @@ begin
 
   { ===========================C705======================== }
   { C705 }
-  chkC705Enable.OnClick := C705ChkClick;
-  chkSafetyIgnitionC705.OnClick      := C705ChkClick;
-  chkOpenCoverLauncherC705.OnClick      := C705ChkClick;
+  chkC705Enable.OnClick             := C705ChkClick;
+  chkSafetyIgnitionC705.OnClick     := C705ChkClick;
+  chkOpenCoverLauncherC705.OnClick  := C705ChkClick;
 
-  chkC705Enable.Tag     := __STAT_C705_ENABLE;
-  chkSafetyIgnitionC705.Tag          := __STAT_C705_OpenCoverLauncherC705;
-  chkOpenCoverLauncherC705.Tag          := __STAT_C705_SafetyIgnition;
+  chkC705Enable.Tag             := __STAT_C705_ENABLE;
+  chkSafetyIgnitionC705.Tag     := __STAT_C705_SafetyIgnition;
+  chkOpenCoverLauncherC705.Tag  := __STAT_C705_OpenCoverLauncherC705;
 
   { =========================================================== }
 
@@ -3266,9 +3266,9 @@ begin
         WeaponC705 := TWeaponOn_C705(weaponship);
 
         case id of
-          __STAT_C705_ENABLE    : WeaponC705.EnableC705   := TCheckBox(sender).Checked;
-          __STAT_C705_OpenCoverLauncherC705   : WeaponC705.Unknown      := TCheckBox(sender).Checked;
-          __STAT_C705_SafetyIgnition  : WeaponC705.Unknown2     := TCheckBox(sender).Checked;
+          __STAT_C705_ENABLE                : WeaponC705.EnableC705             := TCheckBox(sender).Checked;
+          __STAT_C705_SafetyIgnition        : WeaponC705.SafetyIgnition         := TCheckBox(sender).Checked;
+          __STAT_C705_OpenCoverLauncherC705 : WeaponC705.OpenCoverLauncherC705  := TCheckBox(sender).Checked;
         end;
       end;
     end;
@@ -4862,15 +4862,16 @@ begin
             chkOpenCoverLauncherC705.OnClick := nil;
 
             chkC705Enable.Checked := WeaponC705.EnableC705;
-            chkSafetyIgnitionC705.Checked := WeaponC705.Unknown;
-            chkOpenCoverLauncherC705.Checked := WeaponC705.Unknown2;
+            chkSafetyIgnitionC705.Checked := WeaponC705.SafetyIgnition;
+            chkOpenCoverLauncherC705.Checked := WeaponC705.OpenCoverLauncherC705;
 
             chkC705Enable.OnClick := C705ChkClick;
             chkSafetyIgnitionC705.OnClick := C705ChkClick;
             chkOpenCoverLauncherC705.OnClick := C705ChkClick;
 
             // ?? tentative
-            if WeaponC705.Firing then
+            //if WeaponC705.Firing then
+            if WeaponC705.EnableC705 then
             begin
               chkSafetyIgnitionC705.Enabled   := True;
               chkOpenCoverLauncherC705.Enabled   := True;

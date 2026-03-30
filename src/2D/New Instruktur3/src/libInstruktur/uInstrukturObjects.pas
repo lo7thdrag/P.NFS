@@ -689,8 +689,8 @@ interface
 
     public
        EnableC705 : Boolean;
-       Unknown    : Boolean;
-       Unknown2   : Boolean;
+       SafetyIgnition    : Boolean;
+       OpenCoverLauncherC705   : Boolean;
        Firing     : Boolean;
        {CAP        : Boolean;}
 

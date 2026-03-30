@@ -1477,6 +1477,7 @@ const
 
   { C705; angga }
   Rec_Data_C705 = 69;
+  __ORD_ID_Fire_C705 = 1;
 
   REC_CMD_COM_CONSOLE = 71;
 

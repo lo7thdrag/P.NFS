@@ -7019,8 +7019,8 @@ object fWeaponStatus: TfWeaponStatus
             ParentFont = False
             TabOrder = 2
             object chkC705Enable: TCheckBox
-              Left = 34
-              Top = 30
+              Left = 40
+              Top = 29
               Width = 92
               Height = 17
               Caption = 'Enable C705'
