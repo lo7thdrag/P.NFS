@@ -698,7 +698,7 @@ type
     Label27: TLabel;
     Label28: TLabel;
     grpSeaState: TGroupBox;
-    tbSeaState: TVrTrackBar;
+    tbSeaState : TVrTrackBar;
     GroupBox2: TGroupBox;
     tbWindSpeed: TVrTrackBar;
     grpCurrentSpeed: TGroupBox;
@@ -7159,7 +7159,7 @@ procedure TfrmGameController.tbSeaStateMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, tbSeaState.Position-1, 0,0,0,0) ;
+  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, tbSeaState.Position, 0,0,0,0) ;
 end;
 
 procedure TfrmGameController.tbWindSpeedMouseUp(Sender: TObject;
@@ -9832,7 +9832,7 @@ procedure TfrmGameController.tmrSeaStateTimer(Sender: TObject);
 begin
   if SimManager.MainObjList.ItemCount <> 0 then
   begin
-    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, tbSeaState.Position-1, 0,0,0,0) ;
+    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, tbSeaState.Position, 0,0,0,0) ;
     tmrSeaState.Enabled := False;
   end;
 end;

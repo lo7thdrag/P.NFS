@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000487683110100000024E897001C000000000000000000000000
+              01000118010000F086A50F0100000005FAD6761C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              0100004876831101000000000000001C00000000000000000000000000000000
+              010000F086A50F01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000596E2D340000000054
-              EC970004E89700000000006688CE50000200006B88CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000060CE970010
+              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -183454,1099 +183454,6 @@ object frmGameController: TfrmGameController
         ReadOnly = True
         ScrollBars = ssBoth
         TabOrder = 0
-      end
-    end
-    object pnlEnvironment: TPanel
-      Left = 0
-      Top = 0
-      Width = 1923
-      Height = 911
-      Align = alClient
-      BevelOuter = bvNone
-      Color = clMedGray
-      TabOrder = 3
-      object lblPortEnv: TLabel
-        Left = 331
-        Top = 96
-        Width = 3
-        Height = 13
-        Caption = '-'
-        Transparent = True
-      end
-      object AdvSmoothPanel6: TAdvSmoothPanel
-        Left = 0
-        Top = 0
-        Width = 1923
-        Height = 911
-        Cursor = crDefault
-        Caption.Location = plTopCenter
-        Caption.HatchStyle = HatchStyleDiagonalBrick
-        Caption.HTMLFont.Charset = DEFAULT_CHARSET
-        Caption.HTMLFont.Color = clWindowText
-        Caption.HTMLFont.Height = -13
-        Caption.HTMLFont.Name = 'Tahoma'
-        Caption.HTMLFont.Style = []
-        Caption.Font.Charset = DEFAULT_CHARSET
-        Caption.Font.Color = clWindowText
-        Caption.Font.Height = -16
-        Caption.Font.Name = 'Tahoma'
-        Caption.Font.Style = [fsBold]
-        Caption.Top = 20
-        Caption.ColorStart = clWhite
-        Caption.ColorEnd = clWhite
-        Caption.GradientType = gtHorizontal
-        Caption.LineColor = clBlack
-        Caption.Line = False
-        Fill.Color = 7301478
-        Fill.ColorTo = 10066329
-        Fill.ColorMirror = 10066329
-        Fill.ColorMirrorTo = 7301478
-        Fill.GradientType = gtVertical
-        Fill.GradientMirrorType = gtVertical
-        Fill.BorderColor = clSilver
-        Fill.BorderWidth = 5
-        Fill.Rounding = 10
-        Fill.ShadowColor = clNone
-        Fill.ShadowOffset = 10
-        Fill.Glow = gmNone
-        Version = '1.6.0.1'
-        Align = alClient
-        TabOrder = 0
-        DesignSize = (
-          1923
-          911)
-        TMSStyle = 0
-        object AdvSmoothPanel5: TAdvSmoothPanel
-          Left = 139
-          Top = 62
-          Width = 1072
-          Height = 788
-          Cursor = crDefault
-          Caption.Location = plTopCenter
-          Caption.HatchStyle = HatchStyleDiagonalBrick
-          Caption.HTMLFont.Charset = DEFAULT_CHARSET
-          Caption.HTMLFont.Color = clWindowText
-          Caption.HTMLFont.Height = -13
-          Caption.HTMLFont.Name = 'Tahoma'
-          Caption.HTMLFont.Style = []
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -16
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.Top = 20
-          Caption.ColorStart = clWhite
-          Caption.ColorEnd = clWhite
-          Caption.GradientType = gtHorizontal
-          Caption.LineColor = clBlack
-          Caption.Line = False
-          Fill.Color = 7301478
-          Fill.ColorTo = 10066329
-          Fill.ColorMirror = 10066329
-          Fill.ColorMirrorTo = 7301478
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtVertical
-          Fill.BorderColor = clSilver
-          Fill.BorderWidth = 5
-          Fill.Rounding = 10
-          Fill.ShadowColor = clNone
-          Fill.ShadowOffset = 10
-          Fill.Glow = gmNone
-          Fill.GlowGradientColor = 7301478
-          Fill.GlowRadialColor = 7301478
-          Version = '1.6.0.1'
-          Anchors = [akTop, akRight]
-          TabOrder = 0
-          TMSStyle = 0
-          object Label8: TLabel
-            Left = 58
-            Top = 140
-            Width = 62
-            Height = 18
-            Caption = 'Sea State'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label9: TLabel
-            Left = 58
-            Top = 228
-            Width = 80
-            Height = 18
-            Caption = 'Wind Speed'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label10: TLabel
-            Left = 58
-            Top = 316
-            Width = 93
-            Height = 18
-            Caption = 'Current Speed'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label11: TLabel
-            Left = 58
-            Top = 404
-            Width = 86
-            Height = 18
-            Caption = 'Temperature'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label12: TLabel
-            Left = 58
-            Top = 492
-            Width = 129
-            Height = 18
-            Caption = 'Barometer Pressure'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label13: TLabel
-            Left = 58
-            Top = 580
-            Width = 60
-            Height = 18
-            Caption = 'Humidity'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label14: TLabel
-            Left = 58
-            Top = 668
-            Width = 82
-            Height = 18
-            Caption = 'Fog Intensity'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label21: TLabel
-            Left = 954
-            Top = 142
-            Width = 35
-            Height = 15
-            Caption = 'State'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label22: TLabel
-            Left = 954
-            Top = 229
-            Width = 35
-            Height = 15
-            Caption = 'Knots'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label23: TLabel
-            Left = 954
-            Top = 317
-            Width = 35
-            Height = 15
-            Caption = 'Knots'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label24: TLabel
-            Left = 954
-            Top = 405
-            Width = 49
-            Height = 15
-            Caption = 'Celcius'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label25: TLabel
-            Left = 954
-            Top = 493
-            Width = 49
-            Height = 15
-            Caption = 'MiliBar'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label26: TLabel
-            Left = 954
-            Top = 581
-            Width = 42
-            Height = 15
-            Caption = 'Persen'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label27: TLabel
-            Left = 954
-            Top = 669
-            Width = 28
-            Height = 15
-            Caption = 'Feet'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-            Visible = False
-          end
-          object Label28: TLabel
-            Left = 58
-            Top = 79
-            Width = 39
-            Height = 18
-            Caption = 'Port :'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Berlin Sans FB Demi'
-            Font.Style = [fsBold]
-            ParentFont = False
-            Transparent = True
-          end
-          object grpSeaState: TGroupBox
-            Left = 213
-            Top = 120
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 0
-            object tbSeaState: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 5
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              OnChange = tbSeaStateChange
-              TabOrder = 0
-              OnMouseUp = tbSeaStateMouseUp
-            end
-          end
-          object GroupBox2: TGroupBox
-            Left = 213
-            Top = 208
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 1
-            object tbWindSpeed: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 50
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              OnChange = tbWindSpeedChange
-              TabOrder = 0
-              OnMouseUp = tbWindSpeedMouseUp
-            end
-          end
-          object grpCurrentSpeed: TGroupBox
-            Left = 213
-            Top = 296
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 2
-            object tbSeaSpeed: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 50
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbSeaSpeedMouseUp
-            end
-          end
-          object GroupBox4: TGroupBox
-            Left = 213
-            Top = 384
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 3
-            object tbTemp: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbTempMouseUp
-            end
-          end
-          object GroupBox5: TGroupBox
-            Left = 213
-            Top = 472
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 4
-            object tbBaroPressure: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 5000
-              Position = 1
-              Frequency = 100
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbBaroPressureMouseUp
-            end
-          end
-          object GroupBox6: TGroupBox
-            Left = 213
-            Top = 648
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 5
-            object tbFogIntensity: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              MaxValue = 3
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              OnChange = tbFogIntensityChange
-              TabOrder = 0
-              OnMouseUp = tbFogIntensityMouseUp
-            end
-          end
-          object GroupBox7: TGroupBox
-            Left = 213
-            Top = 560
-            Width = 637
-            Height = 58
-            DragKind = dkDock
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-            TabOrder = 6
-            object tbHumidity: TVrTrackBar
-              Left = 12
-              Top = 15
-              Width = 614
-              Height = 28
-              Frequency = 1
-              GutterBevel.InnerShadow = clBtnShadow
-              GutterBevel.InnerHighlight = clBtnHighlight
-              GutterBevel.InnerWidth = 1
-              GutterBevel.InnerStyle = bsNone
-              GutterBevel.InnerSpace = 0
-              GutterBevel.InnerColor = clBtnFace
-              GutterBevel.OuterShadow = clBtnShadow
-              GutterBevel.OuterHighlight = clBtnHighlight
-              GutterBevel.OuterStyle = bsLowered
-              GutterBevel.OuterOutline = osNone
-              TabOrder = 0
-              OnMouseUp = tbHumidityMouseUp
-            end
-          end
-          object edtPortCurrentSpeed: TEdit
-            Left = 886
-            Top = 314
-            Width = 45
-            Height = 21
-            Alignment = taCenter
-            BevelInner = bvLowered
-            BevelKind = bkTile
-            MaxLength = 2
-            NumbersOnly = True
-            TabOrder = 7
-            OnKeyPress = edtPortCurrentSpeedKeyPress
-          end
-          object edtPortTemp: TEdit
-            Left = 886
-            Top = 402
-            Width = 45
-            Height = 21
-            Alignment = taCenter
-            BevelInner = bvLowered
-            BevelKind = bkTile
-            MaxLength = 3
-            NumbersOnly = True
-            TabOrder = 8
-            OnKeyPress = edtPortTempKeyPress
-          end
-          object edtPortBarometer: TEdit
-            Left = 886
-            Top = 490
-            Width = 45
-            Height = 21
-            Alignment = taCenter
-            BevelInner = bvLowered
-            BevelKind = bkTile
-            MaxLength = 4
-            NumbersOnly = True
-            TabOrder = 9
-            OnKeyPress = edtPortBarometerKeyPress
-          end
-          object edtPortHumidity: TEdit
-            Left = 886
-            Top = 578
-            Width = 45
-            Height = 21
-            Alignment = taCenter
-            BevelInner = bvLowered
-            BevelKind = bkTile
-            MaxLength = 3
-            NumbersOnly = True
-            TabOrder = 10
-            OnKeyPress = edtPortHumidityKeyPress
-          end
-          object edtFogIntensity: TEdit
-            Left = 886
-            Top = 666
-            Width = 45
-            Height = 21
-            Alignment = taCenter
-            BevelInner = bvLowered
-            BevelKind = bkTile
-            MaxLength = 1
-            NumbersOnly = True
-            TabOrder = 11
-            OnKeyPress = edtFogIntensityKeyPress
-          end
-          object edtPortSeaState: TEdit
-            Left = 886
-            Top = 139
-            Width = 45
-            Height = 21
-            Alignment = taCenter
-            BevelInner = bvLowered
-            BevelKind = bkTile
-            MaxLength = 1
-            NumbersOnly = True
-            TabOrder = 12
-            OnKeyPress = edtPortSeaStateKeyPress
-          end
-          object edtPortWindSpeed: TEdit
-            Left = 886
-            Top = 227
-            Width = 45
-            Height = 21
-            Alignment = taCenter
-            BevelInner = bvLowered
-            BevelKind = bkTile
-            MaxLength = 2
-            NumbersOnly = True
-            TabOrder = 13
-            OnKeyPress = edtPortWindSpeedKeyPress
-          end
-        end
-        object AdvSmoothPanel4: TAdvSmoothPanel
-          Left = 1348
-          Top = 62
-          Width = 436
-          Height = 377
-          Cursor = crDefault
-          Caption.Location = plTopCenter
-          Caption.HatchStyle = HatchStyleDiagonalBrick
-          Caption.HTMLFont.Charset = DEFAULT_CHARSET
-          Caption.HTMLFont.Color = clWindowText
-          Caption.HTMLFont.Height = -13
-          Caption.HTMLFont.Name = 'Tahoma'
-          Caption.HTMLFont.Style = []
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -16
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.Top = 20
-          Caption.ColorStart = clWhite
-          Caption.ColorEnd = clWhite
-          Caption.GradientType = gtHorizontal
-          Caption.LineColor = clBlack
-          Caption.Line = False
-          Fill.Color = 7301478
-          Fill.ColorTo = 10066329
-          Fill.ColorMirror = 10066329
-          Fill.ColorMirrorTo = 7301478
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtVertical
-          Fill.BorderColor = clSilver
-          Fill.BorderWidth = 5
-          Fill.Rounding = 10
-          Fill.ShadowColor = clNone
-          Fill.ShadowOffset = 10
-          Fill.Glow = gmNone
-          Version = '1.6.0.1'
-          Anchors = [akTop, akRight]
-          TabOrder = 1
-          TMSStyle = 0
-          object Label4: TLabel
-            Left = 156
-            Top = 63
-            Width = 100
-            Height = 17
-            Caption = 'Wind Direction'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Segoe UI Symbol'
-            Font.Style = [fsBold]
-            ParentFont = False
-            Transparent = True
-          end
-          object vrwhlWindDirec: TVrWheel
-            Tag = 9
-            Left = 108
-            Top = 117
-            Width = 85
-            Height = 85
-            MaxValue = 360
-            Position = 180
-            BackImage.Data = {
-              120F0000424D120F000000000000760000002800000055000000550000000100
-              0400000000009C0E000000000000000000001000000000000000000000000000
-              80000080000000808000800000008000800080800000C0C0C000808080000000
-              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-              3333333333333333333333333333333333333333333333333333333333333333
-              3333333330003333333333333333333333333333333333333333333333333333
-              3333333333333333333333333333333330003333333333333333333333333333
-              3333333333333333333333333333333333333333333333333333333330003333
-              3333333333333333333333333333333333333333333333333333333333333333
-              3333333333333333300033333333333333333333333333333333333000000000
-              0000033333333333333333333333333333333333300033333333333333333333
-              3333333333300008888888888888800003333333333333333333333333333333
-              3000333333333333333333333333333300088888888888888888888880003333
-              3333333333333333333333333000333333333333333333333333300088888888
-              8888888888888888888800033333333333333333333333333000333333333333
-              3333333333300888888888887777777777778888888888800333333333333333
-              3333333330003333333333333333333333088888888877777777777777777777
-              8888888880333333333333333333333330003333333333333333333300888888
-              8777777777777777777777777778888888003333333333333333333330003333
-              3333333333333330888888877777777777777777777777777777788888880333
-              3333333333333333300033333333333333333008888887777777777777777777
-              7777777777777778888880033333333333333333300033333333333333330888
-              8887777777777777777777777777777777777777788888803333333333333333
-              3000333333333333333088888877777777777777777777777777777777777777
-              7788888803333333333333333000333333333333330888887777777777777777
-              7777777777777777777777777777888880333333333333333000333333333333
-              30F8888777777777777777777777777777777777777777777777788888033333
-              3333333330003333333333330FF8887777777777777777777777777777777777
-              777777777777778888803333333333333000333333333330FFFFF77777777777
-              7777777777777777777777777777777777777778888803333333333330003333
-              3333330FFFFF7777777777777777777777777777777777777777777777777777
-              8888803333333333300033333333330FFFF77777777777777777777777777777
-              777777777777777777777777788880333333333330003333333330FFFF777777
-              7777777777777777777777777777777777777777777777777788880333333333
-              3000333333330FFFF77777777777777777777777777777777777777777777777
-              7777777777788880333333333000333333330FFFF77777777777777777777777
-              777777777777777777777777777777777778888033333333300033333330FFFF
-              7777777777777777777777777777777777777777777777777777777777778888
-              0333333330003333330FFFF77777777777777777777777777777777777777777
-              7777777777777777777778888033333330003333330FFFF77777777777777777
-              7777777777777777777777777777777777777777777778888033333330003333
-              30FFFF7777777777777777777777777777777777777777777777777777777777
-              77777788880333333000333330FFFF7777777777777777777777777777777777
-              77777777777777777777777777777788880333333000333330FFF77777777777
-              7777777777777777777777777777777777777777777777777777777888033333
-              300033330FFFF777777777777777777777777777777777777777777777777777
-              777777777777777888803333300033330FFF7777777777777777777777777777
-              777777777777777777777777777777777777777788803333300033330FFF7777
-              7777777777777777777777777777777777777777777777777777777777777777
-              8880333330003330FFFF77777777777777777777777777777777777777777777
-              7777777777777777777777778888033330003330FFF777777777777777777777
-              7777777777777777777777777777777777777777777777777888033330003330
-              FFF7777777777777777777777777777777777777777777777777777777777777
-              777777777888033330003330FFF7777777777777777777777777777777777777
-              77777777777777777777777777777777788803333000330FFFF7777777777777
-              7777777777777777777777777777777777777777777777777777777778888033
-              3000330FFF777777777777777777777777777777777777777777777777777777
-              7777777777777777778880333000330FFF777777777777777777777777777777
-              7777777777777777777777777777777777777777778880333000330FFF777777
-              7777777777777777777777777777777777777777777777777777777777777777
-              778880333000330FFF7777777777777777777777777777777777777777777777
-              777777777777777777777777778880333000330FFF7777777777777777777777
-              777777777777777777777777777777777777777777777777778880333000330F
-              FF77777777777777777777777777777777777777777777777777777777777777
-              77777777778880333000330FFF77777777777777777777777777777777777777
-              77777777777777777777777777777777778880333000330FFF77777777777777
-              7777777777777777777777777777777777777777777777777777777777888033
-              3000330FFF777777777777777777777777777777777777777777777777777777
-              7777777777777777778880333000330FFF777777777777777777777777777777
-              7777777777777777777777777777777777777777778880333000330FFF777777
-              7777777777777777777777777777777777777777777777777777777777777777
-              778880333000330FFFF777777777777777777777777777777777777777777777
-              777777777777777777777777788880333000330FFFF777777777777777777777
-              7777777777777777777777777777777777777777777777777888803330003330
-              FFF7777777777777777777777777777777777777777777777777777777777777
-              777777777888033330003330FFF7777777777777777777777777777777777777
-              777777777777777777777777777777777888033330003330FFFF777777777777
-              7777777777777777777777777777777777777777777777777777777788880333
-              30003330FFFF7777777777777777777777777777777777777777777777777777
-              777777777777777788880333300033330FFF7777777777777777777777777777
-              777777777777777777777777777777777777777788803333300033330FFFF777
-              7777777777777777777777777777777777777777777777777777777777777778
-              88803333300033330FFFF7777777777777777777777777777777777777777777
-              777777777777777777777778888033333000333330FFFF777777777777777777
-              7777777777777777777777777777777777777777777777888803333330003333
-              30FFFF7777777777777777777777777777777777777777777777777777777777
-              77777788880333333000333330FFFFF777777777777777777777777777777777
-              777777777777777777777777777778888803333330003333330FFFF777777777
-              7777777777777777777777777777777777777777777777777777788880333333
-              30003333330FFFFF777777777777777777777777777777777777777777777777
-              777777777777888880333333300033333330FFFFF77777777777777777777777
-              7777777777777777777777777777777777788888033333333000333333330FFF
-              F777777777777777777777777777777777777777777777777777777777788880
-              333333333000333333330FFFFF77777777777777777777777777777777777777
-              7777777777777777778888803333333330003333333330FFFFF7777777777777
-              7777777777777777777777777777777777777777788888033333333330003333
-              3333330FFFFF7777777777777777777777777777777777777777777777777777
-              8888803333333333300033333333330FFFFFF777777777777777777777777777
-              77777777777777777777777788888033333333333000333333333330FFFFFF77
-              7777777777777777777777777777777777777777777777FF8888033333333333
-              30003333333333330FFFFFF77777777777777777777777777777777777777777
-              77777FFF8880333333333333300033333333333330FFFFFF7777777777777777
-              7777777777777777777777777777FFFFFF033333333333333000333333333333
-              330FFFFFF777777777777777777777777777777777777777777FFFFFF0333333
-              3333333330003333333333333330FFFFFFF77777777777777777777777777777
-              777777777FFFFFFF0333333333333333300033333333333333330FFFFFFF7777
-              77777777777777777777777777777777FFFFFFF0333333333333333330003333
-              333333333333300FFFFFFF77777777777777777777777777777777FFFFFFF003
-              3333333333333333300033333333333333333330FFFFFFFF7777777777777777
-              777777777777FFFFFFFF03333333333333333333300033333333333333333333
-              00FFFFFFFF777777777777777777777777FFFFFFFF0033333333333333333333
-              300033333333333333333333330FFFFFFFFFF777777777777777777FFFFFFFFF
-              F0333333333333333333333330003333333333333333333333300FFFFFFFFFFF
-              F7777777777FFFFFFFFFFFF00333333333333333333333333000333333333333
-              3333333333333000FFFFFFFFFFFFFFFFFFFFFFFFFFFF00033333333333333333
-              3333333330003333333333333333333333333333000FFFFFFFFFFFFFFFFFFFFF
-              F000333333333333333333333333333330003333333333333333333333333333
-              3330000FFFFFFFFFFFFFF0000333333333333333333333333333333330003333
-              3333333333333333333333333333333000000000000003333333333333333333
-              3333333333333333300033333333333333333333333333333333333333333333
-              33333333333333333333333333333333333333333000}
-            HandleImage.Data = {
-              BE000000424DBE00000000000000760000002800000009000000090000000100
-              0400000000004800000000000000000000001000000000000000000000000000
-              80000080000000808000800000008000800080800000C0C0C000808080000000
-              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
-              0000333000333000000033099903300000003099999030000000309999903000
-              0000307999903000000033077903300000003330003330000000333333333000
-              0000}
-            OnChange = vrwhlWindDirecChange
-          end
-          object lblWindDirection: TLabel
-            Left = 313
-            Top = 319
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object Label6: TLabel
-            Left = 345
-            Top = 317
-            Width = 50
-            Height = 21
-            Caption = 'Degree'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-        end
-        object AdvSmoothPanel3: TAdvSmoothPanel
-          Left = 1348
-          Top = 473
-          Width = 436
-          Height = 377
-          Cursor = crDefault
-          Caption.Location = plTopCenter
-          Caption.HatchStyle = HatchStyleDiagonalBrick
-          Caption.HTMLFont.Charset = DEFAULT_CHARSET
-          Caption.HTMLFont.Color = clWindowText
-          Caption.HTMLFont.Height = -13
-          Caption.HTMLFont.Name = 'Tahoma'
-          Caption.HTMLFont.Style = []
-          Caption.Font.Charset = DEFAULT_CHARSET
-          Caption.Font.Color = clWindowText
-          Caption.Font.Height = -16
-          Caption.Font.Name = 'Tahoma'
-          Caption.Font.Style = [fsBold]
-          Caption.Top = 20
-          Caption.ColorStart = clWhite
-          Caption.ColorEnd = clWhite
-          Caption.GradientType = gtHorizontal
-          Caption.LineColor = clBlack
-          Caption.Line = False
-          Fill.Color = 7301478
-          Fill.ColorTo = 10066329
-          Fill.ColorMirror = 10066329
-          Fill.ColorMirrorTo = 7301478
-          Fill.GradientType = gtVertical
-          Fill.GradientMirrorType = gtVertical
-          Fill.BorderColor = clSilver
-          Fill.BorderWidth = 5
-          Fill.Rounding = 10
-          Fill.ShadowColor = clNone
-          Fill.ShadowOffset = 10
-          Fill.Glow = gmNone
-          Version = '1.6.0.1'
-          Anchors = [akTop, akRight]
-          TabOrder = 2
-          TMSStyle = 0
-          object Label1: TLabel
-            Left = 156
-            Top = 66
-            Width = 116
-            Height = 17
-            Caption = 'Current Direction'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Segoe UI Symbol'
-            Font.Style = [fsBold]
-            ParentFont = False
-            Transparent = True
-          end
-          object vrwhlSeaDirection: TVrWheel
-            Tag = 9
-            Left = 118
-            Top = 118
-            Width = 85
-            Height = 85
-            MaxValue = 360
-            Position = 180
-            BackImage.Data = {
-              120F0000424D120F000000000000760000002800000055000000550000000100
-              0400000000009C0E000000000000000000001000000000000000000000000000
-              80000080000000808000800000008000800080800000C0C0C000808080000000
-              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-              3333333333333333333333333333333333333333333333333333333333333333
-              3333333330003333333333333333333333333333333333333333333333333333
-              3333333333333333333333333333333330003333333333333333333333333333
-              3333333333333333333333333333333333333333333333333333333330003333
-              3333333333333333333333333333333333333333333333333333333333333333
-              3333333333333333300033333333333333333333333333333333333000000000
-              0000033333333333333333333333333333333333300033333333333333333333
-              3333333333300008888888888888800003333333333333333333333333333333
-              3000333333333333333333333333333300088888888888888888888880003333
-              3333333333333333333333333000333333333333333333333333300088888888
-              8888888888888888888800033333333333333333333333333000333333333333
-              3333333333300888888888887777777777778888888888800333333333333333
-              3333333330003333333333333333333333088888888877777777777777777777
-              8888888880333333333333333333333330003333333333333333333300888888
-              8777777777777777777777777778888888003333333333333333333330003333
-              3333333333333330888888877777777777777777777777777777788888880333
-              3333333333333333300033333333333333333008888887777777777777777777
-              7777777777777778888880033333333333333333300033333333333333330888
-              8887777777777777777777777777777777777777788888803333333333333333
-              3000333333333333333088888877777777777777777777777777777777777777
-              7788888803333333333333333000333333333333330888887777777777777777
-              7777777777777777777777777777888880333333333333333000333333333333
-              30F8888777777777777777777777777777777777777777777777788888033333
-              3333333330003333333333330FF8887777777777777777777777777777777777
-              777777777777778888803333333333333000333333333330FFFFF77777777777
-              7777777777777777777777777777777777777778888803333333333330003333
-              3333330FFFFF7777777777777777777777777777777777777777777777777777
-              8888803333333333300033333333330FFFF77777777777777777777777777777
-              777777777777777777777777788880333333333330003333333330FFFF777777
-              7777777777777777777777777777777777777777777777777788880333333333
-              3000333333330FFFF77777777777777777777777777777777777777777777777
-              7777777777788880333333333000333333330FFFF77777777777777777777777
-              777777777777777777777777777777777778888033333333300033333330FFFF
-              7777777777777777777777777777777777777777777777777777777777778888
-              0333333330003333330FFFF77777777777777777777777777777777777777777
-              7777777777777777777778888033333330003333330FFFF77777777777777777
-              7777777777777777777777777777777777777777777778888033333330003333
-              30FFFF7777777777777777777777777777777777777777777777777777777777
-              77777788880333333000333330FFFF7777777777777777777777777777777777
-              77777777777777777777777777777788880333333000333330FFF77777777777
-              7777777777777777777777777777777777777777777777777777777888033333
-              300033330FFFF777777777777777777777777777777777777777777777777777
-              777777777777777888803333300033330FFF7777777777777777777777777777
-              777777777777777777777777777777777777777788803333300033330FFF7777
-              7777777777777777777777777777777777777777777777777777777777777777
-              8880333330003330FFFF77777777777777777777777777777777777777777777
-              7777777777777777777777778888033330003330FFF777777777777777777777
-              7777777777777777777777777777777777777777777777777888033330003330
-              FFF7777777777777777777777777777777777777777777777777777777777777
-              777777777888033330003330FFF7777777777777777777777777777777777777
-              77777777777777777777777777777777788803333000330FFFF7777777777777
-              7777777777777777777777777777777777777777777777777777777778888033
-              3000330FFF777777777777777777777777777777777777777777777777777777
-              7777777777777777778880333000330FFF777777777777777777777777777777
-              7777777777777777777777777777777777777777778880333000330FFF777777
-              7777777777777777777777777777777777777777777777777777777777777777
-              778880333000330FFF7777777777777777777777777777777777777777777777
-              777777777777777777777777778880333000330FFF7777777777777777777777
-              777777777777777777777777777777777777777777777777778880333000330F
-              FF77777777777777777777777777777777777777777777777777777777777777
-              77777777778880333000330FFF77777777777777777777777777777777777777
-              77777777777777777777777777777777778880333000330FFF77777777777777
-              7777777777777777777777777777777777777777777777777777777777888033
-              3000330FFF777777777777777777777777777777777777777777777777777777
-              7777777777777777778880333000330FFF777777777777777777777777777777
-              7777777777777777777777777777777777777777778880333000330FFF777777
-              7777777777777777777777777777777777777777777777777777777777777777
-              778880333000330FFFF777777777777777777777777777777777777777777777
-              777777777777777777777777788880333000330FFFF777777777777777777777
-              7777777777777777777777777777777777777777777777777888803330003330
-              FFF7777777777777777777777777777777777777777777777777777777777777
-              777777777888033330003330FFF7777777777777777777777777777777777777
-              777777777777777777777777777777777888033330003330FFFF777777777777
-              7777777777777777777777777777777777777777777777777777777788880333
-              30003330FFFF7777777777777777777777777777777777777777777777777777
-              777777777777777788880333300033330FFF7777777777777777777777777777
-              777777777777777777777777777777777777777788803333300033330FFFF777
-              7777777777777777777777777777777777777777777777777777777777777778
-              88803333300033330FFFF7777777777777777777777777777777777777777777
-              777777777777777777777778888033333000333330FFFF777777777777777777
-              7777777777777777777777777777777777777777777777888803333330003333
-              30FFFF7777777777777777777777777777777777777777777777777777777777
-              77777788880333333000333330FFFFF777777777777777777777777777777777
-              777777777777777777777777777778888803333330003333330FFFF777777777
-              7777777777777777777777777777777777777777777777777777788880333333
-              30003333330FFFFF777777777777777777777777777777777777777777777777
-              777777777777888880333333300033333330FFFFF77777777777777777777777
-              7777777777777777777777777777777777788888033333333000333333330FFF
-              F777777777777777777777777777777777777777777777777777777777788880
-              333333333000333333330FFFFF77777777777777777777777777777777777777
-              7777777777777777778888803333333330003333333330FFFFF7777777777777
-              7777777777777777777777777777777777777777788888033333333330003333
-              3333330FFFFF7777777777777777777777777777777777777777777777777777
-              8888803333333333300033333333330FFFFFF777777777777777777777777777
-              77777777777777777777777788888033333333333000333333333330FFFFFF77
-              7777777777777777777777777777777777777777777777FF8888033333333333
-              30003333333333330FFFFFF77777777777777777777777777777777777777777
-              77777FFF8880333333333333300033333333333330FFFFFF7777777777777777
-              7777777777777777777777777777FFFFFF033333333333333000333333333333
-              330FFFFFF777777777777777777777777777777777777777777FFFFFF0333333
-              3333333330003333333333333330FFFFFFF77777777777777777777777777777
-              777777777FFFFFFF0333333333333333300033333333333333330FFFFFFF7777
-              77777777777777777777777777777777FFFFFFF0333333333333333330003333
-              333333333333300FFFFFFF77777777777777777777777777777777FFFFFFF003
-              3333333333333333300033333333333333333330FFFFFFFF7777777777777777
-              777777777777FFFFFFFF03333333333333333333300033333333333333333333
-              00FFFFFFFF777777777777777777777777FFFFFFFF0033333333333333333333
-              300033333333333333333333330FFFFFFFFFF777777777777777777FFFFFFFFF
-              F0333333333333333333333330003333333333333333333333300FFFFFFFFFFF
-              F7777777777FFFFFFFFFFFF00333333333333333333333333000333333333333
-              3333333333333000FFFFFFFFFFFFFFFFFFFFFFFFFFFF00033333333333333333
-              3333333330003333333333333333333333333333000FFFFFFFFFFFFFFFFFFFFF
-              F000333333333333333333333333333330003333333333333333333333333333
-              3330000FFFFFFFFFFFFFF0000333333333333333333333333333333330003333
-              3333333333333333333333333333333000000000000003333333333333333333
-              3333333333333333300033333333333333333333333333333333333333333333
-              33333333333333333333333333333333333333333000}
-            HandleImage.Data = {
-              BE000000424DBE00000000000000760000002800000009000000090000000100
-              0400000000004800000000000000000000001000000000000000000000000000
-              80000080000000808000800000008000800080800000C0C0C000808080000000
-              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
-              0000333000333000000033099903300000003099999030000000309999903000
-              0000307999903000000033077903300000003330003330000000333333333000
-              0000}
-            OnChange = vrwhlSeaDirectionChange
-          end
-          object Label2: TLabel
-            Left = 345
-            Top = 321
-            Width = 50
-            Height = 21
-            Caption = 'Degree'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Segoe UI'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-          object lblCurrentDirection: TLabel
-            Left = 313
-            Top = 322
-            Width = 9
-            Height = 19
-            Caption = '0'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -16
-            Font.Name = 'Consolas'
-            Font.Style = []
-            ParentFont = False
-            Transparent = True
-          end
-        end
       end
     end
     object pnlController: TPanel
@@ -226408,7 +225315,7 @@ object frmGameController: TfrmGameController
                   object lblStartSUT: TLabel
                     Left = 669
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -226434,7 +225341,7 @@ object frmGameController: TfrmGameController
                   object lblEndSUT: TLabel
                     Left = 669
                     Top = 492
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -226460,7 +225367,7 @@ object frmGameController: TfrmGameController
                   object lblMinSUT: TLabel
                     Left = 988
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -226473,7 +225380,7 @@ object frmGameController: TfrmGameController
                   object lblMaxSUT: TLabel
                     Left = 988
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -227265,7 +226172,7 @@ object frmGameController: TfrmGameController
                   object lblStartAsroc: TLabel
                     Left = 673
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -227291,7 +226198,7 @@ object frmGameController: TfrmGameController
                   object lblEndAsroc: TLabel
                     Left = 673
                     Top = 484
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -227317,7 +226224,7 @@ object frmGameController: TfrmGameController
                   object lblMinAsroc: TLabel
                     Left = 992
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -227330,7 +226237,7 @@ object frmGameController: TfrmGameController
                   object lblMaxAsroc: TLabel
                     Left = 992
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228072,7 +226979,7 @@ object frmGameController: TfrmGameController
                   object lblStartRBU: TLabel
                     Left = 665
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228098,7 +227005,7 @@ object frmGameController: TfrmGameController
                   object lblEndRBU: TLabel
                     Left = 665
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228124,7 +227031,7 @@ object frmGameController: TfrmGameController
                   object lblMinRBU: TLabel
                     Left = 984
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228137,7 +227044,7 @@ object frmGameController: TfrmGameController
                   object lblMaxRBU: TLabel
                     Left = 984
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228933,7 +227840,7 @@ object frmGameController: TfrmGameController
                   object lblStartA244s: TLabel
                     Left = 664
                     Top = 453
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228946,7 +227853,7 @@ object frmGameController: TfrmGameController
                   object lblEndA244s: TLabel
                     Left = 664
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228985,7 +227892,7 @@ object frmGameController: TfrmGameController
                   object lblMinA244s: TLabel
                     Left = 983
                     Top = 453
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -228998,7 +227905,7 @@ object frmGameController: TfrmGameController
                   object lblMaxA244s: TLabel
                     Left = 983
                     Top = 485
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229760,7 +228667,7 @@ object frmGameController: TfrmGameController
                   object lblStartCannon76: TLabel
                     Left = 675
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229786,7 +228693,7 @@ object frmGameController: TfrmGameController
                   object lblEndCannon76: TLabel
                     Left = 675
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229812,7 +228719,7 @@ object frmGameController: TfrmGameController
                   object lblMinCannon76: TLabel
                     Left = 994
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -229825,7 +228732,7 @@ object frmGameController: TfrmGameController
                   object lblMaxCannon76: TLabel
                     Left = 994
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230369,7 +229276,7 @@ object frmGameController: TfrmGameController
                   object lblStartTetral: TLabel
                     Left = 667
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230382,7 +229289,7 @@ object frmGameController: TfrmGameController
                   object lblEndTetral: TLabel
                     Left = 667
                     Top = 488
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230421,7 +229328,7 @@ object frmGameController: TfrmGameController
                   object lblMinTetral: TLabel
                     Left = 986
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230434,7 +229341,7 @@ object frmGameController: TfrmGameController
                   object lblMaxTetral: TLabel
                     Left = 986
                     Top = 484
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230924,7 +229831,7 @@ object frmGameController: TfrmGameController
                   object lblStartMistral: TLabel
                     Left = 675
                     Top = 451
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230950,7 +229857,7 @@ object frmGameController: TfrmGameController
                   object lblEndMistral: TLabel
                     Left = 675
                     Top = 487
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230976,7 +229883,7 @@ object frmGameController: TfrmGameController
                   object lblMinMistral: TLabel
                     Left = 994
                     Top = 451
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -230989,7 +229896,7 @@ object frmGameController: TfrmGameController
                   object lblMaxMistral: TLabel
                     Left = 994
                     Top = 483
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231479,7 +230386,7 @@ object frmGameController: TfrmGameController
                   object lblStartStrella: TLabel
                     Left = 665
                     Top = 454
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231505,7 +230412,7 @@ object frmGameController: TfrmGameController
                   object lblEndStrella: TLabel
                     Left = 665
                     Top = 486
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231531,7 +230438,7 @@ object frmGameController: TfrmGameController
                   object lblMinStrella: TLabel
                     Left = 984
                     Top = 452
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -231544,7 +230451,7 @@ object frmGameController: TfrmGameController
                   object lblMaxStrella: TLabel
                     Left = 984
                     Top = 486
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232146,7 +231053,7 @@ object frmGameController: TfrmGameController
                   object lblStartMM40: TLabel
                     Left = 661
                     Top = 456
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232172,7 +231079,7 @@ object frmGameController: TfrmGameController
                   object lblEndMM40: TLabel
                     Left = 661
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232198,7 +231105,7 @@ object frmGameController: TfrmGameController
                   object lblMinMM40: TLabel
                     Left = 980
                     Top = 454
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -232211,7 +231118,7 @@ object frmGameController: TfrmGameController
                   object lblMaxMM40: TLabel
                     Left = 980
                     Top = 489
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233069,7 +231976,7 @@ object frmGameController: TfrmGameController
                   object lblcoorXyakhont: TLabel
                     Left = 195
                     Top = 187
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233082,7 +231989,7 @@ object frmGameController: TfrmGameController
                   object lblcoorYyakhont: TLabel
                     Left = 195
                     Top = 220
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233117,7 +232024,7 @@ object frmGameController: TfrmGameController
                   object lblStartYakhont: TLabel
                     Left = 657
                     Top = 457
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233130,7 +232037,7 @@ object frmGameController: TfrmGameController
                   object lblEndYakhont: TLabel
                     Left = 657
                     Top = 490
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233169,7 +232076,7 @@ object frmGameController: TfrmGameController
                   object lblMinYakhont: TLabel
                     Left = 976
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233182,7 +232089,7 @@ object frmGameController: TfrmGameController
                   object lblMaxYakhont: TLabel
                     Left = 976
                     Top = 490
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233691,7 +232598,7 @@ object frmGameController: TfrmGameController
                   object lblKoorYc802: TLabel
                     Left = 200
                     Top = 248
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233704,7 +232611,7 @@ object frmGameController: TfrmGameController
                   object lblkoorXc802: TLabel
                     Left = 200
                     Top = 214
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233739,7 +232646,7 @@ object frmGameController: TfrmGameController
                   object lblStartDegC802: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233765,7 +232672,7 @@ object frmGameController: TfrmGameController
                   object lblEndDegC802: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233791,7 +232698,7 @@ object frmGameController: TfrmGameController
                   object lblMinRangeC802: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -233817,7 +232724,7 @@ object frmGameController: TfrmGameController
                   object lblMaxRangeC802: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -234132,7 +233039,7 @@ object frmGameController: TfrmGameController
                   object lblStartAK230: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -234158,7 +233065,7 @@ object frmGameController: TfrmGameController
                   object lblEndAK230: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -234184,7 +233091,7 @@ object frmGameController: TfrmGameController
                   object lblMinAK230: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -234210,7 +233117,7 @@ object frmGameController: TfrmGameController
                   object lblMaxAK230: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -234878,7 +233785,7 @@ object frmGameController: TfrmGameController
                   object lblStartVlMica: TLabel
                     Left = 659
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -234904,7 +233811,7 @@ object frmGameController: TfrmGameController
                   object lblEndVlMica: TLabel
                     Left = 659
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -234930,7 +233837,7 @@ object frmGameController: TfrmGameController
                   object lblMinVlMica: TLabel
                     Left = 978
                     Top = 455
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -234956,7 +233863,7 @@ object frmGameController: TfrmGameController
                   object lblMaxVlMica: TLabel
                     Left = 978
                     Top = 491
-                    Width = 5
+                    Width = 4
                     Height = 13
                     Caption = '-'
                     Font.Charset = DEFAULT_CHARSET
@@ -256997,6 +255904,1099 @@ object frmGameController: TfrmGameController
           OnChange = lvClientChange
           OnCustomDrawSubItem = lvClientCustomDrawSubItem
           OnMouseDown = lvClientMouseDown
+        end
+      end
+    end
+    object pnlEnvironment: TPanel
+      Left = 0
+      Top = 0
+      Width = 1923
+      Height = 911
+      Align = alClient
+      BevelOuter = bvNone
+      Color = clMedGray
+      TabOrder = 3
+      object lblPortEnv: TLabel
+        Left = 331
+        Top = 96
+        Width = 3
+        Height = 13
+        Caption = '-'
+        Transparent = True
+      end
+      object AdvSmoothPanel6: TAdvSmoothPanel
+        Left = 0
+        Top = 0
+        Width = 1923
+        Height = 911
+        Cursor = crDefault
+        Caption.Location = plTopCenter
+        Caption.HatchStyle = HatchStyleDiagonalBrick
+        Caption.HTMLFont.Charset = DEFAULT_CHARSET
+        Caption.HTMLFont.Color = clWindowText
+        Caption.HTMLFont.Height = -13
+        Caption.HTMLFont.Name = 'Tahoma'
+        Caption.HTMLFont.Style = []
+        Caption.Font.Charset = DEFAULT_CHARSET
+        Caption.Font.Color = clWindowText
+        Caption.Font.Height = -16
+        Caption.Font.Name = 'Tahoma'
+        Caption.Font.Style = [fsBold]
+        Caption.Top = 20
+        Caption.ColorStart = clWhite
+        Caption.ColorEnd = clWhite
+        Caption.GradientType = gtHorizontal
+        Caption.LineColor = clBlack
+        Caption.Line = False
+        Fill.Color = 7301478
+        Fill.ColorTo = 10066329
+        Fill.ColorMirror = 10066329
+        Fill.ColorMirrorTo = 7301478
+        Fill.GradientType = gtVertical
+        Fill.GradientMirrorType = gtVertical
+        Fill.BorderColor = clSilver
+        Fill.BorderWidth = 5
+        Fill.Rounding = 10
+        Fill.ShadowColor = clNone
+        Fill.ShadowOffset = 10
+        Fill.Glow = gmNone
+        Version = '1.6.0.1'
+        Align = alClient
+        TabOrder = 0
+        DesignSize = (
+          1923
+          911)
+        TMSStyle = 0
+        object AdvSmoothPanel5: TAdvSmoothPanel
+          Left = 139
+          Top = 62
+          Width = 1072
+          Height = 788
+          Cursor = crDefault
+          Caption.Location = plTopCenter
+          Caption.HatchStyle = HatchStyleDiagonalBrick
+          Caption.HTMLFont.Charset = DEFAULT_CHARSET
+          Caption.HTMLFont.Color = clWindowText
+          Caption.HTMLFont.Height = -13
+          Caption.HTMLFont.Name = 'Tahoma'
+          Caption.HTMLFont.Style = []
+          Caption.Font.Charset = DEFAULT_CHARSET
+          Caption.Font.Color = clWindowText
+          Caption.Font.Height = -16
+          Caption.Font.Name = 'Tahoma'
+          Caption.Font.Style = [fsBold]
+          Caption.Top = 20
+          Caption.ColorStart = clWhite
+          Caption.ColorEnd = clWhite
+          Caption.GradientType = gtHorizontal
+          Caption.LineColor = clBlack
+          Caption.Line = False
+          Fill.Color = 7301478
+          Fill.ColorTo = 10066329
+          Fill.ColorMirror = 10066329
+          Fill.ColorMirrorTo = 7301478
+          Fill.GradientType = gtVertical
+          Fill.GradientMirrorType = gtVertical
+          Fill.BorderColor = clSilver
+          Fill.BorderWidth = 5
+          Fill.Rounding = 10
+          Fill.ShadowColor = clNone
+          Fill.ShadowOffset = 10
+          Fill.Glow = gmNone
+          Fill.GlowGradientColor = 7301478
+          Fill.GlowRadialColor = 7301478
+          Version = '1.6.0.1'
+          Anchors = [akTop, akRight]
+          TabOrder = 0
+          TMSStyle = 0
+          object Label8: TLabel
+            Left = 58
+            Top = 140
+            Width = 62
+            Height = 18
+            Caption = 'Sea State'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label9: TLabel
+            Left = 58
+            Top = 228
+            Width = 80
+            Height = 18
+            Caption = 'Wind Speed'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label10: TLabel
+            Left = 58
+            Top = 316
+            Width = 93
+            Height = 18
+            Caption = 'Current Speed'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label11: TLabel
+            Left = 58
+            Top = 404
+            Width = 86
+            Height = 18
+            Caption = 'Temperature'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label12: TLabel
+            Left = 58
+            Top = 492
+            Width = 129
+            Height = 18
+            Caption = 'Barometer Pressure'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label13: TLabel
+            Left = 58
+            Top = 580
+            Width = 60
+            Height = 18
+            Caption = 'Humidity'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label14: TLabel
+            Left = 58
+            Top = 668
+            Width = 82
+            Height = 18
+            Caption = 'Fog Intensity'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label21: TLabel
+            Left = 954
+            Top = 142
+            Width = 35
+            Height = 15
+            Caption = 'State'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label22: TLabel
+            Left = 954
+            Top = 229
+            Width = 35
+            Height = 15
+            Caption = 'Knots'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label23: TLabel
+            Left = 954
+            Top = 317
+            Width = 35
+            Height = 15
+            Caption = 'Knots'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label24: TLabel
+            Left = 954
+            Top = 405
+            Width = 49
+            Height = 15
+            Caption = 'Celcius'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label25: TLabel
+            Left = 954
+            Top = 493
+            Width = 49
+            Height = 15
+            Caption = 'MiliBar'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label26: TLabel
+            Left = 954
+            Top = 581
+            Width = 42
+            Height = 15
+            Caption = 'Persen'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label27: TLabel
+            Left = 954
+            Top = 669
+            Width = 28
+            Height = 15
+            Caption = 'Feet'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+            Visible = False
+          end
+          object Label28: TLabel
+            Left = 58
+            Top = 79
+            Width = 39
+            Height = 18
+            Caption = 'Port :'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Berlin Sans FB Demi'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+          object grpSeaState: TGroupBox
+            Left = 213
+            Top = 120
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 0
+            object tbSeaState: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 5
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              OnChange = tbSeaStateChange
+              TabOrder = 0
+              OnMouseUp = tbSeaStateMouseUp
+            end
+          end
+          object GroupBox2: TGroupBox
+            Left = 213
+            Top = 208
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 1
+            object tbWindSpeed: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 50
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              OnChange = tbWindSpeedChange
+              TabOrder = 0
+              OnMouseUp = tbWindSpeedMouseUp
+            end
+          end
+          object grpCurrentSpeed: TGroupBox
+            Left = 213
+            Top = 296
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
+            object tbSeaSpeed: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 50
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbSeaSpeedMouseUp
+            end
+          end
+          object GroupBox4: TGroupBox
+            Left = 213
+            Top = 384
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 3
+            object tbTemp: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbTempMouseUp
+            end
+          end
+          object GroupBox5: TGroupBox
+            Left = 213
+            Top = 472
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 4
+            object tbBaroPressure: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 5000
+              Position = 1
+              Frequency = 100
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbBaroPressureMouseUp
+            end
+          end
+          object GroupBox6: TGroupBox
+            Left = 213
+            Top = 648
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 5
+            object tbFogIntensity: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              MaxValue = 3
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              OnChange = tbFogIntensityChange
+              TabOrder = 0
+              OnMouseUp = tbFogIntensityMouseUp
+            end
+          end
+          object GroupBox7: TGroupBox
+            Left = 213
+            Top = 560
+            Width = 637
+            Height = 58
+            DragKind = dkDock
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlack
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 6
+            object tbHumidity: TVrTrackBar
+              Left = 12
+              Top = 15
+              Width = 614
+              Height = 28
+              Frequency = 1
+              GutterBevel.InnerShadow = clBtnShadow
+              GutterBevel.InnerHighlight = clBtnHighlight
+              GutterBevel.InnerWidth = 1
+              GutterBevel.InnerStyle = bsNone
+              GutterBevel.InnerSpace = 0
+              GutterBevel.InnerColor = clBtnFace
+              GutterBevel.OuterShadow = clBtnShadow
+              GutterBevel.OuterHighlight = clBtnHighlight
+              GutterBevel.OuterStyle = bsLowered
+              GutterBevel.OuterOutline = osNone
+              TabOrder = 0
+              OnMouseUp = tbHumidityMouseUp
+            end
+          end
+          object edtPortCurrentSpeed: TEdit
+            Left = 886
+            Top = 314
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 2
+            NumbersOnly = True
+            TabOrder = 7
+            OnKeyPress = edtPortCurrentSpeedKeyPress
+          end
+          object edtPortTemp: TEdit
+            Left = 886
+            Top = 402
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 3
+            NumbersOnly = True
+            TabOrder = 8
+            OnKeyPress = edtPortTempKeyPress
+          end
+          object edtPortBarometer: TEdit
+            Left = 886
+            Top = 490
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 4
+            NumbersOnly = True
+            TabOrder = 9
+            OnKeyPress = edtPortBarometerKeyPress
+          end
+          object edtPortHumidity: TEdit
+            Left = 886
+            Top = 578
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 3
+            NumbersOnly = True
+            TabOrder = 10
+            OnKeyPress = edtPortHumidityKeyPress
+          end
+          object edtFogIntensity: TEdit
+            Left = 886
+            Top = 666
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 1
+            NumbersOnly = True
+            TabOrder = 11
+            OnKeyPress = edtFogIntensityKeyPress
+          end
+          object edtPortSeaState: TEdit
+            Left = 886
+            Top = 139
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 1
+            NumbersOnly = True
+            TabOrder = 12
+            OnKeyPress = edtPortSeaStateKeyPress
+          end
+          object edtPortWindSpeed: TEdit
+            Left = 886
+            Top = 227
+            Width = 45
+            Height = 21
+            Alignment = taCenter
+            BevelInner = bvLowered
+            BevelKind = bkTile
+            MaxLength = 2
+            NumbersOnly = True
+            TabOrder = 13
+            OnKeyPress = edtPortWindSpeedKeyPress
+          end
+        end
+        object AdvSmoothPanel4: TAdvSmoothPanel
+          Left = 1348
+          Top = 62
+          Width = 436
+          Height = 377
+          Cursor = crDefault
+          Caption.Location = plTopCenter
+          Caption.HatchStyle = HatchStyleDiagonalBrick
+          Caption.HTMLFont.Charset = DEFAULT_CHARSET
+          Caption.HTMLFont.Color = clWindowText
+          Caption.HTMLFont.Height = -13
+          Caption.HTMLFont.Name = 'Tahoma'
+          Caption.HTMLFont.Style = []
+          Caption.Font.Charset = DEFAULT_CHARSET
+          Caption.Font.Color = clWindowText
+          Caption.Font.Height = -16
+          Caption.Font.Name = 'Tahoma'
+          Caption.Font.Style = [fsBold]
+          Caption.Top = 20
+          Caption.ColorStart = clWhite
+          Caption.ColorEnd = clWhite
+          Caption.GradientType = gtHorizontal
+          Caption.LineColor = clBlack
+          Caption.Line = False
+          Fill.Color = 7301478
+          Fill.ColorTo = 10066329
+          Fill.ColorMirror = 10066329
+          Fill.ColorMirrorTo = 7301478
+          Fill.GradientType = gtVertical
+          Fill.GradientMirrorType = gtVertical
+          Fill.BorderColor = clSilver
+          Fill.BorderWidth = 5
+          Fill.Rounding = 10
+          Fill.ShadowColor = clNone
+          Fill.ShadowOffset = 10
+          Fill.Glow = gmNone
+          Version = '1.6.0.1'
+          Anchors = [akTop, akRight]
+          TabOrder = 1
+          TMSStyle = 0
+          object Label4: TLabel
+            Left = 156
+            Top = 63
+            Width = 100
+            Height = 17
+            Caption = 'Wind Direction'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Segoe UI Symbol'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+          object vrwhlWindDirec: TVrWheel
+            Tag = 9
+            Left = 108
+            Top = 117
+            Width = 85
+            Height = 85
+            MaxValue = 360
+            Position = 180
+            BackImage.Data = {
+              120F0000424D120F000000000000760000002800000055000000550000000100
+              0400000000009C0E000000000000000000001000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+              3333333333333333333333333333333333333333333333333333333333333333
+              3333333330003333333333333333333333333333333333333333333333333333
+              3333333333333333333333333333333330003333333333333333333333333333
+              3333333333333333333333333333333333333333333333333333333330003333
+              3333333333333333333333333333333333333333333333333333333333333333
+              3333333333333333300033333333333333333333333333333333333000000000
+              0000033333333333333333333333333333333333300033333333333333333333
+              3333333333300008888888888888800003333333333333333333333333333333
+              3000333333333333333333333333333300088888888888888888888880003333
+              3333333333333333333333333000333333333333333333333333300088888888
+              8888888888888888888800033333333333333333333333333000333333333333
+              3333333333300888888888887777777777778888888888800333333333333333
+              3333333330003333333333333333333333088888888877777777777777777777
+              8888888880333333333333333333333330003333333333333333333300888888
+              8777777777777777777777777778888888003333333333333333333330003333
+              3333333333333330888888877777777777777777777777777777788888880333
+              3333333333333333300033333333333333333008888887777777777777777777
+              7777777777777778888880033333333333333333300033333333333333330888
+              8887777777777777777777777777777777777777788888803333333333333333
+              3000333333333333333088888877777777777777777777777777777777777777
+              7788888803333333333333333000333333333333330888887777777777777777
+              7777777777777777777777777777888880333333333333333000333333333333
+              30F8888777777777777777777777777777777777777777777777788888033333
+              3333333330003333333333330FF8887777777777777777777777777777777777
+              777777777777778888803333333333333000333333333330FFFFF77777777777
+              7777777777777777777777777777777777777778888803333333333330003333
+              3333330FFFFF7777777777777777777777777777777777777777777777777777
+              8888803333333333300033333333330FFFF77777777777777777777777777777
+              777777777777777777777777788880333333333330003333333330FFFF777777
+              7777777777777777777777777777777777777777777777777788880333333333
+              3000333333330FFFF77777777777777777777777777777777777777777777777
+              7777777777788880333333333000333333330FFFF77777777777777777777777
+              777777777777777777777777777777777778888033333333300033333330FFFF
+              7777777777777777777777777777777777777777777777777777777777778888
+              0333333330003333330FFFF77777777777777777777777777777777777777777
+              7777777777777777777778888033333330003333330FFFF77777777777777777
+              7777777777777777777777777777777777777777777778888033333330003333
+              30FFFF7777777777777777777777777777777777777777777777777777777777
+              77777788880333333000333330FFFF7777777777777777777777777777777777
+              77777777777777777777777777777788880333333000333330FFF77777777777
+              7777777777777777777777777777777777777777777777777777777888033333
+              300033330FFFF777777777777777777777777777777777777777777777777777
+              777777777777777888803333300033330FFF7777777777777777777777777777
+              777777777777777777777777777777777777777788803333300033330FFF7777
+              7777777777777777777777777777777777777777777777777777777777777777
+              8880333330003330FFFF77777777777777777777777777777777777777777777
+              7777777777777777777777778888033330003330FFF777777777777777777777
+              7777777777777777777777777777777777777777777777777888033330003330
+              FFF7777777777777777777777777777777777777777777777777777777777777
+              777777777888033330003330FFF7777777777777777777777777777777777777
+              77777777777777777777777777777777788803333000330FFFF7777777777777
+              7777777777777777777777777777777777777777777777777777777778888033
+              3000330FFF777777777777777777777777777777777777777777777777777777
+              7777777777777777778880333000330FFF777777777777777777777777777777
+              7777777777777777777777777777777777777777778880333000330FFF777777
+              7777777777777777777777777777777777777777777777777777777777777777
+              778880333000330FFF7777777777777777777777777777777777777777777777
+              777777777777777777777777778880333000330FFF7777777777777777777777
+              777777777777777777777777777777777777777777777777778880333000330F
+              FF77777777777777777777777777777777777777777777777777777777777777
+              77777777778880333000330FFF77777777777777777777777777777777777777
+              77777777777777777777777777777777778880333000330FFF77777777777777
+              7777777777777777777777777777777777777777777777777777777777888033
+              3000330FFF777777777777777777777777777777777777777777777777777777
+              7777777777777777778880333000330FFF777777777777777777777777777777
+              7777777777777777777777777777777777777777778880333000330FFF777777
+              7777777777777777777777777777777777777777777777777777777777777777
+              778880333000330FFFF777777777777777777777777777777777777777777777
+              777777777777777777777777788880333000330FFFF777777777777777777777
+              7777777777777777777777777777777777777777777777777888803330003330
+              FFF7777777777777777777777777777777777777777777777777777777777777
+              777777777888033330003330FFF7777777777777777777777777777777777777
+              777777777777777777777777777777777888033330003330FFFF777777777777
+              7777777777777777777777777777777777777777777777777777777788880333
+              30003330FFFF7777777777777777777777777777777777777777777777777777
+              777777777777777788880333300033330FFF7777777777777777777777777777
+              777777777777777777777777777777777777777788803333300033330FFFF777
+              7777777777777777777777777777777777777777777777777777777777777778
+              88803333300033330FFFF7777777777777777777777777777777777777777777
+              777777777777777777777778888033333000333330FFFF777777777777777777
+              7777777777777777777777777777777777777777777777888803333330003333
+              30FFFF7777777777777777777777777777777777777777777777777777777777
+              77777788880333333000333330FFFFF777777777777777777777777777777777
+              777777777777777777777777777778888803333330003333330FFFF777777777
+              7777777777777777777777777777777777777777777777777777788880333333
+              30003333330FFFFF777777777777777777777777777777777777777777777777
+              777777777777888880333333300033333330FFFFF77777777777777777777777
+              7777777777777777777777777777777777788888033333333000333333330FFF
+              F777777777777777777777777777777777777777777777777777777777788880
+              333333333000333333330FFFFF77777777777777777777777777777777777777
+              7777777777777777778888803333333330003333333330FFFFF7777777777777
+              7777777777777777777777777777777777777777788888033333333330003333
+              3333330FFFFF7777777777777777777777777777777777777777777777777777
+              8888803333333333300033333333330FFFFFF777777777777777777777777777
+              77777777777777777777777788888033333333333000333333333330FFFFFF77
+              7777777777777777777777777777777777777777777777FF8888033333333333
+              30003333333333330FFFFFF77777777777777777777777777777777777777777
+              77777FFF8880333333333333300033333333333330FFFFFF7777777777777777
+              7777777777777777777777777777FFFFFF033333333333333000333333333333
+              330FFFFFF777777777777777777777777777777777777777777FFFFFF0333333
+              3333333330003333333333333330FFFFFFF77777777777777777777777777777
+              777777777FFFFFFF0333333333333333300033333333333333330FFFFFFF7777
+              77777777777777777777777777777777FFFFFFF0333333333333333330003333
+              333333333333300FFFFFFF77777777777777777777777777777777FFFFFFF003
+              3333333333333333300033333333333333333330FFFFFFFF7777777777777777
+              777777777777FFFFFFFF03333333333333333333300033333333333333333333
+              00FFFFFFFF777777777777777777777777FFFFFFFF0033333333333333333333
+              300033333333333333333333330FFFFFFFFFF777777777777777777FFFFFFFFF
+              F0333333333333333333333330003333333333333333333333300FFFFFFFFFFF
+              F7777777777FFFFFFFFFFFF00333333333333333333333333000333333333333
+              3333333333333000FFFFFFFFFFFFFFFFFFFFFFFFFFFF00033333333333333333
+              3333333330003333333333333333333333333333000FFFFFFFFFFFFFFFFFFFFF
+              F000333333333333333333333333333330003333333333333333333333333333
+              3330000FFFFFFFFFFFFFF0000333333333333333333333333333333330003333
+              3333333333333333333333333333333000000000000003333333333333333333
+              3333333333333333300033333333333333333333333333333333333333333333
+              33333333333333333333333333333333333333333000}
+            HandleImage.Data = {
+              BE000000424DBE00000000000000760000002800000009000000090000000100
+              0400000000004800000000000000000000001000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
+              0000333000333000000033099903300000003099999030000000309999903000
+              0000307999903000000033077903300000003330003330000000333333333000
+              0000}
+            OnChange = vrwhlWindDirecChange
+          end
+          object lblWindDirection: TLabel
+            Left = 313
+            Top = 319
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object Label6: TLabel
+            Left = 345
+            Top = 317
+            Width = 50
+            Height = 21
+            Caption = 'Degree'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+        end
+        object AdvSmoothPanel3: TAdvSmoothPanel
+          Left = 1348
+          Top = 473
+          Width = 436
+          Height = 377
+          Cursor = crDefault
+          Caption.Location = plTopCenter
+          Caption.HatchStyle = HatchStyleDiagonalBrick
+          Caption.HTMLFont.Charset = DEFAULT_CHARSET
+          Caption.HTMLFont.Color = clWindowText
+          Caption.HTMLFont.Height = -13
+          Caption.HTMLFont.Name = 'Tahoma'
+          Caption.HTMLFont.Style = []
+          Caption.Font.Charset = DEFAULT_CHARSET
+          Caption.Font.Color = clWindowText
+          Caption.Font.Height = -16
+          Caption.Font.Name = 'Tahoma'
+          Caption.Font.Style = [fsBold]
+          Caption.Top = 20
+          Caption.ColorStart = clWhite
+          Caption.ColorEnd = clWhite
+          Caption.GradientType = gtHorizontal
+          Caption.LineColor = clBlack
+          Caption.Line = False
+          Fill.Color = 7301478
+          Fill.ColorTo = 10066329
+          Fill.ColorMirror = 10066329
+          Fill.ColorMirrorTo = 7301478
+          Fill.GradientType = gtVertical
+          Fill.GradientMirrorType = gtVertical
+          Fill.BorderColor = clSilver
+          Fill.BorderWidth = 5
+          Fill.Rounding = 10
+          Fill.ShadowColor = clNone
+          Fill.ShadowOffset = 10
+          Fill.Glow = gmNone
+          Version = '1.6.0.1'
+          Anchors = [akTop, akRight]
+          TabOrder = 2
+          TMSStyle = 0
+          object Label1: TLabel
+            Left = 156
+            Top = 66
+            Width = 116
+            Height = 17
+            Caption = 'Current Direction'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Segoe UI Symbol'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = True
+          end
+          object vrwhlSeaDirection: TVrWheel
+            Tag = 9
+            Left = 118
+            Top = 118
+            Width = 85
+            Height = 85
+            MaxValue = 360
+            Position = 180
+            BackImage.Data = {
+              120F0000424D120F000000000000760000002800000055000000550000000100
+              0400000000009C0E000000000000000000001000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+              3333333333333333333333333333333333333333333333333333333333333333
+              3333333330003333333333333333333333333333333333333333333333333333
+              3333333333333333333333333333333330003333333333333333333333333333
+              3333333333333333333333333333333333333333333333333333333330003333
+              3333333333333333333333333333333333333333333333333333333333333333
+              3333333333333333300033333333333333333333333333333333333000000000
+              0000033333333333333333333333333333333333300033333333333333333333
+              3333333333300008888888888888800003333333333333333333333333333333
+              3000333333333333333333333333333300088888888888888888888880003333
+              3333333333333333333333333000333333333333333333333333300088888888
+              8888888888888888888800033333333333333333333333333000333333333333
+              3333333333300888888888887777777777778888888888800333333333333333
+              3333333330003333333333333333333333088888888877777777777777777777
+              8888888880333333333333333333333330003333333333333333333300888888
+              8777777777777777777777777778888888003333333333333333333330003333
+              3333333333333330888888877777777777777777777777777777788888880333
+              3333333333333333300033333333333333333008888887777777777777777777
+              7777777777777778888880033333333333333333300033333333333333330888
+              8887777777777777777777777777777777777777788888803333333333333333
+              3000333333333333333088888877777777777777777777777777777777777777
+              7788888803333333333333333000333333333333330888887777777777777777
+              7777777777777777777777777777888880333333333333333000333333333333
+              30F8888777777777777777777777777777777777777777777777788888033333
+              3333333330003333333333330FF8887777777777777777777777777777777777
+              777777777777778888803333333333333000333333333330FFFFF77777777777
+              7777777777777777777777777777777777777778888803333333333330003333
+              3333330FFFFF7777777777777777777777777777777777777777777777777777
+              8888803333333333300033333333330FFFF77777777777777777777777777777
+              777777777777777777777777788880333333333330003333333330FFFF777777
+              7777777777777777777777777777777777777777777777777788880333333333
+              3000333333330FFFF77777777777777777777777777777777777777777777777
+              7777777777788880333333333000333333330FFFF77777777777777777777777
+              777777777777777777777777777777777778888033333333300033333330FFFF
+              7777777777777777777777777777777777777777777777777777777777778888
+              0333333330003333330FFFF77777777777777777777777777777777777777777
+              7777777777777777777778888033333330003333330FFFF77777777777777777
+              7777777777777777777777777777777777777777777778888033333330003333
+              30FFFF7777777777777777777777777777777777777777777777777777777777
+              77777788880333333000333330FFFF7777777777777777777777777777777777
+              77777777777777777777777777777788880333333000333330FFF77777777777
+              7777777777777777777777777777777777777777777777777777777888033333
+              300033330FFFF777777777777777777777777777777777777777777777777777
+              777777777777777888803333300033330FFF7777777777777777777777777777
+              777777777777777777777777777777777777777788803333300033330FFF7777
+              7777777777777777777777777777777777777777777777777777777777777777
+              8880333330003330FFFF77777777777777777777777777777777777777777777
+              7777777777777777777777778888033330003330FFF777777777777777777777
+              7777777777777777777777777777777777777777777777777888033330003330
+              FFF7777777777777777777777777777777777777777777777777777777777777
+              777777777888033330003330FFF7777777777777777777777777777777777777
+              77777777777777777777777777777777788803333000330FFFF7777777777777
+              7777777777777777777777777777777777777777777777777777777778888033
+              3000330FFF777777777777777777777777777777777777777777777777777777
+              7777777777777777778880333000330FFF777777777777777777777777777777
+              7777777777777777777777777777777777777777778880333000330FFF777777
+              7777777777777777777777777777777777777777777777777777777777777777
+              778880333000330FFF7777777777777777777777777777777777777777777777
+              777777777777777777777777778880333000330FFF7777777777777777777777
+              777777777777777777777777777777777777777777777777778880333000330F
+              FF77777777777777777777777777777777777777777777777777777777777777
+              77777777778880333000330FFF77777777777777777777777777777777777777
+              77777777777777777777777777777777778880333000330FFF77777777777777
+              7777777777777777777777777777777777777777777777777777777777888033
+              3000330FFF777777777777777777777777777777777777777777777777777777
+              7777777777777777778880333000330FFF777777777777777777777777777777
+              7777777777777777777777777777777777777777778880333000330FFF777777
+              7777777777777777777777777777777777777777777777777777777777777777
+              778880333000330FFFF777777777777777777777777777777777777777777777
+              777777777777777777777777788880333000330FFFF777777777777777777777
+              7777777777777777777777777777777777777777777777777888803330003330
+              FFF7777777777777777777777777777777777777777777777777777777777777
+              777777777888033330003330FFF7777777777777777777777777777777777777
+              777777777777777777777777777777777888033330003330FFFF777777777777
+              7777777777777777777777777777777777777777777777777777777788880333
+              30003330FFFF7777777777777777777777777777777777777777777777777777
+              777777777777777788880333300033330FFF7777777777777777777777777777
+              777777777777777777777777777777777777777788803333300033330FFFF777
+              7777777777777777777777777777777777777777777777777777777777777778
+              88803333300033330FFFF7777777777777777777777777777777777777777777
+              777777777777777777777778888033333000333330FFFF777777777777777777
+              7777777777777777777777777777777777777777777777888803333330003333
+              30FFFF7777777777777777777777777777777777777777777777777777777777
+              77777788880333333000333330FFFFF777777777777777777777777777777777
+              777777777777777777777777777778888803333330003333330FFFF777777777
+              7777777777777777777777777777777777777777777777777777788880333333
+              30003333330FFFFF777777777777777777777777777777777777777777777777
+              777777777777888880333333300033333330FFFFF77777777777777777777777
+              7777777777777777777777777777777777788888033333333000333333330FFF
+              F777777777777777777777777777777777777777777777777777777777788880
+              333333333000333333330FFFFF77777777777777777777777777777777777777
+              7777777777777777778888803333333330003333333330FFFFF7777777777777
+              7777777777777777777777777777777777777777788888033333333330003333
+              3333330FFFFF7777777777777777777777777777777777777777777777777777
+              8888803333333333300033333333330FFFFFF777777777777777777777777777
+              77777777777777777777777788888033333333333000333333333330FFFFFF77
+              7777777777777777777777777777777777777777777777FF8888033333333333
+              30003333333333330FFFFFF77777777777777777777777777777777777777777
+              77777FFF8880333333333333300033333333333330FFFFFF7777777777777777
+              7777777777777777777777777777FFFFFF033333333333333000333333333333
+              330FFFFFF777777777777777777777777777777777777777777FFFFFF0333333
+              3333333330003333333333333330FFFFFFF77777777777777777777777777777
+              777777777FFFFFFF0333333333333333300033333333333333330FFFFFFF7777
+              77777777777777777777777777777777FFFFFFF0333333333333333330003333
+              333333333333300FFFFFFF77777777777777777777777777777777FFFFFFF003
+              3333333333333333300033333333333333333330FFFFFFFF7777777777777777
+              777777777777FFFFFFFF03333333333333333333300033333333333333333333
+              00FFFFFFFF777777777777777777777777FFFFFFFF0033333333333333333333
+              300033333333333333333333330FFFFFFFFFF777777777777777777FFFFFFFFF
+              F0333333333333333333333330003333333333333333333333300FFFFFFFFFFF
+              F7777777777FFFFFFFFFFFF00333333333333333333333333000333333333333
+              3333333333333000FFFFFFFFFFFFFFFFFFFFFFFFFFFF00033333333333333333
+              3333333330003333333333333333333333333333000FFFFFFFFFFFFFFFFFFFFF
+              F000333333333333333333333333333330003333333333333333333333333333
+              3330000FFFFFFFFFFFFFF0000333333333333333333333333333333330003333
+              3333333333333333333333333333333000000000000003333333333333333333
+              3333333333333333300033333333333333333333333333333333333333333333
+              33333333333333333333333333333333333333333000}
+            HandleImage.Data = {
+              BE000000424DBE00000000000000760000002800000009000000090000000100
+              0400000000004800000000000000000000001000000000000000000000000000
+              80000080000000808000800000008000800080800000C0C0C000808080000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333000
+              0000333000333000000033099903300000003099999030000000309999903000
+              0000307999903000000033077903300000003330003330000000333333333000
+              0000}
+            OnChange = vrwhlSeaDirectionChange
+          end
+          object Label2: TLabel
+            Left = 345
+            Top = 321
+            Width = 50
+            Height = 21
+            Caption = 'Degree'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object lblCurrentDirection: TLabel
+            Left = 313
+            Top = 322
+            Width = 9
+            Height = 19
+            Caption = '0'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Consolas'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
         end
       end
     end

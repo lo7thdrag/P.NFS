@@ -1891,7 +1891,7 @@ begin
             frmGameController.lblPortEnv.Caption         := DataModule1.GetPortNameNoById(RecEnvy.Scenario_Port);
             frmGameController.tbSeaState.Position        := Round(RecEnvy.Scenario_SeaState);
 
-            SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, frmGameController.tbSeaState.Position-1, 0,0,0,0) ;
+            SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, frmGameController.tbSeaState.Position, 0,0,0,0) ;
 
             frmGameController.tbWindSpeed.Position       := Round(RecEnvy.Scenario_WindSpeed);
             frmGameController.tbSeaSpeed.Position        := Round(RecEnvy.Scenario_CurrSpeed);
