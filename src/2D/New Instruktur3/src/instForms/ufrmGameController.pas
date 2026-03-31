@@ -268,16 +268,16 @@ type
     lbl72: TLabel;
     lbl71: TLabel;
     lbl70: TLabel;
-    lbl47: TLabel;
+    lblTargetID: TLabel;
     lbl34: TLabel;
     lbl33: TLabel;
     lbl32: TLabel;
-    lbl31: TLabel;
+    lblNM: TLabel;
     lbl12: TLabel;
     lbl104: TLabel;
     lbl105: TLabel;
-    lbl106: TLabel;
-    lbl107: TLabel;
+    lblRangeRBU: TLabel;
+    lblLauncher: TLabel;
     lbl108: TLabel;
     lbl109: TLabel;
     lbl76: TLabel;
@@ -6699,29 +6699,45 @@ if cbbRBUassigntment.ItemIndex = 0 then
 begin
    btnRBU6000Assign.Visible := False;
    btnRBU6000Auto.Visible   := True;
+   eRBUTargetID.Visible     := False;
+   lblTargetID.Visible      := False;
+   eRBU6000Bearing.Visible  := True;
+   lblLauncher.Visible      := True;
+   btnRBUsetPos.Visible     := True;
+
+//   eRBU6000Range.Visible    := False;
+//   lblRangeRBU.Visible      := False;
+//   lblNM.Visible            := False;
+
 //   Label16.Visible          := False;
-   eRBU6000Bearing.Visible  := False;
 //   Label36.Visible          := False;
-   eRBU6000Range.Visible    := False;
-   lbl47.Visible            := True;
-   eRBUTargetID.Visible     := True;
-   lbl47.Left               := 26;
-   lbl47.Top                := 34;
-   eRBUTargetID.Left        := 161;
-   eRBUTargetID.Top         := 34;
-   lbl31.Visible            := False;
+//   lbl47.Left               := 26;
+//   lbl47.Top                := 34;
+//   eRBUTargetID.Left        := 161;
+//   eRBUTargetID.Top         := 34;
 end
 else if cbbRBUassigntment.ItemIndex = 1 then
 begin
    btnRBU6000Assign.Visible := True;
    btnRBU6000Auto.Visible   := False;
+   eRBUTargetID.Visible     := True;
+   lblTargetID.Visible      := True;
+   eRBU6000Bearing.Visible  := False;
+   lblLauncher.Visible      := False;
+   btnRBUsetPos.Visible     := False;
+
+//   eRBU6000Range.Visible    := True;
+//   lblRangeRBU.Visible      := True;
+//   lblNM.Visible            := True;
+
+//   eRBU6000Bearing.Visible  := True;
+//   eRBU6000Range.Visible    := True;
+//   lblTargetID.Visible      := False;
+//   eRBUTargetID.Visible     := False;
+//   lblNM.Visible            := True;
+
 //   Label16.Visible          := True;
-   eRBU6000Bearing.Visible  := True;
 //   Label36.Visible          := True;
-   eRBU6000Range.Visible    := True;
-   lbl47.Visible            := False;
-   eRBUTargetID.Visible     := False;
-   lbl31.Visible            := True;
 end;
 
 end;
