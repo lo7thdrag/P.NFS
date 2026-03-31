@@ -579,6 +579,7 @@ type
     procedure btn2Click(Sender: TObject);
     procedure tmrLoadingTimer(Sender: TObject);
     procedure btnVLMicaLoadingClick(Sender: TObject);
+    procedure btnC705AssignClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -698,6 +699,7 @@ type
     procedure SPSTrack(sender : TInsObject);
     procedure YAKHONTTrack(sender : TInsObject);
     procedure C802Track(sender : TInsObject);
+    procedure C705Track(sender : TInsObject);
     procedure LoadImageLight(Aimage: TImage; imgStat: string);
     procedure LoadingStatus(ShipID, WeaponID, LauncherID, MissileID: Byte; Status : TStatusWeapon);
     procedure LabelingAsrocMT(ShipID, WeaponID, LauncherID, MissileID : Byte; MissileType : TTypeMissileAsroc );
@@ -770,11 +772,13 @@ begin
   btnRBUTrack.Tag     := 3;
   btnC802Track.Tag    := 4;
   btnSPSTrack.Tag     := 5;
+  btnC705Track.Tag    := 6;
   btnASROCTrack.OnClick   := btnTrackObject;
   btnYAKHONTTrack.OnClick := btnTrackObject;
   btnRBUTrack.OnClick     := btnTrackObject;
   btnC802Track.OnClick    := btnTrackObject;
   btnSPSTrack.OnClick     := btnTrackObject;
+  btnC705Track.OnClick    := btnTrackObject;
 
 
   { ==============================SPS115======================== }
@@ -3242,6 +3246,14 @@ begin
 end;
 
 { C705 }
+procedure TfWeaponStatus.C705Track(sender: TInsObject);
+begin
+  if SimManager.TrackObject = nil then Exit;
+  if sender = nil then Exit;
+
+  edtC705Track.Text := TInsObject(sender).ObjName;
+end;
+
  procedure TfWeaponStatus.C705ChkClick(Sender: TObject);
 var
   aTag : integer;
@@ -3282,6 +3294,11 @@ begin
     aParam := 2;
 
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_C705, id , aParam);
+end;
+
+procedure TfWeaponStatus.btnC705AssignClick(Sender: TObject);
+begin
+  //
 end;
 
 { ======================================================================= }
@@ -4933,6 +4950,11 @@ begin
     5 :
     begin
       SimManager.FMap.CurrentTool := TOOL_SELECT_SPSTARGET;
+    end;
+    // C705
+    6:
+    begin
+      SimManager.FMap.CurrentTool := TOOL_SELECT_C705TARGET;
     end;
   end;
 end;

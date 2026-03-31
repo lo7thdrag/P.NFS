@@ -268,6 +268,7 @@ type
       procedure NetSendTo3D_OrderMissileStrella(rec : TRec3DSetStrella);
       procedure NetSendTo3D_OrderMissileTorpedo(rec : TRecDataTorperdo);
       procedure NetSendTo3D_OrderMissileVLMica(Rec : TRec3DSetVLMica);
+      procedure NetSendTo3D_OrderMissileC705(Rec : TRec_Data_C705);
       procedure NetSendTo3D_OrderEnvironment(Rec : TRecDataEnvironment);
       procedure NetSendEnableWeapon(shipid : Integer; weaponid : Byte; valuez : Single; launcher : Byte);
       procedure NetSendAsroc_MissileType(rec : TRecAsrocMissileType);
@@ -1588,6 +1589,12 @@ procedure TSimManager.NetSendTo3D_OrderMissileVLMica(Rec : TRec3DSetVLMica);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
     TCPClient.sendDataEx(REC_CMD_VLMICA, @Rec);
+end;
+
+procedure TSimManager.NetSendTo3D_OrderMissileC705(Rec: TRec_Data_C705);
+begin
+  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+    TCPClient.sendDataEx(Rec_Data_C705, @Rec);
 end;
 
 { Launcher }

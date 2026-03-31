@@ -839,6 +839,8 @@ begin
   //MainMap.CreateCustomTool(TOOL_MAP_VIEW, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_SELECT_WAYPOINT, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_ADD_VEHICLE, miToolTypePoint, miCrossCursor, miCrossCursor);
+  MainMap.CreateCustomTool(TOOL_SELECT_C705TARGET, miToolTypePoint, miCrossCursor, miCrossCursor);
+  MainMap.CreateCustomTool(TOOL_SELECT_COORD_C705, miToolTypePoint, miCrossCursor, miCrossCursor);
 
 
 //  TimerDestroy := TTimer.Create(nil);
@@ -1358,6 +1360,7 @@ var
   WeaponASROC   : TWeaponOn_ASROC;
   WeaponYAKHONT : TWeaponOn_Yakhont;
   WeaponC802    : TWeaponOn_C802;
+  WeaponC705    : TWeaponOn_C705;
 
   Vehicle       : TVehicle;
 
@@ -1750,6 +1753,99 @@ begin
 
           SimManager.selectedObject := nil;
           SimManager.selectedView   := nil;
+        end;
+        {$ENDREGION}
+      end;
+
+      { Assign C705 }
+      TOOL_SELECT_C705TARGET:
+      begin
+        {$REGION ' Assign C705 '}
+        frmMainInstruktur.SetDefaultMapTool;
+        if not Assigned(SimManager.TrackObject) then
+          Exit;
+
+        SimManager.FindViewByPosition(mptDown, SimManager.selectedView);
+        if not Assigned(SimManager.selectedView) then
+          Exit;
+
+        if not Assigned(SimManager.selectedObject) then
+          Exit;
+
+        if not Assigned(SimManager.TrackObject) then
+          Exit;
+
+        if SimManager.selectedView is TRotateSymbolView then
+        begin
+          SimManager.BringToFront(SimManager.selectedObject);
+          if (SimManager.selectedObject is TIMissileObject) then
+            Exit;
+          if SimManager.TrackObject = TInsObject(SimManager.selectedObject) then
+            Exit;
+
+          if (SimManager.selectedObject is TInsObject) then
+          begin
+            for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
+            begin
+              if Assigned(SimManager.TrackObject.WeaponOnShip_List[i]) then begin
+                WeaponShip := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+
+                if Assigned(WeaponShip) and (WeaponShip is TWeaponOn_C705) then
+                begin
+                  WeaponC705 := TWeaponOn_C705(WeaponShip);
+                  WeaponC705.C705_TrackObject := TInsObject(SimManager.selectedObject);
+                end;
+              end;
+            end;
+          end;
+
+          FrameControlLeft.FrameWeaponStatus.C705Track(TInsObject(SimManager.selectedObject));
+
+          SimManager.selectedObject := nil;
+          SimManager.selectedView   := nil;
+        end;
+        {$ENDREGION}
+      end;
+
+      TOOL_SELECT_COORD_C705 :
+      begin
+        {$REGION ' TOOL_SELECT_COORD_C705 '}
+        if Assigned(frmGameController.lvRuntimeShip.Selected) then
+        begin
+          frmMainInstruktur.SetDefaultMapTool;
+
+          sx := X;
+          sy := Y;
+          MainMap.ConvertCoord(sx, sY, mx, my, miScreenToMap);
+
+          if Assigned(frmGameController.lvRuntimeShip.Selected.Data) then
+          begin
+            Vehicle := TVehicle(frmGameController.lvRuntimeShip.Selected.Data);
+
+            suid := dbID_to_UniqueID(Vehicle.Vehicle_ID);
+            ShipObject := SimManager.MainObjList.FindObjectByUid(suid);
+
+            if Assigned(ShipObject) then
+            begin
+
+              if CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )< Vehicle.Vehicle_Heading then
+              begin
+                 frmGameController.edtC705_TBearing.Text :=
+                    Format('%.2f', [CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My ) - (Vehicle.Vehicle_Heading - 360)]);
+
+              end
+              else
+              begin
+                 frmGameController.edtC705_TBearing.Text :=
+                    Format('%.2f',[CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My ) - Vehicle.Vehicle_Heading]);
+              end;
+
+              frmGameController.edtC705_TRange.Text := Format('%.2f',[CalcRange(ShipObject.PositionX, ShipObject.PositionY, Mx, My )]);
+              frmGameController.lblKoorXC705.Caption := FormatFloat('0.00',mX);
+              frmGameController.lblKoorYC705.Caption := FormatFloat('0.00',mY);
+            end;
+          end;
+
         end;
         {$ENDREGION}
       end;

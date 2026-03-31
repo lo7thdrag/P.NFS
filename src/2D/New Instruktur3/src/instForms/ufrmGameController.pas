@@ -322,6 +322,7 @@ type
     lbl69: TLabel;
     lbl82: TLabel;
     lbl83: TLabel;
+    lblLauncher: TLabel;
     edtSPS_Number: TEdit;
     edtSPS_ISC: TEdit;
     btnFireSps: TAdvSmoothButton;
@@ -1012,8 +1013,42 @@ type
     edtFogIntensity: TEdit;
     imgMK4SPS: TImage;
     imgMK3SPS: TImage;
-    lblLauncher: TLabel;
-    lblAutoAssignmentRBU: TLabel;
+    pgtwC705: TAdvTabSheet;
+    scrlbxC705: TScrollBox;
+    Label15: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label33: TLabel;
+    Label37: TLabel;
+    Label38: TLabel;
+    Label43: TLabel;
+    Label49: TLabel;
+    Label50: TLabel;
+    lblKoorYC705: TLabel;
+    lblKoorXC705: TLabel;
+    imageC705: TImage;
+    Label61: TLabel;
+    lblStartDegC705: TLabel;
+    Label65: TLabel;
+    lblEndDegC705: TLabel;
+    Label73: TLabel;
+    lblMinRangeC705: TLabel;
+    Label81: TLabel;
+    lblMaxRangeC705: TLabel;
+    edtC705_Number: TEdit;
+    edtC705_MissileID: TEdit;
+    cbbC705Launcher: TComboBox;
+    btnC705_Fire: TAdvSmoothButton;
+    edtC705_TBearing: TEdit;
+    btnSetPosC705: TAdvSmoothButton;
+    edtC705_TRange: TEdit;
+    StaticText45: TStaticText;
+    StaticText46: TStaticText;
+    btnLoadingC705: TAdvSmoothButton;
+    StaticText47: TStaticText;
+    StaticText48: TStaticText;
+    StaticText49: TStaticText;
+    StaticText50: TStaticText;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1175,6 +1210,7 @@ type
     procedure edtPortBarometerKeyPress(Sender: TObject; var Key: Char);
     procedure edtPortHumidityKeyPress(Sender: TObject; var Key: Char);
     procedure edtFogIntensityKeyPress(Sender: TObject; var Key: Char);
+    procedure btnC705_Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -4306,6 +4342,110 @@ begin
   end;
 end;
 
+{ C705 }
+procedure TfrmGameController.btnC705_Click(Sender: TObject);
+var
+  isValid : Boolean;
+
+  i,
+  ShipID,
+  weaponID,
+  LauncherID,
+  MissileID,
+  MissileNumber,
+  TargetID : Integer;
+  rangDeg  : TRangDeg;
+  recRangDeg : TList;
+  Vehicle    : TVehicle;
+
+  mTargetBearing, mTargetRange : Single;
+
+  RecSend   : TRec_Data_C705;
+  RecSend2  : TRecObjectAssigned;
+  C705LauncherID : string;
+begin
+  isValid := True;
+
+  if cbbC705Launcher.Text = 'kanan 1' then begin
+    C705LauncherID := IntToStr(1);
+  end
+  else if cbbC705Launcher.Text = 'kiri 1' then begin
+    C705LauncherID := IntToStr(2);
+  end;
+
+  if not Assigned(lvRuntimeShip.Selected) then Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+
+  if not TryStrToInt(C705LauncherID, LauncherID) then isValid := False;
+
+  if not TryStrToInt(edtC705_Number.Text, MissileNumber) then isValid := False;
+  if not TryStrToInt(edtC705_MissileID.Text, MissileID) then isValid := False;
+
+  if not TryStrToFloat(edtC705_TBearing.Text, mTargetBearing) then isValid := False;
+  if not TryStrToFloat(edtC705_TRange.Text, mTargetRange) then isValid := False;
+
+  if Sender = btnSetPosC705 then
+  begin
+    SimManager.FMap.CurrentTool := TOOL_SELECT_COORD_C705;
+  end;
+
+  weaponID := C_DBID_C705;
+
+  recRangDeg := TList.Create;
+  DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
+
+
+  for i := 0 to recRangDeg.count -1 do
+  begin
+    rangDeg := TRangDeg(recRangDeg[i]);
+  end;
+
+  Vehicle := TVehicle(frmGameController.lvRuntimeShip.Selected.Data);
+
+  if isValid then
+  begin
+    mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
+
+    RecSend.ShipID         := ShipID;
+    RecSend.mLauncherID    := LauncherID;
+    RecSend.mMissileID     := MissileID;
+    RecSend.mMissileNumber := MissileNumber;
+    RecSend.OrderID        := 0;
+
+    if (StrToFloat(edtC705_TBearing.Text)< Vehicle.Vehicle_Heading )then
+    begin
+      RecSend.mTargetBearing := (mTargetBearing + (Vehicle.Vehicle_Heading-360));
+    end
+    else
+    begin
+      RecSend.mTargetBearing := mTargetBearing + Vehicle.Vehicle_Heading;
+    end;
+
+    RecSend.mTargetRange   := mTargetRange;
+    RecSend.mWeaponID      := C_DBID_C705;
+
+    case TComponent(sender).Tag of
+      //fire
+      1 : begin
+        if (StrToFloat(edtC705_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtC705_TRange.Text) < rangDeg.rangeMax) then
+        begin
+          if (StrToFloat(edtC705_TBearing.Text) > rangDeg.startDeg ) and  (StrToFloat(edtC705_TBearing.Text) < rangDeg.endDeg ) then
+          begin
+            //RecSend.OrderID := __ORD_C802_FIRE;
+            RecSend.OrderID := __ORD_ID_Fire_C705;
+            SimManager.NetSendTo3D_OrderMissileC705(RecSend);
+          end;
+        end;
+
+      end;
+      2 : begin              // load
+        RecSend.OrderID := __ORD_C802_LOADING;
+        SimManager.NetSendTo3D_OrderMissileC705(RecSend);
+      end;
+    end;
+  end;
+end;
 
 { Torpedo A244 }
 procedure TfrmGameController.btnFireSpsClick(Sender: TObject);
@@ -4950,6 +5090,29 @@ begin
 
             cbbTetralLaunch.Text    := launcher;
         end;
+     C_DBID_C705 : begin
+            if launcherID = 1 then begin
+              launcher := 'kanan 1';
+            end
+            else if launcherID = 2 then
+            begin
+              launcher := 'kiri 1';
+            end;
+
+            cbbC705Launcher.Text      := launcher;
+            pgtwC705.TabVisible       := True;
+
+            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+            begin
+              pgWeapon.ActivePage  := pgtwDefault ;
+              lblInfo.Caption := 'C705 is not ready to use';
+              pgWeapon.Enabled := False;
+            end
+            else begin
+              pgWeapon.Enabled := True;
+              pgWeapon.ActivePage  := pgtwC705 ;
+            end;
+        end;
   else
        begin
           pgtwDefault.TabVisible := True ;
@@ -5097,6 +5260,18 @@ begin
             begin
                 AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57_DIGITAL, Weapon.launcherID,0, True);
             end;
+          end
+          else
+          if (ClientConsole.WeaponID = C_DBID_C705) then
+          begin
+            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_C705, Weapon.launcherID,0, False);
+            end
+            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_C705, Weapon.launcherID,0, True);
+            end;
           end;
         end;
       end;
@@ -5115,6 +5290,7 @@ begin
         imageExocetMM40.Picture.LoadFromFile(weaponPic);
         imageVLMica.Picture.LoadFromFile(weaponPic);
         imageCannonAK230.Picture.LoadFromFile(weaponPic);
+        imageC705.Picture.LoadFromFile(weaponPic);
       end;
 
       IDweapon := TWeapon(TListView(sender).Selected.Data).WeaponID;
@@ -5213,6 +5389,13 @@ begin
           lblEndVlMica.Caption   := (FloatToStr(weaponDetail.EndAngle));
           lblMinVlMica.Caption := (FloatToStr(weaponDetail.LowRange));
           lblMaxVlMica.Caption := (FloatToStr(weaponDetail.HighRange));
+          {$ENDREGION}
+
+          {$REGION 'C705'}
+          lblStartDegC705.Caption := (FloatToStr(weaponDetail.StartAngle));
+          lblEndDegC705.Caption   := (FloatToStr(weaponDetail.EndAngle));
+          lblMinRangeC705.Caption := (FloatToStr(weaponDetail.LowRange));
+          lblMaxRangeC705.Caption := (FloatToStr(weaponDetail.HighRange));
           {$ENDREGION}
 
         end;

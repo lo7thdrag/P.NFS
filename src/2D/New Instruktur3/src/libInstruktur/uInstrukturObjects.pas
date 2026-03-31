@@ -688,14 +688,16 @@ interface
     private
 
     public
-       EnableC705 : Boolean;
-       SafetyIgnition    : Boolean;
-       OpenCoverLauncherC705   : Boolean;
-       Firing     : Boolean;
-       {CAP        : Boolean;}
+      C705_TrackObject : TInsObject;
 
-       LauncherMissile1,
-       LauncherMissile2: TStatusWeapon;
+      EnableC705 : Boolean;
+      SafetyIgnition    : Boolean;
+      OpenCoverLauncherC705   : Boolean;
+      Firing     : Boolean;
+      {CAP        : Boolean;}
+
+      LauncherMissile1,
+      LauncherMissile2: TStatusWeapon;
 
       constructor Create(Const aParent : TInsObject; aMap: TMap); override;
       destructor Destroy; override;
@@ -1920,6 +1922,7 @@ end;
 constructor TWeaponOn_C705.Create(const aParent: TInsObject; aMap: TMap);
 begin
   inherited;
+  C705_TrackObject := nil;
 
   EnableC705 := false;
   {Firing := True;

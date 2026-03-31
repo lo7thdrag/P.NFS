@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000030B7662C0100000005FA52751C000000000000000000000000
+              0100011801000048A49C040100000005FACD761C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              01000030B7662C01000000000000001C00000000000000000000000000000000
+              01000048A49C0401000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000000000000C8E7970078
-              E39700000000006688CE50000200006B88CE506688CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000068EB970018
+              E79700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -205532,7 +205532,7 @@ object frmGameController: TfrmGameController
           object Label8: TLabel
             Left = 58
             Top = 140
-            Width = 62
+            Width = 70
             Height = 18
             Caption = 'Sea State'
             Font.Charset = ANSI_CHARSET
@@ -205546,7 +205546,7 @@ object frmGameController: TfrmGameController
           object Label9: TLabel
             Left = 58
             Top = 228
-            Width = 80
+            Width = 87
             Height = 18
             Caption = 'Wind Speed'
             Font.Charset = ANSI_CHARSET
@@ -205560,7 +205560,7 @@ object frmGameController: TfrmGameController
           object Label10: TLabel
             Left = 58
             Top = 316
-            Width = 93
+            Width = 102
             Height = 18
             Caption = 'Current Speed'
             Font.Charset = ANSI_CHARSET
@@ -205574,7 +205574,7 @@ object frmGameController: TfrmGameController
           object Label11: TLabel
             Left = 58
             Top = 404
-            Width = 86
+            Width = 87
             Height = 18
             Caption = 'Temperature'
             Font.Charset = ANSI_CHARSET
@@ -205588,7 +205588,7 @@ object frmGameController: TfrmGameController
           object Label12: TLabel
             Left = 58
             Top = 492
-            Width = 129
+            Width = 141
             Height = 18
             Caption = 'Barometer Pressure'
             Font.Charset = ANSI_CHARSET
@@ -205616,7 +205616,7 @@ object frmGameController: TfrmGameController
           object Label14: TLabel
             Left = 58
             Top = 668
-            Width = 82
+            Width = 87
             Height = 18
             Caption = 'Fog Intensity'
             Font.Charset = ANSI_CHARSET
@@ -205729,8 +205729,8 @@ object frmGameController: TfrmGameController
           object Label28: TLabel
             Left = 58
             Top = 79
-            Width = 39
-            Height = 18
+            Width = 42
+            Height = 19
             Caption = 'Port :'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -248016,7 +248016,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwRBU6000
+              ActivePage = pgtwC802
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -257005,6 +257005,541 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                     TabOrder = 3
+                  end
+                end
+              end
+              object pgtwC705: TAdvTabSheet
+                Caption = 'C705'
+                Color = 7301478
+                ColorTo = clNone
+                TabColor = 7301478
+                TabColorTo = clWhite
+                object scrlbxC705: TScrollBox
+                  Left = 0
+                  Top = 0
+                  Width = 1101
+                  Height = 533
+                  Align = alClient
+                  TabOrder = 0
+                  object Label15: TLabel
+                    Left = 79
+                    Top = 294
+                    Width = 60
+                    Height = 16
+                    Caption = 'Missile ID'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    Visible = False
+                  end
+                  object Label29: TLabel
+                    Left = 79
+                    Top = 328
+                    Width = 95
+                    Height = 16
+                    Caption = 'Missile Number'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    Visible = False
+                  end
+                  object Label30: TLabel
+                    Left = 80
+                    Top = 260
+                    Width = 60
+                    Height = 16
+                    Caption = 'Launcher'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    Visible = False
+                  end
+                  object Label33: TLabel
+                    Left = 79
+                    Top = 128
+                    Width = 96
+                    Height = 16
+                    Caption = 'Target Bearing'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label37: TLabel
+                    Left = 301
+                    Top = 163
+                    Width = 94
+                    Height = 16
+                    Caption = 'Nauctical Miles'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clBlack
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label38: TLabel
+                    Left = 300
+                    Top = 129
+                    Width = 47
+                    Height = 16
+                    Caption = 'Degree'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clBlack
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label43: TLabel
+                    Left = 79
+                    Top = 161
+                    Width = 88
+                    Height = 16
+                    Caption = 'Target Range'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label49: TLabel
+                    Left = 79
+                    Top = 195
+                    Width = 70
+                    Height = 16
+                    Caption = 'Longtitude'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label50: TLabel
+                    Left = 79
+                    Top = 229
+                    Width = 54
+                    Height = 16
+                    Caption = 'Latitude'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblKoorYC705: TLabel
+                    Left = 200
+                    Top = 229
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblKoorXC705: TLabel
+                    Left = 200
+                    Top = 195
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object imageC705: TImage
+                    Left = 528
+                    Top = 0
+                    Width = 565
+                    Height = 433
+                    ParentShowHint = False
+                    ShowHint = True
+                    Stretch = True
+                  end
+                  object Label61: TLabel
+                    Left = 538
+                    Top = 455
+                    Width = 85
+                    Height = 16
+                    Caption = 'Start Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblStartDegC705: TLabel
+                    Left = 659
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label65: TLabel
+                    Left = 538
+                    Top = 489
+                    Width = 74
+                    Height = 16
+                    Caption = 'End Degree'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblEndDegC705: TLabel
+                    Left = 659
+                    Top = 491
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label73: TLabel
+                    Left = 857
+                    Top = 455
+                    Width = 67
+                    Height = 16
+                    Caption = 'Min Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMinRangeC705: TLabel
+                    Left = 978
+                    Top = 455
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label81: TLabel
+                    Left = 857
+                    Top = 489
+                    Width = 71
+                    Height = 16
+                    Caption = 'Max Range'
+                    Font.Charset = ANSI_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblMaxRangeC705: TLabel
+                    Left = 978
+                    Top = 491
+                    Width = 5
+                    Height = 13
+                    Caption = '-'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindow
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object edtC705_Number: TEdit
+                    Left = 193
+                    Top = 325
+                    Width = 108
+                    Height = 24
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentFont = False
+                    TabOrder = 0
+                    Text = '1'
+                    Visible = False
+                  end
+                  object edtC705_MissileID: TEdit
+                    Left = 193
+                    Top = 291
+                    Width = 108
+                    Height = 24
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentFont = False
+                    TabOrder = 1
+                    Text = '1'
+                    Visible = False
+                  end
+                  object cbbC705Launcher: TComboBox
+                    Left = 193
+                    Top = 259
+                    Width = 107
+                    Height = 21
+                    TabOrder = 2
+                    Text = 'kanan 1'
+                    Visible = False
+                    Items.Strings = (
+                      'kanan 1'
+                      'kiri 1')
+                  end
+                  object btnC705_Fire: TAdvSmoothButton
+                    Tag = 1
+                    Left = 206
+                    Top = 364
+                    Width = 119
+                    Height = 40
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Fire'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 3
+                    Version = '2.1.3.0'
+                    OnClick = btnC705_Click
+                    TMSStyle = 0
+                  end
+                  object edtC705_TBearing: TEdit
+                    Left = 189
+                    Top = 125
+                    Width = 100
+                    Height = 24
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentFont = False
+                    TabOrder = 4
+                    Text = '90'
+                  end
+                  object btnSetPosC705: TAdvSmoothButton
+                    Tag = -1
+                    Left = 79
+                    Top = 364
+                    Width = 119
+                    Height = 40
+                    Cursor = crHandPoint
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Set Pos'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 5
+                    Version = '2.1.3.0'
+                    OnClick = btnC705_Click
+                    TMSStyle = 0
+                  end
+                  object edtC705_TRange: TEdit
+                    Left = 190
+                    Top = 158
+                    Width = 100
+                    Height = 24
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentFont = False
+                    TabOrder = 6
+                    Text = '10'
+                  end
+                  object StaticText45: TStaticText
+                    Left = 174
+                    Top = 195
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 7
+                  end
+                  object StaticText46: TStaticText
+                    Left = 174
+                    Top = 229
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 8
+                  end
+                  object btnLoadingC705: TAdvSmoothButton
+                    Tag = 2
+                    Left = 333
+                    Top = 364
+                    Width = 119
+                    Height = 40
+                    Cursor = crHandPoint
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Load'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 9
+                    Version = '2.1.3.0'
+                    OnClick = btnC705_Click
+                    TMSStyle = 0
+                  end
+                  object StaticText47: TStaticText
+                    Left = 633
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 10
+                  end
+                  object StaticText48: TStaticText
+                    Left = 633
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 11
+                  end
+                  object StaticText49: TStaticText
+                    Left = 952
+                    Top = 455
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 12
+                  end
+                  object StaticText50: TStaticText
+                    Left = 952
+                    Top = 489
+                    Width = 8
+                    Height = 17
+                    Caption = ':'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -11
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    TabOrder = 13
                   end
                 end
               end

@@ -2129,7 +2129,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'C802'
@@ -2139,11 +2139,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 883
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 0
           object Bevel2: TBevel
             Left = 45
             Top = 24
@@ -6747,7 +6748,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 923
         DividerVisible = False
         Caption = 'C705'
@@ -6762,11 +6763,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 903
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 903
           object lblC705Title: TLabel
             Left = 171
             Top = 11
@@ -6902,6 +6904,7 @@ object fWeaponStatus: TfWeaponStatus
               Font.Style = [fsBold]
               ParentFont = False
               TabOrder = 1
+              OnClick = btnC705AssignClick
             end
             object btnC705DeAssign: TButton
               Tag = 2
