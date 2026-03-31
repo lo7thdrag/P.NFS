@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000D0099F040100000024E897001C000000000000000000000000
+              0100011801000030B7662C0100000005FA52751C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              010000D0099F0401000000000000001C00000000000000000000000000000000
+              01000030B7662C01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000021A513050000000054
-              EC970004E89700000000006688CE50000200006B88CE50000000000000000000
+              000000000000000000000000000000000000000000000000000000C8E7970078
+              E39700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -249655,7 +249655,6 @@ object frmGameController: TfrmGameController
                   Height = 533
                   Align = alClient
                   TabOrder = 0
-                  ExplicitLeft = 2
                   object lbl75: TLabel
                     Left = 344
                     Top = 240
@@ -249856,19 +249855,6 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object lblLauncher: TLabel
-                    Left = 78
-                    Top = 113
-                    Width = 111
-                    Height = 16
-                    Caption = 'Launcher Degree'
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clWhite
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = [fsBold]
-                    ParentFont = False
-                  end
                   object lbl108: TLabel
                     Left = 827
                     Top = 257
@@ -249926,9 +249912,9 @@ object frmGameController: TfrmGameController
                   object lbl46: TLabel
                     Left = 79
                     Top = 83
-                    Width = 117
+                    Width = 130
                     Height = 16
-                    Caption = 'Assigntment Type'
+                    Caption = 'Assigntment Type : '
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWhite
                     Font.Height = -13
@@ -250132,6 +250118,32 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
+                  object lblLauncher: TLabel
+                    Left = 78
+                    Top = 113
+                    Width = 111
+                    Height = 16
+                    Caption = 'Launcher Degree'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object lblAutoAssignmentRBU: TLabel
+                    Left = 215
+                    Top = 83
+                    Width = 32
+                    Height = 16
+                    Caption = 'Auto'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
                   object eRBUTargetID: TEdit
                     Left = 215
                     Top = 108
@@ -250279,7 +250291,7 @@ object frmGameController: TfrmGameController
                   end
                   object eRBU6000CorrBearing: TEdit
                     Left = 215
-                    Top = 204
+                    Top = 206
                     Width = 115
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -250515,25 +250527,25 @@ object frmGameController: TfrmGameController
                       'kiri')
                   end
                   object cbbRBUassigntment: TComboBox
-                    Left = 215
-                    Top = 82
+                    Left = 309
+                    Top = 83
                     Width = 115
                     Height = 19
                     Style = csOwnerDrawFixed
                     ItemHeight = 13
-                    ItemIndex = 1
+                    ItemIndex = 0
                     TabOrder = 16
-                    Text = 'Assign'
+                    Text = 'Auto'
+                    Visible = False
                     OnChange = cbbRBUassigntmentChange
                     Items.Strings = (
-                      'Auto'
-                      'Assign')
+                      'Auto')
                   end
                   object eRBU6000Range: TEdit
                     Left = 215
                     Top = 297
                     Width = 115
-                    Height = 24
+                    Height = 21
                     TabOrder = 17
                     OnKeyPress = eRBU6000RangeKeyPress
                   end
