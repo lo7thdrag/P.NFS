@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000010F6B6040100000005FA52751C000000000000000000000000
+              0100011801000048A49C040100000024E897001C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              01000010F6B60401000000000000001C00000000000000000000000000000000
+              01000048A49C0401000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000088CE970038
-              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
+              0000000000000000000000000000000000000000000000D186DF340000000054
+              EC970004E89700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -205532,7 +205532,7 @@ object frmGameController: TfrmGameController
           object Label8: TLabel
             Left = 58
             Top = 140
-            Width = 62
+            Width = 70
             Height = 18
             Caption = 'Sea State'
             Font.Charset = ANSI_CHARSET
@@ -205546,7 +205546,7 @@ object frmGameController: TfrmGameController
           object Label9: TLabel
             Left = 58
             Top = 228
-            Width = 80
+            Width = 87
             Height = 18
             Caption = 'Wind Speed'
             Font.Charset = ANSI_CHARSET
@@ -205560,7 +205560,7 @@ object frmGameController: TfrmGameController
           object Label10: TLabel
             Left = 58
             Top = 316
-            Width = 93
+            Width = 102
             Height = 18
             Caption = 'Current Speed'
             Font.Charset = ANSI_CHARSET
@@ -205574,7 +205574,7 @@ object frmGameController: TfrmGameController
           object Label11: TLabel
             Left = 58
             Top = 404
-            Width = 86
+            Width = 87
             Height = 18
             Caption = 'Temperature'
             Font.Charset = ANSI_CHARSET
@@ -205588,7 +205588,7 @@ object frmGameController: TfrmGameController
           object Label12: TLabel
             Left = 58
             Top = 492
-            Width = 129
+            Width = 141
             Height = 18
             Caption = 'Barometer Pressure'
             Font.Charset = ANSI_CHARSET
@@ -205616,7 +205616,7 @@ object frmGameController: TfrmGameController
           object Label14: TLabel
             Left = 58
             Top = 668
-            Width = 82
+            Width = 87
             Height = 18
             Caption = 'Fog Intensity'
             Font.Charset = ANSI_CHARSET
@@ -205729,8 +205729,8 @@ object frmGameController: TfrmGameController
           object Label28: TLabel
             Left = 58
             Top = 79
-            Width = 39
-            Height = 18
+            Width = 42
+            Height = 19
             Caption = 'Port :'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -248016,7 +248016,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwRBU6000
+              ActivePage = pgtwTorpedoA244
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -252439,6 +252439,19 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
+                  object Label106: TLabel
+                    Left = 258
+                    Top = 253
+                    Width = 61
+                    Height = 16
+                    Caption = 'Target ID'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
                   object edtTetral_TRange: TEdit
                     Left = 139
                     Top = 110
@@ -252718,6 +252731,14 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                     TabOrder = 13
+                  end
+                  object edtTetralTargetID: TEdit
+                    Left = 382
+                    Top = 252
+                    Width = 122
+                    Height = 21
+                    TabOrder = 14
+                    Text = '1'
                   end
                 end
               end
@@ -256826,7 +256847,7 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                object ScrollBox4: TScrollBox
+                object scrlbxMica: TScrollBox
                   Left = 0
                   Top = 0
                   Width = 1101
@@ -256948,6 +256969,127 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
+                  object Label53: TLabel
+                    Left = 33
+                    Top = 160
+                    Width = 60
+                    Height = 16
+                    Caption = 'Missile ID'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label57: TLabel
+                    Left = 33
+                    Top = 199
+                    Width = 78
+                    Height = 16
+                    Caption = 'Launcher ID'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    Visible = False
+                  end
+                  object Label62: TLabel
+                    Left = 33
+                    Top = 238
+                    Width = 95
+                    Height = 16
+                    Caption = 'Missile Number'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    Visible = False
+                  end
+                  object Label69: TLabel
+                    Left = 256
+                    Top = 199
+                    Width = 49
+                    Height = 16
+                    Caption = 'Decimal'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clBlack
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    Visible = False
+                  end
+                  object Label77: TLabel
+                    Left = 256
+                    Top = 238
+                    Width = 49
+                    Height = 16
+                    Caption = 'Decimal'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clBlack
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    Visible = False
+                  end
+                  object Label85: TLabel
+                    Left = 30
+                    Top = 84
+                    Width = 111
+                    Height = 16
+                    Caption = 'Launcher Degree'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label89: TLabel
+                    Left = 30
+                    Top = 122
+                    Width = 108
+                    Height = 16
+                    Caption = 'Launcher Elevasi'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label93: TLabel
+                    Left = 262
+                    Top = 84
+                    Width = 47
+                    Height = 16
+                    Caption = 'Degree'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clBlack
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label104: TLabel
+                    Left = 262
+                    Top = 122
+                    Width = 47
+                    Height = 16
+                    Caption = 'Degree'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clBlack
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
                   object StaticText77: TStaticText
                     Left = 633
                     Top = 455
@@ -257003,6 +257145,213 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                     TabOrder = 3
+                  end
+                  object btnSetPosMica: TAdvSmoothButton
+                    Left = 27
+                    Top = 292
+                    Width = 119
+                    Height = 40
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Set Pos'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 4
+                    Version = '2.1.3.0'
+                    TMSStyle = 0
+                  end
+                  object btnAssignMica: TAdvSmoothButton
+                    Tag = 2
+                    Left = 27
+                    Top = 338
+                    Width = 119
+                    Height = 40
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Assign'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 5
+                    Version = '2.1.3.0'
+                    TMSStyle = 0
+                  end
+                  object edtMica_Number: TEdit
+                    Left = 144
+                    Top = 235
+                    Width = 106
+                    Height = 24
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentFont = False
+                    TabOrder = 6
+                    Text = '1'
+                    Visible = False
+                  end
+                  object cbbMicaLaunch: TComboBox
+                    Left = 144
+                    Top = 198
+                    Width = 106
+                    Height = 21
+                    TabOrder = 7
+                    Visible = False
+                    Items.Strings = (
+                      'kanan'
+                      'kiri')
+                  end
+                  object btnLoadMica: TAdvSmoothButton
+                    Tag = 3
+                    Left = 175
+                    Top = 292
+                    Width = 119
+                    Height = 40
+                    Cursor = crHandPoint
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Load'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 8
+                    Visible = False
+                    Version = '2.1.3.0'
+                    TMSStyle = 0
+                  end
+                  object cbbMica_Missile: TComboBox
+                    Left = 144
+                    Top = 159
+                    Width = 106
+                    Height = 22
+                    Style = csOwnerDrawFixed
+                    ItemIndex = 0
+                    TabOrder = 9
+                    Text = '1'
+                    Items.Strings = (
+                      '1'
+                      '2'
+                      '3'
+                      '4')
+                  end
+                  object btnFireMica: TAdvSmoothButton
+                    Tag = 1
+                    Left = 174
+                    Top = 338
+                    Width = 119
+                    Height = 40
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Fire'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 10
+                    Version = '2.1.3.0'
+                    OnClick = btnMicaClick
+                    TMSStyle = 0
+                  end
+                  object edtMica_TBearing: TEdit
+                    Left = 144
+                    Top = 81
+                    Width = 105
+                    Height = 24
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentFont = False
+                    TabOrder = 11
+                    Text = '90'
+                  end
+                  object edtMica_TElev: TEdit
+                    Left = 144
+                    Top = 119
+                    Width = 105
+                    Height = 24
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentFont = False
+                    TabOrder = 12
+                    Text = '20'
                   end
                 end
               end
@@ -257479,6 +257828,7 @@ object frmGameController: TfrmGameController
                     Color = clBlack
                     ParentFont = False
                     TabOrder = 9
+                    Visible = False
                     Version = '2.1.3.0'
                     OnClick = btnC705_Click
                     TMSStyle = 0

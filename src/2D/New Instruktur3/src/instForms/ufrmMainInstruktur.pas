@@ -2463,23 +2463,42 @@ begin
             if Assigned(ShipObject) then
             begin
               if CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )< Vehicle.Vehicle_Heading then
-                begin
-                   frmGameController.edtTetral_TBearing.Text :=
-                   Format('%.2f', [CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )-(Vehicle.Vehicle_Heading - 360)]);
+              begin
+                 frmGameController.edtTetral_TBearing.Text :=
+                 Format('%.2f', [CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )-(Vehicle.Vehicle_Heading - 360)]);
 
-                end
-                else
-                begin
-                   frmGameController.edtTetral_TBearing.Text :=
-                   Format('%.2f',[CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )-Vehicle.Vehicle_Heading]);
-                end;
+              end
+              else
+              begin
+                 frmGameController.edtTetral_TBearing.Text :=
+                 Format('%.2f',[CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )-Vehicle.Vehicle_Heading]);
+              end;
 
-                frmGameController.edtTetral_TRange.Text :=
+              frmGameController.edtTetral_TRange.Text :=
                 Format('%.2f',[CalcRange(ShipObject.PositionX, ShipObject.PositionY, Mx, My )]);
+
+              SimManager.FindViewByPosition(mptDown, SimManager.selectedView);
+              if not Assigned(SimManager.selectedView) then
+                Exit;
+              if not Assigned(SimManager.selectedObject) then
+                Exit;
+
+              if SimManager.selectedView is TRotateSymbolView then
+              begin
+
+                SimManager.BringToFront(SimManager.selectedObject);
+                if (SimManager.selectedObject is TIMissileObject) then
+                  Exit;
+                if SimManager.TrackObject = TInsObject(SimManager.selectedObject) then
+                  Exit;
+              end;
+
+              frmGameController.edtTetralTargetID.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
             end;
           end;
 
         end;
+
         {$ENDREGION}
       end;
 

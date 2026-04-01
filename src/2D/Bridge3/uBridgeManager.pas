@@ -427,6 +427,9 @@ begin
     RegisterProcedure(REC_SPSS_ORDER, ServerReceive_ClientSend,
       sizeof(TRecDataTorperdo));
 
+    // C705 console; angga
+    RegisterProcedure(Rec_Data_C705, ServerReceive_ClientSend,
+      sizeof(TRec_Data_C705));
 
     // For Utility
     RegisterProcedure(REC_ENVIRONMENT, ServerReceive_ClientSend, sizeof(TRecDataEnvironment)); // rozak add send to 3d
@@ -461,10 +464,6 @@ begin
 
     RegisterProcedure(REC_VIEW_RANGE_WEAPON, ServerReceive_ServerSend,
       sizeof(TRec_View_Range_Weapon));
-
-    // C705 console; angga
-    RegisterProcedure(Rec_Data_C705, ServerReceive_ClientSend,
-      sizeof(TRec_Data_C705));
   end;
 end;
 
@@ -494,6 +493,9 @@ begin
 
   TcpClient.RegisterProcedure(REC_CMD_DESIG_A244, nil,sizeof(TRecDesigA244));
 
+  TcpClient.RegisterProcedure(Rec_Data_C705, nil,
+    sizeof(TRec_Data_C705));
+
   // For Position
   TcpClient.RegisterProcedure(REC_3D_MISSILEPOS, ClientRecv_3D_MissilePos,
     sizeof(TRec3DMissilePos));
@@ -522,9 +524,6 @@ begin
 
   TcpClient.RegisterProcedure(REC_ENVI, nil,
       sizeof(TRecDataEnvironment));
-
-  TcpClient.RegisterProcedure(Rec_Data_C705, nil,
-  sizeof(TRec_Data_C705));
 
 end;
 

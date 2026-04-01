@@ -2129,7 +2129,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'C802'
@@ -2139,12 +2139,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 883
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
           object Bevel2: TBevel
             Left = 45
             Top = 24
@@ -4224,7 +4223,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'SPS115'
@@ -4234,11 +4233,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 883
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 0
           object lblNameSPS: TLabel
             Left = 159
             Top = 11
@@ -4259,9 +4259,9 @@ object fWeaponStatus: TfWeaponStatus
             Height = 1
           end
           object GroupBox1: TGroupBox
-            Left = 41
-            Top = 600
-            Width = 274
+            Left = 46
+            Top = 535
+            Width = 271
             Height = 128
             Caption = 'Draw Advice'
             Font.Charset = DEFAULT_CHARSET
@@ -4420,9 +4420,9 @@ object fWeaponStatus: TfWeaponStatus
             end
           end
           object grpLauncher1SPS: TGroupBox
-            Left = 45
-            Top = 52
-            Width = 267
+            Left = 46
+            Top = 49
+            Width = 269
             Height = 141
             Caption = 'Status Launcher'
             Color = clGray
@@ -4588,10 +4588,10 @@ object fWeaponStatus: TfWeaponStatus
             end
           end
           object grpLauncher2SPS: TGroupBox
-            Left = 43
-            Top = 208
+            Left = 45
+            Top = 192
             Width = 270
-            Height = 377
+            Height = 339
             Caption = 'Status Console'
             Color = clGray
             Font.Charset = DEFAULT_CHARSET
@@ -4603,8 +4603,8 @@ object fWeaponStatus: TfWeaponStatus
             ParentFont = False
             TabOrder = 2
             object lbl6: TLabel
-              Left = 22
-              Top = 42
+              Left = 23
+              Top = 21
               Width = 104
               Height = 13
               Caption = '115V 60HZ Signal'
@@ -4616,8 +4616,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl7: TLabel
-              Left = 22
-              Top = 64
+              Left = 23
+              Top = 43
               Width = 27
               Height = 13
               Caption = 'NDS'
@@ -4629,8 +4629,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl8: TLabel
-              Left = 22
-              Top = 88
+              Left = 23
+              Top = 67
               Width = 49
               Height = 13
               Caption = 'TIU Port'
@@ -4642,8 +4642,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl9: TLabel
-              Left = 22
-              Top = 111
+              Left = 23
+              Top = 90
               Width = 81
               Height = 13
               Caption = 'TIU Starboard'
@@ -4655,8 +4655,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl10: TLabel
-              Left = 22
-              Top = 134
+              Left = 23
+              Top = 113
               Width = 59
               Height = 13
               Caption = 'Temp Port'
@@ -4668,8 +4668,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl15: TLabel
-              Left = 22
-              Top = 158
+              Left = 23
+              Top = 137
               Width = 91
               Height = 13
               Caption = 'Temp Starboard'
@@ -4681,8 +4681,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl11: TLabel
-              Left = 22
-              Top = 182
+              Left = 23
+              Top = 161
               Width = 87
               Height = 13
               Caption = '45 Degree Port'
@@ -4694,8 +4694,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl12: TLabel
-              Left = 22
-              Top = 205
+              Left = 23
+              Top = 184
               Width = 123
               Height = 13
               Caption = '45 Degree Startboard'
@@ -4707,8 +4707,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl13: TLabel
-              Left = 22
-              Top = 231
+              Left = 23
+              Top = 210
               Width = 27
               Height = 13
               Caption = 'Gyro'
@@ -4720,8 +4720,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lblBarrel: TLabel
-              Left = 22
-              Top = 284
+              Left = 23
+              Top = 263
               Width = 37
               Height = 13
               Caption = 'Barrell'
@@ -4733,8 +4733,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object lbl14: TLabel
-              Left = 22
-              Top = 344
+              Left = 23
+              Top = 314
               Width = 44
               Height = 13
               Caption = 'Selftest'
@@ -4746,8 +4746,8 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
             end
             object chkSPSSignal: TCheckBox
-              Left = 157
-              Top = 42
+              Left = 158
+              Top = 21
               Width = 37
               Height = 17
               Font.Charset = DEFAULT_CHARSET
@@ -4759,8 +4759,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 0
             end
             object chkSPSNds: TCheckBox
-              Left = 157
-              Top = 64
+              Left = 158
+              Top = 43
               Width = 18
               Height = 17
               Font.Charset = DEFAULT_CHARSET
@@ -4772,8 +4772,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 1
             end
             object edtSPSTIUPort: TEdit
-              Left = 157
-              Top = 82
+              Left = 158
+              Top = 61
               Width = 70
               Height = 24
               Color = clMenu
@@ -4787,8 +4787,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 2
             end
             object btnSPSSelectTiuPort: TFlatButton
-              Left = 229
-              Top = 84
+              Left = 230
+              Top = 63
               Width = 22
               Height = 21
               Cursor = crHandPoint
@@ -4803,8 +4803,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 3
             end
             object edtSPSTIUStartBoard: TEdit
-              Left = 157
-              Top = 106
+              Left = 158
+              Top = 85
               Width = 70
               Height = 24
               Color = clMenu
@@ -4818,8 +4818,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 4
             end
             object btnSPSSelectTIUStartBoard: TFlatButton
-              Left = 229
-              Top = 108
+              Left = 230
+              Top = 87
               Width = 22
               Height = 21
               Cursor = crHandPoint
@@ -4834,36 +4834,36 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 5
             end
             object chkSPSTempPort: TCheckBox
-              Left = 157
-              Top = 134
+              Left = 158
+              Top = 113
               Width = 42
               Height = 17
               TabOrder = 6
             end
             object chkSPSTempStb: TCheckBox
-              Left = 157
-              Top = 156
+              Left = 158
+              Top = 135
               Width = 42
               Height = 17
               TabOrder = 7
             end
             object chkSPSDegreePort: TCheckBox
-              Left = 157
-              Top = 181
+              Left = 158
+              Top = 160
               Width = 42
               Height = 17
               TabOrder = 8
             end
             object chkSPSDegreeStarboard: TCheckBox
-              Left = 157
-              Top = 203
+              Left = 158
+              Top = 182
               Width = 46
               Height = 17
               TabOrder = 9
             end
             object edtSPSGyroNumber: TEdit
-              Left = 157
-              Top = 226
+              Left = 158
+              Top = 205
               Width = 70
               Height = 24
               Color = clMenu
@@ -4877,8 +4877,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 10
             end
             object btnSPSSelectGyroNumber: TFlatButton
-              Left = 229
-              Top = 229
+              Left = 230
+              Top = 208
               Width = 22
               Height = 21
               Cursor = crHandPoint
@@ -4893,8 +4893,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 11
             end
             object edtSPSGyroval: TEdit
-              Left = 157
-              Top = 250
+              Left = 158
+              Top = 229
               Width = 70
               Height = 24
               Color = clMenu
@@ -4908,8 +4908,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 12
             end
             object btnSPSSelectGytoVal: TFlatButton
-              Left = 229
-              Top = 253
+              Left = 230
+              Top = 232
               Width = 22
               Height = 21
               Cursor = crHandPoint
@@ -4924,8 +4924,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 13
             end
             object edtSPSBarrelNumber: TEdit
-              Left = 157
-              Top = 281
+              Left = 158
+              Top = 260
               Width = 70
               Height = 24
               Color = clMenu
@@ -4939,8 +4939,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 14
             end
             object btnSPSSelectBarrelNumber: TFlatButton
-              Left = 229
-              Top = 285
+              Left = 230
+              Top = 264
               Width = 22
               Height = 21
               Cursor = crHandPoint
@@ -4955,8 +4955,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 15
             end
             object edtSPSBarrelVal: TEdit
-              Left = 157
-              Top = 307
+              Left = 158
+              Top = 286
               Width = 70
               Height = 24
               Color = clMenu
@@ -4970,8 +4970,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 16
             end
             object btnSPSSelectBarrelVal: TFlatButton
-              Left = 229
-              Top = 310
+              Left = 230
+              Top = 289
               Width = 22
               Height = 21
               Cursor = crHandPoint
@@ -4986,8 +4986,8 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 17
             end
             object chkSPSSelfTest: TCheckBox
-              Left = 157
-              Top = 346
+              Left = 158
+              Top = 316
               Width = 97
               Height = 17
               TabOrder = 18
@@ -6121,11 +6121,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 883
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 0
           object lblVLMicaTitle: TLabel
             Left = 159
             Top = 11

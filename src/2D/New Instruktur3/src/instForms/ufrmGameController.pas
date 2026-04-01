@@ -877,7 +877,7 @@ type
     StaticText59: TStaticText;
     StaticText60: TStaticText;
     pgtwVlMica: TAdvTabSheet;
-    ScrollBox4: TScrollBox;
+    scrlbxMica: TScrollBox;
     imageVlMica: TImage;
     Label46: TLabel;
     lblStartVlMica: TLabel;
@@ -1049,6 +1049,26 @@ type
     StaticText48: TStaticText;
     StaticText49: TStaticText;
     StaticText50: TStaticText;
+    Label53: TLabel;
+    Label57: TLabel;
+    Label62: TLabel;
+    btnSetPosMica: TAdvSmoothButton;
+    btnAssignMica: TAdvSmoothButton;
+    edtMica_Number: TEdit;
+    cbbMicaLaunch: TComboBox;
+    Label69: TLabel;
+    Label77: TLabel;
+    btnLoadMica: TAdvSmoothButton;
+    cbbMica_Missile: TComboBox;
+    btnFireMica: TAdvSmoothButton;
+    Label85: TLabel;
+    Label89: TLabel;
+    edtMica_TBearing: TEdit;
+    edtMica_TElev: TEdit;
+    Label93: TLabel;
+    Label104: TLabel;
+    Label106: TLabel;
+    edtTetralTargetID: TEdit;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1211,6 +1231,7 @@ type
     procedure edtPortHumidityKeyPress(Sender: TObject; var Key: Char);
     procedure edtFogIntensityKeyPress(Sender: TObject; var Key: Char);
     procedure btnC705_Click(Sender: TObject);
+    procedure btnMicaClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -3617,7 +3638,7 @@ procedure TfrmGameController.btnTetral_FireClick(Sender: TObject);
 var
   isValid : Boolean;
 
-  ShipID, i,
+  ShipID, i,  TargetID,
   LauncherID, weaponID,
   MissileID,
   MissileNumber   : Integer;
@@ -3653,6 +3674,8 @@ begin
   if not TryStrToFloat(edtTetral_TRange.Text, mTargetRange) then isValid := False;
   if not TryStrToFloat(edtTetral_TElev.Text, mTargetElevasi) then isValid := False;
 
+  if not TryStrToInt(edtTetralTargetID.Text, TargetID) then isvalid := false;
+
   if Sender = btnSetPosTetral then
   begin
     SimManager.FMap.CurrentTool := TOOL_SELECT_TETRAL_TARGET;
@@ -3685,19 +3708,21 @@ begin
     case TComponent(sender).Tag of
       //Fire
       1 : begin
-           if((mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
+          if((mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
               (mTargetRange <= rangdeg.rangeMax * C_NauticalMile_To_Metre)) and
-              ((((mTargetBearing >= rangdeg.startDeg) and (mTargetBearing <= 360)) or((mTargetBearing >= 0)
-              and (mTargetBearing <= rangDeg.endDeg)))) and (LauncherID = 1) then begin
-             RecSend.OrderID := __ORD_TETRAL_FIRE;
-             SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
-           end
-           else if (mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
-              (mTargetRange <= rangdeg.rangeMax * C_NauticalMile_To_Metre) and (mTargetBearing >= rangDeg.startDeg)
-               and (mTargetBearing <= rangDeg.endDeg) and (LauncherID = 2) then begin
-                RecSend.OrderID := __ORD_TETRAL_FIRE;
-                SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
-               end;
+                ((((mTargetBearing >= rangdeg.startDeg) and (mTargetBearing <= 360)) or((mTargetBearing >= 0) and
+                  (mTargetBearing <= rangDeg.endDeg)))) and (LauncherID = 1) then begin
+            RecSend.OrderID := __ORD_TETRAL_FIRE;
+            SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
+          end
+          else if (mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
+                    (mTargetRange <= rangdeg.rangeMax * C_NauticalMile_To_Metre) and
+                      (mTargetBearing >= rangDeg.startDeg) and
+                        (mTargetBearing <= rangDeg.endDeg) and
+                          (LauncherID = 2) then begin
+            RecSend.OrderID := __ORD_TETRAL_FIRE;
+            SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
+          end;
           end;
       //Assign
       2 : begin
@@ -3860,7 +3885,12 @@ begin
   begin
     RecSend.ShipID          := ShipID;
     RecSend.mWeaponID       := WeaponID;
-    RecSend.mLauncherID     := LauncherID;
+
+    if (WeaponID = C_DBID_CANNON35) or (WeaponID = C_DBID_CANNON76) then
+      RecSend.mLauncherID     := 1
+    else
+      RecSend.mLauncherID     := LauncherID;
+
     RecSend.mMissileID      := MissileID;
     RecSend.mMissileNumber  := MissileNumber;
     RecSend.mOrderID        := 0;
@@ -4340,6 +4370,17 @@ begin
   begin
     ShowMessage('Input Not Valid');
   end;
+end;
+
+{ VLMICA }
+procedure TfrmGameController.btnMicaClick(Sender: TObject);
+var
+  isValid : Boolean;
+begin
+  isValid := True;
+
+  if cbbMicaLaunch.Text = 'kanan' then
+
 end;
 
 { C705 }

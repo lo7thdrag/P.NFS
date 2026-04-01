@@ -1072,6 +1072,7 @@ begin
   tcpClient.RegisterProcedure(REC_3D_TORPEDO_SUT,           nil,                            Sizeof(TRecSetTorpedoSUT));
   tcpClient.RegisterProcedure(C_REC_FIRE_CONTROL,           nil,                            Sizeof(TRecFireControlOrder));
   TCPClient.RegisterProcedure(REC_CMD_VLMICA,               nil,                            SizeOf(TRec3DSetVLMica));
+  TCPClient.RegisterProcedure(Rec_Data_C705,                nil,                            SizeOf(TRec_Data_C705));
   TCPClient.RegisterProcedure(REC_ENVI,               nil,                                  SizeOf(TRecDataEnvironment));
 
   {Position}
