@@ -6878,36 +6878,35 @@ end;
 procedure TfrmGameController.cbbRBUassigntmentChange(Sender: TObject);
 begin
 
-//if cbbRBUassigntment.ItemIndex = 0 then
-//begin
-//   btnRBU6000Assign.Visible := False;
-//   btnRBU6000Auto.Visible   := True;
-//   eRBUTargetID.Visible     := False;
-//   lblTargetID.Visible      := False;
-//   eRBU6000Bearing.Visible  := True;
-//   lblLauncher.Visible      := True;
-//   btnRBUsetPos.Visible     := True;
-//
-////   eRBU6000Range.Visible    := False;
-////   lblRangeRBU.Visible      := False;
-////   lblNM.Visible            := False;
-//
-////   Label16.Visible          := False;
-////   Label36.Visible          := False;
-////   lbl47.Left               := 26;
-////   lbl47.Top                := 34;
-////   eRBUTargetID.Left        := 161;
-////   eRBUTargetID.Top         := 34;
-//end
-//else
 if cbbRBUassigntment.ItemIndex = 0 then
+begin
+   btnRBU6000Assign.Visible := False;
+   btnRBU6000Auto.Visible   := True;
+   eRBUTargetID.Visible     := False;
+   lblTargetID.Visible      := False;
+   eRBU6000Bearing.Visible  := True;
+   lblLauncher.Visible      := True;
+   btnRBUsetPos.Visible     := True;
+
+//   eRBU6000Range.Visible    := False;
+//   lblRangeRBU.Visible      := False;
+//   lblNM.Visible            := False;
+
+//   Label16.Visible          := False;
+//   Label36.Visible          := False;
+//   lbl47.Left               := 26;
+//   lbl47.Top                := 34;
+//   eRBUTargetID.Left        := 161;
+//   eRBUTargetID.Top         := 34;
+end
+else if cbbRBUassigntment.ItemIndex = 1 then
 begin
    btnRBU6000Assign.Visible := True;
    btnRBU6000Auto.Visible   := False;
-   eRBUTargetID.Visible     := True;
-   lblTargetID.Visible      := True;
-   eRBU6000Bearing.Visible  := False;
-   lblLauncher.Visible      := False;
+   eRBUTargetID.Visible     := False;
+   lblTargetID.Visible      := False;
+   eRBU6000Bearing.Visible  := True;
+   lblLauncher.Visible      := True;
    btnRBUsetPos.Visible     := False;
 
 //   eRBU6000Range.Visible    := True;

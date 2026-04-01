@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000048A49C040100000005FACD761C000000000000000000000000
+              0100011801000010F6B6040100000005FA52751C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              01000048A49C0401000000000000001C00000000000000000000000000000000
+              01000010F6B60401000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000068EB970018
-              E79700000000006688CE50000200006B88CE506688CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000088CE970038
+              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -205532,7 +205532,7 @@ object frmGameController: TfrmGameController
           object Label8: TLabel
             Left = 58
             Top = 140
-            Width = 70
+            Width = 62
             Height = 18
             Caption = 'Sea State'
             Font.Charset = ANSI_CHARSET
@@ -205546,7 +205546,7 @@ object frmGameController: TfrmGameController
           object Label9: TLabel
             Left = 58
             Top = 228
-            Width = 87
+            Width = 80
             Height = 18
             Caption = 'Wind Speed'
             Font.Charset = ANSI_CHARSET
@@ -205560,7 +205560,7 @@ object frmGameController: TfrmGameController
           object Label10: TLabel
             Left = 58
             Top = 316
-            Width = 102
+            Width = 93
             Height = 18
             Caption = 'Current Speed'
             Font.Charset = ANSI_CHARSET
@@ -205574,7 +205574,7 @@ object frmGameController: TfrmGameController
           object Label11: TLabel
             Left = 58
             Top = 404
-            Width = 87
+            Width = 86
             Height = 18
             Caption = 'Temperature'
             Font.Charset = ANSI_CHARSET
@@ -205588,7 +205588,7 @@ object frmGameController: TfrmGameController
           object Label12: TLabel
             Left = 58
             Top = 492
-            Width = 141
+            Width = 129
             Height = 18
             Caption = 'Barometer Pressure'
             Font.Charset = ANSI_CHARSET
@@ -205616,7 +205616,7 @@ object frmGameController: TfrmGameController
           object Label14: TLabel
             Left = 58
             Top = 668
-            Width = 87
+            Width = 82
             Height = 18
             Caption = 'Fog Intensity'
             Font.Charset = ANSI_CHARSET
@@ -205729,8 +205729,8 @@ object frmGameController: TfrmGameController
           object Label28: TLabel
             Left = 58
             Top = 79
-            Width = 42
-            Height = 19
+            Width = 39
+            Height = 18
             Caption = 'Port :'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -248016,7 +248016,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwC802
+              ActivePage = pgtwRBU6000
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -249912,9 +249912,9 @@ object frmGameController: TfrmGameController
                   object lbl46: TLabel
                     Left = 79
                     Top = 83
-                    Width = 130
+                    Width = 117
                     Height = 16
-                    Caption = 'Assigntment Type : '
+                    Caption = 'Assigntment Type'
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWhite
                     Font.Height = -13
@@ -250527,19 +250527,17 @@ object frmGameController: TfrmGameController
                       'kiri')
                   end
                   object cbbRBUassigntment: TComboBox
-                    Left = 309
+                    Left = 215
                     Top = 83
                     Width = 115
                     Height = 19
                     Style = csOwnerDrawFixed
                     ItemHeight = 13
-                    ItemIndex = 0
                     TabOrder = 16
-                    Text = 'Auto'
-                    Visible = False
                     OnChange = cbbRBUassigntmentChange
                     Items.Strings = (
-                      'Auto')
+                      'Auto'
+                      'Assign')
                   end
                   object eRBU6000Range: TEdit
                     Left = 215
