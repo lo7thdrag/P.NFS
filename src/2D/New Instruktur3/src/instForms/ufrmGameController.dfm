@@ -248016,7 +248016,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwTorpedoA244
+              ActivePage = pgtwVlMica
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -252020,6 +252020,7 @@ object frmGameController: TfrmGameController
                     Color = clBtnText
                     ParentFont = False
                     TabOrder = 9
+                    Visible = False
                     Version = '2.1.3.0'
                     OnClick = btnCannonStartFireClick
                     TMSStyle = 0
@@ -257040,7 +257041,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label85: TLabel
                     Left = 30
-                    Top = 84
+                    Top = 44
                     Width = 111
                     Height = 16
                     Caption = 'Launcher Degree'
@@ -257053,7 +257054,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label89: TLabel
                     Left = 30
-                    Top = 122
+                    Top = 82
                     Width = 108
                     Height = 16
                     Caption = 'Launcher Elevasi'
@@ -257066,7 +257067,7 @@ object frmGameController: TfrmGameController
                   end
                   object Label93: TLabel
                     Left = 262
-                    Top = 84
+                    Top = 44
                     Width = 47
                     Height = 16
                     Caption = 'Degree'
@@ -257079,10 +257080,49 @@ object frmGameController: TfrmGameController
                   end
                   object Label104: TLabel
                     Left = 262
-                    Top = 122
+                    Top = 82
                     Width = 47
                     Height = 16
                     Caption = 'Degree'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clBlack
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label108: TLabel
+                    Left = 266
+                    Top = 261
+                    Width = 61
+                    Height = 16
+                    Caption = 'Target ID'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label110: TLabel
+                    Left = 30
+                    Top = 122
+                    Width = 88
+                    Height = 16
+                    Caption = 'Target Range'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
+                  object Label113: TLabel
+                    Left = 262
+                    Top = 122
+                    Width = 94
+                    Height = 16
+                    Caption = 'Nauctical Miles'
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clBlack
                     Font.Height = -13
@@ -257177,6 +257217,7 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 4
                     Version = '2.1.3.0'
+                    OnClick = btnMicaClick
                     TMSStyle = 0
                   end
                   object btnAssignMica: TAdvSmoothButton
@@ -257211,6 +257252,7 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 5
                     Version = '2.1.3.0'
+                    OnClick = btnMicaClick
                     TMSStyle = 0
                   end
                   object edtMica_Number: TEdit
@@ -257273,12 +257315,13 @@ object frmGameController: TfrmGameController
                     TabOrder = 8
                     Visible = False
                     Version = '2.1.3.0'
+                    OnClick = btnMicaClick
                     TMSStyle = 0
                   end
                   object cbbMica_Missile: TComboBox
                     Left = 144
                     Top = 159
-                    Width = 106
+                    Width = 105
                     Height = 22
                     Style = csOwnerDrawFixed
                     ItemIndex = 0
@@ -257327,7 +257370,7 @@ object frmGameController: TfrmGameController
                   end
                   object edtMica_TBearing: TEdit
                     Left = 144
-                    Top = 81
+                    Top = 41
                     Width = 105
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -257341,7 +257384,7 @@ object frmGameController: TfrmGameController
                   end
                   object edtMica_TElev: TEdit
                     Left = 144
-                    Top = 119
+                    Top = 79
                     Width = 105
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
@@ -257352,6 +257395,28 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 12
                     Text = '20'
+                  end
+                  object edtMicaTargetID: TEdit
+                    Left = 390
+                    Top = 260
+                    Width = 122
+                    Height = 21
+                    TabOrder = 13
+                    Text = '1'
+                  end
+                  object edtMica_TRange: TEdit
+                    Left = 144
+                    Top = 119
+                    Width = 105
+                    Height = 24
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    ParentFont = False
+                    TabOrder = 14
+                    Text = '10'
                   end
                 end
               end

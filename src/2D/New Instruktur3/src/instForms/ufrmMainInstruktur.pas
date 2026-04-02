@@ -841,7 +841,7 @@ begin
   MainMap.CreateCustomTool(TOOL_ADD_VEHICLE, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_SELECT_C705TARGET, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_SELECT_COORD_C705, miToolTypePoint, miCrossCursor, miCrossCursor);
-
+  MainMap.CreateCustomTool(TOOL_SELECT_VLMICA_TARGET, miToolTypePoint, miCrossCursor, miCrossCursor);
 
 //  TimerDestroy := TTimer.Create(nil);
 //  TimerDestroy.Enabled  := false;
@@ -2569,6 +2569,66 @@ begin
 //          frmGameController.edtCannonTargetID23.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
           setArrow;
         end;
+        {$ENDREGION}
+      end;
+
+      TOOL_SELECT_VLMICA_TARGET :
+      begin
+        {$REGION ' TOOL_SELECT_VLMICA_TARGET '}
+        if Assigned(frmGameController.lvRuntimeShip.Selected) then
+        begin
+          frmMainInstruktur.SetDefaultMapTool;
+
+          sx := X;
+          sy := Y;
+          MainMap.ConvertCoord(sx, sY, mx, my, miScreenToMap);
+
+          if Assigned(frmGameController.lvRuntimeShip.Selected) and
+            Assigned(frmGameController.lvRuntimeShip.Selected.Data) then
+          begin
+            Vehicle := TVehicle(frmGameController.lvRuntimeShip.Selected.Data);
+
+            suid := dbID_to_UniqueID(Vehicle.Vehicle_ID);
+            ShipObject := SimManager.MainObjList.FindObjectByUid(suid);
+
+            if Assigned(ShipObject) then
+            begin
+              if CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )< Vehicle.Vehicle_Heading then
+              begin
+                 frmGameController.edtMica_TBearing.Text :=
+                 Format('%.2f', [CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )-(Vehicle.Vehicle_Heading - 360)]);
+
+              end
+              else
+              begin
+                 frmGameController.edtMica_TBearing.Text :=
+                 Format('%.2f',[CalcBearing(ShipObject.PositionX, ShipObject.PositionY, Mx, My )-Vehicle.Vehicle_Heading]);
+              end;
+
+              frmGameController.edtMica_TRange.Text :=
+                Format('%.2f',[CalcRange(ShipObject.PositionX, ShipObject.PositionY, Mx, My )]);
+
+              SimManager.FindViewByPosition(mptDown, SimManager.selectedView);
+              if not Assigned(SimManager.selectedView) then
+                Exit;
+              if not Assigned(SimManager.selectedObject) then
+                Exit;
+
+              if SimManager.selectedView is TRotateSymbolView then
+              begin
+                SimManager.BringToFront(SimManager.selectedObject);
+                if (SimManager.selectedObject is TIMissileObject) then
+                  Exit;
+                if SimManager.TrackObject = TInsObject(SimManager.selectedObject) then
+                  Exit;
+              end;
+
+              frmGameController.edtMicaTargetID.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
+            end;
+          end;
+
+        end;
+
         {$ENDREGION}
       end;
 

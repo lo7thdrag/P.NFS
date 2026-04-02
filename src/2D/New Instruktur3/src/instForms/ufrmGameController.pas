@@ -1069,6 +1069,11 @@ type
     Label104: TLabel;
     Label106: TLabel;
     edtTetralTargetID: TEdit;
+    edtMicaTargetID: TEdit;
+    Label108: TLabel;
+    Label110: TLabel;
+    edtMica_TRange: TEdit;
+    Label113: TLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -4442,10 +4447,118 @@ end;
 procedure TfrmGameController.btnMicaClick(Sender: TObject);
 var
   isValid : Boolean;
+
+  idLauncher : string;
+
+  ShipID, weaponID,
+  LauncherID, MissileId, MissileNumber,
+  TargetID: integer;
+
+  mTargetBearing, mTargetElevasi,
+  mTargetRange : Single;
+
+  recRangDeg      : TList;
+  rangDeg         : TRangDeg;
+
+  //RecSendMica     : TRec3DSetVLMica;
+  RecSendMica     : TRec3DSetTetral;
 begin
   isValid := True;
 
   if cbbMicaLaunch.Text = 'kanan' then
+    idLauncher := IntToStr(1)
+  else if cbbMicaLaunch.Text = 'kiri' then
+    idLauncher := IntToStr(2);
+
+  isValid := True;
+
+  if not Assigned(lvRuntimeShip.Selected) then Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+
+  if not TryStrToInt(idLauncher, LauncherID) then isValid := False;
+  //if not TryStrToInt(cbbMica_Missile.Text, MissileId) then isValid := False;
+  if not TryStrToInt(edtMica_Number.Text, MissileNumber) then isValid := False;
+
+  MissileId := Random(12) + 1;
+
+  if not TryStrToFloat(edtMica_TBearing.Text, mTargetBearing) then isValid := False;
+  if not TryStrToFloat(edtMica_TRange.Text, mTargetRange) then isValid := False;
+  if not TryStrToFloat(edtMica_TElev.Text, mTargetElevasi) then isValid := False;
+
+  if not TryStrToInt(edtMicaTargetID.Text, TargetID) then isvalid := false;
+
+  if Sender = btnSetPosMica then
+  begin
+    SimManager.FMap.CurrentTool := TOOL_SELECT_VLMICA_TARGET;
+  end;
+
+  weaponID := C_DBID_VLMICA;
+  recRangDeg := TList.Create;
+  DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
+
+  if isValid then
+  begin
+    mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
+
+    RecSendMica.ShipID           := ShipID;
+    RecSendMica.mLauncherID      := 1;//LauncherID;   // request dari 3D
+    RecSendMica.mMissileID       := MissileID;
+    RecSendMica.mMissileNumber   := MissileNumber;
+    RecSendMica.OrderID          := 0;
+
+    RecSendMica.mTargetBearing   := mTargetBearing;
+    RecSendMica.mTargetRange     := mTargetRange;
+    RecSendMica.mTargetElev      := mTargetElevasi;
+
+    RecSendMica.mWeaponID        := C_DBID_VLMICA;
+
+    case TComponent(Sender).Tag of
+      //fire
+      1: begin
+        //RecSendMica.OrderID := __ORD_VLMICA_FIRE;
+        //SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
+        RecSendMica.OrderID := __ORD_TETRAL_FIRE;
+        SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
+
+        { ambil dari Tetral }
+        {
+        if((mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
+            (mTargetRange <= rangdeg.rangeMax * C_NauticalMile_To_Metre)) and
+              ((((mTargetBearing >= rangdeg.startDeg) and (mTargetBearing <= 360)) or((mTargetBearing >= 0) and
+                (mTargetBearing <= rangDeg.endDeg)))) and (LauncherID = 1) then
+        begin
+          RecSendMica.OrderID := __ORD_VLMICA_FIRE;
+          SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
+        end
+        else if (mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
+                  (mTargetRange <= rangdeg.rangeMax * C_NauticalMile_To_Metre) and
+                    (mTargetBearing >= rangDeg.startDeg) and
+                      (mTargetBearing <= rangDeg.endDeg) and (LauncherID = 2) then
+        begin
+          RecSendMica.OrderID := __ORD_VLMICA_FIRE;
+          SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
+        end;
+        }
+      end;
+
+      //Assign
+      2: begin
+        RecSendMica.OrderID := __ORD_TETRAL_ASSIGN;
+        //RecSendMica.OrderID := __ORD_VLMICA_ASSIGN;
+        //SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
+        SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
+      end;
+
+      //Loading
+      3: begin
+        RecSendMica.OrderID := __ORD_TETRAL_LOADING;
+        //RecSendMica.OrderID := __ORD_VLMICA_LOADING;
+        //SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
+        SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
+      end;
+    end;
+  end;
 
 end;
 
@@ -5181,6 +5294,15 @@ begin
         end;
      C_DBID_VLMICA : begin
 
+            if launcherID = 1 then
+            begin
+              launcher := 'kanan';
+            end;
+//            else if launcherID = 2 then
+//            begin
+//              launcher := 'kiri';
+//            end;
+
             pgtwVlMica.TabVisible   := True;
 
             if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
@@ -5195,7 +5317,7 @@ begin
               pgWeapon.ActivePage  := pgtwVlMica ;
             end;
 
-            cbbTetralLaunch.Text    := launcher;
+            cbbMicaLaunch.Text    := launcher;
         end;
      C_DBID_C705 : begin
             if launcherID = 1 then begin
