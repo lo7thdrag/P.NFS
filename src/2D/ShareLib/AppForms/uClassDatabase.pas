@@ -79,6 +79,7 @@ type
     x, y, z: double;
     heading: single;
     speed: single;
+    Game_Type : Integer;
   end;
 
   TScenario = class
@@ -195,6 +196,7 @@ type
     Weapon_Name : string;
     Weapon_Type : integer;
     Weapon_Lethality : integer;
+    Weapon_GameType : Integer;
   end;
 
   TTypeWeapon = class

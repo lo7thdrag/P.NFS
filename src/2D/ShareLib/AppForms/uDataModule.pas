@@ -55,6 +55,7 @@ type
 
     // Added By Nando
     function GetNameWeaponByID(const IdWeapon: integer): string;
+    function GetGameTypeWeaponByID(const IdWeapon: integer): Integer;
     function GetListWeaponOnShip(const idShip: integer;
       var aRec: Tlist): integer;
     function GetListWeaponRangeDetail(const idShip, IdWeapon,
@@ -1663,6 +1664,7 @@ begin
       rec.Weapon_Name := DS.FieldByName('KET').AsString;
       rec.Weapon_Type := DS.FieldByName('TIPE').AsInteger;
       rec.Weapon_Lethality := DS.FieldByName('LETHALITY').AsInteger;
+      rec.Weapon_GameType := DS.FieldByName('Game_Type').AsInteger;
       aRec.Add(rec);
       DS.Next;
     end;
@@ -3216,6 +3218,27 @@ begin
       aRec.Add(rec);
       DQ.Next;
     end;
+  end;
+end;
+
+function TDataModule1.GetGameTypeWeaponByID(const IdWeapon: integer): Integer;
+begin
+  Result := -1;
+
+  with DS do
+  begin
+    Close;
+
+    SQL.Clear;
+    SQL.Add('SELECT Game_Type FROM m_weapon WHERE ID=' + IntToStr(IdWeapon));
+
+    Open;
+    First;
+  end;
+
+  if not DS.IsEmpty then
+  begin
+    Result := DS.FieldByName('Game_Type').AsInteger;
   end;
 end;
 

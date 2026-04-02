@@ -2,8 +2,8 @@ object frmDCDSMain: TfrmDCDSMain
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 1080
-  ClientWidth = 1920
+  ClientHeight = 1024
+  ClientWidth = 1280
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object frmDCDSMain: TfrmDCDSMain
   object pnlBackground: TPanel
     Left = 0
     Top = 0
-    Width = 1920
-    Height = 1080
+    Width = 1280
+    Height = 1024
     Align = alClient
     Color = 7962236
     ParentBackground = False
@@ -28,62 +28,62 @@ object frmDCDSMain: TfrmDCDSMain
     object imgBackground: TImage
       Left = 1
       Top = 1
-      Width = 1918
-      Height = 1078
+      Width = 1278
+      Height = 1022
       Align = alClient
-      ExplicitLeft = 241
+      ExplicitTop = 0
     end
     object img115_400Hz: TImage
-      Left = 120
-      Top = 996
+      Left = 72
+      Top = 963
       Width = 70
       Height = 40
     end
     object img26VDC: TImage
-      Left = 120
+      Left = 72
       Top = 904
       Width = 70
       Height = 40
     end
     object imgAggregate: TImage
-      Left = 525
+      Left = 312
       Top = 904
       Width = 70
       Height = 40
     end
     object imgPlunger: TImage
-      Left = 728
+      Left = 417
       Top = 904
       Width = 70
       Height = 40
     end
     object imgPwrSwt: TImage
-      Left = 1703
-      Top = 904
+      Left = 922
+      Top = 902
       Width = 70
       Height = 40
     end
     object imgSynchron: TImage
-      Left = 525
-      Top = 996
+      Left = 312
+      Top = 963
       Width = 70
       Height = 40
     end
     object imgTaboZone: TImage
-      Left = 323
-      Top = 996
+      Left = 193
+      Top = 963
       Width = 70
       Height = 40
     end
     object imgUnformer: TImage
-      Left = 323
+      Left = 193
       Top = 904
       Width = 70
       Height = 40
     end
     object btnFiring: TVrBitmapButton
-      Left = 1028
-      Top = 977
+      Left = 642
+      Top = 930
       Width = 76
       Height = 82
       Glyph.Data = {
@@ -812,13 +812,12 @@ object frmDCDSMain: TfrmDCDSMain
         00000000000000000000000000000000000000000000}
       Transparent = True
       Color = clBlack
-      Enabled = False
       OnMouseDown = btnFiringMouseDown
       OnMouseUp = btnFiringMouseUp
     end
     object btnPwrSwt: TSpeedButtonImage
-      Left = 1713
-      Top = 944
+      Left = 932
+      Top = 942
       Width = 49
       Height = 49
       Caption = ''
@@ -1130,20 +1129,20 @@ object frmDCDSMain: TfrmDCDSMain
       OnClick = btnPwrSwtClick
     end
     object imgPowerSwitchBg: TImage
-      Left = 1789
-      Top = 960
+      Left = 1008
+      Top = 900
       Width = 125
       Height = 120
     end
     object imgPowerSwt: TImage
-      Left = 1794
-      Top = 904
+      Left = 1013
+      Top = 902
       Width = 115
       Height = 56
     end
     object btn26Vdc: TSpeedButtonImage
-      Left = 130
-      Top = 936
+      Left = 81
+      Top = 908
       Width = 51
       Height = 51
       Caption = ''
@@ -1479,8 +1478,8 @@ object frmDCDSMain: TfrmDCDSMain
       Transparent = False
     end
     object btn115400Hz: TSpeedButtonImage
-      Left = 130
-      Top = 1028
+      Left = 82
+      Top = 965
       Width = 51
       Height = 51
       Caption = ''
@@ -1816,8 +1815,8 @@ object frmDCDSMain: TfrmDCDSMain
       Transparent = False
     end
     object btnUnformer: TSpeedButtonImage
-      Left = 332
-      Top = 936
+      Left = 201
+      Top = 908
       Width = 51
       Height = 51
       Caption = ''
@@ -2153,8 +2152,8 @@ object frmDCDSMain: TfrmDCDSMain
       Transparent = False
     end
     object btnTaboZone: TSpeedButtonImage
-      Left = 332
-      Top = 1028
+      Left = 201
+      Top = 965
       Width = 51
       Height = 51
       Caption = ''
@@ -2490,8 +2489,8 @@ object frmDCDSMain: TfrmDCDSMain
       Transparent = False
     end
     object btnAggregate: TSpeedButtonImage
-      Left = 534
-      Top = 936
+      Left = 320
+      Top = 908
       Width = 51
       Height = 51
       Caption = ''
@@ -2827,8 +2826,8 @@ object frmDCDSMain: TfrmDCDSMain
       Transparent = False
     end
     object btnSynchron: TSpeedButtonImage
-      Left = 535
-      Top = 1028
+      Left = 321
+      Top = 965
       Width = 51
       Height = 51
       Caption = ''
@@ -3164,8 +3163,8 @@ object frmDCDSMain: TfrmDCDSMain
       Transparent = False
     end
     object btnPlunger: TSpeedButtonImage
-      Left = 737
-      Top = 936
+      Left = 425
+      Top = 908
       Width = 51
       Height = 51
       Caption = ''
@@ -3501,27 +3500,27 @@ object frmDCDSMain: TfrmDCDSMain
       Transparent = False
     end
     object imgBrakeOn: TImage
-      Left = 856
-      Top = 941
+      Left = 549
+      Top = 916
       Width = 70
       Height = 40
     end
     object imgFiring: TImage
-      Left = 1031
-      Top = 941
+      Left = 647
+      Top = 914
       Width = 70
       Height = 40
     end
     object imgFireVolt: TImage
-      Left = 1201
-      Top = 941
+      Left = 740
+      Top = 914
       Width = 70
       Height = 40
     end
     object pnlFrame: TPanel
       Left = 75
       Top = 30
-      Width = 1770
+      Width = 1130
       Height = 870
       Color = clGray
       ParentBackground = False
@@ -3529,7 +3528,7 @@ object frmDCDSMain: TfrmDCDSMain
       object pnlFrameTop: TPanel
         Left = 1
         Top = 1
-        Width = 1768
+        Width = 1128
         Height = 41
         Align = alTop
         BevelOuter = bvNone
@@ -3538,14 +3537,14 @@ object frmDCDSMain: TfrmDCDSMain
       object pnlFrameBottom: TPanel
         Left = 1
         Top = 828
-        Width = 1768
+        Width = 1128
         Height = 41
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
       end
       object pnlFrameRight: TPanel
-        Left = 1729
+        Left = 1089
         Top = 42
         Width = 40
         Height = 786
@@ -3565,7 +3564,7 @@ object frmDCDSMain: TfrmDCDSMain
       object pnlFrameContent: TPanel
         Left = 41
         Top = 42
-        Width = 1688
+        Width = 1048
         Height = 786
         Align = alClient
         BevelOuter = bvNone
@@ -3575,7 +3574,7 @@ object frmDCDSMain: TfrmDCDSMain
     object pnlBlackScreen: TPanel
       Left = 120
       Top = 75
-      Width = 1680
+      Width = 980
       Height = 780
       BevelOuter = bvNone
       Caption = 'pnlBlackScreen'
@@ -3585,7 +3584,7 @@ object frmDCDSMain: TfrmDCDSMain
       object pnlScreen: TPanel
         Left = 0
         Top = 0
-        Width = 1680
+        Width = 980
         Height = 780
         Align = alClient
         Color = clBlue
@@ -3595,7 +3594,7 @@ object frmDCDSMain: TfrmDCDSMain
         object pnlScreenTitle: TPanel
           Left = 1
           Top = 1
-          Width = 1678
+          Width = 978
           Height = 21
           Align = alTop
           Caption = 'DC Drive System'
@@ -3605,7 +3604,7 @@ object frmDCDSMain: TfrmDCDSMain
         object pnlScreenSpaceLeft: TPanel
           Left = 1
           Top = 22
-          Width = 155
+          Width = 6
           Height = 757
           Align = alLeft
           Color = clBlack
@@ -3613,9 +3612,9 @@ object frmDCDSMain: TfrmDCDSMain
           TabOrder = 1
         end
         object pnlScreenSpaceRight: TPanel
-          Left = 1524
+          Left = 968
           Top = 22
-          Width = 155
+          Width = 11
           Height = 757
           Align = alRight
           Color = clBlack
@@ -3623,9 +3622,9 @@ object frmDCDSMain: TfrmDCDSMain
           TabOrder = 2
         end
         object pnlContent: TPanel
-          Left = 156
+          Left = 7
           Top = 22
-          Width = 1368
+          Width = 961
           Height = 757
           Align = alClient
           Color = clBlack
@@ -4812,7 +4811,7 @@ object frmDCDSMain: TfrmDCDSMain
             end
           end
           object pnlCRight: TPanel
-            Left = 1107
+            Left = 700
             Top = 1
             Width = 260
             Height = 755
@@ -5036,7 +5035,7 @@ object frmDCDSMain: TfrmDCDSMain
           object pnlCCenter: TPanel
             Left = 351
             Top = 1
-            Width = 756
+            Width = 349
             Height = 755
             Align = alClient
             Caption = 'pnlCCenter'
@@ -5044,7 +5043,7 @@ object frmDCDSMain: TfrmDCDSMain
             object grpStatusCondition: TGroupBox
               Left = 1
               Top = 1
-              Width = 754
+              Width = 347
               Height = 403
               Align = alClient
               Caption = 'STATUS CONDITION'
@@ -5074,7 +5073,7 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlSCTop: TPanel
                 Left = 2
                 Top = 18
-                Width = 750
+                Width = 343
                 Height = 31
                 Align = alTop
                 BevelOuter = bvNone
@@ -5101,7 +5100,7 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlSCHeader: TPanel
                 Left = 2
                 Top = 49
-                Width = 750
+                Width = 343
                 Height = 22
                 Align = alTop
                 Font.Charset = DEFAULT_CHARSET
@@ -5375,7 +5374,7 @@ object frmDCDSMain: TfrmDCDSMain
             object pnlCCBottom: TPanel
               Left = 1
               Top = 404
-              Width = 754
+              Width = 347
               Height = 350
               Align = alBottom
               Caption = 'pnlCCBottom'
@@ -5383,7 +5382,7 @@ object frmDCDSMain: TfrmDCDSMain
               ParentBackground = False
               TabOrder = 1
               object grpStatus: TGroupBox
-                Left = 503
+                Left = 96
                 Top = 1
                 Width = 250
                 Height = 348
@@ -5761,7 +5760,7 @@ object frmDCDSMain: TfrmDCDSMain
               object grpBackSideMonitor: TGroupBox
                 Left = 1
                 Top = 1
-                Width = 502
+                Width = 95
                 Height = 348
                 Align = alClient
                 Caption = 'BACK SIDE MONITOR'
@@ -5789,7 +5788,7 @@ object frmDCDSMain: TfrmDCDSMain
                   AlignWithMargins = True
                   Left = 7
                   Top = 18
-                  Width = 488
+                  Width = 81
                   Height = 323
                   Margins.Left = 5
                   Margins.Top = 0
@@ -5808,8 +5807,8 @@ object frmDCDSMain: TfrmDCDSMain
       end
     end
     object btnBrakeOn: TRzBmpButton
-      Left = 854
-      Top = 981
+      Left = 547
+      Top = 930
       Width = 74
       Height = 75
       AllowAllUp = True
@@ -8589,8 +8588,8 @@ object frmDCDSMain: TfrmDCDSMain
       TabOrder = 3
     end
     object btnPowerSwitch: TRzBmpButton
-      Left = 1814
-      Top = 983
+      Left = 1033
+      Top = 938
       Width = 74
       Height = 74
       AllowAllUp = True
@@ -11353,8 +11352,8 @@ object frmDCDSMain: TfrmDCDSMain
       OnClick = btnPowerSwitchClick
     end
     object btnFireVolt: TRzBmpButton
-      Left = 1204
-      Top = 987
+      Left = 743
+      Top = 930
       Width = 63
       Height = 63
       AllowAllUp = True

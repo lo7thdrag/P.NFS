@@ -7980,6 +7980,7 @@ object Form1: TForm1
       Color = 10521726
       ParentBackground = False
       TabOrder = 1
+      Visible = False
       object ImgBtnMenu: TImage
         Left = 15
         Top = 8
@@ -10730,7 +10731,6 @@ object Form1: TForm1
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000000000000000000000000000}
         Color = clBtnFace
-        Enabled = False
         TabOrder = 0
         OnMouseDown = RzBmpBtnFireMouseDown
         OnMouseUp = RzBmpBtnFireMouseUp

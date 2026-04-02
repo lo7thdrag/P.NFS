@@ -2030,7 +2030,7 @@ var
   ListWeapon    : TList;
   status        : string;
   sceWeapon     : TScenarioWeapon;
-  strPicture    : string;
+  strPicture, worldproject    : string;
 
   weaponOnShipTemp :  TWeaponOnShip;
 begin
@@ -2079,6 +2079,7 @@ begin
     ShowDefaultPageWeapon(true);
 
     ClearListViewData(lvWeapon);
+    worldproject := SimManager.instProjectSet.World;
 
     try
       if Assigned(SimManager.TrackObject) then
@@ -2092,28 +2093,93 @@ begin
           Weapon.WeaponID := weaponOnShipTemp.Weapon_ID;
           Weapon.launcherID := weaponOnShipTemp.Weapon_Launcher;
           Weapon.MissileName := weaponOnShipTemp.Weapon_Name;
+          Weapon.Game_Type := weaponOnShipTemp.Weapon_GameType;
 
-          with lvWeapon.Items.Add do
+          if Weapon.Game_Type = 0 then
           begin
-            Data := Weapon;
-            Caption := weaponOnShipTemp.Weapon_Name;
-            SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
+            if worldproject = 'NAFS' then
+            begin
+              with lvWeapon.Items.Add do
+              begin
+                Data := Weapon;
+                Caption := weaponOnShipTemp.Weapon_Name;
+                SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
 
-            if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
-               (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
-               (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
-               (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
-               (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
-               (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
+                   (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
+                   (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+                begin
+                  SubItems.Add('Automatic')
+                end
+                else
+                begin
+                  if weaponOnShipTemp.Weapon_Status = 1 then
+                    SubItems.Add('On')
+                  else
+                    SubItems.Add('Off')
+                end;
+              end;
+            end;
+          end
+          else if Weapon.Game_Type = 1 then
+          begin
+            if worldproject = 'NSFS' then
             begin
-              SubItems.Add('Automatic')
-            end
-            else
+              with lvWeapon.Items.Add do
+              begin
+                Data := Weapon;
+                Caption := weaponOnShipTemp.Weapon_Name;
+                SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
+
+                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
+                   (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
+                   (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+                begin
+                  SubItems.Add('Automatic')
+                end
+                else
+                begin
+                  if weaponOnShipTemp.Weapon_Status = 1 then
+                    SubItems.Add('On')
+                  else
+                    SubItems.Add('Off')
+                end;
+              end;
+            end;
+          end
+          else if Weapon.Game_Type = 2 then
+          begin
+            if worldproject = 'NSSFS' then
             begin
-              if weaponOnShipTemp.Weapon_Status = 1 then
-                SubItems.Add('On')
-              else
-                SubItems.Add('Off')
+              with lvWeapon.Items.Add do
+              begin
+                Data := Weapon;
+                Caption := weaponOnShipTemp.Weapon_Name;
+                SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
+
+                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
+                   (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
+                   (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
+                   (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+                begin
+                  SubItems.Add('Automatic')
+                end
+                else
+                begin
+                  if weaponOnShipTemp.Weapon_Status = 1 then
+                    SubItems.Add('On')
+                  else
+                    SubItems.Add('Off')
+                end;
+              end;
             end;
           end;
         end;

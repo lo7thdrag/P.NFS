@@ -1017,6 +1017,7 @@ begin
         WeaponShip.Weapon_ID        := Weapon.IDWeapon;
         WeaponShip.Weapon_Launcher  := Weapon.IDDetail;
         WeaponShip.Weapon_Status    := 2;
+        WeaponShip.Weapon_GameType  := DataModule1.GetGameTypeWeaponByID(Weapon.IDWeapon);
 
         listSceWeapon := TList.Create;
         try

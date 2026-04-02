@@ -384,12 +384,12 @@ procedure TfrmDCDSMain.btnCmAggregateClick(Sender: TObject);
 begin
   if btnCmAggregate.Down then
   begin
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_greenon.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.png');
     btnAggregate.Glyph := FimgTemp.Picture.Bitmap;
   end
   else
   begin
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_greenoff.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.png');
     btnAggregate.Glyph := FimgTemp.Picture.Bitmap;
   end;
 end;
@@ -622,13 +622,13 @@ begin
     begin
       if dblVal > 0 then
       begin
-        FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_firingon.png');
+        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.png');
         btnFiring.Glyph := FimgTemp.Picture.Bitmap;
         btnFiring.Enabled := True;
       end
       else
       begin
-        FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_firingoff.png');
+        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.png');
         btnFiring.Glyph := FimgTemp.Picture.Bitmap;
         btnFiring.Enabled := False;
       end;
@@ -643,7 +643,7 @@ begin
     pnlLmHeading.Visible := False;
     pnlLmElevation.Visible := False;
     pnlLmTraining.Visible := False;
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_firingoff.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.png');
     btnFiring.Glyph := FimgTemp.Picture.Bitmap;
     tmrRotate.Enabled := False;
   end;
@@ -716,12 +716,12 @@ begin
     begin
       if (ranVal >= 0.16) and (ranVal <= maxRan) then
       begin
-        FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_firingon.png');
+        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.png');
         btnFiring.Glyph := FimgTemp.Picture.Bitmap;
       end
       else
       begin
-        FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_firingoff.png');
+        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.png');
         btnFiring.Glyph := FimgTemp.Picture.Bitmap;
         ShowMessage('Out of Range!');
       end;
@@ -729,7 +729,7 @@ begin
   end
   else
   begin
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_firingoff.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.png');
     btnFiring.Glyph := FimgTemp.Picture.Bitmap;
   end;
 end;
@@ -771,19 +771,19 @@ begin
   FisPwrSwtOn := not FisPwrSwtOn;
   if FisPwrSwtOn then
   begin
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_pwr on.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_pwr on.png');
     btnPwrSwt.Glyph := FimgTemp.Picture.Bitmap;
     tmr1.Enabled := True;//not tmr1.Enabled;
 //    tmrRotate.Enabled := True;
   end
   else
   begin
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_pwr off.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_pwr off.png');
     btnPwrSwt.Glyph := FimgTemp.Picture.Bitmap;
     pnlScreen.Visible := False;
     tmr1.Enabled := False;
     FbootTime := 0;
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_greenoff.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.png');
     btnSynchron.Glyph := FimgTemp.Picture.Bitmap;
     tmrRotate.Enabled := False;
   end;
@@ -1047,11 +1047,11 @@ procedure TfrmDCDSMain.setPowerOffState;
 begin
   pnlScreen.Visible := False;
 
-  FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_pwr off.png');
+  FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_pwr off.png');
   btnPwrSwt.Glyph := FimgTemp.Picture.Bitmap;
   FisPwrSwtOn := False;
 
-  FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_greenoff.png');
+  FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.png');
   btn26Vdc.Glyph := FimgTemp.Picture.Bitmap;
   btnUnformer.Glyph := FimgTemp.Picture.Bitmap;
   btnAggregate.Glyph := FimgTemp.Picture.Bitmap;
@@ -1135,7 +1135,7 @@ begin
   Inc(FbootTime);
   if (FbootTime >= 1) and (FbootTime < 2) and (not FisReady) then
   begin
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_greenon.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.png');
     btnUnformer.Glyph := FimgTemp.Picture.Bitmap;
   end
   else if (FbootTime >= 2) and (FbootTime < 3) and (not FisReady) then
@@ -1148,7 +1148,7 @@ begin
   begin
     tmr1.Enabled := False;
     pnlScreen.Visible := True;
-    FimgTemp.Picture.LoadFromFile('.\data\images\buttonAK230\bttn_greenon.png');
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.png');
     btnSynchron.Glyph := FimgTemp.Picture.Bitmap;
   end;
 end;
