@@ -816,8 +816,8 @@ object frmDCDSMain: TfrmDCDSMain
       OnMouseUp = btnFiringMouseUp
     end
     object btnPwrSwt: TSpeedButtonImage
-      Left = 932
-      Top = 942
+      Left = 934
+      Top = 938
       Width = 49
       Height = 49
       Caption = ''
@@ -3612,9 +3612,9 @@ object frmDCDSMain: TfrmDCDSMain
           TabOrder = 1
         end
         object pnlScreenSpaceRight: TPanel
-          Left = 968
+          Left = 973
           Top = 22
-          Width = 11
+          Width = 6
           Height = 757
           Align = alRight
           Color = clBlack
@@ -3624,7 +3624,7 @@ object frmDCDSMain: TfrmDCDSMain
         object pnlContent: TPanel
           Left = 7
           Top = 22
-          Width = 961
+          Width = 966
           Height = 757
           Align = alClient
           Color = clBlack
@@ -3633,7 +3633,7 @@ object frmDCDSMain: TfrmDCDSMain
           object pnlCLeft: TPanel
             Left = 1
             Top = 1
-            Width = 350
+            Width = 320
             Height = 755
             Align = alLeft
             BevelOuter = bvNone
@@ -3649,7 +3649,7 @@ object frmDCDSMain: TfrmDCDSMain
             object grpControlMode: TGroupBox
               Left = 0
               Top = 0
-              Width = 350
+              Width = 320
               Height = 128
               Align = alTop
               Caption = 'CONTROL MODE'
@@ -3679,7 +3679,7 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlCMSwap: TPanel
                 Left = 8
                 Top = 20
-                Width = 336
+                Width = 305
                 Height = 101
                 BevelWidth = 2
                 Color = clBlue
@@ -3749,7 +3749,7 @@ object frmDCDSMain: TfrmDCDSMain
             object grpDCDriveControl: TGroupBox
               Left = 0
               Top = 302
-              Width = 350
+              Width = 320
               Height = 200
               Align = alTop
               Caption = 'DC DRIVE CONTROL'
@@ -3779,13 +3779,13 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlDCDC: TPanel
                 Left = 8
                 Top = 20
-                Width = 336
+                Width = 305
                 Height = 172
                 Color = clBlue
                 ParentBackground = False
                 TabOrder = 0
                 object lbl13: TLabel
-                  Left = 270
+                  Left = 266
                   Top = 11
                   Width = 23
                   Height = 16
@@ -3798,7 +3798,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                 end
                 object lbl17: TLabel
-                  Left = 270
+                  Left = 266
                   Top = 77
                   Width = 23
                   Height = 16
@@ -3831,13 +3831,13 @@ object frmDCDSMain: TfrmDCDSMain
                 object pnlDCDCElevationCtrl: TPanel
                   Left = 18
                   Top = 97
-                  Width = 275
+                  Width = 271
                   Height = 35
                   Color = clBlack
                   ParentBackground = False
                   TabOrder = 1
                   object btnDcdcElevationIncrease: TButton
-                    Left = 197
+                    Left = 190
                     Top = 5
                     Width = 25
                     Height = 25
@@ -3867,7 +3867,7 @@ object frmDCDSMain: TfrmDCDSMain
                     OnClick = btnDcdcElevationDecreaseClick
                   end
                   object btnDcdcElevationMax: TButton
-                    Left = 242
+                    Left = 235
                     Top = 5
                     Width = 25
                     Height = 25
@@ -3898,7 +3898,7 @@ object frmDCDSMain: TfrmDCDSMain
                   end
                 end
                 object edtElevationValue: TEdit
-                  Left = 202
+                  Left = 198
                   Top = 74
                   Width = 65
                   Height = 22
@@ -3917,13 +3917,13 @@ object frmDCDSMain: TfrmDCDSMain
                 object pnlDCDCTrainingCtrl: TPanel
                   Left = 18
                   Top = 33
-                  Width = 275
+                  Width = 271
                   Height = 35
                   Color = clBlack
                   ParentBackground = False
                   TabOrder = 3
                   object btnDcdcTrainIncrease: TButton
-                    Left = 197
+                    Left = 190
                     Top = 5
                     Width = 25
                     Height = 25
@@ -3953,7 +3953,7 @@ object frmDCDSMain: TfrmDCDSMain
                     OnClick = btnDcdcTrainDecreaseClick
                   end
                   object btnDcdcTrainMax: TButton
-                    Left = 242
+                    Left = 235
                     Top = 5
                     Width = 25
                     Height = 25
@@ -3984,7 +3984,7 @@ object frmDCDSMain: TfrmDCDSMain
                   end
                 end
                 object edtTrainingValue: TEdit
-                  Left = 202
+                  Left = 198
                   Top = 8
                   Width = 65
                   Height = 22
@@ -4037,7 +4037,7 @@ object frmDCDSMain: TfrmDCDSMain
             object grpOperatingMode: TGroupBox
               Left = 0
               Top = 128
-              Width = 350
+              Width = 320
               Height = 174
               Align = alTop
               Caption = 'OPERATING MODE'
@@ -4067,7 +4067,7 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlControlMode: TPanel
                 Left = 8
                 Top = 20
-                Width = 336
+                Width = 305
                 Height = 45
                 Color = clBlack
                 ParentBackground = False
@@ -4112,7 +4112,7 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlTargetDepth: TPanel
                 Left = 8
                 Top = 70
-                Width = 336
+                Width = 305
                 Height = 95
                 Color = clBlue
                 ParentBackground = False
@@ -4158,7 +4158,7 @@ object frmDCDSMain: TfrmDCDSMain
                   TabOrder = 1
                 end
                 object pnlRadarExtSyn: TPanel
-                  Left = 107
+                  Left = 75
                   Top = 4
                   Width = 70
                   Height = 85
@@ -4213,7 +4213,7 @@ object frmDCDSMain: TfrmDCDSMain
                   end
                 end
                 object pnlOMRangeBearing: TPanel
-                  Left = 186
+                  Left = 154
                   Top = 4
                   Width = 140
                   Height = 85
@@ -4343,7 +4343,7 @@ object frmDCDSMain: TfrmDCDSMain
               AlignWithMargins = True
               Left = 3
               Top = 711
-              Width = 344
+              Width = 314
               Height = 41
               Align = alBottom
               BevelWidth = 3
@@ -4372,7 +4372,7 @@ object frmDCDSMain: TfrmDCDSMain
             object pnlBullet: TPanel
               Left = 0
               Top = 634
-              Width = 350
+              Width = 320
               Height = 74
               Align = alClient
               Color = clNavy
@@ -4382,7 +4382,7 @@ object frmDCDSMain: TfrmDCDSMain
                 AlignWithMargins = True
                 Left = 4
                 Top = 4
-                Width = 170
+                Width = 164
                 Height = 66
                 Align = alLeft
                 Caption = 'No. Bullt In Magazine'
@@ -4412,7 +4412,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                 end
                 object lbl7: TLabel
-                  Left = 105
+                  Left = 99
                   Top = 13
                   Width = 60
                   Height = 14
@@ -4442,7 +4442,7 @@ object frmDCDSMain: TfrmDCDSMain
                 object edtNoLeftMgzn: TEdit
                   Left = 7
                   Top = 31
-                  Width = 50
+                  Width = 42
                   Height = 22
                   Alignment = taCenter
                   Color = clBlack
@@ -4456,9 +4456,9 @@ object frmDCDSMain: TfrmDCDSMain
                   Text = '0'
                 end
                 object edtNoRightMgzn: TEdit
-                  Left = 113
+                  Left = 110
                   Top = 31
-                  Width = 50
+                  Width = 42
                   Height = 22
                   Alignment = taCenter
                   Color = clBlack
@@ -4472,7 +4472,7 @@ object frmDCDSMain: TfrmDCDSMain
                   Text = '0'
                 end
                 object btnNoBulltMgzn: TFlatButton
-                  Left = 60
+                  Left = 55
                   Top = 27
                   Width = 50
                   Height = 30
@@ -4491,11 +4491,10 @@ object frmDCDSMain: TfrmDCDSMain
               end
               object grpBulletsCount: TGroupBox
                 AlignWithMargins = True
-                Left = 171
+                Left = 168
                 Top = 4
-                Width = 175
+                Width = 153
                 Height = 66
-                Align = alRight
                 Caption = 'Bullets Count'
                 Color = clBlue
                 Font.Charset = DEFAULT_CHARSET
@@ -4508,7 +4507,7 @@ object frmDCDSMain: TfrmDCDSMain
                 ParentFont = False
                 TabOrder = 1
                 object lbl4: TLabel
-                  Left = 7
+                  Left = 3
                   Top = 20
                   Width = 53
                   Height = 14
@@ -4523,7 +4522,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                 end
                 object lbl5: TLabel
-                  Left = 7
+                  Left = 2
                   Top = 46
                   Width = 57
                   Height = 14
@@ -4551,9 +4550,9 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                 end
                 object edtBulCntLf1: TEdit
-                  Left = 67
+                  Left = 62
                   Top = 16
-                  Width = 50
+                  Width = 42
                   Height = 22
                   Alignment = taCenter
                   Color = clBlack
@@ -4568,9 +4567,9 @@ object frmDCDSMain: TfrmDCDSMain
                   Text = '0'
                 end
                 object edtBulCntLf2: TEdit
-                  Left = 123
+                  Left = 106
                   Top = 16
-                  Width = 50
+                  Width = 42
                   Height = 22
                   Alignment = taCenter
                   Color = clBlack
@@ -4585,9 +4584,9 @@ object frmDCDSMain: TfrmDCDSMain
                   Text = '0'
                 end
                 object edtBulCntRg1: TEdit
-                  Left = 67
+                  Left = 62
                   Top = 42
-                  Width = 50
+                  Width = 42
                   Height = 22
                   Alignment = taCenter
                   Color = clBlack
@@ -4602,9 +4601,9 @@ object frmDCDSMain: TfrmDCDSMain
                   Text = '0'
                 end
                 object edtBulCntRg2: TEdit
-                  Left = 123
+                  Left = 107
                   Top = 42
-                  Width = 50
+                  Width = 42
                   Height = 22
                   Alignment = taCenter
                   Color = clBlack
@@ -4623,7 +4622,7 @@ object frmDCDSMain: TfrmDCDSMain
             object grpAngleCorrection: TGroupBox
               Left = 0
               Top = 502
-              Width = 350
+              Width = 320
               Height = 132
               Align = alTop
               Caption = 'ANGLE CORRECTION'
@@ -4653,7 +4652,7 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlACTraining: TPanel
                 Left = 8
                 Top = 20
-                Width = 336
+                Width = 305
                 Height = 50
                 BevelWidth = 3
                 Color = clBlue
@@ -4732,7 +4731,7 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlACElevation: TPanel
                 Left = 8
                 Top = 75
-                Width = 336
+                Width = 305
                 Height = 50
                 BevelWidth = 3
                 Color = clBlue
@@ -4811,9 +4810,9 @@ object frmDCDSMain: TfrmDCDSMain
             end
           end
           object pnlCRight: TPanel
-            Left = 700
+            Left = 760
             Top = 1
-            Width = 260
+            Width = 205
             Height = 755
             Align = alRight
             BevelOuter = bvNone
@@ -4829,7 +4828,7 @@ object frmDCDSMain: TfrmDCDSMain
             object grpLayingMonitor: TGroupBox
               Left = 0
               Top = 0
-              Width = 260
+              Width = 205
               Height = 755
               Align = alClient
               Caption = 'LAYING MONITOR'
@@ -4853,21 +4852,21 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlLmTraining: TPanel
                 Left = 2
                 Top = 20
-                Width = 256
+                Width = 201
                 Height = 221
                 Align = alTop
                 Color = clBlack
                 ParentBackground = False
                 TabOrder = 0
                 object imgTrainingBg: TImage
-                  Left = 23
+                  Left = 11
                   Top = 20
                   Width = 180
                   Height = 180
                   Stretch = True
                 end
                 object imgTrainPtr: TImage
-                  Left = 23
+                  Left = 11
                   Top = 20
                   Width = 180
                   Height = 180
@@ -4877,22 +4876,22 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlLmElevation: TPanel
                 Left = 2
                 Top = 241
-                Width = 256
+                Width = 201
                 Height = 221
                 Align = alTop
                 Color = clBlack
                 ParentBackground = False
                 TabOrder = 1
                 object imgElevationBg: TImage
-                  Left = 23
+                  Left = 11
                   Top = 21
                   Width = 180
                   Height = 180
                   Stretch = True
                 end
                 object imgElevPtr: TImage
-                  Left = 23
-                  Top = 21
+                  Left = 11
+                  Top = 28
                   Width = 180
                   Height = 180
                   Stretch = True
@@ -4919,21 +4918,21 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlLmHeading: TPanel
                 Left = 2
                 Top = 462
-                Width = 256
+                Width = 201
                 Height = 213
                 Align = alTop
                 Color = clBlack
                 ParentBackground = False
                 TabOrder = 2
                 object imgHeadingBg: TImage
-                  Left = 28
+                  Left = 21
                   Top = 21
                   Width = 170
                   Height = 170
                   Stretch = True
                 end
                 object imgHeadPtr: TImage
-                  Left = 28
+                  Left = 21
                   Top = 21
                   Width = 170
                   Height = 170
@@ -4959,7 +4958,7 @@ object frmDCDSMain: TfrmDCDSMain
                 Text = 'HEADING'
               end
               object edtValueElevation: TEdit
-                Left = 183
+                Left = 129
                 Top = 241
                 Width = 75
                 Height = 22
@@ -4977,7 +4976,7 @@ object frmDCDSMain: TfrmDCDSMain
                 Text = '0'
               end
               object edtValueHeding: TEdit
-                Left = 183
+                Left = 129
                 Top = 462
                 Width = 75
                 Height = 22
@@ -5013,7 +5012,7 @@ object frmDCDSMain: TfrmDCDSMain
                 Text = 'TRAINING'
               end
               object edtValueTraining: TEdit
-                Left = 183
+                Left = 129
                 Top = 20
                 Width = 75
                 Height = 22
@@ -5033,9 +5032,9 @@ object frmDCDSMain: TfrmDCDSMain
             end
           end
           object pnlCCenter: TPanel
-            Left = 351
+            Left = 321
             Top = 1
-            Width = 349
+            Width = 439
             Height = 755
             Align = alClient
             Caption = 'pnlCCenter'
@@ -5043,7 +5042,7 @@ object frmDCDSMain: TfrmDCDSMain
             object grpStatusCondition: TGroupBox
               Left = 1
               Top = 1
-              Width = 347
+              Width = 437
               Height = 403
               Align = alClient
               Caption = 'STATUS CONDITION'
@@ -5073,13 +5072,13 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlSCTop: TPanel
                 Left = 2
                 Top = 18
-                Width = 343
+                Width = 433
                 Height = 31
                 Align = alTop
                 BevelOuter = bvNone
                 TabOrder = 0
                 object edtLblSC: TEdit
-                  Left = 250
+                  Left = 150
                   Top = 4
                   Width = 250
                   Height = 22
@@ -5100,7 +5099,7 @@ object frmDCDSMain: TfrmDCDSMain
               object pnlSCHeader: TPanel
                 Left = 2
                 Top = 49
-                Width = 343
+                Width = 433
                 Height = 22
                 Align = alTop
                 Font.Charset = DEFAULT_CHARSET
@@ -5112,56 +5111,56 @@ object frmDCDSMain: TfrmDCDSMain
                 ParentFont = False
                 TabOrder = 1
                 object lbl18: TLabel
-                  Left = 200
+                  Left = 189
                   Top = 5
                   Width = 26
                   Height = 13
                   Caption = 'DATE'
                 end
                 object lbl19: TLabel
-                  Left = 296
+                  Left = 230
                   Top = 5
                   Width = 24
                   Height = 13
                   Caption = 'TIME'
                 end
                 object lbl20: TLabel
-                  Left = 361
+                  Left = 273
                   Top = 5
                   Width = 49
                   Height = 13
                   Caption = 'TRAINING'
                 end
                 object lbl21: TLabel
-                  Left = 422
+                  Left = 340
                   Top = 5
                   Width = 55
                   Height = 13
                   Caption = 'ELEVATION'
                 end
                 object lbl22: TLabel
-                  Left = 488
+                  Left = 408
                   Top = 5
                   Width = 29
                   Height = 13
                   Caption = 'LF MG'
                 end
                 object lbl23: TLabel
-                  Left = 539
+                  Left = 448
                   Top = 5
                   Width = 32
                   Height = 13
                   Caption = 'RG MG'
                 end
                 object lbl24: TLabel
-                  Left = 592
+                  Left = 490
                   Top = 5
                   Width = 33
                   Height = 13
                   Caption = 'Blt.Lft.'
                 end
                 object lbl25: TLabel
-                  Left = 643
+                  Left = 531
                   Top = 5
                   Width = 37
                   Height = 13
@@ -5353,28 +5352,25 @@ object frmDCDSMain: TfrmDCDSMain
               object mmoLogger: TMemo
                 Left = 187
                 Top = 71
-                Width = 565
-                Height = 326
+                Width = 388
+                Height = 331
                 Lines.Strings = (
                   
-                    'date    time    training    elevation    lfmg    rgmg    bltlft ' +
-                    '   bltrgt'
-                  
-                    '08/28/2025     12:12:00     123.90     89.98     5000     5000  ' +
-                    '   5000     5000'
-                  
-                    '09/03/2025     09/03/2025     09/03/2025     09/03/2025     09/0' +
-                    '3/2025     '
+                    'date   time    training    elevation  lfmg   rgmg  bltlft   bltr' +
+                    'gt'
+                  '08/28/2025     12:12:00     123.90     89.98     5000     5000 '
+                  '    5000     5000'
+                  '09/03/2025     09/03/2025     09/03/2025     09/03/2025 '
+                  '    09/03/2025     '
                   '09/03/2025')
                 ReadOnly = True
                 TabOrder = 3
-                Visible = False
               end
             end
             object pnlCCBottom: TPanel
               Left = 1
               Top = 404
-              Width = 347
+              Width = 437
               Height = 350
               Align = alBottom
               Caption = 'pnlCCBottom'
@@ -5382,9 +5378,9 @@ object frmDCDSMain: TfrmDCDSMain
               ParentBackground = False
               TabOrder = 1
               object grpStatus: TGroupBox
-                Left = 96
+                Left = 222
                 Top = 1
-                Width = 250
+                Width = 214
                 Height = 348
                 Align = alRight
                 Caption = 'STATUS'
@@ -5411,7 +5407,7 @@ object frmDCDSMain: TfrmDCDSMain
                 object pnlTCPPCB: TPanel
                   Left = 2
                   Top = 18
-                  Width = 246
+                  Width = 210
                   Height = 28
                   Align = alTop
                   Caption = 'pnlTCPPCB'
@@ -5453,7 +5449,7 @@ object frmDCDSMain: TfrmDCDSMain
                 object grpSCamera: TGroupBox
                   Left = 2
                   Top = 46
-                  Width = 246
+                  Width = 210
                   Height = 57
                   Align = alTop
                   Caption = 'CAMERA'
@@ -5478,7 +5474,7 @@ object frmDCDSMain: TfrmDCDSMain
                     ParentFont = False
                   end
                   object btnCStart: TFlatButton
-                    Left = 16
+                    Left = 8
                     Top = 17
                     Width = 90
                     Height = 30
@@ -5496,7 +5492,7 @@ object frmDCDSMain: TfrmDCDSMain
                     TabOrder = 0
                   end
                   object btnCStop: TFlatButton
-                    Left = 126
+                    Left = 111
                     Top = 17
                     Width = 90
                     Height = 30
@@ -5518,7 +5514,7 @@ object frmDCDSMain: TfrmDCDSMain
                 object grpSPowerStatus: TGroupBox
                   Left = 2
                   Top = 135
-                  Width = 246
+                  Width = 210
                   Height = 70
                   Align = alBottom
                   Caption = 'Power Status'
@@ -5580,7 +5576,7 @@ object frmDCDSMain: TfrmDCDSMain
                 object grpSLayingStatus: TGroupBox
                   Left = 2
                   Top = 205
-                  Width = 246
+                  Width = 210
                   Height = 100
                   Align = alBottom
                   Caption = 'Laying Status'
@@ -5682,7 +5678,7 @@ object frmDCDSMain: TfrmDCDSMain
                 object pnlDateTime: TPanel
                   Left = 2
                   Top = 305
-                  Width = 246
+                  Width = 210
                   Height = 41
                   Align = alBottom
                   Caption = 'pnlTCPPCB'
@@ -5760,7 +5756,7 @@ object frmDCDSMain: TfrmDCDSMain
               object grpBackSideMonitor: TGroupBox
                 Left = 1
                 Top = 1
-                Width = 95
+                Width = 221
                 Height = 348
                 Align = alClient
                 Caption = 'BACK SIDE MONITOR'
@@ -5788,7 +5784,7 @@ object frmDCDSMain: TfrmDCDSMain
                   AlignWithMargins = True
                   Left = 7
                   Top = 18
-                  Width = 81
+                  Width = 207
                   Height = 323
                   Margins.Left = 5
                   Margins.Top = 0
@@ -11347,7 +11343,7 @@ object frmDCDSMain: TfrmDCDSMain
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         00000000000000000000}
-      Color = clBlack
+      Color = clNone
       TabOrder = 0
       OnClick = btnPowerSwitchClick
     end
