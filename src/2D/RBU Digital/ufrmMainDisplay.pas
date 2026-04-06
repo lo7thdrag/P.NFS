@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.OleCtrls, MapXLib_TLB,
   Vcl.StdCtrls, System.ImageList, Vcl.ImgList, Vcl.Buttons, TFlatButtonUnit,
-  Vcl.ComCtrls, VrControls, VrTrackBar, acPNG, Vcl.Imaging.pngimage,
+  Vcl.ComCtrls, VrControls, VrTrackBar, {acPNG,} Vcl.Imaging.pngimage,
   System.Math, uRBU_Manager, uLibRBU, uBridgeSet, uSimulationManager, uBaseFunctionRBUD,
   uMapXUnitConverter, uRadarVisual, uCoordConverter, uRadarDynamicSector;
 
@@ -470,6 +470,12 @@ begin
   edtTrgtRangeValue.Text := edtTargetRangeValue.Text;
   range := StrToFloat(edtTrgtRangeValue.Text);
 
+//  if (range > 500) and (range < 1500) then
+//  BalistikMode := Balistik1
+//  else
+  BalistikMode := BlAuto;
+  aCount := 1;
+
   if not GetBalistik(BalistikMode, range, Use_Balistik) then
     Exit;
 
@@ -791,7 +797,7 @@ begin
 
   diffBeetwinWH := (pnlCenter.Width - pnlCenter.Height) div 2;
 
-  top := 50;
+  top := 120;
   bottom := pnlCenter.Height - top;
   left := diffBeetwinWH + top;
   right := pnlCenter.Width - left;
@@ -1094,12 +1100,12 @@ end;
 
 procedure TfrmMainDisplay.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  if not Assigned(frmPasswordEntryCode) then
-    frmPasswordEntryCode := TfrmPasswordEntryCode.Create(nil)
-  else
-    frmPasswordEntryCode.Show;
-  Action:= caNone;
-  Hide;
+//  if not Assigned(frmPasswordEntryCode) then
+//    frmPasswordEntryCode := TfrmPasswordEntryCode.Create(nil)
+//  else
+//    frmPasswordEntryCode.Show;
+//  Action:= caNone;
+//  Hide;
 end;
 
 procedure TfrmMainDisplay.FormCreate(Sender: TObject);
@@ -1638,11 +1644,12 @@ begin
 //  r := Rect(222,50, FMap.Height + 110, FMap.Height - 50);
   diffBeetwinWH := (pnlCenter.Width - pnlCenter.Height) div 2;
 
-  top := 50;
+  top := 120;
   bottom := pnlCenter.Height - top;
   left := diffBeetwinWH + top;
-//  right := pnlCenter.Width - left;
-  right := 1005;
+//  left := diffBeetwinWH;
+  right := pnlCenter.Width - left;
+//  right := 1050;
 
   FCircleRect  := Rect(left,top, right, bottom);
 

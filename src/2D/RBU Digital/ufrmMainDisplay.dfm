@@ -2,10 +2,10 @@ object frmMainDisplay: TfrmMainDisplay
   Left = 0
   Top = 0
   BiDiMode = bdLeftToRight
-  BorderStyle = bsSingle
+  BorderStyle = bsNone
   Caption = 'ANTI SUB MARINE SYSTEM (BURJA)'
-  ClientHeight = 1051
-  ClientWidth = 1914
+  ClientHeight = 1200
+  ClientWidth = 1920
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,6 +15,7 @@ object frmMainDisplay: TfrmMainDisplay
   OldCreateOrder = False
   ParentBiDiMode = False
   Position = poScreenCenter
+  Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -26,8 +27,8 @@ object frmMainDisplay: TfrmMainDisplay
   object pnlLeft: TPanel
     Left = 0
     Top = 0
-    Width = 504
-    Height = 1051
+    Width = 510
+    Height = 1200
     Align = alClient
     BevelOuter = bvNone
     DoubleBuffered = True
@@ -37,7 +38,7 @@ object frmMainDisplay: TfrmMainDisplay
     object pnlLTop: TPanel
       Left = 0
       Top = 0
-      Width = 504
+      Width = 510
       Height = 697
       Align = alTop
       Color = clBlue
@@ -50,7 +51,7 @@ object frmMainDisplay: TfrmMainDisplay
       ParentFont = False
       TabOrder = 0
       object pnlLTRight: TPanel
-        Left = 313
+        Left = 319
         Top = 1
         Width = 190
         Height = 695
@@ -383,6 +384,7 @@ object frmMainDisplay: TfrmMainDisplay
               TabOrder = 1
             end
             object btnSalvo12L: TFlatButton
+              Tag = 12
               Left = 8
               Top = 290
               Width = 75
@@ -402,6 +404,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSalvo8L: TFlatButton
+              Tag = 8
               Left = 8
               Top = 250
               Width = 75
@@ -421,6 +424,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSalvo4L: TFlatButton
+              Tag = 4
               Left = 8
               Top = 210
               Width = 75
@@ -440,6 +444,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSingle11L: TFlatButton
+              Tag = 11
               Left = 8
               Top = 170
               Width = 75
@@ -459,6 +464,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSingle6L: TFlatButton
+              Tag = 6
               Left = 8
               Top = 130
               Width = 75
@@ -478,6 +484,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSingle12L: TFlatButton
+              Tag = 12
               Left = 8
               Top = 90
               Width = 75
@@ -537,6 +544,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSingle12R: TFlatButton
+              Tag = 12
               Left = 93
               Top = 90
               Width = 75
@@ -556,6 +564,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSingle6R: TFlatButton
+              Tag = 6
               Left = 93
               Top = 130
               Width = 75
@@ -575,6 +584,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSingle11R: TFlatButton
+              Tag = 11
               Left = 93
               Top = 170
               Width = 75
@@ -594,6 +604,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSalvo4R: TFlatButton
+              Tag = 4
               Left = 93
               Top = 210
               Width = 75
@@ -613,6 +624,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSalvo8R: TFlatButton
+              Tag = 8
               Left = 93
               Top = 250
               Width = 75
@@ -632,6 +644,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = FiringMode
             end
             object btnSalvo12R: TFlatButton
+              Tag = 12
               Left = 93
               Top = 290
               Width = 75
@@ -656,7 +669,7 @@ object frmMainDisplay: TfrmMainDisplay
       object pnlLTLeft: TPanel
         Left = 1
         Top = 1
-        Width = 312
+        Width = 318
         Height = 695
         Align = alClient
         Color = clBlue
@@ -665,7 +678,7 @@ object frmMainDisplay: TfrmMainDisplay
         object grpLoadingManual: TGroupBox
           Left = 1
           Top = 77
-          Width = 310
+          Width = 316
           Height = 452
           Align = alTop
           Caption = 'Loading Manual'
@@ -899,7 +912,7 @@ object frmMainDisplay: TfrmMainDisplay
               Top = 69
               Width = 28
               Height = 16
-              Caption = '1200'
+              Caption = '6000'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWhite
               Font.Height = -13
@@ -1011,7 +1024,7 @@ object frmMainDisplay: TfrmMainDisplay
               Top = 44
               Width = 257
               Height = 17
-              Max = 1200
+              Max = 6000
               PageSize = 0
               TabOrder = 2
               OnChange = scrlbrTargetRangeChange
@@ -1069,7 +1082,7 @@ object frmMainDisplay: TfrmMainDisplay
               OnClick = btnActualClick
             end
             object btnStandByPos: TFlatButton
-              Left = 16
+              Left = 18
               Top = 191
               Width = 93
               Height = 30
@@ -1120,7 +1133,7 @@ object frmMainDisplay: TfrmMainDisplay
         object grpControlMode: TGroupBox
           Left = 1
           Top = 1
-          Width = 310
+          Width = 316
           Height = 76
           Align = alTop
           Caption = 'Control Mode'
@@ -1181,7 +1194,7 @@ object frmMainDisplay: TfrmMainDisplay
         object grpDirectPosisition: TGroupBox
           Left = 1
           Top = 529
-          Width = 310
+          Width = 316
           Height = 165
           Align = alClient
           Caption = 'Direct Posisition'
@@ -1402,14 +1415,14 @@ object frmMainDisplay: TfrmMainDisplay
     object pnlLCenter: TPanel
       Left = 0
       Top = 697
-      Width = 504
+      Width = 510
       Height = 210
       Align = alTop
       Color = clBlue
       ParentBackground = False
       TabOrder = 1
       object grpControlRoom: TGroupBox
-        Left = 315
+        Left = 321
         Top = 1
         Width = 188
         Height = 208
@@ -1472,7 +1485,7 @@ object frmMainDisplay: TfrmMainDisplay
       object grpRbuCorrection: TGroupBox
         Left = 1
         Top = 1
-        Width = 314
+        Width = 320
         Height = 208
         Align = alClient
         Caption = 'Rbu Correction'
@@ -1665,8 +1678,8 @@ object frmMainDisplay: TfrmMainDisplay
     object pnlLBottom: TPanel
       Left = 0
       Top = 907
-      Width = 504
-      Height = 144
+      Width = 510
+      Height = 293
       Align = alClient
       Color = clBlue
       ParentBackground = False
@@ -1674,8 +1687,8 @@ object frmMainDisplay: TfrmMainDisplay
       object grpUnitSelect: TGroupBox
         Left = 1
         Top = 1
-        Width = 314
-        Height = 142
+        Width = 320
+        Height = 291
         Align = alClient
         Caption = 'Unit Select'
         Font.Charset = DEFAULT_CHARSET
@@ -1726,10 +1739,10 @@ object frmMainDisplay: TfrmMainDisplay
         end
       end
       object grpEndProcess: TGroupBox
-        Left = 315
+        Left = 321
         Top = 1
         Width = 188
-        Height = 142
+        Height = 291
         Align = alRight
         Caption = 'End Process'
         Font.Charset = DEFAULT_CHARSET
@@ -1761,10 +1774,10 @@ object frmMainDisplay: TfrmMainDisplay
     end
   end
   object pnlCenter: TPanel
-    Left = 504
+    Left = 510
     Top = 0
     Width = 1040
-    Height = 1051
+    Height = 1200
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
@@ -1772,7 +1785,7 @@ object frmMainDisplay: TfrmMainDisplay
       Left = 0
       Top = 0
       Width = 1040
-      Height = 1051
+      Height = 1200
       Align = alClient
       ExplicitLeft = 640
       ExplicitTop = 312
@@ -1783,7 +1796,7 @@ object frmMainDisplay: TfrmMainDisplay
       Left = 0
       Top = 0
       Width = 1040
-      Height = 1051
+      Height = 1200
       ParentColor = False
       Align = alClient
       TabOrder = 0
@@ -1792,19 +1805,19 @@ object frmMainDisplay: TfrmMainDisplay
       ExplicitTop = 1000
       ExplicitHeight = 1041
       ControlData = {
-        8A1A06007D6B0000A06C0000010000000F0000FF0D47656F44696374696F6E61
+        8A1A06007D6B0000067C0000010000000F0000FF0D47656F44696374696F6E61
         727905456D70747900E8030000000000000000000002000E001E000000000000
         0000000000000000000000000000000000000000000600010000000000500001
         010000640000000001F4010000050000800C000000000000000000000000FFFF
         FF000100000000000000000000000000000000000000000000000352E30B918F
-        CE119DE300AA004BB8510100000090012C040C0005417269616C000352E30B91
+        CE119DE300AA004BB851010000009001A0BB0D0005417269616C000352E30B91
         8FCE119DE300AA004BB851010000009001348C030005417269616C0000000000
         00000000000000000000000000000000000000000000000000000000000000FF
         FFFF000000000000000001370000000000FFFFFF000000000000000352E30B91
         8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
         918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
         6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-        010001180100002879490801000000992EEB751C000000000000000000000000
+        0100011801000040C76A2A0100000079FA45761C000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000002
         0000000000000000000000000000000000000000000000000000000000000000
@@ -1813,7 +1826,7 @@ object frmMainDisplay: TfrmMainDisplay
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         8076C000000000008056C0000000000080764000000000008056400100000018
-        0100002879490801000000164104001C00000000000000000000000000000000
+        01000040C76A2A010000006E0064001C00000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000200000000
         0000000000000000000000000000000000000000000000000000000000000000
@@ -1821,7 +1834,7 @@ object frmMainDisplay: TfrmMainDisplay
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         00000000000000000000000000000000000000000000000000000058E7970008
-        E39700252EEB7558E3970000040000F0E2970081580841000000000000000000
+        E3970005FA457658E3970000040000F0E29700810AE624000000000000000000
         000088B3400000000000408F400001000001}
     end
     object pnlTCP_PCOM: TPanel
@@ -1871,7 +1884,7 @@ object frmMainDisplay: TfrmMainDisplay
     end
     object edtDate: TEdit
       Left = 880
-      Top = 997
+      Top = 1149
       Width = 60
       Height = 22
       TabStop = False
@@ -1888,7 +1901,7 @@ object frmMainDisplay: TfrmMainDisplay
     end
     object edtDateValue: TEdit
       Left = 940
-      Top = 997
+      Top = 1149
       Width = 100
       Height = 22
       TabStop = False
@@ -1905,7 +1918,7 @@ object frmMainDisplay: TfrmMainDisplay
     end
     object edtTime: TEdit
       Left = 880
-      Top = 1019
+      Top = 1171
       Width = 60
       Height = 22
       TabStop = False
@@ -1922,7 +1935,7 @@ object frmMainDisplay: TfrmMainDisplay
     end
     object edtTimeValue: TEdit
       Left = 940
-      Top = 1019
+      Top = 1171
       Width = 100
       Height = 22
       TabStop = False
@@ -1971,10 +1984,10 @@ object frmMainDisplay: TfrmMainDisplay
     end
   end
   object pnlRight: TPanel
-    Left = 1544
+    Left = 1550
     Top = 0
     Width = 370
-    Height = 1051
+    Height = 1200
     Align = alRight
     BevelOuter = bvNone
     DoubleBuffered = True
@@ -2671,7 +2684,7 @@ object frmMainDisplay: TfrmMainDisplay
       Left = 0
       Top = 925
       Width = 370
-      Height = 126
+      Height = 275
       Align = alClient
       Color = clBlue
       ParentBackground = False

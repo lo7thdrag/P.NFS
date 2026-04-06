@@ -298,7 +298,7 @@ procedure TServerManager.ClientRecv_3D_ShipPos(AHeader: TPacketHeader;
   AContent: string);
 var
   incoming_data: TRecDataPosition3D;
-  // apRec: TRecData3DPosition;
+   apRec: TRecData3DPosition;
   o: TObject;
   so: TShipObject;
   Obj: TShipObject;
@@ -317,16 +317,16 @@ begin
 //        'Z : ' + FormatFloat('0.00', incoming_data.Z));
 //    end;
 
-    // apRec.ShipID := incoming_data.ShipID;
-    // apRec.X := incoming_data.X;
-    // apRec.y := incoming_data.y;
-    // apRec.z := incoming_data.z;
-    // apRec.heading := incoming_data.heading;
-    // apRec.speed := incoming_data.speed;
-    // apRec.pitch := incoming_data.pitch;
-    // apRec.roll := incoming_data.roll;
-    // apRec.rudder := incoming_data.rudder;
-    // FServer2D.SendDataEx(REC_3D_POSITION, @apRec, nil);
+//     apRec.ShipID := incoming_data.ShipID;
+//     apRec.X := incoming_data.X;
+//     apRec.y := incoming_data.y;
+//     apRec.z := incoming_data.z;
+//     apRec.heading := incoming_data.heading;
+//     apRec.speed := incoming_data.speed;
+//     apRec.pitch := incoming_data.pitch;
+//     apRec.roll := incoming_data.roll;
+//     apRec.rudder := incoming_data.rudder;
+
     o := FindObjectByShipID(incoming_data.ShipID);
     if Assigned(o) then
     begin
@@ -341,6 +341,17 @@ begin
         so.pitch := incoming_data.pitch;
         so.roll := incoming_data.roll;
         so.rudder := incoming_data.rudder;
+
+        if Assigned(FOnLogReceived3d) then
+        begin
+          FOnLogReceived3d('JSON : ' + AContent);
+          FOnLogReceived3d('REC3D_POSITION' + #13#10 +
+            'ShipID : ' + IntToStr(incoming_data.ShipID) + #13#10 +
+            'X : ' + FormatFloat('0.00', incoming_data.X) + #13#10 +
+            'Y : ' + FormatFloat('0.00', incoming_data.Y) + #13#10 +
+            'Z : ' + FormatFloat('0.00', incoming_data.Z) + #13#10 +
+            ' Update Pos Kapal');
+        end;
       end;
     end
     else   // jika nambah kapal
@@ -357,8 +368,20 @@ begin
       Obj.rudder := 0.0;
 
       FStateManager.Add(Obj);
+
+      if Assigned(FOnLogReceived3d) then
+        begin
+          FOnLogReceived3d('JSON : ' + AContent);
+          FOnLogReceived3d('REC3D_POSITION' + #13#10 +
+            'ShipID : ' + IntToStr(incoming_data.ShipID) + #13#10 +
+            'X : ' + FormatFloat('0.00', incoming_data.X) + #13#10 +
+            'Y : ' + FormatFloat('0.00', incoming_data.Y) + #13#10 +
+            'Z : ' + FormatFloat('0.00', incoming_data.Z) + #13#10 +
+            ' Add New Kapal ');
+        end;
     end;
 
+//    FServer2D.SendDataEx(REC_3D_POSITION, @apRec, nil);
   end;
 end;
 

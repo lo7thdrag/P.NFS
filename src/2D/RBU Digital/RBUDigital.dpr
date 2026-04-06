@@ -56,8 +56,8 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TfrmMainDisplay, frmMainDisplay);
-  Application.CreateForm(TfrmPasswordEntryCode, frmPasswordEntryCode);
+//  Application.CreateForm(TfrmPasswordEntryCode, frmPasswordEntryCode);
   Application.CreateForm(TfrmNetSetting, frmNetSetting);
-  frmPasswordEntryCode.Show;
+//  frmPasswordEntryCode.Show;
   Application.Run;
 end.

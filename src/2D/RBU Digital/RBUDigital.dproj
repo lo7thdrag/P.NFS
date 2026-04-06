@@ -87,7 +87,7 @@
         <DCC_DcuOutput>.\bin\comp</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Debugger_RunParams>-192.168.0.231 -2120 -192.168.0.231 -mysql -dbNSuFs -root -T3server! -10 -5</Debugger_RunParams>
+        <Debugger_RunParams>-192.168.8.58 -2120 -127.0.0.1 -mysql -dbNSuFs -root -admin -10 -5</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
