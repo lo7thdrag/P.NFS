@@ -551,9 +551,10 @@ object frmMainFCC: TfrmMainFCC
       LabelsFont.Height = -11
       LabelsFont.Name = 'Tahoma'
       LabelsFont.Style = []
+      Caption = '|VrAngularMeter|1000 X'
       Color = clNone
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clNone
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -588,8 +589,9 @@ object frmMainFCC: TfrmMainFCC
       LabelsFont.Height = -11
       LabelsFont.Name = 'Tahoma'
       LabelsFont.Style = []
+      Caption = '|VrAngularMeter|1000 X'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clNone
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -1566,7 +1568,6 @@ object frmMainFCC: TfrmMainFCC
       000000000000}
   end
   object NLDJoystick1: TNLDJoystick
-    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move

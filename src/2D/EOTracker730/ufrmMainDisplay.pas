@@ -892,7 +892,7 @@ begin
 
   setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
   TgoBsonSerializer.Deserialize(setting, config);
-  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString();
+  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString() + '_1';
   // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
   // untuk testing awal tidak perlu diubah dulu
   TgoBsonSerializer.Serialize(config, setting);
