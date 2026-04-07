@@ -2078,7 +2078,9 @@ begin
       if FileExists(strPicture) then
       begin
         imgShip.Picture.LoadFromFile(strPicture);
-      end;
+      end
+      else
+        imgShip.Picture.LoadFromFile('..\Data\imageship\NoModel.png');
     end;
 
     ShowDefaultPageWeapon(true);
