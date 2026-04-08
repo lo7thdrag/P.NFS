@@ -387,6 +387,8 @@ begin
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
 //    btnAggregate.Glyph := FimgTemp.Picture.Bitmap;
     btnAggregate.Glyph.Assign(FimgTemp.Picture.Graphic);
+    btnCmDCDrive.Down := False;
+    btnCMEmergency.Down := False;
   end
   else
   begin
