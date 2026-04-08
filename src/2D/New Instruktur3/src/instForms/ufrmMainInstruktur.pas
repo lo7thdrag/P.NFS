@@ -1986,6 +1986,8 @@ begin
             end;
           end;
 
+          frmGameController.edtTorpedoSpsTarget.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
+
           FrameControlLeft.FrameWeaponStatus.SPSTrack(TInsObject(SimManager.selectedObject));
 
           SimManager.selectedObject := nil;
@@ -2022,6 +2024,25 @@ begin
                 Format('%.2f',[CalcRange(ShipObject.PositionX, ShipObject.PositionY, Mx, My )]);
             end;
           end;
+
+          // Set Target id Exocet
+          SimManager.FindViewByPosition(mptDown, SimManager.selectedView);
+          if not Assigned(SimManager.selectedView) then
+            Exit;
+          if not Assigned(SimManager.selectedObject) then
+            Exit;
+
+          if SimManager.selectedView is TRotateSymbolView then
+          begin
+
+            SimManager.BringToFront(SimManager.selectedObject);
+            if (SimManager.selectedObject is TIMissileObject) then
+              Exit;
+            if SimManager.TrackObject = TInsObject(SimManager.selectedObject) then
+              Exit;
+          end;
+
+          frmGameController.edtExocetTargetID.Text := IntToStr(TInsObject(SimManager.selectedObject).FDataBaseID);
 
         end;
         {$ENDREGION}
@@ -2631,6 +2652,7 @@ begin
 
         {$ENDREGION}
       end;
+
 
       TOOL_MAP_VIEW :
       begin

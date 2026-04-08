@@ -1074,6 +1074,13 @@ type
     Label110: TLabel;
     edtMica_TRange: TEdit;
     Label113: TLabel;
+    Label114: TLabel;
+    edtExocetTargetID: TEdit;
+    btnSetPosSps: TAdvSmoothButton;
+    btnAssignTargetSps: TAdvSmoothButton;
+    Label115: TLabel;
+    edtTorpedoSpsTarget: TEdit;
+    btnDeassignTargetSps: TAdvSmoothButton;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1237,6 +1244,7 @@ type
     procedure edtFogIntensityKeyPress(Sender: TObject; var Key: Char);
     procedure btnC705_Click(Sender: TObject);
     procedure btnMicaClick(Sender: TObject);
+    procedure btnAssignTargetSpsClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -3283,7 +3291,9 @@ var
   ShipID, weaponID,
   launcherID,
   MissileID,
-  MissileNumber : integer;
+  MissileNumber
+  //, TargetID
+  : integer;
 
   mTBearing,
   mTRange,
@@ -3355,6 +3365,8 @@ begin
   if not TryStrToFloat(edtExxocet40_SeekOpenX.Text, mSeekerOpenPosX) then isvalid := False;
   if not TryStrToFloat(edtExxocet40_SeekOpenY.Text, mSeekerOpenPosY) then isvalid := False;
   if not TryStrToFloat(edtExxocet40_OpenSeekerHead.Text, mSeekerOpenHeading) then isvalid := False;
+
+  //if not TryStrToInt(edtExocetTargetID.Text, TargetID) then isvalid := false;
 
   if cbbExxocetLauncher.Text = 'kanan' then begin
     launcherID := 1;
@@ -3455,6 +3467,8 @@ begin
      RecSend.mSeekerOpenPosX         := mSeekerOpenPosX;
      RecSend.mSeekerOpenPosY         := mSeekerOpenPosY;
      RecSend.mSeekerOpenHeading      := mSeekerOpenHeading;
+
+     //RecSend.TargetID                := TargetID;
 
      case TComponent(sender).Tag of
         1 : begin
@@ -3777,6 +3791,8 @@ begin
     RecSend.mTargetElev      := mTargetElevasi;
 
     RecSend.mWeaponID        := C_DBID_TETRAL;
+
+    RecSend.TargetID         := TargetID;
 
     case TComponent(sender).Tag of
       //Fire
@@ -4515,6 +4531,8 @@ begin
 
     RecSendMica.mWeaponID        := C_DBID_VLMICA;
 
+    RecSendMica.TargetID         := TargetID;
+
     case TComponent(Sender).Tag of
       //fire
       1: begin
@@ -4565,6 +4583,7 @@ begin
 end;
 
 { C705 }
+// same as EXOCET
 procedure TfrmGameController.btnC705_Click(Sender: TObject);
 var
   isValid : Boolean;
@@ -4576,14 +4595,15 @@ var
   MissileID,
   MissileNumber,
   TargetID : Integer;
+
   rangDeg  : TRangDeg;
   recRangDeg : TList;
   Vehicle    : TVehicle;
 
   mTargetBearing, mTargetRange : Single;
 
-  RecSend   : TRec_Data_C705;
-  RecSend2  : TRecObjectAssigned;
+  RecSendC705   : TRec_Data_C705;
+  //RecSend2  : TRecObjectAssigned;
   C705LauncherID : string;
 begin
   isValid := True;
@@ -4617,7 +4637,6 @@ begin
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
 
-
   for i := 0 to recRangDeg.count -1 do
   begin
     rangDeg := TRangDeg(recRangDeg[i]);
@@ -4629,41 +4648,46 @@ begin
   begin
     mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
 
-    RecSend.ShipID         := ShipID;
-    RecSend.mLauncherID    := LauncherID;
-    RecSend.mMissileID     := MissileID;
-    RecSend.mMissileNumber := MissileNumber;
-    RecSend.OrderID        := 0;
+    RecSendC705.ShipID         := ShipID;
+    RecSendC705.mLauncherID    := LauncherID;
+    RecSendC705.mMissileID     := MissileID;
+    RecSendC705.mMissileNumber := MissileNumber;
+    RecSendC705.OrderID        := 0;
 
     if (StrToFloat(edtC705_TBearing.Text)< Vehicle.Vehicle_Heading )then
     begin
-      RecSend.mTargetBearing := (mTargetBearing + (Vehicle.Vehicle_Heading-360));
+      RecSendC705.mTargetBearing := (mTargetBearing + (Vehicle.Vehicle_Heading-360));
     end
     else
     begin
-      RecSend.mTargetBearing := mTargetBearing + Vehicle.Vehicle_Heading;
+      RecSendC705.mTargetBearing := mTargetBearing + Vehicle.Vehicle_Heading;
     end;
 
-    RecSend.mTargetRange   := mTargetRange;
-    RecSend.mWeaponID      := C_DBID_C705;
+    RecSendC705.mTargetRange   := mTargetRange;
+    RecSendC705.mWeaponID      := C_DBID_C705;
 
     case TComponent(sender).Tag of
       //fire
       1 : begin
+      {
         if (StrToFloat(edtC705_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtC705_TRange.Text) < rangDeg.rangeMax) then
         begin
           if (StrToFloat(edtC705_TBearing.Text) > rangDeg.startDeg ) and  (StrToFloat(edtC705_TBearing.Text) < rangDeg.endDeg ) then
           begin
             //RecSend.OrderID := __ORD_C802_FIRE;
-            RecSend.OrderID := __ORD_ID_Fire_C705;
-            SimManager.NetSendTo3D_OrderMissileC705(RecSend);
+            RecSendC705.OrderID := __ORD_ID_Fire_C705;
+            SimManager.NetSendTo3D_OrderMissileC705(RecSendC705);
           end;
         end;
+        }
+
+        RecSendC705.OrderID := __ORD_ID_Fire_C705;
+        SimManager.NetSendTo3D_OrderMissileC705(RecSendC705);
 
       end;
       2 : begin              // load
-        RecSend.OrderID := __ORD_C802_LOADING;
-        SimManager.NetSendTo3D_OrderMissileC705(RecSend);
+        RecSendC705.OrderID := __ORD_C802_LOADING;
+        SimManager.NetSendTo3D_OrderMissileC705(RecSendC705);
       end;
     end;
   end;
@@ -4817,6 +4841,66 @@ begin
   end;
 end;
 
+procedure TfrmGameController.btnAssignTargetSpsClick(Sender: TObject);
+var
+  RecAssignTorpedoSPS : TRecDesigA244;
+
+  ShipID,
+  LauncherID,
+  MissileID,
+  MissileNumber,
+  TargetID, WeaponID, i : Integer;
+
+  TorpType      : Integer;
+
+  isValid       : Boolean;
+  idlauncher    : string ;
+
+  Torp_ISC      : single;
+  Torp_ISR, Torp_WTR, Torp_CEI, Torp_PRG, Torp_DOP,
+  Torp_ACE, Torp_FLO, Torp_ISD, Torp_ACM : integer;
+
+  recRangDeg      : TList;
+  rangDeg         : TRangDeg;
+begin
+  isValid := True;
+
+  if not Assigned(lvRuntimeShip.Selected) then Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+
+  if not TryStrToInt(edtTorpedoSpsTarget.Text, TargetID) then isvalid := false;
+
+  if Sender = btnSetPosSps then
+  begin
+    SimManager.FMap.CurrentTool := TOOL_SELECT_SPSTARGET;
+  end;
+
+  Weapon_ID := C_DBID_TORPEDO_A244S;
+  recRangDeg := TList.Create;
+  DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
+  for i := 0 to recRangDeg.count -1 do begin
+    rangDeg := TRangDeg(recRangDeg[i]);
+  end;
+
+  RecAssignTorpedoSPS.ShipID       := shipID;
+  RecAssignTorpedoSPS.mWeaponID    := C_DBID_TORPEDO_SUT;
+  RecAssignTorpedoSPS.mTargetID    := TargetID;
+
+  case TComponent(sender).Tag of
+    // Assign Torpedo A244s
+    1: begin
+      RecAssignTorpedoSPS.OrderID  := __ORD_ID_A244_DESIG;
+      SimManager.NetSendTo3D_OrderMissileSetTargetTorpedo(RecAssignTorpedoSPS);
+    end;
+    // Deassign Torpedo A244s
+    2: begin
+      RecAssignTorpedoSPS.OrderID  := __ORD_ID_A244_BREAK;
+      SimManager.NetSendTo3D_OrderMissileSetTargetTorpedo(RecAssignTorpedoSPS);
+    end;
+  end;
+
+end;
 
 
 { ---------------------------------------------------------------------- }
