@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000048A49C040100000024E897001C000000000000000000000000
+              010001180100006860C3100100000005FACB761C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              01000048A49C0401000000000000001C00000000000000000000000000000000
+              0100006860C31001000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000D186DF340000000054
-              EC970004E89700000000006688CE50000200006B88CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000018CF9700C8
+              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -248016,7 +248016,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwVlMica
+              ActivePage = pgtwWCCCannon
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -251003,6 +251003,19 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
+                  object Label115: TLabel
+                    Left = 318
+                    Top = 377
+                    Width = 61
+                    Height = 16
+                    Caption = 'Target ID'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
                   object edtSPS_Number: TEdit
                     Left = 142
                     Top = 374
@@ -251034,8 +251047,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnFireSps: TAdvSmoothButton
                     Tag = 1
-                    Left = 27
-                    Top = 423
+                    Left = 167
+                    Top = 412
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -251302,8 +251315,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnLoadingTorpA244: TAdvSmoothButton
                     Tag = 2
-                    Left = 167
-                    Top = 423
+                    Left = 311
+                    Top = 463
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -251392,6 +251405,119 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                     TabOrder = 22
+                  end
+                  object btnSetPosSps: TAdvSmoothButton
+                    Tag = -1
+                    Left = 27
+                    Top = 412
+                    Width = 119
+                    Height = 40
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Set Pos'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 23
+                    Version = '2.1.3.0'
+                    OnClick = btnAssignTargetSpsClick
+                    TMSStyle = 0
+                  end
+                  object btnAssignTargetSps: TAdvSmoothButton
+                    Tag = 1
+                    Left = 27
+                    Top = 463
+                    Width = 119
+                    Height = 40
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Assign'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 24
+                    Version = '2.1.3.0'
+                    OnClick = btnAssignTargetSpsClick
+                    TMSStyle = 0
+                  end
+                  object edtTorpedoSpsTarget: TEdit
+                    Left = 400
+                    Top = 375
+                    Width = 105
+                    Height = 21
+                    TabOrder = 25
+                    Text = '1'
+                  end
+                  object btnDeassignTargetSps: TAdvSmoothButton
+                    Tag = 2
+                    Left = 167
+                    Top = 463
+                    Width = 119
+                    Height = 40
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Deassign'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 26
+                    Version = '2.1.3.0'
+                    OnClick = btnAssignTargetSpsClick
+                    TMSStyle = 0
                   end
                 end
               end
@@ -252181,7 +252307,7 @@ object frmGameController: TfrmGameController
                   Align = alClient
                   TabOrder = 0
                   object lbl55: TLabel
-                    Left = 248
+                    Left = 257
                     Top = 230
                     Width = 49
                     Height = 16
@@ -252195,7 +252321,7 @@ object frmGameController: TfrmGameController
                     Visible = False
                   end
                   object lbl50: TLabel
-                    Left = 248
+                    Left = 257
                     Top = 191
                     Width = 49
                     Height = 16
@@ -252441,8 +252567,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object Label106: TLabel
-                    Left = 258
-                    Top = 253
+                    Left = 25
+                    Top = 289
                     Width = 61
                     Height = 16
                     Caption = 'Target ID'
@@ -252496,9 +252622,9 @@ object frmGameController: TfrmGameController
                     Text = '90'
                   end
                   object edtTetral_Number: TEdit
-                    Left = 136
+                    Left = 139
                     Top = 227
-                    Width = 102
+                    Width = 105
                     Height = 24
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
@@ -252512,8 +252638,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnTetral_Fire: TAdvSmoothButton
                     Tag = 1
-                    Left = 166
-                    Top = 330
+                    Left = 172
+                    Top = 370
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -252547,8 +252673,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnTetral_Assign: TAdvSmoothButton
                     Tag = 2
-                    Left = 19
-                    Top = 330
+                    Left = 25
+                    Top = 370
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -252581,9 +252707,9 @@ object frmGameController: TfrmGameController
                     TMSStyle = 0
                   end
                   object cbbTetralLaunch: TComboBox
-                    Left = 136
+                    Left = 139
                     Top = 190
-                    Width = 100
+                    Width = 105
                     Height = 21
                     TabOrder = 6
                     Visible = False
@@ -252592,8 +252718,8 @@ object frmGameController: TfrmGameController
                       'kiri')
                   end
                   object btnSetPosTetral: TAdvSmoothButton
-                    Left = 19
-                    Top = 284
+                    Left = 25
+                    Top = 324
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -252627,8 +252753,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnLoadingTetral: TAdvSmoothButton
                     Tag = 3
-                    Left = 167
-                    Top = 284
+                    Left = 173
+                    Top = 324
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -252665,7 +252791,7 @@ object frmGameController: TfrmGameController
                   object cbbTetral_Missile: TComboBox
                     Left = 139
                     Top = 151
-                    Width = 106
+                    Width = 105
                     Height = 22
                     Style = csOwnerDrawFixed
                     ItemIndex = 0
@@ -252734,9 +252860,9 @@ object frmGameController: TfrmGameController
                     TabOrder = 13
                   end
                   object edtTetralTargetID: TEdit
-                    Left = 382
-                    Top = 252
-                    Width = 122
+                    Left = 139
+                    Top = 287
+                    Width = 105
                     Height = 21
                     TabOrder = 14
                     Text = '1'
@@ -254238,10 +254364,24 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
+                  object Label114: TLabel
+                    Left = 22
+                    Top = 249
+                    Width = 61
+                    Height = 16
+                    Caption = 'Target ID'
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWhite
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                    Visible = False
+                  end
                   object btnExocet40_Fire: TAdvSmoothButton
                     Tag = 1
                     Left = 156
-                    Top = 243
+                    Top = 275
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -254371,7 +254511,7 @@ object frmGameController: TfrmGameController
                   object btnTrack: TAdvSmoothButton
                     Tag = 2
                     Left = 20
-                    Top = 243
+                    Top = 275
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -254452,7 +254592,7 @@ object frmGameController: TfrmGameController
                     Tag = 3
                     Left = 136
                     Top = 204
-                    Width = 91
+                    Width = 97
                     Height = 19
                     Style = csOwnerDrawFixed
                     ItemHeight = 13
@@ -254836,6 +254976,15 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                     TabOrder = 42
+                  end
+                  object edtExocetTargetID: TEdit
+                    Left = 136
+                    Top = 247
+                    Width = 105
+                    Height = 21
+                    TabOrder = 43
+                    Text = '1'
+                    Visible = False
                   end
                 end
               end
@@ -257092,8 +257241,8 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                   end
                   object Label108: TLabel
-                    Left = 266
-                    Top = 261
+                    Left = 29
+                    Top = 277
                     Width = 61
                     Height = 16
                     Caption = 'Target ID'
@@ -257187,8 +257336,8 @@ object frmGameController: TfrmGameController
                     TabOrder = 3
                   end
                   object btnSetPosMica: TAdvSmoothButton
-                    Left = 27
-                    Top = 292
+                    Left = 33
+                    Top = 324
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -257222,8 +257371,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnAssignMica: TAdvSmoothButton
                     Tag = 2
-                    Left = 27
-                    Top = 338
+                    Left = 33
+                    Top = 370
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -257283,8 +257432,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnLoadMica: TAdvSmoothButton
                     Tag = 3
-                    Left = 175
-                    Top = 292
+                    Left = 181
+                    Top = 324
                     Width = 119
                     Height = 40
                     Cursor = crHandPoint
@@ -257335,8 +257484,8 @@ object frmGameController: TfrmGameController
                   end
                   object btnFireMica: TAdvSmoothButton
                     Tag = 1
-                    Left = 174
-                    Top = 338
+                    Left = 180
+                    Top = 370
                     Width = 119
                     Height = 40
                     Appearance.Font.Charset = DEFAULT_CHARSET
@@ -257397,9 +257546,9 @@ object frmGameController: TfrmGameController
                     Text = '20'
                   end
                   object edtMicaTargetID: TEdit
-                    Left = 390
-                    Top = 260
-                    Width = 122
+                    Left = 144
+                    Top = 276
+                    Width = 104
                     Height = 21
                     TabOrder = 13
                     Text = '1'
@@ -257740,6 +257889,7 @@ object frmGameController: TfrmGameController
                     Top = 364
                     Width = 119
                     Height = 40
+                    Cursor = crHandPoint
                     Appearance.Font.Charset = DEFAULT_CHARSET
                     Appearance.Font.Color = clWhite
                     Appearance.Font.Height = -13
