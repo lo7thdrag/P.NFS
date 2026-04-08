@@ -514,6 +514,30 @@ begin
 //  edtValueTraining.Text := FormatFloat('0.#', FVTgtTraining);
 //  edtValueElevation.Text := FormatFloat('0.#', FVTgtElevation);
 
+  if (FVTgtElevation <= -5) and (FVTgtElevation >= -10) then
+  begin
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
+    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+    btnFiring.Enabled := False;
+
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+  end
+  else
+  begin
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
+    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+    btnFiring.Enabled := True;
+
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
+    btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+  end;
+
+
   lRec.ShipID := AK230Manager.ShipID;
   lRec.mWeaponID := AK230Manager.AssignedWeapon.IDWeapon;
   lRec.mLauncherID     := 0;
@@ -557,9 +581,13 @@ var
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
   tVal:= dblVal+0.1;
-  if tVal <= 180  then
+  if tVal <= 360  then
 //    Inc(intVal);
     dblVal := dblVal + 0.1;
+
+//  if tVal <= 180  then
+//    Inc(intVal);
+//    dblVal := dblVal + 0.1;
   if (tVal > -0.1) and (tVal < 0.1) then
     dblVal := 0;
 //  if intVal >= 360 then
@@ -572,10 +600,12 @@ var
   dblVal: Double;
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
-  if dblVal+10 <= 180 then
+  if dblVal+10 <= 360 then
     dblVal := dblVal + 10;
-  if dblVal+10 > 180 then
-    dblVal := 180;
+//  if dblVal+10 <= 180 then
+//    dblVal := dblVal + 10;
+//  if dblVal+10 > 180 then
+//    dblVal := 180;
   if (dblVal > -0.1) and (dblVal < 0.1) then
     dblVal := 0;
 //  if intVal >= 360 then
@@ -588,10 +618,14 @@ var
   dblVal: Double;
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
-  if dblVal-10 >= -180 then
-    dblVal := dblVal - 10;
-  if dblVal-10 < -180 then
-    dblVal := -180;
+  dblVal := dblVal - 10;
+  if dblVal < 0 then
+    dblVal := dblVal + 360;
+
+//  if dblVal-10 >= -180 then
+//    dblVal := dblVal - 10;
+//  if dblVal-10 < -180 then
+//    dblVal := -180;
   if (dblVal > -0.1) and (dblVal < 0.1) then
     dblVal := 0;
 //  if intVal < 0 then
@@ -619,6 +653,8 @@ begin
     pnlLmTraining.Visible := True;
     pnlLmElevation.Visible := True;
     pnlLmHeading.Visible := True;
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
 
     if FisPowerOn and TryStrToFloat(edtOmRangeValue.Text, dblVal) then
     begin
@@ -1153,26 +1189,71 @@ end;
 procedure TfrmDCDSMain.tmr1Timer(Sender: TObject);
 begin
   Inc(FbootTime);
-  if (FbootTime >= 1) and (FbootTime < 2) and (not FisReady) then
+  if (not FisReady) then
   begin
-    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
-//    btnUnformer.Glyph := FimgTemp.Picture.Bitmap;
-    btnUnformer.Glyph.Assign(FimgTemp.Picture.Graphic);
+    // Step 1: 26 VDC
+    if (FbootTime >= 1) and (FbootTime < 2) then
+    begin
+      FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+      btn26Vdc.Glyph.Assign(FimgTemp.Picture.Graphic);
+    end;
+
+    // Step 2: UNFORMER
+    if (FbootTime >= 2) and (FbootTime < 3) then
+    begin
+      FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+      btnUnformer.Glyph.Assign(FimgTemp.Picture.Graphic);
+    end;
+
+    // Step 3: 115/400Hz
+    if (FbootTime >= 3) and (FbootTime < 4) then
+    begin
+      FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+      btn115400Hz.Glyph.Assign(FimgTemp.Picture.Graphic);
+    end;
+
+    // Setelah semua indikator menyala
+    if FbootTime >= 4 then
+    begin
+      FisReady := True;
+      FbootTime := 0;
+      tmr1.Enabled := False;  // matikan timer
+    end;
   end
-  else if (FbootTime >= 2) and (FbootTime < 3) and (not FisReady) then
-  begin
-    tmr1.Enabled := False;
-    FbootTime := 0;
-    FisReady := True;
-  end
-  else if (FbootTime >= 3) and (FisPwrSwtOn) then
+
+  // Jika PWR SWT ditekan setelah boot, nyalakan SYNCHRON
+  else if FisPwrSwtOn then
   begin
     tmr1.Enabled := False;
     pnlScreen.Visible := True;
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
-//    btnSynchron.Glyph := FimgTemp.Picture.Bitmap;
     btnSynchron.Glyph.Assign(FimgTemp.Picture.Graphic);
   end;
+
+
+
+//  if (FbootTime >= 1) and (FbootTime < 2) and (not FisReady) then
+//  begin
+//    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+////    btnUnformer.Glyph := FimgTemp.Picture.Bitmap;
+//    btnUnformer.Glyph.Assign(FimgTemp.Picture.Graphic);
+//    btn26Vdc.Glyph.Assign(FimgTemp.Picture.Graphic);
+//    btn115400Hz.Glyph.Assign(FimgTemp.Picture.Graphic);
+//  end
+//  else if (FbootTime >= 2) and (FbootTime < 3) and (not FisReady) then
+//  begin
+//    tmr1.Enabled := False;
+//    FbootTime := 0;
+//    FisReady := True;
+//  end
+//  else if (FbootTime >= 3) and (FisPwrSwtOn) then
+//  begin
+//    tmr1.Enabled := False;
+//    pnlScreen.Visible := True;
+//    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+////    btnSynchron.Glyph := FimgTemp.Picture.Bitmap;
+//    btnSynchron.Glyph.Assign(FimgTemp.Picture.Graphic);
+//  end;
 end;
 
 procedure TfrmDCDSMain.tmrRotateTimer(Sender: TObject);
@@ -1182,11 +1263,42 @@ begin
 //    FVCurTraining := 0;
   if Round(FVTgtTraining) <> Round(FVCurTraining) then
   begin
-    if ((FVTgtTraining - FVCurTraining) < 180) and ((FVTgtTraining - FVCurTraining) > 0)  then
-      FVCurTraining := FVCurTraining + 1
+//    if ((FVTgtTraining - FVCurTraining) < 180) and ((FVTgtTraining - FVCurTraining) > 0)  then
+//      FVCurTraining := FVCurTraining + 1
+//    else
+//      FVCurTraining := FVCurTraining - 1;
+//    RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);
+
+    if FVCurTraining < 0 then
+      FVCurTraining := FVCurTraining + 360
+    else if FVCurTraining >= 360 then
+      FVCurTraining := FVCurTraining - 360;
+
+    if FVTgtTraining > FVCurTraining then
+    begin
+      // Cek apakah lebih dekat lewat wrap-around
+      if (FVTgtTraining - FVCurTraining) <= 180 then
+        FVCurTraining := FVCurTraining + 1
+      else
+        FVCurTraining := FVCurTraining - 1;
+    end
     else
-      FVCurTraining := FVCurTraining - 1;
+    begin
+      if (FVCurTraining - FVTgtTraining) <= 180 then
+        FVCurTraining := FVCurTraining - 1
+      else
+        FVCurTraining := FVCurTraining + 1;
+    end;
+
+    // Wrap ke 0–360
+    if FVCurTraining >= 360 then
+      FVCurTraining := FVCurTraining - 360
+    else if FVCurTraining < 0 then
+      FVCurTraining := FVCurTraining + 360;
+
+    // Update display
     RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);
+
   end
   else
     FVCurTraining := FVTgtTraining;
