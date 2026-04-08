@@ -4884,7 +4884,7 @@ begin
   end;
 
   RecAssignTorpedoSPS.ShipID       := shipID;
-  RecAssignTorpedoSPS.mWeaponID    := C_DBID_TORPEDO_SUT;
+  RecAssignTorpedoSPS.mWeaponID    := C_DBID_TORPEDO_A244S;
   RecAssignTorpedoSPS.mTargetID    := TargetID;
 
   case TComponent(sender).Tag of
@@ -4897,6 +4897,8 @@ begin
     2: begin
       RecAssignTorpedoSPS.OrderID  := __ORD_ID_A244_BREAK;
       SimManager.NetSendTo3D_OrderMissileSetTargetTorpedo(RecAssignTorpedoSPS);
+
+      edtTorpedoSpsTarget.Text := '0';
     end;
   end;
 
@@ -5648,6 +5650,14 @@ begin
           lblEndCannon76.Caption   := (FloatToStr(weaponDetail.EndAngle));
           lblMinCannon76.Caption := (FloatToStr(weaponDetail.LowRange));
           lblMaxCannon76.Caption := (FloatToStr(weaponDetail.HighRange));
+
+          if SimManager.instProjectSet.World = 'NSFS' then
+            cbbCannonModeID.ItemIndex := 0; // modeID Surface
+          {$ENDREGION}
+
+          {$REGION 'Cannon 35'}
+          if SimManager.instProjectSet.World = 'NAFS' then
+            cbbCannonModeID.ItemIndex := 2; // modeID Air
           {$ENDREGION}
 
           {$REGION 'Tetral'}

@@ -1075,6 +1075,7 @@ begin
   tcpClient.RegisterProcedure(C_REC_FIRE_CONTROL,           nil,                            Sizeof(TRecFireControlOrder));
   TCPClient.RegisterProcedure(REC_CMD_VLMICA,               nil,                            SizeOf(TRec3DSetVLMica));
   TCPClient.RegisterProcedure(Rec_Data_C705,                nil,                            SizeOf(TRec_Data_C705));
+  TCPClient.RegisterProcedure(REC_CMD_DESIG_A244,           nil,                            SizeOf(TRecDesigA244));
   TCPClient.RegisterProcedure(REC_ENVI,               nil,                                  SizeOf(TRecDataEnvironment));
 
   {Position}
