@@ -176,102 +176,73 @@ begin
     if FisMainMenu then
     begin
       if FisIRAuto then
-      FBtnArray[6].Caption := 'IR Auto'  + #13#10
+        FBtnArray[6].Caption := 'IR Auto'  + #13#10
       else FBtnArray[6].Caption := 'IR Manual'  + #13#10;
 
       if FFrequencyHZMode = 0 then
-      FBtnArray[7].Caption := '25 HZ' + #13#10
+        FBtnArray[7].Caption := '25 HZ' + #13#10
       else if FFrequencyHZMode = 1 then
-      FBtnArray[7].Caption := '12,5 HZ' + #13#10
+        FBtnArray[7].Caption := '12,5 HZ' + #13#10
       else if FFrequencyHZMode = 2 then
-      FBtnArray[7].Caption := '5 HZ' + #13#10
+        FBtnArray[7].Caption := '5 HZ' + #13#10
       else if FFrequencyHZMode = 3 then
-      FBtnArray[7].Caption := '1 HZ' + #13#10 ;
+        FBtnArray[7].Caption := '1 HZ' + #13#10 ;
 
       if FisIROn then
-      FBtnArray[8].Caption := 'IR On'  + #13#10
+        FBtnArray[8].Caption := 'IR On'  + #13#10
       else FBtnArray[8].Caption := 'IR Off'  + #13#10;
 
+      if FisAir then
+        FBtnArray[9].Caption := 'Air'  + #13#10
+      else  FBtnArray[9].Caption := 'Surface'  + #13#10;
 
-      FBtnArray[9].Caption := 'Air'  + #13#10;
-      FBtnArray[10].Caption := 'Diagnosis'    + #13#10 ;
-      FBtnArray[11].Caption := 'TV Black' + #13#10 ;
-      FBtnArray[12].Caption := 'IR Black'  + #13#10;
-      FBtnArray[13].Caption := 'Black'  + #13#10 ;
-      FBtnArray[14].Caption := 'Azimuth +'  + #13#10 ;
-      FBtnArray[15].Caption := 'Azimuth -'  + #13#10 ;
-      FBtnArray[16].Caption := 'Elevation +'  + #13#10 ;
-      FBtnArray[17].Caption := 'Elevation -'  + #13#10 ;
-      FBtnArray[18].Caption := 'TVFOV +'  + #13#10 ;
-      FBtnArray[19].Caption := 'TVFOV -'  + #13#10 ;
-      FBtnArray[20].Caption := 'TV NFOV'  + #13#10 ;
-      FBtnArray[21].Caption := 'IR WFOV'  + #13#10 ;
-      FBtnArray[22].Caption := 'Centroid'  + #13#10 ;
-      FBtnArray[23].Caption := 'Automatic'  + #13#10 ;
-//      for i := 0 to Length(FBtnArray) - 1 do
-//      begin
-//        FBtnArray[i].Color := clBlack;
-//      end;
-//      FBtnArray[1].Color := clLime;
-//      if FisCtrlGun then
-//      begin
-//        if FisServoOn then
-//        FBtnArray[7].Color := clLime;
-//
-//        if FisRightDrum then
-//        begin
-//          FBtnArray[11].Color := clLime;
-//        end
-//        else FBtnArray[10].Color := clLime;
-//        if FisHighFR then
-//        begin
-//          FBtnArray[15].Color := clLime;
-//        end
-//        else if FisMiddleFR then
-//        begin
-//          FBtnArray[16].Color := clLime;
-//        end
-//        else if FisLowFR then
-//        begin
-//          FBtnArray[17].Color := clLime;
-//        end;
-//      end
-//
-////      else if FisVideo then
-////      begin
-////
-////      end
-////
-////      else if FisDataRecord then
-////      begin
-////
-////      end
-//
-//      else
-//      begin
-//        if FLocalCtrlState = lcCombat then
-//        begin
-//          FBtnArray[7].Color := clLime;
-//          SetOperationModeDisplay;
-//        end
-//        else if FLocalCtrlState = lcCheck then
-//        begin
-//          FBtnArray[8].Color := clLime;
-//          if FisCheckStart then
-//          begin
-//            FBtnArray[7].Enabled := False;
-//            FBtnArray[28].Color := clLime;
-//            FBtnArray[29].Color := clBlack;
-//          end
-//          else
-//          begin
-//            FBtnArray[7].Enabled := True;
-//            FBtnArray[28].Color := clBlack;
-//            FBtnArray[29].Color := clLime;
-//          end;
-//
-//        end;
-//      end;
+      if FisTVBlack then
+        FBtnArray[11].Caption := 'TV Black' + #13#10
+      else  FBtnArray[11].Caption := 'TV White' + #13#10;
+
+      if FisIRBlack then
+        FBtnArray[12].Caption := 'IR Black'  + #13#10
+      else  FBtnArray[12].Caption := 'IR White'  + #13#10;
+
+      if FisBlack then
+        FBtnArray[13].Caption := 'Black'  + #13#10
+      else  FBtnArray[13].Caption := 'White'  + #13#10;
+
+      if FisIRWFOV then
+        FBtnArray[21].Caption := 'IR WFOV'  + #13#10
+      else FBtnArray[21].Caption := 'IR NFOV'  + #13#10;
+
+      if FisCentroid then
+        FBtnArray[22].Caption := 'Centroid'  + #13#10
+      else FBtnArray[22].Caption := 'Correlation'  + #13#10;
+
+      if FisAutomatic then
+        FBtnArray[23].Caption := 'Automatic'  + #13#10
+      else  FBtnArray[23].Caption := 'Manual'  + #13#10;
+
+    end
+    else if FisEOControl then
+    begin
+      if FisShutterAuto then
+        FBtnArray[2].Caption := 'Shutter Auto'
+      else  FBtnArray[2].Caption := 'Shutter Manual';
+
+      if FisEOOn then
+        FBtnArray[3].Caption := 'EO On'
+      else  FBtnArray[3].Caption := 'EO Off';
+
+      if FisEOOn then
+        FBtnArray[3].Caption := 'EO On'
+      else  FBtnArray[3].Caption := 'EO Off';
+
+      if FisIndSetting then
+        FBtnArray[17].Caption := 'Ind Setting'
+      else  FBtnArray[17].Caption := 'Ind OK';
+
+      if FisAngleCorrection then
+        FBtnArray[18].Caption := 'Angle Correction'
+      else  FBtnArray[18].Caption := 'Correct';
+
     end
     else
     begin
@@ -297,6 +268,51 @@ begin
     FisCheck := False;
     FisMainMenu := True;
     GenerateCaptionByMenu('MainMenu');
+
+    if FisIRAuto then
+      FBtnArray[6].Caption := 'IR Auto'  + #13#10
+    else FBtnArray[6].Caption := 'IR Manual'  + #13#10;
+
+    if FFrequencyHZMode = 0 then
+      FBtnArray[7].Caption := '25 HZ' + #13#10
+    else if FFrequencyHZMode = 1 then
+      FBtnArray[7].Caption := '12,5 HZ' + #13#10
+    else if FFrequencyHZMode = 2 then
+      FBtnArray[7].Caption := '5 HZ' + #13#10
+    else if FFrequencyHZMode = 3 then
+      FBtnArray[7].Caption := '1 HZ' + #13#10 ;
+
+    if FisIROn then
+      FBtnArray[8].Caption := 'IR On'  + #13#10
+    else FBtnArray[8].Caption := 'IR Off'  + #13#10;
+
+    if FisAir then
+      FBtnArray[9].Caption := 'Air'  + #13#10
+    else  FBtnArray[9].Caption := 'Surface'  + #13#10;
+
+    if FisTVBlack then
+      FBtnArray[11].Caption := 'TV Black' + #13#10
+    else  FBtnArray[11].Caption := 'TV White' + #13#10;
+
+    if FisIRBlack then
+      FBtnArray[12].Caption := 'IR Black'  + #13#10
+    else  FBtnArray[12].Caption := 'IR White'  + #13#10;
+
+    if FisBlack then
+      FBtnArray[13].Caption := 'Black'  + #13#10
+    else  FBtnArray[13].Caption := 'White'  + #13#10;
+
+    if FisIRWFOV then
+      FBtnArray[21].Caption := 'IR WFOV'  + #13#10
+    else FBtnArray[21].Caption := 'IR NFOV'  + #13#10;
+
+    if FisCentroid then
+      FBtnArray[22].Caption := 'Centroid'  + #13#10
+    else FBtnArray[22].Caption := 'Correlation'  + #13#10;
+
+    if FisAutomatic then
+      FBtnArray[23].Caption := 'Automatic'  + #13#10
+    else  FBtnArray[23].Caption := 'Manual'  + #13#10;
   end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_Check' then
@@ -306,6 +322,94 @@ begin
     FisCheck := True;
     FisMainMenu := False;
     GenerateCaptionByMenu('Check');
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_HZ' then
+  begin
+    if FFrequencyHZMode < 3 then
+      FFrequencyHZMode := FFrequencyHZMode + 1
+    else  FFrequencyHZMode := 0;
+
+    if FFrequencyHZMode = 0 then
+    FBtnArray[7].Caption := '25 HZ' + #13#10
+    else if FFrequencyHZMode = 1 then
+    FBtnArray[7].Caption := '12,5 HZ' + #13#10
+    else if FFrequencyHZMode = 2 then
+    FBtnArray[7].Caption := '5 HZ' + #13#10
+    else if FFrequencyHZMode = 3 then
+    FBtnArray[7].Caption := '1 HZ' + #13#10 ;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_IROn' then
+  begin
+    FisIROn := not FisIROn;
+    if FisIROn then
+      FBtnArray[8].Caption := 'IR On'  + #13#10
+    else FBtnArray[8].Caption := 'IR Off'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_Air' then
+  begin
+    FisAir := not FisAir;
+    if FisAir then
+      FBtnArray[9].Caption := 'Air'  + #13#10
+    else  FBtnArray[9].Caption := 'Surface'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_TVBlack' then
+  begin
+    FisTVBlack := not FisTVBlack;
+    if FisTVBlack then
+      FBtnArray[11].Caption := 'TV Black' + #13#10
+    else  FBtnArray[11].Caption := 'TV White' + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_IRBlack' then
+  begin
+    FisIRBlack := not FisIRBlack;
+    if FisIRBlack then
+      FBtnArray[12].Caption := 'IR Black'  + #13#10
+    else  FBtnArray[12].Caption := 'IR White'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_Black' then
+  begin
+    FisBlack := not FisBlack;
+    if FisBlack then
+      FBtnArray[13].Caption := 'Black'  + #13#10
+    else  FBtnArray[13].Caption := 'White'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_IRWFOV' then
+  begin
+    FisIRWFOV := not FisIRWFOV;
+    if FisIRWFOV then
+      FBtnArray[21].Caption := 'IR WFOV'  + #13#10
+    else FBtnArray[21].Caption := 'IR NFOV'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_Centroid' then
+  begin
+    FisCentroid := not FisCentroid;
+    if FisCentroid then
+      FBtnArray[22].Caption := 'Centroid'  + #13#10
+    else FBtnArray[22].Caption := 'Correlation'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_Automatic' then
+  begin
+    FisAutomatic := not FisAutomatic;
+    if FisAutomatic then
+      FBtnArray[23].Caption := 'Automatic'  + #13#10
+    else  FBtnArray[23].Caption := 'Manual'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_IRAuto' then
+  begin
+    FisIRAuto := not FisIRAuto;
+    if FisIRAuto then
+      FBtnArray[6].Caption := 'IR Auto'  + #13#10
+    else FBtnArray[6].Caption := 'IR Manual'  + #13#10;
   end;
 
   SendToServerPTK(TSpeedButtonImage(Sender).Name);
@@ -469,16 +573,16 @@ begin
   FisMainMenu := True;
   FisCheck := false;
   FisEOControl := False;
-//  FLocalCtrlState := lcCombat;
-//  FOperationMode := omWait;
-//  FDrumSelection := dsLDrum;
-//  FRateOfFire := frHigh;
-//  FisEO := True;
-//  FisZeroFlyOn := False;
-//  FisCooEnableed := False;
-//  FisLocalCtrl := False;
-//  FisCheckStart := False;
-//  FisHighFR := True;
+  FisIRAuto := True;
+  FisIROn := True;
+  FisAir:= True;
+  FisTVBlack := True;
+  FisIRBlack:= True;
+  FisBlack := True;
+  FisIRWFOV:= true;
+  FisCentroid := True;
+  FisAutomatic := true;
+  FFrequencyHZMode := 0;
 end;
 
 procedure TfrmPTK.FormDestroy(Sender: TObject);
@@ -1158,16 +1262,10 @@ procedure TfrmPTK.GenerateNames;
 var
   i : Integer;
 begin
-//  FBtnMainNames[0] := 'SysCtrl';
-//  FBtnMainNames[1] := 'LocalCtrl';
-//  FBtnMainNames[2] := 'CtrlGun';
-//  FBtnMainNames[3] := 'Video';
-//  FBtnMainNames[4] := 'DataRecord';
-//  FBtnMainNames[5] := 'LockScreen';
-//  FBtnMainNames[6] := 'NavSetting';
-//  FBtnMainNames[7] := 'WeatherSetting';
-//  FBtnMainNames[8] := 'CalSetting';
-//  FBtnMainNames[27] := 'ZeroFlyOff';
+  for i := 0 to Length(FBtnMainNames)-1 do
+  begin
+     FBtnMainNames[i] := IntToStr(i);
+  end;
 
   FBtnMainNames[0] := 'EOControl';
   FBtnMainNames[1] := 'Check';
@@ -1191,11 +1289,11 @@ begin
   FBtnMainNames[22] := 'Centroid';
   FBtnMainNames[23] := 'Automatic';
 
-  for i := 9 to Length(FBtnMainNames)-1 do
-  begin
-    if i <> 27 then
-      FBtnMainNames[i] := IntToStr(i);
-  end;
+//  for i := 9 to Length(FBtnMainNames)-1 do
+//  begin
+//    if i <> 27 then
+//      FBtnMainNames[i] := IntToStr(i);
+//  end;
 
   FBtnNumNames[0] := 'NE';
   FBtnNumNames[1] := 'NW';
