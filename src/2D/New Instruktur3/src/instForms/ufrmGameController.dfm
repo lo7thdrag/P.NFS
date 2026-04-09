@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              010001180100006860C31001000000D4E097001C000000000000000000000000
+              010001180100001805822B0100000024E897001C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              0100006860C31001000000000000001C00000000000000000000000000000000
+              0100001805822B01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000059E5153B0000000004
-              E59700B4E09700000000006688CE50000200006B88CE50000000000000000000
+              0000000000000000000000000000000000000000000000517882250000000054
+              EC970004E89700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -205532,7 +205532,7 @@ object frmGameController: TfrmGameController
           object Label8: TLabel
             Left = 58
             Top = 140
-            Width = 70
+            Width = 62
             Height = 18
             Caption = 'Sea State'
             Font.Charset = ANSI_CHARSET
@@ -205546,7 +205546,7 @@ object frmGameController: TfrmGameController
           object Label9: TLabel
             Left = 58
             Top = 228
-            Width = 87
+            Width = 80
             Height = 18
             Caption = 'Wind Speed'
             Font.Charset = ANSI_CHARSET
@@ -205560,7 +205560,7 @@ object frmGameController: TfrmGameController
           object Label10: TLabel
             Left = 58
             Top = 316
-            Width = 102
+            Width = 93
             Height = 18
             Caption = 'Current Speed'
             Font.Charset = ANSI_CHARSET
@@ -205574,7 +205574,7 @@ object frmGameController: TfrmGameController
           object Label11: TLabel
             Left = 58
             Top = 404
-            Width = 87
+            Width = 86
             Height = 18
             Caption = 'Temperature'
             Font.Charset = ANSI_CHARSET
@@ -205588,7 +205588,7 @@ object frmGameController: TfrmGameController
           object Label12: TLabel
             Left = 58
             Top = 492
-            Width = 141
+            Width = 129
             Height = 18
             Caption = 'Barometer Pressure'
             Font.Charset = ANSI_CHARSET
@@ -205616,7 +205616,7 @@ object frmGameController: TfrmGameController
           object Label14: TLabel
             Left = 58
             Top = 668
-            Width = 87
+            Width = 82
             Height = 18
             Caption = 'Fog Intensity'
             Font.Charset = ANSI_CHARSET
@@ -205729,8 +205729,8 @@ object frmGameController: TfrmGameController
           object Label28: TLabel
             Left = 58
             Top = 79
-            Width = 42
-            Height = 19
+            Width = 39
+            Height = 18
             Caption = 'Port :'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -248016,7 +248016,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwTorpedoA244
+              ActivePage = pgtwRBU6000
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -250144,6 +250144,42 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
+                  object btnRBU6000Assign: TAdvSmoothButton
+                    Tag = 1
+                    Left = 201
+                    Top = 343
+                    Width = 119
+                    Height = 40
+                    Cursor = crHandPoint
+                    Appearance.Font.Charset = DEFAULT_CHARSET
+                    Appearance.Font.Color = clWhite
+                    Appearance.Font.Height = -13
+                    Appearance.Font.Name = 'Tahoma'
+                    Appearance.Font.Style = [fsBold]
+                    Status.Caption = '0'
+                    Status.Appearance.Fill.Color = clRed
+                    Status.Appearance.Fill.ColorMirror = clNone
+                    Status.Appearance.Fill.ColorMirrorTo = clNone
+                    Status.Appearance.Fill.GradientType = gtSolid
+                    Status.Appearance.Fill.GradientMirrorType = gtSolid
+                    Status.Appearance.Fill.BorderColor = clGray
+                    Status.Appearance.Fill.Rounding = 0
+                    Status.Appearance.Fill.ShadowOffset = 0
+                    Status.Appearance.Fill.Glow = gmNone
+                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                    Status.Appearance.Font.Color = clWhite
+                    Status.Appearance.Font.Height = -11
+                    Status.Appearance.Font.Name = 'Tahoma'
+                    Status.Appearance.Font.Style = []
+                    BevelColor = clGray
+                    Caption = 'Assign'
+                    Color = clBlack
+                    ParentFont = False
+                    TabOrder = 12
+                    Version = '2.1.3.0'
+                    OnClick = btnRBU6000FireClick
+                    TMSStyle = 0
+                  end
                   object eRBUTargetID: TEdit
                     Left = 215
                     Top = 108
@@ -250206,42 +250242,6 @@ object frmGameController: TfrmGameController
                     ParentFont = False
                     TabOrder = 11
                     Visible = False
-                    Version = '2.1.3.0'
-                    OnClick = btnRBU6000FireClick
-                    TMSStyle = 0
-                  end
-                  object btnRBU6000Assign: TAdvSmoothButton
-                    Tag = 1
-                    Left = 201
-                    Top = 343
-                    Width = 119
-                    Height = 40
-                    Cursor = crHandPoint
-                    Appearance.Font.Charset = DEFAULT_CHARSET
-                    Appearance.Font.Color = clWhite
-                    Appearance.Font.Height = -13
-                    Appearance.Font.Name = 'Tahoma'
-                    Appearance.Font.Style = [fsBold]
-                    Status.Caption = '0'
-                    Status.Appearance.Fill.Color = clRed
-                    Status.Appearance.Fill.ColorMirror = clNone
-                    Status.Appearance.Fill.ColorMirrorTo = clNone
-                    Status.Appearance.Fill.GradientType = gtSolid
-                    Status.Appearance.Fill.GradientMirrorType = gtSolid
-                    Status.Appearance.Fill.BorderColor = clGray
-                    Status.Appearance.Fill.Rounding = 0
-                    Status.Appearance.Fill.ShadowOffset = 0
-                    Status.Appearance.Fill.Glow = gmNone
-                    Status.Appearance.Font.Charset = DEFAULT_CHARSET
-                    Status.Appearance.Font.Color = clWhite
-                    Status.Appearance.Font.Height = -11
-                    Status.Appearance.Font.Name = 'Tahoma'
-                    Status.Appearance.Font.Style = []
-                    BevelColor = clGray
-                    Caption = 'Assign'
-                    Color = clBlack
-                    ParentFont = False
-                    TabOrder = 12
                     Version = '2.1.3.0'
                     OnClick = btnRBU6000FireClick
                     TMSStyle = 0
