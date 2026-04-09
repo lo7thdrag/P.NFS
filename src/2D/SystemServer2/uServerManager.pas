@@ -702,6 +702,8 @@ begin
     SizeOf(TRecDesigA244));
   FServer2D.RegisterProcedure(REC_CMD_VLMICA, Server2DReceive_Server3DSend,
     SizeOf(TRec3DSetVLMica));
+  FServer2D.RegisterProcedure(REC_3D_STAT_ORDER_CONSOLE, Server2DReceive_Server3DSend,
+    SizeOf(TRecStatus_Console));
 
 
   // For Position
@@ -767,6 +769,7 @@ begin
   TcpServer3D.RegisterProcedure(REC_CMD_DESIG_A244_3D, nil);
   TcpServer3D.RegisterProcedure(REC_CMD_VLMICA, nil);
   TcpServer3D.RegisterProcedure(REC_DATA_C7053D, nil);
+  TcpServer3D.RegisterProcedure(REC_3D_STAT_ORDER_CONSOLE, nil);
 
   // For Position
   TcpServer3D.RegisterProcedure(REC3D_POSITION, ClientRecv_3D_ShipPos);
@@ -875,6 +878,9 @@ var
 
   RecDataFireC705: ^TRec_Data_C705;
   RecDataFireC7053D: TRecData_C7053D;
+
+  RecDataStatusConsole: ^TRecStatus_Console;
+  RecDataStatusConsole3D: TRecStatus_Console3D;
 
   o: TObject;
 
@@ -1846,6 +1852,27 @@ begin
 
         FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
       end;}
+    end;
+
+    REC_STAT_ORDER_CONSOLE: begin
+      RecDataStatusConsole := @apRec^;
+
+      if Assigned(OnLogReceived2D) then
+      begin
+
+        OnLogReceived2D('ShipID :' + IntToStr(RecDataStatusConsole^.OWN_SHIP_UID));
+        OnLogReceived2D('Weapon ID :' + IntToStr(RecDataStatusConsole^.WeaponID));
+        OnLogReceived2D('Error iD :' + IntToStr(RecDataStatusConsole^.ErrorID));
+        OnLogReceived2D('Param Error :' + IntToStr(RecDataStatusConsole^.ParamError));
+
+      end;
+
+      RecDataStatusConsole3D.ShipID := RecDataStatusConsole^.OWN_SHIP_UID;
+      RecDataStatusConsole3D.WeaponID := RecDataStatusConsole^.WeaponID;
+      RecDataStatusConsole3D.ErrorID := RecDataStatusConsole^.ErrorID;
+      RecDataStatusConsole3D.ParamError := RecDataStatusConsole^.ParamError;
+      TcpServer3D.SendData(REC_3D_STAT_ORDER_CONSOLE, RecDataStatusConsole3D);
+
     end;
 
     { REC_CMD_MISTRAL:
