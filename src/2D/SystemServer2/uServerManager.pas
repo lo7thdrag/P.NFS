@@ -703,8 +703,9 @@ begin
   FServer2D.RegisterProcedure(REC_CMD_VLMICA, Server2DReceive_Server3DSend,
     SizeOf(TRec3DSetVLMica));
   FServer2D.RegisterProcedure(REC_3D_STAT_ORDER_CONSOLE, Server2DReceive_Server3DSend,
+    SizeOf(TRecStatus_Console3D));
+  FServer2D.RegisterProcedure(REC_STAT_ORDER_CONSOLE, Server2DReceive_Server3DSend,
     SizeOf(TRecStatus_Console));
-
 
   // For Position
   FServer2D.RegisterProcedure(REC_3D_MISSILEPOS, Server2DReceive_Server3DSend,
@@ -770,6 +771,7 @@ begin
   TcpServer3D.RegisterProcedure(REC_CMD_VLMICA, nil);
   TcpServer3D.RegisterProcedure(REC_DATA_C7053D, nil);
   TcpServer3D.RegisterProcedure(REC_3D_STAT_ORDER_CONSOLE, nil);
+  TcpServer3D.RegisterProcedure(REC_STAT_ORDER_CONSOLE, nil);
 
   // For Position
   TcpServer3D.RegisterProcedure(REC3D_POSITION, ClientRecv_3D_ShipPos);
@@ -883,6 +885,8 @@ var
   RecDataStatusConsole3D: TRecStatus_Console3D;
 
   o: TObject;
+
+  tempInt: Integer;
 
 //  ShipClassID: Integer;
 begin
@@ -1860,14 +1864,18 @@ begin
       if Assigned(OnLogReceived2D) then
       begin
 
-        OnLogReceived2D('ShipID :' + IntToStr(RecDataStatusConsole^.OWN_SHIP_UID));
+        OnLogReceived2D('ShipID :' + RecDataStatusConsole^.OWN_SHIP_UID);
         OnLogReceived2D('Weapon ID :' + IntToStr(RecDataStatusConsole^.WeaponID));
         OnLogReceived2D('Error iD :' + IntToStr(RecDataStatusConsole^.ErrorID));
         OnLogReceived2D('Param Error :' + IntToStr(RecDataStatusConsole^.ParamError));
 
       end;
 
-      RecDataStatusConsole3D.ShipID := RecDataStatusConsole^.OWN_SHIP_UID;
+      if TryStrToInt(RecDataStatusConsole^.OWN_SHIP_UID, tempInt) then
+        RecDataStatusConsole3D.ShipID := Word(tempInt)
+      else
+        RecDataStatusConsole3D.ShipID := 0; // fallback kalau gagal
+      //RecDataStatusConsole3D.ShipID := RecDataStatusConsole^.OWN_SHIP_UID;
       RecDataStatusConsole3D.WeaponID := RecDataStatusConsole^.WeaponID;
       RecDataStatusConsole3D.ErrorID := RecDataStatusConsole^.ErrorID;
       RecDataStatusConsole3D.ParamError := RecDataStatusConsole^.ParamError;

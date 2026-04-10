@@ -496,6 +496,8 @@ begin
   TcpClient.RegisterProcedure(Rec_Data_C705, nil,
     sizeof(TRec_Data_C705));
 
+  TcpClient.RegisterProcedure(REC_STAT_ORDER_CONSOLE, nil, sizeof(TRecStatus_Console));
+
   // For Position
   TcpClient.RegisterProcedure(REC_3D_MISSILEPOS, ClientRecv_3D_MissilePos,
     sizeof(TRec3DMissilePos));
@@ -929,6 +931,17 @@ begin
       IntToStr(RecConsole^.ParamError));
 
     FPacketBuff.PutPacket(apRec, aSize);
+
+    // send to 3d bridge converter
+    // kebutuhan TDS TCMS
+    if (TcpClient <> nil) and
+      (TcpClient.State in [wsConnected]) and
+      (RecConsole^.WeaponID = C_DBID_CANNON76) and
+      ((RecConsole^.ErrorID = __STAT_TDS_PORT) or (RecConsole^.ErrorID = __STAT_TDS_STBD))  then
+    begin
+       // receive from 2D, send to 3D
+       TcpClient.SendDataEx(pc.ID, apRec);
+    end;
   end
   else if pc.ID = REC_STAT_ASSIGN_OBJECT then
   begin

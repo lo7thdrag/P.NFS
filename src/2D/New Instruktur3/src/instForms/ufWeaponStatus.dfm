@@ -4223,7 +4223,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'SPS115'
@@ -4233,12 +4233,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 883
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
+          ExplicitHeight = 883
           object lblNameSPS: TLabel
             Left = 159
             Top = 11
@@ -5019,6 +5019,7 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl4: TLabel
             Left = 145
             Top = 11
@@ -5142,6 +5143,7 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl200: TLabel
             Left = 145
             Top = 11
@@ -5329,6 +5331,7 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblExocetMM40Title: TLabel
             Left = 121
             Top = 11
@@ -5849,6 +5852,7 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblCannon76: TLabel
             Left = 146
             Top = 11
@@ -6066,6 +6070,7 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl3: TLabel
             Left = 146
             Top = 11
@@ -6121,12 +6126,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 883
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
+          ExplicitHeight = 30
           object lblVLMicaTitle: TLabel
             Left = 159
             Top = 11
@@ -6573,6 +6578,7 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblMilleniumGun35Title: TLabel
             Left = 104
             Top = 12
@@ -6749,7 +6755,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 923
         DividerVisible = False
         Caption = 'C705'
@@ -6764,12 +6770,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 903
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 903
+          ExplicitHeight = 0
           object lblC705Title: TLabel
             Left = 171
             Top = 11
@@ -6790,8 +6796,8 @@ object fWeaponStatus: TfWeaponStatus
             Height = 1
           end
           object grpAssignC705: TGroupBox
-            Left = 71
-            Top = 191
+            Left = 79
+            Top = 328
             Width = 234
             Height = 105
             Caption = 'Assign C705'
@@ -6926,8 +6932,8 @@ object fWeaponStatus: TfWeaponStatus
           object grpC705StatusLauncher: TGroupBox
             Left = 14
             Top = 52
-            Width = 136
-            Height = 121
+            Width = 339
+            Height = 130
             Caption = 'Status Launcher'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
@@ -6936,82 +6942,191 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 1
-            object lblC705PortLauncher1: TLabel
-              Left = 13
-              Top = 31
-              Width = 8
-              Height = 13
-              Caption = '1'
+            object grpbxC705PortLauncher: TGroupBox
+              Left = 179
+              Top = 16
+              Width = 135
+              Height = 99
+              Caption = 'Port'
+              Color = clGray
               Font.Charset = DEFAULT_CHARSET
-              Font.Color = clBlack
+              Font.Color = clWhite
               Font.Height = -11
               Font.Name = 'MS Sans Serif'
               Font.Style = [fsBold]
-              ParentFont = False
-            end
-            object imgLoadC705Launcher1: TImage
-              Left = 30
-              Top = 29
-              Width = 17
-              Height = 17
-              Transparent = True
-            end
-            object lblC705PortLauncher2: TLabel
-              Left = 81
-              Top = 31
-              Width = 8
-              Height = 13
-              Caption = '2'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clBlack
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
-              Font.Style = [fsBold]
-              ParentFont = False
-            end
-            object imgLoadC705Launcher2: TImage
-              Left = 97
-              Top = 29
-              Width = 17
-              Height = 17
-              Transparent = True
-            end
-            object cbbC705Port: TComboBox
-              Left = 26
-              Top = 60
-              Width = 73
-              Height = 21
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clBlack
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
-              Font.Style = [fsBold]
+              ParentColor = False
               ParentFont = False
               TabOrder = 0
-              Text = '1'
-              Items.Strings = (
-                '1'
-                '2')
+              object imgLoadC705PortLauncher1: TImage
+                Left = 39
+                Top = 17
+                Width = 17
+                Height = 17
+                Transparent = True
+              end
+              object imgLoadC705PortLauncher2: TImage
+                Left = 97
+                Top = 17
+                Width = 17
+                Height = 17
+                Transparent = True
+              end
+              object lblC705PortLauncher1: TLabel
+                Left = 22
+                Top = 19
+                Width = 8
+                Height = 13
+                Caption = '1'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -11
+                Font.Name = 'MS Sans Serif'
+                Font.Style = [fsBold]
+                ParentFont = False
+              end
+              object lblC705PortLauncher2: TLabel
+                Left = 80
+                Top = 19
+                Width = 8
+                Height = 13
+                Caption = '2'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -11
+                Font.Name = 'MS Sans Serif'
+                Font.Style = [fsBold]
+                ParentFont = False
+              end
+              object btnC705PortLoading: TButton
+                Tag = 1
+                Left = 30
+                Top = 68
+                Width = 75
+                Height = 22
+                Caption = 'Load'
+                Font.Charset = ANSI_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -13
+                Font.Name = 'Tahoma'
+                Font.Style = [fsBold]
+                ParentFont = False
+                TabOrder = 0
+                OnClick = btnExocet40LoadingClick
+              end
+              object cbbC705Port: TComboBox
+                Left = 30
+                Top = 42
+                Width = 75
+                Height = 21
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -11
+                Font.Name = 'MS Sans Serif'
+                Font.Style = [fsBold]
+                ParentFont = False
+                TabOrder = 1
+                Text = '1'
+                Items.Strings = (
+                  '1'
+                  '2'
+                  '3'
+                  '4')
+              end
             end
-            object btnLoadC705PortLoading: TButton
-              Left = 26
-              Top = 89
-              Width = 76
-              Height = 22
-              Caption = 'Load'
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -13
-              Font.Name = 'Tahoma'
+            object grpbxC705StarboardLauncher: TGroupBox
+              Left = 24
+              Top = 16
+              Width = 135
+              Height = 99
+              Caption = 'StarBoard'
+              Color = clGray
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -11
+              Font.Name = 'MS Sans Serif'
               Font.Style = [fsBold]
+              ParentColor = False
               ParentFont = False
               TabOrder = 1
-              OnClick = btnExocet40LoadingClick
+              object imgLoadC705StarboardLauncher1: TImage
+                Left = 39
+                Top = 17
+                Width = 17
+                Height = 17
+                Transparent = True
+              end
+              object imgLoadC705StarboardLauncher2: TImage
+                Left = 97
+                Top = 17
+                Width = 17
+                Height = 17
+                Transparent = True
+              end
+              object lblC705StarboardLauncher1: TLabel
+                Left = 22
+                Top = 19
+                Width = 8
+                Height = 13
+                Caption = '1'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -11
+                Font.Name = 'MS Sans Serif'
+                Font.Style = [fsBold]
+                ParentFont = False
+              end
+              object lblC705StarboardLauncher2: TLabel
+                Left = 80
+                Top = 19
+                Width = 8
+                Height = 13
+                Caption = '2'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -11
+                Font.Name = 'MS Sans Serif'
+                Font.Style = [fsBold]
+                ParentFont = False
+              end
+              object btnC705StarboardLoading: TButton
+                Left = 30
+                Top = 68
+                Width = 75
+                Height = 22
+                Caption = 'Load'
+                Font.Charset = ANSI_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -13
+                Font.Name = 'Tahoma'
+                Font.Style = [fsBold]
+                ParentFont = False
+                TabOrder = 0
+                OnClick = btnExocet40LoadingClick
+              end
+              object cbbC705Starboard: TComboBox
+                Left = 30
+                Top = 42
+                Width = 75
+                Height = 21
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -11
+                Font.Name = 'MS Sans Serif'
+                Font.Style = [fsBold]
+                ParentFont = False
+                TabOrder = 1
+                Text = '1'
+                Items.Strings = (
+                  '1'
+                  '2'
+                  '3'
+                  '4')
+              end
             end
           end
           object grpC705StatusConsole: TGroupBox
-            Left = 156
-            Top = 54
+            Left = 106
+            Top = 194
             Width = 181
             Height = 120
             Caption = 'Status Console'

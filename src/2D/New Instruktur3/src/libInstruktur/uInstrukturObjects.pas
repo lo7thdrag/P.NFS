@@ -698,8 +698,10 @@ interface
       Firing     : Boolean;
       {CAP        : Boolean;}
 
-      LauncherMissile1,
-      LauncherMissile2: TStatusWeapon;
+      LauncherPortMissile1,
+      LauncherPortMissile2,
+      LauncherStarboardMissile1,
+      LauncherStarboardMissile2: TStatusWeapon;
 
       constructor Create(Const aParent : TInsObject; aMap: TMap); override;
       destructor Destroy; override;
@@ -1930,8 +1932,10 @@ begin
   {Firing := True;
   CAP := False;}
 
-  LauncherMissile1 := tsOff;
-  LauncherMissile2 := tsOff;
+  LauncherPortMissile1 := tsOff;
+  LauncherPortMissile2 := tsOff;
+  LauncherStarboardMissile1 := tsOff;
+  LauncherStarboardMissile2 := tsOff;
 
 end;
 

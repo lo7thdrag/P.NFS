@@ -555,13 +555,21 @@ type
     grpC705StatusConsole: TGroupBox;
     chkC705Enable: TCheckBox;
     chkOpenCoverLauncherC705: TCheckBox;
-    lblC705PortLauncher1: TLabel;
-    imgLoadC705Launcher1: TImage;
-    lblC705PortLauncher2: TLabel;
-    imgLoadC705Launcher2: TImage;
-    cbbC705Port: TComboBox;
-    btnLoadC705PortLoading: TButton;
     chkSafetyIgnitionC705: TCheckBox;
+    grpbxC705PortLauncher: TGroupBox;
+    imgLoadC705PortLauncher1: TImage;
+    imgLoadC705PortLauncher2: TImage;
+    lblC705PortLauncher1: TLabel;
+    lblC705PortLauncher2: TLabel;
+    btnC705PortLoading: TButton;
+    grpbxC705StarboardLauncher: TGroupBox;
+    imgLoadC705StarboardLauncher1: TImage;
+    imgLoadC705StarboardLauncher2: TImage;
+    lblC705StarboardLauncher1: TLabel;
+    lblC705StarboardLauncher2: TLabel;
+    btnC705StarboardLoading: TButton;
+    cbbC705Starboard: TComboBox;
+    cbbC705Port: TComboBox;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -580,6 +588,7 @@ type
     procedure tmrLoadingTimer(Sender: TObject);
     procedure btnVLMicaLoadingClick(Sender: TObject);
     procedure btnC705AssignClick(Sender: TObject);
+    procedure btnC705LoadingClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -3301,6 +3310,31 @@ begin
   //
 end;
 
+procedure TfWeaponStatus.btnC705LoadingClick(Sender: TObject);
+var
+  i: Integer;
+
+  WeaponShip: TWeaponOnShip;
+  WeaponC705: TWeaponOn_C705;
+begin
+  if SimManager.TrackObject = nil then  Exit;
+
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count -1 do
+  begin
+    WeaponShip := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+
+    if WeaponShip is TWeaponOn_C705 then
+    begin
+      WeaponC705 := TWeaponOn_C705(WeaponShip);
+
+      if WeaponC705.Weapon_Launcher = 0 then
+      begin
+
+      end;
+    end;
+  end;
+end;
+
 { ======================================================================= }
 
 { ======================================================================= }
@@ -4853,22 +4887,31 @@ begin
           end;
           frmMainInstruktur.cekStatusWeapon := 1;
 
+          lblC705StarboardLauncher1.Visible := False;
+          lblC705StarboardLauncher2.Visible := False;
+          imgLoadC705StarboardLauncher1.Visible := False;
+          imgLoadC705StarboardLauncher2.Visible := False;
+
           lblC705PortLauncher1.Visible := False;
           lblC705PortLauncher2.Visible := False;
-          imgLoadC705Launcher1.Visible := False;
-          imgLoadC705Launcher2.Visible := False;
+          imgLoadC705PortLauncher1.Visible := False;
+          imgLoadC705PortLauncher2.Visible := False;
 
           cbbC705Port.Clear;
           cbbC705Port.Items.Add('1');
           cbbC705Port.Items.Add('2');
 
           if SimManager.TrackObject.ObjClassID = 5 then begin // C_DBID_C705 = 23
+            lblC705StarboardLauncher1.Visible := True;
+            lblC705StarboardLauncher2.Visible := True;
+            imgLoadC705StarboardLauncher1.Visible := True;
+            imgLoadC705StarboardLauncher2.Visible := True;
+
             lblC705PortLauncher1.Visible := True;
             lblC705PortLauncher2.Visible := True;
-            imgLoadC705Launcher1.Visible := True;
-            imgLoadC705Launcher2.Visible := True;
+            imgLoadC705PortLauncher1.Visible := True;
+            imgLoadC705PortLauncher2.Visible := True;
           end;
-
 
           if weaponship is TWeaponOn_C705 then
           begin
@@ -4899,19 +4942,34 @@ begin
               chkOpenCoverLauncherC705.Enabled   := False;
             end;
 
-            //loading Launcher 1
-            case WeaponC705.LauncherMissile1 of
-              tsOff : LoadImageLight(imgLoadC705Launcher1, LoadImgOff);
-              tsLoading : LoadImageLight(imgLoadC705Launcher1, LoadImgLoading);
-              tsLaunch : LoadImageLight(imgLoadC705Launcher1, LoadImgRunning);
+            //loading Launcher Starboard 1
+            case WeaponC705.LauncherStarboardMissile1 of
+              tsOff : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgRunning);
+            end;
+
+            //loading Launcher Starboard 2
+            case WeaponC705.LauncherStarboardMissile2 of
+              tsOff : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgRunning);
+            end;
+
+            //loading Launcher Port 1
+            case WeaponC705.LauncherPortMissile1 of
+              tsOff : LoadImageLight(imgLoadC705PortLauncher1, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadC705PortLauncher1, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadC705PortLauncher1, LoadImgRunning);
             end;
 
             //loading Launcher 2
-            case WeaponC705.LauncherMissile2 of
-              tsOff : LoadImageLight(imgLoadC705Launcher2, LoadImgOff);
-              tsLoading : LoadImageLight(imgLoadC705Launcher2, LoadImgLoading);
-              tsLaunch : LoadImageLight(imgLoadC705Launcher2, LoadImgRunning);
+            case WeaponC705.LauncherPortMissile2 of
+              tsOff : LoadImageLight(imgLoadC705PortLauncher2, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadC705PortLauncher2, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadC705PortLauncher2, LoadImgRunning);
             end;
+
 
           end;
         end;
