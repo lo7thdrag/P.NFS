@@ -1008,17 +1008,29 @@ begin
               // ++ BAWE-20110418: XML_CLEANUP
               XML_Cleanup(cbDebug.Checked);
               // -- BAWE-20110418: XML_CLEANUP
-              if thisComputer.c_app_tipe = APP_2D then
+
+              if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') then
+              begin
+                CloseCurrentHandleApplication('NFS_VR_x64.exe');
+                AddToLogs(' ::: 3D Display Receive Stop Command. " NFS_VR_x64.exe "');
+
+              end
+              else if thisComputer.c_app_tipe = APP_2D then
               begin
                 CloseCurrentHandleApplication(thisComputer.c_app_name);
-                AddToLogs(' ::: 2D Client Receive Stop Command. "' +
-                  thisComputer.c_app_name + '"');
+                CloseCurrentHandleApplication('Viewer.exe');
+                AddToLogs(' ::: 2D Client Receive Stop Command. "' + thisComputer.c_app_name + '"');
+
+                if processExists('Viewer.exe') then
+                begin
+                  CloseCurrentHandleApplication('Viewer.exe');
+                  AddToLogs(' ::: 2D Client Receive Stop Command. " Viewer.exe"');
+                end
               end
               else if thisComputer.c_app_tipe = APP_3D_Client then
               begin
                 CloseCurrentHandleApplication(thisComputer.c_app_name_2);
-                AddToLogs(' ::: 3D Client Receive Stop Command. "' +
-                  thisComputer.c_app_name_2 + '"');
+                AddToLogs(' ::: 3D Client Receive Stop Command. "' + thisComputer.c_app_name_2 + '"');
               end;
               AddToLogs(' ::: STOPED');
             end;
