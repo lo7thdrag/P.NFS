@@ -3465,9 +3465,10 @@ begin
 
     //dendy sementara
 //        lvRuntimeShipTrajectory.Items.Clear;
-    ClearListViewData(lvRuntimeShipTrajectory);
 //        lvRuntimeMissileTrajectory.Items.Clear;
+    ClearListViewData(lvRuntimeShipTrajectory);
     ClearListViewData(lvRuntimeMissileTrajectory);
+    ClearListViewData(lvRuntimeShip);
     frmMainInstruktur.FrameControlLeft.Width := 0;
     SimManager.MainObjList.ClearObject;
   end;

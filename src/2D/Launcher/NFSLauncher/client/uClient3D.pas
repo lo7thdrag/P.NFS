@@ -1064,10 +1064,20 @@ begin
         recSend.ShipName := GetShipNameFromID(recSend.ShipID);
         recSend.IpSender := thisComputer.c_ip;
 
-        if processExists(thisComputer.c_app_name) then
-          recSend.orderID := 1
+        if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') then
+        begin
+          if processExists('NFS_VR_x64.exe') or (processExists('NFS_VR_x64')) then
+            recSend.orderID := 1
+          else
+            recSend.orderID := 0;
+        end
         else
-          recSend.orderID := 0;
+        begin
+          if processExists(thisComputer.c_app_name) then
+            recSend.orderID := 1
+          else
+            recSend.orderID := 0;
+        end;
 
         theClient.sendDataEx(REC_CMD_Com_CONSOLE, @recSend);
       end;
