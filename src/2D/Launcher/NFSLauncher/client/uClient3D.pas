@@ -679,201 +679,190 @@ begin
     AddToLogs('State Test 1');
   case thisComputer.c_app_tipe of
 
-     APP_3D_Server:
-     begin
-       if cbDebug.Checked then AddToLogs('State Test 2');
-       GenerateNeededXML(sceneID, cbDebug.Checked);
-       if cbDebug.Checked then AddToLogs('State Test 3');
-       sLine := thisComputer.c_app_name + ' ' + thisComputer.c_app_params + ' --ScenarioID ' + IntToStr(sceneID);
-       if cbDebug.Checked then AddToLogs('State Test 4');
-     end;
+    APP_3D_Server:
+    begin
+      {$REGION ' APP_3D_Server '}
+      if cbDebug.Checked then AddToLogs('State Test 2');
+        GenerateNeededXML(sceneID, cbDebug.Checked);
+      if cbDebug.Checked then AddToLogs('State Test 3');
+        sLine := thisComputer.c_app_name + ' ' + thisComputer.c_app_params + ' --ScenarioID ' + IntToStr(sceneID);
+      if cbDebug.Checked then AddToLogs('State Test 4');
+      {$ENDREGION}
+    end;
 
     APP_3D_Client:
+    begin
+      {$REGION ' APP_3D_Client '}
+
+      cShipID := ShipID;
+
+      if cbDebug.Checked then
       begin
-//        if cbDebug.Checked then
-//          AddToLogs('State Test 2');
-//        GenerateNeededXML(sceneID, cbDebug.Checked);
-//        if cbDebug.Checked then
-//          AddToLogs('State Test 3');
-//
-//        sName := GetShipNameFromID(ShipID);
-//        if sName <> '' then
-//
-//          sLine := thisComputer.c_app_name + ' didPlatform --host ' +
-//            m3DServerIP + ' ' + thisComputer.c_app_params + ' --ScenarioID ' +
-//            IntToStr(sceneID) + ' --vehicle ' + IntToStr(ShipID)
-//        else
-//          sLine := '';
-//        if cbDebug.Checked then
-//          AddToLogs('State Test 4');
-        cShipID := ShipID;
-
-        if cbDebug.Checked then
-          if cShipID <= 0 then
-            AddToLogs('Can not find ship id from scene ' + IntToStr(sceneID) +
-              ' and console id ' + IntToStr(thisComputer.c_id_console));
-
-//        sName := thisComputer.c_app_params + thisComputer.c_app_name;
-
-        sName := thisComputer.c_app_name;
-
-//        if cbDebug.Checked then
-//          AddToLogs('Assign as :: ' + sName + ' ' + IntToStr(cShipID));
-
-        if FileExists(path + '\' + sName) then
-        begin
-          sLine := path + '\'+ sName;
-        end
-        else
-        begin
-          if cbDebug.Checked then
-            AddToLogs('File Not Exists :: ' + sName);
-          sLine := '';
-        end;
+        if cShipID <= 0 then
+          AddToLogs('Can not find ship id from scene ' + IntToStr(sceneID) + ' and console id ' + IntToStr(thisComputer.c_id_console));
       end;
+
+      sName := thisComputer.c_app_name;
+
+      if FileExists(path + '\' + sName) then
+      begin
+        sLine := path + '\'+ sName;
+      end
+      else
+      begin
+        if cbDebug.Checked then
+          AddToLogs('File Not Exists :: ' + sName);
+
+          +
+        sLine := '';
+      end;
+      {$ENDREGION}
+    end;
 
     APP_3D_weapon:
-      begin
-//        AddToLogs('WEAPON MODE');
-//
-//        if cbDebug.Checked then
-//          AddToLogs('State Test 2');
-//        GenerateNeededXML(sceneID, cbDebug.Checked);
-//        if cbDebug.Checked then
-//          AddToLogs('State Test 3');
-//
-//        if (ShipID > 0) and (LauncherID > 0) then
-//        begin
-//          if (LowerCase(thisComputer.c_name) = 'mistral') then
-//            weaponID := 8;
-//          if (LowerCase(thisComputer.c_name) = 'strella') then
-//            weaponID := 9;
-//          if (LowerCase(thisComputer.c_name) = 'tds meriam 40') then
-//            weaponID := 12;
-//          if (LowerCase(thisComputer.c_name) = 'tds meriam 57') then
-//            weaponID := 13;
-//          if (LowerCase(thisComputer.c_name) = 'tds meriam 76') then
-//            weaponID := 14;
-//          if (LowerCase(thisComputer.c_name) = 'tds meriam 120') then
-//            weaponID := 15;
-//
-//          AddToLogs('WEAPON MODE');
-//          AddToLogs('SHIP ID : ' + IntToStr(ShipID) + ' WEAPONID : ' +
-//            IntToStr(weaponID) + ' LAUNCHERID : ' + IntToStr(LauncherID));
-//
-//          CheckLauncherExistAndHeadingFromShipWeapon(ShipID, weaponID,
-//            LauncherID, FirstHeading, isLauncherExist);
-//
-//          if isLauncherExist then
-//          begin
-//            AddToLogs(IntToStr(cShipID));
-//            sName := GetShipNameFromID(cShipID);
-//            sLine := thisComputer.c_app_name + ' didPlatform --host ' +
-//              m3DServerIP + ' ' + thisComputer.c_app_params + ' --ScenarioID ' +
-//              IntToStr(sceneID) + ' --scFirstHeading ' + IntToStr(FirstHeading)
-//              + ' --vehicle ' + IntToStr(ShipID) + ' --weapon  ' +
-//              IntToStr(weaponID) + ' --launcher ' + IntToStr(LauncherID);
-//
-//            sLine_2 := thisComputer.c_app_name_2 + ' -' + m2DServerIP + ' -' +
-//              m2DServerPort + ' -' + mDBServer + ' -' + mDBProto + ' -' +
-//              mDBName + ' -' + mDBUser + ' -' + mDBPass + ' -' +
-//              (IntToStr(ShipID)) + ' -' + (IntToStr(sceneID)) + ' -' +
-//              (IntToStr(LauncherID));
-//
-//            AddToLogs(sLine);
-//
-//            AddToLogs(sLine_2);
-//          end
-//          else
-//          begin
-//            AddToLogs('Cant Found Configuration');
-//          end;
-//
-//        end
-//        else
-//        begin
-//          AddToLogs('Cant Found Configuration');
-//          sLine := '';
-//        end;
-      end;
+    begin
+      {$REGION ' APP_3D_weapon '}
+    //        AddToLogs('WEAPON MODE');
+    //
+    //        if cbDebug.Checked then
+    //          AddToLogs('State Test 2');
+    //        GenerateNeededXML(sceneID, cbDebug.Checked);
+    //        if cbDebug.Checked then
+    //          AddToLogs('State Test 3');
+    //
+    //        if (ShipID > 0) and (LauncherID > 0) then
+    //        begin
+    //          if (LowerCase(thisComputer.c_name) = 'mistral') then
+    //            weaponID := 8;
+    //          if (LowerCase(thisComputer.c_name) = 'strella') then
+    //            weaponID := 9;
+    //          if (LowerCase(thisComputer.c_name) = 'tds meriam 40') then
+    //            weaponID := 12;
+    //          if (LowerCase(thisComputer.c_name) = 'tds meriam 57') then
+    //            weaponID := 13;
+    //          if (LowerCase(thisComputer.c_name) = 'tds meriam 76') then
+    //            weaponID := 14;
+    //          if (LowerCase(thisComputer.c_name) = 'tds meriam 120') then
+    //            weaponID := 15;
+    //
+    //          AddToLogs('WEAPON MODE');
+    //          AddToLogs('SHIP ID : ' + IntToStr(ShipID) + ' WEAPONID : ' +
+    //            IntToStr(weaponID) + ' LAUNCHERID : ' + IntToStr(LauncherID));
+    //
+    //          CheckLauncherExistAndHeadingFromShipWeapon(ShipID, weaponID,
+    //            LauncherID, FirstHeading, isLauncherExist);
+    //
+    //          if isLauncherExist then
+    //          begin
+    //            AddToLogs(IntToStr(cShipID));
+    //            sName := GetShipNameFromID(cShipID);
+    //            sLine := thisComputer.c_app_name + ' didPlatform --host ' +
+    //              m3DServerIP + ' ' + thisComputer.c_app_params + ' --ScenarioID ' +
+    //              IntToStr(sceneID) + ' --scFirstHeading ' + IntToStr(FirstHeading)
+    //              + ' --vehicle ' + IntToStr(ShipID) + ' --weapon  ' +
+    //              IntToStr(weaponID) + ' --launcher ' + IntToStr(LauncherID);
+    //
+    //            sLine_2 := thisComputer.c_app_name_2 + ' -' + m2DServerIP + ' -' +
+    //              m2DServerPort + ' -' + mDBServer + ' -' + mDBProto + ' -' +
+    //              mDBName + ' -' + mDBUser + ' -' + mDBPass + ' -' +
+    //              (IntToStr(ShipID)) + ' -' + (IntToStr(sceneID)) + ' -' +
+    //              (IntToStr(LauncherID));
+    //
+    //            AddToLogs(sLine);
+    //
+    //            AddToLogs(sLine_2);
+    //          end
+    //          else
+    //          begin
+    //            AddToLogs('Cant Found Configuration');
+    //          end;
+    //
+    //        end
+    //        else
+    //        begin
+    //          AddToLogs('Cant Found Configuration');
+    //          sLine := '';
+    //        end;
+      {$ENDREGION}
+    end;
 
     APP_2D:
+    begin
+      {$REGION ' APP_2D '}
+      cShipID := ShipID;
+
+      if cbDebug.Checked then
+        if cShipID <= 0 then
+          AddToLogs('Can not find ship id from scene ' + IntToStr(sceneID) + ' and console id ' + IntToStr(thisComputer.c_id_console));
+
+      sName := thisComputer.c_app_name;
+
+      if cbDebug.Checked then
+        AddToLogs('Assign as :: ' + sName + ' ' + IntToStr(cShipID));
+
+      if FileExists(path + '\' + sName) then
       begin
-        cShipID := ShipID;
-
+        addParams := ' -' + m2DServerIP + ' -' + m2DServerPort + ' -' +
+          mDBServer + ' -' + mDBProto + ' -' + mDBName + ' -' + mDBUser + ' -'
+          + mDBPass + ' -' + IntToStr(cShipID) + ' -' + IntToStr(sceneID);
+        sLine := path + '\'+ sName + addParams;
+      end
+      else
+      begin
         if cbDebug.Checked then
-          if cShipID <= 0 then
-            AddToLogs('Can not find ship id from scene ' + IntToStr(sceneID) +
-              ' and console id ' + IntToStr(thisComputer.c_id_console));
-
-//        sName := thisComputer.c_app_params + thisComputer.c_app_name;
-        sName := thisComputer.c_app_name;
-
-        if cbDebug.Checked then
-          AddToLogs('Assign as :: ' + sName + ' ' + IntToStr(cShipID));
-
-        if FileExists(path + '\' + sName) then
-        begin
-          addParams := ' -' + m2DServerIP + ' -' + m2DServerPort + ' -' +
-            mDBServer + ' -' + mDBProto + ' -' + mDBName + ' -' + mDBUser + ' -'
-            + mDBPass + ' -' + IntToStr(cShipID) + ' -' + IntToStr(sceneID);
-          sLine := path + '\'+ sName + addParams;
-        end
-        else
-        begin
-          if cbDebug.Checked then
-            AddToLogs('File Not Exists :: ' + sName);
-          sLine := '';
-        end;
+          AddToLogs('File Not Exists :: ' + sName);
+        sLine := '';
       end;
+      {$ENDREGION}
+    end;
 
     APP_2D_SIGMA_PKR:
+    begin
+      {$REGION ' APP_2D_SIGMA_PKR '}
+      cShipID := ShipID;
+
+      if cbDebug.Checked then
+        if cShipID <= 0 then
+          AddToLogs('Can not find ship id from scene ' + IntToStr(sceneID) +
+            ' and console id ' + IntToStr(thisComputer.c_id_console));
+
+      sName := thisComputer.c_app_name;
+
+      path := path + '\' + 'tcms';
+
+      if cbDebug.Checked then
+        AddToLogs('Assign as :: ' + sName + ' ' + IntToStr(cShipID));
+
+      if FileExists(path + '\' + sName) then
       begin
-        cShipID := ShipID;
+        // addParams := ' -' + m2DServerIP+' -'+m2DServerPort+' -'+mDBServer+' -'+mDBProto+' -'+mDBName+' -'+mDBUser+' -'+mDBPass+' -'+IntToStr(cShipID)+' -'+IntToStr(sceneID);
 
-        if cbDebug.Checked then
-          if cShipID <= 0 then
-            AddToLogs('Can not find ship id from scene ' + IntToStr(sceneID) +
-              ' and console id ' + IntToStr(thisComputer.c_id_console));
+        SaveDefault_GameServerConfig(path, m2DServerIP,
+          m2DServerPort, '', '');
+        SaveDefault_DBConfig(path, mDBServer, mDBProto, mDBName, mDBUser,
+          mDBPass, '3306');
 
-        sName := thisComputer.c_app_name;
+        cShipName := DataModule1.GetShipName(cShipID);
+        cShipClassID := DataModule1.GetShipClassID(cShipID);
+        cShipClassName := DataModule1.GetShipClassName(cShipClassID);
 
-        path := path + '\' + 'tcms';
+        SaveDefault_ShipConfig(path, cShipID, cShipClassID, cShipName,
+          cShipClassName);
 
-        if cbDebug.Checked then
-          AddToLogs('Assign as :: ' + sName + ' ' + IntToStr(cShipID));
-
-        if FileExists(path + '\' + sName) then
-        begin
-          // addParams := ' -' + m2DServerIP+' -'+m2DServerPort+' -'+mDBServer+' -'+mDBProto+' -'+mDBName+' -'+mDBUser+' -'+mDBPass+' -'+IntToStr(cShipID)+' -'+IntToStr(sceneID);
-
-          SaveDefault_GameServerConfig(path, m2DServerIP,
-            m2DServerPort, '', '');
-          SaveDefault_DBConfig(path, mDBServer, mDBProto, mDBName, mDBUser,
-            mDBPass, '3306');
-
-          cShipName := DataModule1.GetShipName(cShipID);
-          cShipClassID := DataModule1.GetShipClassID(cShipID);
-          cShipClassName := DataModule1.GetShipClassName(cShipClassID);
-
-          SaveDefault_ShipConfig(path, cShipID, cShipClassID, cShipName,
-            cShipClassName);
-
-          // sLine     := sName + addParams;
-          sLine := path + '\'+ sName;
-        end
-        else
-        begin
-          if cbDebug.Checked then
-            AddToLogs('File Not Exists :: ' + sName);
-          sLine := '';
-        end;
-
+        // sLine     := sName + addParams;
+        sLine := path + '\'+ sName;
       end
+      else
+      begin
+        if cbDebug.Checked then
+          AddToLogs('File Not Exists :: ' + sName);
+        sLine := '';
+      end;
+      {$ENDREGION}
+    end
   else
     if cbDebug.Checked then
-      AddToLogs('thisComputer app type not in case ' +
-        IntToStr(thisComputer.c_app_tipe));
+      AddToLogs('thisComputer app type not in case ' + IntToStr(thisComputer.c_app_tipe));
   end;
 
   if cbDebug.Checked then
@@ -889,17 +878,15 @@ begin
     end
     else
     begin
-      //cmdClientApp.CommandLine := sLine;
+
       AddToLogs(sLine);
       AddToLogs(path);
+
       if cbDebug.Checked then
         AddToLogs('run ' + sLine);
-      //cmdClientApp.Execute;
+
       ExecuteCommandWithWorkingDirectory(sLine, path, False);
 
-      // cmdClientApp.CommandLine := sLine_2;
-      // AddToLogs(sLine_2);
-      // cmdClientApp.Execute;
     end;
   end
   else
