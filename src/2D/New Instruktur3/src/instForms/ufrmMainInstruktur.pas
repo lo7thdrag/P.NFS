@@ -3549,6 +3549,7 @@ begin
   FrameControlLeft.NillAllSet;
   FrameControlLeft.FrameGuidance.NillAllSet;
   FrameControlLeft.FrameWeaponStatus.NillAllSet;
+  FrameControlLeft.Width := 0;
 end;
 
 procedure TfrmMainInstruktur.SetTrackObjectTrajectory;

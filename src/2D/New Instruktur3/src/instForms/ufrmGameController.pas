@@ -1279,6 +1279,7 @@ type
 
     {$ENDREGION}
 
+    procedure StopAllConsole;
     procedure FillClientList;
     procedure CekLight;
     procedure AddMenuWithShipID(const shipID: integer);
@@ -2519,10 +2520,12 @@ begin
     begin
       if not Assigned(lvClient.Selected.Data) then
         Exit;
+
       WeaponID := TClientList(lvClient.Selected.Data).WeaponID;
 
       if (lvClient.Selected.SubItems[idx_type] = '3D-W') then
       begin
+        {$REGION ' 3D-W '}
         for I := 0 to pmClient2.Items.Count - 1 do
           pmClient2.Items[I].Enabled := True;
 
@@ -2716,14 +2719,20 @@ begin
           ListWeapon2.Free;
         end;
         pmClient2.Popup(p.X, p.Y);
+
+        {$ENDREGION}
       end
       else
       begin
         for I := 0 to pmClient.Items.Count - 1 do
           pmClient.Items[I].Enabled := true;
 
+        if lvClient.Selected.SubItems[idx_st] = 'OFFLINE' then
+          Exit;
+
         if (lvClient.Selected.SubItems[idx_name] = 'MOC-1') or (lvClient.Selected.SubItems[idx_name] = 'MOC-2') then
         begin
+          {$REGION ' MOC '}
           for I := 0 to pmClient.Items.Count - 1 do
           begin
             isFound := False;
@@ -2750,9 +2759,12 @@ begin
                 pmClient.Items[I].Enabled := true;
             end;
           end;
+
+          {$ENDREGION}
         end
         else if (lvClient.Selected.SubItems[1] = 'WCC') then
         begin
+          {$REGION ' WCC '}
           for I := 0 to pmClient.Items.Count - 1 do
           begin
             isFound := False;
@@ -2804,16 +2816,20 @@ begin
 
             end;
           end;
+          {$ENDREGION}
         end
         else
         begin
         { Check Available Except MOC }
           try
+
             ListWeapon := TList.Create;
             for I := 0 to pmClient.Items.Count - 1 do
             begin
               ShipID := pmClient.Items[I].Tag;
 
+              if lvClient.Selected.SubItems[idx_st] = 'RUNNING' then
+                Continue;
               if ShipID <= 0 then
                 Continue;
               if WeaponID = 0 then
@@ -3454,22 +3470,23 @@ begin
   if btnSelected = mrYes then
   begin
     frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
+
     if Length(SimManager.bridgeSet.mServer.m3D_IP) > 0 then
       SimManager.StopToClientOnIP(SimManager.bridgeSet.mServer.m3D_IP);
+
     frmMainInstruktur.Caption := 'Firing System Instruktur';
     frmMainInstruktur.cekCaption := frmMainInstruktur.Caption;
     SimManager.NetSendStatusGame(0, 2);
     SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0, 0, 0, 0);
     frmMainInstruktur.deleteLeftFrame;
+
+    StopAllConsole;
     SetDefaultEnvirontment;
 
-    //dendy sementara
-//        lvRuntimeShipTrajectory.Items.Clear;
-//        lvRuntimeMissileTrajectory.Items.Clear;
     ClearListViewData(lvRuntimeShipTrajectory);
     ClearListViewData(lvRuntimeMissileTrajectory);
     ClearListViewData(lvRuntimeShip);
-    frmMainInstruktur.FrameControlLeft.Width := 0;
+
     SimManager.MainObjList.ClearObject;
   end;
 end;
@@ -9267,6 +9284,31 @@ begin
         end;
       end;
     end;
+  end;
+end;
+
+procedure TfrmGameController.StopAllConsole;
+var
+  i : Integer;
+  ip: string;
+  RecSend: TRecData2DOrder;
+  AppData: tDataApplication;
+
+begin
+  for i := 0 to lvClient.Items.Count-1 do
+  begin
+    ip := lvClient.Items[i].SubItems[idx_ip];
+
+    SimManager.InstrukturSendStopCommandIP(ip);
+
+    AppData := GetPCConfigFromIPAddress(ip);
+
+    RecSend.orderID := _CM_CLIENT_MANAGE;
+    RecSend.numValue := __CM_CLIENT_STOP;
+    RecSend.strValue := ExtractFileName(AppData.c_app_name);
+    RecSend.ipConsole := ip;
+
+    SimManager.SendCommand2D_Order(RecSend);
   end;
 end;
 
