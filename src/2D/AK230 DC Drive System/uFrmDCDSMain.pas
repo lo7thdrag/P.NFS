@@ -251,6 +251,8 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure btnFiringMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure btnOmKolonkaClick(Sender: TObject);
+    procedure btnCStartClick(Sender: TObject);
   private
     { Private declarations }
     FbootTime : Integer;
@@ -385,17 +387,18 @@ begin
   if btnCmAggregate.Down then
   begin
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
-//    btnAggregate.Glyph := FimgTemp.Picture.Bitmap;
     btnAggregate.Glyph.Assign(FimgTemp.Picture.Graphic);
-    btnCmDCDrive.Down := False;
-    btnCMEmergency.Down := False;
   end
   else
   begin
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
-//    btnAggregate.Glyph := FimgTemp.Picture.Bitmap;
     btnAggregate.Glyph.Assign(FimgTemp.Picture.Graphic);
   end;
+end;
+
+procedure TfrmDCDSMain.btnCStartClick(Sender: TObject);
+begin
+  ShowMessage('Tidak terhubung dengan kamera');
 end;
 
 procedure TfrmDCDSMain.btnDcdcElevationDecreaseClick(Sender: TObject);
@@ -516,7 +519,8 @@ begin
 //  edtValueTraining.Text := FormatFloat('0.#', FVTgtTraining);
 //  edtValueElevation.Text := FormatFloat('0.#', FVTgtElevation);
 
-  if (FVTgtElevation <= -5) and (FVTgtElevation >= -10) then
+  if ((FVTgtElevation <= -10) or (FVTgtElevation >= 85)) or
+  ((FVTgtTraining >= 310) or (FVTgtTraining <= 50)) then
   begin
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
     btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
@@ -524,8 +528,47 @@ begin
 
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
     btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
     btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+
+    if (FVTgtTraining >= 310) then
+    begin
+      imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+      imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    end
+    else if (FVTgtTraining <= 50) then
+    begin
+      imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+      imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    end
+    else
+    begin
+      imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+      imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    end;
+
+    if (FVTgtElevation <= -10) then
+    begin
+      // LOW LIMIT ZONE (-5 s/d -10)
+      imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+
+      imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    end
+    else if (FVTgtElevation >= 80) then
+    begin
+      // HIGH LIMIT ZONE (80 s/d 85)
+      imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+
+      imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    end
+    else
+    begin
+      // NORMAL ZONE
+      imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+
+      imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    end;
   end
   else
   begin
@@ -535,6 +578,7 @@ begin
 
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
     btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
     btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
   end;
@@ -704,6 +748,11 @@ begin
   StopCannonFire(1);
 end;
 
+procedure TfrmDCDSMain.btnOmKolonkaClick(Sender: TObject);
+begin
+  ShowMessage('Tidak terhubung dengan Kolonka');
+end;
+
 procedure TfrmDCDSMain.btnOmRangeBearingEnterClick(Sender: TObject);
 var
   ranVal, bearVal, maxRan: Double;
@@ -837,6 +886,7 @@ begin
     tmrRotate.Enabled := False;
   end;
 end;
+
 
 //function TfrmDCDSMain.FindTOFandPHPpoint(Gun_numb: Word; TgtCourse,
 //  TgtSpeed: Single; var oX, oY, oZ: Double): Single;
