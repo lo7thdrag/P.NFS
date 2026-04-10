@@ -4941,9 +4941,10 @@ object frmDCDSMain: TfrmDCDSMain
                   Top = 8
                   Width = 120
                   Height = 30
-                  AllowAllUp = True
                   Color = clYellow
                   ColorDown = clLime
+                  GroupIndex = 1
+                  Down = True
                   Caption = 'ANJUNGAN'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clBlack
@@ -6211,6 +6212,7 @@ object frmDCDSMain: TfrmDCDSMain
                   '09/03/2025')
                 ReadOnly = True
                 TabOrder = 3
+                Visible = False
               end
             end
             object pnlCCBottom: TPanel
