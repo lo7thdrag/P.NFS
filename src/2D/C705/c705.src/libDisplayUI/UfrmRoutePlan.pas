@@ -550,6 +550,8 @@ begin
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
+var
+  deltaWidth: integer;
 begin
 //  pnlBasemap.Width := Width;
 //  pnlBasemap.Left := 0;
@@ -578,8 +580,10 @@ begin
   pnlParamDisplay.Top := pnlHeaderTitle.Top + pnlHeaderTitle.Height;
   pnlParamDisplay.Visible := False;
 
+  deltaWidth := pnlParamDisplay.Width - pnlObstacleInfo.Width;
+
   // Panel Obstacle Information / Sub Window-4
-  pnlObstacleInfo.Left := pnlParamDisplay.Left;
+  pnlObstacleInfo.Left := pnlParamDisplay.Left + deltaWidth;
   pnlObstacleInfo.Top := pnlParamDisplay.Top;
   pnlObstacleInfo.Visible := False;
 
@@ -1066,6 +1070,9 @@ begin
   begin
     VehicleMgr.SelectedTargetID := TargetObj.ID;
     FMap.Refresh;
+
+    lblNav_LongShip.Caption := (TargetObj.Lon).ToString;
+    lblNav_LatShip.Caption := (TargetObj.Lat).ToString;
   end;
 
   if FSelectMode then
@@ -1172,6 +1179,8 @@ end;
 {$REGION 'Tool Bar'}
 
 procedure TfrmRoutePlan.btnToolBarsClick(Sender: TObject);
+var
+  OwnShip: TShipContact;
 begin
   FSelectMode := False;
   case (Sender as TSpeedButton).Tag of
@@ -1183,7 +1192,21 @@ begin
     end;
     1: begin
       {$REGION 'Optimal Proportion'}
-      //
+      FMap.CurrentTool := miArrowTool;
+
+      if not Assigned(VehicleMgr) then Exit;
+
+      OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
+      if not Assigned(OwnShip) then
+        Exit;
+
+      FMap.CenterX := OwnShip.Lon;
+      FMap.CenterY := OwnShip.Lat;
+
+      FMap.Refresh;
+
+      lblNav_LongShip.Caption := (OwnShip.Lon).ToString;
+      lblNav_LatShip.Caption := (OwnShip.Lat).ToString;
       {$ENDREGION}
     end;
     2: begin

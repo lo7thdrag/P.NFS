@@ -109,8 +109,8 @@ var
 recDataC705 : TRec_Data_C705;
 begin
 
-//  if not SimManager.isReadyToLaunchC705 then
-//    Exit;
+  if not SimManager.isReadyToLaunchC705 then
+    Exit;
 
   //
 //  frmRoutePlan.FSelectedBearing
