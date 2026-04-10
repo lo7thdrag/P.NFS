@@ -1,22 +1,19 @@
-
 unit ufrmGameController;
 
 interface
 
 uses
-
-  MapXLib_TLB, Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, AdvSmoothTabPager, CurvyControls, AdvSmoothButton,
-  ComCtrls, ExtCtrls, VrControls, VrWheel, AdvSmoothToggleButton, ShellAPI, idUDPClient,
-  AdvSmoothPanel, OleCtrls, AdvSmoothLabel, StdCtrls, IniFiles,
-  AdvPageControl,RzButton, {acPNG,} jpeg, Buttons, VrTrackBar, Mask, MaskEdEx, AdvEdit,
-
-  uClassDatabase, ufrmMainInstruktur, ufrmSceEditor, uDataModule, uGlobalVar,
-  uInstrukturManager, uTCPDatatype, uCMSetting, uBaseCoordSystem, uBaseConstan, ufReportEvent ,
-  ufInstLog, uBaseFunction, uInstrukturObjects, uTrajectory, uSimulationManager, uQuery,
-  RzPanel, ufrmTrajectoryView, AdvTrackBar, SpeedButtonImage,
+  MapXLib_TLB, Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, Dialogs, Menus, AdvSmoothTabPager, CurvyControls,
+  AdvSmoothButton, ComCtrls, ExtCtrls, VrControls, VrWheel,
+  AdvSmoothToggleButton, ShellAPI, idUDPClient, AdvSmoothPanel, OleCtrls,
+  AdvSmoothLabel, StdCtrls, IniFiles, AdvPageControl, RzButton, {acPNG,} jpeg,
+  Buttons, VrTrackBar, Mask, MaskEdEx, AdvEdit, uClassDatabase,
+  ufrmMainInstruktur, ufrmSceEditor, uDataModule, uGlobalVar, uInstrukturManager,
+  uTCPDatatype, uCMSetting, uBaseCoordSystem, uBaseConstan, ufReportEvent,
+  ufInstLog, uBaseFunction, uInstrukturObjects, uTrajectory, uSimulationManager,
+  uQuery, RzPanel, ufrmTrajectoryView, AdvTrackBar, SpeedButtonImage,
   Vcl.Imaging.pngimage;
-
 
 type
   TWindData = record
@@ -25,7 +22,7 @@ type
   end;
 
   TSeaState = record
-    wavescale: string[6] ;
+    wavescale: string[6];
     windspeed: double;
     windlength: double;
     windorientation: double;
@@ -697,7 +694,7 @@ type
     Label27: TLabel;
     Label28: TLabel;
     grpSeaState: TGroupBox;
-    tbSeaState : TVrTrackBar;
+    tbSeaState: TVrTrackBar;
     GroupBox2: TGroupBox;
     tbWindSpeed: TVrTrackBar;
     grpCurrentSpeed: TGroupBox;
@@ -1087,8 +1084,7 @@ type
     procedure TabSelectObjectChange(Sender: TObject);
     procedure TabControlChange(Sender: TObject);
     procedure qClick(Sender: TObject);
-    procedure lvClientMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure lvClientMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnRefreshClientClick(Sender: TObject);
     procedure btnRemoveObjectClick(Sender: TObject);
     procedure cbbMapMiniZoomChange(Sender: TObject);
@@ -1107,55 +1103,41 @@ type
     procedure btnCannonStartFireClick(Sender: TObject);
     procedure btnCannonStartFire23Click(Sender: TObject);
     procedure btnYahkont_Fire_Click(Sender: TObject);
-    procedure btnC802_FireClick(Sender : Tobject);
+    procedure btnC802_FireClick(Sender: Tobject);
     procedure btnPlayerCameraUnlockClick(Sender: TObject);
     procedure vrWheelCameraRotateXChange(Sender: TObject);
     procedure vrWheelCameraRotateYChange(Sender: TObject);
-    procedure vrWheelCameraRotateYMouseUp(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure vrWheelCameraRotateXMouseUp(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure vrWheelCameraRotateYMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure vrWheelCameraRotateXMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnCameraUnlockClick(Sender: TObject);
     procedure btnCameraLockClick(Sender: TObject);
     procedure tmrStatusTimer(Sender: TObject);
     procedure mniLog1Click(Sender: TObject);
-    procedure lvClientChange(Sender: TObject; Item: TListItem;
-      Change: TItemChange);
-	procedure cbbA244LauncherChange(Sender: TObject);
+    procedure lvClientChange(Sender: TObject; Item: TListItem; Change: TItemChange);
+    procedure cbbA244LauncherChange(Sender: TObject);
     procedure cbbWTRChange(Sender: TObject);
-
     procedure vrwhlSeaDirectionChange(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure lvClientCustomDrawSubItem(Sender: TCustomListView;
-      Item: TListItem; SubItem: Integer; State: TCustomDrawState;
-      var DefaultDraw: Boolean);
+    procedure lvClientCustomDrawSubItem(Sender: TCustomListView; Item: TListItem; SubItem: Integer; State: TCustomDrawState; var DefaultDraw: Boolean);
     procedure btnRepostObjectClick(Sender: TObject);
     procedure cbbRBUassigntmentChange(Sender: TObject);
     procedure btnTorpSutTargetClick(Sender: TObject);
     procedure btnAsrocTargetClick(Sender: TObject);
-	procedure edtTampungChange(Sender: TObject);
+    procedure edtTampungChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnSelectCanonTargetClick(Sender: TObject);
-    procedure tbSeaStateMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure tbWindSpeedMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure tbSeaSpeedMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure tbTempMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure tbBaroPressureMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure tbHumidityMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure tbFogIntensityMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure tbSeaStateMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure tbWindSpeedMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure tbSeaSpeedMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure tbTempMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure tbBaroPressureMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure tbHumidityMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure tbFogIntensityMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 //    procedure vrwhlWindDirecMouseUp(Sender: TObject; Button: TMouseButton;
 //      Shift: TShiftState; X, Y: Integer);
 //    procedure vrwhlSeaDirectionMouseUp(Sender: TObject;
 //      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure lvWeaponMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure lvWeaponMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure On1Click(Sender: TObject);
     procedure eRBU6000RangeKeyPress(Sender: TObject; var Key: Char);
     procedure tmrRBUTimer(Sender: TObject);
@@ -1168,20 +1150,15 @@ type
     procedure tbFogIntensityChange(Sender: TObject);
     procedure vrwhlWindDirecChange(Sender: TObject);
     procedure RestartAllCommunication1Click(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormPaint(Sender: TObject);
     procedure tsTrajectoryMapviewChange(Sender: TObject);
     procedure ProfilKetinggian1Click(Sender: TObject);
-    procedure btnCanonTest3DMouseDown(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure btnCanonTest3DMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure btnCanonTest3DMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnCanonTest3DMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btnstoprotateClick(Sender: TObject);
-    procedure btn1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure btn1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure btn1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btn1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure btn1Click(Sender: TObject);
     procedure tmrSeaStateTimer(Sender: TObject);
     procedure btnCamPinClick(Sender: TObject);
@@ -1191,16 +1168,13 @@ type
     procedure edtAzimutExit(Sender: TObject);
     procedure btnFreeCamClick(Sender: TObject);
     procedure edtAzimutKeyPress(Sender: TObject; var Key: Char);
-    procedure wheelAzimutMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure trackBarRangeMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure wheelAzimutMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure trackBarRangeMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure edtRangeValueExit(Sender: TObject);
     procedure edtRangeValueKeyPress(Sender: TObject; var Key: Char);
     procedure edtElevationValueExit(Sender: TObject);
     procedure edtElevationValueKeyPress(Sender: TObject; var Key: Char);
-    procedure trackBarElevationMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure trackBarElevationMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure MainMenuClick(Sender: TObject);
     procedure MainMenuMouseEnter(Sender: TObject);
     procedure MainMenuMouseLeave(Sender: TObject);
@@ -1213,20 +1187,15 @@ type
     procedure btnStopScenarioClick(Sender: TObject);
     procedure lvShipListClick(Sender: TObject);
     procedure ClearAllDetail;
-    procedure lvWeaponSelectSelectItem(Sender: TObject; Item: TListItem;
-      Selected: Boolean);
+    procedure lvWeaponSelectSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
     procedure lvWeaponClick(Sender: TObject);
     procedure btnPlayerCameraLockClick(Sender: TObject);
     procedure btnCamViewOldLeftClick(Sender: TObject);
     procedure btnCamViewLeftClick(Sender: TObject);
-    procedure btnCamMoveLefMouseDown(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure btnCamRotateOldLeftMouseDown(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure btnCamMoveLefMouseUp(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure btnCamRotateOldLeftMouseUp(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnCamMoveLefMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnCamRotateOldLeftMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnCamMoveLefMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnCamRotateOldLeftMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure cbSelectIDCameraChange(Sender: TObject);
     procedure mni3Click(Sender: TObject);
     procedure btnNewShipClick(Sender: TObject);
@@ -1245,65 +1214,51 @@ type
     procedure btnC705_Click(Sender: TObject);
     procedure btnMicaClick(Sender: TObject);
     procedure btnAssignTargetSpsClick(Sender: TObject);
-
   private
     { Private declarations }
-    ObserverID : integer ;
-    onOffMode  : Integer;
-    sceIDINI   : Integer;
-    unlockCam  : boolean;
-
+    ObserverID: integer;
+    onOffMode: Integer;
+    sceIDINI: Integer;
+    unlockCam: boolean;
     Ship_ID: Integer;
     Ship_Name: string;
     Weapon_ID: Integer;
     Weapon_Name: string;
-
-    ScaleHeight, ScaleWidht : Integer; // for trajectory
+    ScaleHeight, ScaleWidht: Integer; // for trajectory
 
     //Trajectory
-    FTrajectory : TTrajectory;
-
-    scenarioGameName : string;
-
+    FTrajectory: TTrajectory;
+    scenarioGameName: string;
     procedure ClearScenarioDescData;
     procedure ClearListViewData(const aListView: TListView);
     procedure ClearListShipData(const aListView: TListView);
     procedure OnChangeEnvironment;
-
-    procedure WakeOnLan(const AMacAddress : string); //yoga
+    procedure WakeOnLan(const AMacAddress: string); //yoga
     procedure UpdateEnvy;
     procedure SetObjectCreate;
     procedure SetHandleEvent;
     procedure SetImgSelectConsole;
-
-    procedure CurrentShipItemSendCommandPlayerCamera ( const orderID, LockID : integer);
-    procedure CurrentShipItemSendCommandPlayerLockSideCamera ( const orderID, TypeLock, LockID : integer);
-
-    procedure CurrentShipItemSendCommanPlayerEvent( const orderID, valInt : Integer;
-                                                    const valDbl : double);
+    procedure CurrentShipItemSendCommandPlayerCamera(const orderID, LockID: integer);
+    procedure CurrentShipItemSendCommandPlayerLockSideCamera(const orderID, TypeLock, LockID: integer);
+    procedure CurrentShipItemSendCommanPlayerEvent(const orderID, valInt: Integer; const valDbl: double);
 //    procedure CurrentShipItemSendCommanPlayerEvent( const orderID, eventID, eventType : Integer;
 //                                                    const SpeedPlayer, DesiredValue : double);
 
-    procedure LoadImageLight(var Aimage : TImage; imgStat : string; const stat : byte);
-
+    procedure LoadImageLight(var Aimage: TImage; imgStat: string; const stat: byte);
   public
-
-    ServerState : Byte; {1: connected; 0: else}
-    GameType : Integer; {0:NAFS; 1:NSFS; 2:NSSFS}
+    ServerState: Byte; {1: connected; 0: else}
+    GameType: Integer; {0:NAFS; 1:NSFS; 2:NSSFS}
 
     { Public declarations }
     procedure SetFormLayout;
     procedure SetProject;
     procedure SetFormEnvironment;
-    procedure AssignStatus(ShipID, WeaponID, LauncherID, MissileID : Byte; AssignStatus : Boolean );
-    procedure RefreshFormWeapon(const WeaponName : string);
-    procedure VisibleStatusShip( aValue : Boolean ; Mode : Integer);
-
-    procedure ShowDefaultPageWeapon ( isDefault : boolean );
-
-    function IsMenuItemExist( const shipID : integer ) : boolean ;
-    function IsMenuItem2Exist (const shipID : integer ) : boolean ;
-
+    procedure AssignStatus(ShipID, WeaponID, LauncherID, MissileID: Byte; AssignStatus: Boolean);
+    procedure RefreshFormWeapon(const WeaponName: string);
+    procedure VisibleStatusShip(aValue: Boolean; Mode: Integer);
+    procedure ShowDefaultPageWeapon(isDefault: boolean);
+    function IsMenuItemExist(const shipID: integer): boolean;
+    function IsMenuItem2Exist(const shipID: integer): boolean;
     procedure RunClientFromPopupMenu(Sender: TObject);
     procedure RunClientFromPopupSubMenu(Sender: TObject);
     procedure AutoRefresh;
@@ -1326,91 +1281,120 @@ type
 
     procedure FillClientList;
     procedure CekLight;
-    procedure AddMenuWithShipID (const shipID : integer);
-    procedure DeleteMenuWithShipID (const shipID : integer);
+    procedure AddMenuWithShipID(const shipID: integer);
+    procedure DeleteMenuWithShipID(const shipID: integer);
     procedure DeleteAllMenuPopUpMenu;
     procedure ClearAllVisibleConsole;
     procedure SelectConsole;
-    procedure execPDF(Sender : TObject);
+    procedure execPDF(Sender: TObject);
     procedure menuHelp;
-    function getSPSIP : string;
+    function getSPSIP: string;
     procedure wtrChange;
-    procedure StatusWeapon(shipid : Integer; weaponid : Byte ; value : Single; launcher :Byte );
+    procedure StatusWeapon(shipid: Integer; weaponid: Byte; value: Single; launcher: Byte);
     procedure readOnOffMode;
     procedure SetDefaultEnvirontment;
-
-    procedure ShowWeaponPanel(WeaponID, LauncherID : integer);
+    procedure ShowWeaponPanel(WeaponID, LauncherID: integer);
     procedure SelectShip(aObject: TInsObject);
-
     procedure CreateTrajectory;
     procedure DestroyTrajectory;
   end;
 
 const
-  LoadImgOff      = '..\data\images\NFS instruktur - interface\imageIns\OFFLINE.bmp';
-  LoadImgOn       = '..\data\images\NFS instruktur - interface\imageIns\ONLINE.bmp';
-  LoadImgRunning  = '..\data\images\NFS instruktur - interface\imageIns\RUNNING.bmp';
-
-  LoadScreenOff      = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenOffline.bmp';
-  LoadScreenOn       = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenOnline.bmp';
-  LoadScreenRunning  = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenRunning.bmp';
-
-  LoadScreenServerOff      = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenOffline2.bmp';
-  LoadScreenServerOn       = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenOnline2.bmp';
-  LoadScreenServerRunning  = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenRunning2.bmp';
-
+  LoadImgOff = '..\data\images\NFS instruktur - interface\imageIns\OFFLINE.bmp';
+  LoadImgOn = '..\data\images\NFS instruktur - interface\imageIns\ONLINE.bmp';
+  LoadImgRunning = '..\data\images\NFS instruktur - interface\imageIns\RUNNING.bmp';
+  LoadScreenOff = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenOffline.bmp';
+  LoadScreenOn = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenOnline.bmp';
+  LoadScreenRunning = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenRunning.bmp';
+  LoadScreenServerOff = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenOffline2.bmp';
+  LoadScreenServerOn = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenOnline2.bmp';
+  LoadScreenServerRunning = '..\data\images\NFS instruktur - interface\imageIns\screen\ScreenRunning2.bmp';
   OFFLINE = 0;
-  ONLINE  = 1;
+  ONLINE = 1;
   RUNNING = 2;
-
 
 var
   frmGameController: TfrmGameController;
 
-
 implementation
 
-uses DateUtils, ufListScenario, Math, ufrmeLeftControl, ufEnvi, ufrmShipEditor;
+uses
+  DateUtils, ufListScenario, Math, ufrmeLeftControl, ufEnvi, ufrmShipEditor;
 
 {$R *.dfm}
 
 const
-  APP_LAUNCH  = 'RUNNING';
-  APP_IDLE    = 'ONLINE';
-  APP_OFF     = 'OFFLINE';
+  APP_LAUNCH = 'RUNNING';
+  APP_IDLE = 'ONLINE';
+  APP_OFF = 'OFFLINE';
+  idx_cub = 0;
+  idx_name = 1;
+  idx_type = 2;
+  idx_ip = 3;
+  idx_st = 4;
+  idx_ship = 5;
+  aFogHeight: array[1..10] of double = (0.0002, 0.0005, 0.0008, 0.0012, 0.0022, 0.0052, 0.0082, 0.012, 0.02, 0.1);
+  c_aSeaState: array[0..9] of TSeaState = ((
+    wavescale: '1e-009';
+    windspeed: 1.5;
+    windlength: 0.5;
+    windorientation: 0.0
+  ), (
+    wavescale: '1e-009';
+    windspeed: 5.0;
+    windlength: 1.5;
+    windorientation: 0.0
+  ), (
+    wavescale: '1e-009';
+    windspeed: 8.0;
+    windlength: 3.0;
+    windorientation: 0.0
+  ), (
+    wavescale: '1e-009';
+    windspeed: 9.0;
+    windlength: 3.0;
+    windorientation: 0.0
+  ), (
+    wavescale: '2e-009';
+    windspeed: 10.5;
+    windlength: 3.0;
+    windorientation: 0.0
+  ), (
+    wavescale: '5e-009';
+    windspeed: 12.0;
+    windlength: 3.0;
+    windorientation: 0.0
+  ), (
+    wavescale: '5e-009';
+    windspeed: 14.5;
+    windlength: 3.0;
+    windorientation: 0.0
+  ), (
+    wavescale: '5e-009';
+    windspeed: 18.0;
+    windlength: 3.5;
+    windorientation: 0.0
+  ), (
+    wavescale: '5e-009';
+    windspeed: 20.5;
+    windlength: 4.0;
+    windorientation: 0.0
+  ), (
+    wavescale: '5e-009';
+    windspeed: 23.5;
+    windlength: 5.0;
+    windorientation: 0.0
+  ));
 
-  idx_cub   = 0;
-  idx_name  = 1;
-  idx_type  = 2;
-  idx_ip    = 3;
-  idx_st    = 4;
-  idx_ship  = 5;
-
-  aFogHeight : array[1..10] of double = (0.0002,0.0005,0.0008,0.0012,0.0022,0.0052,0.0082,0.012,0.02,0.1);
-
-  c_aSeaState : array [0..9] of TSeaState =(
-    (wavescale: '1e-009'; windspeed:  1.5; windlength: 0.5; windorientation: 0.0),
-    (wavescale: '1e-009'; windspeed:  5.0; windlength: 1.5; windorientation: 0.0),
-    (wavescale: '1e-009'; windspeed:  8.0; windlength: 3.0; windorientation: 0.0),
-    (wavescale: '1e-009'; windspeed:  9.0; windlength: 3.0; windorientation: 0.0),
-    (wavescale: '2e-009'; windspeed: 10.5; windlength: 3.0; windorientation: 0.0),
-    (wavescale: '5e-009'; windspeed: 12.0; windlength: 3.0; windorientation: 0.0),
-    (wavescale: '5e-009'; windspeed: 14.5; windlength: 3.0; windorientation: 0.0),
-    (wavescale: '5e-009'; windspeed: 18.0; windlength: 3.5; windorientation: 0.0),
-    (wavescale: '5e-009'; windspeed: 20.5; windlength: 4.0; windorientation: 0.0),
-    (wavescale: '5e-009'; windspeed: 23.5; windlength: 5.0; windorientation: 0.0)
-
-  );
-
-procedure EnableComposited(WinControl:TWinControl);
+procedure EnableComposited(WinControl: TWinControl);
 var
-  i:Integer;
-  NewExStyle:DWORD;
+  i: Integer;
+  NewExStyle: DWORD;
 begin
   NewExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE) or WS_EX_COMPOSITED;
   SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
 
-  for I := 0 to WinControl.ControlCount - 1 do
+  for i := 0 to WinControl.ControlCount - 1 do
     if WinControl.Controls[i] is TWinControl then
       EnableComposited(TWinControl(WinControl.Controls[i]));
 end;
@@ -1433,8 +1417,9 @@ end;
 
 procedure TfrmGameController.DisplayController1Click(Sender: TObject);
 begin
-  case TComponent(sender).Tag of
-    1 : frmMainInstruktur.SetFormLayout;
+  case TComponent(Sender).Tag of
+    1:
+      frmMainInstruktur.SetFormLayout;
    // 2 : frmFiringCommand.SetFormLayout;
   end;
 end;
@@ -1443,35 +1428,28 @@ end;
 { Set Form}
 procedure TfrmGameController.SetFormEnvironment;
 var
-  i : integer;
-  aOverlap : Integer;
-
-  strPathRotary,
-  strPathImage,
-  strPathEnvy      : string;
-
+  i: integer;
+  aOverlap: Integer;
+  strPathRotary, strPathImage, strPathEnvy: string;
 begin
   strPathRotary := '..\data\images\NFS instruktur - interface\bmp\controller platform\rotary\';
-  strPathImage  := '..\data\images\NFS instruktur - interface\bmp\controller platform\';
-  strPathEnvy   := '..\data\images\NFS instruktur - interface\bmp\controller environment\';
+  strPathImage := '..\data\images\NFS instruktur - interface\bmp\controller platform\';
+  strPathEnvy := '..\data\images\NFS instruktur - interface\bmp\controller environment\';
 
   { Tab Main }
   TabMain.TabSettings.Height := 50;
-  TabMain.TabSettings.Width  := Width div 5;
+  TabMain.TabSettings.Width := Width div 5;
 
   { Tab Select Object }
 //  TabSelectObject.TabSettings.Height := 40;
 //  TabSelectObject.TabSettings.Width  := TabSelectObject.Width div 2;
-
   { Tab Control }
   TabControl.TabSettings.Height := 40;
-  TabControl.TabSettings.Width  := TabControl.Width div 4;
+  TabControl.TabSettings.Width := TabControl.Width div 4;
 
   { Tab Camera n Map View}
   { Camera View 1}
-  aOverlap                := (pnlPlayerCamera.Width - 20
-                              - pnlCameraView.Width - pnlCameraRotate.Width - pnlCameraRotateOld.Width
-                               - pnlCameraMove.Width) div 2;
+  aOverlap := (pnlPlayerCamera.Width - 20 - pnlCameraView.Width - pnlCameraRotate.Width - pnlCameraRotateOld.Width - pnlCameraMove.Width) div 2;
 
 
 //  pnlCameraSelectID.Top        := pnlStatusObject.Top + ((pnlStatusObject.Height div 2) - (pnlCameraSelectID.Height div 2));
@@ -1508,7 +1486,6 @@ begin
 //  vrWheelCameraRotateY.BackImage.LoadFromFile(strPathRotary + 'button_rotate camera 150.bmp');
 //  vrWheelCameraRotateY.Radius       := 60;
 //  vrWheelCameraRotateY.Transparent  := false;
-
 //  pnlRuangIns.Width  := imgRuangIns.Width + 20;
 //  pnlRuangIns.Height := imgRuangIns.Height + 20;
 //  pnlRuangIns.Top    := 75;
@@ -1520,7 +1497,6 @@ begin
 //
 //  lvClient.Width := tsClient.Width - imgRuangIns.Width - 30;
 //  lvClient.Align := alRight;
-
   { Listview Client}
 //  for i:= 1 to lvClient.Columns.Count - 1 do
 //  begin
@@ -1536,29 +1512,27 @@ begin
 //    end;
 //
 //    end;
-
   //Environment
   {wheel}
   vrwhlWindDirec.BackImage.LoadFromFile(strPathEnvy + 'button_rotary.bmp');
-  vrwhlWindDirec.Radius       := 60;
-  vrwhlWindDirec.Transparent  := True;
+  vrwhlWindDirec.Radius := 60;
+  vrwhlWindDirec.Transparent := True;
 
   vrwhlSeaDirection.BackImage.LoadFromFile(strPathEnvy + 'button_rotary.bmp');
-  vrwhlSeaDirection.Radius       := 60;
-  vrwhlSeaDirection.Transparent  := True;
+  vrwhlSeaDirection.Radius := 60;
+  vrwhlSeaDirection.Transparent := True;
 
   ShowDefaultPageWeapon(true);
 end;
 
 procedure TfrmGameController.FillClientList;
 var
-  i  : integer;
-  li : TListItem;
-
-  ListClient : TList;
-  Client     : TClient;
-  ClientList : TClientList;
-  worldproject : string;
+  i: integer;
+  li: TListItem;
+  ListClient: TList;
+  Client: TClient;
+  ClientList: TClientList;
+  worldproject: string;
 begin
   { Fill Client List }
 //  for i:= 0 to lvClient.Items.Count -1 do
@@ -1577,24 +1551,24 @@ begin
   try
     DataModule1.GetAllListClient(ListClient);
 
-    for i:= 0 to ListClient.Count -1 do
+    for i := 0 to ListClient.Count - 1 do
     begin
-      if Assigned(ListClient.Items[i]) then begin
+      if Assigned(ListClient.Items[i]) then
+      begin
 
         Client := TClient(ListClient.Items[i]);
 
-        li := lvClient.FindCaption(0, FormatFloat('00', Client.C_ID ), false, true, false);
+        li := lvClient.FindCaption(0, FormatFloat('00', Client.C_ID), false, true, false);
 
         {Jika server atau instruktur dilompati}
-
 //        if Client.C_Cubicle  = 'SERVER' then
 //          Continue;
-        if Client.C_Console  = 'INSTRUKTUR NAFS' then
-            Continue
-        else if Client.C_Console  = 'INSTRUKTUR NSFS' then
-            Continue
-        else if Client.C_Console  = 'INSTRUKTUR NSSFS' then
-            Continue;
+        if Client.C_Console = 'INSTRUKTUR NAFS' then
+          Continue
+        else if Client.C_Console = 'INSTRUKTUR NSFS' then
+          Continue
+        else if Client.C_Console = 'INSTRUKTUR NSSFS' then
+          Continue;
 
         if Client.C_GameType = 0 then       // Filter menurut game type
         begin
@@ -1603,13 +1577,13 @@ begin
             with lvClient.Items.Add do
             begin
               ClientList := TClientList.Create;
-              ClientList.Id           := Client.C_ID;
-              ClientList.Cli_Cubicle  := Client.C_Cubicle;
-              ClientList.Cli_Console  := Client.C_Console;
-              ClientList.Cli_Type     := Client.C_Type;
-              ClientList.Cli_IP       := Client.C_Ip;
-              ClientList.Cli_Status   := Client.C_Status;
-              ClientList.WeaponID     := Client.C_WeaponID;
+              ClientList.Id := Client.C_ID;
+              ClientList.Cli_Cubicle := Client.C_Cubicle;
+              ClientList.Cli_Console := Client.C_Console;
+              ClientList.Cli_Type := Client.C_Type;
+              ClientList.Cli_IP := Client.C_Ip;
+              ClientList.Cli_Status := Client.C_Status;
+              ClientList.WeaponID := Client.C_WeaponID;
 
               Caption := IntToStr(lvClient.Items.Count);
               SubItems.Add(Client.C_Cubicle);
@@ -1632,13 +1606,13 @@ begin
             with lvClient.Items.Add do
             begin
               ClientList := TClientList.Create;
-              ClientList.Id           := Client.C_ID;
-              ClientList.Cli_Cubicle  := Client.C_Cubicle;
-              ClientList.Cli_Console  := Client.C_Console;
-              ClientList.Cli_Type     := Client.C_Type;
-              ClientList.Cli_IP       := Client.C_Ip;
-              ClientList.Cli_Status   := Client.C_Status;
-              ClientList.WeaponID     := Client.C_WeaponID;
+              ClientList.Id := Client.C_ID;
+              ClientList.Cli_Cubicle := Client.C_Cubicle;
+              ClientList.Cli_Console := Client.C_Console;
+              ClientList.Cli_Type := Client.C_Type;
+              ClientList.Cli_IP := Client.C_Ip;
+              ClientList.Cli_Status := Client.C_Status;
+              ClientList.WeaponID := Client.C_WeaponID;
 
               Caption := IntToStr(lvClient.Items.Count);
               SubItems.Add(Client.C_Cubicle);
@@ -1661,13 +1635,13 @@ begin
             with lvClient.Items.Add do
             begin
               ClientList := TClientList.Create;
-              ClientList.Id           := Client.C_ID;
-              ClientList.Cli_Cubicle  := Client.C_Cubicle;
-              ClientList.Cli_Console  := Client.C_Console;
-              ClientList.Cli_Type     := Client.C_Type;
-              ClientList.Cli_IP       := Client.C_Ip;
-              ClientList.Cli_Status   := Client.C_Status;
-              ClientList.WeaponID     := Client.C_WeaponID;
+              ClientList.Id := Client.C_ID;
+              ClientList.Cli_Cubicle := Client.C_Cubicle;
+              ClientList.Cli_Console := Client.C_Console;
+              ClientList.Cli_Type := Client.C_Type;
+              ClientList.Cli_IP := Client.C_Ip;
+              ClientList.Cli_Status := Client.C_Status;
+              ClientList.WeaponID := Client.C_WeaponID;
 
               Caption := IntToStr(lvClient.Items.Count);
               SubItems.Add(Client.C_Cubicle);
@@ -1689,13 +1663,13 @@ begin
           with lvClient.Items.Add do
           begin
             ClientList := TClientList.Create;
-            ClientList.Id           := Client.C_ID;
-            ClientList.Cli_Cubicle  := Client.C_Cubicle;
-            ClientList.Cli_Console  := Client.C_Console;
-            ClientList.Cli_Type     := Client.C_Type;
-            ClientList.Cli_IP       := Client.C_Ip;
-            ClientList.Cli_Status   := Client.C_Status;
-            ClientList.WeaponID     := Client.C_WeaponID;
+            ClientList.Id := Client.C_ID;
+            ClientList.Cli_Cubicle := Client.C_Cubicle;
+            ClientList.Cli_Console := Client.C_Console;
+            ClientList.Cli_Type := Client.C_Type;
+            ClientList.Cli_IP := Client.C_Ip;
+            ClientList.Cli_Status := Client.C_Status;
+            ClientList.WeaponID := Client.C_WeaponID;
   //          ClientList.Cli_SHIPID   := Client.C_Ship;
   //          ClientList.Cli_LAUNCHERID   := StrToInt(Client.C_LauncherID);
 
@@ -1708,7 +1682,6 @@ begin
             SubItems.Add(Client.C_Status);
             SubItems.Add(Client.C_Ship);
             SubItems.Add('');
-
 
             Data := ClientList;
           end;
@@ -1725,7 +1698,7 @@ end;
 
 procedure TfrmGameController.SetFormLayout;
 var
-  i : integer;
+  i: integer;
 begin
   { Set Game Controller }
   DefaultMonitor := dmDesktop;
@@ -1733,10 +1706,10 @@ begin
   if SimManager.instMonitorSet.ContollerDisplay > Screen.MonitorCount then
     SimManager.instMonitorSet.ContollerDisplay := 0;
 
-  Height       := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Height;
-  Top          := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Top;
-  Left         := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Left;
-  width        := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Width;
+  Height := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Height;
+  Top := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Top;
+  Left := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Left;
+  width := Screen.Monitors[SimManager.instMonitorSet.ContollerDisplay].Width;
 
   FillClientList;
 
@@ -1745,9 +1718,9 @@ end;
 
 procedure TfrmGameController.TabMainChange(Sender: TObject);
 var
-  i : integer;
+  i: integer;
 begin
-  for i := 0 to TabMain.AdvSmoothTabPageCount -1 do
+  for i := 0 to TabMain.AdvSmoothTabPageCount - 1 do
   begin
     TabMain.AdvSmoothTabPages[i].TabAppearance.Appearance.SimpleLayout := True;
   end;
@@ -1759,16 +1732,16 @@ begin
 
   if TabMain.ActivePage = tsTrajectory then
   begin
-    tsTrajectoryMapview.ActivePage := tsTrajectoryView ;
+    tsTrajectoryMapview.ActivePage := tsTrajectoryView;
   end;
 
 end;
 
 procedure TfrmGameController.TabSelectObjectChange(Sender: TObject);
 var
-  i : integer;
+  i: integer;
 begin
-  for i := 0 to TabSelectObject.AdvSmoothTabPageCount -1 do
+  for i := 0 to TabSelectObject.AdvSmoothTabPageCount - 1 do
   begin
     TabSelectObject.AdvSmoothTabPages[i].TabAppearance.Appearance.SimpleLayout := True;
   end;
@@ -1777,7 +1750,7 @@ begin
   if TabSelectObject.ActivePage = tsSelectWeapon then
   begin
     lvWeapon.Items.Clear;
-    pgWeapon.ActivePage  := pgtwDefault;
+    pgWeapon.ActivePage := pgtwDefault;
     SimManager.TrackObject := nil;
     frmMainInstruktur.FrameControlLeft.NillAllSet;
     frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
@@ -1790,9 +1763,9 @@ end;
 
 procedure TfrmGameController.TabControlChange(Sender: TObject);
 var
-  i : integer;
+  i: integer;
 begin
-  for i := 0 to TabControl.AdvSmoothTabPageCount -1 do
+  for i := 0 to TabControl.AdvSmoothTabPageCount - 1 do
   begin
     TabControl.AdvSmoothTabPages[i].TabAppearance.Appearance.SimpleLayout := True;
   end;
@@ -1801,25 +1774,25 @@ end;
 
 procedure TfrmGameController.SetHandleEvent;
 begin
-  
+
 end;
 
 procedure TfrmGameController.SetObjectCreate;
 var
-  i : integer;
+  i: integer;
 begin
-  for i := 0 to TabMain.AdvSmoothTabPageCount -1 do
+  for i := 0 to TabMain.AdvSmoothTabPageCount - 1 do
   begin
     TabMain.AdvSmoothTabPages[i].TabAppearance.Appearance.SimpleLayout := True;
   end;
   TabMain.ActivePage.TabAppearance.Appearance.SimpleLayout := False;
 
-  for i := 0 to TabControl.AdvSmoothTabPageCount -1 do
+  for i := 0 to TabControl.AdvSmoothTabPageCount - 1 do
   begin
     TabControl.AdvSmoothTabPages[i].TabAppearance.Appearance.SimpleLayout := True;
   end;
 
-  for i := 0 to TabSelectObject.AdvSmoothTabPageCount -1 do
+  for i := 0 to TabSelectObject.AdvSmoothTabPageCount - 1 do
   begin
     TabSelectObject.AdvSmoothTabPages[i].TabAppearance.Appearance.SimpleLayout := True;
   end;
@@ -1832,7 +1805,7 @@ end;
 
 procedure TfrmGameController.SetProject;
 var
-  strPath, worldproject : string;
+  strPath, worldproject: string;
 begin
   {$REGION ' Setting Header '}
   strPath := '..\data\images\NFS instruktur - interface\imageIns\';
@@ -1857,7 +1830,6 @@ begin
   end;
 
   {$ENDREGION}
-
   {$REGION ' Setting Panel '}
 //  if worldproject = 'NAFS' then
 //  begin
@@ -1871,7 +1843,6 @@ begin
 //  begin
 //    FrameControlLeft.pnlUp.Fill.Color := $0058524F;
 //  end;
-
   {$ENDREGION}
 end;
 
@@ -1881,113 +1852,113 @@ end;
 { Scenario Menu }
 procedure TfrmGameController.qClick(Sender: TObject);
 var
-  btnSelected : integer;
+  btnSelected: integer;
 begin
   case TComponent(Sender).Tag of
-    1 :
-    begin
-      frmGameController.Close;
+    1:
+      begin
+        frmGameController.Close;
       //frmFiringCommand.Close;
 
-      SimManager.isDatabaseMode := True;
+        SimManager.isDatabaseMode := True;
 
-      frmSceEditor.isNew := True;
+        frmSceEditor.isNew := True;
 
-      frmSceEditor.SetFormLayout;
-      frmSceEditor.SetFormEnvironment;
-      frmMainInstruktur.lblCekRunning.Caption := 'Editing';
-      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
-    end;
-
-    2 : ;//frmReportEvent.Show;
-
-    3 :
-    begin
-      if SimManager.fGamePlayType = gpmReplay then
-      begin
-        ShowMessage('Stop Replay first to play Scenario');
-        exit;
-      end;
-
-      if frmMainInstruktur.lblCekRunning.Caption = 'Play' then
-      begin
-        ShowMessage('Stop Scenario Play First');
-        Exit;
-      end;
-
-      frmListScenario.btnOk.Tag := 1;
-      frmListScenario.btnOk.Enabled        := False;
-      frmListScenario.lblGameName.Visible  := True;
-      frmListScenario.edtGameName.Visible  := True;
-      frmListScenario.btnRemove.Visible    := False;
-      frmListScenario.ShowModal;
-
-    end;
-
-    4 :
-    begin
-      btnSelected := 6;   // mrYes
-      if SimManager.fGamePlayType = gpmScenAndRecord then   begin
-        frmMainInstruktur.btnRecordStart.Hint := 'OffRecord';
-        frmMainInstruktur.btnRecordStart.ImageIndex    := 0;
-        SimManager.StopRecording;
-        btnSelected := MessageDlg('Instruktur :: stop recording and stop scenario',
-                   mtConfirmation,[mbYes,mbNo],0);
-      end;
-      if btnSelected = mrYes then
-      begin
+        frmSceEditor.SetFormLayout;
+        frmSceEditor.SetFormEnvironment;
+        frmMainInstruktur.lblCekRunning.Caption := 'Editing';
         frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
-        if Length(SimManager.bridgeSet.mServer.m3D_IP) > 0 then
-          SimManager.StopToClientOnIP(SimManager.bridgeSet.mServer.m3D_IP);
-        frmMainInstruktur.Caption := 'Firing System Instruktur';
-        frmMainInstruktur.cekCaption  := frmMainInstruktur.Caption;
-        SimManager.NetSendStatusGame(0, 2);
-        SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0,0,0,0) ;
-        frmMainInstruktur.deleteLeftFrame;
-        SetDefaultEnvirontment;
+      end;
+
+    2:
+      ; //frmReportEvent.Show;
+
+    3:
+      begin
+        if SimManager.fGamePlayType = gpmReplay then
+        begin
+          ShowMessage('Stop Replay first to play Scenario');
+          exit;
+        end;
+
+        if frmMainInstruktur.lblCekRunning.Caption = 'Play' then
+        begin
+          ShowMessage('Stop Scenario Play First');
+          Exit;
+        end;
+
+        frmListScenario.btnOk.Tag := 1;
+        frmListScenario.btnOk.Enabled := False;
+        frmListScenario.lblGameName.Visible := True;
+        frmListScenario.edtGameName.Visible := True;
+        frmListScenario.btnRemove.Visible := False;
+        frmListScenario.ShowModal;
+
+      end;
+
+    4:
+      begin
+        btnSelected := 6;   // mrYes
+        if SimManager.fGamePlayType = gpmScenAndRecord then
+        begin
+          frmMainInstruktur.btnRecordStart.Hint := 'OffRecord';
+          frmMainInstruktur.btnRecordStart.ImageIndex := 0;
+          SimManager.StopRecording;
+          btnSelected := MessageDlg('Instruktur :: stop recording and stop scenario', mtConfirmation, [mbYes, mbNo], 0);
+        end;
+        if btnSelected = mrYes then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.SetWeaponGroupBar;
+          if Length(SimManager.bridgeSet.mServer.m3D_IP) > 0 then
+            SimManager.StopToClientOnIP(SimManager.bridgeSet.mServer.m3D_IP);
+          frmMainInstruktur.Caption := 'Firing System Instruktur';
+          frmMainInstruktur.cekCaption := frmMainInstruktur.Caption;
+          SimManager.NetSendStatusGame(0, 2);
+          SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0, 0, 0, 0);
+          frmMainInstruktur.deleteLeftFrame;
+          SetDefaultEnvirontment;
 
         //dendy sementara
 //        lvRuntimeShipTrajectory.Items.Clear;
-        ClearListViewData(lvRuntimeShipTrajectory);
+          ClearListViewData(lvRuntimeShipTrajectory);
 //        lvRuntimeMissileTrajectory.Items.Clear;
-        ClearListViewData(lvRuntimeMissileTrajectory);
-        frmMainInstruktur.FrameControlLeft.Width := 0;
+          ClearListViewData(lvRuntimeMissileTrajectory);
+          frmMainInstruktur.FrameControlLeft.Width := 0;
+        end;
       end;
-    end;
   end;
 end;
 { ----------------------------------------------------------------------------------------- }
 
-procedure TfrmGameController.VisibleStatusShip(aValue: Boolean; Mode : integer);
+procedure TfrmGameController.VisibleStatusShip(aValue: Boolean; Mode: integer);
 begin
-  lblShipName.Visible   := aValue;
-  lblLat.Visible        := aValue;
-  lblLong.Visible       := aValue;
-  lblZCord.Visible      := aValue;
-  lblHeading.Visible    := aValue;
-  lblSpeed.Visible      := aValue;
-  lblLatValue.Visible   := aValue;
-  lblLongVal.Visible    := aValue;
-  lblZVal.Visible       := aValue;
+  lblShipName.Visible := aValue;
+  lblLat.Visible := aValue;
+  lblLong.Visible := aValue;
+  lblZCord.Visible := aValue;
+  lblHeading.Visible := aValue;
+  lblSpeed.Visible := aValue;
+  lblLatValue.Visible := aValue;
+  lblLongVal.Visible := aValue;
+  lblZVal.Visible := aValue;
   lblHeadingVal.Visible := aValue;
-  lblSpeedVal.Visible   := aValue;
+  lblSpeedVal.Visible := aValue;
 
   case Mode of
-    1 :
-    begin
-      lblPitch.Visible      := aValue;
-      lblRoll.Visible       := aValue;
+    1:
+      begin
+        lblPitch.Visible := aValue;
+        lblRoll.Visible := aValue;
 
-      lblPitchVal.Visible   := aValue;
-      lblRollVal.Visible    := aValue;
-    end;
+        lblPitchVal.Visible := aValue;
+        lblRollVal.Visible := aValue;
+      end;
   end;
 end;
 
 procedure TfrmGameController.VrCurrentDirectionChange(Sender: TObject);
 var
-  valTemp : Integer;
-
+  valTemp: Integer;
 begin
   if VrCurrentDirection.Position < 180 then
   begin
@@ -2002,13 +1973,13 @@ end;
 
 procedure TfrmGameController.lvRuntimeMissileClick(Sender: TObject);
 var
-  Weapon : TWeapon;
+  Weapon: TWeapon;
 begin
   VisibleStatusShip(False, 1);
   lvRuntimeShip.Selected := nil;
   lvWeapon.Items.Clear;
 
-  if Assigned(TListView(sender).Selected) then
+  if Assigned(TListView(Sender).Selected) then
   begin
     if Assigned(TListView(Sender).Selected.Data) then
     begin
@@ -2016,68 +1987,66 @@ begin
 
       VisibleStatusShip(true, 2);
 
-      if Weapon.z <= 0 then lblZCord.Caption.Text := 'Depth'
-      else lblZCord.Caption.Text := 'Altitude';
+      if Weapon.z <= 0 then
+        lblZCord.Caption.Text := 'Depth'
+      else
+        lblZCord.Caption.Text := 'Altitude';
 
-      lblShipName.Caption.Text    := Weapon.MissileName + '-' +
-                                     IntToStr(Weapon.launcherID) + '.' +
-                                     IntToStr(Weapon.missileID) + '.' +
-                                     IntToStr(Weapon.MissileNumber);
+      lblShipName.Caption.Text := Weapon.MissileName + '-' + IntToStr(Weapon.launcherID) + '.' + IntToStr(Weapon.missileID) + '.' + IntToStr(Weapon.MissileNumber);
 
-      lblLatValue.Caption.Text    := FormatFloat('0.0000',Weapon.Y);
-      lblLongVal.Caption.Text     := FormatFloat('0.0000',Weapon.X);
-      lblZVal.Caption.Text        := FormatFloat('0.00',Abs(Weapon.Z));
-      lblHeadingVal.Caption.Text  := FormatFloat('0.00',Weapon.heading);
+      lblLatValue.Caption.Text := FormatFloat('0.0000', Weapon.Y);
+      lblLongVal.Caption.Text := FormatFloat('0.0000', Weapon.X);
+      lblZVal.Caption.Text := FormatFloat('0.00', Abs(Weapon.Z));
+      lblHeadingVal.Caption.Text := FormatFloat('0.00', Weapon.heading);
     end;
   end;
 end;
 
 procedure TfrmGameController.lvRuntimeShipClick(Sender: TObject);
 var
-  i, j, x, flag : integer;
-
-  Weapon        : TWeapon;
-  WeaponShip    : TWeaponGetList;
-  Vehicle       : TVehicle;
-  listWeaponSce,
-  ListWeapon    : TList;
-  status        : string;
-  sceWeapon     : TScenarioWeapon;
-  strPicture, worldproject    : string;
-
-  weaponOnShipTemp :  TWeaponOnShip;
+  i, j, x, flag: integer;
+  Weapon: TWeapon;
+  WeaponShip: TWeaponGetList;
+  Vehicle: TVehicle;
+  listWeaponSce, ListWeapon: TList;
+  status: string;
+  sceWeapon: TScenarioWeapon;
+  strPicture, worldproject: string;
+  weaponOnShipTemp: TWeaponOnShip;
 begin
   VisibleStatusShip(false, 1);
   lvRuntimeMissile.Selected := nil;
 
-  if Assigned(TListView(sender).Selected) then
+  if Assigned(TListView(Sender).Selected) then
   begin
     if Assigned(TListView(Sender).Selected.Data) then
     begin
       Ship_ID := TVehicle(TListView(Sender).Selected.Data).Vehicle_ID;
       Ship_Name := TVehicle(TListView(Sender).Selected.Data).Vehicle_Name;
 
-      strPicture := '..\Data\imageship\' +
-      TVehicle(TListView(Sender).Selected.Data).Vehicle_Name + '.png';
+      strPicture := '..\Data\imageship\' + TVehicle(TListView(Sender).Selected.Data).Vehicle_Name + '.png';
 
       Vehicle := TVehicle(TListView(Sender).Selected.Data);
 
       VisibleStatusShip(true, 1);
 
       case Vehicle.Vehicle_Type of
-        1 : lblZCord.Caption.Text := 'Depth';
-        2 : lblZCord.Caption.Text := 'Altitude';
-        3 : lblZCord.Caption.Text := 'Depth';
+        1:
+          lblZCord.Caption.Text := 'Depth';
+        2:
+          lblZCord.Caption.Text := 'Altitude';
+        3:
+          lblZCord.Caption.Text := 'Depth';
       end;
 
-      lblShipName.Caption.Text    := Vehicle.Vehicle_Name +' ( ID '+IntToStr(Vehicle.Vehicle_ID) + ' )';
-      lblLatValue.Caption.Text    := FormatFloat('0.0000',Vehicle.Vehicle_Y);
-      lblLongVal.Caption.Text     := FormatFloat('0.0000',Vehicle.Vehicle_X);
-      lblZVal.Caption.Text        := FormatFloat('0.00',Abs(Vehicle.Vehicle_Z));
-      lblHeadingVal.Caption.Text  := FormatFloat('0.00',Vehicle.Vehicle_Heading);
-      lblSpeedVal.Caption.Text    := FormatFloat('0.00',Vehicle.Vehicle_Speed);
-      lblPitchVal.Caption.Text    := FormatFloat('0.00',Vehicle.Vehicle_Pitch);
-      lblRollVal.Caption.Text     := FormatFloat('0.00',Vehicle.Vehicle_Roll);
+      lblShipName.Caption.Text := Vehicle.Vehicle_Name + ' ( ID ' + IntToStr(Vehicle.Vehicle_ID) + ' )';
+      lblLatValue.Caption.Text := FormatFloat('0.0000', Vehicle.Vehicle_Y);
+      lblLongVal.Caption.Text := FormatFloat('0.0000', Vehicle.Vehicle_X);
+      lblZVal.Caption.Text := FormatFloat('0.00', Abs(Vehicle.Vehicle_Z));
+      lblHeadingVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Heading);
+      lblSpeedVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Speed);
+      lblPitchVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Pitch);
+      lblRollVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Roll);
 
       frmMainInstruktur.MainMap.CenterX := Vehicle.Vehicle_X;
       frmMainInstruktur.MainMap.CenterY := Vehicle.Vehicle_Y;
@@ -2099,7 +2068,7 @@ begin
     try
       if Assigned(SimManager.TrackObject) then
       begin
-        for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count-1 do
+        for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
         begin
           weaponOnShipTemp := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
 
@@ -2120,12 +2089,7 @@ begin
                 Caption := weaponOnShipTemp.Weapon_Name;
                 SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
 
-                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
-                   (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
-                   (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40') or (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57') or (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230') or (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
                 begin
                   SubItems.Add('Automatic')
                 end
@@ -2149,12 +2113,7 @@ begin
                 Caption := weaponOnShipTemp.Weapon_Name;
                 SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
 
-                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
-                   (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
-                   (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40') or (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57') or (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230') or (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
                 begin
                   SubItems.Add('Automatic')
                 end
@@ -2178,12 +2137,7 @@ begin
                 Caption := weaponOnShipTemp.Weapon_Name;
                 SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
 
-                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or
-                   (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230')or
-                   (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or
-                   (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+                if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40') or (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57') or (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230') or (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
                 begin
                   SubItems.Add('Automatic')
                 end
@@ -2229,37 +2183,35 @@ end;
 
 { --------------------------------------------------------------------- }
 { Pop Up Menu }
-function TfrmGameController.IsMenuItemExist( const shipID: integer): boolean;
+function TfrmGameController.IsMenuItemExist(const shipID: integer): boolean;
 var
-  i : integer ;
-  menuItem : TMenuItem;
+  i: integer;
+  menuItem: TMenuItem;
 begin
-  Result := false ;
-  for i:=0 to pmClient.Items.Count - 1 do
+  Result := false;
+  for i := 0 to pmClient.Items.Count - 1 do
   begin
     menuItem := pmClient.Items[i];
-    if menuItem.Name = 'pmShip'+IntToStr(shipID) then
+    if menuItem.Name = 'pmShip' + IntToStr(shipID) then
     begin
-      Result := true ;
+      Result := true;
       Break;
     end;
   end;
 end;
 
-
-function TfrmGameController.IsMenuItem2Exist(
-  const shipID: integer): boolean;
+function TfrmGameController.IsMenuItem2Exist(const shipID: integer): boolean;
 var
-  i : integer ;
-  menuItem : TMenuItem;
+  i: integer;
+  menuItem: TMenuItem;
 begin
-  Result := false ;
-  for i:=0 to pmClient2.Items.Count - 1 do
+  Result := false;
+  for i := 0 to pmClient2.Items.Count - 1 do
   begin
     menuItem := pmClient2.Items[i];
-    if menuItem.Name = 'pm2Ship'+IntToStr(shipID) then
+    if menuItem.Name = 'pm2Ship' + IntToStr(shipID) then
     begin
-      Result := true ;
+      Result := true;
       Break;
     end;
   end;
@@ -2267,19 +2219,17 @@ end;
 
 procedure TfrmGameController.AddMenuWithShipID(const shipID: integer);
 var
-  i : integer;
-
-  menuItem,
-  subItem : TMenuItem;
+  i: integer;
+  menuItem, subItem: TMenuItem;
 begin
   { Add Menu for PmClient }
   if not IsMenuItemExist(shipID) then
   begin
     menuItem := TMenuItem.Create(pmClient);
-    menuItem.Name    := 'pmShip'+IntToStr(shipID);
+    menuItem.Name := 'pmShip' + IntToStr(shipID);
     menuItem.Caption := DataModule1.GetShipName(shipID);
     menuItem.OnClick := RunClientFromPopupMenu;
-    menuItem.Tag     := shipID;
+    menuItem.Tag := shipID;
     pmClient.Items.Add(menuItem);
   end;
 
@@ -2287,18 +2237,18 @@ begin
   if not IsMenuItem2Exist(shipID) then
   begin
     menuItem := TMenuItem.Create(pmClient2);
-    menuItem.Name    := 'pm2Ship'+IntToStr(shipID);
+    menuItem.Name := 'pm2Ship' + IntToStr(shipID);
     menuItem.Caption := DataModule1.GetShipName(shipID);
-    menuItem.Tag     := shipID;
+    menuItem.Tag := shipID;
     pmClient2.Items.Add(menuItem);
 
     for i := 1 to 3 do
     begin
       subItem := TMenuItem.Create(pmClient2);
-      subItem.Caption   := 'Launcher ' + IntToStr(i);
-      subItem.Tag       := shipID;
-      subItem.Hint      := IntToStr(i);
-      subItem.OnClick   := RunClientFromPopupSubMenu;
+      subItem.Caption := 'Launcher ' + IntToStr(i);
+      subItem.Tag := shipID;
+      subItem.Hint := IntToStr(i);
+      subItem.OnClick := RunClientFromPopupSubMenu;
       //subItem.Items[1].Enabled := False;
       menuItem.Add(subItem);
     end;
@@ -2307,14 +2257,14 @@ end;
 
 procedure TfrmGameController.DeleteMenuWithShipID(const shipID: integer);
 var
-  i : integer ;
-  menuItem : TMenuItem;
+  i: integer;
+  menuItem: TMenuItem;
 begin
   { Delete Menu for PmClient }
-  for i:=0 to pmClient.Items.Count - 1 do
+  for i := 0 to pmClient.Items.Count - 1 do
   begin
     menuItem := pmClient.Items[i];
-    if menuItem.Name = 'pmShip'+IntToStr(shipID) then
+    if menuItem.Name = 'pmShip' + IntToStr(shipID) then
     begin
       pmClient.Items.Delete(i);
       FreeAndNil(menuItem);
@@ -2323,10 +2273,10 @@ begin
   end;
 
   { Delete Menu for PmClient2 }
-  for i:=0 to pmClient2.Items.Count - 1 do
+  for i := 0 to pmClient2.Items.Count - 1 do
   begin
     menuItem := pmClient2.Items[i];
-    if menuItem.Name = 'pm2Ship'+IntToStr(shipID) then
+    if menuItem.Name = 'pm2Ship' + IntToStr(shipID) then
     begin
       pmClient2.Items.Delete(i);
       FreeAndNil(menuItem);
@@ -2337,31 +2287,33 @@ end;
 
 procedure TfrmGameController.DeleteAllMenuPopUpMenu;
 var
-  i : Integer;
-  menuItem : TMenuItem;
+  i: Integer;
+  menuItem: TMenuItem;
 begin
   { Delete all item in pop up menu }
-  for i := pmClient.Items.Count -1 downto 0 do
+  for i := pmClient.Items.Count - 1 downto 0 do
   begin
     menuItem := pmClient.Items[i];
-    if menuItem.Tag = -1 then Continue;
+    if menuItem.Tag = -1 then
+      Continue;
 
     pmClient.Items.Delete(i);
     FreeAndNil(menuItem);
   end;
 
   { Delete all item in pop up menu }
-  for i := pmClient2.Items.Count -1 downto 0 do
+  for i := pmClient2.Items.Count - 1 downto 0 do
   begin
     menuItem := pmClient2.Items[i];
-    if menuItem.Tag = -1 then Continue;
+    if menuItem.Tag = -1 then
+      Continue;
 
     pmClient2.Items.Delete(i);
     FreeAndNil(menuItem);
   end;
 end;
 
-function TfrmGameController.getSPSIP : string;
+function TfrmGameController.getSPSIP: string;
 begin
 
 end;
@@ -2395,18 +2347,18 @@ begin
   end
   else
   begin
-    ShowMessage('Select Ship Name First' );
+    ShowMessage('Select Ship Name First');
   end;
 
 end;
 
 procedure TfrmGameController.imgDeleteClick(Sender: TObject);
 var
-  id : Integer;
+  id: Integer;
 begin
   if lvListScen.Selected <> nil then
   begin
-    id :=  StrToInt(lvListScen.Selected.Caption);
+    id := StrToInt(lvListScen.Selected.Caption);
     DataModule1.DeleteScenario(id);
 
     ShowMessage('Scenario ' + lvListScen.Selected.SubItems[0] + ' successfully deleted');
@@ -2424,7 +2376,7 @@ procedure TfrmGameController.imgEditClick(Sender: TObject);
 begin
   if lvListScen.Selected <> nil then
   begin
-    frmSceEditor.Scenario_ID  := StrToInt(lvListScen.Selected.Caption);
+    frmSceEditor.Scenario_ID := StrToInt(lvListScen.Selected.Caption);
     frmSceEditor.ScenarioName := lvListScen.Selected.SubItems[0];
 
     frmSceEditor.isNew := false;
@@ -2460,68 +2412,71 @@ end;
 
 procedure TfrmGameController.RunClientFromPopupMenu(Sender: TObject);
 var
-  shipID      : integer ;
-  isOnline    : Boolean;
-  ipClient    : string;
-  i           : Integer;
-  kapal       : string;
-  senjata     : string;
-  ipSPS       : string;
-  ipMOC1      : string;
+  shipID: integer;
+  isOnline: Boolean;
+  ipClient: string;
+  i: Integer;
+  kapal: string;
+  senjata: string;
+  ipSPS: string;
+  ipMOC1: string;
 begin
-  if not (Sender is TMenuItem) then exit;
+  if not (Sender is TMenuItem) then
+    exit;
 
-  isOnline    := False;
-  shipID      := TMenuItem(sender).Tag;
+  isOnline := False;
+  shipID := TMenuItem(Sender).Tag;
 
   if lvClient.Selected <> nil then
   begin
     isOnline := lvClient.Selected.SubItems[idx_st] = APP_IDLE;
     ipClient := lvClient.Selected.SubItems[idx_ip];
-    senjata  := lvClient.Selected.SubItems[idx_name];
-    kapal    := DataModule1.GetShipName(shipID);
+    senjata := lvClient.Selected.SubItems[idx_name];
+    kapal := DataModule1.GetShipName(shipID);
 
-
-    if isOnline then begin
-      if senjata = 'MOC-1' then begin
+    if isOnline then
+    begin
+      if senjata = 'MOC-1' then
+      begin
         SimManager.InstrukturSendLaunchCommand(ipClient, IntToStr(shipID), '0');
         //DataModule1.updateShipName(ipClient, kapal);
         ipSPS := lvClient.Items[17].SubItems[idx_ip];
         SimManager.InstrukturSendLaunchCommand(ipSPS, IntToStr(shipID), '0');
         //DataModule1.updateShipName(ipSPS, kapal);
       end
-      else if  senjata = 'SPS115' then begin
+      else if senjata = 'SPS115' then
+      begin
         SimManager.InstrukturSendLaunchCommand(ipClient, IntToStr(shipID), '0');
         //DataModule1.updateShipName(ipClient, kapal);
         ipMOC1 := lvClient.Items[5].SubItems[idx_ip];
         SimManager.InstrukturSendLaunchCommand(ipMOC1, IntToStr(shipID), '0');
         //DataModule1.updateShipName(ipMOC1, kapal);
       end
-      else begin
+      else
+      begin
         SimManager.InstrukturSendLaunchCommand(ipClient, IntToStr(shipID), '0');
         //DataModule1.updateShipName(ipClient, kapal);
       end;
     end;
   end;
   AutoRefresh;
-  end;
-
+end;
 
 procedure TfrmGameController.RunClientFromPopupSubMenu(Sender: TObject);
 var
-  shipID      : integer;
-  launcherID  : Integer;
-  isOnline    : Boolean;
-  ipClient    : string;
-  i           : Integer;
-  kapal       : string;
+  shipID: integer;
+  launcherID: Integer;
+  isOnline: Boolean;
+  ipClient: string;
+  i: Integer;
+  kapal: string;
 begin
-  if not (Sender is TMenuItem) then exit;
+  if not (Sender is TMenuItem) then
+    exit;
 
-  isOnline    := False;
-  shipID      := TMenuItem(sender).Tag;
-  launcherID  := StrToInt(TMenuItem(sender).Hint);
-
+  isOnline := False;
+  shipID := TMenuItem(Sender).Tag;
+  launcherID := StrToInt(TMenuItem(Sender).Hint);
 
   if lvClient.Selected <> nil then
   begin
@@ -2538,30 +2493,25 @@ begin
   AutoRefresh;
 end;
 
-procedure TfrmGameController.lvClientMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.lvClientMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
-  p : TPoint;
-
-  I,J,k: integer;
-
-  WeaponID : integer;
-
-  ShipID : integer;
-  ListWeapon : TList;
-  WeaponList : TWeaponGetList;
-  ClientConsole : TClientList;
-  isFound, RbuLauncher1Ready, RbuLauncher2Ready : Boolean;
-  ShipClass, ShipClass2 : string;
-
-  ShipID2 : integer;
-  ListWeapon2 : TList;
-  listWeaponSce, listWeaponSce2 : TList;
-  WeaponList2 : TWeaponGetList;
-  isFound2 : Boolean;
-  sceWeapon : TScenarioWeapon;
+  p: TPoint;
+  I, J, k: integer;
+  WeaponID: integer;
+  ShipID: integer;
+  ListWeapon: TList;
+  WeaponList: TWeaponGetList;
+  ClientConsole: TClientList;
+  isFound, RbuLauncher1Ready, RbuLauncher2Ready: Boolean;
+  ShipClass, ShipClass2: string;
+  ShipID2: integer;
+  ListWeapon2: TList;
+  listWeaponSce, listWeaponSce2: TList;
+  WeaponList2: TWeaponGetList;
+  isFound2: Boolean;
+  sceWeapon: TScenarioWeapon;
 begin
-  if ( Button = mbright ) then
+  if (Button = mbright) then
   begin
     GetCursorPos(p);
 
@@ -2571,37 +2521,40 @@ begin
         Exit;
       WeaponID := TClientList(lvClient.Selected.Data).WeaponID;
 
-      if ( lvClient.Selected.SubItems[idx_type] = '3D-W' ) then
+      if (lvClient.Selected.SubItems[idx_type] = '3D-W') then
       begin
-        for i:= 0 to pmClient2.Items.Count -1 do
-          pmClient2.Items[i].Enabled := True;
+        for I := 0 to pmClient2.Items.Count - 1 do
+          pmClient2.Items[I].Enabled := True;
 
         { Check Available Except MOC }
         try
           ListWeapon2 := TList.Create;
-          for i:= 0 to pmClient2.Items.Count -1 do
+          for I := 0 to pmClient2.Items.Count - 1 do
           begin
-            ShipID2 := pmClient2.Items[i].Tag;
+            ShipID2 := pmClient2.Items[I].Tag;
 
-            if ShipID2 <= 0 then Continue;
-            if weaponID = 0 then continue;
+            if ShipID2 <= 0 then
+              Continue;
+            if WeaponID = 0 then
+              continue;
 
 //            ListWeapon2.Clear;
             ClearAList(ListWeapon2);
             DataModule1.GetListWeaponOnShip(ShipID2, ListWeapon2);
 
             isFound2 := False;
-            for j:= 0 to ListWeapon2.Count -1 do
+            for J := 0 to ListWeapon2.Count - 1 do
             begin
-              if Assigned(ListWeapon2.Items[j]) then begin
+              if Assigned(ListWeapon2.Items[J]) then
+              begin
 
-                WeaponList2 := TWeaponGetList(ListWeapon2.Items[j]);
+                WeaponList2 := TWeaponGetList(ListWeapon2.Items[J]);
 
                 if WeaponList2.IDWeapon = WeaponID then //WeaponID then     coba yakhont
                 begin
                   if WeaponList2.IDWeapon = C_DBID_CANNON40 then
                   begin
-                    DataModule1.GetShipType(ShipID2,ShipClass2);
+                    DataModule1.GetShipType(ShipID2, ShipClass2);
                     if ShipClass2 = 'Fatahillah' then
                     begin
                       isFound2 := False;
@@ -2622,32 +2575,31 @@ begin
             end;
 
             if not isFound2 then
-              pmClient2.Items[i].Enabled := false
+              pmClient2.Items[I].Enabled := false
             else
             begin
 
-              pmClient2.Items[i].Enabled := True;
+              pmClient2.Items[I].Enabled := True;
 
-              if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient2.Items[i].Caption))then
-                pmClient2.Items[i].Enabled := False
+              if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient2.Items[I].Caption)) then
+                pmClient2.Items[I].Enabled := False
               else
-              pmClient2.Items[i].Enabled := true;
-
+                pmClient2.Items[I].Enabled := true;
 
               if (lvClient.Selected.SubItems[1] = 'TDS Meriam 57') then
               begin
-                pmClient2.Items[i].Items[0].Enabled := False;
-                pmClient2.Items[i].Items[1].Enabled := False;
-                pmClient2.Items[i].Items[2].Enabled := False;
+                pmClient2.Items[I].Items[0].Enabled := False;
+                pmClient2.Items[I].Items[1].Enabled := False;
+                pmClient2.Items[I].Items[2].Enabled := False;
 
-                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[i].Tag, listWeaponSce);
+                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce);
 
-                for k := 0 to listWeaponSce.Count-1 do
+                for k := 0 to listWeaponSce.Count - 1 do
                 begin
                   sceWeapon := TScenarioWeapon(listWeaponSce.Items[k]);
-                  if (sceWeapon.LauncherID = 2) and (sceWeapon.WeaponID = C_DBID_CANNON57) and (sceWeapon.ShipID = ShipID2)   then
+                  if (sceWeapon.LauncherID = 2) and (sceWeapon.WeaponID = C_DBID_CANNON57) and (sceWeapon.ShipID = ShipID2) then
                   begin
-                      pmClient2.Items[i].Items[1].Enabled := True;
+                    pmClient2.Items[I].Items[1].Enabled := True;
                   end;
                 end;
 
@@ -2657,14 +2609,14 @@ begin
               end
               else if (lvClient.Selected.SubItems[1] = 'TDS Meriam 40') then
               begin
-                DataModule1.GetShipType(ShipID2,ShipClass2);
-                pmClient2.Items[i].Items[0].Enabled := False;
-                pmClient2.Items[i].Items[1].Enabled := False;
-                pmClient2.Items[i].Items[2].Enabled := False;
+                DataModule1.GetShipType(ShipID2, ShipClass2);
+                pmClient2.Items[I].Items[0].Enabled := False;
+                pmClient2.Items[I].Items[1].Enabled := False;
+                pmClient2.Items[I].Items[2].Enabled := False;
 
-                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[i].Tag, listWeaponSce);
+                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce);
 
-                for k := 0 to listWeaponSce.Count-1 do
+                for k := 0 to listWeaponSce.Count - 1 do
                 begin
                   sceWeapon := TScenarioWeapon(listWeaponSce.Items[k]);
                   if sceWeapon.WeaponID = C_DBID_CANNON40 then
@@ -2673,11 +2625,11 @@ begin
                     begin
                       if sceWeapon.LauncherID = 2 then
                       begin
-                          pmClient2.Items[i].Items[1].Enabled := True;
+                        pmClient2.Items[I].Items[1].Enabled := True;
                       end
                       else if sceWeapon.LauncherID = 3 then
                       begin
-                          pmClient2.Items[i].Items[2].Enabled := True;
+                        pmClient2.Items[I].Items[2].Enabled := True;
                       end;
                     end;
                   end;
@@ -2690,13 +2642,13 @@ begin
               end
               else if (lvClient.Selected.SubItems[1] = 'MISTRAL') then
               begin
-               pmClient2.Items[i].Items[0].Enabled := False;
-               pmClient2.Items[i].Items[1].Enabled := False;
-               pmClient2.Items[i].Items[2].Enabled := False;
+                pmClient2.Items[I].Items[0].Enabled := False;
+                pmClient2.Items[I].Items[1].Enabled := False;
+                pmClient2.Items[I].Items[2].Enabled := False;
 
-                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[i].Tag, listWeaponSce);
+                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce);
 
-                for k := 0 to listWeaponSce.Count-1 do
+                for k := 0 to listWeaponSce.Count - 1 do
                 begin
                   sceWeapon := TScenarioWeapon(listWeaponSce.Items[k]);
 
@@ -2704,15 +2656,15 @@ begin
                   begin
                     if sceWeapon.LauncherID = 1 then
                     begin
-                        pmClient2.Items[i].Items[0].Enabled := True;
+                      pmClient2.Items[I].Items[0].Enabled := True;
                     end
                     else if sceWeapon.LauncherID = 2 then
                     begin
-                        pmClient2.Items[i].Items[1].Enabled := True;
+                      pmClient2.Items[I].Items[1].Enabled := True;
                     end
                     else if sceWeapon.LauncherID = 3 then
                     begin
-                        pmClient2.Items[i].Items[2].Enabled := True;
+                      pmClient2.Items[I].Items[2].Enabled := True;
                     end;
                   end;
 
@@ -2724,13 +2676,13 @@ begin
               end
               else if (lvClient.Selected.SubItems[1] = 'STRELLA') then
               begin
-                pmClient2.Items[i].Items[0].Enabled := False;
-                pmClient2.Items[i].Items[1].Enabled := False;
-                pmClient2.Items[i].Items[2].Enabled := False;
+                pmClient2.Items[I].Items[0].Enabled := False;
+                pmClient2.Items[I].Items[1].Enabled := False;
+                pmClient2.Items[I].Items[2].Enabled := False;
 
-                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[i].Tag, listWeaponSce);
+                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce);
 
-                for k := 0 to listWeaponSce.Count-1 do
+                for k := 0 to listWeaponSce.Count - 1 do
                 begin
                   sceWeapon := TScenarioWeapon(listWeaponSce.Items[k]);
 
@@ -2738,15 +2690,15 @@ begin
                   begin
                     if sceWeapon.LauncherID = 1 then
                     begin
-                        pmClient2.Items[i].Items[0].Enabled := True;
+                      pmClient2.Items[I].Items[0].Enabled := True;
                     end
                     else if sceWeapon.LauncherID = 2 then
                     begin
-                        pmClient2.Items[i].Items[1].Enabled := True;
+                      pmClient2.Items[I].Items[1].Enabled := True;
                     end
                     else if sceWeapon.LauncherID = 3 then
                     begin
-                        pmClient2.Items[i].Items[2].Enabled := True;
+                      pmClient2.Items[I].Items[2].Enabled := True;
                     end;
 
                   end;
@@ -2758,7 +2710,6 @@ begin
 
               end;
 
-
             end;
           end;
         finally
@@ -2768,72 +2719,71 @@ begin
       end
       else
       begin
-        for i:= 0 to pmClient.Items.Count -1 do
-          pmClient.Items[i].Enabled := true;
+        for I := 0 to pmClient.Items.Count - 1 do
+          pmClient.Items[I].Enabled := true;
 
-        if (lvClient.Selected.SubItems[idx_name] = 'MOC-1') or
-           (lvClient.Selected.SubItems[idx_name] = 'MOC-2') then
+        if (lvClient.Selected.SubItems[idx_name] = 'MOC-1') or (lvClient.Selected.SubItems[idx_name] = 'MOC-2') then
         begin
-          for i:= 0 to pmClient.Items.Count -1 do
+          for I := 0 to pmClient.Items.Count - 1 do
           begin
             isFound := False;
-            ShipID := pmClient.Items[i].Tag;
+            ShipID := pmClient.Items[I].Tag;
 
-            if ShipID <= 0 then Continue;
+            if ShipID <= 0 then
+              Continue;
             //if weaponID = 0 then continue;
 
-            DataModule1.GetShipType(ShipID,ShipClass);
+            DataModule1.GetShipType(ShipID, ShipClass);
             if ShipClass = 'Diponegoro ( Sigma )' then
             begin
               isFound := true;
             end;
 
             if not isFound then
-                pmClient.Items[i].Enabled := false
+              pmClient.Items[I].Enabled := false
             else
             begin
 
-
-              if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient.Items[i].Caption))then
-                pmClient.Items[i].Enabled := False
+              if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient.Items[I].Caption)) then
+                pmClient.Items[I].Enabled := False
               else
-               pmClient.Items[i].Enabled := true;
+                pmClient.Items[I].Enabled := true;
             end;
           end;
         end
-
         else if (lvClient.Selected.SubItems[1] = 'WCC') then
         begin
-          for i:= 0 to pmClient.Items.Count -1 do
+          for I := 0 to pmClient.Items.Count - 1 do
           begin
             isFound := False;
-            ShipID := pmClient.Items[i].Tag;
+            ShipID := pmClient.Items[I].Tag;
 
-            if ShipID <= 0 then Continue;
+            if ShipID <= 0 then
+              Continue;
             //if weaponID = 0 then continue;
 
-            DataModule1.GetShipType(ShipID,ShipClass);
+            DataModule1.GetShipType(ShipID, ShipClass);
             if ShipClass = 'Fatahillah' then
             begin
               isFound := true;
             end;
 
             if not isFound then
-                pmClient.Items[i].Enabled := false
+              pmClient.Items[I].Enabled := false
             else
             begin
 
-              if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient.Items[i].Caption))then
-                pmClient.Items[i].Enabled := False
+              if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient.Items[I].Caption)) then
+                pmClient.Items[I].Enabled := False
               else
-               pmClient.Items[i].Enabled := true;
+                pmClient.Items[I].Enabled := true;
 
               if (lvClient.Selected.SubItems[1] = 'WCC') then
               begin
-                pmClient.Items[i].Enabled := False;
-                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[i].Tag, listWeaponSce2);
+                pmClient.Items[I].Enabled := False;
+                DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce2);
 
-                for k := 0 to listWeaponSce2.Count-1 do
+                for k := 0 to listWeaponSce2.Count - 1 do
                 begin
 
                   sceWeapon := TScenarioWeapon(listWeaponSce2.Items[k]);
@@ -2841,7 +2791,7 @@ begin
                   begin
                     if sceWeapon.LauncherID = 1 then
                     begin
-                       pmClient.Items[i].Enabled := True;
+                      pmClient.Items[I].Enabled := True;
                     end;
 
                   end;
@@ -2855,26 +2805,27 @@ begin
             end;
           end;
         end
-
         else
         begin
         { Check Available Except MOC }
           try
             ListWeapon := TList.Create;
-            for i:= 0 to pmClient.Items.Count -1 do
+            for I := 0 to pmClient.Items.Count - 1 do
             begin
-              ShipID := pmClient.Items[i].Tag;
+              ShipID := pmClient.Items[I].Tag;
 
-              if ShipID <= 0 then Continue;
-              if weaponID = 0 then continue;
+              if ShipID <= 0 then
+                Continue;
+              if WeaponID = 0 then
+                continue;
 
               ListWeapon.Clear;
               DataModule1.GetListWeaponOnShip(ShipID, ListWeapon);
 
               isFound := False;
-              for j:= 0 to ListWeapon.Count -1 do
+              for J := 0 to ListWeapon.Count - 1 do
               begin
-                WeaponList := TWeaponGetList(ListWeapon.Items[j]);
+                WeaponList := TWeaponGetList(ListWeapon.Items[J]);
 
                 if WeaponList.IDWeapon = WeaponID then
                 begin
@@ -2885,23 +2836,21 @@ begin
               end;
 
               if not isFound then
-                pmClient.Items[i].Enabled := false
+                pmClient.Items[I].Enabled := false
               else
               begin
 
-                if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient.Items[i].Caption))then
-                  pmClient.Items[i].Enabled := False
+                if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient.Items[I].Caption)) then
+                  pmClient.Items[I].Enabled := False
                 else
-                 pmClient.Items[i].Enabled := true;
-
-
+                  pmClient.Items[I].Enabled := true;
 
                 if (lvClient.Selected.SubItems[1] = 'RBU 6000') then
                 begin
-                  pmClient.Items[i].Enabled := False;
-                  DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[i].Tag, listWeaponSce2);
+                  pmClient.Items[I].Enabled := False;
+                  DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce2);
 
-                  for k := 0 to listWeaponSce2.Count-1 do
+                  for k := 0 to listWeaponSce2.Count - 1 do
                   begin
 
                     sceWeapon := TScenarioWeapon(listWeaponSce2.Items[k]);
@@ -2909,11 +2858,11 @@ begin
                     begin
                       if sceWeapon.LauncherID = 1 then
                       begin
-                         RbuLauncher1Ready := True;
+                        RbuLauncher1Ready := True;
                       end;
                       if sceWeapon.LauncherID = 2 then
                       begin
-                         RbuLauncher2Ready := True;
+                        RbuLauncher2Ready := True;
                       end;
                     end;
                   end;
@@ -2923,19 +2872,19 @@ begin
 
                   if (RbuLauncher1Ready = True) and (RbuLauncher2Ready = True) then
                   begin
-                    pmClient.Items[i].Enabled := True;
+                    pmClient.Items[I].Enabled := True;
                   end;
 
-                  RbuLauncher1Ready  := False;
+                  RbuLauncher1Ready := False;
                   RbuLauncher2Ready := False;
 
                 end
                 else if (lvClient.Selected.SubItems[1] = 'Asroc') then
                 begin
-                  pmClient.Items[i].Enabled := False;
-                  DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[i].Tag, listWeaponSce2);
+                  pmClient.Items[I].Enabled := False;
+                  DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce2);
 
-                  for k := 0 to listWeaponSce2.Count-1 do
+                  for k := 0 to listWeaponSce2.Count - 1 do
                   begin
 
                     sceWeapon := TScenarioWeapon(listWeaponSce2.Items[k]);
@@ -2943,7 +2892,7 @@ begin
                     begin
                       if sceWeapon.LauncherID = 1 then
                       begin
-                         pmClient.Items[i].Enabled := True;
+                        pmClient.Items[I].Enabled := True;
                       end;
 
                     end;
@@ -2967,21 +2916,21 @@ begin
   end
   else
   begin
-     SelectConsole;
+    SelectConsole;
   end;
 end;
 
 procedure TfrmGameController.lvListScenClick(Sender: TObject);
 var
-  aDateTime : TDatetime;
-  formatDate : string;
+  aDateTime: TDatetime;
+  formatDate: string;
 begin
   if lvListScen.Selected = nil then
     Exit;
 
   aDateTime := Now;
   DateTimeToString(formatDate, 'ddmmyy_hhnnss', aDateTime);
-  scenarioGameName := lvListScen.Selected.SubItems[0]+'_'+formatDate;
+  scenarioGameName := lvListScen.Selected.SubItems[0] + '_' + formatDate;
 
   UpdateScenarioData;
 
@@ -2999,14 +2948,13 @@ end;
 
 procedure TfrmGameController.btnRefreshClientClick(Sender: TObject);
 var
-  i : integer;
+  i: integer;
 begin
   FillClientList;
 
-  for i := 0 to lvClient.Items.Count -1 do
+  for i := 0 to lvClient.Items.Count - 1 do
   begin
-    if (lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or (lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
-       (lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
+    if (lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or (lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or (lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
     begin
       if ServerState = 1 then
         lvClient.Items[i].SubItems[4] := 'RUNNING'
@@ -3023,7 +2971,7 @@ begin
   Sleep(100);
 
   btnRefreshClient.Enabled := false;
-  tmrStatus.Enabled        := true;
+  tmrStatus.Enabled := true;
 end;
 
 { ---------------------------------------------------------------------- }
@@ -3031,52 +2979,53 @@ end;
 { C802 }
 procedure TfrmGameController.btnC802_FireClick(Sender: TObject);
 var
-  isValid : Boolean;
-
-  i,
-  ShipID,
-  weaponID,
-  LauncherID,
-  MissileID,
-  MissileNumber,
-  TargetID : Integer;
-  rangDeg  : TRangDeg;
-  recRangDeg : TList;
-  Vehicle    : TVehicle;
-
-  mTargetBearing, mTargetRange : Single;
-
-  RecSend   : TRecData_C802;
-  RecSend2  : TRecObjectAssigned;
-  C802LauncherID : string;
+  isValid: Boolean;
+  i, ShipID, weaponID, LauncherID, MissileID, MissileNumber, TargetID: Integer;
+  rangDeg: TRangDeg;
+  recRangDeg: TList;
+  Vehicle: TVehicle;
+  mTargetBearing, mTargetRange: Single;
+  RecSend: TRecData_C802;
+  RecSend2: TRecObjectAssigned;
+  C802LauncherID: string;
 begin
   isValid := True;
 
-  if cbbC802Launcher.Text = 'kanan 1' then begin
+  if cbbC802Launcher.Text = 'kanan 1' then
+  begin
     C802LauncherID := IntToStr(1);
-    end
-  else if cbbC802Launcher.Text = 'kiri 1' then begin
+  end
+  else if cbbC802Launcher.Text = 'kiri 1' then
+  begin
     C802LauncherID := IntToStr(2);
   end
-  else if cbbC802Launcher.Text = 'kanan 2' then begin
+  else if cbbC802Launcher.Text = 'kanan 2' then
+  begin
     C802LauncherID := IntToStr(3);
   end
-  else begin
+  else
+  begin
     C802LauncherID := IntToStr(4);
   end;
 
-
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(C802LauncherID, LauncherID) then isValid := False;
+  if not TryStrToInt(C802LauncherID, LauncherID) then
+    isValid := False;
 
-  if not TryStrToInt(edtC802_Number.Text, MissileNumber) then isValid := False;
-  if not TryStrToInt(edtC802_Missile.Text, MissileID) then isValid := False;
+  if not TryStrToInt(edtC802_Number.Text, MissileNumber) then
+    isValid := False;
+  if not TryStrToInt(edtC802_Missile.Text, MissileID) then
+    isValid := False;
 
-  if not TryStrToFloat(edtC802_TBearing.Text, mTargetBearing) then isValid := False;
-  if not TryStrToFloat(edtC802_TRange.Text, mTargetRange) then isValid := False;
+  if not TryStrToFloat(edtC802_TBearing.Text, mTargetBearing) then
+    isValid := False;
+  if not TryStrToFloat(edtC802_TRange.Text, mTargetRange) then
+    isValid := False;
 
   if Sender = btnSetPosC802 then
   begin
@@ -3087,8 +3036,7 @@ begin
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
 
-
-  for i := 0 to recRangDeg.count -1 do
+  for i := 0 to recRangDeg.count - 1 do
   begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
@@ -3099,45 +3047,47 @@ begin
   begin
     mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
 
-    RecSend.ShipID         := ShipID;
-    RecSend.mLauncherID    := LauncherID;
-    RecSend.mMissileID     := MissileID;
+    RecSend.ShipID := ShipID;
+    RecSend.mLauncherID := LauncherID;
+    RecSend.mMissileID := MissileID;
     RecSend.mMissileNumber := MissileNumber;
-    RecSend.OrderID        := 0;
+    RecSend.OrderID := 0;
 
-    if (StrToFloat(edtC802_TBearing.Text)< Vehicle.Vehicle_Heading )then
+    if (StrToFloat(edtC802_TBearing.Text) < Vehicle.Vehicle_Heading) then
     begin
-      RecSend.mTargetBearing := (mTargetBearing + (Vehicle.Vehicle_Heading-360));
+      RecSend.mTargetBearing := (mTargetBearing + (Vehicle.Vehicle_Heading - 360));
     end
     else
     begin
       RecSend.mTargetBearing := mTargetBearing + Vehicle.Vehicle_Heading;
     end;
 
-    RecSend.mTargetRange   := mTargetRange;
+    RecSend.mTargetRange := mTargetRange;
 
-    RecSend.mWeaponID      := C_DBID_C802;
+    RecSend.mWeaponID := C_DBID_C802;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //fire
-      1 : begin
-            if (StrToFloat(edtC802_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtC802_TRange.Text) < rangDeg.rangeMax) then
+      1:
+        begin
+          if (StrToFloat(edtC802_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtC802_TRange.Text) < rangDeg.rangeMax) then
+          begin
+
+            if (StrToFloat(edtC802_TBearing.Text) > rangDeg.startDeg) and (StrToFloat(edtC802_TBearing.Text) < rangDeg.endDeg) then
             begin
-
-               if (StrToFloat(edtC802_TBearing.Text) > rangDeg.startDeg ) and  (StrToFloat(edtC802_TBearing.Text) < rangDeg.endDeg ) then
-               begin
 //                 RecSend.OrderID := __ORD_C802_FIRE;
-                 RecSend.OrderID := __ORD_C802_TAKE_OFF;
-                 SimManager.NetSendTo3D_OrderMissile_C802(RecSend);
-               end;
-
+              RecSend.OrderID := __ORD_C802_TAKE_OFF;
+              SimManager.NetSendTo3D_OrderMissile_C802(RecSend);
             end;
 
           end;
-      2 : begin
-            RecSend.OrderID := __ORD_C802_LOADING;
-            SimManager.NetSendTo3D_OrderMissile_C802(RecSend);
-          end;
+
+        end;
+      2:
+        begin
+          RecSend.OrderID := __ORD_C802_LOADING;
+          SimManager.NetSendTo3D_OrderMissile_C802(RecSend);
+        end;
     end;
   end;
 end;
@@ -3145,27 +3095,15 @@ end;
 { Yakhont }
 procedure TfrmGameController.btnYahkont_Fire_Click(Sender: TObject);
 var
-  isValid : Boolean;
-
-  ShipID, weaponID, i,
-  LauncherID,
-  MissileID,
-  MissileNumber,
-  TargetID : Integer;
-
-  Missile1,
-  Missile2,
-  Missile3,
-  Missile4 : integer;
-
-  mTargetBearing, mTargetRange : Single;
-
-  RecSend           : TRecData_Yakhont;
-  RecSend2          : TRecObjectAssigned;
-  yakhontLauncherID,
-  M1,M2,M3,M4       : string;
-  recRangDeg        : TList;
-  rangDeg           : TRangDeg;
+  isValid: Boolean;
+  ShipID, weaponID, i, LauncherID, MissileID, MissileNumber, TargetID: Integer;
+  Missile1, Missile2, Missile3, Missile4: integer;
+  mTargetBearing, mTargetRange: Single;
+  RecSend: TRecData_Yakhont;
+  RecSend2: TRecObjectAssigned;
+  yakhontLauncherID, M1, M2, M3, M4: string;
+  recRangDeg: TList;
+  rangDeg: TRangDeg;
 begin
   isValid := True;
 
@@ -3188,46 +3126,57 @@ begin
 
   if chkYahkontM1.Checked = True then
   begin
-     M1 := '1';
+    M1 := '1';
   end
   else
-     M1 := '0';
+    M1 := '0';
   if chkYahkontM2.Checked = True then
   begin
-     M2 := '1';
+    M2 := '1';
   end
   else
-     M2 := '0';
+    M2 := '0';
   if chkYahkontM3.Checked = True then
   begin
-     M3 := '1';
+    M3 := '1';
   end
   else
-     M3 := '0';
+    M3 := '0';
   if chkYahkontM4.Checked = True then
   begin
-     M4 := '1';
+    M4 := '1';
   end
   else
-     M4 := '0';
+    M4 := '0';
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(yakhontLauncherID, LauncherID) then isValid := False;
-  if not TryStrToInt(edtYahkont_Number.Text, MissileNumber) then isValid := False;
-  if not TryStrToInt(edtYahkont_Missile.Text, MissileID) then isValid := False;
+  if not TryStrToInt(yakhontLauncherID, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(edtYahkont_Number.Text, MissileNumber) then
+    isValid := False;
+  if not TryStrToInt(edtYahkont_Missile.Text, MissileID) then
+    isValid := False;
 
-  if not TryStrToFloat(edtYahkont_TBearing.Text, mTargetBearing) then isValid := False;
-  if not TryStrToFloat(edtYahkont_TRange.Text, mTargetRange) then isValid := False;
+  if not TryStrToFloat(edtYahkont_TBearing.Text, mTargetBearing) then
+    isValid := False;
+  if not TryStrToFloat(edtYahkont_TRange.Text, mTargetRange) then
+    isValid := False;
 
-  if not TryStrToInt(M1, Missile1) then isValid := False;
-  if not TryStrToInt(M2, Missile2) then isValid := False;
-  if not TryStrToInt(M3, Missile3) then isValid := False;
-  if not TryStrToInt(M4, Missile4) then isValid := False;
+  if not TryStrToInt(M1, Missile1) then
+    isValid := False;
+  if not TryStrToInt(M2, Missile2) then
+    isValid := False;
+  if not TryStrToInt(M3, Missile3) then
+    isValid := False;
+  if not TryStrToInt(M4, Missile4) then
+    isValid := False;
 
-  if sender = btnSetPosYahkont then
+  if Sender = btnSetPosYahkont then
   begin
     SimManager.FMap.CurrentTool := TOOL_SELECT_COORD_YAKHONT;
   end;
@@ -3236,8 +3185,7 @@ begin
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
 
-
-  for i := 0 to recRangDeg.count -1 do
+  for i := 0 to recRangDeg.count - 1 do
   begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
@@ -3246,41 +3194,44 @@ begin
   begin
     mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
 
-    RecSend.ShipID         := ShipID;
-    RecSend.mLauncherID    := LauncherID;
-    RecSend.mMissileID     := MissileID;
+    RecSend.ShipID := ShipID;
+    RecSend.mLauncherID := LauncherID;
+    RecSend.mMissileID := MissileID;
     RecSend.mMissileNumber := MissileNumber;
-    RecSend.OrderID        := 0;
+    RecSend.OrderID := 0;
 
     RecSend.mTargetBearing := mTargetBearing;
-    RecSend.mTargetRange   := mTargetRange;
+    RecSend.mTargetRange := mTargetRange;
 
-    RecSend.mWeaponID      := C_DBID_YAKHONT;
+    RecSend.mWeaponID := C_DBID_YAKHONT;
 
-    RecSend.mMissile1      := Missile1;
-    RecSend.mMissile2      := Missile2;
-    RecSend.mMissile3      := Missile3;
-    RecSend.mMissile4      := Missile4;
+    RecSend.mMissile1 := Missile1;
+    RecSend.mMissile2 := Missile2;
+    RecSend.mMissile3 := Missile3;
+    RecSend.mMissile4 := Missile4;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //fire
-      1 : begin
-            if(StrToFloat(edtYahkont_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtYahkont_TRange.Text) < rangDeg.rangeMax) then
-            begin
-              RecSend.OrderID := __ORD_Yahkont_FIRE;
-              SimManager.NetSendTo3D_OrderMissile_YAHKONT(RecSend);
-            end
-            else
+      1:
+        begin
+          if (StrToFloat(edtYahkont_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtYahkont_TRange.Text) < rangDeg.rangeMax) then
+          begin
+            RecSend.OrderID := __ORD_Yahkont_FIRE;
+            SimManager.NetSendTo3D_OrderMissile_YAHKONT(RecSend);
+          end
+          else
             Exit;
-          end;
-      2 : begin
-            RecSend.OrderID := __ORD_Yahkont_LOADING;
-            SimManager.NetSendTo3D_OrderMissile_YAHKONT(RecSend);
-          end;
-      3 : begin
-            RecSend.OrderID := __ORD_Yahkont_RELEASE;
-            SimManager.NetSendTo3D_OrderMissile_YAHKONT(RecSend);
-          end;
+        end;
+      2:
+        begin
+          RecSend.OrderID := __ORD_Yahkont_LOADING;
+          SimManager.NetSendTo3D_OrderMissile_YAHKONT(RecSend);
+        end;
+      3:
+        begin
+          RecSend.OrderID := __ORD_Yahkont_RELEASE;
+          SimManager.NetSendTo3D_OrderMissile_YAHKONT(RecSend);
+        end;
     end;
   end;
 end;
@@ -3288,46 +3239,26 @@ end;
 { Exocet MM40 }
 procedure TfrmGameController.btnExocet40_FireClick(Sender: TObject);
 var
-  ShipID, weaponID,
-  launcherID,
-  MissileID,
-  MissileNumber
+  ShipID, weaponID, launcherID, MissileID, MissileNumber
   //, TargetID
-  : integer;
-
-  mTBearing,
-  mTRange,
-  mObstacle_Alt,
-  mObstacle_Range,
-  mApproach_Range,
-  mTerminal_Range  : Single;
-
-  mLeft_Angle       : Single;
-  mRight_Angle      : Single;
-  mFar_Range        : Single;
-  mNear_Range       : Single;
-
-  Masking_1, Masking_2, Masking_3, Masking_4,
-  Masking_5, Masking_6, Masking_7, Masking_8,
-  Masking_9, Masking_10, Masking_11, Masking_12,
-  Masking_13, Masking_14, Masking_15, Masking_16 : Integer;
-
-  mSeekerOpenHeading : Single;
-  mSeekerOpenPosX, mSeekerOpenPosY : Double;
-
-  mAngular_Mode,
-  mAgility_Mode,
-  mInitialStep_Mode : Integer;
-
-  isvalid : Boolean;
-
-  recrangdeg : TList;
-  RecSend : TRec3DSetExocet_40;
-  exoLauncherID : string;
-  rangdeg :TRangDeg;
-  i : integer;
+: integer;
+  mTBearing, mTRange, mObstacle_Alt, mObstacle_Range, mApproach_Range, mTerminal_Range: Single;
+  mLeft_Angle: Single;
+  mRight_Angle: Single;
+  mFar_Range: Single;
+  mNear_Range: Single;
+  Masking_1, Masking_2, Masking_3, Masking_4, Masking_5, Masking_6, Masking_7, Masking_8, Masking_9, Masking_10, Masking_11, Masking_12, Masking_13, Masking_14, Masking_15, Masking_16: Integer;
+  mSeekerOpenHeading: Single;
+  mSeekerOpenPosX, mSeekerOpenPosY: Double;
+  mAngular_Mode, mAgility_Mode, mInitialStep_Mode: Integer;
+  isvalid: Boolean;
+  recrangdeg: TList;
+  RecSend: TRec3DSetExocet_40;
+  exoLauncherID: string;
+  rangdeg: TRangDeg;
+  i: integer;
 begin
-  isValid := True;
+  isvalid := True;
 
   Masking_1 := 0;
   Masking_2 := 0;
@@ -3338,61 +3269,76 @@ begin
   Masking_7 := 0;
   Masking_8 := 0;
   Masking_9 := 0;
-  Masking_10:= 0;
-  Masking_11:= 0;
-  Masking_12:= 0;
-  Masking_13:= 0;
-  Masking_14:= 0;
-  Masking_15:= 0;
-  Masking_16:= 0;
+  Masking_10 := 0;
+  Masking_11 := 0;
+  Masking_12 := 0;
+  Masking_13 := 0;
+  Masking_14 := 0;
+  Masking_15 := 0;
+  Masking_16 := 0;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToFloat(edtExocet40_TBearing.Text,mTBearing) then isvalid := False;
-  if not TryStrToFloat(edtExocet40_TRange.Text,mTRange) then isvalid := False;
+  if not TryStrToFloat(edtExocet40_TBearing.Text, mTBearing) then
+    isvalid := False;
+  if not TryStrToFloat(edtExocet40_TRange.Text, mTRange) then
+    isvalid := False;
 
-  if not TryStrToFloat(edtExocet40_ObstacleAlt.Text, mObstacle_Alt) then isvalid := False;
-  if not TryStrToFloat(edtExocet40_ObstacleRange.Text, mObstacle_Range) then isvalid := False;
+  if not TryStrToFloat(edtExocet40_ObstacleAlt.Text, mObstacle_Alt) then
+    isvalid := False;
+  if not TryStrToFloat(edtExocet40_ObstacleRange.Text, mObstacle_Range) then
+    isvalid := False;
   //if not TryStrToFloat(edtExocet40_ApproachRange.Text, mApproach_Range) then isvalid := False;
-  if not TryStrToFloat(edtExocet40_TerminalRange.Text, mTerminal_Range) then isvalid := False;
+  if not TryStrToFloat(edtExocet40_TerminalRange.Text, mTerminal_Range) then
+    isvalid := False;
 
-  if not TryStrToFloat(edtExxocet40_LeftAngle.Text, mLeft_Angle) then isvalid := False;
-  if not TryStrToFloat(edtExxocet40_RightAngle.Text, mRight_Angle) then isvalid := False;
-  if not TryStrToFloat(edtExxocet40_FarRange.Text, mFar_Range) then isvalid := False;
-  if not TryStrToFloat(edtExxocet40_NearRange.Text, mNear_Range) then isvalid := False;
-  if not TryStrToFloat(edtExxocet40_SeekOpenX.Text, mSeekerOpenPosX) then isvalid := False;
-  if not TryStrToFloat(edtExxocet40_SeekOpenY.Text, mSeekerOpenPosY) then isvalid := False;
-  if not TryStrToFloat(edtExxocet40_OpenSeekerHead.Text, mSeekerOpenHeading) then isvalid := False;
+  if not TryStrToFloat(edtExxocet40_LeftAngle.Text, mLeft_Angle) then
+    isvalid := False;
+  if not TryStrToFloat(edtExxocet40_RightAngle.Text, mRight_Angle) then
+    isvalid := False;
+  if not TryStrToFloat(edtExxocet40_FarRange.Text, mFar_Range) then
+    isvalid := False;
+  if not TryStrToFloat(edtExxocet40_NearRange.Text, mNear_Range) then
+    isvalid := False;
+  if not TryStrToFloat(edtExxocet40_SeekOpenX.Text, mSeekerOpenPosX) then
+    isvalid := False;
+  if not TryStrToFloat(edtExxocet40_SeekOpenY.Text, mSeekerOpenPosY) then
+    isvalid := False;
+  if not TryStrToFloat(edtExxocet40_OpenSeekerHead.Text, mSeekerOpenHeading) then
+    isvalid := False;
 
   //if not TryStrToInt(edtExocetTargetID.Text, TargetID) then isvalid := false;
 
-  if cbbExxocetLauncher.Text = 'kanan' then begin
+  if cbbExxocetLauncher.Text = 'kanan' then
+  begin
     launcherID := 1;
   end
-  else begin
+  else
+  begin
     launcherID := 2;
   end;
 
-
-  mAngular_Mode     := cbbExocet40_AngularMode.ItemIndex;
-  mAgility_Mode     := cbbExocet40_AgilityMode.ItemIndex;
+  mAngular_Mode := cbbExocet40_AngularMode.ItemIndex;
+  mAgility_Mode := cbbExocet40_AgilityMode.ItemIndex;
   mInitialStep_Mode := cbbExocet40_InitialStepMode.ItemIndex;
-  MissileID         := cbbExocet40_Missile.ItemIndex + 1;
-  MissileNumber     := cbbExocet40_Number.ItemIndex + 1;
-  mApproach_Range   := cbbExocet40_ApproachRange.ItemIndex + 2;
+  MissileID := cbbExocet40_Missile.ItemIndex + 1;
+  MissileNumber := cbbExocet40_Number.ItemIndex + 1;
+  mApproach_Range := cbbExocet40_ApproachRange.ItemIndex + 2;
 
   if chkExxoMask_1.Checked = True then
     Masking_1 := 1;
   if chkExxoMask_2.Checked = True then
     Masking_2 := 1;
   if chkExxoMask_3.Checked = True then
-  Masking_3 := 1;
+    Masking_3 := 1;
   if chkExxoMask_4.Checked = True then
-  Masking_4 := 1;
+    Masking_4 := 1;
   if chkExxoMask_5.Checked = True then
-  Masking_5 := 1;
+    Masking_5 := 1;
   if chkExxoMask_6.Checked = True then
     Masking_6 := 1;
   if chkExxoMask_7.Checked = True then
@@ -3400,7 +3346,7 @@ begin
   if chkExxoMask_8.Checked = True then
     Masking_8 := 1;
   if chkExxoMask_9.Checked = True then
-  Masking_9 := 1;
+    Masking_9 := 1;
   if chkExxoMask_10.Checked = True then
     Masking_10 := 1;
   if chkExxoMask_11.Checked = True then
@@ -3416,74 +3362,77 @@ begin
   if chkExxoMask_16.Checked = True then
     Masking_16 := 1;
 
-  if TComponent(sender).Tag = 2 then SimManager.FMap.CurrentTool := TOOL_SELECT_COORD;
+  if TComponent(Sender).Tag = 2 then
+    SimManager.FMap.CurrentTool := TOOL_SELECT_COORD;
 
   if isvalid then
   begin
-     mTRange                         := mTRange * C_NauticalMile_To_Metre;
-     mApproach_Range                 := mApproach_Range * 1828.8;
+    mTRange := mTRange * C_NauticalMile_To_Metre;
+    mApproach_Range := mApproach_Range * 1828.8;
 
-     RecSend.shipID                  := ShipID;
-     RecSend.mWeaponID               := C_DBID_EXOCET_MM40;
-     RecSend.mLauncherID             := launcherID;
-     RecSend.mMissileID              := MissileID;
-     RecSend.mMissileNumber          := MissileNumber;
+    RecSend.shipID := ShipID;
+    RecSend.mWeaponID := C_DBID_EXOCET_MM40;
+    RecSend.mLauncherID := launcherID;
+    RecSend.mMissileID := MissileID;
+    RecSend.mMissileNumber := MissileNumber;
 
-     RecSend.sOrder                  := __ORD_EXOCET_40_FIRE;
+    RecSend.sOrder := __ORD_EXOCET_40_FIRE;
 
-     RecSend.mTBearing               := mTBearing;
-     RecSend.mTRange                 := mTRange;
+    RecSend.mTBearing := mTBearing;
+    RecSend.mTRange := mTRange;
 
-     RecSend.mAngular_Mode           := mAngular_Mode;
-     RecSend.mAgility_Mode           := mAgility_Mode;
-     RecSend.mInitialStep_Mode       := mInitialStep_Mode;
+    RecSend.mAngular_Mode := mAngular_Mode;
+    RecSend.mAgility_Mode := mAgility_Mode;
+    RecSend.mInitialStep_Mode := mInitialStep_Mode;
 
-     RecSend.mObstacle_Alt           := mObstacle_Alt;
-     RecSend.mObstacle_Range         := mObstacle_Range;
-     RecSend.mApproach_Range         := mApproach_Range;
-     RecSend.mTerminal_Range         := mTerminal_Range;
+    RecSend.mObstacle_Alt := mObstacle_Alt;
+    RecSend.mObstacle_Range := mObstacle_Range;
+    RecSend.mApproach_Range := mApproach_Range;
+    RecSend.mTerminal_Range := mTerminal_Range;
 
-     RecSend.mLeft_Angle             := mLeft_Angle;
-     RecSend.mRight_Angle            := mRight_Angle;
-     RecSend.mFar_Range              := mFar_Range;
-     RecSend.mNear_Range             := mNear_Range;
+    RecSend.mLeft_Angle := mLeft_Angle;
+    RecSend.mRight_Angle := mRight_Angle;
+    RecSend.mFar_Range := mFar_Range;
+    RecSend.mNear_Range := mNear_Range;
 
-     RecSend.mMasking1               := Masking_1;
-     RecSend.mMasking2               := Masking_2;
-     RecSend.mMasking3               := Masking_3;
-     RecSend.mMasking4               := Masking_4;
-     RecSend.mMasking5               := Masking_5;
-     RecSend.mMasking6               := Masking_6;
-     RecSend.mMasking7               := Masking_7;
-     RecSend.mMasking8               := Masking_8;
-     RecSend.mMasking9               := Masking_9;
-     RecSend.mMasking10              := Masking_10;
-     RecSend.mMasking11              := Masking_11;
-     RecSend.mMasking12              := Masking_12;
-     RecSend.mMasking13              := Masking_13;
-     RecSend.mMasking14              := Masking_14;
-     RecSend.mMasking15              := Masking_15;
-     RecSend.mMasking16              := Masking_16;
-     RecSend.mSeekerOpenPosX         := mSeekerOpenPosX;
-     RecSend.mSeekerOpenPosY         := mSeekerOpenPosY;
-     RecSend.mSeekerOpenHeading      := mSeekerOpenHeading;
+    RecSend.mMasking1 := Masking_1;
+    RecSend.mMasking2 := Masking_2;
+    RecSend.mMasking3 := Masking_3;
+    RecSend.mMasking4 := Masking_4;
+    RecSend.mMasking5 := Masking_5;
+    RecSend.mMasking6 := Masking_6;
+    RecSend.mMasking7 := Masking_7;
+    RecSend.mMasking8 := Masking_8;
+    RecSend.mMasking9 := Masking_9;
+    RecSend.mMasking10 := Masking_10;
+    RecSend.mMasking11 := Masking_11;
+    RecSend.mMasking12 := Masking_12;
+    RecSend.mMasking13 := Masking_13;
+    RecSend.mMasking14 := Masking_14;
+    RecSend.mMasking15 := Masking_15;
+    RecSend.mMasking16 := Masking_16;
+    RecSend.mSeekerOpenPosX := mSeekerOpenPosX;
+    RecSend.mSeekerOpenPosY := mSeekerOpenPosY;
+    RecSend.mSeekerOpenHeading := mSeekerOpenHeading;
 
      //RecSend.TargetID                := TargetID;
 
-     case TComponent(sender).Tag of
-        1 : begin
+    case TComponent(Sender).Tag of
+      1:
+        begin
 //              if ((mTBearing >= rangdeg.startDeg) and (mTBearing <= rangdeg.endDeg)
 //              and (mTRange >= rangdeg.rangeMin) and (mTRange <= rangdeg.rangeMax))
 //              then begin
-                SimManager.NetSendTo3D_OrderMissileExocet_MM40(RecSend);
+          SimManager.NetSendTo3D_OrderMissileExocet_MM40(RecSend);
 //              end;
-            end;
+        end;
 
-        4 : begin
-              RecSend.sOrder  := __ORD_EXOCET_40_LOADING;
-              SimManager.NetSendTo3D_OrderMissileExocet_MM40(RecSend);
-            end;
-     end;
+      4:
+        begin
+          RecSend.sOrder := __ORD_EXOCET_40_LOADING;
+          SimManager.NetSendTo3D_OrderMissileExocet_MM40(RecSend);
+        end;
+    end;
 
   end;
 
@@ -3492,15 +3441,15 @@ end;
 { Strella }
 procedure TfrmGameController.btnStopScenarioClick(Sender: TObject);
 var
-  btnSelected : integer;
+  btnSelected: integer;
 begin
   btnSelected := 6;   // mrYes
-  if SimManager.fGamePlayType = gpmScenAndRecord then   begin
+  if SimManager.fGamePlayType = gpmScenAndRecord then
+  begin
     frmMainInstruktur.btnRecordStart.Hint := 'OffRecord';
-    frmMainInstruktur.btnRecordStart.ImageIndex    := 0;
+    frmMainInstruktur.btnRecordStart.ImageIndex := 0;
     SimManager.StopRecording;
-    btnSelected := MessageDlg('Instruktur :: stop recording and stop scenario',
-               mtConfirmation,[mbYes,mbNo],0);
+    btnSelected := MessageDlg('Instruktur :: stop recording and stop scenario', mtConfirmation, [mbYes, mbNo], 0);
   end;
   if btnSelected = mrYes then
   begin
@@ -3508,9 +3457,9 @@ begin
     if Length(SimManager.bridgeSet.mServer.m3D_IP) > 0 then
       SimManager.StopToClientOnIP(SimManager.bridgeSet.mServer.m3D_IP);
     frmMainInstruktur.Caption := 'Firing System Instruktur';
-    frmMainInstruktur.cekCaption  := frmMainInstruktur.Caption;
+    frmMainInstruktur.cekCaption := frmMainInstruktur.Caption;
     SimManager.NetSendStatusGame(0, 2);
-    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0,0,0,0) ;
+    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0, 0, 0, 0);
     frmMainInstruktur.deleteLeftFrame;
     SetDefaultEnvirontment;
 
@@ -3520,51 +3469,50 @@ begin
 //        lvRuntimeMissileTrajectory.Items.Clear;
     ClearListViewData(lvRuntimeMissileTrajectory);
     frmMainInstruktur.FrameControlLeft.Width := 0;
+    SimManager.MainObjList.ClearObject;
   end;
 end;
 
 procedure TfrmGameController.btnStrella_FireClick(Sender: TObject);
 var
-  isValid          : Boolean;
-
-  i,
-  weaponID,
-  ShipID,
-  LauncherID,
-  MissileID,
-  MissileNumber    : Integer;
-
-  recRangDeg       : TList;
-  rangDeg          : TRangDeg;
-
-  mTargetBearing,
-  mTargetRange,
-  mTargetElevasi   : Single;
-
-  RecSend          : TRec3DSetStrella;
-  Idlauncher       : String ;
+  isValid: Boolean;
+  i, weaponID, ShipID, LauncherID, MissileID, MissileNumber: Integer;
+  recRangDeg: TList;
+  rangDeg: TRangDeg;
+  mTargetBearing, mTargetRange, mTargetElevasi: Single;
+  RecSend: TRec3DSetStrella;
+  Idlauncher: string;
 begin
-  if cbbStrellaLauncher.Text = 'kiri' then begin
+  if cbbStrellaLauncher.Text = 'kiri' then
+  begin
     Idlauncher := IntToStr(1);
   end
-  else if cbbStrellaLauncher.Text = 'kanan' then begin
+  else if cbbStrellaLauncher.Text = 'kanan' then
+  begin
     Idlauncher := IntToStr(2);
   end;
 
-
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(Idlauncher, LauncherID) then isValid := False;
-  if not TryStrToInt(cbbStrelaMissileID.Text, MissileID) then isValid := False;
-  if not TryStrToInt(edtStrella_Number.Text, MissileNumber) then isValid := False;
+  if not TryStrToInt(Idlauncher, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(cbbStrelaMissileID.Text, MissileID) then
+    isValid := False;
+  if not TryStrToInt(edtStrella_Number.Text, MissileNumber) then
+    isValid := False;
 
-  if not TryStrToFloat(edtStrella_TBearing.Text, mTargetBearing) then isValid := False;
-  if not TryStrToFloat(edtStrella_TRange.Text, mTargetRange) then isValid := False;
-  if not TryStrToFloat(edtStrella_TElev.Text, mTargetElevasi) then isValid := False;
+  if not TryStrToFloat(edtStrella_TBearing.Text, mTargetBearing) then
+    isValid := False;
+  if not TryStrToFloat(edtStrella_TRange.Text, mTargetRange) then
+    isValid := False;
+  if not TryStrToFloat(edtStrella_TElev.Text, mTargetElevasi) then
+    isValid := False;
 
   if Sender = btnSetPosStrella then
   begin
@@ -3575,8 +3523,7 @@ begin
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
 
-
-  for i := 0 to recRangDeg.count -1 do
+  for i := 0 to recRangDeg.count - 1 do
   begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
@@ -3585,43 +3532,46 @@ begin
   begin
     mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
 
-    RecSend.ShipID         := ShipID;
-    RecSend.mLauncherID    := LauncherID;
-    RecSend.mMissileID     := MissileID;
+    RecSend.ShipID := ShipID;
+    RecSend.mLauncherID := LauncherID;
+    RecSend.mMissileID := MissileID;
     RecSend.mMissileNumber := MissileNumber;
-    RecSend.OrderID        := 0;
+    RecSend.OrderID := 0;
 
     RecSend.mTargetBearing := mTargetBearing;
-    RecSend.mTargetRange   := mTargetRange;
-    RecSend.mTargetElev    := mTargetElevasi;
+    RecSend.mTargetRange := mTargetRange;
+    RecSend.mTargetElev := mTargetElevasi;
 
-    RecSend.mWeaponID      := C_DBID_STRELA;
+    RecSend.mWeaponID := C_DBID_STRELA;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //fire
-      1 : begin
-             if (StrToFloat(edtStrella_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtStrella_TRange.Text) < rangDeg.rangeMax) then
-             begin
+      1:
+        begin
+          if (StrToFloat(edtStrella_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtStrella_TRange.Text) < rangDeg.rangeMax) then
+          begin
 
-                 if (StrToFloat(edtStrella_TBearing.Text) > rangDeg.startDeg ) and  (StrToFloat(edtStrella_TBearing.Text) < rangDeg.endDeg ) then
-                 begin
-                   RecSend.OrderID := __ORD_STRELLA_FIRE;
-                   SimManager.NetSendTo3D_OrderMissileStrella(RecSend);
-                 end;
-
-             end;
+            if (StrToFloat(edtStrella_TBearing.Text) > rangDeg.startDeg) and (StrToFloat(edtStrella_TBearing.Text) < rangDeg.endDeg) then
+            begin
+              RecSend.OrderID := __ORD_STRELLA_FIRE;
+              SimManager.NetSendTo3D_OrderMissileStrella(RecSend);
+            end;
 
           end;
+
+        end;
       //assign
-      2 : begin
-            RecSend.OrderID := __ORD_STRELLA_ASSIGN;
-            SimManager.NetSendTo3D_OrderMissileStrella(RecSend);
-          end;
+      2:
+        begin
+          RecSend.OrderID := __ORD_STRELLA_ASSIGN;
+          SimManager.NetSendTo3D_OrderMissileStrella(RecSend);
+        end;
       //loading
-      3 : begin
-            RecSend.OrderID := __ORD_STRELLA_LOADING;
-            SimManager.NetSendTo3D_OrderMissileStrella(RecSend);
-          end;
+      3:
+        begin
+          RecSend.OrderID := __ORD_STRELLA_LOADING;
+          SimManager.NetSendTo3D_OrderMissileStrella(RecSend);
+        end;
     end;
   end;
 end;
@@ -3629,41 +3579,43 @@ end;
 { Mistral }
 procedure TfrmGameController.btnMistral_FireClick(Sender: TObject);
 var
-  isValid         : Boolean;
-
-  ShipID, weaponID,
-  LauncherID, i,
-  MissileID,
-  MissileNumber   : Integer;
-
-  mTargetBearing,
-  mTargetRange,
-  mTargetElevasi  : Single;
-
-  RecSend         : TRec3DSetMistral;
-  Idlauncher      : string;
-  recRangDeg      : TList;
-  rangDeg         : TRangDeg;
+  isValid: Boolean;
+  ShipID, weaponID, LauncherID, i, MissileID, MissileNumber: Integer;
+  mTargetBearing, mTargetRange, mTargetElevasi: Single;
+  RecSend: TRec3DSetMistral;
+  Idlauncher: string;
+  recRangDeg: TList;
+  rangDeg: TRangDeg;
 begin
-   if cbbMistralLaunch.Text = 'kiri' then begin
+  if cbbMistralLaunch.Text = 'kiri' then
+  begin
     Idlauncher := IntToStr(1);
   end
-  else if cbbMistralLaunch.Text = 'kanan' then begin
+  else if cbbMistralLaunch.Text = 'kanan' then
+  begin
     Idlauncher := IntToStr(2);
   end;
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(Idlauncher, LauncherID) then isValid := False;
-  if not TryStrToInt(cbbMistralMissileID.Text, MissileID) then isValid := False;
-  if not TryStrToInt(edtMistral_Number.Text, MissileNumber) then isValid := False;
+  if not TryStrToInt(Idlauncher, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(cbbMistralMissileID.Text, MissileID) then
+    isValid := False;
+  if not TryStrToInt(edtMistral_Number.Text, MissileNumber) then
+    isValid := False;
 
-  if not TryStrToFloat(edtMistral_TBearing.Text, mTargetBearing) then isValid := False;
-  if not TryStrToFloat(edtMistral_TRange.Text, mTargetRange) then isValid := False;
-  if not TryStrToFloat(edtMistral_TElev.Text, mTargetElevasi) then isValid := False;
+  if not TryStrToFloat(edtMistral_TBearing.Text, mTargetBearing) then
+    isValid := False;
+  if not TryStrToFloat(edtMistral_TRange.Text, mTargetRange) then
+    isValid := False;
+  if not TryStrToFloat(edtMistral_TElev.Text, mTargetElevasi) then
+    isValid := False;
 
   if Sender = btnSetPosMistral then
   begin
@@ -3674,7 +3626,8 @@ begin
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
 
-  for i := 0 to recRangDeg.count -1 do begin
+  for i := 0 to recRangDeg.count - 1 do
+  begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
 
@@ -3682,39 +3635,41 @@ begin
   begin
     mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
 
-    RecSend.ShipID         := ShipID;
-    RecSend.mLauncherID    := LauncherID;
-    RecSend.mMissileID     := MissileID;
+    RecSend.ShipID := ShipID;
+    RecSend.mLauncherID := LauncherID;
+    RecSend.mMissileID := MissileID;
     RecSend.mMissileNumber := MissileNumber;
-    RecSend.OrderID        := 0;
+    RecSend.OrderID := 0;
 
     RecSend.mTargetBearing := mTargetBearing;
-    RecSend.mTargetRange   := mTargetRange;
-    RecSend.mTargetElev    := mTargetElevasi;
+    RecSend.mTargetRange := mTargetRange;
+    RecSend.mTargetElev := mTargetElevasi;
 
-    RecSend.mWeaponID      := C_DBID_MISTRAL;
+    RecSend.mWeaponID := C_DBID_MISTRAL;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //Fire
-      1 : begin
-            if((mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
-              (mTargetRange <= rangdeg.rangeMax * C_NauticalMile_To_Metre)) and
-              ((mTargetBearing >= rangdeg.startDeg) and (mTargetBearing <= rangdeg.endDeg))then begin
-              RecSend.OrderID := __ORD_MISTRAL_FIRE;
-              SimManager.NetSendTo3D_OrderMissileMistral(RecSend);
-            end;
+      1:
+        begin
+          if ((mTargetRange >= rangDeg.rangeMin * C_NauticalMile_To_Metre) and (mTargetRange <= rangDeg.rangeMax * C_NauticalMile_To_Metre)) and ((mTargetBearing >= rangDeg.startDeg) and (mTargetBearing <= rangDeg.endDeg)) then
+          begin
+            RecSend.OrderID := __ORD_MISTRAL_FIRE;
+            SimManager.NetSendTo3D_OrderMissileMistral(RecSend);
+          end;
 
-          end;
+        end;
       //Assign
-      2 : begin
-            RecSend.OrderID := __ORD_MISTRAL_ASSIGN;
-            SimManager.NetSendTo3D_OrderMissileMistral(RecSend);
-          end;
+      2:
+        begin
+          RecSend.OrderID := __ORD_MISTRAL_ASSIGN;
+          SimManager.NetSendTo3D_OrderMissileMistral(RecSend);
+        end;
       //Loading
-      3 : begin
-            RecSend.OrderID := __ORD_MISTRAL_LOADING;
-            SimManager.NetSendTo3D_OrderMissileMistral(RecSend);
-          end;
+      3:
+        begin
+          RecSend.OrderID := __ORD_MISTRAL_LOADING;
+          SimManager.NetSendTo3D_OrderMissileMistral(RecSend);
+        end;
     end;
   end;
 end;
@@ -3723,45 +3678,47 @@ end;
 { Tetral }
 procedure TfrmGameController.btnTetral_FireClick(Sender: TObject);
 var
-  isValid : Boolean;
-
-  ShipID, i,  TargetID,
-  LauncherID, weaponID,
-  MissileID,
-  MissileNumber   : Integer;
-
-  mTargetBearing,
-  mTargetRange,
-  mTargetElevasi  : Single;
-
-  RecSend         : TRec3DSetTetral;
-  Idlauncher      : string;
-  recRangDeg      : TList;
-  rangDeg         : TRangDeg;
+  isValid: Boolean;
+  ShipID, i, TargetID, LauncherID, weaponID, MissileID, MissileNumber: Integer;
+  mTargetBearing, mTargetRange, mTargetElevasi: Single;
+  RecSend: TRec3DSetTetral;
+  Idlauncher: string;
+  recRangDeg: TList;
+  rangDeg: TRangDeg;
 begin
-   if cbbTetralLaunch.Text = 'kiri' then
-   begin
+  if cbbTetralLaunch.Text = 'kiri' then
+  begin
     Idlauncher := IntToStr(1);
   end
-  else if cbbTetralLaunch.Text = 'kanan' then begin
+  else if cbbTetralLaunch.Text = 'kanan' then
+  begin
     Idlauncher := IntToStr(2);
   end;
 
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(Idlauncher, LauncherID) then isValid := False;
-  if not TryStrToInt(cbbTetral_Missile.Text, MissileID) then isValid := False;
-  if not TryStrToInt(edtTetral_Number.Text, MissileNumber) then isValid := False;
+  if not TryStrToInt(Idlauncher, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(cbbTetral_Missile.Text, MissileID) then
+    isValid := False;
+  if not TryStrToInt(edtTetral_Number.Text, MissileNumber) then
+    isValid := False;
 
-  if not TryStrToFloat(edtTetral_TBearing.Text, mTargetBearing) then isValid := False;
-  if not TryStrToFloat(edtTetral_TRange.Text, mTargetRange) then isValid := False;
-  if not TryStrToFloat(edtTetral_TElev.Text, mTargetElevasi) then isValid := False;
+  if not TryStrToFloat(edtTetral_TBearing.Text, mTargetBearing) then
+    isValid := False;
+  if not TryStrToFloat(edtTetral_TRange.Text, mTargetRange) then
+    isValid := False;
+  if not TryStrToFloat(edtTetral_TElev.Text, mTargetElevasi) then
+    isValid := False;
 
-  if not TryStrToInt(edtTetralTargetID.Text, TargetID) then isvalid := false;
+  if not TryStrToInt(edtTetralTargetID.Text, TargetID) then
+    isValid := false;
 
   if Sender = btnSetPosTetral then
   begin
@@ -3772,7 +3729,8 @@ begin
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
 
-  for i := 0 to recRangDeg.count -1 do begin
+  for i := 0 to recRangDeg.count - 1 do
+  begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
 
@@ -3780,49 +3738,47 @@ begin
   begin
     mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
 
-    RecSend.ShipID           := ShipID;
-    RecSend.mLauncherID      := LauncherID;
-    RecSend.mMissileID       := MissileID;
-    RecSend.mMissileNumber   := MissileNumber;
-    RecSend.OrderID          := 0;
+    RecSend.ShipID := ShipID;
+    RecSend.mLauncherID := LauncherID;
+    RecSend.mMissileID := MissileID;
+    RecSend.mMissileNumber := MissileNumber;
+    RecSend.OrderID := 0;
 
-    RecSend.mTargetBearing   := mTargetBearing;
-    RecSend.mTargetRange     := mTargetRange;
-    RecSend.mTargetElev      := mTargetElevasi;
+    RecSend.mTargetBearing := mTargetBearing;
+    RecSend.mTargetRange := mTargetRange;
+    RecSend.mTargetElev := mTargetElevasi;
 
-    RecSend.mWeaponID        := C_DBID_TETRAL;
+    RecSend.mWeaponID := C_DBID_TETRAL;
 
-    RecSend.TargetID         := TargetID;
+    RecSend.TargetID := TargetID;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //Fire
-      1 : begin
-          if((mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
-              (mTargetRange <= rangdeg.rangeMax * C_NauticalMile_To_Metre)) and
-                ((((mTargetBearing >= rangdeg.startDeg) and (mTargetBearing <= 360)) or((mTargetBearing >= 0) and
-                  (mTargetBearing <= rangDeg.endDeg)))) and (LauncherID = 1) then begin
+      1:
+        begin
+          if ((mTargetRange >= rangDeg.rangeMin * C_NauticalMile_To_Metre) and (mTargetRange <= rangDeg.rangeMax * C_NauticalMile_To_Metre)) and ((((mTargetBearing >= rangDeg.startDeg) and (mTargetBearing <= 360)) or ((mTargetBearing >= 0) and (mTargetBearing <= rangDeg.endDeg)))) and (LauncherID = 1) then
+          begin
             RecSend.OrderID := __ORD_TETRAL_FIRE;
             SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
           end
-          else if (mTargetRange >= rangdeg.rangeMin * C_NauticalMile_To_Metre) and
-                    (mTargetRange <= rangdeg.rangeMax * C_NauticalMile_To_Metre) and
-                      (mTargetBearing >= rangDeg.startDeg) and
-                        (mTargetBearing <= rangDeg.endDeg) and
-                          (LauncherID = 2) then begin
+          else if (mTargetRange >= rangDeg.rangeMin * C_NauticalMile_To_Metre) and (mTargetRange <= rangDeg.rangeMax * C_NauticalMile_To_Metre) and (mTargetBearing >= rangDeg.startDeg) and (mTargetBearing <= rangDeg.endDeg) and (LauncherID = 2) then
+          begin
             RecSend.OrderID := __ORD_TETRAL_FIRE;
             SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
           end;
-          end;
+        end;
       //Assign
-      2 : begin
-            RecSend.OrderID := __ORD_TETRAL_ASSIGN;
-            SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
-          end;
+      2:
+        begin
+          RecSend.OrderID := __ORD_TETRAL_ASSIGN;
+          SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
+        end;
       //Loading
-      3 : begin
-            RecSend.OrderID := __ORD_TETRAL_LOADING;
-            SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
-          end;
+      3:
+        begin
+          RecSend.OrderID := __ORD_TETRAL_LOADING;
+          SimManager.NetSendTo3D_OrderMissileTetral(RecSend);
+        end;
     end;
 
   end;
@@ -3831,94 +3787,98 @@ end;
 { Cannon }
 procedure TfrmGameController.btnCannonStartFire23Click(Sender: TObject);
 var
-  Item : TListItem;
-  ItemWeapon : TListItem;
-
-  isValid : Boolean;
-
-  ShipID, salvoRate,
-  WeaponID,
-  LauncherID,
-  MissileID,
-  MissileNumber : Integer;
-
-  TargetID,
-  ModeID,
-  BalistikID : integer;
-
-  CorrectBearing,
-  CorrectElev : Double;
-
-  RecSend : TRec3DSetWCC;
-
-  Weapon : TWeapon;
+  Item: TListItem;
+  ItemWeapon: TListItem;
+  isValid: Boolean;
+  ShipID, salvoRate, WeaponID, LauncherID, MissileID, MissileNumber: Integer;
+  TargetID, ModeID, BalistikID: integer;
+  CorrectBearing, CorrectElev: Double;
+  RecSend: TRec3DSetWCC;
+  Weapon: TWeapon;
 begin
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvWeapon.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
-  if not Assigned(lvWeapon.Selected.Data) then Exit;
-  ShipID    := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
-  WeaponID  := TWeapon(lvWeapon.Selected.Data).WeaponID;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvWeapon.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
+  if not Assigned(lvWeapon.Selected.Data) then
+    Exit;
+  ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+  WeaponID := TWeapon(lvWeapon.Selected.Data).WeaponID;
 
-  if not TryStrToInt(edtCannonLauncherID23.Text , LauncherID) then isValid := False;
-  if not TryStrToInt(edtCannonMissileID23.Text, MissileID) then isValid := false;
-  if not TryStrToInt(edtCannonLauncherID23.Text, LauncherID) then isValid := False;
-  if not TryStrToInt(edtCannonMissileNumber23.Text, MissileNumber) then isValid := false;
+  if not TryStrToInt(edtCannonLauncherID23.Text, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(edtCannonMissileID23.Text, MissileID) then
+    isValid := false;
+  if not TryStrToInt(edtCannonLauncherID23.Text, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(edtCannonMissileNumber23.Text, MissileNumber) then
+    isValid := false;
 
-  if not TryStrToInt(edtCannonTargetID23.Text, TargetID) then isValid := false;
-  if not TryStrToFloat(edtCannonCorrElev23.Text, CorrectElev) then isValid := false;
-  if not TryStrToFloat(edtCannonCorrBearing23.Text, CorrectBearing) then isValid := False;
-  if not TryStrToInt(cbbSalvoRate23.Text , salvoRate) then isValid := False;
+  if not TryStrToInt(edtCannonTargetID23.Text, TargetID) then
+    isValid := false;
+  if not TryStrToFloat(edtCannonCorrElev23.Text, CorrectElev) then
+    isValid := false;
+  if not TryStrToFloat(edtCannonCorrBearing23.Text, CorrectBearing) then
+    isValid := False;
+  if not TryStrToInt(cbbSalvoRate23.Text, salvoRate) then
+    isValid := False;
 
   ModeID := cbbCannonModeID23.ItemIndex + 1;
   BalistikID := cbbCannonBalistikID23.ItemIndex;
 
   if isValid then
   begin
-    RecSend.ShipID          := ShipID;
-    RecSend.mWeaponID       := WeaponID;
-    RecSend.mLauncherID     := LauncherID;
-    RecSend.mMissileID      := MissileID;
-    RecSend.mMissileNumber  := MissileNumber;
-    RecSend.mOrderID        := 0;
+    RecSend.ShipID := ShipID;
+    RecSend.mWeaponID := WeaponID;
+    RecSend.mLauncherID := LauncherID;
+    RecSend.mMissileID := MissileID;
+    RecSend.mMissileNumber := MissileNumber;
+    RecSend.mOrderID := 0;
 
-    RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := TargetID;
-    RecSend.mModeID             := ModeID;
-    RecSend.mAutoCorrectElev    := CorrectElev;
+    RecSend.mUpDown := 0;
+    RecSend.mTargetID := TargetID;
+    RecSend.mModeID := ModeID;
+    RecSend.mAutoCorrectElev := CorrectElev;
     RecSend.mAutoCorrectBearing := CorrectBearing;
 
-    RecSend.mBalistikID         := BalistikID;
-    RecSend.mSalvoRate          := salvoRate;
+    RecSend.mBalistikID := BalistikID;
+    RecSend.mSalvoRate := salvoRate;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //fire
-      1 : begin
-            RecSend.mOrderID := __ORD_CANNON_START_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      1:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_START_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Cease
-      2 : begin
-            RecSend.mOrderID := __ORD_CANNON_STOP_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      2:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_STOP_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Assigned
-      3 : begin
-            RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      3:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Deassigned
-      4 : begin
-            RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      4:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Fire
-      5 : begin
-            RecSend.mOrderID := __ORD_CANNON_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      5:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
 
     end;
   end;
@@ -3926,99 +3886,102 @@ end;
 
 procedure TfrmGameController.btnCannonStartFireClick(Sender: TObject);
 var
-  Item : TListItem;
-  ItemWeapon : TListItem;
-
-  isValid : Boolean;
-
-  ShipID, salvoRate,
-  WeaponID,
-  LauncherID,
-  MissileID,
-  MissileNumber : Integer;
-
-  TargetID,
-  ModeID,
-  BalistikID : integer;
-
-  CorrectBearing,
-  CorrectElev : Double;
-
-  RecSend : TRec3DSetWCC;
-
-  Weapon : TWeapon;
+  Item: TListItem;
+  ItemWeapon: TListItem;
+  isValid: Boolean;
+  ShipID, salvoRate, WeaponID, LauncherID, MissileID, MissileNumber: Integer;
+  TargetID, ModeID, BalistikID: integer;
+  CorrectBearing, CorrectElev: Double;
+  RecSend: TRec3DSetWCC;
+  Weapon: TWeapon;
 begin
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvWeapon.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
-  if not Assigned(lvWeapon.Selected.Data) then Exit;
-  ShipID    := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
-  WeaponID  := TWeapon(lvWeapon.Selected.Data).WeaponID;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvWeapon.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
+  if not Assigned(lvWeapon.Selected.Data) then
+    Exit;
+  ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+  WeaponID := TWeapon(lvWeapon.Selected.Data).WeaponID;
 
 //  if not TryStrToInt(edtCannonLauncherID.Text , LauncherID) then isValid := False;
-  if not TryStrToInt(edtCannonMissileID.Text, MissileID) then isValid := false;
-  if not TryStrToInt(edtCannonLauncherID.Text, LauncherID) then isValid := False;
-  if not TryStrToInt(edtCannonMissileNumber.Text, MissileNumber) then isValid := false;
+  if not TryStrToInt(edtCannonMissileID.Text, MissileID) then
+    isValid := false;
+  if not TryStrToInt(edtCannonLauncherID.Text, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(edtCannonMissileNumber.Text, MissileNumber) then
+    isValid := false;
 
-  if not TryStrToInt(edtCannonTargetID.Text, TargetID) then isValid := false;
-  if not TryStrToFloat(edtCannonCorrElev.Text, CorrectElev) then isValid := false;
-  if not TryStrToFloat(edtCannonCorrBearing.Text, CorrectBearing) then isValid := False;
-  if not TryStrToInt(cbbSalvoRate.Text , salvoRate) then isValid := False;
+  if not TryStrToInt(edtCannonTargetID.Text, TargetID) then
+    isValid := false;
+  if not TryStrToFloat(edtCannonCorrElev.Text, CorrectElev) then
+    isValid := false;
+  if not TryStrToFloat(edtCannonCorrBearing.Text, CorrectBearing) then
+    isValid := False;
+  if not TryStrToInt(cbbSalvoRate.Text, salvoRate) then
+    isValid := False;
 
   ModeID := cbbCannonModeID.ItemIndex + 1;
   BalistikID := cbbCannonBalistikID.ItemIndex;
 
   if isValid then
   begin
-    RecSend.ShipID          := ShipID;
-    RecSend.mWeaponID       := WeaponID;
+    RecSend.ShipID := ShipID;
+    RecSend.mWeaponID := WeaponID;
 
     if (WeaponID = C_DBID_CANNON35) or (WeaponID = C_DBID_CANNON76) then
-      RecSend.mLauncherID     := 1
+      RecSend.mLauncherID := 1
     else
-      RecSend.mLauncherID     := LauncherID;
+      RecSend.mLauncherID := LauncherID;
 
-    RecSend.mMissileID      := MissileID;
-    RecSend.mMissileNumber  := MissileNumber;
-    RecSend.mOrderID        := 0;
+    RecSend.mMissileID := MissileID;
+    RecSend.mMissileNumber := MissileNumber;
+    RecSend.mOrderID := 0;
 
-    RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := TargetID;
-    RecSend.mModeID             := ModeID;
-    RecSend.mAutoCorrectElev    := CorrectElev;
+    RecSend.mUpDown := 0;
+    RecSend.mTargetID := TargetID;
+    RecSend.mModeID := ModeID;
+    RecSend.mAutoCorrectElev := CorrectElev;
     RecSend.mAutoCorrectBearing := CorrectBearing;
 
-    RecSend.mBalistikID         := BalistikID;
-    RecSend.mSalvoRate          := salvoRate;
+    RecSend.mBalistikID := BalistikID;
+    RecSend.mSalvoRate := salvoRate;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //fire
-      1 : begin
-            RecSend.mOrderID := __ORD_CANNON_START_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      1:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_START_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Cease
-      2 : begin
-            RecSend.mOrderID := __ORD_CANNON_STOP_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      2:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_STOP_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Assigned
-      3 : begin
-            RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      3:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Deassigned
-      4 : begin
-            RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      4:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Fire
-      5 : begin
-            RecSend.mOrderID := __ORD_CANNON_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      5:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
 
     end;
   end;
@@ -4027,28 +3990,13 @@ end;
 { RBU }
 procedure TfrmGameController.btnRBU6000FireClick(Sender: TObject);
 var
-   valid : boolean ;
-
-   i,
-   shipID,
-   launcherID,
-   MissileNumber,
-   missileID,
-   MissileType,
-   TargetID,
-   CountSalvo,
-   weaponID  : integer ;
-
-   recRangDeg  :TList;
-
-   rangDeg     : TRangDeg;
-
-   bearing, range, depth,
-   Corrbearing, Correlev      : double;
-
-   RecSend : TRec3DSetRBU;
-   Idlauncher : string;
-   
+  valid: boolean;
+  i, shipID, launcherID, MissileNumber, missileID, MissileType, TargetID, CountSalvo, weaponID: integer;
+  recRangDeg: TList;
+  rangDeg: TRangDeg;
+  bearing, range, depth, Corrbearing, Correlev: double;
+  RecSend: TRec3DSetRBU;
+  Idlauncher: string;
 begin
   if cbbrbuLauncherId.Text = 'kanan' then
   begin
@@ -4059,104 +4007,123 @@ begin
     Idlauncher := IntToStr(2);
   end;
 
-   valid  := true ;
+  valid := true;
 
-   if not Assigned(lvRuntimeShip.Selected) then Exit;
-   if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
-   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
+  shipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-   if not TryStrToFloat(eRBU6000Bearing.Text, bearing) then valid := false;
-   if not TryStrToFloat(eRBU6000Range.Text, range) then valid := false;
-   if not TryStrToInt(eRBU6000MissilieID.Text, missileID) then valid := false;
-   if not TryStrToInt(Idlauncher, launcherID) then valid := false;
-   if not TryStrToInt(eRBU6000Balistik.Text, MissileType) then valid := False;
-   if not TryStrToInt(eRBU6000Number.Text, MissileNumber) then valid := False;
-   if not TryStrToInt(eRBUTargetID.Text, TargetID) then valid := False;
-   if not TryStrToInt(cbbRBUSalvoCount.Text, CountSalvo) then valid := False;
-   if not TryStrToFloat(eRBU6000CorrBearing.Text, Corrbearing) then valid := False;
-   if not TryStrToFloat(eRBU6000CorrElev.Text, Correlev) then valid := False;
-   if not TryStrToFloat(eRBU6000Depth.Text, depth) then valid := False;
+  if not TryStrToFloat(eRBU6000Bearing.Text, bearing) then
+    valid := false;
+  if not TryStrToFloat(eRBU6000Range.Text, range) then
+    valid := false;
+  if not TryStrToInt(eRBU6000MissilieID.Text, missileID) then
+    valid := false;
+  if not TryStrToInt(Idlauncher, launcherID) then
+    valid := false;
+  if not TryStrToInt(eRBU6000Balistik.Text, MissileType) then
+    valid := False;
+  if not TryStrToInt(eRBU6000Number.Text, MissileNumber) then
+    valid := False;
+  if not TryStrToInt(eRBUTargetID.Text, TargetID) then
+    valid := False;
+  if not TryStrToInt(cbbRBUSalvoCount.Text, CountSalvo) then
+    valid := False;
+  if not TryStrToFloat(eRBU6000CorrBearing.Text, Corrbearing) then
+    valid := False;
+  if not TryStrToFloat(eRBU6000CorrElev.Text, Correlev) then
+    valid := False;
+  if not TryStrToFloat(eRBU6000Depth.Text, depth) then
+    valid := False;
 
-   if Sender = btnRBUsetPos then
+  if Sender = btnRBUsetPos then
   begin
     SimManager.FMap.CurrentTool := TOOL_SELECT_COORD_RBU;
   end;
 
   weaponID := 2;
   recRangDeg := TList.Create;
-  DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
+  DataModule1.getRangDeg(shipID, weaponID, launcherID, recRangDeg);
 
-
-  for i := 0 to recRangDeg.count -1 do
+  for i := 0 to recRangDeg.count - 1 do
   begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
 
-   if valid then
-   begin
-     range := range * C_NauticalMile_To_Metre;
+  if valid then
+  begin
+    range := range * C_NauticalMile_To_Metre;
 
-     RecSend.ShipID         := shipID;
-     RecSend.mWeaponID      := C_DBID_RBU6000;
-     RecSend.mLauncherID    := launcherID;
-     RecSend.mMissileID     := missileID;
-     RecSend.mMissileNumber := MissileNumber;
-     RecSend.mTargetID      := TargetID;
-     RecSend.mCount         := CountSalvo;
+    RecSend.ShipID := shipID;
+    RecSend.mWeaponID := C_DBID_RBU6000;
+    RecSend.mLauncherID := launcherID;
+    RecSend.mMissileID := missileID;
+    RecSend.mMissileNumber := MissileNumber;
+    RecSend.mTargetID := TargetID;
+    RecSend.mCount := CountSalvo;
 
-     RecSend.mMissileType   := MissileType;
-     RecSend.OrderID        := 0;
-     RecSend.mLncrBearing   := bearing;
-     RecSend.mLncRange      := range;
-     RecSend.mCorrBearing   := Corrbearing;
-     RecSend.mCorrElev      := Correlev;
-     RecSend.mTargetDepth   := depth;
+    RecSend.mMissileType := MissileType;
+    RecSend.OrderID := 0;
+    RecSend.mLncrBearing := bearing;
+    RecSend.mLncRange := range;
+    RecSend.mCorrBearing := Corrbearing;
+    RecSend.mCorrElev := Correlev;
+    RecSend.mTargetDepth := depth;
 
-     case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
        //assign
-       1 : begin
-             RecSend.OrderID := __ORD_RBU_ASSIGNED;
-             SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
-           end;
+      1:
+        begin
+          RecSend.OrderID := __ORD_RBU_ASSIGNED;
+          SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
+        end;
        //deassign
-       2 : begin
-             RecSend.OrderID := __ORD_RBU_DEASSIGNED;
-             SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
-           end;
+      2:
+        begin
+          RecSend.OrderID := __ORD_RBU_DEASSIGNED;
+          SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
+        end;
        //fire
-       3 : begin
-             RecSend.OrderID := __ORD_RBU_FIRE;
-             SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
-           end;
+      3:
+        begin
+          RecSend.OrderID := __ORD_RBU_FIRE;
+          SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
+        end;
        //loading
-       4 : begin
-             tmrRBU.Enabled := True;
-             btnRBUStartFire.Enabled := False;
-             btnRBU6000Assign.Enabled := False;
-             RecSend.OrderID := __ORD_RBU_LOADING;
-             SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
-           end;
+      4:
+        begin
+          tmrRBU.Enabled := True;
+          btnRBUStartFire.Enabled := False;
+          btnRBU6000Assign.Enabled := False;
+          RecSend.OrderID := __ORD_RBU_LOADING;
+          SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
+        end;
        //Automatic
-       5 : begin
-             RecSend.OrderID := __ORD_RBU_AUTO;
-             SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
-           end;
+      5:
+        begin
+          RecSend.OrderID := __ORD_RBU_AUTO;
+          SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
+        end;
        //Start Fire
-       6 : begin
+      6:
+        begin
 
-             if (StrToFloat(eRBU6000Bearing.Text) > rangDeg.startDeg ) or  (StrToFloat(eRBU6000Bearing.Text) < rangDeg.endDeg ) then
-                 begin
-                   RecSend.OrderID := __ORD_RBU_STARTF;
-                   SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
-                 end;
-           end;
+          if (StrToFloat(eRBU6000Bearing.Text) > rangDeg.startDeg) or (StrToFloat(eRBU6000Bearing.Text) < rangDeg.endDeg) then
+          begin
+            RecSend.OrderID := __ORD_RBU_STARTF;
+            SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
+          end;
+        end;
        //Stop Fire
-       7 : begin
-             RecSend.OrderID := __ORD_RBU_STOPF;
-             SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
-           end;
-     end;
-   end ;
+      7:
+        begin
+          RecSend.OrderID := __ORD_RBU_STOPF;
+          SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
+        end;
+    end;
+  end;
 end;
 
 { Asroc }
@@ -4164,40 +4131,40 @@ procedure TfrmGameController.MainMenuClick(Sender: TObject);
 begin
   case TImage(Sender).Tag of
     0:
-    begin
-      pnlClient.BringToFront;
-    end;
+      begin
+        pnlClient.BringToFront;
+      end;
     1:
-    begin
-      pnlScenario.BringToFront;
-      ShowScenario;
-    end;
+      begin
+        pnlScenario.BringToFront;
+        ShowScenario;
+      end;
     2:
-    begin
-      pnlPlatform.BringToFront;
-      ShowShip;
-    end;
+      begin
+        pnlPlatform.BringToFront;
+        ShowShip;
+      end;
     3:
-    begin
-      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
-        exit;
+      begin
+        if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+          exit;
 
-      pnlController.BringToFront;
-    end;
+        pnlController.BringToFront;
+      end;
     4:
-    begin
-      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
-        exit;
+      begin
+        if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+          exit;
 
-      pnlEnvironment.BringToFront;
-    end;
+        pnlEnvironment.BringToFront;
+      end;
     5:
-    begin
-      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
-        exit;
+      begin
+        if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+          exit;
 
-      pnlReport.BringToFront;
-    end;
+        pnlReport.BringToFront;
+      end;
   end;
 end;
 
@@ -4205,41 +4172,40 @@ procedure TfrmGameController.MainMenuMouseEnter(Sender: TObject);
 begin
   case TImage(Sender).Tag of
     0:
-    begin
-      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
-    end;
+      begin
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+      end;
     1:
-    begin
-      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
-    end;
+      begin
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+      end;
     2:
-    begin
-      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
-    end;
+      begin
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+      end;
     3:
-    begin
-      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
-        exit;
+      begin
+        if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+          exit;
 
-      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
-    end;
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+      end;
     4:
-    begin
-      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
-        exit;
+      begin
+        if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+          exit;
 
-      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
-    end;
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+      end;
     5:
-    begin
-      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
-        exit;
+      begin
+        if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+          exit;
 
-      TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
-    end;
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
+      end;
   end;
 end;
-
 
 procedure TfrmGameController.MainMenuMouseLeave(Sender: TObject);
 begin
@@ -4248,100 +4214,102 @@ end;
 
 procedure TfrmGameController.btnAsrocFireClick(Sender: TObject);
 var
-  valid : boolean ;
-
-  shipID, lcrID , MissileNumber, MissileID, TargetID,
-  mslID, MissileType, Fuze: integer ;
-
-  bearing, range, depth, CorrRange : double;
-
+  valid: boolean;
+  shipID, lcrID, MissileNumber, MissileID, TargetID, mslID, MissileType, Fuze: integer;
+  bearing, range, depth, CorrRange: double;
   i: Integer;
-
-  RecSend : TRec3DSetAsrock;
+  RecSend: TRec3DSetAsrock;
 begin
-  valid := true ;
+  valid := true;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
-  ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
+  shipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(eAsrocLauncherID.Text, lcrID) then valid := false;
-  if not TryStrToInt(eAsrocNumber.Text, MissileNumber) then valid := false;
-  if not TryStrToInt(cbbAsrocMissileID.Text, MissileID) then valid := false;
-  if not TryStrToInt(eAsrocTargetID.Text, TargetID) then valid := false;
+  if not TryStrToInt(eAsrocLauncherID.Text, lcrID) then
+    valid := false;
+  if not TryStrToInt(eAsrocNumber.Text, MissileNumber) then
+    valid := false;
+  if not TryStrToInt(cbbAsrocMissileID.Text, MissileID) then
+    valid := false;
+  if not TryStrToInt(eAsrocTargetID.Text, TargetID) then
+    valid := false;
 
-  if not TryStrToFloat(eAsrocBearing.Text, bearing) then valid := false;
-  if not TryStrToFloat(eAsrocRange.Text, range) then valid := false;
-  if not TryStrToFloat(eAsrocDepth.Text, depth) then valid := False;
-  if not TryStrToFloat(eAsrocCorrRange.Text, CorrRange) then valid := false;
+  if not TryStrToFloat(eAsrocBearing.Text, bearing) then
+    valid := false;
+  if not TryStrToFloat(eAsrocRange.Text, range) then
+    valid := false;
+  if not TryStrToFloat(eAsrocDepth.Text, depth) then
+    valid := False;
+  if not TryStrToFloat(eAsrocCorrRange.Text, CorrRange) then
+    valid := false;
 
-
-  MissileType := cbbAsrocMissileType.ItemIndex+1;
+  MissileType := cbbAsrocMissileType.ItemIndex + 1;
   Fuze := cbbAsrocFuze.ItemIndex + 1;
 
   if valid then
   begin
-     range := range * C_NauticalMile_To_Metre;
+    range := range * C_NauticalMile_To_Metre;
 
-     RecSend.ShipID         := shipID;
-     RecSend.mWeaponID      := C_DBID_ASROC;
-     RecSend.mLauncherID    := lcrID;
-     RecSend.mMissileID     := MissileID;
-     RecSend.mMissileNumber := MissileNumber;
-         
-     RecSend.mMissile_Type  := MissileType;
-     RecSend.mTargetID      := TargetID;
-     RecSend.OrderID        := 0;
-     RecSend.mTargetBearing := bearing;
-     RecSend.mTargetRange   := range;
-     RecSend.mTargetDepth   := depth;
-     RecSend.mFuzeType      := Fuze;
+    RecSend.ShipID := shipID;
+    RecSend.mWeaponID := C_DBID_ASROC;
+    RecSend.mLauncherID := lcrID;
+    RecSend.mMissileID := MissileID;
+    RecSend.mMissileNumber := MissileNumber;
 
-     RecSend.mCorrRange     := CorrRange;
+    RecSend.mMissile_Type := MissileType;
+    RecSend.mTargetID := TargetID;
+    RecSend.OrderID := 0;
+    RecSend.mTargetBearing := bearing;
+    RecSend.mTargetRange := range;
+    RecSend.mTargetDepth := depth;
+    RecSend.mFuzeType := Fuze;
 
-     case TComponent(sender).Tag of
+    RecSend.mCorrRange := CorrRange;
+
+    case TComponent(Sender).Tag of
         //assign
-        1 : begin
-              RecSend.OrderID := __ORD_ASROCK_ASSIGNED;
-              SimManager.NetSendTo3D_OrderMissileAsroc (RecSend);
-            end;
+      1:
+        begin
+          RecSend.OrderID := __ORD_ASROCK_ASSIGNED;
+          SimManager.NetSendTo3D_OrderMissileAsroc(RecSend);
+        end;
         //deassign
-        2 : begin
-              RecSend.OrderID := __ORD_ASROCK_DEASSIGNED;
-              SimManager.NetSendTo3D_OrderMissileAsroc (RecSend);
-            end;
+      2:
+        begin
+          RecSend.OrderID := __ORD_ASROCK_DEASSIGNED;
+          SimManager.NetSendTo3D_OrderMissileAsroc(RecSend);
+        end;
         //fire
-        3 : begin
-              RecSend.OrderID := __ORD_ASROCK_FIRE;
-              SimManager.NetSendTo3D_OrderMissileAsroc (RecSend);
-            end;
-        //loading    
-        4 : begin
-              RecSend.OrderID := __ORD_ASROCK_LOADING;
-              SimManager.NetSendTo3D_OrderMissileAsroc(RecSend);
-            end;
-     end;
+      3:
+        begin
+          RecSend.OrderID := __ORD_ASROCK_FIRE;
+          SimManager.NetSendTo3D_OrderMissileAsroc(RecSend);
+        end;
+        //loading
+      4:
+        begin
+          RecSend.OrderID := __ORD_ASROCK_LOADING;
+          SimManager.NetSendTo3D_OrderMissileAsroc(RecSend);
+        end;
+    end;
 
-  end ;
+  end;
 end;
 
 { Torpedo SUT }
 procedure TfrmGameController.btnFireTorpodoSUTClick(Sender: TObject);
 var
-  shipID, lcrID, preDM,
-  MissileNumber, i,
-  MissileID, TargetID,
-  TargetType, weaponID           : integer ;
-
-  mCourse, mSpeed, mDepth,
-  mSafedistance, mEnabledistance : double ;
-
-  isvalid               : Boolean;
-  RecSend               : TRecSetTorpedoSUT;
-  TorpSpeed, Idlauncher : String;
-  rangeTarget           : Double;
-  recRangDeg            : TList;
-  rangDeg               : TRangDeg;
+  shipID, lcrID, preDM, MissileNumber, i, MissileID, TargetID, TargetType, weaponID: integer;
+  mCourse, mSpeed, mDepth, mSafedistance, mEnabledistance: double;
+  isvalid: Boolean;
+  RecSend: TRecSetTorpedoSUT;
+  TorpSpeed, Idlauncher: string;
+  rangeTarget: Double;
+  recRangDeg: TList;
+  rangDeg: TRangDeg;
 begin
   if cbbTorpSutSpeed.Text = 'Low' then
   begin
@@ -4359,100 +4327,115 @@ begin
   if cbbLauncherID.Text = 'kiri' then
   begin
     Idlauncher := IntToStr(1);
-	  frmMainInstruktur.searchTorpSUT(1);
+    frmMainInstruktur.searchTorpSUT(1);
   end
   else if cbbLauncherID.Text = 'kanan' then
   begin
-   Idlauncher := IntToStr(2);
-   frmMainInstruktur.searchTorpSUT(2);
+    Idlauncher := IntToStr(2);
+    frmMainInstruktur.searchTorpSUT(2);
   end;
 
   isvalid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
-  ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
+  shipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToFloat(edtTorpSUTCourse.Text,mCourse) then isvalid := False;
-  if not TryStrToFloat(TorpSpeed , mSpeed) then isvalid := False;
-  if not TryStrToFloat(edtTorpSUTDepth.Text,mDepth) then isvalid := False;
-  if not TryStrToFloat(edtTorpSUTSafeDis.Text, mSafedistance) then isvalid := False;
-  if not TryStrToFloat(edtTorpedoSUTEnDis.Text, mEnabledistance) then isvalid := False;
+  if not TryStrToFloat(edtTorpSUTCourse.Text, mCourse) then
+    isvalid := False;
+  if not TryStrToFloat(TorpSpeed, mSpeed) then
+    isvalid := False;
+  if not TryStrToFloat(edtTorpSUTDepth.Text, mDepth) then
+    isvalid := False;
+  if not TryStrToFloat(edtTorpSUTSafeDis.Text, mSafedistance) then
+    isvalid := False;
+  if not TryStrToFloat(edtTorpedoSUTEnDis.Text, mEnabledistance) then
+    isvalid := False;
 
-  if not TryStrToInt(edtTorpSUTTargetID.Text, TargetID) then isvalid := false;
-  if not TryStrToInt(Idlauncher, lcrID) then isvalid := false;
+  if not TryStrToInt(edtTorpSUTTargetID.Text, TargetID) then
+    isvalid := false;
+  if not TryStrToInt(Idlauncher, lcrID) then
+    isvalid := false;
 
   if edtTorpSutRange.Text = '' then
   begin
     edtTorpSutRange.Text := '0';
   end;
 
-  rangeTarget   := StrToFloat(edtTorpSutRange.Text);
-  preDM         := cbbTorpPredMode.ItemIndex + 1;
-  MissileID     := cbbTorpMissile.ItemIndex+2;
-  MissileNumber := cbbTorpSUTNumber.ItemIndex+2;
-  TargetType    := cbbTorpSUTTargetType.ItemIndex + 1;
+  rangeTarget := StrToFloat(edtTorpSutRange.Text);
+  preDM := cbbTorpPredMode.ItemIndex + 1;
+  MissileID := cbbTorpMissile.ItemIndex + 2;
+  MissileNumber := cbbTorpSUTNumber.ItemIndex + 2;
+  TargetType := cbbTorpSUTTargetType.ItemIndex + 1;
 
   weaponID := 4;
   recRangDeg := TList.Create;
-  DataModule1.getRangDeg(ShipID, weaponID, lcrID, recRangDeg);
+  DataModule1.getRangDeg(shipID, weaponID, lcrID, recRangDeg);
 
-  for i := 0 to recRangDeg.count -1 do
+  for i := 0 to recRangDeg.count - 1 do
   begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
 
   if isvalid then
   begin
-    RecSend.mT_ID                 := TargetID;
-    RecSend.ShipID                := shipID;
-    RecSend.mWeaponID             := C_DBID_TORPEDO_SUT;
-    RecSend.mLauncherID           := lcrID;
-    RecSend.mMissileID            := MissileID;
-    RecSend.mMissileNumber        := MissileNumber;
+    RecSend.mT_ID := TargetID;
+    RecSend.ShipID := shipID;
+    RecSend.mWeaponID := C_DBID_TORPEDO_SUT;
+    RecSend.mLauncherID := lcrID;
+    RecSend.mMissileID := MissileID;
+    RecSend.mMissileNumber := MissileNumber;
 
-    RecSend.OrderID               := 0;
-    RecSend.mTorpedoCourse        := mCourse;
-    RecSend.mTorpedoSpeed         := mSpeed;
-    RecSend.mTorpedoDepth         := mDepth;
-    RecSend.mTorpedoSafeDistance  := mSafedistance;
-    RecSend.mTorpedoEnDis         := mEnabledistance;
-    RecSend.mpredm                := preDM;
-    RecSend.mTargetType           := TargetType;
+    RecSend.OrderID := 0;
+    RecSend.mTorpedoCourse := mCourse;
+    RecSend.mTorpedoSpeed := mSpeed;
+    RecSend.mTorpedoDepth := mDepth;
+    RecSend.mTorpedoSafeDistance := mSafedistance;
+    RecSend.mTorpedoEnDis := mEnabledistance;
+    RecSend.mpredm := preDM;
+    RecSend.mTargetType := TargetType;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //Fire
-      1 : begin
-            if (rangeTarget >= rangDeg.rangeMin) and (rangeTarget <= rangDeg.rangeMax) then
+      1:
+        begin
+          if (rangeTarget >= rangDeg.rangeMin) and (rangeTarget <= rangDeg.rangeMax) then
+          begin
+            RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
+            SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
+            if edtTampung.Text = '0' then
             begin
-              RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
-              SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
-		     	    if edtTampung.Text = '0' then begin
-                edtTampung.Text := '1';
-              end;
+              edtTampung.Text := '1';
             end;
+          end;
 
-          end;
+        end;
       //Navigate
-      2 : begin
-            RecSend.OrderID := __ORD_TORPEDOSUT_NAVIGATE;
-            SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
-          end;
+      2:
+        begin
+          RecSend.OrderID := __ORD_TORPEDOSUT_NAVIGATE;
+          SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
+        end;
       //Homming
-      3 : begin
-            RecSend.OrderID := __ORD_TORPEDOSUT_HOMING;
-            SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
-          end;
+      3:
+        begin
+          RecSend.OrderID := __ORD_TORPEDOSUT_HOMING;
+          SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
+        end;
       //Search
-      4 : begin
-            RecSend.OrderID := __ORD_TORPEDOSUT_SEARCH;
-            SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
-          end;
+      4:
+        begin
+          RecSend.OrderID := __ORD_TORPEDOSUT_SEARCH;
+          SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
+        end;
       //Loading
-      5 : begin
-            RecSend.OrderID := __ORD_TORPEDOSUT_LOADING;
-            SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
-          end;
+      5:
+        begin
+          RecSend.OrderID := __ORD_TORPEDOSUT_LOADING;
+          SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
+        end;
     end;
   end
   else
@@ -4464,22 +4447,15 @@ end;
 { VLMICA }
 procedure TfrmGameController.btnMicaClick(Sender: TObject);
 var
-  isValid : Boolean;
-
-  idLauncher : string;
-
-  ShipID, weaponID,
-  LauncherID, MissileId, MissileNumber,
-  TargetID: integer;
-
-  mTargetBearing, mTargetElevasi,
-  mTargetRange : Single;
-
-  recRangDeg      : TList;
-  rangDeg         : TRangDeg;
+  isValid: Boolean;
+  idLauncher: string;
+  ShipID, weaponID, LauncherID, MissileId, MissileNumber, TargetID: integer;
+  mTargetBearing, mTargetElevasi, mTargetRange: Single;
+  recRangDeg: TList;
+  rangDeg: TRangDeg;
 
   //RecSendMica     : TRec3DSetVLMica;
-  RecSendMica     : TRec3DSetTetral;
+  RecSendMica: TRec3DSetTetral;
 begin
   isValid := True;
 
@@ -4490,21 +4466,29 @@ begin
 
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(idLauncher, LauncherID) then isValid := False;
+  if not TryStrToInt(idLauncher, LauncherID) then
+    isValid := False;
   //if not TryStrToInt(cbbMica_Missile.Text, MissileId) then isValid := False;
-  if not TryStrToInt(edtMica_Number.Text, MissileNumber) then isValid := False;
+  if not TryStrToInt(edtMica_Number.Text, MissileNumber) then
+    isValid := False;
 
   MissileId := Random(12) + 1;
 
-  if not TryStrToFloat(edtMica_TBearing.Text, mTargetBearing) then isValid := False;
-  if not TryStrToFloat(edtMica_TRange.Text, mTargetRange) then isValid := False;
-  if not TryStrToFloat(edtMica_TElev.Text, mTargetElevasi) then isValid := False;
+  if not TryStrToFloat(edtMica_TBearing.Text, mTargetBearing) then
+    isValid := False;
+  if not TryStrToFloat(edtMica_TRange.Text, mTargetRange) then
+    isValid := False;
+  if not TryStrToFloat(edtMica_TElev.Text, mTargetElevasi) then
+    isValid := False;
 
-  if not TryStrToInt(edtMicaTargetID.Text, TargetID) then isvalid := false;
+  if not TryStrToInt(edtMicaTargetID.Text, TargetID) then
+    isValid := false;
 
   if Sender = btnSetPosMica then
   begin
@@ -4519,27 +4503,28 @@ begin
   begin
     mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
 
-    RecSendMica.ShipID           := ShipID;
-    RecSendMica.mLauncherID      := 1;//LauncherID;   // request dari 3D
-    RecSendMica.mMissileID       := MissileID;
-    RecSendMica.mMissileNumber   := MissileNumber;
-    RecSendMica.OrderID          := 0;
+    RecSendMica.ShipID := ShipID;
+    RecSendMica.mLauncherID := 1; //LauncherID;   // request dari 3D
+    RecSendMica.mMissileID := MissileId;
+    RecSendMica.mMissileNumber := MissileNumber;
+    RecSendMica.OrderID := 0;
 
-    RecSendMica.mTargetBearing   := mTargetBearing;
-    RecSendMica.mTargetRange     := mTargetRange;
-    RecSendMica.mTargetElev      := mTargetElevasi;
+    RecSendMica.mTargetBearing := mTargetBearing;
+    RecSendMica.mTargetRange := mTargetRange;
+    RecSendMica.mTargetElev := mTargetElevasi;
 
-    RecSendMica.mWeaponID        := C_DBID_VLMICA;
+    RecSendMica.mWeaponID := C_DBID_VLMICA;
 
-    RecSendMica.TargetID         := TargetID;
+    RecSendMica.TargetID := TargetID;
 
     case TComponent(Sender).Tag of
       //fire
-      1: begin
+      1:
+        begin
         //RecSendMica.OrderID := __ORD_VLMICA_FIRE;
         //SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
-        RecSendMica.OrderID := __ORD_TETRAL_FIRE;
-        SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
+          RecSendMica.OrderID := __ORD_TETRAL_FIRE;
+          SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
 
         { ambil dari Tetral }
         {
@@ -4560,23 +4545,25 @@ begin
           SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
         end;
         }
-      end;
+        end;
 
       //Assign
-      2: begin
-        RecSendMica.OrderID := __ORD_TETRAL_ASSIGN;
+        2:
+        begin
+          RecSendMica.OrderID := __ORD_TETRAL_ASSIGN;
         //RecSendMica.OrderID := __ORD_VLMICA_ASSIGN;
         //SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
-        SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
-      end;
+          SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
+        end;
 
       //Loading
-      3: begin
-        RecSendMica.OrderID := __ORD_TETRAL_LOADING;
+        3:
+        begin
+          RecSendMica.OrderID := __ORD_TETRAL_LOADING;
         //RecSendMica.OrderID := __ORD_VLMICA_LOADING;
         //SimManager.NetSendTo3D_OrderMissileVLMica(RecSendMica);
-        SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
-      end;
+          SimManager.NetSendTo3D_OrderMissileTetral(RecSendMica);
+        end;
     end;
   end;
 
@@ -4586,46 +4573,45 @@ end;
 // same as EXOCET
 procedure TfrmGameController.btnC705_Click(Sender: TObject);
 var
-  isValid : Boolean;
-
-  i,
-  ShipID,
-  weaponID,
-  LauncherID,
-  MissileID,
-  MissileNumber,
-  TargetID : Integer;
-
-  rangDeg  : TRangDeg;
-  recRangDeg : TList;
-  Vehicle    : TVehicle;
-
-  mTargetBearing, mTargetRange : Single;
-
-  RecSendC705   : TRec_Data_C705;
+  isValid: Boolean;
+  i, ShipID, weaponID, LauncherID, MissileID, MissileNumber, TargetID: Integer;
+  rangDeg: TRangDeg;
+  recRangDeg: TList;
+  Vehicle: TVehicle;
+  mTargetBearing, mTargetRange: Single;
+  RecSendC705: TRec_Data_C705;
   //RecSend2  : TRecObjectAssigned;
-  C705LauncherID : string;
+  C705LauncherID: string;
 begin
   isValid := True;
 
-  if cbbC705Launcher.Text = 'kanan 1' then begin
+  if cbbC705Launcher.Text = 'kanan 1' then
+  begin
     C705LauncherID := IntToStr(1);
   end
-  else if cbbC705Launcher.Text = 'kiri 1' then begin
+  else if cbbC705Launcher.Text = 'kiri 1' then
+  begin
     C705LauncherID := IntToStr(2);
   end;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(C705LauncherID, LauncherID) then isValid := False;
+  if not TryStrToInt(C705LauncherID, LauncherID) then
+    isValid := False;
 
-  if not TryStrToInt(edtC705_Number.Text, MissileNumber) then isValid := False;
-  if not TryStrToInt(edtC705_MissileID.Text, MissileID) then isValid := False;
+  if not TryStrToInt(edtC705_Number.Text, MissileNumber) then
+    isValid := False;
+  if not TryStrToInt(edtC705_MissileID.Text, MissileID) then
+    isValid := False;
 
-  if not TryStrToFloat(edtC705_TBearing.Text, mTargetBearing) then isValid := False;
-  if not TryStrToFloat(edtC705_TRange.Text, mTargetRange) then isValid := False;
+  if not TryStrToFloat(edtC705_TBearing.Text, mTargetBearing) then
+    isValid := False;
+  if not TryStrToFloat(edtC705_TRange.Text, mTargetRange) then
+    isValid := False;
 
   if Sender = btnSetPosC705 then
   begin
@@ -4637,7 +4623,7 @@ begin
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
 
-  for i := 0 to recRangDeg.count -1 do
+  for i := 0 to recRangDeg.count - 1 do
   begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
@@ -4648,27 +4634,28 @@ begin
   begin
     mTargetRange := mTargetRange * C_NauticalMile_To_Metre;
 
-    RecSendC705.ShipID         := ShipID;
-    RecSendC705.mLauncherID    := LauncherID;
-    RecSendC705.mMissileID     := MissileID;
+    RecSendC705.ShipID := ShipID;
+    RecSendC705.mLauncherID := LauncherID;
+    RecSendC705.mMissileID := MissileID;
     RecSendC705.mMissileNumber := MissileNumber;
-    RecSendC705.OrderID        := 0;
+    RecSendC705.OrderID := 0;
 
-    if (StrToFloat(edtC705_TBearing.Text)< Vehicle.Vehicle_Heading )then
+    if (StrToFloat(edtC705_TBearing.Text) < Vehicle.Vehicle_Heading) then
     begin
-      RecSendC705.mTargetBearing := (mTargetBearing + (Vehicle.Vehicle_Heading-360));
+      RecSendC705.mTargetBearing := (mTargetBearing + (Vehicle.Vehicle_Heading - 360));
     end
     else
     begin
       RecSendC705.mTargetBearing := mTargetBearing + Vehicle.Vehicle_Heading;
     end;
 
-    RecSendC705.mTargetRange   := mTargetRange;
-    RecSendC705.mWeaponID      := C_DBID_C705;
+    RecSendC705.mTargetRange := mTargetRange;
+    RecSendC705.mWeaponID := C_DBID_C705;
 
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //fire
-      1 : begin
+      1:
+        begin
       {
         if (StrToFloat(edtC705_TRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtC705_TRange.Text) < rangDeg.rangeMax) then
         begin
@@ -4681,14 +4668,15 @@ begin
         end;
         }
 
-        RecSendC705.OrderID := __ORD_ID_Fire_C705;
-        SimManager.NetSendTo3D_OrderMissileC705(RecSendC705);
+          RecSendC705.OrderID := __ORD_ID_Fire_C705;
+          SimManager.NetSendTo3D_OrderMissileC705(RecSendC705);
 
-      end;
-      2 : begin              // load
-        RecSendC705.OrderID := __ORD_C802_LOADING;
-        SimManager.NetSendTo3D_OrderMissileC705(RecSendC705);
-      end;
+        end;
+      2:
+        begin              // load
+          RecSendC705.OrderID := __ORD_C802_LOADING;
+          SimManager.NetSendTo3D_OrderMissileC705(RecSendC705);
+        end;
     end;
   end;
 end;
@@ -4696,29 +4684,21 @@ end;
 { Torpedo A244 }
 procedure TfrmGameController.btnFireSpsClick(Sender: TObject);
 var
-  RecSPS : TRecDataTorperdo;
-
-  ShipID,
-  LauncherID,
-  MissileID,
-  MissileNumber : Integer;
-
-  TorpType      : Integer;
-
-  isValid       : Boolean;
-  idlauncher    : string ;
-
-  Torp_ISC      : single;
-  Torp_ISR, Torp_WTR, Torp_CEI, Torp_PRG, Torp_DOP,
-  Torp_ACE, Torp_FLO, Torp_ISD, Torp_ACM : integer;
+  RecSPS: TRecDataTorperdo;
+  ShipID, LauncherID, MissileID, MissileNumber: Integer;
+  TorpType: Integer;
+  isValid: Boolean;
+  idlauncher: string;
+  Torp_ISC: single;
+  Torp_ISR, Torp_WTR, Torp_CEI, Torp_PRG, Torp_DOP, Torp_ACE, Torp_FLO, Torp_ISD, Torp_ACM: integer;
 begin
   if cbbA244Launcher.Text = 'kiri' then
   begin
-    Idlauncher := IntToStr(1);
+    idlauncher := IntToStr(1);
   end
   else if cbbA244Launcher.Text = 'kanan' then
   begin
-    Idlauncher := IntToStr(2);
+    idlauncher := IntToStr(2);
   end;
 
 
@@ -4742,96 +4722,119 @@ begin
   end;
 //  ShowMessage(cbbA244MissID.Text);
 
-  if cbbWTR.Text = 'SH' then begin
+  if cbbWTR.Text = 'SH' then
+  begin
     Torp_WTR := 1;
   end
-  else if cbbWTR.Text = 'DP' then begin
+  else if cbbWTR.Text = 'DP' then
+  begin
     Torp_WTR := 2;
   end;
 
-  if cbbPRG.Text = 'HE' then begin
+  if cbbPRG.Text = 'HE' then
+  begin
     Torp_PRG := 1;
   end
-  else if cbbPRG.Text = 'SP' then begin
+  else if cbbPRG.Text = 'SP' then
+  begin
     Torp_PRG := 2;
   end;
 
-  if cbbACM.Text = 'ACT' then begin
+  if cbbACM.Text = 'ACT' then
+  begin
     Torp_ACM := 1;
   end
-  else if cbbACM.Text = 'PAS' then begin
+  else if cbbACM.Text = 'PAS' then
+  begin
     Torp_ACM := 2;
   end
-  else if cbbACM.Text = 'MIX' then begin
+  else if cbbACM.Text = 'MIX' then
+  begin
     Torp_ACM := 3;
   end;
 
-  if cbbDOP.Text = 'FM' then begin
+  if cbbDOP.Text = 'FM' then
+  begin
     Torp_DOP := 1;
   end
-  else if cbbDOP.Text = 'CW' then begin
+  else if cbbDOP.Text = 'CW' then
+  begin
     Torp_DOP := 2;
   end;
 
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(Idlauncher, LauncherID) then isValid := False;
+  if not TryStrToInt(idlauncher, LauncherID) then
+    isValid := False;
   //if not TryStrToInt(cbbA244MissID.Text, MissileID) then isValid := False;
-  if not TryStrToInt(edtSPS_Number.Text, MissileNumber) then isValid := False;
+  if not TryStrToInt(edtSPS_Number.Text, MissileNumber) then
+    isValid := False;
 
-  if not TryStrToFloat(edtSPS_ISC.Text, Torp_ISC) then isValid := False;
-  if not TryStrToInt(cbbISR.Text, Torp_ISR) then isValid := False;
+  if not TryStrToFloat(edtSPS_ISC.Text, Torp_ISC) then
+    isValid := False;
+  if not TryStrToInt(cbbISR.Text, Torp_ISR) then
+    isValid := False;
 
-  if cbbWTR.Text = 'DP' then begin
-    if not TryStrToInt(cbbCEI.Text, Torp_CEI) then isValid := False;
-    if not TryStrToInt(cbbFLO2.Text, Torp_FLO) then isValid := False;
-    if not TryStrToInt(cbbISD2.Text, Torp_ISD) then isValid := False;
+  if cbbWTR.Text = 'DP' then
+  begin
+    if not TryStrToInt(cbbCEI.Text, Torp_CEI) then
+      isValid := False;
+    if not TryStrToInt(cbbFLO2.Text, Torp_FLO) then
+      isValid := False;
+    if not TryStrToInt(cbbISD2.Text, Torp_ISD) then
+      isValid := False;
   end
-  else if cbbWTR.Text = 'SH' then begin
-    if not TryStrToInt(cbbCEI2.Text, Torp_CEI) then isValid := False;
-    if not TryStrToInt(cbbFLO.Text, Torp_FLO) then isValid := False;
-    if not TryStrToInt(cbbISD.Text, Torp_ISD) then isValid := False;
+  else if cbbWTR.Text = 'SH' then
+  begin
+    if not TryStrToInt(cbbCEI2.Text, Torp_CEI) then
+      isValid := False;
+    if not TryStrToInt(cbbFLO.Text, Torp_FLO) then
+      isValid := False;
+    if not TryStrToInt(cbbISD.Text, Torp_ISD) then
+      isValid := False;
   end;
 
-  if not TryStrToInt(cbbACE.Text, Torp_ACE) then isValid := False;
-
-
+  if not TryStrToInt(cbbACE.Text, Torp_ACE) then
+    isValid := False;
 
   if isValid then
   begin
-    RecSPS.ShipID         := ShipID;
-    RecSPS.mWeaponID      := C_DBID_TORPEDO_A244S;
-    RecSPS.mLauncherID    := LauncherID;
-    RecSPS.mMissileID     := MissileID;
+    RecSPS.ShipID := ShipID;
+    RecSPS.mWeaponID := C_DBID_TORPEDO_A244S;
+    RecSPS.mLauncherID := LauncherID;
+    RecSPS.mMissileID := MissileID;
     RecSPS.mMissileNumber := MissileNumber;
 
+    RecSPS.ISC := Torp_ISC;
+    RecSPS.ISR := Torp_ISR;
+    RecSPS.WTR := Torp_WTR;
+    RecSPS.CEI := Torp_CEI;
+    RecSPS.PRG := Torp_PRG;
+    RecSPS.DOP := Torp_DOP;
+    RecSPS.ACE := Torp_ACE;
+    RecSPS.FLO := Torp_FLO;
+    RecSPS.ISD := Torp_ISD;
+    RecSPS.ACM := Torp_ACM;
 
-    RecSPS.ISC         := Torp_ISC;
-    RecSPS.ISR         := Torp_ISR;
-    RecSPS.WTR         := Torp_WTR;
-    RecSPS.CEI         := Torp_CEI;
-    RecSPS.PRG         := Torp_PRG;
-    RecSPS.DOP         := Torp_DOP;
-    RecSPS.ACE         := Torp_ACE;
-    RecSPS.FLO         := Torp_FLO;
-    RecSPS.ISD         := Torp_ISD;
-    RecSPS.ACM         := Torp_ACM;
-
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //Fire
-      1 : begin
-            RecSPS.OrderID     := _ORD_SPS_FIRE;
-            SimManager.NetSendTo3D_OrderMissileTorpedo(RecSPS);
-          end;
+      1:
+        begin
+          RecSPS.OrderID := _ORD_SPS_FIRE;
+          SimManager.NetSendTo3D_OrderMissileTorpedo(RecSPS);
+        end;
       //Loading
-      2 : begin
-            RecSPS.OrderID     := _ORD_SPS_LOADING;
-            SimManager.NetSendTo3D_OrderMissileTorpedo(RecSPS);
-          end;
+      2:
+        begin
+          RecSPS.OrderID := _ORD_SPS_LOADING;
+          SimManager.NetSendTo3D_OrderMissileTorpedo(RecSPS);
+        end;
     end;
 
   end
@@ -4843,33 +4846,26 @@ end;
 
 procedure TfrmGameController.btnAssignTargetSpsClick(Sender: TObject);
 var
-  RecAssignTorpedoSPS : TRecDesigA244;
-
-  ShipID,
-  LauncherID,
-  MissileID,
-  MissileNumber,
-  TargetID, WeaponID, i : Integer;
-
-  TorpType      : Integer;
-
-  isValid       : Boolean;
-  idlauncher    : string ;
-
-  Torp_ISC      : single;
-  Torp_ISR, Torp_WTR, Torp_CEI, Torp_PRG, Torp_DOP,
-  Torp_ACE, Torp_FLO, Torp_ISD, Torp_ACM : integer;
-
-  recRangDeg      : TList;
-  rangDeg         : TRangDeg;
+  RecAssignTorpedoSPS: TRecDesigA244;
+  ShipID, LauncherID, MissileID, MissileNumber, TargetID, WeaponID, i: Integer;
+  TorpType: Integer;
+  isValid: Boolean;
+  idlauncher: string;
+  Torp_ISC: single;
+  Torp_ISR, Torp_WTR, Torp_CEI, Torp_PRG, Torp_DOP, Torp_ACE, Torp_FLO, Torp_ISD, Torp_ACM: integer;
+  recRangDeg: TList;
+  rangDeg: TRangDeg;
 begin
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
   ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
-  if not TryStrToInt(edtTorpedoSpsTarget.Text, TargetID) then isvalid := false;
+  if not TryStrToInt(edtTorpedoSpsTarget.Text, TargetID) then
+    isValid := false;
 
   if Sender = btnSetPosSps then
   begin
@@ -4878,28 +4874,31 @@ begin
 
   Weapon_ID := C_DBID_TORPEDO_A244S;
   recRangDeg := TList.Create;
-  DataModule1.getRangDeg(ShipID, weaponID, LauncherID, recRangDeg);
-  for i := 0 to recRangDeg.count -1 do begin
+  DataModule1.getRangDeg(ShipID, WeaponID, LauncherID, recRangDeg);
+  for i := 0 to recRangDeg.count - 1 do
+  begin
     rangDeg := TRangDeg(recRangDeg[i]);
   end;
 
-  RecAssignTorpedoSPS.ShipID       := shipID;
-  RecAssignTorpedoSPS.mWeaponID    := C_DBID_TORPEDO_A244S;
-  RecAssignTorpedoSPS.mTargetID    := TargetID;
+  RecAssignTorpedoSPS.ShipID := ShipID;
+  RecAssignTorpedoSPS.mWeaponID := C_DBID_TORPEDO_A244S;
+  RecAssignTorpedoSPS.mTargetID := TargetID;
 
-  case TComponent(sender).Tag of
+  case TComponent(Sender).Tag of
     // Assign Torpedo A244s
-    1: begin
-      RecAssignTorpedoSPS.OrderID  := __ORD_ID_A244_DESIG;
-      SimManager.NetSendTo3D_OrderMissileSetTargetTorpedo(RecAssignTorpedoSPS);
-    end;
+    1:
+      begin
+        RecAssignTorpedoSPS.OrderID := __ORD_ID_A244_DESIG;
+        SimManager.NetSendTo3D_OrderMissileSetTargetTorpedo(RecAssignTorpedoSPS);
+      end;
     // Deassign Torpedo A244s
-    2: begin
-      RecAssignTorpedoSPS.OrderID  := __ORD_ID_A244_BREAK;
-      SimManager.NetSendTo3D_OrderMissileSetTargetTorpedo(RecAssignTorpedoSPS);
+    2:
+      begin
+        RecAssignTorpedoSPS.OrderID := __ORD_ID_A244_BREAK;
+        SimManager.NetSendTo3D_OrderMissileSetTargetTorpedo(RecAssignTorpedoSPS);
 
-      edtTorpedoSpsTarget.Text := '0';
-    end;
+        edtTorpedoSpsTarget.Text := '0';
+      end;
   end;
 
 end;
@@ -4909,18 +4908,18 @@ end;
 { Map Util }
 procedure TfrmGameController.btnSelectObjClick(Sender: TObject);
 var
-  mapRec  : TRecMapCommand;
-  Vehicle : TVehicle;
+  mapRec: TRecMapCommand;
+  Vehicle: TVehicle;
 begin
   if Assigned(lvRuntimeShipTrajectory.Selected) then
   begin
-    mapRec.ToolID   := miArrowTool;
-    mapRec.OrderID  := OID_OBJ_Select;
-    mapRec.MapID    := 1;
+    mapRec.ToolID := miArrowTool;
+    mapRec.OrderID := OID_OBJ_Select;
+    mapRec.MapID := 1;
 
     if Assigned(lvRuntimeShipTrajectory.Selected.data) then
     begin
-      Vehicle       := TVehicle(lvRuntimeShipTrajectory.Selected.data);
+      Vehicle := TVehicle(lvRuntimeShipTrajectory.Selected.data);
       mapRec.ShipID := Vehicle.Vehicle_ID;
       SimManager.NetSendToMap(mapRec);
     end;
@@ -4933,7 +4932,7 @@ end;
 
 procedure TfrmGameController.btnRemoveObjectClick(Sender: TObject);
 var
-  Vehicle : TVehicle;
+  Vehicle: TVehicle;
 begin
   if lvRuntimeShip.Selected <> nil then
   begin
@@ -4951,59 +4950,62 @@ end;
 
 procedure TfrmGameController.cbbMapMiniZoomChange(Sender: TObject);
 var
-  mapRec : TRecMapCommand;
+  mapRec: TRecMapCommand;
 begin
-  mapRec.ToolID   := miZoomInTool;
-  mapRec.OrderID  := OID_MAP;
-  mapRec.Scale    := StrToInt(cbbMapMiniZoom.Text);
-  mapRec.MapID    := 1;
+  mapRec.ToolID := miZoomInTool;
+  mapRec.OrderID := OID_MAP;
+  mapRec.Scale := StrToInt(cbbMapMiniZoom.Text);
+  mapRec.MapID := 1;
 
   SimManager.NetSendToMap(mapRec);
 end;
 
 procedure TfrmGameController.btnSettingClientClick(Sender: TObject);
 var
-   i, l, t : integer ;
+  i, l, t: integer;
 begin
-   i := Monitor.MonitorNum;
-   l := Screen.Monitors[i].Width  ;
-   t := Screen.Monitors[i].Height  ;
-   frmCMSetting.ShowThisForm(l,t);
+  i := Monitor.MonitorNum;
+  l := Screen.Monitors[i].Width;
+  t := Screen.Monitors[i].Height;
+  frmCMSetting.ShowThisForm(l, t);
 end;
 
 procedure TfrmGameController.ShowDefaultPageWeapon(isDefault: boolean);
 var
-  i : integer ;
+  i: integer;
 begin
   lblInfo.Caption := 'Select weapon to use';
-  if pgWeapon = nil then exit;
+  if pgWeapon = nil then
+    exit;
 
-  for i:=0 to pgWeapon.PageCount-1 do
+  for i := 0 to pgWeapon.PageCount - 1 do
   begin
-   if pgWeapon = nil then exit;
+    if pgWeapon = nil then
+      exit;
 
-   if pgWeapon.Pages[i] <> nil then
-   pgWeapon.Pages[i].TabVisible := False ;
+    if pgWeapon.Pages[i] <> nil then
+      pgWeapon.Pages[i].TabVisible := False;
 
   end;
 
-  if pgWeapon = nil then exit;
+  if pgWeapon = nil then
+    exit;
   if isDefault then
   begin
-     if pgtwDefault <> nil then
-     begin
-        pgtwDefault.TabVisible := True ;
-        pgWeapon.ActivePage := pgtwDefault;
-     end;
+    if pgtwDefault <> nil then
+    begin
+      pgtwDefault.TabVisible := True;
+      pgWeapon.ActivePage := pgtwDefault;
+    end;
   end;
 
 end;
 
 procedure TfrmGameController.ShowScenario;
 var
-  i : integer;
-  ListScenario : Tlist;
-  Scenario : TScenarioList;
+  i: integer;
+  ListScenario: Tlist;
+  Scenario: TScenarioList;
 begin
   lvListScen.Items.Clear;
 
@@ -5015,6 +5017,7 @@ begin
     Scenario := TScenarioList(ListScenario[i]);
 
     if Scenario.Scenario_ID = 0 then
+
     else
     begin
       if GameType = Scenario.Game_Type then
@@ -5033,11 +5036,12 @@ begin
   ListScenario.Free;
 
 end;
+
 procedure TfrmGameController.ShowShip;
 var
-  i : integer;
-  ListShip : Tlist;
-  Ship : TVehicle;
+  i: integer;
+  ListShip: Tlist;
+  Ship: TVehicle;
 begin
   {membersihkan lvship}
   lvShipList.Items.Clear;
@@ -5059,9 +5063,12 @@ begin
       SubItems.Add(Ship.Vehicle_Name);
 
       case Ship.Vehicle_Type of
-        1: SubItems.Add('Surface');
-        2: SubItems.Add('Air');
-        3: SubItems.Add('Subsurface');
+        1:
+          SubItems.Add('Surface');
+        2:
+          SubItems.Add('Air');
+        3:
+          SubItems.Add('Subsurface');
       end;
     end;
   end;
@@ -5076,518 +5083,554 @@ end;
 
 procedure TfrmGameController.ShowWeaponPanel(WeaponID, LauncherID: integer);
 var
-  launcher : string;
+  launcher: string;
 begin
   case WeaponID of
-     C_DBID_ASROC : begin
-            pgtwAsroc.TabVisible := True ;
+    C_DBID_ASROC:
+      begin
+        pgtwAsroc.TabVisible := True;
 
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Asroc is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwAsroc ;
-            end;
-
-            eAsrocLauncherID.Text := IntToStr(launcherID);
-         end;
-     C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL : begin
-            if launcherID = 1 then begin
-              launcher := 'kanan';
-            end
-            else if launcherID = 2 then begin
-              launcher := 'kiri';
-            end;
-            pgtwRBU6000.TabVisible := True ;
-
-           if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'RBU is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              case WeaponID of
-                C_DBID_RBU6000 : pgtwRBU6000.Caption := 'RBU 6000 Manual';
-                C_DBID_RBU6000_DIGITAL : pgtwRBU6000.Caption := 'RBU 6000 Digital';
-              end;
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwRBU6000 ;
-           end;
-
-            cbbrbuLauncherId.Text := launcher;
-         end;
-     C_DBID_TORPEDO_SUT, C_DBID_TORPEDO_BLACKSHARK : begin
-            if launcherID = 1 then begin
-              launcher := 'kiri';
-              frmMainInstruktur.searchTorpSUT(1);
-            end
-            else if launcherID = 2 then begin
-              launcher := 'kanan';
-              frmMainInstruktur.searchTorpSUT(2);
-            end;
-            pgtwTorpedoSUT.TabVisible := True ;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Torpedo SUT is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwTorpedoSUT ;
-            end;
-
-            cbbLauncherID.Text := launcher;
-         end;
-     C_DBID_TORPEDO_A244S : begin
-            if launcherID = 1 then
-            begin
-              launcher := 'kiri';
-              cbbA244MissID.Visible  := True;
-              cbbA244MissID2.Visible := False;
-            end
-            else if launcherID = 2 then
-            begin
-              launcher := 'kanan';
-              cbbA244MissID.Visible  := False;
-              cbbA244MissID2.Visible := True;
-            end;
-            pgtwTorpedoA244.TabVisible := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Torpedo A244S is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwTorpedoA244;
-            end;
-
-            cbbA244Launcher.ItemIndex := launcherID-1;
-            wtrChange;
-        end;
-     C_DBID_CANNON76, C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL,
-     C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730,
-     C_DBID_CANNON35, C_DBID_CANNON40, C_DBID_CANNON120 :
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
         begin
-            pgtwWCCCannon.TabVisible         := True;
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Asroc is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwAsroc;
+        end;
 
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Cannon is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              case WeaponID of
-                C_DBID_CANNON76 : pgtwWCCCannon.Caption := 'Cannon 76';
-                C_DBID_CANNON57 : pgtwWCCCannon.Caption := 'Cannon 57';
-                C_DBID_CANNON_AK230 : pgtwWCCCannon.Caption := 'Cannon AK230';
-                C_DBID_CANNON_TYPE_730 : pgtwWCCCannon.Caption := 'Cannon Type 730';
-                C_DBID_CANNON57_DIGITAL : pgtwWCCCannon.Caption := 'Cannon 57';
-                C_DBID_CANNON35 : pgtwWCCCannon.Caption := 'Cannon 35';
-                C_DBID_CANNON40 : pgtwWCCCannon.Caption := 'Cannon 40';
-                C_DBID_CANNON120 : pgtwWCCCannon.Caption := 'Cannon 120';
-                else
-                  pgtwWCCCannon.Caption := 'Cannon';
-              end;
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwWCCCannon ;
-            end;
+        eAsrocLauncherID.Text := IntToStr(LauncherID);
+      end;
+    C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kanan';
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kiri';
+        end;
+        pgtwRBU6000.TabVisible := True;
+
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'RBU is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          case WeaponID of
+            C_DBID_RBU6000:
+              pgtwRBU6000.Caption := 'RBU 6000 Manual';
+            C_DBID_RBU6000_DIGITAL:
+              pgtwRBU6000.Caption := 'RBU 6000 Digital';
+          end;
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwRBU6000;
+        end;
+
+        cbbrbuLauncherId.Text := launcher;
+      end;
+    C_DBID_TORPEDO_SUT, C_DBID_TORPEDO_BLACKSHARK:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kiri';
+          frmMainInstruktur.searchTorpSUT(1);
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kanan';
+          frmMainInstruktur.searchTorpSUT(2);
+        end;
+        pgtwTorpedoSUT.TabVisible := True;
+
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Torpedo SUT is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwTorpedoSUT;
+        end;
+
+        cbbLauncherID.Text := launcher;
+      end;
+    C_DBID_TORPEDO_A244S:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kiri';
+          cbbA244MissID.Visible := True;
+          cbbA244MissID2.Visible := False;
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kanan';
+          cbbA244MissID.Visible := False;
+          cbbA244MissID2.Visible := True;
+        end;
+        pgtwTorpedoA244.TabVisible := True;
+
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Torpedo A244S is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwTorpedoA244;
+        end;
+
+        cbbA244Launcher.ItemIndex := LauncherID - 1;
+        wtrChange;
+      end;
+    C_DBID_CANNON76, C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL, C_DBID_CANNON_AK230, C_DBID_CANNON_TYPE_730, C_DBID_CANNON35, C_DBID_CANNON40, C_DBID_CANNON120:
+      begin
+        pgtwWCCCannon.TabVisible := True;
+
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Cannon is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          case WeaponID of
+            C_DBID_CANNON76:
+              pgtwWCCCannon.Caption := 'Cannon 76';
+            C_DBID_CANNON57:
+              pgtwWCCCannon.Caption := 'Cannon 57';
+            C_DBID_CANNON_AK230:
+              pgtwWCCCannon.Caption := 'Cannon AK230';
+            C_DBID_CANNON_TYPE_730:
+              pgtwWCCCannon.Caption := 'Cannon Type 730';
+            C_DBID_CANNON57_DIGITAL:
+              pgtwWCCCannon.Caption := 'Cannon 57';
+            C_DBID_CANNON35:
+              pgtwWCCCannon.Caption := 'Cannon 35';
+            C_DBID_CANNON40:
+              pgtwWCCCannon.Caption := 'Cannon 40';
+            C_DBID_CANNON120:
+              pgtwWCCCannon.Caption := 'Cannon 120';
+          else
+            pgtwWCCCannon.Caption := 'Cannon';
+          end;
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwWCCCannon;
+        end;
 
 //            edtCannonLauncherID.Text         := IntToStr(launcherID);
-              edtCannonLauncherID.Text         := '0';
+        edtCannonLauncherID.Text := '0';
+      end;
+    C_DBID_YAKHONT:
+      begin
+
+        if LauncherID = 1 then
+        begin
+          launcher := 'Missile 1';
+          chkYahkontM1.Checked := True;
+          chkYahkontM2.Checked := False;
+          chkYahkontM3.Checked := False;
+          chkYahkontM4.Checked := False;
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'Missile 2';
+          chkYahkontM1.Checked := False;
+          chkYahkontM2.Checked := True;
+          chkYahkontM3.Checked := False;
+          chkYahkontM4.Checked := False;
+        end
+        else if LauncherID = 3 then
+        begin
+          launcher := 'Missile 3';
+          chkYahkontM1.Checked := False;
+          chkYahkontM2.Checked := False;
+          chkYahkontM3.Checked := True;
+          chkYahkontM4.Checked := False;
+        end
+        else
+        begin
+          launcher := 'Missile 4';
+          chkYahkontM1.Checked := False;
+          chkYahkontM2.Checked := False;
+          chkYahkontM3.Checked := False;
+          chkYahkontM4.Checked := True;
         end;
-     C_DBID_YAKHONT : begin
+        cbbYahkontLauncher.Text := launcher;
+        pgtwYAHKONT.TabVisible := True;
 
-            if launcherID = 1 then begin
-              launcher := 'Missile 1';
-              chkYahkontM1.Checked := True;
-              chkYahkontM2.Checked := False;
-              chkYahkontM3.Checked := False;
-              chkYahkontM4.Checked := False;
-              end
-              else if launcherID = 2 then begin
-                launcher := 'Missile 2';
-                chkYahkontM1.Checked := False;
-                chkYahkontM2.Checked := True;
-                chkYahkontM3.Checked := False;
-                chkYahkontM4.Checked := False;
-              end
-              else if launcherID = 3 then begin
-                launcher := 'Missile 3';
-                chkYahkontM1.Checked := False;
-                chkYahkontM2.Checked := False;
-                chkYahkontM3.Checked := True;
-                chkYahkontM4.Checked := False;
-              end
-              else begin
-                launcher := 'Missile 4';
-                chkYahkontM1.Checked := False;
-                chkYahkontM2.Checked := False;
-                chkYahkontM3.Checked := False;
-                chkYahkontM4.Checked := True;
-              end;
-            cbbYahkontLauncher.Text   := launcher;
-            pgtwYAHKONT.TabVisible    := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Yakhont is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwYAHKONT ;
-            end;
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Yakhont is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwYAHKONT;
         end;
-     C_DBID_C802 : begin
-            if launcherID = 1 then begin
-              launcher := 'kanan 1';
-              end
-            else if launcherID = 2 then
-            begin
-              launcher := 'kiri 1';
-            end
-            else if launcherID = 3 then
-            begin
-              launcher := 'kanan 2';
-            end
-            else begin
-              launcher := 'kiri 2';
-            end;
-
-            cbbC802Launcher.Text      := launcher;
-            pgtwC802.TabVisible       := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'C802 is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwC802 ;
-            end;
+      end;
+    C_DBID_C802:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kanan 1';
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kiri 1';
+        end
+        else if LauncherID = 3 then
+        begin
+          launcher := 'kanan 2';
+        end
+        else
+        begin
+          launcher := 'kiri 2';
         end;
-     C_DBID_MISTRAL : begin
-            if launcherID = 1 then
-            begin
-              launcher := 'kiri';
-            end
-            else if launcherID = 2 then
-            begin
-              launcher := 'kanan';
-            end;
 
-            pgtwMistral.TabVisible    := True;
+        cbbC802Launcher.Text := launcher;
+        pgtwC802.TabVisible := True;
 
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Mistral is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwMistral ;
-            end;
-
-            cbbMistralLaunch.Text     := launcher;
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'C802 is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwC802;
         end;
-     C_DBID_STRELA : begin
-            if launcherID = 1 then
-            begin
-              launcher := 'kiri';
-            end
-            else if launcherID = 2 then
-            begin
-              launcher := 'kanan';
-            end;
-
-            pgtwStrella.TabVisible    := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Strela is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwStrella ;
-            end;
-
-            cbbStrellaLauncher.Text   := launcher;
+      end;
+    C_DBID_MISTRAL:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kiri';
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kanan';
         end;
-     C_DBID_EXOCET_MM40, C_DBID_EXOCET_MM38 : begin
-            if launcherID = 1 then
-            begin
-              launcher := 'kanan';
-              end
-            else if launcherID = 2 then
-            begin
-              launcher := 'kiri';
-            end;
-            pgtwExocetMM40.TabVisible        := True;
 
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Exocet MM40 is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else
-            begin
-              case WeaponID of
-                C_DBID_EXOCET_MM40 : pgtwExocetMM40.Caption := 'Exocet MM40';
-                C_DBID_EXOCET_MM38 : pgtwExocetMM40.Caption := 'Exocet MM38';
-              end;
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwExocetMM40 ;
-            end;
+        pgtwMistral.TabVisible := True;
 
-            cbbExxocetLauncher.Text          := launcher;
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Mistral is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwMistral;
+        end;
+
+        cbbMistralLaunch.Text := launcher;
+      end;
+    C_DBID_STRELA:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kiri';
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kanan';
+        end;
+
+        pgtwStrella.TabVisible := True;
+
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Strela is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwStrella;
+        end;
+
+        cbbStrellaLauncher.Text := launcher;
+      end;
+    C_DBID_EXOCET_MM40, C_DBID_EXOCET_MM38:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kanan';
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kiri';
+        end;
+        pgtwExocetMM40.TabVisible := True;
+
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Exocet MM40 is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          case WeaponID of
+            C_DBID_EXOCET_MM40:
+              pgtwExocetMM40.Caption := 'Exocet MM40';
+            C_DBID_EXOCET_MM38:
+              pgtwExocetMM40.Caption := 'Exocet MM38';
+          end;
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwExocetMM40;
+        end;
+
+        cbbExxocetLauncher.Text := launcher;
             //cbbExocet40_LauncherID.ItemIndex := Weapon.launcherID - 1;
+      end;
+    C_DBID_TETRAL:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kiri';
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kanan';
         end;
-     C_DBID_TETRAL : begin
-            if launcherID = 1 then
-            begin
-              launcher := 'kiri';
-            end
-            else if launcherID = 2 then
-            begin
-              launcher := 'kanan';
-            end;
-            pgtwTetral.TabVisible   := True;
+        pgtwTetral.TabVisible := True;
 
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Tetral is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else
-            begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwTetral ;
-            end;
-
-            cbbTetralLaunch.Text    := launcher;
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Tetral is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwTetral;
         end;
-     C_DBID_VLMICA : begin
 
-            if launcherID = 1 then
-            begin
-              launcher := 'kanan';
-            end;
+        cbbTetralLaunch.Text := launcher;
+      end;
+    C_DBID_VLMICA:
+      begin
+
+        if LauncherID = 1 then
+        begin
+          launcher := 'kanan';
+        end;
 //            else if launcherID = 2 then
 //            begin
 //              launcher := 'kiri';
 //            end;
 
-            pgtwVlMica.TabVisible   := True;
+        pgtwVlMica.TabVisible := True;
 
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'Tetral is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else
-            begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwVlMica ;
-            end;
-
-            cbbMicaLaunch.Text    := launcher;
-        end;
-     C_DBID_C705 : begin
-            if launcherID = 1 then begin
-              launcher := 'kanan 1';
-            end
-            else if launcherID = 2 then
-            begin
-              launcher := 'kiri 1';
-            end;
-
-            cbbC705Launcher.Text      := launcher;
-            pgtwC705.TabVisible       := True;
-
-            if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
-            begin
-              pgWeapon.ActivePage  := pgtwDefault ;
-              lblInfo.Caption := 'C705 is not ready to use';
-              pgWeapon.Enabled := False;
-            end
-            else begin
-              pgWeapon.Enabled := True;
-              pgWeapon.ActivePage  := pgtwC705 ;
-            end;
-        end;
-  else
-       begin
-          pgtwDefault.TabVisible := True ;
-          pgWeapon.ActivePage := pgtwDefault ;
-          lblInfo.Caption := 'Weapon is not ready to use';
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'Tetral is not ready to use';
           pgWeapon.Enabled := False;
-       end;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwVlMica;
+        end;
+
+        cbbMicaLaunch.Text := launcher;
+      end;
+    C_DBID_C705:
+      begin
+        if LauncherID = 1 then
+        begin
+          launcher := 'kanan 1';
+        end
+        else if LauncherID = 2 then
+        begin
+          launcher := 'kiri 1';
+        end;
+
+        cbbC705Launcher.Text := launcher;
+        pgtwC705.TabVisible := True;
+
+        if (lvWeapon.Selected.SubItems[1] = 'Off') and (onOffMode = 1) then
+        begin
+          pgWeapon.ActivePage := pgtwDefault;
+          lblInfo.Caption := 'C705 is not ready to use';
+          pgWeapon.Enabled := False;
+        end
+        else
+        begin
+          pgWeapon.Enabled := True;
+          pgWeapon.ActivePage := pgtwC705;
+        end;
+      end;
+  else
+    begin
+      pgtwDefault.TabVisible := True;
+      pgWeapon.ActivePage := pgtwDefault;
+      lblInfo.Caption := 'Weapon is not ready to use';
+      pgWeapon.Enabled := False;
+    end;
   end;
 end;
 
 procedure TfrmGameController.lvWeaponClick(Sender: TObject);
 var
-  Weapon        : TWeapon;
-  Vehicle       : TVehicle;
-  i             : Integer;
-  ClientConsole : TClientList;
-  weaponPic     : string;
-
-  ListWeaponOnShip : TList;
-
-  ListWeaponDetail : Tlist;
-  WeaponDetail     : TWeaponDetail;
-
-  IDweapon,
-  IDDetail : Integer;
+  Weapon: TWeapon;
+  Vehicle: TVehicle;
+  i: Integer;
+  ClientConsole: TClientList;
+  weaponPic: string;
+  ListWeaponOnShip: TList;
+  ListWeaponDetail: Tlist;
+  WeaponDetail: TWeaponDetail;
+  IDweapon, IDDetail: Integer;
 begin
-  if (TListView(sender).Selected <> nil) then
+  if (TListView(Sender).Selected <> nil) then
   begin
     Vehicle := TVehicle(lvRuntimeShip.Selected.Data);
-    if Assigned(TListView(sender).Selected.Data) then
+    if Assigned(TListView(Sender).Selected.Data) then
     begin
-      Weapon := TWeapon(TListView(sender).Selected.Data);
+      Weapon := TWeapon(TListView(Sender).Selected.Data);
 
-      Weapon_ID := TWeapon(TListView(sender).Selected.Data).WeaponID ;
-      Weapon_Name := TWeapon(TListView(sender).Selected.Data).MissileName;
+      Weapon_ID := TWeapon(TListView(Sender).Selected.Data).WeaponID;
+      Weapon_Name := TWeapon(TListView(Sender).Selected.Data).MissileName;
 
-      weaponPic := '..\Data\imageWeapon\' +
-      TWeapon(TListView(sender).Selected.Data).MissileName + '.png';
+      weaponPic := '..\Data\imageWeapon\' + TWeapon(TListView(Sender).Selected.Data).MissileName + '.png';
 
       ShowDefaultPageWeapon(false);
       ShowWeaponPanel(Weapon.WeaponID, Weapon.launcherID);
 
-      for i := 0 to lvClient.Items.Count-1 do
+      for i := 0 to lvClient.Items.Count - 1 do
       begin
         if Assigned(frmGameController.lvClient.Items[i].Data) then
         begin
-          ClientConsole :=  TClientList(lvClient.Items[i].Data);
+          ClientConsole := TClientList(lvClient.Items[i].Data);
           if (ClientConsole.WeaponID = C_DBID_STRELA) then
           begin
-            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
             begin
               if (Weapon.launcherID = 1) and (ClientConsole.Cli_LAUNCHERID = 1) then
               begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID,0, False);
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
               end
               else if (Weapon.launcherID = 2) and (ClientConsole.Cli_LAUNCHERID = 2) then
               begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID,0, False);
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
               end;
 
             end
-            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_STRELA, Weapon.launcherID,0, True);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_STRELA, Weapon.launcherID, 0, True);
             end;
 
           end
-          else
-          if (ClientConsole.WeaponID = C_DBID_MISTRAL) then
+          else if (ClientConsole.WeaponID = C_DBID_MISTRAL) then
           begin
-            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
             begin
               if (Weapon.launcherID = 1) and (ClientConsole.Cli_LAUNCHERID = 1) then
               begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID,0, False);
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
               end
               else if (Weapon.launcherID = 2) and (ClientConsole.Cli_LAUNCHERID = 2) then
               begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID,0, False);
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
               end;
 
             end
-            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID,0, True);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, True);
             end;
 
           end
-          else
-          if (ClientConsole.WeaponID = C_DBID_CANNON40) then
+          else if (ClientConsole.WeaponID = C_DBID_CANNON40) then
           begin
-            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON40, Weapon.launcherID,0, False);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON40, Weapon.launcherID, 0, False);
             end
-            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON40, Weapon.launcherID,0, True);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON40, Weapon.launcherID, 0, True);
             end;
           end
-          else
-          if (ClientConsole.WeaponID = C_DBID_CANNON57) then
+          else if (ClientConsole.WeaponID = C_DBID_CANNON57) then
           begin
-            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57, Weapon.launcherID,0, False);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57, Weapon.launcherID, 0, False);
             end
-            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57, Weapon.launcherID,0, True);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57, Weapon.launcherID, 0, True);
             end;
           end
-          else
-          if (ClientConsole.WeaponID = C_DBID_CANNON_AK230) then
+          else if (ClientConsole.WeaponID = C_DBID_CANNON_AK230) then
           begin
-            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_AK230, Weapon.launcherID,0, False);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_AK230, Weapon.launcherID, 0, False);
             end
-            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_AK230, Weapon.launcherID,0, True);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_AK230, Weapon.launcherID, 0, True);
             end;
           end
-          else
-          if (ClientConsole.WeaponID = C_DBID_CANNON_TYPE_730) then
+          else if (ClientConsole.WeaponID = C_DBID_CANNON_TYPE_730) then
           begin
-            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_TYPE_730, Weapon.launcherID,0, False);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_TYPE_730, Weapon.launcherID, 0, False);
             end
-            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_TYPE_730, Weapon.launcherID,0, True);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_TYPE_730, Weapon.launcherID, 0, True);
             end;
           end
-          else
-          if (ClientConsole.WeaponID = C_DBID_CANNON57_DIGITAL) then
+          else if (ClientConsole.WeaponID = C_DBID_CANNON57_DIGITAL) then
           begin
-            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57_DIGITAL, Weapon.launcherID,0, False);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57_DIGITAL, Weapon.launcherID, 0, False);
             end
-            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57_DIGITAL, Weapon.launcherID,0, True);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57_DIGITAL, Weapon.launcherID, 0, True);
             end;
           end
-          else
-          if (ClientConsole.WeaponID = C_DBID_C705) then
+          else if (ClientConsole.WeaponID = C_DBID_C705) then
           begin
-            if(ClientConsole.Cli_Status = 'RUNNING')and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_C705, Weapon.launcherID,0, False);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_C705, Weapon.launcherID, 0, False);
             end
-            else if (ClientConsole.Cli_Status = 'ONLINE') OR (ClientConsole.Cli_Status = 'OFFLINE') then
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
-                AssignStatus(Vehicle.Vehicle_ID, C_DBID_C705, Weapon.launcherID,0, True);
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_C705, Weapon.launcherID, 0, True);
             end;
           end;
         end;
@@ -5610,117 +5653,105 @@ begin
         imageC705.Picture.LoadFromFile(weaponPic);
       end;
 
-      IDweapon := TWeapon(TListView(sender).Selected.Data).WeaponID;
+      IDweapon := TWeapon(TListView(Sender).Selected.Data).WeaponID;
       IDDetail := StrToInt(lvWeapon.Selected.SubItems[0]);
 
       ListWeaponOnShip := TList.Create;
       ListWeaponDetail := TList.Create;
 
       DataModule1.GetListWeaponOnShip(Ship_ID, ListWeaponOnShip);
-      DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail,  ListWeaponDetail);
+      DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail, ListWeaponDetail);
 
       for i := 0 to ListWeaponDetail.Count - 1 do
       begin
-        if Assigned(ListWeaponDetail.Items[i]) then begin
+        if Assigned(ListWeaponDetail.Items[i]) then
+        begin
           WeaponDetail := TWeaponDetail(ListWeaponDetail.Items[i]);
 
           {$REGION 'BlackShark/SUT'}
-          lblStartSUT.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndSUT.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinSUT.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxSUT.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartSUT.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndSUT.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinSUT.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxSUT.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'RBU 6000 Analog'}
-          lblStartRBU.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndRBU.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinRBU.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxRBU.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartRBU.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndRBU.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinRBU.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxRBU.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'Torpedo A244S'}
-          lblStartA244s.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndA244s.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinA244s.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxA244s.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartA244s.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndA244s.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinA244s.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxA244s.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'Cannon 76'}
-          lblStartCannon76.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndCannon76.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinCannon76.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxCannon76.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartCannon76.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndCannon76.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinCannon76.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxCannon76.Caption := (FloatToStr(WeaponDetail.HighRange));
 
           if SimManager.instProjectSet.World = 'NSFS' then
             cbbCannonModeID.ItemIndex := 0; // modeID Surface
           {$ENDREGION}
-
           {$REGION 'Cannon 35'}
           if SimManager.instProjectSet.World = 'NAFS' then
             cbbCannonModeID.ItemIndex := 2; // modeID Air
           {$ENDREGION}
-
           {$REGION 'Tetral'}
-          lblStartTetral.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndTetral.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinTetral.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxTetral.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartTetral.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndTetral.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinTetral.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxTetral.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'Mistral'}
-          lblStartMistral.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndMistral.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinMistral.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxMistral.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartMistral.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndMistral.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinMistral.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxMistral.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'Strela'}
-          lblStartStrella.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndStrella.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinStrella.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxStrella.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartStrella.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndStrella.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinStrella.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxStrella.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'Exocet MM40'}
-          lblStartMM40.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndMM40.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinMM40.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxMM40.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartMM40.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndMM40.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinMM40.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxMM40.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'Yakhont'}
-          lblStartYakhont.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndYakhont.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinYakhont.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxYakhont.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartYakhont.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndYakhont.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinYakhont.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxYakhont.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'C802'}
-          lblStartDegC802.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndDegC802.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinRangeC802.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxRangeC802.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartDegC802.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndDegC802.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinRangeC802.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxRangeC802.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'Cannon AK230'}
-          lblStartAK230.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndAK230.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinAK230.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxAK230.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartAK230.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndAK230.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinAK230.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxAK230.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'VL MICA'}
-          lblStartVlMica.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndVlMica.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinVlMica.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxVlMica.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartVlMica.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndVlMica.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinVlMica.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxVlMica.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
-
           {$REGION 'C705'}
-          lblStartDegC705.Caption := (FloatToStr(weaponDetail.StartAngle));
-          lblEndDegC705.Caption   := (FloatToStr(weaponDetail.EndAngle));
-          lblMinRangeC705.Caption := (FloatToStr(weaponDetail.LowRange));
-          lblMaxRangeC705.Caption := (FloatToStr(weaponDetail.HighRange));
+          lblStartDegC705.Caption := (FloatToStr(WeaponDetail.StartAngle));
+          lblEndDegC705.Caption := (FloatToStr(WeaponDetail.EndAngle));
+          lblMinRangeC705.Caption := (FloatToStr(WeaponDetail.LowRange));
+          lblMaxRangeC705.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
 
         end;
@@ -5730,20 +5761,18 @@ begin
   end
   else
   begin
-    pgWeapon.ActivePage  := pgtwDefault;
+    pgWeapon.ActivePage := pgtwDefault;
   end;
 end;
 
 { Camera }
 { ---------------------------------------------------------------------- }
-procedure TfrmGameController.CurrentShipItemSendCommandPlayerCamera(
-  const orderID, LockID : integer);
+procedure TfrmGameController.CurrentShipItemSendCommandPlayerCamera(const orderID, LockID: integer);
 var
-  ObjectLockID : integer;
-  RecSend : spUtilityTools;
-
-  Weapon : TWeapon;
-  Vehicle : TVehicle;
+  ObjectLockID: integer;
+  RecSend: spUtilityTools;
+  Weapon: TWeapon;
+  Vehicle: TVehicle;
 begin
   if ((lvRuntimeShip.Selected = nil) and (lvRuntimeMissile.Selected = nil)) then
   begin
@@ -5759,63 +5788,68 @@ begin
       Weapon := TWeapon(lvRuntimeMissile.Selected.Data);
 
       RecSend.OrderID := orderID;                       // Order ID
-      RecSend.c0      := ObserverID;                    // ID Observer
+      RecSend.c0 := ObserverID;                    // ID Observer
 
       case LockID of
-        1 : RecSend.c1  := PLAYER_SET_ATTACH_MISSILE;   // TypeID
-        2 : RecSend.c1  := PLAYER_SET_ATTACH_MISSILE2;
+        1:
+          RecSend.c1 := PLAYER_SET_ATTACH_MISSILE;   // TypeID
+        2:
+          RecSend.c1 := PLAYER_SET_ATTACH_MISSILE2;
       end;
 
-      RecSend.c2      := Weapon.shipID;                 // Ship ID
-      RecSend.c3      := Weapon.WeaponID;               // Weapon ID -> Scenario Base
-      RecSend.c4      := Weapon.LauncherID;             // Launcher ID
-      RecSend.c5      := Weapon.MissileID;              // Missile ID
-      RecSend.c6      := Weapon.MissileNumber;          // Missile Number
+      RecSend.c2 := Weapon.shipID;                 // Ship ID
+      RecSend.c3 := Weapon.WeaponID;               // Weapon ID -> Scenario Base
+      RecSend.c4 := Weapon.LauncherID;             // Launcher ID
+      RecSend.c5 := Weapon.MissileID;              // Missile ID
+      RecSend.c6 := Weapon.MissileNumber;          // Missile Number
 
       SimManager.NetSendTo3D_SetCommandPlayerCamera(RecSend);
     end;
   end
   else
   //Set Camera Ship
-  if ((lvRuntimeShip.Selected <> nil) and (lvRuntimeMissile.Selected = nil)) then
+    if ((lvRuntimeShip.Selected <> nil) and (lvRuntimeMissile.Selected = nil)) then
   begin
     if Assigned(lvRuntimeShip.Selected.Data) then
-    begin                                               
+    begin
       Vehicle := TVehicle(lvRuntimeShip.Selected.Data);
 
       case Vehicle.Vehicle_Type of
-        1 : ObjectLockID := LOCK_SURFACE;
-        2 : ObjectLockID := LOCK_AIR;
-        3 : ObjectLockID := LOCK_SUBSURFCE;
+        1:
+          ObjectLockID := LOCK_SURFACE;
+        2:
+          ObjectLockID := LOCK_AIR;
+        3:
+          ObjectLockID := LOCK_SUBSURFCE;
       end;
 
       RecSend.OrderID := orderID;                       // Order ID
-      RecSend.c0      := ObserverID;                    // ID Observer
+      RecSend.c0 := ObserverID;                    // ID Observer
 
       case LockID of
-        1 : RecSend.c1      := PLAYER_SET_ATTACH_SHIP;  // TypeID
-        2 : RecSend.c1      := PLAYER_SET_ATTACH_SHIP2; // TypeID
+        1:
+          RecSend.c1 := PLAYER_SET_ATTACH_SHIP;  // TypeID
+        2:
+          RecSend.c1 := PLAYER_SET_ATTACH_SHIP2; // TypeID
       end;
 
-      RecSend.c2      := Vehicle.Vehicle_ID;            // Ship ID
-      RecSend.c3      := ObjectLockID;                  // Vehicle Type (surface, subsurface, air)
-      RecSend.c4      := 0;
-      RecSend.c5      := 0;
-      RecSend.c6      := 0;
+      RecSend.c2 := Vehicle.Vehicle_ID;            // Ship ID
+      RecSend.c3 := ObjectLockID;                  // Vehicle Type (surface, subsurface, air)
+      RecSend.c4 := 0;
+      RecSend.c5 := 0;
+      RecSend.c6 := 0;
 
       SimManager.NetSendTo3D_SetCommandPlayerCamera(RecSend);
     end;
   end;
 end;
 
-procedure TfrmGameController.CurrentShipItemSendCommandPlayerLockSideCamera(
-  const orderID, TypeLock, LockID: integer);
+procedure TfrmGameController.CurrentShipItemSendCommandPlayerLockSideCamera(const orderID, TypeLock, LockID: integer);
 var
-  ObjectLockID : integer;
-  RecSend : spUtilityTools;
-
-  Weapon : TWeapon;
-  Vehicle : TVehicle;
+  ObjectLockID: integer;
+  RecSend: spUtilityTools;
+  Weapon: TWeapon;
+  Vehicle: TVehicle;
 begin
   if ((lvRuntimeShip.Selected = nil) and (lvRuntimeMissile.Selected = nil)) then
   begin
@@ -5831,63 +5865,69 @@ begin
       Weapon := TWeapon(lvRuntimeMissile.Selected.Data);
 
       RecSend.OrderID := orderID;                         // Order ID
-      RecSend.c0      := ObserverID;                      // ID Observer
+      RecSend.c0 := ObserverID;                      // ID Observer
 
       case LockID of
-        1 : RecSend.c1      := PLAYER_SET_LOCK_OBJECT;    // TypeID ID
-        2 : RecSend.c1      := PLAYER_SET_LOCK_OBJECT2;   // TypeID ID
+        1:
+          RecSend.c1 := PLAYER_SET_LOCK_OBJECT;    // TypeID ID
+        2:
+          RecSend.c1 := PLAYER_SET_LOCK_OBJECT2;   // TypeID ID
       end;
 
-      RecSend.c2      := TypeLock;                        // Left, Right, Front, Back, Top
-      RecSend.c3      := LOCK_WEAPON;
-      RecSend.c4      := 0;
-      RecSend.c5      := 0;
-      RecSend.c6      := 0;
+      RecSend.c2 := TypeLock;                        // Left, Right, Front, Back, Top
+      RecSend.c3 := LOCK_WEAPON;
+      RecSend.c4 := 0;
+      RecSend.c5 := 0;
+      RecSend.c6 := 0;
 
       SimManager.NetSendTo3D_SetCommandPlayerCamera(RecSend);
     end;
   end
   else
   //Set Camera Ship
-  if ((lvRuntimeShip.Selected <> nil) and (lvRuntimeMissile.Selected = nil)) then
+    if ((lvRuntimeShip.Selected <> nil) and (lvRuntimeMissile.Selected = nil)) then
   begin
     if Assigned(lvRuntimeShip.Selected.Data) then
     begin
       Vehicle := TVehicle(lvRuntimeShip.Selected.Data);
 
       case Vehicle.Vehicle_Type of
-        1 : ObjectLockID := LOCK_SURFACE;
-        2 : ObjectLockID := LOCK_AIR;
-        3 : ObjectLockID := LOCK_SUBSURFCE;
+        1:
+          ObjectLockID := LOCK_SURFACE;
+        2:
+          ObjectLockID := LOCK_AIR;
+        3:
+          ObjectLockID := LOCK_SUBSURFCE;
       end;
 
       RecSend.OrderID := orderID;                         // Order ID
-      RecSend.c0      := ObserverID;                      // ID Observer
+      RecSend.c0 := ObserverID;                      // ID Observer
 
       case LockID of
-        1 : RecSend.c1      := PLAYER_SET_LOCK_OBJECT;    // TypeID ID
-        2 : RecSend.c1      := PLAYER_SET_LOCK_OBJECT2;   // TypeID ID
+        1:
+          RecSend.c1 := PLAYER_SET_LOCK_OBJECT;    // TypeID ID
+        2:
+          RecSend.c1 := PLAYER_SET_LOCK_OBJECT2;   // TypeID ID
       end;
 
-      RecSend.c2      := TypeLock;                        // Left, Right, Front, Back, Top
-      RecSend.c3      := ObjectLockID;                    // Vehicle Type (surface, subsurface, air)
-      RecSend.c4      := 0;
-      RecSend.c5      := 0;
-      RecSend.c6      := 0;
+      RecSend.c2 := TypeLock;                        // Left, Right, Front, Back, Top
+      RecSend.c3 := ObjectLockID;                    // Vehicle Type (surface, subsurface, air)
+      RecSend.c4 := 0;
+      RecSend.c5 := 0;
+      RecSend.c6 := 0;
 
       SimManager.NetSendTo3D_SetCommandPlayerCamera(RecSend);
     end;
   end;
 end;
 
-procedure TfrmGameController.CurrentShipItemSendCommanPlayerEvent(
-  const orderID, valInt : Integer; const valDbl : double);
+procedure TfrmGameController.CurrentShipItemSendCommanPlayerEvent(const orderID, valInt: Integer; const valDbl: double);
 var
-  rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
   rec.cmd := orderID;                 // Order ID
-  rec.valueInt      := valInt;              // ID Observer
-  rec.valueDbl      := valDbl;
+  rec.valueInt := valInt;              // ID Observer
+  rec.valueDbl := valDbl;
 
   SimManager.NetSendTo3D_CommandCamera(@rec);
 end;
@@ -5899,16 +5939,16 @@ end;
 
 procedure TfrmGameController.btnPlayerCameraUnlockClick(Sender: TObject);
 var
-  RecSend : spUtilityTools;
+  RecSend: spUtilityTools;
 begin
   RecSend.OrderID := TIPE_UTIL_PLAYER_SETTING;  // Order ID
-  RecSend.c0      := ObserverID;                // ID Observer
-  RecSend.c1      := PLAYER_SET_OBSERVER;       // Event ID
-  RecSend.c2      := 0;
-  RecSend.c3      := 0;
-  RecSend.c4      := 0;
-  RecSend.c5      := 0;                         // Speed Player;
-  RecSend.c6      := 0;
+  RecSend.c0 := ObserverID;                // ID Observer
+  RecSend.c1 := PLAYER_SET_OBSERVER;       // Event ID
+  RecSend.c2 := 0;
+  RecSend.c3 := 0;
+  RecSend.c4 := 0;
+  RecSend.c5 := 0;                         // Speed Player;
+  RecSend.c6 := 0;
 
   SimManager.NetSendTo3D_SetCommandPlayerCamera(RecSend);
 end;
@@ -5920,36 +5960,31 @@ begin
 
   unlockCam := False;
 
-  case TComponent(sender).Tag of
-    1 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_LEFT, 1);
-    end;
+  case TComponent(Sender).Tag of
+    1:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_LEFT, 1);
+      end;
 
-    2 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_FRONT, 1);
-    end;
+    2:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_FRONT, 1);
+      end;
 
-    3 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_RIGHT, 1);
-    end;
+    3:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_RIGHT, 1);
+      end;
 
-    4 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_BACK, 1);
-    end;
+    4:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_BACK, 1);
+      end;
 
-    5 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_TOP, 1);
-    end;
+    5:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_TOP, 1);
+      end;
   end
 end;
 
@@ -5959,93 +5994,107 @@ begin
   CurrentShipItemSendCommandPlayerCamera(TIPE_UTIL_PLAYER_SETTING, 2);
   Sleep(10);
 
-  case TComponent(sender).Tag of
-    1 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-        LOCK_SIDE_LEFT, 2);
-    end;
+  case TComponent(Sender).Tag of
+    1:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_LEFT, 2);
+      end;
 
-    2 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_FRONT, 2);
-    end;
+    2:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_FRONT, 2);
+      end;
 
-    3 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_RIGHT, 2);
-    end;
+    3:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_RIGHT, 2);
+      end;
 
-    4 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_BACK, 2);
-    end;
+    4:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_BACK, 2);
+      end;
 
-    5 :
-    begin
-      CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING,
-          LOCK_SIDE_TOP, 2);
-    end;
+    5:
+      begin
+        CurrentShipItemSendCommandPlayerLockSideCamera(TIPE_UTIL_PLAYER_SETTING, LOCK_SIDE_TOP, 2);
+      end;
   end
 end;
 
-procedure TfrmGameController.btnCamMoveLefMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.btnCamMoveLefMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  case TComponent(sender).Tag of
-    6 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    7 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    8 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    9 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+  case TComponent(Sender).Tag of
+    6:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    7:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    8:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    9:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
 
-    10 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    11 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    12 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    13 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    14 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    15 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    10:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    11:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    12:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    13:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    14:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    15:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
   end;
 end;
 
-procedure TfrmGameController.btnCamRotateOldLeftMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.btnCamRotateOldLeftMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  case TComponent(sender).Tag of
-    6 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    7 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    8 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    9 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+  case TComponent(Sender).Tag of
+    6:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    7:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    8:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    9:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
 
-    10 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    11 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    12 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    13 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    14 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
-    15 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(sender).Tag, 0);
+    10:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    11:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    12:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    13:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    14:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
+    15:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StartMove, TComponent(Sender).Tag, 0);
   end;
 end;
 
-procedure TfrmGameController.btnCamMoveLefMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.btnCamMoveLefMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  case TComponent(sender).Tag of
-    6,7,8,9           : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(sender).Tag, 0);
-    10,11,12,13,14,15 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(sender).Tag, 0);
+  case TComponent(Sender).Tag of
+    6, 7, 8, 9:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(Sender).Tag, 0);
+    10, 11, 12, 13, 14, 15:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(Sender).Tag, 0);
   end;
 end;
 
-procedure TfrmGameController.btnCamRotateOldLeftMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.btnCamRotateOldLeftMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  case TComponent(sender).Tag of
-    6,7,8,9           : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(sender).Tag, 0);
-    10,11,12,13,14,15 : CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(sender).Tag, 0);
+  case TComponent(Sender).Tag of
+    6, 7, 8, 9:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(Sender).Tag, 0);
+    10, 11, 12, 13, 14, 15:
+      CurrentShipItemSendCommanPlayerEvent(__ORD_ID_CAMCON_StopMove, TComponent(Sender).Tag, 0);
   end;
 end;
-
 
 procedure TfrmGameController.cbSelectIDCameraChange(Sender: TObject);
 begin
@@ -6059,179 +6108,189 @@ end;
 
 procedure TfrmGameController.mni3Click(Sender: TObject);
 var
-  ip      : string;
-  i       : Integer;
-  RecSend : TRecData2DOrder;
-  ipSPS   : string;
-  ipMOC1  : string;
-  AppData : tDataApplication;
+  ip: string;
+  i: Integer;
+  RecSend: TRecData2DOrder;
+  ipSPS: string;
+  ipMOC1: string;
+  AppData: tDataApplication;
 begin
-  if lvClient.Selected = nil then Exit;
+  if lvClient.Selected = nil then
+    Exit;
 
   ip := lvClient.Selected.SubItems[3];
 
-  case TComponent(sender).Tag of
-    0 :
-    begin
-      if lvClient.Selected.SubItems[1] = 'MOC-1' then begin
-        SimManager.InstrukturSendStopCommandIP(ip);
+  case TComponent(Sender).Tag of
+    0:
+      begin
+        if lvClient.Selected.SubItems[1] = 'MOC-1' then
+        begin
+          SimManager.InstrukturSendStopCommandIP(ip);
         //DataModule1.updateShipName(ip, '');
 
-        ipSPS := lvClient.Items[17].SubItems[3];
-        SimManager.InstrukturSendStopCommandIP(ipSPS);
+          ipSPS := lvClient.Items[17].SubItems[3];
+          SimManager.InstrukturSendStopCommandIP(ipSPS);
         //DataModule1.updateShipName(ipSPS, '');
-      end
-      else if lvClient.Selected.SubItems[1] = 'SPS115' then begin
-        SimManager.InstrukturSendStopCommandIP(ip);
+        end
+        else if lvClient.Selected.SubItems[1] = 'SPS115' then
+        begin
+          SimManager.InstrukturSendStopCommandIP(ip);
         //DataModule1.updateShipName(ip, '');
 
-        ipMOC1 := lvClient.Items[5].SubItems[3];
-        SimManager.InstrukturSendStopCommandIP(ipMOC1);
+          ipMOC1 := lvClient.Items[5].SubItems[3];
+          SimManager.InstrukturSendStopCommandIP(ipMOC1);
         //DataModule1.updateShipName(ipMOC1, '');
-      end
-      else begin
-        SimManager.InstrukturSendStopCommandIP(ip);
+        end
+        else
+        begin
+          SimManager.InstrukturSendStopCommandIP(ip);
         //DataModule1.updateShipName(ip, '');
 
-        AppData := GetPCConfigFromIPAddress(ip);
+          AppData := GetPCConfigFromIPAddress(ip);
 
-        RecSend.orderID   := _CM_CLIENT_MANAGE;
-        RecSend.numValue  := __CM_CLIENT_STOP;
-        RecSend.strValue  := ExtractFileName(AppData.c_app_name);
+          RecSend.orderID := _CM_CLIENT_MANAGE;
+          RecSend.numValue := __CM_CLIENT_STOP;
+          RecSend.strValue := ExtractFileName(AppData.c_app_name);
+          RecSend.ipConsole := ip;
+
+          SimManager.SendCommand2D_Order(RecSend);
+        end;
+      end;
+
+    1:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_RESTART;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
         RecSend.ipConsole := ip;
 
         SimManager.SendCommand2D_Order(RecSend);
       end;
-    end;
 
-    1 :
-    begin
-      RecSend.orderID   := _CM_CLIENT_MANAGE;
-      RecSend.numValue  := __CM_CLIENT_RESTART;
-      RecSend.strValue  := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := ip;
+    2:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_SHUTDOWN;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
+        RecSend.ipConsole := ip;
 
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
+        if lvClient.Selected.SubItems[1] = 'MOC-1' then
+        begin
+          SimManager.SendCommand2D_Order(RecSend);
 
-    2 :
-    begin
-      RecSend.orderID   := _CM_CLIENT_MANAGE;
-      RecSend.numValue  := __CM_CLIENT_SHUTDOWN;
-      RecSend.strValue  := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := ip;
+          ipSPS := lvClient.Items[17].SubItems[3];
+          RecSend.ipConsole := ipSPS;
+          SimManager.SendCommand2D_Order(RecSend);
+        end
+        else if lvClient.Selected.SubItems[1] = 'SPS115' then
+        begin
+          SimManager.SendCommand2D_Order(RecSend);
 
-      if lvClient.Selected.SubItems[1] = 'MOC-1' then begin
-        SimManager.SendCommand2D_Order(RecSend);
+          ipMOC1 := lvClient.Items[5].SubItems[3];
+          RecSend.ipConsole := ipMOC1;
+          SimManager.SendCommand2D_Order(RecSend);
+        end
+        else
+        begin
+          SimManager.SendCommand2D_Order(RecSend);
+        end;
+      end;
 
-        ipSPS := lvClient.Items[17].SubItems[3];
-        RecSend.ipConsole := ipSPS;
-        SimManager.SendCommand2D_Order(RecSend);
-      end
-      else if lvClient.Selected.SubItems[1] = 'SPS115' then begin
-        SimManager.SendCommand2D_Order(RecSend);
+    3:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_RESTART_ALL;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
+        RecSend.ipConsole := ip;
 
-        ipMOC1 := lvClient.Items[5].SubItems[3];
-        RecSend.ipConsole := ipMOC1;
-        SimManager.SendCommand2D_Order(RecSend);
-      end
-      else begin
         SimManager.SendCommand2D_Order(RecSend);
       end;
-    end;
 
-    3 :
-    begin
-      RecSend.orderID   := _CM_CLIENT_MANAGE;
-      RecSend.numValue  := __CM_CLIENT_RESTART_ALL;
-      RecSend.strValue  := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := ip;
+    4:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_SHUTDOWN_ALL;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
+        RecSend.ipConsole := ip;
 
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
+        SimManager.SendCommand2D_Order(RecSend);
+      end;
 
-    4 :
-    begin
-      RecSend.orderID   := _CM_CLIENT_MANAGE;
-      RecSend.numValue  := __CM_CLIENT_SHUTDOWN_ALL;
-      RecSend.strValue  := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := ip;
-
-
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
-
-    -2 :
-    begin
+    -2:
+      begin
 //      WakeOnLan(DataModule1.getMacAddress(lvClient.Selected.SubItems[3]));
-      AppData := GetPCConfigFromIPAddress(ip);
+        AppData := GetPCConfigFromIPAddress(ip);
 
-      WakeOnLan(AppData.c_mac);
+        WakeOnLan(AppData.c_mac);
 
 //      RecSend.orderID   := _CM_CLIENT_MANAGE;
-      RecSend.orderID   := _CM_CLIENT_APP;
-      RecSend.numValue  := __CM_CLIENT_LAUNCH;
-      RecSend.strValue  := ExtractFileName(AppData.c_app_name);
-      RecSend.strValue2 := AppData.c_app_params;
-      RecSend.strValue3 := AppData.c_app_name_2;
-      RecSend.ipConsole := ip;
+        RecSend.orderID := _CM_CLIENT_APP;
+        RecSend.numValue := __CM_CLIENT_LAUNCH;
+        RecSend.strValue := ExtractFileName(AppData.c_app_name);
+        RecSend.strValue2 := AppData.c_app_params;
+        RecSend.strValue3 := AppData.c_app_name_2;
+        RecSend.ipConsole := ip;
 
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
+        SimManager.SendCommand2D_Order(RecSend);
+      end;
   end;
   AutoRefresh;
 end;
 
 procedure TfrmGameController.WakeOnLan(const AMacAddress: string);
 type
-      TMacAddress = array [1..6] of byte;
+  TMacAddress = array[1..6] of byte;
 
-      TWakeRecord = packed record
-        Waker : TMACAddress;
-        MAC   : array[0..15] of TMACAddress;
-      end;
-
- var i : integer;
-     WR : TWakeRecord;
-     MacAddress : TMacAddress;
-     UDP : TIdUDPClient;
-     sData : string;
+  TWakeRecord = packed record
+    Waker: TMACAddress;
+    MAC: array[0..15] of TMACAddress;
+  end;
+var
+  i: integer;
+  WR: TWakeRecord;
+  MacAddress: TMacAddress;
+  UDP: TIdUDPClient;
+  sData: string;
 begin
 // Convert MAC string into MAC array
-   fillchar(MacAddress,SizeOf(TMacAddress),0);
-   sData := trim(AMacAddress);
+  fillchar(MacAddress, SizeOf(TMacAddress), 0);
+  sData := trim(AMacAddress);
 
-   if length(sData) = 17 then begin
-     for i := 1 to 6 do begin
-       MacAddress[i] := StrToIntDef('$' + copy(sData,1,2),0);
-       sData := copy(sData,4,17);
-     end;
-   end;
+  if length(sData) = 17 then
+  begin
+    for i := 1 to 6 do
+    begin
+      MacAddress[i] := StrToIntDef('$' + copy(sData, 1, 2), 0);
+      sData := copy(sData, 4, 17);
+    end;
+  end;
 
-   for i := 1 To 6 do WR.Waker[i] := $FF;
-   for i := 0 to 15 do WR.MAC[i] := MacAddress;
+  for i := 1 to 6 do
+    WR.Waker[i] := $FF;
+  for i := 0 to 15 do
+    WR.MAC[i] := MacAddress;
 
    // Create UDP and Broadcast data structure
-   UDP := TIdUDPClient.Create(nil);
-   UDP.Host := '255.255.255.255';
-   UDP.Port := 7;
-   UDP.BroadCastEnabled := true;
+  UDP := TIdUDPClient.Create(nil);
+  UDP.Host := '255.255.255.255';
+  UDP.Port := 7;
+  UDP.BroadCastEnabled := true;
 //   UDP.SendBuffer(WR,SizeOf(TWakeRecord));
-   UDP.BroadcastEnabled := false;
-   UDP.Free;
+  UDP.BroadcastEnabled := false;
+  UDP.Free;
 end;
 
 procedure TfrmGameController.vrWheelCameraRotateXChange(Sender: TObject);
 var
-  newDir : Integer;
+  newDir: Integer;
 begin
   if unlockCam = False then
   begin
@@ -6255,7 +6314,7 @@ end;
 
 procedure TfrmGameController.vrWheelCameraRotateYChange(Sender: TObject);
 var
-  newDir : Integer;
+  newDir: Integer;
 begin
 
   if unlockCam = False then
@@ -6287,10 +6346,9 @@ begin
 
 end;
 
-procedure TfrmGameController.vrWheelCameraRotateYMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.vrWheelCameraRotateYMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
-  newDir : Integer;
+  newDir: Integer;
 begin
   if unlockCam = False then
   begin
@@ -6312,10 +6370,9 @@ begin
 
 end;
 
-procedure TfrmGameController.vrWheelCameraRotateXMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.vrWheelCameraRotateXMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
-  newDir : Integer;
+  newDir: Integer;
 begin
   if unlockCam = False then
   begin
@@ -6338,18 +6395,18 @@ end;
 
 procedure TfrmGameController.btnCameraUnlockClick(Sender: TObject);
 var
-  RecSend : spUtilityTools;
+  RecSend: spUtilityTools;
 begin
-    RecSend.OrderID := TIPE_UTIL_PLAYER_SETTING;  // Order ID
-    RecSend.c0      := ObserverID;                // ID Observer
-    RecSend.c1      := PLAYER_SET_OBSERVER;       // Event ID
-    RecSend.c2      := 0;
-    RecSend.c3      := 0;
-    RecSend.c4      := 0;
-    RecSend.c5      := 0;                         // Speed Player;
-    RecSend.c6      := 0;
+  RecSend.OrderID := TIPE_UTIL_PLAYER_SETTING;  // Order ID
+  RecSend.c0 := ObserverID;                // ID Observer
+  RecSend.c1 := PLAYER_SET_OBSERVER;       // Event ID
+  RecSend.c2 := 0;
+  RecSend.c3 := 0;
+  RecSend.c4 := 0;
+  RecSend.c5 := 0;                         // Speed Player;
+  RecSend.c6 := 0;
 
-    SimManager.NetSendTo3D_SetCommandPlayerCamera(RecSend);
+  SimManager.NetSendTo3D_SetCommandPlayerCamera(RecSend);
 
   unlockCam := True;
 end;
@@ -6371,10 +6428,9 @@ begin
   edtElevationValue.Text := IntToStr(trackBarElevation.Position);
 end;
 
-procedure TfrmGameController.trackBarElevationMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.trackBarElevationMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
-  rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
   if StrToInt(edtElevationValue.Text) < trackBarElevation.Min then
     edtElevationValue.Text := IntToStr(trackBarElevation.Min)
@@ -6395,10 +6451,9 @@ begin
   edtRangeValue.Text := IntToStr(trackBarRange.Position);
 end;
 
-procedure TfrmGameController.trackBarRangeMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.trackBarRangeMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
-  rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
   if StrToInt(edtRangeValue.Text) < trackBarRange.Min then
     edtRangeValue.Text := IntToStr(trackBarRange.Min)
@@ -6426,364 +6481,300 @@ end;
 
 procedure TfrmGameController.CekLight;
 var
-  i : integer;
-  console : string;
+  i: integer;
+  console: string;
 begin
-  for i := 0 to lvClient.Items.Count-1 do
+  for i := 0 to lvClient.Items.Count - 1 do
   begin
     console := lvClient.Items[i].SubItems[1];
 
     if console = 'SERVER NSSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgServerNSSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgServerNSSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgServerNSSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgServerNSSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgServerNSSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgServerNSSFS, LoadImgRunning, RUNNING);
     end
     else if console = 'SERVER NSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgServerNSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgServerNSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgServerNSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgServerNSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgServerNSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgServerNSFS, LoadImgRunning, RUNNING);
     end
     else if console = 'SERVER NAFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgServerNAFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgServerNAFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgServerNAFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgServerNAFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgServerNAFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgServerNAFS, LoadImgRunning, RUNNING);
     end
     else if console = '3D DISPLAY NSSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img3DNSSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(img3DNSSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img3DNSSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(img3DNSSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img3DNSSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(img3DNSSFS, LoadImgRunning, RUNNING);
     end
     else if console = '3D DISPLAY NSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img3DNSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(img3DNSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img3DNSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(img3DNSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img3DNSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(img3DNSFS, LoadImgRunning, RUNNING);
     end
     else if console = '3D DISPLAY NAFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img3DNAFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(img3DNAFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img3DNAFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(img3DNAFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img3DNAFS,LoadImgRunning,RUNNING);
+        LoadImageLight(img3DNAFS, LoadImgRunning, RUNNING);
     end
     else if console = 'INSTRUKTUR NSSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgInstrukturNSSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgInstrukturNSSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgInstrukturNSSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgInstrukturNSSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgInstrukturNSSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgInstrukturNSSFS, LoadImgRunning, RUNNING);
     end
     else if console = 'INSTRUKTUR NSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgInstrukturNSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgInstrukturNSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgInstrukturNSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgInstrukturNSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgInstrukturNSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgInstrukturNSFS, LoadImgRunning, RUNNING);
     end
     else if console = 'INSTRUKTUR NAFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgInstrukturNAFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgInstrukturNAFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgInstrukturNAFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgInstrukturNAFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgInstrukturNAFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgInstrukturNAFS, LoadImgRunning, RUNNING);
     end
     else if console = 'MK3-2H NSSFS' then             //NSSFS
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMK3NSSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMK3NSSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMK3NSSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMK3NSSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMK3NSSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK3NSSFS, LoadImgRunning, RUNNING);
     end
     else if console = 'MK3 SPS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMK3SPS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMK3SPS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMK3SPS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMK3SPS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMK3SPS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK3SPS, LoadImgRunning, RUNNING);
     end
     else if console = 'MK4 NSSFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMK4NSSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMK4NSSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMK4NSSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMK4NSSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMK4NSSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK4NSSFS, LoadImgRunning, RUNNING);
     end
     else if console = 'MK4 SPS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMK4SPS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMK4SPS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMK4SPS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMK4SPS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMK4SPS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK4SPS, LoadImgRunning, RUNNING);
     end
     else if console = 'SUT & BLACK SHARK' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgSUT,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgSUT, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgSUT,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgSUT, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgSUT,LoadImgRunning,RUNNING);
+        LoadImageLight(imgSUT, LoadImgRunning, RUNNING);
     end
     else if console = 'RBU DIGITAL' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgRBUDigital,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgRBUDigital, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgRBUDigital,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgRBUDigital, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgRBUDigital,LoadImgRunning,RUNNING);
+        LoadImageLight(imgRBUDigital, LoadImgRunning, RUNNING);
     end
     else if console = 'RBU ANALOG' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgRBUAnalog,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgRBUAnalog, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgRBUAnalog,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgRBUAnalog, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgRBUAnalog,LoadImgRunning,RUNNING);
+        LoadImageLight(imgRBUAnalog, LoadImgRunning, RUNNING);
     end
     else if console = 'C-705' then         //NSFS
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgC705,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgC705, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgC705,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgC705, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgC705,LoadImgRunning,RUNNING);
+        LoadImageLight(imgC705, LoadImgRunning, RUNNING);
     end
     else if console = 'FCC-57' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img57Manual,LoadImgOff,OFFLINE)
-
+        LoadImageLight(img57Manual, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img57Manual,LoadImgOn,ONLINE)
-
+        LoadImageLight(img57Manual, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img57Manual,LoadImgRunning,RUNNING);
+        LoadImageLight(img57Manual, LoadImgRunning, RUNNING);
     end
     else if console = 'MR-103' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMR103,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMR103, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMR103,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMR103, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMR103,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMR103, LoadImgRunning, RUNNING);
     end
     else if console = '57-DIGITAL' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(img57Digital,LoadImgOff,OFFLINE)
-
+        LoadImageLight(img57Digital, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(img57Digital,LoadImgOn,ONLINE)
-
+        LoadImageLight(img57Digital, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(img57Digital,LoadImgRunning,RUNNING);
+        LoadImageLight(img57Digital, LoadImgRunning, RUNNING);
     end
     else if console = 'MR-35' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMR35,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMR35, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMR35,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMR35, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMR35,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMR35, LoadImgRunning, RUNNING);
     end
     else if console = 'C-802' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgC802,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgC802, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgC802,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgC802, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgC802,LoadImgRunning,RUNNING);
+        LoadImageLight(imgC802, LoadImgRunning, RUNNING);
     end
     else if console = 'YAKHONT' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgYakhont,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgYakhont, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgYakhont,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgYakhont, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgYakhont,LoadImgRunning,RUNNING);
+        LoadImageLight(imgYakhont, LoadImgRunning, RUNNING);
     end
     else if console = 'MK3-2H' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMK3NSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMK3NSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMK3NSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMK3NSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMK3NSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK3NSFS, LoadImgRunning, RUNNING);
     end
     else if console = 'MK4' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMK4NSFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMK4NSFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMK4NSFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMK4NSFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMK4NSFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK4NSFS, LoadImgRunning, RUNNING);
     end
     else if console = 'TDS FC 76MM' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgTDS76,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgTDS76, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgTDS76,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgTDS76, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgTDS76,LoadImgRunning,RUNNING);
+        LoadImageLight(imgTDS76, LoadImgRunning, RUNNING);
     end
     else if console = 'MK3-2H NAFS' then      //NAFS
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMK3NAFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMK3NAFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMK3NAFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMK3NAFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMK3NAFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK3NAFS, LoadImgRunning, RUNNING);
     end
     else if console = 'MK4 NAFS' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMK4NAFS,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMK4NAFS, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMK4NAFS,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMK4NAFS, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMK4NAFS,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMK4NAFS, LoadImgRunning, RUNNING);
     end
     else if console = 'AK-230' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgAK230,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgAK230, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgAK230,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgAK230, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgAK230,LoadImgRunning,RUNNING);
+        LoadImageLight(imgAK230, LoadImgRunning, RUNNING);
     end
     else if console = 'MR-302' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgMR203,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgMR203, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgMR203,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgMR203, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgMR203,LoadImgRunning,RUNNING);
+        LoadImageLight(imgMR203, LoadImgRunning, RUNNING);
     end
     else if console = 'CIWS-730' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgCIWS730,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgCIWS730, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgCIWS730,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgCIWS730, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgCIWS730,LoadImgRunning,RUNNING);
+        LoadImageLight(imgCIWS730, LoadImgRunning, RUNNING);
     end
     else if console = 'EO TRACKER 730' then
     begin
       if lvClient.Items[i].SubItems[4] = 'OFFLINE' then
-        LoadImageLight(imgTracket730,LoadImgOff,OFFLINE)
-
+        LoadImageLight(imgTracket730, LoadImgOff, OFFLINE)
       else if lvClient.Items[i].SubItems[4] = 'ONLINE' then
-        LoadImageLight(imgTracket730,LoadImgOn,ONLINE)
-
+        LoadImageLight(imgTracket730, LoadImgOn, ONLINE)
       else if lvClient.Items[i].SubItems[4] = 'RUNNING' then
-        LoadImageLight(imgTracket730,LoadImgRunning,RUNNING);
+        LoadImageLight(imgTracket730, LoadImgRunning, RUNNING);
     end
   end;
 end;
@@ -6807,7 +6798,6 @@ begin
 //  img_strelax.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\strela.bmp');
 //  img_m40x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\tds40.bmp');
 //  img_m57x.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\tds57.bmp');
-
 //  imgMoc1_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-MOC1_up.bmp');
 //  imgRBU_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-RBU_up.bmp');
 //  imgTocos_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\sub surface-torpedosut_up.bmp');
@@ -6820,8 +6810,6 @@ begin
 //  imgStrela_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-strela_up.bmp');
 //  imgTDS40_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-tds40mm_up.bmp');
 //  imgTDS57_Amb2.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\NFS armabar\antiair-tds57mm_up.bmp');
-
-
 //  img_moc1x.Left    := img_moc1.Left;
 //  img_moc1x.Top     := img_moc1.Top;
 //  img_rbux.Left     := img_rbu.Left;
@@ -6846,31 +6834,26 @@ begin
 //  img_m40x.Top      := img_m40.Top;
 //  img_m57x.Left     := img_m57.Left;
 //  img_m57x.Top      := img_m57.Top;
-
 //  imgFrame1.Width  := 40;
 //  imgFrame1.Height := 7;
 //  imgFrame1.Top  := img_Ob1.Top - 1;
 //  imgFrame1.Left := img_Ob1.Left - 2;
 //  img_Ob1.BringToFront;
-
 //  imgFrame2.Width  := 40;
 //  imgFrame2.Height := 7;
 //  imgFrame2.Top  := img_Ob2.Top - 1;
 //  imgFrame2.Left := img_Ob2.Left - 2;
 //  img_Ob2.BringToFront;
-
 //  imgFrame3.Width  := 40;
 //  imgFrame3.Height := 7;
 //  imgFrame3.Top  := img_Ob3.Top - 1;
 //  imgFrame3.Left := img_Ob3.Left - 2;
 //  img_Ob3.BringToFront;
-
 //  imgFrame4.Width  := 40;
 //  imgFrame4.Height := 7;
 //  imgFrame4.Top  := img_Ob4.Top - 1;
 //  imgFrame4.Left := img_Ob4.Left - 2;
 //  img_Ob4.BringToFront;
-
   //imgFrameServer.Width  := 83;
   //imgFrameServer.Height := 14;
 //  imgFrameServer.Width  := 100;
@@ -6882,14 +6865,14 @@ end;
 
 procedure TfrmGameController.ClearAllDetail;
 begin
-  edtPosPitch.Text    := '';
-  edtPosHeading.Text  := '';
-  edtModelBody.Text   := '';
-  edtModelSpout.Text  := '';
-  edtDOF1.Text        := '';
-  edtDOF2.Text        := '';
-  edtSwitch.Text      := '';
-  edt3DActor.Text     := '';
+  edtPosPitch.Text := '';
+  edtPosHeading.Text := '';
+  edtModelBody.Text := '';
+  edtModelSpout.Text := '';
+  edtDOF1.Text := '';
+  edtDOF2.Text := '';
+  edtSwitch.Text := '';
+  edt3DActor.Text := '';
 
 //  cbbModelBody.ItemIndex  := 0;
 //  cbbModelSpout.ItemIndex := 0;
@@ -6926,7 +6909,6 @@ begin
 //   imgFrame3.Visible := false;
 //   imgFrame4.Visible := false;
 //   imgFrameServer.Visible := false;
-
 //   imgMoc1_Amb2.Visible := false;
 //   imgRBU_Amb2.Visible := false;
 //   imgTocos_Amb2.Visible := false;
@@ -6944,7 +6926,7 @@ end;
 
 procedure TfrmGameController.SelectConsole;
 var
-  console : string;
+  console: string;
 begin
   if lvClient.Selected <> nil then
   begin
@@ -7013,27 +6995,30 @@ begin
     end
     else if console = '3D SERVER' then
 //      imgFrameServer.Visible := true
+
     else if console = 'OBSERVER-1' then
 //      imgFrame1.Visible := true
+
     else if console = 'OBSERVER-2' then
 //      imgFrame2.Visible := true
+
     else if console = 'OBSERVER-3' then
 //      imgFrame3.Visible := true
+
     else if console = 'OBSERVER-4' then
 //      imgFrame4.Visible := true;
+
   end;
 end;
 
-procedure TfrmGameController.lvClientChange(Sender: TObject;
-  Item: TListItem; Change: TItemChange);
+procedure TfrmGameController.lvClientChange(Sender: TObject; Item: TListItem; Change: TItemChange);
 begin
   SelectConsole;
 end;
 
 procedure TfrmGameController.vrwhlSeaDirectionChange(Sender: TObject);
 var
-  valTemp : Integer;
-
+  valTemp: Integer;
 begin
   if vrwhlSeaDirection.Position < 180 then
   begin
@@ -7047,42 +7032,42 @@ begin
   OnChangeEnvironment;
 end;
 
-procedure TfrmGameController.execPDF(Sender : TObject);
+procedure TfrmGameController.execPDF(Sender: TObject);
 var
-  readPath  : string;
-  helpIni   : TIniFile;
-
+  readPath: string;
+  helpIni: TIniFile;
 begin
 
-  if not (Sender is TMenuItem) then exit;
+  if not (Sender is TMenuItem) then
+    exit;
 
   helpIni := TIniFile.Create('..\bin\help.ini');
   //ShowMessage(DeleteAmpersand(TMenuItem(Sender).Caption));
   if TMenuItem(Sender).Tag = 0 then
   begin
-    readPath := helpIni.ReadString('SettingsManual', DeleteAmpersand(TMenuItem(Sender).Caption),'Default');
+    readPath := helpIni.ReadString('SettingsManual', DeleteAmpersand(TMenuItem(Sender).Caption), 'Default');
   end
   else
   begin
-    readPath := helpIni.ReadString('SettingsKomando', DeleteAmpersand(TMenuItem(Sender).Caption),'Default');
+    readPath := helpIni.ReadString('SettingsKomando', DeleteAmpersand(TMenuItem(Sender).Caption), 'Default');
   end;
 
-  shellexecute(handle,'open',PChar(readPath),'','',1);
+  shellexecute(handle, 'open', PChar(readPath), '', '', 1);
 
   helpIni.Free;
 end;
 
 procedure TfrmGameController.FormDestroy(Sender: TObject);
 var
-  i,j : integer;
-  mnItem : TMenuItem;
-  mnItem2 : TMenuItem;
+  i, j: integer;
+  mnItem: TMenuItem;
+  mnItem2: TMenuItem;
 begin
-  for i:= Help1.Count -1 downto 0 do
+  for i := Help1.Count - 1 downto 0 do
   begin
     mnItem := TMenuItem(Help1.Items[i]);
 
-    for j:= mnItem.Count -1 downto 0 do
+    for j := mnItem.Count - 1 downto 0 do
     begin
       mnItem2 := TMenuItem(mnItem.Items[j]);
       mnItem2.Free;
@@ -7130,30 +7115,32 @@ end;
 
 procedure TfrmGameController.menuHelp;
 var
-    mySubManual, mySubCommando   : TMenuItem;
-    helpIni       : TIniFile;
-    tempString    : TStrings;
-    tempString2   : TStrings;
-    i, j          : Integer;
-    readPath      : string;
+  mySubManual, mySubCommando: TMenuItem;
+  helpIni: TIniFile;
+  tempString: TStrings;
+  tempString2: TStrings;
+  i, j: Integer;
+  readPath: string;
 begin
-  helpIni     := TIniFile.Create('..\bin\help.ini');
-  tempString  := TStringList.Create;
+  helpIni := TIniFile.Create('..\bin\help.ini');
+  tempString := TStringList.Create;
   tempString2 := TStringList.Create;
 
   helpIni.ReadSection('Manual', tempString);
   helpIni.ReadSection('Komando', tempString2);
 
-  for i:= 0 to tempString.Count - 1 do begin
+  for i := 0 to tempString.Count - 1 do
+  begin
     //ShowMessage(helpIni.ReadString('Manual', tempString[i],'Default'));
     mySubManual := TMenuItem.Create(Self);
-    mySubManual.Caption := helpIni.ReadString('Manual', tempString[i],'Default');
+    mySubManual.Caption := helpIni.ReadString('Manual', tempString[i], 'Default');
     Help1.Items[0].Insert(i, mySubManual);
     Help1.Items[0].Items[i].Tag := 0;
     Help1.Items[0].Items[i].OnClick := execPDF;
   end;
 
-  for j:= 0 to tempString2.Count - 1 do begin
+  for j := 0 to tempString2.Count - 1 do
+  begin
     mySubCommando := TMenuItem.Create(Self);
     mySubCommando.Caption := helpIni.ReadString('Komando', tempString2[j], 'Default');
     Help1.Items[1].Insert(j, mySubCommando);
@@ -7166,29 +7153,28 @@ begin
   tempString2.Free;
 end;
 
-
-
-procedure TfrmGameController.lvClientCustomDrawSubItem(
-  Sender: TCustomListView; Item: TListItem; SubItem: Integer;
-  State: TCustomDrawState; var DefaultDraw: Boolean);
-
+procedure TfrmGameController.lvClientCustomDrawSubItem(Sender: TCustomListView; Item: TListItem; SubItem: Integer; State: TCustomDrawState; var DefaultDraw: Boolean);
 begin
-  if SubItem = 5 then begin
-    if Item.SubItems[4] = 'RUNNING' then begin
+  if SubItem = 5 then
+  begin
+    if Item.SubItems[4] = 'RUNNING' then
+    begin
       Sender.Canvas.Brush.Color := clLime;
     end
-    else if Item.SubItems[4] = 'ONLINE' then begin
+    else if Item.SubItems[4] = 'ONLINE' then
+    begin
       Sender.Canvas.Brush.Color := clYellow;
     end
-    else begin
+    else
+    begin
       Sender.Canvas.Brush.Color := clRed;
     end;
   end
-  else  begin
+  else
+  begin
     Sender.Canvas.Brush.Color := clWhite;
   end;
 end;
-
 
 procedure TfrmGameController.btnRepostObjectClick(Sender: TObject);
 begin
@@ -7197,56 +7183,52 @@ begin
     SimManager.FMap.CurrentTool := TOOL_REPOST_OBJECT;
   end;
 
-
 end;
 
 procedure TfrmGameController.cbbRBUassigntmentChange(Sender: TObject);
 begin
 
-if cbbRBUassigntment.ItemIndex = 0 then
-begin
-   btnRBU6000Assign.Visible := False;
-   btnRBU6000Auto.Visible   := True;
-   eRBUTargetID.Visible     := False;
-   lblTargetID.Visible      := False;
-   eRBU6000Bearing.Visible  := True;
-   lblLauncher.Visible      := True;
-   btnRBUsetPos.Visible     := True;
+  if cbbRBUassigntment.ItemIndex = 0 then
+  begin
+    btnRBU6000Assign.Visible := False;
+    btnRBU6000Auto.Visible := True;
+    eRBUTargetID.Visible := False;
+    lblTargetID.Visible := False;
+    eRBU6000Bearing.Visible := True;
+    lblLauncher.Visible := True;
+    btnRBUsetPos.Visible := True;
 
 //   eRBU6000Range.Visible    := False;
 //   lblRangeRBU.Visible      := False;
 //   lblNM.Visible            := False;
-
 //   Label16.Visible          := False;
 //   Label36.Visible          := False;
 //   lbl47.Left               := 26;
 //   lbl47.Top                := 34;
 //   eRBUTargetID.Left        := 161;
 //   eRBUTargetID.Top         := 34;
-end
-else if cbbRBUassigntment.ItemIndex = 1 then
-begin
-   btnRBU6000Assign.Visible := True;
-   btnRBU6000Auto.Visible   := False;
-   eRBUTargetID.Visible     := False;
-   lblTargetID.Visible      := False;
-   eRBU6000Bearing.Visible  := True;
-   lblLauncher.Visible      := True;
-   btnRBUsetPos.Visible     := False;
+  end
+  else if cbbRBUassigntment.ItemIndex = 1 then
+  begin
+    btnRBU6000Assign.Visible := True;
+    btnRBU6000Auto.Visible := False;
+    eRBUTargetID.Visible := False;
+    lblTargetID.Visible := False;
+    eRBU6000Bearing.Visible := True;
+    lblLauncher.Visible := True;
+    btnRBUsetPos.Visible := False;
 
 //   eRBU6000Range.Visible    := True;
 //   lblRangeRBU.Visible      := True;
 //   lblNM.Visible            := True;
-
 //   eRBU6000Bearing.Visible  := True;
 //   eRBU6000Range.Visible    := True;
 //   lblTargetID.Visible      := False;
 //   eRBUTargetID.Visible     := False;
 //   lblNM.Visible            := True;
-
 //   Label16.Visible          := True;
 //   Label36.Visible          := True;
-end;
+  end;
 
 end;
 
@@ -7259,12 +7241,12 @@ procedure TfrmGameController.cbbA244LauncherChange(Sender: TObject);
 begin
   if cbbA244Launcher.Text = 'kiri' then
   begin
-    cbbA244MissID.Visible  := True;
+    cbbA244MissID.Visible := True;
     cbbA244MissID2.Visible := False;
   end
   else if cbbA244Launcher.Text = 'kanan' then
   begin
-    cbbA244MissID.Visible  := False;
+    cbbA244MissID.Visible := False;
     cbbA244MissID2.Visible := True;
 
   end;
@@ -7274,23 +7256,23 @@ procedure TfrmGameController.cbbWTRChange(Sender: TObject);
 begin
   wtrChange;
 end;
+
 procedure TfrmGameController.btnAsrocTargetClick(Sender: TObject);
 begin
-    SimManager.FMap.CurrentTool := TOOL_SELECT_ASROC_TARGET;
+  SimManager.FMap.CurrentTool := TOOL_SELECT_ASROC_TARGET;
 end;
 
 procedure TfrmGameController.btnCamPinClick(Sender: TObject);
 var
   ShipID: Word;
   RecSend: TRecCmdSetCameraTarget;
-  rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
   if not Assigned(SimManager.TrackObject) then
     Exit;
 //  ShipID:= SimManager.TrackObject.FDataBaseID;
 //  RecSend.ShipID:= ShipID;
 //  SimManager.NetSendTo3D_CommandPinCamera(RecSend);
-
   // Coba Send Cam Denta
   ShipID := SimManager.TrackObject.FDataBaseID;
   rec.cmd := __ORD_ID_CAMCON_SHOW_PLATFORM;
@@ -7306,8 +7288,8 @@ end;
 
 procedure TfrmGameController.edtAzimutExit(Sender: TObject);
 var
-  azimuth : Integer;
-  rec : TRec_CameraController;
+  azimuth: Integer;
+  rec: TRec_CameraController;
 begin
   azimuth := StrToInt(edtAzimut.Text);
 
@@ -7328,10 +7310,10 @@ end;
 
 procedure TfrmGameController.edtAzimutKeyPress(Sender: TObject; var Key: Char);
 var
-rec : TRec_CameraController;
-azimuth : Integer;
+  rec: TRec_CameraController;
+  azimuth: Integer;
 begin
-  if not (Key in[#48 .. #57, #8, #13]) then
+  if not (Key in [#48..#57, #8, #13]) then
     Key := #0;
 
   if Key = #13 then
@@ -7356,7 +7338,7 @@ end;
 
 procedure TfrmGameController.edtElevationValueExit(Sender: TObject);
 var
-  rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
 
   if StrToInt(edtElevationValue.Text) < trackBarElevation.Min then
@@ -7373,12 +7355,11 @@ begin
   SimManager.NetSendTo3D_CommandCamera(@rec);
 end;
 
-procedure TfrmGameController.edtElevationValueKeyPress(Sender: TObject;
-  var Key: Char);
+procedure TfrmGameController.edtElevationValueKeyPress(Sender: TObject; var Key: Char);
 var
-  rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
-  if not (Key in[#48 .. #57, #8, #13]) then
+  if not (Key in [#48..#57, #8, #13]) then
     Key := #0;
 
   if Key = #13 then
@@ -7398,138 +7379,129 @@ begin
   end;
 end;
 
-procedure TfrmGameController.edtFogIntensityKeyPress(Sender: TObject;
-  var Key: Char);
-  var
-    val : Integer;
-  begin
-    if Key = #13 then
-    begin
-      val := StrToIntDef(edtFogIntensity.Text, 0);
-
-      if val > 3 then
-        val := 3
-      else if val < 0 then
-        val := 0;
-      edtFogIntensity.Text := IntToStr(val);
-      tbFogIntensity.Position := StrToIntDef(edtFogIntensity.Text,0);
-  end;
-  end;
-
-procedure TfrmGameController.edtPortBarometerKeyPress(Sender: TObject;
-  var Key: Char);
-   var
-    val : integer;
-  begin
-    if Key = #13 then
-    begin
-      val := StrToIntDef(edtPortBarometer.Text, 0);
-
-      if val > 5000 then
-        val := 5000
-      else if val < 0 then
-        val := 0;
-      edtPortBarometer.Text := IntToStr(val);
-      tbBaroPressure.Position := StrToIntDef(edtPortBarometer.Text,0);
-
-    end;
-  end;
-
-procedure TfrmGameController.edtPortCurrentSpeedKeyPress(Sender: TObject;
-  var Key: Char);
-   var
-    val : Integer;
-  begin
-    if Key= #13 then
-    begin
-      val := StrToIntDef(edtPortCurrentSpeed.Text, 0) ;
-      if val > 50 then
-        val := 50
-      else if val < 0 then
-           val := 0;
-      edtPortCurrentSpeed.Text := IntToStr(val);
-      tbSeaSpeed.Position := StrToIntDef(edtPortCurrentSpeed.Text, 0);
-
-    end;
-  end;
-
-procedure TfrmGameController.edtPortHumidityKeyPress(Sender: TObject;
-  var Key: Char);
-  var
-    val : Integer;
-  begin
-     if Key= #13 then
-    begin
-      val := StrToIntDef(edtPortHumidity.Text, 0) ;
-      if val > 100 then
-        val := 100
-      else if val < 0 then
-           val := 0;
-      edtPortHumidity.Text := IntToStr(val);
-      tbHumidity.Position := StrToIntDef(edtPortHumidity.Text, 0);
-  end;
-  end;
-
-procedure TfrmGameController.edtPortSeaStateKeyPress(Sender: TObject;
-  var Key: Char);
-
-   var
-    val : Integer;
-  begin
-    if Key= #13 then
-    begin
-      val := StrToIntDef(edtPortSeaState.Text, 0) ;
-      if val > 5 then
-        val := 5
-      else if val < 0 then
-           val := 0;
-      edtPortSeaState.Text := IntToStr(val);
-      tbSeaState.Position := StrToIntDef(edtPortSeaState.Text, 0);
-
-    end;
-  end;
-
-procedure TfrmGameController.edtPortTempKeyPress(Sender: TObject;
-  var Key: Char);
-  var
-    val : integer;
+procedure TfrmGameController.edtFogIntensityKeyPress(Sender: TObject; var Key: Char);
+var
+  val: Integer;
 begin
-    if Key = #13 then
-    begin
-      val := StrToIntDef(edtPortTemp.Text, 0);
+  if Key = #13 then
+  begin
+    val := StrToIntDef(edtFogIntensity.Text, 0);
 
-      if val > 100 then
-        val := 100
-      else if val <0 then
-        val := 0;
-      edtPortTemp.Text := IntToStr(val);
-      tbTemp.Position := StrToIntDef(edtPortTemp.Text,0);
-
-    end;
+    if val > 3 then
+      val := 3
+    else if val < 0 then
+      val := 0;
+    edtFogIntensity.Text := IntToStr(val);
+    tbFogIntensity.Position := StrToIntDef(edtFogIntensity.Text, 0);
+  end;
 end;
 
-procedure TfrmGameController.edtPortWindSpeedKeyPress(Sender: TObject;
-  var Key: Char);
-   var
-    val : Integer;
+procedure TfrmGameController.edtPortBarometerKeyPress(Sender: TObject; var Key: Char);
+var
+  val: integer;
+begin
+  if Key = #13 then
   begin
-    if Key= #13 then
-    begin
-      val := StrToIntDef(edtPortWindSpeed.Text, 0) ;
-      if val > 50 then
-        val := 50
-      else if val < 0 then
-           val := 0;
-      edtPortWindSpeed.Text := IntToStr(val);
-      tbWindSpeed.Position := StrToIntDef(edtPortWindSpeed.Text, 0);
+    val := StrToIntDef(edtPortBarometer.Text, 0);
 
-    end;
+    if val > 5000 then
+      val := 5000
+    else if val < 0 then
+      val := 0;
+    edtPortBarometer.Text := IntToStr(val);
+    tbBaroPressure.Position := StrToIntDef(edtPortBarometer.Text, 0);
+
   end;
+end;
 
+procedure TfrmGameController.edtPortCurrentSpeedKeyPress(Sender: TObject; var Key: Char);
+var
+  val: Integer;
+begin
+  if Key = #13 then
+  begin
+    val := StrToIntDef(edtPortCurrentSpeed.Text, 0);
+    if val > 50 then
+      val := 50
+    else if val < 0 then
+      val := 0;
+    edtPortCurrentSpeed.Text := IntToStr(val);
+    tbSeaSpeed.Position := StrToIntDef(edtPortCurrentSpeed.Text, 0);
+
+  end;
+end;
+
+procedure TfrmGameController.edtPortHumidityKeyPress(Sender: TObject; var Key: Char);
+var
+  val: Integer;
+begin
+  if Key = #13 then
+  begin
+    val := StrToIntDef(edtPortHumidity.Text, 0);
+    if val > 100 then
+      val := 100
+    else if val < 0 then
+      val := 0;
+    edtPortHumidity.Text := IntToStr(val);
+    tbHumidity.Position := StrToIntDef(edtPortHumidity.Text, 0);
+  end;
+end;
+
+procedure TfrmGameController.edtPortSeaStateKeyPress(Sender: TObject; var Key: Char);
+var
+  val: Integer;
+begin
+  if Key = #13 then
+  begin
+    val := StrToIntDef(edtPortSeaState.Text, 0);
+    if val > 5 then
+      val := 5
+    else if val < 0 then
+      val := 0;
+    edtPortSeaState.Text := IntToStr(val);
+    tbSeaState.Position := StrToIntDef(edtPortSeaState.Text, 0);
+
+  end;
+end;
+
+procedure TfrmGameController.edtPortTempKeyPress(Sender: TObject; var Key: Char);
+var
+  val: integer;
+begin
+  if Key = #13 then
+  begin
+    val := StrToIntDef(edtPortTemp.Text, 0);
+
+    if val > 100 then
+      val := 100
+    else if val < 0 then
+      val := 0;
+    edtPortTemp.Text := IntToStr(val);
+    tbTemp.Position := StrToIntDef(edtPortTemp.Text, 0);
+
+  end;
+end;
+
+procedure TfrmGameController.edtPortWindSpeedKeyPress(Sender: TObject; var Key: Char);
+var
+  val: Integer;
+begin
+  if Key = #13 then
+  begin
+    val := StrToIntDef(edtPortWindSpeed.Text, 0);
+    if val > 50 then
+      val := 50
+    else if val < 0 then
+      val := 0;
+    edtPortWindSpeed.Text := IntToStr(val);
+    tbWindSpeed.Position := StrToIntDef(edtPortWindSpeed.Text, 0);
+
+  end;
+end;
 
 procedure TfrmGameController.edtRangeValueExit(Sender: TObject);
 var
-  rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
   if StrToInt(edtRangeValue.Text) < trackBarRange.Min then
     edtRangeValue.Text := IntToStr(trackBarRange.Min)
@@ -7545,12 +7517,11 @@ begin
   SimManager.NetSendTo3D_CommandCamera(@rec);
 end;
 
-procedure TfrmGameController.edtRangeValueKeyPress(Sender: TObject;
-  var Key: Char);
+procedure TfrmGameController.edtRangeValueKeyPress(Sender: TObject; var Key: Char);
 var
-  rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
-  if not (Key in[#48 .. #57, #8, #13]) then
+  if not (Key in [#48..#57, #8, #13]) then
     Key := #0;
 
   if Key = #13 then
@@ -7572,7 +7543,7 @@ end;
 
 procedure TfrmGameController.btnFreeCamClick(Sender: TObject);
 var
-rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
   rec.cmd := __ORD_ID_CAMCON_MODE;
   rec.valueInt := 0;
@@ -7590,8 +7561,8 @@ begin
   if edtTampung.Text = '0' then
   begin
     edtTorpSUTCourse.Visible := False;
-    cbbTorpSutSpeed.Visible:= False;
-    edtTorpSUTDepth.Visible  := False;
+    cbbTorpSutSpeed.Visible := False;
+    edtTorpSUTDepth.Visible := False;
     btnhandleTorpedoSUT.Visible := False;
     btnHomingTorpedoSUT.Visible := False;
     btnSearchTorpedoSUT.Visible := False;
@@ -7608,15 +7579,15 @@ begin
     lbl21.Visible := True;
     lbl53.Visible := True;
     edtTorpSUTSafeDis.Visible := True;
-    edtTorpedoSUTEnDis.Visible:= True;
+    edtTorpedoSUTEnDis.Visible := True;
     cbbTorpPredMode.Visible := True;
     btnFireTorpodoSUT.Visible := True;
   end
   else if edtTampung.Text = '1' then
   begin
     edtTorpSUTCourse.Visible := True;
-    cbbTorpSutSpeed.Visible:= True;
-    edtTorpSUTDepth.Visible  := True;
+    cbbTorpSutSpeed.Visible := True;
+    edtTorpSUTDepth.Visible := True;
     btnhandleTorpedoSUT.Visible := True;
     btnHomingTorpedoSUT.Visible := True;
     btnSearchTorpedoSUT.Visible := True;
@@ -7628,25 +7599,24 @@ begin
     lbl20.Visible := True;
 
     edtTorpSUTSafeDis.Visible := False;
-    edtTorpedoSUTEnDis.Visible:= False;
+    edtTorpedoSUTEnDis.Visible := False;
     btnFireTorpodoSUT.Visible := False;
 //    Label60.Visible := False;
     lbl52.Visible := False;
-    lbl21.Visible  := False;
+    lbl21.Visible := False;
     lbl53.Visible := False;
   end;
 end;
 
 procedure TfrmGameController.AutoRefresh;
 var
-  i : integer;
+  i: integer;
 begin
   FillClientList;
 
-  for i := 0 to lvClient.Items.Count -1 do
+  for i := 0 to lvClient.Items.Count - 1 do
   begin
-    if (lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or (lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or
-       (lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
+    if (lvClient.Items[i].SubItems[1] = 'SERVER NSFS') or (lvClient.Items[i].SubItems[1] = 'SERVER NAFS') or (lvClient.Items[i].SubItems[1] = 'SERVER NSSFS') then
     begin
       if ServerState = 1 then
         lvClient.Items[i].SubItems[4] := 'RUNNING'
@@ -7663,12 +7633,12 @@ begin
 //  Sleep(100);
 
   btnRefreshClient.Enabled := false;
-  tmrStatus.Enabled        := true;
+  tmrStatus.Enabled := true;
 end;
 
 procedure TfrmGameController.FormShow(Sender: TObject);
 begin
-if TabMain.ActivePage = tsClient then
+  if TabMain.ActivePage = tsClient then
   begin
     AutoRefresh;
   end;
@@ -7679,55 +7649,48 @@ begin
   SimManager.FMap.CurrentTool := TOOL_SELECT_CANON_TARGET;
 end;
 
-procedure TfrmGameController.tbSeaStateMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.tbSeaStateMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, tbSeaState.Position, 0,0,0,0) ;
+  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, tbSeaState.Position, 0, 0, 0, 0);
 end;
 
-procedure TfrmGameController.tbWindSpeedMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.tbWindSpeedMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_WINDSPEED, tbWindSpeed.Position, 0,0,0,0);
+  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_WINDSPEED, tbWindSpeed.Position, 0, 0, 0, 0);
 end;
 
-procedure TfrmGameController.tbSeaSpeedMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.tbSeaSpeedMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_CURSPEED, tbSeaSpeed.Position, 0,0,0,0) ;
+  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_CURSPEED, tbSeaSpeed.Position, 0, 0, 0, 0);
 end;
 
-procedure TfrmGameController.tbTempMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.tbTempMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_TEMPERATURE, tbTemp.Position, 0,0,0,0) ;
+  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_TEMPERATURE, tbTemp.Position, 0, 0, 0, 0);
 end;
 
-procedure TfrmGameController.tbBaroPressureMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.tbBaroPressureMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_BAROPRESSURE, tbBaroPressure.Position, 0,0,0,0);
+  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_BAROPRESSURE, tbBaroPressure.Position, 0, 0, 0, 0);
 end;
 
-procedure TfrmGameController.tbHumidityMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.tbHumidityMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   UpdateEnvy;
-  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_HUMIDITY, tbHumidity.Position, 0,0,0,0) ;
+  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_HUMIDITY, tbHumidity.Position, 0, 0, 0, 0);
 end;
 
-procedure TfrmGameController.tbFogIntensityMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.tbFogIntensityMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 //var
 //   lowerBound, upperBound, boundary, posPercentage, position : double;
 //   Val: single ;
 begin
-   UpdateEnvy;
+  UpdateEnvy;
 //   lowerBound := 0.00005;
 //   upperBound := 0.08;
 //   boundary   := upperBound - lowerBound;
@@ -7736,7 +7699,7 @@ begin
 //   Val  := lowerBound + ((boundary - (posPercentage * boundary)));
 //   Val := tbFogH.Position;
 
-   SimManager.NetSendTo3D_SetCommandOrder(0, ORD_ENVI, tbFogIntensity.Position, 0,0,0,0);
+  SimManager.NetSendTo3D_SetCommandOrder(0, ORD_ENVI, tbFogIntensity.Position, 0, 0, 0, 0);
 end;
 
 //procedure TfrmGameController.vrwhlSeaDirectionMouseUp(Sender: TObject;
@@ -7765,7 +7728,7 @@ end;
 
 procedure TfrmGameController.wheelAzimutChange(Sender: TObject);
 var
- azimuth : Integer;
+  azimuth: Integer;
 begin
   if wheelAzimut.Position < 180 then
     azimuth := (180 + wheelAzimut.Position)
@@ -7775,15 +7738,14 @@ begin
   edtAzimut.Text := IntToStr(azimuth);
 end;
 
-procedure TfrmGameController.wheelAzimutMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.wheelAzimutMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
- rec : TRec_CameraController;
+  rec: TRec_CameraController;
 begin
- rec.cmd := __ORD_ID_CAMCON_POS_AZIMUTH;
- rec.valueInt := StrToInt(edtAzimut.Text);
+  rec.cmd := __ORD_ID_CAMCON_POS_AZIMUTH;
+  rec.valueInt := StrToInt(edtAzimut.Text);
 
- SimManager.NetSendTo3D_CommandCamera(@rec);
+  SimManager.NetSendTo3D_CommandCamera(@rec);
 end;
 
 procedure TfrmGameController.wtrChange;
@@ -7791,36 +7753,36 @@ begin
   if cbbWTR.Text = 'DP' then
   begin
     cbbISD2.Visible := True;
-    cbbISD.Visible  := False;
-    cbbISD2.Text    := cbbISD2.Items[0];
+    cbbISD.Visible := False;
+    cbbISD2.Text := cbbISD2.Items[0];
 
-    cbbCEI.Visible  := True;
+    cbbCEI.Visible := True;
     cbbCEI2.Visible := False;
-    cbbCEI.Text     := cbbCEI.Items[0];
+    cbbCEI.Text := cbbCEI.Items[0];
 
     cbbFLO2.Visible := True;
-    cbbFLO.Visible  := False;
-    cbbFLO2.Text    := cbbFLO2.Items[0];
+    cbbFLO.Visible := False;
+    cbbFLO2.Text := cbbFLO2.Items[0];
   end
   else if cbbWTR.Text = 'SH' then
   begin
     cbbISD2.Visible := False;
-    cbbISD.Visible  := True;
-    cbbISD.Text     := cbbISD.Items[0];
+    cbbISD.Visible := True;
+    cbbISD.Text := cbbISD.Items[0];
 
-    cbbCEI.Visible  := False;
+    cbbCEI.Visible := False;
     cbbCEI2.Visible := True;
-    cbbCEI2.Text    := cbbCEI2.Items[0];
+    cbbCEI2.Text := cbbCEI2.Items[0];
 
     cbbFLO2.Visible := False;
-    cbbFLO.Visible  := True;
-    cbbFLO.Text     := cbbFLO.Items[0];
+    cbbFLO.Visible := True;
+    cbbFLO.Text := cbbFLO.Items[0];
   end;
 end;
 
 procedure TfrmGameController.UpdateEnvy;
 var
-  RecSkenario :TScenario;
+  RecSkenario: TScenario;
 begin
   RecSkenario := TScenario.Create;
   try
@@ -7842,31 +7804,23 @@ end;
 
 procedure TfrmGameController.UpdateScenarioData;
 var
-  ScenarioId : Integer;
-
+  ScenarioId: Integer;
   listAllShip, listAllConsole: TList;
-
   ShipDetail, vehicleTemp: TVehicle;
-
   AllConsole: TClientConsole;
   i: Integer;
   j: Integer;
-
   Dx, Dy: Double;
   Mx, My: Double;
-
   Ship: TInsObject;
-
   ListScenario: TList;
   Scenario: TScenarioList;
-
   ListConsole: TList;
   Console: TConsole;
   Console_ID: Integer;
 
   { Envi }
   SceEnvi: TScenario;
-
   ClientList: TClientList;
 begin
   lblScenarioName.Caption := '';
@@ -7907,26 +7861,25 @@ begin
     trckBarHumidity.Position := Round(SceEnvi.Scenario_Humidity);
     edtHumidity.Text := FloatToStr(SceEnvi.Scenario_Humidity);
 
-    trckBarFogHeight.Position := Round (SceEnvi.Scenario_FogHeight);
+    trckBarFogHeight.Position := Round(SceEnvi.Scenario_FogHeight);
     edtFogHeight.Text := FloatToStr(SceEnvi.Scenario_FogHeight);
 
-    VrWindDirection.Position := Round (SceEnvi.Scenario_WindDir_Deg);
-    VrCurrentDirection.Position := Round (SceEnvi.Scenario_CurrDir_Deg);
+    VrWindDirection.Position := Round(SceEnvi.Scenario_WindDir_Deg);
+    VrCurrentDirection.Position := Round(SceEnvi.Scenario_CurrDir_Deg);
 
     if SceEnvi.Scenario_WindDir_Deg > 180 then
-     VrWindDirection.position := (Round(SceEnvi.Scenario_WindDir_Deg) - 180)
+      VrWindDirection.position := (Round(SceEnvi.Scenario_WindDir_Deg) - 180)
     else
-      VrWindDirection.position :=(Round(SceEnvi.Scenario_WindDir_Deg) + 180);
+      VrWindDirection.position := (Round(SceEnvi.Scenario_WindDir_Deg) + 180);
 
     if SceEnvi.Scenario_CurrDir_Deg > 180 then
-      VrCurrentDirection.position :=(Round(SceEnvi.Scenario_CurrDir_Deg) - 180)
+      VrCurrentDirection.position := (Round(SceEnvi.Scenario_CurrDir_Deg) - 180)
     else
-      VrCurrentDirection.position :=(Round(SceEnvi.Scenario_CurrDir_Deg) + 180);
+      VrCurrentDirection.position := (Round(SceEnvi.Scenario_CurrDir_Deg) + 180);
   finally
     SceEnvi.Free;
   end;
   {$ENDREGION}
-
   {$REGION ' Load Vehicle '}
   listAllShip := TList.Create;
 
@@ -7951,7 +7904,7 @@ begin
         ShipDetail.Vehicle_Heading := vehicleTemp.Vehicle_Heading;
         ShipDetail.Vehicle_Speed := vehicleTemp.Vehicle_Speed;
 
-        if (vehicleTemp.Vehicle_Ctgr <> 0) {and (vehicleTemp.Vehicle_Type = 1)} and (vehicleTemp.Vehicle_Target = 0) then
+        if (vehicleTemp.Vehicle_Ctgr <> 0) {and (vehicleTemp.Vehicle_Type = 1)}  and (vehicleTemp.Vehicle_Target = 0) then
         begin
           {$REGION ' KRI '}
           {Syarat KRI : Vehicle_Ctgr <> 0, Vehicle_Type = 1, Vehicle_Target = 0}
@@ -7961,9 +7914,12 @@ begin
             Caption := ShipDetail.Vehicle_Name;
 
             case ShipDetail.Vehicle_Type of
-              1: SubItems.Add('Surface');
-              2: SubItems.Add('Air');
-              3: SubItems.Add('Subsurface');
+              1:
+                SubItems.Add('Surface');
+              2:
+                SubItems.Add('Air');
+              3:
+                SubItems.Add('Subsurface');
             end;
 
             SubItems.Add(ConvLL_To_Str(ShipDetail.Vehicle_X, '0'));
@@ -7974,7 +7930,7 @@ begin
           end;
           {$ENDREGION}
         end
-        else if (vehicleTemp.Vehicle_Ctgr = 0) {and (vehicleTemp.Vehicle_Type = 1)} and (vehicleTemp.Vehicle_Target <> 1) then
+        else if (vehicleTemp.Vehicle_Ctgr = 0) {and (vehicleTemp.Vehicle_Type = 1)}  and (vehicleTemp.Vehicle_Target <> 1) then
         begin
           {$REGION ' General '}
           {Syarat General : Vehicle_Ctgr = 0, Vehicle_Type = 1, Vehicle_Target <> 1}
@@ -7984,9 +7940,12 @@ begin
             Caption := ShipDetail.Vehicle_Name;
 
             case ShipDetail.Vehicle_Type of
-              1: SubItems.Add('Surface');
-              2: SubItems.Add('Air');
-              3: SubItems.Add('Subsurface');
+              1:
+                SubItems.Add('Surface');
+              2:
+                SubItems.Add('Air');
+              3:
+                SubItems.Add('Subsurface');
             end;
 
             SubItems.Add(FloatToStr(ShipDetail.Vehicle_X));
@@ -8007,9 +7966,12 @@ begin
             Caption := ShipDetail.Vehicle_Name;
 
             case ShipDetail.Vehicle_Type of
-              1: SubItems.Add('Surface');
-              2: SubItems.Add('Air');
-              3: SubItems.Add('Subsurface');
+              1:
+                SubItems.Add('Surface');
+              2:
+                SubItems.Add('Air');
+              3:
+                SubItems.Add('Subsurface');
             end;
 
             SubItems.Add(FloatToStr(ShipDetail.Vehicle_X));
@@ -8032,16 +7994,15 @@ end;
 
 procedure TfrmGameController.UpdateShipData;
 var
-  i : Integer;
+  i: Integer;
 //  ShipId : Integer;
-  AllShip : TList;
+  AllShip: TList;
   ShipTemp: TVehicle;
 
   {Var lvWeapon}
-  ListWeaponOnShip : TList;
-  WeaponOnShip : TWeaponGetList;
-  strPicture : string;
-
+  ListWeaponOnShip: TList;
+  WeaponOnShip: TWeaponGetList;
+  strPicture: string;
 begin
   {Membersihkan tampilan form}
   ClearShipData;
@@ -8055,15 +8016,14 @@ begin
 
   if Assigned(ShipTemp) then
   begin
-    lblShipName1.Caption :=  lvShipList.Selected.SubItems[0];
-    edtClass.Text    :=  DataModule1.IDclassbyName(Ship_ID);
+    lblShipName1.Caption := lvShipList.Selected.SubItems[0];
+    edtClass.Text := DataModule1.IDclassbyName(Ship_ID);
 
     {$REGION ' Dimensions '}
-    edtShipLength.Text   := FloatToStr(ShipTemp.Vehicle_LENGTH);
-    edtShipwidth.Text    := FloatToStr(ShipTemp.Vehicle_WIDTH);
-    edtShipHeight.Text   := FloatToStr(ShipTemp.Vehicle_HEIGHT);
+    edtShipLength.Text := FloatToStr(ShipTemp.Vehicle_LENGTH);
+    edtShipwidth.Text := FloatToStr(ShipTemp.Vehicle_WIDTH);
+    edtShipHeight.Text := FloatToStr(ShipTemp.Vehicle_HEIGHT);
     {$ENDREGION}
-
     {$REGION ' Load Image '}
     strPicture := '..\Data\imageship\' + ShipTemp.Vehicle_Name + '.png';
 
@@ -8075,21 +8035,19 @@ begin
       imgKRI.Picture.LoadFromFile('..\Data\imageship\NoModel.png');
 
     {$ENDREGION}
-
     {$REGION ' Properties '}
-    edtShipMaxSpeed.Text         := FloatToStr(ShipTemp.Vehicle_Maxspeed);
-    edtShipMaxSpeedAstern.Text   := FloatToStr(ShipTemp.Vehicle_MaxspeedAstern);
+    edtShipMaxSpeed.Text := FloatToStr(ShipTemp.Vehicle_Maxspeed);
+    edtShipMaxSpeedAstern.Text := FloatToStr(ShipTemp.Vehicle_MaxspeedAstern);
     edtDamageSustainability.Text := FloatToStr(ShipTemp.Vehicle_SUSTAINABILITY);
 
-    edtShipRudderSwingRate.Text  := FloatToStr(ShipTemp.Vehicle_RudderSwingRate);
-    edtShipThrottleRate.Text     := FloatToStr(ShipTemp.Vehicle_ThrottleRate);
-    edtShipDisplacement.Text     := FloatToStr(ShipTemp.Vehicle_Displacement);
-    edtShipHeelFactor.Text       := FloatToStr(ShipTemp.Vehicle_HeelFactor);
-    edtShipShaftUp.Text          := FloatToStr(ShipTemp.Vehicle_ShaftUp);
-    edtShipTacDiameter.Text      := FloatToStr(ShipTemp.Vehicle_TacDiameter);
-    edtShipTrimFactor.Text       := FloatToStr(ShipTemp.Vehicle_TrimFactor);
+    edtShipRudderSwingRate.Text := FloatToStr(ShipTemp.Vehicle_RudderSwingRate);
+    edtShipThrottleRate.Text := FloatToStr(ShipTemp.Vehicle_ThrottleRate);
+    edtShipDisplacement.Text := FloatToStr(ShipTemp.Vehicle_Displacement);
+    edtShipHeelFactor.Text := FloatToStr(ShipTemp.Vehicle_HeelFactor);
+    edtShipShaftUp.Text := FloatToStr(ShipTemp.Vehicle_ShaftUp);
+    edtShipTacDiameter.Text := FloatToStr(ShipTemp.Vehicle_TacDiameter);
+    edtShipTrimFactor.Text := FloatToStr(ShipTemp.Vehicle_TrimFactor);
     {$ENDREGION}
-
     {$REGION ' lvWeapon '}
     lvWeaponSelect.Items.Clear;
 
@@ -8099,7 +8057,7 @@ begin
 
     if Assigned(ListWeaponOnShip) then
     begin
-      for i := 0 to ListWeaponOnShip.Count-1 do
+      for i := 0 to ListWeaponOnShip.Count - 1 do
       begin
         WeaponOnShip := TWeaponGetList.Create;
         WeaponOnShip := TWeaponGetList(ListWeaponOnShip[i]);
@@ -8121,11 +8079,10 @@ begin
   end;
 end;
 
-procedure TfrmGameController.lvWeaponMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-  var
-    p : TPoint;
-    menuitem : TMenuItem;
+procedure TfrmGameController.lvWeaponMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  p: TPoint;
+  menuitem: TMenuItem;
 begin
   if Button = mbright then
   begin
@@ -8140,28 +8097,24 @@ begin
       pmLvWeapon.Items[0].Enabled := False;
       pmLvWeapon.Items[1].Enabled := True;
     end
-    else begin
+    else
+    begin
       pmLvWeapon.Items[0].Enabled := True;
       pmLvWeapon.Items[1].Enabled := False;
     end;
 
-    pmLvWeapon.Popup(p.X , p.Y);
+    pmLvWeapon.Popup(p.X, p.Y);
   end;
 end;
 
-procedure TfrmGameController.lvWeaponSelectSelectItem(Sender: TObject;
-  Item: TListItem; Selected: Boolean);
-  var
-    ListWeaponDetail : Tlist;
-    WeaponDetail     : TWeaponDetail;
-
-    ListWeaponOnShip : TList;
-    WeaponOnShip     : TWeaponGetList;
-
-    IDweapon,
-    IDDetail : Integer;
-
-    i : Integer;
+procedure TfrmGameController.lvWeaponSelectSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
+var
+  ListWeaponDetail: Tlist;
+  WeaponDetail: TWeaponDetail;
+  ListWeaponOnShip: TList;
+  WeaponOnShip: TWeaponGetList;
+  IDweapon, IDDetail: Integer;
+  i: Integer;
 begin
 
   if lvWeaponSelect.Selected = nil then
@@ -8174,7 +8127,7 @@ begin
   ListWeaponDetail := TList.Create;
   ListWeaponOnShip := TList.Create;
 
-  DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail,  ListWeaponDetail);
+  DataModule1.GetListWeaponRangeDetail(Ship_ID, IDweapon, IDDetail, ListWeaponDetail);
   DataModule1.GetListWeaponOnShip(Ship_ID, ListWeaponOnShip);
 
   for i := 0 to ListWeaponDetail.Count - 1 do
@@ -8197,22 +8150,22 @@ begin
   for i := 0 to ListWeaponOnShip.Count - 1 do
   begin
     if Assigned(ListWeaponOnShip.Items[i]) then
-    WeaponOnShip := TWeaponGetList(ListWeaponOnShip[i]);
-    if (WeaponOnShip.IDShip = Ship_ID) and (WeaponOnShip.IDWeapon = IDweapon) and
-        (WeaponOnShip.IDDetail = IDDetail)
-    then
+      WeaponOnShip := TWeaponGetList(ListWeaponOnShip[i]);
+    if (WeaponOnShip.IDShip = Ship_ID) and (WeaponOnShip.IDWeapon = IDweapon) and (WeaponOnShip.IDDetail = IDDetail) then
     begin
-      edtModelBody.Text   := DataModule1.GetModelNameByID(WeaponOnShip.IDModel1);
-      edtModelSpout.Text  := DataModule1.GetModelNameByID(WeaponOnShip.IDModel2);
-      edtDOF1.Text        := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof1);
-      edtDOF2.Text        := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof2);
-      edtSwitch.Text      := DataModule1.GetSwitchNameByID(WeaponOnShip.IDSwitch);
-      edtPosPitch.Text    := IntToStr(WeaponOnShip.Pos_P);
-      edtPosHeading.Text  := IntToStr(WeaponOnShip.Pos_H);
-      edtLethality.Text   := FloatToStr(DataModule1.GetLethalityByID(IDweapon));
+      edtModelBody.Text := DataModule1.GetModelNameByID(WeaponOnShip.IDModel1);
+      edtModelSpout.Text := DataModule1.GetModelNameByID(WeaponOnShip.IDModel2);
+      edtDOF1.Text := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof1);
+      edtDOF2.Text := DataModule1.GetDOFNameByID(WeaponOnShip.IDDof2);
+      edtSwitch.Text := DataModule1.GetSwitchNameByID(WeaponOnShip.IDSwitch);
+      edtPosPitch.Text := IntToStr(WeaponOnShip.Pos_P);
+      edtPosHeading.Text := IntToStr(WeaponOnShip.Pos_H);
+      edtLethality.Text := FloatToStr(DataModule1.GetLethalityByID(IDweapon));
       case WeaponOnShip.Is3DActor of
-        0 : edt3DActor.Text := 'NO';
-        1 : edt3DActor.Text := 'YES';
+        0:
+          edt3DActor.Text := 'NO';
+        1:
+          edt3DActor.Text := 'YES';
       end;
       Break;
     end;
@@ -8221,26 +8174,23 @@ end;
 
 procedure TfrmGameController.On1Click(Sender: TObject);
 var
-  i,j : Integer;
-
+  i, j: Integer;
   o: TObject;
-  shipObject : TInsObject;
-
-  temp                     : Integer;
-  RecSendYakhont           : TRecData_Yakhont;
-  RecSendSUT               : TRecSetTorpedoSUT;
-  RecSendAsroc             : TRec3DSetAsrock;
-  RecSendRBU6000           : TRec3DSetRBU;
-  RecSendA244              : TRecDataTorperdo;
-  RecSendTetral            : TRec3DSetTetral;
-  RecSendMistral           : TRec3DSetMistral;
-  RecSendStrela            : TRec3DSetStrella;
-  RecSendExocetMM40        : TRec3DSetExocet_40;
-  RecSendC802              : TRecData_C802;
-  RecSendCannon            : TRec3DSetWCC;
-
-  Weapon       : TWeapon;
-  Vehicle : TVehicle;
+  shipObject: TInsObject;
+  temp: Integer;
+  RecSendYakhont: TRecData_Yakhont;
+  RecSendSUT: TRecSetTorpedoSUT;
+  RecSendAsroc: TRec3DSetAsrock;
+  RecSendRBU6000: TRec3DSetRBU;
+  RecSendA244: TRecDataTorperdo;
+  RecSendTetral: TRec3DSetTetral;
+  RecSendMistral: TRec3DSetMistral;
+  RecSendStrela: TRec3DSetStrella;
+  RecSendExocetMM40: TRec3DSetExocet_40;
+  RecSendC802: TRecData_C802;
+  RecSendCannon: TRec3DSetWCC;
+  Weapon: TWeapon;
+  Vehicle: TVehicle;
 begin
 //  if lvWeapon.Selected = nil then Exit;
 //  if lvRuntimeShip.Selected = nil then Exit;
@@ -8256,7 +8206,7 @@ begin
 //
 //      DataModule1.updateSceWeapon(0, Vehicle.Vehicle_ID, Weapon.WeaponID, Weapon.launcherID);
 //      ShowWeaponPanel(Weapon.WeaponID);
-//      
+//
 //      SimManager.NetSendEnableWeapon(Vehicle.Vehicle_ID , Weapon.WeaponID , 1, Weapon.launcherID) ;
 //    end;
 //  end
@@ -8278,18 +8228,18 @@ begin
     Exit;
 
   if lvRuntimeShip.Selected = nil then
-     Exit;
+    Exit;
 
   if Assigned(lvWeapon.Selected.Data) and Assigned(lvRuntimeShip.Selected.Data) then
   begin
-    Weapon  := TWeapon(lvWeapon.Selected.Data);
+    Weapon := TWeapon(lvWeapon.Selected.Data);
     Vehicle := TVehicle(lvRuntimeShip.Selected.Data);
 
     shipObject := nil;
 
-    for i:= 0 to SimManager.MainObjList.ItemCount -1 do
+    for i := 0 to SimManager.MainObjList.ItemCount - 1 do
     begin
-      o:= SimManager.MainObjList.getObject(i);
+      o := SimManager.MainObjList.getObject(i);
       if Assigned(o) and (TInsObject(o).FDataBaseID = Vehicle.Vehicle_ID) then
       begin
         shipObject := TInsObject(o);
@@ -8299,51 +8249,49 @@ begin
 
     if Assigned(shipObject) then
     begin
-      for i:= 0 to shipObject.WeaponOnShip_List.Count - 1  do
+      for i := 0 to shipObject.WeaponOnShip_List.Count - 1 do
       begin
-        if Assigned(shipObject.WeaponOnShip_List.Items[i]) then begin
-          if (TWeaponOnShip(shipObject.WeaponOnShip_List.Items[i]).Weapon_ID = Weapon.WeaponID) and
-             (TWeaponOnShip(shipObject.WeaponOnShip_List.Items[i]).Weapon_Launcher = Weapon.launcherID) then
+        if Assigned(shipObject.WeaponOnShip_List.Items[i]) then
+        begin
+          if (TWeaponOnShip(shipObject.WeaponOnShip_List.Items[i]).Weapon_ID = Weapon.WeaponID) and (TWeaponOnShip(shipObject.WeaponOnShip_List.Items[i]).Weapon_Launcher = Weapon.launcherID) then
           begin
-            TWeaponOnShip(shipObject.WeaponOnShip_List.Items[i]).Weapon_Status := TComponent(sender).Tag;
+            TWeaponOnShip(shipObject.WeaponOnShip_List.Items[i]).Weapon_Status := TComponent(Sender).Tag;
           end;
         end;
       end;
     end;
   end;
 
-  if TMenuItem(sender).Tag = 1 then
+  if TMenuItem(Sender).Tag = 1 then
   begin
     lvWeapon.Selected.SubItems[1] := 'On';
-     pgWeapon.Enabled := True;
+    pgWeapon.Enabled := True;
     if lvWeapon.Selected.Caption = 'Asroc' then
     begin
-      pgWeapon.ActivePage  := pgtwAsroc ;
+      pgWeapon.ActivePage := pgtwAsroc;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_ASROC , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;  //buat sinkron aja
+      SimManager.NetSendEnableWeapon(temp, C_DBID_ASROC, 1, StrToInt(lvWeapon.Selected.SubItems[0]));  //buat sinkron aja
 
       with RecSendAsroc do
       begin
-        ShipID           := temp;
-        mWeaponID        := 1;  // hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_ASROCK_ON;
+        shipID := temp;
+        mWeaponID := 1;  // hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_ASROCK_ON;
 
-        mMissile_Type    := 0;
-        mTargetID        := 0;
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
-        mTargetDepth     := 0;
-        mFuzeType        := 0;
-        mCorrRange       := 0;
+        mMissile_Type := 0;
+        mTargetID := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
+        mTargetDepth := 0;
+        mFuzeType := 0;
+        mCorrRange := 0;
 
       end;
 
@@ -8355,34 +8303,33 @@ begin
       pgWeapon.ActivePage := pgtwRBU6000;
       if onOffMode = 1 then
       begin
-        for j:=1 to 2 do
+        for j := 1 to 2 do
         begin
-          DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-          ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),j);
+          DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), j);
         end;
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_RBU6000 , 1, 1) ;
-      SimManager.NetSendEnableWeapon(temp, C_DBID_RBU6000 , 1, 2) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_RBU6000, 1, 1);
+      SimManager.NetSendEnableWeapon(temp, C_DBID_RBU6000, 1, 2);
 
       with RecSendRBU6000 do
       begin
-        ShipID           := temp;
-        mWeaponID        := 2;  
-        mLauncherID      := 1;
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_RBU_ON;
+        shipID := temp;
+        mWeaponID := 2;
+        mLauncherID := 1;
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_RBU_ON;
 
-        mCount           := 0;
-        mMissileType     := 0;
-        mTargetID        := 0;
-        mLncrBearing     := 0;
-        mLncRange        := 0;
-        mTargetDepth     := 0;
-        mCorrBearing     := 0;
-        mCorrElev        := 0;
+        mCount := 0;
+        mMissileType := 0;
+        mTargetID := 0;
+        mLncrBearing := 0;
+        mLncRange := 0;
+        mTargetDepth := 0;
+        mCorrBearing := 0;
+        mCorrElev := 0;
 
       end;
 
@@ -8398,38 +8345,35 @@ begin
       pgWeapon.ActivePage := pgtwTorpedoA244;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption + 'S'),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption + 'S'), StrToInt(lvWeapon.Selected.SubItems[0]));
 
       end;
 
-      temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption+ 'S');
-      SimManager.NetSendEnableWeapon(temp, C_DBID_TORPEDO_A244S , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption + 'S');
+      SimManager.NetSendEnableWeapon(temp, C_DBID_TORPEDO_A244S, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendA244 do
       begin
-        ShipID           := temp;
-        mWeaponID        := 3;  // hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_SPS_ON;
+        shipID := temp;
+        mWeaponID := 3;  // hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_SPS_ON;
 
-        ISC              := 0;
-        ISR              := 0;
-        WTR              := 0;
-        CEI              := 0;
-        PRG              := 0;
-        DOP              := 0;
-        ACE              := 0;
-        FLO              := 0;
-        ISD              := 0;
-        ACM              := 0;
-        FLO              := 0;
-        ISD              := 0;
-        ACM              := 0;
-
+        ISC := 0;
+        ISR := 0;
+        WTR := 0;
+        CEI := 0;
+        PRG := 0;
+        DOP := 0;
+        ACE := 0;
+        FLO := 0;
+        ISD := 0;
+        ACM := 0;
+        FLO := 0;
+        ISD := 0;
+        ACM := 0;
 
       end;
 
@@ -8440,9 +8384,7 @@ begin
       pgWeapon.ActivePage := pgtwTorpedoSUT;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
 
       if lvWeapon.Selected.SubItems[0] = '1' then
@@ -8455,27 +8397,25 @@ begin
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_TORPEDO_SUT , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_TORPEDO_SUT, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendSUT do
       begin
-        ShipID           := temp;
-        mWeaponID        := 4;
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_TORPEDOSUT_ON;
+        shipID := temp;
+        mWeaponID := 4;
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_TORPEDOSUT_ON;
 
-        mT_ID                     := 0;
-        mTorpedoCourse            := 0;
-        mTorpedoSpeed             := 0;
-        mTorpedoDepth             := 0;
-        mTorpedoSafeDistance      := 0;
-        mTorpedoEnDis             := 0;
-        mpredm                    := 0;
-        mTargetType               := 0;
-
-
+        mT_ID := 0;
+        mTorpedoCourse := 0;
+        mTorpedoSpeed := 0;
+        mTorpedoDepth := 0;
+        mTorpedoSafeDistance := 0;
+        mTorpedoEnDis := 0;
+        mpredm := 0;
+        mTargetType := 0;
 
       end;
 
@@ -8486,29 +8426,24 @@ begin
       pgWeapon.ActivePage := pgtwTetral;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_TETRAL , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
-
+      SimManager.NetSendEnableWeapon(temp, C_DBID_TETRAL, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendTetral do
       begin
-        ShipID           := temp;
-        mWeaponID        := 5;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_TETRAL_ON;
+        shipID := temp;
+        mWeaponID := 5;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_TETRAL_ON;
 
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
-        mTargetElev      := 0;
-
-
+        mTargetBearing := 0;
+        mTargetRange := 0;
+        mTargetElev := 0;
 
       end;
 
@@ -8519,29 +8454,27 @@ begin
       pgWeapon.ActivePage := pgtwYAHKONT;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_YAKHONT , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_YAKHONT, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendYakhont do
       begin
-        ShipID           := temp;
-        mWeaponID        := 6;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_YAKHONT_ON;
+        shipID := temp;
+        mWeaponID := 6;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_YAKHONT_ON;
 
-        mMissile1         := 0;
-        mMissile2         := 0;
-        mMissile3         := 0;
-        mMissile4         := 0;
-        mTargetBearing    := 0;
-        mTargetRange      := 0;
+        mMissile1 := 0;
+        mMissile2 := 0;
+        mMissile3 := 0;
+        mMissile4 := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
 
       end;
 
@@ -8552,25 +8485,23 @@ begin
       pgWeapon.ActivePage := pgtwC802;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_C802 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_C802, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendC802 do
       begin
-        ShipID           := temp;
-        mWeaponID        := 7;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_C802_ON;
+        shipID := temp;
+        mWeaponID := 7;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_C802_ON;
 
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
 
       end;
 
@@ -8581,26 +8512,24 @@ begin
       pgWeapon.ActivePage := pgtwMistral;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_MISTRAL , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_MISTRAL, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendMistral do
       begin
-        ShipID           := temp;
-        mWeaponID        := 8;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_MISTRAL_ON;
+        shipID := temp;
+        mWeaponID := 8;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_MISTRAL_ON;
 
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
-        mTargetElev      := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
+        mTargetElev := 0;
 
       end;
 
@@ -8611,27 +8540,24 @@ begin
       pgWeapon.ActivePage := pgtwStrella;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_STRELA , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_STRELA, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendStrela do
       begin
-        ShipID           := temp;
-        mWeaponID        := 9;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_STRELA_ON;
+        shipID := temp;
+        mWeaponID := 9;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_STRELA_ON;
 
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
-        mTargetElev      := 0;
-
+        mTargetBearing := 0;
+        mTargetRange := 0;
+        mTargetElev := 0;
 
       end;
 
@@ -8642,74 +8568,64 @@ begin
       pgWeapon.ActivePage := pgtwExocetMM40;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_EXOCET_MM40 , 1, StrToInt(lvWeapon.Selected.SubItems[0]));
+      SimManager.NetSendEnableWeapon(temp, C_DBID_EXOCET_MM40, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendExocetMM40 do
       begin
-        shipID              := temp;
-        mWeaponID           := 10;
-        mLauncherID         := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID          := 1;
-        mMissileNumber      := 1;
-        sOrder              := __ORD_EXOCET_40_ON;
+        shipID := temp;
+        mWeaponID := 10;
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        sOrder := __ORD_EXOCET_40_ON;
 
-        mTRange             := 0;
-        mTBearing           := 0;
-        mAngular_Mode       := 0;
-        mAgility_Mode       := 0;
-        mInitialStep_Mode   := 0;
-        mObstacle_Alt       := 0;
-        mObstacle_Range     := 0;
-        mApproach_Range     := 0;
-        mTerminal_Range     := 0;
+        mTRange := 0;
+        mTBearing := 0;
+        mAngular_Mode := 0;
+        mAgility_Mode := 0;
+        mInitialStep_Mode := 0;
+        mObstacle_Alt := 0;
+        mObstacle_Range := 0;
+        mApproach_Range := 0;
+        mTerminal_Range := 0;
 
       end;
 
       SimManager.NetSendTo3D_OrderMissileExocet_MM40(RecSendExocetMM40);
     end
-    else if (lvWeapon.Selected.Caption = 'Cannon 40') or
-            (lvWeapon.Selected.Caption = 'Cannon 76') or
-            (lvWeapon.Selected.Caption = 'Cannon 120') or
-            (lvWeapon.Selected.Caption = 'Cannon 57') or
-            (lvWeapon.Selected.Caption = 'Cannon 57 Digital') or
-            (lvWeapon.Selected.Caption = 'Cannon AK230') or
-            (lvWeapon.Selected.Caption = 'Cannon Type 730') then
+    else if (lvWeapon.Selected.Caption = 'Cannon 40') or (lvWeapon.Selected.Caption = 'Cannon 76') or (lvWeapon.Selected.Caption = 'Cannon 120') or (lvWeapon.Selected.Caption = 'Cannon 57') or (lvWeapon.Selected.Caption = 'Cannon 57 Digital') or (lvWeapon.Selected.Caption = 'Cannon AK230') or (lvWeapon.Selected.Caption = 'Cannon Type 730') then
     begin
       pgWeapon.ActivePage := pgtwWCCCannon;
       if onOffMode = 1 then
       begin
-        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.updateSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
 
       end;
 
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
       if lvWeapon.Selected.Caption = 'Cannon 40' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON40 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON40, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON40;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_ON;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON40;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_ON;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
@@ -8717,138 +8633,138 @@ begin
       end
       else if lvWeapon.Selected.Caption = 'Cannon 76' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON76 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON76, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON76;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_ON;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON76;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_ON;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon 120' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON120 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON120, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON120;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_ON;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON120;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_ON;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon 57' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON57;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_ON;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON57;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_ON;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon AK230' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_AK230 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_AK230, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON_AK230;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_ON;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON_AK230;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_ON;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon Type 730' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_TYPE_730 , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_TYPE_730, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON_TYPE_730;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_ON;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON_TYPE_730;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_ON;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon 57 Digital' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57_DIGITAL , 1, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57_DIGITAL, 1, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON57_DIGITAL;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_ON;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON57_DIGITAL;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_ON;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
@@ -8860,28 +8776,23 @@ begin
     lvWeapon.Selected.SubItems[1] := 'Off';
     if onOffMode = 1 then
     begin
-      pgWeapon.ActivePage  := pgtwDefault ;
+      pgWeapon.ActivePage := pgtwDefault;
 
       if lvWeapon.Selected.Caption = 'Rbu6000' then
       begin
-        for j:=1 to 2 do
+        for j := 1 to 2 do
         begin
-          DataModule1.deleteSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-          ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),j);
+          DataModule1.deleteSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), j);
         end;
       end
       else if lvWeapon.Selected.Caption = 'Torpedo A244' then
       begin
-        DataModule1.deleteSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption + 'S' ),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.deleteSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption + 'S'), StrToInt(lvWeapon.Selected.SubItems[0]));
 
       end
       else
       begin
-        DataModule1.deleteSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption)
-        ,DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption),
-        StrToInt(lvWeapon.Selected.SubItems[0]));
+        DataModule1.deleteSceWeapon(0, DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption), DataModule1.getWeaponIDByName(lvWeapon.Selected.Caption), StrToInt(lvWeapon.Selected.SubItems[0]));
       end;
 
     end;
@@ -8889,24 +8800,24 @@ begin
     if lvWeapon.Selected.Caption = 'Asroc' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_ASROC  , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_ASROC, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendAsroc do
       begin
-        ShipID           := temp;
-        mWeaponID        := 1;
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_ASROCK_OFF;
+        shipID := temp;
+        mWeaponID := 1;
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_ASROCK_OFF;
 
-        mMissile_Type    := 0;
-        mTargetID        := 0;
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
-        mTargetDepth     := 0;
-        mFuzeType        := 0;
-        mCorrRange       := 0;
+        mMissile_Type := 0;
+        mTargetID := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
+        mTargetDepth := 0;
+        mFuzeType := 0;
+        mCorrRange := 0;
 
       end;
 
@@ -8916,26 +8827,26 @@ begin
     else if lvWeapon.Selected.Caption = 'Rbu6000' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_RBU6000 , 0, 1) ;
-      SimManager.NetSendEnableWeapon(temp, C_DBID_RBU6000 , 0, 2) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_RBU6000, 0, 1);
+      SimManager.NetSendEnableWeapon(temp, C_DBID_RBU6000, 0, 2);
 
       with RecSendRBU6000 do
       begin
-        ShipID           := temp;
-        mWeaponID        := 2;
-        mLauncherID      := 1;
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_RBU_OFF;
+        shipID := temp;
+        mWeaponID := 2;
+        mLauncherID := 1;
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_RBU_OFF;
 
-        mCount           := 0;
-        mMissileType     := 0;
-        mTargetID        := 0;
-        mLncrBearing     := 0;
-        mLncRange        := 0;
-        mTargetDepth     := 0;
-        mCorrBearing     := 0;
-        mCorrElev        := 0;
+        mCount := 0;
+        mMissileType := 0;
+        mTargetID := 0;
+        mLncrBearing := 0;
+        mLncRange := 0;
+        mTargetDepth := 0;
+        mCorrBearing := 0;
+        mCorrElev := 0;
 
       end;
 
@@ -8948,31 +8859,30 @@ begin
     else if lvWeapon.Selected.Caption = 'Torpedo A244' then
     begin
       temp := DataModule1.getShipIDByName(lvWeapon.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_TORPEDO_A244S , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_TORPEDO_A244S, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendA244 do
       begin
-        ShipID           := temp;
-        mWeaponID        := 3;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_SPS_OFF;
+        shipID := temp;
+        mWeaponID := 3;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_SPS_OFF;
 
-        ISC             := 0;
-        ISR             := 0;
-        WTR             := 0;
-        CEI             := 0;
-        PRG             := 0;
-        DOP             := 0;
-        ACE             := 0;
-        FLO             := 0;
-        ISD             := 0;
-        ACM             := 0;
-        FLO             := 0;
-        ISD             := 0;
-        ACM             := 0;
-
+        ISC := 0;
+        ISR := 0;
+        WTR := 0;
+        CEI := 0;
+        PRG := 0;
+        DOP := 0;
+        ACE := 0;
+        FLO := 0;
+        ISD := 0;
+        ACM := 0;
+        FLO := 0;
+        ISD := 0;
+        ACM := 0;
 
       end;
 
@@ -8981,34 +8891,34 @@ begin
     else if lvWeapon.Selected.Caption = 'Torpedo SUT' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_TORPEDO_SUT , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_TORPEDO_SUT, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
-      if lvWeapon.Selected.SubItems[0] = '1' then begin
+      if lvWeapon.Selected.SubItems[0] = '1' then
+      begin
         frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.btnTocosLoading.Enabled := False;
       end
-      else if lvWeapon.Selected.SubItems[0] = '2' then begin
+      else if lvWeapon.Selected.SubItems[0] = '2' then
+      begin
         frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.btnTocosLoading2.Enabled := False;
       end;
 
       with RecSendSUT do
       begin
-        ShipID           := temp;
-        mWeaponID        := 4;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_TORPEDOSUT_OFF;
+        shipID := temp;
+        mWeaponID := 4;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_TORPEDOSUT_OFF;
 
-        mT_ID                     := 0;
-        mTorpedoCourse            := 0;
-        mTorpedoSpeed             := 0;
-        mTorpedoDepth             := 0;
-        mTorpedoSafeDistance      := 0;
-        mTorpedoEnDis             := 0;
-        mpredm                    := 0;
-        mTargetType               := 0;
-
-
+        mT_ID := 0;
+        mTorpedoCourse := 0;
+        mTorpedoSpeed := 0;
+        mTorpedoDepth := 0;
+        mTorpedoSafeDistance := 0;
+        mTorpedoEnDis := 0;
+        mpredm := 0;
+        mTargetType := 0;
 
       end;
 
@@ -9018,20 +8928,20 @@ begin
     else if lvWeapon.Selected.Caption = 'Tetral' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_TETRAL , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_TETRAL, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendTetral do
       begin
-        ShipID           := temp;
-        mWeaponID        := 5;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_TETRAL_OFF;
+        shipID := temp;
+        mWeaponID := 5;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_TETRAL_OFF;
 
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
-        mTargetElev      := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
+        mTargetElev := 0;
 
       end;
 
@@ -9040,23 +8950,23 @@ begin
     else if lvWeapon.Selected.Caption = 'Yakhont' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_YAKHONT , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_YAKHONT, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
-            with RecSendYakhont do
+      with RecSendYakhont do
       begin
-        ShipID           := temp;
-        mWeaponID        := 6;  //hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_YAKHONT_OFF;
+        shipID := temp;
+        mWeaponID := 6;  //hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_YAKHONT_OFF;
 
-        mMissile1         := 0;
-        mMissile2         := 0;
-        mMissile3         := 0;
-        mMissile4         := 0;
-        mTargetBearing    := 0;
-        mTargetRange      := 0;
+        mMissile1 := 0;
+        mMissile2 := 0;
+        mMissile3 := 0;
+        mMissile4 := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
 
       end;
 
@@ -9065,19 +8975,19 @@ begin
     else if lvWeapon.Selected.Caption = 'C802' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_C802 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_C802, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendC802 do
       begin
-        ShipID           := temp;
-        mWeaponID        := 7;  //hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_C802_OFF;
+        shipID := temp;
+        mWeaponID := 7;  //hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_C802_OFF;
 
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
 
       end;
 
@@ -9086,20 +8996,20 @@ begin
     else if lvWeapon.Selected.Caption = 'Mistral' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_MISTRAL , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_MISTRAL, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendMistral do
       begin
-        ShipID           := temp;
-        mWeaponID        := 8;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_MISTRAL_OFF;
+        shipID := temp;
+        mWeaponID := 8;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_MISTRAL_OFF;
 
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
-        mTargetElev      := 0;
+        mTargetBearing := 0;
+        mTargetRange := 0;
+        mTargetElev := 0;
 
       end;
 
@@ -9108,21 +9018,20 @@ begin
     else if lvWeapon.Selected.Caption = 'Strela' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_STRELA , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_STRELA, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendStrela do
       begin
-        ShipID           := temp;
-        mWeaponID        := 9;  // maafkan hardcore :D
-        mLauncherID      := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID       := 1;
-        mMissileNumber   := 1;
-        OrderID          := __ORD_STRELA_OFF;
+        shipID := temp;
+        mWeaponID := 9;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        orderID := __ORD_STRELA_OFF;
 
-        mTargetBearing   := 0;
-        mTargetRange     := 0;
-        mTargetElev      := 0;
-
+        mTargetBearing := 0;
+        mTargetRange := 0;
+        mTargetElev := 0;
 
       end;
 
@@ -9131,197 +9040,191 @@ begin
     else if lvWeapon.Selected.Caption = 'Exocet MM40' then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
-      SimManager.NetSendEnableWeapon(temp, C_DBID_EXOCET_MM40 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+      SimManager.NetSendEnableWeapon(temp, C_DBID_EXOCET_MM40, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
       with RecSendExocetMM40 do
       begin
-        shipID              := temp;
-        mWeaponID           := 10;  // maafkan hardcore :D
-        mLauncherID         := StrToInt(lvWeapon.Selected.SubItems[0]);
-        mMissileID          := 1;
-        mMissileNumber      := 1;
-        sOrder              := __ORD_EXOCET_40_OFF;
+        shipID := temp;
+        mWeaponID := 10;  // maafkan hardcore :D
+        mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+        mMissileID := 1;
+        mMissileNumber := 1;
+        sOrder := __ORD_EXOCET_40_OFF;
 
-        mTRange             := 0;
-        mTBearing           := 0;
-        mAngular_Mode       := 0;
-        mAgility_Mode       := 0;
-        mInitialStep_Mode   := 0;
-        mObstacle_Alt       := 0;
-        mObstacle_Range     := 0;
-        mApproach_Range     := 0;
-        mTerminal_Range     := 0;
+        mTRange := 0;
+        mTBearing := 0;
+        mAngular_Mode := 0;
+        mAgility_Mode := 0;
+        mInitialStep_Mode := 0;
+        mObstacle_Alt := 0;
+        mObstacle_Range := 0;
+        mApproach_Range := 0;
+        mTerminal_Range := 0;
 
       end;
 
       SimManager.NetSendTo3D_OrderMissileExocet_MM40(RecSendExocetMM40);
     end
-    else if (lvWeapon.Selected.Caption = 'Cannon 40') or
-            (lvWeapon.Selected.Caption = 'Cannon 76') or
-            (lvWeapon.Selected.Caption = 'Cannon 120') or
-            (lvWeapon.Selected.Caption = 'Cannon 57') or
-            (lvWeapon.Selected.Caption = 'Cannon 57 Digital') or
-            (lvWeapon.Selected.Caption = 'Cannon AK230') or
-            (lvWeapon.Selected.Caption = 'Cannon Type 730')then
+    else if (lvWeapon.Selected.Caption = 'Cannon 40') or (lvWeapon.Selected.Caption = 'Cannon 76') or (lvWeapon.Selected.Caption = 'Cannon 120') or (lvWeapon.Selected.Caption = 'Cannon 57') or (lvWeapon.Selected.Caption = 'Cannon 57 Digital') or (lvWeapon.Selected.Caption = 'Cannon AK230') or (lvWeapon.Selected.Caption = 'Cannon Type 730') then
     begin
       temp := DataModule1.getShipIDByName(lvRuntimeShip.Selected.Caption);
       if lvWeapon.Selected.Caption = 'Cannon 40' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON40 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON40, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON40;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_OFF;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON40;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_OFF;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon 76' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON76 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON76, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON76;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_OFF;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON76;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_OFF;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon 120' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON120 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON120, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON120;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_OFF;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON120;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_OFF;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon 57' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON57;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_OFF;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON57;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_OFF;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon AK230' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_AK230 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_AK230, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON_AK230;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_OFF;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON_AK230;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_OFF;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon Type 730' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_TYPE_730 , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON_TYPE_730, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON_TYPE_730;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_OFF;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON_TYPE_730;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_OFF;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
       end
       else if lvWeapon.Selected.Caption = 'Cannon 57 Digital' then
       begin
-        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57_DIGITAL , 0, StrToInt(lvWeapon.Selected.SubItems[0])) ;
+        SimManager.NetSendEnableWeapon(temp, C_DBID_CANNON57_DIGITAL, 0, StrToInt(lvWeapon.Selected.SubItems[0]));
 
         with RecSendCannon do
         begin
-          ShipID                  := temp;
-          mWeaponID               := C_DBID_CANNON57_DIGITAL;
-          mLauncherID             := StrToInt(lvWeapon.Selected.SubItems[0]);
-          mMissileID              := 1;
-          mMissileNumber          := 1;
-          mOrderID                := __ORD_CANNON_OFF;
+          shipID := temp;
+          mWeaponID := C_DBID_CANNON57_DIGITAL;
+          mLauncherID := StrToInt(lvWeapon.Selected.SubItems[0]);
+          mMissileID := 1;
+          mMissileNumber := 1;
+          mOrderID := __ORD_CANNON_OFF;
 
-          mTargetID               := 0;
-          mModeID                 := 0;
-          mUpDown                 := 0;
-          mAutoCorrectElev        := 0;
-          mAutoCorrectBearing     := 0;
-          mBalistikID             := 0;
+          mTargetID := 0;
+          mModeID := 0;
+          mUpDown := 0;
+          mAutoCorrectElev := 0;
+          mAutoCorrectBearing := 0;
+          mBalistikID := 0;
 
         end;
         SimManager.NetSendTo3D_OrderCannon(RecSendCannon);
@@ -9329,23 +9232,19 @@ begin
 
     end;
 
-
   end;
 end;
 
-
-procedure TfrmGameController.StatusWeapon(shipid : Integer; weaponid : Byte ; value : Single; launcher :Byte);
+procedure TfrmGameController.StatusWeapon(shipid: Integer; weaponid: Byte; value: Single; launcher: Byte);
 var
   i: Integer;
-
-  objTemp : TObject;
-  shipTemp : TInsObject;
-  weaponTemp : TWeaponOnShip;
-
+  objTemp: TObject;
+  shipTemp: TInsObject;
+  weaponTemp: TWeaponOnShip;
 begin
-  for i:= 0 to SimManager.MainObjList.ItemCount -1 do
+  for i := 0 to SimManager.MainObjList.ItemCount - 1 do
   begin
-    objTemp:= SimManager.MainObjList.getObject(i);
+    objTemp := SimManager.MainObjList.getObject(i);
     if Assigned(objTemp) and (TInsObject(objTemp).FDataBaseID = shipid) then
     begin
       shipTemp := TInsObject(objTemp);
@@ -9355,7 +9254,7 @@ begin
 
   if Assigned(shipTemp) then
   begin
-    for i:= 0 to shipTemp.WeaponOnShip_List.Count - 1  do
+    for i := 0 to shipTemp.WeaponOnShip_List.Count - 1 do
     begin
       weaponTemp := shipTemp.WeaponOnShip_List.Items[i];
 
@@ -9370,12 +9269,10 @@ begin
   end;
 end;
 
-procedure TfrmGameController.eRBU6000RangeKeyPress(Sender: TObject;
-  var Key: Char);
+procedure TfrmGameController.eRBU6000RangeKeyPress(Sender: TObject; var Key: Char);
 var
-  cek : Boolean;
-  range : Double;
-
+  cek: Boolean;
+  range: Double;
 begin
   if Key in [#13] then
   begin
@@ -9399,26 +9296,23 @@ begin
       ShowMessage('Wrong Input !!! ');
     end;
 
-
   end;
 end;
 
-
-
 procedure TfrmGameController.readOnOffMode;
 var
-  readPath  : string;
-  helpIni   : TIniFile;
+  readPath: string;
+  helpIni: TIniFile;
 begin
-  helpIni   := TIniFile.Create('..\bin\BridgeSet.ini');
+  helpIni := TIniFile.Create('..\bin\BridgeSet.ini');
 
-  readPath  := helpIni.ReadString('OnOff', 'mode','Default');
+  readPath := helpIni.ReadString('OnOff', 'mode', 'Default');
   onOffMode := StrToInt(readPath);
 
   if onOffMode = 0 then
   begin
-    readPath  := helpIni.ReadString('OnOff', 'scenarioID','Default');
-    sceIDINI  := StrToInt(readPath);
+    readPath := helpIni.ReadString('OnOff', 'scenarioID', 'Default');
+    sceIDINI := StrToInt(readPath);
   end;
 
   helpIni.Free;
@@ -9426,15 +9320,14 @@ end;
 
 procedure TfrmGameController.tmrRBUTimer(Sender: TObject);
 begin
-  btnRBUStartFire.Enabled   := True;
-  btnRBU6000Assign.Enabled  := True;
-  tmrRBU.Enabled            := False;
+  btnRBUStartFire.Enabled := True;
+  btnRBU6000Assign.Enabled := True;
+  tmrRBU.Enabled := False;
 end;
-
 
 procedure TfrmGameController.OnChangeEnvironment;
 var
-RecSend : TRecDataEnvironment;
+  RecSend: TRecDataEnvironment;
 begin
   RecSend.seaState := tbSeaState.Position;
   RecSend.windVelocity := tbWindSpeed.Position;
@@ -9467,52 +9360,57 @@ begin
 end;
 
 procedure TfrmGameController.tbSeaStateChange(Sender: TObject);
-
 begin
   edtPortSeaState.Text := IntToStr(tbSeaState.Position);
-  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then
+    OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbWindSpeedChange(Sender: TObject);
 begin
- edtPortWindSpeed.Text := IntToStr(tbWindSpeed.Position);
- if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
+  edtPortWindSpeed.Text := IntToStr(tbWindSpeed.Position);
+  if Sender.UnitName = 'VrTrackBar' then
+    OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbSeaSpeedChange(Sender: TObject);
 begin
   edtPortCurrentSpeed.Text := IntToStr(tbSeaSpeed.Position);
-  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then
+    OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbTempChange(Sender: TObject);
 begin
   edtPortTemp.Text := IntToStr(tbTemp.Position);
-  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then
+    OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbBaroPressureChange(Sender: TObject);
 begin
   edtPortBarometer.Text := IntToStr(tbBaroPressure.Position);
-  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then
+    OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbHumidityChange(Sender: TObject);
 begin
   edtPortHumidity.Text := IntToStr(tbHumidity.Position);
-  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then
+    OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.tbFogIntensityChange(Sender: TObject);
 begin
   edtFogIntensity.Text := IntToStr(tbFogIntensity.Position);
-  if Sender.UnitName = 'VrTrackBar' then OnChangeEnvironment;
+  if Sender.UnitName = 'VrTrackBar' then
+    OnChangeEnvironment;
 end;
 
 procedure TfrmGameController.vrwhlWindDirecChange(Sender: TObject);
 var
-  valTemp : Integer;
-
+  valTemp: Integer;
 begin
   if vrwhlWindDirec.Position < 180 then
   begin
@@ -9528,8 +9426,7 @@ end;
 
 procedure TfrmGameController.VrWindDirectionChange(Sender: TObject);
 var
-  valTemp : Integer;
-
+  valTemp: Integer;
 begin
   if VrWindDirection.Position < 180 then
   begin
@@ -9542,77 +9439,76 @@ begin
   edtWindDirection.Text := IntToStr(valTemp);
 end;
 
-procedure TfrmGameController.RestartAllCommunication1Click(
-  Sender: TObject);
+procedure TfrmGameController.RestartAllCommunication1Click(Sender: TObject);
 var
-  RecSend : TRecData2DOrder;
+  RecSend: TRecData2DOrder;
 begin
   case TComponent(Sender).Tag of
-    0 :
-    begin
-      RecSend.orderID := _CM_CLIENT_MANAGE;
-      RecSend.numValue := __CM_CLIENT_CLOSEALLCOM;
-      RecSend.strValue := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := '';
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
+    0:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_CLOSEALLCOM;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
+        RecSend.ipConsole := '';
+        SimManager.SendCommand2D_Order(RecSend);
+      end;
 
-    1 :
-    begin
-      RecSend.orderID := _CM_CLIENT_MANAGE;
-      RecSend.numValue := __CM_CLIENT_RESTARTALLCOMM;
-      RecSend.strValue := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := '';
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
+    1:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_RESTARTALLCOMM;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
+        RecSend.ipConsole := '';
+        SimManager.SendCommand2D_Order(RecSend);
+      end;
 
-    2 :
-    begin
-      RecSend.orderID := _CM_CLIENT_MANAGE;
-      RecSend.numValue := __CM_CLIENT_SHUTDOWNALLCOM;
-      RecSend.strValue := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := '';
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
+    2:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_SHUTDOWNALLCOM;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
+        RecSend.ipConsole := '';
+        SimManager.SendCommand2D_Order(RecSend);
+      end;
 
-    3 :
-    begin
-      RecSend.orderID := _CM_CLIENT_MANAGE;
-      RecSend.numValue := __CM_CLIENT_RESTARTSERVERCOMM;
-      RecSend.strValue := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := '';
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
+    3:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_RESTARTSERVERCOMM;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
+        RecSend.ipConsole := '';
+        SimManager.SendCommand2D_Order(RecSend);
+      end;
 
-    4 :
-    begin
-      RecSend.orderID := _CM_CLIENT_MANAGE;
-      RecSend.numValue := __CM_CLIENT_SHUTDOWNSERVERCOMM;
-      RecSend.strValue := '';
-      RecSend.strValue2 := '';
-      RecSend.strValue3 := '';
-      RecSend.ipConsole := '';
-      SimManager.SendCommand2D_Order(RecSend);
-    end;
+    4:
+      begin
+        RecSend.orderID := _CM_CLIENT_MANAGE;
+        RecSend.numValue := __CM_CLIENT_SHUTDOWNSERVERCOMM;
+        RecSend.strValue := '';
+        RecSend.strValue2 := '';
+        RecSend.strValue3 := '';
+        RecSend.ipConsole := '';
+        SimManager.SendCommand2D_Order(RecSend);
+      end;
   end;
 end;
 
-procedure TfrmGameController.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfrmGameController.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = 112 then
   begin
     ShowMessage('a');
   end;
 end;
+
 procedure TfrmGameController.SetDefaultEnvirontment;
 begin
   lblPortEnv.Caption := '-';
@@ -9634,7 +9530,6 @@ begin
   FTrajectory.aCanvas := frmGameController.imgTrajectory.Canvas;
 end;
 
-
 procedure TfrmGameController.DestroyTrajectory;
 begin
   FTrajectory.aCanvas := nil;
@@ -9643,19 +9538,13 @@ end;
 
 procedure TfrmGameController.FormPaint(Sender: TObject);
 var
-  i,j,Z : integer;
-  aTrajectory : TTrajectory;
-
-  o : TObject;
-  insObject : TInsObject;
-  misObject : TIMissileObject;
-
-  amShipID,
-  amLauncherID,
-  amMissileID,
-  amWeaponID,
-  amMissileNumber : integer;
-  TrajecAsroc : TTrajectoryAsroc;
+  i, j, Z: integer;
+  aTrajectory: TTrajectory;
+  o: TObject;
+  insObject: TInsObject;
+  misObject: TIMissileObject;
+  amShipID, amLauncherID, amMissileID, amWeaponID, amMissileNumber: integer;
+  TrajecAsroc: TTrajectoryAsroc;
 begin
   if Assigned(lvRuntimeMissileTrajectory.Selected) and Assigned(lvRuntimeMissileTrajectory.Selected.Data) then
   begin
@@ -9666,21 +9555,17 @@ begin
     amWeaponID := aTrajectory.aWeaponID;
     amMissileNumber := aTrajectory.aMissileNumber;
 
-    for i:= 0 to SimManager.MainObjList.ItemCount -1 do
+    for i := 0 to SimManager.MainObjList.ItemCount - 1 do
     begin
-      o:= SimManager.MainObjList.getObject(i);
-      if Assigned(o) then begin
+      o := SimManager.MainObjList.getObject(i);
+      if Assigned(o) then
+      begin
         insObject := TInsObject(o);
         if insObject is TIMissileObject then
         begin
           misObject := TIMissileObject(insObject);
 
-          if ((misObject.ShipID = amShipID) and
-              (misObject.WeaponID = amWeaponID) and
-              (misObject.LauncherID = amLauncherID) and
-              (misObject.MissileID = amMissileID) and
-              (misObject.MissileNumber = amMissileNumber)
-             ) then
+          if ((misObject.ShipID = amShipID) and (misObject.WeaponID = amWeaponID) and (misObject.LauncherID = amLauncherID) and (misObject.MissileID = amMissileID) and (misObject.MissileNumber = amMissileNumber)) then
           begin
             if amWeaponID = C_DBID_TORPEDO_SUT then
             begin
@@ -9690,7 +9575,8 @@ begin
             begin
               FTrajectory.Draw(misObject.VHistory, 400, 100);
             end
-            else;
+            else
+              ;
             if (amWeaponID = C_DBID_ASROC) then
             begin
               TrajecAsroc := TTrajectoryAsroc.Create;
@@ -9740,12 +9626,12 @@ procedure TfrmGameController.tsTrajectoryMapviewChange(Sender: TObject);
 begin
   if tsTrajectoryMapview.ActivePage = tsTrajectoryView then
   begin
-     AdvSmoothTabPage1.TabEnabled := False;
-     AdvSmoothTabPager1.ActivePage :=  AdvSmoothTabPage2;
+    AdvSmoothTabPage1.TabEnabled := False;
+    AdvSmoothTabPager1.ActivePage := AdvSmoothTabPage2;
   end;
   if tsTrajectoryMapview.ActivePage = tsMapViewTrajectory then
   begin
-     AdvSmoothTabPage1.TabEnabled := True;
+    AdvSmoothTabPage1.TabEnabled := True;
   end;
 end;
 
@@ -9754,125 +9640,125 @@ begin
   frmMainInstruktur.show;
 end;
 
-procedure TfrmGameController.AssignStatus(ShipID, WeaponID, LauncherID,
-  MissileID: Byte; AssignStatus: Boolean);
+procedure TfrmGameController.AssignStatus(ShipID, WeaponID, LauncherID, MissileID: Byte; AssignStatus: Boolean);
 var
-  i,j             : integer;
-  o               : TObject;
-  shipInst        : TInsObject;
-  WeaponShip      : TWeaponOnShip;
-  WeaponStrela    : TWeaponOn_Strella;
-  WeaponMistral   : TWeaponOn_Mistral;
-  WeaponCannon57  : TWeaponOn_Cannon57;
-  WeaponCannon40  : TWeaponOn_Cannon40;
-  WeaponCannonAK230 : TWeaponOn_CannonAK230;
-  WeaponCannonType730 : TWeaponOn_CannonType730;
-
+  i, j: integer;
+  o: TObject;
+  shipInst: TInsObject;
+  WeaponShip: TWeaponOnShip;
+  WeaponStrela: TWeaponOn_Strella;
+  WeaponMistral: TWeaponOn_Mistral;
+  WeaponCannon57: TWeaponOn_Cannon57;
+  WeaponCannon40: TWeaponOn_Cannon40;
+  WeaponCannonAK230: TWeaponOn_CannonAK230;
+  WeaponCannonType730: TWeaponOn_CannonType730;
 begin
-  for i := 0 to SimManager.MainObjList.ItemCount-1 do
+  for i := 0 to SimManager.MainObjList.ItemCount - 1 do
   begin
-    o:= SimManager.MainObjList.getObject(i);
-    if Assigned(o) then begin
+    o := SimManager.MainObjList.getObject(i);
+    if Assigned(o) then
+    begin
 
       shipInst := TInsObject(o);
-      if shipInst.FDataBaseID = shipID then
+      if shipInst.FDataBaseID = ShipID then
       begin
-        for j:=0 to shipInst.WeaponOnShip_List.Count -1 do
+        for j := 0 to shipInst.WeaponOnShip_List.Count - 1 do
         begin
-          if Assigned(shipInst.WeaponOnShip_List.Items[j]) then begin
+          if Assigned(shipInst.WeaponOnShip_List.Items[j]) then
+          begin
 
             WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
             if (WeaponShip is TWeaponOn_Strella) and (WeaponID = C_DBID_STRELA) then
             begin
-                WeaponStrela := TWeaponOn_Strella(WeaponShip);
-                case LauncherID of
-                  1 :
+              WeaponStrela := TWeaponOn_Strella(WeaponShip);
+              case LauncherID of
+                1:
                   begin
                     WeaponStrela.AssignStatusLauncher1 := AssignStatus;
                   end;
-                  2 :
+                2:
                   begin
                     WeaponStrela.AssignStatusLauncher2 := AssignStatus;
                   end;
 
-                end;
-                RefreshFormWeapon(WeaponShip.Weapon_Name);
+              end;
+              RefreshFormWeapon(WeaponShip.Weapon_Name);
             end
             else if (WeaponShip is TWeaponOn_Mistral) and (WeaponID = C_DBID_MISTRAL) then
             begin
-                WeaponMistral := TWeaponOn_Mistral(WeaponShip);
-                case LauncherID of
-                  1 :
+              WeaponMistral := TWeaponOn_Mistral(WeaponShip);
+              case LauncherID of
+                1:
                   begin
                     WeaponMistral.AssignStatusLauncher1 := AssignStatus;
                   end;
-                  2 :
+                2:
                   begin
                     WeaponMistral.AssignStatusLauncher2 := AssignStatus;
                   end;
 
-                end;
-                RefreshFormWeapon(WeaponShip.Weapon_Name);
+              end;
+              RefreshFormWeapon(WeaponShip.Weapon_Name);
             end
             else if (WeaponShip is TWeaponOn_Cannon40) and (WeaponID = C_DBID_CANNON40) then
             begin
-                WeaponCannon40 := TWeaponOn_Cannon40(WeaponShip);
-                case LauncherID of
-                  2 :
+              WeaponCannon40 := TWeaponOn_Cannon40(WeaponShip);
+              case LauncherID of
+                2:
                   begin
                     WeaponCannon40.AssignStatusLauncher2 := AssignStatus;
                   end;
 
-                end;
-                RefreshFormWeapon(WeaponShip.Weapon_Name);
+              end;
+              RefreshFormWeapon(WeaponShip.Weapon_Name);
             end
             else if (WeaponShip is TWeaponOn_Cannon57) and (WeaponID = C_DBID_CANNON57) then
             begin
-                WeaponCannon57 := TWeaponOn_Cannon57(WeaponShip);
-                case LauncherID of
-                  2 :
+              WeaponCannon57 := TWeaponOn_Cannon57(WeaponShip);
+              case LauncherID of
+                2:
                   begin
                     WeaponCannon57.AssignStatusLauncher2 := AssignStatus;
                   end;
 
-                end;
-                RefreshFormWeapon(WeaponShip.Weapon_Name);
+              end;
+              RefreshFormWeapon(WeaponShip.Weapon_Name);
             end
             else if (WeaponShip is TWeaponOn_Cannon57) and (WeaponID = C_DBID_CANNON57_DIGITAL) then
             begin
-                WeaponCannon57 := TWeaponOn_Cannon57(WeaponShip);
-                case LauncherID of
-                  2 :
+              WeaponCannon57 := TWeaponOn_Cannon57(WeaponShip);
+              case LauncherID of
+                2:
                   begin
                     WeaponCannon57.AssignStatusLauncher2 := AssignStatus;
                   end;
 
-                end;
-                RefreshFormWeapon(WeaponShip.Weapon_Name);
+              end;
+              RefreshFormWeapon(WeaponShip.Weapon_Name);
             end
             else if (WeaponShip is TWeaponOn_CannonAK230) and (WeaponID = C_DBID_CANNON_AK230) then
             begin
-                WeaponCannonAK230 := TWeaponOn_CannonAK230(WeaponShip);
-                case LauncherID of
-                  2 :
+              WeaponCannonAK230 := TWeaponOn_CannonAK230(WeaponShip);
+              case LauncherID of
+                2:
                   begin
                     WeaponCannonAK230.AssignStatusLauncher2 := AssignStatus;
                   end;
 
-                end;
-                RefreshFormWeapon(WeaponShip.Weapon_Name);
+              end;
+              RefreshFormWeapon(WeaponShip.Weapon_Name);
             end
             else if (WeaponShip is TWeaponOn_CannonType730) and (WeaponID = C_DBID_CANNON_TYPE_730) then
             begin
-                WeaponCannonType730 := TWeaponOn_CannonType730(WeaponShip);
-                case LauncherID of
-                  2 :
+              WeaponCannonType730 := TWeaponOn_CannonType730(WeaponShip);
+              case LauncherID of
+                2:
                   begin
                     WeaponCannonType730.AssignStatusLauncher2 := AssignStatus;
                   end;
 
-                end;
-                RefreshFormWeapon(WeaponShip.Weapon_Name);
+              end;
+              RefreshFormWeapon(WeaponShip.Weapon_Name);
             end;
 
           end;
@@ -9887,105 +9773,120 @@ end;
 
 procedure TfrmGameController.RefreshFormWeapon(const WeaponName: string);
 var
-  i,j : Integer;
-
-  TempWeaponShip : TWeaponOnShip;
+  i, j: Integer;
+  TempWeaponShip: TWeaponOnShip;
 
   { Weapon Ship }
-  WeaponShip : TWeaponOnShip;
-
-  WeaponCannon57 : TWeaponOn_Cannon57;
-  WeaponCannon40 : TWeaponOn_Cannon40;
-  WeaponStrela   : TWeaponOn_Strella;
-  WeaponMistral  : TWeaponOn_Mistral;
-  WeaponCannonAK230 : TWeaponOn_CannonAK230;
-  WeaponCannonType730 : TWeaponOn_CannonType730;
+  WeaponShip: TWeaponOnShip;
+  WeaponCannon57: TWeaponOn_Cannon57;
+  WeaponCannon40: TWeaponOn_Cannon40;
+  WeaponStrela: TWeaponOn_Strella;
+  WeaponMistral: TWeaponOn_Mistral;
+  WeaponCannonAK230: TWeaponOn_CannonAK230;
+  WeaponCannonType730: TWeaponOn_CannonType730;
 begin
   if not Assigned(SimManager.TrackObject) then
     Exit;
 
   for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
   begin
-    if Assigned(TInsObject(SimManager.TrackObject).WeaponOnShip_List[i]) then begin
+    if Assigned(TInsObject(SimManager.TrackObject).WeaponOnShip_List[i]) then
+    begin
 
-      weaponship := TWeaponOnShip(TInsObject(SimManager.TrackObject).WeaponOnShip_List[i]);
-      if weaponship.Weapon_Name = WeaponName then
+      WeaponShip := TWeaponOnShip(TInsObject(SimManager.TrackObject).WeaponOnShip_List[i]);
+      if WeaponShip.Weapon_Name = WeaponName then
       begin
         case WeaponShip.Weapon_ID of
-          C_DBID_STRELA :
-          begin
-            if weaponship is TWeaponOn_Strella then
+          C_DBID_STRELA:
             begin
-              WeaponStrela := TWeaponOn_Strella(weaponship);
-              case WeaponStrela.AssignStatusLauncher1 of
-                False : btnStrella_Assign.Enabled := False;
-                True  : btnStrella_Assign.Enabled := True;
-              end;
-              case WeaponStrela.AssignStatusLauncher2 of
-                False : btnStrella_Assign.Enabled := False;
-                True  : btnStrella_Assign.Enabled := True;
+              if WeaponShip is TWeaponOn_Strella then
+              begin
+                WeaponStrela := TWeaponOn_Strella(WeaponShip);
+                case WeaponStrela.AssignStatusLauncher1 of
+                  False:
+                    btnStrella_Assign.Enabled := False;
+                  True:
+                    btnStrella_Assign.Enabled := True;
+                end;
+                case WeaponStrela.AssignStatusLauncher2 of
+                  False:
+                    btnStrella_Assign.Enabled := False;
+                  True:
+                    btnStrella_Assign.Enabled := True;
+                end;
               end;
             end;
-          end;
-          C_DBID_MISTRAL :
-          begin
-            if weaponship is TWeaponOn_Mistral then
+          C_DBID_MISTRAL:
             begin
-              WeaponMistral := TWeaponOn_Mistral(weaponship);
-              case WeaponMistral.AssignStatusLauncher1 of
-                False : btnStrella_Assign.Enabled := False;
-                True  : btnStrella_Assign.Enabled := True;
-              end;
-              case WeaponMistral.AssignStatusLauncher2 of
-                False : btnMistral_Assign.Enabled := False;
-                True  : btnMistral_Assign.Enabled := True;
+              if WeaponShip is TWeaponOn_Mistral then
+              begin
+                WeaponMistral := TWeaponOn_Mistral(WeaponShip);
+                case WeaponMistral.AssignStatusLauncher1 of
+                  False:
+                    btnStrella_Assign.Enabled := False;
+                  True:
+                    btnStrella_Assign.Enabled := True;
+                end;
+                case WeaponMistral.AssignStatusLauncher2 of
+                  False:
+                    btnMistral_Assign.Enabled := False;
+                  True:
+                    btnMistral_Assign.Enabled := True;
+                end;
               end;
             end;
-          end;
-          C_DBID_CANNON40 :
-          begin
-            if weaponship is TWeaponOn_Cannon40 then
+          C_DBID_CANNON40:
             begin
-              WeaponCannon40 := TWeaponOn_Cannon40(weaponship);
-              case WeaponCannon40.AssignStatusLauncher2 of
-                False : btnCannonAssigned.Enabled := False;
-                True  : btnCannonAssigned.Enabled := True;
+              if WeaponShip is TWeaponOn_Cannon40 then
+              begin
+                WeaponCannon40 := TWeaponOn_Cannon40(WeaponShip);
+                case WeaponCannon40.AssignStatusLauncher2 of
+                  False:
+                    btnCannonAssigned.Enabled := False;
+                  True:
+                    btnCannonAssigned.Enabled := True;
+                end;
               end;
             end;
-          end;
-          C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL :
-          begin
-            if weaponship is TWeaponOn_Cannon57 then
+          C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL:
             begin
-              WeaponCannon57 := TWeaponOn_Cannon57(weaponship);
-              case WeaponCannon57.AssignStatusLauncher2 of
-                False : btnCannonAssigned23.Enabled := False;
-                True  : btnCannonAssigned23.Enabled := True;
+              if WeaponShip is TWeaponOn_Cannon57 then
+              begin
+                WeaponCannon57 := TWeaponOn_Cannon57(WeaponShip);
+                case WeaponCannon57.AssignStatusLauncher2 of
+                  False:
+                    btnCannonAssigned23.Enabled := False;
+                  True:
+                    btnCannonAssigned23.Enabled := True;
+                end;
               end;
             end;
-          end;
-          C_DBID_CANNON_AK230 :
-          begin
-            if weaponship is TWeaponOn_CannonAK230 then
+          C_DBID_CANNON_AK230:
             begin
-              WeaponCannonAK230 := TWeaponOn_CannonAK230(weaponship);
-              case WeaponCannonAK230.AssignStatusLauncher2 of
-                False : btnCannonAssigned23.Enabled := False;
-                True  : btnCannonAssigned23.Enabled := True;
+              if WeaponShip is TWeaponOn_CannonAK230 then
+              begin
+                WeaponCannonAK230 := TWeaponOn_CannonAK230(WeaponShip);
+                case WeaponCannonAK230.AssignStatusLauncher2 of
+                  False:
+                    btnCannonAssigned23.Enabled := False;
+                  True:
+                    btnCannonAssigned23.Enabled := True;
+                end;
               end;
             end;
-          end;
-          C_DBID_CANNON_TYPE_730 :
-          begin
-            if weaponship is TWeaponOn_CannonType730 then
+          C_DBID_CANNON_TYPE_730:
             begin
-              WeaponCannonType730 := TWeaponOn_CannonType730(weaponship);
-              case WeaponCannonType730.AssignStatusLauncher2 of
-                False : btnCannonAssigned23.Enabled := False;
-                True  : btnCannonAssigned23.Enabled := True;
+              if WeaponShip is TWeaponOn_CannonType730 then
+              begin
+                WeaponCannonType730 := TWeaponOn_CannonType730(WeaponShip);
+                case WeaponCannonType730.AssignStatusLauncher2 of
+                  False:
+                    btnCannonAssigned23.Enabled := False;
+                  True:
+                    btnCannonAssigned23.Enabled := True;
+                end;
               end;
             end;
-          end;
         end;
 
       end;
@@ -10010,25 +9911,23 @@ begin
   frmTrjectoryView.rzgrpProfileExocet.Opened := True;
 end;
 
-procedure TfrmGameController.btnCanonTest3DMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.btnCanonTest3DMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
 //  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
 end;
 
-procedure TfrmGameController.btnCanonTest3DMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.btnCanonTest3DMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
 //  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
 end;
 
 procedure TfrmGameController.btnDeleteShipClick(Sender: TObject);
 var
-  id : Integer;
+  id: Integer;
 begin
   if lvShipList.Selected <> nil then
   begin
-    id :=  StrToInt(lvShipList.Selected.Caption);
+    id := StrToInt(lvShipList.Selected.Caption);
     DataModule1.DeleteShipEditor(id);
 
     ShowMessage('Ship Editor ' + lvShipList.Selected.SubItems[0] + ' successfully deleted');
@@ -10046,15 +9945,13 @@ begin
 //  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
 end;
 
-procedure TfrmGameController.btn1MouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.btn1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   Sleep(100);
 //  CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
 end;
 
-procedure TfrmGameController.btn1MouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TfrmGameController.btn1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   //CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_OFF, 0, 0, 0);
 end;
@@ -10077,14 +9974,14 @@ begin
 
     DataModule1.DeleteDefaultScenario;
 
-    CurrentScenarioID  := StrToInt(lvListScen.Selected.Caption);
+    CurrentScenarioID := StrToInt(lvListScen.Selected.Caption);
     CurrentScenarioName := lvListScen.Selected.SubItems[0];
-    IDGame             := DataModule1.GetGameID(CurrentScenarioID);
-    SceIDTemporary     := CurrentScenarioID;
+    IDGame := DataModule1.GetGameID(CurrentScenarioID);
+    SceIDTemporary := CurrentScenarioID;
 
     if DataModule1.GameNameAlreadyExist(scenarioGameName) then
     begin
-      ShowMessage(QuotedStr(scenarioGameName)+' is Already Exist');
+      ShowMessage(QuotedStr(scenarioGameName) + ' is Already Exist');
       exit;
     end;
 
@@ -10092,7 +9989,7 @@ begin
 
     //send game name...
     SimManager.NetSendGameName(GameName);
-    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0,0,0,0);
+    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_REFRESH_CLIENT, 0, 0, 0, 0, 0);
 
     //DataModule1.DeleteDefaultScenario;
 
@@ -10112,95 +10009,99 @@ end;
 
 procedure TfrmGameController.btn1Click(Sender: TObject);
 var
-  Item : TListItem;
-  ItemWeapon : TListItem;
-
-  isValid : Boolean;
-
-  ShipID, salvoRate,
-  WeaponID,
-  LauncherID,
-  MissileID,
-  MissileNumber : Integer;
-
-  TargetID,
-  ModeID,
-  BalistikID : integer;
-
-  CorrectBearing,
-  CorrectElev : Double;
-
-  RecSend : TRec3DSetWCC;
-
-  Weapon : TWeapon;
+  Item: TListItem;
+  ItemWeapon: TListItem;
+  isValid: Boolean;
+  ShipID, salvoRate, WeaponID, LauncherID, MissileID, MissileNumber: Integer;
+  TargetID, ModeID, BalistikID: integer;
+  CorrectBearing, CorrectElev: Double;
+  RecSend: TRec3DSetWCC;
+  Weapon: TWeapon;
 begin
   isValid := True;
 
-  if not Assigned(lvRuntimeShip.Selected) then Exit;
-  if not Assigned(lvWeapon.Selected) then Exit;
-  if not Assigned(lvRuntimeShip.Selected.Data) then Exit;
-  if not Assigned(lvWeapon.Selected.Data) then Exit;
-  ShipID    := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
-  WeaponID  := TWeapon(lvWeapon.Selected.Data).WeaponID;
+  if not Assigned(lvRuntimeShip.Selected) then
+    Exit;
+  if not Assigned(lvWeapon.Selected) then
+    Exit;
+  if not Assigned(lvRuntimeShip.Selected.Data) then
+    Exit;
+  if not Assigned(lvWeapon.Selected.Data) then
+    Exit;
+  ShipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
+  WeaponID := TWeapon(lvWeapon.Selected.Data).WeaponID;
 
-  if not TryStrToInt(edtCannonLauncherID.Text , LauncherID) then isValid := False;
-  if not TryStrToInt(edtCannonMissileID.Text, MissileID) then isValid := false;
-  if not TryStrToInt(edtCannonLauncherID.Text, LauncherID) then isValid := False;
-  if not TryStrToInt(edtCannonMissileNumber.Text, MissileNumber) then isValid := false;
+  if not TryStrToInt(edtCannonLauncherID.Text, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(edtCannonMissileID.Text, MissileID) then
+    isValid := false;
+  if not TryStrToInt(edtCannonLauncherID.Text, LauncherID) then
+    isValid := False;
+  if not TryStrToInt(edtCannonMissileNumber.Text, MissileNumber) then
+    isValid := false;
 
-  if not TryStrToInt(edtCannonTargetID.Text, TargetID) then isValid := false;
-  if not TryStrToFloat(edtCannonCorrElev.Text, CorrectElev) then isValid := false;
-  if not TryStrToFloat(edtCannonCorrBearing.Text, CorrectBearing) then isValid := False;
-  if not TryStrToInt(cbbSalvoRate.Text , salvoRate) then isValid := False;
+  if not TryStrToInt(edtCannonTargetID.Text, TargetID) then
+    isValid := false;
+  if not TryStrToFloat(edtCannonCorrElev.Text, CorrectElev) then
+    isValid := false;
+  if not TryStrToFloat(edtCannonCorrBearing.Text, CorrectBearing) then
+    isValid := False;
+  if not TryStrToInt(cbbSalvoRate.Text, salvoRate) then
+    isValid := False;
 
   ModeID := cbbCannonModeID.ItemIndex + 1;
   BalistikID := cbbCannonBalistikID.ItemIndex;
 
   if isValid then
   begin
-    RecSend.ShipID          := ShipID;
-    RecSend.mWeaponID       := WeaponID;
-    RecSend.mLauncherID     := LauncherID;
-    RecSend.mMissileID      := MissileID;
-    RecSend.mMissileNumber  := MissileNumber;
-    RecSend.mOrderID        := 0;
+    RecSend.ShipID := ShipID;
+    RecSend.mWeaponID := WeaponID;
+    RecSend.mLauncherID := LauncherID;
+    RecSend.mMissileID := MissileID;
+    RecSend.mMissileNumber := MissileNumber;
+    RecSend.mOrderID := 0;
 
-    RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := TargetID;
-    RecSend.mModeID             := ModeID;
-    RecSend.mAutoCorrectElev    := CorrectElev;
+    RecSend.mUpDown := 0;
+    RecSend.mTargetID := TargetID;
+    RecSend.mModeID := ModeID;
+    RecSend.mAutoCorrectElev := CorrectElev;
     RecSend.mAutoCorrectBearing := CorrectBearing;
 
-    RecSend.mBalistikID         := BalistikID;
-    RecSend.mSalvoRate          := salvoRate;
+    RecSend.mBalistikID := BalistikID;
+    RecSend.mSalvoRate := salvoRate;
 
 //    CurrentShipItemSendCommanPlayerEvent(TIPE_UTIL_PLAYER_EVENT, IS_PLAYER_MOVE_ON, MOVE_PLAYER_RIGHT, 3, 0);
-    case TComponent(sender).Tag of
+    case TComponent(Sender).Tag of
       //fire
-      1 : begin
-            RecSend.mOrderID := __ORD_CANNON_START_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      1:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_START_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Cease
-      2 : begin
-            RecSend.mOrderID := __ORD_CANNON_STOP_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      2:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_STOP_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Assigned
-      3 : begin
-            RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      3:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Deassigned
-      4 : begin
-            RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      4:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
       //Fire
-      5 : begin
-            RecSend.mOrderID := __ORD_CANNON_F;
-            SimManager.NetSendTo3D_OrderCannon(RecSend);
-          end;
+      5:
+        begin
+          RecSend.mOrderID := __ORD_CANNON_F;
+          SimManager.NetSendTo3D_OrderCannon(RecSend);
+        end;
 
     end;
     Sleep(100);
@@ -10210,14 +10111,13 @@ end;
 
 procedure TfrmGameController.SelectShip(aObject: TInsObject);
 var
-  Vehicle : TVehicle;
-  i, j, k, l, x, flag : integer;
-  Weapon        : TWeapon;
-  WeaponShip    : TWeaponGetList;
-  listWeaponSce,
-  ListWeapon    : TList;
-  status        : string;
-  sceWeapon     : TScenarioWeapon;
+  Vehicle: TVehicle;
+  i, j, k, l, x, flag: integer;
+  Weapon: TWeapon;
+  WeaponShip: TWeaponGetList;
+  listWeaponSce, ListWeapon: TList;
+  status: string;
+  sceWeapon: TScenarioWeapon;
   o: TObject;
 begin
   if Assigned(aObject) then
@@ -10226,31 +10126,35 @@ begin
     lvRuntimeMissile.Selected := nil;
 
     if lvRuntimeShip.Items.Count = 0 then
-     Exit;
+      Exit;
 
     for i := 0 to lvRuntimeShip.Items.Count - 1 do
     begin
-      if Assigned(frmGameController.lvRuntimeShip.Items[i].Data) then begin
+      if Assigned(frmGameController.lvRuntimeShip.Items[i].Data) then
+      begin
 
         Vehicle := TVehicle(frmGameController.lvRuntimeShip.Items[i].Data);
-        if aObject.FDataBaseID =  Vehicle.Vehicle_ID   then
+        if aObject.FDataBaseID = Vehicle.Vehicle_ID then
         begin
           lvRuntimeShip.Selected := lvRuntimeShip.Items[i];
           VisibleStatusShip(true, 1);
           case Vehicle.Vehicle_Type of
-            1 : lblZCord.Caption.Text := 'Depth';
-            2 : lblZCord.Caption.Text := 'Altitude';
-            3 : lblZCord.Caption.Text := 'Depth';
+            1:
+              lblZCord.Caption.Text := 'Depth';
+            2:
+              lblZCord.Caption.Text := 'Altitude';
+            3:
+              lblZCord.Caption.Text := 'Depth';
           end;
 
-          lblShipName.Caption.Text    := Vehicle.Vehicle_Name +' ( ID '+IntToStr(Vehicle.Vehicle_ID) + ' )';
-          lblLatValue.Caption.Text    := FormatFloat('0.0000',Vehicle.Vehicle_Y);
-          lblLongVal.Caption.Text     := FormatFloat('0.0000',Vehicle.Vehicle_X);
-          lblZVal.Caption.Text        := FormatFloat('0.00',Abs(Vehicle.Vehicle_Z));
-          lblHeadingVal.Caption.Text  := FormatFloat('0.00',Vehicle.Vehicle_Heading);
-          lblSpeedVal.Caption.Text    := FormatFloat('0.00',Vehicle.Vehicle_Speed);
-          lblPitchVal.Caption.Text    := FormatFloat('0.00',Vehicle.Vehicle_Pitch);
-          lblRollVal.Caption.Text     := FormatFloat('0.00',Vehicle.Vehicle_Roll);
+          lblShipName.Caption.Text := Vehicle.Vehicle_Name + ' ( ID ' + IntToStr(Vehicle.Vehicle_ID) + ' )';
+          lblLatValue.Caption.Text := FormatFloat('0.0000', Vehicle.Vehicle_Y);
+          lblLongVal.Caption.Text := FormatFloat('0.0000', Vehicle.Vehicle_X);
+          lblZVal.Caption.Text := FormatFloat('0.00', Abs(Vehicle.Vehicle_Z));
+          lblHeadingVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Heading);
+          lblSpeedVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Speed);
+          lblPitchVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Pitch);
+          lblRollVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Roll);
 
           ShowDefaultPageWeapon(true);
 //          for j:= lvWeapon.Items.Count -1 downto 0 do
@@ -10273,7 +10177,6 @@ begin
 
             DataModule1.GetListWeaponOnShip(Vehicle.Vehicle_ID, ListWeapon);
 
-
             if onOffMode = 0 then
             begin
               DataModule1.GetListWeaponOnShipBySceID(sceIDINI, Vehicle.Vehicle_ID, listWeaponSce);
@@ -10283,26 +10186,25 @@ begin
               DataModule1.GetListWeaponOnShipBySceID(0, Vehicle.Vehicle_ID, listWeaponSce);
             end;
 
-
-            for k:= 0 to ListWeapon.Count -1 do
+            for k := 0 to ListWeapon.Count - 1 do
             begin
-              if Assigned(ListWeapon.Items[k]) then begin
+              if Assigned(ListWeapon.Items[k]) then
+              begin
                 WeaponShip := TWeaponGetList(ListWeapon.Items[k]);
 
                 status := 'Off';
                 Weapon := TWeapon.Create;
                 try
-                  Weapon.ParentName  := DataModule1.GetShipName(WeaponShip.IDShip);
+                  Weapon.ParentName := DataModule1.GetShipName(WeaponShip.IDShip);
                   Weapon.MissileName := DataModule1.GetNameWeaponByID(WeaponShip.IDWeapon);
-                  Weapon.WeaponID    := WeaponShip.IDWeapon;
-                  Weapon.launcherID  := WeaponShip.IDDetail;
+                  Weapon.WeaponID := WeaponShip.IDWeapon;
+                  Weapon.launcherID := WeaponShip.IDDetail;
 
                   //dendy mampir
-                  for l := 0 to listWeaponSce.Count -1 do
+                  for l := 0 to listWeaponSce.Count - 1 do
                   begin
                     sceWeapon := TScenarioWeapon(listWeaponSce.Items[l]);
-                    if(sceWeapon.WeaponID = Weapon.WeaponID) and (sceWeapon.LauncherID = Weapon.launcherID)
-                     and (sceWeapon.ShipID = WeaponShip.IDShip) then
+                    if (sceWeapon.WeaponID = Weapon.WeaponID) and (sceWeapon.LauncherID = Weapon.launcherID) and (sceWeapon.ShipID = WeaponShip.IDShip) then
                     begin
                       status := 'On';
                       Break;
@@ -10313,8 +10215,7 @@ begin
                   begin
                     Data := Weapon;
 
-                    if not (Weapon.MissileName = 'Moc Console')
-                      or not (Weapon.MissileName = 'Moc PKR Console') then  // moc nya di lewati (visible dulu)
+                    if not (Weapon.MissileName = 'Moc Console') or not (Weapon.MissileName = 'Moc PKR Console') then  // moc nya di lewati (visible dulu)
                     begin
                       Caption := Weapon.MissileName;
                       SubItems.Add(IntToStr(Weapon.launcherID));
@@ -10325,8 +10226,6 @@ begin
                 end;
               end;
             end;
-
-
 
           finally
             ClearAList(ListWeapon);
@@ -10339,8 +10238,6 @@ begin
         end;
       end;
     end;
-
-
 
   end
   else
@@ -10356,7 +10253,7 @@ procedure TfrmGameController.tmrSeaStateTimer(Sender: TObject);
 begin
   if SimManager.MainObjList.ItemCount <> 0 then
   begin
-    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, tbSeaState.Position, 0,0,0,0) ;
+    SimManager.NetSendTo3D_SetCommandOrder(0, ORD_SEA_STATE, tbSeaState.Position, 0, 0, 0, 0);
     tmrSeaState.Enabled := False;
   end;
 end;
@@ -10370,7 +10267,7 @@ begin
     if Assigned(aListView.Items[i].Data) then
     begin
       TObject(aListView.Items[i].Data).Free;
-      aListView.Items[i].Data:= nil;
+      aListView.Items[i].Data := nil;
     end;
   end;
   aListView.Clear;
@@ -10385,7 +10282,7 @@ begin
     if Assigned(aListView.Items[i].Data) then
     begin
       TObject(aListView.Items[i].Data).Free;
-      aListView.Items[i].Data:= nil;
+      aListView.Items[i].Data := nil;
     end;
   end;
   aListView.Clear;
@@ -10435,39 +10332,38 @@ end;
 
 procedure TfrmGameController.ClearShipData;
 begin
-  lblShipName1.Caption  := '---';
-  edtClass.Text     := '';
+  lblShipName1.Caption := '---';
+  edtClass.Text := '';
 
-  edtShipLength.Text  := '';
-  edtShipwidth.Text   := '';
-  edtShipHeight.Text  := '';
+  edtShipLength.Text := '';
+  edtShipwidth.Text := '';
+  edtShipHeight.Text := '';
 
-  edtShipMaxSpeed.Text         := '';
-  edtShipMaxSpeedAstern.Text   := '';
+  edtShipMaxSpeed.Text := '';
+  edtShipMaxSpeedAstern.Text := '';
   edtDamageSustainability.Text := '';
-  edtShipRudderSwingRate.Text  := '';
-  edtShipThrottleRate.Text     := '';
-  edtShipDisplacement.Text     := '';
-  edtShipHeelFactor.Text       := '';
-  edtShipShaftUp.Text          := '';
-  edtShipTacDiameter.Text      := '';
-  edtShipTrimFactor.Text       := '';
+  edtShipRudderSwingRate.Text := '';
+  edtShipThrottleRate.Text := '';
+  edtShipDisplacement.Text := '';
+  edtShipHeelFactor.Text := '';
+  edtShipShaftUp.Text := '';
+  edtShipTacDiameter.Text := '';
+  edtShipTrimFactor.Text := '';
 
-  edtModelBody.Text   := '';
-  edtDOF1.Text        := '';
-  edtPosPitch.Text    := '';
-  edtSwitch.Text      := '';
-  edtLethality.Text   := '';
-  edtModelSpout.Text  := '';
-  edtDOF2.Text        := '';
-  edtPosHeading.Text  := '';
-  edt3DActor.Text     := '';
+  edtModelBody.Text := '';
+  edtDOF1.Text := '';
+  edtPosPitch.Text := '';
+  edtSwitch.Text := '';
+  edtLethality.Text := '';
+  edtModelSpout.Text := '';
+  edtDOF2.Text := '';
+  edtPosHeading.Text := '';
+  edt3DActor.Text := '';
 
-  ClearListShipData (lvWeaponSelect);
-  ClearListShipData (lvDetail);
+  ClearListShipData(lvWeaponSelect);
+  ClearListShipData(lvDetail);
 
 end;
 
 end.
-
 
