@@ -10,9 +10,6 @@ Coordinates=1436,1,122,36
 [pnlUpper]
 Coordinates=775,10,67,58
 
-[pnlBite]
-Coordinates=773,418,54,58
-
 [Shape1]
 Coordinates=79,622,59,36
 
@@ -37,4 +34,7 @@ Coordinates=513,78,146,58
 
 [pnlHeaderEOData]
 Coordinates=10,146,103,58
+
+[pnlEOData]
+Coordinates=773,418,54,58
 
