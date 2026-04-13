@@ -46,11 +46,6 @@ type
     ScenarioReport1: TMenuItem;
     pmClient: TPopupMenu;
     pmClientStop: TMenuItem;
-    mniShutdown1: TMenuItem;
-    mniRestart1: TMenuItem;
-    mniShutdown2: TMenuItem;
-    mniRestartAll1: TMenuItem;
-    mniShutdownAll1: TMenuItem;
     N2: TMenuItem;
     pmClient2: TPopupMenu;
     mni1: TMenuItem;
@@ -65,7 +60,6 @@ type
     Restart2DServer1: TMenuItem;
     mniLog1: TMenuItem;
     Help1: TMenuItem;
-    Start1: TMenuItem;
     Start2: TMenuItem;
     Manual1: TMenuItem;
     Komando1: TMenuItem;
@@ -1214,6 +1208,8 @@ type
     procedure btnC705_Click(Sender: TObject);
     procedure btnMicaClick(Sender: TObject);
     procedure btnAssignTargetSpsClick(Sender: TObject);
+    procedure lvShipListSelectItem(Sender: TObject; Item: TListItem;
+      Selected: Boolean);
   private
     { Private declarations }
     ObserverID: integer;
@@ -2182,6 +2178,15 @@ begin
 
 end;
 
+procedure TfrmGameController.lvShipListSelectItem(Sender: TObject;
+  Item: TListItem; Selected: Boolean);
+begin
+  if lvShipList.Selected = nil then
+    Exit;
+
+  UpdateShipData;
+end;
+
 { --------------------------------------------------------------------- }
 { Pop Up Menu }
 function TfrmGameController.IsMenuItemExist(const shipID: integer): boolean;
@@ -2523,7 +2528,40 @@ begin
 
       WeaponID := TClientList(lvClient.Selected.Data).WeaponID;
 
-      if (lvClient.Selected.SubItems[idx_type] = '3D-W') then
+      if (lvClient.Selected.SubItems[idx_type] = 'Server') then
+      begin
+        {$REGION ' Server '}
+        for I := 0 to pmClient.Items.Count - 1 do
+          pmClient.Items[I].Enabled := False;
+
+        {$ENDREGION}
+      end
+      else if (lvClient.Selected.SubItems[idx_type] = '3D-Server') then
+      begin
+        {$REGION ' 3D-Server '}
+        for I := 0 to pmClient.Items.Count - 1 do
+          pmClient.Items[I].Enabled := True;
+
+        for I := 0 to pmClient.Items.Count - 1 do
+        begin
+          ShipID := pmClient.Items[I].Tag;
+
+          if ShipID <= 0 then
+            Continue;
+
+          if WeaponID = 0 then
+          begin
+            if lvClient.Selected.SubItems[idx_st] = 'ONLINE' then
+              pmClient.Items[I].Visible := True
+            else
+              pmClient.Items[I].Visible := false;
+
+            continue;
+          end;
+        end;
+        {$ENDREGION}
+      end
+      else if (lvClient.Selected.SubItems[idx_type] = '3D-W') then
       begin
         {$REGION ' 3D-W '}
         for I := 0 to pmClient2.Items.Count - 1 do
@@ -2725,10 +2763,8 @@ begin
       else
       begin
         for I := 0 to pmClient.Items.Count - 1 do
-          pmClient.Items[I].Enabled := true;
-
-        if lvClient.Selected.SubItems[idx_st] = 'OFFLINE' then
-          Exit;
+          pmClient.Items[I].Visible := true;
+//          pmClient.Items[I].Enabled := true;
 
         if (lvClient.Selected.SubItems[idx_name] = 'MOC-1') or (lvClient.Selected.SubItems[idx_name] = 'MOC-2') then
         begin
@@ -2828,10 +2864,9 @@ begin
             begin
               ShipID := pmClient.Items[I].Tag;
 
-              if lvClient.Selected.SubItems[idx_st] = 'RUNNING' then
-                Continue;
               if ShipID <= 0 then
                 Continue;
+
               if WeaponID = 0 then
                 continue;
 
@@ -2839,31 +2874,39 @@ begin
               DataModule1.GetListWeaponOnShip(ShipID, ListWeapon);
 
               isFound := False;
-              for J := 0 to ListWeapon.Count - 1 do
-              begin
-                WeaponList := TWeaponGetList(ListWeapon.Items[J]);
 
-                if WeaponList.IDWeapon = WeaponID then
+              if lvClient.Selected.SubItems[idx_st] = 'ONLINE' then
+              Begin
+            
+                for J := 0 to ListWeapon.Count - 1 do
                 begin
-                  isFound := True;
-                  Break;
-                end;
+                  WeaponList := TWeaponGetList(ListWeapon.Items[J]);
 
-              end;
+                  if WeaponList.IDWeapon = WeaponID then
+                  begin
+                    isFound := True;
+                    Break;
+                  end;
+
+                end;
+              End;
 
               if not isFound then
-                pmClient.Items[I].Enabled := false
+                pmClient.Items[I].Visible := false
+//                pmClient.Items[I].Enabled := false
               else
               begin
-
                 if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient.Items[I].Caption)) then
-                  pmClient.Items[I].Enabled := False
+                  pmClient.Items[I].Visible := false
+//                  pmClient.Items[I].Enabled := False
                 else
-                  pmClient.Items[I].Enabled := true;
+                  pmClient.Items[I].Visible := true;
+//                  pmClient.Items[I].Enabled := true;
 
                 if (lvClient.Selected.SubItems[1] = 'RBU 6000') then
                 begin
-                  pmClient.Items[I].Enabled := False;
+                  pmClient.Items[I].Visible := false;
+//                  pmClient.Items[I].Enabled := False;
                   DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce2);
 
                   for k := 0 to listWeaponSce2.Count - 1 do
@@ -2888,7 +2931,8 @@ begin
 
                   if (RbuLauncher1Ready = True) and (RbuLauncher2Ready = True) then
                   begin
-                    pmClient.Items[I].Enabled := True;
+                    pmClient.Items[I].Visible := True;
+//                    pmClient.Items[I].Enabled := True;
                   end;
 
                   RbuLauncher1Ready := False;
@@ -2897,7 +2941,8 @@ begin
                 end
                 else if (lvClient.Selected.SubItems[1] = 'Asroc') then
                 begin
-                  pmClient.Items[I].Enabled := False;
+                  pmClient.Items[I].Visible := false;
+//                  pmClient.Items[I].Enabled := False;
                   DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce2);
 
                   for k := 0 to listWeaponSce2.Count - 1 do
@@ -2908,7 +2953,8 @@ begin
                     begin
                       if sceWeapon.LauncherID = 1 then
                       begin
-                        pmClient.Items[I].Enabled := True;
+                        pmClient.Items[I].Visible := True;
+//                        pmClient.Items[I].Enabled := True;
                       end;
 
                     end;
