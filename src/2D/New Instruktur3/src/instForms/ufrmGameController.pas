@@ -2532,33 +2532,35 @@ begin
       begin
         {$REGION ' Server '}
         for I := 0 to pmClient.Items.Count - 1 do
-          pmClient.Items[I].Enabled := False;
+          pmClient.Items[I].Visible := False;
 
+        pmClient.Popup(p.X, p.Y);
         {$ENDREGION}
       end
       else if (lvClient.Selected.SubItems[idx_type] = '3D-Server') then
       begin
         {$REGION ' 3D-Server '}
         for I := 0 to pmClient.Items.Count - 1 do
-          pmClient.Items[I].Enabled := True;
-
-        for I := 0 to pmClient.Items.Count - 1 do
         begin
-          ShipID := pmClient.Items[I].Tag;
-
-          if ShipID <= 0 then
-            Continue;
-
-          if WeaponID = 0 then
+          if lvClient.Selected.SubItems[idx_st] = 'OFFLINE' then
           begin
-            if lvClient.Selected.SubItems[idx_st] = 'ONLINE' then
-              pmClient.Items[I].Visible := True
-            else
-              pmClient.Items[I].Visible := false;
+            pmClient.Items[I].Visible := False;
+          end
+          else
+          begin
+            ShipID := pmClient.Items[I].Tag;
 
-            continue;
+            if ShipID <= 0 then
+            begin
+              pmClient.Items[I].Visible := not (lvClient.Selected.SubItems[idx_st] = 'ONLINE');
+              Continue;
+            end;
+
+            pmClient.Items[I].Visible := lvClient.Selected.SubItems[idx_st] = 'ONLINE';
           end;
         end;
+
+        pmClient.Popup(p.X, p.Y);
         {$ENDREGION}
       end
       else if (lvClient.Selected.SubItems[idx_type] = '3D-W') then
@@ -2875,36 +2877,34 @@ begin
 
               isFound := False;
 
-              if lvClient.Selected.SubItems[idx_st] = 'ONLINE' then
-              Begin
-            
-                for J := 0 to ListWeapon.Count - 1 do
+              for J := 0 to ListWeapon.Count - 1 do
+              begin
+                WeaponList := TWeaponGetList(ListWeapon.Items[J]);
+
+                if WeaponList.IDWeapon = WeaponID then
                 begin
-                  WeaponList := TWeaponGetList(ListWeapon.Items[J]);
-
-                  if WeaponList.IDWeapon = WeaponID then
-                  begin
-                    isFound := True;
-                    Break;
-                  end;
-
+                  isFound := True;
+                  Break;
                 end;
-              End;
+              end;
 
               if not isFound then
+              begin
                 pmClient.Items[I].Visible := false
-//                pmClient.Items[I].Enabled := false
+              end
               else
               begin
                 if (lvClient.Selected.SubItems.Strings[5] = DeleteAmpersand(pmClient.Items[I].Caption)) then
                   pmClient.Items[I].Visible := false
-//                  pmClient.Items[I].Enabled := False
                 else
                   pmClient.Items[I].Visible := true;
-//                  pmClient.Items[I].Enabled := true;
+
+                if lvClient.Selected.SubItems[idx_st] <> 'ONLINE' then
+                  pmClient.Items[I].Visible := False;
 
                 if (lvClient.Selected.SubItems[1] = 'RBU 6000') then
                 begin
+                  {$REGION ' Khusus RBU '}
                   pmClient.Items[I].Visible := false;
 //                  pmClient.Items[I].Enabled := False;
                   DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce2);
@@ -2937,10 +2937,11 @@ begin
 
                   RbuLauncher1Ready := False;
                   RbuLauncher2Ready := False;
-
+                  {$ENDREGION}
                 end
                 else if (lvClient.Selected.SubItems[1] = 'Asroc') then
                 begin
+                  {$REGION ' Khusus Asroc '}
                   pmClient.Items[I].Visible := false;
 //                  pmClient.Items[I].Enabled := False;
                   DataModule1.GetListWeaponOnShipBySceID(0, pmClient.Items[I].Tag, listWeaponSce2);
@@ -2962,7 +2963,7 @@ begin
 
                   ClearAList(listWeaponSce2);
                   listWeaponSce2.Free;
-
+                  {$ENDREGION}
                 end;
 
               end;
