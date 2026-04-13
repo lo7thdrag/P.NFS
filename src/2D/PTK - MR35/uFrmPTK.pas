@@ -57,8 +57,8 @@ type
     FisCheckStart : Boolean;
     FisCtrlGun : Boolean;
     FisRightDrum : Boolean; // jika false, berarti pake left drum, jika true berarti pakai kanan, defaultnya false
-    FisCombatMenu, FisLocalMenu, FisSystemMenu, FisCheck, FisLockScreen : Boolean;  // boolean penanda dimana menu berada
     // PTK MR 35
+    FisCombatMenu, FisLocalMenu, FisCheck, FisLockScreen : Boolean;  // boolean penanda dimana menu berada
     FisAngleError, FisSBW, FisManualFrequency, FisStaticTarget, FisLSStop, FisTVReset, FisComplex, FisBlackTarget,
     FisCenter, FisManualZoom :Boolean;
 
@@ -272,10 +272,13 @@ begin
 
   if TSpeedButtonImage(Sender).Name = 'btn_Local' then
   begin
-    FisLocalMenu := True;
+    FisLocalMenu := not FisLocalMenu;
     FisCheck := False;
 //    FisCombatMenu := False;
-    GenerateCaptionByMenu('Locall');
+
+  if FisLocalMenu then
+    GenerateCaptionByMenu('Local')
+  else  GenerateCaptionByMenu('System');
   end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_Back' then
@@ -596,19 +599,24 @@ begin
   end;
   InitButtons;
 
+//  FisCombatMenu, FisLocalMenu, FisCheck, FisLockScreen : Boolean;  // boolean penanda dimana menu berada
+//    FisAngleError, FisSBW, FisManualFrequency, FisStaticTarget, FisLSStop, FisTVReset, FisComplex, FisBlackTarget,
+//    FisCenter, FisManualZoom :Boolean;
+
   FisCombatMenu := True;
+  FisLocalMenu := True;
   FisCheck := false;
-  FisLocalMenu := False;
-  FisIRAuto := True;
-  FisIROn := True;
-  FisAir:= True;
-  FisTVBlack := True;
-  FisIRBlack:= True;
-  FisBlack := True;
-  FisIRWFOV:= true;
-  FisCentroid := True;
-  FisAutomatic := true;
-  FFrequencyHZMode := 0;
+  FisLockScreen := False;
+  FisAngleError := True;
+  FisSBW := True;
+  FisManualFrequency := True;
+  Fisstatictarget :=  True;
+  FisLSStop := True;
+  FisTVReset := True;
+  FisComplex := True;
+  FisBlackTarget := True;
+  FisCenter := True;
+  FisManualZoom := true;
 end;
 
 procedure TfrmPTK.FormDestroy(Sender: TObject);
@@ -1267,35 +1275,35 @@ begin
     end;
   end;
 
-  FBtnArray[0].Name := 'Combat';
-  FBtnArray[1].Name := 'Check';
-  FBtnArray[3].Name := 'TRAINING';
-  FBtnArray[4].Name := 'SBW';
-  FBtnArray[5].Name := 'LockScreen';
-  FBtnArray[6].Name := 'Surface';
-  FBtnArray[7].Name := 'ManualFrequency';
-  FBtnArray[8].Name := 'StaticTarget';
-  FBtnArray[9].Name := 'AngleError';
-  FBtnArray[10].Name := 'ManualZoom';
-  FBtnArray[11].Name := 'Shore';
-  FBtnArray[12].Name := 'AIR';
-  FBtnArray[13].Name := 'FrequencyAdd';
-  FBtnArray[14].Name := 'FrequencyDec';
-  FBtnArray[15].Name := 'Center';
-  FBtnArray[16].Name := 'T';
-  FBtnArray[17].Name := 'W';
-  FBtnArray[18].Name := 'LowAIR';
-  FBtnArray[19].Name := 'Gainadd';
-  FBtnArray[20].Name := 'Gaindec';
-  FBtnArray[21].Name := 'TVReset';
-  FBtnArray[22].Name := 'ComplexBackground';
-  FBtnArray[23].Name := 'BlackTarget';
-  FBtnArray[24].Name := 'Local';
-  FBtnArray[25].Name := 'Manual';
-  FBtnArray[26].Name := 'RadarTrace';
-  FBtnArray[27].Name := 'TVTrace';
-  FBtnArray[28].Name := 'LSStop';
-  FBtnArray[29].Name := 'MultipleTrack';
+  FBtnArray[0].Name := 'btn_Combat';
+  FBtnArray[1].Name := 'btn_Check';
+  FBtnArray[3].Name := 'btn_TRAINING';
+  FBtnArray[4].Name := 'btn_SBW';
+  FBtnArray[5].Name := 'btn_LockScreen';
+  FBtnArray[6].Name := 'btn_Surface';
+  FBtnArray[7].Name := 'btn_ManualFrequency';
+  FBtnArray[8].Name := 'btn_StaticTarget';
+  FBtnArray[9].Name := 'btn_AngleError';
+  FBtnArray[10].Name := 'btn_ManualZoom';
+  FBtnArray[11].Name := 'btn_Shore';
+  FBtnArray[12].Name := 'btn_AIR';
+  FBtnArray[13].Name := 'btn_FrequencyAdd';
+  FBtnArray[14].Name := 'btn_FrequencyDec';
+  FBtnArray[15].Name := 'btn_Center';
+  FBtnArray[16].Name := 'btn_T';
+  FBtnArray[17].Name := 'btn_W';
+  FBtnArray[18].Name := 'btn_LowAIR';
+  FBtnArray[19].Name := 'btn_Gainadd';
+  FBtnArray[20].Name := 'btn_Gaindec';
+  FBtnArray[21].Name := 'btn_TVReset';
+  FBtnArray[22].Name := 'btn_ComplexBackground';
+  FBtnArray[23].Name := 'btn_BlackTarget';
+  FBtnArray[24].Name := 'btn_Local';
+  FBtnArray[25].Name := 'btn_Manual';
+  FBtnArray[26].Name := 'btn_RadarTrace';
+  FBtnArray[27].Name := 'btn_TVTrace';
+  FBtnArray[28].Name := 'btn_LSStop';
+  FBtnArray[29].Name := 'btn_MultipleTrack';
 
 end;
 
@@ -1562,8 +1570,54 @@ begin
 end;
 
 procedure TfrmPTK.GenerateSystemMenu;
+var
+i : Integer;
 begin
-  //
+  for i := 0 to Length(FBtnArray) - 1 do
+  begin
+
+      FBtnArray[i].Caption := '  ';
+      FBtnArray[i].Name := 'btn_' + i.ToString;
+  end;
+
+  FBtnArray[0].Caption := 'Combat' + #13#10;
+  FBtnArray[1].Caption := 'Check'  + #13#10;
+  FBtnArray[5].Caption := 'Lock' + #13#10 + 'Screen';
+
+  FBtnArray[6].Caption := 'Indication'  + #13#10;
+  FBtnArray[7].Caption := 'Virtual'  + #13#10 + 'Fire';
+  FBtnArray[8].Caption := 'Direct'  + #13#10 + 'Attack';
+  FBtnArray[9].Caption := 'System'  + #13#10 + 'Check';
+  FBtnArray[10].Caption := 'Training'  + #13#10;
+  FBtnArray[11].Caption := 'Independent' + #13#10 ;
+  FBtnArray[12].Caption := 'Wait'  + #13#10;
+
+  FBtnArray[24].Caption := 'System'  + #13#10 ;
+
+
+  EnableAllBtn;
+
+  for i := 0 to Length(FBtnArray) - 1 do
+  begin
+    if AnsiContainsStr(FBtnArray[i].Caption, '  ') then begin
+      FBtnArray[i].Enabled := False;
+    end;
+  end;
+
+  FBtnArray[0].Name := 'btn_Combat';
+  FBtnArray[1].Name := 'btn_Check';
+  FBtnArray[5].Name := 'btn_LockScreen';
+
+  FBtnArray[6].Name := 'btn_Indication';
+  FBtnArray[7].Name := 'btn_VirtualFire';
+  FBtnArray[8].Name := 'btn_DirectAttack';
+  FBtnArray[9].Name := 'btn_SystemCheck';
+  FBtnArray[10].Name := 'btn_Training';
+  FBtnArray[11].Name := 'btn_Independent';
+  FBtnArray[12].Name := 'btn_Wait';
+
+  FBtnArray[24].Name := 'btn_Local';
+
 end;
 
 procedure TfrmPTK.GenerateVideoMenu;

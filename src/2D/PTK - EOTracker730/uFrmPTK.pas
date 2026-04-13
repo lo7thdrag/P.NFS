@@ -60,7 +60,7 @@ type
     FisMainMenu, FisEOControl, FisCheck, FisLockScreen : Boolean;  // boolean penanda dimana menu berada
     FFrequencyHZMode, FisCheckMode : Byte;
     FisIRAuto, FisIROn, FisAir, FisTVBlack, FisIRBlack, FisBlack, FisIRWFOV, FisCentroid, FisAutomatic : Boolean;
-    FisShutterAuto, FisEOOn, FisTVAxesAdjust, FisIRAxesAdjust, FisIndSetting, FisAngleCorrection : Boolean;
+    FisShutterAuto, FisEOOn, FisTVAxesAdjust, FisIRAxesAdjust, FisIndSetting, FisAngleCorrection, FisDiagnosis : Boolean;
 
     FisServoOn, FisCoordinationControl, FisHighFR, FisMiddleFR, FisLowFR : Boolean;
 
@@ -224,24 +224,36 @@ begin
     else if FisEOControl then
     begin
       if FisShutterAuto then
-        FBtnArray[2].Caption := 'Shutter Auto'
-      else  FBtnArray[2].Caption := 'Shutter Manual';
+        FBtnArray[2].Caption := 'Shutter Auto'  + #13#10
+      else  FBtnArray[2].Caption := 'Shutter Manual'  + #13#10;
 
       if FisEOOn then
-        FBtnArray[3].Caption := 'EO On'
-      else  FBtnArray[3].Caption := 'EO Off';
+        FBtnArray[3].Caption := 'EO On'  + #13#10
+      else  FBtnArray[3].Caption := 'EO Off'  + #13#10;
 
       if FisEOOn then
-        FBtnArray[3].Caption := 'EO On'
-      else  FBtnArray[3].Caption := 'EO Off';
+        FBtnArray[3].Caption := 'EO On'  + #13#10
+      else  FBtnArray[3].Caption := 'EO Off'  + #13#10;
 
       if FisIndSetting then
-        FBtnArray[17].Caption := 'Ind Setting'
-      else  FBtnArray[17].Caption := 'Ind OK';
+      begin
+        FBtnArray[17].Caption := 'Ind Setting'  + #13#10;
+        FBtnArray[17].Name := 'btn_IndSetting';
+      end
+      else begin
+        FBtnArray[17].Caption := 'Ind OK'  + #13#10;
+        FBtnArray[17].Name := 'btn_IndOK';
+      end;
 
       if FisAngleCorrection then
-        FBtnArray[18].Caption := 'Angle Correction'
-      else  FBtnArray[18].Caption := 'Correct';
+      begin
+        FBtnArray[18].Caption := 'Angle'  + #13#10 + 'Correction';
+        FBtnArray[18].Name := 'btn_AngleCorrection';
+      end
+      else begin
+        FBtnArray[18].Caption := 'Correct'  + #13#10;
+        FBtnArray[18].Name := 'btn_Correct';
+      end;
 
     end
     else
@@ -315,6 +327,59 @@ begin
     else  FBtnArray[23].Caption := 'Manual'  + #13#10;
   end
 
+  else if TSpeedButtonImage(Sender).Name = 'btn_ShutterAuto' then
+  begin
+
+    FisShutterAuto := not FisShutterAuto;
+    if FisShutterAuto then
+      FBtnArray[2].Caption := 'Shutter Auto'  + #13#10
+    else FBtnArray[2].Caption := 'Shutter Manual'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_EOON' then
+  begin
+
+    FisEOOn := not FisEOOn;
+    if FisEOOn then
+      FBtnArray[3].Caption := 'EO ON'  + #13#10
+    else FBtnArray[3].Caption := 'EO OFF'  + #13#10;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_IndSetting' then
+  begin
+
+//    FisIndSetting := not FisIndSetting;
+//    if FisIndSetting then
+//      FBtnArray[17].Caption := 'Ind Setting'  + #13#10
+//    else FBtnArray[17].Caption := 'Ind OK'  + #13#10;
+    FisIndSetting := False;
+    FBtnArray[17].Caption := 'Ind OK'  + #13#10;
+    FBtnArray[17].Name := 'btn_IndOK'
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_IndOK' then
+  begin
+    FisIndSetting := True;
+    FBtnArray[17].Caption := 'Ind Setting'  + #13#10;
+    FBtnArray[17].Name := 'btn_IndSetting'
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_AngleCorrection' then
+  begin
+
+    FisAngleCorrection := False;
+    FBtnArray[18].Caption := 'Correct'  + #13#10;
+    FBtnArray[18].Name := 'btn_Correct';
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_Correct' then
+  begin
+
+    FisAngleCorrection := True;
+    FBtnArray[18].Caption := 'Angle'  + #13#10 + 'Correction';
+    FBtnArray[18].Name := 'btn_AngleCorrection';
+  end
+
   else if TSpeedButtonImage(Sender).Name = 'btn_Check' then
   begin
 
@@ -338,6 +403,11 @@ begin
     FBtnArray[7].Caption := '5 HZ' + #13#10
     else if FFrequencyHZMode = 3 then
     FBtnArray[7].Caption := '1 HZ' + #13#10 ;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_Diagnosis' then
+  begin
+//    pnlNumKey.BringToFront;
   end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_IROn' then
@@ -583,6 +653,13 @@ begin
   FisCentroid := True;
   FisAutomatic := true;
   FFrequencyHZMode := 0;
+  FisShutterAuto := True;
+  FisEOOn := True;
+  FisTVAxesAdjust := True;
+  FisIRAxesAdjust := True;
+  FisIndSetting := True;
+  FisAngleCorrection := True;
+  FisDiagnosis := False;
 end;
 
 procedure TfrmPTK.FormDestroy(Sender: TObject);
@@ -1026,7 +1103,7 @@ begin
   FBtnArray[15].Caption := 'Elevation -' + #13#10;
   FBtnArray[16].Caption := 'Calibrate' + #13#10;
   FBtnArray[17].Caption := 'Ind Setting' + #13#10;
-  FBtnArray[18].Caption := 'Angle Correction' + #13#10;
+  FBtnArray[18].Caption := 'Angle' + #13#10 + 'Correction';
   FBtnArray[29].Caption := 'Back' + #13#10;
 
   EnableAllBtn;
@@ -1055,7 +1132,7 @@ begin
   FBtnArray[14].Name := 'btn_ElevationPlus';
   FBtnArray[15].Name := 'btn_ElevationMinus';
   FBtnArray[16].Name := 'btn_Calibrate';
-  FBtnArray[17].Name := 'btn_IndStting';
+  FBtnArray[17].Name := 'btn_IndSetting';
   FBtnArray[18].Name := 'btn_AngleCorrection';
   FBtnArray[29].Name := 'btn_Back';
 end;

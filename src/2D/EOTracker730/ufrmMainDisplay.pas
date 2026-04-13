@@ -37,7 +37,7 @@ type
   TfrmMainFCC = class(TForm)
     pnlUpper: TPanel;
     pnlState: TPanel;
-    pnlBite: TPanel;
+    pnlEOData: TPanel;
     tmrUpdateShipPos: TTimer;
     tmrUpdateForm: TTimer;
     Label6: TLabel;
@@ -132,6 +132,76 @@ type
     lblIndAzimuthsat: TLabel;
     lblIndDistancesat: TLabel;
     NLDJoystick1: TNLDJoystick;
+    pnlDiagnosis: TPanel;
+    lblTVVideo: TLabel;
+    lblIRVideo: TLabel;
+    lblLRPumpPower: TLabel;
+    lblLRPrecombust: TLabel;
+    lblDC801: TLabel;
+    lblDC802: TLabel;
+    pnlDiagnosisHeader: TPanel;
+    edtTVVideoVal: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    lblTVTrackBoard: TLabel;
+    lblIRTrackBoard: TLabel;
+    Edit1: TEdit;
+    Edit7: TEdit;
+    lblLRDischarge: TLabel;
+    lblLRCharge: TLabel;
+    Edit8: TEdit;
+    Edit9: TEdit;
+    lblTVState: TLabel;
+    lblDC8010A: TLabel;
+    Edit10: TEdit;
+    Edit11: TEdit;
+    lblServoBoard: TLabel;
+    lblBEDriveBoard: TLabel;
+    lblELDriveBoard: TLabel;
+    lblAC26V: TLabel;
+    Edit13: TEdit;
+    Edit14: TEdit;
+    Edit15: TEdit;
+    Edit16: TEdit;
+    lblLRNoLight: TLabel;
+    lblBEGyro: TLabel;
+    lblELGyro: TLabel;
+    lblDC28V13A: TLabel;
+    Edit17: TEdit;
+    Edit18: TEdit;
+    Edit19: TEdit;
+    Edit20: TEdit;
+    lblIRState: TLabel;
+    lblLRState: TLabel;
+    lblSVState: TLabel;
+    Edit22: TEdit;
+    Edit23: TEdit;
+    Edit24: TEdit;
+    pnlSetIndication: TPanel;
+    lblSetIndRange: TLabel;
+    lblSetIndBE: TLabel;
+    lblSetIndEL: TLabel;
+    lblSetINDType: TLabel;
+    lblSetIndELsat: TLabel;
+    lblSetIndBEsat: TLabel;
+    lblSetIndRangesat: TLabel;
+    pnlSetIndicationHeader: TPanel;
+    edtSetIndRangeVal: TEdit;
+    edtSetIndBEVal: TEdit;
+    edtSetIndELVal: TEdit;
+    edtSetIndTypeVal: TEdit;
+    lblTypeInd: TLabel;
+    pnlRevise: TPanel;
+    lblReviseBE: TLabel;
+    lblReviseEL: TLabel;
+    lblReviseELsat: TLabel;
+    lblReviseBEsat: TLabel;
+    pnlReviseHeader: TPanel;
+    edtReviseBEVal: TEdit;
+    dtReviseELVal: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -183,6 +253,8 @@ type
 
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
     FXAxis, FYAxis, FZAxis : Boolean;
+
+    FisDiagnonisOpen : Boolean;
 
     { Property On TDA }
     FRings       : TRadarRangeRings;
@@ -859,7 +931,7 @@ begin
 
     FCCManager.InitializeSimulation;
 
-    if DataModule1.InitZDB(vDbServer.mDBServer, vDbServer.mDBProto, vDbServer.mDBName, vDbServer.mDBUser, vDbServer.mDBPass, vDbServer.mDBPort) then
+      if DataModule1.InitZDB(vDbServer.mDBServer, vDbServer.mDBProto, vDbServer.mDBName, vDbServer.mDBUser, vDbServer.mDBPass, vDbServer.mDBPort) then
     begin
       FCCManager.ShipClassID  := DataModule1.GetShipType(FCCManager.ShipID, ShipClassName);
       FCCManager.ShipName     := DataModule1.GetShipName(FCCManager.ShipID);
@@ -987,6 +1059,44 @@ begin
 //    pnlCalSetting.BringToFront
   else if Token = 'Cancel' then
 //    pnlIndWth.BringToFront;
+else if Token = 'Diagnosis' then
+  begin
+    FisDiagnonisOpen := not FisDiagnonisOpen;
+    if FisDiagnonisOpen then pnlDiagnosis.BringToFront
+
+    else  pnlDiagnosis.SendToBack
+
+  end
+
+  else if Token = 'IndSetting' then
+  begin
+    pnlSetIndication.SendToBack;
+    if edtSetIndTypeVal.Text = '0' then
+      edtIndTypeVal.Text := 'None'
+    else if edtSetIndTypeVal.Text = '1' then
+      edtIndTypeVal.Text := 'Indication A'
+    else if edtSetIndTypeVal.Text = '2' then
+      edtIndTypeVal.Text := 'Indication B';
+
+    edtIndDistanceVal.Text := edtSetIndRangeVal.Text;
+    edtIndAzimuthVal.Text := edtSetIndBEVal.Text;
+    edtIndElevVal.Text := edtSetIndELVal.Text;
+  end
+
+  else if Token = 'IndOK' then
+  begin
+    pnlSetIndication.BringToFront;
+  end
+
+  else if Token = 'AngleCorrection' then
+  begin
+    pnlRevise.SendToBack;
+  end
+
+  else if Token = 'Correct' then
+  begin
+    pnlRevise.BringToFront;
+  end;
 
   if not (ActiveControl is TEdit) then Exit;
 

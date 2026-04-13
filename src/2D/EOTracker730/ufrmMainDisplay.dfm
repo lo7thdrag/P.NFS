@@ -44,6 +44,805 @@ object frmMainFCC: TfrmMainFCC
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object pnlRevise: TPanel
+    Left = 1068
+    Top = 626
+    Width = 212
+    Height = 351
+    ParentBackground = False
+    TabOrder = 10
+    object lblReviseBE: TLabel
+      Left = 11
+      Top = 53
+      Width = 17
+      Height = 18
+      Caption = 'BE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblReviseEL: TLabel
+      Left = 11
+      Top = 109
+      Width = 15
+      Height = 18
+      Caption = 'EL'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblReviseELsat: TLabel
+      Left = 174
+      Top = 109
+      Width = 34
+      Height = 18
+      Caption = 'mrad'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblReviseBEsat: TLabel
+      Left = 174
+      Top = 53
+      Width = 34
+      Height = 18
+      Caption = 'mrad'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object pnlReviseHeader: TPanel
+      Left = 1
+      Top = 1
+      Width = 210
+      Height = 28
+      Align = alTop
+      Caption = 'Revise'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 0
+    end
+    object edtReviseBEVal: TEdit
+      Left = 83
+      Top = 50
+      Width = 90
+      Height = 24
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      Text = '0.00'
+    end
+    object dtReviseELVal: TEdit
+      Left = 83
+      Top = 106
+      Width = 90
+      Height = 24
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      Text = '0.00'
+    end
+  end
+  object pnlDiagnosis: TPanel
+    Left = 642
+    Top = 485
+    Width = 638
+    Height = 491
+    ParentBackground = False
+    TabOrder = 8
+    object lblTVVideo: TLabel
+      Left = 16
+      Top = 48
+      Width = 59
+      Height = 18
+      Caption = 'TV Video'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblIRVideo: TLabel
+      Left = 16
+      Top = 93
+      Width = 55
+      Height = 18
+      Caption = 'IR Video'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLRPumpPower: TLabel
+      Left = 216
+      Top = 48
+      Width = 107
+      Height = 18
+      Caption = 'LR Pump&&power'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLRPrecombust: TLabel
+      Left = 216
+      Top = 93
+      Width = 98
+      Height = 18
+      Caption = 'LR Precombust'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblDC801: TLabel
+      Left = 424
+      Top = 48
+      Width = 88
+      Height = 18
+      Caption = 'DC80V/20A-1'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblDC802: TLabel
+      Left = 424
+      Top = 93
+      Width = 88
+      Height = 18
+      Caption = 'DC80V/20A-2'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblTVTrackBoard: TLabel
+      Left = 16
+      Top = 137
+      Width = 94
+      Height = 18
+      Caption = 'TVTrackBoard'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblIRTrackBoard: TLabel
+      Left = 16
+      Top = 182
+      Width = 90
+      Height = 18
+      Caption = 'IRTrackBoard'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLRDischarge: TLabel
+      Left = 216
+      Top = 182
+      Width = 84
+      Height = 18
+      Caption = 'LR Discharge'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLRCharge: TLabel
+      Left = 216
+      Top = 137
+      Width = 67
+      Height = 18
+      Caption = 'LR Charge'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblTVState: TLabel
+      Left = 424
+      Top = 182
+      Width = 53
+      Height = 18
+      Caption = 'TVState'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblDC8010A: TLabel
+      Left = 424
+      Top = 137
+      Width = 75
+      Height = 18
+      Caption = 'DC80V/10A'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblServoBoard: TLabel
+      Left = 16
+      Top = 227
+      Width = 96
+      Height = 18
+      Caption = 'Servo CtlBoard'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblBEDriveBoard: TLabel
+      Left = 16
+      Top = 272
+      Width = 88
+      Height = 18
+      Caption = 'BEDriveBoard'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblELDriveBoard: TLabel
+      Left = 16
+      Top = 316
+      Width = 81
+      Height = 18
+      Caption = 'ElDriveBoard'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblAC26V: TLabel
+      Left = 16
+      Top = 361
+      Width = 43
+      Height = 18
+      Caption = 'AC26V'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLRNoLight: TLabel
+      Left = 216
+      Top = 227
+      Width = 74
+      Height = 18
+      Caption = 'LR No Light'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblBEGyro: TLabel
+      Left = 216
+      Top = 272
+      Width = 53
+      Height = 18
+      Caption = 'BE Gyro'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblELGyro: TLabel
+      Left = 216
+      Top = 316
+      Width = 51
+      Height = 18
+      Caption = 'EL Gyro'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblDC28V13A: TLabel
+      Left = 216
+      Top = 361
+      Width = 75
+      Height = 18
+      Caption = 'DC28V/13A'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblIRState: TLabel
+      Left = 424
+      Top = 227
+      Width = 49
+      Height = 18
+      Caption = 'IRState'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLRState: TLabel
+      Left = 424
+      Top = 272
+      Width = 50
+      Height = 18
+      Caption = 'LRState'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSVState: TLabel
+      Left = 424
+      Top = 316
+      Width = 51
+      Height = 18
+      Caption = 'SVState'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object pnlDiagnosisHeader: TPanel
+      Left = 1
+      Top = 1
+      Width = 636
+      Height = 28
+      Align = alTop
+      Caption = 'DIAGNOSIS'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 0
+    end
+    object edtTVVideoVal: TEdit
+      Left = 134
+      Top = 45
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 1
+      Text = 'normal'
+    end
+    object Edit2: TEdit
+      Left = 134
+      Top = 90
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 2
+      Text = 'normal'
+    end
+    object Edit3: TEdit
+      Left = 334
+      Top = 45
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 3
+      Text = 'normal'
+    end
+    object Edit4: TEdit
+      Left = 334
+      Top = 90
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 4
+      Text = 'normal'
+    end
+    object Edit5: TEdit
+      Left = 542
+      Top = 45
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 5
+      Text = 'normal'
+    end
+    object Edit6: TEdit
+      Left = 542
+      Top = 90
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 6
+      Text = 'normal'
+    end
+    object Edit1: TEdit
+      Left = 134
+      Top = 134
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 7
+      Text = 'normal'
+    end
+    object Edit7: TEdit
+      Left = 134
+      Top = 179
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 8
+      Text = 'normal'
+    end
+    object Edit8: TEdit
+      Left = 334
+      Top = 134
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 9
+      Text = 'normal'
+    end
+    object Edit9: TEdit
+      Left = 334
+      Top = 179
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 10
+      Text = 'normal'
+    end
+    object Edit10: TEdit
+      Left = 542
+      Top = 134
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 11
+      Text = 'normal'
+    end
+    object Edit11: TEdit
+      Left = 542
+      Top = 179
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 12
+      Text = 'normal'
+    end
+    object Edit13: TEdit
+      Left = 134
+      Top = 358
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 13
+      Text = 'normal'
+    end
+    object Edit14: TEdit
+      Left = 134
+      Top = 313
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 14
+      Text = 'normal'
+    end
+    object Edit15: TEdit
+      Left = 134
+      Top = 269
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 15
+      Text = 'normal'
+    end
+    object Edit16: TEdit
+      Left = 134
+      Top = 224
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 16
+      Text = 'normal'
+    end
+    object Edit17: TEdit
+      Left = 334
+      Top = 358
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 17
+      Text = 'normal'
+    end
+    object Edit18: TEdit
+      Left = 334
+      Top = 313
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 18
+      Text = 'normal'
+    end
+    object Edit19: TEdit
+      Left = 334
+      Top = 269
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 19
+      Text = 'normal'
+    end
+    object Edit20: TEdit
+      Left = 334
+      Top = 224
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 20
+      Text = 'normal'
+    end
+    object Edit22: TEdit
+      Left = 542
+      Top = 313
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 21
+      Text = 'normal'
+    end
+    object Edit23: TEdit
+      Left = 542
+      Top = 269
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 22
+      Text = 'normal'
+    end
+    object Edit24: TEdit
+      Left = 542
+      Top = 224
+      Width = 70
+      Height = 24
+      Alignment = taCenter
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 23
+      Text = 'normal'
+    end
+  end
   object pnlUpper: TPanel
     Left = 0
     Top = 0
@@ -162,7 +961,7 @@ object frmMainFCC: TfrmMainFCC
       end
     end
   end
-  object pnlBite: TPanel
+  object pnlEOData: TPanel
     Left = 642
     Top = 626
     Width = 213
@@ -1067,6 +1866,229 @@ object frmMainFCC: TfrmMainFCC
       Text = '000.00'
     end
   end
+  object pnlInformation: TPanel
+    Left = 641
+    Top = 977
+    Width = 639
+    Height = 49
+    ParentBackground = False
+    TabOrder = 7
+    object lblDateNow: TLabel
+      Left = 41
+      Top = 13
+      Width = 92
+      Height = 22
+      Caption = '2026/12/31'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblTimeNow: TLabel
+      Left = 497
+      Top = 13
+      Width = 72
+      Height = 22
+      Caption = '12:30:30'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+  object pnlSetIndication: TPanel
+    Left = 1068
+    Top = 626
+    Width = 212
+    Height = 351
+    ParentBackground = False
+    TabOrder = 9
+    object lblSetIndRange: TLabel
+      Left = 11
+      Top = 120
+      Width = 9
+      Height = 18
+      Caption = 'R'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSetIndBE: TLabel
+      Left = 11
+      Top = 176
+      Width = 17
+      Height = 18
+      Caption = 'BE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSetIndEL: TLabel
+      Left = 11
+      Top = 232
+      Width = 15
+      Height = 18
+      Caption = 'EL'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSetINDType: TLabel
+      Left = 11
+      Top = 64
+      Width = 34
+      Height = 18
+      Caption = 'Type'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSetIndELsat: TLabel
+      Left = 182
+      Top = 232
+      Width = 24
+      Height = 18
+      Caption = 'deg'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSetIndBEsat: TLabel
+      Left = 182
+      Top = 176
+      Width = 24
+      Height = 18
+      Caption = 'deg'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblSetIndRangesat: TLabel
+      Left = 182
+      Top = 120
+      Width = 13
+      Height = 18
+      Caption = 'm'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblTypeInd: TLabel
+      Left = 11
+      Top = 280
+      Width = 128
+      Height = 36
+      Caption = 'Type 1: IndicationA'#13#10'Type 2: IndicationB'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object pnlSetIndicationHeader: TPanel
+      Left = 1
+      Top = 1
+      Width = 210
+      Height = 28
+      Align = alTop
+      Caption = 'Set Indication'
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 0
+    end
+    object edtSetIndRangeVal: TEdit
+      Left = 83
+      Top = 117
+      Width = 97
+      Height = 24
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      Text = '0'
+    end
+    object edtSetIndBEVal: TEdit
+      Left = 83
+      Top = 173
+      Width = 97
+      Height = 24
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      Text = '0.00'
+    end
+    object edtSetIndELVal: TEdit
+      Left = 83
+      Top = 229
+      Width = 97
+      Height = 24
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      Text = '0.00'
+    end
+    object edtSetIndTypeVal: TEdit
+      Left = 83
+      Top = 61
+      Width = 97
+      Height = 24
+      Color = clHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+      Text = '0'
+    end
+  end
   object pnlIndication: TPanel
     Left = 1068
     Top = 626
@@ -1245,40 +2267,6 @@ object frmMainFCC: TfrmMainFCC
       ReadOnly = True
       TabOrder = 4
       Text = 'None'
-    end
-  end
-  object pnlInformation: TPanel
-    Left = 641
-    Top = 977
-    Width = 639
-    Height = 49
-    ParentBackground = False
-    TabOrder = 7
-    object lblDateNow: TLabel
-      Left = 41
-      Top = 13
-      Width = 92
-      Height = 22
-      Caption = '2026/12/31'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-    end
-    object lblTimeNow: TLabel
-      Left = 497
-      Top = 13
-      Width = 72
-      Height = 22
-      Caption = '12:30:30'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
     end
   end
   object tmrUpdateShipPos: TTimer
@@ -1568,6 +2556,7 @@ object frmMainFCC: TfrmMainFCC
       000000000000}
   end
   object NLDJoystick1: TNLDJoystick
+    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move
