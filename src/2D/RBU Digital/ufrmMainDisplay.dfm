@@ -868,7 +868,7 @@ object frmMainDisplay: TfrmMainDisplay
               Text = '0'
             end
             object btnGYR: TFlatButton
-              Left = 116
+              Left = 114
               Top = 8
               Width = 75
               Height = 30
@@ -1021,7 +1021,7 @@ object frmMainDisplay: TfrmMainDisplay
             end
             object scrlbrTargetRange: TScrollBar
               Left = 16
-              Top = 44
+              Top = 46
               Width = 257
               Height = 17
               Max = 6000
@@ -1083,7 +1083,7 @@ object frmMainDisplay: TfrmMainDisplay
             end
             object btnStandByPos: TFlatButton
               Left = 18
-              Top = 191
+              Top = 190
               Width = 93
               Height = 30
               Color = clMaroon
@@ -1153,7 +1153,8 @@ object frmMainDisplay: TfrmMainDisplay
             ParentBackground = False
             TabOrder = 0
             object btnCmManual: TFlatButton
-              Left = 10
+              Tag = 1
+              Left = 11
               Top = 8
               Width = 100
               Height = 30
@@ -1170,9 +1171,11 @@ object frmMainDisplay: TfrmMainDisplay
               ParentFont = False
               ParentColor = False
               TabOrder = 0
+              OnClick = btnControlModeClick
             end
             object btnCmAuto: TFlatButton
-              Left = 157
+              Tag = 2
+              Left = 156
               Top = 8
               Width = 120
               Height = 30
@@ -1188,6 +1191,7 @@ object frmMainDisplay: TfrmMainDisplay
               ParentFont = False
               ParentColor = False
               TabOrder = 1
+              OnClick = btnControlModeClick
             end
           end
         end
@@ -1817,7 +1821,7 @@ object frmMainDisplay: TfrmMainDisplay
         8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
         918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
         6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-        0100011801000040C76A2A0100000079FA45761C000000000000000000000000
+        01000118010000A826B52A0100000079FA62751C000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000002
         0000000000000000000000000000000000000000000000000000000000000000
@@ -1826,15 +1830,15 @@ object frmMainDisplay: TfrmMainDisplay
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         8076C000000000008056C0000000000080764000000000008056400100000018
-        01000040C76A2A010000006E0064001C00000000000000000000000000000000
+        010000A826B52A01000000000000001C00000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000200000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000000000000000000000000000000000000000058E7970008
-        E3970005FA457658E3970000040000F0E29700810AE624000000000000000000
+        000000000000000000000000000000000000000000000000000000C0D0970070
+        CC970005FA6275C0CC97000004000058CC970029193024000000000000000000
         000088B3400000000000408F400001000001}
     end
     object pnlTCP_PCOM: TPanel
@@ -3978,6 +3982,11 @@ object frmMainDisplay: TfrmMainDisplay
   object tmr1: TTimer
     OnTimer = tmr1Timer
     Left = 1422
+    Top = 952
+  end
+  object timerControlMode: TTimer
+    OnTimer = timerControlModeTimer
+    Left = 1376
     Top = 952
   end
 end

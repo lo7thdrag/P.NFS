@@ -248,7 +248,7 @@ type
     ExecInfo: TShellExecuteInfo;
 
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
-    FXAxis, FYAxis, FZAxis : Boolean;
+    FXAxis, FYAxis, FZAxis, FisBiteOpen : Boolean;
 
     { Property On TDA }
     FRings       : TRadarRangeRings;
@@ -289,6 +289,8 @@ type
     procedure InitializeForm();
     procedure setRegionCircle;
     procedure setReceiveBITETable;
+    procedure Enable3DHole;
+    procedure Disable3DHole;
 
     procedure ResetColorRange();
 
@@ -502,6 +504,11 @@ begin
 
 //  fmap.Zoom := self.FCurrentRange;
   FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
+end;
+
+procedure TfrmMainFCC.Disable3DHole;
+begin
+  SetWindowRgn(Handle, 0, True);
 end;
 
 procedure TfrmMainFCC.DrawAll(aCnv: TCanvas; aCvt: TCoordConverter;
@@ -800,6 +807,17 @@ begin
   Canvas.LineTo(X2, Y2);
 end;
 
+procedure TfrmMainFCC.Enable3DHole;
+var
+  rgnOuter, rgnInner: HRGN;
+begin
+  rgnOuter := CreateRectRgn(0, 0, Width, Height);
+  rgnInner := CreateRectRgn(8, 0, 657, 501);
+  CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+  SetWindowRgn(Handle, rgnOuter, True);
+  DeleteObject(rgnInner); // clean up
+end;
+
 procedure TfrmMainFCC.FMapDrawUserLayer(ASender: TObject;
   const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull,
   RectInvalid: IDispatch);
@@ -947,17 +965,17 @@ begin
 //      FCCManager.NetSendTo3D_OrderCannon(RecSend);
 //    end;
 
-  if not FSelectedVehicleState then
-  begin
+    if not FSelectedVehicleState then
     begin
-    edtRAzimuthVal.Text := '-';
-//    lblTgtDistance.Caption := rangem.ToString();
-    edtElevationVal.Text := '-';
-    edtRDRangeVal.Text := '-';
-    edtLSRangeVal.Text := '-';
-//    lblTgtCourse.Caption := '...';
-  end;
-  end;
+      begin
+      edtRAzimuthVal.Text := '-';
+  //    lblTgtDistance.Caption := rangem.ToString();
+      edtElevationVal.Text := '-';
+      edtRDRangeVal.Text := '-';
+      edtLSRangeVal.Text := '-';
+  //    lblTgtCourse.Caption := '...';
+      end;
+    end;
 
   end;
 end;
@@ -1177,13 +1195,14 @@ begin
 
   FCCManager.Running := True;
 
-  if vFccSetting.FccMode <> 3 then
+  if vFccSetting.FccMode = 1 then // mr 103 dan mr 302 tidak pakai EO
   begin
-    rgnOuter := CreateRectRgn(0,0,Width,Height);
-    rgnInner := CreateRectRgn(8, 0, 657, 501);
-
-    CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
-    SetWindowRgn(Handle, rgnOuter, True);
+//    rgnOuter := CreateRectRgn(0,0,Width,Height);
+//    rgnInner := CreateRectRgn(8, 0, 657, 501);
+//
+//    CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+//    SetWindowRgn(Handle, rgnOuter, True);
+    Enable3DHole;
 
     // dicek apakah ini mr302 atau bukan, kalau mr302 tidak usah tampil 3d
     setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
@@ -1290,6 +1309,47 @@ begin
 //    pnlCalSetting.BringToFront
   else if Token = 'Cancel' then
 //    pnlIndWth.BringToFront;
+  else if Token = 'Surface' then
+  begin
+    edtStatusType.Text := 'Surface'
+  end
+
+  else if Token = 'AIR' then
+  begin
+    edtStatusType.Text := 'Air'
+  end
+
+  else if Token = 'Shore' then
+  begin
+    edtStatusType.Text := 'Shore'
+  end
+
+  else if Token = 'AutoSearch' then
+  begin
+    edtStatusControl.Text := 'A_Search'
+  end
+
+  else if Token = 'ManualSearch' then
+  begin
+    edtStatusControl.Text := 'M_Search'
+  end
+
+  else if Token = 'MovingTarget' then
+  begin
+    edtStatusDetect.Text := 'Moving'
+  end
+
+  else if Token = 'StaticTarget' then
+  begin
+    edtStatusDetect.Text := 'Static'
+  end
+
+  else if (Token = 'Bite') and (vFccSetting.FccMode = 1) then
+  begin
+    FisBiteOpen := not FisBiteOpen;
+    if FisBiteOpen then Disable3DHole
+    else Enable3DHole;
+  end;
 
   if not (ActiveControl is TEdit) then Exit;
 

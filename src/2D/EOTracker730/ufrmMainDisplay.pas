@@ -102,7 +102,7 @@ type
     lblNavPitch: TLabel;
     edtNavPitchVal: TEdit;
     lblNavRoll: TLabel;
-    Edit12: TEdit;
+    edtNavRollVal: TEdit;
     lblIndDistance: TLabel;
     edtIndDistanceVal: TEdit;
     lblIndAzimuth: TLabel;
@@ -202,6 +202,7 @@ type
     pnlReviseHeader: TPanel;
     edtReviseBEVal: TEdit;
     dtReviseELVal: TEdit;
+    TimerBeEl: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -228,6 +229,7 @@ type
       const Buttons: TJoyButtons);
     procedure NLDJoystick1ButtonUp(Sender: TNLDJoystick;
       const Buttons: TJoyButtons);
+    procedure TimerBeElTimer(Sender: TObject);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -253,6 +255,7 @@ type
 
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
     FXAxis, FYAxis, FZAxis : Boolean;
+    FBEVal,FELVal, FZoomVal : Double;
 
     FisDiagnonisOpen : Boolean;
 
@@ -1548,6 +1551,42 @@ begin
 //  lblLatitude.Caption := FormatFloat('0.000', my);
 end;
 
+procedure TfrmMainFCC.TimerBeElTimer(Sender: TObject);
+begin
+  if FisKanan then
+  begin
+    FBEVal := FBEVal + 0.1;
+    if FBEVal > 180 then FBEVal := FBEVal - 360;
+    
+    vrAngularBearing.Position := FBEVal;
+    lblValBearTop.Caption := 'BE ' + FormatFloat('0.00', FBEVal);
+    pnlValBearingBottom.Caption := 'BE:     ' + FormatFloat('0.00', FBEVal) + ' deg';
+  end
+  else if FisKiri then
+  begin
+    FBEVal := FBEVal - 0.1;
+    if FBEVal < -180 then FBEVal := FBEVal + 360;
+    vrAngularBearing.Position := FBEVal;
+    lblValBearTop.Caption := 'BE ' + FormatFloat('0.00', FBEVal);
+    pnlValBearingBottom.Caption := 'BE:     ' + FormatFloat('0.00', FBEVal) + ' deg';
+  end;
+
+  if FisAtas then
+  begin
+    FELVal := FELVal + 0.1;
+    vrAngularElev.Position := -FELVal;
+    lblValElevTop.Caption := 'EL ' + FormatFloat('0.00', FELVal);
+    pnlValElevBottom.Caption := 'EL:     ' + FormatFloat('0.00', FELVal) + ' deg';
+  end
+  else if FisBawah then
+  begin
+    FELVal := FELVal - 0.1;
+    vrAngularElev.Position := -FELVal;
+    lblValElevTop.Caption := 'EL ' + FormatFloat('0.00', FELVal);
+    pnlValElevBottom.Caption := 'EL:     ' + FormatFloat('0.00', FELVal) + ' deg';
+  end;
+end;
+
 procedure TfrmMainFCC.tmrUpdateFormTimer(Sender: TObject);
 var
 duration : TDateTime;
@@ -1556,6 +1595,8 @@ begin
 //    Inc(FNorthAngle)
 //  else
 //    FNorthAngle := 0;
+
+
 
   duration := Now - FStartTime;
 //  lblRunTimeVal.Caption := FormatDateTime('hh:nn:ss', duration);
@@ -1571,6 +1612,7 @@ begin
   begin
     if Assigned(FCCManager.xShip) then
     begin
+      edtNavCourseVal.Text := FormatFloat('0.00', FCCManager.xShip.Heading);
 //      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
 //      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
 

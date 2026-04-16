@@ -135,10 +135,12 @@ begin
 
   ACanvas.Brush.Style := bsClear;
   ACanvas.Pen.Style   := psSolid;
-  ACanvas.Pen.Color   := PenColor;
+//  ACanvas.Pen.Color   := PenColor;
+  ACanvas.Pen.Color   := rgb(191, 80, 67);
+  ACanvas.Pen.Width := 1;
 
   ACanvas.Font.Color  := FontColor;
-  ACanvas.Font.Size   := 7;
+  ACanvas.Font.Size   := 9;
 
 //  incKm := (CurrentRange_m / 1000.0) / NumRings;
   incKm := (CurrentRange_m) / NumRings;
@@ -157,7 +159,7 @@ begin
     s := FormatFloat('0', distKm);
     ACanvas.TextOut(
       FCenterX + radius + 4,
-      FCenterY - (ACanvas.TextHeight(s) div 2),
+      (FCenterY - (ACanvas.TextHeight(s) div 2)) - 12,
       s
     );
 
@@ -165,18 +167,18 @@ begin
     s := FormatFloat('-0', distKm);
     ACanvas.TextOut(
       FCenterX - radius - 27,
-      FCenterY - (ACanvas.TextHeight(s) div 2),
+      (FCenterY - (ACanvas.TextHeight(s) div 2)) - 12,
       s
     );
   end;
 
   // label outer range
-  s := FormatFloat('0', CurrentRange_m) + ' m';
-  ACanvas.TextOut(
-    FCenterX - (ACanvas.TextWidth(s) div 2),
-    FCenterY + FOuterRadiusPx + 4,
-    s
-  );
+//  s := FormatFloat('0', CurrentRange_m) + ' m';
+//  ACanvas.TextOut(
+//    FCenterX - (ACanvas.TextWidth(s) div 2),
+//    FCenterY + FOuterRadiusPx + 4,
+//    s
+//  );
 end;
 
 { TRadarSector }
@@ -304,7 +306,131 @@ begin
   a := DegToRad(BearingDeg - 90);
 
   ACanvas.Pen.Style := psSolid;
-  ACanvas.Pen.Color := Color;
+//  ACanvas.Pen.Color := Color;
+  ACanvas.Pen.Width := 3;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 270);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 3;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 3;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 180);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 3;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+
+  a := DegToRad(BearingDeg - 30);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 60);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 120);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 150);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 210);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 240);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 300);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
+
+  ACanvas.MoveTo(FCenterX, FCenterY);
+  x := FCenterX + Round(FLengthPx * Cos(a));
+  y := FCenterY + Round(FLengthPx * Sin(a));
+  ACanvas.LineTo(x, y);
+
+  a := DegToRad(BearingDeg - 330);
+
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+  ACanvas.Pen.Color := rgb(191, 80, 67);
 
   ACanvas.MoveTo(FCenterX, FCenterY);
   x := FCenterX + Round(FLengthPx * Cos(a));

@@ -1788,7 +1788,7 @@ begin
 
   FShipHeading := 0; // awal
 
-  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
+//  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');   // sepertinya ga perlu ada
 
 //  TargetMgr := TRadarTargetManager.Create;
 //  TargetMgr.CoordConverter := FMapConverter;

@@ -38,6 +38,7 @@ type
     Fposition  : tDouble3DPoint;
     Fheading,
     Fspeed     : Single;
+//    FSelectedVehicle: TVehicle;
      procedure GetAsrocWeaponAssigned;
    protected
      constructor Create;
@@ -85,6 +86,7 @@ type
      property Position : tDouble3DPoint read Fposition write Fposition;
      property Heading : Single read Fheading write Fheading;
      property Speed : Single read Fspeed write Fspeed;
+//     property SelectedVehicle : TVehicle read FSelectedVehicle write FSelectedVehicle;
 
    end;
 var

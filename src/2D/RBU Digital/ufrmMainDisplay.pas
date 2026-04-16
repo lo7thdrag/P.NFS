@@ -224,6 +224,7 @@ type
     imgShpSpeedNdl: TImage;
     imgTrgtSpeedNdl: TImage;
     imgBackgroundZone: TImage;
+    timerControlMode: TTimer;
     procedure FormResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -252,6 +253,9 @@ type
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormPaint(Sender: TObject);
+    procedure timerControlModeTimer(Sender: TObject);
+    procedure btnControlModeClick(Sender: TObject);
+    procedure WMEraseBkgnd(var Message: TWMEraseBkgnd);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     function MeterWidth: Integer;
@@ -318,6 +322,8 @@ type
     FLauncherId,
     FFiringMode: Integer;   //NoSelect:0, Single12:1, Single6:2, Single11:3, Salvo4:4, Salvo8:5, Salvo12:6
 
+    FLedGray, FLedGreen, FLedYellow, FLedRed : TBitmap;
+
     procedure LoadGeoset(const aGst: string); virtual;
     procedure initializeForm;
     procedure RotateAndDisplayFixedSize(TargetImage: TImage; SourcePng: TPngImage; Angle: Extended);
@@ -329,6 +335,8 @@ type
     TempSingleFireL : Integer;
     IsReadyToFire : Boolean;
     rCX, rCY: integer;
+
+    FControlMode: Byte; // Manual: 0, Auto:1
 
     function SendFireRBU(Lonchr: TLoncher; aCount: Integer): Boolean;
     function CalcTrueBearing(const aHeading, aRelativeBearing: Double): Double;
@@ -382,6 +390,21 @@ begin
     result := Round(z)
   else
     result := 0.001 * Round(z * 1000);
+end;
+
+procedure SetComposited(WinControl: TWinControl; Value: Boolean);
+var
+  ExStyle, NewExStyle: DWORD;
+begin
+  ExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE);
+  if Value then begin
+    NewExStyle := ExStyle or WS_EX_COMPOSITED;
+  end else begin
+    NewExStyle := ExStyle and not WS_EX_COMPOSITED;
+  end;
+  if NewExStyle<>ExStyle then begin
+    SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
+  end;
 end;
 
 procedure EnableComposited(WinControl:TWinControl);
@@ -456,6 +479,20 @@ begin
     orderID := __ORD_RBU_ASSIGNED;
 
   RunLauncherRBU(Lncr, orderID);
+
+end;
+
+procedure TfrmMainDisplay.btnControlModeClick(Sender: TObject);
+begin
+  if TFlatButton(Sender).Tag = 1 then
+  begin
+    FControlMode := 0;
+  end
+
+  else if TFlatButton(Sender).Tag = 2 then
+  begin
+    FControlMode := 1;
+  end;
 
 end;
 
@@ -757,16 +794,19 @@ begin
 
   AreaTracker.Draw(aCnv);
 
-  // RANGE RINGS
-  FRings.CircleRect    := FCircleRect;
-  FRings.CurrentRange_m := 6000;
-  FRings.ConvertCoord(aCvt);
-  FRings.Draw(aCnv);
+
 
   // BEARING 0°
   FBearing0.CircleRect := FCircleRect;
   FBearing0.ConvertCoord(aCvt);
   FBearing0.Draw(aCnv);
+
+  // RANGE RINGS
+  FRings.CircleRect    := FCircleRect;
+  FRings.CurrentRange_m := 6000;
+  FRings.ConvertCoord(aCvt);
+//  FRings.Draw(aCnv);
+  FRings.Draw(aCnv);
 
   VehicleMgr.DrawAll(aCnv);
 end;
@@ -1084,9 +1124,12 @@ begin
 
   if Assigned(v) then
   begin
+//    RBU_MAnager.selectedvehicle := v;
     rangeX := CalcRange(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
     dH     := v.PosZ;    // target 20 m lebih rendah
     v0     := 1035;    // m/s
+
+//    TargetID := UniqueID_To_dbID(v.UniqueID);
 
     if Assigned(RBU_MAnager) then
     begin
@@ -1129,7 +1172,8 @@ begin
   VehicleMgr := TVehicleManager.Create;
   VehicleMgr.CoordConverter := FMapConverter;
 
-  EnableComposited(pnlCenter);
+//  EnableComposited(pnlCenter);
+//  SetComposited(pnlCenter, true);
   FBitmapBackground := TBitmap.Create;
   FBitmapBackground.Height := imgBackgroundZone.Height;
   FBitmapBackground.Width := imgBackgroundZone.Width;
@@ -1144,6 +1188,7 @@ begin
   );
 
   imgBackgroundZone.Picture.Assign(FBitmapBackground);
+  // set tbitmap led di initialize form
   initializeForm;
   LoadGeoset('.\data\maps\IndonesiaNoGrid.gst');
   setRegionCircle;
@@ -1259,6 +1304,11 @@ end;
 
 procedure TfrmMainDisplay.FormDestroy(Sender: TObject);
 begin
+  FLedGray.Free;
+  FLedGreen.Free;
+  FLedYellow.Free;
+  FLedRed.Free;
+
   VehicleMgr.Free;
 
   FBearing0.Free;
@@ -1311,19 +1361,41 @@ begin
   //1 = hijau
   //2 = kuning
   //3 = merah
+  FLedGray := TBitmap.Create;
+  FLedGreen := TBitmap.Create;
+  FLedYellow:= TBitmap.Create;
+  FLedRed := TBitmap.Create;
+  ilLed.GetBitmap(0, FLedGray);
+  ilLed.GetBitmap(1, FLedGreen);
+  ilLed.GetBitmap(2, FLedYellow);
+  ilLed.GetBitmap(3, FLedRed);
 
-  ilLed.GetBitmap(1, imgRBUTrainLInRange.Picture.Bitmap);
-  ilLed.GetBitmap(1, imgRBUTrainRInRange.Picture.Bitmap);
-  ilLed.GetBitmap(1, imgRBUElevInRange.Picture.Bitmap);
-  ilLed.GetBitmap(3, imgRBUTargetDetected.Picture.Bitmap);
+  imgRBUTrainLInRange.Picture.Bitmap := FLedGreen;
+  imgRBUTrainRInRange.Picture.Bitmap := FLedGreen;
+  imgRBUElevInRange.Picture.Bitmap := FLedGreen;
+  imgRBUTargetDetected.Picture.Bitmap := FLedRed;
 
-  ilLed.GetBitmap(1, imgPwr.Picture.Bitmap);
-  ilLed.GetBitmap(1, imgRef.Picture.Bitmap);
+  imgPwr.Picture.Bitmap := FLedGreen;
+  imgRef.Picture.Bitmap := FLedGreen;
 
-  ilLed.GetBitmap(3, imgSistemBurjaLama.Picture.Bitmap);
-  ilLed.GetBitmap(1, imgSistemBurjaBaru.Picture.Bitmap);
+  imgSistemBurjaLama.Picture.Bitmap := FLedRed;
+  imgSistemBurjaBaru.Picture.Bitmap := FLedGreen;
 
-  ilLed.GetBitmap(3, imgTCP_PCOM.Picture.Bitmap);
+  imgTCP_PCOM.Picture.Bitmap := FLedRed;
+
+//
+//  ilLed.GetBitmap(1, imgRBUTrainLInRange.Picture.Bitmap);
+//  ilLed.GetBitmap(1, imgRBUTrainRInRange.Picture.Bitmap);
+//  ilLed.GetBitmap(1, imgRBUElevInRange.Picture.Bitmap);
+//  ilLed.GetBitmap(3, imgRBUTargetDetected.Picture.Bitmap);
+//
+//  ilLed.GetBitmap(1, imgPwr.Picture.Bitmap);
+//  ilLed.GetBitmap(1, imgRef.Picture.Bitmap);
+//
+//  ilLed.GetBitmap(3, imgSistemBurjaLama.Picture.Bitmap);
+//  ilLed.GetBitmap(1, imgSistemBurjaBaru.Picture.Bitmap);
+//
+//  ilLed.GetBitmap(3, imgTCP_PCOM.Picture.Bitmap);
 
   edtDateValue.Text := FormatDateTime('MM/DD/YYYY', Now);
   edtTimeValue.Text := FormatDateTime('hh:mm:ss ampm', Now);
@@ -1357,7 +1429,7 @@ begin
     FMap.Layers.AnimationLayer := FLyrDraw;
 //    FMap.MapUnit := miUnitKilometer;
 //    FMap.BackColor := CBackgroundMapColor;
-    FMap.BackColor := clmaroon;
+    FMap.BackColor := rgb(101, 36, 42);
     FMap.MapUnit := miUnitMeter;
     FMap.CenterX := 112.75;
     fmap.CenterY := -7.2;
@@ -1666,6 +1738,34 @@ begin
   rCy := rCYMap + FMap.Top;
 end;
 
+procedure TfrmMainDisplay.timerControlModeTimer(Sender: TObject);
+var
+rangeX, dH, bearing: Double;
+v : TVehicle;
+begin
+//  RBU_MAnager.IsSonarTracked
+  if (RBU_MAnager.IsSonarTracked) and (FControlMode = 1) then
+  begin
+    // ubah depth, bearing dan range disini dan ubah LED target detected jadi hijau,
+    v := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(TargetID));
+    rangeX := CalcRange(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
+    scrlbrTargetRange.Position := Round(rangeX);
+    scrlbrTagetDepth.Position := Round(v.PosZ);
+    bearing := CalcBearing(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY);
+    bearing := bearing - RBU_MAnager.Heading;
+
+    scrlbrBearingRelTarget.Position := Round(bearing);
+
+    imgRBUTargetDetected.Picture.Bitmap := FLedGreen;
+  end
+
+  else
+  begin
+    imgRBUTargetDetected.Picture.Bitmap := FLedRed;
+  end;
+
+end;
+
 procedure TfrmMainDisplay.tmr1Timer(Sender: TObject);
 begin
   edtDateValue.Text := FormatDateTime('MM/DD/YYYY', Now);
@@ -1881,6 +1981,11 @@ end;
 procedure TfrmMainDisplay.trcbrTrainingChange(Sender: TObject);
 begin
   edtTrainingValue.Text := (trcbrTraining.Position/10).ToString;
+end;
+
+procedure TfrmMainDisplay.WMEraseBkgnd(var Message: TWMEraseBkgnd);
+begin
+  Message.Result := 1; // tell Windows we handled it, no erase
 end;
 
 { TGroupBox }

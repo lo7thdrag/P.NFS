@@ -906,7 +906,7 @@ object frmMainFCC: TfrmMainFCC
           Height = 32
           Align = alRight
           BevelOuter = bvNone
-          Caption = 'EL:    0.00 deg'
+          Caption = 'EL 0.00'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -17
@@ -1360,8 +1360,8 @@ object frmMainFCC: TfrmMainFCC
     end
     object vrAngularBearing: TVrAngularMeter
       Left = -18
-      Top = 1
-      Width = 443
+      Top = 2
+      Width = 442
       Height = 408
       MaxValue = 180.000000000000000000
       MinValue = -180.000000000000000000
@@ -1389,6 +1389,7 @@ object frmMainFCC: TfrmMainFCC
       LabelsFont.Name = 'Tahoma'
       LabelsFont.Style = []
       Caption = '|VrAngularMeter|1000 X'
+      Color = clNone
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNone
       Font.Height = -11
@@ -1409,18 +1410,18 @@ object frmMainFCC: TfrmMainFCC
       Height = 350
       Pen.Color = clWhite
     end
-    object lineElevVer: TShape
-      Left = 440
-      Top = 30
-      Width = 1
-      Height = 350
-      Pen.Color = clWhite
-    end
     object lineElevHor: TShape
       Left = 440
       Top = 205
       Width = 175
       Height = 1
+      Pen.Color = clWhite
+    end
+    object lineElevVer: TShape
+      Left = 440
+      Top = 30
+      Width = 1
+      Height = 350
       Pen.Color = clWhite
     end
     object pnlValBearElev: TPanel
@@ -1439,7 +1440,7 @@ object frmMainFCC: TfrmMainFCC
         Height = 41
         Align = alLeft
         BevelOuter = bvNone
-        Caption = 'BE:      0.00 deg'
+        Caption = 'BE:     0.00 deg'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -17
@@ -1849,7 +1850,7 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 2
       Text = '000.00'
     end
-    object Edit12: TEdit
+    object edtNavRollVal: TEdit
       Left = 82
       Top = 229
       Width = 97
@@ -2562,6 +2563,12 @@ object frmMainFCC: TfrmMainFCC
     OnMove = NLDJoystick1Move
     PollingInterval = -1
     Left = 656
+    Top = 400
+  end
+  object TimerBeEl: TTimer
+    Interval = 5
+    OnTimer = TimerBeElTimer
+    Left = 936
     Top = 400
   end
 end
