@@ -5335,6 +5335,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                   ParentColor = False
                   TabOrder = 2
+                  OnClick = btnNoBulltMgznClick
                 end
               end
               object grpBulletsCount: TGroupBox
@@ -5958,58 +5959,61 @@ object frmDCDSMain: TfrmDCDSMain
                 ParentBackground = False
                 ParentFont = False
                 TabOrder = 1
+                ExplicitLeft = -2
+                ExplicitTop = 43
+                ExplicitWidth = 653
                 object lbl18: TLabel
-                  Left = 189
+                  Left = 209
                   Top = 5
                   Width = 26
                   Height = 13
                   Caption = 'DATE'
                 end
                 object lbl19: TLabel
-                  Left = 230
-                  Top = 5
+                  Left = 267
+                  Top = 4
                   Width = 24
                   Height = 13
                   Caption = 'TIME'
                 end
                 object lbl20: TLabel
-                  Left = 273
-                  Top = 5
+                  Left = 334
+                  Top = 4
                   Width = 49
                   Height = 13
                   Caption = 'TRAINING'
                 end
                 object lbl21: TLabel
-                  Left = 340
+                  Left = 393
                   Top = 5
                   Width = 55
                   Height = 13
                   Caption = 'ELEVATION'
                 end
                 object lbl22: TLabel
-                  Left = 408
+                  Left = 461
                   Top = 5
                   Width = 29
                   Height = 13
                   Caption = 'LF MG'
                 end
                 object lbl23: TLabel
-                  Left = 448
+                  Left = 501
                   Top = 5
                   Width = 32
                   Height = 13
                   Caption = 'RG MG'
                 end
                 object lbl24: TLabel
-                  Left = 490
-                  Top = 5
+                  Left = 543
+                  Top = 4
                   Width = 33
                   Height = 13
                   Caption = 'Blt.Lft.'
                 end
                 object lbl25: TLabel
-                  Left = 531
-                  Top = 5
+                  Left = 584
+                  Top = 4
                   Width = 37
                   Height = 13
                   Caption = 'Blt.Rgt.'
@@ -6093,48 +6097,54 @@ object frmDCDSMain: TfrmDCDSMain
                   TabOrder = 5
                   Text = '2'
                 end
-                object btn3: TFlatButton
+                object btnStartLog: TFlatButton
                   Left = 3
                   Top = 211
                   Width = 85
                   Height = 40
-                  Color = clLime
+                  AllowAllUp = True
+                  Color = 10551200
                   ColorDown = clLime
+                  GroupIndex = 1
                   Caption = 'START'#13#10'LOGGER'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clOlive
-                  Font.Height = -13
+                  Font.Height = -11
                   Font.Name = 'Tahoma'
                   Font.Style = [fsBold]
                   ParentFont = False
                   ParentColor = False
                   TabOrder = 7
+                  OnClick = btnStartLogClick
                 end
-                object btn4: TFlatButton
+                object btnStopLog: TFlatButton
                   Left = 91
                   Top = 211
                   Width = 85
                   Height = 40
-                  Color = clMaroon
+                  AllowAllUp = True
+                  Color = 9474303
                   ColorDown = clMaroon
+                  GroupIndex = 2
                   Caption = 'STOP LOGGER'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clOlive
-                  Font.Height = -13
+                  Font.Height = -11
                   Font.Name = 'Tahoma'
                   Font.Style = [fsBold]
                   ParentFont = False
                   ParentColor = False
                   TabOrder = 8
+                  OnClick = btnStopLogClick
                 end
-                object btn5: TFlatButton
+                object btnOpenFile: TFlatButton
                   Left = 3
                   Top = 250
                   Width = 85
                   Height = 40
                   Color = clBtnFace
                   ColorDown = clBtnFace
-                  Caption = 'BUKA FILE'
+                  Caption = 'OPEN FILE'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clOlive
                   Font.Height = -13
@@ -6143,8 +6153,9 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                   ParentColor = False
                   TabOrder = 9
+                  OnClick = btnOpenFileClick
                 end
-                object btn6: TFlatButton
+                object btnClearList: TFlatButton
                   Left = 91
                   Top = 250
                   Width = 85
@@ -6160,15 +6171,16 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                   ParentColor = False
                   TabOrder = 10
+                  OnClick = btnClearListClick
                 end
-                object btn7: TFlatButton
+                object btnSaveAsFile: TFlatButton
                   Left = 3
                   Top = 287
                   Width = 85
                   Height = 40
                   Color = clBtnFace
                   ColorDown = clBtnFace
-                  Caption = 'Simpan File Baru'
+                  Caption = 'SAVE AS'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clOlive
                   Font.Height = -13
@@ -6177,16 +6189,16 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                   ParentColor = False
                   TabOrder = 11
-                  OnClick = btn7Click
+                  OnClick = btnSaveAsFileClick
                 end
-                object btn8: TFlatButton
+                object btnSaveFile: TFlatButton
                   Left = 91
                   Top = 287
                   Width = 85
                   Height = 40
                   Color = clBtnFace
                   ColorDown = clBtnFace
-                  Caption = 'Simpan File'
+                  Caption = 'SAVE'
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = clOlive
                   Font.Height = -13
@@ -6195,6 +6207,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                   ParentColor = False
                   TabOrder = 12
+                  OnClick = btnSaveFileClick
                 end
               end
               object mmoLogger: TMemo
@@ -6202,15 +6215,6 @@ object frmDCDSMain: TfrmDCDSMain
                 Top = 71
                 Width = 388
                 Height = 331
-                Lines.Strings = (
-                  
-                    'date   time    training    elevation  lfmg   rgmg  bltlft   bltr' +
-                    'gt'
-                  '08/28/2025     12:12:00     123.90     89.98     5000     5000 '
-                  '    5000     5000'
-                  '09/03/2025     09/03/2025     09/03/2025     09/03/2025 '
-                  '    09/03/2025     '
-                  '09/03/2025')
                 ReadOnly = True
                 TabOrder = 3
                 Visible = False
@@ -12673,6 +12677,7 @@ object frmDCDSMain: TfrmDCDSMain
     Top = 888
   end
   object dlgSave1: TSaveDialog
+    Filter = 'Log Files (*.log)|*.log|Text Files (*.txt)|*.txt'
     Left = 764
     Top = 47
   end
@@ -12685,5 +12690,22 @@ object frmDCDSMain: TfrmDCDSMain
     OnTimer = tmrRotateTimer
     Left = 24
     Top = 1000
+  end
+  object tmrLogger: TTimer
+    Interval = 2000
+    OnTimer = tmrLoggerTimer
+    Left = 820
+    Top = 47
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 'Log Files (*.log)|*.log|Text Files (*.txt)|*.txt'
+    Left = 684
+    Top = 47
+  end
+  object tmrAmmo: TTimer
+    Enabled = False
+    OnTimer = tmrAmmoTimer
+    Left = 876
+    Top = 47
   end
 end

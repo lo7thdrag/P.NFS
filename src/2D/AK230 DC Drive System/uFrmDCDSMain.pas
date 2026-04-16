@@ -150,12 +150,12 @@ type
     btnAcTrainingDecrease: TButton;
     btnAcElevationIncrease: TButton;
     btnAcElevationDecrease: TButton;
-    btn3: TFlatButton;
-    btn4: TFlatButton;
-    btn5: TFlatButton;
-    btn6: TFlatButton;
-    btn7: TFlatButton;
-    btn8: TFlatButton;
+    btnStartLog: TFlatButton;
+    btnStopLog: TFlatButton;
+    btnOpenFile: TFlatButton;
+    btnClearList: TFlatButton;
+    btnSaveAsFile: TFlatButton;
+    btnSaveFile: TFlatButton;
     pnlTCPPCB: TPanel;
     grpSCamera: TGroupBox;
     grpSPowerStatus: TGroupBox;
@@ -221,6 +221,9 @@ type
     imgHeadPtr: TImage;
     tmrTime: TTimer;
     tmrRotate: TTimer;
+    tmrLogger: TTimer;
+    OpenDialog1: TOpenDialog;
+    tmrAmmo: TTimer;
     procedure tmr1Timer(Sender: TObject);
     procedure btnPowerSwitchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -238,7 +241,7 @@ type
     procedure btnDcdcElevationDecreaseClick(Sender: TObject);
     procedure btnDcdcElevationMaxClick(Sender: TObject);
     procedure btnDcdcElevationMinClick(Sender: TObject);
-    procedure btn7Click(Sender: TObject);
+    procedure btnSaveAsFileClick(Sender: TObject);
     procedure btnExitClick(Sender: TObject);
     procedure btnPwrSwtClick(Sender: TObject);
     procedure btnOmRangeBearingEnterClick(Sender: TObject);
@@ -253,6 +256,14 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure btnOmKolonkaClick(Sender: TObject);
     procedure btnCStartClick(Sender: TObject);
+    procedure btnStartLogClick(Sender: TObject);
+    procedure tmrLoggerTimer(Sender: TObject);
+    procedure btnOpenFileClick(Sender: TObject);
+    procedure btnSaveFileClick(Sender: TObject);
+    procedure btnClearListClick(Sender: TObject);
+    procedure btnNoBulltMgznClick(Sender: TObject);
+    procedure tmrAmmoTimer(Sender: TObject);
+    procedure btnStopLogClick(Sender: TObject);
   private
     { Private declarations }
     FbootTime : Integer;
@@ -269,6 +280,11 @@ type
     FVCurTraining,
     FVCurElevation,
     FVCurHeading: Double;
+    FFileName : String;
+
+    LeftMagazine, RightMagazine : Integer;
+    LeftShot, RightShot : Integer;
+    IsFiring : Boolean;
 
     pCurrentScenID  : integer;
     pServer_Ip,
@@ -308,6 +324,7 @@ type
 
     procedure StartCannonFire(Gun_ID: word);
     procedure StopCannonFire(Gun_ID: word);
+    procedure SetFireRate;
 
   end;
 
@@ -322,12 +339,36 @@ uses
   ulibSettings, uScriptSimAK230, uBridgeSet, uDataModule, uAK230Manager,
   uBaseConstan, uBaseFunction;
 
-procedure TfrmDCDSMain.btn7Click(Sender: TObject);
+procedure TfrmDCDSMain.btnSaveAsFileClick(Sender: TObject);
 begin
   if dlgSave1.Execute then
   begin
-
+    FFileName := dlgSave1.FileName;
+    mmoLogger.Lines.SaveToFile(FFileName);
   end;
+end;
+
+procedure TfrmDCDSMain.btnSaveFileClick(Sender: TObject);
+begin
+  if FFileName = '' then
+  begin
+    btnSaveAsFileClick(Sender);
+    Exit;
+  end;
+
+  mmoLogger.Lines.SaveToFile(FFileName);
+end;
+
+procedure TfrmDCDSMain.btnStartLogClick(Sender: TObject);
+begin
+  mmoLogger.Visible := True;
+  tmrLogger.Interval := 3000; // 3 detik
+  tmrLogger.Enabled :=  True;
+end;
+
+procedure TfrmDCDSMain.btnStopLogClick(Sender: TObject);
+begin
+ tmrLogger.Enabled := False;
 end;
 
 procedure TfrmDCDSMain.btnAcElevationDecreaseClick(Sender: TObject);
@@ -380,6 +421,11 @@ begin
   if (dblVal > -0.1) and (dblVal < 0.1) then
     dblVal := 0;
   edtAcTrainValue.Text := FloatToStr(dblVal);
+end;
+
+procedure TfrmDCDSMain.btnClearListClick(Sender: TObject);
+begin
+  mmoLogger.Clear;
 end;
 
 procedure TfrmDCDSMain.btnCmAggregateClick(Sender: TObject);
@@ -739,13 +785,38 @@ end;
 procedure TfrmDCDSMain.btnFiringMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  if IsFiring then Exit;
+
   StartCannonFire(1);
+  IsFiring := True;
+
+  SetFireRate;
+  tmrAmmo.Enabled := True;
 end;
 
 procedure TfrmDCDSMain.btnFiringMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  if not IsFiring then Exit;
+
   StopCannonFire(1);
+  IsFiring := False;
+  tmrAmmo.Enabled := False;
+end;
+
+procedure TfrmDCDSMain.btnNoBulltMgznClick(Sender: TObject);
+begin
+  LeftMagazine := StrToIntDef(edtNoLeftMgzn.Text, 0);
+  RightMagazine := StrToIntDef(edtNoRightMgzn.Text, 0);
+
+  LeftShot := 0;
+  RightShot := 0;
+
+  edtBulCntLf1.Text := '0';
+  edtBulCntRg1.Text := '0';
+
+  edtBulCntLf2.Text := IntToStr(LeftMagazine);
+  edtBulCntRg2.Text := IntToStr(RightMagazine);
 end;
 
 procedure TfrmDCDSMain.btnOmKolonkaClick(Sender: TObject);
@@ -826,6 +897,15 @@ begin
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
 //    btnFiring.Glyph := FimgTemp.Picture.Bitmap;
     btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+  end;
+end;
+
+procedure TfrmDCDSMain.btnOpenFileClick(Sender: TObject);
+begin
+  if OpenDialog1.Execute then
+  begin
+    mmoLogger.Lines.LoadFromFile(OpenDialog1.FileName);
+    FFileName := OpenDialog1.FileName;
   end;
 end;
 
@@ -1134,6 +1214,14 @@ begin
   end;
 end;
 
+procedure TfrmDCDSMain.SetFireRate;
+var
+  intervalMs : Integer;
+begin
+  intervalMs := Round(60000/30); //30 peluru per menit
+  tmrAmmo.Interval := intervalMs;
+end;
+
 //procedure TfrmDCDSMain.SetGunReady;
 //begin
 //  GunL.ReadyToFire := (GunL.AssignTo <> nil) and (GunL.AssignTo.TrackedTarget <> nil)
@@ -1306,6 +1394,52 @@ begin
 ////    btnSynchron.Glyph := FimgTemp.Picture.Bitmap;
 //    btnSynchron.Glyph.Assign(FimgTemp.Picture.Graphic);
 //  end;
+end;
+
+procedure TfrmDCDSMain.tmrAmmoTimer(Sender: TObject);
+begin
+  if not IsFiring then Exit;
+
+
+  if (LeftMagazine <= 0) and (RightMagazine <=0) then
+  begin
+    btnFiringMouseUp(nil, mbLeft, [], 0, 0);
+    Exit;
+  end;
+
+  if LeftMagazine > 0 then
+  begin
+    Dec(LeftMagazine);
+    Inc(LeftShot);
+
+    edtBulCntLf1.Text := IntToStr(LeftShot);
+    edtBulCntLf2.Text := IntToStr(LeftMagazine);
+  end;
+
+  if RightMagazine > 0 then
+  begin
+    Dec(RightMagazine);
+    Inc(RightShot);
+
+    edtBulCntRg1.Text := IntToStr(RightShot);
+    edtBulCntRg2.Text := IntToStr(RightMagazine);
+  end;
+end;
+
+procedure TfrmDCDSMain.tmrLoggerTimer(Sender: TObject);
+var
+  logText : String;
+begin
+  logText := Format('%-20s %-5s %-5s %-4s %-4s %-4s %-4s',
+  [FormatDateTime('dd/mm/yyyy hh:nn:ss', Now),
+   edtTrainingValue.Text,
+   edtElevationValue.Text,
+   edtNoLeftMgzn.Text,
+   edtNoRightMgzn.Text,
+   edtBulCntLf1.Text,
+   edtBulCntRg1.Text]);
+
+  mmoLogger.Lines.Add(logText);
 end;
 
 procedure TfrmDCDSMain.tmrRotateTimer(Sender: TObject);
