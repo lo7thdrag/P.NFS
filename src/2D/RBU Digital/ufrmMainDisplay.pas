@@ -8,7 +8,8 @@ uses
   Vcl.StdCtrls, System.ImageList, Vcl.ImgList, Vcl.Buttons, TFlatButtonUnit,
   Vcl.ComCtrls, VrControls, VrTrackBar, {acPNG,} Vcl.Imaging.pngimage,
   System.Math, uRBU_Manager, uLibRBU, uBridgeSet, uSimulationManager, uBaseFunctionRBUD,
-  uMapXUnitConverter, uRadarVisual, uCoordConverter, uRadarDynamicSector;
+  uMapXUnitConverter, uRadarVisual, uCoordConverter, uRadarDynamicSector,
+  VrAngularMeter;
 
 type
   TGroupBox = class(Vcl.StdCtrls.TGroupBox) //declare this before of your form definition
@@ -225,6 +226,22 @@ type
     imgTrgtSpeedNdl: TImage;
     imgBackgroundZone: TImage;
     timerControlMode: TTimer;
+    VrRangeTarget: TVrAngularMeter;
+    imgRangeTrgtBackground: TImage;
+    imgBrngTrgetBackground: TImage;
+    VrBearingTarget: TVrAngularMeter;
+    imgHdgShipBackground: TImage;
+    VrHdgShip: TVrAngularMeter;
+    imgBrngTrgtBackground: TImage;
+    VrBrngTrgt: TVrAngularMeter;
+    imgShipTargetBackground: TImage;
+    VrShipTarget: TVrAngularMeter;
+    imgTrgtShipBackground: TImage;
+    VrTargetShip: TVrAngularMeter;
+    imgShipSpeedBackground: TImage;
+    VrShipSpeed: TVrAngularMeter;
+    imgTargetSpeedBackground: TImage;
+    VrTargetSpeed: TVrAngularMeter;
     procedure FormResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -866,7 +883,8 @@ begin
       Enlarge := TicksEnlarge;
       Degrees := StartAngle;
       Increment := AngleOffset/Ticks;
-      aCnv.Pen.Color := clRed;
+//      aCnv.Pen.Color := clRed;
+      aCnv.Pen.Color := rgb(191, 80, 67);
       aCnv.Pen.Width := 3;
       aCnv.Ellipse(R.Left, R.Top, R.Right, R.Bottom);
       for I := 1 to Ticks + 1 do
@@ -1212,36 +1230,39 @@ begin
 
   FOriginalPngTrainning := TPngImage.Create;
   FOriginalPngElevation := TPngImage.Create;
-  FOriginalPngRangeTrgt := TPngImage.Create;
-//  FOriginalPngBrngTrgt := TPngImage.Create;
-//  ForiginalPngHdngShp := TPngImage.Create;
-  ForiginalPngBrngTrgt2 := TPngImage.Create;
-  FOriginalPngShpTrgt := TPngImage.Create;
-  FOriginalPngTrgtShp := TPngImage.Create;
-  FOriginalPngShpSpeed := TPngImage.Create;
-  FOriginalPngTrgtSpeed := TPngImage.Create;
-//  FOriginalPngBrngTrgt := TPngImage.Create;
-//  FOriginalPngBrngTrgt.LoadFromFile('.\data\images\jarum_panel_148p.png');
+
   FOriginalPngTrainning.LoadFromFile('.\data\images\launcher_top_148p.png');
   FOriginalPngElevation.LoadFromFile('.\data\images\launcher_side_148p.png');
-  FOriginalPngRangeTrgt.LoadFromFile('.\data\images\jarum_panel_148p.png');
-//  FOriginalPngBrngTrgt.LoadFromFile('.\data\images\jarum_panel_148p.png');
-//  ForiginalPngHdngShp.LoadFromFile('.\data\images\jarum_panel_148p.png');
-  ForiginalPngBrngTrgt2.LoadFromFile('.\data\images\jarum_panel_148p.png');
-  FOriginalPngShpTrgt.LoadFromFile('.\data\images\jarum_panel_148p.png');
-  FOriginalPngTrgtShp.LoadFromFile('.\data\images\jarum_panel_148p.png');
-  FOriginalPngShpSpeed.LoadFromFile('.\data\images\jarum_panel_148p.png');
-  FOriginalPngTrgtSpeed.LoadFromFile('.\data\images\jarum_panel_148p.png');
-
-  // set to 0 in meter bar
-  RotateAndDisplayFixedSize(imgRangeTrgtNdl, FOriginalPngRangeTrgt, 240);
-  RotateAndDisplayFixedSize(imgShpSpeedNdl, FOriginalPngShpSpeed, 240);
-  RotateAndDisplayFixedSize(imgTrgtSpeedNdl, FOriginalPngTrgtSpeed, 240);
 
   // set gambar bearing dan elevation di awal
   RotateAndDisplayFixedSize(imgTrainingNdl, FOriginalPngTrainning, 0);
   RotateAndDisplayFixedSize(imgElevationNdl, FOriginalPngElevation, 0);
 
+
+//  FOriginalPngRangeTrgt := TPngImage.Create;
+//  FOriginalPngBrngTrgt := TPngImage.Create;
+//  ForiginalPngHdngShp := TPngImage.Create;
+//  ForiginalPngBrngTrgt2 := TPngImage.Create;
+//  FOriginalPngShpTrgt := TPngImage.Create;
+//  FOriginalPngTrgtShp := TPngImage.Create;
+//  FOriginalPngShpSpeed := TPngImage.Create;
+//  FOriginalPngTrgtSpeed := TPngImage.Create;
+//  FOriginalPngBrngTrgt := TPngImage.Create;
+//  FOriginalPngBrngTrgt.LoadFromFile('.\data\images\jarum_panel_148p.png');
+
+//  FOriginalPngRangeTrgt.LoadFromFile('.\data\images\jarum_panel_148p.png');
+//  FOriginalPngBrngTrgt.LoadFromFile('.\data\images\jarum_panel_148p.png');
+//  ForiginalPngHdngShp.LoadFromFile('.\data\images\jarum_panel_148p.png');
+//  ForiginalPngBrngTrgt2.LoadFromFile('.\data\images\jarum_panel_148p.png');
+//  FOriginalPngShpTrgt.LoadFromFile('.\data\images\jarum_panel_148p.png');
+//  FOriginalPngTrgtShp.LoadFromFile('.\data\images\jarum_panel_148p.png');
+//  FOriginalPngShpSpeed.LoadFromFile('.\data\images\jarum_panel_148p.png');
+//  FOriginalPngTrgtSpeed.LoadFromFile('.\data\images\jarum_panel_148p.png');
+
+  // set to 0 in meter bar
+//  RotateAndDisplayFixedSize(imgRangeTrgtNdl, FOriginalPngRangeTrgt, 240);
+//  RotateAndDisplayFixedSize(imgShpSpeedNdl, FOriginalPngShpSpeed, 240);
+//  RotateAndDisplayFixedSize(imgTrgtSpeedNdl, FOriginalPngTrgtSpeed, 240);
 
 //  Psource := TImage.Create(nil);
 //  PSource.Picture.LoadFromFile('.\data\images\jarum_panel.png');
@@ -1801,6 +1822,8 @@ begin
 //  end;
 
 //  RotateAndDisplayFixedSize(imgBrngTrgt2Ndl, FOriginalPngBrngTrgt, FAngle);
+
+  // putar image bearing
   if Round(FVTgtTrainning) <> Round(FVCurTrainning) then
   begin
     if ((FVTgtTrainning - FVCurTrainning) <= 180) and ((FVTgtTrainning - FVCurTrainning) > 0) then
@@ -1821,6 +1844,7 @@ begin
   edtValTrainingRelative.Text := FormatFloat('0.#', FVCurTrainning);
   edtValTrainingTrue.Text := FormatFloat('0.#',(FVCurTrainning + RBU_MAnager.Heading));
 
+  // putar image elev
   if Round(FVTgtElevation) <> Round(FVCurElevation) then
   begin
     if ((FVTgtElevation - FVCurElevation) <= 180) and ((FVTgtElevation - FVCurElevation) > 0) then
@@ -1841,6 +1865,8 @@ begin
 
   edtValElevation.Text := FormatFloat('0.#', FVCurElevation);
 
+  // PERLU DIROMBAK ULANG KARENA SUDAH GA PAKE IMAGE BUAT MUTERNYA
+  // set target range
   convToDial := (FVTgtRangeTrgt / 1000.0) * 15;
   if Round((convToDial + 240)) <> Round(FVCurRangeTrgt) then
   begin
@@ -1855,7 +1881,7 @@ begin
 //      FVCurRangeTrgt := FVCurRangeTrgt - convToDial;
 //    end;
 
-    RotateAndDisplayFixedSize(imgRangeTrgtNdl, FOriginalPngRangeTrgt, (convToDial + 240){FVCurRangeTrgt});
+//    RotateAndDisplayFixedSize(imgRangeTrgtNdl, FOriginalPngRangeTrgt, (convToDial + 240){FVCurRangeTrgt});
 //    FVCurRangeTrgt := FVCurRangeTrgt + FVTgtRangeTrgt;
   end
   else
