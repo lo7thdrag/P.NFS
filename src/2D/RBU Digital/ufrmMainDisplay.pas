@@ -1238,6 +1238,11 @@ begin
   RotateAndDisplayFixedSize(imgShpSpeedNdl, FOriginalPngShpSpeed, 240);
   RotateAndDisplayFixedSize(imgTrgtSpeedNdl, FOriginalPngTrgtSpeed, 240);
 
+  // set gambar bearing dan elevation di awal
+  RotateAndDisplayFixedSize(imgTrainingNdl, FOriginalPngTrainning, 0);
+  RotateAndDisplayFixedSize(imgElevationNdl, FOriginalPngElevation, 0);
+
+
 //  Psource := TImage.Create(nil);
 //  PSource.Picture.LoadFromFile('.\data\images\jarum_panel.png');
 //  PSource.Picture.Graphic.Transparent := True;
