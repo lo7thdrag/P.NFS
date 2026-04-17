@@ -788,10 +788,11 @@ begin
   if IsFiring then Exit;
 
   StartCannonFire(1);
+  tmrAmmo.Enabled := True;
   IsFiring := True;
 
   SetFireRate;
-  tmrAmmo.Enabled := True;
+
 end;
 
 procedure TfrmDCDSMain.btnFiringMouseUp(Sender: TObject; Button: TMouseButton;
@@ -817,6 +818,10 @@ begin
 
   edtBulCntLf2.Text := IntToStr(LeftMagazine);
   edtBulCntRg2.Text := IntToStr(RightMagazine);
+
+  FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
+  btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+  btnFiring.Enabled := True;
 end;
 
 procedure TfrmDCDSMain.btnOmKolonkaClick(Sender: TObject);
@@ -1218,7 +1223,7 @@ procedure TfrmDCDSMain.SetFireRate;
 var
   intervalMs : Integer;
 begin
-  intervalMs := Round(60000/30); //30 peluru per menit
+  intervalMs := Round(60000/1000);
   tmrAmmo.Interval := intervalMs;
 end;
 
@@ -1404,6 +1409,9 @@ begin
   if (LeftMagazine <= 0) and (RightMagazine <=0) then
   begin
     btnFiringMouseUp(nil, mbLeft, [], 0, 0);
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
+    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+    btnFiring.Enabled := False;
     Exit;
   end;
 
@@ -1430,12 +1438,12 @@ procedure TfrmDCDSMain.tmrLoggerTimer(Sender: TObject);
 var
   logText : String;
 begin
-  logText := Format('%-20s %-5s %-5s %-4s %-4s %-4s %-4s',
+  logText := Format('%-20s %-7s %-7s %-8s %-8s %-7s %-6s',
   [FormatDateTime('dd/mm/yyyy hh:nn:ss', Now),
    edtTrainingValue.Text,
    edtElevationValue.Text,
-   edtNoLeftMgzn.Text,
-   edtNoRightMgzn.Text,
+   edtBulCntLf2.Text,
+   edtBulCntRg2.Text,
    edtBulCntLf1.Text,
    edtBulCntRg1.Text]);
 

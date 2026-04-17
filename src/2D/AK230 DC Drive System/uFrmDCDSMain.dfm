@@ -5959,9 +5959,9 @@ object frmDCDSMain: TfrmDCDSMain
                 ParentBackground = False
                 ParentFont = False
                 TabOrder = 1
-                ExplicitLeft = -2
-                ExplicitTop = 43
-                ExplicitWidth = 653
+                ExplicitLeft = -189
+                ExplicitTop = 47
+                ExplicitWidth = 682
                 object lbl18: TLabel
                   Left = 209
                   Top = 5
@@ -5979,42 +5979,42 @@ object frmDCDSMain: TfrmDCDSMain
                 object lbl20: TLabel
                   Left = 334
                   Top = 4
-                  Width = 49
+                  Width = 20
                   Height = 13
-                  Caption = 'TRAINING'
+                  Caption = 'TRN'
                 end
                 object lbl21: TLabel
-                  Left = 393
-                  Top = 5
-                  Width = 55
+                  Left = 374
+                  Top = 4
+                  Width = 31
                   Height = 13
-                  Caption = 'ELEVATION'
+                  Caption = 'ELEV'
                 end
                 object lbl22: TLabel
-                  Left = 461
-                  Top = 5
-                  Width = 29
+                  Left = 411
+                  Top = 4
+                  Width = 37
                   Height = 13
                   Caption = 'LF MG'
                 end
                 object lbl23: TLabel
-                  Left = 501
-                  Top = 5
-                  Width = 32
+                  Left = 451
+                  Top = 4
+                  Width = 40
                   Height = 13
                   Caption = 'RG MG'
                 end
                 object lbl24: TLabel
-                  Left = 543
+                  Left = 491
                   Top = 4
-                  Width = 33
+                  Width = 41
                   Height = 13
                   Caption = 'Blt.Lft.'
                 end
                 object lbl25: TLabel
-                  Left = 584
+                  Left = 532
                   Top = 4
-                  Width = 37
+                  Width = 45
                   Height = 13
                   Caption = 'Blt.Rgt.'
                 end
@@ -12703,7 +12703,6 @@ object frmDCDSMain: TfrmDCDSMain
     Top = 47
   end
   object tmrAmmo: TTimer
-    Enabled = False
     OnTimer = tmrAmmoTimer
     Left = 876
     Top = 47
