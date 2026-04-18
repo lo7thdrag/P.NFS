@@ -10201,14 +10201,15 @@ end;
 
 procedure TfrmGameController.SelectShip(aObject: TInsObject);
 var
-  Vehicle: TVehicle;
-  i, j, k, l, x, flag: integer;
+  i, j, x, flag: integer;
   Weapon: TWeapon;
   WeaponShip: TWeaponGetList;
+  Vehicle: TVehicle;
   listWeaponSce, ListWeapon: TList;
   status: string;
   sceWeapon: TScenarioWeapon;
-  o: TObject;
+  strPicture, worldproject: string;
+  weaponOnShipTemp: TWeaponOnShip;
 begin
   if Assigned(aObject) then
   begin
@@ -10222,12 +10223,16 @@ begin
     begin
       if Assigned(frmGameController.lvRuntimeShip.Items[i].Data) then
       begin
-
         Vehicle := TVehicle(frmGameController.lvRuntimeShip.Items[i].Data);
+        Ship_ID := Vehicle.Vehicle_ID;
+        Ship_Name := Vehicle.Vehicle_Name;
         if aObject.FDataBaseID = Vehicle.Vehicle_ID then
         begin
           lvRuntimeShip.Selected := lvRuntimeShip.Items[i];
           VisibleStatusShip(true, 1);
+
+          strPicture := '..\Data\imageship\' + Vehicle.Vehicle_Name + '.png';
+
           case Vehicle.Vehicle_Type of
             1:
               lblZCord.Caption.Text := 'Depth';
@@ -10246,85 +10251,62 @@ begin
           lblPitchVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Pitch);
           lblRollVal.Caption.Text := FormatFloat('0.00', Vehicle.Vehicle_Roll);
 
+          if FileExists(strPicture) then
+          begin
+            imgShip.Picture.LoadFromFile(strPicture);
+          end
+          else
+            imgShip.Picture.LoadFromFile('..\Data\imageship\NoModel.png');
+
           ShowDefaultPageWeapon(true);
-//          for j:= lvWeapon.Items.Count -1 downto 0 do
-//          begin
-//            if Assigned(lvWeapon.Items[j].Data) then
-//            begin
-//              Weapon := TWeapon(lvWeapon.Items[j].Data);
-//              if Assigned(Weapon) then
-//                Weapon.Free;
-//            end;
-//          end;
-//          lvWeapon.Items.Clear;
+
           ClearListViewData(lvWeapon);
+          worldproject := SimManager.instProjectSet.World;
 
-          ListWeapon := TList.Create;
-          listWeaponSce := TList.Create;
           try
-            //status := 'On';
-
-
-            DataModule1.GetListWeaponOnShip(Vehicle.Vehicle_ID, ListWeapon);
-
-            if onOffMode = 0 then
+            if Assigned(SimManager.TrackObject) then
             begin
-              DataModule1.GetListWeaponOnShipBySceID(sceIDINI, Vehicle.Vehicle_ID, listWeaponSce);
-            end
-            else if onOffMode = 1 then
-            begin
-              DataModule1.GetListWeaponOnShipBySceID(0, Vehicle.Vehicle_ID, listWeaponSce);
-            end;
-
-            for k := 0 to ListWeapon.Count - 1 do
-            begin
-              if Assigned(ListWeapon.Items[k]) then
+              for j := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
               begin
-                WeaponShip := TWeaponGetList(ListWeapon.Items[k]);
+                weaponOnShipTemp := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[j]);
 
-                status := 'Off';
                 Weapon := TWeapon.Create;
-                try
-                  Weapon.ParentName := DataModule1.GetShipName(WeaponShip.IDShip);
-                  Weapon.MissileName := DataModule1.GetNameWeaponByID(WeaponShip.IDWeapon);
-                  Weapon.WeaponID := WeaponShip.IDWeapon;
-                  Weapon.launcherID := WeaponShip.IDDetail;
 
-                  //dendy mampir
-                  for l := 0 to listWeaponSce.Count - 1 do
-                  begin
-                    sceWeapon := TScenarioWeapon(listWeaponSce.Items[l]);
-                    if (sceWeapon.WeaponID = Weapon.WeaponID) and (sceWeapon.LauncherID = Weapon.launcherID) and (sceWeapon.ShipID = WeaponShip.IDShip) then
-                    begin
-                      status := 'On';
-                      Break;
-                    end
-                  end;
+                Weapon.WeaponID := weaponOnShipTemp.Weapon_ID;
+                Weapon.launcherID := weaponOnShipTemp.Weapon_Launcher;
+                Weapon.MissileName := weaponOnShipTemp.Weapon_Name;
+                Weapon.Game_Type := weaponOnShipTemp.Weapon_GameType;
 
+                if ((Weapon.Game_Type = 0) and (worldproject = 'NAFS')) or
+                   ((Weapon.Game_Type = 1) and (worldproject = 'NSFS')) or
+                   ((Weapon.Game_Type = 2) and (worldproject = 'NSSFS')) then
+                begin
                   with lvWeapon.Items.Add do
-                  begin
-                    Data := Weapon;
-
-                    if not (Weapon.MissileName = 'Moc Console') or not (Weapon.MissileName = 'Moc PKR Console') then  // moc nya di lewati (visible dulu)
                     begin
-                      Caption := Weapon.MissileName;
-                      SubItems.Add(IntToStr(Weapon.launcherID));
-                      SubItems.Add(status);
+                      Data := Weapon;
+                      Caption := weaponOnShipTemp.Weapon_Name;
+                      SubItems.Add(IntToStr(weaponOnShipTemp.Weapon_Launcher));
+
+                      if (weaponOnShipTemp.Weapon_Name = 'Moc Console') or (weaponOnShipTemp.Weapon_Name = 'Moc PKR Console') or (weaponOnShipTemp.Weapon_Name = 'RBU6000') or (weaponOnShipTemp.Weapon_Name = 'Cannon 40') or (weaponOnShipTemp.Weapon_Name = 'Cannon 120') or (weaponOnShipTemp.Weapon_Name = 'Cannon 57') or (weaponOnShipTemp.Weapon_Name = 'Cannon 76') or (weaponOnShipTemp.Weapon_Name = 'Cannon AK230') or (weaponOnShipTemp.Weapon_Name = 'Cannon 35') or (weaponOnShipTemp.Weapon_Name = 'Cannon Type 730') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM40') or (weaponOnShipTemp.Weapon_Name = 'Exocet MM38') then
+                      begin
+                        SubItems.Add('Automatic')
+                      end
+                      else
+                      begin
+                        if weaponOnShipTemp.Weapon_Status = 1 then
+                          SubItems.Add('On')
+                        else
+                          SubItems.Add('Off')
+                      end;
                     end;
-                  end;
-                finally
                 end;
+
               end;
             end;
 
           finally
-            ClearAList(ListWeapon);
-            ListWeapon.Free;
-            ClearAList(listWeaponSce);
-            listWeaponSce.Free;
-          end;
 
-          Break;
+          end;
         end;
       end;
     end;
