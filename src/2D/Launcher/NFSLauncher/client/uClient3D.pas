@@ -713,7 +713,6 @@ begin
         if cbDebug.Checked then
           AddToLogs('File Not Exists :: ' + sName);
 
-          +
         sLine := '';
       end;
       {$ENDREGION}
