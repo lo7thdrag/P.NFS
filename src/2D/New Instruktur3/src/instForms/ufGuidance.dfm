@@ -4409,7 +4409,7 @@ object fGuidance: TfGuidance
           OnMouseUp = vrwhlHeadingMouseUp
         end
         object lbl84: TLabel
-          Left = 241
+          Left = 228
           Top = 187
           Width = 41
           Height = 13
@@ -4435,8 +4435,8 @@ object fGuidance: TfGuidance
           ParentFont = False
         end
         object lbl85: TLabel
-          Left = 241
-          Top = 162
+          Left = 228
+          Top = 161
           Width = 41
           Height = 13
           Caption = 'degrees '
@@ -4448,8 +4448,8 @@ object fGuidance: TfGuidance
           ParentFont = False
         end
         object lbl86: TLabel
-          Left = 241
-          Top = 238
+          Left = 228
+          Top = 240
           Width = 26
           Height = 13
           Caption = 'knots'
@@ -4461,8 +4461,8 @@ object fGuidance: TfGuidance
           ParentFont = False
         end
         object lbl87: TLabel
-          Left = 241
-          Top = 212
+          Left = 228
+          Top = 214
           Width = 26
           Height = 13
           Caption = 'knots'
@@ -4475,7 +4475,7 @@ object fGuidance: TfGuidance
         end
         object lbl88: TLabel
           Left = 17
-          Top = 211
+          Top = 214
           Width = 110
           Height = 13
           Caption = 'Ordered Ground Speed'
@@ -4487,8 +4487,8 @@ object fGuidance: TfGuidance
           ParentFont = False
         end
         object lbl89: TLabel
-          Left = 241
-          Top = 137
+          Left = 228
+          Top = 136
           Width = 41
           Height = 13
           Caption = 'degrees '
@@ -4513,8 +4513,8 @@ object fGuidance: TfGuidance
           ParentFont = False
         end
         object lblStraightLineActuaCourse: TLabel
-          Left = 158
-          Top = 188
+          Left = 159
+          Top = 187
           Width = 9
           Height = 13
           Caption = '---'
@@ -4567,8 +4567,8 @@ object fGuidance: TfGuidance
           ParentFont = False
         end
         object lblStraightLineActualHeading: TLabel
-          Left = 158
-          Top = 162
+          Left = 159
+          Top = 161
           Width = 9
           Height = 13
           Caption = '---'
@@ -4590,8 +4590,8 @@ object fGuidance: TfGuidance
           TabOrder = 9
           Visible = False
           object lblStraightVRudder: TLabel
-            Left = 8
-            Top = -2
+            Left = 6
+            Top = 55
             Width = 83
             Height = 13
             Caption = 'Ordered VRudder'
@@ -4601,10 +4601,11 @@ object fGuidance: TfGuidance
             Font.Name = 'MS Sans Serif'
             Font.Style = []
             ParentFont = False
+            Visible = False
           end
           object lblStraightAlt: TLabel
             Left = 148
-            Top = 59
+            Top = 28
             Width = 9
             Height = 13
             Caption = '---'
@@ -4616,8 +4617,8 @@ object fGuidance: TfGuidance
             ParentFont = False
           end
           object lbl3: TLabel
-            Left = 232
-            Top = -1
+            Left = 217
+            Top = 2
             Width = 8
             Height = 13
             Caption = 'm'
@@ -4629,7 +4630,7 @@ object fGuidance: TfGuidance
             ParentFont = False
           end
           object lbl4: TLabel
-            Left = 232
+            Left = 217
             Top = 55
             Width = 8
             Height = 13
@@ -4640,10 +4641,11 @@ object fGuidance: TfGuidance
             Font.Name = 'MS Sans Serif'
             Font.Style = []
             ParentFont = False
+            Visible = False
           end
           object lbl92: TLabel
-            Left = 232
-            Top = 27
+            Left = 217
+            Top = 28
             Width = 8
             Height = 13
             Caption = 'm'
@@ -4655,8 +4657,8 @@ object fGuidance: TfGuidance
             ParentFont = False
           end
           object lblOrderStraightAlt: TLabel
-            Left = 7
-            Top = 28
+            Left = 6
+            Top = 2
             Width = 70
             Height = 13
             Caption = 'Ordered Depth'
@@ -4668,8 +4670,8 @@ object fGuidance: TfGuidance
             ParentFont = False
           end
           object txtStraightActAlt: TStaticText
-            Left = 7
-            Top = 57
+            Left = 6
+            Top = 26
             Width = 66
             Height = 17
             Caption = 'Actual Depth'
@@ -4683,7 +4685,7 @@ object fGuidance: TfGuidance
           end
           object txt2: TStaticText
             Left = 129
-            Top = -4
+            Top = 0
             Width = 7
             Height = 17
             Caption = ':'
@@ -4697,7 +4699,7 @@ object fGuidance: TfGuidance
           end
           object txt3: TStaticText
             Left = 129
-            Top = 56
+            Top = 53
             Width = 7
             Height = 17
             Caption = ':'
@@ -4708,11 +4710,12 @@ object fGuidance: TfGuidance
             Font.Style = []
             ParentFont = False
             TabOrder = 2
+            Visible = False
           end
           object edtOrderVrudderStraight: TEdit
             Tag = 2
-            Left = 146
-            Top = -4
+            Left = 148
+            Top = 52
             Width = 55
             Height = 19
             BevelInner = bvNone
@@ -4721,12 +4724,13 @@ object fGuidance: TfGuidance
             ParentCtl3D = False
             TabOrder = 3
             Text = '0'
+            Visible = False
             OnKeyPress = edtOrderVrudderStraightKeyPress
           end
           object edtOrderAltStraight: TEdit
             Tag = 2
-            Left = 146
-            Top = 27
+            Left = 148
+            Top = -1
             Width = 55
             Height = 19
             BevelInner = bvNone
@@ -4754,8 +4758,8 @@ object fGuidance: TfGuidance
         end
         object edtStraightLineOrderedGroundSpeed: TEdit
           Tag = 1
-          Left = 160
-          Top = 214
+          Left = 159
+          Top = 211
           Width = 55
           Height = 19
           BevelInner = bvNone
@@ -4775,7 +4779,7 @@ object fGuidance: TfGuidance
         end
         object edtStraightLineOrderedHeading: TEdit
           Left = 159
-          Top = 137
+          Top = 133
           Width = 55
           Height = 19
           BevelInner = bvNone
@@ -4795,7 +4799,7 @@ object fGuidance: TfGuidance
         end
         object txt64: TStaticText
           Left = 140
-          Top = 210
+          Top = 212
           Width = 7
           Height = 17
           Caption = ':'
@@ -4809,7 +4813,7 @@ object fGuidance: TfGuidance
         end
         object txt65: TStaticText
           Left = 140
-          Top = 236
+          Top = 238
           Width = 7
           Height = 17
           Caption = ':'
@@ -4837,7 +4841,7 @@ object fGuidance: TfGuidance
         end
         object txt67: TStaticText
           Left = 140
-          Top = 160
+          Top = 159
           Width = 7
           Height = 17
           Caption = ':'
@@ -4851,7 +4855,7 @@ object fGuidance: TfGuidance
         end
         object txt68: TStaticText
           Left = 140
-          Top = 135
+          Top = 134
           Width = 7
           Height = 17
           Caption = ':'
@@ -4865,7 +4869,7 @@ object fGuidance: TfGuidance
         end
         object txt69: TStaticText
           Left = 17
-          Top = 235
+          Top = 238
           Width = 106
           Height = 17
           Caption = 'Actual Ground Speed'
@@ -4879,7 +4883,7 @@ object fGuidance: TfGuidance
         end
         object txt70: TStaticText
           Left = 17
-          Top = 186
+          Top = 185
           Width = 70
           Height = 17
           Caption = 'Actual Course'
