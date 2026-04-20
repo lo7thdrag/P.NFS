@@ -228,12 +228,12 @@ type
     timerControlMode: TTimer;
     VrRangeTarget: TVrAngularMeter;
     imgRangeTrgtBackground: TImage;
-    imgBrngTrgetBackground: TImage;
-    VrBearingTarget: TVrAngularMeter;
-    imgHdgShipBackground: TImage;
-    VrHdgShip: TVrAngularMeter;
     imgBrngTrgtBackground: TImage;
     VrBrngTrgt: TVrAngularMeter;
+    imgHdgShipBackground: TImage;
+    VrHdgShip: TVrAngularMeter;
+    imgBrngTrgt2Background: TImage;
+    VrBrngTrgt2: TVrAngularMeter;
     imgShipTargetBackground: TImage;
     VrShipTarget: TVrAngularMeter;
     imgTrgtShipBackground: TImage;
@@ -340,6 +340,8 @@ type
     FFiringMode: Integer;   //NoSelect:0, Single12:1, Single6:2, Single11:3, Salvo4:4, Salvo8:5, Salvo12:6
 
     FLedGray, FLedGreen, FLedYellow, FLedRed : TBitmap;
+
+    FTargetElevation, FTrueBearing : Double;
 
     procedure LoadGeoset(const aGst: string); virtual;
     procedure initializeForm;
@@ -496,6 +498,12 @@ begin
     orderID := __ORD_RBU_ASSIGNED;
 
   RunLauncherRBU(Lncr, orderID);
+
+  trcbrTraining.Position := scrlbrBearingRelTarget.Position;
+
+  trcbrElevation.Position := Round(FTargetElevation);
+
+  btnTrnElvClick(Sender);
 
 end;
 
@@ -1290,14 +1298,14 @@ begin
 
   FVTgtTrainning := 0;
   FVTgtElevation := 0;
-  FVTgtRangeTrgt := 240;
+  FVTgtRangeTrgt := 0;
   FVTgtBrngTrgt := 0;
   FVTgtHdngShp := 0;
   FVTgtBrngTrgt2 := 0;
   FVTgtShpTrgt := 0;
-  FVTgtTrgtShp := 0;
-  FVTgtShpSpeed := 240;
-  FVTgtTrgtSpeed := 240;
+  FVTgtTrgtShp := 180;
+  FVTgtShpSpeed := 0;
+  FVTgtTrgtSpeed := 0;
   FVTgtHdngTrgt := 0;
 
   FVCurTrainning := 0;
@@ -1307,14 +1315,15 @@ begin
   FVCurHdngShp := 0;
   FVCurBrngTrgt2 := 0;
   FVCurShpTrgt := 0;
-  FVCurTrgtShp := 0;
-  FVCurShpSpeed := 240;
-  FVCurTrgtSpeed := 240;
+  FVCurTrgtShp := 180;
+  FVCurShpSpeed := 0;
+  FVCurTrgtSpeed := 0;
+
   FVTgtTrgtDepth := 0;
   FVCurTrgtDepth := 0;
 
 //  FAngle := 0;
-  tmrRotate.Interval := 250;
+  tmrRotate.Interval := 25; // butuh diganti ke 25, biar jadi 40 degree/sec   aslinya 250
   tmrRotate.Enabled := True;
 
 //  RBU_Manager := TRBUManager.Create;
@@ -1778,11 +1787,18 @@ begin
     scrlbrTargetRange.Position := Round(rangeX);
     scrlbrTagetDepth.Position := Round(v.PosZ);
     bearing := CalcBearing(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY);
+    FTrueBearing := bearing;
     bearing := bearing - RBU_MAnager.Heading;
 
     scrlbrBearingRelTarget.Position := Round(bearing);
 
     imgRBUTargetDetected.Picture.Bitmap := FLedGreen;
+    FTargetElevation := Power(rangeX/6000, Exp(1.0)) * 45;  // perhitungan sama seperti di 3D
+
+    FVTgtHdngTrgt := v.HeadingDeg;
+
+    FVTgtShpSpeed := RBU_MAnager.Speed;
+    FVTgtTrgtSpeed := v.Speed_mps * 1.944;
   end
 
   else
@@ -1865,125 +1881,33 @@ begin
 
   edtValElevation.Text := FormatFloat('0.#', FVCurElevation);
 
-  // PERLU DIROMBAK ULANG KARENA SUDAH GA PAKE IMAGE BUAT MUTERNYA
-  // set target range
-  convToDial := (FVTgtRangeTrgt / 1000.0) * 15;
-  if Round((convToDial + 240)) <> Round(FVCurRangeTrgt) then
-  begin
-    if (((convToDial + 240) - FVCurRangeTrgt) <= 480) and (((convToDial + 240) - FVCurRangeTrgt) > 240) then
-    begin
-      //rotate ccw (r)
-      FVCurRangeTrgt := 240 + convToDial;
-    end ;
-//    else
-//    begin
-//      //rotate cw (l)
-//      FVCurRangeTrgt := FVCurRangeTrgt - convToDial;
-//    end;
-
-//    RotateAndDisplayFixedSize(imgRangeTrgtNdl, FOriginalPngRangeTrgt, (convToDial + 240){FVCurRangeTrgt});
-//    FVCurRangeTrgt := FVCurRangeTrgt + FVTgtRangeTrgt;
-  end
-  else
-    FVCurRangeTrgt := FVTgtRangeTrgt;
-
+  // PUTAR RANGE TARGET
+  VrRangeTarget.Position := Round(FVTgtRangeTrgt);
   edtValRangeTrgt.Text := FormatFloat('0.#', FVTgtRangeTrgt);
 
-  if Round(FVTgtBrngTrgt2) <> Round(FVCurBrngTrgt2) then
-  begin
-    if ((FVTgtBrngTrgt2 - FVCurBrngTrgt2) <= 180) and ((FVTgtBrngTrgt2 - FVCurBrngTrgt2) > 0) then
-    begin
-      //rotate ccw (r)
-      FVCurBrngTrgt2 := FVCurBrngTrgt2 + 1;
-    end
-    else
-    begin
-      //rotate cw (l)
-      FVCurBrngTrgt2 := FVCurBrngTrgt2 - 1;
-    end;
+  // PUTAR BRNG TARGET
+  VrBrngTrgt.Position := Round(FVTgtBrngTrgt);
+  edtValBrngTrgt.Text := FormatFloat('0.#', FVTgtBrngTrgt);
+  edtValBrngTrgt1.Text := FormatFloat('0.#', FVTgtBrngTrgt);
 
-    RotateAndDisplayFixedSize(imgBrngTrgt2Ndl, ForiginalPngBrngTrgt2, FVCurBrngTrgt2);
-  end
-  else
-    FVCurBrngTrgt2 := FVTgtBrngTrgt2;
+  // PUTAR HEADING SHIP
+  VrHdgShip.Position := Round(FVTgtHdngShp);
+  edtValHdngShp.Text := FormatFloat('0.#', FVTgtHdngShp);
+  edtValHdngTrgt.Text := FormatFloat('0.#', FVTgtHdngTrgt);
 
-  if Round(FVTgtShpTrgt) <> Round(FVCurShpTrgt) then
-  begin
-    if ((FVTgtShpTrgt - FVCurShpTrgt) <= 180) and ((FVTgtShpTrgt - FVCurShpTrgt) > 0) then
-    begin
-      //rotate ccw (r)
-      FVCurShpTrgt := FVCurShpTrgt + 1;
-    end
-    else
-    begin
-      //rotate cw (l)
-      FVCurShpTrgt := FVCurShpTrgt - 1;
-    end;
+  // PUTAR BRNG TARGET 2 (real heading)
+  VrBrngTrgt2.Position := Round(FTrueBearing);
+  edtValBrngTrgt2.Text := FormatFloat('0.#', FTrueBearing);
 
-    RotateAndDisplayFixedSize(imgShpTrgtNdl, FOriginalPngShpTrgt, FVCurShpTrgt);
-  end
-  else
-    FVCurShpTrgt := FVTgtShpTrgt;
+  // SHP TARGET DAN TRGT SHP BELUM TAU FUNGSINYA BUAT APA
 
-  if Round(FVTgtTrgtShp) <> Round(FVCurTrgtShp) then
-  begin
-    if ((FVTgtTrgtShp - FVCurTrgtShp) <= 180) and ((FVTgtTrgtShp - FVCurTrgtShp) > 0) then
-    begin
-      //rotate ccw (r)
-      FVCurTrgtShp := FVCurTrgtShp + 1;
-    end
-    else
-    begin
-      //rotate cw (l)
-      FVCurTrgtShp := FVCurTrgtShp - 1;
-    end;
+  // PUTAR SHIP SPEED
+  VrShipSpeed.Position := Round(FVTgtShpSpeed);
+  edtValShpSpeed.Text := FormatFloat('0.#', FVTgtShpSpeed);
 
-    RotateAndDisplayFixedSize(imgTrgtShpNdl, FOriginalPngTrgtShp, FVCurTrgtShp);
-  end
-  else
-    FVCurTrgtShp := FVTgtTrgtShp;
-
-//  convToDial2 := (FVTgtShpSpeed -240) * 30;
-//  if Round(240 + convToDial2) <> Round(FVCurShpSpeed) then
-//  begin
-//    if (((240 + convToDial2) - FVCurShpSpeed) <= 480) and (((240 + convToDial2) - FVCurShpSpeed) > 240) then
-//    begin
-//      //rotate ccw (r)
-//      FVCurShpSpeed := 240 + convToDial2;
-//    end;
-////    else
-////    begin
-////      //rotate cw (l)
-////      FVCurShpSpeed := FVCurShpSpeed - 1;
-////    end;
-//
-//    RotateAndDisplayFixedSize(imgShpSpeedNdl, FOriginalPngShpSpeed, (240 + convToDial2){FVCurShpSpeed});
-//  end
-//  else
-//    FVCurShpSpeed := FVTgtShpSpeed;
-//
-//  edtValShpSpeed.Text := FormatFloat('0.#', convToDial2);
-
-//  convToDial3 := (FVTgtShpSpeed / 5.0) * 30;
-//  if Round(240 + convToDial3) <> Round(FVCurTrgtSpeed) then
-//  begin
-//    if (((240 + convToDial3) - FVCurTrgtSpeed) <= 480) and (((240 + convToDial3) - FVCurTrgtSpeed) > 240) then
-//    begin
-//      //rotate ccw (r)
-//      FVCurTrgtSpeed := (240 + convToDial3);
-//    end;
-////    else
-////    begin
-////      //rotate cw (l)
-////      FVCurTrgtSpeed := FVCurTrgtSpeed - 1;
-////    end;
-//
-//    RotateAndDisplayFixedSize(imgTrgtSpeedNdl, FOriginalPngTrgtSpeed, (240 + convToDial3){FVCurTrgtSpeed});
-//  end
-//  else
-//    FVCurTrgtSpeed := FVTgtTrgtSpeed;
-//
-//  edtValTrgtSpeed.Text := FormatFloat('0.#', convToDial3);
+  // PUTAR TRGET SPEED
+  VrTargetSpeed.Position := Round(FVTgtTrgtSpeed);
+  edtValTrgtSpeed.Text := FormatFloat('0.#', FVTgtTrgtSpeed);
 
   if (FVCurTrainning = FVTgtTrainning) and (FVCurElevation = FVTgtElevation)
     and (StrToFloat(edtTrgtRangeValue.Text) > 0) then
