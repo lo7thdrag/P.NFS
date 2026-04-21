@@ -968,15 +968,28 @@ begin
           __CM_CLIENT_LAUNCH:
             begin
               thisComputer := GetPCConfigFromIPAddress(thisComputer.c_ip);
-              AddToLogs(' ::: this "' + thisComputer.c_ip + '" run as ' +
-                thisComputer.c_name + ' ( ' +
-                thisComputer.c_app_type_name + ' )');
-              if TryStrToInt(Trim(strValue), tmp) and
-                TryStrToInt(Trim(strValue2), tmp2) and
-                TryStrToInt(Trim(strValue3), tmp3) then
+              AddToLogs(' ::: this "' + thisComputer.c_ip + '" run as ' + thisComputer.c_name + ' ( ' + thisComputer.c_app_type_name + ' )');
+
+              if TryStrToInt(Trim(strValue), tmp) and TryStrToInt(Trim(strValue2), tmp2) and TryStrToInt(Trim(strValue3), tmp3) then
               begin
                 if tmp > -1 then
-                  LaunchApplication(tmp, tmp2, tmp3)
+                begin
+                  if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') or
+                     (thisComputer.c_ip = '10.10.10.15') then
+                  begin
+                    if not processExists('NFS_VR_x64.exe') and not (processExists('NFS_VR_x64')) then
+                      LaunchApplication(tmp, tmp2, tmp3)
+                    else
+                      AddToLogs('Can not run app ' + thisComputer.c_app_type_name + ' because app already running ');
+                  end
+                  else
+                  begin
+                    if not processExists(thisComputer.c_app_name) then
+                      LaunchApplication(tmp, tmp2, tmp3)
+                    else
+                      AddToLogs('Can not run app ' + thisComputer.c_app_type_name + ' because app already running ');
+                  end;
+                end
                 else
                   AddToLogs(' Scenario -1 may be invalid, ceck it !!');
               end
@@ -1005,7 +1018,22 @@ begin
                 begin
                   CloseCurrentHandleApplication('Viewer.exe');
                   AddToLogs(' ::: 2D Client Receive Stop Command. " Viewer.exe"');
-                end
+                end;
+                if processExists('PTK.exe') then
+                begin
+                  CloseCurrentHandleApplication('PTK.exe');
+                  AddToLogs(' ::: 2D Client Receive Stop Command. " PTK.exe"');
+                end;
+                if processExists('PTK_MR35.exe') then
+                begin
+                  CloseCurrentHandleApplication('Viewer.exe');
+                  AddToLogs(' ::: 2D Client Receive Stop Command. " PTK_MR35.exe"');
+                end;
+                if processExists('PTK_EOTracker730.exe') then
+                begin
+                  CloseCurrentHandleApplication('Viewer.exe');
+                  AddToLogs(' ::: 2D Client Receive Stop Command. " PTK_EOTracker730.exe"');
+                end;
               end
               else if (thisComputer.c_app_tipe = APP_3D_Client) or (thisComputer.c_app_tipe = APP_3D_Server) then
               begin
@@ -1056,7 +1084,8 @@ begin
         recSend.ShipName := GetShipNameFromID(recSend.ShipID);
         recSend.IpSender := thisComputer.c_ip;
 
-        if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') then
+        if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') or
+           (thisComputer.c_ip = '10.10.10.15') then
         begin
           if processExists('NFS_VR_x64.exe') or (processExists('NFS_VR_x64')) then
             recSend.orderID := 1

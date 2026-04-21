@@ -1565,16 +1565,16 @@ begin
       rec.C_GameType := DS.FieldByName('Game_Type').AsInteger;
 
       case DS.FieldByName('APP_TIPE').AsInteger of
-        0:
+        0: {APP_2D}
           rec.C_Type := '2D-Console';
-        1:
+        1: {APP_3D_Server}
           rec.C_Type := '3D-Server';
-        2:
-          rec.C_Type := '3D-Console';
-        3:
-          rec.C_Type := '3D-Weapon';
-        4:
-          rec.C_Type := '2D-Sigma';
+        2: {APP_3D_Client}
+          rec.C_Type := '3D-Client';{Khusus TDS}
+        3: {APP_3D_weapon}
+          rec.C_Type := '3D-Weapon'; {tdk digunakan}
+        4: {APP_2D_SIGMA_PKR}
+          rec.C_Type := '2D-Sigma';  {tdk digunakan}
         5:
           rec.C_Type := 'Server';
         6:

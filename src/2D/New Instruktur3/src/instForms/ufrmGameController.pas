@@ -2375,7 +2375,7 @@ begin
   else
     ShowMessage('Select Scenario First');
 
-  ShowShip;
+  ShowScenario;
 end;
 
 procedure TfrmGameController.imgEditClick(Sender: TObject);
@@ -2537,7 +2537,7 @@ begin
         pmClient.Popup(p.X, p.Y);
         {$ENDREGION}
       end
-      else if (lvClient.Selected.SubItems[idx_type] = '3D-Server') then
+      else if (lvClient.Selected.SubItems[idx_type] = '3D-Server')then
       begin
         {$REGION ' 3D-Server '}
         for I := 0 to pmClient.Items.Count - 1 do
