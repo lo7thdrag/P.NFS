@@ -2310,10 +2310,13 @@ begin
             if  (StrToFloat(frmGameController.eRBU6000Bearing.Text) > 210) or (StrToFloat(frmGameController.eRBU6000Bearing.Text) < 120) then
             begin
               frmGameController.eRBU6000Balistik.Text := '1';
+              frmGameController.btnRBUStartFire.Visible := True;
             end
             else
             begin
               frmGameController.eRBU6000Balistik.Text := '';
+              frmGameController.btnRBUStartFire.Visible := False;
+              ShowMessage('Target in blidzone area');
             end;
           end
           else if (StrToFloat(frmGameController.eRBU6000Range.Text) > 0.80) and (StrToFloat(frmGameController.eRBU6000Range.Text) < 2.98) then
@@ -2321,15 +2324,20 @@ begin
             if  (StrToFloat(frmGameController.eRBU6000Bearing.Text) > 210) or (StrToFloat(frmGameController.eRBU6000Bearing.Text) < 120) then
             begin
               frmGameController.eRBU6000Balistik.Text := '2';
+              frmGameController.btnRBUStartFire.Visible := True;
             end
             else
             begin
               frmGameController.eRBU6000Balistik.Text := '';
+              frmGameController.btnRBUStartFire.Visible := False;
+              ShowMessage('Target in blidzone area');
             end;
           end
           else
           begin
             frmGameController.eRBU6000Balistik.Text := '';
+            frmGameController.btnRBUStartFire.Visible := False;
+            ShowMessage('Target out of range');
           end;
 
 

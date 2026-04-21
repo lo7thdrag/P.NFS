@@ -261,7 +261,6 @@ type
     lbl70: TLabel;
     lblTargetID: TLabel;
     lbl34: TLabel;
-    lbl33: TLabel;
     lbl32: TLabel;
     lblNM: TLabel;
     lbl12: TLabel;
@@ -1210,6 +1209,7 @@ type
     procedure btnAssignTargetSpsClick(Sender: TObject);
     procedure lvShipListSelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);
+    procedure eRBU6000BearingKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     ObserverID: integer;
@@ -1242,6 +1242,8 @@ type
 
     procedure LoadImageLight(var Aimage: TImage; imgStat: string; const stat: byte);
   public
+    StateBearing : Boolean;
+    StateRange : Boolean;
     ServerState: Byte; {1: connected; 0: else}
     GameType: Integer; {0:NAFS; 1:NSFS; 2:NSSFS}
 
@@ -4078,6 +4080,7 @@ begin
     Exit;
   if not Assigned(lvRuntimeShip.Selected.Data) then
     Exit;
+
   shipID := TVehicle(lvRuntimeShip.Selected.Data).Vehicle_ID;
 
   if not TryStrToFloat(eRBU6000Bearing.Text, bearing) then
@@ -5740,6 +5743,8 @@ begin
           lblMaxSUT.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
           {$REGION 'RBU 6000 Analog'}
+          StateBearing := False;
+          StateRange := False;
           lblStartRBU.Caption := (FloatToStr(WeaponDetail.StartAngle));
           lblEndRBU.Caption := (FloatToStr(WeaponDetail.EndAngle));
           lblMinRBU.Caption := (FloatToStr(WeaponDetail.LowRange));
@@ -7263,6 +7268,10 @@ begin
     lblLauncher.Visible := True;
     btnRBUsetPos.Visible := True;
 
+    eRBU6000Bearing.Text := '90';
+    eRBU6000Range.Text := '0.5';
+    eRBU6000Balistik.Text := '1';
+
 //   eRBU6000Range.Visible    := False;
 //   lblRangeRBU.Visible      := False;
 //   lblNM.Visible            := False;
@@ -7282,6 +7291,10 @@ begin
     eRBU6000Bearing.Visible := True;
     lblLauncher.Visible := True;
     btnRBUsetPos.Visible := False;
+
+    eRBU6000Bearing.Text := '90';
+    eRBU6000Range.Text := '0.5';
+    eRBU6000Balistik.Text := '1';
 
 //   eRBU6000Range.Visible    := True;
 //   lblRangeRBU.Visible      := True;
@@ -9359,32 +9372,128 @@ begin
   end;
 end;
 
-procedure TfrmGameController.eRBU6000RangeKeyPress(Sender: TObject; var Key: Char);
+procedure TfrmGameController.eRBU6000BearingKeyPress(Sender: TObject;
+  var Key: Char);
 var
-  cek: Boolean;
+  bearing: Double;
   range: Double;
 begin
   if Key in [#13] then
   begin
-    if TryStrToFloat(eRBU6000Range.Text, range) then
+    if not TryStrToFloat(eRBU6000Bearing.Text, bearing) then
     begin
-      if (StrToFloat(eRBU6000Range.Text) > 0.26) and (StrToFloat(eRBU6000Range.Text) < 0.82) then
+      ShowMessage('Wrong Input !!! ');
+      exit;
+    end;
+
+    if not TryStrToFloat(eRBU6000Range.Text, range) then
+    begin
+      ShowMessage('Wrong Input !!! ');
+      exit;
+    end;
+
+    if (range > 0.26) and (range < 0.82) then
+    begin
+      if  (bearing > 210) or (bearing < 120) then
       begin
         eRBU6000Balistik.Text := '1';
-      end
-      else if (StrToFloat(eRBU6000Range.Text) > 0.80) and (StrToFloat(eRBU6000Range.Text) < 2.98) then
-      begin
-        eRBU6000Balistik.Text := '2';
+        btnRBUStartFire.Visible := True;
       end
       else
       begin
         eRBU6000Balistik.Text := '';
+        btnRBUStartFire.Visible := False;
+        ShowMessage('Target in blidzone area');
+      end;
+    end
+    else if (range > 0.80) and (range < 2.98) then
+    begin
+      if  (bearing > 210) or (bearing < 120) then
+      begin
+        eRBU6000Balistik.Text := '2';
+        btnRBUStartFire.Visible := True;
+      end
+      else
+      begin
+        eRBU6000Balistik.Text := '';
+        btnRBUStartFire.Visible := False;
+        ShowMessage('Target in blidzone area');
       end;
     end
     else
     begin
-      ShowMessage('Wrong Input !!! ');
+      eRBU6000Balistik.Text := '';
+      btnRBUStartFire.Visible := False;
+      ShowMessage('Target out of range');
     end;
+
+//    if TryStrToFloat(eRBU6000Bearing.Text, bearing) then
+//    begin
+//      if  (StrToFloat(frmGameController.eRBU6000Bearing.Text) > 210) or (StrToFloat(frmGameController.eRBU6000Bearing.Text) < 120) then
+//      begin
+//        StateBearing := True;
+//      end
+//      else
+//      begin
+//        StateBearing := False;
+//        eRBU6000Balistik.Text := '';
+//
+//        ShowMessage('Target in blidzone area');
+//      end;
+//    end
+//    else
+//    begin
+//      ShowMessage('Wrong Input !!! ');
+//    end;
+//    btnRBUStartFire.Visible := StateRange and StateBearing;
+
+  end;
+end;
+
+procedure TfrmGameController.eRBU6000RangeKeyPress(Sender: TObject; var Key: Char);
+var
+  bearing: Double;
+  range: Double;
+begin
+  if Key in [#13] then
+  begin
+//    if not TryStrToFloat(eRBU6000Bearing.Text, bearing) then
+//    begin
+//      ShowMessage('Wrong Input !!! ');
+//      exit;
+//    end;
+//
+//    if not TryStrToFloat(eRBU6000Range.Text, range) then
+//    begin
+//      ShowMessage('Wrong Input !!! ');
+//      exit;
+//    end;
+//
+//    if TryStrToFloat(eRBU6000Range.Text, range) then
+//    begin
+//      if (StrToFloat(eRBU6000Range.Text) > 0.26) and (StrToFloat(eRBU6000Range.Text) < 0.82) then
+//      begin
+//        eRBU6000Balistik.Text := '1';
+//        StateRange := True;
+//      end
+//      else if (StrToFloat(eRBU6000Range.Text) > 0.80) and (StrToFloat(eRBU6000Range.Text) < 2.98) then
+//      begin
+//        eRBU6000Balistik.Text := '2';
+//        StateRange := True;
+//      end
+//      else
+//      begin
+//        StateRange := False;
+//        eRBU6000Balistik.Text := '';
+//        ShowMessage('Target out of range');
+//      end;
+//    end
+//    else
+//    begin
+//      ShowMessage('Wrong Input !!! ');
+//    end;
+//
+//    btnRBUStartFire.Visible := StateRange and StateBearing;
 
   end;
 end;
