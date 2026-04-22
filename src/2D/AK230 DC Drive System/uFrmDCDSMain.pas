@@ -221,8 +221,6 @@ type
     imgHeadPtr: TImage;
     tmrTime: TTimer;
     tmrRotate: TTimer;
-    tmrLogger: TTimer;
-    OpenDialog1: TOpenDialog;
     tmrAmmo: TTimer;
     procedure tmr1Timer(Sender: TObject);
     procedure btnPowerSwitchClick(Sender: TObject);
@@ -257,13 +255,15 @@ type
     procedure btnOmKolonkaClick(Sender: TObject);
     procedure btnCStartClick(Sender: TObject);
     procedure btnStartLogClick(Sender: TObject);
-    procedure tmrLoggerTimer(Sender: TObject);
     procedure btnOpenFileClick(Sender: TObject);
     procedure btnSaveFileClick(Sender: TObject);
     procedure btnClearListClick(Sender: TObject);
     procedure btnNoBulltMgznClick(Sender: TObject);
     procedure tmrAmmoTimer(Sender: TObject);
     procedure btnStopLogClick(Sender: TObject);
+    procedure drvcbb1Change(Sender: TObject);
+    procedure fllst1Change(Sender: TObject);
+    procedure edtFileTypeChange(Sender: TObject);
   private
     { Private declarations }
     FbootTime : Integer;
@@ -325,6 +325,9 @@ type
     procedure StartCannonFire(Gun_ID: word);
     procedure StopCannonFire(Gun_ID: word);
     procedure SetFireRate;
+    procedure AddLog;
+    procedure ApplyFilter;
+    procedure LoadFileToMemo(const AFileName: string);
 
   end;
 
@@ -362,13 +365,58 @@ end;
 procedure TfrmDCDSMain.btnStartLogClick(Sender: TObject);
 begin
   mmoLogger.Visible := True;
-  tmrLogger.Interval := 3000; // 3 detik
-  tmrLogger.Enabled :=  True;
+  mmoLogger.Lines.Add('DATE   TIME    TRAIN   ELEV   LF MG  RG MG  Blt.lft. Blt.Rgt.');
+  mmoLogger.Lines.Add('--------------------------------------------------------------------------');
+  mmoLogger.Lines.Clear;
+  mmoLogger.Font.Color := clGreen;
+  btnStopLog.Down := False;
 end;
 
 procedure TfrmDCDSMain.btnStopLogClick(Sender: TObject);
 begin
- tmrLogger.Enabled := False;
+ mmoLogger.Font.Color := clGray;
+ tmrAmmo.Enabled := False;
+ btnStartLog.Down := False;
+end;
+
+procedure TfrmDCDSMain.drvcbb1Change(Sender: TObject);
+begin
+  dirlst1.Drive := drvcbb1.Drive;
+end;
+
+procedure TfrmDCDSMain.edtFileTypeChange(Sender: TObject);
+begin
+  ApplyFilter;
+end;
+
+procedure TfrmDCDSMain.fllst1Change(Sender: TObject);
+begin
+  fllst1.Drive := dirlst1.Drive;
+end;
+
+procedure TfrmDCDSMain.AddLog;
+var
+  logText : String;
+begin
+  logText := Format('%-20s %-7s %-7s %-8s %-8s %-7s %-6s',
+  [FormatDateTime('dd/mm/yyyy hh:nn:ss', Now),
+   edtTrainingValue.Text,
+   edtElevationValue.Text,
+   edtBulCntLf2.Text,
+   edtBulCntRg2.Text,
+   edtBulCntLf1.Text,
+   edtBulCntRg1.Text]);
+
+  mmoLogger.Lines.Add(logText);
+end;
+
+procedure TfrmDCDSMain.ApplyFilter;
+var
+  filterText: string;
+begin
+  filterText := StringReplace(edtFileType.Text, ',', ';', [rfReplaceAll]);
+
+  fllst1.Mask := filterText;
 end;
 
 procedure TfrmDCDSMain.btnAcElevationDecreaseClick(Sender: TObject);
@@ -906,12 +954,19 @@ begin
 end;
 
 procedure TfrmDCDSMain.btnOpenFileClick(Sender: TObject);
+var
+  filePath : string;
 begin
-  if OpenDialog1.Execute then
+  if fllst1.ItemIndex = -1 then
   begin
-    mmoLogger.Lines.LoadFromFile(OpenDialog1.FileName);
-    FFileName := OpenDialog1.FileName;
+    ShowMessage('Pilih file dulu');
+    Exit;
   end;
+
+  filePath := IncludeTrailingPathDelimiter(fllst1.Directory) +
+              fllst1.Items[fllst1.ItemIndex];
+
+  LoadFileToMemo(filePath);
 end;
 
 procedure TfrmDCDSMain.btnPowerSwitchClick(Sender: TObject);
@@ -1121,6 +1176,17 @@ begin
   pnlBlackScreen.Width := Round(0.875 * pnlBackground.Width);
   pnlBlackScreen.Left := (pnlBackground.Width - pnlBlackScreen.Width) div 2;
 
+end;
+
+procedure TfrmDCDSMain.LoadFileToMemo(const AFileName: string);
+begin
+  try
+    mmoLogger.Lines.LoadFromFile(AFileName);
+    FFileName := AFileName;
+  except
+    on E: Exception do
+      ShowMessage('Gagal membuka file: ' + E.Message);
+  end;
 end;
 
 //function TfrmDCDSMain.GetModeID_Fire(TheGun: TGUN): byte;
@@ -1432,22 +1498,8 @@ begin
     edtBulCntRg1.Text := IntToStr(RightShot);
     edtBulCntRg2.Text := IntToStr(RightMagazine);
   end;
-end;
 
-procedure TfrmDCDSMain.tmrLoggerTimer(Sender: TObject);
-var
-  logText : String;
-begin
-  logText := Format('%-20s %-7s %-7s %-8s %-8s %-7s %-6s',
-  [FormatDateTime('dd/mm/yyyy hh:nn:ss', Now),
-   edtTrainingValue.Text,
-   edtElevationValue.Text,
-   edtBulCntLf2.Text,
-   edtBulCntRg2.Text,
-   edtBulCntLf1.Text,
-   edtBulCntRg1.Text]);
-
-  mmoLogger.Lines.Add(logText);
+  AddLog;
 end;
 
 procedure TfrmDCDSMain.tmrRotateTimer(Sender: TObject);

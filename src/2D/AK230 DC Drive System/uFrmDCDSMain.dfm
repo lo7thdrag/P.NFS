@@ -5959,9 +5959,9 @@ object frmDCDSMain: TfrmDCDSMain
                 ParentBackground = False
                 ParentFont = False
                 TabOrder = 1
-                ExplicitLeft = -189
+                ExplicitLeft = -154
                 ExplicitTop = 47
-                ExplicitWidth = 682
+                ExplicitWidth = 588
                 object lbl18: TLabel
                   Left = 209
                   Top = 5
@@ -5986,35 +5986,35 @@ object frmDCDSMain: TfrmDCDSMain
                 object lbl21: TLabel
                   Left = 374
                   Top = 4
-                  Width = 31
+                  Width = 23
                   Height = 13
                   Caption = 'ELEV'
                 end
                 object lbl22: TLabel
                   Left = 411
                   Top = 4
-                  Width = 37
+                  Width = 29
                   Height = 13
                   Caption = 'LF MG'
                 end
                 object lbl23: TLabel
                   Left = 451
                   Top = 4
-                  Width = 40
+                  Width = 32
                   Height = 13
                   Caption = 'RG MG'
                 end
                 object lbl24: TLabel
                   Left = 491
                   Top = 4
-                  Width = 41
+                  Width = 33
                   Height = 13
                   Caption = 'Blt.Lft.'
                 end
                 object lbl25: TLabel
                   Left = 532
                   Top = 4
-                  Width = 45
+                  Width = 37
                   Height = 13
                   Caption = 'Blt.Rgt.'
                 end
@@ -6061,6 +6061,7 @@ object frmDCDSMain: TfrmDCDSMain
                   Height = 22
                   DirList = dirlst1
                   TabOrder = 1
+                  OnChange = drvcbb1Change
                 end
                 object fllst1: TFileListBox
                   Left = 3
@@ -6069,6 +6070,7 @@ object frmDCDSMain: TfrmDCDSMain
                   Height = 50
                   Mask = '*.log;*.dat;*.txt'
                   TabOrder = 2
+                  OnChange = fllst1Change
                 end
                 object edtFileType: TEdit
                   Left = 3
@@ -6078,6 +6080,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ReadOnly = True
                   TabOrder = 3
                   Text = 'file type(*.log, .dat, .txt)'
+                  OnChange = edtFileTypeChange
                 end
                 object edtLogDura: TEdit
                   Left = 3
@@ -12691,20 +12694,9 @@ object frmDCDSMain: TfrmDCDSMain
     Left = 24
     Top = 1000
   end
-  object tmrLogger: TTimer
-    Interval = 2000
-    OnTimer = tmrLoggerTimer
-    Left = 820
-    Top = 47
-  end
-  object OpenDialog1: TOpenDialog
-    Filter = 'Log Files (*.log)|*.log|Text Files (*.txt)|*.txt'
-    Left = 684
-    Top = 47
-  end
   object tmrAmmo: TTimer
     OnTimer = tmrAmmoTimer
-    Left = 876
+    Left = 820
     Top = 47
   end
 end
