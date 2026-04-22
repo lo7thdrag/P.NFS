@@ -720,12 +720,15 @@ end;
 procedure RangeBearingToCoord(const r, b: double; var mx, my : double);
 var dRad  : extended;
     sinx, cosx: extended;
+    range : double;
 begin  // return *relatif* coord to radar center
+  range := r * C_NauticalMile_To_Degree;
+
   dRad := C_DegToRad * ConvCompass_To_Cartesian(b);
   SinCos(dRad, sinx, cosx);
 
-  mx := r * cosx;
-  my := r * sinx;
+  mx := range * cosx;
+  my := range * sinx;
 end;
 
 //------------------------------------------------------------------------------

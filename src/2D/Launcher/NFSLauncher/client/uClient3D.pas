@@ -30,6 +30,7 @@ type
     pnl1: TPanel;
     N1: TMenuItem;
     ShowHideScroll1: TMenuItem;
+    tmrCheckStatus: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TmrCheckConnectTimer(Sender: TObject);
@@ -43,6 +44,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure Minimize1Click(Sender: TObject);
     procedure ShowHideScroll1Click(Sender: TObject);
+    procedure tmrCheckStatusTimer(Sender: TObject);
   private
     cicle_time_connect: Integer;
     cmdClientApp: TDosCommand;
@@ -57,7 +59,10 @@ type
     FTimeCheckConnect: TTimer;
     FTimeCheckRespone: TTimer;
 
-    // function ExecIsRunning(FileName: string): Boolean;
+    FupdateState : Boolean;
+
+    function ExecIsRunning: Boolean;
+
     function CloseCurrentHandleApplication(ExeFileName: string): Integer;
     procedure SetDBAddress(sDB: string);
     procedure Set3DAddress(s3D: string);
@@ -257,6 +262,73 @@ begin
     ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);
   end;
   CloseHandle(FSnapshotHandle);
+end;
+
+function TfrmMain.ExecIsRunning: Boolean;
+begin
+  if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') then
+  begin
+    {$REGION ' 3D Console '}
+    if processExists('NFS_VR_x64.exe') or (processExists('NFS_VR_x64')) then
+      Result := True
+    else
+      Result := False;
+    {$ENDREGION}
+  end
+  else if thisComputer.c_ip = '10.10.10.15' then
+  begin
+    {$REGION ' TDS Console '}
+    if processExists('NFS_VR_x64.exe') or (processExists('NFS_VR_x64')) then
+      Result := True
+    else
+      Result := False;
+    {$ENDREGION}
+  end
+  else if thisComputer.c_ip = '10.10.10.18' then
+  begin
+    {$REGION ' FCC 57 Console '}
+    if processExists('FCC.exe') then
+      Result := True
+    else
+      Result := False;
+    {$ENDREGION}
+  end
+  else if thisComputer.c_ip = '10.10.10.19' then
+  begin
+    {$REGION ' MR 35 Console '}
+    if processExists('MR35.exe') then
+      Result := True
+    else
+      Result := False;
+    {$ENDREGION}
+  end
+  else if thisComputer.c_ip = '10.10.20.14' then
+  begin
+    {$REGION ' CIWS 730 Console '}
+    if processExists('FCC.exe') then
+      Result := True
+    else
+      Result := False;
+    {$ENDREGION}
+  end
+  else if thisComputer.c_ip = '10.10.20.15' then
+  begin
+    {$REGION ' EO 730 Console '}
+    if processExists('EOTracker730.exe') then
+      Result := True
+    else
+      Result := False;
+    {$ENDREGION}
+  end
+  else
+  begin
+    {$REGION ' Other Console '}
+    if processExists(thisComputer.c_app_name) then
+      Result := True
+    else
+      Result := False;
+    {$ENDREGION}
+  end;
 end;
 
 // ++ BAWE-20110418: XML_CLEANUP
@@ -940,7 +1012,7 @@ begin
             end;
           __CM_CLIENT_RESET:
             begin
-              SetThisComputerConfig(strValue);
+               SetThisComputerConfig(strValue);
               AddToLogs('SERVER ::: Reset ' + thisComputer.c_name);
             end;
           __CM_CLIENT_RESTART:
@@ -974,13 +1046,59 @@ begin
               begin
                 if tmp > -1 then
                 begin
-                  if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') or
-                     (thisComputer.c_ip = '10.10.10.15') then
+                  if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254')  then
                   begin
+                    {$REGION ' 3D Display '}
                     if not processExists('NFS_VR_x64.exe') and not (processExists('NFS_VR_x64')) then
                       LaunchApplication(tmp, tmp2, tmp3)
                     else
                       AddToLogs('Can not run app ' + thisComputer.c_app_type_name + ' because app already running ');
+                    {$ENDREGION}
+                  end
+                  else if thisComputer.c_ip = '10.10.10.15' then
+                  begin
+                    {$REGION ' TDS Console '}
+                    if not processExists('NFS_VR_x64.exe') and not (processExists('NFS_VR_x64')) then
+                      LaunchApplication(tmp, tmp2, tmp3)
+                    else
+                      AddToLogs('Can not run NFS_VR_x64.exe, because app already running ');
+                    {$ENDREGION}
+                  end
+                  else if thisComputer.c_ip = '10.10.10.18' then
+                  begin
+                    {$REGION ' FCC 57 Console '}
+                    if not processExists('FCC.exe') then
+                      LaunchApplication(tmp, tmp2, tmp3)
+                    else
+                      AddToLogs('Can not run FCC.exe, because app already running ');
+                    {$ENDREGION}
+                  end
+                  else if thisComputer.c_ip = '10.10.10.19' then
+                  begin
+                    {$REGION ' MR 35 Console '}
+                    if not processExists('MR35.exe') then
+                      LaunchApplication(tmp, tmp2, tmp3)
+                    else
+                      AddToLogs('Can not run MR35.exe, because app already running ');
+                    {$ENDREGION}
+                  end
+                  else if thisComputer.c_ip = '10.10.20.14' then
+                  begin
+                    {$REGION ' CIWS 730 Console '}
+                    if not processExists('FCC.exe') then
+                      LaunchApplication(tmp, tmp2, tmp3)
+                    else
+                      AddToLogs('Can not run FCC.exe, because app already running ');
+                    {$ENDREGION}
+                  end
+                  else if thisComputer.c_ip = '10.10.20.15' then
+                  begin
+                    {$REGION ' EO 730 Console '}
+                    if not processExists('EOTracker730.exe') then
+                      LaunchApplication(tmp, tmp2, tmp3)
+                    else
+                      AddToLogs('Can not run EOTracker730.exe, because app already running ');
+                    {$ENDREGION}
                   end
                   else
                   begin
@@ -1010,29 +1128,47 @@ begin
 
               if thisComputer.c_app_tipe = APP_2D then
               begin
-                CloseCurrentHandleApplication(thisComputer.c_app_name);
-                CloseCurrentHandleApplication('Viewer.exe');
-                AddToLogs(' ::: 2D Client Receive Stop Command. "' + thisComputer.c_app_name + '"');
-
-                if processExists('Viewer.exe') then
+                if thisComputer.c_ip = '10.10.10.18' then
                 begin
-                  CloseCurrentHandleApplication('Viewer.exe');
-                  AddToLogs(' ::: 2D Client Receive Stop Command. " Viewer.exe"');
-                end;
-                if processExists('PTK.exe') then
-                begin
+                  {$REGION ' FCC 57 Console '}
+                  CloseCurrentHandleApplication('FCC.exe');
                   CloseCurrentHandleApplication('PTK.exe');
-                  AddToLogs(' ::: 2D Client Receive Stop Command. " PTK.exe"');
-                end;
-                if processExists('PTK_MR35.exe') then
-                begin
                   CloseCurrentHandleApplication('Viewer.exe');
-                  AddToLogs(' ::: 2D Client Receive Stop Command. " PTK_MR35.exe"');
-                end;
-                if processExists('PTK_EOTracker730.exe') then
+                  AddToLogs(' ::: 2D Client Receive Stop Command. " FCC.exe, PTK.exe, Viewer.exe"');
+                  {$ENDREGION}
+                end
+                else if thisComputer.c_ip = '10.10.10.19' then
                 begin
+                  {$REGION ' MR 35 Console '}
+                  CloseCurrentHandleApplication('MR35.exe');
+                  CloseCurrentHandleApplication('PTK_MR35.exe');
                   CloseCurrentHandleApplication('Viewer.exe');
-                  AddToLogs(' ::: 2D Client Receive Stop Command. " PTK_EOTracker730.exe"');
+                  AddToLogs(' ::: 2D Client Receive Stop Command. " MR35.exe, PTK_MR35.exe, Viewer.exe"');
+                  {$ENDREGION}
+                end
+                else if thisComputer.c_ip = '10.10.20.14' then
+                begin
+                  {$REGION ' CIWS 730 Console '}
+                  CloseCurrentHandleApplication('FCC.exe');
+                  CloseCurrentHandleApplication('PTK.exe');
+                  CloseCurrentHandleApplication('Viewer.exe');
+                  AddToLogs(' ::: 2D Client Receive Stop Command. " FCC.exe, PTK.exe, Viewer.exe"');
+                  {$ENDREGION}
+                end
+                else if thisComputer.c_ip = '10.10.20.15' then
+                begin
+                  {$REGION ' EO 730 Console '}
+                  CloseCurrentHandleApplication('EOTracker730.exe');
+                  CloseCurrentHandleApplication('PTK_EOTracker730.exe');
+                  CloseCurrentHandleApplication('Viewer.exe');
+                  AddToLogs(' ::: 2D Client Receive Stop Command. " EOTracker730.exe, PTK_EOTracker730.exe, Viewer.exe"');
+                  {$ENDREGION}
+                end
+                else
+                begin
+                  CloseCurrentHandleApplication(thisComputer.c_app_name);
+                  CloseCurrentHandleApplication('Viewer.exe');
+                  AddToLogs(' ::: 2D Client Receive Stop Command. "' + thisComputer.c_app_name + '"');
                 end;
               end
               else if (thisComputer.c_app_tipe = APP_3D_Client) or (thisComputer.c_app_tipe = APP_3D_Server) then
@@ -1079,25 +1215,74 @@ begin
 
         if not TryStrToInt(Trim(strValue), tmp) then
           Exit;
+
         recSend.ShipID := aCheckShipID;
         recSend.LauncherID := aCheckLauncherID;
         recSend.ShipName := GetShipNameFromID(recSend.ShipID);
         recSend.IpSender := thisComputer.c_ip;
 
-        if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') or
-           (thisComputer.c_ip = '10.10.10.15') then
+        if (thisComputer.c_ip = '10.10.10.254') or (thisComputer.c_ip = '10.10.20.254') or (thisComputer.c_ip = '10.10.30.254') then
         begin
+          {$REGION ' 3D Console '}
           if processExists('NFS_VR_x64.exe') or (processExists('NFS_VR_x64')) then
             recSend.orderID := 1
           else
             recSend.orderID := 0;
+          {$ENDREGION}
+        end
+        else if thisComputer.c_ip = '10.10.10.15' then
+        begin
+          {$REGION ' TDS Console '}
+          if processExists('NFS_VR_x64.exe') or (processExists('NFS_VR_x64')) then
+            recSend.orderID := 1
+          else
+            recSend.orderID := 0;
+          {$ENDREGION}
+        end
+        else if thisComputer.c_ip = '10.10.10.18' then
+        begin
+          {$REGION ' FCC 57 Console '}
+          if processExists('FCC.exe') then
+            recSend.orderID := 1
+          else
+            recSend.orderID := 0;
+          {$ENDREGION}
+        end
+        else if thisComputer.c_ip = '10.10.10.19' then
+        begin
+          {$REGION ' MR 35 Console '}
+          if processExists('MR35.exe') then
+            recSend.orderID := 1
+          else
+            recSend.orderID := 0;
+          {$ENDREGION}
+        end
+        else if thisComputer.c_ip = '10.10.20.14' then
+        begin
+          {$REGION ' CIWS 730 Console '}
+          if processExists('FCC.exe') then
+            recSend.orderID := 1
+          else
+            recSend.orderID := 0;
+          {$ENDREGION}
+        end
+        else if thisComputer.c_ip = '10.10.20.15' then
+        begin
+          {$REGION ' EO 730 Console '}
+          if processExists('EOTracker730.exe') then
+            recSend.orderID := 1
+          else
+            recSend.orderID := 0;
+          {$ENDREGION}
         end
         else
         begin
+          {$REGION ' Other Console '}
           if processExists(thisComputer.c_app_name) then
             recSend.orderID := 1
           else
             recSend.orderID := 0;
+          {$ENDREGION}
         end;
 
         theClient.sendDataEx(REC_CMD_Com_CONSOLE, @recSend);
@@ -1242,7 +1427,9 @@ begin
   FTimeCheckRespone.Free;
   FTimeCheckConnect.Enabled := False;
   FTimeCheckConnect.Free;
+
   TmrCheckConnect.Enabled := False;
+  tmrCheckStatus.Enabled := False;
   cmdClientApp.Stop;
   if Assigned(theClient) then
   begin
@@ -1305,9 +1492,42 @@ begin
   pnlMenu.Caption.Text := Status2D + '   ' + StatusDB;
 end;
 
+procedure TfrmMain.tmrCheckStatusTimer(Sender: TObject);
+var
+  valTemp : Boolean;
+  recSend: TRecComConsole;
+
+begin
+
+  valTemp := ExecIsRunning;
+
+  if FupdateState = valTemp then
+    exit;
+
+  {Kirim Status terbaru}
+
+  FupdateState := valTemp;
+
+  AddToLogs('Update Status Console');
+
+  recSend.ShipID := aCheckShipID;
+  recSend.LauncherID := aCheckLauncherID;
+  recSend.ShipName := GetShipNameFromID(recSend.ShipID);
+  recSend.IpSender := thisComputer.c_ip;
+
+  if FupdateState then
+    recSend.orderID := 1
+  else
+    recSend.orderID := 0;
+
+  theClient.sendDataEx(REC_CMD_Com_CONSOLE, @recSend);
+
+end;
+
 procedure TfrmMain.btnCloseClick(Sender: TObject);
 begin
   TmrCheckConnect.Enabled := False;
+  tmrCheckStatus.Enabled := False;
   cmdClientApp.Stop;
   Close;
 end;

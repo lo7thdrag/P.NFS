@@ -161,7 +161,7 @@ begin
 
   FTimerBroadcast := TTimer.Create(nil);
   FTimerBroadcast.Enabled := True;
-  FTimerBroadcast.Interval := 1000;
+  FTimerBroadcast.Interval := 200;
   FTimerBroadcast.OnTimer := OnTmrBroadcast;
 end;
 

@@ -305,4 +305,9 @@ object frmMain: TfrmMain
       OnClick = Close1Click
     end
   end
+  object tmrCheckStatus: TTimer
+    OnTimer = tmrCheckStatusTimer
+    Left = 240
+    Top = 104
+  end
 end

@@ -3054,8 +3054,7 @@ begin
         WeaponShip := TWeaponOnShip(ins.WeaponOnShip_List[i]);
 
         if ( WeaponShip.Weapon_Name = aRec^.WeaponName ) and
-           ( 'Launcher ' + IntToStr(WeaponShip.Weapon_Launcher) = aRec^.LauncherName )
-        then
+           ( 'Launcher ' + IntToStr(WeaponShip.Weapon_Launcher) = aRec^.LauncherName ) then
         begin
           for j := 0 to WeaponShip.ListDetail.Count -1 do
           begin
@@ -3068,13 +3067,13 @@ begin
               end
               else
                 WeaponShipDetail.isShowWeaponRange := False;
+              Break;
             end;
-
-            Break;
           end;
+          break;
         end;
 
-        break;
+
       end;
     end;
   end;

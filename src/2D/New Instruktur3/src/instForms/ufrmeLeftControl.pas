@@ -608,8 +608,10 @@ begin
         begin
           for j := 0 to WeaponShip.ListDetail.Count -1 do
           begin
-            if Assigned(WeaponShip.ListDetail.Items[j]) then begin
+            if Assigned(WeaponShip.ListDetail.Items[j]) then
+            begin
               WeaponShipDetail := TWeaponRangeDetail(WeaponShip.ListDetail.Items[j]);
+
               if WeaponShipDetail.Detail_Name = edtDeviceType.Text then
               begin
                 case TComponent(sender).Tag of

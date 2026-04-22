@@ -634,6 +634,9 @@ var
   tLowCoord1 : TPoint;
   tLowCoord2 : TPoint;
 
+//  tempHighRange : Double;
+//  tempLowRange : Double;
+
 begin
   inherited;
   if not Visible then Exit;
@@ -646,6 +649,7 @@ begin
   tShipPositionMap.Y := TSimulationClass(FParent).PositionY;
 
   //Get High Range
+//  tempHighRange := HighRange * C_NauticalMile_To_Degree;
   RangeBearingToCoord(HighRange, RelatifStartangle, HighCoord1.X, HighCoord1.y);
   RangeBearingToCoord(HighRange, RelatifEndAngle, HighCoord2.X, HighCoord2.Y);
 
@@ -658,6 +662,7 @@ begin
   tHighCoord2 := Convert_MapToScreen(FMap, HighCoord2);
 
   //Get Low Range
+//  tempLowRange := LowRange * C_NauticalMile_To_Degree;
   RangeBearingToCoord(LowRange, RelatifStartangle, LowCoord1.X, LowCoord1.y);
   RangeBearingToCoord(LowRange, RelatifEndAngle, LowCoord2.X, LowCoord2.Y);
 
@@ -673,6 +678,7 @@ begin
   rDegree1 := HighRange / 60;
   dPt1.X := tShipPositionMap.X + rDegree1;
   dPt1.Y := tShipPositiOnMap.Y;
+
   rDegree2 := LowRange / 60;
   dPt2.X := tShipPositionMap.X + rDegree2;
   dPt2.Y := tShipPositiOnMap.Y;
@@ -687,6 +693,9 @@ begin
     //Font := TFont.Create;
 //    Font.Orientation := 0;
     Pen.Color := Color;
+
+    MoveTo(Round(tLowCoord1.X), Round(tLowCoord1.Y));
+    LineTo(Round(tHighCoord1.X), Round(tHighCoord1.Y));
 
     //Get Rect
     FRadiusRect.Top     := CenterCoord.Y - r1;
@@ -705,8 +714,7 @@ begin
         Round(tLowCoord2.X),Round(tLowCoord2.Y),
         Round(tLowCoord1.X),Round(tLowCoord1.Y));
 
-    MoveTo(tLowCoord1.X, tLowCoord1.Y);
-    LineTo(tHighCoord1.X, tHighCoord1.Y);
+
 
     MoveTo(tLowCoord2.X, tLowCoord2.Y);
     LineTo(tHighCoord2.X, tHighCoord2.Y);
