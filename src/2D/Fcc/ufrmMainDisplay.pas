@@ -624,7 +624,7 @@ type
     FBitmapBackground : TBitmap;
     BitMapLampGrey, BitMapLampGreen, BitMapLampRed  : TBitmap;
     config: TSetting;
-    ExecInfo: TShellExecuteInfo;
+    ExecInfo, ExecPTK: TShellExecuteInfo;
     LeftDrum, RightDrum, TargetRoundInDrum: Integer;
     DrumPosState, IsServoOn : Boolean; // False untuk left drum, True untuk right drum
     HighFR, MiddleFR, LowFR : Boolean; // fire rate
@@ -1788,7 +1788,7 @@ begin
 
   FShipHeading := 0; // awal
 
-//  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');   // sepertinya ga perlu ada
+  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');   // sepertinya ga perlu ada
 
 //  TargetMgr := TRadarTargetManager.Create;
 //  TargetMgr.CoordConverter := FMapConverter;
@@ -1916,18 +1916,6 @@ begin
   TgoBsonSerializer.Serialize(config, setting);
   tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
 
-  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-  ExecInfo.cbSize := SizeOf(ExecInfo);
-  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-  ExecInfo.Wnd := Handle;
-  ExecInfo.lpVerb := 'open';
-  ExecInfo.lpFile := PChar('Viewer.exe');
-  ExecInfo.nShow := SW_SHOW;
-
-  if not ShellExecuteEx(@ExecInfo) then
-    RaiseLastOSError;
-
-
   envSce := TScenario.Create;
   DataModule1.GetScenarioDefByID(FCCManager.CurrentScenID, envSce);
   edtWeatherDataWs.Text := envSce.Scenario_WindSpeed.ToString();
@@ -1942,6 +1930,28 @@ begin
   FireTime := 1.00;
 
   FMap.ZoomTo((Self.FCurrentRange  * 0.0008) * 2, FMap.CenterX, FMap.CenterY);
+
+  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+  ExecInfo.cbSize := SizeOf(ExecInfo);
+  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecInfo.Wnd := Handle;
+  ExecInfo.lpVerb := 'open';
+  ExecInfo.lpFile := PChar('Viewer.exe');
+  ExecInfo.nShow := SW_SHOW;
+
+  if not ShellExecuteEx(@ExecInfo) then
+    RaiseLastOSError;
+
+  ZeroMemory(@ExecPTK, SizeOf(ExecPTK));
+  ExecPTK.cbSize := SizeOf(ExecPTK);
+  ExecPTK.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecPTK.Wnd := Handle;
+  ExecPTK.lpVerb := 'open';
+  ExecPTK.lpFile := PChar('PTK.exe');
+  ExecPTK.nShow := SW_SHOW;
+
+  if not ShellExecuteEx(@ExecPTK) then
+    RaiseLastOSError;
 end;
 
 procedure TfrmMainFCC.FormDestroy(Sender: TObject);
@@ -1952,6 +1962,10 @@ begin
   TerminateProcess(ExecInfo.hProcess, 0);
   CloseHandle(ExecInfo.hProcess);
   ExecInfo.hProcess := 0;
+
+  TerminateProcess(ExecPTK.hProcess, 0);
+  CloseHandle(ExecPTK.hProcess);
+  ExecPTK.hProcess := 0;
 //  FRangeRing.Free;
   VehicleMgr.Free;
   FCCManager.FinalizeSimulation;

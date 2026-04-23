@@ -984,7 +984,16 @@ begin
   if not ShellExecuteEx(@ExecInfo) then
     RaiseLastOSError;
 
+  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+  ExecInfo.cbSize := SizeOf(ExecInfo);
+  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecInfo.Wnd := Handle;
+  ExecInfo.lpVerb := 'open';
+  ExecInfo.lpFile := PChar('PTK_EOTracker730.exe');
+  ExecInfo.nShow := SW_SHOW;
 
+  if not ShellExecuteEx(@ExecInfo) then
+    RaiseLastOSError;
 
 end;
 
@@ -1289,7 +1298,7 @@ begin
     FisKanan := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Right;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1299,7 +1308,7 @@ begin
     FisKiri := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Left;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1309,7 +1318,7 @@ begin
     FXAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Right;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1318,7 +1327,7 @@ begin
     FXAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Left;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1339,7 +1348,7 @@ begin
     FisBawah := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Down;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1349,7 +1358,7 @@ begin
     FisAtas := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Up;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1359,7 +1368,7 @@ begin
     FYAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Down;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1368,7 +1377,7 @@ begin
     FYAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Up;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1389,7 +1398,7 @@ begin
     FisZoomIn := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomIn;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1399,7 +1408,7 @@ begin
     FisZoomOut := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomOut;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1409,7 +1418,7 @@ begin
     FZAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomIn;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1418,7 +1427,7 @@ begin
     FZAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomOut;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend)
   end;

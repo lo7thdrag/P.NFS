@@ -545,6 +545,14 @@ begin
       v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
       V.SetSpeedKts(Speed);//(FxShip.Speed);
       V.HeadingDeg := Heading;//FxShip.Heading; // NE
+    end
+
+    // tambahan rojek biar ownship ngikut tengah terus
+    else
+    begin
+      v.PosX := Position.X;
+      v.PosY := Position.Y;
+      v.PosZ := Position.Z;
     end;
 
    end
@@ -582,21 +590,23 @@ begin
     begin
       vdomain := DataModule1.GetShipDomain(aRec.ShipID);
 
-      if (vdomain = 1) or (vdomain = 2) or (vdomain = 3)then
+//      if (vdomain = 1) or (vdomain = 2) or (vdomain = 3)then
+      if (vdomain = 3)then // rojek ganti hanya spawn domain kapal selam
       begin
+
         V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
         v.Domain := vdomain;
         // pakai bitmap tint: hitam -> kuning
         case v.Domain of
-          1://surface
-          begin
-            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
-          end;
-          2://air
-          begin
-            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\AirUnknown.bmp');
-          end;
+//          1://surface     // dihilangkan karena sonar hanya menangkan kapal selam
+//          begin
+//            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
+//          end;
+//          2://air
+//          begin
+//            V.Symbol.LoadBitmapFromFile('.\data\Bitmap\AirUnknown.bmp');
+//          end;
           3://subsurface
           begin
             V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SubsurfaceUnknown.bmp');

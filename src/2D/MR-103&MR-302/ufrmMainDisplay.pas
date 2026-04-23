@@ -990,7 +990,6 @@ begin
   VehicleMgr := TVehicleManager.Create;
   VehicleMgr.CoordConverter := FMapConverter; // converter MapX kamu
 
-  EnableComposited(pnlSituationZone);
   FBitmapBackground := TBitmap.Create;
   FBitmapBackground.Height := imgBackgrounSituationZone.Height;
   FBitmapBackground.Width := imgBackgrounSituationZone.Width;
@@ -1175,6 +1174,11 @@ begin
   NLDJoystick.Active := True;
 
   FCCManager.Running := True;
+
+
+  DoubleBuffered := False;
+//  FMap.DoubleBuffered := False;
+  EnableComposited(pnlSituationZone);
 
 //  if vFccSetting.FccMode = 1 then // mr 103 dan mr 302 tidak pakai EO
 //  begin
@@ -1959,18 +1963,20 @@ begin
     begin
 //      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
 //      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
+      Fmap.CenterX := FCCManager.xShip.PositionX;
+      Fmap.CenterY := FCCManager.xShip.PositionY;
 
-      if not FCCManager.IsTrueMotion then begin
-        Fmap.CenterX := FCCManager.xShip.PositionX;
-        Fmap.CenterY := FCCManager.xShip.PositionY;
-      //    FMap.Rotation := 0;
-        FNorthAngle := 0;
-      end
-      else
-      begin
-        FNorthAngle := -FCCManager.xShip.Heading;;
-      //    FMap.Rotation := -FCCManager.xShip.Heading;
-      end;
+//      if not FCCManager.IsTrueMotion then begin
+//        Fmap.CenterX := FCCManager.xShip.PositionX;
+//        Fmap.CenterY := FCCManager.xShip.PositionY;
+//      //    FMap.Rotation := 0;
+//        FNorthAngle := 0;
+//      end
+//      else
+//      begin
+//        FNorthAngle := -FCCManager.xShip.Heading;;
+//      //    FMap.Rotation := -FCCManager.xShip.Heading;
+//      end;
     end;
   end;
 end;

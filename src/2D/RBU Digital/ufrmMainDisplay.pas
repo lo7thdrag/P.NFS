@@ -499,9 +499,10 @@ begin
 
   RunLauncherRBU(Lncr, orderID);
 
-  trcbrTraining.Position := scrlbrBearingRelTarget.Position;
+  trcbrTraining.Position := scrlbrBearingRelTarget.Position * 10; // set bearing
 
-  trcbrElevation.Position := Round(FTargetElevation);
+  FTargetElevation := Power(scrlbrTargetRange.Position/6000, Exp(1.0)) * 45;  // perhitungan sama seperti di 3D || get elev
+  trcbrElevation.Position := Round(FTargetElevation) * 10; // set elev
 
   btnTrnElvClick(Sender);
 
@@ -1198,8 +1199,6 @@ begin
   VehicleMgr := TVehicleManager.Create;
   VehicleMgr.CoordConverter := FMapConverter;
 
-//  EnableComposited(pnlCenter);
-//  SetComposited(pnlCenter, true);
   FBitmapBackground := TBitmap.Create;
   FBitmapBackground.Height := imgBackgroundZone.Height;
   FBitmapBackground.Width := imgBackgroundZone.Width;
@@ -1334,6 +1333,11 @@ begin
   Lonch2 := TLoncher.Create;
   Lonch2.ID := 2;
   IsReadyToFire := False;
+
+//  SetComposited(pnlCenter, true);
+  DoubleBuffered := False;
+//  FMap.DoubleBuffered := False;
+//  EnableComposited(pnlCenter);
 
 end;
 
@@ -1783,22 +1787,25 @@ begin
   begin
     // ubah depth, bearing dan range disini dan ubah LED target detected jadi hijau,
     v := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(TargetID));
-    rangeX := CalcRange(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
-    scrlbrTargetRange.Position := Round(rangeX);
-    scrlbrTagetDepth.Position := Round(v.PosZ);
-    bearing := CalcBearing(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY);
-    FTrueBearing := bearing;
-    bearing := bearing - RBU_MAnager.Heading;
+    if Assigned(v) then
+    begin
+      rangeX := CalcRange(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
+      scrlbrTargetRange.Position := Round(rangeX);
+      scrlbrTagetDepth.Position := Round(v.PosZ);
+      bearing := CalcBearing(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY);
+      FTrueBearing := bearing;
+      bearing := bearing - RBU_MAnager.Heading;
 
-    scrlbrBearingRelTarget.Position := Round(bearing);
+      scrlbrBearingRelTarget.Position := Round(bearing);
 
-    imgRBUTargetDetected.Picture.Bitmap := FLedGreen;
-    FTargetElevation := Power(rangeX/6000, Exp(1.0)) * 45;  // perhitungan sama seperti di 3D
+      imgRBUTargetDetected.Picture.Bitmap := FLedGreen;
+//      FTargetElevation := Power(rangeX/6000, Exp(1.0)) * 45;  // perhitungan sama seperti di 3D
 
-    FVTgtHdngTrgt := v.HeadingDeg;
+      FVTgtHdngTrgt := v.HeadingDeg;
 
-    FVTgtShpSpeed := RBU_MAnager.Speed;
-    FVTgtTrgtSpeed := v.Speed_mps * 1.944;
+      FVTgtShpSpeed := RBU_MAnager.Speed;
+      FVTgtTrgtSpeed := v.Speed_mps * 1.944;
+    end;
   end
 
   else
@@ -1814,8 +1821,11 @@ begin
   edtTimeValue.Text := FormatDateTime('hh:mm:ss ampm', Now);
 
   FVTgtHdngShp := RBU_MAnager.Heading;
-  Fmap.CenterX := OwnShip.position.X;
-  Fmap.CenterY := OwnShip.position.Y;
+//  Fmap.CenterX := OwnShip.position.X;
+  Fmap.CenterX := RBU_MAnager.Position.X;
+
+//  Fmap.CenterY := OwnShip.position.Y;
+  Fmap.CenterY:= RBU_MAnager.Position.Y;
 end;
 
 procedure TfrmMainDisplay.tmrRotateTimer(Sender: TObject);

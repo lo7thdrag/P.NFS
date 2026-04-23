@@ -208,6 +208,13 @@ begin
         v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
         V.SetSpeedKts(FxShip.Speed);
         V.HeadingDeg := FxShip.Heading; // NE
+      end
+
+      else // rojek add biar titik kapal ada di tengah map
+      begin
+        v.PosX := FxShip.PositionX;
+        v.PosY := FxShip.PositionY;
+        v.PosZ := FxShip.PositionZ;
       end;
   end
   else begin

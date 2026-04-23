@@ -1009,7 +1009,6 @@ begin
   VehicleMgr := TVehicleManager.Create;
   VehicleMgr.CoordConverter := FMapConverter; // converter MapX kamu
 
-  EnableComposited(pnlSituationZone);
   FBitmapBackground := TBitmap.Create;
   FBitmapBackground.Height := imgBackgrounSituationZone.Height;
   FBitmapBackground.Width := imgBackgrounSituationZone.Width;
@@ -1188,6 +1187,10 @@ begin
 
     FCCManager.Running := True;
 
+    DoubleBuffered := False;
+//    FMap.DoubleBuffered := False;
+    EnableComposited(pnlSituationZone);
+
     FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
   end;
 
@@ -1219,6 +1222,17 @@ begin
     ExecInfo.Wnd := Handle;
     ExecInfo.lpVerb := 'open';
     ExecInfo.lpFile := PChar('Viewer.exe');
+    ExecInfo.nShow := SW_SHOW;
+
+    if not ShellExecuteEx(@ExecInfo) then
+      RaiseLastOSError;
+
+    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+    ExecInfo.cbSize := SizeOf(ExecInfo);
+    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+    ExecInfo.Wnd := Handle;
+    ExecInfo.lpVerb := 'open';
+    ExecInfo.lpFile := PChar('PTK_MR35.exe');
     ExecInfo.nShow := SW_SHOW;
 
     if not ShellExecuteEx(@ExecInfo) then
@@ -1976,20 +1990,22 @@ begin
   begin
     if Assigned(FCCManager.xShip) then
     begin
+      Fmap.CenterX := FCCManager.xShip.PositionX;
+      Fmap.CenterY := FCCManager.xShip.PositionY;
 //      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
 //      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
 
-      if not FCCManager.IsTrueMotion then begin
-        Fmap.CenterX := FCCManager.xShip.PositionX;
-        Fmap.CenterY := FCCManager.xShip.PositionY;
-      //    FMap.Rotation := 0;
-        FNorthAngle := 0;
-      end
-      else
-      begin
-        FNorthAngle := -FCCManager.xShip.Heading;;
-      //    FMap.Rotation := -FCCManager.xShip.Heading;
-      end;
+//      if not FCCManager.IsTrueMotion then begin
+//        Fmap.CenterX := FCCManager.xShip.PositionX;
+//        Fmap.CenterY := FCCManager.xShip.PositionY;
+//      //    FMap.Rotation := 0;
+//        FNorthAngle := 0;
+//      end
+//      else
+//      begin
+//        FNorthAngle := -FCCManager.xShip.Heading;;
+//      //    FMap.Rotation := -FCCManager.xShip.Heading;
+//      end;
     end;
   end;
 end;
