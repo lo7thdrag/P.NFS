@@ -1786,7 +1786,9 @@ begin
   if (RBU_MAnager.IsSonarTracked) and (FControlMode = 1) then
   begin
     // ubah depth, bearing dan range disini dan ubah LED target detected jadi hijau,
-    v := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(TargetID));
+//    v := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(TargetID));
+    v := VehicleMgr.FindObjectByUid(TargetShip.ShipId);
+
     if Assigned(v) then
     begin
       rangeX := CalcRange(RBU_MAnager.Position.X, RBU_MAnager.Position.Y, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
