@@ -156,12 +156,12 @@ begin
 
   TimerGetPacket := TTimer.Create(nil);
   TimerGetPacket.Enabled := False;
-  TimerGetPacket.Interval := 30;
+  TimerGetPacket.Interval := 16;
   TimerGetPacket.OnTimer := OnTimerGetPacketRun;
 
   FTimerBroadcast := TTimer.Create(nil);
   FTimerBroadcast.Enabled := True;
-  FTimerBroadcast.Interval := 200;
+  FTimerBroadcast.Interval := 30;
   FTimerBroadcast.OnTimer := OnTmrBroadcast;
 end;
 
@@ -344,12 +344,12 @@ begin
 
         if Assigned(FOnLogReceived3d) then
         begin
-          FOnLogReceived3d('JSON : ' + AContent);
-          FOnLogReceived3d('REC3D_POSITION' + #13#10 +
-            'ShipID : ' + IntToStr(incoming_data.ShipID) + #13#10 +
-            'X : ' + FormatFloat('0.00', incoming_data.X) + #13#10 +
-            'Y : ' + FormatFloat('0.00', incoming_data.Y) + #13#10 +
-            'Z : ' + FormatFloat('0.00', incoming_data.Z) + #13#10 +
+//          FOnLogReceived3d('JSON : ' + AContent);
+          FOnLogReceived3d('REC3D_POSITION' + ', ' +
+            'ShipID : ' + IntToStr(incoming_data.ShipID) + ', ' +
+            'X : ' + FormatFloat('0.00', incoming_data.X) + ', ' +
+            'Y : ' + FormatFloat('0.00', incoming_data.Y) + ', ' +
+            'Z : ' + FormatFloat('0.00', incoming_data.Z) + ', ' +
             ' Update Pos Kapal');
         end;
       end;
@@ -371,12 +371,12 @@ begin
 
       if Assigned(FOnLogReceived3d) then
         begin
-          FOnLogReceived3d('JSON : ' + AContent);
-          FOnLogReceived3d('REC3D_POSITION' + #13#10 +
-            'ShipID : ' + IntToStr(incoming_data.ShipID) + #13#10 +
-            'X : ' + FormatFloat('0.00', incoming_data.X) + #13#10 +
-            'Y : ' + FormatFloat('0.00', incoming_data.Y) + #13#10 +
-            'Z : ' + FormatFloat('0.00', incoming_data.Z) + #13#10 +
+//          FOnLogReceived3d('JSON : ' + AContent);
+          FOnLogReceived3d('REC3D_POSITION' + ', ' +
+            'ShipID : ' + IntToStr(incoming_data.ShipID) + ', ' +
+            'X : ' + FormatFloat('0.00', incoming_data.X) + ', ' +
+            'Y : ' + FormatFloat('0.00', incoming_data.Y) + ', ' +
+            'Z : ' + FormatFloat('0.00', incoming_data.Z) + ', ' +
             ' Add New Kapal ');
         end;
     end;
