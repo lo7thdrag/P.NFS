@@ -736,16 +736,12 @@ type
     Label31: TLabel;
     imageRBU6000: TImage;
     Label32: TLabel;
-    StaticText9: TStaticText;
     lblStartRBU: TLabel;
     Label34: TLabel;
-    StaticText10: TStaticText;
     lblEndRBU: TLabel;
     Label36: TLabel;
-    StaticText11: TStaticText;
     lblMinRBU: TLabel;
     lblMaxRBU: TLabel;
-    StaticText12: TStaticText;
     Label39: TLabel;
     imageTorpedoSUT: TImage;
     Label40: TLabel;
@@ -1071,6 +1067,76 @@ type
     Label115: TLabel;
     edtTorpedoSpsTarget: TEdit;
     btnDeassignTargetSps: TAdvSmoothButton;
+    Label116: TLabel;
+    Label117: TLabel;
+    Label118: TLabel;
+    Label119: TLabel;
+    Label120: TLabel;
+    Label121: TLabel;
+    lblMaxRBUBal2: TLabel;
+    Label123: TLabel;
+    Label124: TLabel;
+    lblMinRBUBal2: TLabel;
+    Label126: TLabel;
+    Label127: TLabel;
+    lblEndRBUBal2: TLabel;
+    Label129: TLabel;
+    Label130: TLabel;
+    lblStartRBUBal2: TLabel;
+    Label132: TLabel;
+    Label133: TLabel;
+    Label122: TLabel;
+    Label125: TLabel;
+    Label128: TLabel;
+    Label131: TLabel;
+    Label134: TLabel;
+    Label135: TLabel;
+    Label136: TLabel;
+    Label137: TLabel;
+    Label138: TLabel;
+    Label139: TLabel;
+    Label140: TLabel;
+    Label141: TLabel;
+    Label142: TLabel;
+    Label143: TLabel;
+    Label144: TLabel;
+    Label145: TLabel;
+    Label146: TLabel;
+    Label147: TLabel;
+    Label148: TLabel;
+    Label149: TLabel;
+    Label150: TLabel;
+    Label151: TLabel;
+    Label152: TLabel;
+    Label153: TLabel;
+    Label154: TLabel;
+    Label155: TLabel;
+    Label156: TLabel;
+    Label157: TLabel;
+    Label158: TLabel;
+    Label159: TLabel;
+    Label160: TLabel;
+    Label161: TLabel;
+    Label162: TLabel;
+    Label163: TLabel;
+    Label164: TLabel;
+    Label165: TLabel;
+    Label166: TLabel;
+    Label167: TLabel;
+    Label168: TLabel;
+    Label169: TLabel;
+    Label170: TLabel;
+    Label171: TLabel;
+    Label172: TLabel;
+    Label173: TLabel;
+    Label174: TLabel;
+    Label175: TLabel;
+    Label176: TLabel;
+    Label177: TLabel;
+    Label178: TLabel;
+    Label179: TLabel;
+    Label180: TLabel;
+    Label181: TLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -1220,6 +1286,7 @@ type
     Ship_Name: string;
     Weapon_ID: Integer;
     Weapon_Name: string;
+    launcherID: Integer;
     ScaleHeight, ScaleWidht: Integer; // for trajectory
 
     //Trajectory
@@ -5584,6 +5651,7 @@ begin
 
       Weapon_ID := TWeapon(TListView(Sender).Selected.Data).WeaponID;
       Weapon_Name := TWeapon(TListView(Sender).Selected.Data).MissileName;
+      launcherID := TWeapon(TListView(Sender).Selected.Data).launcherID;
 
       weaponPic := '..\Data\imageWeapon\' + TWeapon(TListView(Sender).Selected.Data).MissileName + '.png';
 
@@ -5745,10 +5813,32 @@ begin
           {$REGION 'RBU 6000 Analog'}
           StateBearing := False;
           StateRange := False;
-          lblStartRBU.Caption := (FloatToStr(WeaponDetail.StartAngle));
-          lblEndRBU.Caption := (FloatToStr(WeaponDetail.EndAngle));
-          lblMinRBU.Caption := (FloatToStr(WeaponDetail.LowRange));
-          lblMaxRBU.Caption := (FloatToStr(WeaponDetail.HighRange));
+
+          if WeaponDetail.IDLauncher = LauncherID then
+          begin
+            // Balistik 1
+            if WeaponDetail.IDType = 1 then
+            begin
+              lblStartRBU.Caption := (FloatToStr(WeaponDetail.StartAngle));
+              lblEndRBU.Caption := (FloatToStr(WeaponDetail.EndAngle));
+              lblMinRBU.Caption := (FloatToStr(WeaponDetail.LowRange));
+              lblMaxRBU.Caption := (FloatToStr(WeaponDetail.HighRange));
+            end;
+
+            // Balistik 2
+            if WeaponDetail.IDType = 2 then
+            begin
+              lblStartRBUBal2.Caption := FloatToStr(WeaponDetail.StartAngle);
+              lblEndRBUBal2.Caption   := FloatToStr(WeaponDetail.EndAngle);
+              lblMinRBUBal2.Caption   := FloatToStr(WeaponDetail.LowRange);
+              lblMaxRBUBal2.Caption   := FloatToStr(WeaponDetail.HighRange);
+            end;
+          end;
+
+//          lblStartRBU.Caption := (FloatToStr(WeaponDetail.StartAngle));
+//          lblEndRBU.Caption := (FloatToStr(WeaponDetail.EndAngle));
+//          lblMinRBU.Caption := (FloatToStr(WeaponDetail.LowRange));
+//          lblMaxRBU.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
           {$REGION 'Torpedo A244S'}
           lblStartA244s.Caption := (FloatToStr(WeaponDetail.StartAngle));
