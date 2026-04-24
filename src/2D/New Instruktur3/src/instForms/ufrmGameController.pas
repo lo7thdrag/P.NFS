@@ -1137,6 +1137,46 @@ type
     Label179: TLabel;
     Label180: TLabel;
     Label181: TLabel;
+    pnlWeaponCan76: TPanel;
+    Label200: TLabel;
+    Label201: TLabel;
+    lblStart76Low: TLabel;
+    Label203: TLabel;
+    Label182: TLabel;
+    lblEnd76Low: TLabel;
+    Label184: TLabel;
+    Label185: TLabel;
+    lblMin76Low: TLabel;
+    Label187: TLabel;
+    Label188: TLabel;
+    lblMax76Low: TLabel;
+    Label190: TLabel;
+    Label191: TLabel;
+    lblMax76High: TLabel;
+    Label193: TLabel;
+    Label194: TLabel;
+    lblMin76High: TLabel;
+    Label196: TLabel;
+    Label197: TLabel;
+    lblEnd76High: TLabel;
+    Label199: TLabel;
+    Label202: TLabel;
+    lblStart76High: TLabel;
+    Label205: TLabel;
+    Label206: TLabel;
+    Label207: TLabel;
+    lblMax76Air: TLabel;
+    Label209: TLabel;
+    Label210: TLabel;
+    lblMin76Air: TLabel;
+    Label212: TLabel;
+    Label213: TLabel;
+    lblEnd76Air: TLabel;
+    Label215: TLabel;
+    Label216: TLabel;
+    lblStart76Air: TLabel;
+    Label218: TLabel;
+    Label219: TLabel;
     procedure DisplayController1Click(Sender: TObject);
     procedure TabMainChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -5834,11 +5874,6 @@ begin
               lblMaxRBUBal2.Caption   := FloatToStr(WeaponDetail.HighRange);
             end;
           end;
-
-//          lblStartRBU.Caption := (FloatToStr(WeaponDetail.StartAngle));
-//          lblEndRBU.Caption := (FloatToStr(WeaponDetail.EndAngle));
-//          lblMinRBU.Caption := (FloatToStr(WeaponDetail.LowRange));
-//          lblMaxRBU.Caption := (FloatToStr(WeaponDetail.HighRange));
           {$ENDREGION}
           {$REGION 'Torpedo A244S'}
           lblStartA244s.Caption := (FloatToStr(WeaponDetail.StartAngle));
@@ -5851,6 +5886,37 @@ begin
           lblEndCannon76.Caption := (FloatToStr(WeaponDetail.EndAngle));
           lblMinCannon76.Caption := (FloatToStr(WeaponDetail.LowRange));
           lblMaxCannon76.Caption := (FloatToStr(WeaponDetail.HighRange));
+
+          if WeaponDetail.IDWeapon = 14 then
+          begin
+            pnlWeaponCan76.Visible := True;
+            case WeaponDetail.IDType of
+              1:
+              begin
+                lblStart76Low.Caption := (FloatToStr(WeaponDetail.StartAngle));
+                lblEnd76Low.Caption := (FloatToStr(WeaponDetail.EndAngle));
+                lblMin76Low.Caption := (FloatToStr(WeaponDetail.LowRange));
+                lblMax76Low.Caption := (FloatToStr(WeaponDetail.HighRange));
+              end;
+              2:
+              begin
+                lblStart76High.Caption := (FloatToStr(WeaponDetail.StartAngle));
+                lblEnd76High.Caption := (FloatToStr(WeaponDetail.EndAngle));
+                lblMin76High.Caption := (FloatToStr(WeaponDetail.LowRange));
+                lblMax76High.Caption := (FloatToStr(WeaponDetail.HighRange));
+              end;
+              3:
+              begin
+                lblStart76Air.Caption := (FloatToStr(WeaponDetail.StartAngle));
+                lblEnd76Air.Caption := (FloatToStr(WeaponDetail.EndAngle));
+                lblMin76Air.Caption := (FloatToStr(WeaponDetail.LowRange));
+                lblMax76Air.Caption := (FloatToStr(WeaponDetail.HighRange));
+              end;
+            end;
+          end
+          else
+            pnlWeaponCan76.Visible := False;
+
 
           if SimManager.instProjectSet.World = 'NSFS' then
             cbbCannonModeID.ItemIndex := 0; // modeID Surface

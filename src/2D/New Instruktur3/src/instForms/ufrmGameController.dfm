@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000D813D00F01000000D50E5F751C000000000000000000000000
+              01000118010000D813D00F010000004CE797001C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183312,8 +183312,8 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000000000000C8E7970078
-              E39700000000006688CE50000200006B88CE506688CE50000000000000000000
+              0000000000000000000000000000000000000000000000190AB22E000000007C
+              EB97002CE79700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -248017,7 +248017,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwRBU6000
+              ActivePage = pgtwWCCCannon
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -252666,6 +252666,522 @@ object frmGameController: TfrmGameController
                     Font.Style = [fsBold]
                     ParentFont = False
                     TabOrder = 17
+                  end
+                  object pnlWeaponCan76: TPanel
+                    Left = 451
+                    Top = 409
+                    Width = 638
+                    Height = 134
+                    BevelOuter = bvNone
+                    TabOrder = 18
+                    Visible = False
+                    object Label200: TLabel
+                      Left = 37
+                      Top = 3
+                      Width = 40
+                      Height = 18
+                      Caption = 'Low :'
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -15
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label201: TLabel
+                      Left = 5
+                      Top = 23
+                      Width = 98
+                      Height = 16
+                      Caption = 'Start Degree : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblStart76Low: TLabel
+                      Left = 107
+                      Top = 26
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label203: TLabel
+                      Left = 136
+                      Top = 23
+                      Width = 28
+                      Height = 16
+                      Caption = 'deg'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label182: TLabel
+                      Left = 289
+                      Top = 23
+                      Width = 28
+                      Height = 16
+                      Caption = 'deg'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblEnd76Low: TLabel
+                      Left = 263
+                      Top = 26
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label184: TLabel
+                      Left = 171
+                      Top = 23
+                      Width = 87
+                      Height = 16
+                      Caption = 'End Degree : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label185: TLabel
+                      Left = 444
+                      Top = 23
+                      Width = 21
+                      Height = 16
+                      Caption = 'nm'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblMin76Low: TLabel
+                      Left = 411
+                      Top = 26
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label187: TLabel
+                      Left = 327
+                      Top = 23
+                      Width = 80
+                      Height = 16
+                      Caption = 'Min Range : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label188: TLabel
+                      Left = 601
+                      Top = 23
+                      Width = 21
+                      Height = 16
+                      Caption = 'nm'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblMax76Low: TLabel
+                      Left = 569
+                      Top = 26
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label190: TLabel
+                      Left = 483
+                      Top = 23
+                      Width = 84
+                      Height = 16
+                      Caption = 'Max Range : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label191: TLabel
+                      Left = 483
+                      Top = 61
+                      Width = 84
+                      Height = 16
+                      Caption = 'Max Range : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblMax76High: TLabel
+                      Left = 569
+                      Top = 64
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label193: TLabel
+                      Left = 602
+                      Top = 61
+                      Width = 21
+                      Height = 16
+                      Caption = 'nm'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label194: TLabel
+                      Left = 444
+                      Top = 61
+                      Width = 21
+                      Height = 16
+                      Caption = 'nm'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblMin76High: TLabel
+                      Left = 411
+                      Top = 64
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label196: TLabel
+                      Left = 327
+                      Top = 61
+                      Width = 80
+                      Height = 16
+                      Caption = 'Min Range : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label197: TLabel
+                      Left = 289
+                      Top = 61
+                      Width = 28
+                      Height = 16
+                      Caption = 'deg'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblEnd76High: TLabel
+                      Left = 263
+                      Top = 64
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label199: TLabel
+                      Left = 171
+                      Top = 61
+                      Width = 87
+                      Height = 16
+                      Caption = 'End Degree : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label202: TLabel
+                      Left = 136
+                      Top = 61
+                      Width = 28
+                      Height = 16
+                      Caption = 'deg'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblStart76High: TLabel
+                      Left = 107
+                      Top = 64
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label205: TLabel
+                      Left = 5
+                      Top = 61
+                      Width = 98
+                      Height = 16
+                      Caption = 'Start Degree : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label206: TLabel
+                      Left = 37
+                      Top = 41
+                      Width = 47
+                      Height = 18
+                      Caption = 'High : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -15
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label207: TLabel
+                      Left = 483
+                      Top = 103
+                      Width = 84
+                      Height = 16
+                      Caption = 'Max Range : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblMax76Air: TLabel
+                      Left = 569
+                      Top = 106
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label209: TLabel
+                      Left = 602
+                      Top = 103
+                      Width = 21
+                      Height = 16
+                      Caption = 'nm'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label210: TLabel
+                      Left = 444
+                      Top = 103
+                      Width = 21
+                      Height = 16
+                      Caption = 'nm'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblMin76Air: TLabel
+                      Left = 411
+                      Top = 106
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label212: TLabel
+                      Left = 327
+                      Top = 103
+                      Width = 80
+                      Height = 16
+                      Caption = 'Min Range : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label213: TLabel
+                      Left = 289
+                      Top = 103
+                      Width = 28
+                      Height = 16
+                      Caption = 'deg'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblEnd76Air: TLabel
+                      Left = 263
+                      Top = 106
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label215: TLabel
+                      Left = 171
+                      Top = 103
+                      Width = 87
+                      Height = 16
+                      Caption = 'End Degree : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label216: TLabel
+                      Left = 136
+                      Top = 103
+                      Width = 28
+                      Height = 16
+                      Caption = 'deg'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object lblStart76Air: TLabel
+                      Left = 107
+                      Top = 106
+                      Width = 5
+                      Height = 13
+                      Caption = '-'
+                      Font.Charset = DEFAULT_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -11
+                      Font.Name = 'MS Sans Serif'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label218: TLabel
+                      Left = 5
+                      Top = 103
+                      Width = 98
+                      Height = 16
+                      Caption = 'Start Degree : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -13
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
+                    object Label219: TLabel
+                      Left = 37
+                      Top = 83
+                      Width = 35
+                      Height = 18
+                      Caption = 'Air : '
+                      Font.Charset = ANSI_CHARSET
+                      Font.Color = clWindow
+                      Font.Height = -15
+                      Font.Name = 'Tahoma'
+                      Font.Style = [fsBold]
+                      ParentFont = False
+                    end
                   end
                 end
               end
@@ -259057,8 +259573,8 @@ object frmGameController: TfrmGameController
     end
   end
   object pmClient: TPopupMenu
-    Left = 1518
-    Top = 846
+    Left = 1510
+    Top = 758
     object pmClientStop: TMenuItem
       Caption = 'Stop'
       OnClick = mni3Click
@@ -259068,8 +259584,8 @@ object frmGameController: TfrmGameController
     end
   end
   object pmClient2: TPopupMenu
-    Left = 1470
-    Top = 846
+    Left = 1454
+    Top = 758
     object mni1: TMenuItem
       Caption = 'Stop'
       OnClick = mni3Click
