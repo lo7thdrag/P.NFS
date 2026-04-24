@@ -1366,9 +1366,9 @@ begin
   // Receive From 3D Server.
   aRec := @apRec^;
 
-  if Assigned(OnLogClient3D) then
-    OnLogClient3D('Receive Ship Position ' + 'X:' + FloatToStr(aRec^.x) + '--' +
-      'Y:' + FloatToStr(aRec^.y) + '--' + 'Z:' + FloatToStr(aRec^.z));
+//  if Assigned(OnLogClient3D) then
+//    OnLogClient3D('Receive Ship Position ' + 'X:' + FloatToStr(aRec^.x) + '--' +
+//      'Y:' + FloatToStr(aRec^.y) + '--' + 'Z:' + FloatToStr(aRec^.z));
 
   if IsNan(aRec^.x) or IsNan(aRec^.y) or IsNan(aRec^.z) or IsNan(aRec^.Heading)
     or IsNan(aRec^.Speed) or IsNan(aRec^.pitch) or IsNan(aRec^.roll) or
