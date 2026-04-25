@@ -264,6 +264,8 @@ type
     procedure drvcbb1Change(Sender: TObject);
     procedure fllst1Change(Sender: TObject);
     procedure edtFileTypeChange(Sender: TObject);
+    procedure edtElevationValueKeyPress(Sender: TObject; var Key: Char);
+    procedure edtTrainingValueKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     FbootTime : Integer;
@@ -384,9 +386,22 @@ begin
   dirlst1.Drive := drvcbb1.Drive;
 end;
 
+procedure TfrmDCDSMain.edtElevationValueKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if not (Key in ['0'..'9', '-', '+', #8]) then
+    Key := #0;
+end;
+
 procedure TfrmDCDSMain.edtFileTypeChange(Sender: TObject);
 begin
   ApplyFilter;
+end;
+
+procedure TfrmDCDSMain.edtTrainingValueKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (Key in ['0'..'9', '-','+', #8]) then
+    Key := #0;
 end;
 
 procedure TfrmDCDSMain.fllst1Change(Sender: TObject);
@@ -613,8 +628,8 @@ begin
 //  edtValueTraining.Text := FormatFloat('0.#', FVTgtTraining);
 //  edtValueElevation.Text := FormatFloat('0.#', FVTgtElevation);
 
-  if ((FVTgtElevation <= -10) or (FVTgtElevation >= 85)) or
-  ((FVTgtTraining >= 310) or (FVTgtTraining <= 50)) then
+  if ((FVTgtElevation < -12) or (FVTgtElevation > 87)) or
+  ((FVTgtTraining <= -50) or (FVTgtTraining >= 50)) then
   begin
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
     btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
@@ -625,44 +640,6 @@ begin
 
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
     btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
-
-    if (FVTgtTraining >= 310) then
-    begin
-      imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
-      imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-    end
-    else if (FVTgtTraining <= 50) then
-    begin
-      imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
-      imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-    end
-    else
-    begin
-      imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-      imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
-    end;
-
-    if (FVTgtElevation <= -10) then
-    begin
-      // LOW LIMIT ZONE (-5 s/d -10)
-      imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
-
-      imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-    end
-    else if (FVTgtElevation >= 80) then
-    begin
-      // HIGH LIMIT ZONE (80 s/d 85)
-      imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
-
-      imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-    end
-    else
-    begin
-      // NORMAL ZONE
-      imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-
-      imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-    end;
   end
   else
   begin
@@ -677,6 +654,52 @@ begin
     btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
   end;
 
+  if (FVTgtTraining <= -50) then
+  begin
+    imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else if (FVTgtTraining >= 50) then
+  begin
+    imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else
+  begin
+    imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end;
+
+  if (FVTgtElevation < -12) then
+  begin
+    // HARD LOW LIMIT
+    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else if (FVTgtElevation > 87) then
+  begin
+    // HARD HIGH LIMIT
+    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else if (FVTgtElevation <= -10) then
+  begin
+    // WARNING LOW ZONE (-12 s/d -10)
+    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\kuning_S.png');
+    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else if (FVTgtElevation >= 80) then
+  begin
+    // WARNING HIGH ZONE (80 s/d 87)
+    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\kuning_S.png');
+    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else
+  begin
+    // NORMAL ZONE (-10 s/d 80)
+    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end;
 
   lRec.ShipID := AK230Manager.ShipID;
   lRec.mWeaponID := AK230Manager.AssignedWeapon.IDWeapon;
@@ -721,13 +744,14 @@ var
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
   tVal:= dblVal+0.1;
-  if tVal <= 360  then
+//  if tVal <= 360  then
+//    Inc(intVal);
+//    dblVal := dblVal + 0.1;
+
+  if tVal <= 180  then
 //    Inc(intVal);
     dblVal := dblVal + 0.1;
 
-//  if tVal <= 180  then
-//    Inc(intVal);
-//    dblVal := dblVal + 0.1;
   if (tVal > -0.1) and (tVal < 0.1) then
     dblVal := 0;
 //  if intVal >= 360 then
@@ -740,12 +764,12 @@ var
   dblVal: Double;
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
-  if dblVal+10 <= 360 then
-    dblVal := dblVal + 10;
-//  if dblVal+10 <= 180 then
+//  if dblVal+10 <= 360 then
 //    dblVal := dblVal + 10;
-//  if dblVal+10 > 180 then
-//    dblVal := 180;
+  if dblVal+10 <= 180 then
+    dblVal := dblVal + 10;
+  if dblVal+10 > 180 then
+    dblVal := 180;
   if (dblVal > -0.1) and (dblVal < 0.1) then
     dblVal := 0;
 //  if intVal >= 360 then
@@ -758,14 +782,14 @@ var
   dblVal: Double;
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
-  dblVal := dblVal - 10;
-  if dblVal < 0 then
-    dblVal := dblVal + 360;
+//  dblVal := dblVal - 10;
+//  if dblVal < 0 then
+//    dblVal := dblVal + 360;
 
-//  if dblVal-10 >= -180 then
-//    dblVal := dblVal - 10;
-//  if dblVal-10 < -180 then
-//    dblVal := -180;
+  if dblVal-10 >= -180 then
+    dblVal := dblVal - 10;
+  if dblVal-10 < -180 then
+    dblVal := -180;
   if (dblVal > -0.1) and (dblVal < 0.1) then
     dblVal := 0;
 //  if intVal < 0 then
@@ -1487,7 +1511,7 @@ begin
     Inc(LeftShot);
 
     edtBulCntLf1.Text := IntToStr(LeftShot);
-    edtBulCntLf2.Text := IntToStr(LeftMagazine);
+    edtNoLeftMgzn.Text := IntToStr(LeftMagazine);
   end;
 
   if RightMagazine > 0 then
@@ -1496,7 +1520,7 @@ begin
     Inc(RightShot);
 
     edtBulCntRg1.Text := IntToStr(RightShot);
-    edtBulCntRg2.Text := IntToStr(RightMagazine);
+    edtNoRightMgzn.Text := IntToStr(RightMagazine);
   end;
 
   AddLog;
@@ -1509,16 +1533,16 @@ begin
 //    FVCurTraining := 0;
   if Round(FVTgtTraining) <> Round(FVCurTraining) then
   begin
-//    if ((FVTgtTraining - FVCurTraining) < 180) and ((FVTgtTraining - FVCurTraining) > 0)  then
-//      FVCurTraining := FVCurTraining + 1
-//    else
-//      FVCurTraining := FVCurTraining - 1;
-//    RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);
+    if ((FVTgtTraining - FVCurTraining) < 180) and ((FVTgtTraining - FVCurTraining) > 0)  then
+      FVCurTraining := FVCurTraining + 1
+    else
+      FVCurTraining := FVCurTraining - 1;
+    RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);
 
-    if FVCurTraining < 0 then
-      FVCurTraining := FVCurTraining + 360
-    else if FVCurTraining >= 360 then
-      FVCurTraining := FVCurTraining - 360;
+//    if FVCurTraining < 0 then
+//      FVCurTraining := FVCurTraining + 360
+//    else if FVCurTraining >= 360 then
+//      FVCurTraining := FVCurTraining - 360;
 
     if FVTgtTraining > FVCurTraining then
     begin
@@ -1537,10 +1561,10 @@ begin
     end;
 
     // Wrap ke 0–360
-    if FVCurTraining >= 360 then
-      FVCurTraining := FVCurTraining - 360
-    else if FVCurTraining < 0 then
-      FVCurTraining := FVCurTraining + 360;
+//    if FVCurTraining >= 360 then
+//      FVCurTraining := FVCurTraining - 360
+//    else if FVCurTraining < 0 then
+//      FVCurTraining := FVCurTraining + 360;
 
     // Update display
     RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);

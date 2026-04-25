@@ -4756,9 +4756,9 @@ object frmDCDSMain: TfrmDCDSMain
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   ParentFont = False
-                  ReadOnly = True
                   TabOrder = 2
                   Text = '0'
+                  OnKeyPress = edtElevationValueKeyPress
                 end
                 object pnlDCDCTrainingCtrl: TPanel
                   Left = 18
@@ -4842,9 +4842,9 @@ object frmDCDSMain: TfrmDCDSMain
                   Font.Name = 'Tahoma'
                   Font.Style = []
                   ParentFont = False
-                  ReadOnly = True
                   TabOrder = 4
                   Text = '0'
+                  OnKeyPress = edtTrainingValueKeyPress
                 end
                 object pnlDcdcLblTraining: TPanel
                   Left = 18
@@ -5739,8 +5739,8 @@ object frmDCDSMain: TfrmDCDSMain
                   Stretch = True
                 end
                 object imgElevPtr: TImage
-                  Left = 11
-                  Top = 28
+                  Left = 15
+                  Top = 84
                   Width = 180
                   Height = 180
                   Stretch = True
@@ -5959,9 +5959,6 @@ object frmDCDSMain: TfrmDCDSMain
                 ParentBackground = False
                 ParentFont = False
                 TabOrder = 1
-                ExplicitLeft = -154
-                ExplicitTop = 47
-                ExplicitWidth = 588
                 object lbl18: TLabel
                   Left = 209
                   Top = 5
