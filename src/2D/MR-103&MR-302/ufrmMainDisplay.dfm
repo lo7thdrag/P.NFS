@@ -473,7 +473,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000E8967E29010000008F0F48771C000000000000000000000000
+          0100011801000018B21710010000000C924B771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -482,15 +482,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000E8967E2901000000FCE097001C00000000000000000000000000000000
+          01000018B2171001000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E4140650495D400074
-          007A007200650073002E0064006C006C002C002D003500000000000000000000
+          0000000000000000000000000000000000000000000000E8E197003D8BCD761F
+          00000000000000208BCD76C073A804F1C635A428E29700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -1121,10 +1121,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 441
-        ExplicitHeight = 0
       end
       object AdvTabRev: TAdvTabSheet
         Caption = 'Rev'
@@ -1132,10 +1128,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 441
-        ExplicitHeight = 0
       end
       object AdvTabServo: TAdvTabSheet
         Caption = 'Servo'
@@ -1143,10 +1135,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 441
-        ExplicitHeight = 0
       end
       object AdvTabCon: TAdvTabSheet
         Caption = 'Con'
@@ -1154,10 +1142,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 441
-        ExplicitHeight = 0
       end
       object AdvTabTVLS: TAdvTabSheet
         Caption = 'TV-LS'
@@ -1165,10 +1149,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 441
-        ExplicitHeight = 0
       end
     end
   end
@@ -1404,10 +1384,6 @@ object frmMainFCC: TfrmMainFCC
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 215
-          ExplicitHeight = 0
           object lblIDTargetIND: TLabel
             Left = 3
             Top = 13
@@ -1534,10 +1510,6 @@ object frmMainFCC: TfrmMainFCC
           ParentFont = False
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 215
-          ExplicitHeight = 0
         end
       end
     end
@@ -2137,7 +2109,7 @@ object frmMainFCC: TfrmMainFCC
     ParentBackground = False
     TabOrder = 6
     object lblRAzimuth: TLabel
-      Left = 39
+      Left = 30
       Top = 56
       Width = 71
       Height = 18
@@ -2150,7 +2122,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
     end
     object lblRAzimuthsat: TLabel
-      Left = 136
+      Left = 120
       Top = 83
       Width = 12
       Height = 18
@@ -2163,7 +2135,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
     end
     object lblElevation: TLabel
-      Left = 193
+      Left = 165
       Top = 56
       Width = 57
       Height = 18
@@ -2176,7 +2148,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
     end
     object lblElevationsat: TLabel
-      Left = 280
+      Left = 250
       Top = 83
       Width = 12
       Height = 18
@@ -2189,9 +2161,9 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
     end
     object lblRDRange: TLabel
-      Left = 333
+      Left = 293
       Top = 56
-      Width = 65
+      Width = 66
       Height = 18
       Caption = 'RD Range'
       Font.Charset = DEFAULT_CHARSET
@@ -2201,38 +2173,12 @@ object frmMainFCC: TfrmMainFCC
       Font.Style = []
       ParentFont = False
     end
-    object lblRDRangesat: TLabel
-      Left = 424
-      Top = 83
-      Width = 18
-      Height = 18
-      Caption = ' m'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
     object lblLSRange: TLabel
-      Left = 479
+      Left = 459
       Top = 56
       Width = 61
       Height = 18
       Caption = 'LS Range'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object lblLSRangesat: TLabel
-      Left = 570
-      Top = 83
-      Width = 18
-      Height = 18
-      Caption = ' m'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -2258,7 +2204,7 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 0
     end
     object edtRAzimuthVal: TEdit
-      Left = 15
+      Left = 6
       Top = 80
       Width = 115
       Height = 24
@@ -2274,7 +2220,7 @@ object frmMainFCC: TfrmMainFCC
       Text = '0.000'
     end
     object edtElevationVal: TEdit
-      Left = 163
+      Left = 135
       Top = 80
       Width = 115
       Height = 24
@@ -2290,9 +2236,9 @@ object frmMainFCC: TfrmMainFCC
       Text = '0.000'
     end
     object edtRDRangeVal: TEdit
-      Left = 307
+      Left = 267
       Top = 80
-      Width = 115
+      Width = 116
       Height = 24
       Alignment = taCenter
       Font.Charset = DEFAULT_CHARSET
@@ -2306,7 +2252,7 @@ object frmMainFCC: TfrmMainFCC
       Text = '0'
     end
     object edtLSRangeVal: TEdit
-      Left = 453
+      Left = 433
       Top = 80
       Width = 115
       Height = 24
@@ -2320,6 +2266,29 @@ object frmMainFCC: TfrmMainFCC
       ReadOnly = True
       TabOrder = 4
       Text = '0'
+    end
+    object cbRDRange: TComboBox
+      Left = 386
+      Top = 83
+      Width = 43
+      Height = 21
+      TabOrder = 5
+      Text = 'm'
+      Items.Strings = (
+        'm'
+        'Nm')
+    end
+    object cbLSRange: TComboBox
+      Left = 551
+      Top = 83
+      Width = 43
+      Height = 21
+      ItemIndex = 0
+      TabOrder = 6
+      Text = 'm'
+      Items.Strings = (
+        'm'
+        'Nm')
     end
   end
   object pnlInformation: TPanel
@@ -2395,7 +2364,6 @@ object frmMainFCC: TfrmMainFCC
     Top = 425
   end
   object NLDJoystick: TNLDJoystick
-    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move

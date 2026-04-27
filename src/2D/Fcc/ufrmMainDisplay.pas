@@ -629,6 +629,7 @@ type
     DrumPosState, IsServoOn : Boolean; // False untuk left drum, True untuk right drum
     HighFR, MiddleFR, LowFR : Boolean; // fire rate
     FireTime : Single;
+    FireTimeMS, ActualFireTimeMS : Cardinal;
 //    FProcessInfo: TProcessInformation;
     InsideZone, FireAllow, IsFiring, IsReturnZero : BOOL;
     FCurrBearing, FCurrElev, FTargetBearing, FTargetElev : Double;
@@ -895,6 +896,7 @@ var
 var
   z: double;
   i: Integer;
+  TurretHeading : Double;
 begin
   aCvt.ConvertToScreen(FMap.CenterX, FMap.CenterY, pnt.X, pnt.Y);
 
@@ -1010,6 +1012,16 @@ begin
     // BEARING 0°
     FBearing0.CircleRect := FCircleRect;
     FBearing0.ConvertCoord(aCvt);
+    if Assigned(FCCManager) then
+    begin
+      if Assigned(FCCManager.xShip) then
+      begin
+        TurretHeading := (FCCManager.xShip.Heading + FCurrBearing);
+        if TurretHeading >= 360 then TurretHeading := TurretHeading - 360;
+        
+        FBearing0.BearingDeg    := TurretHeading;
+      end;
+    end;
     FBearing0.Draw(aCnv);
 
 //    TargetMgr.Draw(aCnv);
@@ -1733,12 +1745,12 @@ begin
     begin
       AreaBlindZone := TRadarDynamicSector.Create;
       AreaBlindZone.Color := RGB(183,73,40);
-      AreaBlindZone.AddSlice(210,225, 0.0, 48000.0); // center–3 km
-      AreaBlindZone.AddSlice(135,150,   0.0, 48000.0);
+      AreaBlindZone.AddSlice(225,240, 0.0, 48000.0); // center–3 km
+      AreaBlindZone.AddSlice(120,135,   0.0, 48000.0);
 
       AreaBlindZone1 := TRadarDynamicSector.Create;
       AreaBlindZone1.Color := RGB(94,90,105);
-      AreaBlindZone1.AddSlice(135,210, 0.0, 48000.0); // dari 1–3 km
+      AreaBlindZone1.AddSlice(120,225, 0.0, 48000.0); // dari 1–3 km
 
       AreaGunPoint := TRadarDynamicSector.Create;
       AreaGunPoint.Color := RGB(237,83,93);
@@ -1746,13 +1758,13 @@ begin
 
       AreaPenembakan := TRadarDynamicSector.Create;
       AreaPenembakan.Color := RGB(53,80,75);
-      AreaPenembakan.AddSlice(225,135, 0.0, 3000.0); // dari 1–3 km
+      AreaPenembakan.AddSlice(240,120, 0.0, 3000.0); // dari 1–3 km
 
       acbxShootArea.Checked := AreaPenembakan.Visible;
 
       AreaTracker := TRadarDynamicSector.Create;
       AreaTracker.Color := RGB(32,70,145);
-      AreaTracker.AddSlice(225,135, 3000.0, 17000.0); // dari 1–3 km
+      AreaTracker.AddSlice(240,120, 3000.0, 17000.0); // dari 1–3 km
       acbxTrackerArea.Checked := AreaTracker.Visible;
     end;
     2 : //FCC2 Mode
@@ -1772,13 +1784,13 @@ begin
 
       AreaPenembakan := TRadarDynamicSector.Create;
       AreaPenembakan.Color := RGB(53,80,75);
-      AreaPenembakan.AddSlice(45,315, 0.0, 6500.0); // dari 1–3 km
+      AreaPenembakan.AddSlice(45,315, 0.0, 6700.0); // dari 1–3 km
 
       acbxShootArea.Checked := AreaPenembakan.Visible;
 
       AreaTracker := TRadarDynamicSector.Create;
       AreaTracker.Color := RGB(32,70,145);
-      AreaTracker.AddSlice(45,315, 6500.0, 17000.0); // dari 1–3 km
+      AreaTracker.AddSlice(45,315, 6700.0, 17000.0); // dari 1–3 km
       acbxTrackerArea.Checked := AreaTracker.Visible;
     end;
   end;
@@ -1788,7 +1800,7 @@ begin
 
   FShipHeading := 0; // awal
 
-  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');   // sepertinya ga perlu ada
+  FBearing0 := TRadarBearing.Create(0, clWhite, '');   // sepertinya ga perlu ada
 
 //  TargetMgr := TRadarTargetManager.Create;
 //  TargetMgr.CoordConverter := FMapConverter;
@@ -1928,6 +1940,7 @@ begin
   FIsWeatherAuto := True;
   FIsNavAuto := True;
   FireTime := 1.00;
+  FireTimeMS := 1000;
 
   FMap.ZoomTo((Self.FCurrentRange  * 0.0008) * 2, FMap.CenterX, FMap.CenterY);
 
@@ -2292,6 +2305,7 @@ begin
       5: // Time Setting
       begin
         FireTime := StrToFloat(edtTimeSettingTime.Text);
+        FireTimeMS :=  Round(FireTime * 1000);
         pnlGpTime.Caption := FormatFloat('0.00', FireTime);
         pnlIndWth.BringToFront;
       end;
@@ -2588,6 +2602,7 @@ var
   aLow, aHigh: Double;
   range,rangem, bearing : Double;
   bmp: TBitmap;
+  RoundToShoot : Integer;
 begin
   if Assigned(FCCManager.SelectedVehicle) then
   begin
@@ -2631,7 +2646,14 @@ begin
     RecSend.mBalistikID         := 0;
     RecSend.mSalvoRate          := 30;
 
-
+    if (not DrumPosState) and (LeftDrum = 0) then // kalau left drum kosong, langsung exit, jangan fire
+    begin
+      Exit;
+    end
+    else if (DrumPosState) and (RightDrum = 0) then // kalau right drum kosong, langsung exit
+    begin
+      Exit;
+    end;
     RecSend.mOrderID := __ORD_CANNON_START_F;
     FCCManager.NetSendTo3D_OrderCannon(RecSend);
 
@@ -2652,29 +2674,90 @@ begin
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
 
+    RoundToShoot := 0;
     case vFccSetting.FccMode of
       1 : //FCC1 Mode
       begin
         RecSend.mModeID             := 3;
-        Application.ProcessMessages;
+
+        RoundToShoot := Round(firetime * 35);
         if not DrumPosState then // kurangi left drum
         begin
-          TargetRoundInDrum := LeftDrum - 35;
+          if RoundToShoot <= LeftDrum then
+          begin
+            RoundToShoot := LeftDrum;
+            ActualFireTimeMS := Round(RoundToShoot/35);
+          end
+          else
+          begin
+            ActualFireTimeMS := FireTimeMS;
+          end;
         end
         else if DrumPosState then // kurangi right drum
         begin
-          TargetRoundInDrum := RightDrum - 35;
+          if RoundToShoot <= RightDrum then
+          begin
+            RoundToShoot := RightDrum;
+            ActualFireTimeMS := Round(RoundToShoot/35);
+          end
+          else
+          begin
+            ActualFireTimeMS := FireTimeMS;
+          end;
         end;
-        Sleep(1000);
+
+
+        if not DrumPosState then // kurangi left drum
+        begin
+          TargetRoundInDrum := LeftDrum - RoundToShoot;
+        end
+        else if DrumPosState then // kurangi right drum
+        begin
+          TargetRoundInDrum := RightDrum - RoundToShoot;
+        end;
+        pnlFire.Enabled := False;
+        pnlFireFcc2.Enabled := False;
+//        Sleep(1000);
+        Application.ProcessMessages;
+        Sleep(ActualFireTimeMS);
 
       end;
       2 : //FCC2 Mode
       begin
         RecSend.mModeID             := 1;
         Application.ProcessMessages;
-        if  (edtLowRR.Text = '0') or (edtHighRR.text = '0') then
-          Exit;
-        Sleep(500);
+        pnlFire.Enabled := False;
+        pnlFireFcc2.Enabled := False;
+//        Sleep(1000);
+//        if  (edtLowRR.Text = '0') or (edtHighRR.text = '0') then
+//          Exit;
+        RoundToShoot := Round(firetime * 4);
+        if not DrumPosState then // kurangi left drum
+        begin
+          if RoundToShoot <= LeftDrum then
+          begin
+            RoundToShoot := LeftDrum;
+            ActualFireTimeMS := Round(RoundToShoot/4);
+          end
+          else
+          begin
+            ActualFireTimeMS := FireTimeMS;
+          end;
+        end
+        else if DrumPosState then // kurangi right drum
+        begin
+          if RoundToShoot <= RightDrum then
+          begin
+            RoundToShoot := RightDrum;
+            ActualFireTimeMS := Round(RoundToShoot/4);
+          end
+          else
+          begin
+            ActualFireTimeMS := FireTimeMS;
+          end;
+        end;
+
+//        Sleep(500);
 
         if not DrumPosState then // kurangi left drum
         begin
@@ -2685,17 +2768,20 @@ begin
           TargetRoundInDrum := RightDrum - 4;
         end;
 
-        Sleep(500);
-        if not DrumPosState then // kurangi left drum
-        begin
-          TargetRoundInDrum := LeftDrum - 4;
-        end
-        else if DrumPosState then // kurangi right drum
-        begin
-          TargetRoundInDrum := RightDrum - 4;
-        end;
+        pnlFire.Enabled := False;
+        pnlFireFcc2.Enabled := False;
+        Application.ProcessMessages;
+        Sleep(Round(FireTimeMS));
 
-
+//        Sleep(Round(FireTimeMS/2));
+//        if not DrumPosState then // kurangi left drum
+//        begin
+//          TargetRoundInDrum := LeftDrum - 4;
+//        end
+//        else if DrumPosState then // kurangi right drum
+//        begin
+//          TargetRoundInDrum := RightDrum - 4;
+//        end
       end;
     end;
     RecSend.mAutoCorrectElev    := aLow;
@@ -2707,6 +2793,9 @@ begin
 
     RecSend.mOrderID := __ORD_CANNON_STOP_F;
     FCCManager.NetSendTo3D_OrderCannon(RecSend);
+
+    pnlFire.Enabled := True;
+    pnlFireFcc2.Enabled := True;
 
 //    IsFiring := false;
 

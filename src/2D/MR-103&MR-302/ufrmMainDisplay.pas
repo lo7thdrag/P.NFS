@@ -161,10 +161,8 @@ type
     lblElevationsat: TLabel;
     edtRDRangeVal: TEdit;
     lblRDRange: TLabel;
-    lblRDRangesat: TLabel;
     edtLSRangeVal: TEdit;
     lblLSRange: TLabel;
-    lblLSRangesat: TLabel;
     lblSystemTime: TLabel;
     lblRunTime: TLabel;
     lblRunTimeVal: TLabel;
@@ -178,6 +176,8 @@ type
     tableReceiveBITE: TAdvStringGrid;
     pnlReceiveBiteHeader: TPanel;
     NLDJoystick: TNLDJoystick;
+    cbRDRange: TComboBox;
+    cbLSRange: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -230,6 +230,7 @@ type
 
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
     FXAxis, FYAxis, FZAxis, FisBiteOpen : Boolean;
+    FRDRangeSat, FLSRangeSat : Boolean; // false = m, true = Nm
 
     { Property On TDA }
     FRings       : TRadarRangeRings;
@@ -876,7 +877,8 @@ begin
     // range = 3000 m, target lebih rendah 25 m
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
 
-    edtRDRangeVal.Text := format('%.2f', [rangem]);
+    if cbrdrange.ItemIndex = 0 then edtRDRangeVal.Text := format('%.2f', [rangem])
+    else  edtRDRangeVal.Text := format('%.2f', [rangem * c_meter_to_nauticalMile]);
     edtRadarGate.Text := format('%.2f', [rangem]);
     edtRAzimuthVal.Text := format('%.2f', [bearing]);
     edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
@@ -2035,7 +2037,8 @@ begin
     // range = 3000 m, target lebih rendah 25 m
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
 
-    edtRDRangeVal.Text := format('%.2f', [rangem]);
+    if cbrdrange.ItemIndex = 0 then edtRDRangeVal.Text := format('%.2f', [rangem])
+    else  edtRDRangeVal.Text := format('%.2f', [rangem * c_meter_to_nauticalMile]);
     edtRadarGate.Text := format('%.2f', [rangem]);
     edtRAzimuthVal.Text := format('%.2f', [bearing]);
     edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
