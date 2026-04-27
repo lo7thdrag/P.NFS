@@ -4758,6 +4758,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                   TabOrder = 2
                   Text = '0'
+                  OnChange = edtElevationValueChange
                   OnKeyPress = edtElevationValueKeyPress
                 end
                 object pnlDCDCTrainingCtrl: TPanel
@@ -4844,6 +4845,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                   TabOrder = 4
                   Text = '0'
+                  OnChange = edtTrainingValueChange
                   OnKeyPress = edtTrainingValueKeyPress
                 end
                 object pnlDcdcLblTraining: TPanel
