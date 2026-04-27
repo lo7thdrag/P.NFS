@@ -207,6 +207,13 @@ begin
         v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
         V.SetSpeedKts(FxShip.Speed);
         V.HeadingDeg := FxShip.Heading; // NE
+      end
+
+      else
+      begin
+        v.PosX := FxShip.PositionX;
+        v.PosY := fxship.PositionY;
+        v.PosZ := FxShip.PositionY;
       end;
   end
   else begin
