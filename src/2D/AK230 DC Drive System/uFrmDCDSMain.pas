@@ -266,6 +266,8 @@ type
     procedure edtFileTypeChange(Sender: TObject);
     procedure edtElevationValueKeyPress(Sender: TObject; var Key: Char);
     procedure edtTrainingValueKeyPress(Sender: TObject; var Key: Char);
+    procedure edtElevationValueChange(Sender: TObject);
+    procedure edtTrainingValueChange(Sender: TObject);
   private
     { Private declarations }
     FbootTime : Integer;
@@ -386,6 +388,20 @@ begin
   dirlst1.Drive := drvcbb1.Drive;
 end;
 
+procedure TfrmDCDSMain.edtElevationValueChange(Sender: TObject);
+var
+  elev: Integer;
+begin
+  if (edtElevationValue.Text = '') or (edtElevationValue.Text = '-') then Exit;
+
+  elev := StrToIntDef(edtElevationValue.Text, 0);
+
+  if elev > 85 then
+    edtElevationValue.Text := '85'
+  else if elev < -10 then
+    edtElevationValue.Text := '-10';
+end;
+
 procedure TfrmDCDSMain.edtElevationValueKeyPress(Sender: TObject;
   var Key: Char);
 begin
@@ -396,6 +412,20 @@ end;
 procedure TfrmDCDSMain.edtFileTypeChange(Sender: TObject);
 begin
   ApplyFilter;
+end;
+
+procedure TfrmDCDSMain.edtTrainingValueChange(Sender: TObject);
+var
+  training: Integer;
+begin
+  if (edtTrainingValue.Text = '') or (edtTrainingValue.Text = '-') then Exit;
+
+  training := StrToIntDef(edtTrainingValue.Text, 0);
+
+  if training > 180 then
+    edtTrainingValue.Text := '180'
+  else if training < -180 then
+    edtTrainingValue.Text := '-180';
 end;
 
 procedure TfrmDCDSMain.edtTrainingValueKeyPress(Sender: TObject; var Key: Char);
