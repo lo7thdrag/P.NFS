@@ -941,7 +941,7 @@ type
      ShipID          : word;
      [BsonElement('mTargetId')]
      mTargetId       : Integer;
-     [BsonElement('mweaponID')]
+     [BsonElement('mWeaponID')]
      mWeaponID       : Word; //Diisi sesuai Database
      [BsonElement('mLauncherID')]
      mLauncherID     : word;
