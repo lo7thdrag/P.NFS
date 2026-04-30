@@ -2438,7 +2438,7 @@ begin
       //  initialize panel indikator Bite Device state
       imgBiteDvcStateFCC.Picture.Bitmap := BitMapLampGreen;
       imgBiteDvcState730B.Picture.Bitmap := BitMapLampGreen;
-      imgBiteDvcStateEO.Picture.Bitmap := BitMapLampGrey;
+      imgBiteDvcStateEO.Picture.Bitmap := BitMapLampGreen;
       imgBiteDvcStateTR.Picture.Bitmap := BitMapLampGreen;
       imgBiteDvcStateTCC.Picture.Bitmap := BitMapLampGreen;
       imgBiteDvcStateSIE.Picture.Bitmap := BitMapLampGreen;
@@ -2464,7 +2464,7 @@ begin
       //  initialize panel indikator Bite Device state
       imgBiteDvcStateFCC2.Picture.Bitmap := BitMapLampGreen;
       imgBiteDvcState57.Picture.Bitmap := BitMapLampGreen;
-      imgBiteDvcStateEOFcc2.Picture.Bitmap := BitMapLampGrey;
+      imgBiteDvcStateEOFcc2.Picture.Bitmap := BitMapLampGreen;
       imgBiteDvcStateTRFcc2.Picture.Bitmap := BitMapLampGreen;
       imgBiteDvcStateTCCFcc2.Picture.Bitmap := BitMapLampGreen;
       imgBiteDvcStateSIEFcc2.Picture.Bitmap := BitMapLampGreen;
@@ -3019,10 +3019,23 @@ begin
           end
           else
           begin
-            DiffBearing := 0.5 * 100;
-            FCurrBearing := FCurrBearing + 0.5;
-            edtGpABE.text := FCurrBearing.ToString();
-            edtCtrlDataBE.Text := FCurrBearing.ToString();
+            if Abs(FTargetBearing - FCurrBearing) < 180 then
+            begin
+              DiffBearing := 0.5 * 100;
+              FCurrBearing := FCurrBearing + 0.5;
+              if FCurrBearing >= 360 then FCurrBearing := FCurrBearing - 360;
+
+              edtGpABE.text := FCurrBearing.ToString();
+              edtCtrlDataBE.Text := FCurrBearing.ToString();
+            end
+            else
+            begin
+              DiffBearing := 0.5 * 100;
+              FCurrBearing := FCurrBearing - 0.5;
+              if FCurrBearing < 0 then FCurrBearing := FCurrBearing + 360;
+              edtGpABE.text := FCurrBearing.ToString();
+              edtCtrlDataBE.Text := FCurrBearing.ToString();
+            end;
           end;
         end
 
@@ -3038,10 +3051,22 @@ begin
 
           else
           begin
-            DiffBearing := 0.5 * 100;
-            FCurrBearing := FCurrBearing - 0.5;
-            edtGpABE.text := FCurrBearing.ToString();
-            edtCtrlDataBE.Text := FCurrBearing.ToString();
+            if Abs(FTargetBearing - FCurrBearing) < 180 then
+            begin
+              DiffBearing := 0.5 * 100;
+              FCurrBearing := FCurrBearing - 0.5;
+              if FCurrBearing < 0 then FCurrBearing := FCurrBearing + 360;
+              edtGpABE.text := FCurrBearing.ToString();
+              edtCtrlDataBE.Text := FCurrBearing.ToString();
+            end
+            else
+            begin
+              DiffBearing := 0.5 * 100;
+              FCurrBearing := FCurrBearing + 0.5;
+              if FCurrBearing >= 360 then FCurrBearing := FCurrBearing - 360;
+              edtGpABE.text := FCurrBearing.ToString();
+              edtCtrlDataBE.Text := FCurrBearing.ToString();
+            end;
           end;
         end;
 
@@ -3127,10 +3152,22 @@ begin
           end
           else
           begin
-            DiffBearing := 0.5 * 100;
-            FCurrBearing := FCurrBearing + 0.5;
-            edtGpABE1.text := FCurrBearing.ToString();
-            edtCtrlDataBE1.Text := FCurrBearing.ToString();
+            if Abs(FTargetBearing - FCurrBearing) < 180 then
+            begin
+              DiffBearing := 0.5 * 100;
+              FCurrBearing := FCurrBearing + 0.5;
+              if FCurrBearing >= 360 then FCurrBearing := FCurrBearing - 360;
+              edtGpABE1.text := FCurrBearing.ToString();
+              edtCtrlDataBE1.Text := FCurrBearing.ToString();
+            end
+            else
+            begin
+              DiffBearing := 0.5 * 100;
+              FCurrBearing := FCurrBearing - 0.5;
+              if FCurrBearing < 0 then FCurrBearing := FCurrBearing + 360;
+              edtGpABE1.text := FCurrBearing.ToString();
+              edtCtrlDataBE1.Text := FCurrBearing.ToString();
+            end;
           end;
         end
 
@@ -3146,10 +3183,23 @@ begin
 
           else
           begin
-            DiffBearing := 0.5 * 100;
-            FCurrBearing := FCurrBearing - 0.5;
-            edtGpABE1.text := FCurrBearing.ToString();
-            edtCtrlDataBE1.Text := FCurrBearing.ToString();
+            if Abs(FTargetBearing - FCurrBearing) < 180 then
+            begin
+              DiffBearing := 0.5 * 100;
+              FCurrBearing := FCurrBearing - 0.5;
+              if FCurrBearing < 0 then FCurrBearing := FCurrBearing + 360;
+              edtGpABE1.text := FCurrBearing.ToString();
+              edtCtrlDataBE1.Text := FCurrBearing.ToString();
+            end
+            else
+            begin
+              DiffBearing := 0.5 * 100;
+              FCurrBearing := FCurrBearing + 0.5;
+              if FCurrBearing >= 360 then FCurrBearing := FCurrBearing - 360;
+              edtGpABE1.text := FCurrBearing.ToString();
+              edtCtrlDataBE1.Text := FCurrBearing.ToString();
+
+            end;
           end;
         end;
 
