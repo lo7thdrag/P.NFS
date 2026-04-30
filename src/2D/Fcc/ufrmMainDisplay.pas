@@ -2685,11 +2685,11 @@ begin
         begin
           if RoundToShoot <= LeftDrum then
           begin
-            RoundToShoot := LeftDrum;
             ActualFireTimeMS := Round(RoundToShoot/35);
           end
           else
           begin
+            RoundToShoot := LeftDrum;
             ActualFireTimeMS := FireTimeMS;
           end;
         end
@@ -2697,11 +2697,11 @@ begin
         begin
           if RoundToShoot <= RightDrum then
           begin
-            RoundToShoot := RightDrum;
             ActualFireTimeMS := Round(RoundToShoot/35);
           end
           else
           begin
+            RoundToShoot := RightDrum;
             ActualFireTimeMS := FireTimeMS;
           end;
         end;
@@ -2736,11 +2736,11 @@ begin
         begin
           if RoundToShoot <= LeftDrum then
           begin
-            RoundToShoot := LeftDrum;
             ActualFireTimeMS := Round(RoundToShoot/4);
           end
           else
           begin
+            RoundToShoot := LeftDrum;
             ActualFireTimeMS := FireTimeMS;
           end;
         end
@@ -2748,11 +2748,11 @@ begin
         begin
           if RoundToShoot <= RightDrum then
           begin
-            RoundToShoot := RightDrum;
             ActualFireTimeMS := Round(RoundToShoot/4);
           end
           else
           begin
+            RoundToShoot := RightDrum;
             ActualFireTimeMS := FireTimeMS;
           end;
         end;
@@ -2761,11 +2761,11 @@ begin
 
         if not DrumPosState then // kurangi left drum
         begin
-          TargetRoundInDrum := LeftDrum - 4;
+          TargetRoundInDrum := LeftDrum - RoundToShoot;
         end
         else if DrumPosState then // kurangi right drum
         begin
-          TargetRoundInDrum := RightDrum - 4;
+          TargetRoundInDrum := RightDrum - RoundToShoot;
         end;
 
         pnlFire.Enabled := False;
