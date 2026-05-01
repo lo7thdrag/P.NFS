@@ -1045,7 +1045,20 @@ var
   left,top,right,bottom : Integer;
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
+  with aCnv do
+  begin
+    Brush.Style := bsSolid;
+    Brush.Color := clBlack; // or clBlack, clWhite, etc.
+    FillRect(ClipRect); // clears the drawing area
+  end;
+
   Angle := 0;
+  if Assigned(FCCManager) then
+  begin
+    if Assigned(FCCManager.xShip) then
+      Angle    := Round(FCCManager.xShip.Heading); // rojek add buat mutar angle sesuai arah kapal
+  end;
+
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
   labelsfont := TFont.Create();
@@ -1495,7 +1508,7 @@ var
   CorrectBearing,
   CorrectElev : Double;
   aLow, aHigh: Double;
-  range,rangem, bearing  : Double;
+  range,rangem, bearing, azimuth : Double;
 begin
   if Assigned(fccmanager.SelectedVehicle) then
   begin
@@ -1504,8 +1517,8 @@ begin
 
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
-    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
-    bearing := bearing - FCCManager.xShip.Heading;
+    azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    bearing := azimuth - FCCManager.xShip.Heading;
     if bearing < 0 then
     bearing := bearing + 360;
     FBearingVal := bearing;
@@ -1649,7 +1662,7 @@ begin
       end;
     end;
     edtIndDataD.Text := rangem.ToString();
-    edtIndDataAZ.Text := bearing.ToString();
+    edtIndDataAZ.Text := azimuth.ToString();
     edtIndDataEL.Text := alow.ToString();
     edtIndDataCourse.Text := FCCManager.SelectedVehicle.HeadingDeg.ToString();
     edtIndDataSpeed.Text := FCCManager.SelectedVehicle.Speed_mps.ToString();

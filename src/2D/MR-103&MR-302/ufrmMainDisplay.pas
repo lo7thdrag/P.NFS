@@ -867,13 +867,16 @@ var
   CorrectBearing,
   CorrectElev : Double;
   aLow, aHigh: Double;
-  range,rangem, bearing : Double;
+  range,rangem, bearing, azimuth : Double;
 begin
   if Assigned(fccmanager.SelectedVehicle) then
   begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
-    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    bearing := azimuth - FCCManager.xShip.Heading;
+    if bearing < 0 then
+    bearing := bearing + 360;
     // range = 3000 m, target lebih rendah 25 m
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
 
@@ -2013,7 +2016,7 @@ var
   CorrectBearing,
   CorrectElev : Double;
   aLow, aHigh: Double;
-  range,rangem, bearing : Double;
+  range,rangem, bearing, azimuth : Double;
 begin
 
 
@@ -2035,6 +2038,9 @@ begin
     rangem := range * C_NauticalMile_To_Metre;
     bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     // range = 3000 m, target lebih rendah 25 m
+    bearing := azimuth - FCCManager.xShip.Heading;
+    if bearing < 0 then
+    bearing := bearing + 360;
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
 
     if cbrdrange.ItemIndex = 0 then edtRDRangeVal.Text := format('%.2f', [rangem])

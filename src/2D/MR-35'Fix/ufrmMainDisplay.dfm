@@ -473,7 +473,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100009013AB0401000000F8D097001C000000000000000000000000
+          0100011801000098A947100100000054F097001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -482,15 +482,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100009013AB04010000006CCF97001C00000000000000000000000000000000
+          01000098A94710010000005B4464001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000FFFFFFFF0800000000
-          0000004C0000008CD59700000000000100000023DF4C77000000000000000000
+          000000000000000000000000000000000000000000000030D0A504FEFFFFFF00
+          0000002CF097000B464D772440CE733933497760F19700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -1121,10 +1121,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabRev: TAdvTabSheet
         Caption = 'Rev'
@@ -1132,10 +1128,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabServo: TAdvTabSheet
         Caption = 'Servo'
@@ -1143,10 +1135,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabCon: TAdvTabSheet
         Caption = 'Con'
@@ -1154,10 +1142,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabTVLS: TAdvTabSheet
         Caption = 'TV-LS'
@@ -1165,10 +1149,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
     end
   end
@@ -1404,10 +1384,6 @@ object frmMainFCC: TfrmMainFCC
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lblIDTargetIND: TLabel
             Left = 3
             Top = 13
@@ -1534,10 +1510,6 @@ object frmMainFCC: TfrmMainFCC
           ParentFont = False
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
     end
@@ -2645,7 +2617,6 @@ object frmMainFCC: TfrmMainFCC
     Top = 561
   end
   object NLDJoystick: TNLDJoystick
-    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move
