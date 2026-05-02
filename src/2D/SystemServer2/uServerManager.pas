@@ -901,6 +901,17 @@ begin
     REC_3D_TORPEDO_SUT:
       begin
         recTorpedoSut := @apRec^;
+        if Assigned(OnLogReceived2D) then
+          OnLogReceived2D('REC_3D_TORPEDO_SUT' + #13#10 +
+          'shipID : ' + IntToStr(recTorpedoSut^.ShipID) + #13#10 +
+          'mWeaponID : ' + IntToStr(recTorpedoSut^.mWeaponID) + #13#10 +
+          'mLauncherID : ' + IntToStr(recTorpedoSut^.mLauncherID) + #13#10 +
+          'mMissileID : ' + IntToStr(recTorpedoSut^.mMissileID) + #13#10 +
+          'mMissileNumber : ' + IntToStr(recTorpedoSut^.mMissileNumber) + #13#10 +
+          'OrderID : ' + IntToStr(recTorpedoSut^.OrderID) + #13#10 +
+          'mT_ID : ' + IntToStr(recTorpedoSut^.mT_ID));
+
+
         recSenTorpedoSut.ShipID := recTorpedoSut^.ShipID;
         recSenTorpedoSut.mWeaponID := recTorpedoSut^.mWeaponID;
         // Diisi sesuai Database

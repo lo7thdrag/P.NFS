@@ -638,7 +638,19 @@ var
   left,top,right,bottom : Integer;
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
+  with aCnv do
+  begin
+    Brush.Style := bsSolid;
+    Brush.Color := clBlack; // or clBlack, clWhite, etc.
+    FillRect(ClipRect); // clears the drawing area
+  end;
+
   Angle := 0;
+  if Assigned(FCCManager) then
+  begin
+    if Assigned(FCCManager.xShip) then
+      Angle    := Round(FCCManager.xShip.Heading); // rojek add buat mutar angle sesuai arah kapal
+  end;
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
   labelsfont := TFont.Create();
@@ -2036,7 +2048,7 @@ begin
   begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
-    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     // range = 3000 m, target lebih rendah 25 m
     bearing := azimuth - FCCManager.xShip.Heading;
     if bearing < 0 then
@@ -2050,8 +2062,8 @@ begin
     edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
 
     edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
-    edtSpeedINDVal.Text := (FCCManager.SelectedVehicle.Speed_mps * 1.944).ToString;
-    edtHeadingINDVal.Text := FCCManager.SelectedVehicle.HeadingDeg.ToString;
+    edtSpeedINDVal.Text := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.944]);
+    edtHeadingINDVal.Text := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
   end;
 end;
 

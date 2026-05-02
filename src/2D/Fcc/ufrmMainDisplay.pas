@@ -1510,7 +1510,7 @@ var
   aLow, aHigh: Double;
   range,rangem, bearing, azimuth : Double;
 begin
-  if Assigned(fccmanager.SelectedVehicle) then
+  if Assigned(fccmanager.SelectedVehicle) and FSelectedVehicleState then  // rojek coba jika tidak selected vehicle
   begin
     if not IsServoOn then
     Exit;
@@ -2164,6 +2164,9 @@ begin
   begin
     // Send Deassign ke 3D, matikan tracked sama aimed dan nyalain return zero
     IsReturnZero := True;
+    FSelectedVehicleState := False;
+//    FCCManager.SelectedVehicle.
+
     case vFccSetting.FccMode of
       1 : //FCC1 Mode
       begin
