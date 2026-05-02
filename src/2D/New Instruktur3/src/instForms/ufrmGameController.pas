@@ -4545,7 +4545,7 @@ begin
   MissileNumber := cbbTorpSUTNumber.ItemIndex + 2;
   TargetType := cbbTorpSUTTargetType.ItemIndex + 1;
 
-  weaponID := 4;
+  weaponID := 21;
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(shipID, weaponID, lcrID, recRangDeg);
 
@@ -4576,7 +4576,8 @@ begin
       //Fire
       1:
         begin
-          if (rangeTarget >= rangDeg.rangeMin) and (rangeTarget <= rangDeg.rangeMax) then
+//          if (rangeTarget >= rangDeg.rangeMin) and (rangeTarget <= rangDeg.rangeMax) then
+          if (StrToFloat(edtTorpSutRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtTorpSutRange.Text) < rangDeg.rangeMax) then
           begin
             RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
             SimManager.NetSendTo3D_OrderMissileSUT(RecSend);
@@ -5807,6 +5808,17 @@ begin
             else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
               AssignStatus(Vehicle.Vehicle_ID, C_DBID_C705, Weapon.launcherID, 0, True);
+            end;
+          end
+          else if (ClientConsole.WeaponID = C_DBID_RBU6000) then
+          begin
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            begin
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_RBU6000, Weapon.launcherID, 0, False);
+            end
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
+            begin
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_RBU6000, Weapon.launcherID, 0, True);
             end;
           end;
         end;

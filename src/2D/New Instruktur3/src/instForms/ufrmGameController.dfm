@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000D813D00F010000004CE797001C000000000000000000000000
+              01000118010000288D860F010000004F66D5761C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              010000D813D00F01000000000000001C00000000000000000000000000000000
+              010000288D860F01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000190AB22E000000007C
-              EB97002CE79700000000006688CE50000200006B88CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000090CE970040
+              CA9700000000006688CE50B0CA97006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -247855,41 +247855,6 @@ object frmGameController: TfrmGameController
                   CaptionShadow.Font.Style = []
                   Version = '1.6.1.0'
                 end
-                object btnCamPin: TAdvSmoothButton
-                  Left = 19
-                  Top = 78
-                  Width = 117
-                  Height = 62
-                  Cursor = crHandPoint
-                  Appearance.Font.Charset = ANSI_CHARSET
-                  Appearance.Font.Color = clBlack
-                  Appearance.Font.Height = -13
-                  Appearance.Font.Name = 'Tahoma'
-                  Appearance.Font.Style = [fsBold]
-                  Status.Caption = '0'
-                  Status.Appearance.Fill.Color = clRed
-                  Status.Appearance.Fill.ColorMirror = clNone
-                  Status.Appearance.Fill.ColorMirrorTo = clNone
-                  Status.Appearance.Fill.GradientType = gtSolid
-                  Status.Appearance.Fill.GradientMirrorType = gtSolid
-                  Status.Appearance.Fill.BorderColor = clGray
-                  Status.Appearance.Fill.Rounding = 0
-                  Status.Appearance.Fill.ShadowOffset = 0
-                  Status.Appearance.Fill.Glow = gmNone
-                  Status.Appearance.Font.Charset = DEFAULT_CHARSET
-                  Status.Appearance.Font.Color = clWhite
-                  Status.Appearance.Font.Height = -11
-                  Status.Appearance.Font.Name = 'Tahoma'
-                  Status.Appearance.Font.Style = []
-                  BevelColor = clGray
-                  Caption = 'Pin Camera'
-                  Color = clSilver
-                  ParentFont = False
-                  TabOrder = 0
-                  Version = '2.1.3.0'
-                  OnClick = btnCamPinClick
-                  TMSStyle = 0
-                end
                 object btnFreeCam: TAdvSmoothButton
                   Left = 19
                   Top = 167
@@ -247923,6 +247888,41 @@ object frmGameController: TfrmGameController
                   TabOrder = 1
                   Version = '2.1.3.0'
                   OnClick = btnFreeCamClick
+                  TMSStyle = 0
+                end
+                object btnCamPin: TAdvSmoothButton
+                  Left = 19
+                  Top = 78
+                  Width = 117
+                  Height = 62
+                  Cursor = crHandPoint
+                  Appearance.Font.Charset = ANSI_CHARSET
+                  Appearance.Font.Color = clBlack
+                  Appearance.Font.Height = -13
+                  Appearance.Font.Name = 'Tahoma'
+                  Appearance.Font.Style = [fsBold]
+                  Status.Caption = '0'
+                  Status.Appearance.Fill.Color = clRed
+                  Status.Appearance.Fill.ColorMirror = clNone
+                  Status.Appearance.Fill.ColorMirrorTo = clNone
+                  Status.Appearance.Fill.GradientType = gtSolid
+                  Status.Appearance.Fill.GradientMirrorType = gtSolid
+                  Status.Appearance.Fill.BorderColor = clGray
+                  Status.Appearance.Fill.Rounding = 0
+                  Status.Appearance.Fill.ShadowOffset = 0
+                  Status.Appearance.Fill.Glow = gmNone
+                  Status.Appearance.Font.Charset = DEFAULT_CHARSET
+                  Status.Appearance.Font.Color = clWhite
+                  Status.Appearance.Font.Height = -11
+                  Status.Appearance.Font.Name = 'Tahoma'
+                  Status.Appearance.Font.Style = []
+                  BevelColor = clGray
+                  Caption = 'Pin Camera'
+                  Color = clSilver
+                  ParentFont = False
+                  TabOrder = 0
+                  Version = '2.1.3.0'
+                  OnClick = btnCamPinClick
                   TMSStyle = 0
                 end
               end
@@ -248017,7 +248017,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwWCCCannon
+              ActivePage = pgtwTorpedoSUT
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
