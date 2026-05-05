@@ -4558,10 +4558,11 @@ begin
   begin
     RecSend.mT_ID := TargetID;
     RecSend.ShipID := shipID;
-    RecSend.mWeaponID := C_DBID_TORPEDO_SUT;
+//    RecSend.mWeaponID := C_DBID_TORPEDO_SUT;
+    RecSend.mWeaponID := C_DBID_TORPEDO_BLACKSHARK;
     RecSend.mLauncherID := lcrID;
-    RecSend.mMissileID := MissileID;
-    RecSend.mMissileNumber := MissileNumber;
+    RecSend.mMissileID := 0;          // MissileID
+    RecSend.mMissileNumber := 0;  // MissileNumber
 
     RecSend.OrderID := 0;
     RecSend.mTorpedoCourse := mCourse;
@@ -4571,6 +4572,7 @@ begin
     RecSend.mTorpedoEnDis := mEnabledistance;
     RecSend.mpredm := preDM;
     RecSend.mTargetType := TargetType;
+
 
     case TComponent(Sender).Tag of
       //Fire
@@ -4586,7 +4588,6 @@ begin
               edtTampung.Text := '1';
             end;
           end;
-
         end;
       //Navigate
       2:
