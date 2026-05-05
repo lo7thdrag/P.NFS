@@ -896,7 +896,7 @@ var
   CorrectBearing,
   CorrectElev : Double;
   aLow, aHigh: Double;
-  range,rangem, bearing, azimuth : Double;
+  range,rangem, bearing, azimuth, elevation : Double;
 begin
   if Assigned(fccmanager.SelectedVehicle) then
   begin
@@ -908,11 +908,26 @@ begin
     if bearing < 0 then
     bearing := bearing + 360;
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+    case vFccSetting.FccMode of
+      1 : //MR 35
+      begin
+        elevation := Power(rangem/6700, Exp(1.0)) * 45;
+      end;
+      2 : //MR 103
+      begin
+        elevation := Power(rangem/6700, Exp(1.0)) * 45;
+      end;
+      3 : //MR 302
+      begin
+        elevation := Power(rangem/3000, Exp(1.0)) * 45;
+      end;
+    end;
+
 
     edtRDRangeVal.Text := format('%.2f', [rangem]);
     edtRadarGate.Text := format('%.2f', [rangem]);
     edtRAzimuthVal.Text := format('%.2f', [bearing]);
-    edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
+    edtElevationVal.Text := format('%.2f', [elevation]);
 
     edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
     edtSpeedINDVal.Text := (FCCManager.SelectedVehicle.Speed_mps * 1.944).ToString;
@@ -2054,11 +2069,8 @@ var
   CorrectBearing,
   CorrectElev : Double;
   aLow, aHigh: Double;
-  range,rangem, bearing, azimuth : Double;
+  range,rangem, bearing, azimuth, elevation : Double;
 begin
-
-
-
 //  lblBearing.Caption := Format('0',[FBearing0.BearingDeg]);
 //  lblRange.Caption := Format('0.00', [FCurrentRange * C_Meter_To_NauticalMile]);
 //  lblLongtitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionX);
@@ -2080,11 +2092,25 @@ begin
     if bearing < 0 then
     bearing := bearing + 360;
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+    case vFccSetting.FccMode of
+      1 : //MR 35
+      begin
+        elevation := Power(rangem/6700, Exp(1.0)) * 45;
+      end;
+      2 : //MR 103
+      begin
+        elevation := Power(rangem/6700, Exp(1.0)) * 45;
+      end;
+      3 : //MR 302
+      begin
+        elevation := Power(rangem/3000, Exp(1.0)) * 45;
+      end;
+    end;
 
     edtRDRangeVal.Text := format('%.2f', [rangem]);
     edtRadarGate.Text := format('%.2f', [rangem]);
     edtRAzimuthVal.Text := format('%.2f', [bearing]);
-    edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
+    edtElevationVal.Text := format('%.2f', [elevation]);
 
     edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
     edtSpeedINDVal.Text := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.944]);

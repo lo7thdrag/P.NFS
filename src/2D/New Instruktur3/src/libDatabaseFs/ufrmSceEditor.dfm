@@ -317,12 +317,15 @@ object frmSceEditor: TfrmSceEditor
           'Surabaya'
           'Jakarta'
           'Lepas Pantai '
-          'BalikPapan'
+          'Balik Papan'
           'Medan'
           'Makassar'
           'Karimunjawa'
-          'Sangatta'
-          'Situbondo')
+          'Kepulauan Riau'
+          'Sorong'
+          'Dabo Singkep'
+          'Tanjung Jangkar'
+          'Sangatta')
       end
       object btnPortMore: TAdvSmoothButton
         Left = 500
