@@ -1779,7 +1779,7 @@ end;
 
 procedure TfrmMainDisplay.timerControlModeTimer(Sender: TObject);
 var
-rangeX, dH, bearing: Double;
+rangeX, dH, bearing, targetBearing: Double;
 v : TVehicle;
 begin
 //  RBU_MAnager.IsSonarTracked
@@ -1798,7 +1798,9 @@ begin
       FTrueBearing := bearing;
       bearing := bearing - RBU_MAnager.Heading;
 
-      scrlbrBearingRelTarget.Position := Round(bearing);
+      if bearing > 180 then targetBearing := bearing - 360;
+
+      scrlbrBearingRelTarget.Position := Round(targetBearing);
 
       imgRBUTargetDetected.Picture.Bitmap := FLedGreen;
 //      FTargetElevation := Power(rangeX/6000, Exp(1.0)) * 45;  // perhitungan sama seperti di 3D

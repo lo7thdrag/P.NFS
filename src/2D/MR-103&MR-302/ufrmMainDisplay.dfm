@@ -473,7 +473,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000207BE70F010000008F0F48771C000000000000000000000000
+          01000118010000B06FAF04010000000C924B771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -482,15 +482,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000207BE70F01000000FCE097001C00000000000000000000000000000000
+          010000B06FAF0401000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E4140650495D400074
-          007A007200650073002E0064006C006C002C002D003500000000000000000000
+          000000000000000000000000000000000000000000000060E897003D8BCD761F
+          00000000000000208BCD76082551102EAA220FA0E89700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -1121,10 +1121,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabRev: TAdvTabSheet
         Caption = 'Rev'
@@ -1132,10 +1128,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabServo: TAdvTabSheet
         Caption = 'Servo'
@@ -1143,10 +1135,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabCon: TAdvTabSheet
         Caption = 'Con'
@@ -1154,10 +1142,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabTVLS: TAdvTabSheet
         Caption = 'TV-LS'
@@ -1165,10 +1149,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
     end
   end
@@ -1404,10 +1384,6 @@ object frmMainFCC: TfrmMainFCC
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lblIDTargetIND: TLabel
             Left = 3
             Top = 13
@@ -1534,10 +1510,6 @@ object frmMainFCC: TfrmMainFCC
           ParentFont = False
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
     end

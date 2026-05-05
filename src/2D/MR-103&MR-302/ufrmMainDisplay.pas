@@ -267,6 +267,8 @@ type
 
     FStartTime: TDateTime;
 
+    FOwnShipHeading : Double;
+
     procedure LoadGeoset(const aGst: string); virtual;
     procedure InitializeForm();
     procedure setRegionCircle;
@@ -649,7 +651,8 @@ begin
   if Assigned(FCCManager) then
   begin
     if Assigned(FCCManager.xShip) then
-      Angle    := Round(FCCManager.xShip.Heading); // rojek add buat mutar angle sesuai arah kapal
+      Angle    := Round(FOwnShipHeading); // rojek add buat mutar angle sesuai arah kapal
+//      lblFccHeading.Caption := FOwnShipHeading.ToString;
   end;
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
@@ -657,6 +660,7 @@ begin
   labelsfont.Color := clYellow;
   labelsfont.Size := 10;
   StartAngle := BaseAngle + Angle;
+//  lblStartAngle.Caption := startangle.ToString;
 
   diffBeetwinWH := (pnlSituationZone.Width - pnlSituationZone.Height) div 2;
 
@@ -1971,6 +1975,7 @@ begin
   lblSystemTimeVal.Caption := FormatDateTime('hh:nn:ss',now);
 
   imgCompas.Repaint;
+  frmMainFCC.Repaint;
 
 //  lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
 
@@ -2040,6 +2045,7 @@ begin
   EdtSpeedNAVIVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
 //  edtSpeedINDVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
   EdtHeadingNAVIVal.Text := FormatFloat('0', FCCManager.xShip.Heading);
+  FOwnShipHeading := FCCManager.xShip.Heading;
 //  edtHeadingINDVal.Text := FormatFloat('0', FCCManager.xShip.Heading);
 //  lblEta.Caption := FormatDateTime('hh:nn:ss',now);
 //  lblUTCTime.Caption := FormatDateTime('hh:nn:ss',TTimeZone.Local.ToUniversalTime(Now));

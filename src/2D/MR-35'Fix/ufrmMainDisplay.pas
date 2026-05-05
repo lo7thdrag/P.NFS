@@ -663,7 +663,6 @@ begin
     FillRect(ClipRect); // clears the drawing area
   end;
 
-  Angle := 0;
   if Assigned(FCCManager) then
   begin
     if Assigned(FCCManager.xShip) then
