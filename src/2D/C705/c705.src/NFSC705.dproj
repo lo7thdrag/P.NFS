@@ -87,7 +87,7 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_DcuOutput>..\c705.bin\comp</DCC_DcuOutput>
-        <Debugger_RunParams>-127.0.0.1 -2120 -localhost -mysql -dbNSuFs -root -T3server! -29 -11</Debugger_RunParams>
+        <Debugger_RunParams>-127.0.0.1 -2120 -127.0.0.1 -mysql -dbNSuFs -root -T3server! -51 -5</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -143,7 +143,6 @@
         </DCCReference>
         <DCCReference Include="libMgr\uScriptC705.pas"/>
         <DCCReference Include="..\..\ShareLib\LibNetworks\uTCPClient.pas"/>
-        <DCCReference Include="..\..\ShareLib\LibNetworks\uTCPDatatype.pas"/>
         <DCCReference Include="libMgr\uC705SimManager.pas"/>
         <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseDataType.pas"/>
         <DCCReference Include="libDisplayUI\FrmTab\uFrmINSTest.pas">
@@ -169,6 +168,7 @@
         <DCCReference Include="libObjects\uShipView.pas"/>
         <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseFunction.pas"/>
         <DCCReference Include="..\..\ShareLib\LibBaseSystem\uBaseConstan.pas"/>
+        <DCCReference Include="..\..\ShareLib\LibNetworks\uTCPDatatype.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

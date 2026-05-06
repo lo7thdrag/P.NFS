@@ -25,7 +25,6 @@ uses
   uFrmChannelSelect in 'libDisplayUI\FrmTab\uFrmChannelSelect.pas' {frmChannelSelect},
   uScriptC705 in 'libMgr\uScriptC705.pas',
   uTCPClient in '..\..\ShareLib\LibNetworks\uTCPClient.pas',
-  uTCPDatatype in '..\..\ShareLib\LibNetworks\uTCPDatatype.pas',
   uC705SimManager in 'libMgr\uC705SimManager.pas',
   uBaseDataType in '..\..\ShareLib\LibBaseSystem\uBaseDataType.pas',
   uFrmINSTest in 'libDisplayUI\FrmTab\uFrmINSTest.pas' {frmINSTest},
@@ -44,7 +43,8 @@ uses
   uMapViewBase in 'libObjects\uMapViewBase.pas',
   uShipView in 'libObjects\uShipView.pas',
   uBaseFunction in '..\..\ShareLib\LibBaseSystem\uBaseFunction.pas',
-  uBaseConstan in '..\..\ShareLib\LibBaseSystem\uBaseConstan.pas';
+  uBaseConstan in '..\..\ShareLib\LibBaseSystem\uBaseConstan.pas',
+  uTCPDatatype in '..\..\ShareLib\LibNetworks\uTCPDatatype.pas';
 
 {$R *.res}
 
