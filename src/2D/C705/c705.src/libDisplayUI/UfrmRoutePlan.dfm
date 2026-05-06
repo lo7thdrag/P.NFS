@@ -10716,7 +10716,7 @@ object frmRoutePlan: TfrmRoutePlan
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100007078D02901000000AC9137771C000000000000000000000000
+          0100011801000018160C2C010000000C9298771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -10725,15 +10725,15 @@ object frmRoutePlan: TfrmRoutePlan
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100007078D02901000000880300C01C00000000000000000000000000000000
+          01000018160C2C01000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E8E19700FD8A3A761F
-          00000000000000E08A3A7690F79D10A5E0E56928E29700000000000000000000
+          000000000000000000000000000000000000000000000018F097003D8B1B751F
+          00000000000000208B1B7568CD032C35E0735558F09700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -11747,6 +11747,10 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object advtsPage3: TAdvTabSheet
           Caption = 'Page3'
@@ -11754,6 +11758,10 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object advgrpbxTgtInfoPg3: TAdvGroupBox
             Left = 5
             Top = 3
@@ -12359,6 +12367,10 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
       end
     end
@@ -12793,6 +12805,10 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
       end
     end
@@ -15150,6 +15166,10 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object advtsPoint: TAdvTabSheet
           Caption = 'Point'
@@ -15157,6 +15177,10 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object advtsIsl: TAdvTabSheet
           Caption = 'Isl.'
@@ -15164,6 +15188,10 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object advtsLand: TAdvTabSheet
           Caption = 'Land'
@@ -15171,8 +15199,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = -4
-          ExplicitTop = 26
           object btnExit_ObstacleInfo: TSpeedButtonImage
             Tag = 3
             Left = 3

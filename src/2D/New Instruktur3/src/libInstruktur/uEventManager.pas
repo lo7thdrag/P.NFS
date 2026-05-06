@@ -25,7 +25,8 @@ type
   TEventManager = class
   private
     function getConsoleName(aID : Integer): string;
-    function GetMessage(LogEvent: TLogEvent; IDConsole,IDEvent: Integer):string; 
+    function GetMessage(LogEvent: TLogEvent; IDConsole,IDEvent: Integer):string;
+
   public
     pShipID, pClassID : Integer;
 

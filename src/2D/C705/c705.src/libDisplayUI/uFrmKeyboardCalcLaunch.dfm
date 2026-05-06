@@ -2483,7 +2483,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
     ParentBackground = False
     TabOrder = 0
     object imgLaunch2: TImage
-      Tag = 2
+      Tag = 1
       Left = 7
       Top = 53
       Width = 72
@@ -2624,7 +2624,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       OnClick = imgLaunchClick
     end
     object imgLaunch1: TImage
-      Tag = 1
+      Tag = 2
       Left = 115
       Top = 53
       Width = 72
@@ -3284,5 +3284,11 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       Font.Style = []
       ParentFont = False
     end
+  end
+  object tmrClearFiring: TTimer
+    Enabled = False
+    OnTimer = tmrClearFiringTimer
+    Left = 608
+    Top = 48
   end
 end

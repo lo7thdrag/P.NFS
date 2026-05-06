@@ -126,7 +126,14 @@ begin
   begin
     // Laptop atau single monitor
     frmWCC.Show;
-    frmRoutePlan.Hide;
+    frmRoutePlan.Show;
+
+    frmKeyboardCalcLaunch.Left := 1050;
+    frmKeyboardCalcLaunch.Top := 850;
+    frmKeyboardCalcLaunch.Show;
+    frmKeyboardCalcLaunch.SendToBack;
+
+    frmRoutePlan.BringToFront;
   end
   else
   begin

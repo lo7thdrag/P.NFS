@@ -329,6 +329,8 @@ type
     FRouteList: TObjectList<TRoutePlanning>;
     FWaypointViews: TObjectList<TWaypointView>;
 
+    FSelectMode : Boolean;
+
     function FindShipAt(X,Y: Integer): TShipContact;
     function FindWaypointAtScreen(X, Y: Integer): TWaypoint;
 
@@ -341,7 +343,7 @@ type
     procedure MapMove;
   public
     { Public declarations }
-    FSelectMode : Boolean;
+
     FSelectedBearing, FSelectedRange : Double;
     strPath: string;
 
@@ -351,6 +353,8 @@ type
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
     procedure SetTopMonitor(aMoniHeight: Integer);
     procedure SetFormMonitor(aForm: TForm; aMonitorIndex: Integer);
+
+    property SelectMode: Boolean read FSelectMode write FSelectMode;
 
   end;
 
@@ -709,7 +713,7 @@ begin
   FBitmapBackground := TBitmap.Create;
   FBitmapBackground.Height := imgMapBackground.Height;
   FBitmapBackground.Width := imgMapBackground.Width;
-  FBitmapBackground.Canvas.Brush.Color := clBlack; // new color
+  FBitmapBackground.Canvas.Brush.Color := clWhite;//clBlack; // new color
   FBitmapBackground.Canvas.FillRect(Rect(0, 0, FBitmapBackground.Width, FBitmapBackground.Height));
 
   imgMapBackground.Picture.Assign(FBitmapBackground);
@@ -848,6 +852,10 @@ begin
   if SimManager.RoutePlanMode = mPassive then
   begin
     pnlModeOperasi.Caption := 'Passive Mode';
+  end
+  else if SimManager.RoutePlanMode = mFiring then
+  begin
+    pnlModeOperasi.Caption := 'Firing Mode';
   end;
 
 end;
@@ -1068,14 +1076,17 @@ begin
 
   if Assigned(TargetObj) then
   begin
-    VehicleMgr.SelectedTargetID := TargetObj.ID;
-    FMap.Refresh;
+    if (SimManager.RoutePlanMode = mFiring) then
+    begin
+      VehicleMgr.SelectedTargetID := TargetObj.ID;
+      FMap.Refresh;
+    end;
 
     lblNav_LongShip.Caption := (TargetObj.Lon).ToString;
     lblNav_LatShip.Caption := (TargetObj.Lat).ToString;
   end;
 
-  if FSelectMode then
+  if FSelectMode and (SimManager.RoutePlanMode = mFiring) then
   begin
     OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
 //    FMap.ConvertCoord(X, Y, Long, Lati, miMapToScreen);
@@ -1083,6 +1094,12 @@ begin
     FSelectedRange := range * C_NauticalMile_To_Metre;
     FSelectedBearing := CalcBearing(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
 
+    //VehicleMgr.SelectedTargetID := TargetObj.ID;
+    //VehicleMgr.isFiring := False;
+
+    // Ganti Cursor ke bentuk semula
+    FMap.MousePointer := miDefaultCursor;
+    FMap.CurrentTool := miArrowTool;
   end;
 
 end;
@@ -1183,12 +1200,27 @@ var
   OwnShip: TShipContact;
 begin
   FSelectMode := False;
+  SimManager.RoutePlanMode := mPassive;
+  FMap.MousePointer := miDefaultCursor;
+
   case (Sender as TSpeedButton).Tag of
     0: begin
       {$REGION 'Operating Mode'}
-      FMap.CurrentTool := miArrowTool;
+      //FMap.CurrentTool := miCrossCursor;
+      FMap.MousePointer := miCrossCursor;
       FSelectMode := True;
+
+      SimManager.RoutePlanMode := mFiring;
+      (Sender as TSpeedButton).Tag := 100;
       {$ENDREGION}
+    end;
+    100: begin
+      FMap.MousePointer := miDefaultCursor;
+      FMap.CurrentTool := miArrowTool;
+      FSelectMode := False;
+
+      SimManager.RoutePlanMode := mPassive;
+      (Sender as TSpeedButton).Tag := 0;
     end;
     1: begin
       {$REGION 'Optimal Proportion'}

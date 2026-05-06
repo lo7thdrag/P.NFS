@@ -19,6 +19,9 @@ type
 
 implementation
 
+uses
+  uC705SimManager;
+
 { TShipView }
 
 constructor TShipView.Create(aMap: TMap; aVehicleMgr: TVehicleManager);
@@ -105,7 +108,9 @@ begin
       Ship.ID.ToString
     );
 
-    if Ship.ID = FVehicleMgr.SelectedTargetID then
+    if (Ship.ID = FVehicleMgr.SelectedTargetID)
+      and (SimManager.RoutePlanMode = mFiring)
+       then
     begin
       aCnv.Pen.Color := clYellow;
       aCnv.Brush.Style := bsClear;
@@ -122,7 +127,10 @@ begin
   OwnShip := FVehicleMgr.FindObjectByID(VOwnShip.ShipID);
   TargetObj  := FVehicleMgr.FindObjectByID(FVehicleMgr.SelectedTargetID);
 
-  if Assigned(OwnShip) and Assigned(TargetObj) then
+  if Assigned(OwnShip) and Assigned(TargetObj)
+    and (SimManager.RoutePlanMode = mfiring)
+    {and FVehicleMgr.isFiring}
+      then
   begin
 
     FMap.ConvertCoord(xOwn, yOwn, OwnShip.Lon, OwnShip.Lat, miMapToScreen);

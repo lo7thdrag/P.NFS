@@ -616,6 +616,32 @@ begin
 
       OnLogPacket('mLncrBearing :' + FloatToStr(recCmdC705^.mTargetBearing));
       OnLogPacket('mLncRange :' + FloatToStr(recCmdC705^.mTargetRange));
+
+      case recCmdC705^.OrderID of
+        __ORD_ID_Loading_C705: begin
+          //recCmdC705.status := ST_MISSILE_LOADED;
+
+          if Assigned(OnLogPacket) then
+          begin
+            if recCmdC705^.mLauncherID = 1 then
+              OnLogPacket('mLauncherID :' + IntToStr(recCmdC705^.mLauncherID) + 'Ini Launcher Port')
+            else if recCmdC705^.mLauncherID = 2 then
+              OnLogPacket('mLauncherID :' + IntToStr(recCmdC705^.mLauncherID) + 'Ini Launcher Starboard');
+          end;
+        end;
+
+        __ORD_ID_Fire_C705: begin
+          //recCmdC705.status := ST_MISSILE_RUN;
+
+          if Assigned(OnLogPacket) then
+          begin
+            if recCmdC705^.mLauncherID = 1 then
+              OnLogPacket('mLauncherID :' + IntToStr(recCmdC705^.mLauncherID) + 'Ini Launcher Port')
+            else if recCmdC705^.mLauncherID = 2 then
+              OnLogPacket('mLauncherID :' + IntToStr(recCmdC705^.mLauncherID) + 'Ini Launcher Starboard');
+          end;
+        end;
+      end;
     end
     else if pc.ID = REC_3D_RBU then
     begin

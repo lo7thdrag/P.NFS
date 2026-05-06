@@ -67,10 +67,12 @@ type
     Label5: TLabel;
     imgBtnReset: TImage;
     Label6: TLabel;
+    tmrClearFiring: TTimer;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure imgLaunchClick(Sender: TObject);
+    procedure tmrClearFiringTimer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -87,7 +89,7 @@ var
 implementation
 
 uses
-  UfrmRoutePlan;
+  UfrmRoutePlan, uVehicleManager;
 
 {$R *.dfm}
 
@@ -106,19 +108,47 @@ end;
 
 procedure TfrmKeyboardCalcLaunch.imgLaunchClick(Sender: TObject);
 var
-recDataC705 : TRec_Data_C705;
+  recDataC705 : TRec_Data_C705;
+  LauncherID, MissileSlot  : Integer;
 begin
 
+  { Kalau bukan mode Firing }
+  if SimManager.RoutePlanMode <> mFiring then
+    Exit;
+
+  { Kalau tidak dapat input dari INSTRUKTUR }
   if not SimManager.isReadyToLaunchC705 then
     Exit;
 
-  //
+  LauncherID := ((Sender as TImage).Tag);
+  if (LauncherID < 1) or (LauncherID > 2) then Exit;
+  missileSlot := SimManager.GetAvailableSlot(LauncherID);
+
+                //         for now
+  if not SimManager.IsLauncherLoaded(LauncherID) then
+  begin
+    ShowMessage('Belum Load dari Instruktur');
+    Exit;
+  end;
+
+  if missileSlot = 0 then
+  begin
+    ShowMessage('Missile habis!');
+    Exit;
+  end;
+
+  // tandai kepakai
+  SimManager.MarkSlotUsed(LauncherID, missileSlot);
+
 //  frmRoutePlan.FSelectedBearing
   recDataC705.ShipID := VOwnShip.ShipID;
   recDataC705.mWeaponID := VOwnShip.WeaponId;
-  recDataC705.mLauncherID := (Sender as TImage).Tag;
-  recDataC705.mMissileID := 1;
-  recDataC705.mMissileNumber := 0;
+  recDataC705.mLauncherID := LauncherID;
+  //recDataC705.mMissileID := 1;
+  //recDataC705.mMissileID := SimManager.GetMissileCount(LauncherID);
+  recDataC705.mMissileID := missileSlot; // 2 lalu 1
+  recDataC705.mMissileNumber := 1;
+  //recDataC705.mMissileNumber := SimManager.GetMissileCount(LauncherID);
   //recDataC705.OrderID := 0; // harusnya diganti per command, misal fire, atau yang lain
   recDataC705.OrderID := __ORD_ID_Fire_C705;
   recDataC705.mTargetBearing := frmRoutePlan.FSelectedBearing;
@@ -126,6 +156,24 @@ begin
   recDataC705.mTargetId := 0;
 
   SimManager.netNFS_OnSendDataC705(recDataC705);
+
+  // RESET TARGET
+  VehicleMgr.SelectedTargetID := -1;
+
+  SimManager.RoutePlanMode := mPassive;
+
+//  frmRoutePlan.lblStatusMap.Caption :=
+//  'Launched | PORT: ' + SimManager.GetLauncherStateStr(1) +
+//  ' | STBD: ' + SimManager.GetLauncherStateStr(2);
+//
+//  frmRoutePlan.lblStatusMap.Caption :=
+//    'Launched | STBD: ' + IntToStr(SimManager.GetMissileCount(1)) +
+//      ' | PORT: ' + IntToStr(SimManager.GetMissileCount(2));
+
+  frmRoutePlan.lblStatusMap.Caption := 'Missile Launched';
+
+  tmrClearFiring.Interval := 2000; // 2 detik
+  tmrClearFiring.Enabled := True;
 
   if VIdentSetting.ModeDebug then
     ShowMessage('No, INS Done fire');
@@ -178,6 +226,17 @@ begin
 
   if VIdentSetting.ModeDebug then
     ShowMessage('Keyboard Top=' + IntToStr(frmKeyboardCalcLaunch.Top));
+end;
+
+procedure TfrmKeyboardCalcLaunch.tmrClearFiringTimer(Sender: TObject);
+begin
+  VehicleMgr.IsFiring := False;
+  VehicleMgr.SelectedTargetID := 0; // INI YANG HILANGKAN GARIS
+
+  frmRoutePlan.FMap.Refresh;
+  frmRoutePlan.lblStatusMap.Caption := '';
+
+  tmrClearFiring.Enabled := False;
 end;
 
 end.

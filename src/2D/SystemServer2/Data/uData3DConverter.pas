@@ -143,9 +143,10 @@ const
   REC_3D_WCC        = 63;
 
   REC_DATA_C7053D         = 69; //------- End C705 -----------
-//    __ORD_C705_FIRE          = 1;
-//    __ORD_C705_RADAR_ASSIGN  = 2;
-//    __ORD_C705_LOADING       = 3;
+  //REC_DATA_C705         = 69; //------- End C705 -----------
+    __ORD_ID_Fire_C705          = 1;
+    __ORD_ID_Loading_C705       = 2;
+//    __ORD_C705_RADAR_ASSIGN  = 3;
 //    __ORD_C705_ON            = 4;
 //    __ORD_C705_OFF           = 5;
 //    __ORD_C705_TAKE_OFF      = 6;

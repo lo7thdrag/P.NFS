@@ -12,12 +12,17 @@ type
     FNFSObjectList: TObjectList;
     FSelectedTargetID: Integer;
   public
+    isFiring: Boolean;
+
     constructor Create;
     destructor Destroy; override;
 
     function FindObjectByID(const aID: Integer): TShipContact;
     procedure UpdateObjectList(AShipInfo: PRecData3DPosition);
     procedure DeleteObjectByID(AID: Integer);
+
+    procedure StartFiring;
+    procedure StopFiring;
 
     property NFSObjectList: TObjectList read FNFSObjectList;
     property SelectedTargetID: Integer read FSelectedTargetID write FSelectedTargetID;
@@ -63,6 +68,17 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TVehicleManager.StartFiring;
+begin
+  isFiring := True;
+end;
+
+procedure TVehicleManager.StopFiring;
+begin
+  isFiring := False;
+  SelectedTargetID := 0;
 end;
 
 procedure TVehicleManager.UpdateObjectList(AShipInfo: PRecData3DPosition);

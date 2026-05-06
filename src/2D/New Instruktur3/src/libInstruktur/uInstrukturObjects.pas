@@ -697,11 +697,15 @@ interface
       OpenCoverLauncherC705   : Boolean;
       Firing     : Boolean;
       {CAP        : Boolean;}
+      LauncherNumber: Integer;
 
       LauncherPortMissile1,
       LauncherPortMissile2,
       LauncherStarboardMissile1,
       LauncherStarboardMissile2: TStatusWeapon;
+
+      RemainingMissile: Integer;     // sisa missile
+      MaxMissile: Integer;       // kapasitas
 
       constructor Create(Const aParent : TInsObject; aMap: TMap); override;
       destructor Destroy; override;
@@ -1936,6 +1940,9 @@ begin
   LauncherPortMissile2 := tsOff;
   LauncherStarboardMissile1 := tsOff;
   LauncherStarboardMissile2 := tsOff;
+
+  MaxMissile := 2;
+  RemainingMissile := 2;
 
 end;
 

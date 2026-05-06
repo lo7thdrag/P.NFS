@@ -712,7 +712,6 @@ type
     procedure LoadImageLight(Aimage: TImage; imgStat: string);
     procedure LoadingStatus(ShipID, WeaponID, LauncherID, MissileID: Byte; Status : TStatusWeapon);
     procedure LabelingAsrocMT(ShipID, WeaponID, LauncherID, MissileID : Byte; MissileType : TTypeMissileAsroc );
-
   end;
 const
   LoadImgOff        = '..\data\images\NFS instruktur - interface\imageIns\light\GRAY.bmp';
@@ -3276,6 +3275,13 @@ begin
   if SimManager.TrackObject = nil then exit;
   id := TCheckBox(sender).Tag;
 
+  // kalau Enable dimatikan -> paksa semua ikut mati
+  if not chkC705Enable.Checked then
+  begin
+    chkSafetyIgnitionC705.Checked := False;
+    chkOpenCoverLauncherC705.Checked := False;
+  end;
+
   //set object
   for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
   begin
@@ -3312,10 +3318,14 @@ end;
 
 procedure TfWeaponStatus.btnC705LoadingClick(Sender: TObject);
 var
-  i: Integer;
+  i, j,
+  launcherID, missileID: Integer;
 
   WeaponShip: TWeaponOnShip;
   WeaponC705: TWeaponOn_C705;
+
+  recsendc705 : TRec_Data_C705;
+  arMissile : array[0..1] of Integer;
 begin
   if SimManager.TrackObject = nil then  Exit;
 
@@ -3327,9 +3337,41 @@ begin
     begin
       WeaponC705 := TWeaponOn_C705(WeaponShip);
 
-      if WeaponC705.Weapon_Launcher = 0 then
-      begin
+      if TComponent(Sender).Tag = 1 then begin
+        launcherID := 1;    // Port
+      end
+      else if TComponent(Sender).Tag = 2 then begin
+        launcherID := 2;    // Starboard
+      end;
 
+      if WeaponC705.Weapon_Launcher = launcherID then
+      begin
+        if WeaponC705.EnableC705 then begin
+          missileID := -1;
+
+          if ((cbbC705Starboard.Text = '1') and (launcherID = 2))
+          or ((cbbC705Port.Text = '1') and (launcherID = 1)) then
+            missileID := 1
+          else if ((cbbC705Starboard.Text = '2') and (launcherID = 2))
+          or ((cbbC705Port.Text = '2') and (launcherID = 1)) then
+            missileID := 2;
+
+          if missileID = -1 then Exit;
+
+          // INI YANG PENTING — SET STATE DULU
+          WeaponC705.MaxMissile := 2; // kalau belum ada, tambahin di class
+          WeaponC705.RemainingMissile := WeaponC705.MaxMissile;
+
+          recsendC705.shipID                  := SimManager.TrackObject.FDataBaseID;
+          recsendC705.mWeaponID               := WeaponC705.Weapon_ID;
+          recsendC705.mLauncherID             := launcherID;
+          recsendC705.mMissileID              := missileID;
+          //recsendC705.mMissileNumber          := 1;
+          recsendC705.mMissileNumber          := 1;//WeaponC705.RemainingMissile;
+          recsendC705.OrderID                 := __ORD_ID_Loading_C705;
+
+          SimManager.NetSendTo3D_OrderMissileC705(recsendC705);
+        end;
       end;
     end;
   end;
@@ -3386,6 +3428,7 @@ begin
       case WeaponShip.Weapon_ID of
         C_DBID_ASROC :
         begin
+          {$REGION 'C_DBID_ASROC'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
             rzgrpAsroc.Visible := True;
@@ -3526,10 +3569,12 @@ begin
               btnASROCDeAssign1FC.Enabled := false;
             end;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL :
         begin
+          {$REGION 'C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpRBU6000.Visible := True;
@@ -3751,10 +3796,12 @@ begin
 
 
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_TORPEDO_SUT :
         begin
+          {$REGION 'C_DBID_TORPEDO_SUT'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
             rzgrpTocos.Visible := True;
@@ -3867,10 +3914,12 @@ begin
               tsLaunch : LoadImageLight(imgLoadTocos2, LoadImgRunning);
             end;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_TORPEDO_A244S :
         begin
+          {$REGION 'C_DBID_TORPEDO_A244S'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpSPS115.Visible := True;
@@ -3990,10 +4039,12 @@ begin
             end;
 
           end
+          {$ENDREGION}
         end;
 
         C_DBID_TETRAL :
         begin
+          {$REGION 'C_DBID_TETRAL'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpTetral.Visible := True;
@@ -4071,10 +4122,12 @@ begin
               tsLaunch : LoadImageLight(imgLoadAFTTet4, LoadImgRunning);
             end;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_C802 :
         begin
+          {$REGION 'C_DBID_C802'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpC802.Visible := True;
@@ -4172,10 +4225,12 @@ begin
             end;
           end;
 
+          {$ENDREGION}
         end;
 
         C_DBID_YAKHONT :
         begin
+          {$REGION 'C_DBID_YAKHONT'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpYakhont.Visible := True;
@@ -4268,10 +4323,12 @@ begin
             end;
 
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_MISTRAL  :
         begin
+          {$REGION 'C_DBID_MISTRAL'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpMistral.Visible := True;
@@ -4320,10 +4377,12 @@ begin
               tsLaunch : LoadImageLight(imgLoadRightMis2, LoadImgRunning);
             end;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_STRELA  :
         begin
+          {$REGION 'C_DBID_STRELA'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpStrela.Visible := True;
@@ -4408,10 +4467,12 @@ begin
             end;
 
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_EXOCET_MM40 :
         begin
+          {$REGION 'C_DBID_EXOCET_MM40'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpExocetMM40.Visible := True;
@@ -4543,10 +4604,12 @@ begin
             end;
 
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_CANNON35  :
         begin
+          {$REGION 'C_DBID_CANNON35'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
               rzgrpMilleniumGun35.Visible := True;
@@ -4567,10 +4630,12 @@ begin
             chkMilleniumGun35EnableCannon.OnClick := Cannon35ChkClick;
             chkMilleniumGun35CAP.OnClick := Cannon35ChkClick;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_CANNON40  :
         begin
+          {$REGION 'C_DBID_CANNON40'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
             // rzgrpCannon40.Visible := True;
@@ -4586,10 +4651,12 @@ begin
             //chkCannon40EnableCannon.Checked := WeaponCannon40.EnableCannon40;
             //chkCannon40EnableCannon.OnClick := Cannon40ChkClick;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL  :
         begin
+          {$REGION 'C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              //rzgrpCannon57.Visible := True;
@@ -4605,10 +4672,12 @@ begin
             //chkCannon57enableWeaphon.Checked := WeaponCannon57.EnableCannon57;
            // chkCannon57enableWeaphon.OnClick := Cannon57ChkClick;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_CANNON_AK230  :
         begin
+          {$REGION 'C_DBID_CANNON_AK230'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
 
@@ -4620,10 +4689,12 @@ begin
             WeaponCannonAK230 := TWeaponOn_CannonAK230(weaponship);
 
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_TORPEDO_BLACKSHARK  :
         begin
+          {$REGION 'C_DBID_TORPEDO_BLACKSHARK'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
 
@@ -4635,10 +4706,12 @@ begin
             WeaponBlackshark := TWeaponOn_Blackshark(weaponship);
 
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_CANNON_TYPE_730  :
         begin
+          {$REGION 'C_DBID_CANNON_TYPE_730'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
 
@@ -4650,11 +4723,12 @@ begin
             WeaponCAnnonType730 := TWeaponOn_CannonType730(weaponship);
 
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_CANNON76  :
         begin
-
+          {$REGION 'C_DBID_CANNON76'}
           chkCannon76CAP.Visible:= False;
           if (SimManager.TrackObject.ObjClassID=10) then begin
             chkCannon76CAP.Visible:= True;
@@ -4680,6 +4754,7 @@ begin
             chkCannon76.OnClick := Cannon76ChkClick;
             chkCannon76CAP.OnClick:= Cannon76ChkClick;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_CANNON120 :
@@ -4689,6 +4764,7 @@ begin
 
         C_DBID_MOCCONSOLE :
         begin
+          {$REGION 'C_DBID_MOCCONSOLE'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpMOCsigma.Visible := True;
@@ -4715,11 +4791,13 @@ begin
             chkMocLirodMK2.OnClick   := MOCChkClick;
             chkMocKingklip.OnClick   := MOCChkClick;
           end;
+          {$ENDREGION}
         end;
 
 
         C_DBID_MOCPKRCONSOLE :
         begin
+          {$REGION 'C_DBID_MOCPKRCONSOLE'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpMOCPKR.Visible := True;
@@ -4758,10 +4836,12 @@ begin
             chkMOCPKR_FIS_OPS.OnClick  := MOCPKRChkClick;
             chkMOCPKR_Check_Fire.OnClick  := MOCPKRChkClick;
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_VLMICA :
         begin
+          {$REGION 'C_DBID_VLMICA'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpVLMica.Visible := True;
@@ -4790,6 +4870,8 @@ begin
             chkVLMicaFA.OnClick := VLMicaChkClick;
             chkVLMicaAmmoTest.OnClick := VLMicaChkClick;
             chkVLMicaCAP.OnClick := VLMicaChkClick;
+
+            cbbLoadVLMica.ItemIndex := 0;
 
             //loading port Missile 1
             case WeaponVLMica.Missile1 of
@@ -4876,10 +4958,12 @@ begin
             end;
 
           end;
+          {$ENDREGION}
         end;
 
         C_DBID_C705 :
         begin
+          {$REGION 'C_DBID_C705'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
              rzgrpC705.Visible := True;
@@ -4896,10 +4980,18 @@ begin
           lblC705PortLauncher2.Visible := False;
           imgLoadC705PortLauncher1.Visible := False;
           imgLoadC705PortLauncher2.Visible := False;
-
+             {
           cbbC705Port.Clear;
           cbbC705Port.Items.Add('1');
           cbbC705Port.Items.Add('2');
+            }
+          cbbC705Port.ItemIndex := 0;
+          {
+          cbbC705Starboard.Clear;
+          cbbC705Starboard.Items.Add('1');
+          cbbC705Starboard.Items.Add('2');
+           }
+          cbbC705Starboard.ItemIndex := 0;
 
           if SimManager.TrackObject.ObjClassID = 5 then begin // C_DBID_C705 = 23
             lblC705StarboardLauncher1.Visible := True;
@@ -4933,45 +5025,46 @@ begin
             //if WeaponC705.Firing then
             if WeaponC705.EnableC705 then
             begin
-              chkSafetyIgnitionC705.Enabled   := True;
-              chkOpenCoverLauncherC705.Enabled   := True;
+              chkSafetyIgnitionC705.Enabled     := True;
+              chkOpenCoverLauncherC705.Enabled  := True;
             end
             else
             begin
-              chkSafetyIgnitionC705.Enabled   := False;
-              chkOpenCoverLauncherC705.Enabled   := False;
+              chkSafetyIgnitionC705.Enabled     := False;
+              chkOpenCoverLauncherC705.Enabled  := False;
             end;
 
             //loading Launcher Starboard 1
             case WeaponC705.LauncherStarboardMissile1 of
-              tsOff : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgOff);
+              tsOff     : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgLoading);
-              tsLaunch : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgRunning);
+              tsLaunch  : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgRunning);
             end;
 
             //loading Launcher Starboard 2
             case WeaponC705.LauncherStarboardMissile2 of
-              tsOff : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgOff);
+              tsOff     : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgLoading);
-              tsLaunch : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgRunning);
+              tsLaunch  : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgRunning);
             end;
 
             //loading Launcher Port 1
             case WeaponC705.LauncherPortMissile1 of
-              tsOff : LoadImageLight(imgLoadC705PortLauncher1, LoadImgOff);
+              tsOff     : LoadImageLight(imgLoadC705PortLauncher1, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadC705PortLauncher1, LoadImgLoading);
-              tsLaunch : LoadImageLight(imgLoadC705PortLauncher1, LoadImgRunning);
+              tsLaunch  : LoadImageLight(imgLoadC705PortLauncher1, LoadImgRunning);
             end;
 
             //loading Launcher 2
             case WeaponC705.LauncherPortMissile2 of
-              tsOff : LoadImageLight(imgLoadC705PortLauncher2, LoadImgOff);
+              tsOff     : LoadImageLight(imgLoadC705PortLauncher2, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadC705PortLauncher2, LoadImgLoading);
-              tsLaunch : LoadImageLight(imgLoadC705PortLauncher2, LoadImgRunning);
+              tsLaunch  : LoadImageLight(imgLoadC705PortLauncher2, LoadImgRunning);
             end;
 
 
           end;
+          {$ENDREGION}
         end;
 
       end;
@@ -5551,7 +5644,8 @@ begin
             end
             else
             begin
-              missileID  := StrToInt(cbbLoadVLMica.Text);
+              missileID := cbbLoadVLMica.ItemIndex + 1;
+              //missileID  := StrToInt(cbbLoadVLMica.Text);
               RecSendVLMica.mMissileID := missileID;
               SimManager.NetSendTo3D_OrderMissileVLMica(RecSendVLMica);
             end;
@@ -5587,7 +5681,7 @@ var
   WeaponExocet40   : TWeaponOn_EXOCET40;
   WeaponRBU        : TWeaponOn_RBU;
   WeaponVLMica     : TWeaponOn_VLMICA;
-
+  WeaponC705       : TWeaponOn_C705;
 begin
   for i := 0 to SimManager.MainObjList.ItemCount-1 do
   begin
@@ -5930,6 +6024,37 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+          end;
+
+        end
+        else if (WeaponShip is TWeaponOn_C705) and (WeaponID = C_DBID_C705) then
+        begin
+          WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
+          if WeaponShip is TWeaponOn_C705 then
+          begin
+            WeaponC705 := TWeaponOn_C705(WeaponShip);
+
+            case LauncherID of
+              1 :   // Port
+              begin
+                WeaponC705.LauncherNumber := 1;
+                case MissileID of
+                  1 : WeaponC705.LauncherPortMissile1 := Status;
+                  2 : WeaponC705.LauncherPortMissile2 := Status;
+                end;
+              end;
+              2 :   // Starboard
+              begin
+                WeaponC705.LauncherNumber := 2;
+                case MissileID of
+                  1 : WeaponC705.LauncherStarboardMissile1 := Status;
+                  2 : WeaponC705.LauncherStarboardMissile2 := Status;
+                end;
+              end;
+            end;
+
+            frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
+            //frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.lblShowPanelFrom.Caption := 'LoadingStatus';
           end;
 
         end

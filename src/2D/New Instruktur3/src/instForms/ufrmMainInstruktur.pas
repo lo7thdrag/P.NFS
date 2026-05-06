@@ -147,6 +147,8 @@ type
     procedure MainMapClick(Sender: TObject);
     procedure btnAddVehicleClick(Sender: TObject);
     procedure btnSelectArrowClick(Sender: TObject);
+    procedure pnlMainMenuMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
 //    TimerDestroy : TTimer;
@@ -3101,6 +3103,17 @@ begin
   end;
 
 //  Application.Terminate;
+end;
+
+procedure TfrmMainInstruktur.pnlMainMenuMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  // Buat handle 1 monitor
+  {if (ssShift in Shift) then
+  begin
+    BorderStyle := bsSingle;
+  end;
+  }
 end;
 
 procedure TfrmMainInstruktur.btnAddVehicleClick(Sender: TObject);

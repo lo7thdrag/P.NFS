@@ -4238,7 +4238,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 883
           object lblNameSPS: TLabel
             Left = 159
             Top = 11
@@ -5019,7 +5018,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl4: TLabel
             Left = 145
             Top = 11
@@ -5143,7 +5141,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl200: TLabel
             Left = 145
             Top = 11
@@ -5331,7 +5328,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblExocetMM40Title: TLabel
             Left = 121
             Top = 11
@@ -5852,7 +5848,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblCannon76: TLabel
             Left = 146
             Top = 11
@@ -6070,7 +6065,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lbl3: TLabel
             Left = 146
             Top = 11
@@ -6131,7 +6125,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblVLMicaTitle: TLabel
             Left = 159
             Top = 11
@@ -6578,7 +6571,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 30
           object lblMilleniumGun35Title: TLabel
             Left = 104
             Top = 12
@@ -6775,7 +6767,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
           object lblC705Title: TLabel
             Left = 171
             Top = 11
@@ -6943,7 +6934,7 @@ object fWeaponStatus: TfWeaponStatus
             ParentFont = False
             TabOrder = 1
             object grpbxC705PortLauncher: TGroupBox
-              Left = 179
+              Left = 20
               Top = 16
               Width = 135
               Height = 99
@@ -7011,7 +7002,7 @@ object fWeaponStatus: TfWeaponStatus
                 Font.Style = [fsBold]
                 ParentFont = False
                 TabOrder = 0
-                OnClick = btnExocet40LoadingClick
+                OnClick = btnC705LoadingClick
               end
               object cbbC705Port: TComboBox
                 Left = 30
@@ -7028,13 +7019,11 @@ object fWeaponStatus: TfWeaponStatus
                 Text = '1'
                 Items.Strings = (
                   '1'
-                  '2'
-                  '3'
-                  '4')
+                  '2')
               end
             end
             object grpbxC705StarboardLauncher: TGroupBox
-              Left = 24
+              Left = 184
               Top = 16
               Width = 135
               Height = 99
@@ -7089,6 +7078,7 @@ object fWeaponStatus: TfWeaponStatus
                 ParentFont = False
               end
               object btnC705StarboardLoading: TButton
+                Tag = 2
                 Left = 30
                 Top = 68
                 Width = 75
@@ -7101,7 +7091,7 @@ object fWeaponStatus: TfWeaponStatus
                 Font.Style = [fsBold]
                 ParentFont = False
                 TabOrder = 0
-                OnClick = btnExocet40LoadingClick
+                OnClick = btnC705LoadingClick
               end
               object cbbC705Starboard: TComboBox
                 Left = 30
@@ -7118,9 +7108,7 @@ object fWeaponStatus: TfWeaponStatus
                 Text = '1'
                 Items.Strings = (
                   '1'
-                  '2'
-                  '3'
-                  '4')
+                  '2')
               end
             end
           end

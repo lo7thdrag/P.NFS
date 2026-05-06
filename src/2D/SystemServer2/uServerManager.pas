@@ -769,7 +769,7 @@ begin
   TcpServer3D.RegisterProcedure(REC_CMD_EXOCET_40, nil);
   TcpServer3D.RegisterProcedure(REC_CMD_DESIG_A244_3D, nil);
   TcpServer3D.RegisterProcedure(REC_CMD_VLMICA, nil);
-  TcpServer3D.RegisterProcedure(REC_DATA_C7053D, nil);
+  TcpServer3D.RegisterProcedure(REC_DATA_C705, nil);
   TcpServer3D.RegisterProcedure(REC_3D_STAT_ORDER_CONSOLE, nil);
   TcpServer3D.RegisterProcedure(REC_STAT_ORDER_CONSOLE, nil);
 
@@ -900,6 +900,7 @@ begin
   case pc.ID of
     REC_3D_TORPEDO_SUT:
       begin
+        {$REGION 'REC_3D_TORPEDO_SUT'}
         recTorpedoSut := @apRec^;
         if Assigned(OnLogReceived2D) then
           OnLogReceived2D('REC_3D_TORPEDO_SUT' + #13#10 +
@@ -932,9 +933,11 @@ begin
         recSenTorpedoSut.mTargetType := recTorpedoSut^.mTargetType;
 
         TcpServer3D.SendData(REC_3D_TORPEDO_SUT, recSenTorpedoSut);
+        {$ENDREGION}
       end;
     REC_3D_RBU:
       begin
+        {$REGION 'REC_3D_RBU'}
         recRBU := @apRec^;
 
         recSendRBU.ShipID := recRBU^.ShipID;
@@ -976,9 +979,11 @@ begin
         end;
 
         TcpServer3D.SendData(REC_3D_RBU, recSendRBU);
+        {$ENDREGION}
       end;
     REC_SPSS_ORDER:
       begin
+        {$REGION 'REC_SPSS_ORDER'}
         recA244 := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1061,9 +1066,11 @@ begin
           RecSend3DMissilePos.speed := 0.0;
           FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
         end;
+        {$ENDREGION}
       end;
     REC_3D_EXOCET:
       begin
+        {$REGION 'REC_3D_EXOCET'}
         recExocet := @apRec^;
         recSendExocet.ShipID := recExocet^.ShipID;
         recSendExocet.mWeaponID := recExocet^.mWeaponID;
@@ -1085,6 +1092,7 @@ begin
         recSendExocet.mTRange := recExocet^.mTRange;
 
         TcpServer3D.SendData(REC_3D_EXOCET, recSendExocet);
+        {$ENDREGION}
       end;
     {
       REC_3D_ASROCK:
@@ -1111,6 +1119,7 @@ begin
     }
     C_REC_CANNON:
       begin
+        {$REGION 'C_REC_CANNON'}
         RecvRecMeriam := @apRec^;
         if Assigned(OnLogReceived2D) then
           OnLogReceived2D('C_REC_CANNON' + #13#10 + 'shipID : ' +
@@ -1145,6 +1154,7 @@ begin
         RecSendMeriamTo3D.mBalistikID := RecvRecMeriam^.mBalistikID;
         RecSendMeriamTo3D.mSalvoRate := RecvRecMeriam^.mSalvoRate;
         TcpServer3D.SendData(C_REC_CANNON, RecSendMeriamTo3D);
+        {$ENDREGION}
       end;
     {
       REC_3D_WCC:
@@ -1187,6 +1197,7 @@ begin
     }
     REC_DATA_Yakhont:
       begin
+        {$REGION 'REC_DATA_Yakhont'}
         recYAHKONT := @apRec^;
         
         if Assigned(OnLogReceived2D) then begin
@@ -1243,10 +1254,11 @@ begin
 
           FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
         end;
-
+        {$ENDREGION}
       end;
     REC_DATA_C802:
       begin
+        {$REGION 'REC_DATA_C802'}
         recC802 := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1301,9 +1313,11 @@ begin
 
           FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
         end;
+        {$ENDREGION}
       end;
     REC_CMD_EXOCET_40:
       begin
+        {$REGION 'REC_CMD_EXOCET_40'}
         recExocetMM40 := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1432,10 +1446,11 @@ begin
 
           FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
         end;
-
+        {$ENDREGION}
       end;
     REC_CMD_TETRAL:
       begin
+        {$REGION 'REC_CMD_TETRAL'}
         recTetral := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1498,9 +1513,11 @@ begin
 
           FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
         end;
+        {$ENDREGION}
       end;
     REC_3D_UTIL_TOOLS:
       begin
+        {$REGION 'REC_3D_UTIL_TOOLS'}
         recUtilityTools := @apRec^;
         recSendUtiityTools.OrderID := recUtilityTools^.OrderID;
         recSendUtiityTools.c0 := recUtilityTools^.c0;
@@ -1512,9 +1529,11 @@ begin
         recSendUtiityTools.c5 := recUtilityTools^.c5;
         recSendUtiityTools.c6 := recUtilityTools^.c6;
         TcpServer3D.SendData(REC_3D_UTIL_TOOLS, recSendUtiityTools);
+        {$ENDREGION}
       end;
     REC_3D_SETCONTROL:
       begin
+        {$REGION 'REC_3D_SETCONTROL'}
         recActorController3d := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1545,9 +1564,11 @@ begin
         recSendActorController3d.r := recActorController3d^.r;
 
         TcpServer3D.SendData(REC_3D_SETCONTROL, recSendActorController3d);
+        {$ENDREGION}
       end;
     REC_3D_MISSILEPOS:
       begin
+        {$REGION 'REC_3D_MISSILEPOS'}
         Recv2dMissilePos := @apRec^;
         RecSendMissilePos.ShipID := Recv2dMissilePos^.ShipID;
         RecSendMissilePos.WeaponID := Recv2dMissilePos^.WeaponID;
@@ -1563,9 +1584,11 @@ begin
         RecSendMissilePos.speed := Recv2dMissilePos^.speed;
 
         TcpServer3D.SendData(REC_3D_MISSILEPOS, RecSendMissilePos);
+        {$ENDREGION}
       end;
     REC_3D_ORDER:
       begin
+        {$REGION 'REC_3D_ORDER'}
         RecvData3DOrder := @apRec^;
         if Assigned(OnLogReceived2D) then
           OnLogReceived2D('REC_3D_ORDER' + #13#10 + 'shipID : ' +
@@ -1585,9 +1608,11 @@ begin
         RecSendData3DOrder.coordinatZ := RecvData3DOrder^.coordinatZ;
 
         TcpServer3D.SendData(REC_3D_ORDER, RecSendData3DOrder);
+        {$ENDREGION}
       end;
     REC_3D_POSITION:
       begin
+        {$REGION 'REC_3D_POSITION'}
         Recv2DPos := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1624,9 +1649,11 @@ begin
         // end;
 
         TcpServer3D.SendData(REC3D_POSITION, RecSend2DPositionTo3D);
+        {$ENDREGION}
       end;
     REC_GUIDANCE:
       begin
+        {$REGION 'REC_GUIDANCE'}     
         recGuidance := @apRec^;
         recSendGuidance.ShipID := recGuidance^.ShipID;
         recSendGuidance.GuidanceID := recGuidance^.GuidanceID;
@@ -1647,9 +1674,11 @@ begin
         recSendGuidance.param6 := recGuidance^.param6;
         // |       | AbsAglOfst|          |
         TcpServer3D.SendData(REC_GUIDANCE, recSendGuidance);
+        {$ENDREGION}
       end;
     REC_SET_CHAFF:
       begin
+        {$REGION 'REC_SET_CHAFF'}
         recSetChaff := @apRec^;
         recSendChaff.ShipID := recSetChaff^.ShipID;
         recSendChaff.mLauncherID := recSetChaff^.mLauncherID;
@@ -1660,9 +1689,11 @@ begin
         recSendChaff.mPartNo := recSetChaff^.mPartNo;
 
         TcpServer3D.SendData(REC_SET_CHAFF, recSendChaff);
+        {$ENDREGION}
       end;
     REC_3D_TORPEDO_MK44:
       begin
+        {$REGION 'REC_3D_TORPEDO_MK44'}
         recTorpedoMK44order := @apRec^;
         recSendTorpedoMk44Order.ShipID := recTorpedoMK44order^.ShipID;
         recSendTorpedoMk44Order.OrderID := recTorpedoMK44order^.OrderID;
@@ -1672,9 +1703,11 @@ begin
         recSendTorpedoMk44Order.mGyroRunOut := recTorpedoMK44order^.mGyroRunOut;
 
         TcpServer3D.SendData(REC_3D_TORPEDO_MK44, recSendTorpedoMk44Order);
+        {$ENDREGION}
       end;
     REC_CMD_DESIG_A244:
       begin
+        {$REGION 'REC_CMD_DESIG_A244'}
         RecDesigA244 := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1690,9 +1723,11 @@ begin
         RecSendDesigA2443D.OrderID := RecDesigA244^.OrderID;
 
         TcpServer3D.SendData(REC_CMD_DESIG_A244_3D, RecSendDesigA2443D);
+        {$ENDREGION}
       end;
     REC_CMD_VLMICA:
       begin
+        {$REGION 'REC_CMD_VLMICA'}
         RecVLMica := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1751,6 +1786,7 @@ begin
 
           FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
         end;
+        {$ENDREGION}
       end;
 //    REC_CMD_SET_CAMERA_TARGET:
 //      begin
@@ -1766,6 +1802,7 @@ begin
 //      end;
     Rec_CMD_CAMERA_CONTROLLER:
       begin
+        {$REGION 'Rec_CMD_CAMERA_CONTROLLER'}
         RecCmdSetCameraControl := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1780,10 +1817,12 @@ begin
         RecCmdSetCameraControl3D.valueStr := RecCmdSetCameraControl^.valueStr;
 
         TcpServer3D.SendData(REC_CMD_SET_CAMERA_TARGET_3D, RecCmdSetCameraControl3D);
+        {$ENDREGION}
       end;
 
     REC_ENVI_3D:
       begin
+        {$REGION 'REC_ENVI_3D'}
         RecCmdSetEnvi := @apRec^;
 
         if Assigned(OnLogReceived2D) then
@@ -1809,9 +1848,11 @@ begin
         RecCmdSetEnvi3D.fogIntensity := RecCmdSetEnvi^.fogIntensity;
 
         TcpServer3D.SendData(REC_ENVI_3D, RecCmdSetEnvi3D);
+        {$ENDREGION}
       end;
 
     REC_Data_C705: begin
+      {$REGION 'REC_Data_C705'}
       RecDataFireC705 := @apRec^;
 
       if Assigned(OnLogReceived2D) then
@@ -1825,7 +1866,7 @@ begin
         OnLogReceived2D('mMissileNumber :' +
           IntToStr(RecDataFireC705^.mMissileNumber));
         OnLogReceived2D('OrderID :' + IntToStr(RecDataFireC705^.OrderID) +
-          'kalo 1 itu OrdID_C802_launch(1)');
+          ' - kalo 1 itu OrdID_C705_launch(1)');
         OnLogReceived2D('mTargetBearing :' +
           FloatToStr(RecDataFireC705^.mTargetBearing));
         OnLogReceived2D('mTargetRange :' + FloatToStr(RecDataFireC705^.mTargetRange));
@@ -1846,18 +1887,41 @@ begin
       RecDataFireC7053D.mTargetRange := RecDataFireC705^.mTargetRange;
       TcpServer3D.SendData(REC_DATA_C7053D, RecDataFireC7053D);
 
-      { // add if needed
-      if (RecDataFireC705^.OrderID = __ORD_C802_LOADING) then
+       // add if needed
+      if (RecDataFireC705^.OrderID = __ORD_ID_Loading_C705)
+        or (RecDataFireC705^.OrderID = __ORD_ID_Fire_C705)
+          then
       begin
         RecSend3DMissilePos.ShipID := RecDataFireC705^.ShipID;
         RecSend3DMissilePos.WeaponID := RecDataFireC705^.mWeaponID;
         RecSend3DMissilePos.launcherID := RecDataFireC705^.mLauncherID;
         RecSend3DMissilePos.missileID := RecDataFireC705^.mMissileID;
-        RecSend3DMissilePos.MissileNumber := RecDataFireC705^.mMissileNumber;
+        RecSend3DMissilePos.MissileNumber := 0;//RecDataFireC705^.mMissileNumber;
         RecSend3DMissilePos.status := 0;
         case RecDataFireC705^.OrderID of
-          __ORD_C802_LOADING:
+          __ORD_ID_Loading_C705: begin
             RecSend3DMissilePos.status := ST_MISSILE_LOADED;
+
+            if Assigned(OnLogReceived2D) then
+            begin
+              if RecSend3DMissilePos.launcherID = 1 then
+                OnLogReceived2D('mLauncherID :' + IntToStr(RecDataFireC705^.mLauncherID) + ' Ini Launcher Port')
+              else if RecSend3DMissilePos.launcherID = 2 then
+                OnLogReceived2D('mLauncherID :' + IntToStr(RecDataFireC705^.mLauncherID) + ' Ini Launcher Starboard');
+            end;
+          end;
+
+          __ORD_ID_Fire_C705: begin
+            RecSend3DMissilePos.status := ST_MISSILE_RUN;
+
+            if Assigned(OnLogReceived2D) then
+            begin
+              if RecSend3DMissilePos.launcherID = 1 then
+                OnLogReceived2D('mLauncherID :' + IntToStr(RecDataFireC705^.mLauncherID) + ' Ini Launcher Port')
+              else if RecSend3DMissilePos.launcherID = 2 then
+                OnLogReceived2D('mLauncherID :' + IntToStr(RecDataFireC705^.mLauncherID) + ' Ini Launcher Starboard');
+            end;
+          end;
         end;
         RecSend3DMissilePos.X := 0;
         RecSend3DMissilePos.y := 0;
@@ -1866,10 +1930,12 @@ begin
         RecSend3DMissilePos.speed := 0.0;
 
         FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
-      end;}
+      end
+      {$ENDREGION}
     end;
 
     REC_STAT_ORDER_CONSOLE: begin
+      {$REGION 'REC_STAT_ORDER_CONSOLE'}
       RecDataStatusConsole := @apRec^;
 
       if Assigned(OnLogReceived2D) then
@@ -1891,7 +1957,7 @@ begin
       RecDataStatusConsole3D.ErrorID := RecDataStatusConsole^.ErrorID;
       RecDataStatusConsole3D.ParamError := RecDataStatusConsole^.ParamError;
       TcpServer3D.SendData(REC_3D_STAT_ORDER_CONSOLE, RecDataStatusConsole3D);
-
+      {$ENDREGION}
     end;
 
     { REC_CMD_MISTRAL:
@@ -1938,6 +2004,7 @@ begin
 
   if pc.ID = REC_STAT_CANNON_SPLASH then
   begin
+    {$REGION 'REC_STAT_CANNON_SPLASH'}
     RecRecv := @apRec^;
 
     strWeapon := 'Unknown Cannon';
@@ -1959,9 +2026,11 @@ begin
         ' From Vehicle ' + IntToStr(RecRecv^.ShipID) + ' Splash @' + ' X : ' +
         FloatToStr(RecRecv^.PosX) + ' Y : ' + FloatToStr(RecRecv^.PosY) +
         ' Z : ' + FloatToStr(RecRecv^.PosZ));
+    {$ENDREGION}
   end
   else if pc.ID = REC_RECV_TORP_STATE then
   begin
+    {$REGION 'REC_RECV_TORP_STATE'}
     RecRecvTorpState := @apRec^;
     if Assigned(OnLogReceived2D) then
       OnLogReceived2D
@@ -1971,10 +2040,11 @@ begin
         IntToStr(RecRecvTorpState^.mLauncherID) + ' ' + 'mMissileID  ' +
         IntToStr(RecRecvTorpState^.mMissileID) + ' ' + 'isFind      ' +
         IntToStr(RecRecvTorpState^.isFind));
-
+    {$ENDREGION}
   end
   else if pc.ID = REC_STATUS_MESSAGE then
   begin
+    {$REGION 'REC_STATUS_MESSAGE'}
     RecRecvStatusMessage := @apRec^;
     if Assigned(OnLogReceived2D) then
       OnLogReceived2D
@@ -1984,6 +2054,7 @@ begin
         FloatToStr(RecRecvStatusMessage^.Cmd2) + '-' +
         FloatToStr(RecRecvStatusMessage^.Cmd3) + '-' +
         FloatToStr(RecRecvStatusMessage^.Cmd4));
+    {$ENDREGION}
   end
 end;
 
