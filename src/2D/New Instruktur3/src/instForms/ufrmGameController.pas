@@ -4499,15 +4499,35 @@ begin
     TorpSpeed := IntToStr(34);
   end;
 
-  if cbbLauncherID.Text = 'kiri' then
+  if cbbLauncherID.Text = 'Launcher 1' then                   //kiri
   begin
     Idlauncher := IntToStr(1);
     frmMainInstruktur.searchTorpSUT(1);
   end
-  else if cbbLauncherID.Text = 'kanan' then
+  else if cbbLauncherID.Text = 'Launcher 2' then
   begin
     Idlauncher := IntToStr(2);
     frmMainInstruktur.searchTorpSUT(2);
+  end
+  else if cbbLauncherID.Text = 'Launcher 3' then
+  begin
+    Idlauncher := IntToStr(3);
+    frmMainInstruktur.searchTorpSUT(3);
+  end
+  else if cbbLauncherID.Text = 'Launcher 4' then
+  begin
+    Idlauncher := IntToStr(4);
+    frmMainInstruktur.searchTorpSUT(4);
+  end
+  else if cbbLauncherID.Text = 'Launcher 5' then
+  begin
+    Idlauncher := IntToStr(5);
+    frmMainInstruktur.searchTorpSUT(5);
+  end
+  else if cbbLauncherID.Text = 'Launcher 6' then
+  begin
+    Idlauncher := IntToStr(6);
+    frmMainInstruktur.searchTorpSUT(6);
   end;
 
   isvalid := True;
@@ -4558,7 +4578,6 @@ begin
   begin
     RecSend.mT_ID := TargetID;
     RecSend.ShipID := shipID;
-//    RecSend.mWeaponID := C_DBID_TORPEDO_SUT;
     RecSend.mWeaponID := C_DBID_TORPEDO_BLACKSHARK;
     RecSend.mLauncherID := lcrID;
     RecSend.mMissileID := 0;          // MissileID
@@ -4578,7 +4597,6 @@ begin
       //Fire
       1:
         begin
-//          if (rangeTarget >= rangDeg.rangeMin) and (rangeTarget <= rangDeg.rangeMax) then
           if (StrToFloat(edtTorpSutRange.Text) > rangDeg.rangeMin) and (StrToFloat(edtTorpSutRange.Text) < rangDeg.rangeMax) then
           begin
             RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
@@ -5317,13 +5335,33 @@ begin
       begin
         if LauncherID = 1 then
         begin
-          launcher := 'kiri';
+          launcher := 'Launcher 1';
           frmMainInstruktur.searchTorpSUT(1);
         end
         else if LauncherID = 2 then
         begin
-          launcher := 'kanan';
+          launcher := 'Launcher 2';
           frmMainInstruktur.searchTorpSUT(2);
+        end
+        else if LauncherID = 3 then
+        begin
+          launcher := 'Launcher 3';
+          frmMainInstruktur.searchTorpSUT(3);
+        end
+        else if LauncherID = 4 then
+        begin
+          launcher := 'Launcher 4';
+          frmMainInstruktur.searchTorpSUT(4);
+        end
+        else if LauncherID = 5 then
+        begin
+          launcher := 'Launcher 5';
+          frmMainInstruktur.searchTorpSUT(5);
+        end
+        else if LauncherID = 6 then
+        begin
+          launcher := 'Launcher 6';
+          frmMainInstruktur.searchTorpSUT(6);
         end;
         pgtwTorpedoSUT.TabVisible := True;
 
@@ -5820,6 +5858,41 @@ begin
             else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
             begin
               AssignStatus(Vehicle.Vehicle_ID, C_DBID_RBU6000, Weapon.launcherID, 0, True);
+            end;
+          end
+          else if (ClientConsole.WeaponID = C_DBID_TORPEDO_BLACKSHARK) then
+          begin
+            if (ClientConsole.Cli_Status = 'RUNNING') and (ClientConsole.Cli_SHIPID = Vehicle.Vehicle_ID) then
+            begin
+              if (Weapon.launcherID = 1) and (ClientConsole.Cli_LAUNCHERID = 1) then
+              begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
+              end
+              else if (Weapon.launcherID = 2) and (ClientConsole.Cli_LAUNCHERID = 2) then
+              begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
+              end
+              else if (Weapon.launcherID = 3) and (ClientConsole.Cli_LAUNCHERID = 3) then
+              begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
+              end
+              else if (Weapon.launcherID = 4) and (ClientConsole.Cli_LAUNCHERID = 4) then
+              begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
+              end
+              else if (Weapon.launcherID = 5) and (ClientConsole.Cli_LAUNCHERID = 5) then
+              begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
+              end
+              else if (Weapon.launcherID = 6) and (ClientConsole.Cli_LAUNCHERID = 6) then
+              begin
+                AssignStatus(Vehicle.Vehicle_ID, C_DBID_MISTRAL, Weapon.launcherID, 0, False);
+              end;
+
+            end
+            else if (ClientConsole.Cli_Status = 'ONLINE') or (ClientConsole.Cli_Status = 'OFFLINE') then
+            begin
+              AssignStatus(Vehicle.Vehicle_ID, C_DBID_STRELA, Weapon.launcherID, 0, True);
             end;
           end;
         end;

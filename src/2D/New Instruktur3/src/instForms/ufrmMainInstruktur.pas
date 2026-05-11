@@ -3475,12 +3475,24 @@ begin
     o:= SimManager.MainObjList.getObject(j);
 
     if Assigned(o) and
-      (((TIMissileObject(o).WeaponID = 4) and
+      (((TIMissileObject(o).WeaponID = 21) and
       (TIMissileObject(o).LauncherID = 1) and
       (launcher = 1)) or
-      ((TIMissileObject(o).WeaponID = 4) and
+      ((TIMissileObject(o).WeaponID = 21) and
       (TIMissileObject(o).LauncherID = 2) and
       (launcher = 2))) and
+      (((TIMissileObject(o).WeaponID = 21) and
+      (TIMissileObject(o).LauncherID = 3) and
+      (launcher = 3)) or
+      ((TIMissileObject(o).WeaponID = 21) and
+      (TIMissileObject(o).LauncherID = 4) and
+      (launcher = 4))) and
+      (((TIMissileObject(o).WeaponID = 21) and
+      (TIMissileObject(o).LauncherID = 5) and
+      (launcher = 5)) or
+      ((TIMissileObject(o).WeaponID = 21) and
+      (TIMissileObject(o).LauncherID = 6) and
+      (launcher = 6))) and
       (TIMissileObject(o).ShipID = Vehicle.Vehicle_ID) then begin
       frmGameController.edtTampung.Text := '1';
       Break;
