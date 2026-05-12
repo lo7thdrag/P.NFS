@@ -184899,8 +184899,8 @@ object frmGameController: TfrmGameController
           object lblShipName1: TLabel
             Left = 0
             Top = 0
-            Width = 1486
-            Height = 74
+            Width = 80
+            Height = 18
             Align = alClient
             Alignment = taCenter
             Caption = 'Ship Name'
@@ -184911,8 +184911,6 @@ object frmGameController: TfrmGameController
             Font.Style = [fsBold]
             ParentFont = False
             Layout = tlCenter
-            ExplicitWidth = 80
-            ExplicitHeight = 18
           end
         end
         object pnl2: TPanel
@@ -187410,8 +187408,8 @@ object frmGameController: TfrmGameController
           object lblScenarioName: TLabel
             Left = 0
             Top = 0
-            Width = 1490
-            Height = 74
+            Width = 113
+            Height = 18
             Align = alClient
             Alignment = taCenter
             Caption = 'Scenario Name'
@@ -187422,8 +187420,6 @@ object frmGameController: TfrmGameController
             Font.Style = [fsBold]
             ParentFont = False
             Layout = tlCenter
-            ExplicitWidth = 113
-            ExplicitHeight = 18
           end
         end
         object pnlsprScen2: TPanel
@@ -189871,8 +189867,8 @@ object frmGameController: TfrmGameController
         object imgRuangIns: TImage
           Left = 1
           Top = 1
-          Width = 1424
-          Height = 928
+          Width = 1426
+          Height = 930
           Align = alClient
           AutoSize = True
           Picture.Data = {
@@ -206086,8 +206082,6 @@ object frmGameController: TfrmGameController
             882019000000000000007020F78D6FFD2F826400000000000000C0BECAB2D4FF
             0751917630A324DA410000000049454E44AE426082}
           Proportional = True
-          ExplicitWidth = 1426
-          ExplicitHeight = 930
         end
         object img3DNAFS: TImage
           Left = 1253
@@ -210298,7 +210292,7 @@ object frmGameController: TfrmGameController
                   Left = 8
                   Top = 34
                   Width = 146
-                  Height = 24
+                  Height = 28
                   TabOrder = 0
                   TabStop = False
                   Version = '1.2.1.2'
@@ -248043,6 +248037,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxTOCOS: TScrollBox
                   Left = 0
                   Top = 0
@@ -248949,6 +248947,10 @@ object frmGameController: TfrmGameController
                 ImageIndex = 1
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxAsroc: TScrollBox
                   Left = 0
                   Top = 0
@@ -249757,6 +249759,10 @@ object frmGameController: TfrmGameController
                 ImageIndex = 4
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxRBU6000: TScrollBox
                   Left = 0
                   Top = 0
@@ -250903,6 +250909,10 @@ object frmGameController: TfrmGameController
                 ImageIndex = 5
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxTorpedoA244: TScrollBox
                   Tag = 1
                   Left = 0
@@ -251881,6 +251891,10 @@ object frmGameController: TfrmGameController
                 ImageIndex = 6
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxWCC: TScrollBox
                   Left = 0
                   Top = 0
@@ -253199,6 +253213,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxTetral: TScrollBox
                   Left = 0
                   Top = 0
@@ -253827,6 +253845,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxMistral: TScrollBox
                   Left = 0
                   Top = 0
@@ -254434,6 +254456,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxStrella: TScrollBox
                   Left = 0
                   Top = 0
@@ -255043,6 +255069,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxExocetMM40: TScrollBox
                   Left = 0
                   Top = 0
@@ -256102,6 +256132,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxYakhont: TScrollBox
                   Left = 0
                   Top = 0
@@ -256874,6 +256908,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxC802: TScrollBox
                   Left = 0
                   Top = 0
@@ -257463,6 +257501,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxCannonAK230: TScrollBox
                   Left = 0
                   Top = 0
@@ -258261,6 +258303,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxMica: TScrollBox
                   Left = 0
                   Top = 0
@@ -258891,6 +258937,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxC705: TScrollBox
                   Left = 0
                   Top = 0

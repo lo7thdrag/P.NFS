@@ -4909,11 +4909,13 @@ begin
 
   if idlauncher = '1' then
   begin
-    MissileID := cbbA244MissID.ItemIndex + 1;
+    // cbbMissID1 = 2, 4, 6
+    MissileID := cbbA244MissID.ItemIndex + 1;    // port / Launcher 1
   end
   else if idlauncher = '2' then
   begin
-    MissileID := cbbA244MissID2.ItemIndex + 1;
+     // cbbMissID2 = 1, 3, 5
+    MissileID := cbbA244MissID2.ItemIndex + 1;   // stbd / Launcher 2
   end;
 //  ShowMessage(cbbA244MissID.Text);
 
@@ -8408,22 +8410,25 @@ begin
   begin
     GetCursorPos(p);
 
-    if lvWeapon.Selected.SubItems[1] = 'Automatic' then
+    if lvWeapon.Selected <> nil then
     begin
-      Exit;
-    end;
-    if lvWeapon.Selected.SubItems[1] = 'On' then
-    begin
-      pmLvWeapon.Items[0].Enabled := False;
-      pmLvWeapon.Items[1].Enabled := True;
-    end
-    else
-    begin
-      pmLvWeapon.Items[0].Enabled := True;
-      pmLvWeapon.Items[1].Enabled := False;
-    end;
+      if lvWeapon.Selected.SubItems[1] = 'Automatic' then
+      begin
+        Exit;
+      end;
+      if lvWeapon.Selected.SubItems[1] = 'On' then
+      begin
+        pmLvWeapon.Items[0].Enabled := False;
+        pmLvWeapon.Items[1].Enabled := True;
+      end
+      else
+      begin
+        pmLvWeapon.Items[0].Enabled := True;
+        pmLvWeapon.Items[1].Enabled := False;
+      end;
 
-    pmLvWeapon.Popup(p.X, p.Y);
+      pmLvWeapon.Popup(p.X, p.Y);
+    end;
   end;
 end;
 
