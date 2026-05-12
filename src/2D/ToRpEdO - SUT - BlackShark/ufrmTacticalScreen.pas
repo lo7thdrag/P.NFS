@@ -690,7 +690,9 @@ begin
 
 //  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
 
-  FMap.ZoomTo((Self.FCurrentRange) * 2, FMap.CenterX, FMap.CenterY);
+//  FMap.ZoomTo((Self.FCurrentRange) * 2, FMap.CenterX, FMap.CenterY);
+
+  FMap.ZoomTo(50 * 2, FMap.CenterX, FMap.CenterY);    // rojek coba map di zoom out
 
   BitMapLampGrey := TBitmap.Create;
   BitMapLampGreen := TBitmap.Create;
@@ -822,8 +824,10 @@ begin
     FMap.MapUnit := miUnitNauticalMile;
     FMap.CenterX := 112.75;
     fmap.CenterY := -7.2;
-    FMap.ZoomTo(Self.FCurrentRange * 2, FMap.CenterX, FMap.CenterY);
+//    FMap.ZoomTo(Self.FCurrentRange * 2, FMap.CenterX, FMap.CenterY);
+    FMap.ZoomTo(50* 2, FMap.CenterX, FMap.CenterY);
   end
+
 end;
 
 function TFrmTacticalScreen.MeterHeight: Integer;
@@ -988,18 +992,23 @@ begin
    Getsettingform(path, 'PANELBAWAH', idxPanelBawah, alPanelBawah,   xPanelBawah,  yPanelBawah);
 //   Getsettingform(path, 'BORDER',     bdrPanelAtas,  bdrPanelBawah,  bdrKeyboard,  bdrTemp);
 
-    case Screen.MonitorCount of
-      1 :
-        begin
-          AlignFormToMonitor(0, apLeftTop, 0, 0, TForm(frmTacticalScreen));
-          AlignFormToMonitor(0, apLeftTop, 0, 0, TForm(frmSupportScreen));
-        end;
-      2,3 :
-        begin
-          AlignFormToMonitor(idxPanelAtas, apLeftTop, 0, 0, TForm(frmTacticalScreen));
-          AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(frmSupportScreen));
-        end;
-    end;
+//test rojek
+//  frmTacticalScreen.Monitor := Screen.Monitors[idxPanelAtas];
+//  frmSupportScreen.Monitor := Screen.Monitors[idxPanelBawah];
+   AlignFormToMonitor(idxPanelAtas, apLeftTop, 0, 0, TForm(frmTacticalScreen));
+   AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(frmSupportScreen));
+//    case Screen.MonitorCount of
+//      1 :
+//        begin
+//          AlignFormToMonitor(0, apLeftTop, 0, 0, TForm(frmTacticalScreen));
+//          AlignFormToMonitor(0, apLeftTop, 0, 0, TForm(frmSupportScreen));
+//        end;
+//      2,3 :
+//        begin
+//          AlignFormToMonitor(idxPanelAtas, apLeftTop, 0, 0, TForm(frmTacticalScreen));
+//          AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(frmSupportScreen));
+//        end;
+//    end;
 end;
 
 procedure TFrmTacticalScreen.setRegionCircle;

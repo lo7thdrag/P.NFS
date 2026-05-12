@@ -906,7 +906,7 @@ begin
       end;
       3 : //MR 302
       begin
-        elevation := Power(rangem/3000, Exp(1.0)) * 45;
+        elevation := CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ);
       end;
     end;
 
