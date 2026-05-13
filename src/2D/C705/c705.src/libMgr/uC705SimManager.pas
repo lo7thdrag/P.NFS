@@ -24,10 +24,6 @@ type
 
     FOnMapInit: TOnMapInit;
 
-    //FLauncherMissileCount: array[1..2] of Integer;
-    FLauncherSlot: array[1..2, 1..2] of Boolean;
-    FLauncherLoaded: array[1..2] of Boolean;      // Flag sudah RELOAD atau BELUM
-
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
     procedure OnConnected(msg: string);
     procedure OnDisconnected(msg: string);
@@ -46,21 +42,19 @@ type
 
     NFSNetRecv: TTCPClient;
 
+    // TRUE  = EMPTY SLOT     // FALSE = MISSILE READY
+    FLauncherHasMissile: array[1..2] of Boolean;
+    //** “Saat ini launcher MASIH ADA missile” **
+
     constructor Create;
     destructor Destroy; override;
 
     procedure InitializeMap;
 
     function isReadyToLaunchC705: Boolean;
-    function isLauncherLoaded(aLauncherID: Integer): Boolean;
 
-    function GetAvailableSlot(aLauncherID: Integer): Integer;
-    function GetMissileCount(aLauncherID: Integer): Integer;
     function GetLauncherStateStr(aLauncherID: Integer): string;
 
-    function IsSlotAvailable(aLauncherID, aSlot: Integer): Boolean;
-    procedure MarkSlotUsed(aLauncherID, aSlot: Integer);
-    procedure MarkSlotAvailable(aLauncherID, aSlot: Integer);
     procedure ResetLauncher(aLauncherID: Integer);
 
     property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
@@ -113,12 +107,9 @@ begin
 
   // Load Missile
   for i := 1 to 2 do
-    for j := 1 to 2 do
-      FLauncherSlot[i,j] := True; // True = EMPTY / belum ada missile
-  {
-  FLauncherMissileCount[1] := 2;    // Starboard
-  FLauncherMissileCount[2] := 2;    // Port
-  }
+  begin
+    FLauncherHasMissile[i] := False;
+  end;
 
 //  FLauncherLoaded[1] := False;
 //  FLauncherLoaded[2] := False;
@@ -142,47 +133,15 @@ begin
   inherited;
 end;
 
-function GameSimManager.GetAvailableSlot(aLauncherID: Integer): Integer;
-var
-  i: Integer;
-begin
-  Result := 0;
-  for i := 1 to 2 do
-  begin
-    if not FLauncherSlot[aLauncherID, i] then
-    begin
-      Result := i;
-      Exit;
-    end;
-  end;
-end;
-
 function GameSimManager.GetLauncherStateStr(aLauncherID: Integer): string;
 var
   s1, s2: string;
 begin
-  if FLauncherSlot[aLauncherID,1] then
-    s1 := 'EMPTY'
+  // TRUE = EMPTY
+  if FLauncherHasMissile[aLauncherID] then
+    Result := 'READY'
   else
-    s1 := 'READY';
-
-  if FLauncherSlot[aLauncherID,2] then
-    s2 := 'EMPTY'
-  else
-    s2 := 'READY';
-
-  Result := '[' + s1 + ',' + s2 + ']';
-end;
-
-function GameSimManager.GetMissileCount(aLauncherID: Integer): Integer;
-var
-  i: Integer;
-begin
-  Result := 0;
-  for i := 1 to 2 do
-    if not FLauncherSlot[aLauncherID, i] then
-      Inc(Result);
-  //Result := FLauncherMissileCount[aLauncherID];
+    Result := 'EMPTY';
 end;
 
 // LoadMap, LoadGeoset pakai path
@@ -264,22 +223,19 @@ begin
     // MISSILE DI-LOAD (dari instructor)
     ST_MISSILE_LOADED:
     begin
-      FLauncherLoaded[Rec^.launcherID] := True;
-
-      // hanya slot yang dikirim dari instructor yang dibuka
-      MarkSlotAvailable(Rec^.launcherID, Rec^.missileID);
+      FLauncherHasMissile[Rec^.launcherID] := True;
     end;
 
     // MISSILE DITEMBAKKAN
     ST_MISSILE_RUN:
     begin
-      MarkSlotUsed(Rec^.launcherID, Rec^.missileID);
+      FLauncherHasMissile[Rec^.launcherID] := False;
     end;
 
     // MISSILE DIHAPUS / HABIS
     ST_MISSILE_DEL:
     begin
-      MarkSlotUsed(Rec^.launcherID, Rec^.missileID);
+      FLauncherHasMissile[Rec^.launcherID] := False;
     end;
 
   end;
@@ -315,11 +271,6 @@ end;
 
 {$ENDREGION}
 
-function GameSimManager.isLauncherLoaded(aLauncherID: Integer): Boolean;
-begin
-  Result := FLauncherLoaded[aLauncherID];
-end;
-
 function GameSimManager.IsReadyToLaunchC705: Boolean;
 begin
   Result :=
@@ -327,26 +278,9 @@ begin
       and FC705Status.SafetyIgnition;
 end;
 
-function GameSimManager.IsSlotAvailable(aLauncherID, aSlot: Integer): Boolean;
-begin
-  Result := not FLauncherSlot[aLauncherID, aSlot];
-end;
-
-procedure GameSimManager.MarkSlotAvailable(aLauncherID, aSlot: Integer);
-begin
-  if (aSlot >= 1) and (aSlot <= 2) then
-    FLauncherSlot[aLauncherID, aSlot] := False;
-end;
-
-procedure GameSimManager.MarkSlotUsed(aLauncherID, aSlot: Integer);
-begin
-  FLauncherSlot[aLauncherID, aSlot] := True;
-end;
-
 procedure GameSimManager.ResetLauncher(aLauncherID: Integer);
 begin
-  FLauncherSlot[aLauncherID, 1] := True;
-  FLauncherSlot[aLauncherID, 2] := True;
+  FLauncherHasMissile[aLauncherID] := False;
 
   // Reset -> Kosong semua
 end;

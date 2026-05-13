@@ -558,18 +558,18 @@ type
     chkSafetyIgnitionC705: TCheckBox;
     grpbxC705PortLauncher: TGroupBox;
     imgLoadC705PortLauncher1: TImage;
-    imgLoadC705PortLauncher2: TImage;
     lblC705PortLauncher1: TLabel;
-    lblC705PortLauncher2: TLabel;
     btnC705PortLoading: TButton;
     grpbxC705StarboardLauncher: TGroupBox;
     imgLoadC705StarboardLauncher1: TImage;
-    imgLoadC705StarboardLauncher2: TImage;
     lblC705StarboardLauncher1: TLabel;
-    lblC705StarboardLauncher2: TLabel;
     btnC705StarboardLoading: TButton;
-    cbbC705Starboard: TComboBox;
-    cbbC705Port: TComboBox;
+    lblStbdC7051: TLabel;
+    lblStbdC7052: TLabel;
+    lblPortC7052: TLabel;
+    lblPortC7051: TLabel;
+    lblShowPanelFrom: TLabel;
+    memoDebugState: TMemo;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -589,6 +589,8 @@ type
     procedure btnVLMicaLoadingClick(Sender: TObject);
     procedure btnC705AssignClick(Sender: TObject);
     procedure btnC705LoadingClick(Sender: TObject);
+    procedure grpC705StatusConsoleMouseDown(Sender: TObject;
+      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 
   private
     { Private declarations }
@@ -712,6 +714,8 @@ type
     procedure LoadImageLight(Aimage: TImage; imgStat: string);
     procedure LoadingStatus(ShipID, WeaponID, LauncherID, MissileID: Byte; Status : TStatusWeapon);
     procedure LabelingAsrocMT(ShipID, WeaponID, LauncherID, MissileID : Byte; MissileType : TTypeMissileAsroc );
+
+    procedure AddDebugLog(const S: string); // angga
   end;
 const
   LoadImgOff        = '..\data\images\NFS instruktur - interface\imageIns\light\GRAY.bmp';
@@ -2495,6 +2499,20 @@ begin
   end;
 end;
 
+procedure TfWeaponStatus.AddDebugLog(const S: string);
+//angga
+begin
+  with frmMainInstruktur.FrameControlLeft.FrameWeaponStatus do
+  begin
+    memoDebugState.Lines.Add(
+      FormatDateTime('hh:nn:ss.zzz', Now) + ' | ' + S
+    );
+
+    // auto scroll
+    memoDebugState.SelStart := Length(memoDebugState.Text);
+  end;
+end;
+
 procedure TfWeaponStatus.ASROCClickCheckBox(Sender: TObject);
 var
   i, id : Integer;
@@ -3117,6 +3135,22 @@ begin
   SimManager.NetSendStatConsole(ShipStrID, C_DBID_EXOCET_MM40, id , aParam);
 end;
 
+procedure TfWeaponStatus.grpC705StatusConsoleMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  if (ssShift in Shift) then
+  begin
+    lblPortC7051.Visible := not lblPortC7051.Visible;
+    lblPortC7052.Visible := not lblPortC7052.Visible;
+    lblStbdC7051.Visible := not lblStbdC7051.Visible;
+    lblStbdC7052.Visible := not lblStbdC7052.Visible;
+
+    memoDebugState.Visible := not memoDebugState.Visible;
+
+    lblShowPanelFrom.Visible := not lblShowPanelFrom.Visible;
+  end;
+end;
+
 { Sigma }
 procedure TfWeaponStatus.MOCChkClick(sender: Tobject);
 var
@@ -3338,36 +3372,27 @@ begin
       WeaponC705 := TWeaponOn_C705(WeaponShip);
 
       if TComponent(Sender).Tag = 1 then begin
-        launcherID := 1;    // Port
+        launcherID := 1;    // Starboard
       end
       else if TComponent(Sender).Tag = 2 then begin
-        launcherID := 2;    // Starboard
+        launcherID := 2;    // Port
       end;
 
       if WeaponC705.Weapon_Launcher = launcherID then
       begin
         if WeaponC705.EnableC705 then begin
-          missileID := -1;
-
-          if ((cbbC705Starboard.Text = '1') and (launcherID = 2))
-          or ((cbbC705Port.Text = '1') and (launcherID = 1)) then
-            missileID := 1
-          else if ((cbbC705Starboard.Text = '2') and (launcherID = 2))
-          or ((cbbC705Port.Text = '2') and (launcherID = 1)) then
-            missileID := 2;
-
-          if missileID = -1 then Exit;
+          missileID := 1;
 
           // INI YANG PENTING — SET STATE DULU
-          WeaponC705.MaxMissile := 2; // kalau belum ada, tambahin di class
-          WeaponC705.RemainingMissile := WeaponC705.MaxMissile;
+          //WeaponC705.MaxMissile := 2; // kalau belum ada, tambahin di class
+          //WeaponC705.RemainingMissile := WeaponC705.MaxMissile;
 
           recsendC705.shipID                  := SimManager.TrackObject.FDataBaseID;
           recsendC705.mWeaponID               := WeaponC705.Weapon_ID;
           recsendC705.mLauncherID             := launcherID;
           recsendC705.mMissileID              := missileID;
-          //recsendC705.mMissileNumber          := 1;
-          recsendC705.mMissileNumber          := 1;//WeaponC705.RemainingMissile;
+          recsendC705.mMissileNumber          := 1;
+          //recsendC705.mMissileNumber          := WeaponC705.RemainingMissile;
           recsendC705.OrderID                 := __ORD_ID_Loading_C705;
 
           SimManager.NetSendTo3D_OrderMissileC705(recsendC705);
@@ -4972,37 +4997,27 @@ begin
           frmMainInstruktur.cekStatusWeapon := 1;
 
           lblC705StarboardLauncher1.Visible := False;
-          lblC705StarboardLauncher2.Visible := False;
           imgLoadC705StarboardLauncher1.Visible := False;
-          imgLoadC705StarboardLauncher2.Visible := False;
 
           lblC705PortLauncher1.Visible := False;
-          lblC705PortLauncher2.Visible := False;
           imgLoadC705PortLauncher1.Visible := False;
-          imgLoadC705PortLauncher2.Visible := False;
              {
           cbbC705Port.Clear;
           cbbC705Port.Items.Add('1');
           cbbC705Port.Items.Add('2');
             }
-          cbbC705Port.ItemIndex := 0;
           {
           cbbC705Starboard.Clear;
           cbbC705Starboard.Items.Add('1');
           cbbC705Starboard.Items.Add('2');
            }
-          cbbC705Starboard.ItemIndex := 0;
 
           if SimManager.TrackObject.ObjClassID = 5 then begin // C_DBID_C705 = 23
             lblC705StarboardLauncher1.Visible := True;
-            lblC705StarboardLauncher2.Visible := True;
             imgLoadC705StarboardLauncher1.Visible := True;
-            imgLoadC705StarboardLauncher2.Visible := True;
 
             lblC705PortLauncher1.Visible := True;
-            lblC705PortLauncher2.Visible := True;
             imgLoadC705PortLauncher1.Visible := True;
-            imgLoadC705PortLauncher2.Visible := True;
           end;
 
           if weaponship is TWeaponOn_C705 then
@@ -5034,34 +5049,21 @@ begin
               chkOpenCoverLauncherC705.Enabled  := False;
             end;
 
-            //loading Launcher Starboard 1
-            case WeaponC705.LauncherStarboardMissile1 of
+            //loading Launcher Starboard
+            case WeaponC705.LauncherStbd of
               tsOff     : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgLoading);
               tsLaunch  : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgRunning);
             end;
+            lblstbdC7051.Caption := 'Stbd 1: ' + IntToStr(Ord(WeaponC705.LauncherStbd));
 
-            //loading Launcher Starboard 2
-            case WeaponC705.LauncherStarboardMissile2 of
-              tsOff     : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgOff);
-              tsLoading : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgLoading);
-              tsLaunch  : LoadImageLight(imgLoadC705StarboardLauncher2, LoadImgRunning);
-            end;
-
-            //loading Launcher Port 1
-            case WeaponC705.LauncherPortMissile1 of
+            //loading Launcher Port
+            case WeaponC705.LauncherPort of
               tsOff     : LoadImageLight(imgLoadC705PortLauncher1, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadC705PortLauncher1, LoadImgLoading);
               tsLaunch  : LoadImageLight(imgLoadC705PortLauncher1, LoadImgRunning);
             end;
-
-            //loading Launcher 2
-            case WeaponC705.LauncherPortMissile2 of
-              tsOff     : LoadImageLight(imgLoadC705PortLauncher2, LoadImgOff);
-              tsLoading : LoadImageLight(imgLoadC705PortLauncher2, LoadImgLoading);
-              tsLaunch  : LoadImageLight(imgLoadC705PortLauncher2, LoadImgRunning);
-            end;
-
+            lblPortC7051.Caption := 'Port 1: ' + IntToStr(Ord(WeaponC705.LauncherPort));
 
           end;
           {$ENDREGION}
@@ -5693,6 +5695,7 @@ begin
         WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
         if (WeaponShip is TWeaponOn_TOCOS) and (WeaponID = C_DBID_TORPEDO_SUT) then
         begin
+          {$REGION 'TWeaponOn_TOCOS'}
           WeaponTOCOS := TWeaponOn_TOCOS(WeaponShip);
 
           case LauncherID of
@@ -5704,12 +5707,14 @@ begin
 //          begin
             frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //          end;
+          {$ENDREGION}
         end
         else if (WeaponShip is TWeaponOn_SPS) and (WeaponID = C_DBID_TORPEDO_A244S) then
         begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_SPS then
           begin
+            {$REGION 'TWeaponOn_SPS'}
             WeaponSPS := TWeaponOn_SPS(WeaponShip);
 
             case LauncherID of
@@ -5734,7 +5739,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
-
+            {$ENDREGION}
           end;
 
         end
@@ -5743,6 +5748,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_ASROC then
           begin
+            {$REGION 'TWeaponOn_ASROC'}
             WeaponAsroc := TWeaponOn_ASROC(WeaponShip);
 
             case LauncherID of
@@ -5760,6 +5766,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //           end;
+            {$ENDREGION}
           end;
 
         end
@@ -5768,6 +5775,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_C802 then
           begin
+            {$REGION 'TWeaponOn_C802'}
             WeaponC802 := TWeaponOn_C802(WeaponShip);
 
             case LauncherID of
@@ -5781,6 +5789,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+            {$ENDREGION}
           end;
 
         end
@@ -5789,6 +5798,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_Yakhont then
           begin
+            {$REGION 'TWeaponOn_Yakhont'}
             WeaponYakhont := TWeaponOn_Yakhont(WeaponShip);
 
             case LauncherID of
@@ -5802,6 +5812,7 @@ begin
 //          begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+            {$ENDREGION}
           end;
 
         end
@@ -5810,6 +5821,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_Mistral then
           begin
+            {$REGION 'TWeaponOn_Mistral'}
             WeaponMistral := TWeaponOn_Mistral(WeaponShip);
 
             case LauncherID of
@@ -5833,6 +5845,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+            {$ENDREGION}
           end;
 
         end
@@ -5841,6 +5854,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_Strella then
           begin
+            {$REGION 'TWeaponOn_Strella'}
             WeaponStrela := TWeaponOn_Strella(WeaponShip);
 
             case LauncherID of
@@ -5868,6 +5882,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+            {$ENDREGION}
           end;
 
         end
@@ -5876,6 +5891,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_Tetral then
           begin
+            {$REGION 'TWeaponOn_Tetral'}
             WeaponTetral := TWeaponOn_Tetral(WeaponShip);
 
             case LauncherID of
@@ -5903,6 +5919,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+            {$ENDREGION}
           end;
 
         end
@@ -5911,6 +5928,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_EXOCET40 then
           begin
+            {$REGION 'TWeaponOn_EXOCET40'}
             WeaponExocet40 := TWeaponOn_EXOCET40(WeaponShip);
 
             case LauncherID of
@@ -5938,6 +5956,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+            {$ENDREGION}
           end;
 
         end
@@ -5946,6 +5965,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_RBU then
           begin
+            {$REGION 'TWeaponOn_RBU'}
             WeaponRBU := TWeaponOn_RBU(WeaponShip);
 
             case LauncherID of
@@ -5989,6 +6009,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+            {$ENDREGION}
           end;
 
         end
@@ -5997,6 +6018,7 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_VLMICA then
           begin
+            {$REGION 'TWeaponOn_VLMICA'}
             WeaponVLMica := TWeaponOn_VLMICA(WeaponShip);
 
             case LauncherID of
@@ -6024,6 +6046,7 @@ begin
 //            begin
               frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
 //            end;
+            {$ENDREGION}
           end;
 
         end
@@ -6032,29 +6055,29 @@ begin
           WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
           if WeaponShip is TWeaponOn_C705 then
           begin
+            {$REGION 'TWeaponOn_C705'}
             WeaponC705 := TWeaponOn_C705(WeaponShip);
 
             case LauncherID of
-              1 :   // Port
+              1 :   // Starboard
               begin
                 WeaponC705.LauncherNumber := 1;
-                case MissileID of
-                  1 : WeaponC705.LauncherPortMissile1 := Status;
-                  2 : WeaponC705.LauncherPortMissile2 := Status;
-                end;
+                WeaponC705.LauncherStbd := Status;
               end;
-              2 :   // Starboard
+              2 :   // Port
               begin
                 WeaponC705.LauncherNumber := 2;
-                case MissileID of
-                  1 : WeaponC705.LauncherStarboardMissile1 := Status;
-                  2 : WeaponC705.LauncherStarboardMissile2 := Status;
-                end;
+                WeaponC705.LauncherPort := Status;
               end;
             end;
 
+            frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.AddDebugLog(Format(
+              'STATUS -> ini di LoadingStatus | Port Missile = %d ;Stbd Missile = %d',
+                [Ord(WeaponC705.LauncherPort), Ord(WeaponC705.LauncherStbd)]));
+
             frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
             //frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.lblShowPanelFrom.Caption := 'LoadingStatus';
+            {$ENDREGION}
           end;
 
         end

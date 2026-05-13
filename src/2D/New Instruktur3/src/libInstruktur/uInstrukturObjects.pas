@@ -699,10 +699,8 @@ interface
       {CAP        : Boolean;}
       LauncherNumber: Integer;
 
-      LauncherPortMissile1,
-      LauncherPortMissile2,
-      LauncherStarboardMissile1,
-      LauncherStarboardMissile2: TStatusWeapon;
+      LauncherPort,
+      LauncherStbd: TStatusWeapon;
 
       RemainingMissile: Integer;     // sisa missile
       MaxMissile: Integer;       // kapasitas
@@ -1936,10 +1934,8 @@ begin
   {Firing := True;
   CAP := False;}
 
-  LauncherPortMissile1 := tsOff;
-  LauncherPortMissile2 := tsOff;
-  LauncherStarboardMissile1 := tsOff;
-  LauncherStarboardMissile2 := tsOff;
+  LauncherPort := tsOff;
+  LauncherStbd := tsOff;
 
   MaxMissile := 2;
   RemainingMissile := 2;

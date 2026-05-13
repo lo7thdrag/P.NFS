@@ -737,6 +737,10 @@ begin
 //          end;
 //        end;
 //      end;
+
+        frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.AddDebugLog(Format('RUN -> tsLaunch | Ship=%d L=%d M=%d',
+          [ShipID, LauncherID, MissileID]));
+
         frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.LoadingStatus(shipID, WeaponID, LauncherID, MissileID, tsLaunch);
     end;
 
@@ -807,6 +811,9 @@ begin
         end;
       end;
 
+      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.AddDebugLog(Format('DELETE -> tsOff | Ship=%d L=%d M=%d',
+        [ShipID, LauncherID, MissileID]));
+
       // cek status Image Gray
       frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.LoadingStatus(shipID, WeaponID, LauncherID, MissileID, tsOff);
       frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.LabelingAsrocMT(shipID, WeaponID, LauncherID, MissileID, tsEmpty);
@@ -815,6 +822,9 @@ begin
 
     ST_MISSILE_LOADED :
     begin
+      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.AddDebugLog(Format('LOADD -> tsLoading | Ship=%d L=%d M=%d',
+        [ShipID, LauncherID, MissileID]));
+
       // cek status Green
       frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.LoadingStatus(shipID, WeaponID, LauncherID, MissileID, tsLoading);
 
