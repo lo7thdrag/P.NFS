@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000F0112F1001000000D4E097001C000000000000000000000000
+              01000118010000F0112F1001000000D50ED5741C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183312,8 +183312,8 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000597B0D1E0000000004
-              E59700B4E09700000000006688CE50000200006B88CE50000000000000000000
+              000000000000000000000000000000000000000000000000000000C8E7970078
+              E39700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -184899,8 +184899,8 @@ object frmGameController: TfrmGameController
           object lblShipName1: TLabel
             Left = 0
             Top = 0
-            Width = 80
-            Height = 18
+            Width = 1486
+            Height = 74
             Align = alClient
             Alignment = taCenter
             Caption = 'Ship Name'
@@ -184911,6 +184911,8 @@ object frmGameController: TfrmGameController
             Font.Style = [fsBold]
             ParentFont = False
             Layout = tlCenter
+            ExplicitWidth = 80
+            ExplicitHeight = 18
           end
         end
         object pnl2: TPanel
@@ -187408,8 +187410,8 @@ object frmGameController: TfrmGameController
           object lblScenarioName: TLabel
             Left = 0
             Top = 0
-            Width = 113
-            Height = 18
+            Width = 1490
+            Height = 74
             Align = alClient
             Alignment = taCenter
             Caption = 'Scenario Name'
@@ -187420,6 +187422,8 @@ object frmGameController: TfrmGameController
             Font.Style = [fsBold]
             ParentFont = False
             Layout = tlCenter
+            ExplicitWidth = 113
+            ExplicitHeight = 18
           end
         end
         object pnlsprScen2: TPanel
@@ -189867,8 +189871,8 @@ object frmGameController: TfrmGameController
         object imgRuangIns: TImage
           Left = 1
           Top = 1
-          Width = 1426
-          Height = 930
+          Width = 1424
+          Height = 928
           Align = alClient
           AutoSize = True
           Picture.Data = {
@@ -206082,6 +206086,8 @@ object frmGameController: TfrmGameController
             882019000000000000007020F78D6FFD2F826400000000000000C0BECAB2D4FF
             0751917630A324DA410000000049454E44AE426082}
           Proportional = True
+          ExplicitWidth = 1426
+          ExplicitHeight = 930
         end
         object img3DNAFS: TImage
           Left = 1253
@@ -210292,7 +210298,7 @@ object frmGameController: TfrmGameController
                   Left = 8
                   Top = 34
                   Width = 146
-                  Height = 28
+                  Height = 24
                   TabOrder = 0
                   TabStop = False
                   Version = '1.2.1.2'
@@ -248059,10 +248065,6 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object scrlbxTOCOS: TScrollBox
                   Left = 0
                   Top = 0
@@ -251888,6 +251890,10 @@ object frmGameController: TfrmGameController
                 ImageIndex = 3
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object lblInfo: TLabel
                   Left = 307
                   Top = 136

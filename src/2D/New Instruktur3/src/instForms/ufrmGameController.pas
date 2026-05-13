@@ -7886,9 +7886,9 @@ var
   RecSend: TRecCmdSetCameraTarget;
   rec: TRec_CameraController;
 begin
-  // rojek Send Free Cam Move
-  rec.cmd := TRzShapeButton(Sender).Tag; // tag sama dengan ord_id_Camcon_
-  rec.valueInt := 1; // 1 = move : 0 = stop
+  // rojek Send Free Cam Move  __ORD_ID_CAMCON_StartMove
+  rec.cmd := __ORD_ID_CAMCON_StartMove; // tag sama dengan ord_id_Camcon_
+  rec.valueInt := TRzShapeButton(Sender).Tag; // 1 = move : 0 = stop
   rec.valueDbl := 0;
 
   SimManager.NetSendTo3D_CommandCamera(@rec);
@@ -7901,8 +7901,8 @@ var
   rec: TRec_CameraController;
 begin
   // rojek Send Free Cam Move
-  rec.cmd := TRzShapeButton(Sender).Tag; // tag sama dengan ord_id_Camcon_
-  rec.valueInt := 0; // 1 = move : 0 = stop
+  rec.cmd := __ORD_ID_CAMCON_StopMove; // tag sama dengan ord_id_Camcon_
+  rec.valueInt := TRzShapeButton(Sender).Tag; // 1 = move : 0 = stop
   rec.valueDbl := 0;
 
   SimManager.NetSendTo3D_CommandCamera(@rec);
