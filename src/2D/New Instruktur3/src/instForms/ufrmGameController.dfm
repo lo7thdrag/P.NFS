@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000088436B2A0100000005FAA9761C000000000000000000000000
+              01000118010000F0112F1001000000D4E097001C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              01000088436B2A01000000000000001C00000000000000000000000000000000
+              010000F0112F1001000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000060CE970010
-              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
+              0000000000000000000000000000000000000000000000597B0D1E0000000004
+              E59700B4E09700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -210424,7 +210424,7 @@ object frmGameController: TfrmGameController
                 TabOrder = 0
                 TMSStyle = 0
                 object btnCamMoveUp: TRzShapeButton
-                  Tag = 12
+                  Tag = 23
                   Left = 141
                   Top = 59
                   Width = 128
@@ -211074,6 +211074,8 @@ object frmGameController: TfrmGameController
                     6966706966706966706966706966706966706966706966706966706966706966
                     706966706966}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424DC66A00000000000036000000280000007C00000037000000010020000000
                     0000906A00000000000000000000000000000000000070696600706966007069
@@ -212788,7 +212790,7 @@ object frmGameController: TfrmGameController
                     660070696600}
                 end
                 object btnCamMoveLef: TRzShapeButton
-                  Tag = 10
+                  Tag = 22
                   Left = 108
                   Top = 92
                   Width = 60
@@ -213444,6 +213446,8 @@ object frmGameController: TfrmGameController
                     6966706966706966706966706966706966706966706966706966706966706966
                     706966706966706966706966706966706966}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424DD66B0000000000003600000028000000380000007B000000010020000000
                     0000A06B00000000000000000000000000000000000070696600706966007069
@@ -215174,7 +215178,7 @@ object frmGameController: TfrmGameController
                     66007069660070696600706966007069660070696600}
                 end
                 object btnCamMoveRight: TRzShapeButton
-                  Tag = 13
+                  Tag = 24
                   Left = 241
                   Top = 92
                   Width = 60
@@ -215830,6 +215834,10 @@ object frmGameController: TfrmGameController
                     6966706966706966706966706966706966706966706966706966706966706966
                     706966706966706966706966706966706966}
                   BorderStyle = bsNone
+                  ParentShowHint = False
+                  ShowHint = False
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424DD66B0000000000003600000028000000380000007B000000010020000000
                     0000A06B00000000000000000000000000000000000070696600706966007069
@@ -217560,7 +217568,7 @@ object frmGameController: TfrmGameController
                     66007069660070696600706966007069660070696600}
                 end
                 object btnCamMoveDown: TRzShapeButton
-                  Tag = 14
+                  Tag = 25
                   Left = 140
                   Top = 191
                   Width = 128
@@ -218221,6 +218229,8 @@ object frmGameController: TfrmGameController
                     6670696670696670696670696670696670696670696670696670696670696670
                     6966706966706966706966706966706966706966706966706966}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424DB66C00000000000036000000280000007C00000038000000010020000000
                     0000806C00000000000000000000000000000000000070696600706966007069
@@ -219965,7 +219975,7 @@ object frmGameController: TfrmGameController
                     66007069660070696600706966007069660070696600}
                 end
                 object btnCamMoveForward: TRzShapeButton
-                  Tag = 11
+                  Tag = 26
                   Left = 164
                   Top = 113
                   Width = 82
@@ -220248,6 +220258,8 @@ object frmGameController: TfrmGameController
                     6670696670696670696670696670696670696670696670696670696670696670
                     69667069667069667069667069667069667069660000}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424D4E2D00000000000036000000280000004E00000025000000010020000000
                     0000182D00000000000000000000000000000000000070696600655E5C005C57
@@ -220978,7 +220990,7 @@ object frmGameController: TfrmGameController
                     6600706966007069660070696600}
                 end
                 object btnCamMoveBack: TRzShapeButton
-                  Tag = 15
+                  Tag = 27
                   Left = 164
                   Top = 152
                   Width = 82
@@ -221261,6 +221273,8 @@ object frmGameController: TfrmGameController
                     555D58555D58555D58555D58555D58555D58555D58555D58555D58555D58555D
                     58555D58555D58555D58555D5755655F5C7069660000}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424D4E2D00000000000036000000280000004E00000025000000010020000000
                     0000182D00000000000000000000000000000000000070696600706966007069
@@ -222061,7 +222075,7 @@ object frmGameController: TfrmGameController
                 TabOrder = 2
                 TMSStyle = 0
                 object btnCamRotateOldUp: TRzShapeButton
-                  Tag = 7
+                  Tag = 19
                   Left = 141
                   Top = 59
                   Width = 128
@@ -222711,6 +222725,8 @@ object frmGameController: TfrmGameController
                     6966706966706966706966706966706966706966706966706966706966706966
                     706966706966}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424DC66A00000000000036000000280000007C00000037000000010020000000
                     0000906A00000000000000000000000000000000000070696600706966007069
@@ -224425,7 +224441,7 @@ object frmGameController: TfrmGameController
                     660070696600}
                 end
                 object btnCamRotateOldLeft: TRzShapeButton
-                  Tag = 6
+                  Tag = 18
                   Left = 108
                   Top = 91
                   Width = 60
@@ -225081,6 +225097,8 @@ object frmGameController: TfrmGameController
                     6966706966706966706966706966706966706966706966706966706966706966
                     706966706966706966706966706966706966}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424DD66B0000000000003600000028000000380000007B000000010020000000
                     0000A06B00000000000000000000000000000000000070696600706966007069
@@ -226811,7 +226829,7 @@ object frmGameController: TfrmGameController
                     66007069660070696600706966007069660070696600}
                 end
                 object btnCamRotateOldRight: TRzShapeButton
-                  Tag = 8
+                  Tag = 20
                   Left = 241
                   Top = 92
                   Width = 60
@@ -227467,6 +227485,8 @@ object frmGameController: TfrmGameController
                     6966706966706966706966706966706966706966706966706966706966706966
                     706966706966706966706966706966706966}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424DD66B0000000000003600000028000000380000007B000000010020000000
                     0000A06B00000000000000000000000000000000000070696600706966007069
@@ -229197,7 +229217,7 @@ object frmGameController: TfrmGameController
                     66007069660070696600706966007069660070696600}
                 end
                 object btnCamRotateOldDown: TRzShapeButton
-                  Tag = 9
+                  Tag = 21
                   Left = 140
                   Top = 191
                   Width = 128
@@ -229858,6 +229878,8 @@ object frmGameController: TfrmGameController
                     6670696670696670696670696670696670696670696670696670696670696670
                     6966706966706966706966706966706966706966706966706966}
                   BorderStyle = bsNone
+                  OnMouseDown = btnFreeMoveMouseDown
+                  OnMouseUp = btnFreeMoveMouseUp
                   BitmapUp = {
                     424DB66C00000000000036000000280000007C00000038000000010020000000
                     0000806C00000000000000000000000000000000000070696600706966007069
@@ -231614,7 +231636,7 @@ object frmGameController: TfrmGameController
                   Fill.Rounding = 0
                   Fill.ShadowOffset = 0
                   Fill.Glow = gmNone
-                  Caption.Text = 'Camera Rotate 2'
+                  Caption.Text = 'Camera Rotate'
                   Caption.Font.Charset = DEFAULT_CHARSET
                   Caption.Font.Color = clWindowText
                   Caption.Font.Height = -11
@@ -231622,7 +231644,7 @@ object frmGameController: TfrmGameController
                   Caption.Font.Style = [fsBold]
                   Caption.ColorStart = clSilver
                   Caption.ColorEnd = clWhite
-                  CaptionShadow.Text = 'AdvSmoothLabel'
+                  CaptionShadow.Text = 'Camera Rotate'
                   CaptionShadow.Font.Charset = DEFAULT_CHARSET
                   CaptionShadow.Font.Color = clWindowText
                   CaptionShadow.Font.Height = -27
@@ -251856,10 +251878,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 3
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object lblInfo: TLabel
                   Left = 307
                   Top = 136

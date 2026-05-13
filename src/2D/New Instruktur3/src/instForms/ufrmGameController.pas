@@ -1266,6 +1266,8 @@ type
     procedure trackBarElevationChange(Sender: TObject);
     procedure edtAzimutExit(Sender: TObject);
     procedure btnFreeCamClick(Sender: TObject);
+    procedure btnFreeMoveMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnFreeMoveMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure edtAzimutKeyPress(Sender: TObject; var Key: Char);
     procedure wheelAzimutMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure trackBarRangeMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -7874,6 +7876,34 @@ begin
   pnlPinCamera.Visible := False;
   pnlCameraRotateOld.Visible := True;
   pnlCameraMove.Visible := True;
+end;
+
+procedure TfrmGameController.btnFreeMoveMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  RecSend: TRecCmdSetCameraTarget;
+  rec: TRec_CameraController;
+begin
+  // rojek Send Free Cam Move
+  rec.cmd := TRzShapeButton(Sender).Tag; // tag sama dengan ord_id_Camcon_
+  rec.valueInt := 1; // 1 = move : 0 = stop
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
+end;
+
+procedure TfrmGameController.btnFreeMoveMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  RecSend: TRecCmdSetCameraTarget;
+  rec: TRec_CameraController;
+begin
+  // rojek Send Free Cam Move
+  rec.cmd := TRzShapeButton(Sender).Tag; // tag sama dengan ord_id_Camcon_
+  rec.valueInt := 0; // 1 = move : 0 = stop
+  rec.valueDbl := 0;
+
+  SimManager.NetSendTo3D_CommandCamera(@rec);
 end;
 
 procedure TfrmGameController.edtTampungChange(Sender: TObject);

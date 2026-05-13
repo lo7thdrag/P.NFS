@@ -1474,6 +1474,16 @@ const
   __ORD_ID_CAMCON_Joystick_Down    = 15;
   __ORD_ID_CAMCON_Joystick_ZoomIn  = 16;
   __ORD_ID_CAMCON_Joystick_ZoomOut = 17;
+  __ORD_ID_CAMCON_Rotate_Left      = 18;  // rojek add free move
+  __ORD_ID_CAMCON_Rotate_Up        = 19;
+  __ORD_ID_CAMCON_Rotate_Right     = 20;
+  __ORD_ID_CAMCON_Rotate_Down      = 21;
+  __ORD_ID_CAMCON_Move_Left        = 22;
+  __ORD_ID_CAMCON_Move_Up          = 23;
+  __ORD_ID_CAMCON_Move_Right       = 24;
+  __ORD_ID_CAMCON_Move_Down        = 25;
+  __ORD_ID_CAMCON_Move_Forward     = 26;
+  __ORD_ID_CAMCON_Move_Back        = 27;
 
   { C705; angga }
   Rec_Data_C705 = 69;
