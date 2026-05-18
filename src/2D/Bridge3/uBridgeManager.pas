@@ -464,6 +464,16 @@ begin
 
     RegisterProcedure(REC_VIEW_RANGE_WEAPON, ServerReceive_ServerSend,
       sizeof(TRec_View_Range_Weapon));
+
+    // for fcc set
+    RegisterProcedure(REC_CMD_FCC57, ServerReceive_ServerSend,
+      sizeof(TrecData_MeriamFCC));
+    RegisterProcedure(REC_CMD_57DIG, ServerReceive_ServerSend,
+      sizeof(TrecData_MeriamFCC));
+    RegisterProcedure(REC_CMD_TYPE730, ServerReceive_ServerSend,
+      sizeof(TrecData_MeriamFCC));
+    RegisterProcedure(REC_CMD_AK230, ServerReceive_ServerSend,
+      sizeof(TrecData_MeriamFCC));
   end;
 end;
 
@@ -517,6 +527,15 @@ begin
     sizeof(spUtilityTools));
   TcpClient.RegisterProcedure(REC_STATUS_MESSAGE, ClientReceive_ServerSend,
     sizeof(TRecMessageHandling));
+
+  TcpClient.RegisterProcedure(REC_CMD_FCC57, ClientReceive_ServerSend,
+    sizeof(TrecData_MeriamFCC));
+  TcpClient.RegisterProcedure(REC_CMD_57DIG, ClientReceive_ServerSend,
+    sizeof(TrecData_MeriamFCC));
+  TcpClient.RegisterProcedure(REC_CMD_TYPE730, ClientReceive_ServerSend,
+    sizeof(TrecData_MeriamFCC));
+  TcpClient.RegisterProcedure(REC_CMD_AK230, ClientReceive_ServerSend,
+    sizeof(TrecData_MeriamFCC));
 
   TcpClient.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET, nil,
       sizeof(TRecCmdSetCameraTarget));
