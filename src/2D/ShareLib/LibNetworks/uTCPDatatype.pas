@@ -1888,7 +1888,7 @@ const
   __PARAM_C705_OFF = 2;
 
 
-  C_REC_PACKETNAME: array [1 .. 100] of string = ('REC_3D_POSITION',
+  C_REC_PACKETNAME: array [1 .. 120] of string = ('REC_3D_POSITION',
     'REC_POSITION', 'REC_3D_ORDER', 'REC_3D_EXOCET', 'REC_3D_CHAFF',
 
     'REC_3D_ASROCK', 'C_REC_MERIAM', 'REC_3D_TORPEDO_MK44',
@@ -1949,7 +1949,28 @@ const
     '',
     'REC_CMD_SET_CAMERA_TARGET',
     {100}
-    'REC_CMD_DESIG_A244'
+    'REC_CMD_DESIG_A244',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    {110}
+    '',
+    'REC_CMD_FCC57',
+    'REC_CMD_57DIG',
+    'REC_CMD_TYPE730',
+    'REC_CMD_AK230',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
     );
   // OrderID untuk TDC order Recognizer C_REC_ORDER .. C_REC_LINK_ORDER --------
 
