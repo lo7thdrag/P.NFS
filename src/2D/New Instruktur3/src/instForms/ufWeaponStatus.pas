@@ -2501,15 +2501,30 @@ end;
 
 procedure TfWeaponStatus.AddDebugLog(const S: string);
 //angga
+var
+  ShipObject    : TInsObject;
+  WeaponShip  : TWeaponOnShip;
+  i: Integer;
 begin
-  with frmMainInstruktur.FrameControlLeft.FrameWeaponStatus do
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
   begin
-    memoDebugState.Lines.Add(
-      FormatDateTime('hh:nn:ss.zzz', Now) + ' | ' + S
-    );
+    if Assigned(SimManager.TrackObject.WeaponOnShip_List[i]) then begin
+      WeaponShip := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
 
-    // auto scroll
-    memoDebugState.SelStart := Length(memoDebugState.Text);
+      if Assigned(WeaponShip) and (WeaponShip is TWeaponOn_C705) then
+      begin
+        //WeaponC705 := TWeaponOn_C705(WeaponShip);
+        with frmMainInstruktur.FrameControlLeft.FrameWeaponStatus do
+        begin
+          memoDebugState.Lines.Add(
+            FormatDateTime('hh:nn:ss.zzz', Now) + ' | ' + S
+          );
+
+          // auto scroll
+          memoDebugState.SelStart := Length(memoDebugState.Text);
+        end;
+      end;
+    end;
   end;
 end;
 
@@ -6071,9 +6086,9 @@ begin
               end;
             end;
 
-            frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.AddDebugLog(Format(
-              'STATUS -> ini di LoadingStatus | Port Missile = %d ;Stbd Missile = %d',
-                [Ord(WeaponC705.LauncherPort), Ord(WeaponC705.LauncherStbd)]));
+//            frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.AddDebugLog(Format(
+//              'STATUS -> ini di LoadingStatus | Port Missile = %d ;Stbd Missile = %d',
+//                [Ord(WeaponC705.LauncherPort), Ord(WeaponC705.LauncherStbd)]));
 
             frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
             //frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.lblShowPanelFrom.Caption := 'LoadingStatus';
