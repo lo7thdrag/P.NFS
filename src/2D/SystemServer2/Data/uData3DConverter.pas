@@ -181,6 +181,12 @@ const
   __ORD_ID_CAMCON_Joystick_ZoomIn  = 16;
   __ORD_ID_CAMCON_Joystick_ZoomOut = 17;
 
+  REC_CMD_FCC573D = 111;  // cpid untuk tiap tiap fcc dan radar/EO nya
+  REC_CMD_57DIG3D = 112;
+  REC_CMD_TYPE7303D = 113;
+  REC_CMD_AK2303D = 114;
+
+
 type
 
 //  TRecStatusGame3D = record
@@ -189,6 +195,32 @@ type
 //    [BsonElement('StatusConnect')]
 //    StatusConnect: byte;
 //  end;
+
+  TrecData_MeriamFCC3D = record
+    [BsonElement('ShipID')]
+    ShipID: word;
+    [BsonElement('OrderID')]
+    OrderID:byte;
+    [BsonElement('Range') ]
+    Range:double;
+    [BsonElement('Bearing' ) ]
+    Bearing: double;
+    [BsonElement('Elevation') ]
+    Elevation: double;
+    [BsonElement('EnableIR') ]
+    EnableIR:Boolean;
+    [BsonElement('BlackWhiteTarget' ) ]
+    BlackWhiteTarget:Boolean;
+    [BsonElement('TargetType')]
+    TargetType:byte;
+    [BsonElement('AutoSearch') ]
+    AutoSearch:Boolean;
+    [BsonElement('IDTarget3D')]
+    IDTarget3D: word;
+    [BsonElement('IDTarget2D')]
+    IDTarget2D: word;
+  end;
+
 
   TRecStatus_Console3D = record
     [BsonElement('ShipID')]

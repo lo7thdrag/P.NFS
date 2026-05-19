@@ -41,7 +41,9 @@ type
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
-          procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
+    procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
+    procedure  EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
+
   public
     procedure Get57WeaponAssigned;
 
@@ -277,6 +279,11 @@ begin
   end;
 end;
 
+procedure TFCCManager.EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
+begin
+  //
+end;
+
 procedure TFCCManager.EventonReceiveSplashPoint(apRec: PAnsiChar;
   aSize: integer);
 begin
@@ -358,6 +365,18 @@ begin
 
   NetComm.RegisterProcedure(
     REC_STAT_CANNON_SPLASH  ,EventonReceiveSplashPoint  ,  sizeof(TRecSplashCannon));
+
+  case vFccSetting.FccMode of
+    1 : //FCC1 Mode
+    begin
+      NetComm.RegisterProcedure(REC_CMD_TYPE730  ,EventOnReceiveFCCSet  ,  sizeof(TrecData_MeriamFCC));
+    end;
+    2 : //FCC2 Mode registor rec_cmd_fcc57
+    begin
+      NetComm.RegisterProcedure(REC_CMD_FCC57  ,EventOnReceiveFCCSet  ,  sizeof(TrecData_MeriamFCC));
+    end;
+  end;
+
 
   FxShip       := TXShip.Create;
   FxShip.PositionX := 112.75;

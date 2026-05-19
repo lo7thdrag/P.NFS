@@ -43,6 +43,7 @@ type
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
     procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
+    procedure  EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
   public
     procedure Get57WeaponAssigned;
     procedure Get730WeaponAssigned;
@@ -100,7 +101,7 @@ const
 implementation
 
 uses
-  uDataModule;
+  uDataModule, ulibSettings;
 
 { TFCCManager }
 
@@ -279,6 +280,11 @@ begin
   end;
 end;
 
+procedure TFCCManager.EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
+begin
+  //
+end;
+
 procedure TFCCManager.EventonReceiveSplashPoint(apRec: PAnsiChar;
   aSize: integer);
 begin
@@ -381,6 +387,8 @@ begin
 
   NetComm.RegisterProcedure(
     REC_STAT_CANNON_SPLASH    ,EventonReceiveSplashPoint    ,  sizeof(TRecSplashCannon));
+
+  NetComm.RegisterProcedure(REC_CMD_FCC57  ,EventOnReceiveFCCSet  ,  sizeof(TrecData_MeriamFCC));
 
   FxShip       := TXShip.Create;
   FxShip.PositionX := 112.75;

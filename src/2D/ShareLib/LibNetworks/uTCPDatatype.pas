@@ -684,6 +684,20 @@ type
     PosX, PosY, PosZ: double;
   end;
 
+  TrecData_MeriamFCC = packed record
+    ShipID: word;
+    OrderID: byte;
+    Range: double;
+    Bearing: double;
+    Elevation: double;
+    EnableIR: Boolean;
+    BlackWhiteTarget: Boolean;
+    TargetType: byte;
+    AutoSearch: Boolean;
+    IDTarget3D: word;
+    IDTarget2D: word;
+  end;
+
   TRecMessageHandling = packed record
     Pc: TPacketCheck;
     MessageID: word;
@@ -1529,6 +1543,11 @@ const
   __ORD_ID_A244_DESIG = 1;
   __ORD_ID_A244_BREAK = 2;
 
+  REC_CMD_FCC57 = 111;  // cpid untuk tiap tiap fcc dan radar/EO nya
+  REC_CMD_57DIG = 112;
+  REC_CMD_TYPE730 = 113;
+  REC_CMD_AK230 = 114;
+
   // STATUS WEAPON
   // ERROR FOR SPS115
   __STAT_SPS_115V = 101;
@@ -1869,7 +1888,7 @@ const
   __PARAM_C705_OFF = 2;
 
 
-  C_REC_PACKETNAME: array [1 .. 100] of string = ('REC_3D_POSITION',
+  C_REC_PACKETNAME: array [1 .. 120] of string = ('REC_3D_POSITION',
     'REC_POSITION', 'REC_3D_ORDER', 'REC_3D_EXOCET', 'REC_3D_CHAFF',
 
     'REC_3D_ASROCK', 'C_REC_MERIAM', 'REC_3D_TORPEDO_MK44',
@@ -1930,7 +1949,28 @@ const
     '',
     'REC_CMD_SET_CAMERA_TARGET',
     {100}
-    'REC_CMD_DESIG_A244'
+    'REC_CMD_DESIG_A244',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    {110}
+    '',
+    'REC_CMD_FCC57',
+    'REC_CMD_57DIG',
+    'REC_CMD_TYPE730',
+    'REC_CMD_AK230',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
     );
   // OrderID untuk TDC order Recognizer C_REC_ORDER .. C_REC_LINK_ORDER --------
 

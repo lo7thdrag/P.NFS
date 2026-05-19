@@ -743,6 +743,14 @@ begin
   // C705; angga
   FServer2D.RegisterProcedure(Rec_Data_C705, Server2DReceive_Server3DSend,
       sizeof(TRec_Data_C705));
+
+  // fcc set rojek
+  FServer2D.RegisterProcedure(REC_CMD_FCC57, Server2DReceive_Server3DSend, sizeof(TrecData_MeriamFCC));
+  FServer2D.RegisterProcedure(REC_CMD_57DIG, Server2DReceive_Server3DSend, sizeof(TrecData_MeriamFCC));
+  FServer2D.RegisterProcedure(REC_CMD_TYPE730, Server2DReceive_Server3DSend, sizeof(TrecData_MeriamFCC));
+  FServer2D.RegisterProcedure(REC_CMD_AK230, Server2DReceive_Server3DSend, sizeof(TrecData_MeriamFCC));
+
+
 end;
 
 procedure TServerManager.Prepare_As_Server3D;
@@ -790,6 +798,12 @@ begin
   TcpServer3D.RegisterProcedure(REC_STATUS_MESSAGE, ServerRecv_3D_Server2DSend);
   TcpServer3D.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET_3D, nil);
   TcpServer3D.RegisterProcedure(REC_ENVI_3D, nil);
+
+  // For Cannon FCC Set
+  TcpServer3D.RegisterProcedure(REC_CMD_FCC573D, ServerRecv_3D_Server2DSend);
+  TcpServer3D.RegisterProcedure(REC_CMD_57DIG3D, ServerRecv_3D_Server2DSend);
+  TcpServer3D.RegisterProcedure(REC_CMD_TYPE7303D, ServerRecv_3D_Server2DSend);
+  TcpServer3D.RegisterProcedure(REC_CMD_AK2303D, ServerRecv_3D_Server2DSend);
 
 end;
 
@@ -883,6 +897,9 @@ var
 
   RecDataStatusConsole: ^TRecStatus_Console;
   RecDataStatusConsole3D: TRecStatus_Console3D;
+
+  RecDataFccSet: ^TrecData_MeriamFCC;
+  RecDataFccSet3D: TrecData_MeriamFCC3D;
 
   o: TObject;
 
@@ -1851,7 +1868,8 @@ begin
         {$ENDREGION}
       end;
 
-    REC_Data_C705: begin
+    REC_Data_C705:
+    begin
       {$REGION 'REC_Data_C705'}
       RecDataFireC705 := @apRec^;
 
@@ -1931,6 +1949,162 @@ begin
 
         FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
       end
+      {$ENDREGION}
+    end;
+
+    REC_CMD_FCC57:
+    begin
+      {$REGION 'REC_CMD_FCC57'}
+      RecDataFccSet := @apRec^;
+
+      if Assigned(OnLogReceived2D) then
+      begin
+
+        OnLogReceived2D('ShipID :' + IntToStr(RecDataFccSet^.ShipID));
+        OnLogReceived2D('OrderID :' + IntToStr(RecDataFccSet^.OrderID));
+        OnLogReceived2D('Range :' + FloatToStr(RecDataFccSet^.Range));
+        OnLogReceived2D('Bearing :' + FloatToStr(RecDataFccSet^.Bearing));
+        OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
+        OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
+        OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
+        OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
+        OnLogReceived2D('AutoSearch :' + booltostr(RecDataFccSet^.AutoSearch));
+        OnLogReceived2D('IDTarget3D :' + IntToStr(RecDataFccSet^.IDTarget3D));
+        OnLogReceived2D('IDTarget2D :' + IntToStr(RecDataFccSet^.IDTarget2D));
+
+      end;
+
+      RecDataFccSet3D.ShipID := RecDataFccSet^.ShipID;
+      RecDataFccSet3D.OrderID := RecDataFccSet^.OrderID;
+      RecDataFccSet3D.Range := RecDataFccSet^.Range;
+      RecDataFccSet3D.Bearing := RecDataFccSet^.Bearing;
+      RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
+      RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
+      RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
+      RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
+      RecDataFccSet3D.AutoSearch := RecDataFccSet^.AutoSearch;
+      RecDataFccSet3D.IDTarget3D := RecDataFccSet^.IDTarget3D;
+      RecDataFccSet3D.IDTarget2D := RecDataFccSet^.IDTarget2D;
+
+      TcpServer3D.SendData(REC_CMD_FCC573D, RecDataFccSet3D);
+      FServer2D.SendDataEx(REC_CMD_FCC57, @RecDataFccSet, nil);
+      {$ENDREGION}
+    end;
+
+    REC_CMD_57DIG:
+    begin
+      {$REGION 'REC_CMD_FCC57'}
+      RecDataFccSet := @apRec^;
+
+      if Assigned(OnLogReceived2D) then
+      begin
+
+        OnLogReceived2D('ShipID :' + IntToStr(RecDataFccSet^.ShipID));
+        OnLogReceived2D('OrderID :' + IntToStr(RecDataFccSet^.OrderID));
+        OnLogReceived2D('Range :' + FloatToStr(RecDataFccSet^.Range));
+        OnLogReceived2D('Bearing :' + FloatToStr(RecDataFccSet^.Bearing));
+        OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
+        OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
+        OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
+        OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
+        OnLogReceived2D('AutoSearch :' + booltostr(RecDataFccSet^.AutoSearch));
+        OnLogReceived2D('IDTarget3D :' + IntToStr(RecDataFccSet^.IDTarget3D));
+        OnLogReceived2D('IDTarget2D :' + IntToStr(RecDataFccSet^.IDTarget2D));
+
+      end;
+
+      RecDataFccSet3D.ShipID := RecDataFccSet^.ShipID;
+      RecDataFccSet3D.OrderID := RecDataFccSet^.OrderID;
+      RecDataFccSet3D.Range := RecDataFccSet^.Range;
+      RecDataFccSet3D.Bearing := RecDataFccSet^.Bearing;
+      RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
+      RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
+      RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
+      RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
+      RecDataFccSet3D.AutoSearch := RecDataFccSet^.AutoSearch;
+      RecDataFccSet3D.IDTarget3D := RecDataFccSet^.IDTarget3D;
+      RecDataFccSet3D.IDTarget2D := RecDataFccSet^.IDTarget2D;
+
+      TcpServer3D.SendData(REC_CMD_57DIG3D, RecDataFccSet3D);
+      FServer2D.SendDataEx(REC_CMD_57DIG, @RecDataFccSet, nil);
+      {$ENDREGION}
+    end;
+
+    REC_CMD_TYPE730:
+    begin
+      {$REGION 'REC_CMD_TYPE730'}
+      RecDataFccSet := @apRec^;
+
+      if Assigned(OnLogReceived2D) then
+      begin
+
+        OnLogReceived2D('ShipID :' + IntToStr(RecDataFccSet^.ShipID));
+        OnLogReceived2D('OrderID :' + IntToStr(RecDataFccSet^.OrderID));
+        OnLogReceived2D('Range :' + FloatToStr(RecDataFccSet^.Range));
+        OnLogReceived2D('Bearing :' + FloatToStr(RecDataFccSet^.Bearing));
+        OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
+        OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
+        OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
+        OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
+        OnLogReceived2D('AutoSearch :' + booltostr(RecDataFccSet^.AutoSearch));
+        OnLogReceived2D('IDTarget3D :' + IntToStr(RecDataFccSet^.IDTarget3D));
+        OnLogReceived2D('IDTarget2D :' + IntToStr(RecDataFccSet^.IDTarget2D));
+
+      end;
+
+      RecDataFccSet3D.ShipID := RecDataFccSet^.ShipID;
+      RecDataFccSet3D.OrderID := RecDataFccSet^.OrderID;
+      RecDataFccSet3D.Range := RecDataFccSet^.Range;
+      RecDataFccSet3D.Bearing := RecDataFccSet^.Bearing;
+      RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
+      RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
+      RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
+      RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
+      RecDataFccSet3D.AutoSearch := RecDataFccSet^.AutoSearch;
+      RecDataFccSet3D.IDTarget3D := RecDataFccSet^.IDTarget3D;
+      RecDataFccSet3D.IDTarget2D := RecDataFccSet^.IDTarget2D;
+
+      TcpServer3D.SendData(REC_CMD_TYPE7303D, RecDataFccSet3D);
+      FServer2D.SendDataEx(REC_CMD_TYPE730, @RecDataFccSet, nil);
+      {$ENDREGION}
+    end;
+
+    REC_CMD_AK230:
+    begin
+      {$REGION 'REC_CMD_AK230'}
+      RecDataFccSet := @apRec^;
+
+      if Assigned(OnLogReceived2D) then
+      begin
+
+        OnLogReceived2D('ShipID :' + IntToStr(RecDataFccSet^.ShipID));
+        OnLogReceived2D('OrderID :' + IntToStr(RecDataFccSet^.OrderID));
+        OnLogReceived2D('Range :' + FloatToStr(RecDataFccSet^.Range));
+        OnLogReceived2D('Bearing :' + FloatToStr(RecDataFccSet^.Bearing));
+        OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
+        OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
+        OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
+        OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
+        OnLogReceived2D('AutoSearch :' + booltostr(RecDataFccSet^.AutoSearch));
+        OnLogReceived2D('IDTarget3D :' + IntToStr(RecDataFccSet^.IDTarget3D));
+        OnLogReceived2D('IDTarget2D :' + IntToStr(RecDataFccSet^.IDTarget2D));
+
+      end;
+
+      RecDataFccSet3D.ShipID := RecDataFccSet^.ShipID;
+      RecDataFccSet3D.OrderID := RecDataFccSet^.OrderID;
+      RecDataFccSet3D.Range := RecDataFccSet^.Range;
+      RecDataFccSet3D.Bearing := RecDataFccSet^.Bearing;
+      RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
+      RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
+      RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
+      RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
+      RecDataFccSet3D.AutoSearch := RecDataFccSet^.AutoSearch;
+      RecDataFccSet3D.IDTarget3D := RecDataFccSet^.IDTarget3D;
+      RecDataFccSet3D.IDTarget2D := RecDataFccSet^.IDTarget2D;
+
+      TcpServer3D.SendData(REC_CMD_AK2303D, RecDataFccSet3D);
+      FServer2D.SendDataEx(REC_CMD_AK230, @RecDataFccSet, nil);
       {$ENDREGION}
     end;
 
@@ -2422,10 +2596,94 @@ var
 
   incoming_data_cannon: TRec3DSetWCC3D;
   apRec_cannon: TRec3DSetWCC;
+
+  incoming_data_fcc: TrecData_MeriamFCC3D;
+  apRec_fcc: TrecData_MeriamFCC;
+
 begin
   if Length(AContent) > 0 then
   begin
-    if AHeader.PacketID=REC_STAT_CANNON_SPLASH then
+    if AHeader.PacketID=REC_CMD_FCC573D then  // rojek add send packet to 2d for fcc Set
+    begin
+
+      TgoBsonSerializer.Deserialize<TrecData_MeriamFCC3D>(AContent, incoming_data_fcc);
+
+      apRec_fcc.ShipID := incoming_data_fcc.ShipID;
+      apRec_fcc.OrderID := incoming_data_fcc.OrderID;
+      apRec_fcc.Range := incoming_data_fcc.Range;
+      apRec_fcc.Bearing := incoming_data_fcc.Bearing;
+      apRec_fcc.Elevation := incoming_data_fcc.Elevation;
+      apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
+      apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
+      apRec_fcc.TargetType := incoming_data_fcc.TargetType;
+      apRec_fcc.AutoSearch := incoming_data_fcc.AutoSearch;
+      apRec_fcc.IDTarget3D := incoming_data_fcc.IDTarget3D;
+      apRec_fcc.IDTarget2D := incoming_data_fcc.IDTarget2D;
+
+      FServer2D.SendDataEx(REC_CMD_FCC57, @apRec_fcc, nil);
+    end
+
+    else if AHeader.PacketID=REC_CMD_57DIG3D then  // rojek add send packet to 2d for fcc Set
+    begin
+
+      TgoBsonSerializer.Deserialize<TrecData_MeriamFCC3D>(AContent, incoming_data_fcc);
+
+      apRec_fcc.ShipID := incoming_data_fcc.ShipID;
+      apRec_fcc.OrderID := incoming_data_fcc.OrderID;
+      apRec_fcc.Range := incoming_data_fcc.Range;
+      apRec_fcc.Bearing := incoming_data_fcc.Bearing;
+      apRec_fcc.Elevation := incoming_data_fcc.Elevation;
+      apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
+      apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
+      apRec_fcc.TargetType := incoming_data_fcc.TargetType;
+      apRec_fcc.AutoSearch := incoming_data_fcc.AutoSearch;
+      apRec_fcc.IDTarget3D := incoming_data_fcc.IDTarget3D;
+      apRec_fcc.IDTarget2D := incoming_data_fcc.IDTarget2D;
+
+      FServer2D.SendDataEx(REC_CMD_57DIG, @apRec_fcc, nil);
+    end
+
+    else if AHeader.PacketID=REC_CMD_TYPE7303D then  // rojek add send packet to 2d for fcc Set
+    begin
+
+      TgoBsonSerializer.Deserialize<TrecData_MeriamFCC3D>(AContent, incoming_data_fcc);
+
+      apRec_fcc.ShipID := incoming_data_fcc.ShipID;
+      apRec_fcc.OrderID := incoming_data_fcc.OrderID;
+      apRec_fcc.Range := incoming_data_fcc.Range;
+      apRec_fcc.Bearing := incoming_data_fcc.Bearing;
+      apRec_fcc.Elevation := incoming_data_fcc.Elevation;
+      apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
+      apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
+      apRec_fcc.TargetType := incoming_data_fcc.TargetType;
+      apRec_fcc.AutoSearch := incoming_data_fcc.AutoSearch;
+      apRec_fcc.IDTarget3D := incoming_data_fcc.IDTarget3D;
+      apRec_fcc.IDTarget2D := incoming_data_fcc.IDTarget2D;
+
+      FServer2D.SendDataEx(REC_CMD_TYPE730, @apRec_fcc, nil);
+    end
+
+    else if AHeader.PacketID=REC_CMD_AK2303D then  // rojek add send packet to 2d for fcc Set
+    begin
+
+      TgoBsonSerializer.Deserialize<TrecData_MeriamFCC3D>(AContent, incoming_data_fcc);
+
+      apRec_fcc.ShipID := incoming_data_fcc.ShipID;
+      apRec_fcc.OrderID := incoming_data_fcc.OrderID;
+      apRec_fcc.Range := incoming_data_fcc.Range;
+      apRec_fcc.Bearing := incoming_data_fcc.Bearing;
+      apRec_fcc.Elevation := incoming_data_fcc.Elevation;
+      apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
+      apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
+      apRec_fcc.TargetType := incoming_data_fcc.TargetType;
+      apRec_fcc.AutoSearch := incoming_data_fcc.AutoSearch;
+      apRec_fcc.IDTarget3D := incoming_data_fcc.IDTarget3D;
+      apRec_fcc.IDTarget2D := incoming_data_fcc.IDTarget2D;
+
+      FServer2D.SendDataEx(REC_CMD_AK230, @apRec_fcc, nil);
+    end
+
+    else if AHeader.PacketID=REC_STAT_CANNON_SPLASH then
     begin
 
       TgoBsonSerializer.Deserialize<TRecSplashCannon3D>(AContent, incoming_data);
@@ -2451,9 +2709,9 @@ begin
       apRec.PosZ := incoming_data.PosZ;
 
       FServer2D.SendDataEx(REC_STAT_CANNON_SPLASH, @apRec, nil);
-    end;
+    end
 
-    if AHeader.PacketID=C_REC_CANNON then
+    else if AHeader.PacketID=C_REC_CANNON then
     begin
 
       TgoBsonSerializer.Deserialize<TRec3DSetWCC3D>(AContent, incoming_data_cannon);

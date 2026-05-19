@@ -34,6 +34,7 @@ type
       procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
       procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
       procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
+      procedure  EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
     public
       xShip       : TXShip;         // kapal tempat Radar berada
 
@@ -152,6 +153,12 @@ begin
 end;
 
 
+procedure TMeriam57Manager.EventOnReceiveFCCSet(apRec: PAnsiChar;
+  aSize: integer);
+begin
+//
+end;
+
 procedure TMeriam57Manager.EventonReceiveSplashPoint(apRec: PAnsiChar;
   aSize: integer);
 begin
@@ -222,6 +229,8 @@ begin
 
   NetComm.RegisterProcedure(
     REC_STAT_CANNON_SPLASH  ,EventonReceiveSplashPoint  ,  sizeof(TRecSplashCannon));
+
+  NetComm.RegisterProcedure(REC_CMD_57DIG  ,EventOnReceiveFCCSet  ,  sizeof(TrecData_MeriamFCC));
 
   xShip       := TXShip.Create;
 
