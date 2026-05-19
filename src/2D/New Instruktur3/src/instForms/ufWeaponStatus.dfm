@@ -6786,6 +6786,46 @@ object fWeaponStatus: TfWeaponStatus
             Width = 268
             Height = 1
           end
+          object lblStbdC7051: TLabel
+            Left = 302
+            Top = 204
+            Width = 38
+            Height = 13
+            Caption = 'Stbd 1: '
+            Visible = False
+          end
+          object lblStbdC7052: TLabel
+            Left = 302
+            Top = 230
+            Width = 38
+            Height = 13
+            Caption = 'Stbd 2: '
+            Visible = False
+          end
+          object lblPortC7052: TLabel
+            Left = 21
+            Top = 243
+            Width = 39
+            Height = 13
+            Caption = 'Port 2:  '
+            Visible = False
+          end
+          object lblPortC7051: TLabel
+            Left = 21
+            Top = 217
+            Width = 36
+            Height = 13
+            Caption = 'Port 1: '
+            Visible = False
+          end
+          object lblShowPanelFrom: TLabel
+            Left = 7
+            Top = 312
+            Width = 86
+            Height = 13
+            Caption = 'lblShowPanelFrom'
+            Visible = False
+          end
           object grpAssignC705: TGroupBox
             Left = 79
             Top = 328
@@ -6921,9 +6961,9 @@ object fWeaponStatus: TfWeaponStatus
             end
           end
           object grpC705StatusLauncher: TGroupBox
-            Left = 14
-            Top = 52
-            Width = 339
+            Left = 87
+            Top = 51
+            Width = 218
             Height = 130
             Caption = 'Status Launcher'
             Font.Charset = DEFAULT_CHARSET
@@ -6934,10 +6974,10 @@ object fWeaponStatus: TfWeaponStatus
             ParentFont = False
             TabOrder = 1
             object grpbxC705PortLauncher: TGroupBox
-              Left = 20
-              Top = 16
-              Width = 135
-              Height = 99
+              Left = 18
+              Top = 17
+              Width = 87
+              Height = 89
               Caption = 'Port'
               Color = clGray
               Font.Charset = DEFAULT_CHARSET
@@ -6949,22 +6989,15 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
               TabOrder = 0
               object imgLoadC705PortLauncher1: TImage
-                Left = 39
-                Top = 17
-                Width = 17
-                Height = 17
-                Transparent = True
-              end
-              object imgLoadC705PortLauncher2: TImage
-                Left = 97
-                Top = 17
+                Left = 41
+                Top = 22
                 Width = 17
                 Height = 17
                 Transparent = True
               end
               object lblC705PortLauncher1: TLabel
                 Left = 22
-                Top = 19
+                Top = 24
                 Width = 8
                 Height = 13
                 Caption = '1'
@@ -6975,23 +7008,10 @@ object fWeaponStatus: TfWeaponStatus
                 Font.Style = [fsBold]
                 ParentFont = False
               end
-              object lblC705PortLauncher2: TLabel
-                Left = 80
-                Top = 19
-                Width = 8
-                Height = 13
-                Caption = '2'
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = clBlack
-                Font.Height = -11
-                Font.Name = 'MS Sans Serif'
-                Font.Style = [fsBold]
-                ParentFont = False
-              end
               object btnC705PortLoading: TButton
-                Tag = 1
-                Left = 30
-                Top = 68
+                Tag = 2
+                Left = 7
+                Top = 47
                 Width = 75
                 Height = 22
                 Caption = 'Load'
@@ -7004,29 +7024,12 @@ object fWeaponStatus: TfWeaponStatus
                 TabOrder = 0
                 OnClick = btnC705LoadingClick
               end
-              object cbbC705Port: TComboBox
-                Left = 30
-                Top = 42
-                Width = 75
-                Height = 21
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = clBlack
-                Font.Height = -11
-                Font.Name = 'MS Sans Serif'
-                Font.Style = [fsBold]
-                ParentFont = False
-                TabOrder = 1
-                Text = '1'
-                Items.Strings = (
-                  '1'
-                  '2')
-              end
             end
             object grpbxC705StarboardLauncher: TGroupBox
-              Left = 184
+              Left = 117
               Top = 16
-              Width = 135
-              Height = 99
+              Width = 87
+              Height = 90
               Caption = 'StarBoard'
               Color = clGray
               Font.Charset = DEFAULT_CHARSET
@@ -7039,21 +7042,14 @@ object fWeaponStatus: TfWeaponStatus
               TabOrder = 1
               object imgLoadC705StarboardLauncher1: TImage
                 Left = 39
-                Top = 17
-                Width = 17
-                Height = 17
-                Transparent = True
-              end
-              object imgLoadC705StarboardLauncher2: TImage
-                Left = 97
-                Top = 17
+                Top = 22
                 Width = 17
                 Height = 17
                 Transparent = True
               end
               object lblC705StarboardLauncher1: TLabel
                 Left = 22
-                Top = 19
+                Top = 24
                 Width = 8
                 Height = 13
                 Caption = '1'
@@ -7064,23 +7060,10 @@ object fWeaponStatus: TfWeaponStatus
                 Font.Style = [fsBold]
                 ParentFont = False
               end
-              object lblC705StarboardLauncher2: TLabel
-                Left = 80
-                Top = 19
-                Width = 8
-                Height = 13
-                Caption = '2'
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = clBlack
-                Font.Height = -11
-                Font.Name = 'MS Sans Serif'
-                Font.Style = [fsBold]
-                ParentFont = False
-              end
               object btnC705StarboardLoading: TButton
-                Tag = 2
-                Left = 30
-                Top = 68
+                Tag = 1
+                Left = 6
+                Top = 49
                 Width = 75
                 Height = 22
                 Caption = 'Load'
@@ -7092,23 +7075,6 @@ object fWeaponStatus: TfWeaponStatus
                 ParentFont = False
                 TabOrder = 0
                 OnClick = btnC705LoadingClick
-              end
-              object cbbC705Starboard: TComboBox
-                Left = 30
-                Top = 42
-                Width = 75
-                Height = 21
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = clBlack
-                Font.Height = -11
-                Font.Name = 'MS Sans Serif'
-                Font.Style = [fsBold]
-                ParentFont = False
-                TabOrder = 1
-                Text = '1'
-                Items.Strings = (
-                  '1'
-                  '2')
               end
             end
           end
@@ -7125,6 +7091,7 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 2
+            OnMouseDown = grpC705StatusConsoleMouseDown
             object chkC705Enable: TCheckBox
               Left = 40
               Top = 29
@@ -7169,6 +7136,16 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
               TabOrder = 2
             end
+          end
+          object memoDebugState: TMemo
+            Left = 75
+            Top = 328
+            Width = 267
+            Height = 89
+            Lines.Strings = (
+              'memoDebugState')
+            TabOrder = 3
+            Visible = False
           end
         end
       end
