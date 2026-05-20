@@ -5741,8 +5741,8 @@ object frmDCDSMain: TfrmDCDSMain
                   Stretch = True
                 end
                 object imgElevPtr: TImage
-                  Left = 15
-                  Top = 84
+                  Left = 11
+                  Top = 30
                   Width = 180
                   Height = 180
                   Stretch = True
@@ -5783,7 +5783,7 @@ object frmDCDSMain: TfrmDCDSMain
                   Stretch = True
                 end
                 object imgHeadPtr: TImage
-                  Left = 21
+                  Left = 13
                   Top = 21
                   Width = 170
                   Height = 170

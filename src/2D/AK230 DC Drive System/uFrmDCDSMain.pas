@@ -396,16 +396,16 @@ begin
 
   elev := StrToIntDef(edtElevationValue.Text, 0);
 
-  if elev > 85 then
-    edtElevationValue.Text := '85'
-  else if elev < -10 then
-    edtElevationValue.Text := '-10';
+//  if elev > 85 then
+//    edtElevationValue.Text := '85'
+//  else if elev < -10 then
+//    edtElevationValue.Text := '-10';
 end;
 
 procedure TfrmDCDSMain.edtElevationValueKeyPress(Sender: TObject;
   var Key: Char);
 begin
-  if not (Key in ['0'..'9', '-', '+', #8]) then
+  if not (Key in ['0'..'9', '-', '.', #8]) then
     Key := #0;
 end;
 
@@ -422,15 +422,15 @@ begin
 
   training := StrToIntDef(edtTrainingValue.Text, 0);
 
-  if training > 180 then
-    edtTrainingValue.Text := '180'
-  else if training < -180 then
-    edtTrainingValue.Text := '-180';
+//  if training > 180 then
+//    edtTrainingValue.Text := '180'
+//  else if training < -180 then
+//    edtTrainingValue.Text := '-180';
 end;
 
 procedure TfrmDCDSMain.edtTrainingValueKeyPress(Sender: TObject; var Key: Char);
 begin
-  if not (Key in ['0'..'9', '-','+', #8]) then
+  if not (Key in ['0'..'9', '-','.', #8]) then
     Key := #0;
 end;
 
@@ -658,8 +658,8 @@ begin
 //  edtValueTraining.Text := FormatFloat('0.#', FVTgtTraining);
 //  edtValueElevation.Text := FormatFloat('0.#', FVTgtElevation);
 
-  if ((FVTgtElevation < -12) or (FVTgtElevation > 87)) or
-  ((FVTgtTraining <= -50) or (FVTgtTraining >= 50)) then
+  if ((FVTgtElevation < -10) or (FVTgtElevation > 85)) or
+  ((FVTgtTraining > 120) and (FVTgtTraining < 240 )) then
   begin
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
     btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
@@ -684,12 +684,12 @@ begin
     btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
   end;
 
-  if (FVTgtTraining <= -50) then
+  if (FVTgtTraining >= 180) and (FVTgtTraining < 240) then
   begin
     imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
     imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
   end
-  else if (FVTgtTraining >= 50) then
+  else if (FVTgtTraining > 120) and (FVTgtTraining <= 180) then
   begin
     imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
     imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
@@ -700,28 +700,14 @@ begin
     imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
   end;
 
-  if (FVTgtElevation < -12) then
+  if (FVTgtElevation < -10) then
   begin
-    // HARD LOW LIMIT
     imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
     imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
   end
-  else if (FVTgtElevation > 87) then
+  else if (FVTgtElevation > 85) then
   begin
-    // HARD HIGH LIMIT
     imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
-    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-  end
-  else if (FVTgtElevation <= -10) then
-  begin
-    // WARNING LOW ZONE (-12 s/d -10)
-    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\kuning_S.png');
-    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
-  end
-  else if (FVTgtElevation >= 80) then
-  begin
-    // WARNING HIGH ZONE (80 s/d 87)
-    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\kuning_S.png');
     imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
   end
   else
@@ -774,14 +760,13 @@ var
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
   tVal:= dblVal+0.1;
-//  if tVal <= 360  then
-//    Inc(intVal);
-//    dblVal := dblVal + 0.1;
-
-  if tVal <= 180  then
+  if tVal <= 360  then
 //    Inc(intVal);
     dblVal := dblVal + 0.1;
 
+//  if tVal <= 180  then
+//    Inc(intVal);
+//    dblVal := dblVal + 0.1;
   if (tVal > -0.1) and (tVal < 0.1) then
     dblVal := 0;
 //  if intVal >= 360 then
@@ -794,12 +779,12 @@ var
   dblVal: Double;
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
-//  if dblVal+10 <= 360 then
-//    dblVal := dblVal + 10;
-  if dblVal+10 <= 180 then
+  if dblVal+10 <= 360 then
     dblVal := dblVal + 10;
-  if dblVal+10 > 180 then
-    dblVal := 180;
+//  if dblVal+10 <= 180 then
+//    dblVal := dblVal + 10;
+//  if dblVal+10 > 180 then
+//    dblVal := 180;
   if (dblVal > -0.1) and (dblVal < 0.1) then
     dblVal := 0;
 //  if intVal >= 360 then
@@ -812,14 +797,14 @@ var
   dblVal: Double;
 begin
   dblVal := StrToFloat(edtTrainingValue.Text);
-//  dblVal := dblVal - 10;
-//  if dblVal < 0 then
-//    dblVal := dblVal + 360;
+  dblVal := dblVal - 10;
+  if dblVal < 0 then
+    dblVal := dblVal + 360;
 
-  if dblVal-10 >= -180 then
-    dblVal := dblVal - 10;
-  if dblVal-10 < -180 then
-    dblVal := -180;
+//  if dblVal-10 >= -180 then
+//    dblVal := dblVal - 10;
+//  if dblVal-10 < -180 then
+//    dblVal := -180;
   if (dblVal > -0.1) and (dblVal < 0.1) then
     dblVal := 0;
 //  if intVal < 0 then
@@ -1553,7 +1538,8 @@ begin
     edtNoRightMgzn.Text := IntToStr(RightMagazine);
   end;
 
-  AddLog;
+  if btnStartLog.Down then
+    AddLog;
 end;
 
 procedure TfrmDCDSMain.tmrRotateTimer(Sender: TObject);
@@ -1563,16 +1549,16 @@ begin
 //    FVCurTraining := 0;
   if Round(FVTgtTraining) <> Round(FVCurTraining) then
   begin
-    if ((FVTgtTraining - FVCurTraining) < 180) and ((FVTgtTraining - FVCurTraining) > 0)  then
-      FVCurTraining := FVCurTraining + 1
-    else
-      FVCurTraining := FVCurTraining - 1;
-    RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);
+//    if ((FVTgtTraining - FVCurTraining) < 180) and ((FVTgtTraining - FVCurTraining) > 0)  then
+//      FVCurTraining := FVCurTraining + 1
+//    else
+//      FVCurTraining := FVCurTraining - 1;
+//    RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);
 
-//    if FVCurTraining < 0 then
-//      FVCurTraining := FVCurTraining + 360
-//    else if FVCurTraining >= 360 then
-//      FVCurTraining := FVCurTraining - 360;
+    if FVCurTraining < 0 then
+      FVCurTraining := FVCurTraining + 360
+    else if FVCurTraining >= 360 then
+      FVCurTraining := FVCurTraining - 360;
 
     if FVTgtTraining > FVCurTraining then
     begin
@@ -1591,10 +1577,10 @@ begin
     end;
 
     // Wrap ke 0–360
-//    if FVCurTraining >= 360 then
-//      FVCurTraining := FVCurTraining - 360
-//    else if FVCurTraining < 0 then
-//      FVCurTraining := FVCurTraining + 360;
+    if FVCurTraining >= 360 then
+      FVCurTraining := FVCurTraining - 360
+    else if FVCurTraining < 0 then
+      FVCurTraining := FVCurTraining + 360;
 
     // Update display
     RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, FVCurTraining);
@@ -1605,7 +1591,7 @@ begin
 
   if Round(FVTgtElevation) <> Round(FVCurElevation) then
   begin
-    if ((FVTgtElevation - FVCurElevation) < 85) and ((FVTgtElevation - FVCurElevation) > 0) then
+    if ((FVTgtElevation - FVCurElevation) <= 85) and ((FVTgtElevation - FVCurElevation) > 0) then
       FVCurElevation := FVCurElevation + 1
     else
     begin
