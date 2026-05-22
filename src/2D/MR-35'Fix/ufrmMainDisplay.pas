@@ -245,7 +245,7 @@ type
     FShipHeading : Integer;
 
     config: TSetting;
-    ExecInfo: TShellExecuteInfo;
+    ExecInfo, ExecPTK: TShellExecuteInfo;
 
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
     FXAxis, FYAxis, FZAxis, FisBiteOpen : Boolean;
@@ -1256,15 +1256,15 @@ begin
     if not ShellExecuteEx(@ExecInfo) then
       RaiseLastOSError;
 
-    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-    ExecInfo.cbSize := SizeOf(ExecInfo);
-    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-    ExecInfo.Wnd := Handle;
-    ExecInfo.lpVerb := 'open';
-    ExecInfo.lpFile := PChar('PTK_MR35.exe');
-    ExecInfo.nShow := SW_SHOW;
+    ZeroMemory(@ExecPTK, SizeOf(ExecPTK));
+    ExecPTK.cbSize := SizeOf(ExecPTK);
+    ExecPTK.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+    ExecPTK.Wnd := Handle;
+    ExecPTK.lpVerb := 'open';
+    ExecPTK.lpFile := PChar('PTK_MR35.exe');
+    ExecPTK.nShow := SW_SHOW;
 
-    if not ShellExecuteEx(@ExecInfo) then
+    if not ShellExecuteEx(@ExecPTK) then
       RaiseLastOSError;
   end;
 
@@ -1281,6 +1281,10 @@ begin
     TerminateProcess(ExecInfo.hProcess, 0);
     CloseHandle(ExecInfo.hProcess);
     ExecInfo.hProcess := 0;
+
+    TerminateProcess(ExecPTK.hProcess, 0);
+    CloseHandle(ExecPTK.hProcess);
+    ExecPTK.hProcess := 0;
   end;
 
 //  FRangeRing.Free;

@@ -251,7 +251,7 @@ type
     FShipHeading : Integer;
 
     config: TSetting;
-    ExecInfo: TShellExecuteInfo;
+    ExecInfo, ExecPTK, ExecInfoIR: TShellExecuteInfo;
 
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
     FXAxis, FYAxis, FZAxis : Boolean;
@@ -957,13 +957,14 @@ begin
 
   CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
   SetWindowRgn(Handle, rgnOuter, True);
-  NLDJoystick1.Active := True;
 
-//  rgnOuter := CreateRectRgn(0,0,Width,Height);
-//  rgnInner := CreateRectRgn(640, 0, 1280, 450);
-//
-//  CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
-//  SetWindowRgn(Handle, rgnOuter, True);
+  rgnOuter := CreateRectRgn(0,0,Width,Height);
+  rgnInner := CreateRectRgn(640, 0, 1280, 480);
+
+  CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+  SetWindowRgn(Handle, rgnOuter, True);
+
+  NLDJoystick1.Active := True;
 
   setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
   TgoBsonSerializer.Deserialize(setting, config);
@@ -984,15 +985,34 @@ begin
   if not ShellExecuteEx(@ExecInfo) then
     RaiseLastOSError;
 
-  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-  ExecInfo.cbSize := SizeOf(ExecInfo);
-  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-  ExecInfo.Wnd := Handle;
-  ExecInfo.lpVerb := 'open';
-  ExecInfo.lpFile := PChar('PTK_EOTracker730.exe');
-  ExecInfo.nShow := SW_SHOW;
+  ZeroMemory(@ExecPTK, SizeOf(ExecPTK));
+  ExecPTK.cbSize := SizeOf(ExecInfo);
+  ExecPTK.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecPTK.Wnd := Handle;
+  ExecPTK.lpVerb := 'open';
+  ExecPTK.lpFile := PChar('PTK_EOTracker730.exe');
+  ExecPTK.nShow := SW_SHOW;
 
-  if not ShellExecuteEx(@ExecInfo) then
+  if not ShellExecuteEx(@ExecPTK) then
+    RaiseLastOSError;
+
+  setting:= TFile.ReadAllText('settingsIR.json', TEncoding.UTF8); // load json
+  TgoBsonSerializer.Deserialize(setting, config);
+  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString() + '_IR_1';
+  // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
+  // untuk testing awal tidak perlu diubah dulu
+  TgoBsonSerializer.Serialize(config, setting);
+  tfile.WriteAllText('settingsIR.json', setting, TEncoding.UTF8); // save json before launch
+
+  ZeroMemory(@ExecInfoIR, SizeOf(ExecInfoIR));
+  ExecInfoIR.cbSize := SizeOf(ExecInfo);
+  ExecInfoIR.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecInfoIR.Wnd := Handle;
+  ExecInfoIR.lpVerb := 'open';
+  ExecInfoIR.lpFile := PChar('ViewerIR.exe');
+  ExecInfoIR.nShow := SW_SHOW;
+
+  if not ShellExecuteEx(@ExecInfoIR) then
     RaiseLastOSError;
 
 end;
@@ -1006,6 +1026,14 @@ begin
     TerminateProcess(ExecInfo.hProcess, 0);
     CloseHandle(ExecInfo.hProcess);
     ExecInfo.hProcess := 0;
+
+    TerminateProcess(ExecPTK.hProcess, 0);
+    CloseHandle(ExecPTK.hProcess);
+    ExecPTK.hProcess := 0;
+
+    TerminateProcess(ExecInfoIR.hProcess, 0);
+    CloseHandle(ExecInfoIR.hProcess);
+    ExecInfoIR.hProcess := 0;
   end;
 
 //  FRangeRing.Free;
@@ -1068,10 +1096,10 @@ begin
   if Token = '' then Exit;
 
   if Token = 'CalSetting' then
-//    pnlCalSetting.BringToFront
+  //    pnlCalSetting.BringToFront
   else if Token = 'Cancel' then
-//    pnlIndWth.BringToFront;
-else if Token = 'Diagnosis' then
+  //    pnlIndWth.BringToFront;
+  else if Token = 'Diagnosis' then
   begin
     FisDiagnonisOpen := not FisDiagnonisOpen;
     if FisDiagnonisOpen then pnlDiagnosis.BringToFront
