@@ -2557,6 +2557,7 @@ object frmMainFCC: TfrmMainFCC
       000000000000}
   end
   object NLDJoystick1: TNLDJoystick
+    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move
@@ -2565,7 +2566,7 @@ object frmMainFCC: TfrmMainFCC
     Top = 400
   end
   object TimerBeEl: TTimer
-    Interval = 5
+    Interval = 100
     OnTimer = TimerBeElTimer
     Left = 936
     Top = 400

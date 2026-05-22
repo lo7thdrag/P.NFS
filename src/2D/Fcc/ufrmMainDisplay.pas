@@ -3115,6 +3115,11 @@ begin
 
         pnlGpRr.Caption := (LeftDrum + RightDrum).ToString();
 
+        // update tracker data
+        edtTrdBE.text := FormatFloat('0.00', FCCManager.EOBearing);
+        edtTrdEL.text := FormatFloat('0.00', FCCManager.EOElevation);
+        edtTrdD.text := FormatFloat('0.00', FCCManager.LaserRange);
+
       end;
     2 : //FCC2 Mode
       begin
@@ -3248,6 +3253,11 @@ begin
 
         edtLowRR.Text := LeftDrum.ToString();
         edtHighRR.Text := RightDrum.ToString();
+
+        // update tracker data
+        edtTrdBEFCC2.text := FormatFloat('0.00', FCCManager.EOBearing);
+        edtTrdELFCC2.text := FormatFloat('0.00', FCCManager.EOElevation);
+        edtTrdDFCC2.text := FormatFloat('0.00', FCCManager.LaserRange);
 
       end;
   end;

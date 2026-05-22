@@ -37,6 +37,8 @@ type
     FPtkHandler : TPtkReceiver;
     FOnPtkCommand: TGetStrProc;
     FSelectedVehicle: TVehicle;
+
+    FLaserRange, FEOBearing, FEOElevation : Double;
   protected
     procedure  Event_OrderCamera(apRec: PAnsiChar; aSize: integer);
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
@@ -61,6 +63,10 @@ type
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
     property xShip : TXShip read FxShip;
+
+    property LaserRange :  double read FLaserRange;
+    property EOBearing : double read FEOBearing;
+    property EOElevation : double read FEOElevation;
 
     property CurrentScenID  : integer read FCurrentScenID write FCurrentScenID;
     property Server_Ip : string read FServer_Ip write FServer_Ip;
@@ -274,8 +280,13 @@ begin
 end;
 
 procedure TFCCManager.EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
+var
+  aRec: ^TrecData_MeriamFCC;
 begin
-//
+  aRec := @apRec^;
+  Flaserrange := aRec.Range;
+  FEOBearing := aRec.Bearing;
+  FEOElevation := aRec.Elevation;
 end;
 
 procedure TFCCManager.EventonReceiveSplashPoint(apRec: PAnsiChar;

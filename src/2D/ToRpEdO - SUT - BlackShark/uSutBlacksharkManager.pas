@@ -219,25 +219,7 @@ begin
       end;
   end
   else begin
-    sc := MainObjList.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
     V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
-
-    if sc = nil then begin
-     obj := TClientObject.Create;
-     obj.UniqueID := dbID_to_UniqueID(aRec.ShipID);
-     obj.Enabled := TRUE;
-
-     MainObjList.AddObject(obj);
-    end
-    else
-     obj := sc as TClientObject;
-
-    obj.PositionX := aRec.X;
-    obj.PositionY := aRec.Y;
-    obj.PositionZ := aRec.Z;
-    obj.Speed     := aRec.speed;
-
-    obj.Heading  := ConvCompass_To_Cartesian(aRec.heading);
 
     if Assigned(V) then
     begin
@@ -253,7 +235,7 @@ begin
     begin
       vdomain := DataModule1.GetShipDomain(aRec.ShipID);
 
-      if (vdomain = 1) or (vdomain = 2) or (vdomain = 3) then
+      if (vdomain = 1) or (vdomain = 3) then
       begin
         V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
@@ -263,10 +245,6 @@ begin
           1://surface
           begin
             V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SurfaceUnknown.bmp');
-          end;
-          2://air
-          begin
-            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\AirUnknown.bmp');
           end;
           3://subsurface
           begin

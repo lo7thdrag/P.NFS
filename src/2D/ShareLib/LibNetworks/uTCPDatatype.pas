@@ -1547,6 +1547,11 @@ const
   REC_CMD_57DIG = 112;
   REC_CMD_TYPE730 = 113;
   REC_CMD_AK230 = 114;
+  CORD_ID_3DUpdate_EO         = 1;
+  CORD_ID_3DGet_Target        = 2;
+  CORD_ID_2DGet_Target        = 3;
+  CORD_ID_3DUpdate_Status     = 4;
+  CORD_ID_2DSet_Status        = 5;
 
   // STATUS WEAPON
   // ERROR FOR SPS115

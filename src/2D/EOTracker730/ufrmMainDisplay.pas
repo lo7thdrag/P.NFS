@@ -1590,38 +1590,50 @@ end;
 
 procedure TfrmMainFCC.TimerBeElTimer(Sender: TObject);
 begin
-  if FisKanan then
-  begin
-    FBEVal := FBEVal + 0.1;
-    if FBEVal > 180 then FBEVal := FBEVal - 360;
-    
-    vrAngularBearing.Position := FBEVal;
-    lblValBearTop.Caption := 'BE ' + FormatFloat('0.00', FBEVal);
-    pnlValBearingBottom.Caption := 'BE:     ' + FormatFloat('0.00', FBEVal) + ' deg';
-  end
-  else if FisKiri then
-  begin
-    FBEVal := FBEVal - 0.1;
-    if FBEVal < -180 then FBEVal := FBEVal + 360;
-    vrAngularBearing.Position := FBEVal;
-    lblValBearTop.Caption := 'BE ' + FormatFloat('0.00', FBEVal);
-    pnlValBearingBottom.Caption := 'BE:     ' + FormatFloat('0.00', FBEVal) + ' deg';
-  end;
+  FBEVal := FCCManager.EOBearing;
+  if FBEVal > 180 then FBEVal := FBEVal - 360;
 
-  if FisAtas then
-  begin
-    FELVal := FELVal + 0.1;
-    vrAngularElev.Position := -FELVal;
-    lblValElevTop.Caption := 'EL ' + FormatFloat('0.00', FELVal);
-    pnlValElevBottom.Caption := 'EL:     ' + FormatFloat('0.00', FELVal) + ' deg';
-  end
-  else if FisBawah then
-  begin
-    FELVal := FELVal - 0.1;
-    vrAngularElev.Position := -FELVal;
-    lblValElevTop.Caption := 'EL ' + FormatFloat('0.00', FELVal);
-    pnlValElevBottom.Caption := 'EL:     ' + FormatFloat('0.00', FELVal) + ' deg';
-  end;
+  vrAngularBearing.Position := FBEVal;
+  lblValBearTop.Caption := 'BE ' + FormatFloat('0.00', FBEVal);
+  pnlValBearingBottom.Caption := 'BE:     ' + FormatFloat('0.00', FBEVal) + ' deg';
+
+  FELVal := FCCManager.EOElevation;
+  vrAngularElev.Position := -FELVal;
+  lblValElevTop.Caption := 'EL ' + FormatFloat('0.00', FELVal);
+  pnlValElevBottom.Caption := 'EL:     ' + FormatFloat('0.00', FELVal) + ' deg';
+
+//  if FisKanan then
+//  begin
+//    FBEVal := FBEVal + 0.1;
+//    if FBEVal > 180 then FBEVal := FBEVal - 360;
+//
+//    vrAngularBearing.Position := FBEVal;
+//    lblValBearTop.Caption := 'BE ' + FormatFloat('0.00', FBEVal);
+//    pnlValBearingBottom.Caption := 'BE:     ' + FormatFloat('0.00', FBEVal) + ' deg';
+//  end
+//  else if FisKiri then
+//  begin
+//    FBEVal := FBEVal - 0.1;
+//    if FBEVal < -180 then FBEVal := FBEVal + 360;
+//    vrAngularBearing.Position := FBEVal;
+//    lblValBearTop.Caption := 'BE ' + FormatFloat('0.00', FBEVal);
+//    pnlValBearingBottom.Caption := 'BE:     ' + FormatFloat('0.00', FBEVal) + ' deg';
+//  end;
+//
+//  if FisAtas then
+//  begin
+//    FELVal := FELVal + 0.1;
+//    vrAngularElev.Position := -FELVal;
+//    lblValElevTop.Caption := 'EL ' + FormatFloat('0.00', FELVal);
+//    pnlValElevBottom.Caption := 'EL:     ' + FormatFloat('0.00', FELVal) + ' deg';
+//  end
+//  else if FisBawah then
+//  begin
+//    FELVal := FELVal - 0.1;
+//    vrAngularElev.Position := -FELVal;
+//    lblValElevTop.Caption := 'EL ' + FormatFloat('0.00', FELVal);
+//    pnlValElevBottom.Caption := 'EL:     ' + FormatFloat('0.00', FELVal) + ' deg';
+//  end;
 end;
 
 procedure TfrmMainFCC.tmrUpdateFormTimer(Sender: TObject);

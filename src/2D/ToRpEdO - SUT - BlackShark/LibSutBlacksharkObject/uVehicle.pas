@@ -57,6 +57,7 @@ type
     property UniqueID: string read FUniqueID write FUniqueID;
     property Domain : Integer read FDomain write FDomain;
     property ShipID : Word read FShipID write FShipID;
+    // rojek nambahin MSI-TrackNumber disini buat torpedo
   end;
 
 implementation
