@@ -228,6 +228,8 @@ type
     procedure SetStatusServer(status : string);
     procedure SetScenarioState(status : string);
     procedure SetStatus3DServer(status : string);
+
+    procedure UpdateStatus3D;
   end;
 
 var
@@ -3503,7 +3505,54 @@ begin
   end;
 end;
 
+procedure TfrmMainInstruktur.UpdateStatus3D;
+var
+  i : Integer;
+  isConnected : Boolean;
+begin
+  isConnected := False;
+
+  for i := 0 to frmGameController.lvClient.Items.Count - 1 do
+  begin
+    if (frmGameController.lvClient.Items[i].SubItems[1] = '3D DISPLAY NSFS') or
+       (frmGameController.lvClient.Items[i].SubItems[1] = '3D DISPLAY NAFS') or
+       (frmGameController.lvClient.Items[i].SubItems[1] = '3D DISPLAY NSSFS') then
+    begin
+      if (UpperCase(frmGameController.lvClient.Items[i].SubItems[4]) = 'RUNNING') then
+      begin
+        isConnected := True;
+        Break;
+      end
+      else if (UpperCase(frmGameController.lvClient.Items[i].SubItems[4]) = 'ONLINE') or
+              (UpperCase(frmGameController.lvClient.Items[i].SubItems[4]) = 'OFFLINE') then
+      begin
+        isConnected := False;
+        Break;
+      end;
+    end;
+  end;
+
+  if isConnected then
+  begin
+    lblBtmStat3d.Caption := 'Connected';
+    advsmthpnlStatus3D.Fill.Color := clGreen;
+    advsmthpnlStatus3D.Fill.ColorMirror := cllime;
+    advsmthpnlStatus3D.Fill.ColorMirrorTo := clGreen;
+    advsmthpnlStatus3D.Fill.ColorTo := cllime;
+  end
+  else
+  begin
+    lblBtmStat3d.Caption := 'Disconnected';
+    advsmthpnlStatus3D.Fill.Color := clMaroon;
+    advsmthpnlStatus3D.Fill.ColorMirror := clRed;
+    advsmthpnlStatus3D.Fill.ColorMirrorTo := clMaroon;
+    advsmthpnlStatus3D.Fill.ColorTo := clRed;
+  end;
+end;
+
 procedure TfrmMainInstruktur.SetStatus3DServer(status: string);
+var
+  i : Integer;
 begin
   if status = ' Connected' then
   begin

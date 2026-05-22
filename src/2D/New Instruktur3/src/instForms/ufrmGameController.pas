@@ -3125,6 +3125,7 @@ var
   i: integer;
 begin
   FillClientList;
+  frmMainInstruktur.UpdateStatus3D;
 
   for i := 0 to lvClient.Items.Count - 1 do
   begin
@@ -7965,6 +7966,7 @@ var
   i: integer;
 begin
   FillClientList;
+  frmMainInstruktur.UpdateStatus3D;
 
   for i := 0 to lvClient.Items.Count - 1 do
   begin

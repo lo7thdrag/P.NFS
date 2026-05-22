@@ -1088,6 +1088,7 @@ begin
             frmGameController.lvClient.Items[i].SubItems[4] := 'ONLINE';
             frmGameController.lvClient.Items[i].SubItems[5] := '';
             Client.Cli_Status := 'ONLINE';
+            frmMainInstruktur.UpdateStatus3D;
           end;
           1 :
           begin
@@ -1095,6 +1096,7 @@ begin
             kapal := DataModule1.GetShipName(Rec.ShipID);
             LauncherClient := IntToStr(Rec.launcherID);
             Client.Cli_Status := 'RUNNING';
+            frmMainInstruktur.UpdateStatus3D;
 
             if (Rec.ShipID <> 0) and (i > 4)  then
             begin
