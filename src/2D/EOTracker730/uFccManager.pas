@@ -283,6 +283,7 @@ procedure TFCCManager.EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
 var
   aRec: ^TrecData_MeriamFCC;
 begin
+
   aRec := @apRec^;
   Flaserrange := aRec.Range;
   FEOBearing := aRec.Bearing;

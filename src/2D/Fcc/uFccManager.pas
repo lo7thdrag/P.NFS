@@ -289,36 +289,37 @@ var
   aRec: ^TrecData_MeriamFCC;
 begin
   aRec := @apRec^;
-  case aRec^.OrderID of
-    CORD_ID_3DUpdate_EO :
-    begin
-      Flaserrange := aRec.Range;
-      FEOBearing := aRec.Bearing;
-      FEOElevation := aRec.Elevation;
-    end;
+  if UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID) = arec^.ShipID then
+  begin
+    case aRec^.OrderID of
+      CORD_ID_3DUpdate_EO :
+      begin
+        Flaserrange := aRec.Range;
+        FEOBearing := aRec.Bearing;
+        FEOElevation := aRec.Elevation;
+      end;
 
-    CORD_ID_3DGet_Target :
-    begin
+      CORD_ID_3DGet_Target :
+      begin
 
-    end;
+      end;
 
-    CORD_ID_2DGet_Target :
-    begin
+      CORD_ID_2DGet_Target :
+      begin
 
-    end;
+      end;
 
-    CORD_ID_3DUpdate_Status :
-    begin
+      CORD_ID_3DUpdate_Status :
+      begin
 
-    end;
+      end;
 
-    CORD_ID_2DSet_Status :
-    begin
+      CORD_ID_2DSet_Status :
+      begin
 
+      end;
     end;
   end;
-
-
 end;
 
 procedure TFCCManager.EventonReceiveSplashPoint(apRec: PAnsiChar;
