@@ -207,9 +207,9 @@ type
     Bearing: double;
     [BsonElement('Elevation') ]
     Elevation: double;
-    [BsonElement('Bearing' ) ]
+    [BsonElement('EOBearing' ) ]
     EOBearing: double;
-    [BsonElement('Elevation') ]
+    [BsonElement('EOElevation') ]
     EOElevation: double;
     [BsonElement('EnableIR') ]
     EnableIR:Boolean;

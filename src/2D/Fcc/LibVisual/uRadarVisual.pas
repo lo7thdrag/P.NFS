@@ -281,7 +281,7 @@ begin
 
   FCenterX  := (FCircleRect.Left + FCircleRect.Right) div 2;
   FCenterY  := (FCircleRect.Top  + FCircleRect.Bottom) div 2;
-  FLengthPx := Round((FCircleRect.Right - FCircleRect.Left) div LineConst);
+  FLengthPx := Round((FCircleRect.Right - FCircleRect.Left) / LineConst);
 end;
 
 procedure TRadarBearing.Draw(ACanvas: TCanvas);

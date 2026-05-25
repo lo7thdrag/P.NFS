@@ -896,7 +896,7 @@ var
 var
   z: double;
   i: Integer;
-  TurretHeading: Double;
+  TurretHeading, EOHeading: Double;
 begin
   aCvt.ConvertToScreen(FMap.CenterX, FMap.CenterY, pnt.X, pnt.Y);
 
@@ -1024,7 +1024,7 @@ begin
 
     // Draw Gun Line
     FBearingGun.CircleRect := FCircleRect;
-    FBearingGun.ConvertCoord(aCvt, 3);
+    FBearingGun.ConvertCoord(aCvt, 3.2);
     if Assigned(FCCManager) then
     begin
       if Assigned(FCCManager.xShip) then
@@ -1039,10 +1039,11 @@ begin
 
     // Draw EO Tracker Line  :: harus didapet dulu current heading eo dari 3d
     FBearingEO.CircleRect := FCircleRect;
-    FBearingEO.ConvertCoord(aCvt, 2.5);
+    FBearingEO.ConvertCoord(aCvt, 2.7);
     if Assigned(FCCManager) then
     begin
-      FBearingEO.BearingDeg  := FCCManager.EOBearing;
+      EOHeading := FCCManager.xShip.Heading - FCCManager.EOBearing;
+      FBearingEO.BearingDeg  := EOHeading;
     end;
     FBearingEO.Draw(aCnv);
 
@@ -1068,16 +1069,14 @@ var
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
   Angle := 0;
+  with aCnv do
+  begin
+    Brush.Style := bsSolid;
+    Brush.Color := clBlack; // or clBlack, clWhite, etc.
+    FillRect(ClipRect); // clears the drawing area
+  end;
   if FCCManager.IsTrueMotion then
   begin
-    with aCnv do
-    begin
-      Brush.Style := bsSolid;
-      Brush.Color := clBlack; // or clBlack, clWhite, etc.
-      FillRect(ClipRect); // clears the drawing area
-    end;
-  //
-  //
     if Assigned(FCCManager) then
     begin
       if Assigned(FCCManager.xShip) then
@@ -3003,6 +3002,8 @@ begin
         end
         else
         begin
+          Fmap.CenterX := FCCManager.xShip.PositionX;
+          Fmap.CenterY := FCCManager.xShip.PositionY;
           FNorthAngle := -FCCManager.xShip.Heading; // antara pakai begini atau pakai 360 - heading
         //    FMap.Rotation := -FCCManager.xShip.Heading;
         end;

@@ -2629,6 +2629,8 @@ begin
       apRec_fcc.Range := incoming_data_fcc.Range;
       apRec_fcc.Bearing := incoming_data_fcc.Bearing;
       apRec_fcc.Elevation := incoming_data_fcc.Elevation;
+      apRec_fcc.EOBearing := incoming_data_fcc.EOBearing;
+      apRec_fcc.EOElevation := incoming_data_fcc.EOElevation;
       apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
       apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
       apRec_fcc.TargetType := incoming_data_fcc.TargetType;
@@ -2649,6 +2651,8 @@ begin
       apRec_fcc.Range := incoming_data_fcc.Range;
       apRec_fcc.Bearing := incoming_data_fcc.Bearing;
       apRec_fcc.Elevation := incoming_data_fcc.Elevation;
+      apRec_fcc.EOBearing := incoming_data_fcc.EOBearing;
+      apRec_fcc.EOElevation := incoming_data_fcc.EOElevation;
       apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
       apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
       apRec_fcc.TargetType := incoming_data_fcc.TargetType;
@@ -2669,6 +2673,8 @@ begin
       apRec_fcc.Range := incoming_data_fcc.Range;
       apRec_fcc.Bearing := incoming_data_fcc.Bearing;
       apRec_fcc.Elevation := incoming_data_fcc.Elevation;
+      apRec_fcc.EOBearing := incoming_data_fcc.EOBearing;
+      apRec_fcc.EOElevation := incoming_data_fcc.EOElevation;
       apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
       apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
       apRec_fcc.TargetType := incoming_data_fcc.TargetType;
@@ -2689,6 +2695,8 @@ begin
       apRec_fcc.Range := incoming_data_fcc.Range;
       apRec_fcc.Bearing := incoming_data_fcc.Bearing;
       apRec_fcc.Elevation := incoming_data_fcc.Elevation;
+      apRec_fcc.EOBearing := incoming_data_fcc.EOBearing;
+      apRec_fcc.EOElevation := incoming_data_fcc.EOElevation;
       apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
       apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
       apRec_fcc.TargetType := incoming_data_fcc.TargetType;
