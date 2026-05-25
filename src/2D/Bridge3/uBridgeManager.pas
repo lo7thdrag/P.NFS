@@ -1373,6 +1373,7 @@ var
   RecRecv: ^TRecSplashCANNON;
   RecRecvTorpState: ^TRec_TorpStatus;
   RecRecvStatusMessage: ^TRecMessageHandling;
+  RecRecvMeriamFCC: ^TrecData_MeriamFCC;
   strWeapon: string;
 begin
   // client socket received. server socket rebroadcast.
@@ -1403,6 +1404,25 @@ begin
       IntToStr(RecRecv^.ShipID) + ' Splash @' + ' X : ' +
       FloatToStr(RecRecv^.PosX) + ' Y : ' + FloatToStr(RecRecv^.PosY) + ' Z : '
       + FloatToStr(RecRecv^.PosZ));
+  end
+  else if (pc.ID = REC_CMD_FCC57) or (pc.ID = REC_CMD_57DIG) or (pc.ID = REC_CMD_TYPE730) or (pc.ID = REC_CMD_AK230) then
+  begin
+    RecRecvMeriamFCC := @apRec^;
+    OnLogPacket('FCC set ' + 'ShipID ' +
+      IntToStr(RecRecvMeriamFCC^.ShipID) + ' ' + ' OrderID  ' +
+      IntToStr(RecRecvMeriamFCC^.OrderID) + ' ' + 'Range ' +
+      FloatToStr(RecRecvMeriamFCC^.Range) + ' ' + 'Bearing  ' +
+      FloatToStr(RecRecvMeriamFCC^.Bearing) + ' ' + 'Elevation      ' +
+      FloatToStr(RecRecvMeriamFCC^.Elevation) + ' ' + ' EOBearing  ' +
+      FloatToStr(RecRecvMeriamFCC^.EOBearing) + ' ' + 'EOElevation ' +
+      FloatToStr(RecRecvMeriamFCC^.EOElevation) + ' ' + 'EnableIR  ' +
+      BoolToStr(RecRecvMeriamFCC^.EnableIR) + ' ' + 'BlackWhiteTarget      ' +
+      BoolToStr(RecRecvMeriamFCC^.BlackWhiteTarget) + ' ' + ' TargetType  ' +
+      IntToStr(RecRecvMeriamFCC^.TargetType) + ' ' + 'AutoSearch ' +
+      BoolToStr(RecRecvMeriamFCC^.AutoSearch) + ' ' + 'IDTarget3D  ' +
+      IntToStr(RecRecvMeriamFCC^.IDTarget3D) + ' ' + 'IDTarget2D      ' +
+      IntToStr(RecRecvMeriamFCC^.IDTarget2D));
+
   end
   else if pc.ID = REC_RECV_TORP_STATE then
   begin
