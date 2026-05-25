@@ -85,7 +85,7 @@ type
 
     constructor Create(ABearingDeg: Double; AColor: TColor; const ALabel: string = '');
 
-    procedure ConvertCoord(cvt: TCoordConverter);
+    procedure ConvertCoord(cvt: TCoordConverter; LineConst: double);
     procedure Draw(ACanvas: TCanvas);
   end;
 
@@ -270,7 +270,7 @@ begin
   FLengthPx   := 0;
 end;
 
-procedure TRadarBearing.ConvertCoord(cvt: TCoordConverter);
+procedure TRadarBearing.ConvertCoord(cvt: TCoordConverter; LineConst: double);
 begin
   if (FCircleRect.Right <= FCircleRect.Left) or
      (FCircleRect.Bottom <= FCircleRect.Top) then
@@ -281,7 +281,7 @@ begin
 
   FCenterX  := (FCircleRect.Left + FCircleRect.Right) div 2;
   FCenterY  := (FCircleRect.Top  + FCircleRect.Bottom) div 2;
-  FLengthPx := (FCircleRect.Right - FCircleRect.Left) div 2;
+  FLengthPx := Round((FCircleRect.Right - FCircleRect.Left) div LineConst);
 end;
 
 procedure TRadarBearing.Draw(ACanvas: TCanvas);

@@ -649,7 +649,7 @@ type
     AreaGunPoint   : TRadarDynamicSector;
     AreaPenembakan  : TRadarDynamicSector;
     AreaTracker  : TRadarDynamicSector;
-    FBearing0    : TRadarBearing;
+    FBearing0, FBearingGun, FBearingEO    : TRadarBearing;
 
     FNorthInd : TRadarNorthIndicator;
 
@@ -896,7 +896,7 @@ var
 var
   z: double;
   i: Integer;
-  TurretHeading : Double;
+  TurretHeading: Double;
 begin
   aCvt.ConvertToScreen(FMap.CenterX, FMap.CenterY, pnt.X, pnt.Y);
 
@@ -1009,20 +1009,42 @@ begin
     FRings.ConvertCoord(aCvt);
     FRings.Draw(aCnv);
 
-    // BEARING 0°
+    // BEARING 0° North
     FBearing0.CircleRect := FCircleRect;
-    FBearing0.ConvertCoord(aCvt);
+    FBearing0.ConvertCoord(aCvt, 2);
+    if Assigned(FCCManager) then
+    begin
+      if Assigned(FCCManager.xShip) then
+      begin
+        if FCCManager.IsTrueMotion then FBearing0.BearingDeg := 0
+        else FBearing0.BearingDeg := 360 - FCCManager.xShip.Heading;
+      end;
+    end;
+    FBearing0.Draw(aCnv);
+
+    // Draw Gun Line
+    FBearingGun.CircleRect := FCircleRect;
+    FBearingGun.ConvertCoord(aCvt, 3);
     if Assigned(FCCManager) then
     begin
       if Assigned(FCCManager.xShip) then
       begin
         TurretHeading := (FCCManager.xShip.Heading + FCurrBearing);
         if TurretHeading >= 360 then TurretHeading := TurretHeading - 360;
-        
-        FBearing0.BearingDeg    := TurretHeading;
+
+        FBearingGun.BearingDeg  := TurretHeading;
       end;
     end;
-    FBearing0.Draw(aCnv);
+    FBearingGun.Draw(aCnv);
+
+    // Draw EO Tracker Line  :: harus didapet dulu current heading eo dari 3d
+    FBearingEO.CircleRect := FCircleRect;
+    FBearingEO.ConvertCoord(aCvt, 2.5);
+    if Assigned(FCCManager) then
+    begin
+      FBearingEO.BearingDeg  := FCCManager.EOBearing;
+    end;
+    FBearingEO.Draw(aCnv);
 
 //    TargetMgr.Draw(aCnv);
 
@@ -1045,19 +1067,24 @@ var
   left,top,right,bottom : Integer;
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
-  with aCnv do
+  Angle := 0;
+  if FCCManager.IsTrueMotion then
   begin
-    Brush.Style := bsSolid;
-    Brush.Color := clBlack; // or clBlack, clWhite, etc.
-    FillRect(ClipRect); // clears the drawing area
+    with aCnv do
+    begin
+      Brush.Style := bsSolid;
+      Brush.Color := clBlack; // or clBlack, clWhite, etc.
+      FillRect(ClipRect); // clears the drawing area
+    end;
+  //
+  //
+    if Assigned(FCCManager) then
+    begin
+      if Assigned(FCCManager.xShip) then
+        Angle    := Round(FCCManager.xShip.Heading); // rojek add buat mutar angle sesuai arah kapal
+    end;
   end;
 
-  Angle := 0;
-  if Assigned(FCCManager) then
-  begin
-    if Assigned(FCCManager.xShip) then
-      Angle    := Round(FCCManager.xShip.Heading); // rojek add buat mutar angle sesuai arah kapal
-  end;
 
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
@@ -1809,11 +1836,25 @@ begin
   end;
 
 
-  FNorthInd := TRadarNorthIndicator.Create;
+  FNorthInd := TRadarNorthIndicator.Create; // bukan north indicator, tapi heading indicator
 
   FShipHeading := 0; // awal
 
-  FBearing0 := TRadarBearing.Create(0, clWhite, '');   // sepertinya ga perlu ada
+  FBearing0 := TRadarBearing.Create(0, clWhite, 'N');   // perlu ditambahkan radar bearing untuk gun dan EO
+  FBearingGun := TRadarBearing.Create(0, clRed, 'GUN');
+
+
+  case vFccSetting.FccMode of  // dinyalakan lagi setelah mengolah kiriman eo tracker
+    1 : //FCC1 Mode
+    begin
+      FBearingEO := TRadarBearing.Create(0, clYellow, 'EO');
+    end;
+    2 : //FCC2 Mode
+    begin
+      FBearingEO := TRadarBearing.Create(0, clYellow, 'TR');
+    end;
+  end;
+
 
 //  TargetMgr := TRadarTargetManager.Create;
 //  TargetMgr.CoordConverter := FMapConverter;
@@ -2962,7 +3003,7 @@ begin
         end
         else
         begin
-          FNorthAngle := -FCCManager.xShip.Heading;;
+          FNorthAngle := -FCCManager.xShip.Heading; // antara pakai begini atau pakai 360 - heading
         //    FMap.Rotation := -FCCManager.xShip.Heading;
         end;
       end;

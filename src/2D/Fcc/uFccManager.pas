@@ -151,7 +151,7 @@ constructor TFCCManager.Create;
 begin
   inherited;
   FIsStandAlone := False;
-  FIsTrueMotion := False;
+  FIsTrueMotion := True; // rojek set default to True Motion atau Heading Up
 
   FPtkServer := TListener.Create;
   FPtkHandler := TPtkReceiver.Create;
@@ -294,9 +294,8 @@ begin
     case aRec^.OrderID of
       CORD_ID_3DUpdate_EO :
       begin
-        Flaserrange := aRec.Range;
-        FEOBearing := aRec.Bearing;
-        FEOElevation := aRec.Elevation;
+        FEOBearing := aRec.EOBearing;
+        FEOElevation := aRec.EOElevation;
       end;
 
       CORD_ID_3DGet_Target :

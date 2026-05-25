@@ -466,13 +466,13 @@ begin
       sizeof(TRec_View_Range_Weapon));
 
     // for fcc set
-    RegisterProcedure(REC_CMD_FCC57, ServerReceive_ServerSend,
+    RegisterProcedure(REC_CMD_FCC57, ServerReceive_ClientSend,
       sizeof(TrecData_MeriamFCC));
-    RegisterProcedure(REC_CMD_57DIG, ServerReceive_ServerSend,
+    RegisterProcedure(REC_CMD_57DIG, ServerReceive_ClientSend,
       sizeof(TrecData_MeriamFCC));
-    RegisterProcedure(REC_CMD_TYPE730, ServerReceive_ServerSend,
+    RegisterProcedure(REC_CMD_TYPE730, ServerReceive_ClientSend,
       sizeof(TrecData_MeriamFCC));
-    RegisterProcedure(REC_CMD_AK230, ServerReceive_ServerSend,
+    RegisterProcedure(REC_CMD_AK230, ServerReceive_ClientSend,
       sizeof(TrecData_MeriamFCC));
   end;
 end;
@@ -596,6 +596,8 @@ var
 
   recCmdC705 : ^TRec_Data_C705;
 
+  recCmdFccSet : ^TrecData_MeriamFCC;
+
   xTarget_3D, yTarget_3D, zTarget_3D: Double;
 
   xOffsetMap, yOffsetMap: Double;
@@ -615,6 +617,29 @@ begin
       recTorpedoSut := @apRec^;
       OnLogPacket('REC_3D_TORPEDO_SUT, ' + IntToStr(pc.ID) +
         ' --> Send Back To Server 3D');
+    end
+    else if (pc.ID = REC_CMD_FCC57) or (pc.ID = REC_CMD_57DIG) or (pc.ID = REC_CMD_TYPE730) or (pc.ID = REC_CMD_AK230) then
+    begin
+      OnLogPacket('REC_fcc, ' + IntToStr(pc.ID) +
+        ' --> Send Back To Server 3D');
+
+      recCmdFccSet := @apRec^;
+
+      OnLogPacket('ShipID :' + IntToStr(recCmdFccSet^.ShipID));
+      OnLogPacket('OrderID :' + IntToStr(recCmdFccSet^.OrderID));
+      OnLogPacket('Range :' + FloatToStr(recCmdFccSet^.Range));
+      OnLogPacket('Bearing :' + FloatToStr(recCmdFccSet^.Bearing));
+      OnLogPacket('Elevation :' + FloatToStr(recCmdFccSet^.Elevation));
+
+      OnLogPacket('EOBearing :' + FloatToStr(recCmdFccSet^.EOBearing));
+      OnLogPacket('EOElevation :' + FloatToStr(recCmdFccSet^.EOElevation));
+      OnLogPacket('EnableIR :' + BoolToStr(recCmdFccSet^.EnableIR));
+
+      OnLogPacket('BlackWhiteTarget :' + BoolToStr(recCmdFccSet^.BlackWhiteTarget));
+      OnLogPacket('TargetType :' + IntToStr(recCmdFccSet^.TargetType));
+      OnLogPacket('AutoSearch :' + BoolToStr(recCmdFccSet^.AutoSearch));
+      OnLogPacket('IDTarget3D :' + IntToStr(recCmdFccSet^.IDTarget3D));
+      OnLogPacket('IDTarget2D :' + IntToStr(recCmdFccSet^.IDTarget2D));
     end
     else if pc.ID = Rec_Data_C705 then
     begin

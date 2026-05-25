@@ -640,20 +640,20 @@ var
   left,top,right,bottom : Integer;
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
-  with aCnv do
-  begin
-    Brush.Style := bsSolid;
-    Brush.Color := clBlack; // or clBlack, clWhite, etc.
-    FillRect(ClipRect); // clears the drawing area
-  end;
+//  with aCnv do
+//  begin
+//    Brush.Style := bsSolid;
+//    Brush.Color := clBlack; // or clBlack, clWhite, etc.
+//    FillRect(ClipRect); // clears the drawing area
+//  end;
 
   Angle := 0;
-  if Assigned(FCCManager) then
-  begin
-    if Assigned(FCCManager.xShip) then
-      Angle    := Round(FOwnShipHeading); // rojek add buat mutar angle sesuai arah kapal
-//      lblFccHeading.Caption := FOwnShipHeading.ToString;
-  end;
+//  if Assigned(FCCManager) then
+//  begin
+//    if Assigned(FCCManager.xShip) then
+//      Angle    := Round(FOwnShipHeading); // rojek add buat mutar angle sesuai arah kapal
+////      lblFccHeading.Caption := FOwnShipHeading.ToString;
+//  end;
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
   labelsfont := TFont.Create();
@@ -1989,7 +1989,7 @@ begin
   lblSystemTimeVal.Caption := FormatDateTime('hh:nn:ss',now);
 
   imgCompas.Repaint;
-  frmMainFCC.Repaint;
+//  frmMainFCC.Repaint;
 
 //  lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
 

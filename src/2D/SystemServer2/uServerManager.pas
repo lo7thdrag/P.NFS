@@ -1965,6 +1965,8 @@ begin
         OnLogReceived2D('Range :' + FloatToStr(RecDataFccSet^.Range));
         OnLogReceived2D('Bearing :' + FloatToStr(RecDataFccSet^.Bearing));
         OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
+        OnLogReceived2D('EOBearing :' + FloatToStr(RecDataFccSet^.EOBearing));
+        OnLogReceived2D('EOElevation :' + FloatToStr(RecDataFccSet^.EOElevation));
         OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
         OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
         OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
@@ -1979,6 +1981,8 @@ begin
       RecDataFccSet3D.Range := RecDataFccSet^.Range;
       RecDataFccSet3D.Bearing := RecDataFccSet^.Bearing;
       RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
+      RecDataFccSet3D.EOBearing := RecDataFccSet^.EOBearing;
+      RecDataFccSet3D.EOElevation := RecDataFccSet^.EOElevation;
       RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
       RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
       RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
@@ -2004,6 +2008,8 @@ begin
         OnLogReceived2D('Range :' + FloatToStr(RecDataFccSet^.Range));
         OnLogReceived2D('Bearing :' + FloatToStr(RecDataFccSet^.Bearing));
         OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
+        OnLogReceived2D('EOBearing :' + FloatToStr(RecDataFccSet^.EOBearing));
+        OnLogReceived2D('EOElevation :' + FloatToStr(RecDataFccSet^.EOElevation));
         OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
         OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
         OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
@@ -2018,6 +2024,8 @@ begin
       RecDataFccSet3D.Range := RecDataFccSet^.Range;
       RecDataFccSet3D.Bearing := RecDataFccSet^.Bearing;
       RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
+      RecDataFccSet3D.EOBearing := RecDataFccSet^.EOBearing;
+      RecDataFccSet3D.EOElevation := RecDataFccSet^.EOElevation;
       RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
       RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
       RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
@@ -2043,6 +2051,8 @@ begin
         OnLogReceived2D('Range :' + FloatToStr(RecDataFccSet^.Range));
         OnLogReceived2D('Bearing :' + FloatToStr(RecDataFccSet^.Bearing));
         OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
+        OnLogReceived2D('EOBearing :' + FloatToStr(RecDataFccSet^.EOBearing));
+        OnLogReceived2D('EOElevation :' + FloatToStr(RecDataFccSet^.EOElevation));
         OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
         OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
         OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
@@ -2057,6 +2067,8 @@ begin
       RecDataFccSet3D.Range := RecDataFccSet^.Range;
       RecDataFccSet3D.Bearing := RecDataFccSet^.Bearing;
       RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
+      RecDataFccSet3D.EOBearing := RecDataFccSet^.EOBearing;
+      RecDataFccSet3D.EOElevation := RecDataFccSet^.EOElevation;
       RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
       RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
       RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
@@ -2082,6 +2094,8 @@ begin
         OnLogReceived2D('Range :' + FloatToStr(RecDataFccSet^.Range));
         OnLogReceived2D('Bearing :' + FloatToStr(RecDataFccSet^.Bearing));
         OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
+        OnLogReceived2D('EOBearing :' + FloatToStr(RecDataFccSet^.EOBearing));
+        OnLogReceived2D('EOElevation :' + FloatToStr(RecDataFccSet^.EOElevation));
         OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
         OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
         OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
@@ -2096,6 +2110,8 @@ begin
       RecDataFccSet3D.Range := RecDataFccSet^.Range;
       RecDataFccSet3D.Bearing := RecDataFccSet^.Bearing;
       RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
+      RecDataFccSet3D.EOBearing := RecDataFccSet^.EOBearing;
+      RecDataFccSet3D.EOElevation := RecDataFccSet^.EOElevation;
       RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
       RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
       RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;

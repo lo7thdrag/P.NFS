@@ -207,6 +207,10 @@ type
     Bearing: double;
     [BsonElement('Elevation') ]
     Elevation: double;
+    [BsonElement('Bearing' ) ]
+    EOBearing: double;
+    [BsonElement('Elevation') ]
+    EOElevation: double;
     [BsonElement('EnableIR') ]
     EnableIR:Boolean;
     [BsonElement('BlackWhiteTarget' ) ]

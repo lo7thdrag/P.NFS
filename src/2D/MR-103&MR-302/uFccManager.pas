@@ -32,6 +32,7 @@ type
     FShipCallSign: string;
     FShipClassName: string;
     FEnv_Map: Integer;
+    FLaserRange, FEOBearing, FEOElevation : Double;
 
     FPtkServer: TListener;
     FPtkHandler : TPtkReceiver;
@@ -61,6 +62,10 @@ type
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
     property xShip : TXShip read FxShip;
+
+    property LaserRange :  double read FLaserRange;
+    property EOBearing : double read FEOBearing;
+    property EOElevation : double read FEOElevation;
 
     property CurrentScenID  : integer read FCurrentScenID write FCurrentScenID;
     property Server_Ip : string read FServer_Ip write FServer_Ip;
@@ -281,8 +286,40 @@ begin
 end;
 
 procedure TFCCManager.EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
+var
+  aRec: ^TrecData_MeriamFCC;
 begin
-//
+  aRec := @apRec^;
+  if UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID) = arec^.ShipID then
+  begin
+    case aRec^.OrderID of
+      CORD_ID_3DUpdate_EO :
+      begin
+        FEOBearing := aRec.EOBearing;
+        FEOElevation := aRec.EOElevation;
+      end;
+
+      CORD_ID_3DGet_Target :
+      begin
+
+      end;
+
+      CORD_ID_2DGet_Target :
+      begin
+
+      end;
+
+      CORD_ID_3DUpdate_Status :
+      begin
+
+      end;
+
+      CORD_ID_2DSet_Status :
+      begin
+
+      end;
+    end;
+  end;
 end;
 
 procedure TFCCManager.EventonReceiveSplashPoint(apRec: PAnsiChar;

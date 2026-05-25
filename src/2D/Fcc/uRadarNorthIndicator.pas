@@ -101,15 +101,21 @@ begin
   // Tentukan sudut penunjuk
   if FUseTrueMotion then
   begin
-    // utara relatif heading kapal:
-    // jika kapal heading 90°, utara berada di 270° (kiri),
-    // jadi sudut = 0° - heading
-    baseAngleDeg := NormalizeAngle(0 - FHeadingDeg);
+    // utara relatif heading kapal: --------------------------------------------------
+    // jika kapal heading 90°, utara berada di 270° (kiri),  ---- ini penjelasan lama-
+    // jadi sudut = 0° - heading -----------------------------------------------------
+ //    baseAngleDeg := NormalizeAngle(0 - FHeadingDeg);
+
+    // [rojek] jika true motion atau heading up, maka segitiga akan selalu mengarah keatas
+    baseAngleDeg := 0;
   end
   else
   begin
-    // selalu ke 0° (atas layar)
-    baseAngleDeg := 0;
+//    // selalu ke 0° (atas layar) // jika
+//    baseAngleDeg := 0;
+
+    // [rojek] segitiga digunakan untuk menunjukan heading kapal
+    baseAngleDeg := FHeadingDeg;
   end;
 
   angRad := DegToRad(baseAngleDeg);

@@ -656,18 +656,20 @@ var
   left,top,right,bottom : Integer;
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
-  with aCnv do
-  begin
-    Brush.Style := bsSolid;
-    Brush.Color := clBlack; // or clBlack, clWhite, etc.
-    FillRect(ClipRect); // clears the drawing area
-  end;
+//  with aCnv do
+//  begin
+//    Brush.Style := bsSolid;
+//    Brush.Color := clBlack; // or clBlack, clWhite, etc.
+//    FillRect(ClipRect); // clears the drawing area
+//  end;
 
-  if Assigned(FCCManager) then
-  begin
-    if Assigned(FCCManager.xShip) then
-      Angle    := Round(FCCManager.xShip.Heading); // rojek add buat mutar angle sesuai arah kapal
-  end;
+//  if Assigned(FCCManager) then
+//  begin
+//    if Assigned(FCCManager.xShip) then
+//      Angle    := Round(FCCManager.xShip.Heading); // rojek add buat mutar angle sesuai arah kapal
+//  end;
+
+  Angle    := 0;
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
   labelsfont := TFont.Create();

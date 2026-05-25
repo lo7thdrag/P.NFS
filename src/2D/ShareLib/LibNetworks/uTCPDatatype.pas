@@ -690,6 +690,8 @@ type
     Range: double;
     Bearing: double;
     Elevation: double;
+    EOBearing: double;
+    EOElevation: double;
     EnableIR: Boolean;
     BlackWhiteTarget: Boolean;
     TargetType: byte;

@@ -1332,10 +1332,9 @@ object frmMainFCC: TfrmMainFCC
       AngleOffset = 180
       Spacing = 30
       Ticks = 180
-      TicksMin = 1
-      TicksMax = 3
+      TicksMin = 0
+      TicksMax = 6
       TicksEnlarge = 5
-      ColorZone1 = clLime
       ColorZone2 = clRed
       ColorZone3 = clSkyBlue
       Percent1 = 50
@@ -1370,11 +1369,11 @@ object frmMainFCC: TfrmMainFCC
       AngleOffset = 360
       Spacing = 30
       Ticks = 360
-      TicksMin = 1
-      TicksMax = 4
+      TicksMin = 0
+      TicksMax = 6
       TicksEnlarge = 5
       ColorZone1 = clRed
-      ColorZone2 = clLime
+      ColorZone2 = clGreen
       ColorZone3 = clSkyBlue
       Percent1 = 50
       Percent2 = 50
@@ -1467,7 +1466,7 @@ object frmMainFCC: TfrmMainFCC
       end
     end
     object lbl0: TPanel
-      Left = 612
+      Left = 614
       Top = 189
       Width = 25
       Height = 33
@@ -1484,9 +1483,9 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblMin30: TPanel
       Left = 595
-      Top = 286
+      Top = 296
       Width = 25
-      Height = 33
+      Height = 17
       AutoSize = True
       BevelOuter = bvNone
       Caption = '-30'
@@ -1500,9 +1499,9 @@ object frmMainFCC: TfrmMainFCC
     end
     object lbl90: TPanel
       Left = 426
-      Top = -2
+      Top = 8
       Width = 25
-      Height = 33
+      Height = 16
       AutoSize = True
       BevelOuter = bvNone
       Caption = '90'
@@ -1515,10 +1514,10 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 3
     end
     object lbl60: TPanel
-      Left = 524
-      Top = 24
-      Width = 25
-      Height = 33
+      Left = 526
+      Top = 32
+      Width = 19
+      Height = 17
       AutoSize = True
       BevelOuter = bvNone
       Caption = '60'
@@ -1532,9 +1531,9 @@ object frmMainFCC: TfrmMainFCC
     end
     object lbl30: TPanel
       Left = 596
-      Top = 98
+      Top = 105
       Width = 25
-      Height = 33
+      Height = 17
       AutoSize = True
       BevelOuter = bvNone
       Caption = '30'
@@ -1548,9 +1547,9 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblMin90: TPanel
       Left = 427
-      Top = 375
+      Top = 386
       Width = 25
-      Height = 33
+      Height = 15
       AutoSize = True
       BevelOuter = bvNone
       Caption = '-90'
@@ -1564,9 +1563,9 @@ object frmMainFCC: TfrmMainFCC
     end
     object lblMin60: TPanel
       Left = 526
-      Top = 354
+      Top = 360
       Width = 25
-      Height = 33
+      Height = 25
       AutoSize = True
       BevelOuter = bvNone
       Caption = '-60'
@@ -2557,7 +2556,6 @@ object frmMainFCC: TfrmMainFCC
       000000000000}
   end
   object NLDJoystick1: TNLDJoystick
-    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move

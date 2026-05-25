@@ -905,7 +905,7 @@ begin
           C_DBID_EXOCET_MM40 :
           begin
             WeaponShip := TWeaponOn_EXOCET40.Create(Result, Fmap);
-            Color := TColor($B3FF00);   //hijau lemon
+            Color := TColor($990000);   //merah gelap
           end;
 
           C_DBID_EXOCET_MM38 :
@@ -983,7 +983,7 @@ begin
           C_DBID_C705   :
           begin
             WeaponShip := TWeaponOn_C705.Create(Result, Fmap);
-            Color := TColor($B3FF00);   //hijau lemon  ; tentative??
+            Color := TColor($993333);  //coklat  ; tentative??
           end;
         end;
 
