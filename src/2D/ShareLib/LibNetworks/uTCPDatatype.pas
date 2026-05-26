@@ -685,17 +685,16 @@ type
   end;
 
   TrecData_MeriamFCC = packed record
+    Pc: TPacketCheck;
     ShipID: word;
     OrderID: byte;
-    Range: double;
-    Bearing: double;
-    Elevation: double;
-    EOBearing: double;
-    EOElevation: double;
-    EnableIR: Boolean;
-    BlackWhiteTarget: Boolean;
+    Range: single;
+    Bearing: single;
+    Elevation: single;
+    EOBearing: single;
+    EOElevation: single;
+    EnableValue: Boolean;
     TargetType: byte;
-    AutoSearch: Boolean;
     IDTarget3D: word;
     IDTarget2D: word;
   end;

@@ -633,11 +633,9 @@ begin
 
       OnLogPacket('EOBearing :' + FloatToStr(recCmdFccSet^.EOBearing));
       OnLogPacket('EOElevation :' + FloatToStr(recCmdFccSet^.EOElevation));
-      OnLogPacket('EnableIR :' + BoolToStr(recCmdFccSet^.EnableIR));
+      OnLogPacket('EnableValue :' + BoolToStr(recCmdFccSet^.EnableValue));
 
-      OnLogPacket('BlackWhiteTarget :' + BoolToStr(recCmdFccSet^.BlackWhiteTarget));
       OnLogPacket('TargetType :' + IntToStr(recCmdFccSet^.TargetType));
-      OnLogPacket('AutoSearch :' + BoolToStr(recCmdFccSet^.AutoSearch));
       OnLogPacket('IDTarget3D :' + IntToStr(recCmdFccSet^.IDTarget3D));
       OnLogPacket('IDTarget2D :' + IntToStr(recCmdFccSet^.IDTarget2D));
     end
@@ -1415,11 +1413,9 @@ begin
       FloatToStr(RecRecvMeriamFCC^.Bearing) + ' ' + 'Elevation      ' +
       FloatToStr(RecRecvMeriamFCC^.Elevation) + ' ' + ' EOBearing  ' +
       FloatToStr(RecRecvMeriamFCC^.EOBearing) + ' ' + 'EOElevation ' +
-      FloatToStr(RecRecvMeriamFCC^.EOElevation) + ' ' + 'EnableIR  ' +
-      BoolToStr(RecRecvMeriamFCC^.EnableIR) + ' ' + 'BlackWhiteTarget      ' +
-      BoolToStr(RecRecvMeriamFCC^.BlackWhiteTarget) + ' ' + ' TargetType  ' +
-      IntToStr(RecRecvMeriamFCC^.TargetType) + ' ' + 'AutoSearch ' +
-      BoolToStr(RecRecvMeriamFCC^.AutoSearch) + ' ' + 'IDTarget3D  ' +
+      FloatToStr(RecRecvMeriamFCC^.EOElevation) + ' ' + 'EnableValue  ' +
+      BoolToStr(RecRecvMeriamFCC^.EnableValue) + ' ' + ' TargetType  ' +
+      IntToStr(RecRecvMeriamFCC^.TargetType) + ' ' + 'IDTarget3D  ' +
       IntToStr(RecRecvMeriamFCC^.IDTarget3D) + ' ' + 'IDTarget2D      ' +
       IntToStr(RecRecvMeriamFCC^.IDTarget2D));
 

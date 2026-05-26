@@ -1967,10 +1967,8 @@ begin
         OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
         OnLogReceived2D('EOBearing :' + FloatToStr(RecDataFccSet^.EOBearing));
         OnLogReceived2D('EOElevation :' + FloatToStr(RecDataFccSet^.EOElevation));
-        OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
-        OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
+        OnLogReceived2D('EnableValue :' + booltostr(RecDataFccSet^.EnableValue));
         OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
-        OnLogReceived2D('AutoSearch :' + booltostr(RecDataFccSet^.AutoSearch));
         OnLogReceived2D('IDTarget3D :' + IntToStr(RecDataFccSet^.IDTarget3D));
         OnLogReceived2D('IDTarget2D :' + IntToStr(RecDataFccSet^.IDTarget2D));
 
@@ -1983,10 +1981,8 @@ begin
       RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
       RecDataFccSet3D.EOBearing := RecDataFccSet^.EOBearing;
       RecDataFccSet3D.EOElevation := RecDataFccSet^.EOElevation;
-      RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
-      RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
+      RecDataFccSet3D.EnableValue := RecDataFccSet^.EnableValue;
       RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
-      RecDataFccSet3D.AutoSearch := RecDataFccSet^.AutoSearch;
       RecDataFccSet3D.IDTarget3D := RecDataFccSet^.IDTarget3D;
       RecDataFccSet3D.IDTarget2D := RecDataFccSet^.IDTarget2D;
 
@@ -2010,10 +2006,8 @@ begin
         OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
         OnLogReceived2D('EOBearing :' + FloatToStr(RecDataFccSet^.EOBearing));
         OnLogReceived2D('EOElevation :' + FloatToStr(RecDataFccSet^.EOElevation));
-        OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
-        OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
+        OnLogReceived2D('EnableValue :' + booltostr(RecDataFccSet^.EnableValue));
         OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
-        OnLogReceived2D('AutoSearch :' + booltostr(RecDataFccSet^.AutoSearch));
         OnLogReceived2D('IDTarget3D :' + IntToStr(RecDataFccSet^.IDTarget3D));
         OnLogReceived2D('IDTarget2D :' + IntToStr(RecDataFccSet^.IDTarget2D));
 
@@ -2026,10 +2020,8 @@ begin
       RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
       RecDataFccSet3D.EOBearing := RecDataFccSet^.EOBearing;
       RecDataFccSet3D.EOElevation := RecDataFccSet^.EOElevation;
-      RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
-      RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
+      RecDataFccSet3D.EnableValue := RecDataFccSet^.EnableValue;
       RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
-      RecDataFccSet3D.AutoSearch := RecDataFccSet^.AutoSearch;
       RecDataFccSet3D.IDTarget3D := RecDataFccSet^.IDTarget3D;
       RecDataFccSet3D.IDTarget2D := RecDataFccSet^.IDTarget2D;
 
@@ -2053,10 +2045,8 @@ begin
         OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
         OnLogReceived2D('EOBearing :' + FloatToStr(RecDataFccSet^.EOBearing));
         OnLogReceived2D('EOElevation :' + FloatToStr(RecDataFccSet^.EOElevation));
-        OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
-        OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
+        OnLogReceived2D('EnableValue :' + booltostr(RecDataFccSet^.EnableValue));
         OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
-        OnLogReceived2D('AutoSearch :' + booltostr(RecDataFccSet^.AutoSearch));
         OnLogReceived2D('IDTarget3D :' + IntToStr(RecDataFccSet^.IDTarget3D));
         OnLogReceived2D('IDTarget2D :' + IntToStr(RecDataFccSet^.IDTarget2D));
 
@@ -2069,10 +2059,8 @@ begin
       RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
       RecDataFccSet3D.EOBearing := RecDataFccSet^.EOBearing;
       RecDataFccSet3D.EOElevation := RecDataFccSet^.EOElevation;
-      RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
-      RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
+      RecDataFccSet3D.EnableValue := RecDataFccSet^.EnableValue;
       RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
-      RecDataFccSet3D.AutoSearch := RecDataFccSet^.AutoSearch;
       RecDataFccSet3D.IDTarget3D := RecDataFccSet^.IDTarget3D;
       RecDataFccSet3D.IDTarget2D := RecDataFccSet^.IDTarget2D;
 
@@ -2096,10 +2084,8 @@ begin
         OnLogReceived2D('Elevation :' + FloatToStr(RecDataFccSet^.Elevation));
         OnLogReceived2D('EOBearing :' + FloatToStr(RecDataFccSet^.EOBearing));
         OnLogReceived2D('EOElevation :' + FloatToStr(RecDataFccSet^.EOElevation));
-        OnLogReceived2D('EnableIR :' + booltostr(RecDataFccSet^.EnableIR));
-        OnLogReceived2D('BlackWhiteTarget :' + booltostr(RecDataFccSet^.BlackWhiteTarget));
+        OnLogReceived2D('EnableValue :' + booltostr(RecDataFccSet^.EnableValue));
         OnLogReceived2D('TargetType :' + IntToStr(RecDataFccSet^.TargetType));
-        OnLogReceived2D('AutoSearch :' + booltostr(RecDataFccSet^.AutoSearch));
         OnLogReceived2D('IDTarget3D :' + IntToStr(RecDataFccSet^.IDTarget3D));
         OnLogReceived2D('IDTarget2D :' + IntToStr(RecDataFccSet^.IDTarget2D));
 
@@ -2112,10 +2098,8 @@ begin
       RecDataFccSet3D.Elevation := RecDataFccSet^.Elevation;
       RecDataFccSet3D.EOBearing := RecDataFccSet^.EOBearing;
       RecDataFccSet3D.EOElevation := RecDataFccSet^.EOElevation;
-      RecDataFccSet3D.EnableIR := RecDataFccSet^.EnableIR;
-      RecDataFccSet3D.BlackWhiteTarget := RecDataFccSet^.BlackWhiteTarget;
+      RecDataFccSet3D.EnableValue := RecDataFccSet^.EnableValue;
       RecDataFccSet3D.TargetType := RecDataFccSet^.TargetType;
-      RecDataFccSet3D.AutoSearch := RecDataFccSet^.AutoSearch;
       RecDataFccSet3D.IDTarget3D := RecDataFccSet^.IDTarget3D;
       RecDataFccSet3D.IDTarget2D := RecDataFccSet^.IDTarget2D;
 
@@ -2631,10 +2615,8 @@ begin
       apRec_fcc.Elevation := incoming_data_fcc.Elevation;
       apRec_fcc.EOBearing := incoming_data_fcc.EOBearing;
       apRec_fcc.EOElevation := incoming_data_fcc.EOElevation;
-      apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
-      apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
+      apRec_fcc.EnableValue := incoming_data_fcc.EnableValue;
       apRec_fcc.TargetType := incoming_data_fcc.TargetType;
-      apRec_fcc.AutoSearch := incoming_data_fcc.AutoSearch;
       apRec_fcc.IDTarget3D := incoming_data_fcc.IDTarget3D;
       apRec_fcc.IDTarget2D := incoming_data_fcc.IDTarget2D;
 
@@ -2653,10 +2635,8 @@ begin
       apRec_fcc.Elevation := incoming_data_fcc.Elevation;
       apRec_fcc.EOBearing := incoming_data_fcc.EOBearing;
       apRec_fcc.EOElevation := incoming_data_fcc.EOElevation;
-      apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
-      apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
+      apRec_fcc.EnableValue := incoming_data_fcc.EnableValue;
       apRec_fcc.TargetType := incoming_data_fcc.TargetType;
-      apRec_fcc.AutoSearch := incoming_data_fcc.AutoSearch;
       apRec_fcc.IDTarget3D := incoming_data_fcc.IDTarget3D;
       apRec_fcc.IDTarget2D := incoming_data_fcc.IDTarget2D;
 
@@ -2675,10 +2655,8 @@ begin
       apRec_fcc.Elevation := incoming_data_fcc.Elevation;
       apRec_fcc.EOBearing := incoming_data_fcc.EOBearing;
       apRec_fcc.EOElevation := incoming_data_fcc.EOElevation;
-      apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
-      apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
+      apRec_fcc.EnableValue := incoming_data_fcc.EnableValue;
       apRec_fcc.TargetType := incoming_data_fcc.TargetType;
-      apRec_fcc.AutoSearch := incoming_data_fcc.AutoSearch;
       apRec_fcc.IDTarget3D := incoming_data_fcc.IDTarget3D;
       apRec_fcc.IDTarget2D := incoming_data_fcc.IDTarget2D;
 
@@ -2697,10 +2675,8 @@ begin
       apRec_fcc.Elevation := incoming_data_fcc.Elevation;
       apRec_fcc.EOBearing := incoming_data_fcc.EOBearing;
       apRec_fcc.EOElevation := incoming_data_fcc.EOElevation;
-      apRec_fcc.EnableIR := incoming_data_fcc.EnableIR;
-      apRec_fcc.BlackWhiteTarget := incoming_data_fcc.BlackWhiteTarget;
+      apRec_fcc.EnableValue := incoming_data_fcc.EnableValue;
       apRec_fcc.TargetType := incoming_data_fcc.TargetType;
-      apRec_fcc.AutoSearch := incoming_data_fcc.AutoSearch;
       apRec_fcc.IDTarget3D := incoming_data_fcc.IDTarget3D;
       apRec_fcc.IDTarget2D := incoming_data_fcc.IDTarget2D;
 

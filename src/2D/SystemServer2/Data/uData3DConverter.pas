@@ -202,23 +202,19 @@ type
     [BsonElement('OrderID')]
     OrderID:byte;
     [BsonElement('Range') ]
-    Range:double;
+    Range:single;
     [BsonElement('Bearing' ) ]
-    Bearing: double;
+    Bearing: single;
     [BsonElement('Elevation') ]
-    Elevation: double;
+    Elevation: single;
     [BsonElement('EOBearing' ) ]
-    EOBearing: double;
+    EOBearing: single;
     [BsonElement('EOElevation') ]
-    EOElevation: double;
-    [BsonElement('EnableIR') ]
-    EnableIR:Boolean;
-    [BsonElement('BlackWhiteTarget' ) ]
-    BlackWhiteTarget:Boolean;
+    EOElevation: single;
+    [BsonElement('EnableValue') ] // enablevalue EnableIR, Blackwhite: black 0 white 1, Autosearch
+    EnableValue:Boolean;
     [BsonElement('TargetType')]
     TargetType:byte;
-    [BsonElement('AutoSearch') ]
-    AutoSearch:Boolean;
     [BsonElement('IDTarget3D')]
     IDTarget3D: word;
     [BsonElement('IDTarget2D')]
