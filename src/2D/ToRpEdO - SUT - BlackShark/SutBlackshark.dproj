@@ -103,10 +103,6 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="ufrmMainDisplay.pas">
-            <Form>frmMainSutBlackshark</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="LibUtils\uLibConst.pas"/>
         <DCCReference Include="LibBaseSystem\uBaseConst.pas"/>
         <DCCReference Include="libGDI\GdiPlus.pas"/>
@@ -171,6 +167,9 @@
         </DCCReference>
         <DCCReference Include="..\ShareLib\LibUtil\uSettingFormToMonitorWith_ini.pas"/>
         <DCCReference Include="..\ShareLib\LibUtil\uFormUtil.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uBaseObject.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uPointTrack.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uNonVehicle.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -2,7 +2,6 @@ program SutBlackshark;
 
 uses
   Vcl.Forms,
-  ufrmMainDisplay in 'ufrmMainDisplay.pas' {frmMainSutBlackshark},
   uLibConst in 'LibUtils\uLibConst.pas',
   uBaseConst in 'LibBaseSystem\uBaseConst.pas',
   GdiPlus in 'libGDI\GdiPlus.pas',
@@ -56,7 +55,10 @@ uses
   ufrmTacticalScreen in 'ufrmTacticalScreen.pas' {FrmTacticalScreen},
   ufrmSupportScreen in 'ufrmSupportScreen.pas' {FrmSupportScreen},
   uSettingFormToMonitorWith_ini in '..\ShareLib\LibUtil\uSettingFormToMonitorWith_ini.pas',
-  uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas';
+  uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas',
+  uBaseObject in 'LibSutBlacksharkObject\uBaseObject.pas',
+  uPointTrack in 'LibSutBlacksharkObject\uPointTrack.pas',
+  uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas';
 
 {$R *.res}
 
@@ -64,7 +66,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
-//    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
+  //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
 //  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);

@@ -24,10 +24,10 @@ type
     pnlSubmodeTools9: TPanel;
     pnlTrackManagement: TPanel;
     pnlSystem: TPanel;
-    pnlPMA: TPanel;
+    pnlAssFunc1: TPanel;
     pnlRadarFreeze: TPanel;
-    pnlSnapshot: TPanel;
-    pnlTacticalRecording: TPanel;
+    pnlAssFunc2: TPanel;
+    pnlAssFunc0: TPanel;
     pnlTorpedoBtn: TPanel;
     pnlIntercom: TPanel;
     pnlTMABtn: TPanel;
@@ -37,11 +37,11 @@ type
     pnlSubmodeTools19: TPanel;
     pnlRecordPMA: TPanel;
     pnlToolkit: TPanel;
-    pnlImageReplay: TPanel;
+    pnlAssFunc4: TPanel;
     pnlControlByNumber: TPanel;
     pnlResmBtn: TPanel;
-    pnlBelumtau: TPanel;
-    pnlImageRecording: TPanel;
+    pnlAssFunc5: TPanel;
+    pnlAssFunc3: TPanel;
     pnlPeriscopeBtn: TPanel;
     pnlAckAlert: TPanel;
     pnlLinkBtn: TPanel;
@@ -83,12 +83,12 @@ type
     lblControlByNumber: TLabel;
     lblSystem: TLabel;
     lblToolkit: TLabel;
-    lblTacticalRecording: TLabel;
-    lblImageRecording: TLabel;
-    lblPMA: TLabel;
-    lblImageReplay: TLabel;
-    lblSnapshot: TLabel;
-    lblBelumtau: TLabel;
+    lblAssFunc0: TLabel;
+    lblAssFunc3: TLabel;
+    lblAssFunc1: TLabel;
+    lblAssFunc4: TLabel;
+    lblAssFunc2: TLabel;
+    lblAssFunc5: TLabel;
     lblIntercom: TLabel;
     lblAckAlert: TLabel;
     lblTanggaljam: TLabel;
@@ -153,6 +153,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure pnlFuncTaskRightMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure pnlAssFuncMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure pnlSubmodeTools0MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormDestroy(Sender: TObject);
@@ -178,7 +182,7 @@ type
 
   private
     { Private declarations }
-    Submode, SubmodeTools : Byte;
+    Submode, SubmodeTools, FuncTaskRightMode : Byte;
     BitMapLampGrey, BitMapLampGreen, BitMapLampRed : TBitmap;
     FLyrDraw: CMapXLayer;
     FCurrentRange, FBearingVal, FElevVal : Double;  // meter
@@ -221,9 +225,11 @@ type
 
 
     procedure SubmodeSelect(Sender: Tobject);
+    procedure FuncTaskRightSelect(Sender: Tobject);
     procedure SubmodeToolsSelect(Sender: Tobject);
     procedure SetLayoutForm;
     procedure ResetSubmodeTools;
+    procedure ResetAssociatedFunction;
     procedure LoadGeoset(const aGst: string); virtual;
     procedure setRegionCircle;
     procedure DrawAll(aCnv: TCanvas; aCvt: TCoordConverter; aFlag: Byte);
@@ -640,7 +646,9 @@ var
   i : Integer;
 begin
   SetLayoutForm;
+  ResetAssociatedFunction;
   ResetSubmodeTools;
+  FuncTaskRightMode := 7;
   Submode := 7;
   SubmodeTools := 20;
 
@@ -799,6 +807,136 @@ begin
   DrawAngle(imgBackgrounSituationZone.Canvas);
 end;
 
+procedure TFrmTacticalScreen.FuncTaskRightSelect(Sender: Tobject);
+begin
+  if TPanel(Sender).Tag = FuncTaskRightMode then Exit;
+
+  ResetAssociatedFunction;
+
+  pnlTrackManagement.Color := clBlack;
+  pnlRadarFreeze.Color := clBlack;
+  pnlSystem.Color := clBlack;
+  pnlRecordPMA.Color := clBlack;
+  pnlControlByNumber.Color := clBlack;
+  pnltoolkit.Color := clBlack;
+
+  TPanel(Sender).Color := clLime;
+  FuncTaskRightMode := TPanel(Sender).Tag;
+
+  case FuncTaskRightMode of
+    0:
+    begin
+      lblAssFunc0.Caption := 'Create' + #13#10 + 'Modify' + #13#10 + 'Track';
+      pnlAssFunc0.Enabled := True;
+      lblAssFunc0.Enabled := True;
+
+      lblAssFunc2.Caption := 'Combine' + #13#10 + 'Track';
+      pnlAssFunc2.Enabled := True;
+      lblAssFunc2.Enabled := True;
+
+      lblAssFunc3.Caption := 'Create' + #13#10 + 'Track';
+      pnlAssFunc3.Enabled := True;
+      lblAssFunc3.Enabled := True;
+
+      lblAssFunc4.Caption := 'Track' + #13#10 + 'History';
+      pnlAssFunc4.Enabled := True;
+      lblAssFunc4.Enabled := True;
+
+      lblAssFunc5.Caption := 'Delete' + #13#10 + 'Track';
+      pnlAssFunc5.Enabled := True;
+      lblAssFunc5.Enabled := True;
+    end;
+    1:
+    begin
+
+    end;
+    2:
+    begin
+      lblAssFunc0.Caption := 'System' + #13#10 + 'Mode' + #13#10 + 'Select';
+      pnlAssFunc0.Enabled := True;
+      lblAssFunc0.Enabled := True;
+
+      lblAssFunc1.Caption := 'Opera-' + #13#10 + 'tion' + #13#10 + 'Area';
+      pnlAssFunc1.Enabled := True;
+      lblAssFunc1.Enabled := True;
+
+      lblAssFunc4.Caption := 'Torp' + #13#10 + 'Info';
+      pnlAssFunc4.Enabled := True;
+      lblAssFunc4.Enabled := True;
+
+      lblAssFunc5.Caption := 'Nav' + #13#10 + 'Setting';
+      pnlAssFunc5.Enabled := True;
+      lblAssFunc5.Enabled := True;
+    end;
+    3:
+    begin
+      lblAssFunc0.Caption := 'Tactical' + #13#10 + 'Recording';
+      pnlAssFunc0.Enabled := True;
+      lblAssFunc0.Enabled := True;
+
+      lblAssFunc1.Caption := 'PMA';
+      pnlAssFunc1.Enabled := True;
+      lblAssFunc1.Enabled := True;
+
+      lblAssFunc2.Caption := 'Snapshot';
+      pnlAssFunc2.Enabled := True;
+      lblAssFunc2.Enabled := True;
+
+      lblAssFunc3.Caption := 'Image' + #13#10 + 'Recording';
+      pnlAssFunc3.Enabled := True;
+      lblAssFunc3.Enabled := True;
+
+      lblAssFunc4.Caption := 'Image' + #13#10 + 'Replay';
+      pnlAssFunc4.Enabled := True;
+      lblAssFunc4.Enabled := True;
+    end;
+    4:
+    begin
+      lblAssFunc0.Caption := 'Track' + #13#10 + 'CtrlBy' + #13#10 + 'Number';
+      pnlAssFunc0.Enabled := True;
+      lblAssFunc0.Enabled := True;
+
+      lblAssFunc1.Caption := 'Track' + #13#10 + 'List';
+      pnlAssFunc1.Enabled := True;
+      lblAssFunc1.Enabled := True;
+
+      lblAssFunc2.Caption := 'Sensor' + #13#10 + 'Track' + #13#10 + 'List';
+      pnlAssFunc2.Enabled := True;
+      lblAssFunc2.Enabled := True;
+
+      lblAssFunc3.Caption := 'Tact' + #13#10 + 'Trp/Cnt' + #13#10 + 'List';
+      pnlAssFunc3.Enabled := True;
+      lblAssFunc3.Enabled := True;
+
+      lblAssFunc4.Caption := 'Torp' + #13#10 + 'Trp/Cnt' + #13#10 + 'List';
+      pnlAssFunc4.Enabled := True;
+      lblAssFunc4.Enabled := True;
+
+      lblAssFunc5.Caption := 'Wake' + #13#10 + 'List';
+      pnlAssFunc5.Enabled := True;
+      lblAssFunc5.Enabled := True;
+    end;
+    5:
+    begin
+      lblAssFunc0.Caption := 'Tactical' + #13#10 + 'Calc';
+      pnlAssFunc0.Enabled := True;
+      lblAssFunc0.Enabled := True;
+
+      lblAssFunc1.Caption := 'Media' + #13#10 + 'Writer';
+      pnlAssFunc1.Enabled := True;
+      lblAssFunc1.Enabled := True;
+
+      lblAssFunc2.Caption := 'Browser';
+      pnlAssFunc2.Enabled := True;
+      lblAssFunc2.Enabled := True;
+
+      lblAssFunc3.Caption := 'Area' + #13#10 + 'Manager';
+      pnlAssFunc3.Enabled := True;
+      lblAssFunc3.Enabled := True;
+    end;
+  end;
+end;
+
 procedure TFrmTacticalScreen.Label1Click(Sender: TObject);
 begin
 //  Invalidate;
@@ -840,6 +978,43 @@ begin
   Result := FMap.Width;
 end;
 
+procedure TFrmTacticalScreen.pnlAssFuncMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  case FuncTaskRightMode of
+    0:
+    begin
+
+    end;
+    1:
+    begin
+
+    end;
+    2:
+    begin
+
+    end;
+    3:
+    begin
+
+    end;
+    4:
+    begin
+
+    end;
+    5:
+    begin
+
+    end;
+  end;
+end;
+
+procedure TFrmTacticalScreen.pnlFuncTaskRightMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  FuncTaskRightSelect(sender);
+end;
+
 procedure TFrmTacticalScreen.pnlSubmodeTools0MouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
@@ -857,6 +1032,37 @@ begin
 //    TPanel(Sender).Color := clLime;
     SubmodeSelect(Sender);
 //  (Sender as TPanel).Color := clLime;
+end;
+
+procedure TFrmTacticalScreen.ResetAssociatedFunction;
+begin
+  pnlAssFunc0.Color := clBlack;
+  pnlAssFunc1.Color := clBlack;
+  pnlAssFunc2.Color := clBlack;
+  pnlAssFunc3.Color := clBlack;
+  pnlAssFunc4.Color := clBlack;
+  pnlAssFunc5.Color := clBlack;
+
+  pnlAssFunc0.Enabled := False;
+  pnlAssFunc1.Enabled := False;
+  pnlAssFunc2.Enabled := False;
+  pnlAssFunc3.Enabled := False;
+  pnlAssFunc4.Enabled := False;
+  pnlAssFunc5.Enabled := False;
+
+  lblAssFunc0.Enabled := False;
+  lblAssFunc1.Enabled := False;
+  lblAssFunc2.Enabled := False;
+  lblAssFunc3.Enabled := False;
+  lblAssFunc4.Enabled := False;
+  lblAssFunc5.Enabled := False;
+
+  lblAssFunc0.Caption := '';
+  lblAssFunc1.Caption := '';
+  lblAssFunc2.Caption := '';
+  lblAssFunc3.Caption := '';
+  lblAssFunc4.Caption := '';
+  lblAssFunc5.Caption := '';
 end;
 
 procedure TFrmTacticalScreen.ResetSubmodeTools;

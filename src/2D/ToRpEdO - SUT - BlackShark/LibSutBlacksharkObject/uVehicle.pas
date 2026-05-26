@@ -4,18 +4,15 @@ interface
 
 uses
   SysUtils, Classes, Math, Graphics,
-  uCoordConverter, uRadarTargets, windows; // <-- TRadarTargetSymbol di sini
+  uCoordConverter, uRadarTargets, windows, uBaseObject; // <-- TRadarTargetSymbol di sini
 
 type
   // tipe koordinat posisi vehicle (samakan dengan peta kamu)
   TVehicleCoordType = (vctGeographicDeg, vctProjectedMeters);
 
-  TVehicle = class
+  TVehicle = class(TBaseObject)
   private
     // state dinamis
-    FPosX, FPosY, FPosZ : Double;   // Map coords (Lon/Lat deg atau meter)
-    FSpeed_mps          : Double;   // m/s
-    FHeadingDeg         : Double;   // 0=N, cw
     FRollDeg            : Double;   // opsional
 
     FCoordType          : TVehicleCoordType;
@@ -25,6 +22,7 @@ type
     FUniqueID: string;
     FDomain: Integer;
     FShipID: Word;
+    FMSITrackNumber: Word;
 
     procedure SyncSymbolFromState; // push PosX/Y -> Symbol.MapX/MapY
   public
@@ -33,11 +31,6 @@ type
     destructor Destroy; override;
 
     // properti state
-    property PosX      : Double read FPosX write FPosX;
-    property PosY      : Double read FPosY write FPosY;
-    property PosZ      : Double read FPosZ write FPosZ;
-    property Speed_mps : Double read FSpeed_mps write FSpeed_mps;
-    property HeadingDeg: Double read FHeadingDeg write FHeadingDeg;
     property RollDeg   : Double read FRollDeg write FRollDeg;
     property CoordType : TVehicleCoordType read FCoordType write FCoordType;
 
@@ -57,6 +50,7 @@ type
     property UniqueID: string read FUniqueID write FUniqueID;
     property Domain : Integer read FDomain write FDomain;
     property ShipID : Word read FShipID write FShipID;
+    property MSITrackNumber : Word read FMSITrackNumber write FMSITrackNumber;
     // rojek nambahin MSI-TrackNumber disini buat torpedo
   end;
 

@@ -196,6 +196,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 5
+      OnMouseDown = pnlFuncTaskRightMouseDown
       object lblTrackManagement: TLabel
         Left = 2
         Top = 2
@@ -210,6 +211,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       end
     end
     object pnlSystem: TPanel
+      Tag = 2
       Left = 1435
       Top = 6
       Width = 88
@@ -224,6 +226,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 6
+      OnMouseDown = pnlFuncTaskRightMouseDown
       object lblSystem: TLabel
         Left = 2
         Top = 2
@@ -237,7 +240,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         ExplicitHeight = 13
       end
     end
-    object pnlPMA: TPanel
+    object pnlAssFunc1: TPanel
+      Tag = 1
       Left = 1631
       Top = 6
       Width = 88
@@ -252,7 +256,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 7
-      object lblPMA: TLabel
+      OnMouseDown = pnlAssFuncMouseDown
+      object lblAssFunc1: TLabel
         Left = 2
         Top = 2
         Width = 84
@@ -266,6 +271,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       end
     end
     object pnlRadarFreeze: TPanel
+      Tag = 1
       Left = 1341
       Top = 6
       Width = 88
@@ -280,6 +286,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 8
+      OnMouseDown = pnlFuncTaskRightMouseDown
       object lblRadarFreeze: TLabel
         Left = 2
         Top = 2
@@ -293,7 +300,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         ExplicitHeight = 26
       end
     end
-    object pnlSnapshot: TPanel
+    object pnlAssFunc2: TPanel
+      Tag = 1
       Left = 1725
       Top = 6
       Width = 88
@@ -308,7 +316,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 9
-      object lblSnapshot: TLabel
+      OnMouseDown = pnlAssFuncMouseDown
+      object lblAssFunc2: TLabel
         Left = 2
         Top = 2
         Width = 84
@@ -321,7 +330,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         ExplicitHeight = 13
       end
     end
-    object pnlTacticalRecording: TPanel
+    object pnlAssFunc0: TPanel
       Left = 1537
       Top = 6
       Width = 88
@@ -336,7 +345,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 10
-      object lblTacticalRecording: TLabel
+      OnMouseDown = pnlAssFuncMouseDown
+      object lblAssFunc0: TLabel
         Left = 2
         Top = 2
         Width = 84
@@ -548,6 +558,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       end
     end
     object pnlRecordPMA: TPanel
+      Tag = 3
       Left = 1247
       Top = 100
       Width = 88
@@ -562,7 +573,9 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 18
+      OnMouseDown = pnlFuncTaskRightMouseDown
       object lblRecordPMA: TLabel
+        Tag = 3
         Left = 2
         Top = 2
         Width = 84
@@ -576,6 +589,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       end
     end
     object pnlToolkit: TPanel
+      Tag = 5
       Left = 1435
       Top = 100
       Width = 88
@@ -590,6 +604,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 19
+      OnMouseDown = pnlFuncTaskRightMouseDown
       object lblToolkit: TLabel
         Left = 2
         Top = 2
@@ -603,7 +618,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         ExplicitHeight = 13
       end
     end
-    object pnlImageReplay: TPanel
+    object pnlAssFunc4: TPanel
+      Tag = 4
       Left = 1631
       Top = 100
       Width = 88
@@ -618,7 +634,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 20
-      object lblImageReplay: TLabel
+      OnMouseDown = pnlAssFuncMouseDown
+      object lblAssFunc4: TLabel
         Left = 2
         Top = 2
         Width = 84
@@ -632,6 +649,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       end
     end
     object pnlControlByNumber: TPanel
+      Tag = 4
       Left = 1341
       Top = 100
       Width = 88
@@ -646,6 +664,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 21
+      OnMouseDown = pnlFuncTaskRightMouseDown
       object lblControlByNumber: TLabel
         Left = 2
         Top = 2
@@ -678,7 +697,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
       TabOrder = 22
       OnMouseDown = pnlTacticalBtnMouseDown
     end
-    object pnlBelumtau: TPanel
+    object pnlAssFunc5: TPanel
+      Tag = 5
       Left = 1725
       Top = 100
       Width = 88
@@ -693,7 +713,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 23
-      object lblBelumtau: TLabel
+      OnMouseDown = pnlAssFuncMouseDown
+      object lblAssFunc5: TLabel
         Left = 2
         Top = 2
         Width = 84
@@ -705,7 +726,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
         ExplicitHeight = 13
       end
     end
-    object pnlImageRecording: TPanel
+    object pnlAssFunc3: TPanel
+      Tag = 3
       Left = 1537
       Top = 100
       Width = 88
@@ -720,7 +742,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 24
-      object lblImageRecording: TLabel
+      OnMouseDown = pnlAssFuncMouseDown
+      object lblAssFunc3: TLabel
         Left = 2
         Top = 2
         Width = 84
@@ -1931,7 +1954,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000D0640810010000000C92BD771C000000000000000000000000
+          0100011801000050FBC229010000000C92CA771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1940,15 +1963,15 @@ object FrmTacticalScreen: TFrmTacticalScreen
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000D064081001000000880300C01C00000000000000000000000000000000
+          01000050FBC22901000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E8E197003D8B20771F
-          00000000000000208B2077987708105E9EA67428E29700000000000000000000
+          0000000000000000000000000000000000000000000000E8E197007D8B11751F
+          00000000000000608B1175E066ED0FD67D788728E29700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object Panel1: TPanel

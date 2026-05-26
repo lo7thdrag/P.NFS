@@ -285,7 +285,7 @@ var
 begin
 
   aRec := @apRec^;
-  if UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID) = arec^.ShipID then
+  if FCCManager.FShipID = arec^.ShipID then
   begin
     case aRec^.OrderID of
       CORD_ID_3DUpdate_EO :
