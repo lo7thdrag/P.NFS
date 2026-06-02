@@ -47,7 +47,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      OnMouseDown = pnlTacticalBtnMouseDown
     end
     object pnlSubmodeTools6: TPanel
       Tag = 6
@@ -206,6 +205,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Track'#13#10'Mngmnt'
         Layout = tlCenter
+        OnMouseDown = pnlFuncTaskRightMouseDown
         ExplicitWidth = 47
         ExplicitHeight = 26
       end
@@ -228,6 +228,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       TabOrder = 6
       OnMouseDown = pnlFuncTaskRightMouseDown
       object lblSystem: TLabel
+        Tag = 2
         Left = 2
         Top = 2
         Width = 84
@@ -236,6 +237,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'System'
         Layout = tlCenter
+        OnMouseDown = pnlFuncTaskRightMouseDown
         ExplicitWidth = 43
         ExplicitHeight = 13
       end
@@ -266,6 +268,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'PMA'
         Layout = tlCenter
+        OnMouseDown = pnlAssFuncMouseDown
         ExplicitWidth = 25
         ExplicitHeight = 13
       end
@@ -288,6 +291,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       TabOrder = 8
       OnMouseDown = pnlFuncTaskRightMouseDown
       object lblRadarFreeze: TLabel
+        Tag = 1
         Left = 2
         Top = 2
         Width = 84
@@ -296,6 +300,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Radar'#13#10'Freeze'
         Layout = tlCenter
+        OnMouseDown = pnlFuncTaskRightMouseDown
         ExplicitWidth = 38
         ExplicitHeight = 26
       end
@@ -326,6 +331,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Snapshot'
         Layout = tlCenter
+        OnMouseDown = pnlAssFuncMouseDown
         ExplicitWidth = 53
         ExplicitHeight = 13
       end
@@ -355,6 +361,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Tactical'#13#10'Recording'
         Layout = tlCenter
+        OnMouseDown = pnlAssFuncMouseDown
         ExplicitWidth = 57
         ExplicitHeight = 26
       end
@@ -423,7 +430,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 13
-      OnMouseDown = pnlTacticalBtnMouseDown
     end
     object pnlSubmodeTools16: TPanel
       Tag = 16
@@ -584,6 +590,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Record'#13#10'PMA'
         Layout = tlCenter
+        OnMouseDown = pnlFuncTaskRightMouseDown
         ExplicitWidth = 40
         ExplicitHeight = 26
       end
@@ -606,6 +613,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       TabOrder = 19
       OnMouseDown = pnlFuncTaskRightMouseDown
       object lblToolkit: TLabel
+        Tag = 5
         Left = 2
         Top = 2
         Width = 84
@@ -614,6 +622,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Toolkit'
         Layout = tlCenter
+        OnMouseDown = pnlFuncTaskRightMouseDown
         ExplicitWidth = 39
         ExplicitHeight = 13
       end
@@ -644,6 +653,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Image '#13#10'Replay'
         Layout = tlCenter
+        OnMouseDown = pnlAssFuncMouseDown
         ExplicitWidth = 40
         ExplicitHeight = 26
       end
@@ -666,6 +676,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
       TabOrder = 21
       OnMouseDown = pnlFuncTaskRightMouseDown
       object lblControlByNumber: TLabel
+        Tag = 4
         Left = 2
         Top = 2
         Width = 84
@@ -674,6 +685,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Control'#13#10'By'#13#10'Number'
         Layout = tlCenter
+        OnMouseDown = pnlFuncTaskRightMouseDown
         ExplicitWidth = 44
         ExplicitHeight = 39
       end
@@ -695,7 +707,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 22
-      OnMouseDown = pnlTacticalBtnMouseDown
     end
     object pnlAssFunc5: TPanel
       Tag = 5
@@ -722,6 +733,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Alignment = taCenter
         Layout = tlCenter
+        OnMouseDown = pnlAssFuncMouseDown
         ExplicitWidth = 3
         ExplicitHeight = 13
       end
@@ -752,6 +764,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Alignment = taCenter
         Caption = 'Image'#13#10'Recording'
         Layout = tlCenter
+        OnMouseDown = pnlAssFuncMouseDown
         ExplicitWidth = 57
         ExplicitHeight = 26
       end
@@ -773,7 +786,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 25
-      OnMouseDown = pnlTacticalBtnMouseDown
     end
     object pnlAckAlert: TPanel
       Left = 1825
@@ -820,7 +832,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
       ParentBackground = False
       ParentFont = False
       TabOrder = 27
-      OnMouseDown = pnlTacticalBtnMouseDown
     end
     object pnlSubmodeTools10: TPanel
       Tag = 10
@@ -1954,7 +1965,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          0100011801000050FBC229010000000C92CA771C000000000000000000000000
+          01000118010000601EA90F010000000C92CA771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1963,15 +1974,15 @@ object FrmTacticalScreen: TFrmTacticalScreen
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          01000050FBC22901000000880300C01C00000000000000000000000000000000
+          010000601EA90F01000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E8E197007D8B11751F
-          00000000000000608B1175E066ED0FD67D788728E29700000000000000000000
+          000000000000000000000000000000000000000000000060E897007D8B11751F
+          00000000000000608B117598EDB104F9B946F1A0E89700000000000000000000
           000088B3400000000000408F400001000001}
       end
       object Panel1: TPanel

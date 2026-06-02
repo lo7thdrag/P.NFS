@@ -808,8 +808,14 @@ begin
 end;
 
 procedure TFrmTacticalScreen.FuncTaskRightSelect(Sender: Tobject);
+var
+  SenderPanel: TObject;
 begin
-  if TPanel(Sender).Tag = FuncTaskRightMode then Exit;
+  if Sender is TLabel then SenderPanel := (Sender as Tlabel).Parent
+
+  else SenderPanel := Sender;
+
+  if TPanel(SenderPanel).Tag = FuncTaskRightMode then Exit;
 
   ResetAssociatedFunction;
 
@@ -820,8 +826,8 @@ begin
   pnlControlByNumber.Color := clBlack;
   pnltoolkit.Color := clBlack;
 
-  TPanel(Sender).Color := clLime;
-  FuncTaskRightMode := TPanel(Sender).Tag;
+  TPanel(SenderPanel).Color := clLime;
+  FuncTaskRightMode := TPanel(SenderPanel).Tag;
 
   case FuncTaskRightMode of
     0:
