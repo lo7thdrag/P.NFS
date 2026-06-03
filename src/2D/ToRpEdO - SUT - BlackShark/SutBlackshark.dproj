@@ -170,6 +170,22 @@
         <DCCReference Include="LibSutBlacksharkObject\uNonVehicle.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uTorpedoLauncher.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uTorpedo.pas"/>
+        <DCCReference Include="ufrmControlByNumber.pas">
+            <Form>frmControlByNumber</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmTackHistory.pas">
+            <Form>frmTrackHistory</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmCreateModifyTrack.pas">
+            <Form>frmCreateModifyTrack</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmTrackFilter.pas">
+            <Form>frmTrackFilter</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
