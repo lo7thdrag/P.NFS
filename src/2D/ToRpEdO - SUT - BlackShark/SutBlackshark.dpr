@@ -58,7 +58,11 @@ uses
   uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas',
   uBaseObject in 'LibSutBlacksharkObject\uBaseObject.pas',
   uPointTrack in 'LibSutBlacksharkObject\uPointTrack.pas',
-  uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas';
+  uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas',
+  ufrmControlByNumber in 'ufrmControlByNumber.pas' {frmControlByNumber},
+  ufrmTackHistory in 'ufrmTackHistory.pas' {frmTrackHistory},
+  ufrmCreateModifyTrack in 'ufrmCreateModifyTrack.pas' {frmCreateModifyTrack},
+  ufrmTrackFilter in 'ufrmTrackFilter.pas' {frmTrackFilter};
 
 {$R *.res}
 
@@ -66,6 +70,10 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
+  Application.CreateForm(TfrmTrackHistory, frmTrackHistory);
+  Application.CreateForm(TfrmCreateModifyTrack, frmCreateModifyTrack);
+  Application.CreateForm(TfrmTrackFilter, frmTrackFilter);
   //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
