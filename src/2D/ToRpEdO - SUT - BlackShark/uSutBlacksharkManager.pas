@@ -7,7 +7,7 @@ uses
   Classes, Sysutils,
   windows, uSimulationManager, uTCPDatatype, uBaseSimulationObject, uLibClientObject,
   uBridgeSet, uTestShip, uBaseFunction, uClassDatabase, System.Uitypes, uVehicleManager,
-  uVehicle, System.Math, uPtkServer, uPtkReceiver, OverbyteIcsWSocket;
+  uVehicle, System.Math, OverbyteIcsWSocket, uTorpedoLauncher;
 
 type
   TSutBlacksharkManager = class(TSimulationManager)
@@ -33,9 +33,6 @@ type
     FShipClassName: string;
     FEnv_Map: Integer;
 
-    FPtkServer: TListener;
-    FPtkHandler : TPtkReceiver;
-    FOnPtkCommand: TGetStrProc;
     FSelectedVehicle: TVehicle;
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
@@ -43,6 +40,7 @@ type
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
           procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
   public
+    TTorpedoArray : array[0..7] of TTorpedoLauncher;
     procedure GetTorpedoWeaponAssigned;
 
     constructor Create;
@@ -80,7 +78,6 @@ type
     property ShipClassName: string read FShipClassName write FShipClassName;
     property ShipCallSign: string read FShipCallSign write FShipCallSign;
 
-    property OnPtkCommand : TGetStrProc read FOnPtkCommand write FOnPtkCommand;
     property SelectedVehicle : TVehicle read FSelectedVehicle write FSelectedVehicle;
 
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
@@ -147,20 +144,12 @@ begin
   inherited;
   FIsStandAlone := False;
   FIsTrueMotion := False;
-
-  FPtkServer := TListener.Create;
-  FPtkHandler := TPtkReceiver.Create;
-  FPtkServer.OnNetReceive := FPtkHandler.NetPdkReceive;
-  FPtkServer.Startup;
 end;
 
 destructor TSutBlacksharkManager.Destroy;
 begin
 
   inherited;
-
-  FPtkServer.Shutdown;
-  FPtkServer.Free;
 
   if not IsStandAlone then
     Net_DisConnect;
@@ -237,7 +226,7 @@ begin
 
       if (vdomain = 1) or (vdomain = 3) then
       begin
-        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
+        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, dbID_to_UniqueID(aRec.ShipID));
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
         v.Domain := vdomain;
         // pakai bitmap tint: hitam -> kuning
@@ -318,10 +307,6 @@ end;
 
 procedure TSutBlacksharkManager.initEvent;
 begin
-  if Assigned(FPtkHandler) then
-  begin
-    FPtkHandler.OnPtkCommand := OnPtkCommand;
-  end;
 
 end;
 

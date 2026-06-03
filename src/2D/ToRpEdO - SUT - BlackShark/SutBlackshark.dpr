@@ -37,8 +37,6 @@ uses
   uDataModule in '..\ShareLib\AppForms\uDataModule.pas' {DataModule1: TDataModule},
   uClassDatabase in '..\ShareLib\AppForms\uClassDatabase.pas',
   uVehicleManager in 'uVehicleManager.pas',
-  uPtkReceiver in 'LibNetworkPTK\uPtkReceiver.pas',
-  uPtkServer in 'LibNetworkPTK\uPtkServer.pas',
   Grijjy.BinaryCoding in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.BinaryCoding.pas',
   Grijjy.Bson.IO in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.IO.pas',
   Grijjy.Bson in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.pas',
@@ -58,7 +56,9 @@ uses
   uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas',
   uBaseObject in 'LibSutBlacksharkObject\uBaseObject.pas',
   uPointTrack in 'LibSutBlacksharkObject\uPointTrack.pas',
-  uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas';
+  uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas',
+  uTorpedoLauncher in 'LibSutBlacksharkObject\uTorpedoLauncher.pas',
+  uTorpedo in 'LibSutBlacksharkObject\uTorpedo.pas';
 
 {$R *.res}
 

@@ -87,7 +87,7 @@
         <DCC_DcuOutput>.\bin\comp</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Debugger_RunParams>-192.168.1.37 -2120 -127.0.0.1 -mysql -dbNSuFs -root -T3server! -43 -8</Debugger_RunParams>
+        <Debugger_RunParams>-192.168.0.68 -2120 -127.0.0.1 -mysql -dbNSuFs -root -T3server! -43 -8</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -142,8 +142,6 @@
         </DCCReference>
         <DCCReference Include="..\ShareLib\AppForms\uClassDatabase.pas"/>
         <DCCReference Include="uVehicleManager.pas"/>
-        <DCCReference Include="LibNetworkPTK\uPtkReceiver.pas"/>
-        <DCCReference Include="LibNetworkPTK\uPtkServer.pas"/>
         <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.BinaryCoding.pas"/>
         <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.IO.pas"/>
         <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.pas"/>
@@ -170,6 +168,8 @@
         <DCCReference Include="LibSutBlacksharkObject\uBaseObject.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uPointTrack.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uNonVehicle.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uTorpedoLauncher.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uTorpedo.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

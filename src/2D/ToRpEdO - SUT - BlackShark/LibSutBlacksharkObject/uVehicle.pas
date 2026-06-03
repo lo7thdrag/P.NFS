@@ -22,7 +22,6 @@ type
     FUniqueID: string;
     FDomain: Integer;
     FShipID: Word;
-    FMSITrackNumber: Word;
 
     procedure SyncSymbolFromState; // push PosX/Y -> Symbol.MapX/MapY
   public
@@ -50,8 +49,6 @@ type
     property UniqueID: string read FUniqueID write FUniqueID;
     property Domain : Integer read FDomain write FDomain;
     property ShipID : Word read FShipID write FShipID;
-    property MSITrackNumber : Word read FMSITrackNumber write FMSITrackNumber;
-    // rojek nambahin MSI-TrackNumber disini buat torpedo
   end;
 
 implementation

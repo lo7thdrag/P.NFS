@@ -9,6 +9,7 @@ interface
         FPosX, FPosY, FPosZ : Double;   // Map coords (Lon/Lat deg atau meter)
         FSpeed_mps          : Double;   // m/s
         FHeadingDeg         : Double;   // 0=N, cw
+        FMSITrackNumber: Word;
 
       public
         constructor Create;
@@ -20,6 +21,7 @@ interface
         property PosZ      : Double read FPosZ write FPosZ;
         property Speed_mps : Double read FSpeed_mps write FSpeed_mps;
         property HeadingDeg: Double read FHeadingDeg write FHeadingDeg;
+        property MSITrackNumber : Word read FMSITrackNumber write FMSITrackNumber; // rojek nambahin MSI-TrackNumber disini buat torpedo
     end;
 
 implementation

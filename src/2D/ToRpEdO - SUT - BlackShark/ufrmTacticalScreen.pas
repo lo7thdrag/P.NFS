@@ -184,6 +184,9 @@ type
     { Private declarations }
     Submode, SubmodeTools, FuncTaskRightMode : Byte;
     BitMapLampGrey, BitMapLampGreen, BitMapLampRed : TBitmap;
+    FDropSonar, FToSoAudio, FFire, FStopFireSeq, FClassification, FGuideToBearing, FTorpVertView, FTorpContactMngmnt, FSPA,
+    FTorpExcercise, FImmediateFire, FTorpAlloc, FLaunchSalvo, FTorpEmergencyExe,
+    FMarkSpecialEvent, FTorpCtrl, FSim, FPresetTorpParam, FCoverage :Boolean;
     FLyrDraw: CMapXLayer;
     FCurrentRange, FBearingVal, FElevVal : Double;  // meter
     FRings       : TRadarRangeRings;
@@ -512,9 +515,9 @@ begin
 
     SelectedVehicleState := true;
 
-    FBlinkPanel := pnlSubmodeTools11;
-    FBlinkState := False;
-    TimerBlink.Enabled := True;
+//    FBlinkPanel := pnlSubmodeTools11;
+//    FBlinkState := False;
+//    TimerBlink.Enabled := True;
 
     if Assigned(SutBlacksharkManager) then
     begin
@@ -793,6 +796,8 @@ begin
 
     SutBlacksharkManager.Running := True;
   end;
+
+  pnlTacticalBtnMouseDown(pnlTorpedoBtn, mbLeft, [ssLeft], 38, 61);
 end;
 
 procedure TFrmTacticalScreen.FormDestroy(Sender: TObject);
@@ -1290,97 +1295,251 @@ begin
 
 //  if TPanel((Sender as TLabel).Parent).Tag = SubmodeTools then Exit;
 
-  pnlSubmodeTools0.Color := clBlack;
-  pnlSubmodeTools1.Color := clBlack;
-  pnlSubmodeTools2.Color := clBlack;
-  pnlSubmodeTools3.Color := clBlack;
-  pnlSubmodeTools4.Color := clBlack;
-  pnlSubmodeTools5.Color := clBlack;
-  pnlSubmodeTools6.Color := clBlack;
-  pnlSubmodeTools7.Color := clBlack;
-  pnlSubmodeTools8.Color := clBlack;
-  pnlSubmodeTools9.Color := clBlack;
-  pnlSubmodeTools10.Color := clBlack;
-  pnlSubmodeTools11.Color := clBlack;
-  pnlSubmodeTools12.Color := clBlack;
-  pnlSubmodeTools13.Color := clBlack;
-  pnlSubmodeTools14.Color := clBlack;
-  pnlSubmodeTools15.Color := clBlack;
-  pnlSubmodeTools16.Color := clBlack;
-  pnlSubmodeToolS17.Color := clBlack;
-  pnlSubmodeTools18.Color := clBlack;
-  pnlSubmodeTools19.Color := clBlack;
+//  if Sender is TLabel then SenderPanel := (Sender as Tlabel).Parent
+//
+//  else SenderPanel := Sender;
 
-  TLabel(Sender).Color := clLime;
+
+
+//  pnlSubmodeTools0.Color := clBlack;
+//  pnlSubmodeTools1.Color := clBlack;
+//  pnlSubmodeTools2.Color := clBlack;
+//  pnlSubmodeTools3.Color := clBlack;
+//  pnlSubmodeTools4.Color := clBlack;
+//  pnlSubmodeTools5.Color := clBlack;
+//  pnlSubmodeTools6.Color := clBlack;
+//  pnlSubmodeTools7.Color := clBlack;
+//  pnlSubmodeTools8.Color := clBlack;
+//  pnlSubmodeTools9.Color := clBlack;
+//  pnlSubmodeTools10.Color := clBlack;
+//  pnlSubmodeTools11.Color := clBlack;
+//  pnlSubmodeTools12.Color := clBlack;
+//  pnlSubmodeTools13.Color := clBlack;
+//  pnlSubmodeTools14.Color := clBlack;
+//  pnlSubmodeTools15.Color := clBlack;
+//  pnlSubmodeTools16.Color := clBlack;
+//  pnlSubmodeToolS17.Color := clBlack;
+//  pnlSubmodeTools18.Color := clBlack;
+//  pnlSubmodeTools19.Color := clBlack;
+
+//  TLabel(Sender).Color := clLime;
+// 0: Drop Sonar Track, 1: , 2: ToSo Audio, 3: Fire, 4: Stop Fire Seq, 5: Classification, 6: Guide To Bearing
+// 7: Torp Vert View, 8: Torp Contact Mngmnt, 9: SPA, 10: Torp Exercise Mode, 11: Immediate Fire, 12: TorpAlloc
+// 13: Launch Salvo, 14: Torp Emerg Exe, 15: Mark Special Event, 16: Torp Ctrl, 17: Sim
+// 18: Preset Torp Params, 19: Coverage
+  case p.Tag of
+    0:
+    begin
+      FDropSonar := not FDropSonar;
+
+      if FDropSonar then pnlSubmodeTools0.Color := clLime
+      else pnlSubmodeTools0.Color := clBlack;
+
+    end;
+    2:
+    begin
+      FToSoAudio := not FToSoAudio;
+
+      if FToSoAudio then pnlSubmodeTools2.Color := clLime
+      else pnlSubmodeTools2.Color := clBlack;
+    end;
+    3:
+    begin
+
+    end;
+    4:
+    begin
+
+    end;
+    5:
+    begin
+      FClassification := not FClassification;
+
+      if FClassification then pnlSubmodeTools5.Color := clLime
+      else pnlSubmodeTools5.Color := clBlack;
+    end;
+    6:
+    begin
+
+    end;
+    7:
+    begin
+      FTorpVertView := not FTorpVertView;
+
+      if FTorpVertView then pnlSubmodeTools7.Color := clLime
+      else pnlSubmodeTools7.Color := clBlack;
+    end;
+    8:
+    begin
+      FTorpContactMngmnt := not FTorpContactMngmnt;
+
+      if FTorpContactMngmnt then pnlSubmodeTools8.Color := clLime
+      else pnlSubmodeTools8.Color := clBlack;
+    end;
+    9:
+    begin
+      FSPA := not FSPA;
+
+      if FSPA then pnlSubmodeTools9.Color := clLime
+      else pnlSubmodeTools9.Color := clBlack;
+    end;
+    10:
+    begin
+      FTorpExcercise := not FTorpExcercise;
+
+      if FTorpExcercise then pnlSubmodeTools10.Color := clLime
+      else pnlSubmodeTools10.Color := clBlack;
+    end;
+    11:
+    begin
+
+    end;
+    12:
+    begin
+      FTorpAlloc := not FTorpAlloc;
+
+      if FTorpAlloc then pnlSubmodeTools12.Color := clLime
+      else pnlSubmodeTools12.Color := clBlack;
+    end;
+    13:
+    begin
+      FLaunchSalvo := not FLaunchSalvo;
+
+      if FLaunchSalvo then
+      begin
+        pnlSubmodeTools13.Color := clLime;
+
+        lblSubmodeTools3.Caption := 'Fire';
+        pnlSubmodeTools3.Enabled := True;
+        lblSubmodeTools3.Enabled := True;
+
+        lblSubmodeTools4.Caption := 'Stop' + #13#10 + 'Fire'+ #13#10 + 'Seq';
+        pnlSubmodeTools4.Enabled := True;
+        lblSubmodeTools4.Enabled := True;
+      end
+      else
+      begin
+        pnlSubmodeTools13.Color := clBlack;
+
+        lblSubmodeTools3.Caption := '';
+        pnlSubmodeTools3.Enabled := false;
+        lblSubmodeTools3.Enabled := false;
+
+        lblSubmodeTools4.Caption := '';
+        pnlSubmodeTools4.Enabled := false;
+        lblSubmodeTools4.Enabled := false;
+      end;
+    end;
+    14:
+    begin
+
+    end;
+    15:
+    begin
+
+    end;
+    16:
+    begin
+      FTorpCtrl := not FTorpCtrl;
+
+      if FTorpCtrl then
+      begin
+        pnlSubmodeTools16.Color := clLime;
+        lblSubmodeTools6.Caption := 'Guide' + #13#10 + 'To'+ #13#10 + 'Bearing';
+        pnlSubmodeTools6.Enabled := True;
+        lblSubmodeTools6.Enabled := True;
+      end
+      else
+      begin
+        pnlSubmodeTools16.Color := clBlack;
+        lblSubmodeTools6.Caption := '';
+        pnlSubmodeTools6.Enabled := false;
+        lblSubmodeTools6.Enabled := false;
+      end;
+    end;
+    17:
+    begin
+
+    end;
+    18:
+    begin
+
+    end;
+    19:
+    begin
+
+    end;
+  end;
+
 //  TLabel(Sender).paren
-  TPanel((Sender as TLabel).Parent).Color := clLime;
+//  TPanel((Sender as TLabel).Parent).Color := clLime;
   SubmodeTools := TPanel((Sender as TLabel).Parent).Tag;
 
   if (SubmodeTools = 11) and (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
       and (lblSubmodeTools11.Enabled = true) then
   begin
     if (Assigned(SutBlacksharkManager.SelectedVehicle)) and (SelectedVehicleState = true)then
-  begin
-    range := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
-    rangem := range * C_NauticalMile_To_Metre;
-    bearing := CalcBearing(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
-    // range = 3000 m, target lebih rendah 25 m
-    ComputeBallisticAngleVacuum(rangem, SutBlacksharkManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
-
-    if (aLow <= 80 ) and (aLow >= 0 )then
     begin
-//      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
-      aLow := FMod(aLow, 360);
-      if aLow < 0 then
-        aLow := aLow + 360;
+      range := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
+      rangem := range * C_NauticalMile_To_Metre;
+      bearing := CalcBearing(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
+      // range = 3000 m, target lebih rendah 25 m
+      ComputeBallisticAngleVacuum(rangem, SutBlacksharkManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
 
-      RecSend.ShipID              := SutBlacksharkManager.ShipID;
-      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-      RecSend.mLauncherID         := 1;
-      RecSend.mMissileID          := 0;
-      RecSend.mMissileNumber      := 0;
-//      RecSend.OrderID             := 0;
+      if (aLow <= 80 ) and (aLow >= 0 )then
+      begin
+  //      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
+        aLow := FMod(aLow, 360);
+        if aLow < 0 then
+          aLow := aLow + 360;
 
-      RecSend.mTorpedoSpeed       := 0;
-      RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
-      RecSend.mMissileType        := 0;
-      RecSend.mTorpedoDepth       := aLow;
-      RecSend.mTorpedoCourse      := bearing;
+        RecSend.ShipID              := SutBlacksharkManager.ShipID;
+        RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+        RecSend.mLauncherID         := 1;
+        RecSend.mMissileID          := 0;
+        RecSend.mMissileNumber      := 0;
+  //      RecSend.OrderID             := 0;
 
-      RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
-//      RecSend.mSalvoRate          := 30;
+        RecSend.mTorpedoSpeed       := 0;
+        RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
+        RecSend.mMissileType        := 0;
+        RecSend.mTorpedoDepth       := aLow;
+        RecSend.mTorpedoCourse      := bearing;
 
-
-      RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
-      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
-    end
-    else if (aLow >= 350 )then
-    begin
-      alow := FMod(alow, 360);
-      if alow < 0 then
-        alow := alow + 360;
-
-      RecSend.ShipID              := SutBlacksharkManager.ShipID;
-      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-      RecSend.mLauncherID         := 1;
-      RecSend.mMissileID          := 0;
-      RecSend.mMissileNumber      := 0;
-//      RecSend.OrderID             := 0;
-
-      RecSend.mTorpedoSpeed       := 0;
-      RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
-      RecSend.mMissileType        := 0;
-      RecSend.mTorpedoDepth       := aLow;
-      RecSend.mTorpedoCourse      := bearing;
-
-      RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
-//      RecSend.mSalvoRate          := 30;
+        RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
+  //      RecSend.mSalvoRate          := 30;
 
 
-      RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
-      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+        RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
+        SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+      end
+      else if (aLow >= 350 )then
+      begin
+        alow := FMod(alow, 360);
+        if alow < 0 then
+          alow := alow + 360;
+
+        RecSend.ShipID              := SutBlacksharkManager.ShipID;
+        RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+        RecSend.mLauncherID         := 1;
+        RecSend.mMissileID          := 0;
+        RecSend.mMissileNumber      := 0;
+  //      RecSend.OrderID             := 0;
+
+        RecSend.mTorpedoSpeed       := 0;
+        RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
+        RecSend.mMissileType        := 0;
+        RecSend.mTorpedoDepth       := aLow;
+        RecSend.mTorpedoCourse      := bearing;
+
+        RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
+  //      RecSend.mSalvoRate          := 30;
+
+
+        RecSend.OrderID := __ORD_TORPEDOSUT_FIRED;
+        SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+      end;
     end;
-  end;
   end;
 
 //
@@ -1514,13 +1673,29 @@ begin
     end;
     2:
     begin
+//      lblSubmodeTools0.Caption := 'Drop' + #13#10 + 'Sonar'+ #13#10 + 'Track';
+//      pnlSubmodeTools0.Enabled := True;
+//      lblSubmodeTools0.Enabled := True;
+
       lblSubmodeTools0.Caption := 'ToSo' + #13#10 + 'Audio';
       pnlSubmodeTools0.Enabled := True;
       lblSubmodeTools0.Enabled := True;
 
+//      lblSubmodeTools3.Caption := 'Fire';
+//      pnlSubmodeTools3.Enabled := True;
+//      lblSubmodeTools3.Enabled := True;
+//
+//      lblSubmodeTools4.Caption := 'Stop' + #13#10 + 'Fire'+ #13#10 + 'Seq';
+//      pnlSubmodeTools4.Enabled := True;
+//      lblSubmodeTools4.Enabled := True;
+
       lblSubmodeTools5.Caption := 'Classi-' + #13#10 + 'fication';
       pnlSubmodeTools5.Enabled := True;
       lblSubmodeTools5.Enabled := True;
+
+//      lblSubmodeTools6.Caption := 'Guide' + #13#10 + 'To'+ #13#10 + 'Bearing';
+//      pnlSubmodeTools6.Enabled := True;
+//      lblSubmodeTools6.Enabled := True;
 
       lblSubmodeTools7.Caption := 'Torp' + #13#10 + 'Vert' + #13#10 + 'View';
       pnlSubmodeTools7.Enabled := True;
