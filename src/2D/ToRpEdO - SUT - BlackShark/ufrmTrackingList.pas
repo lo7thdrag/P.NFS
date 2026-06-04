@@ -13,8 +13,8 @@ type
     lvTracklistNumber: TListView;
     lblReset: TLabel;
     lblClose: TLabel;
+    lblNumber: TLabel;
     Panel1: TPanel;
-    Label1: TLabel;
   private
     { Private declarations }
   public
