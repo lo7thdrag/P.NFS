@@ -12,6 +12,7 @@ type
     FList: TObjectList;               // of TVehicle
     FConv: TCoordConverter;
   public
+
     constructor Create;
     destructor Destroy; override;
 
@@ -19,6 +20,8 @@ type
 
     function  AddVehicle: TVehicle; overload;
     function  AddVehicle(const x, y: Double; const trackLabel: string = ''): TVehicle; overload;
+//    function  AddOwnShip: TVehicle; overload;
+//    function  AddOwnShip(const x, y: Double; const trackLabel: string = ''): TOwnShip; overload;
     function FindObjectByUid(const aUid: string): TVehicle;
 
     procedure RemoveVehicle(V: TVehicle);
@@ -70,6 +73,23 @@ begin
   Result.Symbol.CoordConverter := FConv;
   FList.Add(Result);
 end;
+
+//function TVehicleManager.AddOwnShip(const x, y: Double; const trackLabel: string): TOwnShip;
+//begin
+//  Result := AddOwnShip;
+//  Result.PosX := x;
+//  Result.PosY := y;
+//  if trackLabel <> '' then
+//    Result.Symbol.TrackLabel := trackLabel;
+//end;
+//
+//function TVehicleManager.AddOwnShip: TVehicle;
+//begin
+//  Result := TOwnShip.Create;
+//  // suntik converter ke symbol
+//  Result.Symbol.CoordConverter := FConv;
+//  FOwnShip := Result;
+//end;
 
 function TVehicleManager.AddVehicle(const x, y: Double; const trackLabel: string): TVehicle;
 begin

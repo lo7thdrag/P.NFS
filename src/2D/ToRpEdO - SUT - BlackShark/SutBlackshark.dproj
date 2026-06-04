@@ -142,8 +142,6 @@
         </DCCReference>
         <DCCReference Include="..\ShareLib\AppForms\uClassDatabase.pas"/>
         <DCCReference Include="uVehicleManager.pas"/>
-        <DCCReference Include="LibNetworkPTK\uPtkReceiver.pas"/>
-        <DCCReference Include="LibNetworkPTK\uPtkServer.pas"/>
         <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.BinaryCoding.pas"/>
         <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.IO.pas"/>
         <DCCReference Include="..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.pas"/>
@@ -176,6 +174,20 @@
         </DCCReference>
         <DCCReference Include="LibMapX\uRadarSensor.pas"/>
         <DCCReference Include="LibMapX\uShipModel.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uTorpedoLauncher.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uTorpedo.pas"/>
+        <DCCReference Include="ufrmControlByNumber.pas">
+            <Form>frmControlByNumber</Form>
+        </DCCReference>
+        <DCCReference Include="ufrmTackHistory.pas">
+            <Form>frmTrackHistory</Form>
+        </DCCReference>
+        <DCCReference Include="ufrmCreateModifyTrack.pas">
+            <Form>frmCreateModifyTrack</Form>
+        </DCCReference>
+        <DCCReference Include="ufrmTrackFilter.pas">
+            <Form>frmTrackFilter</Form>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -22,7 +22,6 @@ type
     FUniqueID: string;
     FDomain: Integer;
     FShipID: Word;
-    FMSITrackNumber: Word;
 
     FIsTracked: Boolean; // ARPA state
     FIsDetected: Boolean;

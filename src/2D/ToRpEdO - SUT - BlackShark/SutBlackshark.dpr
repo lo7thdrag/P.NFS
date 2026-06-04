@@ -37,8 +37,6 @@ uses
   uDataModule in '..\ShareLib\AppForms\uDataModule.pas' {DataModule1: TDataModule},
   uClassDatabase in '..\ShareLib\AppForms\uClassDatabase.pas',
   uVehicleManager in 'uVehicleManager.pas',
-  uPtkReceiver in 'LibNetworkPTK\uPtkReceiver.pas',
-  uPtkServer in 'LibNetworkPTK\uPtkServer.pas',
   Grijjy.BinaryCoding in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.BinaryCoding.pas',
   Grijjy.Bson.IO in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.IO.pas',
   Grijjy.Bson in '..\ShareLib\LibNetsJSON\Grijjy\Grijjy.Bson.pas',
@@ -61,7 +59,13 @@ uses
   uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas',
   UfrmRadar in 'UfrmRadar.pas' {frmRadar},
   uRadarSensor in 'LibMapX\uRadarSensor.pas',
-  uShipModel in 'LibMapX\uShipModel.pas';
+  uShipModel in 'LibMapX\uShipModel.pas',
+  uTorpedoLauncher in 'LibSutBlacksharkObject\uTorpedoLauncher.pas',
+  uTorpedo in 'LibSutBlacksharkObject\uTorpedo.pas',
+  ufrmControlByNumber in 'ufrmControlByNumber.pas' {frmControlByNumber},
+  ufrmTackHistory in 'ufrmTackHistory.pas' {frmTrackHistory},
+  ufrmCreateModifyTrack in 'ufrmCreateModifyTrack.pas' {frmCreateModifyTrack},
+  ufrmTrackFilter in 'ufrmTrackFilter.pas' {frmTrackFilter};
 
 {$R *.res}
 
@@ -69,12 +73,17 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
-  //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
-
   //Application.CreateForm(TfrmRadar, frmRadar);
 
+  Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
+  Application.CreateForm(TfrmTrackHistory, frmTrackHistory);
+  Application.CreateForm(TfrmCreateModifyTrack, frmCreateModifyTrack);
+  Application.CreateForm(TfrmTrackFilter, frmTrackFilter);
   Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
+  //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
+//  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+
 //  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
 
   Application.Run;
