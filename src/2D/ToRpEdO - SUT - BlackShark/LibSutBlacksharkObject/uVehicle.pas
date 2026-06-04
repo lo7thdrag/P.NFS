@@ -24,11 +24,17 @@ type
     FShipID: Word;
     FMSITrackNumber: Word;
 
+    FIsTracked: Boolean; // ARPA state
+    FIsDetected: Boolean;
+    FLastHit: Double; // Persistence (Phosphor decay)
+
     procedure SyncSymbolFromState; // push PosX/Y -> Symbol.MapX/MapY
   public
     constructor Create; overload;
     constructor Create(aSymbol: TRadarTargetSymbol); overload;
     destructor Destroy; override;
+
+    procedure AssignFrom(const AVehicleContact: TVehicle);
 
     // properti state
     property RollDeg   : Double read FRollDeg write FRollDeg;
@@ -52,6 +58,9 @@ type
     property ShipID : Word read FShipID write FShipID;
     property MSITrackNumber : Word read FMSITrackNumber write FMSITrackNumber;
     // rojek nambahin MSI-TrackNumber disini buat torpedo
+    property IsTracked : Boolean read FIsTracked write FIsTracked;
+    property IsDetected : Boolean read FIsDetected write FIsDetected;
+    property LastHit : Double read FLastHit write FLastHit;
   end;
 
 implementation
@@ -75,6 +84,23 @@ begin
   FSymbol.CircleColorSelected := clYellow;
   // contoh default: font segitiga
   // FSymbol.SetFontSymbol('Segoe UI Symbol','▲', clLime, clYellow, 10);
+
+  LastHit := 0.0;
+  FIsTracked := False;
+  FisDetected := False;
+end;
+
+procedure TVehicle.AssignFrom(const AVehicleContact: TVehicle);
+begin
+  ShipID := AVehicleContact.ShipID;
+  UniqueID := AVehicleContact.UniqueID;
+  PosY := AVehicleContact.PosY;
+  PosX := AVehicleContact.PosX;
+  HeadingDeg := AVehicleContact.HeadingDeg;
+  Speed_mps := AVehicleContact.Speed_mps;
+  LastHit := AVehicleContact.LastHit;
+  IsTracked := AVehicleContact.IsTracked;
+  isDetected := AVehicleContact.isDetected;
 end;
 
 constructor TVehicle.Create(aSymbol: TRadarTargetSymbol);

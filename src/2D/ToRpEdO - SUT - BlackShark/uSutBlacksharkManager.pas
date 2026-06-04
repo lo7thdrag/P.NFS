@@ -99,7 +99,8 @@ const
 implementation
 
 uses
-  uDataModule, ulibSettings;
+  uDataModule, ulibSettings,
+    uShipModel;
 
 { TSutBlacksharkManager }
 
@@ -181,6 +182,7 @@ var  sc  : TSimulationClass;
      TestHeading : Double;
      V : TVehicle;
      vdomain : Integer;
+     Ship: TShipContact;
 begin
   aRec := @apRec^;
 
@@ -237,8 +239,9 @@ begin
 
       if (vdomain = 1) or (vdomain = 3) then
       begin
-        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
+        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, dbID_to_UniqueID(aRec.ShipID));
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+
         v.Domain := vdomain;
         // pakai bitmap tint: hitam -> kuning
         case v.Domain of

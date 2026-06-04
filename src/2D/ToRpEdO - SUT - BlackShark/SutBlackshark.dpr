@@ -58,7 +58,10 @@ uses
   uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas',
   uBaseObject in 'LibSutBlacksharkObject\uBaseObject.pas',
   uPointTrack in 'LibSutBlacksharkObject\uPointTrack.pas',
-  uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas';
+  uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas',
+  UfrmRadar in 'UfrmRadar.pas' {frmRadar},
+  uRadarSensor in 'LibMapX\uRadarSensor.pas',
+  uShipModel in 'LibMapX\uShipModel.pas';
 
 {$R *.res}
 
@@ -68,6 +71,9 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+
+  //Application.CreateForm(TfrmRadar, frmRadar);
+
   Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
 //  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
 

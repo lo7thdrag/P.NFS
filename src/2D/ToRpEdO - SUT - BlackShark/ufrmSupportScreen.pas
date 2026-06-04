@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
-  RzButton, RzRadChk, uSutBlacksharkManager;
+  RzButton, RzRadChk, uSutBlacksharkManager,
+  UfrmRadar, uVehicleManager;
 
 const
   MAX_TARGET = 50;
@@ -26,7 +27,6 @@ type
     pnlBaseKiri: TPanel;
     pnlMap: TPanel;
     pnlInfoKanan: TPanel;
-    PaintBox1: TPaintBox;
     Timer1: TTimer;
     pnlInfoKiri: TPanel;
     pnlInfoAtas: TPanel;
@@ -78,6 +78,8 @@ type
     RzCheckBox11: TRzCheckBox;
     RzCheckBox12: TRzCheckBox;
     tmrUpdateShipVal: TTimer;
+    PaintBox1: TPaintBox;
+    Panel2: TPanel;
     procedure PaintBox1Paint(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -101,7 +103,11 @@ type
     ZoomFactor   : Double;
     GainValue    : Integer;
 
+    FFrmRadar : TFrmRadar;
+
     Targets : array[0..MAX_TARGET-1] of TSonarTarget;
+
+    procedure UpdateRadarDisplay;
     { Public declarations }
   end;
 
@@ -120,6 +126,19 @@ uses
   ufrmTacticalScreen;
 
 {$R *.dfm}
+
+procedure EnableComposited(WinControl:TWinControl);
+var
+  i:Integer;
+  NewExStyle:DWORD;
+begin
+  NewExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE) or WS_EX_COMPOSITED;
+  SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
+
+  for I := 0 to WinControl.ControlCount - 1 do
+    if WinControl.Controls[i] is TWinControl then
+      EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
 
 procedure TFrmSupportScreen.ComboSectorChange(Sender: TObject);
 begin
@@ -301,6 +320,8 @@ begin
 //
 //  PaintBox1.Invalidate;
 
+
+  UpdateRadarDisplay;
 end;
 
 procedure TFrmSupportScreen.tmrUpdateShipValTimer(Sender: TObject);
@@ -323,6 +344,23 @@ end;
 procedure TFrmSupportScreen.TrackZoomChange(Sender: TObject);
 begin
 //  ZoomFactor := TrackZoom.Position / 10;
+end;
+
+procedure TFrmSupportScreen.UpdateRadarDisplay;
+begin
+  if VehicleMgr.ObjectList <> nil then
+  begin
+    if not Assigned(FFrmRadar) then begin
+      EnableComposited(Panel2);
+
+      FFrmRadar := TfrmRadar.Create(Self);
+      FFrmRadar.Parent := Panel2;
+      FFrmRadar.Align := alClient;
+      FFrmRadar.Show;
+    end;
+
+    Exit;
+  end;
 end;
 
 procedure TFrmSupportScreen.UpdateTarget;
