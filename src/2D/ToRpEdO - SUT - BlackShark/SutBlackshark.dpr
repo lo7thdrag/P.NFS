@@ -70,13 +70,15 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
   Application.CreateForm(TfrmTrackHistory, frmTrackHistory);
   Application.CreateForm(TfrmCreateModifyTrack, frmCreateModifyTrack);
   Application.CreateForm(TfrmTrackFilter, frmTrackFilter);
-  //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
-  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
+  //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
+//  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+
 //  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
 
   Application.Run;
