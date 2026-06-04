@@ -67,7 +67,7 @@ object frmTrackListNumber: TfrmTrackListNumber
       ParentColor = False
       ParentFont = False
     end
-    object Label1: TLabel
+    object lblNumber: TLabel
       Left = 310
       Top = 10
       Width = 7
@@ -118,14 +118,12 @@ object frmTrackListNumber: TfrmTrackListNumber
       ViewStyle = vsReport
     end
     object Panel1: TPanel
-      Left = 4
-      Top = 353
-      Width = 321
-      Height = 7
-      BevelInner = bvRaised
-      BevelKind = bkFlat
-      BorderStyle = bsSingle
-      Caption = 'Panel1'
+      Left = -9
+      Top = 357
+      Width = 338
+      Height = 1
+      Color = clWhite
+      ParentBackground = False
       TabOrder = 1
     end
   end

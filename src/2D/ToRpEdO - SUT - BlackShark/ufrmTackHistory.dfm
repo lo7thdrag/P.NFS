@@ -479,5 +479,23 @@ object frmTrackHistory: TfrmTrackHistory
       Height = 45
       TabOrder = 1
     end
+    object Panel2: TPanel
+      Left = -4
+      Top = 239
+      Width = 394
+      Height = 1
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 2
+    end
+    object Panel1: TPanel
+      Left = -9
+      Top = 141
+      Width = 402
+      Height = 1
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 3
+    end
   end
 end

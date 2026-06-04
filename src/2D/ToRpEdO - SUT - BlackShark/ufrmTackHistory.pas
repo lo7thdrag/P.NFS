@@ -39,6 +39,8 @@ type
     lblEndTime: TLabel;
     lblRefresh: TLabel;
     lblClose: TLabel;
+    Panel2: TPanel;
+    Panel1: TPanel;
   private
     { Private declarations }
   public

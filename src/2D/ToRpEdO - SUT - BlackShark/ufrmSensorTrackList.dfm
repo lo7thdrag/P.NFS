@@ -37,7 +37,7 @@ object frmSensorTrackList: TfrmSensorTrackList
       ParentColor = False
       ParentFont = False
     end
-    object Label1: TLabel
+    object lblNumber: TLabel
       Left = 288
       Top = 32
       Width = 7
@@ -82,21 +82,6 @@ object frmSensorTrackList: TfrmSensorTrackList
       ParentColor = False
       ParentFont = False
     end
-    object lblCAS: TLabel
-      Left = 172
-      Top = 10
-      Width = 24
-      Height = 16
-      Caption = 'CAS'
-      Color = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-    end
     object lvTracklistNumber: TListView
       Left = 32
       Top = 64
@@ -124,6 +109,30 @@ object frmSensorTrackList: TfrmSensorTrackList
       ParentFont = False
       TabOrder = 0
       ViewStyle = vsReport
+    end
+    object cbSensor: TComboBox
+      Left = 152
+      Top = 8
+      Width = 145
+      Height = 21
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      Text = 'CAS'
+      Items.Strings = (
+        'CAS'
+        'FAS'
+        'Intercept'
+        'Radar'
+        'RESM'
+        'Periscope-AP'
+        'Periscope-OM'
+        'Link')
     end
   end
 end
