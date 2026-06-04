@@ -58,7 +58,7 @@ uses
   uPointTrack in 'LibSutBlacksharkObject\uPointTrack.pas',
   uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas',
   uTorpedoLauncher in 'LibSutBlacksharkObject\uTorpedoLauncher.pas',
-  uTorpedo in 'LibSutBlacksharkObject\uTorpedo.pas';
+  uTorpedo in 'LibSutBlacksharkObject\uTorpedo.pas',
   ufrmControlByNumber in 'ufrmControlByNumber.pas' {frmControlByNumber},
   ufrmTackHistory in 'ufrmTackHistory.pas' {frmTrackHistory},
   ufrmCreateModifyTrack in 'ufrmCreateModifyTrack.pas' {frmCreateModifyTrack},
