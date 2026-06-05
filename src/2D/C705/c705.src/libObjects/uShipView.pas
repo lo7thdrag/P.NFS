@@ -39,7 +39,7 @@ procedure RotatePoint(
 var
   Rad : Double;
 begin
-  Rad := DegToRad(Heading);
+  Rad := DegToRad(-Heading);
 
   RX := Round(
     CX + PX * Cos(Rad) + PY * Sin(Rad)
