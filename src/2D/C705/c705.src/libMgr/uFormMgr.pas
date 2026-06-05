@@ -3,7 +3,7 @@ unit uFormMgr;
 interface
 
 type
-  TViewMode = (vmRoutePlan, vmWCC);
+  TViewMode = (vmRoutePlan, vmWCC, vmKeyboard);
 
   procedure InitForms;
   procedure SwitchView(AMode: TViewMode);
@@ -156,10 +156,13 @@ begin
       frmRoutePlan.BringToFront;
     end
     else begin
+
+      frmWCC.img1.PopupMenu := nil;
+      frmRoutePlan.img1.PopupMenu := nil;
                                     //** instalasi
 
       frmRoutePlan.SetTopMonitor(VMonitorTopLeft.MonTop_Top);
-      frmRoutePlan.Left := Screen.Monitors[0].WorkareaRect.Left;
+      frmRoutePlan.Left := Screen.Monitors[1].WorkareaRect.Left;
       frmRoutePlan.Top  := VMonitorTopLeft.MonTop_Top;
 
       if VIdentSetting.ModeDebug then
@@ -197,8 +200,8 @@ begin
     Exit;
 
   // Di dual monitor, tidak perlu switch
-  if not IsSingleMonitor then
-    Exit;
+//  if not IsSingleMonitor then
+//    Exit;
 
   case AMode of
     vmRoutePlan:
@@ -211,6 +214,11 @@ begin
       begin
         SafeHide(frmRoutePlan);
         SafeShow(frmWCC);
+      end;
+
+    vmKeyboard:
+      begin
+        SafeShow(frmKeyboardCalcLaunch);
       end;
   end;
 end;

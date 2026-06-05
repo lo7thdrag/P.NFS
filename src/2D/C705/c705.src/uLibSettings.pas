@@ -153,7 +153,11 @@ begin
     with VNfsDBConfig do begin
       DBSERVER  := INIFReadString(iniF, 'DBCONFIG', 'DBSERVER', '127.0.0.1');
       DBPROTO   := INIFReadString(iniF, 'DBCONFIG', 'DBPROTO', C_DB_PROTO);
-      DBNAME    := INIFReadString(iniF, 'DBCONFIG', 'DBNAME', C_DB_NAME);
+      //DBNAME    := INIFReadString(iniF, 'DBCONFIG', 'DBNAME', C_DB_NAME);
+
+      readIn    := Base64Encode(C_DB_NAME);
+      readOut   := IniFReadstring(inif, 'DBCONFIG', 'DBNAME', readIn);
+      DBNAME    := Base64Decode(readOut);
 
       readIn    := Base64Encode(C_DB_USER);
       readOut   := IniFReadstring(inif, 'DBCONFIG', 'dbuser', readIn);
@@ -201,7 +205,7 @@ begin
     with VMonitorSetting do begin
       MoniRoutePlan := INIFReadInteger(iniF, 'SetMonitor', 'MoniRoutePlan', 1);
       MoniWCC := INIFReadInteger(iniF, 'SetMonitor', 'MoniWCC', 0);
-      MoniKeyboard := INIFReadInteger(iniF, 'SetMonitor', 'MoniKeyboard', 20);
+      MoniKeyboard := INIFReadInteger(iniF, 'SetMonitor', 'MoniKeyboard', 2);
       //MonitorHeight := INIFReadInteger(iniF, 'SetMonitor', 'MonHeight', 0);
       //MonitorWidth := INIFReadInteger(iniF, 'SetMonitor', 'MonWidth', 0);
     end;

@@ -44,7 +44,9 @@ uses
   uShipView in 'libObjects\uShipView.pas',
   uBaseFunction in '..\..\ShareLib\LibBaseSystem\uBaseFunction.pas',
   uBaseConstan in '..\..\ShareLib\LibBaseSystem\uBaseConstan.pas',
-  uTCPDatatype in '..\..\ShareLib\LibNetworks\uTCPDatatype.pas';
+  uTCPDatatype in '..\..\ShareLib\LibNetworks\uTCPDatatype.pas',
+  uDataModule in 'libDatabase\uDataModule.pas' {DataModule1: TDataModule},
+  uClassDatabase in 'libDatabase\uClassDatabase.pas';
 
 {$R *.res}
 
@@ -64,6 +66,7 @@ begin
   Application.MainFormOnTaskbar := True;
 
   Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
+  Application.CreateForm(TDataModule1, DataModule1);
   //Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
   Application.CreateForm(TfrmWCC, frmWCC);
   Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);

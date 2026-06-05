@@ -278,6 +278,7 @@ type
     btnOkObstacleInfo: TVrDemoButton;
     pnlModeOperasi: TPanel;
     tmrForm: TTimer;
+    Keyboard1: TMenuItem;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -297,6 +298,7 @@ type
     procedure tmrFormTimer(Sender: TObject);
     procedure btnWaypointLvl2Click(Sender: TObject);
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure Keyboard1Click(Sender: TObject);
   protected
     //procedure DrawAngle(aCnv: TCanvas);
     //procedure DrawCompass(aCnv: TCanvas);
@@ -1416,6 +1418,12 @@ procedure TfrmRoutePlan.WCC1Click(Sender: TObject);
 begin
   // pindah ke form WCC ketika 1 monitor menggunakan PopupMenu
   SwitchView(vmWCC);
+end;
+
+procedure TfrmRoutePlan.Keyboard1Click(Sender: TObject);
+begin
+  // munculin form keyboard
+  SwitchView(vmKeyboard);
 end;
 
 procedure TfrmRoutePlan.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);

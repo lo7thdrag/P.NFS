@@ -92306,6 +92306,10 @@ object frmWCC: TfrmWCC
       Caption = 'Route Plan'
       OnClick = RoutePlan1Click
     end
+    object Keyboard1: TMenuItem
+      Caption = 'Keyboard'
+      OnClick = Keyboard1Click
+    end
   end
   object tmrHardwareCheck: TTimer
     Enabled = False
