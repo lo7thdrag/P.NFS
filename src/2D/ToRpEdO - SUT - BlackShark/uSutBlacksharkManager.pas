@@ -180,34 +180,34 @@ begin
   AddToMemoLog(' _pos: ' + dbID_to_UniqueID(aRec.ShipID) + ' ' + Format('%2.6f, %2.6f',[aRec.X, aRec.Y]));
 
   if aRec.ShipID = UniqueID_To_dbID(FxShip.UniqueID) then begin
-      FxShip.PositionX := aRec.X;
-      FxShip.PositionY := aRec.Y;
-      FxShip.PositionZ := aRec.Z;
+    FxShip.PositionX := aRec.X;
+    FxShip.PositionY := aRec.Y;
+    FxShip.PositionZ := aRec.Z;
 
-      FxShip.Speed    := aRec.speed;
-      FxShip.Heading  := aRec.heading;
-      FxShip.Pitch := aRec.pitch;
-      FxShip.Roll := aRec.roll;
+    FxShip.Speed    := aRec.speed;
+    FxShip.Heading  := aRec.heading;
+    FxShip.Pitch := aRec.pitch;
+    FxShip.Roll := aRec.roll;
 
 
-      V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
+    V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
 
-      if not Assigned(v) then
-      begin
-        V := VehicleMgr.AddVehicle(FxShip.PositionX, FxShip.PositionY, '');
-      //  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
-        V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
-        v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
-        V.SetSpeedKts(FxShip.Speed);
-        V.HeadingDeg := FxShip.Heading; // NE
-      end
+    if not Assigned(v) then
+    begin
+      V := VehicleMgr.AddVehicle(FxShip.PositionX, FxShip.PositionY, '', False);
+    //  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
+      V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+      v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
+      V.SetSpeedKts(FxShip.Speed);
+      V.HeadingDeg := FxShip.Heading; // NE
+    end
 
-      else
-      begin
-        v.PosX := FxShip.PositionX;
-        v.PosY := FxShip.PositionY;
-        v.PosZ := FxShip.PositionZ;
-      end;
+    else
+    begin
+      v.PosX := FxShip.PositionX;
+      v.PosY := FxShip.PositionY;
+      v.PosZ := FxShip.PositionZ;
+    end;
   end
   else begin
     V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
@@ -226,23 +226,26 @@ begin
     begin
       vdomain := DataModule1.GetShipDomain(aRec.ShipID);
 
-      if (vdomain = 1) or (vdomain = 3) then
+      if vdomain = 1 then
       begin
-        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, dbID_to_UniqueID(aRec.ShipID));
+        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, dbID_to_UniqueID(aRec.ShipID), True);
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
 
         v.Domain := vdomain;
         // pakai bitmap tint: hitam -> kuning
-        case v.Domain of
-          1://surface
-          begin
-            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SurfaceUnknown.bmp');
-          end;
-          3://subsurface
-          begin
-            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SubsurfaceUnknown.bmp');
-          end;
-        end;
+        V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SurfaceUnknown.bmp');
+
+        V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
+      end
+
+      else if vdomain = 3 then
+      begin
+        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, dbID_to_UniqueID(aRec.ShipID), False);
+        V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+        v.Domain := vdomain;
+        // pakai bitmap tint: hitam -> kuning
+
+        V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SubsurfaceUnknown.bmp');
 
         V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
       end;

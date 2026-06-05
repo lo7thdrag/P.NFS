@@ -9,7 +9,9 @@ interface
         FPosX, FPosY, FPosZ : Double;   // Map coords (Lon/Lat deg atau meter)
         FSpeed_mps          : Double;   // m/s
         FHeadingDeg         : Double;   // 0=N, cw
-        FMSITrackNumber: Word;
+        FUniqueID: string;
+        FDomain: Integer;
+        FShipID: Word;
 
       public
         constructor Create;
@@ -21,7 +23,10 @@ interface
         property PosZ      : Double read FPosZ write FPosZ;
         property Speed_mps : Double read FSpeed_mps write FSpeed_mps;
         property HeadingDeg: Double read FHeadingDeg write FHeadingDeg;
-        property MSITrackNumber : Word read FMSITrackNumber write FMSITrackNumber; // rojek nambahin MSI-TrackNumber disini buat torpedo
+        property UniqueID: string read FUniqueID write FUniqueID;
+        property Domain : Integer read FDomain write FDomain;
+        property ShipID : Word read FShipID write FShipID;
+
     end;
 
 implementation
@@ -30,7 +35,14 @@ implementation
 
 constructor TBaseObject.Create;
 begin
-
+  FObjectId := 0;
+  FPosX := 0;
+  FPosY := 0;
+  FPosZ := 0;
+  FSpeed_mps := 0;
+  FUniqueID := '';
+  FDomain := 0;
+  FShipID := 0;
 end;
 
 destructor TBaseObject.Destroy;

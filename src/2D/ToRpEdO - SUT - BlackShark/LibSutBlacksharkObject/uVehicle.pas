@@ -19,9 +19,6 @@ type
 
     // penautan ke peta/simbol
     FSymbol             : TRadarTargetSymbol;
-    FUniqueID: string;
-    FDomain: Integer;
-    FShipID: Word;
 
     FIsTracked: Boolean; // ARPA state
     FIsDetected: Boolean;
@@ -52,14 +49,6 @@ type
     // panggil sebelum draw (atau manager akan memanggil otomatis)
     procedure PrepareForDraw;
 
-    property UniqueID: string read FUniqueID write FUniqueID;
-    property Domain : Integer read FDomain write FDomain;
-    property ShipID : Word read FShipID write FShipID;
-    property MSITrackNumber : Word read FMSITrackNumber write FMSITrackNumber;
-    // rojek nambahin MSI-TrackNumber disini buat torpedo
-    property IsTracked : Boolean read FIsTracked write FIsTracked;
-    property IsDetected : Boolean read FIsDetected write FIsDetected;
-    property LastHit : Double read FLastHit write FLastHit;
   end;
 
 implementation
