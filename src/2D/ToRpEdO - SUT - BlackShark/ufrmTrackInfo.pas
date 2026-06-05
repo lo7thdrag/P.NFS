@@ -56,14 +56,6 @@ type
     Label19: TLabel;
     Label21: TLabel;
     Label22: TLabel;
-    RzTrackNumbers: TRzCheckGroup;
-    RzTrackIndicators: TRzCheckGroup;
-    Label20: TLabel;
-    lblMSITNo: TLabel;
-    Label23: TLabel;
-    lblLinkYTNo: TLabel;
-    Label24: TLabel;
-    lblRepTNo: TLabel;
     Label25: TLabel;
     lblSubmarineConfLevel: TLabel;
     Label27: TLabel;
@@ -183,7 +175,26 @@ type
     lblFreq2EW: TLabel;
     Label94: TLabel;
     lbl77: TLabel;
-    AdvGridDropDown1: TAdvGridDropDown;
+    cbRange: TComboBox;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Label20: TLabel;
+    lblMSITNo: TLabel;
+    Label23: TLabel;
+    lblLinkYTNo: TLabel;
+    Label24: TLabel;
+    lblRepTNo: TLabel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Image4: TImage;
+    Image5: TImage;
+    Image6: TImage;
+    Image1: TImage;
+    Label89: TLabel;
+    Image2: TImage;
+    Label92: TLabel;
+    Image3: TImage;
+    Label93: TLabel;
   private
     { Private declarations }
   public

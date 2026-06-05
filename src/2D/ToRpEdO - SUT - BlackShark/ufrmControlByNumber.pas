@@ -12,13 +12,15 @@ type
     pnlMain: TPanel;
     lblApply: TLabel;
     lblClose: TLabel;
-    rdControlBynumber: TRadioGroup;
     btnMSITNo: TRadioButton;
-    RadioButton1: TRadioButton;
+    btnLinkY: TRadioButton;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     edtTrackNo: TEdit;
+    Panel1: TPanel;
+    RadioGroup1: TRadioGroup;
+    Panel2: TPanel;
   private
     { Private declarations }
   public

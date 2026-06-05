@@ -12,7 +12,6 @@ type
     LastHit: Double; // Persistence (Phosphor decay)
     IsTracked: Boolean; // ARPA state
     isDetected: Boolean;
-    Domain: Integer;  // Domain Surface = 1
 
     constructor Create; overload;
     constructor Create(AID: Integer; AName: string;
@@ -36,7 +35,6 @@ begin
   LastHit := 0.0;
   IsTracked := False;
   isDetected := False;
-  Domain := 1;
 end;
 
 constructor TShipContact.Create(AID: Integer; AName: string; ALat, ALon, AHdg,
@@ -51,7 +49,6 @@ begin
   LastHit := 0;
   IsTracked := False;
   isDetected := False;
-  Domain := 1;
 end;
 
 procedure TShipContact.AssignFrom(const AShipContact: TShipContact);
@@ -65,7 +62,6 @@ begin
   LastHit := AShipContact.LastHit;
   IsTracked := AShipContact.IsTracked;
   isDetected := AShipContact.isDetected;
-  Domain := AShipContact.Domain;
 end;
 
 end.

@@ -96,7 +96,8 @@ const
 implementation
 
 uses
-  uDataModule, ulibSettings;
+  uDataModule, ulibSettings,
+    uShipModel;
 
 { TSutBlacksharkManager }
 
@@ -170,6 +171,7 @@ var  sc  : TSimulationClass;
      TestHeading : Double;
      V : TVehicle;
      vdomain : Integer;
+     Ship: TShipContact;
 begin
   aRec := @apRec^;
 
@@ -228,6 +230,7 @@ begin
       begin
         V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, dbID_to_UniqueID(aRec.ShipID), True);
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+
         v.Domain := vdomain;
         // pakai bitmap tint: hitam -> kuning
         V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SurfaceUnknown.bmp');

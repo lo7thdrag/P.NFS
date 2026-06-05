@@ -20,11 +20,17 @@ type
     // penautan ke peta/simbol
     FSymbol             : TRadarTargetSymbol;
 
+    FIsTracked: Boolean; // ARPA state
+    FIsDetected: Boolean;
+    FLastHit: Double; // Persistence (Phosphor decay)
+
     procedure SyncSymbolFromState; // push PosX/Y -> Symbol.MapX/MapY
   public
     constructor Create; overload;
     constructor Create(aSymbol: TRadarTargetSymbol); overload;
     destructor Destroy; override;
+
+    procedure AssignFrom(const AVehicleContact: TVehicle);
 
     // properti state
     property RollDeg   : Double read FRollDeg write FRollDeg;
@@ -42,7 +48,6 @@ type
 
     // panggil sebelum draw (atau manager akan memanggil otomatis)
     procedure PrepareForDraw;
-
 
   end;
 
@@ -67,6 +72,23 @@ begin
   FSymbol.CircleColorSelected := clYellow;
   // contoh default: font segitiga
   // FSymbol.SetFontSymbol('Segoe UI Symbol','▲', clLime, clYellow, 10);
+
+  LastHit := 0.0;
+  FIsTracked := False;
+  FisDetected := False;
+end;
+
+procedure TVehicle.AssignFrom(const AVehicleContact: TVehicle);
+begin
+  ShipID := AVehicleContact.ShipID;
+  UniqueID := AVehicleContact.UniqueID;
+  PosY := AVehicleContact.PosY;
+  PosX := AVehicleContact.PosX;
+  HeadingDeg := AVehicleContact.HeadingDeg;
+  Speed_mps := AVehicleContact.Speed_mps;
+  LastHit := AVehicleContact.LastHit;
+  IsTracked := AVehicleContact.IsTracked;
+  isDetected := AVehicleContact.isDetected;
 end;
 
 constructor TVehicle.Create(aSymbol: TRadarTargetSymbol);

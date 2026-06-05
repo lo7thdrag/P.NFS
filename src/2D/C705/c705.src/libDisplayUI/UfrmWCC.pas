@@ -84,6 +84,7 @@ type
     RoutePlan1: TMenuItem;
     pnlRealTimeCombat: TPanel;
     tmrHardwareCheck: TTimer;
+    Keyboard1: TMenuItem;
     {$ENDREGION}
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -92,6 +93,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure RoutePlan1Click(Sender: TObject);
     procedure tmrHardwareCheckTimer(Sender: TObject);
+    procedure Keyboard1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -308,7 +310,6 @@ begin
   UpdateHighlight;
 
   StartCheckHardware;
-
 end;
 
 procedure TfrmWCC.FormShow(Sender: TObject);
@@ -370,6 +371,12 @@ procedure TfrmWCC.Close1Click(Sender: TObject);
 begin
   Application.Terminate;
   //Close;
+end;
+
+procedure TfrmWCC.Keyboard1Click(Sender: TObject);
+begin
+  // munculin form keyboard
+  SwitchView(vmKeyboard);
 end;
 
 procedure TfrmWCC.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);

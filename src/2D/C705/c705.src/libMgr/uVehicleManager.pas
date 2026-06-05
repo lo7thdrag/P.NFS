@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Contnrs, Graphics,
-  uShipModel, uTCPDatatype;
+  uShipModel, uTCPDatatype, uDataModule;
 
 type
   TVehicleManager = class
@@ -84,17 +84,24 @@ end;
 procedure TVehicleManager.UpdateObjectList(AShipInfo: PRecData3DPosition);
 var
   Ship: TShipContact;
+  vdomain : Integer;
 begin
   if FNFSObjectList = nil then
     Exit;
+
+  vdomain := DataModule1.GetShipDomain(AShipInfo^.ShipID);
 
   if (FNFSObjectList <> nil) and (AShipInfo <> nil) then
   begin
     Ship := FindObjectByID(Integer(AShipInfo^.ShipID));
     if not Assigned(Ship) then
     begin
-      Ship := TShipContact.Create(Integer(AShipInfo^.ShipID), '', AShipInfo^.Y, AShipInfo^.X, AShipInfo^.Heading, AShipInfo^.Speed);
-      FNFSObjectList.Add(Ship);
+      // Object yang ditampilin di peta khusus Domain Surface
+      if vdomain = 1 then
+      begin
+        Ship := TShipContact.Create(Integer(AShipInfo^.ShipID), '', AShipInfo^.Y, AShipInfo^.X, AShipInfo^.Heading, AShipInfo^.Speed);
+        FNFSObjectList.Add(Ship);
+      end;
     end
     else
     begin

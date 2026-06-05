@@ -10,11 +10,11 @@ type
   TfrmSensorTrackList = class(TForm)
     pnlMain: TPanel;
     lblNumberofTracks: TLabel;
-    Label1: TLabel;
+    lblNumber: TLabel;
     lvTracklistNumber: TListView;
     lblClose: TLabel;
     lblSensor: TLabel;
-    lblCAS: TLabel;
+    cbSensor: TComboBox;
   private
     { Private declarations }
   public

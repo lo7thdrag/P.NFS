@@ -3,11 +3,13 @@ unit uVehicleManager;
 interface
 uses
   SysUtils, Classes, Math, Graphics,
-  uCoordConverter, windows, uVehicle;
+  uCoordConverter, windows, uVehicle,
+  System.Contnrs;
 type
   TVehicleManager = class
   private
-    FList: TList;               // of TVehicle
+//    FList: TList;               // of TVehicle
+    FList: TObjectList;               // of TVehicle
     FConv: TCoordConverter;
   public
 
@@ -39,6 +41,9 @@ type
 
     // util
     procedure DeselectAll;
+
+    property ObjectList: TObjectList read FList;
+//    property ObjectList: TList read FList;
   end;
 
 var
@@ -50,7 +55,7 @@ implementation
 constructor TVehicleManager.Create;
 begin
   inherited Create;
-  FList := TList.Create;
+  FList := TObjectList.Create;
   FConv := nil;
 end;
 

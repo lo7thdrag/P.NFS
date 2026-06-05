@@ -387,8 +387,9 @@ object frmTrackFilter: TfrmTrackFilter
       Top = 47
       Width = 63
       Height = 24
+      Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -408,8 +409,9 @@ object frmTrackFilter: TfrmTrackFilter
       Top = 71
       Width = 63
       Height = 24
+      Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -444,8 +446,9 @@ object frmTrackFilter: TfrmTrackFilter
       Top = 148
       Width = 63
       Height = 24
+      Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []

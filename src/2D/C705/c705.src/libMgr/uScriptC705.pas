@@ -24,7 +24,7 @@ implementation
 uses
   Windows, System.SysUtils,
   uC705SimManager, uLibSettings, uFormMgr, uVehicleManager,
-    UfrmRoutePlan, uBridgeSet, uTCPDatatype;
+    UfrmRoutePlan, uBridgeSet, uTCPDatatype, uDataModule;
 
 /// some sub function to keep the main procedure simple;
 
@@ -48,16 +48,19 @@ LoadGeoset di frmRoutePlan
 
 procedure BeginC705;
 begin
-  //LoadMonitorSetting;
+  LoadIdentSetting;
+
+  if not VIdentSetting.ModeConsole then   // bukan diinstall di Console (kantor)
+    LoadMonitorSetting;
+
   //LoadNFSNetwork;
   //LoadOwnShips;
 
   LoadMonitorTopLeft;
   LoadMapSetting;
   LoadImagePathDir;
-  LoadIdentSetting;
 
-  //LoadNFSDBConfig;
+  LoadNFSDBConfig;
 
   InitDefault_AllConfigFromInstruktur(pServer_Ip,pServer_Port,
     pDBServer, pDBProto, pDBName, pDBUser, pDBPass, pShipID, pCurrentScenID);
@@ -69,7 +72,10 @@ begin
   VNfsNetwork.ServerIP   := pServer_Ip;
   VNfsNetwork.ServerPort := StrToIntDef(pServer_Port, 0);
 
-          {
+  DataModule1.InitZDB(VNfsDBConfig.DBSERVER, VNfsDBConfig.DBPROTO, VNfsDBConfig.DBNAME,
+    VNfsDBConfig.DBUSER, VNfsDBConfig.DBPASS, VNfsDBConfig.DBPORT);
+
+  {
   if DataModule1.InitZDB(pDBServer, pDBProto, pDBName, pDBUser, pDBPass) then
   begin
     ShipClassID  := DataModule1.GetShipType(pShipID, ShipClassName);
@@ -82,6 +88,7 @@ begin
     AddToLog(TheClient.Log, ' ShipClassName ' + ShipClassName );
   end;
   }
+
   //Env_Map := DataModule1.GetMapById(pCurrentScenID);
 
   { Create SimManager }

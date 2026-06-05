@@ -269,16 +269,11 @@ object FrmSupportScreen: TFrmSupportScreen
     ParentBackground = False
     TabOrder = 2
     object PaintBox1: TPaintBox
-      Left = 304
-      Top = 1
-      Width = 1312
-      Height = 853
-      Align = alClient
-      OnPaint = PaintBox1Paint
-      ExplicitLeft = 680
-      ExplicitTop = 424
-      ExplicitWidth = 105
-      ExplicitHeight = 105
+      Left = 424
+      Top = 416
+      Width = 105
+      Height = 105
+      Visible = False
     end
     object pnlInfoKanan: TPanel
       Left = 1616
@@ -294,8 +289,6 @@ object FrmSupportScreen: TFrmSupportScreen
       Color = clBlack
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 1620
-      ExplicitTop = 0
       object Label25: TLabel
         Left = 15
         Top = 15
@@ -749,6 +742,19 @@ object FrmSupportScreen: TFrmSupportScreen
         Font.Style = []
         ParentFont = False
       end
+    end
+    object Panel2: TPanel
+      Left = 304
+      Top = 1
+      Width = 1312
+      Height = 853
+      Align = alClient
+      Caption = 'Panel2'
+      TabOrder = 2
+      ExplicitLeft = 568
+      ExplicitTop = 173
+      ExplicitWidth = 624
+      ExplicitHeight = 427
     end
   end
   object Panel1: TPanel

@@ -56,6 +56,9 @@ uses
   uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas',
   uBaseObject in 'LibSutBlacksharkObject\uBaseObject.pas',
   uPointTrack in 'LibSutBlacksharkObject\uPointTrack.pas',
+  UfrmRadar in 'UfrmRadar.pas' {frmRadar},
+  uRadarSensor in 'LibMapX\uRadarSensor.pas',
+  uShipModel in 'LibMapX\uShipModel.pas',
   uTorpedoLauncher in 'LibSutBlacksharkObject\uTorpedoLauncher.pas',
   ufrmControlByNumber in 'ufrmControlByNumber.pas' {frmControlByNumber},
   ufrmTackHistory in 'ufrmTackHistory.pas' {frmTrackHistory},
@@ -72,6 +75,8 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+  //Application.CreateForm(TfrmRadar, frmRadar);
+
   Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
   Application.CreateForm(TfrmTrackHistory, frmTrackHistory);
   Application.CreateForm(TfrmCreateModifyTrack, frmCreateModifyTrack);
