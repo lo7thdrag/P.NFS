@@ -167,9 +167,7 @@
         <DCCReference Include="..\ShareLib\LibUtil\uFormUtil.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uBaseObject.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uPointTrack.pas"/>
-        <DCCReference Include="LibSutBlacksharkObject\uNonVehicle.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uTorpedoLauncher.pas"/>
-        <DCCReference Include="LibSutBlacksharkObject\uTorpedo.pas"/>
         <DCCReference Include="ufrmControlByNumber.pas">
             <Form>frmControlByNumber</Form>
         </DCCReference>
@@ -182,6 +180,9 @@
         <DCCReference Include="ufrmTrackFilter.pas">
             <Form>frmTrackFilter</Form>
         </DCCReference>
+        <DCCReference Include="LibSutBlacksharkObject\uSimulationTrack.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uSubSurfaceTrack.pas"/>
+        <DCCReference Include="LibSutBlacksharkObject\uSurfaceTrack.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

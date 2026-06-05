@@ -56,13 +56,14 @@ uses
   uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas',
   uBaseObject in 'LibSutBlacksharkObject\uBaseObject.pas',
   uPointTrack in 'LibSutBlacksharkObject\uPointTrack.pas',
-  uNonVehicle in 'LibSutBlacksharkObject\uNonVehicle.pas',
   uTorpedoLauncher in 'LibSutBlacksharkObject\uTorpedoLauncher.pas',
-  uTorpedo in 'LibSutBlacksharkObject\uTorpedo.pas',
   ufrmControlByNumber in 'ufrmControlByNumber.pas' {frmControlByNumber},
   ufrmTackHistory in 'ufrmTackHistory.pas' {frmTrackHistory},
   ufrmCreateModifyTrack in 'ufrmCreateModifyTrack.pas' {frmCreateModifyTrack},
-  ufrmTrackFilter in 'ufrmTrackFilter.pas' {frmTrackFilter};
+  ufrmTrackFilter in 'ufrmTrackFilter.pas' {frmTrackFilter},
+  uSimulationTrack in 'LibSutBlacksharkObject\uSimulationTrack.pas',
+  uSubSurfaceTrack in 'LibSutBlacksharkObject\uSubSurfaceTrack.pas',
+  uSurfaceTrack in 'LibSutBlacksharkObject\uSurfaceTrack.pas';
 
 {$R *.res}
 

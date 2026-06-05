@@ -991,11 +991,17 @@ end;
 
 procedure TFrmTacticalScreen.pnlAssFuncMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  SenderPanel: TObject;
 begin
-  case FuncTaskRightMode of
+  if Sender is TLabel then SenderPanel := (Sender as Tlabel).Parent
+
+  else SenderPanel := Sender;
+
+  case TPanel(SenderPanel).Tag of
     0:
     begin
-
+      // FuncTaskRightMode di check di dalam sini
     end;
     1:
     begin

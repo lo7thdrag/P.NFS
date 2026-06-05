@@ -17,7 +17,7 @@ type
     property CoordConverter: TCoordConverter read FConv write FConv;
 
     function  AddVehicle: TVehicle; overload;
-    function  AddVehicle(const x, y: Double; const trackLabel: string = ''): TVehicle; overload;
+    function  AddVehicle(const x, y: Double; const trackLabel: string = ''; const isSurface: Boolean = false): TVehicle; overload;
 //    function  AddOwnShip: TVehicle; overload;
 //    function  AddOwnShip(const x, y: Double; const trackLabel: string = ''): TOwnShip; overload;
     function FindObjectByUid(const aUid: string): TVehicle;
@@ -86,7 +86,7 @@ end;
 //  FOwnShip := Result;
 //end;
 
-function TVehicleManager.AddVehicle(const x, y: Double; const trackLabel: string): TVehicle;
+function TVehicleManager.AddVehicle(const x, y: Double; const trackLabel: string; const isSurface: Boolean): TVehicle;
 begin
   Result := AddVehicle;
   Result.PosX := x;

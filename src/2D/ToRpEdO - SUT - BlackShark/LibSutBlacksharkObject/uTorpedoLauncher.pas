@@ -53,13 +53,13 @@ implementation
 
 constructor TTorpedoLauncher.Create;
 begin
-  inherited Create;
+
 end;
 
 destructor TTorpedoLauncher.Destroy;
 begin
 
-  inherited;
+
 end;
 
 end.
