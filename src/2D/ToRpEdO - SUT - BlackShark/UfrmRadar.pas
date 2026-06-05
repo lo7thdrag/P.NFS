@@ -13,7 +13,7 @@ uses
 //  uShipModel,
   uRadarSensor,
   uSutBlacksharkManager,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls, ImageButton, AdvCombo;
 
 type
   TfrmRadar = class(TForm)
@@ -23,6 +23,11 @@ type
     btnZoomIn: TButton;
     btnZoomOut: TButton;
     tmrDisplay: TTimer;
+    AdvComboBox1: TAdvComboBox;
+    cbbMotionMode: TAdvComboBox;
+    ImageButton1: TImageButton;
+    ImageButton2: TImageButton;
+    Label3: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure tmrDisplayTimer(Sender: TObject);
@@ -95,10 +100,10 @@ begin
   FDisplay.SweepTrailWidth:= 40;
   FDisplay.RPM:= 20.0;
   FDisplay.RangeRingCount:= 2;
-  FDisplay.SectorCount:= 4;
-  FDisplay.OwnShipHeadingVisible:= True;
+  FDisplay.SectorCount:= 12;
+  FDisplay.OwnShipHeadingVisible:= False;
   FDisplay.OuterRingCompassVisible:= True;
-  FDisplay.SweepVisible:= True;
+  FDisplay.SweepVisible:= False;
   FDisplay.ContactShipHeadingVisible:= True;
 
   FDisplay.BackgroundColor:= clBlack;

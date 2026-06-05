@@ -8,7 +8,10 @@ uses
   Vcl.ExtCtrls, System.UITypes,
 
   uShipModel,
-  uVehicle;
+  uVehicle,
+  uLibConst,
+  uBaseFunction,
+  uBaseConst;
 
 type
 
@@ -61,6 +64,10 @@ type
     procedure PaintBoxMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure PaintBoxPaint(Sender: TObject);
+
+    procedure DrawTicksDegree;
+    procedure DrawLine(Canvas: TCanvas; X1, Y1, X2, Y2: Integer;
+      Color: TColor; Width: Integer);
   public
 
 
@@ -127,6 +134,39 @@ procedure TRadarDisplay.Update(ADeltaTime: Double);
 begin
   FDeltaTime:= ADeltaTime;
   FPaintBox.Invalidate;
+end;
+
+function Rotate(Width, Height, Radius: Integer;
+  Degrees: Double): Winapi.Windows.TPoint;
+var
+  Angle: Double;
+  W, H: Integer;
+//  HeadingView : THeadingRadarView;
+begin
+//  if Assigned(NavSimCenter.NAV_Radar.HeadingView) then
+//  begin
+//   HeadingView := uRadarNavManager.NavSimCenter.NAV_Radar.getHeadingLine;
+//   if HeadingView.HeadingMode = sbmCourseUp then
+//   begin
+//       Angle := HeadingView.Heading;
+//       if Angle < 0 then Angle := CBaseAngle - Angle;
+//       Angle := CBaseAngle - Angle;
+//       Angle := ConvCompass_To_Cartesian(Angle);
+//       Angle := ConvCustomAngleStart(degrees,Angle);
+//       Angle := Angle*C_DegToRad;
+//   end
+//   else
+//   //if HeadingView.HeadingMode = sbmCourseUp then
+//      Angle  := ConvCartesian_To_Compass(Degrees)*C_DegToRad;
+//  end
+//  else
+     Angle := ConvCartesian_To_Compass(Degrees)*C_DegToRad;
+
+  W := Width div 2;
+  H := Height div 2;
+  Result.X := W + Round(Cos(Angle) * Radius);
+  Result.Y := H + Round(Sin(Angle) * Radius);
+  Result.Y := (H * 2) - Result.Y;
 end;
 
 //function TRadarDisplay.UpdateRadarContactList(AShip: TShipContact): TShipContact;
@@ -231,6 +271,137 @@ begin
   finally
     Bmp.Free;
   end;
+end;
+
+procedure TRadarDisplay.DrawLine(Canvas: TCanvas; X1, Y1, X2, Y2: Integer;
+  Color: TColor; Width: Integer);
+begin
+  Canvas.Pen.Color := Color;
+  Canvas.Pen.Width := Width;
+  Canvas.MoveTo(X1, Y1);
+  Canvas.LineTo(X2, Y2);
+end;
+
+procedure TRadarDisplay.DrawTicksDegree;
+var
+  I,Size,Enlarge,StartAngle,AngleRadius: Integer;
+  ticksMax,ticks,ticksEnlarge,ticksMin :integer;
+  labels,decimals,labelsoffset: integer;
+  Angle,AngleOffset,BaseAngle : integer;
+  Increment,Degrees,CurValue,IncValue: Double;
+  R: TRect;
+  P1, P2: Winapi.Windows.TPoint;
+  Mask,StrValue: string;
+  ticksColor : TColor;
+  labelsfont : TFont;
+
+  left,top,right,bottom : Integer;
+  diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
+begin
+  Angle := 0;
+  baseAngle := round(CBaseAngle);
+  AngleOffset := round(CBaseAngle);
+  StartAngle := BaseAngle + Angle;
+  diffBeetwinWH := (FPaintBox.Width - FPaintBox.Height) div 2;
+
+  top := 50;
+  bottom := FPaintBox.Height - top;
+  left := diffBeetwinWH + top;
+  right := FPaintBox.Width - left;
+
+  //draw ticks:
+  FPaintBox.Canvas.Pen.Color := CForegroundColor;
+
+  FPaintBox.Canvas.Brush.Style := bsClear;
+//    R := Rect(0,0, Map.Width, Map.Height);
+  R := Rect(left,top, right, bottom);
+  AngleRadius := (R.right - R.left) div 2;
+//    AngleRadius := 280;
+  ticksmax := 16;
+  ticks := round(24);
+  ticksEnlarge := 5;
+  ticksMin := 8;
+  ticksColor := clGreen;
+  labels := 24;
+  decimals := 0;
+  labelsoffset := 30;
+
+  {jarum derajat}
+
+  if Ticks >= 1 then
+  begin
+    Enlarge := TicksEnlarge;
+    Degrees := StartAngle;
+    Increment := AngleOffset/Ticks;
+    FPaintBox.Canvas.Pen.Color := clRed;
+    FPaintBox.Canvas.Pen.Width := 3;
+    FPaintBox.Canvas.Ellipse(R.Left, R.Top, R.Right, R.Bottom);
+    for I := 1 to Ticks + 1 do
+    begin
+//        if (Enlarge mod TicksEnlarge = 0) then
+//          Size := TicksMax else Size := TicksMin;
+      Size := TicksMax;
+      Inc(Enlarge);
+      P1 := Rotate(FPaintBox.Width, FPaintBox.Height, AngleRadius, Degrees);
+      P2 := Rotate(FPaintBox.Width, FPaintBox.Height, AngleRadius + Size, Degrees);
+      DrawLine(FPaintBox.Canvas, P1.X, P1.Y, P2.X, P2.Y, TicksColor, 2);
+      Degrees := Degrees + Increment;
+    end;
+  end;
+
+
+  {angka}
+  labelsfont := TFont.Create();
+  try
+    labelsfont.Color := clYellow;
+    labelsfont.Size := 10;
+
+    if Labels >= 1 then
+    begin
+      FPaintBox.Canvas.Font := LabelsFont;
+      CurValue := 0;
+      IncValue := (360 - 0)/labels;
+      Degrees := StartAngle;
+      Increment := AngleOffset/labels;
+      Mask := '%.' + IntToStr(Decimals) + 'f';
+      for I := 1 to Labels  do
+      begin
+  //        P1 := Rotate(MeterWidth, MeterHeight, AngleRadius + LabelsOffset, Degrees);
+        P1 := Rotate(FPaintBox.Width, FPaintBox.Height, AngleRadius + LabelsOffset, Degrees);
+
+  //        if strlen(pchar(floattostr(CurValue))) <= 2 then
+  //          begin
+  //          if curValue = 0 then
+  //             StrValue := '00'+Format(Mask, [CurValue])
+  //          else
+  //             StrValue := '0'+Format(Mask, [CurValue]);
+  //          end
+  //        else
+        if round(CurValue) mod 30 = 0 then
+        begin
+          if CurValue > 180 then
+             StrValue := Format(Mask, [CurValue - 360]) + '°'
+          else
+            StrValue := Format(Mask, [CurValue]) + '°';
+
+          P1.X := P1.X - FPaintBox.Canvas.TextWidth(StrValue) div 2;
+          P1.Y := P1.Y - FPaintBox.Canvas.TextHeight(StrValue) div 2;
+          FPaintBox.Canvas.TextOut(P1.X, P1.Y, StrValue);
+          Degrees := Degrees + Increment;
+          CurValue := 0 + (IncValue*I);
+        end
+        else
+        begin
+          Degrees := Degrees + Increment;
+          CurValue := 0 + (IncValue*I);
+        end;
+      end;
+    end;
+  finally
+    labelsfont.Free;
+  end;
+
+
 end;
 
 //procedure TRadarDisplay.PaintBoxMouseDown(Sender: TObject; Button: TMouseButton;
@@ -624,7 +795,8 @@ begin
   if FSweepVisible then
     DrawSmoothSweep(CX, CY, Radius, FSweepTrailWidth);
 
-  DrawCompass(CX, CY, Radius, Eff);
+  DrawTicksDegree;
+  //DrawCompass(CX, CY, Radius, Eff);
 
   if FOwnShipHeadingVisible then
   begin
@@ -726,6 +898,9 @@ begin
       end;
     end;
   end;
+
+
+
 end;
 
 end.
