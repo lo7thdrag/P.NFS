@@ -4,7 +4,8 @@ interface
 
 uses
   System.SysUtils, Vcl.ExtCtrls, System.Contnrs, OverbyteIcsWSocket, uTCPClient,
-  uTCPDatatype, uLibSettings, uShipModel, uVehicleManager;
+  uTCPDatatype, uLibSettings, uShipModel, uVehicleManager,
+  Winapi.Windows, Vcl.Dialogs, System.Classes;
 
 type
   TRoutePlanMode = (mPassive, mActive, mFiring);
@@ -23,6 +24,9 @@ type
     FAutoConnectToBridgeTimer: TTimer;
 
     FOnMapInit: TOnMapInit;
+    FOnStatusWeaponChanged,
+    FOnTakeOffChanged: TNotifyEvent;
+    FMissileTakeOff: Boolean;
 
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
     procedure OnConnected(msg: string);
@@ -57,8 +61,17 @@ type
 
     procedure ResetLauncher(aLauncherID: Integer);
 
+    procedure SetImgPowerConsole(aStatus: Boolean);
+
     property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
     property OnMapInit: TOnMapInit read FOnMapInit write FOnMapInit;
+
+    property C705Status: TC705Status read FC705Status write FC705Status;
+    property OnStatusWeaponChanged: TNotifyEvent read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
+    property OnTakeOffChanged: TNotifyEvent read FOnTakeOffChanged write FOnTakeOffChanged;
+
+    property MissileTakeOff: Boolean read FMissileTakeOff write FMissileTakeOff;
+
     // Send Data
     procedure netNFS_OnSendDataC705(rec: TRec_Data_C705);
   published
@@ -78,6 +91,15 @@ constructor GameSimManager.Create;
 var
   i, j : Integer;
 begin
+  // Default Operation Route Planning
+  FRoutePlanMode := mPassive;
+
+  FC705Status.EnableWeapon := False;
+  FC705Status.OpenCoverLauncher := False;
+  FC705Status.SafetyIgnition := False;
+
+  FMissileTakeOff := False;
+
   {Socket NFS}
   NFSNetRecv := TTCPClient.Create;
 
@@ -101,9 +123,6 @@ begin
   FAutoConnectToBridgeTimer.Interval := 5000;
   FAutoConnectToBridgeTimer.OnTimer := tmrAutoConnectToBridgeTimer;
   FAutoConnectToBridgeTimer.Enabled := True;
-
-  // Default Operation Route Planning
-  FRoutePlanMode := mPassive;
 
   // Load Missile
   for i := 1 to 2 do
@@ -230,6 +249,11 @@ begin
     ST_MISSILE_RUN:
     begin
       FLauncherHasMissile[Rec^.launcherID] := False;
+
+      FMissileTakeOff := True;
+
+      if Assigned(FOnTakeOffChanged) then
+        FOnTakeOffChanged(Self);
     end;
 
     // MISSILE DIHAPUS / HABIS
@@ -246,21 +270,53 @@ procedure GameSimManager.netNFS_OnReceiveStatusConsole(apRec: PAnsiChar;
 var
   //rec : ^TRecStatus_Console_C705;
   rec: ^TRecStatus_Console;
+  StatusChanged: Boolean;
 begin
+  StatusChanged := False;
+
   rec := @apRec^;
 
   case rec^.ErrorID of
 
-    __STAT_C705_ENABLE:
-      FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
+    __STAT_C705_ENABLE: begin
+      //FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
 
-    __STAT_C705_OpenCoverLauncherC705:
-      FC705Status.OpenCoverLauncher := rec^.ParamError = __PARAM_C705_ON;
+      if FC705Status.EnableWeapon <> (rec^.ParamError = __PARAM_C705_ON) then begin
+        FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
+        StatusChanged := True;
+      end;
+    end;
 
-    __STAT_C705_SafetyIgnition:
-      FC705Status.SafetyIgnition := rec^.ParamError = __PARAM_C705_ON;
+    __STAT_C705_OpenCoverLauncherC705: begin
+      //FC705Status.OpenCoverLauncher := rec^.ParamError = __PARAM_C705_ON;
+
+      if FC705Status.OpenCoverLauncher <> (rec^.ParamError = __PARAM_C705_ON) then begin
+        FC705Status.OpenCoverLauncher := rec^.ParamError = __PARAM_C705_ON;
+        StatusChanged := True;
+      end;
+    end;
+
+    __STAT_C705_SafetyIgnition: begin
+      //FC705Status.SafetyIgnition := rec^.ParamError = __PARAM_C705_ON;
+
+      if FC705Status.SafetyIgnition <> (rec^.ParamError = __PARAM_C705_ON) then begin
+        FC705Status.SafetyIgnition := rec^.ParamError = __PARAM_C705_ON;
+        StatusChanged := True;
+      end;
+    end;
 
   end;
+
+  if Assigned(FOnStatusWeaponChanged) and StatusChanged then
+    FOnStatusWeaponChanged(Self);
+
+//  OutputDebugString(
+//    PChar(
+//      Format('Current=%d Main=%d',
+//        [GetCurrentThreadId, MainThreadID]
+//      )
+//    )
+//  );
 end;
 
 procedure GameSimManager.netNFS_OnSendDataC705(rec: TRec_Data_C705);
@@ -283,6 +339,12 @@ begin
   FLauncherHasMissile[aLauncherID] := False;
 
   // Reset -> Kosong semua
+end;
+
+procedure GameSimManager.SetImgPowerConsole(aStatus: Boolean);
+begin
+  if aStatus then
+
 end;
 
 end.

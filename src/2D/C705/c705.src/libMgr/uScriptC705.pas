@@ -24,7 +24,8 @@ implementation
 uses
   Windows, System.SysUtils,
   uC705SimManager, uLibSettings, uFormMgr, uVehicleManager,
-    UfrmRoutePlan, uBridgeSet, uTCPDatatype, uDataModule;
+    UfrmRoutePlan, UfrmWCC,
+    uBridgeSet, uTCPDatatype, uDataModule;
 
 /// some sub function to keep the main procedure simple;
 
@@ -65,7 +66,7 @@ begin
   InitDefault_AllConfigFromInstruktur(pServer_Ip,pServer_Port,
     pDBServer, pDBProto, pDBName, pDBUser, pDBPass, pShipID, pCurrentScenID);
 
-  // Load Own Ship
+  // Set Own Ship
   VOwnShip.ShipID := pShipID;
   VOwnShip.WeaponId := C_DBID_C705;
 
@@ -92,17 +93,22 @@ begin
   //Env_Map := DataModule1.GetMapById(pCurrentScenID);
 
   { Create SimManager }
-  SimManager := GameSimManager.Create;    //create platform & create thread
-
+  SimManager := GameSimManager.Create;    // create platform & create thread
   VehicleMgr := TVehicleManager.Create;
 
-  if Assigned(frmRoutePlan) then
+  if Assigned(frmRoutePlan) then begin
     SimManager.OnMapInit := frmRoutePlan.InitMapMainForm;
+    frmRoutePlan.strPath := VImgPath.imgPath + '\icon\Route Plan - Tool Bar\';
+    frmRoutePlan.SetImgBtn;
+
+    frmRoutePlan.RegisterEvents;
+  end;
 
   SimManager.InitializeMap;
 
-  frmRoutePlan.strPath := VImgPath.imgPath + '\icon\Route Plan - Tool Bar\';
-  frmRoutePlan.SetImgBtn;
+  if Assigned(frmWCC) then begin
+    frmWCC.RegisterEvents;      // register events buat formWCC such as TNotifyEvent dkk
+  end;
 
   InitForms;
 end;

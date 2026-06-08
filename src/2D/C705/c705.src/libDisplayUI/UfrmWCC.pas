@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Vcl.Imaging.jpeg,
-  uLibSettings;
+  uLibSettings, uC705SimManager;
 
 type
   TfrmWCC = class(TForm)
@@ -16,11 +16,11 @@ type
     img1: TImage;
     pnlPowerForM: TPanel;
     Label6: TLabel;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
+    btnImgPowerMissile1: TSpeedButton;
+    btnImgPowerMissile2: TSpeedButton;
     pnlOpenCover: TPanel;
-    btnOpenCover2: TSpeedButton;
-    btnOpenCover1: TSpeedButton;
+    btnimgOpenCover2: TSpeedButton;
+    btnImgOpenCover1: TSpeedButton;
     Label7: TLabel;
     pnlSafeArm: TPanel;
     Label4: TLabel;
@@ -113,6 +113,10 @@ type
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
     procedure SetTopMonitor(aMoniHeight: Integer);
+
+    procedure RegisterEvents;
+    procedure StatusWeaponBtnChanged(Sender:TObject);
+
   end;
 
 var
@@ -315,6 +319,34 @@ end;
 procedure TfrmWCC.FormShow(Sender: TObject);
 begin
   //
+end;
+
+procedure TfrmWCC.RegisterEvents;
+begin
+  if Assigned(SimManager) then begin
+    SimManager.OnStatusWeaponChanged := StatusWeaponBtnChanged;
+  end;
+end;
+
+procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject);
+begin
+  if SimManager.C705Status.EnableWeapon then begin
+    btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+    btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+  end
+  else begin
+    btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+    btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+  end;
+
+  if SimManager.C705Status.OpenCoverLauncher then begin
+    btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+    btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+  end
+  else begin
+    btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+    btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+  end;
 end;
 
 procedure TfrmWCC.HideAllPnlContent;

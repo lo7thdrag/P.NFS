@@ -35,8 +35,8 @@ type
     Label5: TLabel;
     Image1: TImage;
     Label6: TLabel;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
+    btnImgTakeOff2: TSpeedButton;
+    btnImgTakeOff1: TSpeedButton;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
@@ -355,6 +355,9 @@ type
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
     procedure SetTopMonitor(aMoniHeight: Integer);
     procedure SetFormMonitor(aForm: TForm; aMonitorIndex: Integer);
+
+    procedure RegisterEvents;
+    procedure TakeOffBtnChanged(Sender: TObject);
 
     property SelectMode: Boolean read FSelectMode write FSelectMode;
 
@@ -851,13 +854,16 @@ end;
 
 procedure TfrmRoutePlan.tmrFormTimer(Sender: TObject);
 begin
-  if SimManager.RoutePlanMode = mPassive then
+  if Assigned(SimManager) then
   begin
-    pnlModeOperasi.Caption := 'Passive Mode';
-  end
-  else if SimManager.RoutePlanMode = mFiring then
-  begin
-    pnlModeOperasi.Caption := 'Firing Mode';
+    if SimManager.RoutePlanMode = mPassive then
+    begin
+      pnlModeOperasi.Caption := 'Passive Mode';
+    end
+    else if SimManager.RoutePlanMode = mFiring then
+    begin
+      pnlModeOperasi.Caption := 'Firing Mode';
+    end;
   end;
 
 end;
@@ -1453,6 +1459,25 @@ begin
 
   if VIdentSetting.ModeDebug then
     ShowMessage('Route Plan Top=' + IntToStr(frmRoutePlan.Top));
+end;
+
+procedure TfrmRoutePlan.RegisterEvents;
+begin
+  if Assigned(SimManager) then begin
+    SimManager.OnTakeOffChanged := TakeOffBtnChanged;
+  end;
+end;
+
+procedure TfrmRoutePlan.TakeOffBtnChanged(Sender: TObject);
+begin
+  if SimManager.MissileTakeOff then begin
+    btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+    btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+  end
+  else begin
+    btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+    btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+  end;
 end;
 
 procedure TfrmRoutePlan.SetFormMonitor(aForm: TForm; aMonitorIndex: Integer);
