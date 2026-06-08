@@ -1,11 +1,11 @@
-object frmTrackListNumber: TfrmTrackListNumber
+object frmTorpedoTubeCommands: TfrmTorpedoTubeCommands
   Left = 0
   Top = 0
   BorderIcons = []
-  BorderStyle = bsSingle
-  ClientHeight = 389
-  ClientWidth = 324
-  Color = -1
+  BorderStyle = bsNone
+  ClientHeight = 257
+  ClientWidth = 204
+  Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -15,20 +15,19 @@ object frmTrackListNumber: TfrmTrackListNumber
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
-    Left = -1
+    Left = 0
     Top = 0
-    Width = 657
-    Height = 674
-    Caption = '-0'
-    Color = -1
-    ParentBackground = False
+    Width = 257
+    Height = 345
+    BevelEdges = []
+    BevelOuter = bvNone
     TabOrder = 0
-    object lblNumberofTracks: TLabel
-      Left = 16
-      Top = 10
-      Width = 102
+    object lblTorpCmds: TLabel
+      Left = 12
+      Top = 8
+      Width = 69
       Height = 16
-      Caption = 'Number of Tracks'
+      Caption = 'Torps Cmds'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -38,12 +37,12 @@ object frmTrackListNumber: TfrmTrackListNumber
       ParentColor = False
       ParentFont = False
     end
-    object lblReset: TLabel
-      Left = 157
-      Top = 366
-      Width = 32
+    object lblTubeCmds: TLabel
+      Left = 117
+      Top = 8
+      Width = 65
       Height = 16
-      Caption = 'Reset'
+      Caption = 'Tube Cmds'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -53,79 +52,65 @@ object frmTrackListNumber: TfrmTrackListNumber
       ParentColor = False
       ParentFont = False
     end
-    object lblClose: TLabel
-      Left = 285
-      Top = 366
-      Width = 31
-      Height = 16
-      Caption = 'Close'
-      Color = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-    end
-    object lblNumber: TLabel
-      Left = 310
-      Top = 10
-      Width = 7
-      Height = 16
-      Caption = '0'
-      Color = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-    end
-    object lvTracklistNumber: TListView
-      Left = 10
+    object lblUnload: TLabel
+      Left = 117
       Top = 40
-      Width = 305
-      Height = 281
-      Color = -1
-      Columns = <
-        item
-          Caption = 'No'
-        end
-        item
-          Caption = 'TNo'
-        end
-        item
-          Caption = 'Type'
-        end
-        item
-          Caption = 'Cat'
-        end
-        item
-          Caption = 'Identity'
-        end
-        item
-          Caption = 'Source'
-        end>
+      Width = 47
+      Height = 16
+      Caption = 'UNLOAD'
+      Color = clWhite
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      GridLines = True
+      ParentColor = False
       ParentFont = False
-      TabOrder = 0
-      ViewStyle = vsReport
     end
-    object Panel1: TPanel
-      Left = -9
-      Top = 357
-      Width = 338
-      Height = 1
+    object lblTorpOn: TLabel
+      Left = 12
+      Top = 72
+      Width = 53
+      Height = 16
+      Caption = 'TORP ON'
       Color = clWhite
-      ParentBackground = False
-      TabOrder = 1
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblSetReady: TLabel
+      Left = 114
+      Top = 136
+      Width = 50
+      Height = 16
+      Caption = 'SET RDY'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblSendCmd: TLabel
+      Left = 12
+      Top = 208
+      Width = 59
+      Height = 16
+      Caption = 'Send Cmd'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
     end
   end
 end

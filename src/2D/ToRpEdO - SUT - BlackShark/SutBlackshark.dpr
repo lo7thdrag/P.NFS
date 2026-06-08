@@ -66,7 +66,16 @@ uses
   ufrmTrackFilter in 'ufrmTrackFilter.pas' {frmTrackFilter},
   uSimulationTrack in 'LibSutBlacksharkObject\uSimulationTrack.pas',
   uSubSurfaceTrack in 'LibSutBlacksharkObject\uSubSurfaceTrack.pas',
-  uSurfaceTrack in 'LibSutBlacksharkObject\uSurfaceTrack.pas';
+  uSurfaceTrack in 'LibSutBlacksharkObject\uSurfaceTrack.pas',
+  ufrmTrackingList in 'ufrmTrackingList.pas' {frmTrackListNumber},
+  ufrmSensorTrackList in 'ufrmSensorTrackList.pas' {frmSensorTrackList},
+  ufrmTrackInfo in 'ufrmTrackInfo.pas' {frmTrackInfo},
+  ufrmTorpedoTubeCommands in 'ufrmTorpedoTubeCommands.pas' {frmTorpedoTubeCommands},
+  ufrmTorpedoTubeStatusWindow in 'ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow},
+  ufrmTorpedoGuidance in 'ufrmTorpedoGuidance.pas' {frmTorpedoGuidanceWindow},
+  ufrmTorpedoContactList in 'ufrmTorpedoContactList.pas' {frmTorpedoContactList},
+  ufrmWakeList in 'ufrmWakeList.pas' {frmWakeList},
+  ufrmTorpedoVerticalView in 'ufrmTorpedoVerticalView.pas' {frmTorpedoVerticalView};
 
 {$R *.res}
 
@@ -75,6 +84,15 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
+  Application.CreateForm(TfrmSensorTrackList, frmSensorTrackList);
+  Application.CreateForm(TfrmTrackInfo, frmTrackInfo);
+  Application.CreateForm(TfrmTorpedoTubeCommands, frmTorpedoTubeCommands);
+  Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
+  Application.CreateForm(TfrmTorpedoGuidanceWindow, frmTorpedoGuidanceWindow);
+  Application.CreateForm(TfrmTorpedoContactList, frmTorpedoContactList);
+  Application.CreateForm(TfrmWakeList, frmWakeList);
+  Application.CreateForm(TfrmTorpedoVerticalView, frmTorpedoVerticalView);
   //Application.CreateForm(TfrmRadar, frmRadar);
 
   Application.CreateForm(TfrmControlByNumber, frmControlByNumber);

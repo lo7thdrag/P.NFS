@@ -265,7 +265,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
     object Label15: TLabel
       Left = 12
       Top = 236
-      Width = 77
+      Width = 70
       Height = 16
       Caption = 'Datum Time'
       Color = clWhite
@@ -323,7 +323,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentFont = False
     end
     object Label19: TLabel
-      Left = 20
+      Left = 12
       Top = 453
       Width = 55
       Height = 16

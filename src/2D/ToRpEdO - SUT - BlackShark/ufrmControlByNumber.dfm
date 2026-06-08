@@ -55,7 +55,7 @@ object frmControlByNumber: TfrmControlByNumber
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 28
+      Left = 16
       Top = 125
       Width = 51
       Height = 16

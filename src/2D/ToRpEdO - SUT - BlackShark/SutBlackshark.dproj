@@ -169,26 +169,64 @@
         <DCCReference Include="LibSutBlacksharkObject\uPointTrack.pas"/>
         <DCCReference Include="UfrmRadar.pas">
             <Form>frmRadar</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="LibMapX\uRadarSensor.pas"/>
         <DCCReference Include="LibMapX\uShipModel.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uTorpedoLauncher.pas"/>
         <DCCReference Include="ufrmControlByNumber.pas">
             <Form>frmControlByNumber</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrmTackHistory.pas">
             <Form>frmTrackHistory</Form>
         </DCCReference>
         <DCCReference Include="ufrmCreateModifyTrack.pas">
             <Form>frmCreateModifyTrack</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrmTrackFilter.pas">
             <Form>frmTrackFilter</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="LibSutBlacksharkObject\uSimulationTrack.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uSubSurfaceTrack.pas"/>
         <DCCReference Include="LibSutBlacksharkObject\uSurfaceTrack.pas"/>
+        <DCCReference Include="ufrmTrackingList.pas">
+            <Form>frmTrackListNumber</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmSensorTrackList.pas">
+            <Form>frmSensorTrackList</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmTrackInfo.pas">
+            <Form>frmTrackInfo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmTorpedoTubeCommands.pas">
+            <Form>frmTorpedoTubeCommands</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmTorpedoTubeStatusWindow.pas">
+            <Form>frmTorpedoTubeStatusWindow</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmTorpedoGuidance.pas">
+            <Form>frmTorpedoGuidanceWindow</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmTorpedoContactList.pas">
+            <Form>frmTorpedoContactList</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmWakeList.pas">
+            <Form>frmWakeList</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmTorpedoVerticalView.pas">
+            <Form>frmTorpedoVerticalView</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
