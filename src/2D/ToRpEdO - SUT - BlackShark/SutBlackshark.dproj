@@ -227,6 +227,14 @@
             <Form>frmTorpedoVerticalView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="ufrmHomingCommands.pas">
+            <Form>frmHomingCommands</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmHomingStatusPlot.pas">
+            <Form>frmHomingStatusPlot</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

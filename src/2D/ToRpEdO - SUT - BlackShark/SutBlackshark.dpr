@@ -75,7 +75,9 @@ uses
   ufrmTorpedoGuidance in 'ufrmTorpedoGuidance.pas' {frmTorpedoGuidanceWindow},
   ufrmTorpedoContactList in 'ufrmTorpedoContactList.pas' {frmTorpedoContactList},
   ufrmWakeList in 'ufrmWakeList.pas' {frmWakeList},
-  ufrmTorpedoVerticalView in 'ufrmTorpedoVerticalView.pas' {frmTorpedoVerticalView};
+  ufrmTorpedoVerticalView in 'ufrmTorpedoVerticalView.pas' {frmTorpedoVerticalView},
+  ufrmHomingCommands in 'ufrmHomingCommands.pas' {frmHomingCommands},
+  ufrmHomingStatusPlot in 'ufrmHomingStatusPlot.pas' {frmHomingStatusPlot};
 
 {$R *.res}
 
@@ -93,6 +95,8 @@ begin
   Application.CreateForm(TfrmTorpedoContactList, frmTorpedoContactList);
   Application.CreateForm(TfrmWakeList, frmWakeList);
   Application.CreateForm(TfrmTorpedoVerticalView, frmTorpedoVerticalView);
+  Application.CreateForm(TfrmHomingCommands, frmHomingCommands);
+  Application.CreateForm(TfrmHomingStatusPlot, frmHomingStatusPlot);
   //Application.CreateForm(TfrmRadar, frmRadar);
 
   Application.CreateForm(TfrmControlByNumber, frmControlByNumber);

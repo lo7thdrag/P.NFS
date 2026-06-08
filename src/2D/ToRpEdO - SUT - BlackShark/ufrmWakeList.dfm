@@ -2,9 +2,9 @@ object frmWakeList: TfrmWakeList
   Left = 0
   Top = 0
   BorderIcons = []
-  BorderStyle = bsNone
-  ClientHeight = 292
-  ClientWidth = 458
+  BorderStyle = bsSingle
+  ClientHeight = 251
+  ClientWidth = 455
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,8 +23,8 @@ object frmWakeList: TfrmWakeList
     BevelOuter = bvNone
     TabOrder = 0
     object lblReset: TLabel
-      Left = 286
-      Top = 256
+      Left = 290
+      Top = 228
       Width = 32
       Height = 16
       Caption = 'Reset'
@@ -38,8 +38,8 @@ object frmWakeList: TfrmWakeList
       ParentFont = False
     end
     object lblClose: TLabel
-      Left = 414
-      Top = 256
+      Left = 418
+      Top = 228
       Width = 31
       Height = 16
       Caption = 'Close'

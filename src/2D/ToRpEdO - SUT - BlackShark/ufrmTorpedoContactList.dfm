@@ -2,9 +2,9 @@ object frmTorpedoContactList: TfrmTorpedoContactList
   Left = 0
   Top = 0
   BorderIcons = []
-  BorderStyle = bsNone
-  ClientHeight = 309
-  ClientWidth = 432
+  BorderStyle = bsSingle
+  ClientHeight = 260
+  ClientWidth = 396
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -24,7 +24,7 @@ object frmTorpedoContactList: TfrmTorpedoContactList
     TabOrder = 0
     object lblReset: TLabel
       Left = 228
-      Top = 275
+      Top = 235
       Width = 32
       Height = 16
       Caption = 'Reset'
@@ -39,7 +39,7 @@ object frmTorpedoContactList: TfrmTorpedoContactList
     end
     object lblClose: TLabel
       Left = 356
-      Top = 275
+      Top = 235
       Width = 31
       Height = 16
       Caption = 'Close'
@@ -53,8 +53,8 @@ object frmTorpedoContactList: TfrmTorpedoContactList
       ParentFont = False
     end
     object lvTorpedoContactList: TListView
-      Left = 16
-      Top = 24
+      Left = 8
+      Top = 8
       Width = 377
       Height = 185
       Color = clBlack

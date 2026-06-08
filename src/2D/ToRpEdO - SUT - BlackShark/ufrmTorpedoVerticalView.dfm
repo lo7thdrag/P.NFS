@@ -2,9 +2,9 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
   Left = 0
   Top = 0
   BorderIcons = []
-  BorderStyle = bsNone
-  ClientHeight = 464
-  ClientWidth = 926
+  BorderStyle = bsSingle
+  ClientHeight = 465
+  ClientWidth = 928
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -501,8 +501,8 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
       TabOrder = 7
     end
     object Panel2: TPanel
-      Left = 688
-      Top = 114
+      Left = 690
+      Top = 113
       Width = 81
       Height = 17
       BevelEdges = []
