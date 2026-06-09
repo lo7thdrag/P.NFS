@@ -60,26 +60,24 @@ uses
   uRadarSensor in 'LibMapX\uRadarSensor.pas',
   uShipModel in 'LibMapX\uShipModel.pas',
   uTorpedoLauncher in 'LibSutBlacksharkObject\uTorpedoLauncher.pas',
-  ufrmControlByNumber in 'ufrmControlByNumber.pas' {frmControlByNumber},
-  ufrmTackHistory in 'ufrmTackHistory.pas' {frmTrackHistory},
-  ufrmCreateModifyTrack in 'ufrmCreateModifyTrack.pas' {frmCreateModifyTrack},
-  ufrmTrackFilter in 'ufrmTrackFilter.pas' {frmTrackFilter},
   uSimulationTrack in 'LibSutBlacksharkObject\uSimulationTrack.pas',
   uSubSurfaceTrack in 'LibSutBlacksharkObject\uSubSurfaceTrack.pas',
   uSurfaceTrack in 'LibSutBlacksharkObject\uSurfaceTrack.pas',
-  ufrmTrackingList in 'ufrmTrackingList.pas' {frmTrackListNumber},
-  ufrmSensorTrackList in 'ufrmSensorTrackList.pas' {frmSensorTrackList},
-  ufrmTrackInfo in 'ufrmTrackInfo.pas' {frmTrackInfo},
-  ufrmTorpedoTubeCommands in 'ufrmTorpedoTubeCommands.pas' {frmTorpedoTubeCommands},
-  ufrmTorpedoTubeStatusWindow in 'ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow},
-  ufrmTorpedoGuidance in 'ufrmTorpedoGuidance.pas' {frmTorpedoGuidanceWindow},
-  ufrmTorpedoContactList in 'ufrmTorpedoContactList.pas' {frmTorpedoContactList},
-  ufrmWakeList in 'ufrmWakeList.pas' {frmWakeList},
-  ufrmTorpedoVerticalView in 'ufrmTorpedoVerticalView.pas' {frmTorpedoVerticalView},
-  ufrmHomingCommands in 'ufrmHomingCommands.pas' {frmHomingCommands},
-  ufrmHomingStatusPlot in 'ufrmHomingStatusPlot.pas' {frmHomingStatusPlot},
-  ufrmDepthPlot in 'ufrmDepthPlot.pas' {frmDepthPlot},
-  ufrmTorpedoParameterSetting in 'ufrmTorpedoParameterSetting.pas' {frmTorpedoParameterSetting};
+  ufrmDepthPlot in 'Permanen Form\ufrmDepthPlot.pas' {frmDepthPlot},
+  ufrmHomingCommands in 'Permanen Form\ufrmHomingCommands.pas' {frmHomingCommands},
+  ufrmHomingStatusPlot in 'Permanen Form\ufrmHomingStatusPlot.pas' {frmHomingStatusPlot},
+  ufrmTorpedoGuidance in 'Permanen Form\ufrmTorpedoGuidance.pas' {frmTorpedoGuidanceWindow},
+  ufrmTorpedoParameterSetting in 'Permanen Form\ufrmTorpedoParameterSetting.pas' {frmTorpedoParameterSetting},
+  ufrmTorpedoTubeCommands in 'Permanen Form\ufrmTorpedoTubeCommands.pas' {frmTorpedoTubeCommands},
+  ufrmTorpedoTubeStatusWindow in 'Permanen Form\ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow},
+  ufrmTrackInfo in 'Permanen Form\ufrmTrackInfo.pas' {frmTrackInfo},
+  ufrmControlByNumber in 'Pop-up form\ufrmControlByNumber.pas' {frmControlByNumber},
+  ufrmCreateModifyTrack in 'Pop-up form\ufrmCreateModifyTrack.pas' {frmCreateModifyTrack},
+  ufrmSensorTrackList in 'Pop-up form\ufrmSensorTrackList.pas' {frmSensorTrackList},
+  ufrmTackHistory in 'Pop-up form\ufrmTackHistory.pas' {frmTrackHistory},
+  ufrmTorpedoContactList in 'Pop-up form\ufrmTorpedoContactList.pas' {frmTorpedoContactList},
+  ufrmTorpedoVerticalView in 'Pop-up form\ufrmTorpedoVerticalView.pas' {frmTorpedoVerticalView},
+  ufrmTrackFilter in 'Pop-up form\ufrmTrackFilter.pas' {frmTrackFilter};
 
 {$R *.res}
 
@@ -88,19 +86,21 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
-  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
-  Application.CreateForm(TfrmSensorTrackList, frmSensorTrackList);
-  Application.CreateForm(TfrmTrackInfo, frmTrackInfo);
-  Application.CreateForm(TfrmTorpedoTubeCommands, frmTorpedoTubeCommands);
-  Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
-  Application.CreateForm(TfrmTorpedoGuidanceWindow, frmTorpedoGuidanceWindow);
-  Application.CreateForm(TfrmTorpedoContactList, frmTorpedoContactList);
-  Application.CreateForm(TfrmWakeList, frmWakeList);
-  Application.CreateForm(TfrmTorpedoVerticalView, frmTorpedoVerticalView);
+  Application.CreateForm(TfrmDepthPlot, frmDepthPlot);
   Application.CreateForm(TfrmHomingCommands, frmHomingCommands);
   Application.CreateForm(TfrmHomingStatusPlot, frmHomingStatusPlot);
-  Application.CreateForm(TfrmDepthPlot, frmDepthPlot);
+  Application.CreateForm(TfrmTorpedoGuidanceWindow, frmTorpedoGuidanceWindow);
   Application.CreateForm(TfrmTorpedoParameterSetting, frmTorpedoParameterSetting);
+  Application.CreateForm(TfrmTorpedoTubeCommands, frmTorpedoTubeCommands);
+  Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
+  Application.CreateForm(TfrmTrackInfo, frmTrackInfo);
+  Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
+  Application.CreateForm(TfrmCreateModifyTrack, frmCreateModifyTrack);
+  Application.CreateForm(TfrmSensorTrackList, frmSensorTrackList);
+  Application.CreateForm(TfrmTrackHistory, frmTrackHistory);
+  Application.CreateForm(TfrmTorpedoContactList, frmTorpedoContactList);
+  Application.CreateForm(TfrmTorpedoVerticalView, frmTorpedoVerticalView);
+  Application.CreateForm(TfrmTrackFilter, frmTrackFilter);
   //Application.CreateForm(TfrmRadar, frmRadar);
 
   Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
