@@ -51,7 +51,8 @@ type
     Label22: TLabel;
     lblClose: TLabel;
     Panel3: TPanel;
-    Graphic1: TGraphic;
+    pbVerticalView1: TPaintBox;
+    pbVerticalView2: TPaintBox;
   private
     { Private declarations }
   public

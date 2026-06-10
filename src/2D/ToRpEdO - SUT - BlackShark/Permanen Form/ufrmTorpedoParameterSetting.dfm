@@ -14,8 +14,14 @@ object frmTorpedoParameterSetting: TfrmTorpedoParameterSetting
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object pbTorpedoParameter: TPaintBox
+    Left = 16
+    Top = 16
+    Width = 337
+    Height = 129
+  end
   object pnlMain: TPanel
-    Left = 0
+    Left = -10
     Top = 0
     Width = 425
     Height = 161

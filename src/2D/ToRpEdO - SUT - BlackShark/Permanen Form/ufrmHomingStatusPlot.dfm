@@ -12,6 +12,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -28,7 +29,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
       Left = 12
       Top = 3
       Width = 533
-      Height = 329
+      Height = 342
       Fill.Color = clBlack
       Fill.ColorTo = -1
       Fill.ColorMirror = -1
@@ -60,7 +61,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         Left = 1
         Top = 40
         Width = 531
-        Height = 287
+        Height = 300
         Caption = 'Homing Status'
         PageAppearance.Color = -1
         PageAppearance.ColorTo = -1
@@ -172,8 +173,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object lblTgtLostSub: TLabel
-          Left = 80
-          Top = 78
+          Left = 312
+          Top = 94
           Width = 72
           Height = 16
           Caption = 'Tgt Lost Sub'
@@ -199,7 +200,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         end
         object lblToSotargetacquiredclose: TLabel
           Left = 10
-          Top = 264
+          Top = 278
           Width = 154
           Height = 16
           Caption = 'ToSo target acquired close'
@@ -211,8 +212,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object lblCloseInSub: TLabel
-          Left = 138
-          Top = 238
+          Left = 147
+          Top = 259
           Width = 73
           Height = 16
           Caption = 'Close-In Sub'
@@ -223,12 +224,66 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Font.Style = []
           ParentFont = False
         end
+        object pbHomingStatusPlot: TPaintBox
+          Left = 408
+          Top = 120
+          Width = 81
+          Height = 41
+          OnPaint = pbHomingStatusPlotPaint
+        end
+        object pbWakeLost: TPaintBox
+          Left = 312
+          Top = 208
+          Width = 81
+          Height = 41
+          OnPaint = pbHomingStatusPlotPaint
+        end
+        object Label3: TLabel
+          Left = 408
+          Top = 238
+          Width = 104
+          Height = 16
+          Caption = 'Wake Lost/Search'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object pbWakeAttack: TPaintBox
+          Left = 152
+          Top = 96
+          Width = 81
+          Height = 41
+          OnPaint = pbWakeAttackPaint
+        end
+        object lblWakeAttaack: TLabel
+          Left = 64
+          Top = 78
+          Width = 71
+          Height = 16
+          Caption = 'Wake Attack'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object pbLongRange: TPaintBox
+          Left = 16
+          Top = 176
+          Width = 177
+          Height = 73
+          OnPaint = pbHomingStatusPlotPaint
+        end
       end
       object TabToSoCoverage: TAdvSmoothTabPage
         Left = 1
         Top = 40
         Width = 531
-        Height = 287
+        Height = 300
         Caption = 'Horizontal/Vertical ToSo Coverage'
         PageAppearance.Color = clBlack
         PageAppearance.ColorTo = clBlack
@@ -275,6 +330,13 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         TabAppearance.ColorHot = 16776701
         TabAppearance.ColorDisabled = 15921906
         TMSStyle = 20
+        object pbToSoCoveragePlot: TPaintBox
+          Left = 24
+          Top = 32
+          Width = 481
+          Height = 233
+          OnPaint = pbToSoCoveragePlotPaint
+        end
       end
     end
   end

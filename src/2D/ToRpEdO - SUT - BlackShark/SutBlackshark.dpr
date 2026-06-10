@@ -77,7 +77,9 @@ uses
   ufrmTackHistory in 'Pop-up form\ufrmTackHistory.pas' {frmTrackHistory},
   ufrmTorpedoContactList in 'Pop-up form\ufrmTorpedoContactList.pas' {frmTorpedoContactList},
   ufrmTorpedoVerticalView in 'Pop-up form\ufrmTorpedoVerticalView.pas' {frmTorpedoVerticalView},
-  ufrmTrackFilter in 'Pop-up form\ufrmTrackFilter.pas' {frmTrackFilter};
+  ufrmTrackFilter in 'Pop-up form\ufrmTrackFilter.pas' {frmTrackFilter},
+  ufrmEngagementDataOverview in 'Permanen Form\ufrmEngagementDataOverview.pas' {frmEngagementDataOverview},
+  ufrmManualGuidance in 'Permanen Form\ufrmManualGuidance.pas' {frmManualGuidance};
 
 {$R *.res}
 
@@ -101,6 +103,8 @@ begin
   Application.CreateForm(TfrmTorpedoContactList, frmTorpedoContactList);
   Application.CreateForm(TfrmTorpedoVerticalView, frmTorpedoVerticalView);
   Application.CreateForm(TfrmTrackFilter, frmTrackFilter);
+  Application.CreateForm(TfrmEngagementDataOverview, frmEngagementDataOverview);
+  Application.CreateForm(TfrmManualGuidance, frmManualGuidance);
   //Application.CreateForm(TfrmRadar, frmRadar);
 
   Application.CreateForm(TfrmControlByNumber, frmControlByNumber);

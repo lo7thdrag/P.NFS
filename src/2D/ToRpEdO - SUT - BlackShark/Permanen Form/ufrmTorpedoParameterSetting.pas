@@ -9,6 +9,7 @@ uses
 type
   TfrmTorpedoParameterSetting = class(TForm)
     pnlMain: TPanel;
+    pbTorpedoParameter: TPaintBox;
   private
     { Private declarations }
   public

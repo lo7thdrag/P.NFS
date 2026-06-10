@@ -87,6 +87,12 @@ object frmDepthPlot: TfrmDepthPlot
       Font.Style = []
       ParentFont = False
     end
+    object pbDepthPlot: TPaintBox
+      Left = 8
+      Top = 48
+      Width = 209
+      Height = 425
+    end
     object edtMin: TEdit
       Left = 30
       Top = 11

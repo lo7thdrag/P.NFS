@@ -1,0 +1,215 @@
+object frmEngagementDataOverview: TfrmEngagementDataOverview
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsNone
+  ClientHeight = 187
+  ClientWidth = 385
+  Color = clBlack
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlMain: TPanel
+    Left = 0
+    Top = 0
+    Width = 545
+    Height = 377
+    BevelOuter = bvNone
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 16
+      Top = 139
+      Width = 29
+      Height = 16
+      Caption = 'Time'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblTime: TLabel
+      Left = 64
+      Top = 139
+      Width = 50
+      Height = 16
+      Caption = '00.00.41'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 16
+      Top = 163
+      Width = 38
+      Height = 16
+      Caption = 'Length'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLength: TLabel
+      Left = 64
+      Top = 163
+      Width = 50
+      Height = 16
+      Caption = '        0.7'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblTime1: TLabel
+      Left = 128
+      Top = 139
+      Width = 50
+      Height = 16
+      Caption = '00.03.43'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblTime2: TLabel
+      Left = 192
+      Top = 139
+      Width = 50
+      Height = 16
+      Caption = '00.11.09'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLength1: TLabel
+      Left = 128
+      Top = 163
+      Width = 50
+      Height = 16
+      Caption = '        4.0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLength2: TLabel
+      Left = 192
+      Top = 163
+      Width = 49
+      Height = 16
+      Caption = '      12.0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 253
+      Top = 139
+      Width = 34
+      Height = 16
+      Caption = 'h:m:s'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblDistance: TLabel
+      Left = 312
+      Top = 139
+      Width = 25
+      Height = 16
+      Caption = '75.0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 344
+      Top = 139
+      Width = 25
+      Height = 16
+      Caption = 'kWh'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 253
+      Top = 163
+      Width = 17
+      Height = 16
+      Caption = 'km'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblDistanceLength: TLabel
+      Left = 312
+      Top = 163
+      Width = 25
+      Height = 16
+      Caption = '23.0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 344
+      Top = 163
+      Width = 17
+      Height = 16
+      Caption = 'km'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object TrackBar1: TTrackBar
+      Left = 8
+      Top = 80
+      Width = 361
+      Height = 45
+      Max = 15
+      TabOrder = 0
+    end
+  end
+end

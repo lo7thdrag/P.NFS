@@ -24,7 +24,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     TabOrder = 0
     object Label1: TLabel
       Left = 692
-      Top = 53
+      Top = 29
       Width = 82
       Height = 16
       Caption = 'Min Depth (m)'
@@ -37,7 +37,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label2: TLabel
       Left = 691
-      Top = 85
+      Top = 61
       Width = 85
       Height = 16
       Caption = 'Max Depth (m)'
@@ -50,7 +50,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label3: TLabel
       Left = 686
-      Top = 138
+      Top = 114
       Width = 115
       Height = 16
       Caption = 'Start Distance (km) '
@@ -63,7 +63,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label4: TLabel
       Left = 686
-      Top = 170
+      Top = 146
       Width = 109
       Height = 16
       Caption = 'Stop Distance (km)'
@@ -76,7 +76,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label5: TLabel
       Left = 678
-      Top = 213
+      Top = 189
       Width = 55
       Height = 16
       Caption = 'Run Time'
@@ -89,7 +89,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblRuntime: TLabel
       Left = 813
-      Top = 213
+      Top = 189
       Width = 52
       Height = 16
       Caption = '00:00:00'
@@ -102,7 +102,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label7: TLabel
       Left = 877
-      Top = 213
+      Top = 189
       Width = 33
       Height = 16
       Caption = 'h m/s'
@@ -115,7 +115,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblRunLength: TLabel
       Left = 678
-      Top = 237
+      Top = 213
       Width = 64
       Height = 16
       Caption = 'Run Length'
@@ -128,7 +128,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label8: TLabel
       Left = 813
-      Top = 237
+      Top = 213
       Width = 50
       Height = 16
       Caption = '        0.0'
@@ -141,7 +141,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label9: TLabel
       Left = 877
-      Top = 237
+      Top = 213
       Width = 17
       Height = 16
       Caption = 'km'
@@ -154,7 +154,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label6: TLabel
       Left = 678
-      Top = 261
+      Top = 237
       Width = 87
       Height = 16
       Caption = 'Approach Time'
@@ -167,7 +167,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblApproachTime: TLabel
       Left = 813
-      Top = 261
+      Top = 237
       Width = 52
       Height = 16
       Caption = '00:00:00'
@@ -180,7 +180,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label11: TLabel
       Left = 877
-      Top = 261
+      Top = 237
       Width = 33
       Height = 16
       Caption = 'h m/s'
@@ -193,7 +193,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label10: TLabel
       Left = 678
-      Top = 285
+      Top = 261
       Width = 96
       Height = 16
       Caption = 'Approach Length'
@@ -206,7 +206,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblApproachLength: TLabel
       Left = 813
-      Top = 285
+      Top = 261
       Width = 54
       Height = 16
       Caption = '         0.0'
@@ -219,7 +219,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label13: TLabel
       Left = 877
-      Top = 285
+      Top = 261
       Width = 17
       Height = 16
       Caption = 'km'
@@ -232,7 +232,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label12: TLabel
       Left = 678
-      Top = 309
+      Top = 285
       Width = 73
       Height = 16
       Caption = 'Search Time'
@@ -245,7 +245,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lbl1: TLabel
       Left = 813
-      Top = 309
+      Top = 285
       Width = 52
       Height = 16
       Caption = '00:00:00'
@@ -258,7 +258,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label15: TLabel
       Left = 877
-      Top = 309
+      Top = 285
       Width = 33
       Height = 16
       Caption = 'h m/s'
@@ -271,7 +271,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label14: TLabel
       Left = 678
-      Top = 333
+      Top = 309
       Width = 82
       Height = 16
       Caption = 'Search Length'
@@ -284,7 +284,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblSearchLength: TLabel
       Left = 813
-      Top = 333
+      Top = 309
       Width = 54
       Height = 16
       Caption = '         0.0'
@@ -297,7 +297,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label17: TLabel
       Left = 877
-      Top = 333
+      Top = 309
       Width = 17
       Height = 16
       Caption = 'km'
@@ -310,7 +310,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label16: TLabel
       Left = 678
-      Top = 357
+      Top = 333
       Width = 111
       Height = 16
       Caption = 'Own Ship Wire Left'
@@ -323,7 +323,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblOwnShipwireLeft: TLabel
       Left = 813
-      Top = 357
+      Top = 333
       Width = 54
       Height = 16
       Caption = '         0.0'
@@ -336,7 +336,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label19: TLabel
       Left = 877
-      Top = 357
+      Top = 333
       Width = 17
       Height = 16
       Caption = 'km'
@@ -349,7 +349,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblBatteryCapacity: TLabel
       Left = 678
-      Top = 381
+      Top = 357
       Width = 92
       Height = 16
       Caption = 'Battery Capacity'
@@ -362,7 +362,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblBatteryCapacity1: TLabel
       Left = 813
-      Top = 381
+      Top = 357
       Width = 54
       Height = 16
       Caption = '         0.0'
@@ -375,7 +375,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label21: TLabel
       Left = 877
-      Top = 381
+      Top = 357
       Width = 25
       Height = 16
       Caption = 'kWh'
@@ -388,7 +388,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lbl2: TLabel
       Left = 678
-      Top = 405
+      Top = 381
       Width = 70
       Height = 16
       Caption = 'ToSo Range'
@@ -401,7 +401,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblToSoRange: TLabel
       Left = 813
-      Top = 405
+      Top = 381
       Width = 51
       Height = 16
       Caption = '           0'
@@ -414,7 +414,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Label22: TLabel
       Left = 877
-      Top = 405
+      Top = 381
       Width = 11
       Height = 16
       Caption = 'm'
@@ -427,7 +427,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object lblClose: TLabel
       Left = 885
-      Top = 440
+      Top = 416
       Width = 31
       Height = 16
       Caption = 'Close'
@@ -438,9 +438,21 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
       Font.Style = []
       ParentFont = False
     end
+    object pbVerticalView1: TPaintBox
+      Left = 176
+      Top = 40
+      Width = 481
+      Height = 329
+    end
+    object pbVerticalView2: TPaintBox
+      Left = 14
+      Top = 40
+      Width = 145
+      Height = 337
+    end
     object RadioGroup1: TRadioGroup
       Left = 680
-      Top = 29
+      Top = 5
       Width = 193
       Height = 84
       Caption = 'Depth Scale'
@@ -448,7 +460,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object edtMaxDepth: TEdit
       Left = 803
-      Top = 85
+      Top = 61
       Width = 65
       Height = 24
       Color = clBlack
@@ -463,7 +475,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object edtMinDepth: TEdit
       Left = 804
-      Top = 53
+      Top = 29
       Width = 65
       Height = 24
       Color = clBlack
@@ -478,7 +490,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Panel1: TPanel
       Left = 688
-      Top = 29
+      Top = 5
       Width = 81
       Height = 17
       BevelEdges = []
@@ -494,7 +506,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object RadioGroup2: TRadioGroup
       Left = 680
-      Top = 114
+      Top = 90
       Width = 193
       Height = 84
       Caption = 'Depth Scale'
@@ -502,7 +514,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Panel2: TPanel
       Left = 690
-      Top = 113
+      Top = 89
       Width = 81
       Height = 17
       BevelEdges = []
@@ -518,7 +530,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object edtStopDistance: TEdit
       Left = 803
-      Top = 170
+      Top = 146
       Width = 65
       Height = 24
       Color = clBlack
@@ -533,7 +545,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object edtStartDistance: TEdit
       Left = 804
-      Top = 138
+      Top = 114
       Width = 65
       Height = 24
       Color = clBlack
@@ -548,18 +560,12 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
     end
     object Panel3: TPanel
       Left = 672
-      Top = 433
+      Top = 409
       Width = 256
       Height = 1
       Color = clWhite
       ParentBackground = False
       TabOrder = 8
     end
-  end
-  object Graphic1: TGraphic
-    AutoConnect = False
-    ConnectKind = ckRunningOrNew
-    Left = 16
-    Top = 424
   end
 end

@@ -1,4 +1,4 @@
-unit ufrmDepthPlot;
+unit ufrmManualGuidance;
 
 interface
 
@@ -7,17 +7,13 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
 
 type
-  TfrmDepthPlot = class(TForm)
+  TfrmManualGuidance = class(TForm)
     pnlMain: TPanel;
-    lbl1: TLabel;
-    edtMin: TEdit;
-    Label1: TLabel;
-    edtMax: TEdit;
-    Label2: TLabel;
-    edtSet: TEdit;
-    Label3: TLabel;
-    lblSpeedScaleFactor: TLabel;
-    pbDepthPlot: TPaintBox;
+    lblManualGuidance: TLabel;
+    lblDegMinus: TLabel;
+    lblDegPlus: TLabel;
+    lblcourse: TLabel;
+    edtCourse: TEdit;
   private
     { Private declarations }
   public
@@ -25,7 +21,7 @@ type
   end;
 
 var
-  frmDepthPlot: TfrmDepthPlot;
+  frmManualGuidance: TfrmManualGuidance;
 
 implementation
 
