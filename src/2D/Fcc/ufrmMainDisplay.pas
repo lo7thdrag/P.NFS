@@ -2018,16 +2018,16 @@ begin
 
   FMap.ZoomTo((Self.FCurrentRange  * 0.0008) * 2, FMap.CenterX, FMap.CenterY);
 
-//  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-//  ExecInfo.cbSize := SizeOf(ExecInfo);
-//  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-//  ExecInfo.Wnd := Handle;
-//  ExecInfo.lpVerb := 'open';
-//  ExecInfo.lpFile := PChar('Viewer.exe');
-//  ExecInfo.nShow := SW_SHOW;
-//
-//  if not ShellExecuteEx(@ExecInfo) then
-//    RaiseLastOSError;
+  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+  ExecInfo.cbSize := SizeOf(ExecInfo);
+  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+  ExecInfo.Wnd := Handle;
+  ExecInfo.lpVerb := 'open';
+  ExecInfo.lpFile := PChar('Viewer.exe');
+  ExecInfo.nShow := SW_SHOW;
+
+  if not ShellExecuteEx(@ExecInfo) then
+    RaiseLastOSError;
 
   ZeroMemory(@ExecPTK, SizeOf(ExecPTK));
   ExecPTK.cbSize := SizeOf(ExecPTK);
