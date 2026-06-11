@@ -248,7 +248,9 @@ type
     ExecInfo, ExecPTK: TShellExecuteInfo;
 
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
-    FXAxis, FYAxis, FZAxis, FisBiteOpen : Boolean;
+    FXAxis, FYAxis, FZAxis, FisBiteOpen, FisAutomatic : Boolean;
+
+    FOperatingMode: TOperatingMode;
 
     { Property On TDA }
     FRings       : TRadarRangeRings;
@@ -525,117 +527,11 @@ begin
   i := FindClosestZoomIndex(z);
   z := ZoomIndexToScale(i);
 
-    // BLIND ZONE
-//    AreaBlindZone1.CenterMode := cmMapPosition;
-//    AreaBlindZone1.MapPosX := FMap.CenterX;
-//    AreaBlindZone1.MapPosY := FMap.CenterY;
-//    AreaBlindZone1.CoordConverter := aCvt;
-//    AreaBlindZone1.ConvertCoord(aCvt);
-//
-//    AreaBlindZone1.OuterRadiusPx := FCircleR;
-//    AreaBlindZone1.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaBlindZone1.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-
-//    AreaBlindZone1.Draw(aCnv);
-//
-//    AreaBlindZone.CenterMode := cmMapPosition;
-//    AreaBlindZone.MapPosX := FMap.CenterX;
-//    AreaBlindZone.MapPosY := FMap.CenterY;
-//    AreaBlindZone.CoordConverter := aCvt;
-//    AreaBlindZone.ConvertCoord(aCvt);
-//
-//    AreaBlindZone.OuterRadiusPx := FCircleR;
-//    AreaBlindZone.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaBlindZone.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaBlindZone.Draw(aCnv);
-
-//    AreaPenembakan.CenterMode     := cmMapPosition;
-//    AreaPenembakan.MapPosX        := FMap.CenterX;
-//    AreaPenembakan.MapPosY        := FMap.CenterY;
-//    AreaPenembakan.CoordConverter := aCvt;
-//
-//    AreaPenembakan.OuterRadiusPx  := FCircleR;
-//    AreaPenembakan.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaPenembakan.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaPenembakan.Draw(aCnv);
-
-//    AreaTracker.CenterMode     := cmMapPosition;
-//    AreaTracker.MapPosX        := FMap.CenterX;
-//    AreaTracker.MapPosY        := FMap.CenterY;
-//    AreaTracker.CoordConverter := aCvt;
-//
-//    AreaTracker.OuterRadiusPx  := FCircleR;
-//    AreaTracker.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaTracker.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaTracker.Draw(aCnv);
-
-//    AreaGunPoint.CenterMode     := cmMapPosition;
-//    AreaGunPoint.MapPosX        := FMap.CenterX;
-//    AreaGunPoint.MapPosY        := FMap.CenterY;
-//    AreaGunPoint.CoordConverter := aCvt;
-//
-//    AreaGunPoint.OuterRadiusPx  := FCircleR;
-//    AreaGunPoint.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaGunPoint.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaGunPoint.Draw(aCnv);
-
-    // --- North Indicator ---
-//    FNorthInd.CenterX       := FCircleCX;
-//    FNorthInd.CenterY       := FCircleCY;
-//    FNorthInd.RadiusPx      := FCircleR;
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//      begin
-//        FNorthInd.HeadingDeg    := FCCManager.xShip.Heading;
-//        FNorthInd.UseTrueMotion := FCCManager.IsTrueMotion; // TRUE or FALSE
-//      end;
-//    end;
-//    FNorthInd.Draw(aCnv);
-
-
-
     // RANGE RINGS
     FRings.CircleRect    := FCircleRect;
     FRings.CurrentRange_m := FCurrentRange;
     FRings.ConvertCoord(aCvt);
     FRings.Draw(aCnv);
-
-    // BEARING 0°
-//    FBearing0.CircleRect := FCircleRect;
-//    FBearing0.ConvertCoord(aCvt);
-//    FBearing0.Draw(aCnv);
-
-//    TargetMgr.Draw(aCnv);
 
     VehicleMgr.DrawAll(aCnv);
 end;
@@ -909,7 +805,10 @@ begin
     bearing := azimuth - FCCManager.xShip.Heading;
     if bearing < 0 then
     bearing := bearing + 360;
-    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+//    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+    elevation := CalcTurretElevation(rangem, 12900);
+
+
 //    case vFccSetting.FccMode of
 //      1 : //MR 35
 //      begin
@@ -1021,6 +920,7 @@ var
   V: TVehicle;
   setting : string;
   StartupInfo: TStartupInfo;
+  RecSend: TrecData_MeriamFCC;
 begin
   BeginGame_FCC;
   FCCManager := TFCCManager.Create;
@@ -1067,36 +967,8 @@ begin
   FRings := TRadarRangeRings.Create;
   acbxDisRing.Checked := FRings.Visible;
 
-  // siapkan sectors (contoh sesuai gambar)
-
-  // Blind zone: dua sektor
-//  AreaBlindZone := TRadarDynamicSector.Create;
-//  AreaBlindZone.Color := RGB(183,73,40);
-//  AreaBlindZone.AddSlice(30,45, 0.0, 48000.0); // center–3 km
-//  AreaBlindZone.AddSlice(315,330,   0.0, 48000.0);
-//
-//  AreaBlindZone1 := TRadarDynamicSector.Create;
-//  AreaBlindZone1.Color := RGB(94,90,105);
-//  AreaBlindZone1.AddSlice(330,30, 0.0, 48000.0); // dari 1–3 km
-//
-//  AreaGunPoint := TRadarDynamicSector.Create;
-//  AreaGunPoint.Color := RGB(237,83,93);
-//  AreaGunPoint.AddSlice(165,195, 0.0, 48000.0); // dari 1–3 km
-//
-//  AreaPenembakan := TRadarDynamicSector.Create;
-//  AreaPenembakan.Color := RGB(53,80,75);
-//  AreaPenembakan.AddSlice(45,315, 0.0, 6500.0); // dari 1–3 km
-//
-//  acbxShootArea.Checked := AreaPenembakan.Visible;
-//
-//  AreaTracker := TRadarDynamicSector.Create;
-//  AreaTracker.Color := RGB(32,70,145);
-//  AreaTracker.AddSlice(45,315, 6500.0, 17000.0); // dari 1–3 km
-//  acbxTrackerArea.Checked := AreaTracker.Visible;
-
-//  FNorthInd := TRadarNorthIndicator.Create;
-
   FShipHeading := 0; // awal
+  FisAutomatic := False;
 
 
 //  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
@@ -1172,40 +1044,40 @@ begin
     FCCManager.Env_Map := DataModule1.GetMapById(FCCManager.CurrentScenID);
 
     case vFccSetting.FccMode of
-    1 : //MR 35
-    begin
-//      pnlFCC1.BringToFront;
-//      pnlTrackerFCC1.BringToFront;
-//      pnlBiteControlFCC1.BringToFront;
-      FCCManager.Get57WeaponAssigned;
-      AdvTabMR35.Caption := 'MR35';
-      lblMR35MR35.Caption := 'MR35';
-//      lblRadarVal.Caption := 'TR47C';
-//      lblFrequencyVal.Caption := 'J-Band';
+      1 : //MR 35
+      begin
+  //      pnlFCC1.BringToFront;
+  //      pnlTrackerFCC1.BringToFront;
+  //      pnlBiteControlFCC1.BringToFront;
+        FCCManager.Get57WeaponAssigned;
+        AdvTabMR35.Caption := 'MR35';
+        lblMR35MR35.Caption := 'MR35';
+  //      lblRadarVal.Caption := 'TR47C';
+  //      lblFrequencyVal.Caption := 'J-Band';
+      end;
+      2 : //MR 103
+      begin
+  //      pnlFCC2.BringToFront;
+  //      pnlTrackerFCC2.BringToFront;
+  //      pnlBiteControlFCC2.BringToFront;
+        FCCManager.Get57WeaponAssigned;
+        AdvTabMR35.Caption := 'MR103';
+        lblMR35MR35.Caption := 'MR103';
+  //      lblRadarVal.Caption := 'MR36A';
+  //      lblFrequencyVal.Caption := 'G-Band';
+      end;
+      3 : //MR 302
+      begin
+  //      pnlFCC2.BringToFront;
+  //      pnlTrackerFCC2.BringToFront;
+  //      pnlBiteControlFCC2.BringToFront;
+        FCCManager.Get57WeaponAssigned;
+        AdvTabMR35.Caption := 'MR302';
+        lblMR35MR35.Caption := 'MR302';
+  //      lblRadarVal.Caption := 'MR103';
+  //      lblFrequencyVal.Caption := 'J-Band';
+      end;
     end;
-    2 : //MR 103
-    begin
-//      pnlFCC2.BringToFront;
-//      pnlTrackerFCC2.BringToFront;
-//      pnlBiteControlFCC2.BringToFront;
-      FCCManager.Get57WeaponAssigned;
-      AdvTabMR35.Caption := 'MR103';
-      lblMR35MR35.Caption := 'MR103';
-//      lblRadarVal.Caption := 'MR36A';
-//      lblFrequencyVal.Caption := 'G-Band';
-    end;
-    3 : //MR 302
-    begin
-//      pnlFCC2.BringToFront;
-//      pnlTrackerFCC2.BringToFront;
-//      pnlBiteControlFCC2.BringToFront;
-      FCCManager.Get57WeaponAssigned;
-      AdvTabMR35.Caption := 'MR302';
-      lblMR35MR35.Caption := 'MR302';
-//      lblRadarVal.Caption := 'MR103';
-//      lblFrequencyVal.Caption := 'J-Band';
-    end;
-  end;
 
 //
 //    if Assigned(FCCManager.AssignedWeapon) then
@@ -1271,7 +1143,19 @@ begin
   end;
 
 
+  // init ke 3D bahwa EO sudah menyala
+  RecSend.ShipID := FCCManager.ShipID;
+  RecSend.Range := 0;
+  RecSend.Bearing := 0;
+  RecSend.Elevation := 0;
+  RecSend.EOBearing := 0;
+  RecSend.EOElevation := 0;
+  RecSend.IDTarget3D := 0;
+  RecSend.IDTarget2D := 0;
+  RecSend.EnableValue := false;
 
+  RecSend.OrderID := CORD_ID_InitFCC;
+  FCCManager.NetSendTo3D_FCCSet(RecSend);
 end;
 
 procedure TfrmMainFCC.FormDestroy(Sender: TObject);
@@ -1349,6 +1233,8 @@ procedure TfrmMainFCC.HandleKeyByBtnName(const BtnName: string);
 var
   Token: string;
   C: Char;
+  RecSend: TrecData_MeriamFCC;
+  RecSendCam: TRec_CameraController;
 begin
   Token := ExtractToken(BtnName);
 
@@ -1360,27 +1246,142 @@ begin
 //    pnlIndWth.BringToFront;
   else if Token = 'Surface' then
   begin
-    edtStatusType.Text := 'Surface'
+    edtStatusType.Text := 'Surface';
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.EnableValue := false;
+
+    RecSend.OrderID := CORD_ID_TargetType;
+
+    RecSend.TargetType := 0;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
   end
 
   else if Token = 'AIR' then
   begin
-    edtStatusType.Text := 'Air'
+    edtStatusType.Text := 'Air';
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.EnableValue := false;
+
+    RecSend.OrderID := CORD_ID_TargetType;
+
+    RecSend.TargetType := 1;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
   end
 
   else if Token = 'Shore' then
   begin
-    edtStatusType.Text := 'Shore'
+    edtStatusType.Text := 'Shore';
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.EnableValue := false;
+
+    RecSend.OrderID := CORD_ID_TargetType;
+
+    RecSend.TargetType := 2;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
+  end
+
+  else if Token = 'LowAIR' then
+  begin
+    edtStatusType.Text := 'Low Air';
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.EnableValue := false;
+
+    RecSend.OrderID := CORD_ID_TargetType;
+
+    RecSend.TargetType := 3;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
+  end
+
+  else if Token = 'T' then
+  begin
+    RecSendCam.cmd := __ORD_ID_CAMCON_IR_NFOV;
+    RecSendCam.valueInt := 0;
+    RecSendCam.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSendCam);
+  end
+
+  else if Token = 'W' then
+  begin
+    RecSendCam.cmd := __ORD_ID_CAMCON_IR_WFOV;
+    RecSendCam.valueInt := 0;
+    RecSendCam.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSendCam);
   end
 
   else if Token = 'AutoSearch' then
   begin
-    edtStatusControl.Text := 'A_Search'
+    edtStatusControl.Text := 'A_Search';
+    FisAutomatic := true;
+
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.TargetType := 0;
+
+    RecSend.OrderID := CORD_ID_AutoSearch;
+    RecSend.EnableValue := FisAutomatic;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
   end
 
   else if Token = 'ManualSearch' then
   begin
-    edtStatusControl.Text := 'M_Search'
+    edtStatusControl.Text := 'M_Search';
+    FisAutomatic := False;
+
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.TargetType := 0;
+
+    RecSend.OrderID := CORD_ID_AutoSearch;
+    RecSend.EnableValue := FisAutomatic;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
   end
 
   else if Token = 'MovingTarget' then
@@ -1597,7 +1598,7 @@ begin
 
   if vFccSetting.FccMode = 4 then
   Exit;
-
+  if FCCManager.Operating_Mode = omInd then Exit;
 
   if JoyPos.X > 0.35 then
   begin

@@ -1499,6 +1499,11 @@ const
   __ORD_ID_CAMCON_Move_Down        = 25;
   __ORD_ID_CAMCON_Move_Forward     = 26;
   __ORD_ID_CAMCON_Move_Back        = 27;
+  __ORD_ID_CAMCON_FOV_Plus         = 28;
+  __ORD_ID_CAMCON_FOV_Minus        = 29;
+  __ORD_ID_CAMCON_TV_NFOV          = 30;
+  __ORD_ID_CAMCON_IR_NFOV          = 31;
+  __ORD_ID_CAMCON_IR_WFOV          = 32;
 
   { C705; angga }
   Rec_Data_C705 = 69;
@@ -1551,8 +1556,13 @@ const
   CORD_ID_3DUpdate_EO         = 1;
   CORD_ID_3DGet_Target        = 2;
   CORD_ID_2DGet_Target        = 3;
-  CORD_ID_3DUpdate_Status     = 4;
+  CORD_ID_TargetType          = 4;
   CORD_ID_2DSet_Status        = 5;
+  CORD_ID_EnableIR            = 6;
+  CORD_ID_BlackWhite          = 7;
+  CORD_ID_AutoSearch          = 8;
+  CORD_ID_InitFCC             = 9;
+  CORD_ID_OperatingMode       = 10;
 
   // STATUS WEAPON
   // ERROR FOR SPS115

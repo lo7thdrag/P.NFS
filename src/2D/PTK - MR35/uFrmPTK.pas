@@ -60,7 +60,7 @@ type
     // PTK MR 35
     FisCombatMenu, FisLocalMenu, FisCheck, FisLockScreen : Boolean;  // boolean penanda dimana menu berada
     FisAngleError, FisSBW, FisManualFrequency, FisStaticTarget, FisLSStop, FisTVReset, FisComplex, FisBlackTarget,
-    FisCenter, FisManualZoom, FisManualSearch, FisSurface, FisAir, FisShore :Boolean;
+    FisCenter, FisManualZoom, FisManualSearch, FisSurface, FisAir, FisShore, FisLowAir :Boolean;
 
 
     // PTK eo tracker
@@ -277,19 +277,21 @@ begin
       FBtnArray[6].Caption := 'Surface' + #13#10;
       FisSurface := True;
       FisAir := false;
+      FisLowAir := false;
       FisShore := False;
       btnGreen(6);
       btnBlack(11);
       btnBlack(12);
+      btnBlack(18);
     end
-    else
-    begin
-      FBtnArray[6].Caption := 'Surface' + #13#10;
-      FisSurface := False;
-      FisAir := false;
-      FisShore := False;
-      btnBlack(6);
-    end;
+//    else
+//    begin
+//      FBtnArray[6].Caption := 'Surface' + #13#10;
+//      FisSurface := False;
+//      FisAir := false;
+//      FisShore := False;
+//      btnBlack(6);
+//    end;
   end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_Shore' then
@@ -300,19 +302,21 @@ begin
       FBtnArray[11].Caption := 'Shore' + #13#10;
       FisSurface := False;
       FisAir := false;
+      FisLowAir := False;
       FisShore := True;
       btnGreen(11);
       btnBlack(6);
       btnBlack(12);
+      btnBlack(18);
     end
-    else
-    begin
-      FBtnArray[11].Caption := 'Shore' + #13#10;
-      FisSurface := False;
-      FisAir := false;
-      FisShore := False;
-      btnBlack(11);
-    end;
+//    else
+//    begin
+//      FBtnArray[11].Caption := 'Shore' + #13#10;
+//      FisSurface := False;
+//      FisAir := false;
+//      FisShore := False;
+//      btnBlack(11);
+//    end;
   end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_AIR' then
@@ -323,19 +327,46 @@ begin
       FBtnArray[12].Caption := 'AIR' + #13#10;
       FisSurface := False;
       FisAir := True;
+      FisLowAir := False;
       FisShore := false;
       btnGreen(12);
       btnBlack(6);
       btnBlack(11);
+      btnBlack(18);
     end
-    else
+//    else
+//    begin
+//      FBtnArray[12].Caption := 'AIR' + #13#10;
+//      FisSurface := False;
+//      FisAir := false;
+//      FisShore := False;
+//      btnBlack(12);
+//    end;
+  end
+
+  else if TSpeedButtonImage(Sender).Name = 'btn_LowAIR' then
+  begin
+    FisLowAir := True;
+    if FisLowAir then
     begin
-      FBtnArray[12].Caption := 'AIR' + #13#10;
+      FBtnArray[18].Caption := 'Low' + #13#10 + 'AIR';
       FisSurface := False;
       FisAir := false;
-      FisShore := False;
+      FisLowAir := True;
+      FisShore := false;
       btnBlack(12);
-    end;
+      btnBlack(6);
+      btnBlack(11);
+      btnGreen(18);
+    end
+//    else
+//    begin
+//      FBtnArray[12].Caption := 'AIR' + #13#10;
+//      FisSurface := False;
+//      FisAir := false;
+//      FisShore := False;
+//      btnBlack(12);
+//    end;
   end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_ManualFrequency' then
@@ -1449,15 +1480,9 @@ begin
       btnBlack(4);
     end;
 
-    if FisSurface then
-    begin
-      FBtnArray[6].Caption := 'Surface'  + #13#10;
-      btnGreen(6);
-    end
-    else begin
-      FBtnArray[6].Caption := 'Surface'  + #13#10;
-      btnBlack(6);
-    end;
+    FBtnArray[6].Caption := 'Surface'  + #13#10;
+    if FisSurface then btnGreen(6)
+    else btnBlack(6);
 
     if FisManualFrequency then
     begin
@@ -1501,35 +1526,21 @@ begin
       btnBlack(10);
     end;
 
-    if FisShore then
-    begin
-      FBtnArray[11].Caption := 'Shore'  + #13#10;
-      btnGreen(11);
-    end
-    else begin
-      FBtnArray[11].Caption := 'Shore'  + #13#10;
-      btnBlack(11);
-    end;
+    FBtnArray[11].Caption := 'Shore'  + #13#10;
+    if FisShore then btnGreen(11)
+    else btnBlack(11);
 
-    if FisAir then
-    begin
-      FBtnArray[12].Caption := 'AIR'  + #13#10;
-      btnGreen(12);
-    end
-    else begin
-      FBtnArray[12].Caption := 'AIR'  + #13#10;
-      btnBlack(12);
-    end;
+    FBtnArray[12].Caption := 'AIR'  + #13#10;
+    if FisAir then btnGreen(12)
+    else btnBlack(12);
 
-    if FisCenter then
-    begin
-      FBtnArray[15].Caption := 'Center'  + #13#10;
-      btnGreen(15);
-    end
-    else begin
-      FBtnArray[15].Caption := 'Correlate'  + #13#10;
-      btnBlack(15);
-    end;
+    FBtnArray[15].Caption := 'Center'  + #13#10;
+    if FisCenter then  btnGreen(15)
+    else btnBlack(15);
+
+    FBtnArray[18].Caption := 'Low'  + #13#10 + 'AIR';
+    if FisLowAir then btnGreen(18)
+    else btnBlack(18);
 
     if FisTVReset then
     begin

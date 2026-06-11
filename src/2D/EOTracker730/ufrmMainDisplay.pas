@@ -241,6 +241,8 @@ type
   private
     { Private declarations }
     FBitmapBackground : TBitmap;
+    BitMapLampGrey, BitMapLampGreen, BitMapLampRed  : TBitmap;
+
     FLyrDraw: CMapXLayer;
     FNorthAngle : Double;
     FMapCanvas     : TCanvas;
@@ -256,6 +258,9 @@ type
     FisKanan, FisKiri, FisAtas, FisBawah, FisZoomIn, FisZoomOut : Boolean;
     FXAxis, FYAxis, FZAxis : Boolean;
     FBEVal,FELVal, FZoomVal : Double;
+    FisAutomatic, FisIRWFOV, FisSurfaceType: Boolean;
+
+    FOperatingMode: TOperatingMode;
 
     FisDiagnonisOpen : Boolean;
 
@@ -886,6 +891,7 @@ var
   V: TVehicle;
   setting : string;
   StartupInfo: TStartupInfo;
+  RecSend: TrecData_MeriamFCC;
 begin
   BeginGame_FCC;
   FCCManager := TFCCManager.Create;
@@ -905,6 +911,9 @@ begin
   InitializeForm;
 
   FShipHeading := 0; // awal
+  FisAutomatic := False;
+  FisIRWFOV := True;
+  FisSurfaceType := True;
 
   n := ParamCount ;
   if n < max_param then
@@ -953,37 +962,31 @@ begin
   FCCManager.Running := True;
 
   rgnOuter := CreateRectRgn(0,0,Width,Height);
-  rgnInner := CreateRectRgn(0, 0, 640, 450);
+  rgnInner := CreateRectRgn(0, 0, 1280, 450);
 
   CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
   SetWindowRgn(Handle, rgnOuter, True);
 
-  rgnOuter := CreateRectRgn(0,0,Width,Height);
-  rgnInner := CreateRectRgn(640, 0, 1280, 480);
-
-  CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
-  SetWindowRgn(Handle, rgnOuter, True);
+//  rgnOuter := CreateRectRgn(0,0,Width,Height);
+//  rgnInner := CreateRectRgn(640, 0, 1280, 480);
+//
+//  CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
+//  SetWindowRgn(Handle, rgnOuter, True);
 
   NLDJoystick1.Active := True;
 
-  setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
-  TgoBsonSerializer.Deserialize(setting, config);
-  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString() + '_1';
-  // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
-  // untuk testing awal tidak perlu diubah dulu
-  TgoBsonSerializer.Serialize(config, setting);
-  tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
 
-  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-  ExecInfo.cbSize := SizeOf(ExecInfo);
-  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-  ExecInfo.Wnd := Handle;
-  ExecInfo.lpVerb := 'open';
-  ExecInfo.lpFile := PChar('Viewer.exe');
-  ExecInfo.nShow := SW_SHOW;
 
-  if not ShellExecuteEx(@ExecInfo) then
-    RaiseLastOSError;
+//  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+//  ExecInfo.cbSize := SizeOf(ExecInfo);
+//  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+//  ExecInfo.Wnd := Handle;
+//  ExecInfo.lpVerb := 'open';
+//  ExecInfo.lpFile := PChar('Viewer.exe');
+//  ExecInfo.nShow := SW_SHOW;
+//
+//  if not ShellExecuteEx(@ExecInfo) then
+//    RaiseLastOSError;
 
   ZeroMemory(@ExecPTK, SizeOf(ExecPTK));
   ExecPTK.cbSize := SizeOf(ExecInfo);
@@ -995,6 +998,14 @@ begin
 
   if not ShellExecuteEx(@ExecPTK) then
     RaiseLastOSError;
+
+  setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
+  TgoBsonSerializer.Deserialize(setting, config);
+  config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString() + '_1';
+  // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
+  // untuk testing awal tidak perlu diubah dulu
+  TgoBsonSerializer.Serialize(config, setting);
+  tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
 
   setting:= TFile.ReadAllText('settingsIR.json', TEncoding.UTF8); // load json
   TgoBsonSerializer.Deserialize(setting, config);
@@ -1015,6 +1026,19 @@ begin
   if not ShellExecuteEx(@ExecInfoIR) then
     RaiseLastOSError;
 
+  // init ke 3D bahwa EO sudah menyala
+  RecSend.ShipID := FCCManager.ShipID;
+  RecSend.Range := 0;
+  RecSend.Bearing := 0;
+  RecSend.Elevation := 0;
+  RecSend.EOBearing := 0;
+  RecSend.EOElevation := 0;
+  RecSend.IDTarget3D := 0;
+  RecSend.IDTarget2D := 0;
+  RecSend.EnableValue := false;
+
+  RecSend.OrderID := CORD_ID_InitFCC;
+  FCCManager.NetSendTo3D_FCCSet(RecSend);
 end;
 
 procedure TfrmMainFCC.FormDestroy(Sender: TObject);
@@ -1023,9 +1047,9 @@ var
 begin
   if vFccSetting.FccMode <> 4 then
   begin
-    TerminateProcess(ExecInfo.hProcess, 0);
-    CloseHandle(ExecInfo.hProcess);
-    ExecInfo.hProcess := 0;
+//    TerminateProcess(ExecInfo.hProcess, 0);
+//    CloseHandle(ExecInfo.hProcess);
+//    ExecInfo.hProcess := 0;
 
     TerminateProcess(ExecPTK.hProcess, 0);
     CloseHandle(ExecPTK.hProcess);
@@ -1039,6 +1063,10 @@ begin
 //  FRangeRing.Free;
   VehicleMgr.Free;
   FCCManager.FinalizeSimulation;
+
+  BitMapLampGrey.Free;
+  BitMapLampGreen.Free;
+  BitMapLampRed.Free;
 
   FNorthInd.Free;
   FBearing0.Free;
@@ -1090,6 +1118,8 @@ procedure TfrmMainFCC.HandleKeyByBtnName(const BtnName: string);
 var
   Token: string;
   C: Char;
+  RecSend: TrecData_MeriamFCC;
+  RecSendCam: TRec_CameraController;
 begin
   Token := ExtractToken(BtnName);
 
@@ -1107,6 +1137,94 @@ begin
     else  pnlDiagnosis.SendToBack
 
   end
+
+  else if Token = 'Automatic' then
+  begin
+    // kirim automatic disini ke 3D
+    FisAutomatic := not FisAutomatic;
+
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.TargetType := 0;
+
+    RecSend.OrderID := CORD_ID_AutoSearch;
+    RecSend.EnableValue := FisAutomatic;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
+
+    if FisAutomatic then edtControlTrackVal.Text := 'Automatic'
+    else edtControlTrackVal.Text := 'Manual';
+
+  end
+
+  else if Token = 'Air' then
+  begin
+    FisSurfaceType := not FisSurfaceType;
+
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.EnableValue := false;
+
+    RecSend.OrderID := CORD_ID_TargetType;
+
+    if FisSurfaceType then RecSend.TargetType := 0
+    else RecSend.TargetType := 1;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
+  end
+
+  else if Token = 'TVFOVPlus' then
+  begin
+    RecSendCam.cmd := __ORD_ID_CAMCON_FOV_Plus;
+    RecSendCam.valueInt := 0;
+    RecSendCam.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSendCam);
+  end
+
+  else if Token = 'TVFOVMinus' then
+  begin
+    RecSendCam.cmd := __ORD_ID_CAMCON_FOV_Minus;
+    RecSendCam.valueInt := 0;
+    RecSendCam.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSendCam);
+  end
+
+  else if Token = 'TVNFOV' then
+  begin
+    RecSendCam.cmd := __ORD_ID_CAMCON_TV_NFOV;
+    RecSendCam.valueInt := 0;
+    RecSendCam.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSendCam);
+  end
+
+  else if Token = 'IRWFOV' then
+  begin
+    FisIRWFOV := not FisIRWFOV;
+
+    if FisIRWFOV then RecSendCam.cmd := __ORD_ID_CAMCON_IR_WFOV
+    else RecSendCam.cmd := __ORD_ID_CAMCON_IR_NFOV;
+
+    RecSendCam.valueInt := 0;
+    RecSendCam.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_IR';
+
+    FCCManager.NetSendTo3D_OrderCameraControl(RecSendCam);
+  end
+
 
   else if Token = 'IndSetting' then
   begin
@@ -1218,61 +1336,14 @@ begin
   //  4 green
   //  5 red
   //  6 yellow
+  BitMapLampGrey := TBitmap.Create;
+  BitMapLampGreen := TBitmap.Create;
+  BitMapLampRed := TBitmap.Create;
+  imgListLight.GetBitmap(0, BitMapLampGrey);
+  imgListLight.GetBitmap(1, BitMapLampGreen);
+  imgListLight.GetBitmap(2, BitMapLampRed);
 
-  case vFccSetting.FccMode of
-    1: //FCC1
-    begin
-      //  initialize panel indikator control state
-//      imgListLight.GetBitmap(1, imgCtrlStateFCC.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateTracked.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateDataReady.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateAimed.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateLimitZone.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateFireAllow.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateFiring.Picture.Bitmap);
-
-      //  initialize panel indikator Gun state
-//      imgListLight.GetBitmap(1, imgGunStateCtrlBy.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgGunStateServo.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgGunStateFC.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgGunStateReturnZero.Picture.Bitmap);
-
-      //  initialize panel indikator Bite Device state
-//      imgListLight.GetBitmap(1, imgBiteDvcStateFCC.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcState730B.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateEO.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateTR.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateTCC.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateSIE.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateSR.Picture.Bitmap);
-    end;
-    2: //FCC2
-    begin
-      //  initialize panel indikator control state
-//      imgListLight.GetBitmap(1, imgCtrlStateFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateTrackedFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateDataReadyFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateAimedFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateLimitZoneFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateFireAllowFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgCtrlStateFiringFCC2.Picture.Bitmap);
-
-      //  initialize panel indikator Gun state
-//      imgListLight.GetBitmap(1, imgGunStateCtrlByFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgGunStateServoFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgGunStateFCFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgGunStateReturnZeroFCC2.Picture.Bitmap);
-
-      //  initialize panel indikator Bite Device state
-//      imgListLight.GetBitmap(1, imgBiteDvcStateFCC2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcState57.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateEOFcc2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateTRFcc2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateTCCFcc2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateSIEFcc2.Picture.Bitmap);
-//      imgListLight.GetBitmap(1, imgBiteDvcStateSRFcc2.Picture.Bitmap);
-    end;
-  end;
+  imgNavState.Picture.Bitmap := BitMapLampGreen;
 
 end;
 
@@ -1311,6 +1382,7 @@ begin
   if vFccSetting.FccMode = 4 then
   Exit;
 
+  if FCCManager.Operating_Mode = omInd then Exit;
 
   if JoyPos.X > 0.35 then
   begin
@@ -1326,7 +1398,7 @@ begin
     FisKanan := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Right;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1336,7 +1408,7 @@ begin
     FisKiri := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Left;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1346,7 +1418,7 @@ begin
     FXAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Right;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1355,7 +1427,7 @@ begin
     FXAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Left;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1376,7 +1448,7 @@ begin
     FisBawah := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Down;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1386,7 +1458,7 @@ begin
     FisAtas := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Up;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1396,7 +1468,7 @@ begin
     FYAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Down;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1405,7 +1477,7 @@ begin
     FYAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_Up;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1426,7 +1498,7 @@ begin
     FisZoomIn := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomIn;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1436,7 +1508,7 @@ begin
     FisZoomOut := False;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomOut;
     RecSend.valueInt := 0;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end;
@@ -1446,7 +1518,7 @@ begin
     FZAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomIn;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend);
   end
@@ -1455,7 +1527,7 @@ begin
     FZAxis := true;
     RecSend.cmd := __ORD_ID_CAMCON_Joystick_ZoomOut;
     RecSend.valueInt := 1;
-    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon) + '_1';
+    RecSend.valueStr := IntToStr(FCCManager.ShipID) + '_' + IntToStr(FCCManager.AssignedWeapon.IDWeapon);
 
     FCCManager.NetSendTo3D_OrderCameraControl(RecSend)
   end;
@@ -1659,6 +1731,40 @@ begin
 
   if Assigned(FCCManager) then
   begin
+    FOperatingMode := FCCManager.Operating_Mode;
+    case FOperatingMode of
+      omWait :
+      begin
+        edtCtlModeVal.Text := 'Local';
+        edtWorkStateVal.Text := 'Wait';
+      end;
+      omInd :
+      begin
+        edtCtlModeVal.Text := 'Remote';
+        edtWorkStateVal.Text := 'Ind';
+      end;
+      omAutonomous :
+      begin
+        edtCtlModeVal.Text := 'Local';
+        edtWorkStateVal.Text := 'Track';
+      end;
+      omDAttack :
+      begin
+        edtCtlModeVal.Text := 'Local';
+      end;
+      omVFire :
+      begin
+        edtCtlModeVal.Text := 'Local';
+      end;
+    end;
+
+    if (FOperatingMode = omInd) or (FOperatingMode = omAutonomous) then
+    begin
+      if FCCManager.target2d <> 0  then edtTrackStateVal.Text := 'Tracking'
+      else edtTrackStateVal.Text := 'Lost';
+    end;
+
+
     if Assigned(FCCManager.xShip) then
     begin
       edtNavCourseVal.Text := FormatFloat('0.00', FCCManager.xShip.Heading);
@@ -1710,7 +1816,6 @@ var
   aLow, aHigh: Double;
   range,rangem, bearing : Double;
 begin
-
 
 
 //  lblBearing.Caption := Format('0',[FBearing0.BearingDeg]);

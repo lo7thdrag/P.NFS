@@ -1661,7 +1661,7 @@ object frmMainFCC: TfrmMainFCC
       ParentFont = False
       ReadOnly = True
       TabOrder = 1
-      Text = 'Auto'
+      Text = 'Manual'
     end
     object edtControlActionVal: TEdit
       Left = 264
@@ -2556,7 +2556,6 @@ object frmMainFCC: TfrmMainFCC
       000000000000}
   end
   object NLDJoystick1: TNLDJoystick
-    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move

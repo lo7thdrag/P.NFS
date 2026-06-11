@@ -642,6 +642,8 @@ type
     FCurrentRange, FBearingVal, FElevVal : Double;  // meter
     FShipHeading : Integer;
 
+    FOperatingMode, FLastOperatingMode: TOperatingMode;
+
     { Property On TDA }
     FRings       : TRadarRangeRings;
     AreaBlindZone   : TRadarDynamicSector;
@@ -708,7 +710,7 @@ implementation
 
 {$R *.dfm}
 
-uses uLibConst, uBaseConst, uScriptFcc, uDataModule, ulibSettings, uVehicleManager, uVehicle, uBaseFunction, uTCPDatatype;
+uses uLibConst, uBaseConst, uScriptFcc, uDataModule, ulibSettings, uBaseFunction, uVehicleManager, uVehicle, uTCPDatatype;
 const
   CMin_Z = 0;
   CMax_Z = 14;
@@ -1320,13 +1322,15 @@ var
   rangeX, dH, v0: Double;
   aLow, aHigh, aEnv: Double;
   ok: Boolean;
+  RecSend: TrecData_MeriamFCC;
 begin
   if Button <> mbLeft then Exit;
+
+  if FOperatingMode <> omInd then Exit;  // jika bukan IND, tidak bisa memilih kapal pada map
 
 //  Sel := TargetMgr.SelectAt(X, Y);
 
   v := VehicleMgr.SelectAt(X, Y);
-
 
   FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
 
@@ -1334,6 +1338,21 @@ begin
   begin
     // misalnya tampilkan info target
     // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
+
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.TargetType := 0;
+    RecSend.EnableValue := false;
+
+    RecSend.OrderID := CORD_ID_2DGet_Target;
+    RecSend.IDTarget3D := v.ShipID;
+    RecSend.IDTarget2D := v.ShipID;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
 
     FCCManager.SelectedVehicle := v;
     rangeX := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
@@ -1994,19 +2013,21 @@ begin
   FIsNavAuto := True;
   FireTime := 1.00;
   FireTimeMS := 1000;
+  FOperatingMode := omWait;
+  FLastOperatingMode := omWait;
 
   FMap.ZoomTo((Self.FCurrentRange  * 0.0008) * 2, FMap.CenterX, FMap.CenterY);
 
-  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-  ExecInfo.cbSize := SizeOf(ExecInfo);
-  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-  ExecInfo.Wnd := Handle;
-  ExecInfo.lpVerb := 'open';
-  ExecInfo.lpFile := PChar('Viewer.exe');
-  ExecInfo.nShow := SW_SHOW;
-
-  if not ShellExecuteEx(@ExecInfo) then
-    RaiseLastOSError;
+//  ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
+//  ExecInfo.cbSize := SizeOf(ExecInfo);
+//  ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
+//  ExecInfo.Wnd := Handle;
+//  ExecInfo.lpVerb := 'open';
+//  ExecInfo.lpFile := PChar('Viewer.exe');
+//  ExecInfo.nShow := SW_SHOW;
+//
+//  if not ShellExecuteEx(@ExecInfo) then
+//    RaiseLastOSError;
 
   ZeroMemory(@ExecPTK, SizeOf(ExecPTK));
   ExecPTK.cbSize := SizeOf(ExecPTK);
@@ -2104,6 +2125,7 @@ var
   Token: string;
   C: Char;
   RecSend : TRec3DSetWCC;
+  RecSendFccSet: TrecData_MeriamFCC;
 begin
   Token := ExtractToken(BtnName);
 
@@ -2133,23 +2155,96 @@ begin
   else if (Token = 'Wait') then
   begin
     pnlWaitLs.Caption := 'Wait';
+
+    RecSendFccSet.ShipID := FCCManager.ShipID;
+    RecSendFccSet.Range := 0;
+    RecSendFccSet.Bearing := 0;
+    RecSendFccSet.Elevation := 0;
+    RecSendFccSet.EOBearing := 0;
+    RecSendFccSet.EOElevation := 0;
+    RecSendFccSet.IDTarget3D := 0;
+    RecSendFccSet.IDTarget2D := 0;
+    RecSendFccSet.EnableValue := false;
+
+    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
+    RecSendFccSet.TargetType := 0;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
   end
   else if (Token = 'Ind') then
   begin
     pnlWaitLs.Caption := 'IND';
+
+    RecSendFccSet.ShipID := FCCManager.ShipID;
+    RecSendFccSet.Range := 0;
+    RecSendFccSet.Bearing := 0;
+    RecSendFccSet.Elevation := 0;
+    RecSendFccSet.EOBearing := 0;
+    RecSendFccSet.EOElevation := 0;
+    RecSendFccSet.IDTarget3D := 0;
+    RecSendFccSet.IDTarget2D := 0;
+    RecSendFccSet.EnableValue := false;
+
+    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
+    RecSendFccSet.TargetType := 1;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
   end
   else if (Token = 'Autonomous') then
   begin
     pnlWaitLs.Caption := 'Autonomous';
+    RecSendFccSet.ShipID := FCCManager.ShipID;
+    RecSendFccSet.Range := 0;
+    RecSendFccSet.Bearing := 0;
+    RecSendFccSet.Elevation := 0;
+    RecSendFccSet.EOBearing := 0;
+    RecSendFccSet.EOElevation := 0;
+    RecSendFccSet.IDTarget3D := 0;
+    RecSendFccSet.IDTarget2D := 0;
+    RecSendFccSet.EnableValue := false;
+
+    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
+    RecSendFccSet.TargetType := 2;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
   end
   else if (Token = 'DAttack') then
   begin
     pnlWaitLs.Caption := 'D.Attack';
+    RecSendFccSet.ShipID := FCCManager.ShipID;
+    RecSendFccSet.Range := 0;
+    RecSendFccSet.Bearing := 0;
+    RecSendFccSet.Elevation := 0;
+    RecSendFccSet.EOBearing := 0;
+    RecSendFccSet.EOElevation := 0;
+    RecSendFccSet.IDTarget3D := 0;
+    RecSendFccSet.IDTarget2D := 0;
+    RecSendFccSet.EnableValue := false;
+
+    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
+    RecSendFccSet.TargetType := 3;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
     DAttackState := True;
   end
   else if (Token = 'VFire') then
   begin
     pnlWaitLs.Caption := 'V.Fire';
+
+    RecSendFccSet.ShipID := FCCManager.ShipID;
+    RecSendFccSet.Range := 0;
+    RecSendFccSet.Bearing := 0;
+    RecSendFccSet.Elevation := 0;
+    RecSendFccSet.EOBearing := 0;
+    RecSendFccSet.EOElevation := 0;
+    RecSendFccSet.IDTarget3D := 0;
+    RecSendFccSet.IDTarget2D := 0;
+    RecSendFccSet.EnableValue := false;
+
+    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
+    RecSendFccSet.TargetType := 4;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
   end
   else if (Token = 'LDrum') then
   begin
@@ -2982,6 +3077,26 @@ begin
 
   if Assigned(FCCManager) then
   begin
+    FOperatingMode := FCCManager.Operating_Mode;
+    if FOperatingMode <> FLastOperatingMode then
+    begin
+      if (FOperatingMode = omAutonomous) and (FSelectedVehicleState = false) then
+      begin
+        FCCManager.SelectedVehicle := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FCCManager.Target2D));
+        FSelectedVehicleState := true;
+        FMapMouseUp(Sender, mbLeft, [ssLeft], 0, 0);
+
+        FMap.Refresh;
+      end
+      else if FSelectedVehicleState = true then
+      begin
+        FCCManager.SelectedVehicle := nil;
+        FSelectedVehicleState := False;
+      end;
+    end;
+
+    FLastOperatingMode := FOperatingMode;
+
     if FIsNavAuto then
     begin
       if Assigned(FCCManager.xShip) then

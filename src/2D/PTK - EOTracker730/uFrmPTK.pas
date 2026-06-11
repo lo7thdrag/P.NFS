@@ -645,13 +645,13 @@ begin
   FisEOControl := False;
   FisIRAuto := True;
   FisIROn := True;
-  FisAir:= True;
+  FisAir:= false;
   FisTVBlack := True;
   FisIRBlack:= True;
   FisBlack := True;
   FisIRWFOV:= true;
   FisCentroid := True;
-  FisAutomatic := true;
+  FisAutomatic := false;
   FFrequencyHZMode := 0;
   FisShutterAuto := True;
   FisEOOn := True;
@@ -693,7 +693,7 @@ begin
   FBtnMainCaption[6] := 'IR Auto'  + #13#10;
   FBtnMainCaption[7] := '25 HZ' + #13#10 ;
   FBtnMainCaption[8] := 'IR On'  + #13#10;
-  FBtnMainCaption[9] := 'Air'  + #13#10;
+  FBtnMainCaption[9] := 'Surface'  + #13#10;
   FBtnMainCaption[10] := 'Diagnosis'    + #13#10 ;
   FBtnMainCaption[11] := 'TV Black' + #13#10 ;
   FBtnMainCaption[12] := 'IR Black'  + #13#10;
@@ -707,7 +707,7 @@ begin
   FBtnMainCaption[20] := 'TV NFOV'  + #13#10 ;
   FBtnMainCaption[21] := 'IR WFOV'  + #13#10 ;
   FBtnMainCaption[22] := 'Centroid'  + #13#10 ;
-  FBtnMainCaption[23] := 'Automatic'  + #13#10 ;
+  FBtnMainCaption[23] := 'Manual'  + #13#10 ;
 
 //  for i := 9 to Length(FBtnArray)-1 do
 //  begin

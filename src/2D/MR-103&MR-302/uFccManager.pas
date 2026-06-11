@@ -34,6 +34,7 @@ type
     FEnv_Map: Integer;
     FLaserRange, FEOBearing, FEOElevation : Double;
 
+    FTarget2D: Word;
     FPtkServer: TListener;
     FPtkHandler : TPtkReceiver;
     FOnPtkCommand: TGetStrProc;
@@ -58,6 +59,7 @@ type
     //send to network
     procedure NetSendTo3D_OrderCannon(rec : TRec3DSetWCC);
     procedure NetSendTo3D_OrderCameraControl(rec : TRec_CameraController);
+    procedure NetSendTo3D_FCCSet(rec : TrecData_MeriamFCC);
 
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
@@ -79,6 +81,7 @@ type
     property ClassID        : Integer read FClassID write FClassID;
     property AssignedWeapon : TWeaponGetList read FAssignedWeapon;
 
+    property Target2D: Word read FTarget2D;
     property Env_Map: Integer read FEnv_Map write FEnv_Map;
     property ShipClassID: Integer read FShipClassID write FShipClassID;
     property ShipNumber: Integer read FShipNumber write FShipNumber;
@@ -159,6 +162,8 @@ begin
   FPtkHandler := TPtkReceiver.Create;
   FPtkServer.OnNetReceive := FPtkHandler.NetPdkReceive;
   FPtkServer.Startup;
+
+  FTarget2D := 0;
 end;
 
 destructor TFCCManager.Destroy;
@@ -196,32 +201,32 @@ begin
   AddToMemoLog(' _pos: ' + dbID_to_UniqueID(aRec.ShipID) + ' ' + Format('%2.6f, %2.6f',[aRec.X, aRec.Y]));
 
   if aRec.ShipID = UniqueID_To_dbID(FxShip.UniqueID) then begin
-      FxShip.PositionX := aRec.X;
-      FxShip.PositionY := aRec.Y;
-      FxShip.PositionZ := aRec.Z;
+    FxShip.PositionX := aRec.X;
+    FxShip.PositionY := aRec.Y;
+    FxShip.PositionZ := aRec.Z;
 
-      FxShip.Speed    := aRec.speed;
-      FxShip.Heading  := aRec.heading;
+    FxShip.Speed    := aRec.speed;
+    FxShip.Heading  := aRec.heading;
 
 
-      V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
+    V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
 
-      if not Assigned(v) then
-      begin
-        V := VehicleMgr.AddVehicle(FxShip.PositionX, FxShip.PositionY, '');
-      //  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
-        V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
-        v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
-        V.SetSpeedKts(FxShip.Speed);
-        V.HeadingDeg := FxShip.Heading; // NE
-      end
+    if not Assigned(v) then
+    begin
+      V := VehicleMgr.AddVehicle(FxShip.PositionX, FxShip.PositionY, '');
+    //  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
+      V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+      v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
+      V.SetSpeedKts(FxShip.Speed);
+      V.HeadingDeg := FxShip.Heading; // NE
+    end
 
-      else // rojek add biar titik kapal tetap di tengah map
-      begin
-        v.PosX := FxShip.PositionX;
-        v.PosY := FxShip.PositionY;
-        v.PosZ := FxShip.PositionZ;
-      end;
+    else // rojek add biar titik kapal tetap di tengah map
+    begin
+      v.PosX := FxShip.PositionX;
+      v.PosY := FxShip.PositionY;
+      v.PosZ := FxShip.PositionZ;
+    end;
   end
   else begin
     sc := MainObjList.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
@@ -273,10 +278,10 @@ begin
           begin
             V.Symbol.LoadBitmapFromFile('..\data\Bitmap\AirUnknown.bmp');
           end;
-          3://subsurface
-          begin
-            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SubsurfaceUnknown.bmp');
-          end;
+//          3://subsurface
+//          begin
+//            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SubsurfaceUnknown.bmp');
+//          end;
         end;
 
         V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
@@ -301,17 +306,17 @@ begin
 
       CORD_ID_3DGet_Target :
       begin
-
+        FTarget2D := arec.IDTarget2D;
       end;
 
       CORD_ID_2DGet_Target :
       begin
-
+        FTarget2D := arec.IDTarget2D;
       end;
 
-      CORD_ID_3DUpdate_Status :
+      CORD_ID_TargetType :
       begin
-
+//        FTargetType := TTargetType(aRec.TargetType);
       end;
 
       CORD_ID_2DSet_Status :
@@ -448,6 +453,12 @@ begin
 
   if not IsStandAlone then
     Net_Connect;
+end;
+
+procedure TFCCManager.NetSendTo3D_FCCSet(rec: TrecData_MeriamFCC);
+begin
+  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+      TCPClient.sendDataEx(REC_CMD_FCC57, @Rec); // only send to 3D and FCC 2
 end;
 
 procedure TFCCManager.NetSendTo3D_OrderCameraControl(rec: TRec_CameraController);

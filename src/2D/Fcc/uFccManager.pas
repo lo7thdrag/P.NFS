@@ -10,6 +10,7 @@ uses
   uVehicle, System.Math, uPtkServer, uPtkReceiver, OverbyteIcsWSocket;
 
 type
+  TOperatingMode = (omWait, omInd, omAutonomous, omDAttack, omVFire);
   TFCCManager = class(TSimulationManager)
   private
     FIsStandAlone: boolean;
@@ -33,11 +34,13 @@ type
     FShipClassName: string;
     FEnv_Map: Integer;
     FLaserRange, FEOBearing, FEOElevation : Double;
+    FOperating_Mode: TOperatingMode;
 
     FPtkServer: TListener;
     FPtkHandler : TPtkReceiver;
     FOnPtkCommand: TGetStrProc;
     FSelectedVehicle: TVehicle;
+    FTarget2D: Word;
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
@@ -56,6 +59,7 @@ type
 
     //send to network
     procedure NetSendTo3D_OrderCannon(rec : TRec3DSetWCC);
+    procedure NetSendTo3D_FCCSet(rec : TrecData_MeriamFCC);
 
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
@@ -77,6 +81,8 @@ type
     property ClassID        : Integer read FClassID write FClassID;
     property AssignedWeapon : TWeaponGetList read FAssignedWeapon;
 
+    property Target2D: Word read FTarget2D;
+    property Operating_Mode: TOperatingMode read FOperating_Mode write FOperating_Mode;
     property Env_Map: Integer read FEnv_Map write FEnv_Map;
     property ShipClassID: Integer read FShipClassID write FShipClassID;
     property ShipNumber: Integer read FShipNumber write FShipNumber;
@@ -272,10 +278,6 @@ begin
           begin
             V.Symbol.LoadBitmapFromFile('..\data\Bitmap\AirUnknown.bmp');
           end;
-          3://subsurface
-          begin
-            V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SubsurfaceUnknown.bmp');
-          end;
         end;
 
         V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
@@ -299,17 +301,17 @@ begin
         FEOElevation := aRec.EOElevation;
       end;
 
-      CORD_ID_3DGet_Target :
+      CORD_ID_3DGet_Target : // dapet target dari 3d
       begin
-
+        FTarget2D := arec.IDTarget2D;
       end;
 
       CORD_ID_2DGet_Target :
       begin
-
+        FTarget2D := arec.IDTarget2D;
       end;
 
-      CORD_ID_3DUpdate_Status :
+      CORD_ID_TargetType :
       begin
 
       end;
@@ -317,6 +319,11 @@ begin
       CORD_ID_2DSet_Status :
       begin
 
+      end;
+
+      CORD_ID_OperatingMode :
+      begin
+        FOperating_Mode := TOperatingMode(aRec.TargetType);
       end;
     end;
   end;
@@ -430,6 +437,24 @@ procedure TFCCManager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
       TCPClient.sendDataEx(C_REC_CANNON, @Rec);
+end;
+
+procedure TFCCManager.NetSendTo3D_FCCSet(rec: TrecData_MeriamFCC);
+begin
+  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+  begin
+    case vFccSetting.FccMode of
+      1 : //FCC1 Mode
+      begin
+        TCPClient.sendDataEx(REC_CMD_TYPE730, @Rec);
+      end;
+      2 : //FCC2 Mode
+      begin
+        TCPClient.sendDataEx(REC_CMD_FCC57, @Rec);
+      end;
+    end;
+  end;
+
 end;
 
 end.

@@ -84,6 +84,7 @@ interface
     function CalcRange(const x1, y1, x2, y2: double):Double;
     function CalcBearing(const x1, y1, x2, y2: double):Double;
     function CalcElevation(const r, z1, z2: double): double;
+    function CalcTurretElevation(const rangem, gunMaxRange:double): Double;
 
 
     procedure InitOleVariant(var TheVar:OleVariant);
@@ -600,7 +601,12 @@ end;
   begin
    { input apapun asal sama } //untested;
    { return positif if z2 > z1 }
-    result := C_RadToDeg * ArcTan2(z2-z1, r );
+    result := C_RadToDeg * ArcTan2(z2-z1, r );  { ini perhitungan direct elevation, tidak untuk digunakan pada perhitungan meriam }
+  end;
+
+  function CalcTurretElevation(const rangem, gunMaxRange:double): double;
+  begin
+    result := Power(rangem/gunMaxRange, Exp(1.0)) * 45;
   end;
 
   procedure InitOleVariant(var TheVar:OleVariant);
