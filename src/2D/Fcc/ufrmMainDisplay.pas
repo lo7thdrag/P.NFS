@@ -1349,8 +1349,8 @@ begin
     RecSend.EnableValue := false;
 
     RecSend.OrderID := CORD_ID_2DGet_Target;
-    RecSend.IDTarget3D := v.ShipID;
-    RecSend.IDTarget2D := v.ShipID;
+    RecSend.IDTarget3D := UniqueID_To_dbID(v.UniqueID);
+    RecSend.IDTarget2D := UniqueID_To_dbID(v.UniqueID);
 
     FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
 
