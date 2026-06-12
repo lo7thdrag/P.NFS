@@ -224,19 +224,19 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Font.Style = []
           ParentFont = False
         end
-        object pbHomingStatusPlot: TPaintBox
+        object pbTgtLostSub: TPaintBox
           Left = 408
           Top = 120
           Width = 81
           Height = 41
-          OnPaint = pbHomingStatusPlotPaint
+          OnPaint = pbTgtLostSubPaint
         end
         object pbWakeLost: TPaintBox
           Left = 312
           Top = 208
           Width = 81
           Height = 41
-          OnPaint = pbHomingStatusPlotPaint
+          OnPaint = pbWakeLostPaint
         end
         object Label3: TLabel
           Left = 408
@@ -276,7 +276,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Top = 176
           Width = 177
           Height = 73
-          OnPaint = pbHomingStatusPlotPaint
+          OnPaint = pbLongRangePaint
         end
       end
       object TabToSoCoverage: TAdvSmoothTabPage

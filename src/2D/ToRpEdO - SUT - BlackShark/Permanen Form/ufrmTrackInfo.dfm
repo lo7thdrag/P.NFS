@@ -341,7 +341,7 @@ object frmTrackInfo: TfrmTrackInfo
       Fill.GlowGradientColor = -1
       Fill.GlowRadialColor = -1
       Transparent = False
-      ActivePage = TabKinem
+      ActivePage = TabGen
       TabTextOrientation = toHorizontal
       TabSettings.LeftMargin = 0
       TabSettings.RightMargin = 0

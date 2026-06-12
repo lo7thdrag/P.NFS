@@ -23,7 +23,7 @@ type
     lblToSotargetacquiredclose: TLabel;
     lblCloseInSub: TLabel;
     pbToSoCoveragePlot: TPaintBox;
-    pbHomingStatusPlot: TPaintBox;
+    pbTgtLostSub: TPaintBox;
     pbWakeLost: TPaintBox;
     Label3: TLabel;
     pbWakeAttack: TPaintBox;
@@ -31,18 +31,19 @@ type
     pbLongRange: TPaintBox;
     procedure FormCreate(Sender: TObject);
     procedure pbToSoCoveragePlotPaint(Sender: TObject);
-    procedure pbHomingStatusPlotPaint(Sender: TObject);
+    procedure pbTgtLostSubPaint(Sender: TObject);
     procedure pbWakeAttackPaint(Sender: TObject);
+    procedure pbWakeLostPaint(Sender: TObject);
+    procedure pbLongRangePaint(Sender: TObject);
   private
+
+  public
     function WorldToScreenX(X: Double): Integer;
     function WorldToScreenY(Y: Double): Integer;
 
-    procedure DrawGrid(C: TCanvas);
-    procedure DrawAxis(C: TCanvas);
     procedure DrawTarget(C: TCanvas; X, Y: Double);
     procedure DrawTorpedo(C: TCanvas; X, Y: Double);
-  public
-    { Public declarations }
+    procedure DrawGraphHoming;
   end;
 
 var
@@ -59,72 +60,32 @@ const
   YMin = -35;
   YMax =  35;
 
-procedure TfrmHomingStatusPlot.DrawAxis(C: TCanvas);
+function TfrmHomingStatusPlot.WorldToScreenX(X: Double): Integer;
+const
+  GraphLeft   = 30;
+  RightMargin = 50;
+
 var
-  CX,CY : Integer;
-  I : Integer;
-  X,Y : Integer;
+  GraphWidth : Integer;
 begin
-  CX := WorldToScreenX(0);
-  CY := WorldToScreenY(0);
-
-  C.Pen.Color := clWhite;
-  C.Pen.Width := 1;
-
-  C.MoveTo(0,CY);
-  C.LineTo(pbToSoCoveragePlot.Width,CY);
-
-  C.MoveTo(CX,0);
-  C.LineTo(CX,pbToSoCoveragePlot.Height);
-
-  C.Font.Color := clWhite;
-
-  for I := -45 to 45 do
-  begin
-    if (I <> 0) and (I mod 15 = 0) then
-    begin
-      X := WorldToScreenX(I);
-
-      C.MoveTo(X,CY);
-      C.LineTo(X,CY+5);
-
-      C.TextOut(X-10,CY+8,IntToStr(I));
-    end;
-  end;
-
-  for I := -30 to 30 do
-  begin
-    if (I <> 0) and (I mod 15 = 0) then
-    begin
-      Y := WorldToScreenY(I);
-
-      C.MoveTo(CX-5,Y);
-      C.LineTo(CX,Y);
-
-      C.TextOut(5,Y-8,IntToStr(I));
-    end;
-  end;
-
+  GraphWidth := pbToSoCoveragePlot.ClientWidth - GraphLeft - RightMargin;
+  Result     := GraphLeft + Round((X - XMin) / (XMax - XMin) * GraphWidth);
 end;
 
-procedure TfrmHomingStatusPlot.DrawGrid(C: TCanvas);
+function TfrmHomingStatusPlot.WorldToScreenY(Y: Double): Integer;
+const
+  GraphTop     = 5;
+  BottomMargin = 25;
 var
-  I : Integer;
-  X : Integer;
-  Y : Integer;
+  GraphHeight : Integer;
 begin
-  C.Pen.Color := $202020;
+  GraphHeight := pbToSoCoveragePlot.ClientHeight - GraphTop - BottomMargin;
+  Result      := GraphTop + GraphHeight - Round((Y - YMin) / (YMax - YMin) * GraphHeight);
+end;
 
-  for I := -45 to 45 do
-  begin
-    if I mod 15 = 0 then
-    begin
-      X := WorldToScreenX(I);
-
-      C.MoveTo(X,0);
-      C.LineTo(X,pbToSoCoveragePlot.Height);
-    end;
-  end;
+procedure TfrmHomingStatusPlot.FormCreate(Sender: TObject);
+begin
+  DoubleBuffered := True;
 end;
 
 procedure TfrmHomingStatusPlot.DrawTarget(C: TCanvas; X, Y: Double);
@@ -135,7 +96,7 @@ begin
   SY := WorldToScreenY(Y);
 
   C.Pen.Color := clYellow;
-  C.Pen.Width := 3;
+  C.Pen.Width := 2;
 
   C.MoveTo(SX-10,SY);
   C.LineTo(SX+10,SY);
@@ -152,96 +113,176 @@ begin
   SY := WorldToScreenY(Y);
 
   C.Pen.Color := clLime;
-  C.Pen.Width := 3;
+  C.Pen.Width := 2;
 
   C.MoveTo(SX,SY-15);
   C.LineTo(SX,SY+15);
 end;
 
-procedure TfrmHomingStatusPlot.FormCreate(Sender: TObject);
+procedure TfrmHomingStatusPlot.pbLongRangePaint(Sender: TObject);
 begin
-  DoubleBuffered := True;
-end;
-
-procedure TfrmHomingStatusPlot.pbHomingStatusPlotPaint(Sender: TObject);
-begin
-  with pbHomingStatusPlot.Canvas do
+  with pbLongRange.Canvas do
   begin
     Brush.Color := clBlack;
-    FillRect(pbHomingStatusPlot.ClientRect);
+    FillRect(pbLongRange.ClientRect);
 
-    // Tgt Lost Sub
-    Font.Color := clYellow;
-    Font.Size := 10;
-    TextOut(150,20,'Tgt Lost Sub');
-
-    Pen.Color := clYellow;
+    // Left circle
+    Pen.Color := clLime;
     Pen.Width := 2;
     Brush.Style := bsClear;
-    Ellipse(420,50,470,100);
+    Ellipse(4, 4, 40, 40);
 
-    // Long Range Attack
-    Font.Color := clLime;
-    TextOut(20,130,'Long Range Attack');
+    // Lines
+    MoveTo(40, 22);
+    LineTo(135, 38);
 
-    Pen.Color := clLime;
-    Ellipse(80,180,130,230);
-
-    // Garis
-    MoveTo(130,205);
-    LineTo(260,250);
-
-    // Close-In Sub
+    //Right Circle
     Brush.Style := bsSolid;
     Brush.Color := clLime;
-    Ellipse(260,220,320,280);
+    Pen.Color   := clGreen;
+    Ellipse(117, 20, 153, 56);
+  end;
+end;
 
+procedure TfrmHomingStatusPlot.pbTgtLostSubPaint(Sender: TObject);
+var
+  Diameter : Integer;
+  X, Y     : Integer;
+begin
+  Diameter := 41;
+
+  X := (pbTgtLostSub.Width - Diameter) div 2;
+  Y := (pbTgtLostSub.Height - Diameter) div 2;
+
+  with pbTgtLostSub.Canvas do
+  begin
+    Pen.Width := 2;
     Brush.Style := bsClear;
-    TextOut(330,240,'Close-In Sub');
+
+    Ellipse(X, Y, X + Diameter, Y + Diameter);
+    pbTgtLostSub.Canvas.Pen.Color := clLime;
+    pbTgtLostSub.Canvas.Ellipse(20, 0, 61, 41);
+  end;
+end;
+
+procedure TfrmHomingStatusPlot.DrawGraphHoming;
+const
+  GraphLeft    = 30;
+  GraphTop     = 5;
+  RightMargin  = 50;
+  BottomMargin = 25;
+
+  XLabels : array[0..6] of string   = ('-45','-30','-15','0','15','30','45');
+  XPos    : array[0..6] of Integer  = (50,100,150,200,250,300,350);
+
+  YLabels : array[0..4] of string  = ('30','15','0','-15','');
+  YPos    : array[0..4] of Integer  = (30,70,110,150,190);
+
+var
+  i : Integer;
+
+  GraphWidth  : Integer;
+  GraphHeight : Integer;
+begin
+  GraphWidth  := pbToSoCoveragePlot.ClientWidth  - GraphLeft - RightMargin;
+  GraphHeight := pbToSoCoveragePlot.ClientHeight - GraphTop  - BottomMargin;
+
+  with pbToSoCoveragePlot.Canvas do
+  begin
+    Brush.Color := clBlack;
+    FillRect(pbToSoCoveragePlot.ClientRect);
+
+    Font.Color := clSilver;
+    Font.Size  := 7;
+
+    Pen.Color := clSilver;
+    Pen.Width := 1;
+
+    MoveTo(GraphLeft, GraphTop);
+    LineTo(GraphLeft, GraphTop + GraphHeight);
+
+    MoveTo(GraphLeft, GraphTop + GraphHeight);
+    LineTo(GraphLeft + GraphWidth, GraphTop + GraphHeight);
+
+    for I := Low(XLabels) to High(XLabels) do
+    begin
+      MoveTo(GraphLeft + XPos[I], GraphTop + GraphHeight - 3);
+      LineTo(GraphLeft + XPos[I], GraphTop + GraphHeight + 3);
+      TextOut(GraphLeft + XPos[I] - 5, GraphTop + GraphHeight + 8, XLabels[I]);
+    end;
+
+    for I := Low(YLabels) to High(YLabels) do
+    begin
+      MoveTo(GraphLeft - 5, GraphTop + YPos[I]);
+      LineTo(GraphLeft + 2, GraphTop + YPos[I]);
+      TextOut(2, GraphTop + YPos[I] - 6, YLabels[I]);
+    end;
+
+    {Lines}
+    Pen.Color := clGray;
+    Pen.Width := 1;
+
+    { Vertical Line}
+    MoveTo(WorldToScreenX(0), GraphTop);
+    LineTo(WorldToScreenX(0), GraphTop + GraphHeight);
+
+    { Horizontal Line}
+    MoveTo(GraphLeft, WorldToScreenY(0));
+    LineTo(GraphLeft + GraphWidth, WorldToScreenY(0));
+
+    { Target }
+    DrawTarget(pbToSoCoveragePlot.Canvas,-7,0);
+
+    { Torpedo }
+    DrawTorpedo(pbToSoCoveragePlot.Canvas,-5,0);
   end;
 end;
 
 procedure TfrmHomingStatusPlot.pbToSoCoveragePlotPaint(Sender: TObject);
 begin
-  pbToSoCoveragePlot.Canvas.Brush.Color := clBlack;
-  pbToSoCoveragePlot.Canvas.FillRect(pbToSoCoveragePlot.ClientRect);
-
-  DrawGrid(pbToSoCoveragePlot.Canvas);
-  DrawAxis(pbToSoCoveragePlot.Canvas);
-
-  { Target }
-  DrawTarget(pbToSoCoveragePlot.Canvas,-7,0);
-
-  { Torpedo }
-  DrawTorpedo(pbToSoCoveragePlot.Canvas,-5,0);
+  DrawGraphHoming;
 end;
 
 procedure TfrmHomingStatusPlot.pbWakeAttackPaint(Sender: TObject);
 var
-  cx, cy, r : Integer;
+  Diameter : Integer;
+  X, Y     : Integer;
 begin
-  pbWakeAttack.Canvas.Brush.Color := clBlack;
-  pbWakeAttack.Canvas.FillRect(pbWakeAttack.ClientRect);
+  Diameter := 41;
 
-  cx := pbWakeAttack.Width div 2;
-  cy := pbWakeAttack.Height div 2;
-  r  := 80;
+  X := (pbWakeAttack.Width - Diameter) div 2;
+  Y := (pbWakeAttack.Height - Diameter) div 2;
 
-  pbWakeAttack.Canvas.Brush.Color := clLime;
-  pbWakeAttack.Canvas.pen.Color   := clWhite;
-  pbWakeAttack.Canvas.Pen.Width   := 3;
+  with pbWakeAttack.Canvas do
+  begin
+    Pen.Width := 2;
+    Brush.Style := bsClear;
 
-  pbWakeAttack.Canvas.Ellipse(cx - r, cy - r, cx + r, cy + r);
+    Ellipse(X, Y, X + Diameter, Y + Diameter);
+    pbWakeAttack.Canvas.Pen.Color := clLime;
+    pbWakeAttack.Canvas.Ellipse(20, 0, 61, 41);
+  end;
 end;
 
-function TfrmHomingStatusPlot.WorldToScreenX(X: Double): Integer;
+procedure TfrmHomingStatusPlot.pbWakeLostPaint(Sender: TObject);
+var
+  Diameter : Integer;
+  X, Y     : Integer;
 begin
-  Result := Round((X - XMin) / (XMax - XMin) * pbToSoCoveragePlot.Width);
-end;
+  Diameter := 41;
 
-function TfrmHomingStatusPlot.WorldToScreenY(Y: Double): Integer;
-begin
-  Result := Round(pbToSoCoveragePlot.Height - ((Y - YMin) / (YMax - YMin) * pbToSoCoveragePlot.Height));
+  X := (pbWakeLost.Width - Diameter) div 2;
+  Y := (pbWakeLost.Height - Diameter) div 2;
+
+  with pbWakeLost.Canvas do
+  begin
+    Pen.Width := 2;
+    Brush.Style := bsClear;
+
+    Ellipse(X, Y, X + Diameter, Y + Diameter);
+    pbWakeLost.Canvas.Pen.Color := clLime;
+    pbWakeLost.Canvas.Ellipse(20, 0, 61, 41);
+  end;
 end;
 
 end.

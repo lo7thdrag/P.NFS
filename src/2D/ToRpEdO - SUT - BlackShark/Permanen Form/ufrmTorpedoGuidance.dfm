@@ -71,7 +71,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       Fill.GlowGradientColor = -1
       Fill.GlowRadialColor = -1
       Transparent = False
-      ActivePage = TabSpecialSettings
+      ActivePage = TabTorpedoControl
       TabTextOrientation = toHorizontal
       TabSettings.LeftMargin = 0
       TabSettings.RightMargin = 0
@@ -240,7 +240,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
         object lblSurftoSubmode: TLabel
           Left = 13
           Top = 10
-          Width = 108
+          Width = 101
           Height = 16
           Caption = 'Surf. to Submode'
           Font.Charset = DEFAULT_CHARSET
