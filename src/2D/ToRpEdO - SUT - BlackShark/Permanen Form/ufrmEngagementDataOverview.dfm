@@ -4,7 +4,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
   BorderIcons = []
   BorderStyle = bsNone
   ClientHeight = 70
-  ClientWidth = 883
+  ClientWidth = 867
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,7 +15,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
-    Left = 0
+    Left = -16
     Top = 0
     Width = 977
     Height = 121
@@ -38,7 +38,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
     object lblTimeBBRF: TLabel
       Left = 800
       Top = 41
-      Width = 44
+      Width = 32
       Height = 16
       Caption = '00.00'
       Font.Charset = DEFAULT_CHARSET
@@ -229,6 +229,13 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+    end
+    object pbTrackBar: TPaintBox
+      Left = 24
+      Top = 8
+      Width = 289
+      Height = 57
+      OnPaint = pbTrackBarPaint
     end
     object rbBBRFSolution: TRadioGroup
       Left = 691

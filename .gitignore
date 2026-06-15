@@ -20,37 +20,4 @@ bin/2D/bin/SystemServer.exe
 bin/2D/bin/SystemServer.log
 bin/2D/bin/debug.log
 bin/2D/bin/runtimes/win-x64/native/libcef.dll
-src/2D/ToRpEdO - SUT - BlackShark/ufrmControlByNumber.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmCreateModifyTrack.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmCreateModifyTrack.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmHomingCommands.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmHomingCommands.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmHomingStatusPlot.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmHomingStatusPlot.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmSensorTrackList.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmSensorTrackList.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTackHistory.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTackHistory.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoContactList.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoContactList.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoGuidance.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoGuidance.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoTubeCommands.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoTubeCommands.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoTubeStatusWindow.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoTubeStatusWindow.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoVerticalView.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTorpedoVerticalView.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTrackFilter.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTrackFilter.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTrackHistory.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTrackHistory.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTrackInfo.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTrackInfo.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTrackingList.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmTrackingList.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmWakeList.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmWakeList.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmControlByNumber.dfm
-src/2D/ToRpEdO - SUT - BlackShark/ufrmWakeList.pas
-src/2D/ToRpEdO - SUT - BlackShark/ufrmWakeList.pas
+

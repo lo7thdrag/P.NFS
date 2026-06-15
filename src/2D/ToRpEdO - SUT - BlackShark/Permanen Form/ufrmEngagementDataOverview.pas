@@ -27,6 +27,8 @@ type
     lblDistanceLength: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    pbTrackBar: TPaintBox;
+    procedure pbTrackBarPaint(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,5 +41,93 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmEngagementDataOverview.pbTrackBarPaint(Sender: TObject);
+const
+  GraphLeft    = 30;
+  GraphTop     = 2;
+  RightMargin  = 25;
+  BottomMargin = 13;
+
+  XLabels : array[0..14] of string   = ('0','','','','','5','','','','','10','','','','min');
+  XPos    : array[0..14] of Integer  = (10,25,40,55,70,85,100,115,130,145,160,175,190,205,220);
+var
+  i : Integer;
+
+  GraphWidth  : Integer;
+  GraphHeight : Integer;
+begin
+  GraphWidth  := pbTrackBar.ClientWidth  - GraphLeft - RightMargin;
+  GraphHeight := pbTrackBar.ClientHeight - GraphTop  - BottomMargin;
+
+  with pbTrackBar.Canvas do
+  begin
+    Brush.Color := clBlack;
+    FillRect(pbTrackBar.ClientRect);
+
+    Font.Color := clSilver;
+    Font.Size  := 7;
+
+    Pen.Color := clSilver;
+    Pen.Width := 1;
+
+    MoveTo(GraphLeft, GraphTop + GraphHeight);
+    LineTo(GraphLeft + GraphWidth, GraphTop + GraphHeight);
+
+    for I := Low(XLabels) to High(XLabels) do
+    begin
+      MoveTo(GraphLeft + XPos[I], GraphTop + GraphHeight - 3);
+      LineTo(GraphLeft + XPos[I], GraphTop + GraphHeight + 3);
+      TextOut(GraphLeft + XPos[I] - 2, GraphTop + GraphHeight + 2, XLabels[I]);
+    end;
+
+    {$REGION 'Bar Top'}
+    Brush.Color := clYellow;
+    FillRect(Rect(100, 3, 230, 15));
+
+    Brush.Color := clRed;
+    FillRect(Rect(231, 3, 245, 15));
+
+    Brush.Color := clGray;
+    FillRect(Rect(40, 3, 100, 15));
+
+    //Yellow Bar
+    MoveTo(20, 55);
+    LineTo(20, 62);
+
+    //Red Bar
+    MoveTo(250, 55);
+    LineTo(250, 62);
+
+    //Gray Bar
+    MoveTo(5, 55);
+    LineTo(100, 62);
+
+    {$ENDREGION}
+
+    {$REGION 'Bar Bottom'}
+    Brush.Color := clLime;
+    FillRect(Rect(80, 20, 235, 30));
+
+    Brush.Color := clRed;
+    FillRect(Rect(236, 20, 260, 30));
+
+    Brush.Color := clGray;
+    FillRect(Rect(40, 20, 80, 30));
+
+    //Lime Bar
+    MoveTo(480, 55);
+    LineTo(480, 62);
+
+    //Red Bar
+    MoveTo(480, 55);
+    LineTo(480, 62);
+
+    //Gray Bar
+    MoveTo(480, 55);
+    LineTo(480, 62);
+    {$ENDREGION}
+  end;
+end;
 
 end.
