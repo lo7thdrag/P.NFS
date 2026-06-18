@@ -12,6 +12,7 @@ uses
 type
   TOperatingMode = (omWait, omInd, omAutonomous, omDAttack, omVFire);
   TTargetType = (ttSurface, ttAir, ttShore, ttLowAir);
+  TTrackMode = (TMSearch, TMCatch, TMTrack);
   TFCCManager = class(TSimulationManager)
   private
     FIsStandAlone: boolean;
@@ -42,6 +43,7 @@ type
     FSelectedVehicle: TVehicle;
     FTarget2D: Word;
     FTargetType: TTargetType;
+    FTrackMode : TTrackMode;
 
     FLaserRange, FEOBearing, FEOElevation : Double;
   protected
@@ -86,6 +88,7 @@ type
     property ClassID        : Integer read FClassID write FClassID;
     property AssignedWeapon : TWeaponGetList read FAssignedWeapon;
 
+    property TrackMode: TTrackMode read FTrackMode write FTrackMode;
     property TargetType: TTargetType read FTargetType;
     property Target2D: Word read FTarget2D;
     property Operating_Mode: TOperatingMode read FOperating_Mode write FOperating_Mode;
@@ -165,12 +168,15 @@ begin
   FIsStandAlone := False;
   FIsTrueMotion := False;
 
+  FTrackMode := TMSearch;
+  FTargetType := ttSurface;
+  FTarget2D := 0;
+  FOperating_Mode := omWait;
+
   FPtkServer := TListener.Create;
   FPtkHandler := TPtkReceiver.Create;
   FPtkServer.OnNetReceive := FPtkHandler.NetPdkReceive;
   FPtkServer.Startup;
-
-  FTarget2D := 0;
 end;
 
 destructor TFCCManager.Destroy;
@@ -324,6 +330,11 @@ begin
       CORD_ID_OperatingMode : // set operating mode
       begin
         FOperating_Mode := TOperatingMode(aRec.TargetType);
+      end;
+
+      CORD_ID_TrackerMode : // set operating mode
+      begin
+        FTrackMode := TTrackMode(aRec.TargetType);
       end;
     end;
   end;

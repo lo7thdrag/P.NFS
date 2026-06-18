@@ -37,6 +37,7 @@ type
     FLaserRange, FEOBearing, FEOElevation : Double;
     FOperating_Mode: TOperatingMode;
     FTargetType: TTargetType;
+    FShowedVehicle : Word;
 
     FPtkServer: TListener;
     FPtkHandler : TPtkReceiver;
@@ -225,6 +226,7 @@ begin
       v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
       V.SetSpeedKts(FxShip.Speed);
       V.HeadingDeg := FxShip.Heading; // NE
+      v.isVisible := True;
     end
 
     else // rojek add biar titik kapal ada di tengah map
@@ -271,9 +273,10 @@ begin
 
       if (vdomain = 1) or (vdomain = 2) then
       begin
-        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, obj.UniqueID);
+        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, '');
         V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
         v.Domain := vdomain;
+        v.isVisible := False;
         // pakai bitmap tint: hitam -> kuning
         case v.Domain of
           1://surface
@@ -295,6 +298,8 @@ end;
 procedure TFCCManager.EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
 var
   aRec: ^TrecData_MeriamFCC;
+  V: TVehicle;
+  i: Integer;
 begin
   aRec := @apRec^;
   if FCCManager.FShipID = arec^.ShipID then
@@ -314,6 +319,9 @@ begin
       CORD_ID_2DGet_Target :
       begin
         FTarget2D := arec.IDTarget2D;
+        V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.IDTarget2D));
+        V.isVisible := True;
+        FShowedVehicle := arec.IDTarget2D;
       end;
 
       CORD_ID_TargetType :
@@ -329,6 +337,11 @@ begin
       CORD_ID_OperatingMode : // set operating mode
       begin
         FOperating_Mode := TOperatingMode(aRec.TargetType);
+        if (FOperating_Mode <> omInd) and (FShowedVehicle <> 0) then
+        begin
+          V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FShowedVehicle));
+          V.isVisible := False;
+        end;
       end;
     end;
   end;

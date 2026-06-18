@@ -17,6 +17,7 @@ type
     FSpeed_mps          : Double;   // m/s
     FHeadingDeg         : Double;   // 0=N, cw
     FRollDeg            : Double;   // opsional
+    FisVisible          : Boolean;
 
     FCoordType          : TVehicleCoordType;
 
@@ -39,6 +40,7 @@ type
     property Speed_mps : Double read FSpeed_mps write FSpeed_mps;
     property HeadingDeg: Double read FHeadingDeg write FHeadingDeg;
     property RollDeg   : Double read FRollDeg write FRollDeg;
+    property isVisible : Boolean read FisVisible write FisVisible;
     property CoordType : TVehicleCoordType read FCoordType write FCoordType;
 
     // simbol di peta

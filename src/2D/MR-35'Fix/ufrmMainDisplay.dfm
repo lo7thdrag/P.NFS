@@ -473,7 +473,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100005043232A01000000BC1A00761C000000000000000000000000
+          01000118010000B06C610F010000000C92D8771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -482,15 +482,15 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100005043232A01000000FCE097001C00000000000000000000000000000000
+          010000B06C610F01000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000D8E197002800000028
-          E597002804000014E29700951512760400000000010000000000000000000000
+          0000000000000000000000000000000000000000000000E8E197007D8B73771F
+          00000000000000608B7377280D9C0465AE0CC428E29700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -526,6 +526,7 @@ object frmMainFCC: TfrmMainFCC
         Height = 476
         Cursor = crDefault
         Align = alBottom
+        Color = clBlack
         ColCount = 3
         DrawingStyle = gdsClassic
         FixedColor = clRed
@@ -1119,10 +1120,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabRev: TAdvTabSheet
         Caption = 'Rev'
@@ -1130,10 +1127,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabServo: TAdvTabSheet
         Caption = 'Servo'
@@ -1141,10 +1134,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabCon: TAdvTabSheet
         Caption = 'Con'
@@ -1152,10 +1141,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabTVLS: TAdvTabSheet
         Caption = 'TV-LS'
@@ -1163,10 +1148,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
     end
   end
@@ -1402,10 +1383,6 @@ object frmMainFCC: TfrmMainFCC
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lblIDTargetIND: TLabel
             Left = 3
             Top = 13
@@ -1532,10 +1509,6 @@ object frmMainFCC: TfrmMainFCC
           ParentFont = False
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
     end
@@ -1954,7 +1927,7 @@ object frmMainFCC: TfrmMainFCC
     ParentFont = False
     TabOrder = 5
   end
-  object pnlLaser: TPanel
+  object pnlAScope: TPanel
     Left = 0
     Top = 525
     Width = 599
@@ -1962,14 +1935,14 @@ object frmMainFCC: TfrmMainFCC
     BevelInner = bvLowered
     ParentBackground = False
     TabOrder = 6
-    object lblKmLaser: TLabel
+    object lblKmAScope: TLabel
       Left = 544
       Top = 116
       Width = 13
       Height = 13
       Caption = 'km'
     end
-    object advRulerLaser: TAdvRangeSlider
+    object advRulerAScope: TAdvRangeSlider
       Left = 0
       Top = 108
       Width = 545
@@ -2076,7 +2049,7 @@ object frmMainFCC: TfrmMainFCC
       TrackLabel.Spacing = 0
       Version = '1.6.10.2'
     end
-    object pnlLaserGraph: TPanel
+    object pnlAScopeGraph: TPanel
       Left = 1
       Top = 0
       Width = 540
@@ -2084,6 +2057,17 @@ object frmMainFCC: TfrmMainFCC
       Color = clBlack
       ParentBackground = False
       TabOrder = 1
+      object pnlRadarBlind: TPanel
+        Left = 2
+        Top = 2
+        Width = 7
+        Height = 101
+        BevelEdges = []
+        BevelOuter = bvNone
+        Color = clLime
+        ParentBackground = False
+        TabOrder = 0
+      end
     end
     object pnl4X: TPanel
       Left = 547
@@ -2123,7 +2107,7 @@ object frmMainFCC: TfrmMainFCC
       BevelInner = bvLowered
       Caption = '1X'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = clGreen
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -2643,11 +2627,17 @@ object frmMainFCC: TfrmMainFCC
     Top = 561
   end
   object NLDJoystick: TNLDJoystick
+    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move
     PollingInterval = -1
     Left = 653
     Top = 645
+  end
+  object tmrUpdateAScope: TTimer
+    OnTimer = tmrUpdateAScopeTimer
+    Left = 728
+    Top = 544
   end
 end

@@ -13,10 +13,11 @@ uses
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
   uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, NLDJoystick, System.IOUtils,
   Grijjy.Bson.Serialization, ShellAPI, DateUtils, AdvTrackBar, AdvPageControl,
-  Vcl.ComCtrls, AdvUtil, Vcl.Grids, AdvObj, BaseGrid, AdvGrid, VrAngularMeter;
+  Vcl.ComCtrls, AdvUtil, Vcl.Grids, AdvObj, BaseGrid, AdvGrid, VrAngularMeter,
+  TFlatButtonUnit;
 
 type
-    TSetting = record
+  TSetting = record
   public
     [BsonElement('Host')]
     Host: string;
@@ -203,6 +204,8 @@ type
     edtReviseBEVal: TEdit;
     dtReviseELVal: TEdit;
     TimerBeEl: TTimer;
+    btnCatchEO: TFlatButton;
+    btnTrackEO: TFlatButton;
     procedure FormCreate(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -230,6 +233,8 @@ type
     procedure NLDJoystick1ButtonUp(Sender: TNLDJoystick;
       const Buttons: TJoyButtons);
     procedure TimerBeElTimer(Sender: TObject);
+    procedure btnCatchEOMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -416,6 +421,65 @@ begin
   end;
 end;
 
+procedure TfrmMainFCC.btnCatchEOMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  RecSendFccSet: TrecData_MeriamFCC;
+begin
+//  FCCManager.TrackMode := TTrackMode(TFlatbutton(sender).Tag);
+  // tombol reset perlu diubah warna dan down = false saat sender 1/2
+  if TFlatbutton(sender).Tag = 1 then
+  begin
+    if TFlatbutton(sender).Down = true then
+    begin // masuk ke mode search
+//      btnCatchEO.Down := False;
+//      btnTrackEO.Down := False;
+      FCCManager.TrackMode := TMSearch;
+      edtWorkStateVal.Text := 'Wait';
+      edtTrackStateVal.Text := 'Search';
+    end
+    else
+    begin
+      FCCManager.TrackMode := TMCatch;
+      edtWorkStateVal.Text := 'Catch';
+      edtTrackStateVal.Text := 'Tracking';
+    end;
+  end
+  else if TFlatbutton(sender).Tag = 2 then
+  begin
+    if TFlatbutton(sender).Down = true then
+    begin
+//      btnCatchEO.Down := False;
+//      btnTrackEO.Down := False;
+      FCCManager.TrackMode := TMSearch;
+      edtWorkStateVal.Text := 'Wait';
+      edtTrackStateVal.Text := 'Search';
+    end
+    else
+    begin
+      FCCManager.TrackMode := TMTrack;
+      edtWorkStateVal.Text := 'Track';
+      edtTrackStateVal.Text := 'Tracking';
+    end;
+  end;
+  // send ke 3d untuk ganti trackmode
+  RecSendFccSet.ShipID := FCCManager.ShipID;
+  RecSendFccSet.Range := 0;
+  RecSendFccSet.Bearing := 0;
+  RecSendFccSet.Elevation := 0;
+  RecSendFccSet.EOBearing := 0;
+  RecSendFccSet.EOElevation := 0;
+  RecSendFccSet.IDTarget3D := 0;
+  RecSendFccSet.IDTarget2D := 0;
+  RecSendFccSet.EnableValue := false;
+
+  RecSendFccSet.OrderID := CORD_ID_TrackerMode;
+  RecSendFccSet.TargetType := Ord(FCCManager.TrackMode);
+
+  FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
+
+end;
+
 procedure TfrmMainFCC.btnMapDecrementClick(Sender: TObject);
 begin
   if self.FIndexRange > 0 then
@@ -454,117 +518,11 @@ begin
   i := FindClosestZoomIndex(z);
   z := ZoomIndexToScale(i);
 
-    // BLIND ZONE
-//    AreaBlindZone1.CenterMode := cmMapPosition;
-//    AreaBlindZone1.MapPosX := FMap.CenterX;
-//    AreaBlindZone1.MapPosY := FMap.CenterY;
-//    AreaBlindZone1.CoordConverter := aCvt;
-//    AreaBlindZone1.ConvertCoord(aCvt);
-//
-//    AreaBlindZone1.OuterRadiusPx := FCircleR;
-//    AreaBlindZone1.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaBlindZone1.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-
-//    AreaBlindZone1.Draw(aCnv);
-//
-//    AreaBlindZone.CenterMode := cmMapPosition;
-//    AreaBlindZone.MapPosX := FMap.CenterX;
-//    AreaBlindZone.MapPosY := FMap.CenterY;
-//    AreaBlindZone.CoordConverter := aCvt;
-//    AreaBlindZone.ConvertCoord(aCvt);
-//
-//    AreaBlindZone.OuterRadiusPx := FCircleR;
-//    AreaBlindZone.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaBlindZone.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaBlindZone.Draw(aCnv);
-
-//    AreaPenembakan.CenterMode     := cmMapPosition;
-//    AreaPenembakan.MapPosX        := FMap.CenterX;
-//    AreaPenembakan.MapPosY        := FMap.CenterY;
-//    AreaPenembakan.CoordConverter := aCvt;
-//
-//    AreaPenembakan.OuterRadiusPx  := FCircleR;
-//    AreaPenembakan.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaPenembakan.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaPenembakan.Draw(aCnv);
-
-//    AreaTracker.CenterMode     := cmMapPosition;
-//    AreaTracker.MapPosX        := FMap.CenterX;
-//    AreaTracker.MapPosY        := FMap.CenterY;
-//    AreaTracker.CoordConverter := aCvt;
-//
-//    AreaTracker.OuterRadiusPx  := FCircleR;
-//    AreaTracker.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaTracker.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaTracker.Draw(aCnv);
-
-//    AreaGunPoint.CenterMode     := cmMapPosition;
-//    AreaGunPoint.MapPosX        := FMap.CenterX;
-//    AreaGunPoint.MapPosY        := FMap.CenterY;
-//    AreaGunPoint.CoordConverter := aCvt;
-//
-//    AreaGunPoint.OuterRadiusPx  := FCircleR;
-//    AreaGunPoint.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaGunPoint.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaGunPoint.Draw(aCnv);
-
-    // --- North Indicator ---
-//    FNorthInd.CenterX       := FCircleCX;
-//    FNorthInd.CenterY       := FCircleCY;
-//    FNorthInd.RadiusPx      := FCircleR;
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//      begin
-//        FNorthInd.HeadingDeg    := FCCManager.xShip.Heading;
-//        FNorthInd.UseTrueMotion := FCCManager.IsTrueMotion; // TRUE or FALSE
-//      end;
-//    end;
-//    FNorthInd.Draw(aCnv);
-
-
-
     // RANGE RINGS
     FRings.CircleRect    := FCircleRect;
     FRings.CurrentRange_m := FCurrentRange;
     FRings.ConvertCoord(aCvt);
     FRings.Draw(aCnv);
-
-    // BEARING 0°
-//    FBearing0.CircleRect := FCircleRect;
-//    FBearing0.ConvertCoord(aCvt);
-//    FBearing0.Draw(aCnv);
-
-//    TargetMgr.Draw(aCnv);
 
     VehicleMgr.DrawAll(aCnv);
 end;
@@ -1382,7 +1340,7 @@ begin
   if vFccSetting.FccMode = 4 then
   Exit;
 
-  if FCCManager.Operating_Mode = omInd then Exit;
+  if FCCManager.Operating_Mode = omWait then Exit;
 
   if JoyPos.X > 0.35 then
   begin
@@ -1711,6 +1669,7 @@ end;
 procedure TfrmMainFCC.tmrUpdateFormTimer(Sender: TObject);
 var
 duration : TDateTime;
+azimuth, range, rangem: Double;
 begin
 //  if FNorthAngle < 360 then
 //    Inc(FNorthAngle)
@@ -1741,12 +1700,12 @@ begin
       omInd :
       begin
         edtCtlModeVal.Text := 'Remote';
-        edtWorkStateVal.Text := 'Ind';
+//        edtWorkStateVal.Text := 'Ind';
       end;
       omAutonomous :
       begin
         edtCtlModeVal.Text := 'Local';
-        edtWorkStateVal.Text := 'Track';
+//        edtWorkStateVal.Text := 'Track';
       end;
       omDAttack :
       begin
@@ -1760,14 +1719,39 @@ begin
 
     if (FOperatingMode = omInd) or (FOperatingMode = omAutonomous) then
     begin
-      if FCCManager.target2d <> 0  then edtTrackStateVal.Text := 'Tracking'
-      else edtTrackStateVal.Text := 'Lost';
+      if FCCManager.target2d <> 0  then
+      begin
+//        edtTrackStateVal.Text := 'Tracking';
+
+        range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+        rangem := range * C_NauticalMile_To_Metre;
+
+        edtIndDistanceVal.Text := FormatFloat('0.00', rangem);
+        edtEODistanceVal.Text := FormatFloat('0.00', rangem);
+
+        if FCCManager.TargetType = ttSurface then edtIndTypeVal.Text := 'Surface'
+        else if FCCManager.TargetType = ttAir then edtIndTypeVal.Text := 'Air'
+        else edtIndTypeVal.Text := 'None';
+      end
+      else
+      begin
+        edtIndDistanceVal.Text := '0.00';
+        edtEODistanceVal.Text := '0.00';
+//        edtTrackStateVal.Text := 'Lost';
+      end;
     end;
 
 
     if Assigned(FCCManager.xShip) then
     begin
       edtNavCourseVal.Text := FormatFloat('0.00', FCCManager.xShip.Heading);
+      
+      azimuth := FCCManager.xShip.Heading + FCCManager.EOBearing;
+      if azimuth >= 360 then azimuth := azimuth - 360;
+
+      edtIndAzimuthVal.Text := FormatFloat('0.00', azimuth);
+      edtIndElevVal.Text := FormatFloat('0.00', FCCManager.EOElevation);
+      
 //      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
 //      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
 

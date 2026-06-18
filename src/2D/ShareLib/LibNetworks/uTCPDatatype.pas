@@ -1504,6 +1504,8 @@ const
   __ORD_ID_CAMCON_TV_NFOV          = 30;
   __ORD_ID_CAMCON_IR_NFOV          = 31;
   __ORD_ID_CAMCON_IR_WFOV          = 32;
+  __ORD_ID_CAMCON_TV_WFOV          = 33;
+  __ORD_ID_CAMCON_ENABLE_IR        = 34;
 
   { C705; angga }
   Rec_Data_C705 = 69;
@@ -1563,6 +1565,8 @@ const
   CORD_ID_AutoSearch          = 8;
   CORD_ID_InitFCC             = 9;
   CORD_ID_OperatingMode       = 10;
+  CORD_ID_TrackerMode         = 11;
+  CORD_ID_ToZero              = 12;
 
   // STATUS WEAPON
   // ERROR FOR SPS115

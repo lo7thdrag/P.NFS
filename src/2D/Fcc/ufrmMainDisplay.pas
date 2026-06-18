@@ -642,7 +642,7 @@ type
     FCurrentRange, FBearingVal, FElevVal : Double;  // meter
     FShipHeading : Integer;
 
-    FOperatingMode, FLastOperatingMode: TOperatingMode;
+    FOperatingMode, FLastOperatingMode, FTempOperatingMode: TOperatingMode;
 
     { Property On TDA }
     FRings       : TRadarRangeRings;
@@ -1044,7 +1044,7 @@ begin
     FBearingEO.ConvertCoord(aCvt, 2.7);
     if Assigned(FCCManager) then
     begin
-      EOHeading := FCCManager.xShip.Heading - FCCManager.EOBearing;
+      EOHeading := FCCManager.xShip.Heading + FCCManager.EOBearing;
       FBearingEO.BearingDeg  := EOHeading;
     end;
     FBearingEO.Draw(aCnv);
@@ -2152,10 +2152,9 @@ begin
   begin
     pnlCombatLs.Caption := 'Combat';
   end
-  else if (Token = 'Wait') then
+  else if (Token = 'Confirm') then
   begin
-    pnlWaitLs.Caption := 'Wait';
-
+//    FTempOperatingMode := omWait;
     RecSendFccSet.ShipID := FCCManager.ShipID;
     RecSendFccSet.Range := 0;
     RecSendFccSet.Bearing := 0;
@@ -2167,84 +2166,53 @@ begin
     RecSendFccSet.EnableValue := false;
 
     RecSendFccSet.OrderID := CORD_ID_OperatingMode;
-    RecSendFccSet.TargetType := 0;
-
+    if FTempOperatingMode = omWait then
+    begin
+      RecSendFccSet.TargetType := 0;
+      pnlWaitLs.Caption := 'Wait';
+    end
+    else if FTempOperatingMode = omInd then
+    begin
+      RecSendFccSet.TargetType := 1;
+      pnlWaitLs.Caption := 'IND';
+    end
+    else if FTempOperatingMode = omAutonomous then
+    begin
+      RecSendFccSet.TargetType := 2;
+      pnlWaitLs.Caption := 'Autonomous';
+    end
+    else if FTempOperatingMode = omDAttack then
+    begin
+      RecSendFccSet.TargetType := 3;
+      DAttackState := True;
+      pnlWaitLs.Caption := 'D.Attack';
+    end
+    else if FTempOperatingMode = omVFire then
+    begin
+      RecSendFccSet.TargetType := 4;
+      pnlWaitLs.Caption := 'V.Fire';
+    end;
     FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
+  end
+  else if (Token = 'Wait') then
+  begin
+    FTempOperatingMode := omWait;
   end
   else if (Token = 'Ind') then
   begin
-    pnlWaitLs.Caption := 'IND';
-
-    RecSendFccSet.ShipID := FCCManager.ShipID;
-    RecSendFccSet.Range := 0;
-    RecSendFccSet.Bearing := 0;
-    RecSendFccSet.Elevation := 0;
-    RecSendFccSet.EOBearing := 0;
-    RecSendFccSet.EOElevation := 0;
-    RecSendFccSet.IDTarget3D := 0;
-    RecSendFccSet.IDTarget2D := 0;
-    RecSendFccSet.EnableValue := false;
-
-    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
-    RecSendFccSet.TargetType := 1;
-
-    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
+    FTempOperatingMode := omInd;
   end
   else if (Token = 'Autonomous') then
   begin
-    pnlWaitLs.Caption := 'Autonomous';
-    RecSendFccSet.ShipID := FCCManager.ShipID;
-    RecSendFccSet.Range := 0;
-    RecSendFccSet.Bearing := 0;
-    RecSendFccSet.Elevation := 0;
-    RecSendFccSet.EOBearing := 0;
-    RecSendFccSet.EOElevation := 0;
-    RecSendFccSet.IDTarget3D := 0;
-    RecSendFccSet.IDTarget2D := 0;
-    RecSendFccSet.EnableValue := false;
-
-    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
-    RecSendFccSet.TargetType := 2;
-
-    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
+    FTempOperatingMode := omWait;
   end
   else if (Token = 'DAttack') then
   begin
-    pnlWaitLs.Caption := 'D.Attack';
-    RecSendFccSet.ShipID := FCCManager.ShipID;
-    RecSendFccSet.Range := 0;
-    RecSendFccSet.Bearing := 0;
-    RecSendFccSet.Elevation := 0;
-    RecSendFccSet.EOBearing := 0;
-    RecSendFccSet.EOElevation := 0;
-    RecSendFccSet.IDTarget3D := 0;
-    RecSendFccSet.IDTarget2D := 0;
-    RecSendFccSet.EnableValue := false;
-
-    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
-    RecSendFccSet.TargetType := 3;
-
-    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
-    DAttackState := True;
+    FTempOperatingMode := omDAttack;
   end
   else if (Token = 'VFire') then
   begin
-    pnlWaitLs.Caption := 'V.Fire';
-
-    RecSendFccSet.ShipID := FCCManager.ShipID;
-    RecSendFccSet.Range := 0;
-    RecSendFccSet.Bearing := 0;
-    RecSendFccSet.Elevation := 0;
-    RecSendFccSet.EOBearing := 0;
-    RecSendFccSet.EOElevation := 0;
-    RecSendFccSet.IDTarget3D := 0;
-    RecSendFccSet.IDTarget2D := 0;
-    RecSendFccSet.EnableValue := false;
-
-    RecSendFccSet.OrderID := CORD_ID_OperatingMode;
-    RecSendFccSet.TargetType := 4;
-
-    FCCManager.NetSendTo3D_FCCSet(RecSendFccSet);
+    FTempOperatingMode := omVFire;
   end
   else if (Token = 'LDrum') then
   begin

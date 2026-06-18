@@ -92,7 +92,7 @@ type
     Shape2: TShape;
     shpCrossVrtcl: TShape;
     shpCrossHrzntl: TShape;
-    pnlLaser: TPanel;
+    pnlAScope: TPanel;
     pnlRadar: TPanel;
     pnlTargetLocation: TPanel;
     pnlInformation: TPanel;
@@ -141,9 +141,9 @@ type
     AdvTabServo: TAdvTabSheet;
     AdvTabCon: TAdvTabSheet;
     AdvTabTVLS: TAdvTabSheet;
-    advRulerLaser: TAdvRangeSlider;
-    pnlLaserGraph: TPanel;
-    lblKmLaser: TLabel;
+    advRulerAScope: TAdvRangeSlider;
+    pnlAScopeGraph: TPanel;
+    lblKmAScope: TLabel;
     pnl4X: TPanel;
     pnl2X: TPanel;
     pnl1X: TPanel;
@@ -197,6 +197,8 @@ type
     tableReceiveBITE: TAdvStringGrid;
     pnlReceiveBiteHeader: TPanel;
     NLDJoystick: TNLDJoystick;
+    pnlRadarBlind: TPanel;
+    tmrUpdateAScope: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -224,6 +226,7 @@ type
       const Buttons: TJoyButtons);
     procedure NLDJoystick1ButtonUp(Sender: TNLDJoystick;
       const Buttons: TJoyButtons);
+    procedure tmrUpdateAScopeTimer(Sender: TObject);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -528,10 +531,10 @@ begin
   z := ZoomIndexToScale(i);
 
     // RANGE RINGS
-    FRings.CircleRect    := FCircleRect;
-    FRings.CurrentRange_m := FCurrentRange;
-    FRings.ConvertCoord(aCvt);
-    FRings.Draw(aCnv);
+//    FRings.CircleRect    := FCircleRect;
+//    FRings.CurrentRange_m := FCurrentRange;
+//    FRings.ConvertCoord(aCvt);
+//    FRings.Draw(aCnv);
 
     VehicleMgr.DrawAll(aCnv);
 end;
@@ -588,14 +591,14 @@ begin
     R := Rect(left,top, right, bottom);
     AngleRadius := (R.right - R.left) div 2;
 //    AngleRadius := 280;
-    ticksmax := 16;
+    ticksmax := 8;
     ticks := round(24);
     ticksEnlarge := 5;
-    ticksMin := 8;
-    ticksColor := clGreen;
+    ticksMin := 4;
+    ticksColor := clWhite;
     labels := 24;
     decimals := 0;
-    labelsoffset := 30;
+    labelsoffset := 25;
 
     {jarum derajat}
 
@@ -604,7 +607,7 @@ begin
       Enlarge := TicksEnlarge;
       Degrees := StartAngle;
       Increment := AngleOffset/Ticks;
-      aCnv.Pen.Color := clRed;
+      aCnv.Pen.Color := clWhite;
       aCnv.Pen.Width := 3;
       aCnv.Ellipse(R.Left, R.Top, R.Right, R.Bottom);
       for I := 1 to Ticks + 1 do
@@ -745,8 +748,6 @@ var
   ok: Boolean;
 begin
   if Button <> mbLeft then Exit;
-
-//  Sel := TargetMgr.SelectAt(X, Y);
 
   v := VehicleMgr.SelectAt(X, Y);
 
@@ -964,8 +965,8 @@ begin
 //  FRangeRing := TRangeRingsVisual.Create;
 //  FRangeRing.Color := clWhite;
 
-  FRings := TRadarRangeRings.Create;
-  acbxDisRing.Checked := FRings.Visible;
+//  FRings := TRadarRangeRings.Create;
+//  acbxDisRing.Checked := FRings.Visible;
 
   FShipHeading := 0; // awal
   FisAutomatic := False;
@@ -1186,7 +1187,7 @@ begin
   AreaBlindZone.Free;
   AreaPenembakan.Free;
 
-  FRings.Free;
+//  FRings.Free;
 
   FMapCanvas.Free;
 
@@ -2002,6 +2003,11 @@ begin
   lblMapLat.Caption := 'LAT ' + FormatFloat('0.000', my);
 //  lblLongtitude.Caption := FormatFloat('0.000', mx);
 //  lblLatitude.Caption := FormatFloat('0.000', my);
+end;
+
+procedure TfrmMainFCC.tmrUpdateAScopeTimer(Sender: TObject);
+begin
+  // update A-Scope disini
 end;
 
 procedure TfrmMainFCC.tmrUpdateFormTimer(Sender: TObject);

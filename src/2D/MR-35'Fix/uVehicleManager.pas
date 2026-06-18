@@ -116,15 +116,17 @@ begin
   for i := 0 to FList.Count - 1 do
   begin
     V := TVehicle(FList[i]);
+    if v.isVisible then  // only draw saat di select dari fcc2 --rojek
+    begin
+      // pastikan symbol pakai converter yang sama
+      V.Symbol.CoordConverter := FConv;
 
-    // pastikan symbol pakai converter yang sama
-    V.Symbol.CoordConverter := FConv;
+      // sinkronkan posisi symbol
+      V.PrepareForDraw;
 
-    // sinkronkan posisi symbol
-    V.PrepareForDraw;
-
-    // gambar
-    V.Symbol.Draw(ACanvas);
+      // gambar
+      V.Symbol.Draw(ACanvas);
+    end;
   end;
 end;
 
