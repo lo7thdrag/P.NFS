@@ -244,6 +244,22 @@
             <Form>frmManualGuidance</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Permanen Form\ufrmOwnShip.pas">
+            <Form>frmOwnShip</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Permanen Form\ufrmAlertandOpearatorMassage.pas">
+            <Form>frmAlertsandOpearatorMassage</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Permanen Form\ufmTargetInControl.pas">
+            <Form>frmTargetInControl</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Permanen Form\ufrmContactInControl.pas">
+            <Form>frmContactInControl</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

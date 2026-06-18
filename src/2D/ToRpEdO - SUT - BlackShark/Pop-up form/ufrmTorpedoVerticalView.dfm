@@ -3,7 +3,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
   Top = 0
   BorderIcons = []
   BorderStyle = bsSingle
-  ClientHeight = 465
+  ClientHeight = 459
   ClientWidth = 928
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
@@ -438,17 +438,19 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
       Font.Style = []
       ParentFont = False
     end
-    object pbVerticalView1: TPaintBox
+    object pbHorizontalView: TPaintBox
       Left = 176
       Top = 40
       Width = 481
       Height = 329
+      OnPaint = pbHorizontalViewPaint
     end
-    object pbVerticalView2: TPaintBox
+    object pbVerticalView: TPaintBox
       Left = 14
       Top = 40
       Width = 145
       Height = 337
+      OnPaint = pbVerticalViewPaint
     end
     object RadioGroup1: TRadioGroup
       Left = 680

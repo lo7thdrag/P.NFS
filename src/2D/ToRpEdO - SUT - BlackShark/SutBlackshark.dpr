@@ -79,7 +79,11 @@ uses
   ufrmTorpedoVerticalView in 'Pop-up form\ufrmTorpedoVerticalView.pas' {frmTorpedoVerticalView},
   ufrmTrackFilter in 'Pop-up form\ufrmTrackFilter.pas' {frmTrackFilter},
   ufrmEngagementDataOverview in 'Permanen Form\ufrmEngagementDataOverview.pas' {frmEngagementDataOverview},
-  ufrmManualGuidance in 'Permanen Form\ufrmManualGuidance.pas' {frmManualGuidance};
+  ufrmManualGuidance in 'Permanen Form\ufrmManualGuidance.pas' {frmManualGuidance},
+  ufrmOwnShip in 'Permanen Form\ufrmOwnShip.pas' {frmOwnShip},
+  ufrmAlertandOpearatorMassage in 'Permanen Form\ufrmAlertandOpearatorMassage.pas' {frmAlertsandOpearatorMassage},
+  ufmTargetInControl in 'Permanen Form\ufmTargetInControl.pas' {frmTargetInControl},
+  ufrmContactInControl in 'Permanen Form\ufrmContactInControl.pas' {frmContactInControl};
 
 {$R *.res}
 
@@ -105,6 +109,10 @@ begin
   Application.CreateForm(TfrmTrackFilter, frmTrackFilter);
   Application.CreateForm(TfrmEngagementDataOverview, frmEngagementDataOverview);
   Application.CreateForm(TfrmManualGuidance, frmManualGuidance);
+  Application.CreateForm(TfrmOwnShip, frmOwnShip);
+  Application.CreateForm(TfrmAlertsandOpearatorMassage, frmAlertsandOpearatorMassage);
+  Application.CreateForm(TfrmTargetInControl, frmTargetInControl);
+  Application.CreateForm(TfrmContactInControl, frmContactInControl);
   //Application.CreateForm(TfrmRadar, frmRadar);
 
   Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
