@@ -7,7 +7,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
   ClientWidth = 1920
   Color = clBackground
   Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  Font.Color = clWhite
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
@@ -1228,153 +1228,10 @@ object FrmTacticalScreen: TFrmTacticalScreen
       end
     end
   end
-  object pnlInfoKanan: TPanel
-    Left = 1464
-    Top = 0
-    Width = 456
-    Height = 888
-    Margins.Left = 1
-    Margins.Top = 1
-    Margins.Right = 1
-    Margins.Bottom = 1
-    Align = alRight
-    BevelOuter = bvLowered
-    Color = clBlack
-    ParentBackground = False
-    TabOrder = 1
-    object AdvStringGrid1: TAdvStringGrid
-      Left = 4
-      Top = 8
-      Width = 445
-      Height = 225
-      Cursor = crDefault
-      Color = clBlack
-      ColCount = 4
-      DrawingStyle = gdsClassic
-      FixedColor = clBlue
-      FixedCols = 0
-      FixedRows = 0
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      ScrollBars = ssBoth
-      TabOrder = 0
-      HoverRowColor = clBtnShadow
-      HoverRowCells = [hcNormal, hcSelected]
-      ActiveCellFont.Charset = DEFAULT_CHARSET
-      ActiveCellFont.Color = clWindowText
-      ActiveCellFont.Height = -11
-      ActiveCellFont.Name = 'Tahoma'
-      ActiveCellFont.Style = [fsBold]
-      BorderColor = clGray
-      CellNode.Color = clGreen
-      ColumnSize.Stretch = True
-      ColumnSize.StretchAll = True
-      ControlLook.FixedGradientHoverFrom = clGray
-      ControlLook.FixedGradientHoverTo = clWhite
-      ControlLook.FixedGradientDownFrom = clGray
-      ControlLook.FixedGradientDownTo = clSilver
-      ControlLook.DropDownHeader.Font.Charset = DEFAULT_CHARSET
-      ControlLook.DropDownHeader.Font.Color = clWindowText
-      ControlLook.DropDownHeader.Font.Height = -11
-      ControlLook.DropDownHeader.Font.Name = 'Tahoma'
-      ControlLook.DropDownHeader.Font.Style = []
-      ControlLook.DropDownHeader.Visible = True
-      ControlLook.DropDownHeader.Buttons = <>
-      ControlLook.DropDownFooter.Font.Charset = DEFAULT_CHARSET
-      ControlLook.DropDownFooter.Font.Color = clWindowText
-      ControlLook.DropDownFooter.Font.Height = -11
-      ControlLook.DropDownFooter.Font.Name = 'Tahoma'
-      ControlLook.DropDownFooter.Font.Style = []
-      ControlLook.DropDownFooter.Visible = True
-      ControlLook.DropDownFooter.Buttons = <>
-      Filter = <>
-      FilterDropDown.Font.Charset = DEFAULT_CHARSET
-      FilterDropDown.Font.Color = clWindowText
-      FilterDropDown.Font.Height = -11
-      FilterDropDown.Font.Name = 'Tahoma'
-      FilterDropDown.Font.Style = []
-      FilterDropDown.TextChecked = 'Checked'
-      FilterDropDown.TextUnChecked = 'Unchecked'
-      FilterDropDownClear = '(All)'
-      FilterEdit.TypeNames.Strings = (
-        'Starts with'
-        'Ends with'
-        'Contains'
-        'Not contains'
-        'Equal'
-        'Not equal'
-        'Larger than'
-        'Smaller than'
-        'Clear')
-      FixedColWidth = 111
-      FixedRowHeight = 22
-      FixedFont.Charset = DEFAULT_CHARSET
-      FixedFont.Color = clWindowText
-      FixedFont.Height = -11
-      FixedFont.Name = 'Tahoma'
-      FixedFont.Style = [fsBold]
-      FloatFormat = '%.2f'
-      HoverButtons.Buttons = <>
-      HoverButtons.Position = hbLeftFromColumnLeft
-      HTMLSettings.ImageFolder = 'images'
-      HTMLSettings.ImageBaseName = 'img'
-      PrintSettings.DateFormat = 'dd/mm/yyyy'
-      PrintSettings.Font.Charset = DEFAULT_CHARSET
-      PrintSettings.Font.Color = clWindowText
-      PrintSettings.Font.Height = -11
-      PrintSettings.Font.Name = 'Tahoma'
-      PrintSettings.Font.Style = []
-      PrintSettings.FixedFont.Charset = DEFAULT_CHARSET
-      PrintSettings.FixedFont.Color = clWindowText
-      PrintSettings.FixedFont.Height = -11
-      PrintSettings.FixedFont.Name = 'Tahoma'
-      PrintSettings.FixedFont.Style = []
-      PrintSettings.HeaderFont.Charset = DEFAULT_CHARSET
-      PrintSettings.HeaderFont.Color = clWindowText
-      PrintSettings.HeaderFont.Height = -11
-      PrintSettings.HeaderFont.Name = 'Tahoma'
-      PrintSettings.HeaderFont.Style = []
-      PrintSettings.FooterFont.Charset = DEFAULT_CHARSET
-      PrintSettings.FooterFont.Color = clWindowText
-      PrintSettings.FooterFont.Height = -11
-      PrintSettings.FooterFont.Name = 'Tahoma'
-      PrintSettings.FooterFont.Style = []
-      PrintSettings.PageNumSep = '/'
-      SearchFooter.FindNextCaption = 'Find &next'
-      SearchFooter.FindPrevCaption = 'Find &previous'
-      SearchFooter.Font.Charset = DEFAULT_CHARSET
-      SearchFooter.Font.Color = clWindowText
-      SearchFooter.Font.Height = -11
-      SearchFooter.Font.Name = 'Tahoma'
-      SearchFooter.Font.Style = []
-      SearchFooter.HighLightCaption = 'Highlight'
-      SearchFooter.HintClose = 'Close'
-      SearchFooter.HintFindNext = 'Find next occurrence'
-      SearchFooter.HintFindPrev = 'Find previous occurrence'
-      SearchFooter.HintHighlight = 'Highlight occurrences'
-      SearchFooter.MatchCaseCaption = 'Match case'
-      SearchFooter.ResultFormat = '(%d of %d)'
-      SelectionColor = clBlack
-      ShowSelection = False
-      ShowFocusedSelectionColor = False
-      SortSettings.DefaultFormat = ssAutomatic
-      UseSelectionTextColor = False
-      Version = '8.4.7.0'
-      ColWidths = (
-        111
-        110
-        110
-        110)
-    end
-  end
-  object pnlBaseKiri: TPanel
+  object pnlBase: TPanel
     Left = 0
     Top = 0
-    Width = 1464
+    Width = 1920
     Height = 888
     Margins.Left = 1
     Margins.Top = 1
@@ -1384,12 +1241,13 @@ object FrmTacticalScreen: TFrmTacticalScreen
     BevelOuter = bvNone
     Color = clBlack
     ParentBackground = False
-    TabOrder = 2
+    TabOrder = 1
+    ExplicitWidth = 1105
     object pnlInfoAtas: TPanel
       Left = 0
       Top = 0
-      Width = 1464
-      Height = 136
+      Width = 1920
+      Height = 337
       Margins.Left = 1
       Margins.Top = 1
       Margins.Right = 1
@@ -1399,552 +1257,202 @@ object FrmTacticalScreen: TFrmTacticalScreen
       Color = clBlack
       ParentBackground = False
       TabOrder = 0
-      object lblTanggaljam: TLabel
-        Left = 16
-        Top = 8
-        Width = 136
-        Height = 16
-        Caption = '... / ... / ...   ... : ... : ...'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
+      object pnlLeft: TPanel
+        Left = 1
+        Top = 1
+        Width = 1624
+        Height = 335
+        Align = alLeft
+        BevelOuter = bvLowered
+        TabOrder = 0
+        ExplicitHeight = 375
+        object pnlTop: TPanel
+          Left = 1
+          Top = 1
+          Width = 1622
+          Height = 238
+          Align = alTop
+          TabOrder = 0
+          object pnlTorpedoTubes: TPanel
+            Left = 1328
+            Top = 1
+            Width = 293
+            Height = 236
+            Align = alClient
+            BevelOuter = bvNone
+            Caption = 'TORPEDO && TUBES COMMANDS'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            ExplicitLeft = 1289
+            ExplicitTop = -1
+            ExplicitWidth = 272
+            ExplicitHeight = 239
+          end
+          object pnlGroupInfo: TPanel
+            Left = 1
+            Top = 1
+            Width = 1327
+            Height = 236
+            Align = alLeft
+            BevelOuter = bvLowered
+            TabOrder = 1
+            object pnlGroupInfoAtas: TPanel
+              Left = 1
+              Top = 1
+              Width = 1325
+              Height = 161
+              Align = alTop
+              BevelOuter = bvNone
+              TabOrder = 0
+              ExplicitWidth = 1198
+              object pnlOwnshipData: TPanel
+                Left = 0
+                Top = 0
+                Width = 217
+                Height = 161
+                Align = alLeft
+                BevelOuter = bvLowered
+                Caption = 'OWNSHIP DATA'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWhite
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+                TabOrder = 0
+              end
+              object pnlAlerts: TPanel
+                Left = 217
+                Top = 0
+                Width = 321
+                Height = 161
+                Align = alLeft
+                BevelOuter = bvLowered
+                Caption = 'ALERTS && OPERATOR MESSAGES'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWhite
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+                TabOrder = 1
+              end
+              object pnlTargetInControl: TPanel
+                Left = 538
+                Top = 0
+                Width = 348
+                Height = 161
+                Align = alLeft
+                BevelOuter = bvLowered
+                Caption = 'TARGET IN CONTROL'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWhite
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+                TabOrder = 2
+              end
+              object pnlContactInCtrl: TPanel
+                Left = 886
+                Top = 0
+                Width = 439
+                Height = 161
+                Align = alClient
+                BevelOuter = bvLowered
+                Caption = 'CONTACT IN CONTROL'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWhite
+                Font.Height = -11
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+                TabOrder = 3
+                ExplicitLeft = 866
+                ExplicitWidth = 332
+              end
+            end
+            object pnlGroupInfoBawah: TPanel
+              Left = 1
+              Top = 162
+              Width = 1325
+              Height = 73
+              Align = alClient
+              BevelOuter = bvNone
+              Caption = 'ENGAGEMENT DATA OVERVIEW'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+              ExplicitWidth = 1198
+              ExplicitHeight = 76
+            end
+          end
+        end
+        object pnlTorpedoGuidanceWindow: TPanel
+          Left = 1104
+          Top = 239
+          Width = 519
+          Height = 95
+          Align = alRight
+          Caption = 'TORPEDO GUIDANCE WINDOW'
+          TabOrder = 1
+          ExplicitHeight = 87
+        end
       end
-      object lblOwnshipHeadingVal: TLabel
-        Left = 97
-        Top = 31
-        Width = 12
-        Height = 16
-        Caption = '...'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label1: TLabel
-        Left = 16
-        Top = 31
-        Width = 46
-        Height = 16
-        Caption = 'Heading'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        OnClick = Label1Click
-      end
-      object Label2: TLabel
-        Left = 16
-        Top = 53
-        Width = 17
-        Height = 16
-        Caption = 'Lat'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblOwnshipLatPosVal: TLabel
-        Left = 97
-        Top = 53
-        Width = 12
-        Height = 16
-        Caption = '...'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label4: TLabel
-        Left = 16
-        Top = 75
-        Width = 27
-        Height = 16
-        Caption = 'Long'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblOwnshipLongPosVal: TLabel
-        Left = 97
-        Top = 75
-        Width = 12
-        Height = 16
-        Caption = '...'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label6: TLabel
-        Left = 136
-        Top = 31
-        Width = 21
-        Height = 16
-        Caption = 'deg'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblOwnshipSpeedVal: TLabel
-        Left = 249
-        Top = 31
-        Width = 12
-        Height = 16
-        Caption = '...'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label8: TLabel
-        Left = 288
-        Top = 31
-        Width = 22
-        Height = 16
-        Caption = 'm/s'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label9: TLabel
-        Left = 168
-        Top = 31
-        Width = 25
-        Height = 16
-        Caption = 'SOG'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label10: TLabel
-        Left = 288
-        Top = 53
-        Width = 11
-        Height = 16
-        Caption = 'm'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label11: TLabel
-        Left = 168
-        Top = 53
-        Width = 33
-        Height = 16
-        Caption = 'Depth'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblOwnshipDepth: TLabel
-        Left = 249
-        Top = 53
-        Width = 12
-        Height = 16
-        Caption = '...'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label13: TLabel
-        Left = 344
-        Top = 8
-        Width = 33
-        Height = 16
-        Caption = 'Alerts'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label14: TLabel
-        Left = 425
-        Top = 8
-        Width = 7
-        Height = 16
-        Caption = '0'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label15: TLabel
-        Left = 634
-        Top = 8
-        Width = 22
-        Height = 16
-        Caption = 'MSI'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgMSI: TImage
-        Left = 638
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object imgNav: TImage
-        Left = 666
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label16: TLabel
-        Left = 662
-        Top = 8
-        Width = 21
-        Height = 16
-        Caption = 'Nav'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgRad: TImage
-        Left = 694
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label17: TLabel
-        Left = 690
-        Top = 8
-        Width = 22
-        Height = 16
-        Caption = 'Rad'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgResm: TImage
-        Left = 739
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label18: TLabel
-        Left = 730
-        Top = 8
-        Width = 33
-        Height = 16
-        Caption = 'RESM'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgPerisc: TImage
-        Left = 789
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label19: TLabel
-        Left = 778
-        Top = 8
-        Width = 34
-        Height = 16
-        Caption = 'Perisc'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label20: TLabel
-        Left = 833
-        Top = 8
-        Width = 34
-        Height = 16
-        Caption = 'Sonar'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgSonar: TImage
-        Left = 843
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label21: TLabel
-        Left = 881
-        Top = 8
-        Width = 27
-        Height = 16
-        Caption = 'Mast'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgMast: TImage
-        Left = 887
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label22: TLabel
-        Left = 925
-        Top = 8
-        Width = 22
-        Height = 16
-        Caption = 'Link'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgLink: TImage
-        Left = 929
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label23: TLabel
-        Left = 965
-        Top = 8
-        Width = 44
-        Height = 16
-        Caption = 'WTSRC'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgWTSRC: TImage
-        Left = 979
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label24: TLabel
-        Left = 1020
-        Top = 8
-        Width = 19
-        Height = 16
-        Caption = 'TBI'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object imgTBI: TImage
-        Left = 1023
-        Top = 30
-        Width = 15
-        Height = 15
-      end
-      object Label25: TLabel
-        Left = 1213
-        Top = 8
-        Width = 44
-        Height = 16
-        Caption = 'Tactical'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblTorpedoModeVal: TLabel
-        Left = 726
-        Top = 51
-        Width = 52
-        Height = 16
-        Caption = 'Warhead'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label27: TLabel
-        Left = 621
-        Top = 51
-        Width = 83
-        Height = 16
-        Caption = 'Torpedo Mode'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblSimulationModeVal: TLabel
-        Left = 726
-        Top = 73
-        Width = 17
-        Height = 16
-        Caption = 'Off'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label29: TLabel
-        Left = 621
-        Top = 73
-        Width = 95
-        Height = 16
-        Caption = 'Simulation Mode'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label30: TLabel
-        Left = 946
-        Top = 51
-        Width = 101
-        Height = 16
-        Caption = 'Fire Authorization'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblFireAuthVal: TLabel
-        Left = 1060
-        Top = 51
-        Width = 16
-        Height = 16
-        Caption = 'On'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label32: TLabel
-        Left = 946
-        Top = 73
-        Width = 45
-        Height = 16
-        Caption = 'Console'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBtnHighlight
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblConsoleVal: TLabel
-        Left = 1062
-        Top = 73
-        Width = 49
-        Height = 16
-        Caption = 'MSI-90U'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
+      object pnlTorpedoTubesStatus: TPanel
+        Left = 1625
+        Top = 1
+        Width = 294
+        Height = 335
+        Align = alClient
+        Caption = 'TORPEDO TUBES STATUS'
+        TabOrder = 1
+        ExplicitLeft = 1792
+        ExplicitTop = 184
+        ExplicitWidth = 185
+        ExplicitHeight = 41
       end
     end
-    object pnlMap: TPanel
+    object pnlTorpedoGeo: TPanel
       Left = 0
-      Top = 136
-      Width = 1464
-      Height = 752
+      Top = 337
+      Width = 1105
+      Height = 551
       Margins.Left = 1
       Margins.Top = 1
       Margins.Right = 1
       Margins.Bottom = 1
-      Align = alClient
+      Align = alLeft
       BevelOuter = bvLowered
       TabOrder = 1
       Visible = False
+      ExplicitTop = 377
+      ExplicitHeight = 511
       object imgBackgrounSituationZone: TImage
         Left = 1
         Top = 1
-        Width = 1462
-        Height = 709
+        Width = 1103
+        Height = 508
         Align = alClient
-        ExplicitLeft = 680
-        ExplicitTop = 328
+        ExplicitLeft = 686
+        ExplicitTop = 5
         ExplicitWidth = 105
         ExplicitHeight = 105
       end
       object FMap: TMap
         Left = 1
         Top = 1
-        Width = 1462
-        Height = 709
+        Width = 1103
+        Height = 508
         ParentColor = False
         Align = alClient
         TabOrder = 0
@@ -1952,22 +1460,24 @@ object FrmTacticalScreen: TFrmTacticalScreen
         OnMouseUp = FMapMouseUp
         OnMouseDown = FMapMouseDown
         OnDrawUserLayer = FMapDrawUserLayer
-        ExplicitLeft = -2
-        ExplicitTop = 4
+        ExplicitLeft = 80
+        ExplicitTop = 78
+        ExplicitWidth = 589
+        ExplicitHeight = 409
         ControlData = {
-          8A1A06001A9700004749000001000000010000FF0D47656F44696374696F6E61
+          8A1A0600007200008134000001000000010000FF0D47656F44696374696F6E61
           727905456D70747900E8030000000000000000000002000E001E000000000000
           0000000000000000000000000000000000000000000600010000000000500001
           010000640000000001F4010000050000800C000000000000000000000000FFFF
           FF000100000000000000000000000000000000000000000000000352E30B918F
-          CE119DE300AA004BB8510100000090011420080005417269616C000352E30B91
+          CE119DE300AA004BB85101000000900124D6050005417269616C000352E30B91
           8FCE119DE300AA004BB851010000009001348C030005417269616C0000000000
           00000000000000000000000000000000000000000000000000000000000000FF
           FFFF000000000000000001370000000000FFFFFF000000000000000352E30B91
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000A031AC29010000000C92AF771C000000000000000000000000
+          01000118010000906C9D040100000009F6DB501C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1976,26 +1486,28 @@ object FrmTacticalScreen: TFrmTacticalScreen
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000A031AC2901000000881300C01C00000000000000000000000000000000
+          010000906C9D0401000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000070CB97007D8BD1761F
-          00000000000000608BD176E82B82319FAC1B23B0CB9700000000000000000000
+          0000000000000000000000000000000000000000000000000000000A0000009C
+          E89700B0E897000000000018ED9700415820C500000000000000000000000000
           000088B3400000000000408F400001000001}
       end
       object Panel1: TPanel
         Left = 1
-        Top = 710
-        Width = 1462
+        Top = 509
+        Width = 1103
         Height = 41
         Align = alBottom
         Caption = 'Panel1'
         TabOrder = 1
         Visible = False
+        ExplicitTop = 710
+        ExplicitWidth = 1462
         object ImageButton1: TImageButton
           Left = 740
           Top = 11
@@ -2184,6 +1696,80 @@ object FrmTacticalScreen: TFrmTacticalScreen
           ParentFont = False
           TabOrder = 1
           Text = 'Relative Motion'
+        end
+      end
+    end
+    object pnlTorpedoRight: TPanel
+      Left = 1105
+      Top = 337
+      Width = 815
+      Height = 551
+      Align = alClient
+      TabOrder = 2
+      ExplicitLeft = 1176
+      ExplicitTop = 446
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object pnl1: TPanel
+        Left = 1
+        Top = 1
+        Width = 224
+        Height = 549
+        Align = alLeft
+        TabOrder = 0
+        object pnlTorpedoHomingCmd: TPanel
+          Left = 1
+          Top = 1
+          Width = 222
+          Height = 144
+          Align = alTop
+          Caption = 'TORPEDO HOMING COMMANDS'
+          TabOrder = 0
+        end
+        object pnlDepthPlot: TPanel
+          Left = 1
+          Top = 145
+          Width = 222
+          Height = 403
+          Align = alClient
+          Caption = 'DEPTH PLOT'
+          TabOrder = 1
+          ExplicitLeft = 152
+          ExplicitTop = 360
+          ExplicitWidth = 185
+          ExplicitHeight = 41
+        end
+      end
+      object pnl2: TPanel
+        Left = 225
+        Top = 1
+        Width = 589
+        Height = 549
+        Align = alClient
+        TabOrder = 1
+        ExplicitLeft = 192
+        ExplicitWidth = 622
+        object pnlTorpedoHomingStatusPlot: TPanel
+          Left = 1
+          Top = 1
+          Width = 587
+          Height = 224
+          Align = alTop
+          Caption = 'TORPEDO HOMING STATUS PLOT && ToSo COVERAGE'
+          TabOrder = 0
+        end
+        object pnlTorpedoParamSettings: TPanel
+          Left = 1
+          Top = 225
+          Width = 587
+          Height = 323
+          Align = alClient
+          Caption = 'TORPEDO PARAMETERS SETTING'
+          TabOrder = 1
+          ExplicitLeft = 296
+          ExplicitTop = 416
+          ExplicitWidth = 185
+          ExplicitHeight = 41
         end
       end
     end
@@ -2466,25 +2052,25 @@ object FrmTacticalScreen: TFrmTacticalScreen
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
-    Left = 944
-    Top = 528
+    Left = 296
+    Top = 848
   end
   object tmrUpdateForm: TTimer
     OnTimer = tmrUpdateFormTimer
-    Left = 880
-    Top = 544
+    Left = 64
+    Top = 848
   end
   object tmrUpdateDataPos: TTimer
     Interval = 100
     OnTimer = tmrUpdateDataPosTimer
-    Left = 808
-    Top = 520
+    Left = 216
+    Top = 848
   end
   object TimerBlink: TTimer
     Enabled = False
     Interval = 700
     OnTimer = TimerBlinkTimer
-    Left = 672
-    Top = 512
+    Left = 152
+    Top = 848
   end
 end
