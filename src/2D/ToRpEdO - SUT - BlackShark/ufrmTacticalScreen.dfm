@@ -1242,7 +1242,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
     Color = clBlack
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 1105
     object pnlInfoAtas: TPanel
       Left = 0
       Top = 0
@@ -1265,7 +1264,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alLeft
         BevelOuter = bvLowered
         TabOrder = 0
-        ExplicitHeight = 375
         object pnlTop: TPanel
           Left = 1
           Top = 1
@@ -1288,10 +1286,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitLeft = 1289
-            ExplicitTop = -1
-            ExplicitWidth = 272
-            ExplicitHeight = 239
           end
           object pnlGroupInfo: TPanel
             Left = 1
@@ -1309,7 +1303,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
               Align = alTop
               BevelOuter = bvNone
               TabOrder = 0
-              ExplicitWidth = 1198
               object pnlOwnshipData: TPanel
                 Left = 0
                 Top = 0
@@ -1373,8 +1366,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 3
-                ExplicitLeft = 866
-                ExplicitWidth = 332
               end
             end
             object pnlGroupInfoBawah: TPanel
@@ -1392,8 +1383,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
               Font.Style = []
               ParentFont = False
               TabOrder = 1
-              ExplicitWidth = 1198
-              ExplicitHeight = 76
             end
           end
         end
@@ -1405,7 +1394,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
           Align = alRight
           Caption = 'TORPEDO GUIDANCE WINDOW'
           TabOrder = 1
-          ExplicitHeight = 87
         end
       end
       object pnlTorpedoTubesStatus: TPanel
@@ -1416,32 +1404,25 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Align = alClient
         Caption = 'TORPEDO TUBES STATUS'
         TabOrder = 1
-        ExplicitLeft = 1792
-        ExplicitTop = 184
-        ExplicitWidth = 185
-        ExplicitHeight = 41
       end
     end
     object pnlTorpedoGeo: TPanel
       Left = 0
-      Top = 337
+      Top = 240
       Width = 1105
-      Height = 551
+      Height = 648
       Margins.Left = 1
       Margins.Top = 1
       Margins.Right = 1
       Margins.Bottom = 1
-      Align = alLeft
       BevelOuter = bvLowered
       TabOrder = 1
       Visible = False
-      ExplicitTop = 377
-      ExplicitHeight = 511
       object imgBackgrounSituationZone: TImage
         Left = 1
         Top = 1
         Width = 1103
-        Height = 508
+        Height = 605
         Align = alClient
         ExplicitLeft = 686
         ExplicitTop = 5
@@ -1452,7 +1433,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Left = 1
         Top = 1
         Width = 1103
-        Height = 508
+        Height = 605
         ParentColor = False
         Align = alClient
         TabOrder = 0
@@ -1465,19 +1446,19 @@ object FrmTacticalScreen: TFrmTacticalScreen
         ExplicitWidth = 589
         ExplicitHeight = 409
         ControlData = {
-          8A1A0600007200008134000001000000010000FF0D47656F44696374696F6E61
+          8A1A060000720000873E000001000000010000FF0D47656F44696374696F6E61
           727905456D70747900E8030000000000000000000002000E001E000000000000
           0000000000000000000000000000000000000000000600010000000000500001
           010000640000000001F4010000050000800C000000000000000000000000FFFF
           FF000100000000000000000000000000000000000000000000000352E30B918F
-          CE119DE300AA004BB85101000000900124D6050005417269616C000352E30B91
+          CE119DE300AA004BB8510100000090011CFB060005417269616C000352E30B91
           8FCE119DE300AA004BB851010000009001348C030005417269616C0000000000
           00000000000000000000000000000000000000000000000000000000000000FF
           FFFF000000000000000001370000000000FFFFFF000000000000000352E30B91
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000906C9D040100000009F6DB501C000000000000000000000000
+          01000118010000906C9D04010000000EF6DB501C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1486,28 +1467,27 @@ object FrmTacticalScreen: TFrmTacticalScreen
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000906C9D0401000000880300C01C00000000000000000000000000000000
+          010000906C9D0401000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000A0000009C
-          E89700B0E897000000000018ED9700415820C500000000000000000000000000
+          000000000000000000000000000000000000000000000000020000000000000A
+          00000068CC970054CC970000000000BCD09700257C20C5000000000000000000
           000088B3400000000000408F400001000001}
       end
       object Panel1: TPanel
         Left = 1
-        Top = 509
+        Top = 606
         Width = 1103
         Height = 41
         Align = alBottom
         Caption = 'Panel1'
         TabOrder = 1
         Visible = False
-        ExplicitTop = 710
-        ExplicitWidth = 1462
+        ExplicitTop = 509
         object ImageButton1: TImageButton
           Left = 740
           Top = 11
@@ -1704,12 +1684,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
       Top = 337
       Width = 815
       Height = 551
-      Align = alClient
+      Align = alRight
       TabOrder = 2
-      ExplicitLeft = 1176
-      ExplicitTop = 446
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object pnl1: TPanel
         Left = 1
         Top = 1
@@ -1734,10 +1710,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
           Align = alClient
           Caption = 'DEPTH PLOT'
           TabOrder = 1
-          ExplicitLeft = 152
-          ExplicitTop = 360
-          ExplicitWidth = 185
-          ExplicitHeight = 41
         end
       end
       object pnl2: TPanel
@@ -1747,8 +1719,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Height = 549
         Align = alClient
         TabOrder = 1
-        ExplicitLeft = 192
-        ExplicitWidth = 622
         object pnlTorpedoHomingStatusPlot: TPanel
           Left = 1
           Top = 1
@@ -1766,10 +1736,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
           Align = alClient
           Caption = 'TORPEDO PARAMETERS SETTING'
           TabOrder = 1
-          ExplicitLeft = 296
-          ExplicitTop = 416
-          ExplicitWidth = 185
-          ExplicitHeight = 41
         end
       end
     end

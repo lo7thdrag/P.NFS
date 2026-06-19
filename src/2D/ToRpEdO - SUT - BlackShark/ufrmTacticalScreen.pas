@@ -644,7 +644,7 @@ begin
   VehicleMgr := TVehicleManager.Create;
   VehicleMgr.CoordConverter := FMapConverter;
 
-  EnableComposited(pnlMap);
+  EnableComposited(pnlTorpedoGeo);
   FBitmapBackground := TBitmap.Create;
   FBitmapBackground.Height := imgBackgrounSituationZone.Height;
   FBitmapBackground.Width := imgBackgrounSituationZone.Width;
@@ -684,6 +684,7 @@ begin
   imgListLight.GetBitmap(4, BitMapLampGreen);
   imgListLight.GetBitmap(5, BitMapLampRed);
 
+  {
   imgMSI.Picture.Bitmap := BitMapLampRed;
   imgNav.Picture.Bitmap := BitMapLampRed;
   imgRad.Picture.Bitmap := BitMapLampRed;
@@ -694,6 +695,7 @@ begin
   imgLink.Picture.Bitmap := BitMapLampRed;
   imgWTSRC.Picture.Bitmap := BitMapLampRed;
   imgTBI.Picture.Bitmap := BitMapLampRed;
+  }
 
   n := ParamCount ;
   if n < max_param then
@@ -754,7 +756,7 @@ begin
 //    SetWindowRgn(Handle, rgnOuter, True);
 
       // Header
-
+           {
       for i := 0 to AdvStringGrid1.ColCount - 1 do
       begin
         AdvStringGrid1.Alignments[i,0] := taCenter;
@@ -765,7 +767,7 @@ begin
       AdvStringGrid1.Cells[1,0] := 'Salvo';
       AdvStringGrid1.Cells[2,0] := 'Torpedo';
       AdvStringGrid1.Cells[3,0] := 'Console';
-
+            }
     SutBlacksharkManager.Running := True;
   end;
 
@@ -1858,6 +1860,7 @@ end;
 
 procedure TFrmTacticalScreen.tmrUpdateDataPosTimer(Sender: TObject);
 begin
+  {
   lblTanggaljam.Caption := FormatDateTime('dd/mm/yyyy hh:nn:ss',now);
   lblOwnshipHeadingVal.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.Heading);
   lblOwnshipLatPosVal.Caption := FormatFloat('0.0000', SutBlacksharkManager.xShip.PositionY);
@@ -1870,7 +1873,7 @@ begin
   OwnshipLongPosVal:= lblOwnshipLongPosVal.Caption;
   OwnshipSpeedVal:= lblOwnshipSpeedVal.Caption;
   OwnshipDepth := lblOwnshipDepth.Caption;
-
+   }
 end;
 
 procedure TFrmTacticalScreen.tmrUpdateFormTimer(Sender: TObject);

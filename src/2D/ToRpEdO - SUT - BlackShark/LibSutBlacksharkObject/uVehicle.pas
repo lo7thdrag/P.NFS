@@ -39,6 +39,10 @@ type
     // simbol di peta
     property Symbol    : TRadarTargetSymbol read FSymbol;
 
+    property IsTracked : Boolean read FIsTracked write FIsTracked;
+    property IsDetected : Boolean read FIsDetected write FIsDetected;
+    property LastHit : Double read FLastHit write FLastHit;
+
     // helper kecepatan
     procedure SetSpeedKts(AKnots: Double);
     procedure SetSpeedKmh(AKmh: Double);

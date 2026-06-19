@@ -2204,7 +2204,7 @@ begin
   end
   else if (Token = 'Autonomous') then
   begin
-    FTempOperatingMode := omWait;
+    FTempOperatingMode := omAutonomous;
   end
   else if (Token = 'DAttack') then
   begin
