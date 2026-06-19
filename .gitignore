@@ -9,7 +9,7 @@ src/2D/Fcc/Dokumentasi.zip
 bin/2D/bin/BridgeSet.ini
 bin/2D/bin/Bridge.exe
 bin/2D/bin/Bridge.exe
-
+*.exe
 bin/2D/bin/SystemServer.log
 bin/2D/bin/SystemServer.exe
 bin/2D/bin/BridgeSet.ini
