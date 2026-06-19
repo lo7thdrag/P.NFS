@@ -58,7 +58,7 @@ type
     FisCtrlGun : Boolean;
     FisRightDrum : Boolean; // jika false, berarti pake left drum, jika true berarti pakai kanan, defaultnya false
     // PTK MR 35
-    FisCombatMenu, FisLocalMenu, FisCheck, FisLockScreen : Boolean;  // boolean penanda dimana menu berada
+    FisCombatMenu, FisSystemMenu, FisCheck, FisLockScreen : Boolean;  // boolean penanda dimana menu berada
     FisAngleError, FisSBW, FisManualFrequency, FisStaticTarget, FisLSStop, FisTVReset, FisComplex, FisBlackTarget,
     FisCenter, FisManualZoom, FisManualSearch, FisSurface, FisAir, FisShore, FisLowAir :Boolean;
 
@@ -226,15 +226,16 @@ begin
     end;
   end;
 
-  if TSpeedButtonImage(Sender).Name = 'btn_Local' then
+  if TSpeedButtonImage(Sender).Name = 'btn_System' then
   begin
-    FisLocalMenu := not FisLocalMenu;
+//    FisLocalMenu := not FisLocalMenu;
     FisCheck := False;
 //    FisCombatMenu := False;
+    GenerateCaptionByMenu('System');
 
-  if FisLocalMenu then
-    GenerateCaptionByMenu('Local')
-  else  GenerateCaptionByMenu('System');
+//  if FisLocalMenu then
+//    GenerateCaptionByMenu('Local')
+//  else  GenerateCaptionByMenu('System');
   end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_Combat' then
@@ -242,9 +243,10 @@ begin
     FisCheck := False;
     FisCombatMenu := True;
 
-    if FisLocalMenu then
-      GenerateCaptionByMenu('Local')
-    else  GenerateCaptionByMenu('System');
+    GenerateCaptionByMenu('System');
+//    if FisLocalMenu then
+//      GenerateCaptionByMenu('Local')
+//    else
   end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_Check' then
@@ -492,19 +494,22 @@ begin
 
   else if TSpeedButtonImage(Sender).Name = 'btn_ManualSearch' then
   begin
-    FisManualSearch := false;
-    FBtnArray[25].Caption := 'Auto' + #13#10 + 'Search';
-    FBtnArray[25].Name := 'btn_AutoSearch';
-    btnBlack(25);
+    FisManualSearch := not FisManualSearch;
+    if FisManualSearch then btnGreen(25)
+    else btnBlack(25);
+
+//    FBtnArray[25].Caption := 'Auto' + #13#10 + 'Search';
+//    FBtnArray[25].Name := 'btn_AutoSearch';
+//    btnBlack(25);
   end
 
-  else if TSpeedButtonImage(Sender).Name = 'btn_AutoSearch' then
-  begin
-    FisManualSearch := true;
-    FBtnArray[25].Caption := 'Manual' + #13#10 + 'Search';
-    FBtnArray[25].Name := 'btn_ManualSearch';
-    btnGreen(25);
-  end
+//  else if TSpeedButtonImage(Sender).Name = 'btn_AutoSearch' then
+//  begin
+//    FisManualSearch := true;
+//    FBtnArray[25].Caption := 'Manual' + #13#10 + 'Search';
+//    FBtnArray[25].Name := 'btn_ManualSearch';
+//    btnGreen(25);
+//  end
 
   else if TSpeedButtonImage(Sender).Name = 'btn_LSStop' then
   begin
@@ -705,7 +710,7 @@ begin
 //    FisCenter, FisManualZoom :Boolean;
 
   FisCombatMenu := True;
-  FisLocalMenu := True;
+  FisSystemMenu := True;
   FisCheck := false;
   FisLockScreen := False;
   FisAngleError := True;
@@ -774,7 +779,7 @@ begin
   FBtnMainCaption[21] := 'TV'  + #13#10 + 'Reset';
   FBtnMainCaption[22] := 'Complex'  + #13#10 + 'Background';
   FBtnMainCaption[23] := 'Black'  + #13#10 + 'Target';
-  FBtnMainCaption[24] := 'Local'  + #13#10 ;
+  FBtnMainCaption[24] := 'System'  + #13#10 ;
   FBtnMainCaption[25] := 'Manual'  + #13#10 + 'Search';
   FBtnMainCaption[26] := 'Radar'  + #13#10 + 'Trace';
   FBtnMainCaption[27] := 'TV'  + #13#10 + 'Trace';
@@ -822,14 +827,14 @@ end;
 procedure TfrmPTK.GenerateCaptionByMenu(aMenu: string);
 begin
   // ptk mr35
-  if aMenu = 'Local' then
+  if aMenu = 'System' then
   begin
     GenerateLocalMenu;
   end
-  else if aMenu = 'System' then
-  begin
-    GenerateSystemMenu;
-  end
+//  else if aMenu = 'System' then
+//  begin
+//    GenerateSystemMenu;
+//  end
   else if aMenu = 'Check' then
   begin
     GenerateCheckMenu;
@@ -1413,7 +1418,7 @@ begin
   FBtnArray[21].Caption := 'TV'  + #13#10 + 'Reset';
   FBtnArray[22].Caption := 'Complex'  + #13#10 + 'Background';
   FBtnArray[23].Caption := 'Black'  + #13#10 + 'Target';
-  FBtnArray[24].Caption := 'Local'  + #13#10 ;
+  FBtnArray[24].Caption := 'System'  + #13#10 ;
   FBtnArray[25].Caption := 'Manual'  + #13#10 + 'Search';
   FBtnArray[26].Caption := 'Radar'  + #13#10 + 'Trace';
   FBtnArray[27].Caption := 'TV'  + #13#10 + 'Trace';
@@ -1453,7 +1458,7 @@ begin
   FBtnArray[21].Name := 'btn_TVReset';
   FBtnArray[22].Name := 'btn_ComplexBackground';
   FBtnArray[23].Name := 'btn_BlackTarget';
-  FBtnArray[24].Name := 'btn_Local';
+  FBtnArray[24].Name := 'btn_System';
   FBtnArray[25].Name := 'btn_ManualSearch';
   FBtnArray[26].Name := 'btn_RadarTrace';
   FBtnArray[27].Name := 'btn_TVTrace';
@@ -1465,7 +1470,7 @@ end;
 
 procedure TfrmPTK.GenerateLocalMenuColor;
 begin
-  if FisLocalMenu then
+  if FisSystemMenu then
   begin
     btnWhite(0);
     btnBlack(1);
@@ -1715,7 +1720,7 @@ begin
   FBtnMainNames[21] := 'TVReset';
   FBtnMainNames[22] := 'ComplexBackground';
   FBtnMainNames[23] := 'BlackTarget';
-  FBtnMainNames[24] := 'Local';
+  FBtnMainNames[24] := 'System';
   FBtnMainNames[25] := 'ManualSearch';
   FBtnMainNames[26] := 'RadarTrace';
   FBtnMainNames[27] := 'TVTrace';
@@ -2117,7 +2122,7 @@ end;
 
 procedure TfrmPTK.ProcessCommand(Cmd: String);
 begin
-
+  // bisa nerima packet disini sepertinya jika perlu
 end;
 
 procedure TfrmPTK.SendToServerPTK(str: string);
@@ -2187,6 +2192,7 @@ var
   s: string;
 begin
   s:= FSocketTCPClient.ReceiveStr;
+  ProcessCommand(s);
 end;
 
 procedure TfrmPTK.SocketClientSessionConnected(Sender: TObject; ErrCode: Word);
