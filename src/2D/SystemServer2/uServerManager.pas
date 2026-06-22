@@ -2001,7 +2001,7 @@ begin
 
 
       TcpServer3D.SendData(REC_CMD_FCC573D, RecDataFccSet3D);
-      FServer2D.SendDataEx(REC_CMD_FCC57, RecDataFccSet2D, nil);
+      FServer2D.SendDataEx(REC_CMD_FCC57, @RecDataFccSet2D, nil);
       {$ENDREGION}
     end;
 
@@ -2052,7 +2052,7 @@ begin
       RecDataFccSet2D.IDTarget2D := RecDataFccSet^.IDTarget2D;
 
       TcpServer3D.SendData(REC_CMD_57DIG3D, RecDataFccSet3D);
-      FServer2D.SendDataEx(REC_CMD_57DIG, RecDataFccSet2D, nil);
+      FServer2D.SendDataEx(REC_CMD_57DIG, @RecDataFccSet2D, nil);
       {$ENDREGION}
     end;
 
@@ -2103,7 +2103,7 @@ begin
       RecDataFccSet2D.IDTarget2D := RecDataFccSet^.IDTarget2D;
 
       TcpServer3D.SendData(REC_CMD_TYPE7303D, RecDataFccSet3D);
-      FServer2D.SendDataEx(REC_CMD_TYPE730, RecDataFccSet2D, nil);
+      FServer2D.SendDataEx(REC_CMD_TYPE730, @RecDataFccSet2D, nil);
       {$ENDREGION}
     end;
 
@@ -2154,7 +2154,7 @@ begin
       RecDataFccSet2D.IDTarget2D := RecDataFccSet^.IDTarget2D;
 
       TcpServer3D.SendData(REC_CMD_AK2303D, RecDataFccSet3D);
-      FServer2D.SendDataEx(REC_CMD_AK230, RecDataFccSet2D, nil);
+      FServer2D.SendDataEx(REC_CMD_AK230, @RecDataFccSet2D, nil);
       {$ENDREGION}
     end;
 
