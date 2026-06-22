@@ -93,6 +93,10 @@ type
     lblValueTorpedo7: TLabel;
     lblWTSRC7: TLabel;
     lblFuse7: TLabel;
+    lblTorpedo4: TLabel;
+    lblTorpedo5: TLabel;
+    lblTorpedo8: TLabel;
+    lblTorpedo7: TLabel;
   private
     { Private declarations }
   public

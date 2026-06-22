@@ -23,7 +23,7 @@ object frmTorpedoParameterSetting: TfrmTorpedoParameterSetting
     BevelOuter = bvNone
     TabOrder = 0
     object pbTorpedoParameter: TPaintBox
-      Left = 16
+      Left = 22
       Top = 16
       Width = 337
       Height = 129

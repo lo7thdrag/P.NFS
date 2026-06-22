@@ -512,7 +512,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       TabOrder = 1
       object lblTorpedo1: TLabel
         Left = 49
-        Top = 3
+        Top = 4
         Width = 74
         Height = 16
         Caption = 'TORP READY'
@@ -992,6 +992,19 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 169
       Height = 113
       TabOrder = 2
+      object lblTorpedo4: TLabel
+        Left = 52
+        Top = 5
+        Width = 74
+        Height = 16
+        Caption = 'TORP READY'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
       object pnlTorpedo4: TPanel
         Left = 8
         Top = 24
@@ -1462,8 +1475,8 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Height = 113
       TabOrder = 3
       object lblTorpedo3: TLabel
-        Left = 49
-        Top = 2
+        Left = 50
+        Top = 6
         Width = 72
         Height = 16
         Caption = 'MSI-SRC-SA'
@@ -1944,8 +1957,8 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Height = 113
       TabOrder = 4
       object lblTorpedo6: TLabel
-        Left = 49
-        Top = 2
+        Left = 50
+        Top = 4
         Width = 67
         Height = 16
         Caption = 'MAN-HORIZ'
@@ -2425,6 +2438,19 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 169
       Height = 113
       TabOrder = 5
+      object lblTorpedo5: TLabel
+        Left = 56
+        Top = 4
+        Width = 74
+        Height = 16
+        Caption = 'TORP READY'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
       object pnlTorpedo5: TPanel
         Left = 8
         Top = 24
@@ -2894,6 +2920,19 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 169
       Height = 113
       TabOrder = 6
+      object lblTorpedo8: TLabel
+        Left = 51
+        Top = 3
+        Width = 74
+        Height = 16
+        Caption = 'TORP READY'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
       object pnlTorpedo8: TPanel
         Left = 9
         Top = 24
@@ -3363,6 +3402,19 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 169
       Height = 113
       TabOrder = 7
+      object lblTorpedo7: TLabel
+        Left = 51
+        Top = 2
+        Width = 74
+        Height = 16
+        Caption = 'TORP READY'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
       object pnlTorpedo7: TPanel
         Left = 8
         Top = 24

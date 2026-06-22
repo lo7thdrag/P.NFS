@@ -56,7 +56,7 @@ object frmWakeList: TfrmWakeList
       Left = 8
       Top = 8
       Width = 441
-      Height = 193
+      Height = 105
       Color = clBlack
       Columns = <
         item

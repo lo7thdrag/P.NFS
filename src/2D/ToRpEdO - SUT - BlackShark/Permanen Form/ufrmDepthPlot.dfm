@@ -23,7 +23,7 @@ object frmDepthPlot: TfrmDepthPlot
     BevelOuter = bvNone
     TabOrder = 0
     object lbl1: TLabel
-      Left = 2
+      Left = 7
       Top = 11
       Width = 20
       Height = 16
@@ -36,7 +36,7 @@ object frmDepthPlot: TfrmDepthPlot
       ParentFont = False
     end
     object Label1: TLabel
-      Left = 77
+      Left = 89
       Top = 11
       Width = 23
       Height = 16
@@ -49,7 +49,7 @@ object frmDepthPlot: TfrmDepthPlot
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 151
+      Left = 175
       Top = 13
       Width = 19
       Height = 16
@@ -63,7 +63,7 @@ object frmDepthPlot: TfrmDepthPlot
     end
     object Label3: TLabel
       Left = 112
-      Top = 483
+      Top = 455
       Width = 22
       Height = 16
       Caption = 'm/s'
@@ -76,7 +76,7 @@ object frmDepthPlot: TfrmDepthPlot
     end
     object lblSpeedScaleFactor: TLabel
       Left = 87
-      Top = 483
+      Top = 455
       Width = 7
       Height = 16
       Caption = '0'
@@ -92,9 +92,10 @@ object frmDepthPlot: TfrmDepthPlot
       Top = 48
       Width = 209
       Height = 425
+      OnPaint = pbDepthPlotPaint
     end
     object edtMin: TEdit
-      Left = 30
+      Left = 35
       Top = 11
       Width = 46
       Height = 24
@@ -112,7 +113,7 @@ object frmDepthPlot: TfrmDepthPlot
       Text = '0'
     end
     object edtMax: TEdit
-      Left = 105
+      Left = 117
       Top = 11
       Width = 46
       Height = 24
@@ -127,24 +128,6 @@ object frmDepthPlot: TfrmDepthPlot
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      Text = '0'
-    end
-    object edtSet: TEdit
-      Left = 179
-      Top = 11
-      Width = 46
-      Height = 24
-      Alignment = taCenter
-      BevelInner = bvNone
-      BevelOuter = bvNone
-      Color = clBlack
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 2
       Text = '0'
     end
   end
