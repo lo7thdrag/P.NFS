@@ -3,8 +3,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
   Top = 0
   BorderIcons = []
   BorderStyle = bsNone
-  ClientHeight = 355
-  ClientWidth = 557
+  ClientHeight = 224
+  ClientWidth = 587
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -28,8 +28,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
     object TabHomingStatusPlot: TAdvSmoothTabPager
       Left = 12
       Top = 3
-      Width = 533
-      Height = 342
+      Width = 560
+      Height = 206
       Fill.Color = clBlack
       Fill.ColorTo = -1
       Fill.ColorMirror = -1
@@ -49,7 +49,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
       TabSettings.LeftMargin = 0
       TabSettings.RightMargin = 0
       TabSettings.StartMargin = 0
-      TabSettings.Height = 40
+      TabSettings.Height = 30
       TabSettings.Spacing = 5
       TabSettings.Width = 300
       TabReorder = False
@@ -59,9 +59,9 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
       TMSStyle = 4
       object TabHomingStatus: TAdvSmoothTabPage
         Left = 1
-        Top = 40
-        Width = 531
-        Height = 300
+        Top = 30
+        Width = 558
+        Height = 174
         Caption = 'Homing Status'
         PageAppearance.Color = -1
         PageAppearance.ColorTo = -1
@@ -104,12 +104,11 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         TabAppearance.ColorSelected = 16250613
         TabAppearance.ColorHot = 16776701
         TabAppearance.ColorDisabled = clWhite
-        TabAppearance.ColorTextHot = clWhite
         TabAppearance.ColorTextSelected = -1
         TMSStyle = 20
         object Label1: TLabel
           Left = 208
-          Top = 14
+          Top = 10
           Width = 48
           Height = 16
           Caption = 'Torpedo'
@@ -122,7 +121,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         end
         object lblValTorpedo: TLabel
           Left = 288
-          Top = 14
+          Top = 10
           Width = 7
           Height = 16
           Caption = '1'
@@ -135,7 +134,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         end
         object Label2: TLabel
           Left = 336
-          Top = 14
+          Top = 10
           Width = 43
           Height = 16
           Caption = 'Contact'
@@ -148,7 +147,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         end
         object lblValContact: TLabel
           Left = 416
-          Top = 14
+          Top = 10
           Width = 21
           Height = 16
           Caption = '101'
@@ -160,8 +159,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object lblToSoHomingPN3D: TLabel
-          Left = 10
-          Top = 54
+          Left = 2
+          Top = 30
           Width = 114
           Height = 16
           Caption = 'ToSo homing PN 3D'
@@ -173,8 +172,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object lblTgtLostSub: TLabel
-          Left = 312
-          Top = 94
+          Left = 368
+          Top = 38
           Width = 72
           Height = 16
           Caption = 'Tgt Lost Sub'
@@ -186,8 +185,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object lblLongRangeAttack: TLabel
-          Left = 10
-          Top = 144
+          Left = 2
+          Top = 88
           Width = 106
           Height = 16
           Caption = 'Long Range Attack'
@@ -199,8 +198,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object lblToSotargetacquiredclose: TLabel
-          Left = 10
-          Top = 278
+          Left = 2
+          Top = 158
           Width = 154
           Height = 16
           Caption = 'ToSo target acquired close'
@@ -212,8 +211,8 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object lblCloseInSub: TLabel
-          Left = 147
-          Top = 259
+          Left = 153
+          Top = 143
           Width = 73
           Height = 16
           Caption = 'Close-In Sub'
@@ -225,22 +224,22 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object pbTgtLostSub: TPaintBox
-          Left = 408
-          Top = 120
-          Width = 81
-          Height = 41
+          Left = 454
+          Top = 57
+          Width = 57
+          Height = 33
           OnPaint = pbTgtLostSubPaint
         end
         object pbWakeLost: TPaintBox
-          Left = 312
-          Top = 208
-          Width = 81
-          Height = 41
+          Left = 371
+          Top = 107
+          Width = 57
+          Height = 33
           OnPaint = pbWakeLostPaint
         end
         object Label3: TLabel
-          Left = 408
-          Top = 238
+          Left = 438
+          Top = 137
           Width = 104
           Height = 16
           Caption = 'Wake Lost/Search'
@@ -252,15 +251,15 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object pbWakeAttack: TPaintBox
-          Left = 152
-          Top = 96
-          Width = 81
-          Height = 41
+          Left = 144
+          Top = 56
+          Width = 57
+          Height = 33
           OnPaint = pbWakeAttackPaint
         end
         object lblWakeAttaack: TLabel
-          Left = 64
-          Top = 78
+          Left = 56
+          Top = 54
           Width = 71
           Height = 16
           Caption = 'Wake Attack'
@@ -272,18 +271,18 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           ParentFont = False
         end
         object pbLongRange: TPaintBox
-          Left = 16
-          Top = 176
-          Width = 177
-          Height = 73
+          Left = 8
+          Top = 111
+          Width = 137
+          Height = 39
           OnPaint = pbLongRangePaint
         end
       end
       object TabToSoCoverage: TAdvSmoothTabPage
         Left = 1
-        Top = 40
-        Width = 531
-        Height = 300
+        Top = 30
+        Width = 558
+        Height = 174
         Caption = 'Horizontal/Vertical ToSo Coverage'
         PageAppearance.Color = clBlack
         PageAppearance.ColorTo = clBlack
@@ -331,10 +330,10 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         TabAppearance.ColorDisabled = 15921906
         TMSStyle = 20
         object pbToSoCoveragePlot: TPaintBox
-          Left = 24
-          Top = 32
-          Width = 481
-          Height = 233
+          Left = 16
+          Top = 16
+          Width = 521
+          Height = 137
           OnPaint = pbToSoCoveragePlotPaint
         end
       end

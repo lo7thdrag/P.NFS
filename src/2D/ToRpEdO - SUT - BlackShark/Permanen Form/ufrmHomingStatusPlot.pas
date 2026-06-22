@@ -22,13 +22,13 @@ type
     lblLongRangeAttack: TLabel;
     lblToSotargetacquiredclose: TLabel;
     lblCloseInSub: TLabel;
-    pbToSoCoveragePlot: TPaintBox;
     pbTgtLostSub: TPaintBox;
     pbWakeLost: TPaintBox;
     Label3: TLabel;
     pbWakeAttack: TPaintBox;
     lblWakeAttaack: TLabel;
     pbLongRange: TPaintBox;
+    pbToSoCoveragePlot: TPaintBox;
     procedure FormCreate(Sender: TObject);
     procedure pbToSoCoveragePlotPaint(Sender: TObject);
     procedure pbTgtLostSubPaint(Sender: TObject);
@@ -130,7 +130,7 @@ begin
     Pen.Color := clLime;
     Pen.Width := 2;
     Brush.Style := bsClear;
-    Ellipse(4, 4, 40, 40);
+    Ellipse(4, 4, 35, 35);
 
     // Lines
     MoveTo(40, 22);
@@ -149,7 +149,7 @@ var
   Diameter : Integer;
   X, Y     : Integer;
 begin
-  Diameter := 41;
+  Diameter := 31;
 
   X := (pbTgtLostSub.Width - Diameter) div 2;
   Y := (pbTgtLostSub.Height - Diameter) div 2;
@@ -161,7 +161,7 @@ begin
 
     Ellipse(X, Y, X + Diameter, Y + Diameter);
     pbTgtLostSub.Canvas.Pen.Color := clLime;
-    pbTgtLostSub.Canvas.Ellipse(20, 0, 61, 41);
+    pbTgtLostSub.Canvas.Ellipse(13, 1, 44, 32);
   end;
 end;
 
@@ -176,7 +176,7 @@ const
   XPos    : array[0..6] of Integer  = (50,100,150,200,250,300,350);
 
   YLabels : array[0..4] of string  = ('30','15','0','-15','');
-  YPos    : array[0..4] of Integer  = (30,70,110,150,190);
+  YPos    : array[0..4] of Integer  = (10,35,55,75,95);
 
 var
   i : Integer;
@@ -248,7 +248,7 @@ var
   Diameter : Integer;
   X, Y     : Integer;
 begin
-  Diameter := 41;
+  Diameter := 31;
 
   X := (pbWakeAttack.Width - Diameter) div 2;
   Y := (pbWakeAttack.Height - Diameter) div 2;
@@ -260,7 +260,7 @@ begin
 
     Ellipse(X, Y, X + Diameter, Y + Diameter);
     pbWakeAttack.Canvas.Pen.Color := clLime;
-    pbWakeAttack.Canvas.Ellipse(20, 0, 61, 41);
+    pbWakeAttack.Canvas.Ellipse(13, 1, 44, 32);
   end;
 end;
 
@@ -269,7 +269,7 @@ var
   Diameter : Integer;
   X, Y     : Integer;
 begin
-  Diameter := 41;
+  Diameter := 31;
 
   X := (pbWakeLost.Width - Diameter) div 2;
   Y := (pbWakeLost.Height - Diameter) div 2;
@@ -281,7 +281,7 @@ begin
 
     Ellipse(X, Y, X + Diameter, Y + Diameter);
     pbWakeLost.Canvas.Pen.Color := clLime;
-    pbWakeLost.Canvas.Ellipse(20, 0, 61, 41);
+    pbWakeLost.Canvas.Ellipse(13, 1, 44, 32);
   end;
 end;
 

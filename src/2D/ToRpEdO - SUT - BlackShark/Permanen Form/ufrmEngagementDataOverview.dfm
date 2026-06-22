@@ -3,8 +3,8 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
   Top = 0
   BorderIcons = []
   BorderStyle = bsNone
-  ClientHeight = 70
-  ClientWidth = 867
+  ClientHeight = 73
+  ClientWidth = 1325
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,16 +15,16 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
-    Left = -16
+    Left = 0
     Top = 0
-    Width = 977
-    Height = 121
+    Width = 1321
+    Height = 73
     BevelEdges = [beLeft, beRight]
     BevelOuter = bvNone
     TabOrder = 0
     object Label1: TLabel
-      Left = 847
-      Top = 41
+      Left = 1292
+      Top = 47
       Width = 22
       Height = 16
       Caption = 'm/s'
@@ -36,8 +36,8 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblTimeBBRF: TLabel
-      Left = 800
-      Top = 41
+      Left = 1256
+      Top = 47
       Width = 32
       Height = 16
       Caption = '00.00'
@@ -49,7 +49,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 331
+      Left = 775
       Top = 24
       Width = 29
       Height = 16
@@ -62,7 +62,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 331
+      Left = 775
       Top = 48
       Width = 38
       Height = 16
@@ -75,7 +75,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblTime: TLabel
-      Left = 379
+      Left = 823
       Top = 24
       Width = 50
       Height = 16
@@ -88,7 +88,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblLength: TLabel
-      Left = 379
+      Left = 823
       Top = 48
       Width = 50
       Height = 16
@@ -101,7 +101,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblTime1: TLabel
-      Left = 443
+      Left = 887
       Top = 24
       Width = 50
       Height = 16
@@ -114,7 +114,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblLength1: TLabel
-      Left = 443
+      Left = 887
       Top = 48
       Width = 50
       Height = 16
@@ -127,7 +127,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblTime2: TLabel
-      Left = 507
+      Left = 951
       Top = 24
       Width = 50
       Height = 16
@@ -140,7 +140,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblLength2: TLabel
-      Left = 507
+      Left = 951
       Top = 48
       Width = 49
       Height = 16
@@ -153,7 +153,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 568
+      Left = 1012
       Top = 24
       Width = 34
       Height = 16
@@ -166,7 +166,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 568
+      Left = 1012
       Top = 48
       Width = 17
       Height = 16
@@ -179,7 +179,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblDistance: TLabel
-      Left = 627
+      Left = 1071
       Top = 24
       Width = 25
       Height = 16
@@ -192,7 +192,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblDistanceLength: TLabel
-      Left = 627
+      Left = 1071
       Top = 48
       Width = 25
       Height = 16
@@ -205,7 +205,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 659
+      Left = 1103
       Top = 24
       Width = 25
       Height = 16
@@ -218,7 +218,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 659
+      Left = 1103
       Top = 48
       Width = 17
       Height = 16
@@ -231,23 +231,23 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object pbTrackBar: TPaintBox
-      Left = 24
-      Top = 8
-      Width = 289
-      Height = 57
+      Left = 8
+      Top = 11
+      Width = 753
+      Height = 49
       OnPaint = pbTrackBarPaint
     end
     object rbBBRFSolution: TRadioGroup
-      Left = 691
-      Top = 1
+      Left = 1135
+      Top = 5
       Width = 185
       Height = 62
       Caption = 'BBRF Solution'
       TabOrder = 0
     end
     object Panel1: TPanel
-      Left = 703
-      Top = -1
+      Left = 1143
+      Top = 3
       Width = 113
       Height = 17
       BevelOuter = bvNone

@@ -3,8 +3,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
   Top = 0
   BorderIcons = []
   BorderStyle = bsNone
-  ClientHeight = 179
-  ClientWidth = 301
+  ClientHeight = 97
+  ClientWidth = 519
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,14 +17,14 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
   object pnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 409
-    Height = 489
+    Width = 5179
+    Height = 97
     BevelEdges = []
     BevelOuter = bvNone
     TabOrder = 0
     object lbl1: TLabel
-      Left = 42
-      Top = 11
+      Left = 71
+      Top = 2
       Width = 93
       Height = 16
       Caption = 'Torpedo Control'
@@ -38,8 +38,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       ParentFont = False
     end
     object Label1: TLabel
-      Left = 187
-      Top = 11
+      Left = 216
+      Top = 2
       Width = 31
       Height = 16
       Caption = 'Salvo'
@@ -54,9 +54,9 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
     end
     object TabTorpedoGuidance: TAdvSmoothTabPager
       Left = 12
-      Top = 40
-      Width = 277
-      Height = 181
+      Top = 16
+      Width = 519
+      Height = 105
       Fill.Color = clBlack
       Fill.ColorTo = -1
       Fill.ColorMirror = -1
@@ -71,14 +71,15 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       Fill.GlowGradientColor = -1
       Fill.GlowRadialColor = -1
       Transparent = False
-      ActivePage = TabTorpedoControl
+      ActivePage = TabSpecialSettings
+      Color = clBlack
       TabTextOrientation = toHorizontal
       TabSettings.LeftMargin = 0
       TabSettings.RightMargin = 0
       TabSettings.StartMargin = 0
-      TabSettings.Height = 40
+      TabSettings.Height = 25
       TabSettings.Spacing = 5
-      TabSettings.Width = 120
+      TabSettings.Width = 230
       TabReorder = False
       TabOrder = 0
       Touch.ParentTabletOptions = False
@@ -86,9 +87,9 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       TMSStyle = 4
       object TabTorpedoControl: TAdvSmoothTabPage
         Left = 1
-        Top = 40
-        Width = 275
-        Height = 139
+        Top = 25
+        Width = 517
+        Height = 78
         Caption = 'Torpedo Control'
         PageAppearance.Color = -1
         PageAppearance.ColorTo = -1
@@ -135,8 +136,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
         TabAppearance.ColorTextSelected = -1
         TMSStyle = 20
         object lblMSIGuidance: TLabel
-          Left = 24
-          Top = 8
+          Left = 82
+          Top = 2
           Width = 78
           Height = 16
           Caption = 'MSI Guidance'
@@ -148,8 +149,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           ParentFont = False
         end
         object lblTorpIntGuidance: TLabel
-          Left = 14
-          Top = 34
+          Left = 81
+          Top = 19
           Width = 102
           Height = 16
           Caption = 'Torp Int Guidance'
@@ -161,8 +162,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           ParentFont = False
         end
         object lblMainGuidance: TLabel
-          Left = 14
-          Top = 60
+          Left = 81
+          Top = 36
           Width = 96
           Height = 16
           Caption = 'Man Guidance ...'
@@ -174,8 +175,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           ParentFont = False
         end
         object lblHoming: TLabel
-          Left = 174
-          Top = 9
+          Left = 323
+          Top = 2
           Width = 59
           Height = 16
           Caption = 'Homing ...'
@@ -189,9 +190,9 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       end
       object TabSpecialSettings: TAdvSmoothTabPage
         Left = 1
-        Top = 40
-        Width = 275
-        Height = 139
+        Top = 25
+        Width = 517
+        Height = 78
         Caption = 'Special Settings'
         PageAppearance.Color = clBlack
         PageAppearance.ColorTo = clBlack
@@ -238,10 +239,10 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
         TabAppearance.ColorDisabled = 15921906
         TMSStyle = 20
         object lblSurftoSubmode: TLabel
-          Left = 13
-          Top = 10
-          Width = 101
-          Height = 16
+          Left = 77
+          Top = 4
+          Width = 116
+          Height = 15
           Caption = 'Surf. to Submode'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -251,8 +252,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           ParentFont = False
         end
         object lblTosoActImmed: TLabel
-          Left = 13
-          Top = 36
+          Left = 77
+          Top = 20
           Width = 96
           Height = 16
           Caption = 'ToSo Act Immed'
@@ -264,8 +265,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           ParentFont = False
         end
         object lblToSoActOff: TLabel
-          Left = 13
-          Top = 62
+          Left = 77
+          Top = 37
           Width = 73
           Height = 16
           Caption = 'ToSo Act Off'
@@ -277,8 +278,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           ParentFont = False
         end
         object lblFuseOn: TLabel
-          Left = 187
-          Top = 10
+          Left = 280
+          Top = 4
           Width = 47
           Height = 16
           Caption = 'Fuse On'
@@ -290,8 +291,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           ParentFont = False
         end
         object lblFuseOff: TLabel
-          Left = 187
-          Top = 36
+          Left = 280
+          Top = 21
           Width = 48
           Height = 16
           Caption = 'Fuse Off'
@@ -305,8 +306,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       end
     end
     object rbTorpedo: TRadioButton
-      Left = 16
-      Top = 12
+      Left = 45
+      Top = 3
       Width = 17
       Height = 17
       Font.Charset = DEFAULT_CHARSET
@@ -318,8 +319,8 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       TabOrder = 1
     end
     object rbSalvo: TRadioButton
-      Left = 161
-      Top = 12
+      Left = 190
+      Top = 3
       Width = 17
       Height = 17
       Font.Charset = DEFAULT_CHARSET

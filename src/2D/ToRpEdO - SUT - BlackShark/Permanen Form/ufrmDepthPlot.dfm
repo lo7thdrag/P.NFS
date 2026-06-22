@@ -3,8 +3,8 @@ object frmDepthPlot: TfrmDepthPlot
   Top = 0
   BorderIcons = []
   BorderStyle = bsNone
-  ClientHeight = 509
-  ClientWidth = 232
+  ClientHeight = 403
+  ClientWidth = 222
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -63,7 +63,7 @@ object frmDepthPlot: TfrmDepthPlot
     end
     object Label3: TLabel
       Left = 112
-      Top = 455
+      Top = 375
       Width = 22
       Height = 16
       Caption = 'm/s'
@@ -76,7 +76,7 @@ object frmDepthPlot: TfrmDepthPlot
     end
     object lblSpeedScaleFactor: TLabel
       Left = 87
-      Top = 455
+      Top = 375
       Width = 7
       Height = 16
       Caption = '0'
@@ -91,7 +91,7 @@ object frmDepthPlot: TfrmDepthPlot
       Left = 8
       Top = 48
       Width = 209
-      Height = 425
+      Height = 329
       OnPaint = pbDepthPlotPaint
     end
     object edtMin: TEdit

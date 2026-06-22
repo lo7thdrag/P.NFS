@@ -10,7 +10,9 @@ uses
   uVehicleManager, uScriptSutBlackshark, uSimulationManager, uBridgeSet, ulibSettings, uDataModule, uVehicle,
   ImageButton, AdvCombo, Vcl.Grids, AdvUtil, AdvObj, BaseGrid, AdvGrid, uTCPDatatype,
 
-  ufrmOwnShip, ufrmAlertandOpearatorMassage;
+  ufrmOwnShip, ufrmAlertandOpearatorMassage, ufmTargetInControl, ufrmContactInControl, ufrmTorpedoTubeCommands,
+  ufrmTorpedoTubeStatusWindow, ufrmTorpedoGuidance, ufrmHomingCommands, ufrmHomingStatusPlot, ufrmDepthPlot,
+  ufrmTorpedoParameterSetting, ufrmEngagementDataOverview;
 
 type
   TFrmTorpedoWP = class(TForm)
@@ -203,8 +205,18 @@ type
     FBlinkState: Boolean;
 
     {Attach Form}
-    FFrmOwnShip : TfrmOwnShip;
+    FFrmOwnShip                  : TfrmOwnShip;
     FFrmAlertandOpearatorMassage : TfrmAlertsandOpearatorMassage;
+    FFrmTargetInControl          : TfrmTargetInControl;
+    FFrmContactInControl         : TfrmContactInControl;
+    FFrmTorpedoTubesCommand      : TfrmTorpedoTubeCommands;
+    FFrmTorpedoTubesStatus       : TfrmTorpedoTubeStatusWindow;
+    FFrmTorpedoGuidance          : TfrmTorpedoGuidanceWindow;
+    FFrmTorpedoHomingCommand     : TfrmHomingCommands;
+    FFrmTorpedoHomingStatusPlot  : TfrmHomingStatusPlot;
+    FFrmDepthPlot                : TfrmDepthPlot;
+    FFrmTorpedoParameters        : TfrmTorpedoParameterSetting;
+    FFrmEngagementDataOverview   : TfrmEngagementDataOverview;
 
     procedure SubmodeSelect(Sender: Tobject);
     procedure FuncTaskRightSelect(Sender: Tobject);
@@ -1203,8 +1215,8 @@ begin
 //test rojek
 //  frmTacticalScreen.Monitor := Screen.Monitors[idxPanelAtas];
 //  frmSupportScreen.Monitor := Screen.Monitors[idxPanelBawah];
-   AlignFormToMonitor(idxPanelAtas, apLeftTop, 0, 0, TForm(frmTorpedoWP));
-   AlignFormToMonitor(idxPanelBawah, apLeftTop, 0, 0, TForm(frmTacticalScreen));
+   AlignFormToMonitor(0, apLeftTop, -1920, 0, TForm(frmTorpedoWP));
+   AlignFormToMonitor(1, apLeftTop, 0, 0, TForm(frmTacticalScreen));
 //    case Screen.MonitorCount of
 //      1 :
 //        begin
@@ -1922,25 +1934,161 @@ end;
 
 procedure TFrmTorpedoWP.UpdateAttachFormDisplay;
 begin
+  {$REGION 'Ownship Data'}
   if not Assigned(FFrmOwnShip) then
   begin
     pnlOwnshipData.Caption := '';
 
-    FFrmOwnShip := TfrmOwnShip.Create(Self);
+    FFrmOwnShip        := TfrmOwnShip.Create(Self);
     FFrmOwnShip.Parent := pnlOwnshipData;
-    FFrmOwnShip.Align := alClient;
+    FFrmOwnShip.Align  := alClient;
     FFrmOwnShip.Show;
   end;
+  {$ENDREGION}
 
+  {$REGION 'Alert and Operator Messages'}
   if not Assigned(FFrmAlertandOpearatorMassage) then
   begin
     pnlAlerts.Caption := '';
 
-    FFrmAlertandOpearatorMassage := TfrmAlertsandOpearatorMassage.Create(Self);
+    FFrmAlertandOpearatorMassage        := TfrmAlertsandOpearatorMassage.Create(Self);
     FFrmAlertandOpearatorMassage.Parent := pnlAlerts;
-    FFrmAlertandOpearatorMassage.Align := alClient;
+    FFrmAlertandOpearatorMassage.Align  := alClient;
     FFrmAlertandOpearatorMassage.Show;
   end;
+  {$ENDREGION}
+
+  {$REGION 'Target In Control'}
+  if not Assigned(FFrmTargetInControl) then
+  begin
+    pnlTargetInControl.Caption := '';
+
+    FFrmTargetInControl        := TfrmTargetInControl.Create(Self);
+    FFrmTargetInControl.Parent := pnlTargetInControl;
+    FFrmTargetInControl.Align  := alClient;
+    FFrmTargetInControl.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Contact In Control'}
+  if not Assigned(FFrmContactInControl) then
+  begin
+    pnlContactInCtrl.Caption := '';
+
+    FFrmContactInControl        := TfrmContactInControl.Create(Self);
+    FFrmContactInControl.Parent := pnlContactInCtrl;
+    FFrmContactInControl.Align  := alClient;
+    FFrmContactInControl.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Contact In Control'}
+  if not Assigned(FFrmContactInControl) then
+  begin
+    pnlContactInCtrl.Caption := '';
+
+    FFrmContactInControl        := TfrmContactInControl.Create(Self);
+    FFrmContactInControl.Parent := pnlContactInCtrl;
+    FFrmContactInControl.Align  := alClient;
+    FFrmContactInControl.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Torpedo & Tubes Commands'}
+  if not Assigned(FFrmTorpedoTubesCommand) then
+  begin
+    pnlTorpedoTubes.Caption := '';
+
+    FFrmTorpedoTubesCommand        := TfrmTorpedoTubeCommands.Create(Self);
+    FFrmTorpedoTubesCommand.Parent := pnlTorpedoTubes;
+    FFrmTorpedoTubesCommand.Align  := alClient;
+    FFrmTorpedoTubesCommand.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Torpedo Tubes Status Panel'}
+  if not Assigned(FFrmTorpedoTubesStatus) then
+  begin
+    pnlTorpedoTubesStatus.Caption := '';
+
+    FFrmTorpedoTubesStatus        := TfrmTorpedoTubeStatusWindow.Create(Self);
+    FFrmTorpedoTubesStatus.Parent := pnlTorpedoTubesStatus;
+    FFrmTorpedoTubesStatus.Align  := alClient;
+    FFrmTorpedoTubesStatus.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Torpedo Guidance'}
+  if not Assigned(FFrmTorpedoGuidance) then
+  begin
+    pnlTorpedoGuidanceWindow.Caption := '';
+
+    FFrmTorpedoGuidance        := TfrmTorpedoGuidanceWindow.Create(Self);
+    FFrmTorpedoGuidance.Parent := pnlTorpedoGuidanceWindow;
+    FFrmTorpedoGuidance.Align  := alClient;
+    FFrmTorpedoGuidance.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Torpedo Homing Commands'}
+  if not Assigned(FFrmTorpedoHomingCommand) then
+  begin
+    pnlTorpedoHomingCmd.Caption := '';
+
+    FFrmTorpedoHomingCommand        := TfrmHomingCommands.Create(Self);
+    FFrmTorpedoHomingCommand.Parent := pnlTorpedoHomingCmd;
+    FFrmTorpedoHomingCommand.Align  := alClient;
+    FFrmTorpedoHomingCommand.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Torpedo Homing Status Plot'}
+  if not Assigned(FFrmTorpedoHomingStatusPlot) then
+  begin
+    pnlTorpedoHomingStatusPlot.Caption := '';
+
+    FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
+    FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
+    FFrmTorpedoHomingStatusPlot.Align  := alClient;
+    FFrmTorpedoHomingStatusPlot.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Depth Plot'}
+  if not Assigned(FFrmDepthPlot) then
+  begin
+    pnlDepthPlot.Caption := '';
+
+    FFrmDepthPlot        := TfrmDepthPlot.Create(Self);
+    FFrmDepthPlot.Parent := pnlDepthPlot;
+    FFrmDepthPlot.Align  := alClient;
+    FFrmDepthPlot.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Torpedo Parameters Setting'}
+  if not Assigned(FFrmTorpedoParameters) then
+  begin
+    pnlTorpedoParamSettings.Caption := '';
+
+    FFrmTorpedoParameters        := TfrmTorpedoParameterSetting.Create(Self);
+    FFrmTorpedoParameters.Parent := pnlTorpedoParamSettings;
+    FFrmTorpedoParameters.Align  := alClient;
+    FFrmTorpedoParameters.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Engagement Data Overview'}
+  if not Assigned(FFrmEngagementDataOverview) then
+  begin
+    pnlGroupInfoBawah.Caption := '';
+
+    FFrmEngagementDataOverview        := TfrmEngagementDataOverview.Create(Self);
+    FFrmEngagementDataOverview.Parent := pnlGroupInfoBawah;
+    FFrmEngagementDataOverview.Align  := alClient;
+    FFrmEngagementDataOverview.Show;
+  end;
+  {$ENDREGION}
 
 end;
 

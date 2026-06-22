@@ -65,7 +65,7 @@ const
   BottomMargin = 25;
 
   YLabels : array[0..4] of string  = ('','','130','','260');
-  YPos    : array[0..4] of Integer = (0,100,200,300,393);
+  YPos    : array[0..4] of Integer = (0,80,160,240,300);
 
 var
   i : Integer;
@@ -115,13 +115,13 @@ begin
 
     // Line White
     Pen.Color := clWhite;
-    MoveTo(GraphLeft - 30, 400);
-    LineTo(GraphLeft + GraphWidth + 30, 400);
+    MoveTo(GraphLeft - 30, 308);
+    LineTo(GraphLeft + GraphWidth + 30, 308);
 
     // Line Green Horizontal
     Pen.Color := clGreen;
-    MoveTo(GraphLeft, 240);
-    LineTo(GraphLeft + GraphWidth, 240);
+    MoveTo(GraphLeft, 200);
+    LineTo(GraphLeft + GraphWidth, 200);
 
     // Line Red
     Pen.Color := clRed;
@@ -133,7 +133,7 @@ begin
     Pen.Color := clGreen;
     Pen.Style := psSolid;
     MoveTo(GraphLeft + 60, GraphTop);
-    LineTo(GraphLeft + 60, GraphTop + GraphHeight - 250);
+    LineTo(GraphLeft + 60, GraphTop + GraphHeight - 165);
 
     // Arrow
     DrawArrow(GraphLeft + 90, GraphTop + 10, 40);
@@ -145,13 +145,13 @@ begin
     Pen.Color := clGreen;
     Pen.Style := psDot;
     MoveTo(GraphLeft + 45, GraphTop);
-    LineTo(GraphLeft + 45, GraphTop + GraphHeight - 350);
+    LineTo(GraphLeft + 45, GraphTop + GraphHeight - 230);
 
     // Line Green Dots Vertical
     Pen.Color := clGreen;
     Pen.Style := psDot;
     MoveTo(GraphLeft + 90, GraphTop);
-    LineTo(GraphLeft + 90, GraphTop + GraphHeight - 350);
+    LineTo(GraphLeft + 90, GraphTop + GraphHeight - 230);
   end;
 end;
 

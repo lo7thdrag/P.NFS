@@ -3,8 +3,8 @@ object frmHomingCommands: TfrmHomingCommands
   Top = 0
   BorderIcons = []
   BorderStyle = bsNone
-  ClientHeight = 196
-  ClientWidth = 265
+  ClientHeight = 144
+  ClientWidth = 222
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,10 +23,10 @@ object frmHomingCommands: TfrmHomingCommands
     BevelOuter = bvNone
     TabOrder = 0
     object btnAutoAcoustic: TVrDemoButton
-      Left = 14
-      Top = 14
-      Width = 233
-      Height = 33
+      Left = 5
+      Top = 6
+      Width = 210
+      Height = 25
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
@@ -46,10 +46,10 @@ object frmHomingCommands: TfrmHomingCommands
       TabOrder = 0
     end
     object btnToSoPN: TVrDemoButton
-      Left = 14
-      Top = 48
-      Width = 233
-      Height = 33
+      Left = 5
+      Top = 32
+      Width = 210
+      Height = 25
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
@@ -69,10 +69,10 @@ object frmHomingCommands: TfrmHomingCommands
       TabOrder = 1
     end
     object btnToSoPN3D: TVrDemoButton
-      Left = 14
-      Top = 82
-      Width = 233
-      Height = 33
+      Left = 5
+      Top = 58
+      Width = 210
+      Height = 25
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
@@ -92,10 +92,10 @@ object frmHomingCommands: TfrmHomingCommands
       TabOrder = 2
     end
     object btnToSoDPC: TVrDemoButton
-      Left = 14
-      Top = 116
-      Width = 233
-      Height = 33
+      Left = 5
+      Top = 84
+      Width = 210
+      Height = 25
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
@@ -115,10 +115,10 @@ object frmHomingCommands: TfrmHomingCommands
       TabOrder = 3
     end
     object btnWake: TVrDemoButton
-      Left = 14
-      Top = 150
-      Width = 233
-      Height = 33
+      Left = 5
+      Top = 110
+      Width = 210
+      Height = 25
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
