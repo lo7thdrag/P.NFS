@@ -86,7 +86,7 @@ object frmSensorTrackList: TfrmSensorTrackList
       Left = 32
       Top = 64
       Width = 265
-      Height = 265
+      Height = 97
       BevelInner = bvNone
       BevelOuter = bvNone
       BiDiMode = bdRightToLeft

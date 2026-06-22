@@ -87,7 +87,7 @@ object frmTrackListNumber: TfrmTrackListNumber
       Left = 10
       Top = 40
       Width = 305
-      Height = 281
+      Height = 89
       Color = -1
       Columns = <
         item

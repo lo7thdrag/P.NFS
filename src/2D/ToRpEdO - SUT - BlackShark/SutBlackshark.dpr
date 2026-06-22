@@ -83,7 +83,9 @@ uses
   ufrmOwnShip in 'Permanen Form\ufrmOwnShip.pas' {frmOwnShip},
   ufrmAlertandOpearatorMassage in 'Permanen Form\ufrmAlertandOpearatorMassage.pas' {frmAlertsandOpearatorMassage},
   ufmTargetInControl in 'Permanen Form\ufmTargetInControl.pas' {frmTargetInControl},
-  ufrmContactInControl in 'Permanen Form\ufrmContactInControl.pas' {frmContactInControl};
+  ufrmContactInControl in 'Permanen Form\ufrmContactInControl.pas' {frmContactInControl},
+  ufrmTrackingList in 'Pop-up form\ufrmTrackingList.pas' {frmTrackListNumber},
+  ufrmWakeList in 'Pop-up form\ufrmWakeList.pas' {frmWakeList};
 
 {$R *.res}
 
@@ -93,6 +95,8 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
+  Application.CreateForm(TfrmWakeList, frmWakeList);
   //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
 
   Application.Run;
