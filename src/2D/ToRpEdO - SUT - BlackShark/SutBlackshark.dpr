@@ -50,8 +50,8 @@ uses
   uTrackView in 'LibSutBlacksharkObject\uTrackView.pas',
   uVehicle in 'LibSutBlacksharkObject\uVehicle.pas',
   uBaseFunctionSutBlackshark in 'LibBaseSystem\uBaseFunctionSutBlackshark.pas',
+  ufrmTorpedoWP in 'ufrmTorpedoWP.pas' {FrmTorpedoWP},
   ufrmTacticalScreen in 'ufrmTacticalScreen.pas' {FrmTacticalScreen},
-  ufrmSupportScreen in 'ufrmSupportScreen.pas' {FrmSupportScreen},
   uSettingFormToMonitorWith_ini in '..\ShareLib\LibUtil\uSettingFormToMonitorWith_ini.pas',
   uFormUtil in '..\ShareLib\LibUtil\uFormUtil.pas',
   uBaseObject in 'LibSutBlacksharkObject\uBaseObject.pas',
@@ -91,39 +91,9 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
-  Application.CreateForm(TfrmDepthPlot, frmDepthPlot);
-  Application.CreateForm(TfrmHomingCommands, frmHomingCommands);
-  Application.CreateForm(TfrmHomingStatusPlot, frmHomingStatusPlot);
-  Application.CreateForm(TfrmTorpedoGuidanceWindow, frmTorpedoGuidanceWindow);
-  Application.CreateForm(TfrmTorpedoParameterSetting, frmTorpedoParameterSetting);
-  Application.CreateForm(TfrmTorpedoTubeCommands, frmTorpedoTubeCommands);
-  Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
-  Application.CreateForm(TfrmTrackInfo, frmTrackInfo);
-  Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
-  Application.CreateForm(TfrmCreateModifyTrack, frmCreateModifyTrack);
-  Application.CreateForm(TfrmSensorTrackList, frmSensorTrackList);
-  Application.CreateForm(TfrmTrackHistory, frmTrackHistory);
-  Application.CreateForm(TfrmTorpedoContactList, frmTorpedoContactList);
-  Application.CreateForm(TfrmTorpedoVerticalView, frmTorpedoVerticalView);
-  Application.CreateForm(TfrmTrackFilter, frmTrackFilter);
-  Application.CreateForm(TfrmEngagementDataOverview, frmEngagementDataOverview);
-  Application.CreateForm(TfrmManualGuidance, frmManualGuidance);
-  Application.CreateForm(TfrmOwnShip, frmOwnShip);
-  Application.CreateForm(TfrmAlertsandOpearatorMassage, frmAlertsandOpearatorMassage);
-  Application.CreateForm(TfrmTargetInControl, frmTargetInControl);
-  Application.CreateForm(TfrmContactInControl, frmContactInControl);
-  //Application.CreateForm(TfrmRadar, frmRadar);
-
-  Application.CreateForm(TfrmControlByNumber, frmControlByNumber);
-  Application.CreateForm(TfrmTrackHistory, frmTrackHistory);
-  Application.CreateForm(TfrmCreateModifyTrack, frmCreateModifyTrack);
-  Application.CreateForm(TfrmTrackFilter, frmTrackFilter);
-  Application.CreateForm(TFrmSupportScreen, FrmSupportScreen);
   //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
-//  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
-
-//  Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
 
   Application.Run;
 end.
