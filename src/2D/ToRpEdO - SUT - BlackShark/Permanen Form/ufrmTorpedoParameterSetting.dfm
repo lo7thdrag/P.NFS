@@ -3,8 +3,8 @@ object frmTorpedoParameterSetting: TfrmTorpedoParameterSetting
   Top = 0
   BorderIcons = []
   BorderStyle = bsNone
-  ClientHeight = 164
-  ClientWidth = 368
+  ClientHeight = 323
+  ClientWidth = 587
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,18 +15,18 @@ object frmTorpedoParameterSetting: TfrmTorpedoParameterSetting
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
-    Left = -10
+    Left = -2
     Top = 0
-    Width = 425
-    Height = 161
+    Width = 587
+    Height = 323
     BevelEdges = []
     BevelOuter = bvNone
     TabOrder = 0
     object pbTorpedoParameter: TPaintBox
       Left = 22
       Top = 16
-      Width = 337
-      Height = 129
+      Width = 547
+      Height = 281
     end
   end
 end

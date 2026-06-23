@@ -50,7 +50,7 @@ const
   BottomMargin = 13;
 
   XLabels : array[0..14] of string   = ('0','','','','','5','','','','','10','','','','min');
-  XPos    : array[0..14] of Integer  = (10,35,70,105,140,175,210,245,280,315,350,385,420,452,480);
+  XPos    : array[0..14] of Integer  = (10,47,94,148,188,235,282,329,376,423,470,517,564,611,695);
 var
   i : Integer;
 
@@ -83,13 +83,13 @@ begin
 
     {$REGION 'Bar Top'}
     Brush.Color := clYellow;
-    FillRect(Rect(180, 3, 470, 15));
+    FillRect(Rect(230, 3, 610, 15));
 
     Brush.Color := clRed;
-    FillRect(Rect(450, 3, 480, 15));
+    FillRect(Rect(610, 3, 650, 15));
 
     Brush.Color := clGray;
-    FillRect(Rect(40, 3, 180, 15));
+    FillRect(Rect(40, 3, 230, 15));
 
     //Yellow Bar
     MoveTo(20, 55);
@@ -107,13 +107,13 @@ begin
 
     {$REGION 'Bar Bottom'}
     Brush.Color := clLime;
-    FillRect(Rect(160, 20, 500, 30));
+    FillRect(Rect(210, 20, 690, 30));
 
     Brush.Color := clRed;
-    FillRect(Rect(490, 20, 510, 30));
+    FillRect(Rect(690, 20, 725, 30));
 
     Brush.Color := clGray;
-    FillRect(Rect(40, 20, 160, 30));
+    FillRect(Rect(40, 20, 210, 30));
 
     //Lime Bar
     MoveTo(480, 55);

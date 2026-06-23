@@ -44,7 +44,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
       Fill.GlowGradientColor = -1
       Fill.GlowRadialColor = -1
       Transparent = False
-      ActivePage = TabToSoCoverage
+      ActivePage = TabHomingStatus
       TabTextOrientation = toHorizontal
       TabSettings.LeftMargin = 0
       TabSettings.RightMargin = 0

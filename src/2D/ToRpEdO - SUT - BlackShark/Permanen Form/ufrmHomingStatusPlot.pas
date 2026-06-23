@@ -133,14 +133,14 @@ begin
     Ellipse(4, 4, 35, 35);
 
     // Lines
-    MoveTo(40, 22);
-    LineTo(135, 38);
+    MoveTo(35, 18);
+    LineTo(100, 25);
 
     //Right Circle
     Brush.Style := bsSolid;
     Brush.Color := clLime;
     Pen.Color   := clGreen;
-    Ellipse(117, 20, 153, 56);
+    Ellipse(90, 4, 120, 35);
   end;
 end;
 
