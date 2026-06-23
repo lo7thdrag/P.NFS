@@ -27,6 +27,7 @@ object frmTorpedoParameterSetting: TfrmTorpedoParameterSetting
       Top = 16
       Width = 547
       Height = 281
+      OnPaint = pbTorpedoParameterPaint
     end
   end
 end
