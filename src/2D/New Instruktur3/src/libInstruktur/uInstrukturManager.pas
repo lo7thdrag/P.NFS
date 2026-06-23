@@ -1242,13 +1242,14 @@ begin
 
   if instMapSet.useOffset then
   begin
-    arMissile.x := arMissile^.x + instMapSet.xOffset;
-    arMissile.y := arMissile^.y + instMapSet.yOffset;
+    arMissile.x := arMissile^.x {+ instMapSet.xOffset};
+    arMissile.y := arMissile^.y {+ instMapSet.yOffset};
   end;
 
   case arMissile.status   of
     ST_MISSILE_RUN :
     begin
+
       tmpNewObj := mainObjList.FindObjectByUid(tempUID);
 
       if tmpNewObj = nil then

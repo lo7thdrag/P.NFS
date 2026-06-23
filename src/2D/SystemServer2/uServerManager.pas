@@ -1424,7 +1424,7 @@ begin
         // ST_MISSILE_LOCK     = 7;
 
         if (recExocetMM40.sOrder = __ORD_EXOCET_40_LOADING)
-          or (recExocetMM40.sOrder=__ORD_EXOCET_40_FIRE)
+          {or (recExocetMM40.sOrder=__ORD_EXOCET_40_FIRE)}
         then
         begin
 
@@ -1446,11 +1446,13 @@ begin
           RecSend3DMissilePos.MissileNumber := 0;
           RecSend3DMissilePos.status := 0;
           case recExocetMM40.sOrder of
+            {
             __ORD_EXOCET_40_FIRE:
               begin
 //                if ShipClassID=10 then
                   RecSend3DMissilePos.status:= ST_MISSILE_RUN;
               end;
+              }
             __ORD_EXOCET_40_LOADING:
               RecSend3DMissilePos.status := ST_MISSILE_LOADED;
             // __ORD_EXOCET_40_ON:;
@@ -1775,7 +1777,7 @@ begin
         TcpServer3D.SendData(REC_CMD_VLMICA, RecSendVLMica3D);
 
         if (RecVLMica.OrderID = __ORD_VLMICA_LOADING)
-          or (RecVLMica.OrderID = __ORD_VLMICA_FIRE)
+          {or (RecVLMica.OrderID = __ORD_VLMICA_FIRE)}
         then
         begin
 
@@ -1786,11 +1788,12 @@ begin
           RecSend3DMissilePos.MissileNumber := 0;
           RecSend3DMissilePos.status := 0;
           case RecVLMica.OrderID of
-            __ORD_VLMICA_FIRE:
+            {__ORD_VLMICA_FIRE:
             begin
               RecSend3DMissilePos.missileID := RecSend3DMissilePos.missileID + 1;
               RecSend3DMissilePos.status:= ST_MISSILE_RUN;
             end;
+            }
             __ORD_VLMICA_LOADING:
               RecSend3DMissilePos.status := ST_MISSILE_LOADED;
             // __ORD_EXOCET_40_ON:;
@@ -1908,7 +1911,7 @@ begin
 
        // add if needed
       if (RecDataFireC705^.OrderID = __ORD_ID_Loading_C705)
-        or (RecDataFireC705^.OrderID = __ORD_ID_Fire_C705)
+        {or (RecDataFireC705^.OrderID = __ORD_ID_Fire_C705)}
           then
       begin
         RecSend3DMissilePos.ShipID := RecDataFireC705^.ShipID;
@@ -1930,6 +1933,7 @@ begin
             end;
           end;
 
+          {
           __ORD_ID_Fire_C705: begin
             RecSend3DMissilePos.status := ST_MISSILE_RUN;
 
@@ -1941,6 +1945,7 @@ begin
                 OnLogReceived2D('mLauncherID :' + IntToStr(RecDataFireC705^.mLauncherID) + ' Ini Launcher Starboard');
             end;
           end;
+          }
         end;
         RecSend3DMissilePos.X := 0;
         RecSend3DMissilePos.y := 0;

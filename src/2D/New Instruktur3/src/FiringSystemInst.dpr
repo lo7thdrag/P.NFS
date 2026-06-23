@@ -129,6 +129,9 @@ begin
   frmGameController.SetProject;
   frmGameController.CreateTrajectory;
 
+  { Munculkan Scenario langsung saat awal launch }
+  frmGameController.ShowScenario;
+
   { Check Mode Instruktur }
   if SimManager.InsUtils.MapMode then
   begin

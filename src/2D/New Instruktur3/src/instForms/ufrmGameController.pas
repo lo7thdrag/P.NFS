@@ -1318,6 +1318,7 @@ type
     procedure lvShipListSelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);
     procedure eRBU6000BearingKeyPress(Sender: TObject; var Key: Char);
+    procedure mmoReportClick(Sender: TObject);
   private
     { Private declarations }
     ObserverID: integer;
@@ -1330,6 +1331,8 @@ type
     Weapon_Name: string;
     launcherID: Integer;
     ScaleHeight, ScaleWidht: Integer; // for trajectory
+
+    FSelectedMenu: Integer;
 
     //Trajectory
     FTrajectory: TTrajectory;
@@ -1350,6 +1353,8 @@ type
 //                                                    const SpeedPlayer, DesiredValue : double);
 
     procedure LoadImageLight(var Aimage: TImage; imgStat: string; const stat: byte);
+
+    procedure ResetMenuImage;
   public
     StateBearing : Boolean;
     StateRange : Boolean;
@@ -1521,6 +1526,8 @@ begin
 
   EnableComposited(pnlMain);
 //  EnableComposited(pnlMapInset);
+
+  FSelectedMenu := -1; // for menu image click purposed
 end;
 
 procedure TfrmGameController.DisplayController1Click(Sender: TObject);
@@ -1918,19 +1925,21 @@ begin
   {$REGION ' Setting Header '}
   strPath := '..\data\images\NFS instruktur - interface\imageIns\';
 
-  if SimManager.instProjectSet.World = 'NAFS' then
+  worldproject := SimManager.instProjectSet.World;
+
+  if worldproject = 'NAFS' then
   begin
     GameType := 0;
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nafs_.bmp');
 //    pnlMainMenu.Fill.Color := $00D0875A;
   end
-  else if SimManager.instProjectSet.World = 'NSFS' then
+  else if worldproject = 'NSFS' then
   begin
     GameType := 1;
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nsfs_.bmp');
 //    pnlMainMenu.Fill.Color := $0040220F;
   end
-  else if SimManager.instProjectSet.World = 'NSSFS' then
+  else if worldproject = 'NSSFS' then
   begin
     GameType := 2;
     imgHeaderProject.Picture.LoadFromFile(strPath + 'nssfs_.bmp');
@@ -2031,7 +2040,7 @@ begin
           ClearListViewData(lvRuntimeShipTrajectory);
 //        lvRuntimeMissileTrajectory.Items.Clear;
           ClearListViewData(lvRuntimeMissileTrajectory);
-          frmMainInstruktur.FrameControlLeft.Width := 0;
+          //frmMainInstruktur.FrameControlLeft.Width := 0;
         end;
       end;
   end;
@@ -4307,18 +4316,29 @@ end;
 { Asroc }
 procedure TfrmGameController.MainMenuClick(Sender: TObject);
 begin
+  FSelectedMenu := TImage(Sender).Tag;
+
   case TImage(Sender).Tag of
     0:
       begin
+        ResetMenuImage;
+
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlClient.BringToFront;
       end;
     1:
       begin
+        ResetMenuImage;
+
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlScenario.BringToFront;
         ShowScenario;
       end;
     2:
       begin
+        ResetMenuImage;
+
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlPlatform.BringToFront;
         ShowShip;
       end;
@@ -4327,6 +4347,9 @@ begin
         if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
           exit;
 
+        ResetMenuImage;
+
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlController.BringToFront;
       end;
     4:
@@ -4334,6 +4357,9 @@ begin
         if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
           exit;
 
+        ResetMenuImage;
+
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlEnvironment.BringToFront;
       end;
     5:
@@ -4341,6 +4367,9 @@ begin
         if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
           exit;
 
+        ResetMenuImage;
+
+        TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlReport.BringToFront;
       end;
   end;
@@ -4387,7 +4416,20 @@ end;
 
 procedure TfrmGameController.MainMenuMouseLeave(Sender: TObject);
 begin
-  TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '.png');
+  if TImage(Sender).Tag <> FSelectedMenu then
+    TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '.png');
+end;
+
+procedure TfrmGameController.ResetMenuImage;
+var
+  i: Integer;
+begin
+  imgClient.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgClient.png');
+  imgScenario.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgScenario.png');
+  imgPlatform.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgPlatform.png');
+  imgController.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgController.png');
+  imgEnvironment.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgEnvironment.png');
+  imgReport.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgReport.png');
 end;
 
 procedure TfrmGameController.btnAsrocFireClick(Sender: TObject);
@@ -7470,6 +7512,11 @@ begin
   tempString2.Free;
 end;
 
+procedure TfrmGameController.mmoReportClick(Sender: TObject);
+begin
+  frmMainLog.Show;
+end;
+
 procedure TfrmGameController.lvClientCustomDrawSubItem(Sender: TCustomListView; Item: TListItem; SubItem: Integer; State: TCustomDrawState; var DefaultDraw: Boolean);
 begin
   if SubItem = 5 then
@@ -7996,6 +8043,10 @@ begin
   begin
     AutoRefresh;
   end;
+
+  pnlScenario.BringToFront;
+
+  TabSelectObject.ActivePage := tsSelectShip;
 end;
 
 procedure TfrmGameController.btnSelectCanonTargetClick(Sender: TObject);

@@ -810,7 +810,7 @@ begin
   FrameControlLeft.FrameWeaponStatus.SetHandleEvent;
   FrameControlLeft.FrameWeaponStatus.CreateSPSPopUp;
   FrameControlLeft.FrameWeaponStatus.NillAllSet;
-  FrameControlLeft.Width := 0;//357
+  //FrameControlLeft.Width := 0;//357             // command biar panel gak hilang
   Menu := MainMenu1;
   
 //  DoubleBuffered         := True;
@@ -3612,6 +3612,10 @@ begin
       (TInsObject(o).FDataBaseID = Vehicle.Vehicle_ID) then
     begin
       SimManager.TrackObject    := TInsObject(o);
+
+      if SimManager.TrackObject.ObjClassName = 'Missile' then
+        Break;
+
       SimManager.selectedObject := nil;
       SimManager.selectedView   := nil;
 
@@ -3631,7 +3635,7 @@ begin
   FrameControlLeft.NillAllSet;
   FrameControlLeft.FrameGuidance.NillAllSet;
   FrameControlLeft.FrameWeaponStatus.NillAllSet;
-  FrameControlLeft.Width := 0;
+  //FrameControlLeft.Width := 0;
 end;
 
 procedure TfrmMainInstruktur.SetTrackObjectTrajectory;
