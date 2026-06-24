@@ -8045,6 +8045,7 @@ begin
   end;
 
   pnlScenario.BringToFront;
+  imgScenario.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgScenario_.png');
 
   TabSelectObject.ActivePage := tsSelectShip;
 end;
@@ -10529,7 +10530,11 @@ begin
     SimManager.isDatabaseMode := False;
 
     ClearScenarioData;
+
+    ResetMenuImage;
+    imgController.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgController_.png');
     pnlController.BringToFront;
+
     frmMainInstruktur.FrameControlLeft.Width := 357;
   end
   else

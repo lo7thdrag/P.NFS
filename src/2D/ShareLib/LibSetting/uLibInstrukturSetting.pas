@@ -90,8 +90,8 @@ begin
     yCenter := ForceReadFloat(ini, iniSect_Map, iniVal_MapY, -7.19549);
     zoom    := ForceReadFloat(ini, iniSect_Map, iniVal_MapZ, 20.0);
 
-    xOffset  :=  ForceReadFloat(ini, iniSect_Map, iniVal_MapOffX, 112.739524);
-    yOffset  :=  ForceReadFloat(ini, iniSect_Map, iniVal_MapOffY, -7.19549);
+    xOffset  :=  ForceReadFloat(ini, iniSect_Map, iniVal_MapOffX, 0.0{112.739524});
+    yOffset  :=  ForceReadFloat(ini, iniSect_Map, iniVal_MapOffY, 0.0{-7.19549});
 
     useOffset:=  ForceReadBool(ini, iniSect_Map, iniVal_MapOff, false);
   end;

@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              0100011801000080B44C2901000000652045771C000000000000000000000000
+              0100011801000080B44C29010000004CE797001C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183312,8 +183312,8 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000000000000D8CF970088
-              CB9700000000006688CE50000200006B88CE506688CE50000000000000000000
+              0000000000000000000000000000000000000000000000B109A642000000007C
+              EB97002CE79700000000006688CE50000200006B88CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -206699,6 +206699,7 @@ object frmGameController: TfrmGameController
               TabAppearance.Appearance.Font.Height = -11
               TabAppearance.Appearance.Font.Name = 'Tahoma'
               TabAppearance.Appearance.Font.Style = [fsBold]
+              TabAppearance.Appearance.FocusColor = clWhite
               TabAppearance.Appearance.SimpleLayout = True
               TabAppearance.Appearance.Rounding = 0
               TabAppearance.Status.Caption = '0'
@@ -206712,7 +206713,7 @@ object frmGameController: TfrmGameController
               TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
               TabAppearance.Status.Appearance.Fill.Glow = gmNone
               TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-              TabAppearance.Status.Appearance.Font.Color = clWhite
+              TabAppearance.Status.Appearance.Font.Color = clBlack
               TabAppearance.Status.Appearance.Font.Height = -11
               TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
               TabAppearance.Status.Appearance.Font.Style = []
@@ -206723,10 +206724,10 @@ object frmGameController: TfrmGameController
               TabAppearance.BevelColorHot = 16640730
               TabAppearance.BevelColorDisabled = 16640730
               TabAppearance.Color = 7301478
-              TabAppearance.ColorDown = clBlack
               TabAppearance.ColorSelected = clBlack
               TabAppearance.ColorHot = clSilver
               TabAppearance.ColorDisabled = 7301478
+              TabAppearance.ColorTextSelected = clWhite
               TMSStyle = 0
               object lvRuntimeShip: TListView
                 Left = 2
@@ -206806,10 +206807,10 @@ object frmGameController: TfrmGameController
               TabAppearance.BevelColorHot = 16640730
               TabAppearance.BevelColorDisabled = 16640730
               TabAppearance.Color = 7301478
-              TabAppearance.ColorDown = clBlack
               TabAppearance.ColorSelected = clBlack
               TabAppearance.ColorHot = clSilver
               TabAppearance.ColorDisabled = 7301478
+              TabAppearance.ColorTextSelected = clWhite
               TMSStyle = 0
               object lvRuntimeMissile: TListView
                 Left = 8

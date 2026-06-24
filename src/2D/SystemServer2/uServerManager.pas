@@ -342,16 +342,16 @@ begin
         so.roll := incoming_data.roll;
         so.rudder := incoming_data.rudder;
 
-        if Assigned(FOnLogReceived3d) then
-        begin
-//          FOnLogReceived3d('JSON : ' + AContent);
-          FOnLogReceived3d('REC3D_POSITION' + ', ' +
-            'ShipID : ' + IntToStr(incoming_data.ShipID) + ', ' +
-            'X : ' + FormatFloat('0.00', incoming_data.X) + ', ' +
-            'Y : ' + FormatFloat('0.00', incoming_data.Y) + ', ' +
-            'Z : ' + FormatFloat('0.00', incoming_data.Z) + ', ' +
-            ' Update Pos Kapal');
-        end;
+//        if Assigned(FOnLogReceived3d) then
+//        begin
+////          FOnLogReceived3d('JSON : ' + AContent);
+//          FOnLogReceived3d('REC3D_POSITION' + ', ' +
+//            'ShipID : ' + IntToStr(incoming_data.ShipID) + ', ' +
+//            'X : ' + FormatFloat('0.00', incoming_data.X) + ', ' +
+//            'Y : ' + FormatFloat('0.00', incoming_data.Y) + ', ' +
+//            'Z : ' + FormatFloat('0.00', incoming_data.Z) + ', ' +
+//            ' Update Pos Kapal');
+//        end;
       end;
     end
     else   // jika nambah kapal
@@ -362,23 +362,23 @@ begin
       Obj.y := incoming_data.Y;
       Obj.z := incoming_data.Z;
       Obj.heading := incoming_data.Heading;
-      Obj.pitch := 0.0;
-      Obj.roll := 0.0;
-      Obj.speed := 0;
-      Obj.rudder := 0.0;
+      Obj.pitch := incoming_data.pitch;
+      Obj.roll := incoming_data.roll;
+      Obj.speed := incoming_data.speed;
+      Obj.rudder := incoming_data.rudder;
 
       FStateManager.Add(Obj);
 
-      if Assigned(FOnLogReceived3d) then
-        begin
-//          FOnLogReceived3d('JSON : ' + AContent);
-          FOnLogReceived3d('REC3D_POSITION' + ', ' +
-            'ShipID : ' + IntToStr(incoming_data.ShipID) + ', ' +
-            'X : ' + FormatFloat('0.00', incoming_data.X) + ', ' +
-            'Y : ' + FormatFloat('0.00', incoming_data.Y) + ', ' +
-            'Z : ' + FormatFloat('0.00', incoming_data.Z) + ', ' +
-            ' Add New Kapal ');
-        end;
+//      if Assigned(FOnLogReceived3d) then
+//        begin
+////          FOnLogReceived3d('JSON : ' + AContent);
+//          FOnLogReceived3d('REC3D_POSITION' + ', ' +
+//            'ShipID : ' + IntToStr(incoming_data.ShipID) + ', ' +
+//            'X : ' + FormatFloat('0.00', incoming_data.X) + ', ' +
+//            'Y : ' + FormatFloat('0.00', incoming_data.Y) + ', ' +
+//            'Z : ' + FormatFloat('0.00', incoming_data.Z) + ', ' +
+//            ' Add New Kapal ');
+//        end;
     end;
 
 //    FServer2D.SendDataEx(REC_3D_POSITION, @apRec, nil);
@@ -636,7 +636,7 @@ begin
       apRec.speed := so.speed;
       apRec.pitch := so.pitch;
       apRec.roll := so.roll;
-      apRec.rudder := 0;
+      apRec.rudder := 0.0;
       FServer2D.SendDataEx(REC_3D_POSITION, @apRec, nil);
     end;
   end;
