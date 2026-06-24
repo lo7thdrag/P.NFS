@@ -14,6 +14,7 @@ type
     destructor Destroy; override;
 
     property CoordConverter: TCoordConverter read FConv write FConv;
+    property VList: TList read FList;
 
     function  AddVehicle: TVehicle; overload;
     function  AddVehicle(const x, y: Double; const trackLabel: string = ''): TVehicle; overload;

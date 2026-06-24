@@ -726,7 +726,12 @@ begin
 
   lRec.mUpDown             := 0;
   lRec.mTargetID           := 0;
-  lRec.mModeID             := 0;
+
+  if AK230Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+    lRec.mModeID             := 1
+  else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+    lRec.mModeID             := 0;
+
   lRec.mAutoCorrectElev    := FVTgtElevation;
   lRec.mAutoCorrectBearing := FVTgtTraining;
 
@@ -1392,7 +1397,12 @@ begin
 
     lRec.mUpDown :=  0;
     lRec.mTargetID := 0;
-    lRec.mModeID := 0;
+
+    if AK230Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+      lRec.mModeID             := 1
+    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      lRec.mModeID             := 0;
+
     lRec.mAutoCorrectElev := cElevation;//elev correct
     lRec.mAutoCorrectBearing := cBearing;//bearing correct
 
@@ -1624,6 +1634,15 @@ procedure TfrmDCDSMain.tmrTimeTimer(Sender: TObject);
 begin
   edtDateValue.Text := FormatDateTime('MM/DD/YYYY', Now);
   edtTimeValue.Text := FormatDateTime('hh:mm:ss ampm', Now);
+
+  if (AK230Manager.isDesig) and (AK230Manager.TargetAssigned) then
+  begin
+    edtElevationValue.Text := FormatFloat('0.0', AK230Manager.Elevation);
+    edtTrainingValue.Text := FormatFloat('0.0', AK230Manager.Bearing);
+
+    btnDcdcExecuteClick(nil);
+    AK230Manager.TargetAssigned := False;
+  end;
 
   FVTgtHeading := AK230Manager.xShip.Heading;
 end;

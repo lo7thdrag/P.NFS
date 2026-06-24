@@ -473,7 +473,7 @@ object frmMainFCC: TfrmMainFCC
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000D0766F0E010000008F0FBA771C000000000000000000000000
+          0100011801000040ECB004010000005F0EF0761C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -482,7 +482,7 @@ object frmMainFCC: TfrmMainFCC
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000D0766F0E01000000FCE097001C00000000000000000000000000000000
+          01000040ECB00401000000FCE097001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1121,10 +1121,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabRev: TAdvTabSheet
         Caption = 'Rev'
@@ -1132,10 +1128,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabServo: TAdvTabSheet
         Caption = 'Servo'
@@ -1143,10 +1135,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabCon: TAdvTabSheet
         Caption = 'Con'
@@ -1154,10 +1142,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTabTVLS: TAdvTabSheet
         Caption = 'TV-LS'
@@ -1165,10 +1149,6 @@ object frmMainFCC: TfrmMainFCC
         ColorTo = clNone
         TabColor = clBtnFace
         TabColorTo = clNone
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
     end
   end
@@ -1185,7 +1165,7 @@ object frmMainFCC: TfrmMainFCC
       Width = 676
       Height = 28
       Align = alTop
-      Caption = 'EXTERIOR DATA &&  INTERNAL COMMUNICATIONS'
+      Caption = 'EXTERIOR DATA && TARGET DESIGNATION'
       Color = clHighlight
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -1404,10 +1384,6 @@ object frmMainFCC: TfrmMainFCC
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lblIDTargetIND: TLabel
             Left = 3
             Top = 13
@@ -1534,10 +1510,6 @@ object frmMainFCC: TfrmMainFCC
           ParentFont = False
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
     end
@@ -1548,12 +1520,12 @@ object frmMainFCC: TfrmMainFCC
       Height = 172
       Align = alClient
       TabOrder = 2
-      object lblRev: TLabel
-        Left = 73
-        Top = 42
-        Width = 21
+      object lblBatchNoDesig: TLabel
+        Left = 11
+        Top = 57
+        Width = 50
         Height = 16
-        Caption = 'Rev'
+        Caption = 'Batch No'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -1561,12 +1533,12 @@ object frmMainFCC: TfrmMainFCC
         Font.Style = []
         ParentFont = False
       end
-      object lblServo: TLabel
-        Left = 133
-        Top = 42
-        Width = 33
+      object lblHeadingDesig: TLabel
+        Left = 11
+        Top = 87
+        Width = 46
         Height = 16
-        Caption = 'Servo'
+        Caption = 'Heading'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -1574,12 +1546,12 @@ object frmMainFCC: TfrmMainFCC
         Font.Style = []
         ParentFont = False
       end
-      object lblTV: TLabel
-        Left = 204
-        Top = 42
-        Width = 16
+      object lblSpeedDesig: TLabel
+        Left = 11
+        Top = 117
+        Width = 36
         Height = 16
-        Caption = 'TV'
+        Caption = 'Speed'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -1587,106 +1559,96 @@ object frmMainFCC: TfrmMainFCC
         Font.Style = []
         ParentFont = False
       end
-      object lblSystemControl: TLabel
-        Left = 106
-        Top = 71
-        Width = 87
-        Height = 16
-        Caption = 'System Control'
+      object edtBatchNoDesig: TEdit
+        Left = 92
+        Top = 54
+        Width = 115
+        Height = 24
+        Alignment = taCenter
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-      end
-      object lblType: TLabel
-        Left = 50
-        Top = 140
-        Width = 28
-        Height = 16
-        Caption = 'Type'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object lblOrder: TLabel
-        Left = 50
-        Top = 98
-        Width = 33
-        Height = 16
-        Caption = 'Order'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object pnlIndcTV: TPanel
-        Left = 196
-        Top = 6
-        Width = 30
-        Height = 30
-        BevelInner = bvRaised
-        Color = clGreen
-        ParentBackground = False
+        ReadOnly = True
         TabOrder = 0
+        Text = '0'
       end
-      object pnlIndcServo: TPanel
-        Left = 132
-        Top = 6
-        Width = 30
-        Height = 30
-        BevelInner = bvRaised
-        Color = clGreen
-        ParentBackground = False
+      object edtHeadingDesig: TEdit
+        Left = 92
+        Top = 84
+        Width = 115
+        Height = 24
+        Alignment = taCenter
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
         TabOrder = 1
+        Text = '0.000'
       end
-      object pnlIndcRev: TPanel
-        Left = 68
-        Top = 6
-        Width = 30
-        Height = 30
-        BevelInner = bvRaised
-        Color = clGreen
-        ParentBackground = False
+      object edtSpeedDesig: TEdit
+        Left = 92
+        Top = 114
+        Width = 115
+        Height = 24
+        Alignment = taCenter
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        ReadOnly = True
         TabOrder = 2
+        Text = '0.000'
       end
-      object edtOrderVal: TEdit
-        Left = 108
-        Top = 93
-        Width = 145
-        Height = 24
+      object fbDesigTarget: TFlatButton
+        Left = 11
+        Top = 6
+        Width = 142
+        Height = 35
+        Default = True
+        AllowAllUp = True
+        Color = clGreen
+        ColorDown = clLime
+        ColorBorder = clBlack
+        GroupIndex = 3
+        Caption = 'DESIGT'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
+        Font.Color = clBlack
+        Font.Height = -17
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ReadOnly = True
+        ParentColor = False
         TabOrder = 3
-        Text = 'None'
+        OnClick = fbBreakTargetClick
       end
-      object edtTypeVal: TEdit
-        Left = 108
-        Top = 136
-        Width = 145
-        Height = 24
-        BiDiMode = bdLeftToRight
+      object fbBreakTarget: TFlatButton
+        Left = 185
+        Top = 6
+        Width = 142
+        Height = 35
+        AllowAllUp = True
+        Color = clGreen
+        ColorDown = clLime
+        ColorBorder = clBlack
+        GroupIndex = 3
+        Caption = 'BREAK'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
+        Font.Color = clBlack
+        Font.Height = -17
         Font.Name = 'Tahoma'
         Font.Style = []
-        ParentBiDiMode = False
         ParentFont = False
-        ReadOnly = True
+        ParentColor = False
         TabOrder = 4
-        Text = 'None'
+        OnClick = fbBreakTargetClick
       end
     end
   end
@@ -2295,28 +2257,79 @@ object frmMainFCC: TfrmMainFCC
       TabOrder = 4
       Text = '0'
     end
-    object cbRDRange: TComboBox
-      Left = 386
-      Top = 83
-      Width = 43
-      Height = 21
+    object fbRangeMeter: TFlatButton
+      Left = 389
+      Top = 80
+      Width = 38
+      Height = 25
+      Color = clSilver
+      ColorDown = clLime
+      GroupIndex = 1
+      Down = True
+      Caption = 'm'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ParentColor = False
       TabOrder = 5
-      Text = 'm'
-      Items.Strings = (
-        'm'
-        'Nm')
     end
-    object cbLSRange: TComboBox
-      Left = 551
-      Top = 83
-      Width = 43
-      Height = 21
-      ItemIndex = 0
+    object fbRangeNM: TFlatButton
+      Left = 389
+      Top = 52
+      Width = 38
+      Height = 25
+      Color = clSilver
+      ColorDown = clLime
+      GroupIndex = 1
+      Caption = 'Nm'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ParentColor = False
       TabOrder = 6
-      Text = 'm'
-      Items.Strings = (
-        'm'
-        'Nm')
+    end
+    object fbLaserRangeM: TFlatButton
+      Left = 553
+      Top = 80
+      Width = 38
+      Height = 25
+      Color = clSilver
+      ColorDown = clLime
+      GroupIndex = 2
+      Down = True
+      Caption = 'm'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ParentColor = False
+      TabOrder = 7
+    end
+    object fbLaserRangeNM: TFlatButton
+      Left = 553
+      Top = 52
+      Width = 38
+      Height = 25
+      Color = clSilver
+      ColorDown = clLime
+      GroupIndex = 2
+      Caption = 'Nm'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ParentColor = False
+      TabOrder = 8
     end
   end
   object pnlInformation: TPanel
@@ -2392,6 +2405,7 @@ object frmMainFCC: TfrmMainFCC
     Top = 425
   end
   object NLDJoystick: TNLDJoystick
+    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move

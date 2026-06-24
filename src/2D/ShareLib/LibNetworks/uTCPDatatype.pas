@@ -1567,6 +1567,8 @@ const
   CORD_ID_OperatingMode       = 10;
   CORD_ID_TrackerMode         = 11;
   CORD_ID_ToZero              = 12;
+  CORD_ID_2D_Desig            = 13;
+  CORD_ID_2D_Break            = 14;
 
   // STATUS WEAPON
   // ERROR FOR SPS115

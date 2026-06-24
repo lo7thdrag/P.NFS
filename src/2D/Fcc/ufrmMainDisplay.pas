@@ -701,6 +701,7 @@ type
     { Public declarations }
     rCX, rCY: integer;
     DAttackState : Boolean;
+    GetTargetFrom3D : Boolean;
   end;
 
 var
@@ -1354,7 +1355,7 @@ begin
 
     FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
 
-    FCCManager.SelectedVehicle := v;
+//    FCCManager.SelectedVehicle := v;
     rangeX := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
     dH     := v.PosZ;    // target 20 m lebih rendah
     v0     := 1035;    // m/s
@@ -1857,6 +1858,7 @@ begin
   FNorthInd := TRadarNorthIndicator.Create; // bukan north indicator, tapi heading indicator
 
   FShipHeading := 0; // awal
+  GetTargetFrom3D := false;
 
   FBearing0 := TRadarBearing.Create(0, clWhite, 'N');   // perlu ditambahkan radar bearing untuk gun dan EO
   FBearingGun := TRadarBearing.Create(0, clRed, 'GUN');
@@ -3038,6 +3040,11 @@ begin
 //    Inc(FNorthAngle)
 //  else
 //    FNorthAngle := 0;
+  if GetTargetFrom3D then
+  begin
+    FMapMouseUp(sender, mbLeft, [ssLeft], 0, 0);
+    GetTargetFrom3D := false;
+  end;
 
   imgCompas.Repaint;
 

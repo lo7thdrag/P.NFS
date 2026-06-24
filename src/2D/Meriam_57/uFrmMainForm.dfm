@@ -7230,7 +7230,7 @@ object Form1: TForm1
           TabOrder = 0
           object lblElevasi: TLabel
             Left = 273
-            Top = 62
+            Top = 54
             Width = 80
             Height = 19
             Caption = 'ELEVASI :'
@@ -7256,7 +7256,7 @@ object Form1: TForm1
           end
           object edtElevasi: TEdit
             Left = 363
-            Top = 59
+            Top = 51
             Width = 66
             Height = 27
             Font.Charset = DEFAULT_CHARSET
@@ -7480,7 +7480,7 @@ object Form1: TForm1
           object RzBmpBtnElevasi: TRzBmpButton
             Tag = 1
             Left = 444
-            Top = 30
+            Top = 24
             Width = 55
             Height = 55
             Bitmaps.Down.Data = {

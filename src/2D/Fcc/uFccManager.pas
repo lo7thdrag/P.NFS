@@ -110,7 +110,7 @@ const
 implementation
 
 uses
-  uDataModule, ulibSettings;
+  uDataModule, ulibSettings, ufrmMainDisplay;
 
 { TFCCManager }
 
@@ -304,6 +304,7 @@ begin
       CORD_ID_3DGet_Target : // dapet target dari 3d
       begin
         FTarget2D := arec.IDTarget2D;
+        frmMainFCC.GetTargetFrom3D := True;
       end;
 
       CORD_ID_2DGet_Target :

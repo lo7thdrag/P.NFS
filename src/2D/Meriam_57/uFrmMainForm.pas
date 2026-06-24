@@ -1001,7 +1001,10 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+      RecSend.mModeID             := 1
+    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
     RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
 
@@ -1028,7 +1031,10 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+      RecSend.mModeID             := 1
+    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
     RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
 
@@ -1063,7 +1069,10 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+      RecSend.mModeID             := 1
+    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := CorrectElev;
     RecSend.mAutoCorrectBearing := CorrectBearing;
 
@@ -1100,7 +1109,10 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+      RecSend.mModeID             := 1
+    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := CorrectElev;
     RecSend.mAutoCorrectBearing := CorrectBearing;
 
@@ -1138,7 +1150,10 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+      RecSend.mModeID             := 1
+    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      RecSend.mModeID             := 0;RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := CorrectElev;
     RecSend.mAutoCorrectBearing := CorrectBearing;
 
@@ -1172,7 +1187,12 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := 0;
-    RecSend.mModeID             := 0;
+
+    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+      RecSend.mModeID             := 1
+    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      RecSend.mModeID             := 0;
+
     RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
     RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
 
@@ -1189,18 +1209,27 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 var
   PngSrc, PngSrc2: TPngImage;
 begin
-    UpdateAngle;
-    DrawLayerList(FLayersKolonka, FBufferKolonka, FAngleKolonka);
-    DrawLayerList(FLayersElevasi, FBufferElevasi, FAngleElevasi);
+  if (Meriam57Manager.isDesig) and (Meriam57Manager.TargetAssigned) then
+  begin
+    FTargetAngleKolonka := Meriam57Manager.Bearing;
+    FTargetAngleElevasi := Meriam57Manager.Elevation;
 
-    PntBxKolonka.Repaint;
-    PntBxElevasi.Repaint;
+    RzBmpBtnTrainingClick(Sender);
+    Meriam57Manager.TargetAssigned := False;
+  end;
 
-    lblKolonkaValue.Caption := FormatFloat('0.00', FAngleKolonka);
-    lblElevasiValue.Caption := FormatFloat('0.00', FAngleElevasi);
+  UpdateAngle;
+  DrawLayerList(FLayersKolonka, FBufferKolonka, FAngleKolonka);
+  DrawLayerList(FLayersElevasi, FBufferElevasi, FAngleElevasi);
 
-    lblTimeValue.Caption := FormatDateTime('hh:nn:ss',now);
-    lblDateValue.Caption := FormatDateTime('dd-mm-yyyy',now);
+  PntBxKolonka.Repaint;
+  PntBxElevasi.Repaint;
+
+  lblKolonkaValue.Caption := FormatFloat('0.00', FAngleKolonka);
+  lblElevasiValue.Caption := FormatFloat('0.00', FAngleElevasi);
+
+  lblTimeValue.Caption := FormatDateTime('hh:nn:ss',now);
+  lblDateValue.Caption := FormatDateTime('dd-mm-yyyy',now);
 end;
 
 procedure TForm1.tmrBtnArrowTimer(Sender: TObject);

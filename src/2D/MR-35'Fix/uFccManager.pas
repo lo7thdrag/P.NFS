@@ -314,13 +314,26 @@ begin
       CORD_ID_3DGet_Target :
       begin
         FTarget2D := arec.IDTarget2D;
+        if FShowedVehicle <> 0 then
+        begin
+          V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FShowedVehicle));
+          V.isVisible := False;
+        end;
+        SelectedVehicle := V;
       end;
 
       CORD_ID_2DGet_Target :
       begin
         FTarget2D := arec.IDTarget2D;
+        if FShowedVehicle <> 0 then
+        begin
+          V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FShowedVehicle));
+          V.isVisible := False;
+        end;
         V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.IDTarget2D));
         V.isVisible := True;
+
+        SelectedVehicle := V;
         FShowedVehicle := arec.IDTarget2D;
       end;
 
@@ -341,6 +354,7 @@ begin
         begin
           V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FShowedVehicle));
           V.isVisible := False;
+          SelectedVehicle := nil;
         end;
       end;
     end;

@@ -295,7 +295,7 @@ var
   aRec: ^TrecData_MeriamFCC;
 begin
   aRec := @apRec^;
-  if UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID) = arec^.ShipID then
+  if FCCManager.FShipID = arec^.ShipID then
   begin
     case aRec^.OrderID of
       CORD_ID_3DUpdate_EO :
@@ -320,6 +320,16 @@ begin
       end;
 
       CORD_ID_2DSet_Status :
+      begin
+
+      end;
+
+      CORD_ID_2D_Desig :
+      begin
+
+      end;
+
+      CORD_ID_2D_Break :
       begin
 
       end;
@@ -458,7 +468,20 @@ end;
 procedure TFCCManager.NetSendTo3D_FCCSet(rec: TrecData_MeriamFCC);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
-      TCPClient.sendDataEx(REC_CMD_FCC57, @Rec); // only send to 3D and FCC 2
+  begin
+    case vFccSetting.FccMode of
+      2 : //MR 103
+      begin
+        TCPClient.sendDataEx(REC_CMD_57DIG, @Rec);
+      end;
+      3 : //MR 302
+      begin
+        TCPClient.sendDataEx(REC_CMD_AK230, @Rec);
+      end;
+    end;
+
+  end;
+
 end;
 
 procedure TFCCManager.NetSendTo3D_OrderCameraControl(rec: TRec_CameraController);

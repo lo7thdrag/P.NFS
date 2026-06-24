@@ -176,8 +176,8 @@ object frmDCDSMain: TfrmDCDSMain
         4D0000000049454E44AE426082}
     end
     object btnFiring: TVrBitmapButton
-      Left = 642
-      Top = 930
+      Left = 644
+      Top = 933
       Width = 76
       Height = 82
       Glyph.Data = {
@@ -4832,7 +4832,7 @@ object frmDCDSMain: TfrmDCDSMain
                 end
                 object edtTrainingValue: TEdit
                   Left = 198
-                  Top = 8
+                  Top = 10
                   Width = 65
                   Height = 22
                   Alignment = taCenter

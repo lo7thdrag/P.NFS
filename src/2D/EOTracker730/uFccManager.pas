@@ -295,6 +295,7 @@ end;
 procedure TFCCManager.EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
 var
   aRec: ^TrecData_MeriamFCC;
+  V: TVehicle;
 begin
 
   aRec := @apRec^;
@@ -310,11 +311,15 @@ begin
       CORD_ID_3DGet_Target :
       begin
         FTarget2D := arec.IDTarget2D;
+        V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(arec.ShipID));
+        SelectedVehicle := V;
       end;
 
       CORD_ID_2DGet_Target :
       begin
         FTarget2D := arec.IDTarget2D;
+        V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(arec.ShipID));
+        SelectedVehicle := V;
       end;
 
       CORD_ID_TargetType :
@@ -329,11 +334,20 @@ begin
 
       CORD_ID_OperatingMode : // set operating mode
       begin
+        if FOperating_Mode <> arec.TargetType then
+        begin
+          SelectedVehicle := nil;
+        end;
         FOperating_Mode := TOperatingMode(aRec.TargetType);
       end;
 
       CORD_ID_TrackerMode : // set operating mode
       begin
+        if FTrackMode <> arec.TargetType then
+        begin
+          SelectedVehicle := nil;
+        end;
+
         FTrackMode := TTrackMode(aRec.TargetType);
       end;
     end;

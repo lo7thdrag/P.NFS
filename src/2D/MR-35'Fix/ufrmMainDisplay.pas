@@ -34,6 +34,12 @@ type
     Height: Integer;
   end;
 
+  TAScope = record
+  public
+    Instensity : Double;
+    RangeM     : Double;
+  end;
+
   TfrmMainFCC = class(TForm)
     pnlSituationZone: TPanel;
     pnlUpper: TPanel;
@@ -199,6 +205,7 @@ type
     NLDJoystick: TNLDJoystick;
     pnlRadarBlind: TPanel;
     tmrUpdateAScope: TTimer;
+    pbAScopeGraph: TPaintBox;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -227,6 +234,7 @@ type
     procedure NLDJoystick1ButtonUp(Sender: TNLDJoystick;
       const Buttons: TJoyButtons);
     procedure tmrUpdateAScopeTimer(Sender: TObject);
+    procedure pbAScopeGraphPaint(Sender: TObject);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -254,6 +262,8 @@ type
     FXAxis, FYAxis, FZAxis, FisBiteOpen, FisAutomatic : Boolean;
 
     FOperatingMode: TOperatingMode;
+
+    FVehicleArray: array of TAScope;
 
     { Property On TDA }
     FRings       : TRadarRangeRings;
@@ -801,8 +811,9 @@ begin
   begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
-    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     // range = 3000 m, target lebih rendah 25 m
+//    bearing := azimuth - FCCManager.xShip.Heading;
     bearing := azimuth - FCCManager.xShip.Heading;
     if bearing < 0 then
     bearing := bearing + 360;
@@ -1751,6 +1762,32 @@ begin
 
 end;
 
+procedure TfrmMainFCC.pbAScopeGraphPaint(Sender: TObject);
+var
+  i, xPB, yPB : Integer;
+  Xw, Yw : Double;
+
+begin
+  // paint graph disini
+  pbAScopeGraph.Canvas.Brush.Color := clBlack;
+  pbAScopeGraph.Canvas.FillRect(pbAScopeGraph.ClientRect);
+
+  for i := 0 to High(FVehicleArray) do
+  begin
+    if FVehicleArray[i].RangeM > 40000 then Continue;
+
+    Xw := pbAScopeGraph.Width / 40000;
+    xPB := Round(Xw * FVehicleArray[i].RangeM);
+
+    Yw := (FVehicleArray[i].Instensity * 4) + 1;
+    yPB := Round(Yw);
+
+    pbAScopeGraph.Canvas.Pen.Color := clLime;
+    pbAScopeGraph.Canvas.MoveTo(xPB, yPB);
+    pbAScopeGraph.Canvas.LineTo(xPB, 103);
+  end;
+end;
+
 procedure TfrmMainFCC.pnlFireFcc2Click(Sender: TObject);
 var
   RecSend : TRec3DSetWCC;
@@ -2006,19 +2043,53 @@ begin
 end;
 
 procedure TfrmMainFCC.tmrUpdateAScopeTimer(Sender: TObject);
+var
+  i, counter : Integer;
+  V : TVehicle;
+  EOAzimuth, deltaA, Azimuth, range, rangem : Double;
 begin
   // update A-Scope disini
+  if Assigned(FCCManager.xShip) then
+  begin
+    SetLength(FVehicleArray, 0);
+    counter := 0;
+    EOAzimuth := FCCManager.xShip.Heading + FCCManager.EOBearing;
+    if EOAzimuth >= 360 then EOAzimuth := EOAzimuth - 360;
+
+    for i := 0 to VehicleMgr.VList.Count - 1 do
+    begin
+      V := TVehicle(VehicleMgr.VList[i]);
+      Azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, V.PosX, V.PosY);
+      deltaA := Abs(EOAzimuth - Azimuth);
+
+      range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, V.PosX, V.PosY);
+      rangem := range * C_NauticalMile_To_Metre;
+
+      if (deltaA < 20) or (deltaA >= 340) then
+      begin
+        if deltaA >= 340 then deltaA := 360 - deltaA;
+
+        SetLength(FVehicleArray, counter +1);
+        FVehicleArray[counter].Instensity := deltaA;
+        FVehicleArray[counter].RangeM := rangem;
+
+        counter := counter +1;
+      end;
+    end;
+  end;
+  pbAScopeGraph.Invalidate;
+
 end;
 
 procedure TfrmMainFCC.tmrUpdateFormTimer(Sender: TObject);
 var
 duration : TDateTime;
+
 begin
 //  if FNorthAngle < 360 then
 //    Inc(FNorthAngle)
 //  else
 //    FNorthAngle := 0;
-
   duration := Now - FStartTime;
   lblRunTimeVal.Caption := FormatDateTime('hh:nn:ss', duration);
 

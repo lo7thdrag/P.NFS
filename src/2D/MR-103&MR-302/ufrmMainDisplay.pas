@@ -13,7 +13,7 @@ uses
   uSimulationManager, uRadarVisual, uRadarDynamicSector, uRadarNorthIndicator,
   uRadarTargets, VrControls, VrDesign, AdvOfficeButtons, SHDocVw, NLDJoystick, System.IOUtils,
   Grijjy.Bson.Serialization, ShellAPI, DateUtils, AdvTrackBar, AdvPageControl,
-  Vcl.ComCtrls, AdvUtil, Vcl.Grids, AdvObj, BaseGrid, AdvGrid;
+  Vcl.ComCtrls, AdvUtil, Vcl.Grids, AdvObj, BaseGrid, AdvGrid, TFlatButtonUnit;
 
 type
     TSetting = record
@@ -98,17 +98,6 @@ type
     advTabNAVI: TAdvTabSheet;
     AdvTabIND: TAdvTabSheet;
     AdvTabDEVI: TAdvTabSheet;
-    pnlIndcTV: TPanel;
-    pnlIndcServo: TPanel;
-    pnlIndcRev: TPanel;
-    lblRev: TLabel;
-    lblServo: TLabel;
-    lblTV: TLabel;
-    lblSystemControl: TLabel;
-    lblType: TLabel;
-    lblOrder: TLabel;
-    edtOrderVal: TEdit;
-    edtTypeVal: TEdit;
     lblHeadingNAVI: TLabel;
     EdtHeadingNAVIVal: TEdit;
     lblHeadingNAVIsat: TLabel;
@@ -176,8 +165,18 @@ type
     tableReceiveBITE: TAdvStringGrid;
     pnlReceiveBiteHeader: TPanel;
     NLDJoystick: TNLDJoystick;
-    cbRDRange: TComboBox;
-    cbLSRange: TComboBox;
+    fbRangeMeter: TFlatButton;
+    fbRangeNM: TFlatButton;
+    fbLaserRangeM: TFlatButton;
+    fbLaserRangeNM: TFlatButton;
+    lblBatchNoDesig: TLabel;
+    edtBatchNoDesig: TEdit;
+    lblHeadingDesig: TLabel;
+    edtHeadingDesig: TEdit;
+    lblSpeedDesig: TLabel;
+    edtSpeedDesig: TEdit;
+    fbDesigTarget: TFlatButton;
+    fbBreakTarget: TFlatButton;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
@@ -205,6 +204,7 @@ type
       const Buttons: TJoyButtons);
     procedure NLDJoystick1ButtonUp(Sender: TNLDJoystick;
       const Buttons: TJoyButtons);
+    procedure fbBreakTargetClick(Sender: TObject);
   protected
     procedure DrawAngle(aCnv: TCanvas);
     procedure DrawCompas(aCnv: TCanvas);
@@ -268,6 +268,8 @@ type
     FStartTime: TDateTime;
 
     FOwnShipHeading : Double;
+
+    FBearing, FElevation : Double;
 
     procedure LoadGeoset(const aGst: string); virtual;
     procedure InitializeForm();
@@ -509,105 +511,6 @@ begin
   i := FindClosestZoomIndex(z);
   z := ZoomIndexToScale(i);
 
-    // BLIND ZONE
-//    AreaBlindZone1.CenterMode := cmMapPosition;
-//    AreaBlindZone1.MapPosX := FMap.CenterX;
-//    AreaBlindZone1.MapPosY := FMap.CenterY;
-//    AreaBlindZone1.CoordConverter := aCvt;
-//    AreaBlindZone1.ConvertCoord(aCvt);
-//
-//    AreaBlindZone1.OuterRadiusPx := FCircleR;
-//    AreaBlindZone1.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaBlindZone1.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-
-//    AreaBlindZone1.Draw(aCnv);
-//
-//    AreaBlindZone.CenterMode := cmMapPosition;
-//    AreaBlindZone.MapPosX := FMap.CenterX;
-//    AreaBlindZone.MapPosY := FMap.CenterY;
-//    AreaBlindZone.CoordConverter := aCvt;
-//    AreaBlindZone.ConvertCoord(aCvt);
-//
-//    AreaBlindZone.OuterRadiusPx := FCircleR;
-//    AreaBlindZone.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaBlindZone.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaBlindZone.Draw(aCnv);
-
-//    AreaPenembakan.CenterMode     := cmMapPosition;
-//    AreaPenembakan.MapPosX        := FMap.CenterX;
-//    AreaPenembakan.MapPosY        := FMap.CenterY;
-//    AreaPenembakan.CoordConverter := aCvt;
-//
-//    AreaPenembakan.OuterRadiusPx  := FCircleR;
-//    AreaPenembakan.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaPenembakan.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaPenembakan.Draw(aCnv);
-
-//    AreaTracker.CenterMode     := cmMapPosition;
-//    AreaTracker.MapPosX        := FMap.CenterX;
-//    AreaTracker.MapPosY        := FMap.CenterY;
-//    AreaTracker.CoordConverter := aCvt;
-//
-//    AreaTracker.OuterRadiusPx  := FCircleR;
-//    AreaTracker.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaTracker.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaTracker.Draw(aCnv);
-
-//    AreaGunPoint.CenterMode     := cmMapPosition;
-//    AreaGunPoint.MapPosX        := FMap.CenterX;
-//    AreaGunPoint.MapPosY        := FMap.CenterY;
-//    AreaGunPoint.CoordConverter := aCvt;
-//
-//    AreaGunPoint.OuterRadiusPx  := FCircleR;
-//    AreaGunPoint.CurrentRange_m := Self.FCurrentRange;
-//
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//        AreaGunPoint.HeadingDeg    := FCCManager.xShip.Heading;
-//    end;
-//
-//    AreaGunPoint.Draw(aCnv);
-
-    // --- North Indicator ---
-//    FNorthInd.CenterX       := FCircleCX;
-//    FNorthInd.CenterY       := FCircleCY;
-//    FNorthInd.RadiusPx      := FCircleR;
-//    if Assigned(FCCManager) then
-//    begin
-//      if Assigned(FCCManager.xShip) then
-//      begin
-//        FNorthInd.HeadingDeg    := FCCManager.xShip.Heading;
-//        FNorthInd.UseTrueMotion := FCCManager.IsTrueMotion; // TRUE or FALSE
-//      end;
-//    end;
-//    FNorthInd.Draw(aCnv);
-
-
-
     // RANGE RINGS
     FRings.CircleRect    := FCircleRect;
     FRings.CurrentRange_m := FCurrentRange;
@@ -816,6 +719,58 @@ begin
   DeleteObject(rgnInner); // clean up
 end;
 
+procedure TfrmMainFCC.fbBreakTargetClick(Sender: TObject);
+var
+RecSend: TrecData_MeriamFCC;
+begin
+  fbDesigTarget.AllowAllUp := False;
+  fbBreakTarget.AllowAllUp := False;
+
+  if fbDesigTarget.Down then
+  begin
+    if FCCManager.SelectedVehicle <> nil then
+    begin
+      RecSend.ShipID := FCCManager.ShipID; // harus dipindah di desig dan break
+      RecSend.Range := 0;
+      RecSend.Bearing := FBearing;
+      RecSend.Elevation := FElevation;
+      RecSend.EOBearing := 0;
+      RecSend.EOElevation := 0;
+      RecSend.TargetType := 0;
+      RecSend.EnableValue := false;
+
+      RecSend.OrderID := CORD_ID_2D_Desig;
+      RecSend.IDTarget3D := 0;
+      RecSend.IDTarget2D := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
+
+      FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
+    end
+    else
+    begin
+      fbDesigTarget.Down := False;
+    end;
+
+  end
+  else if fbBreakTarget.Down then
+  begin
+    RecSend.ShipID := FCCManager.ShipID; // harus dipindah di desig dan break
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.TargetType := 0;
+    RecSend.EnableValue := false;
+
+    RecSend.OrderID := CORD_ID_2D_Break;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
+  end;
+
+end;
+
 procedure TfrmMainFCC.FMapDrawUserLayer(ASender: TObject;
   const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull,
   RectInvalid: IDispatch);
@@ -864,6 +819,7 @@ begin
   end
   else
   begin
+    FCCManager.SelectedVehicle := nil;
     FSelectedVehicleState := false;
   end;
 end;
@@ -878,108 +834,48 @@ procedure TfrmMainFCC.FMapMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
   isValid : Boolean;
-  RecSend : TRec3DSetWCC;
+//  RecSend : TRec3DSetWCC;
 
   CorrectBearing,
   CorrectElev : Double;
   aLow, aHigh: Double;
-  range,rangem, bearing, azimuth, elevation : Double;
+  range,rangem, bearing, azimuth, elevation, deltaZ : Double;
 begin
   if Assigned(fccmanager.SelectedVehicle) then
   begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
+
     azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     bearing := azimuth - FCCManager.xShip.Heading;
     if bearing < 0 then
     bearing := bearing + 360;
     // range = 3000 m, target lebih rendah 25 m
-    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
     case vFccSetting.FccMode of
-      1 : //MR 35
-      begin
-        elevation := Power(rangem/6700, Exp(1.0)) * 45;
-      end;
       2 : //MR 103
       begin
-        elevation := Power(rangem/6700, Exp(1.0)) * 45;
+        elevation := CalcTurretElevation(rangem, 12900);
       end;
       3 : //MR 302
       begin
-        elevation := CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ);
+//        deltaZ := Abs(FCCManager.SelectedVehicle.PosZ - FCCManager.xShip.PositionZ);
+//        rangem := Sqrt(Power(rangem) * Power(deltaZ)); // masukan rumus c2 = a2 + b2 karena target AIR  gajadi dipake
+        elevation := CalcElevation(rangem, 6, fccmanager.SelectedVehicle.PosZ);
       end;
     end;
 
-    if cbrdrange.ItemIndex = 0 then edtRDRangeVal.Text := format('%.2f', [rangem])
+    if fbRangeMeter.Down then edtRDRangeVal.Text := format('%.2f', [rangem])
     else  edtRDRangeVal.Text := format('%.2f', [rangem * c_meter_to_nauticalMile]);
     edtRadarGate.Text := format('%.2f', [rangem]);
     edtRAzimuthVal.Text := format('%.2f', [bearing]);
     edtElevationVal.Text := format('%.2f', [elevation]);
 
+    FBearing := bearing;
+    FElevation := elevation;
+
     edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
     edtSpeedINDVal.Text := (FCCManager.SelectedVehicle.Speed_mps * 1.944).ToString;
     edtHeadingINDVal.Text := FCCManager.SelectedVehicle.HeadingDeg.ToString;
-
-//    lblTgtNo.Caption := FCCManager.SelectedVehicle.ShipID.ToString();
-//    lblLatTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posy]);
-//    lblLonTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posx]);
-//
-//    lblTgtSpd.Caption := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.943844]);
-//    lblTgtCourse.Caption := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
-
-//    if (aLow <= 80 ) and (aLow >= 0 )then
-//    begin
-////      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
-//      aLow := FMod(aLow, 360);
-//      if aLow < 0 then
-//        aLow := aLow + 360;
-//
-//      RecSend.ShipID          := FCCManager.ShipID;
-//      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
-//      RecSend.mLauncherID     := 0;
-//      RecSend.mMissileID      := 0;
-//      RecSend.mMissileNumber  := 0;
-//      RecSend.mOrderID        := 0;
-//
-//      RecSend.mUpDown             := 0;
-//      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
-//      RecSend.mModeID             := 0;
-//      RecSend.mAutoCorrectElev    := aLow;
-//      RecSend.mAutoCorrectBearing := bearing;
-//
-//      RecSend.mBalistikID         := 0;
-//      RecSend.mSalvoRate          := 30;
-//
-//
-//      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
-//      FCCManager.NetSendTo3D_OrderCannon(RecSend);
-//    end
-//    else if (aLow >= 350 )then
-//    begin
-//      alow := FMod(alow, 360);
-//      if alow < 0 then
-//        alow := alow + 360;
-//
-//      RecSend.ShipID          := FCCManager.ShipID;
-//      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
-//      RecSend.mLauncherID     := 0;
-//      RecSend.mMissileID      := 0;
-//      RecSend.mMissileNumber  := 0;
-//      RecSend.mOrderID        := 0;
-//
-//      RecSend.mUpDown             := 0;
-//      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
-//      RecSend.mModeID             := 0;
-//      RecSend.mAutoCorrectElev    := alow;
-//      RecSend.mAutoCorrectBearing := bearing;
-//
-//      RecSend.mBalistikID         := 0;
-//      RecSend.mSalvoRate          := 30;
-//
-//
-//      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
-//      FCCManager.NetSendTo3D_OrderCannon(RecSend);
-//    end;
 
     if not FSelectedVehicleState then
     begin
@@ -2086,7 +1982,7 @@ begin
       end;
     end;
 
-    if cbrdrange.ItemIndex = 0 then edtRDRangeVal.Text := format('%.2f', [rangem])
+    if fbRangeMeter.Down then edtRDRangeVal.Text := format('%.2f', [rangem])
     else  edtRDRangeVal.Text := format('%.2f', [rangem * c_meter_to_nauticalMile]);
     edtRadarGate.Text := format('%.2f', [rangem]);
     edtRAzimuthVal.Text := format('%.2f', [bearing]);

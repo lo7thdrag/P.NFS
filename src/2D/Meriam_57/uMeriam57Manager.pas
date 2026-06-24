@@ -27,6 +27,10 @@ type
       FShipID,
       FClassID        : Integer;
       FAssignedWeapon : TWeaponGetList;
+      FTarget2D: Word;
+      FTargetObj : TClientObject;
+      FBearing, FElevation : Double;
+      FisDesig, FTargetAssigned : Boolean;
     protected
       procedure EventOnMainTimer(const dt: double); override;
 
@@ -46,9 +50,11 @@ type
 
       //send to network
       procedure NetSendTo3D_OrderCannon(rec : TRec3DSetWCC);
+      procedure NetSendTo3D_FCCSet(rec : TrecData_MeriamFCC);
 
       property IsStandAlone: boolean read FIsStandAlone write FIsStandAlone;
 
+      property TargetObj: TClientObject read FTargetObj write FTargetObj; // targeted Obj -rojek
       property Env_Map: Integer read FEnv_Map write FEnv_Map;
       property ShipClassID: Integer read FShipClassID write FShipClassID;
       property ShipNumber: Integer read FShipNumber write FShipNumber;
@@ -56,6 +62,12 @@ type
       property ShipName: string read FShipName write FShipName;
       property ShipClassName: string read FShipClassName write FShipClassName;
       property ShipCallSign: string read FShipCallSign write FShipCallSign;
+
+      property Target2D : Word read FTarget2D;
+      property isDesig : Boolean read FisDesig;
+      property TargetAssigned : Boolean read FTargetAssigned write FTargetAssigned;
+      property Bearing : double read FBearing;
+      property Elevation : double read FElevation;
 
       property CurrentScenID  : integer read FCurrentScenID write FCurrentScenID;
       property Server_Ip : string read FServer_Ip write FServer_Ip;
@@ -83,6 +95,8 @@ constructor TMeriam57Manager.Create;
 begin
   inherited;
   FIsStandAlone := False;
+  FisDesig := False;
+  FTargetAssigned := False;
 end;
 
 destructor TMeriam57Manager.Destroy;
@@ -123,12 +137,12 @@ begin
   AddToMemoLog(' _pos: ' + dbID_to_UniqueID(aRec.ShipID) + ' ' + Format('%2.6f, %2.6f',[aRec.X, aRec.Y]));
 
   if aRec.ShipID = UniqueID_To_dbID(xShip.UniqueID) then begin
-      xShip.PositionX := aRec.X;
-      xShip.PositionY := aRec.Y;
-      xShip.PositionZ := aRec.Z;
+    xShip.PositionX := aRec.X;
+    xShip.PositionY := aRec.Y;
+    xShip.PositionZ := aRec.Z;
 
-      xShip.Speed    := aRec.speed;
-      xShip.Heading  := aRec.heading;
+    xShip.Speed    := aRec.speed;
+    xShip.Heading  := aRec.heading;
   end
   else begin
     sc := MainObjList.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
@@ -155,8 +169,64 @@ end;
 
 procedure TMeriam57Manager.EventOnReceiveFCCSet(apRec: PAnsiChar;
   aSize: integer);
+var
+  aRec: ^TrecData_MeriamFCC;
+  sc  : TSimulationClass;
 begin
+  aRec := @apRec^;
+  if Meriam57Manager.FShipID = arec^.ShipID then
+  begin
+    case aRec^.OrderID of
+      CORD_ID_3DUpdate_EO :
+      begin
+//        FEOBearing := aRec.EOBearing;
+//        FEOElevation := aRec.EOElevation;
+      end;
+
+      CORD_ID_3DGet_Target :
+      begin
+
+      end;
+
+      CORD_ID_2DGet_Target :
+      begin
+
+//        sc := MainObjList.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
+//        FTargetObj := sc as TClientObject;
+//        if Assigned(FTargetObj) then
+//        begin
 //
+//        end;
+      end;
+
+      CORD_ID_TargetType :
+      begin
+//        FTargetType := TTargetType(aRec.TargetType);
+      end;
+
+      CORD_ID_2DSet_Status :
+      begin
+
+      end;
+
+      CORD_ID_2D_Desig :
+      begin
+        FTarget2D := arec.IDTarget2D;
+        FBearing := arec.Bearing;
+        FElevation := arec.Elevation;
+        FisDesig := True;
+        FTargetAssigned := True;
+      end;
+
+      CORD_ID_2D_Break :
+      begin
+        FTarget2D := 0;
+        FBearing := 0;
+        FElevation := 0;
+        FisDesig := False;
+      end;
+    end;
+  end;
 end;
 
 procedure TMeriam57Manager.EventonReceiveSplashPoint(apRec: PAnsiChar;
@@ -243,6 +313,12 @@ procedure TMeriam57Manager.NetSendTo3D_OrderCannon(rec: TRec3DSetWCC);
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
     TCPClient.sendDataEx(C_REC_CANNON, @Rec);
+end;
+
+procedure TMeriam57Manager.NetSendTo3D_FCCSet(rec: TrecData_MeriamFCC);
+begin
+  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+    TCPClient.sendDataEx(REC_CMD_57DIG, @Rec);
 end;
 
 end.
