@@ -10732,6 +10732,7 @@ object Form1: TForm1
           000000000000000000000000000000000000}
         Color = clBtnFace
         TabOrder = 0
+        OnClick = RzBmpBtnFireClick
         OnMouseDown = RzBmpBtnFireMouseDown
         OnMouseUp = RzBmpBtnFireMouseUp
       end

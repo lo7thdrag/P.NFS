@@ -1068,7 +1068,7 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
+    RecSend.mTargetID           := Meriam57Manager.Target2D;
     if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
@@ -1108,7 +1108,7 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
+    RecSend.mTargetID           := Meriam57Manager.Target2D;
     if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
@@ -1149,11 +1149,11 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
+    RecSend.mTargetID           := Meriam57Manager.Target2D;
     if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
-      RecSend.mModeID             := 0;RecSend.mModeID             := 0;
+      RecSend.mModeID             := 0;
     RecSend.mAutoCorrectElev    := CorrectElev;
     RecSend.mAutoCorrectBearing := CorrectBearing;
 
@@ -1186,7 +1186,7 @@ begin
     RecSend.mOrderID        := 0;
 
     RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := 0;
+    RecSend.mTargetID           := Meriam57Manager.Target2D;
 
     if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
@@ -1213,6 +1213,9 @@ begin
   begin
     FTargetAngleKolonka := Meriam57Manager.Bearing;
     FTargetAngleElevasi := Meriam57Manager.Elevation;
+
+    edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
+    edtElevasi.Text := FormatFloat('0.00', FTargetAngleElevasi);
 
     RzBmpBtnTrainingClick(Sender);
     Meriam57Manager.TargetAssigned := False;

@@ -605,8 +605,13 @@ end;
   end;
 
   function CalcTurretElevation(const rangem, gunMaxRange:double): double;
+  var
+    calcResult:Double;
   begin
-    result := Power(rangem/gunMaxRange, Exp(1.0)) * 45;
+    calcResult := Power(rangem/gunMaxRange, Exp(1.0)) * 45;
+    if calcResult > 45 then
+      Result := 45
+    else Result := calcResult;
   end;
 
   procedure InitOleVariant(var TheVar:OleVariant);

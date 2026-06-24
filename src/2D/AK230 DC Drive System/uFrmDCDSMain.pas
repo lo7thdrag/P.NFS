@@ -725,10 +725,10 @@ begin
   lRec.mOrderID        := 0;
 
   lRec.mUpDown             := 0;
-  lRec.mTargetID           := 0;
+  lRec.mTargetID           := AK230Manager.Target2D;
 
   if AK230Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
-    lRec.mModeID             := 1
+    lRec.mModeID             := 3
   else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
     lRec.mModeID             := 0;
 
@@ -1143,6 +1143,9 @@ begin
   FOriginalPngElevation.LoadFromFile(vPathImageSetting.ImgPath + 'AK230_Turret_Side 180p.png');
   FOriginalPngHeading.LoadFromFile(vPathImageSetting.ImgPath + 'AK230_heading+num 170p.png');
 
+  RotateAndDisplayFixedSize(imgTrainPtr, FOriginalPngTraining, 0);
+  RotateAndDisplayFixedSize(imgElevPtr, FOriginalPngElevation, 0);
+
   tmrRotate.Interval := 250;
   tmrRotate.Enabled := False;
 
@@ -1396,10 +1399,10 @@ begin
     lRec.mOrderID := 0;
 
     lRec.mUpDown :=  0;
-    lRec.mTargetID := 0;
+    lRec.mTargetID := AK230Manager.Target2D;
 
     if AK230Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
-      lRec.mModeID             := 1
+      lRec.mModeID             := 3
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
       lRec.mModeID             := 0;
 
@@ -1433,8 +1436,11 @@ begin
     lRec.mOrderID := 0;
 
     lRec.mUpDown :=  0;
-    lRec.mTargetID := 0;
-    lRec.mModeID := 0;
+    lRec.mTargetID := AK230Manager.Target2D;
+    if AK230Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+      lRec.mModeID             := 3
+    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      lRec.mModeID             := 0;
     lRec.mAutoCorrectElev := cElevation;//elev correct
     lRec.mAutoCorrectBearing := cBearing;//bearing correct
 

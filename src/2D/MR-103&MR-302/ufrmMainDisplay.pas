@@ -543,20 +543,7 @@ var
   left,top,right,bottom : Integer;
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
-//  with aCnv do
-//  begin
-//    Brush.Style := bsSolid;
-//    Brush.Color := clBlack; // or clBlack, clWhite, etc.
-//    FillRect(ClipRect); // clears the drawing area
-//  end;
-
   Angle := 0;
-//  if Assigned(FCCManager) then
-//  begin
-//    if Assigned(FCCManager.xShip) then
-//      Angle    := Round(FOwnShipHeading); // rojek add buat mutar angle sesuai arah kapal
-////      lblFccHeading.Caption := FOwnShipHeading.ToString;
-//  end;
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
   labelsfont := TFont.Create();
@@ -580,11 +567,11 @@ begin
     R := Rect(left,top, right, bottom);
     AngleRadius := (R.right - R.left) div 2;
 //    AngleRadius := 280;
-    ticksmax := 16;
-    ticks := round(24);
+    ticksmax := 8;
+    ticks := round(36);
     ticksEnlarge := 5;
     ticksMin := 8;
-    ticksColor := clGreen;
+    ticksColor := clWhite;
     labels := 24;
     decimals := 0;
     labelsoffset := 30;
@@ -596,7 +583,7 @@ begin
       Enlarge := TicksEnlarge;
       Degrees := StartAngle;
       Increment := AngleOffset/Ticks;
-      aCnv.Pen.Color := clRed;
+      aCnv.Pen.Color := clWhite;
       aCnv.Pen.Width := 3;
       aCnv.Ellipse(R.Left, R.Top, R.Right, R.Bottom);
       for I := 1 to Ticks + 1 do
@@ -723,10 +710,10 @@ procedure TfrmMainFCC.fbBreakTargetClick(Sender: TObject);
 var
 RecSend: TrecData_MeriamFCC;
 begin
-  fbDesigTarget.AllowAllUp := False;
-  fbBreakTarget.AllowAllUp := False;
+//  fbDesigTarget.AllowAllUp := False;
+//  fbBreakTarget.AllowAllUp := False;
 
-  if fbDesigTarget.Down then
+  if (Sender as TFlatButton) = fbDesigTarget then
   begin
     if FCCManager.SelectedVehicle <> nil then
     begin
@@ -744,6 +731,8 @@ begin
       RecSend.IDTarget2D := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
 
       FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
+
+      fbDesigTarget.Down := True;
     end
     else
     begin
@@ -751,7 +740,7 @@ begin
     end;
 
   end
-  else if fbBreakTarget.Down then
+  else if (Sender as TFlatButton) = fbBreakTarget then
   begin
     RecSend.ShipID := FCCManager.ShipID; // harus dipindah di desig dan break
     RecSend.Range := 0;
@@ -767,6 +756,7 @@ begin
     RecSend.IDTarget2D := 0;
 
     FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
+    fbBreakTarget.Down := True;
   end;
 
 end;
@@ -937,79 +927,15 @@ begin
   imgBackgrounSituationZone.Picture.Assign(FBitmapBackground);
   imgCompas.Picture.Assign(FBitmapBackground);
   InitializeForm;
-//  LoadGeoset('.\data\tcms_map\Indonesia.gst');
   LoadGeoset('..\data\maps\IndonesiaNoGrid.gst');
-//  SimCenter.LoadGeoset('.\data\maps\IndonesiaNoGrid.gst');
   setRegionCircle;
-
-//  FRangeRing := TRangeRingsVisual.Create;
-//  FRangeRing.Color := clWhite;
 
   FRings := TRadarRangeRings.Create;
   acbxDisRing.Checked := FRings.Visible;
 
-  // siapkan sectors (contoh sesuai gambar)
-
-  // Blind zone: dua sektor
-//  AreaBlindZone := TRadarDynamicSector.Create;
-//  AreaBlindZone.Color := RGB(183,73,40);
-//  AreaBlindZone.AddSlice(30,45, 0.0, 48000.0); // center–3 km
-//  AreaBlindZone.AddSlice(315,330,   0.0, 48000.0);
-//
-//  AreaBlindZone1 := TRadarDynamicSector.Create;
-//  AreaBlindZone1.Color := RGB(94,90,105);
-//  AreaBlindZone1.AddSlice(330,30, 0.0, 48000.0); // dari 1–3 km
-//
-//  AreaGunPoint := TRadarDynamicSector.Create;
-//  AreaGunPoint.Color := RGB(237,83,93);
-//  AreaGunPoint.AddSlice(165,195, 0.0, 48000.0); // dari 1–3 km
-//
-//  AreaPenembakan := TRadarDynamicSector.Create;
-//  AreaPenembakan.Color := RGB(53,80,75);
-//  AreaPenembakan.AddSlice(45,315, 0.0, 6500.0); // dari 1–3 km
-//
-//  acbxShootArea.Checked := AreaPenembakan.Visible;
-//
-//  AreaTracker := TRadarDynamicSector.Create;
-//  AreaTracker.Color := RGB(32,70,145);
-//  AreaTracker.AddSlice(45,315, 6500.0, 17000.0); // dari 1–3 km
-//  acbxTrackerArea.Checked := AreaTracker.Visible;
-
-//  FNorthInd := TRadarNorthIndicator.Create;
-
   FShipHeading := 0; // awal
 
-
-//  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
   setReceiveBITETable;
-
-//  TargetMgr := TRadarTargetManager.Create;
-//  TargetMgr.CoordConverter := FMapConverter;
-
-//  T := TargetMgr.AddTarget(112.751, -7.199);
-//  T.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
-//  T.TrackLabel := '001';
-//
-//  T := TargetMgr.AddTarget(112.760, -7.210);
-//  T.CircleRadius := 5;                       // fallback circle
-//  T.TrackLabel   := '002';
-//
-//  T := TargetMgr.AddTarget(112.771, -7.210);
-//  T.LoadBitmapFromFile('.\data\Bitmap\AirUnknown.bmp');
-//  T.BitmapTintColor := clYellow;
-//  t.BitmapTintAlpha := 128;
-//  T.TrackLabel   := '003';
-//
-//  // contoh tambah 2 vehicle
-//  V := VehicleMgr.AddVehicle(112.781, -7.199, '004');
-//  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
-//  V.SetSpeedKts(12);
-//  V.HeadingDeg := 45; // NE
-//
-//  V := VehicleMgr.AddVehicle(112.760, -7.230, '005');
-//  // pakai bitmap tint: hitam -> kuning
-//  V.Symbol.LoadBitmapFromFile('.\data\Bitmap\SurfaceUnknown.bmp');
-//  V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
 
   n := ParamCount ;
   if n < max_param then
@@ -1055,48 +981,23 @@ begin
     case vFccSetting.FccMode of
     1 : //MR 35
     begin
-//      pnlFCC1.BringToFront;
-//      pnlTrackerFCC1.BringToFront;
-//      pnlBiteControlFCC1.BringToFront;
       FCCManager.Get57WeaponAssigned;
       AdvTabMR35.Caption := 'MR35';
       lblMR35MR35.Caption := 'MR35';
-//      lblRadarVal.Caption := 'TR47C';
-//      lblFrequencyVal.Caption := 'J-Band';
     end;
     2 : //MR 103
     begin
-//      pnlFCC2.BringToFront;
-//      pnlTrackerFCC2.BringToFront;
-//      pnlBiteControlFCC2.BringToFront;
       FCCManager.Get57WeaponAssigned;
       AdvTabMR35.Caption := 'MR103';
       lblMR35MR35.Caption := 'MR103';
-//      lblRadarVal.Caption := 'MR36A';
-//      lblFrequencyVal.Caption := 'G-Band';
     end;
     3 : //MR 302
     begin
-//      pnlFCC2.BringToFront;
-//      pnlTrackerFCC2.BringToFront;
-//      pnlBiteControlFCC2.BringToFront;
       FCCManager.Get57WeaponAssigned;
       AdvTabMR35.Caption := 'MR302';
       lblMR35MR35.Caption := 'MR302';
-//      lblRadarVal.Caption := 'MR103';
-//      lblFrequencyVal.Caption := 'J-Band';
     end;
   end;
-
-//
-//    if Assigned(FCCManager.AssignedWeapon) then
-//    begin
-//      FTargetAngleKolonka := Meriam57Manager.AssignedWeapon.Pos_H;
-//      FAngleKolonka := Meriam57Manager.AssignedWeapon.Pos_H;
-//
-//      edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
-//    end;
-
     FCCManager.Running := True;
 
     FMap.ZoomTo((Self.FCurrentRange  * 0.00092) * 2, FMap.CenterX, FMap.CenterY);
@@ -1107,42 +1008,8 @@ begin
   FCCManager.Running := True;
 
 
-  DoubleBuffered := False;
-//  FMap.DoubleBuffered := False;
-  EnableComposited(pnlSituationZone);
-
-//  if vFccSetting.FccMode = 1 then // mr 103 dan mr 302 tidak pakai EO
-//  begin
-////    rgnOuter := CreateRectRgn(0,0,Width,Height);
-////    rgnInner := CreateRectRgn(8, 0, 657, 501);
-////
-////    CombineRgn(rgnOuter, rgnOuter, rgnInner, RGN_DIFF);
-////    SetWindowRgn(Handle, rgnOuter, True);
-//    Enable3DHole;
-//
-//    // dicek apakah ini mr302 atau bukan, kalau mr302 tidak usah tampil 3d
-//    setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
-//    TgoBsonSerializer.Deserialize(setting, config);
-//    config.Video := FCCManager.ShipID.ToString() + '_' + FCCManager.AssignedWeapon.IDWeapon.ToString() + '_1';
-//    // tambahkan kodingan untuk mengganti config.Host, config.Video, config.PosX, config.PosY, config.Width, config.Height
-//    // untuk testing awal tidak perlu diubah dulu
-//    TgoBsonSerializer.Serialize(config, setting);
-//    tfile.WriteAllText('settings.json', setting, TEncoding.UTF8); // save json before launch
-//
-//    ZeroMemory(@ExecInfo, SizeOf(ExecInfo));
-//    ExecInfo.cbSize := SizeOf(ExecInfo);
-//    ExecInfo.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
-//    ExecInfo.Wnd := Handle;
-//    ExecInfo.lpVerb := 'open';
-//    ExecInfo.lpFile := PChar('Viewer.exe');
-//    ExecInfo.nShow := SW_SHOW;
-//
-//    if not ShellExecuteEx(@ExecInfo) then
-//      RaiseLastOSError;
-//  end;
-
-
-
+//  DoubleBuffered := False;
+//  EnableComposited(pnlSituationZone);
 end;
 
 procedure TfrmMainFCC.FormDestroy(Sender: TObject);
@@ -1968,17 +1835,13 @@ begin
     bearing := bearing + 360;
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
     case vFccSetting.FccMode of
-      1 : //MR 35
-      begin
-        elevation := Power(rangem/6700, Exp(1.0)) * 45;
-      end;
       2 : //MR 103
       begin
-        elevation := Power(rangem/6700, Exp(1.0)) * 45;
+        elevation := CalcTurretElevation(rangem, 12900);
       end;
       3 : //MR 302
       begin
-        elevation := Power(rangem/3000, Exp(1.0)) * 45;
+        elevation := CalcElevation(rangem, 6, fccmanager.SelectedVehicle.PosZ);
       end;
     end;
 
@@ -1991,7 +1854,26 @@ begin
     edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
     edtSpeedINDVal.Text := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.944]);
     edtHeadingINDVal.Text := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
-  end;
+
+    edtBatchNoDesig.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
+    edtSpeedDesig.Text := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.944]);
+    edtHeadingDesig.Text := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
+  end
+
+  else
+  begin
+    edtRDRangeVal.Text := '0.00';
+    edtRadarGate.Text := '0.00';
+
+    edtIDTargetVal.Text := '0';
+    edtSpeedINDVal.Text := '0.00';
+    edtHeadingINDVal.Text := '0.00';
+
+    edtBatchNoDesig.Text := '0';
+    edtSpeedDesig.Text := '0.00';
+    edtHeadingDesig.Text := '0.00';
+  end
+
 end;
 
 end.
