@@ -25,106 +25,51 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
     Color = clBlack
     ParentBackground = False
     TabOrder = 0
-    object TabHomingStatusPlot: TAdvSmoothTabPager
-      Left = 12
-      Top = 3
-      Width = 560
-      Height = 206
-      Fill.Color = clBlack
-      Fill.ColorTo = -1
-      Fill.ColorMirror = -1
-      Fill.ColorMirrorTo = -1
-      Fill.GradientType = gtVertical
-      Fill.GradientMirrorType = gtSolid
-      Fill.BorderColor = clBlack
-      Fill.Rounding = 0
-      Fill.ShadowColor = -1
-      Fill.ShadowOffset = 0
-      Fill.Glow = gmNone
-      Fill.GlowGradientColor = -1
-      Fill.GlowRadialColor = -1
-      Transparent = False
-      ActivePage = TabHomingStatus
-      TabTextOrientation = toHorizontal
-      TabSettings.LeftMargin = 0
-      TabSettings.RightMargin = 0
-      TabSettings.StartMargin = 0
-      TabSettings.Height = 30
-      TabSettings.Spacing = 5
-      TabSettings.Width = 300
-      TabReorder = False
+    object AdvPageHominStatusPlot: TAdvPageControl
+      Left = 8
+      Top = 8
+      Width = 569
+      Height = 209
+      ActivePage = AdvTabHomingPlot
+      ActiveFont.Charset = DEFAULT_CHARSET
+      ActiveFont.Color = clWhite
+      ActiveFont.Height = -13
+      ActiveFont.Name = 'Tahoma'
+      ActiveFont.Style = []
+      DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      DefaultTabColor = clBlack
+      ActiveColor = clBlack
+      ActiveColorTo = clBlack
+      TabBackGroundColor = clBlack
+      TabMargin.RightMargin = 0
+      TabOverlap = 0
+      Version = '2.0.2.0'
+      PersistPagesState.Location = plRegistry
+      PersistPagesState.Enabled = False
       TabOrder = 0
-      Touch.ParentTabletOptions = False
-      Touch.TabletOptions = [toPressAndHold]
-      TMSStyle = 4
-      object TabHomingStatus: TAdvSmoothTabPage
-        Left = 1
-        Top = 30
-        Width = 558
-        Height = 174
+      object AdvTabHomingStatus: TAdvTabSheet
         Caption = 'Homing Status'
-        PageAppearance.Color = -1
-        PageAppearance.ColorTo = -1
-        PageAppearance.ColorMirror = -1
-        PageAppearance.ColorMirrorTo = -1
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = -1
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -11
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = clWhite
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = clWhite
-        TabAppearance.ColorTextSelected = -1
-        TMSStyle = 20
+        Color = clBlack
+        ColorTo = clNone
+        TabColor = clBlack
+        TabColorTo = clBlack
+        TextColor = clWhite
+        ExplicitLeft = 24
+        ExplicitTop = 0
+        ExplicitWidth = 100
+        ExplicitHeight = 100
         object Label1: TLabel
           Left = 208
           Top = 10
           Width = 48
           Height = 16
           Caption = 'Torpedo'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblValTorpedo: TLabel
-          Left = 288
-          Top = 10
-          Width = 7
-          Height = 16
-          Caption = '1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -13
@@ -145,64 +90,12 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Font.Style = []
           ParentFont = False
         end
-        object lblValContact: TLabel
-          Left = 416
-          Top = 10
-          Width = 21
+        object Label3: TLabel
+          Left = 438
+          Top = 137
+          Width = 104
           Height = 16
-          Caption = '101'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblToSoHomingPN3D: TLabel
-          Left = 2
-          Top = 30
-          Width = 114
-          Height = 16
-          Caption = 'ToSo homing PN 3D'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblTgtLostSub: TLabel
-          Left = 368
-          Top = 38
-          Width = 72
-          Height = 16
-          Caption = 'Tgt Lost Sub'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblLongRangeAttack: TLabel
-          Left = 2
-          Top = 88
-          Width = 106
-          Height = 16
-          Caption = 'Long Range Attack'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblToSotargetacquiredclose: TLabel
-          Left = 2
-          Top = 158
-          Width = 154
-          Height = 16
-          Caption = 'ToSo target acquired close'
+          Caption = 'Wake Lost/Search'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -13
@@ -223,26 +116,12 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Font.Style = []
           ParentFont = False
         end
-        object pbTgtLostSub: TPaintBox
-          Left = 454
-          Top = 57
-          Width = 57
-          Height = 33
-          OnPaint = pbTgtLostSubPaint
-        end
-        object pbWakeLost: TPaintBox
-          Left = 371
-          Top = 107
-          Width = 57
-          Height = 33
-          OnPaint = pbWakeLostPaint
-        end
-        object Label3: TLabel
-          Left = 438
-          Top = 137
-          Width = 104
+        object lblLongRangeAttack: TLabel
+          Left = 2
+          Top = 88
+          Width = 106
           Height = 16
-          Caption = 'Wake Lost/Search'
+          Caption = 'Long Range Attack'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -13
@@ -250,12 +129,70 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Font.Style = []
           ParentFont = False
         end
-        object pbWakeAttack: TPaintBox
-          Left = 144
-          Top = 56
-          Width = 57
-          Height = 33
-          OnPaint = pbWakeAttackPaint
+        object lblTgtLostSub: TLabel
+          Left = 368
+          Top = 38
+          Width = 72
+          Height = 16
+          Caption = 'Tgt Lost Sub'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblToSoHomingPN3D: TLabel
+          Left = 2
+          Top = 30
+          Width = 114
+          Height = 16
+          Caption = 'ToSo homing PN 3D'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblToSotargetacquiredclose: TLabel
+          Left = 2
+          Top = 158
+          Width = 154
+          Height = 16
+          Caption = 'ToSo target acquired close'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblValContact: TLabel
+          Left = 416
+          Top = 10
+          Width = 21
+          Height = 16
+          Caption = '101'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblValTorpedo: TLabel
+          Left = 288
+          Top = 10
+          Width = 7
+          Height = 16
+          Caption = '1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
         end
         object lblWakeAttaack: TLabel
           Left = 56
@@ -277,58 +214,44 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Height = 39
           OnPaint = pbLongRangePaint
         end
+        object pbTgtLostSub: TPaintBox
+          Left = 454
+          Top = 57
+          Width = 57
+          Height = 33
+          OnPaint = pbTgtLostSubPaint
+        end
+        object pbWakeAttack: TPaintBox
+          Left = 144
+          Top = 56
+          Width = 57
+          Height = 33
+          OnPaint = pbWakeAttackPaint
+        end
+        object pbWakeLost: TPaintBox
+          Left = 371
+          Top = 107
+          Width = 57
+          Height = 33
+          OnPaint = pbWakeLostPaint
+        end
       end
-      object TabToSoCoverage: TAdvSmoothTabPage
-        Left = 1
-        Top = 30
-        Width = 558
-        Height = 174
+      object AdvTabHomingPlot: TAdvTabSheet
         Caption = 'Horizontal/Vertical ToSo Coverage'
-        PageAppearance.Color = clBlack
-        PageAppearance.ColorTo = clBlack
-        PageAppearance.ColorMirror = clBlack
-        PageAppearance.ColorMirrorTo = clBlack
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BackGroundPicturePosition = ppCenterCenter
-        PageAppearance.BorderColor = clBlack
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        PageAppearance.GlowGradientColor = clBlack
-        PageAppearance.GlowRadialColor = clBlack
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -13
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = 16250613
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = 15921906
-        TMSStyle = 20
+        Color = clBlack
+        ColorTo = clNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabColor = clBlack
+        TabColorTo = clBlack
+        TextColor = clWhite
+        ExplicitTop = 24
+        ExplicitWidth = 800
+        ExplicitHeight = 181
         object pbToSoCoveragePlot: TPaintBox
           Left = 16
           Top = 16

@@ -5,29 +5,29 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, AdvSmoothTabPager,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, AdvPageControl, Vcl.ComCtrls;
 
 type
   TfrmHomingStatusPlot = class(TForm)
     pnlMain: TPanel;
-    TabHomingStatusPlot: TAdvSmoothTabPager;
-    TabHomingStatus: TAdvSmoothTabPage;
-    TabToSoCoverage: TAdvSmoothTabPage;
+    AdvPageHominStatusPlot: TAdvPageControl;
+    AdvTabHomingStatus: TAdvTabSheet;
+    AdvTabHomingPlot: TAdvTabSheet;
     Label1: TLabel;
-    lblValTorpedo: TLabel;
     Label2: TLabel;
-    lblValContact: TLabel;
-    lblToSoHomingPN3D: TLabel;
-    lblTgtLostSub: TLabel;
-    lblLongRangeAttack: TLabel;
-    lblToSotargetacquiredclose: TLabel;
-    lblCloseInSub: TLabel;
-    pbTgtLostSub: TPaintBox;
-    pbWakeLost: TPaintBox;
     Label3: TLabel;
-    pbWakeAttack: TPaintBox;
+    lblCloseInSub: TLabel;
+    lblLongRangeAttack: TLabel;
+    lblTgtLostSub: TLabel;
+    lblToSoHomingPN3D: TLabel;
+    lblToSotargetacquiredclose: TLabel;
+    lblValContact: TLabel;
+    lblValTorpedo: TLabel;
     lblWakeAttaack: TLabel;
     pbLongRange: TPaintBox;
+    pbTgtLostSub: TPaintBox;
+    pbWakeAttack: TPaintBox;
+    pbWakeLost: TPaintBox;
     pbToSoCoveragePlot: TPaintBox;
     procedure FormCreate(Sender: TObject);
     procedure pbToSoCoveragePlotPaint(Sender: TObject);

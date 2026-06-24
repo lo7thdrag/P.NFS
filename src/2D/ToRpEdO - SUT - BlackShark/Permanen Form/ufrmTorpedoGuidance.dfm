@@ -23,290 +23,50 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
     BevelOuter = bvNone
     TabOrder = 0
     object lbl1: TLabel
-      Left = 71
+      Left = 54
       Top = 2
-      Width = 93
-      Height = 16
+      Width = 90
+      Height = 14
       Caption = 'Torpedo Control'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -13
+      Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentColor = False
       ParentFont = False
     end
     object Label1: TLabel
-      Left = 216
+      Left = 199
       Top = 2
-      Width = 31
-      Height = 16
+      Width = 28
+      Height = 14
       Caption = 'Salvo'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -13
+      Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentColor = False
       ParentFont = False
     end
-    object TabTorpedoGuidance: TAdvSmoothTabPager
-      Left = 12
-      Top = 16
-      Width = 519
-      Height = 105
-      Fill.Color = clBlack
-      Fill.ColorTo = -1
-      Fill.ColorMirror = -1
-      Fill.ColorMirrorTo = -1
-      Fill.GradientType = gtVertical
-      Fill.GradientMirrorType = gtSolid
-      Fill.BorderColor = clBlack
-      Fill.Rounding = 0
-      Fill.ShadowColor = -1
-      Fill.ShadowOffset = 0
-      Fill.Glow = gmNone
-      Fill.GlowGradientColor = -1
-      Fill.GlowRadialColor = -1
-      Transparent = False
-      ActivePage = TabSpecialSettings
-      Color = clBlack
-      TabTextOrientation = toHorizontal
-      TabSettings.LeftMargin = 0
-      TabSettings.RightMargin = 0
-      TabSettings.StartMargin = 0
-      TabSettings.Height = 25
-      TabSettings.Spacing = 5
-      TabSettings.Width = 230
-      TabReorder = False
-      TabOrder = 0
-      Touch.ParentTabletOptions = False
-      Touch.TabletOptions = [toPressAndHold]
-      TMSStyle = 4
-      object TabTorpedoControl: TAdvSmoothTabPage
-        Left = 1
-        Top = 25
-        Width = 517
-        Height = 78
-        Caption = 'Torpedo Control'
-        PageAppearance.Color = -1
-        PageAppearance.ColorTo = -1
-        PageAppearance.ColorMirror = -1
-        PageAppearance.ColorMirrorTo = -1
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = -1
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -11
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = clWhite
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = clWhite
-        TabAppearance.ColorTextHot = clWhite
-        TabAppearance.ColorTextSelected = -1
-        TMSStyle = 20
-        object lblMSIGuidance: TLabel
-          Left = 82
-          Top = 2
-          Width = 78
-          Height = 16
-          Caption = 'MSI Guidance'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblTorpIntGuidance: TLabel
-          Left = 81
-          Top = 19
-          Width = 102
-          Height = 16
-          Caption = 'Torp Int Guidance'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblMainGuidance: TLabel
-          Left = 81
-          Top = 36
-          Width = 96
-          Height = 16
-          Caption = 'Man Guidance ...'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblHoming: TLabel
-          Left = 323
-          Top = 2
-          Width = 59
-          Height = 16
-          Caption = 'Homing ...'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-      end
-      object TabSpecialSettings: TAdvSmoothTabPage
-        Left = 1
-        Top = 25
-        Width = 517
-        Height = 78
-        Caption = 'Special Settings'
-        PageAppearance.Color = clBlack
-        PageAppearance.ColorTo = clBlack
-        PageAppearance.ColorMirror = clBlack
-        PageAppearance.ColorMirrorTo = clBlack
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = clBlack
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        PageAppearance.GlowGradientColor = clBlack
-        PageAppearance.GlowRadialColor = clBlack
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -13
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = 16250613
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = 15921906
-        TMSStyle = 20
-        object lblSurftoSubmode: TLabel
-          Left = 77
-          Top = 4
-          Width = 116
-          Height = 15
-          Caption = 'Surf. to Submode'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblTosoActImmed: TLabel
-          Left = 77
-          Top = 20
-          Width = 96
-          Height = 16
-          Caption = 'ToSo Act Immed'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblToSoActOff: TLabel
-          Left = 77
-          Top = 37
-          Width = 73
-          Height = 16
-          Caption = 'ToSo Act Off'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblFuseOn: TLabel
-          Left = 280
-          Top = 4
-          Width = 47
-          Height = 16
-          Caption = 'Fuse On'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblFuseOff: TLabel
-          Left = 280
-          Top = 21
-          Width = 48
-          Height = 16
-          Caption = 'Fuse Off'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-      end
-    end
     object rbTorpedo: TRadioButton
-      Left = 45
+      Left = 28
+      Top = 3
+      Width = 17
+      Height = 17
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object rbSalvo: TRadioButton
+      Left = 173
       Top = 3
       Width = 17
       Height = 17
@@ -318,18 +78,187 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       ParentFont = False
       TabOrder = 1
     end
-    object rbSalvo: TRadioButton
-      Left = 190
-      Top = 3
-      Width = 17
-      Height = 17
+    object AdvTorpedoGuidance: TAdvPageControl
+      Left = 16
+      Top = 24
+      Width = 489
+      Height = 73
+      ActivePage = AdvTabTorpedoControl
+      ActiveFont.Charset = DEFAULT_CHARSET
+      ActiveFont.Color = clWhite
+      ActiveFont.Height = -12
+      ActiveFont.Name = 'Tahoma'
+      ActiveFont.Style = []
+      DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -13
+      Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      DefaultTabColor = clBlack
+      ActiveColor = clBlack
+      ActiveColorTo = clBlack
+      TabBackGroundColor = clBlack
+      TabMargin.RightMargin = 0
+      TabOverlap = 0
+      Version = '2.0.2.0'
+      PersistPagesState.Location = plRegistry
+      PersistPagesState.Enabled = False
       TabOrder = 2
+      object AdvTabTorpedoControl: TAdvTabSheet
+        Caption = 'Torpedo Control'
+        Color = clBlack
+        ColorTo = clNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabColor = clBlack
+        TabColorTo = clNone
+        TextColor = clWhite
+        ExplicitLeft = 24
+        ExplicitTop = 0
+        ExplicitWidth = 100
+        ExplicitHeight = 100
+        object lblHoming: TLabel
+          Left = 171
+          Top = 0
+          Width = 57
+          Height = 14
+          Caption = 'Homing ...'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblMainGuidance: TLabel
+          Left = 6
+          Top = 28
+          Width = 92
+          Height = 14
+          Caption = 'Man Guidance ...'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblMSIGuidance: TLabel
+          Left = 7
+          Top = -2
+          Width = 74
+          Height = 14
+          Caption = 'MSI Guidance'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblTorpIntGuidance: TLabel
+          Left = 6
+          Top = 13
+          Width = 100
+          Height = 14
+          Caption = 'Torp Int Guidance'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
+      object AdvTabSpecialSettings: TAdvTabSheet
+        Caption = 'Special Settings'
+        Color = clBlack
+        ColorTo = clNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabColor = clBlack
+        TabColorTo = clNone
+        TextColor = clWhite
+        ExplicitLeft = 24
+        ExplicitTop = 0
+        ExplicitWidth = 100
+        ExplicitHeight = 100
+        object lblFuseOff: TLabel
+          Left = 172
+          Top = 21
+          Width = 46
+          Height = 14
+          Caption = 'Fuse Off'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblFuseOn: TLabel
+          Left = 172
+          Top = 4
+          Width = 45
+          Height = 14
+          Caption = 'Fuse On'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblSurftoSubmode: TLabel
+          Left = 9
+          Top = 3
+          Width = 98
+          Height = 14
+          Caption = 'Surf. to Submode'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblTosoActImmed: TLabel
+          Left = 8
+          Top = 18
+          Width = 94
+          Height = 13
+          Caption = 'ToSo Act Immed'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblToSoActOff: TLabel
+          Left = 9
+          Top = 32
+          Width = 73
+          Height = 14
+          Caption = 'ToSo Act Off'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
     end
   end
 end

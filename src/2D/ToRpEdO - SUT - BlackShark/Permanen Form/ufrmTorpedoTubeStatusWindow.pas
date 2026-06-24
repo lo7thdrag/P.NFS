@@ -40,9 +40,9 @@ type
     lblWTSRC1: TLabel;
     lblFuse1: TLabel;
     lblNumber1: TLabel;
-    Image2: TImage;
+    imgTorpedo1: TImage;
     lblNumber2: TLabel;
-    Image1: TImage;
+    imgTorpedo2: TImage;
     lblActiveToSo2: TLabel;
     lblFuse2: TLabel;
     lblNumberTorpedo2: TLabel;
@@ -50,14 +50,14 @@ type
     lblWTSRC2: TLabel;
     pnlNumber2: TPanel;
     lblNumber3: TLabel;
-    Image4: TImage;
+    imgTorpedo3: TImage;
     lblActiveToSo3: TLabel;
     lblFuse3: TLabel;
     lblNumberTorpedo3: TLabel;
     lblValueTorpedo3: TLabel;
     lblWTSRC3: TLabel;
     pnlNumber3: TPanel;
-    Image3: TImage;
+    imgTorpedo4: TImage;
     lblActiveToSo4: TLabel;
     lblFuse4: TLabel;
     lblNumber4: TLabel;
@@ -65,7 +65,7 @@ type
     lblValueTorpedo4: TLabel;
     lblWTSRC4: TLabel;
     pnlNumber4: TPanel;
-    Image6: TImage;
+    imgTorpedo5: TImage;
     lblActiveToSo5: TLabel;
     lblFuse5: TLabel;
     lblNumber5: TLabel;
@@ -73,7 +73,7 @@ type
     lblValueTorpedo5: TLabel;
     lblWTSRC5: TLabel;
     pnlNumber5: TPanel;
-    Image5: TImage;
+    imgTorpedo6: TImage;
     lblActiveToSo6: TLabel;
     lblFuse6: TLabel;
     lblNumber6: TLabel;
@@ -81,7 +81,7 @@ type
     lblValueTorpedo6: TLabel;
     lblWTSRC6: TLabel;
     pnlNumber6: TPanel;
-    Image8: TImage;
+    imgTorpedo7: TImage;
     lblActiveToSo7: TLabel;
     lblFuse7: TLabel;
     lblNumber7: TLabel;
@@ -89,7 +89,7 @@ type
     lblValueTorpedo7: TLabel;
     lblWTSRC7: TLabel;
     pnlNumber7: TPanel;
-    Image7: TImage;
+    imgTorpedo8: TImage;
     lblActiveToSo8: TLabel;
     lblFuse8: TLabel;
     lblNumber8: TLabel;
@@ -97,10 +97,11 @@ type
     lblValueTorpedo8: TLabel;
     lblWTSRC8: TLabel;
     pnlNumber8: TPanel;
+    procedure lblTorpedo1Click(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure UpdateImage;
   end;
 
 var
@@ -109,5 +110,35 @@ var
 implementation
 
 {$R *.dfm}
+
+{ TfrmTorpedoTubeStatusWindow }
+
+procedure TfrmTorpedoTubeStatusWindow.lblTorpedo1Click(Sender: TObject);
+begin
+  lblTorpedo1.Caption := 'MSI-SRC-SA';
+  UpdateImage;
+end;
+
+procedure TfrmTorpedoTubeStatusWindow.UpdateImage;
+var
+  Basepath, Filename : string;
+begin
+  Basepath := 'D:\NFS\P.NFS\bin\2D\data\images\blackshark\';
+
+  if lblTorpedo1.Caption = 'TORP READY' then
+     Filename := Basepath + 'Status1.bmp'
+  else if lblTorpedo1.Caption = 'MSI-SRC-SA' then
+     Filename := Basepath + 'Status2.bmp'
+  else if lblTorpedo1.Caption = 'MAN-HORIZ' then
+     Filename := Basepath + 'Status3.bmp';
+
+  if FileExists(Filename) then
+  begin
+     imgTorpedo1.Picture.LoadFromFile(Filename);
+     imgTorpedo1.Refresh;
+  end
+  else
+    ShowMessage('File not found : ' + Filename);
+end;
 
 end.

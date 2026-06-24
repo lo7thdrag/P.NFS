@@ -60,7 +60,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
           Font.Style = []
           ParentFont = False
         end
-        object Image1: TImage
+        object imgTorpedo2: TImage
           Left = 52
           Top = 8
           Width = 48
@@ -361,7 +361,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Width = 125
         Height = 57
         TabOrder = 0
-        object Image3: TImage
+        object imgTorpedo4: TImage
           Left = 52
           Top = 8
           Width = 48
@@ -680,7 +680,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Width = 125
         Height = 57
         TabOrder = 0
-        object Image5: TImage
+        object imgTorpedo6: TImage
           Left = 52
           Top = 8
           Width = 48
@@ -994,7 +994,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Width = 125
         Height = 57
         TabOrder = 0
-        object Image7: TImage
+        object imgTorpedo8: TImage
           Left = 52
           Top = 8
           Width = 48
@@ -1301,6 +1301,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        OnClick = lblTorpedo1Click
       end
       object pnl: TPanel
         Left = 7
@@ -1386,7 +1387,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
           Font.Style = []
           ParentFont = False
         end
-        object Image2: TImage
+        object imgTorpedo1: TImage
           Left = 55
           Top = 9
           Width = 48
@@ -1635,7 +1636,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
           Font.Style = []
           ParentFont = False
         end
-        object Image4: TImage
+        object imgTorpedo3: TImage
           Left = 54
           Top = 8
           Width = 48
@@ -1936,7 +1937,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Width = 125
         Height = 57
         TabOrder = 0
-        object Image6: TImage
+        object imgTorpedo5: TImage
           Left = 52
           Top = 8
           Width = 48
@@ -2250,7 +2251,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Width = 125
         Height = 57
         TabOrder = 0
-        object Image8: TImage
+        object imgTorpedo7: TImage
           Left = 52
           Top = 8
           Width = 48
