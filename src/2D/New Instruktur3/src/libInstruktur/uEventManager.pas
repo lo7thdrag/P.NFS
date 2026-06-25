@@ -1208,6 +1208,7 @@ begin
         case WeaponOnShip.Weapon_ID of
           C_DBID_ASROC :
           begin
+            {$REGION 'ASROC'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_ASROC then
             begin
@@ -1227,10 +1228,12 @@ begin
                 __STAT_ASROCK_FUZE_NELLY      : WeaponASROC.isFuze_Nelly      := WeaponStat ;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL :
           begin
+            {$REGION 'RBU6000, RBU6000 DIGITAL'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_RBU then
             begin
@@ -1270,10 +1273,12 @@ begin
                 __STAT_RBU_LAUNCHER2_MISSILE12_FAULT  : WeaponRBU.LAUNCHER2_MISSILE12_FAULT  := WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_TORPEDO_A244S :
           begin
+            {$REGION 'TORPEDO A244S'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_SPS then
             begin
@@ -1306,10 +1311,12 @@ begin
                 __STAT_SPS_SELFTEST          : WeaponTorpA244.isSelf := WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_TORPEDO_SUT :
           begin
+            {$REGION 'TORPEDO SUT'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_TOCOS then
             begin
@@ -1350,10 +1357,12 @@ begin
 
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_TETRAL :
           begin
+            {$REGION 'TETRAL'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Tetral then
             begin
@@ -1363,9 +1372,11 @@ begin
                   __STAT_TETRAL_AFT : WeaponTetral.TetralAft := WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
           C_DBID_YAKHONT :
           begin
+            {$REGION 'YAKHONT'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Yakhont then
             begin
@@ -1384,10 +1395,12 @@ begin
                 __STAT_YAKHONT_INS27V      : WeaponYakhont.STAT_YAKHONT_INS27V     := WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_C802 :
           begin
+            {$REGION 'C802'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_C802 then
             begin
@@ -1410,10 +1423,12 @@ begin
 
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_MISTRAL :
           begin
+            {$REGION 'MISTRAL'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Mistral then
             begin
@@ -1423,10 +1438,12 @@ begin
                   __STAT_MISTRAL_LAUNCER2 : WeaponMistral.MistralLaunch2  := WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_STRELA :
           begin
+            {$REGION 'STRELA'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Strella then
             begin
@@ -1438,10 +1455,12 @@ begin
                   __STAT_STRELA_LAUNCER4 : WeaponStrela.StrelaLauncer4 := WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_EXOCET_MM40 :
           begin
+            {$REGION 'EXOCET MM40'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_EXOCET40 then
             begin
@@ -1454,6 +1473,7 @@ begin
                   __STAT_EXOCET40_CAP       : WeaponExocetMM40.CAP            := WeaponStat;
                 end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_EXOCET_MM38 :
@@ -1463,6 +1483,7 @@ begin
 
           C_DBID_CANNON35 :
           begin
+            {$REGION 'CANNON35 GUN35'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Cannon35 then
             begin
@@ -1472,10 +1493,12 @@ begin
                   __STAT_CANNON35_CAP : WeaponCannon35.CAP := WeaponStat;
                 end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_CANNON40 :
           begin
+            {$REGION 'CANNON40'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Cannon40 then
             begin
@@ -1484,11 +1507,12 @@ begin
                   __STAT_CANNON40_ENABLE : WeaponCannon40.EnableCannon40 := WeaponStat;
                 end;
             end;
-
+            {$ENDREGION}
           end;
 
           C_DBID_CANNON57, C_DBID_CANNON57_DIGITAL :
           begin
+            {$REGION 'CANNON57, CANNON57 DIGITAL'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Cannon57 then
             begin
@@ -1497,10 +1521,12 @@ begin
                   __STAT_CANNON57_ENABLE : WeaponCannon57.EnableCannon57 := WeaponStat;
                 end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_CANNON76 :
           begin
+            {$REGION 'CANNON76 GUN76'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Cannon76 then
             begin
@@ -1510,6 +1536,7 @@ begin
                   __STAT_CANNON76_CAP : WeaponCannon76.CAP := WeaponStat;
                 end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_CANNON120 :
@@ -1519,6 +1546,7 @@ begin
 
           C_DBID_MOCCONSOLE :
           begin
+            {$REGION 'MOC CONSOLE'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_MOC then
             begin
@@ -1530,10 +1558,12 @@ begin
                   __STAT_MOC_Kingklip   : weaponMoc.SonarKingklip := WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_MOCPKRCONSOLE :
           begin
+            {$REGION 'MOC PKR CONSOLE'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_MOCPKR then
             begin
@@ -1548,10 +1578,12 @@ begin
                   __STAT_MOC_PKR_Check_Fire  : weaponMocPKR.CheckFire := WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_VLMICA :
           begin
+            {$REGION 'VLMICA'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_VLMICA then
             begin
@@ -1564,10 +1596,12 @@ begin
                   __STAT_VLMICA_CAP : WeaponVLMica.CAP:= WeaponStat;
               end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_CANNON_AK230 :
           begin
+            {$REGION 'CANNON AK230'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_CannonAK230 then
             begin
@@ -1576,10 +1610,12 @@ begin
                   __STAT_CANNONAK230_ENABLE : WeaponCannonAK230.EnableCannonAK230 := WeaponStat;
                 end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_TORPEDO_BLACKSHARK :
           begin
+            {$REGION 'TORPEDO BLACKSHARK'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_Blackshark then
             begin
@@ -1588,10 +1624,12 @@ begin
                   __STAT_BLACKSHARK_ENABLE : WeaponBlackshark.EnableBlackshark := WeaponStat;
                 end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_CANNON_TYPE_730 :
           begin
+            {$REGION 'CANNON TYPE 730'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_CannonType730 then
             begin
@@ -1600,10 +1638,12 @@ begin
                   __STAT_CANNONTYPE730_ENABLE : WEaponCannonType730.EnableCannonType730 := WeaponStat;
                 end;
             end;
+            {$ENDREGION}
           end;
 
           C_DBID_C705 :
           begin
+            {$REGION 'C705'}
             frmMainInstruktur.cekStatusWeapon := 0;
             if WeaponOnShip is TWeaponOn_C705 then
             begin
@@ -1615,6 +1655,7 @@ begin
                   //__STAT_C705_Firing                : WeaponC705.Firing      := WeaponStat;
                 end;
             end;
+            {$ENDREGION}
           end;
         end;
 

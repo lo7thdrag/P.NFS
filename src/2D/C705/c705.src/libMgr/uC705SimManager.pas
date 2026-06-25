@@ -11,6 +11,15 @@ type
   TRoutePlanMode = (mPassive, mActive, mFiring);
   TOnMapInit = procedure(const GeosetPath: string) of object;
 
+  TC705StatusType = (
+    stEnableWeapon,
+    stOpenCover,
+    stSafetyIgnition
+  );
+
+  TStatusWeaponChanged =
+    procedure(Sender: TObject; AStatus: TC705StatusType) of object;
+
   TC705Status = record
     EnableWeapon,
     OpenCoverLauncher,
@@ -24,9 +33,11 @@ type
     FAutoConnectToBridgeTimer: TTimer;
 
     FOnMapInit: TOnMapInit;
-    FOnStatusWeaponChanged,
+    //FOnStatusWeaponChanged,
     FOnTakeOffChanged: TNotifyEvent;
     FMissileTakeOff: Boolean;
+
+    FOnStatusWeaponChanged: TStatusWeaponChanged;
 
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
     procedure OnConnected(msg: string);
@@ -67,7 +78,8 @@ type
     property OnMapInit: TOnMapInit read FOnMapInit write FOnMapInit;
 
     property C705Status: TC705Status read FC705Status write FC705Status;
-    property OnStatusWeaponChanged: TNotifyEvent read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
+    //property OnStatusWeaponChanged: TNotifyEvent read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
+    property OnStatusWeaponChanged: TStatusWeaponChanged read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
     property OnTakeOffChanged: TNotifyEvent read FOnTakeOffChanged write FOnTakeOffChanged;
 
     property MissileTakeOff: Boolean read FMissileTakeOff write FMissileTakeOff;
@@ -116,7 +128,8 @@ begin
   NFSNetRecv.RegisterProcedure(REC_3D_MISSILEPOS, netNFS_OnReceiveMissilePos, SizeOf(TRec3DMissilePos));
 
   // C705 Status
-  NFSNetRecv.RegisterProcedure(REC_STAT_ORDER_CONSOLE, netNFS_OnReceiveStatusConsole, SizeOf(TRecStatus_Console_C705));
+  //NFSNetRecv.RegisterProcedure(REC_STAT_ORDER_CONSOLE, netNFS_OnReceiveStatusConsole, SizeOf(TRecStatus_Console_C705));
+  NFSNetRecv.RegisterProcedure(REC_STAT_ORDER_CONSOLE, netNFS_OnReceiveStatusConsole, SizeOf(TRecStatus_Console));
 
   {Timer untuk Connect ke Bridge}
   FAutoConnectToBridgeTimer := TTimer.Create(nil);
@@ -271,6 +284,7 @@ var
   //rec : ^TRecStatus_Console_C705;
   rec: ^TRecStatus_Console;
   StatusChanged: Boolean;
+  TheChanges: TC705StatusType;
 begin
   StatusChanged := False;
 
@@ -284,6 +298,8 @@ begin
       if FC705Status.EnableWeapon <> (rec^.ParamError = __PARAM_C705_ON) then begin
         FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
         StatusChanged := True;
+
+        TheChanges := stEnableWeapon;
       end;
     end;
 
@@ -293,6 +309,8 @@ begin
       if FC705Status.OpenCoverLauncher <> (rec^.ParamError = __PARAM_C705_ON) then begin
         FC705Status.OpenCoverLauncher := rec^.ParamError = __PARAM_C705_ON;
         StatusChanged := True;
+
+        TheChanges := stOpenCover;
       end;
     end;
 
@@ -302,21 +320,15 @@ begin
       if FC705Status.SafetyIgnition <> (rec^.ParamError = __PARAM_C705_ON) then begin
         FC705Status.SafetyIgnition := rec^.ParamError = __PARAM_C705_ON;
         StatusChanged := True;
+
+        TheChanges := stSafetyIgnition
       end;
     end;
 
   end;
 
   if Assigned(FOnStatusWeaponChanged) and StatusChanged then
-    FOnStatusWeaponChanged(Self);
-
-//  OutputDebugString(
-//    PChar(
-//      Format('Current=%d Main=%d',
-//        [GetCurrentThreadId, MainThreadID]
-//      )
-//    )
-//  );
+    FOnStatusWeaponChanged(Self, TheChanges);
 end;
 
 procedure GameSimManager.netNFS_OnSendDataC705(rec: TRec_Data_C705);

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Vcl.Imaging.jpeg,
-  uLibSettings, uC705SimManager;
+  uLibSettings, uC705SimManager, uTCPDatatype, uBaseFunction;
 
 type
   TfrmWCC = class(TForm)
@@ -94,6 +94,8 @@ type
     procedure RoutePlan1Click(Sender: TObject);
     procedure tmrHardwareCheckTimer(Sender: TObject);
     procedure Keyboard1Click(Sender: TObject);
+    procedure btnImgPowerMissileClick(Sender: TObject);
+    procedure btnImgOpenCoverClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -115,7 +117,7 @@ type
     procedure SetTopMonitor(aMoniHeight: Integer);
 
     procedure RegisterEvents;
-    procedure StatusWeaponBtnChanged(Sender:TObject);
+    procedure StatusWeaponBtnChanged(Sender:TObject; aStatus: TC705StatusType);
 
   end;
 
@@ -328,24 +330,32 @@ begin
   end;
 end;
 
-procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject);
+procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject; aStatus: TC705StatusType);
 begin
-  if SimManager.C705Status.EnableWeapon then begin
-    btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
-    btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
-  end
-  else begin
-    btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
-    btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
-  end;
-
-  if SimManager.C705Status.OpenCoverLauncher then begin
-    btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
-    btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
-  end
-  else begin
-    btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
-    btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+  case aStatus of
+    stEnableWeapon: begin
+      if SimManager.C705Status.EnableWeapon then begin
+        btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+        btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+      end
+      else begin
+        btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+        btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+      end;
+    end;
+    stOpenCover: begin
+      if SimManager.C705Status.OpenCoverLauncher then begin
+        btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+        btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+      end
+      else begin
+        btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+        btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+      end;
+    end;
+    stSafetyIgnition: begin
+      //
+    end;
   end;
 end;
 
@@ -397,6 +407,41 @@ procedure TfrmWCC.RoutePlan1Click(Sender: TObject);
 begin
   // pindah ke form Route Plan ketika 1 monitor menggunakan PopupMenu
   SwitchView(vmRoutePlan);
+end;
+
+procedure TfrmWCC.btnImgOpenCoverClick(Sender: TObject);
+var
+  RecStatus : TRecStatus_Console;
+begin
+  if SimManager.C705Status.EnableWeapon = False then
+    Exit;
+
+  RecStatus.OWN_SHIP_UID := dbID_to_UniqueID(VOwnShip.ShipID);
+  RecStatus.WeaponID := VOwnShip.WeaponId;
+  RecStatus.ErrorID := __STAT_C705_OpenCoverLauncherC705;
+
+  if (Sender as TSpeedButton).Tag = 1 then
+    RecStatus.ParamError := 1
+  else
+    RecStatus.ParamError := 2;
+
+  SimManager.NFSNetRecv.sendDataEx(REC_STAT_ORDER_CONSOLE, @RecStatus);
+end;
+
+procedure TfrmWCC.btnImgPowerMissileClick(Sender: TObject);
+var
+  RecStatus : TRecStatus_Console;
+begin
+  RecStatus.OWN_SHIP_UID := dbID_to_UniqueID(VOwnShip.ShipID);
+  RecStatus.WeaponID := VOwnShip.WeaponId;
+  RecStatus.ErrorID := __STAT_C705_ENABLE;
+
+  if (Sender as TSpeedButton).Tag = 1 then
+    RecStatus.ParamError := 1
+  else
+    RecStatus.ParamError := 2;
+
+  SimManager.NFSNetRecv.sendDataEx(REC_STAT_ORDER_CONSOLE, @RecStatus);
 end;
 
 procedure TfrmWCC.Close1Click(Sender: TObject);

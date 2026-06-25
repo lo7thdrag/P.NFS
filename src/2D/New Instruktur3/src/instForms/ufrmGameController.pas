@@ -8044,6 +8044,7 @@ begin
     AutoRefresh;
   end;
 
+  FSelectedMenu := imgScenario.Tag;
   pnlScenario.BringToFront;
   imgScenario.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgScenario_.png');
 

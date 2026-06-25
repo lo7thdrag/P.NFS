@@ -88437,6 +88437,7 @@ object frmWCC: TfrmWCC
         ParentFont = False
       end
       object btnImgPowerMissile1: TSpeedButton
+        Tag = 1
         Left = 294
         Top = 23
         Width = 80
@@ -89246,8 +89247,10 @@ object frmWCC: TfrmWCC
           F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0
           F0FFF0F0F0FF}
         Layout = blGlyphBottom
+        OnClick = btnImgPowerMissileClick
       end
       object btnImgPowerMissile2: TSpeedButton
+        Tag = 2
         Left = 28
         Top = 23
         Width = 80
@@ -90057,6 +90060,7 @@ object frmWCC: TfrmWCC
           F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0
           F0FFF0F0F0FF}
         Layout = blGlyphBottom
+        OnClick = btnImgPowerMissileClick
       end
     end
     object pnlOpenCover: TPanel
@@ -90067,6 +90071,7 @@ object frmWCC: TfrmWCC
       BevelOuter = bvNone
       TabOrder = 1
       object btnimgOpenCover2: TSpeedButton
+        Tag = 2
         Left = 24
         Top = 22
         Width = 80
@@ -90876,8 +90881,10 @@ object frmWCC: TfrmWCC
           F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0
           F0FFF0F0F0FF}
         Layout = blGlyphBottom
+        OnClick = btnImgOpenCoverClick
       end
       object btnImgOpenCover1: TSpeedButton
+        Tag = 1
         Left = 298
         Top = 22
         Width = 80
@@ -91687,6 +91694,7 @@ object frmWCC: TfrmWCC
           F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0F0FFF0F0
           F0FFF0F0F0FF}
         Layout = blGlyphBottom
+        OnClick = btnImgOpenCoverClick
       end
       object Label7: TLabel
         Left = 112
