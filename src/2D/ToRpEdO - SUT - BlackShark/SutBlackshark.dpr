@@ -85,7 +85,8 @@ uses
   ufmTargetInControl in 'Permanen Form\ufmTargetInControl.pas' {frmTargetInControl},
   ufrmContactInControl in 'Permanen Form\ufrmContactInControl.pas' {frmContactInControl},
   ufrmTrackingList in 'Pop-up form\ufrmTrackingList.pas' {frmTrackListNumber},
-  ufrmWakeList in 'Pop-up form\ufrmWakeList.pas' {frmWakeList};
+  ufrmWakeList in 'Pop-up form\ufrmWakeList.pas' {frmWakeList},
+  ufrmTorpedoAllocation in 'Permanen Form\ufrmTorpedoAllocation.pas' {frmTorpedoAllocation};
 
 {$R *.res}
 
@@ -97,6 +98,7 @@ begin
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
   Application.CreateForm(TfrmWakeList, frmWakeList);
+  Application.CreateForm(TfrmTorpedoAllocation, frmTorpedoAllocation);
   //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
 
   Application.Run;

@@ -322,195 +322,41 @@ object frmTrackInfo: TfrmTrackInfo
       ParentColor = False
       ParentFont = False
     end
-    object TabSelectTrackInfo: TAdvSmoothTabPager
-      Left = 12
+    object AdvPageTrackInfo: TAdvPageControl
+      Left = 8
       Top = 80
-      Width = 477
-      Height = 361
-      Fill.Color = clBlack
-      Fill.ColorTo = -1
-      Fill.ColorMirror = -1
-      Fill.ColorMirrorTo = -1
-      Fill.GradientType = gtVertical
-      Fill.GradientMirrorType = gtSolid
-      Fill.BorderColor = clBlack
-      Fill.Rounding = 0
-      Fill.ShadowColor = -1
-      Fill.ShadowOffset = 0
-      Fill.Glow = gmNone
-      Fill.GlowGradientColor = -1
-      Fill.GlowRadialColor = -1
-      Transparent = False
-      ActivePage = TabGen
-      TabTextOrientation = toHorizontal
-      TabSettings.LeftMargin = 0
-      TabSettings.RightMargin = 0
-      TabSettings.StartMargin = 0
-      TabSettings.Height = 40
-      TabSettings.Spacing = 5
-      TabSettings.Width = 75
-      TabReorder = False
+      Width = 481
+      Height = 377
+      ActivePage = AdvKinem
+      ActiveFont.Charset = DEFAULT_CHARSET
+      ActiveFont.Color = clLime
+      ActiveFont.Height = -13
+      ActiveFont.Name = 'Tahoma'
+      ActiveFont.Style = []
+      DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      DefaultTabColor = clBlack
+      ActiveColor = clBlack
+      ActiveColorTo = clBlack
+      TabBackGroundColor = clBlack
+      TabMargin.RightMargin = 0
+      TabOverlap = 0
+      Version = '2.0.2.0'
+      PersistPagesState.Location = plRegistry
+      PersistPagesState.Enabled = False
       TabOrder = 0
-      Touch.ParentTabletOptions = False
-      Touch.TabletOptions = [toPressAndHold]
-      TMSStyle = 4
-      object TabKinem: TAdvSmoothTabPage
-        Left = 1
-        Top = 40
-        Width = 475
-        Height = 319
-        Caption = 'Kinem'
-        PageAppearance.Color = -1
-        PageAppearance.ColorTo = -1
-        PageAppearance.ColorMirror = -1
-        PageAppearance.ColorMirrorTo = -1
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = -1
-        PageAppearance.BorderWidth = 0
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -11
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.FocusColor = -1
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = clWhite
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = clWhite
-        TabAppearance.ColorTextHot = clWhite
-        TabAppearance.ColorTextSelected = -1
-        TMSStyle = 20
-        object lblBBRF: TLabel
-          Left = 1
-          Top = 21
-          Width = 79
-          Height = 16
-          Caption = 'BBRF B-CA BB'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label3: TLabel
-          Left = 145
-          Top = 21
-          Width = 87
-          Height = 16
-          Caption = '000.0 deg   < -'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label4: TLabel
-          Left = 305
-          Top = 21
-          Width = 69
-          Height = 16
-          Caption = '0.0 deg/min'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label2: TLabel
-          Left = 1
-          Top = 45
-          Width = 78
-          Height = 16
-          Caption = 'Bearing (deg)'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label5: TLabel
-          Left = 160
-          Top = 45
-          Width = 18
-          Height = 16
-          Caption = '0.0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label7: TLabel
-          Left = 305
-          Top = 45
-          Width = 69
-          Height = 16
-          Caption = '0.0 deg/min'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label9: TLabel
-          Left = 1
-          Top = 69
-          Width = 36
-          Height = 16
-          Caption = 'Range'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
+      object AdvKinem: TAdvTabSheet
+        Caption = '    Kinem '
+        Color = clBlack
+        ColorTo = clNone
+        TabColor = clBlack
+        TabColorTo = clBlack
+        TextColor = clLime
         object Label10: TLabel
           Left = 145
           Top = 69
@@ -661,6 +507,21 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
+        object Label2: TLabel
+          Left = 1
+          Top = 45
+          Width = 78
+          Height = 16
+          Caption = 'Bearing (deg)'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
         object Label21: TLabel
           Left = 1
           Top = 197
@@ -691,12 +552,102 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
+        object Label3: TLabel
+          Left = 145
+          Top = 21
+          Width = 87
+          Height = 16
+          Caption = '000.0 deg   < -'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
         object Label30: TLabel
           Left = 1
           Top = 218
           Width = 75
           Height = 16
           Caption = 'Track Quality'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label4: TLabel
+          Left = 305
+          Top = 21
+          Width = 69
+          Height = 16
+          Caption = '0.0 deg/min'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label5: TLabel
+          Left = 160
+          Top = 45
+          Width = 18
+          Height = 16
+          Caption = '0.0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label7: TLabel
+          Left = 305
+          Top = 45
+          Width = 69
+          Height = 16
+          Caption = '0.0 deg/min'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label9: TLabel
+          Left = 1
+          Top = 69
+          Width = 36
+          Height = 16
+          Caption = 'Range'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblBBRF: TLabel
+          Left = 1
+          Top = 21
+          Width = 79
+          Height = 16
+          Caption = 'BBRF B-CA BB'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -741,257 +692,19 @@ object frmTrackInfo: TfrmTrackInfo
             'nm')
         end
       end
-      object TabGen: TAdvSmoothTabPage
-        Left = 1
-        Top = 40
-        Width = 475
-        Height = 319
-        Caption = 'Gen'
-        PageAppearance.Color = -1
-        PageAppearance.ColorTo = -1
-        PageAppearance.ColorMirror = -1
-        PageAppearance.ColorMirrorTo = -1
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = -1
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -11
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = clWhite
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = clWhite
-        TabAppearance.ColorTextHot = clWhite
-        TabAppearance.ColorTextSelected = -1
-        TMSStyle = 20
+      object AdvGen: TAdvTabSheet
+        Caption = '     Gen '
+        Color = clBlack
+        ColorTo = clNone
+        TabColor = clBlack
+        TabColorTo = clNone
+        TextColor = clLime
         object Label25: TLabel
           Left = 4
           Top = 133
           Width = 97
           Height = 16
           Caption = 'IFF Mode Code 1'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblSubmarineConfLevel: TLabel
-          Left = 220
-          Top = 133
-          Width = 78
-          Height = 16
-          Caption = 'No Statement'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label27: TLabel
-          Left = 4
-          Top = 155
-          Width = 97
-          Height = 16
-          Caption = 'IFF Mode Code 2'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblEstimatedDepth: TLabel
-          Left = 220
-          Top = 155
-          Width = 78
-          Height = 16
-          Caption = 'No Statement'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label29: TLabel
-          Left = 4
-          Top = 177
-          Width = 97
-          Height = 16
-          Caption = 'IFF Mode Code 3'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblDataReportType: TLabel
-          Left = 220
-          Top = 177
-          Width = 117
-          Height = 16
-          Caption = 'Surfaced Submarine'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label31: TLabel
-          Left = 4
-          Top = 213
-          Width = 55
-          Height = 16
-          Caption = 'Free Text'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblFreetext: TLabel
-          Left = 220
-          Top = 213
-          Width = 60
-          Height = 16
-          Caption = 'Amundsen'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label33: TLabel
-          Left = 4
-          Top = 235
-          Width = 40
-          Height = 16
-          Caption = 'Activity'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblActivity: TLabel
-          Left = 220
-          Top = 235
-          Width = 77
-          Height = 16
-          Caption = 'No Ststement'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label35: TLabel
-          Left = 4
-          Top = 277
-          Width = 87
-          Height = 16
-          Caption = 'Weapon Range'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblWeaponRange: TLabel
-          Left = 220
-          Top = 277
-          Width = 18
-          Height = 16
-          Caption = '0.0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label37: TLabel
-          Left = 4
-          Top = 299
-          Width = 93
-          Height = 16
-          Caption = 'Detection Range'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblDetectionRange: TLabel
-          Left = 220
-          Top = 299
-          Width = 18
-          Height = 16
-          Caption = '0.0'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -1016,12 +729,207 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
+        object Label27: TLabel
+          Left = 4
+          Top = 155
+          Width = 97
+          Height = 16
+          Caption = 'IFF Mode Code 2'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
         object Label28: TLabel
           Left = 252
           Top = 299
           Width = 17
           Height = 16
           Caption = 'km'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label29: TLabel
+          Left = 4
+          Top = 177
+          Width = 97
+          Height = 16
+          Caption = 'IFF Mode Code 3'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label31: TLabel
+          Left = 4
+          Top = 213
+          Width = 55
+          Height = 16
+          Caption = 'Free Text'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label33: TLabel
+          Left = 4
+          Top = 235
+          Width = 40
+          Height = 16
+          Caption = 'Activity'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label35: TLabel
+          Left = 4
+          Top = 277
+          Width = 87
+          Height = 16
+          Caption = 'Weapon Range'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label37: TLabel
+          Left = 4
+          Top = 299
+          Width = 93
+          Height = 16
+          Caption = 'Detection Range'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblActivity: TLabel
+          Left = 220
+          Top = 235
+          Width = 77
+          Height = 16
+          Caption = 'No Ststement'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblDataReportType: TLabel
+          Left = 220
+          Top = 177
+          Width = 117
+          Height = 16
+          Caption = 'Surfaced Submarine'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblDetectionRange: TLabel
+          Left = 220
+          Top = 299
+          Width = 18
+          Height = 16
+          Caption = '0.0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblEstimatedDepth: TLabel
+          Left = 220
+          Top = 155
+          Width = 78
+          Height = 16
+          Caption = 'No Statement'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblFreetext: TLabel
+          Left = 220
+          Top = 213
+          Width = 60
+          Height = 16
+          Caption = 'Amundsen'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblSubmarineConfLevel: TLabel
+          Left = 220
+          Top = 133
+          Width = 78
+          Height = 16
+          Caption = 'No Statement'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblWeaponRange: TLabel
+          Left = 220
+          Top = 277
+          Width = 18
+          Height = 16
+          Caption = '0.0'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -1797,54 +1705,13 @@ object frmTrackInfo: TfrmTrackInfo
           end
         end
       end
-      object TabSonar: TAdvSmoothTabPage
-        Left = 1
-        Top = 40
-        Width = 475
-        Height = 319
-        Caption = 'Sonar'
-        PageAppearance.Color = -1
-        PageAppearance.ColorTo = -1
-        PageAppearance.ColorMirror = -1
-        PageAppearance.ColorMirrorTo = -1
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = -1
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -11
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = 16250613
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = 15921906
-        TMSStyle = 20
+      object AdvSonar: TAdvTabSheet
+        Caption = '    Sonar '
+        Color = clBlack
+        ColorTo = clNone
+        TabColor = clBlack
+        TabColorTo = clBlack
+        TextColor = clLime
         object lvTracklistNumber: TListView
           Left = 0
           Top = 16
@@ -1853,7 +1720,7 @@ object frmTrackInfo: TfrmTrackInfo
           BevelInner = bvNone
           BevelOuter = bvNone
           BiDiMode = bdRightToLeft
-          Color = -1
+          Color = clBlack
           Columns = <
             item
               Caption = 'Sensor'
@@ -1863,15 +1730,15 @@ object frmTrackInfo: TfrmTrackInfo
               Caption = 'Id'
             end
             item
-              Alignment = taRightJustify
+              Alignment = taCenter
               Caption = 'Tgl Lvl(dB)'
             end
             item
-              Alignment = taRightJustify
+              Alignment = taCenter
               Caption = 'Conf(%)'
             end
             item
-              Alignment = taRightJustify
+              Alignment = taCenter
               Caption = 'Classification'
             end>
           GridLines = True
@@ -1880,288 +1747,19 @@ object frmTrackInfo: TfrmTrackInfo
           ViewStyle = vsReport
         end
       end
-      object TabIntercept: TAdvSmoothTabPage
-        Left = 1
-        Top = 40
-        Width = 475
-        Height = 319
-        Caption = 'Intercept'
-        PageAppearance.Color = clBlack
-        PageAppearance.ColorTo = clBlack
-        PageAppearance.ColorMirror = clBlack
-        PageAppearance.ColorMirrorTo = clBlack
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = clBlack
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        PageAppearance.GlowGradientColor = clBlack
-        PageAppearance.GlowRadialColor = clBlack
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -11
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = clWhite
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = clWhite
-        TabAppearance.ColorTextHot = clWhite
-        TMSStyle = 20
+      object AdvIntercept: TAdvTabSheet
+        Caption = '    Intercept '
+        Color = clBlack
+        ColorTo = clNone
+        TabColor = clBlack
+        TabColorTo = clBlack
+        TextColor = clLime
         object Label32: TLabel
           Left = 20
           Top = 21
           Width = 58
           Height = 16
           Caption = 'Contact Id'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblContactId: TLabel
-          Left = 192
-          Top = 21
-          Width = 31
-          Height = 16
-          Caption = '      1'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblSensor: TLabel
-          Left = 192
-          Top = 43
-          Width = 32
-          Height = 16
-          Caption = '  CAS'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label36: TLabel
-          Left = 20
-          Top = 43
-          Width = 40
-          Height = 16
-          Caption = 'Sensor'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblFrequency: TLabel
-          Left = 187
-          Top = 63
-          Width = 30
-          Height = 16
-          Caption = '   1.0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label39: TLabel
-          Left = 20
-          Top = 65
-          Width = 59
-          Height = 16
-          Caption = 'Frequency'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblPRI: TLabel
-          Left = 179
-          Top = 87
-          Width = 37
-          Height = 16
-          Caption = '   0.10'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label41: TLabel
-          Left = 20
-          Top = 87
-          Width = 19
-          Height = 16
-          Caption = 'PRI'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblPulselength: TLabel
-          Left = 178
-          Top = 109
-          Width = 39
-          Height = 16
-          Caption = '0.0000'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label43: TLabel
-          Left = 20
-          Top = 109
-          Width = 72
-          Height = 16
-          Caption = 'Pulse Length'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblPulseLevel: TLabel
-          Left = 184
-          Top = 131
-          Width = 34
-          Height = 16
-          Caption = '    0.0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label45: TLabel
-          Left = 20
-          Top = 131
-          Width = 63
-          Height = 16
-          Caption = 'Pulse Level'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblConfidence: TLabel
-          Left = 187
-          Top = 153
-          Width = 31
-          Height = 16
-          Caption = '      0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label47: TLabel
-          Left = 20
-          Top = 153
-          Width = 63
-          Height = 16
-          Caption = 'Confidence'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblClassification: TLabel
-          Left = 146
-          Top = 175
-          Width = 77
-          Height = 16
-          Caption = '12345678901'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label49: TLabel
-          Left = 20
-          Top = 175
-          Width = 74
-          Height = 16
-          Caption = 'Classification'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2186,12 +1784,117 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
+        object Label36: TLabel
+          Left = 20
+          Top = 43
+          Width = 40
+          Height = 16
+          Caption = 'Sensor'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
         object Label38: TLabel
           Left = 226
           Top = 87
           Width = 6
           Height = 16
           Caption = 's'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label39: TLabel
+          Left = 20
+          Top = 65
+          Width = 59
+          Height = 16
+          Caption = 'Frequency'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label41: TLabel
+          Left = 20
+          Top = 87
+          Width = 19
+          Height = 16
+          Caption = 'PRI'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label43: TLabel
+          Left = 20
+          Top = 109
+          Width = 72
+          Height = 16
+          Caption = 'Pulse Length'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label45: TLabel
+          Left = 20
+          Top = 131
+          Width = 63
+          Height = 16
+          Caption = 'Pulse Level'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label47: TLabel
+          Left = 20
+          Top = 153
+          Width = 63
+          Height = 16
+          Caption = 'Confidence'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label49: TLabel
+          Left = 20
+          Top = 175
+          Width = 74
+          Height = 16
+          Caption = 'Classification'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2246,61 +1949,137 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
+        object lblClassification: TLabel
+          Left = 146
+          Top = 175
+          Width = 77
+          Height = 16
+          Caption = '12345678901'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblConfidence: TLabel
+          Left = 187
+          Top = 153
+          Width = 31
+          Height = 16
+          Caption = '      0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblContactId: TLabel
+          Left = 192
+          Top = 21
+          Width = 31
+          Height = 16
+          Caption = '      1'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblFrequency: TLabel
+          Left = 187
+          Top = 63
+          Width = 30
+          Height = 16
+          Caption = '   1.0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPRI: TLabel
+          Left = 179
+          Top = 87
+          Width = 37
+          Height = 16
+          Caption = '   0.10'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPulselength: TLabel
+          Left = 178
+          Top = 109
+          Width = 39
+          Height = 16
+          Caption = '0.0000'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPulseLevel: TLabel
+          Left = 184
+          Top = 131
+          Width = 34
+          Height = 16
+          Caption = '    0.0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblSensor: TLabel
+          Left = 192
+          Top = 43
+          Width = 32
+          Height = 16
+          Caption = '  CAS'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
       end
-      object TabRESM: TAdvSmoothTabPage
-        Left = 1
-        Top = 40
-        Width = 475
-        Height = 319
-        Caption = 'RESM'
-        PageAppearance.Color = clBlack
-        PageAppearance.ColorTo = clBlack
-        PageAppearance.ColorMirror = clBlack
-        PageAppearance.ColorMirrorTo = clBlack
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = clBlack
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        PageAppearance.GlowGradientColor = clBlack
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -11
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = 16250613
-        TabAppearance.ColorSelected = clWhite
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = 15921906
-        TabAppearance.ColorTextHot = clWhite
-        TabAppearance.ColorTextDisabled = clWhite
-        TMSStyle = 20
+      object AdvRESM: TAdvTabSheet
+        Caption = '   RESM  '
+        Color = clBlack
+        ColorTo = clNone
+        TabColor = clBlack
+        TabColorTo = clBlack
+        TextColor = clLime
         object Label40: TLabel
           Left = 12
-          Top = 37
+          Top = 39
           Width = 67
           Height = 16
           Caption = 'Pulse Width'
@@ -2313,12 +2092,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblPulseWidth: TLabel
-          Left = 132
+        object Label42: TLabel
+          Left = 281
           Top = 37
-          Width = 39
+          Width = 22
           Height = 16
-          Caption = '204.00'
+          Caption = 'PRF'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2329,8 +2108,8 @@ object frmTrackInfo: TfrmTrackInfo
           ParentFont = False
         end
         object Label44: TLabel
-          Left = 12
-          Top = 13
+          Left = 13
+          Top = 19
           Width = 44
           Height = 16
           Caption = 'RESM 1'
@@ -2358,27 +2137,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object Label42: TLabel
-          Left = 281
-          Top = 37
-          Width = 22
+        object Label48: TLabel
+          Left = 12
+          Top = 61
+          Width = 60
           Height = 16
-          Caption = 'PRF'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblPRF: TLabel
-          Left = 380
-          Top = 37
-          Width = 32
-          Height = 16
-          Caption = '0.000'
+          Caption = 'Scan Type'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2403,72 +2167,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object Label48: TLabel
-          Left = 12
-          Top = 61
-          Width = 60
-          Height = 16
-          Caption = 'Scan Type'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblFixedScan: TLabel
-          Left = 132
-          Top = 61
-          Width = 84
-          Height = 16
-          Caption = 'Fixed Scan (D)'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
         object Label54: TLabel
           Left = 12
           Top = 85
           Width = 68
           Height = 16
           Caption = 'Scan Period'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblScanPeriod: TLabel
-          Left = 132
-          Top = 85
-          Width = 39
-          Height = 16
-          Caption = '30.000'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label56: TLabel
-          Left = 188
-          Top = 85
-          Width = 6
-          Height = 16
-          Caption = 's'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2493,72 +2197,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblFrq: TLabel
-          Left = 132
-          Top = 108
-          Width = 39
+        object Label56: TLabel
+          Left = 188
+          Top = 85
+          Width = 6
           Height = 16
-          Caption = '0.0000'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label58: TLabel
-          Left = 189
-          Top = 109
-          Width = 22
-          Height = 16
-          Caption = 'GHz'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblFMOP: TLabel
-          Left = 277
-          Top = 109
-          Width = 33
-          Height = 16
-          Caption = 'FMOP'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblCW: TLabel
-          Left = 337
-          Top = 109
-          Width = 20
-          Height = 16
-          Caption = 'CW'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblPMOP: TLabel
-          Left = 392
-          Top = 109
-          Width = 33
-          Height = 16
-          Caption = 'PMOP'
+          Caption = 's'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2583,27 +2227,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblAmplitude: TLabel
-          Left = 132
-          Top = 132
-          Width = 39
-          Height = 16
-          Caption = '        0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label60: TLabel
+        object Label58: TLabel
           Left = 189
-          Top = 133
-          Width = 14
+          Top = 109
+          Width = 22
           Height = 16
-          Caption = 'dB'
+          Caption = 'GHz'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2628,12 +2257,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object Label61: TLabel
-          Left = 14
-          Top = 189
-          Width = 67
+        object Label60: TLabel
+          Left = 189
+          Top = 133
+          Width = 14
           Height = 16
-          Caption = 'Pulse Width'
+          Caption = 'dB'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2643,12 +2272,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblPulseWidthResm2: TLabel
-          Left = 126
+        object Label61: TLabel
+          Left = 14
           Top = 189
-          Width = 39
+          Width = 67
           Height = 16
-          Caption = '204.00'
+          Caption = 'Pulse Width'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2688,21 +2317,6 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblPRFResm2: TLabel
-          Left = 382
-          Top = 189
-          Width = 32
-          Height = 16
-          Caption = '0.000'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
         object Label66: TLabel
           Left = 422
           Top = 189
@@ -2733,42 +2347,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblScantypeResm2: TLabel
-          Left = 125
-          Top = 211
-          Width = 84
-          Height = 16
-          Caption = 'Fixed Scan (D)'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
         object Label69: TLabel
           Left = 13
           Top = 233
           Width = 68
           Height = 16
           Caption = 'Scan Period'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblscanPeriodResm2: TLabel
-          Left = 124
-          Top = 233
-          Width = 39
-          Height = 16
-          Caption = '30.000'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2808,72 +2392,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblFreqResm2: TLabel
-          Left = 124
-          Top = 254
-          Width = 39
-          Height = 16
-          Caption = '0.0000'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
         object Label74: TLabel
           Left = 181
           Top = 255
           Width = 22
           Height = 16
           Caption = 'GHz'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblFMOPResm2: TLabel
-          Left = 277
-          Top = 255
-          Width = 33
-          Height = 16
-          Caption = 'FMOP'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblCWResm: TLabel
-          Left = 337
-          Top = 255
-          Width = 20
-          Height = 16
-          Caption = 'CW'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblPMOPResm2: TLabel
-          Left = 392
-          Top = 255
-          Width = 33
-          Height = 16
-          Caption = 'PMOP'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -2898,21 +2422,6 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblAmplitudeResm2: TLabel
-          Left = 132
-          Top = 278
-          Width = 31
-          Height = 16
-          Caption = '      0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
         object Label80: TLabel
           Left = 13
           Top = 278
@@ -2928,60 +2437,287 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
+        object lblAmplitude: TLabel
+          Left = 132
+          Top = 132
+          Width = 39
+          Height = 16
+          Caption = '        0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblAmplitudeResm2: TLabel
+          Left = 132
+          Top = 278
+          Width = 31
+          Height = 16
+          Caption = '      0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblCW: TLabel
+          Left = 337
+          Top = 109
+          Width = 20
+          Height = 16
+          Caption = 'CW'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblCWResm: TLabel
+          Left = 337
+          Top = 255
+          Width = 20
+          Height = 16
+          Caption = 'CW'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblFixedScan: TLabel
+          Left = 132
+          Top = 61
+          Width = 84
+          Height = 16
+          Caption = 'Fixed Scan (D)'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblFMOP: TLabel
+          Left = 277
+          Top = 109
+          Width = 33
+          Height = 16
+          Caption = 'FMOP'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblFMOPResm2: TLabel
+          Left = 277
+          Top = 255
+          Width = 33
+          Height = 16
+          Caption = 'FMOP'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblFreqResm2: TLabel
+          Left = 124
+          Top = 254
+          Width = 39
+          Height = 16
+          Caption = '0.0000'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblFrq: TLabel
+          Left = 132
+          Top = 108
+          Width = 39
+          Height = 16
+          Caption = '0.0000'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPMOP: TLabel
+          Left = 392
+          Top = 109
+          Width = 33
+          Height = 16
+          Caption = 'PMOP'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPMOPResm2: TLabel
+          Left = 392
+          Top = 255
+          Width = 33
+          Height = 16
+          Caption = 'PMOP'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPRF: TLabel
+          Left = 380
+          Top = 37
+          Width = 32
+          Height = 16
+          Caption = '0.000'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPRFResm2: TLabel
+          Left = 382
+          Top = 189
+          Width = 32
+          Height = 16
+          Caption = '0.000'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPulseWidth: TLabel
+          Left = 132
+          Top = 37
+          Width = 39
+          Height = 16
+          Caption = '204.00'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPulseWidthResm2: TLabel
+          Left = 126
+          Top = 189
+          Width = 39
+          Height = 16
+          Caption = '204.00'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblScanPeriod: TLabel
+          Left = 132
+          Top = 85
+          Width = 39
+          Height = 16
+          Caption = '30.000'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblscanPeriodResm2: TLabel
+          Left = 124
+          Top = 233
+          Width = 39
+          Height = 16
+          Caption = '30.000'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblScantypeResm2: TLabel
+          Left = 125
+          Top = 211
+          Width = 84
+          Height = 16
+          Caption = 'Fixed Scan (D)'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
       end
-      object TabEW: TAdvSmoothTabPage
-        Left = 1
-        Top = 40
-        Width = 475
-        Height = 319
-        Caption = 'EW'
-        PageAppearance.Color = clBlack
-        PageAppearance.ColorTo = clBlack
-        PageAppearance.ColorMirror = clBlack
-        PageAppearance.ColorMirrorTo = clBlack
-        PageAppearance.GradientType = gtVertical
-        PageAppearance.GradientMirrorType = gtVertical
-        PageAppearance.BorderColor = clBlack
-        PageAppearance.Rounding = 0
-        PageAppearance.ShadowOffset = 0
-        PageAppearance.Glow = gmNone
-        PageAppearance.GlowGradientColor = clBlack
-        PageAppearance.GlowRadialColor = clBlack
-        TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Appearance.Font.Color = clBlack
-        TabAppearance.Appearance.Font.Height = -11
-        TabAppearance.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Appearance.Font.Style = []
-        TabAppearance.Appearance.SimpleLayout = True
-        TabAppearance.Appearance.Rounding = 0
-        TabAppearance.Status.Caption = '0'
-        TabAppearance.Status.Appearance.Fill.Color = clRed
-        TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
-        TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
-        TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
-        TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
-        TabAppearance.Status.Appearance.Fill.BorderColor = clGray
-        TabAppearance.Status.Appearance.Fill.Rounding = 0
-        TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
-        TabAppearance.Status.Appearance.Fill.Glow = gmNone
-        TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
-        TabAppearance.Status.Appearance.Font.Color = clWhite
-        TabAppearance.Status.Appearance.Font.Height = -11
-        TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
-        TabAppearance.Status.Appearance.Font.Style = []
-        TabAppearance.BevelColor = clWhite
-        TabAppearance.BevelColorDown = clWhite
-        TabAppearance.BevelColorSelected = clWhite
-        TabAppearance.BevelColorDisabled = clWhite
-        TabAppearance.Color = clWhite
-        TabAppearance.ColorDown = 16250613
-        TabAppearance.ColorSelected = 16250613
-        TabAppearance.ColorHot = 16776701
-        TabAppearance.ColorDisabled = 15921906
-        TMSStyle = 20
+      object AdvEW: TAdvTabSheet
+        Caption = '   EW '
+        Color = clBlack
+        ColorTo = clNone
+        TabColor = clBlack
+        TabColorTo = clBlack
+        TextColor = clLime
         object Label62: TLabel
-          Left = 12
-          Top = 13
+          Left = 14
+          Top = 19
           Width = 41
           Height = 16
           Caption = 'Emitter'
@@ -3009,72 +2745,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblNumber: TLabel
-          Left = 76
-          Top = 45
-          Width = 7
-          Height = 16
-          Caption = '0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
         object Label68: TLabel
           Left = 12
           Top = 65
           Width = 63
           Height = 16
           Caption = 'Confidence'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label73: TLabel
-          Left = 156
-          Top = 45
-          Width = 50
-          Height = 16
-          Caption = 'Mode No'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblModeNumber: TLabel
-          Left = 244
-          Top = 45
-          Width = 7
-          Height = 16
-          Caption = '0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblConfidenceEW: TLabel
-          Left = 156
-          Top = 65
-          Width = 78
-          Height = 16
-          Caption = 'No Statement'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3099,42 +2775,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lbl76: TLabel
-          Left = 12
-          Top = 137
-          Width = 74
-          Height = 16
-          Caption = 'Broad Classif'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblPlatformEvalConf: TLabel
+        object Label73: TLabel
           Left = 156
-          Top = 117
-          Width = 78
+          Top = 45
+          Width = 50
           Height = 16
-          Caption = 'No Statement'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblBroadClassif: TLabel
-          Left = 156
-          Top = 137
-          Width = 78
-          Height = 16
-          Caption = 'No Statement'
+          Caption = 'Mode No'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3159,12 +2805,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblJitter: TLabel
-          Left = 156
-          Top = 190
-          Width = 78
+        object Label76: TLabel
+          Left = 199
+          Top = 210
+          Width = 13
           Height = 16
-          Caption = 'No Statement'
+          Caption = 'us'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3189,12 +2835,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblPulseWidthEW: TLabel
-          Left = 156
-          Top = 210
-          Width = 25
+        object Label79: TLabel
+          Left = 276
+          Top = 190
+          Width = 38
           Height = 16
-          Caption = '0.00'
+          Caption = 'Polariz'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3219,42 +2865,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object Label76: TLabel
-          Left = 199
-          Top = 210
-          Width = 13
+        object Label82: TLabel
+          Left = 12
+          Top = 230
+          Width = 60
           Height = 16
-          Caption = 'us'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label79: TLabel
-          Left = 276
-          Top = 190
-          Width = 38
-          Height = 16
-          Caption = 'Polariz'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblPolariz: TLabel
-          Left = 358
-          Top = 190
-          Width = 78
-          Height = 16
-          Caption = 'No Statement'
+          Caption = 'Scan Type'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3279,12 +2895,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblFreqEW: TLabel
-          Left = 356
-          Top = 210
-          Width = 32
+        object Label84: TLabel
+          Left = 12
+          Top = 250
+          Width = 68
           Height = 16
-          Caption = '0.000'
+          Caption = 'Scan Period'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3309,57 +2925,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object Label82: TLabel
+        object Label86: TLabel
           Left = 12
-          Top = 230
-          Width = 60
+          Top = 270
+          Width = 37
           Height = 16
-          Caption = 'Scan Type'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblScanTypeEW: TLabel
-          Left = 156
-          Top = 230
-          Width = 78
-          Height = 16
-          Caption = 'No Statement'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label84: TLabel
-          Left = 12
-          Top = 250
-          Width = 68
-          Height = 16
-          Caption = 'Scan Period'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblScanPeriodEW: TLabel
-          Left = 169
-          Top = 250
-          Width = 18
-          Height = 16
-          Caption = '0.0'
+          Caption = 'Freq 1'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3399,57 +2970,12 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object lblRateEW: TLabel
-          Left = 372
-          Top = 250
-          Width = 18
-          Height = 16
-          Caption = '0.0'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
         object Label90: TLabel
           Left = 407
           Top = 250
           Width = 14
           Height = 16
           Caption = 'Hz'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object Label86: TLabel
-          Left = 12
-          Top = 270
-          Width = 37
-          Height = 16
-          Caption = 'Freq 1'
-          Color = clWhite
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblFreq1EW: TLabel
-          Left = 154
-          Top = 270
-          Width = 32
-          Height = 16
-          Caption = '0.000'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3474,12 +3000,87 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
+        object Label94: TLabel
+          Left = 407
+          Top = 270
+          Width = 22
+          Height = 16
+          Caption = 'GHz'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lbl76: TLabel
+          Left = 12
+          Top = 137
+          Width = 74
+          Height = 16
+          Caption = 'Broad Classif'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
         object lbl77: TLabel
           Left = 276
           Top = 270
           Width = 37
           Height = 16
           Caption = 'Freq 2'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblBroadClassif: TLabel
+          Left = 156
+          Top = 137
+          Width = 78
+          Height = 16
+          Caption = 'No Statement'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblConfidenceEW: TLabel
+          Left = 156
+          Top = 65
+          Width = 78
+          Height = 16
+          Caption = 'No Statement'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblFreq1EW: TLabel
+          Left = 154
+          Top = 270
+          Width = 32
+          Height = 16
+          Caption = '0.000'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3504,12 +3105,147 @@ object frmTrackInfo: TfrmTrackInfo
           ParentColor = False
           ParentFont = False
         end
-        object Label94: TLabel
-          Left = 407
-          Top = 270
-          Width = 22
+        object lblFreqEW: TLabel
+          Left = 356
+          Top = 210
+          Width = 32
           Height = 16
-          Caption = 'GHz'
+          Caption = '0.000'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblJitter: TLabel
+          Left = 156
+          Top = 190
+          Width = 78
+          Height = 16
+          Caption = 'No Statement'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblModeNumber: TLabel
+          Left = 244
+          Top = 45
+          Width = 7
+          Height = 16
+          Caption = '0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblNumber: TLabel
+          Left = 76
+          Top = 45
+          Width = 7
+          Height = 16
+          Caption = '0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPlatformEvalConf: TLabel
+          Left = 156
+          Top = 117
+          Width = 78
+          Height = 16
+          Caption = 'No Statement'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPolariz: TLabel
+          Left = 358
+          Top = 190
+          Width = 78
+          Height = 16
+          Caption = 'No Statement'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblPulseWidthEW: TLabel
+          Left = 156
+          Top = 210
+          Width = 25
+          Height = 16
+          Caption = '0.00'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblRateEW: TLabel
+          Left = 372
+          Top = 250
+          Width = 18
+          Height = 16
+          Caption = '0.0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblScanPeriodEW: TLabel
+          Left = 169
+          Top = 250
+          Width = 18
+          Height = 16
+          Caption = '0.0'
+          Color = clWhite
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblScanTypeEW: TLabel
+          Left = 156
+          Top = 230
+          Width = 78
+          Height = 16
+          Caption = 'No Statement'
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite

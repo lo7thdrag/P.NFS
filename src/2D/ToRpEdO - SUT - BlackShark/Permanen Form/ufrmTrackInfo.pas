@@ -33,7 +33,7 @@ type
     lblRadar: TLabel;
     AdvPageTrackInfo: TAdvPageControl;
     AdvKinem: TAdvTabSheet;
-    Advgen: TAdvTabSheet;
+    AdvGen: TAdvTabSheet;
     AdvSonar: TAdvTabSheet;
     AdvIntercept: TAdvTabSheet;
     AdvRESM: TAdvTabSheet;

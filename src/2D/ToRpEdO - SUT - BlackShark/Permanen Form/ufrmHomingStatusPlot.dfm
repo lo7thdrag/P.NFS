@@ -30,7 +30,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
       Top = 8
       Width = 569
       Height = 209
-      ActivePage = AdvTabHomingPlot
+      ActivePage = AdvTabHomingStatus
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clWhite
       ActiveFont.Height = -13
@@ -54,16 +54,12 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
       PersistPagesState.Enabled = False
       TabOrder = 0
       object AdvTabHomingStatus: TAdvTabSheet
-        Caption = 'Homing Status'
+        Caption = '    Homing Status   '
         Color = clBlack
         ColorTo = clNone
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clWhite
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
         object Label1: TLabel
           Left = 208
           Top = 10
@@ -237,7 +233,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         end
       end
       object AdvTabHomingPlot: TAdvTabSheet
-        Caption = 'Horizontal/Vertical ToSo Coverage'
+        Caption = '    Horizontal/Vertical ToSo Coverage  '
         Color = clBlack
         ColorTo = clNone
         Font.Charset = DEFAULT_CHARSET
@@ -249,9 +245,6 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clWhite
-        ExplicitTop = 24
-        ExplicitWidth = 800
-        ExplicitHeight = 181
         object pbToSoCoveragePlot: TPaintBox
           Left = 16
           Top = 16

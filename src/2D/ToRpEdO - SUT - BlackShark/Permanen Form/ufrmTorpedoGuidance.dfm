@@ -85,7 +85,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       Height = 73
       ActivePage = AdvTabTorpedoControl
       ActiveFont.Charset = DEFAULT_CHARSET
-      ActiveFont.Color = clWhite
+      ActiveFont.Color = clLime
       ActiveFont.Height = -12
       ActiveFont.Name = 'Tahoma'
       ActiveFont.Style = []
@@ -107,7 +107,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       PersistPagesState.Enabled = False
       TabOrder = 2
       object AdvTabTorpedoControl: TAdvTabSheet
-        Caption = 'Torpedo Control'
+        Caption = '     Torpedo Control   '
         Color = clBlack
         ColorTo = clNone
         Font.Charset = DEFAULT_CHARSET
@@ -118,11 +118,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
         ParentFont = False
         TabColor = clBlack
         TabColorTo = clNone
-        TextColor = clWhite
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
+        TextColor = clLime
         object lblHoming: TLabel
           Left = 171
           Top = 0
@@ -177,7 +173,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
         end
       end
       object AdvTabSpecialSettings: TAdvTabSheet
-        Caption = 'Special Settings'
+        Caption = '       Special Settings    '
         Color = clBlack
         ColorTo = clNone
         Font.Charset = DEFAULT_CHARSET
@@ -188,11 +184,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
         ParentFont = False
         TabColor = clBlack
         TabColorTo = clNone
-        TextColor = clWhite
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
+        TextColor = clLime
         object lblFuseOff: TLabel
           Left = 172
           Top = 21
@@ -236,7 +228,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Left = 8
           Top = 18
           Width = 94
-          Height = 13
+          Height = 14
           Caption = 'ToSo Act Immed'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
