@@ -86,7 +86,8 @@ uses
   ufrmContactInControl in 'Permanen Form\ufrmContactInControl.pas' {frmContactInControl},
   ufrmTrackingList in 'Pop-up form\ufrmTrackingList.pas' {frmTrackListNumber},
   ufrmWakeList in 'Pop-up form\ufrmWakeList.pas' {frmWakeList},
-  ufrmTorpedoAllocation in 'Permanen Form\ufrmTorpedoAllocation.pas' {frmTorpedoAllocation};
+  ufrmTorpedoAllocation in 'Permanen Form\ufrmTorpedoAllocation.pas' {frmTorpedoAllocation},
+  ufrmTorpedoParameterDepthSettings in 'Permanen Form\ufrmTorpedoParameterDepthSettings.pas' {frmTorpedoParameterDepthSettings};
 
 {$R *.res}
 
@@ -99,6 +100,7 @@ begin
   Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
   Application.CreateForm(TfrmWakeList, frmWakeList);
   Application.CreateForm(TfrmTorpedoAllocation, frmTorpedoAllocation);
+  Application.CreateForm(TfrmTorpedoParameterDepthSettings, frmTorpedoParameterDepthSettings);
   //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
 
   Application.Run;
