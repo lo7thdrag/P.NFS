@@ -34,7 +34,8 @@ type
     pnlCursor: TPanel;
     pnlTPGroup: TPanel;
     pnlTacticalPicture: TPanel;
-    pnlPictureControl: TPanel;    procedure FormCreate(Sender: TObject);
+    tmrUpdateTP: TTimer;    procedure FormCreate(Sender: TObject);
+    procedure tmrUpdateTPTimer(Sender: TObject);
   private
     BearingCount : Integer;
     FFrmRadar : TFrmRadar;
@@ -70,6 +71,11 @@ var
   i : Integer;
 begin
 
+end;
+
+procedure TFrmTacticalScreen.tmrUpdateTPTimer(Sender: TObject);
+begin
+  UpdateRadarDisplay;
 end;
 
 procedure TFrmTacticalScreen.UpdateRadarDisplay;

@@ -168,7 +168,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Left = 0
         Top = 0
         Width = 1440
-        Height = 838
+        Height = 878
         Caption = 'Tactical Picture'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -178,20 +178,11 @@ object FrmTacticalScreen: TFrmTacticalScreen
         ParentFont = False
         TabOrder = 0
       end
-      object pnlPictureControl: TPanel
-        Left = 0
-        Top = 838
-        Width = 1440
-        Height = 40
-        Caption = 'Picture Control'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 1
-      end
     end
+  end
+  object tmrUpdateTP: TTimer
+    OnTimer = tmrUpdateTPTimer
+    Left = 944
+    Top = 528
   end
 end
