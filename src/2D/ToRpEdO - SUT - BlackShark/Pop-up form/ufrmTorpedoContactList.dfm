@@ -23,7 +23,7 @@ object frmTorpedoContactList: TfrmTorpedoContactList
     BevelOuter = bvNone
     TabOrder = 0
     object lblReset: TLabel
-      Left = 228
+      Left = 174
       Top = 235
       Width = 32
       Height = 16
@@ -51,24 +51,28 @@ object frmTorpedoContactList: TfrmTorpedoContactList
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object lvTorpedoContactList: TListView
       Left = 8
       Top = 8
       Width = 377
-      Height = 185
+      Height = 197
       Color = clBlack
       Columns = <
         item
           Caption = 'Trp/Cnt'
+          Width = 100
         end
         item
           Alignment = taCenter
           Caption = 'Bearing (deg)'
+          Width = 136
         end
         item
           Alignment = taCenter
           Caption = 'Range (m)'
+          Width = 137
         end>
       GridLines = True
       TabOrder = 0

@@ -66,6 +66,7 @@ object frmSensorTrackList: TfrmSensorTrackList
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object lblSensor: TLabel
       Left = 28
@@ -86,7 +87,7 @@ object frmSensorTrackList: TfrmSensorTrackList
       Left = 32
       Top = 64
       Width = 265
-      Height = 97
+      Height = 267
       BevelInner = bvNone
       BevelOuter = bvNone
       BiDiMode = bdRightToLeft
@@ -94,10 +95,12 @@ object frmSensorTrackList: TfrmSensorTrackList
       Columns = <
         item
           Caption = 'Sensor TNo'
+          Width = 150
         end
         item
           Alignment = taCenter
           Caption = 'TNo'
+          Width = 110
         end>
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

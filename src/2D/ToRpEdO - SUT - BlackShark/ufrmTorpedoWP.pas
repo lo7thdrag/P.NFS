@@ -12,7 +12,8 @@ uses
 
   ufrmOwnShip, ufrmAlertandOpearatorMassage, ufmTargetInControl, ufrmContactInControl, ufrmTorpedoTubeCommands,
   ufrmTorpedoTubeStatusWindow, ufrmTorpedoGuidance, ufrmHomingCommands, ufrmHomingStatusPlot, ufrmDepthPlot,
-  ufrmTorpedoParameterSetting, ufrmEngagementDataOverview;
+  ufrmTorpedoParameterSetting, ufrmEngagementDataOverview, ufrmControlByNumber, ufrmTrackingList, ufrmSensorTrackList,
+  ufrmTackHistory, ufrmCreateModifyTrack, ufrmTorpedoContactList, ufrmWakeList, ufrmTorpedoVerticalView;
 
 type
   TFrmTorpedoWP = class(TForm)
@@ -1001,7 +1002,14 @@ begin
       // FuncTaskRightMode di check di dalam sini
       if FuncTaskRightMode = 0 then // Create Modify Track
       begin
-
+        if not Assigned(frmCreateModifyTrack) then
+        begin
+          frmCreateModifyTrack := TfrmCreateModifyTrack.Create(Self);
+          frmCreateModifyTrack.Show;
+          frmCreateModifyTrack.Top := 300;
+          frmCreateModifyTrack.Left := 300;
+        end
+        else FreeAndNil(frmCreateModifyTrack);
       end
       else if FuncTaskRightMode = 2 then // System Mode Select
       begin
@@ -1013,7 +1021,15 @@ begin
       end
       else if FuncTaskRightMode = 4 then // Track CtrlBy Numb
       begin
+        if not Assigned(frmControlByNumber) then
+        begin
+          frmControlByNumber := TfrmControlByNumber.Create(Self);
+          frmControlByNumber.Show;
+          frmControlByNumber.Top := 300;
+          frmControlByNumber.Left := 300;
+        end
 
+        else FreeAndNil(frmControlByNumber);
       end
       else if FuncTaskRightMode = 5 then // Tactical Calc
       begin
@@ -1036,7 +1052,15 @@ begin
       end
       else if FuncTaskRightMode = 4 then  // Track List
       begin
+        if not Assigned(frmTrackListNumber) then
+        begin
+          frmTrackListNumber := TfrmTrackListNumber.Create(Self);
+          frmTrackListNumber.Show;
+          frmTrackListNumber.Top := 300;
+          frmTrackListNumber.Left := 300;
+        end
 
+        else FreeAndNil(frmTrackListNumber);
       end
       else if FuncTaskRightMode = 5 then  // Media Writer
       begin
@@ -1059,7 +1083,15 @@ begin
       end
       else if FuncTaskRightMode = 4 then  // Sensor Track List
       begin
+        if not Assigned(frmSensorTrackList) then
+        begin
+          frmSensorTrackList := TfrmSensorTrackList.Create(Self);
+          frmSensorTrackList.Show;
+          frmSensorTrackList.Top := 300;
+          frmSensorTrackList.Left := 300;
+        end
 
+        else FreeAndNil(frmSensorTrackList);
       end
       else if FuncTaskRightMode = 5 then  // Browser
       begin
@@ -1082,7 +1114,15 @@ begin
       end
       else if FuncTaskRightMode = 4 then  // Tact Trp/Cnt List
       begin
+        if not Assigned(frmTorpedoContactList) then
+        begin
+          frmTorpedoContactList := TfrmTorpedoContactList.Create(Self);
+          frmTorpedoContactList.Show;
+          frmTorpedoContactList.Top := 300;
+          frmTorpedoContactList.Left := 300;
+        end
 
+        else FreeAndNil(frmTorpedoContactList);
       end
       else if FuncTaskRightMode = 5 then  // Area Manager
       begin
@@ -1093,7 +1133,15 @@ begin
     begin
       if FuncTaskRightMode = 0 then  // Track History
       begin
+        if not Assigned(frmTrackHistory) then
+        begin
+          frmTrackHistory := TfrmTrackHistory.Create(Self);
+          frmTrackHistory.Show;
+          frmTrackHistory.Top := 300;
+          frmTrackHistory.Left := 300;
+        end
 
+        else FreeAndNil(frmTrackHistory);
       end
       else if FuncTaskRightMode = 2 then  // Torp Info
       begin
@@ -1105,7 +1153,15 @@ begin
       end
       else if FuncTaskRightMode = 4 then  // Torp Trp/Cnt List
       begin
+        if not Assigned(frmTorpedoContactList) then
+        begin
+          frmTorpedoContactList := TfrmTorpedoContactList.Create(Self);
+          frmTorpedoContactList.Show;
+          frmTorpedoContactList.Top := 300;
+          frmTorpedoContactList.Left := 300;
+        end
 
+        else FreeAndNil(frmTorpedoContactList);
       end
       else if FuncTaskRightMode = 5 then  // kosong
       begin
@@ -1128,7 +1184,15 @@ begin
       end
       else if FuncTaskRightMode = 4 then  // Wake List
       begin
+        if not Assigned(frmWakeList) then
+        begin
+          frmWakeList := TfrmWakeList.Create(Self);
+          frmWakeList.Show;
+          frmWakeList.Top := 300;
+          frmWakeList.Left := 300;
+        end
 
+        else FreeAndNil(frmWakeList);
       end
       else if FuncTaskRightMode = 5 then  // kosong
       begin
@@ -1482,10 +1546,20 @@ begin
     end;
     7:
     begin
-      FTorpVertView := not FTorpVertView;
+//      FTorpVertView := not FTorpVertView;
+//
+//      if FTorpVertView then pnlSubmodeTools7.Color := clLime
+//      else pnlSubmodeTools7.Color := clBlack;
 
-      if FTorpVertView then pnlSubmodeTools7.Color := clLime
-      else pnlSubmodeTools7.Color := clBlack;
+      if not Assigned(frmTorpedoVerticalView) then
+      begin
+        frmTorpedoVerticalView := TfrmTorpedoVerticalView.Create(Self);
+        frmTorpedoVerticalView.Show;
+        frmTorpedoVerticalView.Top := 300;
+        frmTorpedoVerticalView.Left := 300;
+      end
+
+      else FreeAndNil(frmTorpedoVerticalView);
     end;
     8:
     begin

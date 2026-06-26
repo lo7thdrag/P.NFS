@@ -55,6 +55,7 @@ type
     lblReset: TLabel;
     lblClose: TLabel;
     Panel1: TPanel;
+    procedure lblCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,5 +68,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCreateModifyTrack.lblCloseClick(Sender: TObject);
+begin
+  FreeAndNil(frmCreateModifyTrack);
+end;
 
 end.

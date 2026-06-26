@@ -55,6 +55,7 @@ type
     pbVerticalView: TPaintBox;
     procedure pbHorizontalViewPaint(Sender: TObject);
     procedure pbVerticalViewPaint(Sender: TObject);
+    procedure lblCloseClick(Sender: TObject);
   private
 
   public
@@ -284,6 +285,11 @@ begin
 
     Ellipse(X1 - 3, Y1 - 3, X1 + 3, Y1 + 3);
   end;
+end;
+
+procedure TfrmTorpedoVerticalView.lblCloseClick(Sender: TObject);
+begin
+  FreeAndNil(frmTorpedoVerticalView);
 end;
 
 procedure TfrmTorpedoVerticalView.pbHorizontalViewPaint(Sender: TObject);

@@ -396,6 +396,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object edtTrackNo: TEdit
       Left = 96

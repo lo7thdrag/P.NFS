@@ -34,6 +34,8 @@ type
     FEnv_Map: Integer;
 
     FSelectedVehicle: TVehicle;
+    FSelectedTrack: TVehicle;
+    FisTrackSelected: Boolean;
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
@@ -53,6 +55,13 @@ type
     procedure NetSendTo3D_OrderCannon(rec : TRec3DSetWCC);
 
     procedure NetSendTo3D_OrderSutTorpedo(rec : TRecSetTorpedoSUT);
+
+    // property from/to another form
+    property SelectedTrack : TVehicle read FSelectedTrack;
+    property isTrackSelected : Boolean read FisTrackSelected;
+
+    // procedure to get and set from another form
+    function SelectTrackbyID(const TrackID:string):Boolean;
 
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
@@ -355,6 +364,12 @@ procedure TSutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(
 begin
   if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
       TCPClient.sendDataEx(REC_3D_TORPEDO_SUT, @Rec);
+end;
+
+function TSutBlacksharkManager.SelectTrackbyID(const TrackID: string): Boolean;
+begin
+  //
+
 end;
 
 end.

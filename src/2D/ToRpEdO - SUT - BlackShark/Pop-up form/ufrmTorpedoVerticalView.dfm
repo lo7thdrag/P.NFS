@@ -437,6 +437,7 @@ object frmTorpedoVerticalView: TfrmTorpedoVerticalView
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object pbHorizontalView: TPaintBox
       Left = 176

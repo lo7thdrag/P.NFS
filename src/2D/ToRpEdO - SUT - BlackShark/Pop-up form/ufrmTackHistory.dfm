@@ -420,7 +420,7 @@ object frmTrackHistory: TfrmTrackHistory
       ParentFont = False
     end
     object lblRefresh: TLabel
-      Left = 43
+      Left = 32
       Top = 257
       Width = 44
       Height = 16
@@ -435,7 +435,7 @@ object frmTrackHistory: TfrmTrackHistory
       ParentFont = False
     end
     object lblClose: TLabel
-      Left = 334
+      Left = 332
       Top = 257
       Width = 31
       Height = 16
@@ -448,6 +448,7 @@ object frmTrackHistory: TfrmTrackHistory
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object cbPositionFormat: TComboBox
       Left = 193
@@ -463,8 +464,10 @@ object frmTrackHistory: TfrmTrackHistory
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 0
+      Text = 'Lat / Long'
       Items.Strings = (
         'Lat / Long'
         'B / R OS'

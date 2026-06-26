@@ -41,7 +41,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 0
         Width = 240
         Height = 162
-        Caption = 'Own Ship'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -55,7 +54,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 0
         Width = 650
         Height = 162
-        Caption = 'Alert'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -69,7 +67,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 0
         Width = 550
         Height = 162
-        Caption = 'System Status'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -83,7 +80,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 162
         Width = 1440
         Height = 40
-        Caption = 'OperatorMessages'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -105,7 +101,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 0
         Width = 480
         Height = 202
-        Caption = 'SystemInfo'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -119,7 +114,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 202
         Width = 480
         Height = 193
-        Caption = 'Object In Control'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -133,7 +127,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 395
         Width = 480
         Height = 572
-        Caption = 'Tool Area'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -147,7 +140,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 967
         Width = 480
         Height = 113
-        Caption = 'Cursor'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -169,7 +161,6 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Top = 0
         Width = 1440
         Height = 878
-        Caption = 'Tactical Picture'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11

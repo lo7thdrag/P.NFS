@@ -15,6 +15,7 @@ type
     lblClose: TLabel;
     lblNumber: TLabel;
     Panel1: TPanel;
+    procedure lblCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,5 +28,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmTrackListNumber.lblCloseClick(Sender: TObject);
+begin
+  FreeAndNil(frmTrackListNumber);
+end;
 
 end.

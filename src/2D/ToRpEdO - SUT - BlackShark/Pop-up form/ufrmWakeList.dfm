@@ -23,7 +23,7 @@ object frmWakeList: TfrmWakeList
     BevelOuter = bvNone
     TabOrder = 0
     object lblReset: TLabel
-      Left = 290
+      Left = 194
       Top = 228
       Width = 32
       Height = 16
@@ -38,7 +38,7 @@ object frmWakeList: TfrmWakeList
       ParentFont = False
     end
     object lblClose: TLabel
-      Left = 418
+      Left = 409
       Top = 228
       Width = 31
       Height = 16
@@ -51,28 +51,33 @@ object frmWakeList: TfrmWakeList
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object lvWakeList: TListView
       Left = 8
       Top = 8
       Width = 441
-      Height = 105
+      Height = 207
       Color = clBlack
       Columns = <
         item
           Caption = 'Wake'
+          Width = 65
         end
         item
           Alignment = taCenter
           Caption = 'Lat'
+          Width = 115
         end
         item
           Alignment = taCenter
           Caption = 'Long'
+          Width = 115
         end
         item
           Alignment = taCenter
-          Caption = 'Rep. time'
+          Caption = 'Rep. Time'
+          Width = 142
         end>
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

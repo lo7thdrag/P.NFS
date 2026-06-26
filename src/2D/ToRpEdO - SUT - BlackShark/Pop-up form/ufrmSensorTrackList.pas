@@ -15,6 +15,7 @@ type
     lblClose: TLabel;
     lblSensor: TLabel;
     cbSensor: TComboBox;
+    procedure lblCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,5 +28,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmSensorTrackList.lblCloseClick(Sender: TObject);
+begin
+  FreeAndNil(frmSensorTrackList);
+end;
 
 end.

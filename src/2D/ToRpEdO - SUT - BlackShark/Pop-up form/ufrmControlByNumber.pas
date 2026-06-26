@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, RzPanel,
-  RzRadGrp;
+  RzRadGrp, uSutBlacksharkManager;
 
 type
   TfrmControlByNumber = class(TForm)
@@ -21,6 +21,7 @@ type
     Panel1: TPanel;
     RadioGroup1: TRadioGroup;
     Panel2: TPanel;
+    procedure lblCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,5 +34,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmControlByNumber.lblCloseClick(Sender: TObject);
+begin
+  FreeAndNil(frmControlByNumber);
+end;
 
 end.

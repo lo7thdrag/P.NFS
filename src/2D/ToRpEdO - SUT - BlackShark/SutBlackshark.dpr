@@ -97,8 +97,8 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
-  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
-  Application.CreateForm(TfrmWakeList, frmWakeList);
+//  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
+//  Application.CreateForm(TfrmWakeList, frmWakeList);
   Application.CreateForm(TfrmTorpedoAllocation, frmTorpedoAllocation);
   Application.CreateForm(TfrmTorpedoParameterDepthSettings, frmTorpedoParameterDepthSettings);
   //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);

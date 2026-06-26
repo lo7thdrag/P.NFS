@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, uSutBlacksharkManager;
 
 type
   TfrmTrackHistory = class(TForm)
@@ -41,6 +41,7 @@ type
     lblClose: TLabel;
     Panel2: TPanel;
     Panel1: TPanel;
+    procedure lblCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,5 +54,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmTrackHistory.lblCloseClick(Sender: TObject);
+begin
+  FreeAndNil(frmTrackHistory);
+end;
 
 end.

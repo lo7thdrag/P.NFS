@@ -53,6 +53,7 @@ object frmControlByNumber: TfrmControlByNumber
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object Label3: TLabel
       Left = 16
