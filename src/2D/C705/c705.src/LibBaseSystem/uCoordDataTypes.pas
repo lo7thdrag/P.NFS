@@ -47,6 +47,9 @@ type
 
   function Make3DPoint(const dx, dy, dz: double): t3DPoint;
 
+  function FormatLongitude(aLong: Double): string;
+  function FormatLatitude(aLat: Double): string;
+
 const
 
   C_Degree_To_NauticalMile = 60.0;
@@ -64,7 +67,8 @@ const
 
 implementation
 
-uses Math;
+uses
+  Math, System.SysUtils;
 
 function ValidateRange(const aVal, aMaxVal: double): double;
 begin
@@ -111,6 +115,44 @@ begin
   Result.X := dX;
   Result.Y := dY;
   Result.Z := dZ;
+end;
+
+function FormatLongitude(aLong: Double): string;
+var
+  Deg: Integer;
+  Min: Double;
+  Dir: Char;
+begin
+  if aLong >= 0 then
+    Dir := 'E'
+  else
+    Dir := 'W';
+
+  aLong := Abs(aLong);
+
+  Deg := Trunc(aLong);
+  Min := (aLong - Deg) * 60;
+
+  Result := Format('%d %.3f'' %s', [Deg, Min, Dir]);
+end;
+
+function FormatLatitude(aLat: Double): string;
+var
+  Deg: Integer;
+  Min: Double;
+  Dir: Char;
+begin
+  if aLat >= 0 then
+    Dir := 'N'
+  else
+    Dir := 'S';
+
+  aLat := Abs(aLat);
+
+  Deg := Trunc(aLat);
+  Min := (aLat - Deg) * 60;
+
+  Result := Format('%d %.3f'' %s', [Deg, Min, Dir]);
 end;
 
 end.

@@ -25,10 +25,10 @@ type
     pnlSafeArm: TPanel;
     Label4: TLabel;
     Label5: TLabel;
-    Image1: TImage;
-    Image2: TImage;
-    imgBtnSafe: TImage;
-    imgBtnArm: TImage;
+    imgSafetyBooster_L: TImage;
+    imgSafetyBooster_R: TImage;
+    imgBtnSafe_L: TImage;
+    imgBtnSafe_R: TImage;
     Panel3: TPanel;
     Image3: TImage;
     Image4: TImage;
@@ -85,6 +85,8 @@ type
     pnlRealTimeCombat: TPanel;
     tmrHardwareCheck: TTimer;
     Keyboard1: TMenuItem;
+    imgBtnArm_L: TImage;
+    imgBtnArm_R: TImage;
     {$ENDREGION}
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -96,6 +98,7 @@ type
     procedure Keyboard1Click(Sender: TObject);
     procedure btnImgPowerMissileClick(Sender: TObject);
     procedure btnImgOpenCoverClick(Sender: TObject);
+    procedure imgBtnSafetyBooster_Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -354,7 +357,14 @@ begin
       end;
     end;
     stSafetyIgnition: begin
-      //
+      if SimManager.C705Status.SafetyIgnition then begin     // SAFE
+        imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - SAFE.png');
+        imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - SAFE.png');
+      end
+      else begin                                             // ARMED
+        imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - ARMED.png');
+        imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - ARMED.png');
+      end;
     end;
   end;
 end;
@@ -364,6 +374,25 @@ begin
   pnlHardwareCheck.Visible := False;
   pnlSimulateTraining.Visible := False;
   pnlSoftwareExit.Visible := False;
+end;
+
+procedure TfrmWCC.imgBtnSafetyBooster_Click(Sender: TObject);
+var
+  RecStatus : TRecStatus_Console;
+begin
+  if SimManager.FC705Status.EnableWeapon = False then
+    Exit;
+
+  RecStatus.OWN_SHIP_UID := dbID_to_UniqueID(VOwnShip.ShipID);
+  RecStatus.WeaponID := VOwnShip.WeaponId;
+  RecStatus.ErrorID := __STAT_C705_SafetyIgnition;
+
+  case (Sender as TImage).Tag of
+    1: RecStatus.ParamError := 1;     // SAFE
+    2: RecStatus.ParamError := 2;     // ARMED
+  end;
+
+  SimManager.NFSNetRecv.sendDataEx(REC_STAT_ORDER_CONSOLE, @RecStatus);
 end;
 
 procedure TfrmWCC.lblMenuClick(Sender: TObject);

@@ -91745,7 +91745,7 @@ object frmWCC: TfrmWCC
         Font.Style = []
         ParentFont = False
       end
-      object Image1: TImage
+      object imgSafetyBooster_L: TImage
         Left = 11
         Top = 8
         Width = 157
@@ -91820,7 +91820,7 @@ object frmWCC: TfrmWCC
           30280E55D1657D6C181487B6E8B2EE4A4041288B2EEB63C3A028FE03437552C4
           651839E90000000049454E44AE426082}
       end
-      object Image2: TImage
+      object imgSafetyBooster_R: TImage
         Left = 241
         Top = 8
         Width = 157
@@ -91878,17 +91878,37 @@ object frmWCC: TfrmWCC
           82F02051FBF0A0B359B49AB3CEF57B83523DBF9B467890203C48101E24FE03A5
           A6D2DFF7F5105A0000000049454E44AE426082}
       end
-      object imgBtnSafe: TImage
+      object imgBtnSafe_L: TImage
+        Tag = 1
         Left = 13
         Top = 35
         Width = 103
-        Height = 121
+        Height = 62
+        OnClick = imgBtnSafetyBooster_Click
       end
-      object imgBtnArm: TImage
-        Left = 294
+      object imgBtnSafe_R: TImage
+        Tag = 1
+        Left = 295
         Top = 35
         Width = 105
-        Height = 121
+        Height = 62
+        OnClick = imgBtnSafetyBooster_Click
+      end
+      object imgBtnArm_L: TImage
+        Tag = 2
+        Left = 13
+        Top = 94
+        Width = 103
+        Height = 62
+        OnClick = imgBtnSafetyBooster_Click
+      end
+      object imgBtnArm_R: TImage
+        Tag = 2
+        Left = 295
+        Top = 94
+        Width = 105
+        Height = 62
+        OnClick = imgBtnSafetyBooster_Click
       end
     end
     object Panel3: TPanel

@@ -476,7 +476,6 @@ type
 
     procedure AttachPanelTo(aPanel, aParent: TWinControl);
     procedure HidePanels(const aPanels: array of TPanel);
-    procedure UpdateLayoutTab;
 
     procedure HandleTabShortcut(Key: Word);
 
@@ -492,6 +491,7 @@ type
     procedure CloseAllContentMCtrl;
   public
     { Public declarations }
+    procedure UpdateLayoutTab;
   end;
 
 var
@@ -820,7 +820,7 @@ begin
         end;
       end;
 
-      HandleTabShortcut(Key);
+      //HandleTabShortcut(Key); // move to Keyboard Form
       advpgcFunctionMenuFoeChange(Sender);
       //UpdateLayoutTab;
 
@@ -922,7 +922,7 @@ begin
         end;
       end;
 
-      HandleTabShortcut(Key);
+      //HandleTabShortcut(Key); // move to Keyboard Form
       advpgcFunctionMenuFoeChange(Sender);
       //UpdateLayoutTab;
 
@@ -956,7 +956,7 @@ begin
   {
     Global Form Foe Friend Situation shortcuts
   }
-  HandleTabShortcut(Key);
+  //HandleTabShortcut(Key); // move to Keyboard Form
 
   case Key of
     VK_ESCAPE:
