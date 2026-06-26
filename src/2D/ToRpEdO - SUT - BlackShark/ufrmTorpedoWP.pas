@@ -12,7 +12,7 @@ uses
 
   ufrmOwnShip, ufrmAlertandOpearatorMassage, ufmTargetInControl, ufrmContactInControl, ufrmTorpedoTubeCommands,
   ufrmTorpedoTubeStatusWindow, ufrmTorpedoGuidance, ufrmHomingCommands, ufrmHomingStatusPlot, ufrmDepthPlot,
-  ufrmTorpedoParameterSetting, ufrmEngagementDataOverview;
+  ufrmTorpedoParameterSetting, ufrmEngagementDataOverview, ufrmTorpedoParameterDepthSettings;
 
 type
   TFrmTorpedoWP = class(TForm)
@@ -217,6 +217,7 @@ type
     FFrmDepthPlot                : TfrmDepthPlot;
     FFrmTorpedoParameters        : TfrmTorpedoParameterSetting;
     FFrmEngagementDataOverview   : TfrmEngagementDataOverview;
+    FfrmTorpedoParameterDepth    : TfrmTorpedoParameterDepthSettings;
 
     procedure SubmodeSelect(Sender: Tobject);
     procedure FuncTaskRightSelect(Sender: Tobject);
@@ -2182,14 +2183,26 @@ begin
   {$ENDREGION}
 
   {$REGION 'Torpedo Parameters Setting'}
-  if not Assigned(FFrmTorpedoParameters) then
+//  if not Assigned(FFrmTorpedoParameters) then
+//  begin
+//    pnlTorpedoParamSettings.Caption := '';
+//
+//    FFrmTorpedoParameters        := TfrmTorpedoParameterSetting.Create(Self);
+//    FFrmTorpedoParameters.Parent := pnlTorpedoParamSettings;
+//    FFrmTorpedoParameters.Align  := alClient;
+//    FFrmTorpedoParameters.Show;
+//  end;
+  {$ENDREGION}
+
+  {$REGION 'Parameter Depth Settings'}
+  if not Assigned(FfrmTorpedoParameterDepth) then
   begin
     pnlTorpedoParamSettings.Caption := '';
 
-    FFrmTorpedoParameters        := TfrmTorpedoParameterSetting.Create(Self);
-    FFrmTorpedoParameters.Parent := pnlTorpedoParamSettings;
-    FFrmTorpedoParameters.Align  := alClient;
-    FFrmTorpedoParameters.Show;
+    FfrmTorpedoParameterDepth        := TfrmTorpedoParameterDepthSettings.Create(Self);
+    FfrmTorpedoParameterDepth.Parent := pnlTorpedoParamSettings;
+    FfrmTorpedoParameterDepth.Align  := alClient;
+    FfrmTorpedoParameterDepth.Show;
   end;
   {$ENDREGION}
 
