@@ -308,26 +308,26 @@ begin
   z := ZoomIndexToScale(i);
 
     // --- North Indicator ---
-    FNorthInd.CenterX       := FCircleCX;
-    FNorthInd.CenterY       := FCircleCY;
-    FNorthInd.RadiusPx      := FCircleR;
-    if Assigned(SutBlacksharkManager) then
-    begin
-      if Assigned(SutBlacksharkManager.xShip) then
-      begin
-        FNorthInd.HeadingDeg    := SutBlacksharkManager.xShip.Heading;
-        FNorthInd.UseTrueMotion := SutBlacksharkManager.IsTrueMotion; // TRUE or FALSE
-      end;
-    end;
-    FNorthInd.Draw(aCnv);
+//    FNorthInd.CenterX       := FCircleCX;
+//    FNorthInd.CenterY       := FCircleCY;
+//    FNorthInd.RadiusPx      := FCircleR;
+//    if Assigned(SutBlacksharkManager) then
+//    begin
+//      if Assigned(SutBlacksharkManager.xShip) then
+//      begin
+//        FNorthInd.HeadingDeg    := SutBlacksharkManager.xShip.Heading;
+//        FNorthInd.UseTrueMotion := SutBlacksharkManager.IsTrueMotion; // TRUE or FALSE
+//      end;
+//    end;
+//    FNorthInd.Draw(aCnv);
 
 
 
     // RANGE RINGS
-    FRings.CircleRect    := FCircleRect;
-    FRings.CurrentRange_m := FCurrentRange;
-    FRings.ConvertCoord(aCvt);
-    FRings.Draw(aCnv);
+//    FRings.CircleRect    := FCircleRect;
+//    FRings.CurrentRange_m := FCurrentRange;
+//    FRings.ConvertCoord(aCvt);
+//    FRings.Draw(aCnv);
 
     // BEARING 0°
 //    FBearing0.CircleRect := FCircleRect;
@@ -666,29 +666,29 @@ begin
 
   EnableComposited(pnlTorpedoGeo);
   EnableComposited(pnlBase);
-  FBitmapBackground := TBitmap.Create;
-  FBitmapBackground.Height := imgBackgrounSituationZone.Height;
-  FBitmapBackground.Width := imgBackgrounSituationZone.Width;
-  FBitmapBackground.Canvas.Brush.Color := clNone; // new color
-  FBitmapBackground.Canvas.FillRect(
-   Rect(
-     0,
-     0,
-     FBitmapBackground.Width,
-     FBitmapBackground.Height
-    )
-  );
+//  FBitmapBackground := TBitmap.Create;
+//  FBitmapBackground.Height := imgBackgrounSituationZone.Height;
+//  FBitmapBackground.Width := imgBackgrounSituationZone.Width;
+//  FBitmapBackground.Canvas.Brush.Color := clNone; // new color
+//  FBitmapBackground.Canvas.FillRect(
+//   Rect(
+//     0,
+//     0,
+//     FBitmapBackground.Width,
+//     FBitmapBackground.Height
+//    )
+//  );
 
-  imgBackgrounSituationZone.Picture.Assign(FBitmapBackground);
+//  imgBackgrounSituationZone.Picture.Assign(FBitmapBackground);
 
-  LoadGeoset('..\data\maps\IndonesiaBlackShark.gst');
+  LoadGeoset('..\data\maps\IndonesiaNoGrid.gst');
 
   setRegionCircle;
 
-  FRings := TRadarRangeRings.Create;
-  FRings.Visible := True;
+//  FRings := TRadarRangeRings.Create;
+//  FRings.Visible := True;
 
-  FNorthInd := TRadarNorthIndicator.Create;
+//  FNorthInd := TRadarNorthIndicator.Create;
 
   FShipHeading := 0; // awal
 
@@ -999,26 +999,141 @@ begin
     0:
     begin
       // FuncTaskRightMode di check di dalam sini
+      if FuncTaskRightMode = 0 then // Create Modify Track
+      begin
+
+      end
+      else if FuncTaskRightMode = 2 then // System Mode Select
+      begin
+
+      end
+      else if FuncTaskRightMode = 3 then // Tactical Recording
+      begin
+
+      end
+      else if FuncTaskRightMode = 4 then // Track CtrlBy Numb
+      begin
+
+      end
+      else if FuncTaskRightMode = 5 then // Tactical Calc
+      begin
+
+      end
     end;
     1:
     begin
+      if FuncTaskRightMode = 0 then  // kosong
+      begin
 
+      end
+      else if FuncTaskRightMode = 2 then  // Opera- tion Area
+      begin
+
+      end
+      else if FuncTaskRightMode = 3 then  // PMA
+      begin
+
+      end
+      else if FuncTaskRightMode = 4 then  // Track List
+      begin
+
+      end
+      else if FuncTaskRightMode = 5 then  // Media Writer
+      begin
+
+      end
     end;
     2:
     begin
+      if FuncTaskRightMode = 0 then  // Combine Track
+      begin
 
+      end
+      else if FuncTaskRightMode = 2 then  // kosong
+      begin
+
+      end
+      else if FuncTaskRightMode = 3 then  // Snapshot
+      begin
+
+      end
+      else if FuncTaskRightMode = 4 then  // Sensor Track List
+      begin
+
+      end
+      else if FuncTaskRightMode = 5 then  // Browser
+      begin
+
+      end
     end;
     3:
     begin
+      if FuncTaskRightMode = 0 then  // Create Track
+      begin
 
+      end
+      else if FuncTaskRightMode = 2 then  // kosong
+      begin
+
+      end
+      else if FuncTaskRightMode = 3 then  // Image Recording
+      begin
+
+      end
+      else if FuncTaskRightMode = 4 then  // Tact Trp/Cnt List
+      begin
+
+      end
+      else if FuncTaskRightMode = 5 then  // Area Manager
+      begin
+
+      end
     end;
     4:
     begin
+      if FuncTaskRightMode = 0 then  // Track History
+      begin
 
+      end
+      else if FuncTaskRightMode = 2 then  // Torp Info
+      begin
+
+      end
+      else if FuncTaskRightMode = 3 then  // Image Replay
+      begin
+
+      end
+      else if FuncTaskRightMode = 4 then  // Torp Trp/Cnt List
+      begin
+
+      end
+      else if FuncTaskRightMode = 5 then  // kosong
+      begin
+
+      end
     end;
     5:
     begin
+      if FuncTaskRightMode = 0 then  // Delete Track
+      begin
 
+      end
+      else if FuncTaskRightMode = 2 then  // Nav Setting
+      begin
+
+      end
+      else if FuncTaskRightMode = 3 then  // kosong
+      begin
+
+      end
+      else if FuncTaskRightMode = 4 then  // Wake List
+      begin
+
+      end
+      else if FuncTaskRightMode = 5 then  // kosong
+      begin
+
+      end
     end;
   end;
 end;
@@ -1202,21 +1317,21 @@ end;
 procedure TFrmTorpedoWP.SetLayoutForm;
 var
   path : string;
-  idxPanelAtas, alPanelAtas, xPanelAtas, yPanelAtas,
-  idxPanelBawah, alPanelBawah, xPanelBawah, yPanelBawah,
+  idxTactScreen, alTactScreen, xTactScreen, yTactScreen,
+  idxTorpedoWP, alTorpedoWP, xTorpedoWP, yTorpedoWP,
   bdrPanelAtas,  bdrPanelBawah,  bdrTemp: Integer;
 begin
    path := ExtractFilePath(Application.ExeName) + 'SetFormBlackSharkToMonitor.ini';
 
-   Getsettingform(path, 'PANELATAS',  idxPanelAtas,  alPanelAtas,    xPanelAtas,   yPanelAtas);
-   Getsettingform(path, 'PANELBAWAH', idxPanelBawah, alPanelBawah,   xPanelBawah,  yPanelBawah);
+   Getsettingform(path, 'TACTICAL_SCREEN',  idxTactScreen,  alTactScreen,    xTactScreen,   yTactScreen);
+   Getsettingform(path, 'TORPEDO_WP', idxTorpedoWP, alTorpedoWP,   xTorpedoWP,  yTorpedoWP);
 //   Getsettingform(path, 'BORDER',     bdrPanelAtas,  bdrPanelBawah,  bdrKeyboard,  bdrTemp);
 
 //test rojek
 //  frmTacticalScreen.Monitor := Screen.Monitors[idxPanelAtas];
 //  frmSupportScreen.Monitor := Screen.Monitors[idxPanelBawah];
-   AlignFormToMonitor(0, apLeftTop, -1920, 0, TForm(frmTorpedoWP));
-   AlignFormToMonitor(1, apLeftTop, 0, 0, TForm(frmTacticalScreen));
+   AlignFormToMonitor(idxTactScreen, apLeftTop, xTactScreen, yTactScreen, TForm(frmTacticalScreen));
+   AlignFormToMonitor(idxTorpedoWP, apLeftTop, xTorpedoWP, yTorpedoWP, TForm(frmTorpedoWP));
 //    case Screen.MonitorCount of
 //      1 :
 //        begin
@@ -1252,8 +1367,8 @@ begin
 
   FCircleRect  := Rect(left,top, right, bottom);
 
-  eRgn := CreateEllipticRgn(FCircleRect.Left, FCircleRect.Top, FCircleRect.Right, FCircleRect.Bottom);
-  SetWindowRgn(FMap.Handle, eRgn, true);
+//  eRgn := CreateEllipticRgn(FCircleRect.Left, FCircleRect.Top, FCircleRect.Right, FCircleRect.Bottom);
+//  SetWindowRgn(FMap.Handle, eRgn, true);
 
   // center & radius dalam koordinat FMap (DC yang dipakai DrawUserLayer)
   FCircleCX := (FCircleRect.Left + FCircleRect.Right) div 2;

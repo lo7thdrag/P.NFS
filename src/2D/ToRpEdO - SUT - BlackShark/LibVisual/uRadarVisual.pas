@@ -152,22 +152,22 @@ begin
     );
 
     // label jarak di kanan ring
-    distKm := incKm * i;
-    s := FormatFloat('0.0', distKm);
-    ACanvas.TextOut(
-      FCenterX + radius + 4,
-      FCenterY - (ACanvas.TextHeight(s) div 2),
-      s
-    );
+//    distKm := incKm * i;
+//    s := FormatFloat('0.0', distKm);
+//    ACanvas.TextOut(
+//      FCenterX + radius + 4,
+//      FCenterY - (ACanvas.TextHeight(s) div 2),
+//      s
+//    );
   end;
 
   // label outer range
-  s := FormatFloat('0.0', CurrentRange_m / 1000.0) + ' km';
-  ACanvas.TextOut(
-    FCenterX - (ACanvas.TextWidth(s) div 2),
-    FCenterY + FOuterRadiusPx + 4,
-    s
-  );
+//  s := FormatFloat('0.0', CurrentRange_m / 1000.0) + ' km';
+//  ACanvas.TextOut(
+//    FCenterX - (ACanvas.TextWidth(s) div 2),
+//    FCenterY + FOuterRadiusPx + 4,
+//    s
+//  );
 end;
 
 { TRadarSector }

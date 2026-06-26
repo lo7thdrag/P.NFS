@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, System.Contnrs, System.Math,
-  Vcl.ExtCtrls, System.UITypes,
+  Vcl.ExtCtrls, System.UITypes, MapXLib_TLB,
 
   uShipModel,
   uVehicle,
@@ -19,6 +19,7 @@ type
   TRadarDisplay = class
   private
     FPaintBox: TPaintBox;
+    FMapCnv : TCanvas;
 
     FContactList, FRadarContacts: TObjectList;
 
@@ -51,6 +52,8 @@ type
     FContactTrackedColor: TColor;
     FContactTrackedTextColor: TColor;
 
+    FRadarMap: TMap;
+
     function UpdateRadarContactList(AShip: TVehicle): TVehicle;
 
     procedure ClearBackground(const ACanvas: TCanvas);
@@ -71,9 +74,9 @@ type
   public
 
 
-    constructor Create(const APaintBox: TPaintBox; AOwnShipID: Integer; AContactList: TObjectList);
+    constructor Create(const AMap: TMap; AOwnShipID: Integer; AContactList: TObjectList);
     destructor Destroy; override;
-    procedure Render(ADeltaTime: Double);
+    procedure Render(ADeltaTime: Double; aCnv: TCanvas);
     procedure Update(ADeltaTime: Double);
 
     property RadarCenterLat: Double read FRadarCenterLat;
@@ -109,14 +112,14 @@ implementation
 
 { TRadarDisplay }
 
-constructor TRadarDisplay.Create(const APaintBox: TPaintBox;
-  AOwnShipID: Integer; AContactList: TObjectList);
+constructor TRadarDisplay.Create(const AMap: TMap; AOwnShipID: Integer; AContactList: TObjectList);
 begin
   FContactList:= AContactList;
   FRadarContacts := TObjectList.Create(True);
-  FPaintBox := APaintBox;
-  FPaintBox.OnMouseDown:= PaintBoxMouseDown;
-  FPaintBox.OnPaint:= PaintBoxPaint;
+  FRadarMap := AMap;
+//  FMapCnv := AMapCnv;
+//  FPaintBox.OnMouseDown:= PaintBoxMouseDown; // rojek disable select target, select dari track by number
+//  FPaintBox.OnPaint:= PaintBoxPaint;
   OwnShipID := AOwnShipID;
   RadarRangeNM := 6.0;
   ZoomLevel := 1.0;
@@ -132,8 +135,8 @@ end;
 
 procedure TRadarDisplay.Update(ADeltaTime: Double);
 begin
-  FDeltaTime:= ADeltaTime;
-  FPaintBox.Invalidate;
+//  FDeltaTime:= ADeltaTime;
+//  FPaintBox.Invalidate;
 end;
 
 function Rotate(Width, Height, Radius: Integer;
@@ -240,8 +243,8 @@ begin
   Bmp := TBitmap.Create;
   try
     Bmp.PixelFormat := pf24bit;
-    Bmp.Width := FPaintBox.Canvas.ClipRect.Width;
-    Bmp.Height := FPaintBox.Canvas.ClipRect.Height;
+    Bmp.Width := FMapCnv.ClipRect.Width;
+    Bmp.Height := FMapCnv.ClipRect.Height;
     Bmp.Canvas.Brush.Color := FBackgroundColor;
     Bmp.Canvas.FillRect(Bmp.Canvas.ClipRect);
 
@@ -267,7 +270,7 @@ begin
         Inc(P);
       end;
     end;
-    FPaintBox.Canvas.Draw(0, 0, Bmp);
+    FMapCnv.Draw(0, 0, Bmp);
   finally
     Bmp.Free;
   end;
@@ -302,29 +305,29 @@ begin
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
   StartAngle := BaseAngle + Angle;
-  diffBeetwinWH := (FPaintBox.Width - FPaintBox.Height) div 2;
+  diffBeetwinWH := (FRadarMap.Width - FRadarMap.Height) div 2;
 
   top := 50;
-  bottom := FPaintBox.Height - top;
+  bottom := FRadarMap.Height - top;
   left := diffBeetwinWH + top;
-  right := FPaintBox.Width - left;
+  right := FRadarMap.Width - left;
 
   //draw ticks:
-  FPaintBox.Canvas.Pen.Color := CForegroundColor;
+  FMapCnv.Pen.Color := CForegroundColor;
 
-  FPaintBox.Canvas.Brush.Style := bsClear;
+  FMapCnv.Brush.Style := bsClear;
 //    R := Rect(0,0, Map.Width, Map.Height);
   R := Rect(left,top, right, bottom);
   AngleRadius := (R.right - R.left) div 2;
 //    AngleRadius := 280;
-  ticksmax := 16;
-  ticks := round(24);
+  ticksmax := -9;
+  ticks := round(36);
   ticksEnlarge := 5;
   ticksMin := 8;
-  ticksColor := clGreen;
+  ticksColor := clWhite;
   labels := 24;
   decimals := 0;
-  labelsoffset := 30;
+  labelsoffset := -20;
 
   {jarum derajat}
 
@@ -333,18 +336,18 @@ begin
     Enlarge := TicksEnlarge;
     Degrees := StartAngle;
     Increment := AngleOffset/Ticks;
-    FPaintBox.Canvas.Pen.Color := clRed;
-    FPaintBox.Canvas.Pen.Width := 3;
-    FPaintBox.Canvas.Ellipse(R.Left, R.Top, R.Right, R.Bottom);
+    FMapCnv.Pen.Color := clWhite;
+    FMapCnv.Pen.Width := 2;
+    FMapCnv.Ellipse(R.Left, R.Top, R.Right, R.Bottom);
     for I := 1 to Ticks + 1 do
     begin
 //        if (Enlarge mod TicksEnlarge = 0) then
 //          Size := TicksMax else Size := TicksMin;
       Size := TicksMax;
       Inc(Enlarge);
-      P1 := Rotate(FPaintBox.Width, FPaintBox.Height, AngleRadius, Degrees);
-      P2 := Rotate(FPaintBox.Width, FPaintBox.Height, AngleRadius + Size, Degrees);
-      DrawLine(FPaintBox.Canvas, P1.X, P1.Y, P2.X, P2.Y, TicksColor, 2);
+      P1 := Rotate(FRadarMap.Width, FRadarMap.Height, AngleRadius, Degrees);
+      P2 := Rotate(FRadarMap.Width, FRadarMap.Height, AngleRadius + Size, Degrees);
+      DrawLine(FMapCnv, P1.X, P1.Y, P2.X, P2.Y, TicksColor, 2);
       Degrees := Degrees + Increment;
     end;
   end;
@@ -353,21 +356,22 @@ begin
   {angka}
   labelsfont := TFont.Create();
   try
-    labelsfont.Color := clYellow;
+    labelsfont.Color := clWhite;
     labelsfont.Size := 10;
 
     if Labels >= 1 then
     begin
-      FPaintBox.Canvas.Font := LabelsFont;
+      FMapCnv.Font := LabelsFont;
       CurValue := 0;
       IncValue := (360 - 0)/labels;
       Degrees := StartAngle;
       Increment := AngleOffset/labels;
-      Mask := '%.' + IntToStr(Decimals) + 'f';
+//      Mask := '%.' + IntToStr(Decimals) + 'f';
+      Mask := '000';
       for I := 1 to Labels  do
       begin
   //        P1 := Rotate(MeterWidth, MeterHeight, AngleRadius + LabelsOffset, Degrees);
-        P1 := Rotate(FPaintBox.Width, FPaintBox.Height, AngleRadius + LabelsOffset, Degrees);
+        P1 := Rotate(FRadarMap.Width, FRadarMap.Height, AngleRadius + LabelsOffset, Degrees);
 
   //        if strlen(pchar(floattostr(CurValue))) <= 2 then
   //          begin
@@ -380,13 +384,13 @@ begin
         if round(CurValue) mod 30 = 0 then
         begin
           if CurValue > 180 then
-             StrValue := Format(Mask, [CurValue - 360]) + '°'
+             StrValue := FormatFloat(Mask, CurValue {- 360} ) {+ '°'}
           else
-            StrValue := Format(Mask, [CurValue]) + '°';
+            StrValue := FormatFloat(Mask, CurValue) {+ '°'};
 
-          P1.X := P1.X - FPaintBox.Canvas.TextWidth(StrValue) div 2;
-          P1.Y := P1.Y - FPaintBox.Canvas.TextHeight(StrValue) div 2;
-          FPaintBox.Canvas.TextOut(P1.X, P1.Y, StrValue);
+          P1.X := P1.X - FMapCnv.TextWidth(StrValue) div 2;
+          P1.Y := P1.Y - FMapCnv.TextHeight(StrValue) div 2;
+          FMapCnv.TextOut(P1.X, P1.Y, StrValue);
           Degrees := Degrees + Increment;
           CurValue := 0 + (IncValue*I);
         end
@@ -443,8 +447,8 @@ var
   V: TVehicle;
   PXNM, RelX, RelY, EffRange, LatAdj: Double;
 begin
-  CX := FPaintBox.Width div 2;
-  CY := FPaintBox.Height div 2;
+  CX := FRadarMap.Width div 2;
+  CY := FRadarMap.Height div 2;
   Radius := Min(CX, CY);
   Minus:= Trunc(((100.0-FRadarRadiusPercentage)/100.0)*Radius);
   Radius:= Radius - Minus;
@@ -470,7 +474,7 @@ end;
 
 procedure TRadarDisplay.PaintBoxPaint(Sender: TObject);
 begin
-  Render(FDeltaTime);
+//  Render(FDeltaTime);
 end;
 
 {
@@ -541,55 +545,55 @@ var
   S: string;
   V: TVehicle;
 begin
-  FPaintBox.Canvas.Brush.Style := bsClear;
-  FPaintBox.Canvas.Font.Color := FSectorTextColor;
+  FMapCnv.Brush.Style := bsClear;
+  FMapCnv.Font.Color := FSectorTextColor;
 
-  FPaintBox.Canvas.Pen.Style := psSolid;
-  FPaintBox.Canvas.Pen.Color := FSectorColor;
+  FMapCnv.Pen.Style := psSolid;
+  FMapCnv.Pen.Color := FSectorColor;
 
   // Draw Sectors
   for i := 0 to FSectorCount - 1 do
   begin
     Ang := i * (360 / FSectorCount);
     Rad := DegToRad(90 - Ang);
-    FPaintBox.Canvas.MoveTo(CX, CY);
-    FPaintBox.Canvas.LineTo(CX + Round(Cos(Rad) * Radius),
+    FMapCnv.MoveTo(CX, CY);
+    FMapCnv.LineTo(CX + Round(Cos(Rad) * Radius),
       CY - Round(Sin(Rad) * Radius));
 
-    FPaintBox.Canvas.Font.Color := FSectorTextColor;
+    FMapCnv.Font.Color := FSectorTextColor;
     S := Format('%.3d',[Round(Ang)]);
     // Position text slightly outside the main radius
-    FPaintBox.Canvas.TextOut(CX + Round(Cos(Rad) * (Radius + 20)) -
-      (FPaintBox.Canvas.TextWidth(S) div 2), CY - Round(Sin(Rad) * (Radius + 20)) -
-      (FPaintBox.Canvas.TextHeight(S) div 2), S);
+    FMapCnv.TextOut(CX + Round(Cos(Rad) * (Radius + 20)) -
+      (FMapCnv.TextWidth(S) div 2), CY - Round(Sin(Rad) * (Radius + 20)) -
+      (FMapCnv.TextHeight(S) div 2), S);
 
     // Draw small tick marks
-    FPaintBox.Canvas.MoveTo(CX + Round(Cos(Rad) * Radius),
+    FMapCnv.MoveTo(CX + Round(Cos(Rad) * Radius),
       CY - Round(Sin(Rad) * Radius));
-    FPaintBox.Canvas.LineTo(CX + Round(Cos(Rad) * (Radius + 5)),
+    FMapCnv.LineTo(CX + Round(Cos(Rad) * (Radius + 5)),
       CY - Round(Sin(Rad) * (Radius + 5)));
   end;
 
   // Draw Range Rings
-  FPaintBox.Canvas.Pen.Style := psSolid;
-  FPaintBox.Canvas.Pen.Color := FRangeRingColor;
+  FMapCnv.Pen.Style := psSolid;
+  FMapCnv.Pen.Color := FRangeRingColor;
   if FRangeRingCount>0 then
     for j := 1 to (FRangeRingCount + 1) do
     begin
       RingR := Round((Radius / (FRangeRingCount + 1)) * j);
-      FPaintBox.Canvas.Ellipse(CX - RingR, CY - RingR, CX + RingR, CY + RingR);
+      FMapCnv.Ellipse(CX - RingR, CY - RingR, CX + RingR, CY + RingR);
 
       // Range Label (Distance from center)
       S := Format('%0.1f', [(EffRange / (FRangeRingCount + 1)) * j]);
-      FPaintBox.Canvas.Font.Color := FRangeRingTextColor;
-      FPaintBox.Canvas.TextOut(CX + 5, CY - RingR - 12, S + 'nmi');
+      FMapCnv.Font.Color := FRangeRingTextColor;
+      FMapCnv.TextOut(CX + 5, CY - RingR - 12, S + 'nmi');
     end;
 
   // Draw Outer Compass Ring
   if FOuterRingCompassVisible then begin
-    FPaintBox.Canvas.Pen.Style := psSolid;
-    FPaintBox.Canvas.Pen.Color := FCompasOuterRingColor;
-    FPaintBox.Canvas.Ellipse(CX - Radius, CY - Radius, CX + Radius, CY + Radius);
+    FMapCnv.Pen.Style := psSolid;
+    FMapCnv.Pen.Color := FCompasOuterRingColor;
+    FMapCnv.Ellipse(CX - Radius, CY - Radius, CX + Radius, CY + Radius);
   end;
 end;
 
@@ -606,10 +610,10 @@ end;
 procedure TRadarDisplay.DrawOwnShipHeading(CX, CY, Radius: Integer;
   const OwnShip: TVehicle);
 begin
-  FPaintBox.Canvas.Pen.Color := FOwnShipHeadingColor;
-  FPaintBox.Canvas.Pen.Width := 2;
-  FPaintBox.Canvas.MoveTo(CX, CY);
-  FPaintBox.Canvas.LineTo(CX + Round(Cos(DegToRad(90 - OwnShip.HeadingDeg)) *
+  FMapCnv.Pen.Color := FOwnShipHeadingColor;
+  FMapCnv.Pen.Width := 2;
+  FMapCnv.MoveTo(CX, CY);
+  FMapCnv.LineTo(CX + Round(Cos(DegToRad(90 - OwnShip.HeadingDeg)) *
     Radius), CY - Round(Sin(DegToRad(90 - OwnShip.HeadingDeg)) * Radius));
 end;
 
@@ -757,15 +761,16 @@ begin
 end;
 }
 
-procedure TRadarDisplay.Render(ADeltaTime: Double);
+procedure TRadarDisplay.Render(ADeltaTime: Double; aCnv: TCanvas);
 var
   i, CX, CY, Radius, Minus, DX, DY, RadarDX, RadarDY, VX, VY, PanelY: Integer;
   RadarShip, Ship, OwnShip: TVehicle;
   PXNM, RX, RY, RadarRX, RadarRY, Eff, LatAdj, Vec, Bearing, RadarBearing, Diff,
   DegPerSec: Double;
 begin
-  CX := FPaintBox.Width div 2;
-  CY := FPaintBox.Height div 2;
+  FMapCnv := aCnv;
+  CX := FRadarMap.Width div 2;
+  CY := FRadarMap.Height div 2;
   Radius:= Min(CX, CY);
   Minus:= Trunc(((100.0-FRadarRadiusPercentage)/100.0)*Radius);
   Radius:= Radius - Minus;
@@ -782,6 +787,8 @@ begin
 
   FRadarCenterLat := OwnShip.PosY;
   FRadarCenterLon := OwnShip.PosX;
+  FRadarMap.CenterX := OwnShip.PosX;
+  FRadarMap.CenterY := OwnShip.PosY;
   LatAdj := Cos(DegToRad(FRadarCenterLat));
   Eff := RadarRangeNM / ZoomLevel;
   PXNM := Radius / Eff;
@@ -790,7 +797,7 @@ begin
   while FSweepAngle >= 360 do
     FSweepAngle := FSweepAngle - 360;
 
-  ClearBackground(FPaintBox.Canvas);
+//  ClearBackground(FMapCnv);
 
   if FSweepVisible then
     DrawSmoothSweep(CX, CY, Radius, FSweepTrailWidth);
@@ -843,53 +850,59 @@ begin
 
       if Ship.ShipID = OwnShipID then
       begin
-        FPaintBox.Canvas.Pen.Color := FOwnShipColor;
-        FPaintBox.Canvas.Pen.Style := psSolid;
-        FPaintBox.Canvas.Pen.Width := 1;
-        FPaintBox.Canvas.Brush.Color := FOwnShipColor;
-        FPaintBox.Canvas.Brush.Style:= bsSolid;
-        FPaintBox.Canvas.Ellipse(DX - 3, DY - 3, DX + 3, DY + 3);
+        FMapCnv.Pen.Color := FOwnShipColor;
+        FMapCnv.Pen.Style := psSolid;
+        FMapCnv.Pen.Width := 2;
+        FMapCnv.Brush.Color := FOwnShipColor;
+        FMapCnv.Brush.Style:= bsClear;
+        FMapCnv.Ellipse(DX - 8, DY - 8, DX + 8, DY + 8);
+
+        FMapCnv.MoveTo(DX - 8, DY);
+        FMapCnv.LineTo(DX + 8, DY);
+
+        FMapCnv.MoveTo(DX, DY - 8);
+        FMapCnv.LineTo(DX, DY + 8);
       end
       else if (Ship.LastHit > 0.01) {or Ship.IsTracked} then
       begin
 
         // Draw Contact
-        FPaintBox.Canvas.Pen.Style := psSolid;
-        FPaintBox.Canvas.Pen.Width := 1;
+        FMapCnv.Pen.Style := psSolid;
+        FMapCnv.Pen.Width := 1;
 //        FPaintBox.Canvas.Brush.Style:= bsSolid;
-        FPaintBox.Canvas.Brush.Style := bsClear;
+        FMapCnv.Brush.Style := bsClear;
 //        FPaintBox.Canvas.Brush.Color := RGB(0, Round(255 * Ship.LastHit), 0);
-        FPaintBox.Canvas.Brush.Color := RGB(0, Round(255 * RadarShip.LastHit), 0);
-        FPaintBox.Canvas.Pen.Color := FPaintBox.Canvas.Brush.Color;
+        FMapCnv.Brush.Color := RGB(0, {Round(255 * RadarShip.LastHit)} 255, 0);
+        FMapCnv.Pen.Color := FMapCnv.Brush.Color;
 //        FPaintBox.Canvas.Ellipse(DX - 3, DY - 3, DX + 3, DY + 3);
-        FPaintBox.Canvas.Ellipse(RadarDX - 3, RadarDY - 3, RadarDX + 3, RadarDY + 3);
+        FMapCnv.Ellipse(RadarDX - 3, RadarDY - 3, RadarDX + 3, RadarDY + 3);
 
         // Draw Contact
-        FPaintBox.Canvas.Pen.Style := psSolid;
-        FPaintBox.Canvas.Pen.Width := 1;
-        FPaintBox.Canvas.Brush.Style := bsClear;
-        FPaintBox.Canvas.Pen.Color := clGray;
+        FMapCnv.Pen.Style := psSolid;
+        FMapCnv.Pen.Width := 1;
+        FMapCnv.Brush.Style := bsClear;
+        FMapCnv.Pen.Color := clGray;
 
-        FPaintBox.Canvas.TextOut(RadarDX+5, RadarDY-5, Format('%.4d',[RadarShip.ShipID]));
+        FMapCnv.TextOut(RadarDX+5, RadarDY-5, Format('%.4d',[RadarShip.ShipID]));
 
         if FContactShipHeadingVisible then begin
           Vec := 20;
           VX := RadarDX + Round(Sin(DegToRad(RadarShip.HeadingDeg)) * Vec);
           VY := RadarDY - Round(Cos(DegToRad(RadarShip.HeadingDeg)) * Vec);
 
-          FPaintBox.Canvas.MoveTo(RadarDX, RadarDY);
-          FPaintBox.Canvas.LineTo(VX, VY);
+          FMapCnv.MoveTo(RadarDX, RadarDY);
+          FMapCnv.LineTo(VX, VY);
         end;
 
         if RadarShip.IsTracked then begin
-          FPaintBox.Canvas.Pen.Color := FContactTrackedColor;
-          FPaintBox.Canvas.Brush.Style := bsClear;
-          FPaintBox.Canvas.Rectangle(RadarDX - 8, RadarDY - 8, RadarDX + 8, RadarDY + 8);
+          FMapCnv.Pen.Color := FContactTrackedColor;
+          FMapCnv.Brush.Style := bsClear;
+          FMapCnv.Rectangle(RadarDX - 8, RadarDY - 8, RadarDX + 8, RadarDY + 8);
 
-          FPaintBox.Canvas.Font.Color := FContactTrackedTextColor;
-          FPaintBox.Canvas.TextOut(FPaintBox.Canvas.ClipRect.Right - 150, PanelY,
+          FMapCnv.Font.Color := FContactTrackedTextColor;
+          FMapCnv.TextOut(FMapCnv.ClipRect.Right - 150, PanelY,
             Format('[%d] %s', [RadarShip.ShipID, RadarShip.UniqueID]));
-          FPaintBox.Canvas.TextOut(FPaintBox.Canvas.ClipRect.Right - 150,
+          FMapCnv.TextOut(FMapCnv.ClipRect.Right - 150,
             PanelY + 15, Format('S:%0.1f K:%03.0f'#176,
             [RadarShip.Speed_mps, RadarShip.HeadingDeg]));
           Inc(PanelY, 45);
