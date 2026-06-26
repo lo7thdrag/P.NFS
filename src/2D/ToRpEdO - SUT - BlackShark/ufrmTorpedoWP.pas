@@ -13,7 +13,9 @@ uses
   ufrmOwnShip, ufrmAlertandOpearatorMassage, ufmTargetInControl, ufrmContactInControl, ufrmTorpedoTubeCommands,
   ufrmTorpedoTubeStatusWindow, ufrmTorpedoGuidance, ufrmHomingCommands, ufrmHomingStatusPlot, ufrmDepthPlot,
   ufrmTorpedoParameterSetting, ufrmEngagementDataOverview, ufrmControlByNumber, ufrmTrackingList, ufrmSensorTrackList,
-  ufrmTackHistory, ufrmCreateModifyTrack, ufrmTorpedoContactList, ufrmWakeList, ufrmTorpedoVerticalView;
+  ufrmTackHistory, ufrmCreateModifyTrack, ufrmTorpedoContactList, ufrmWakeList, ufrmTorpedoVerticalView, 
+  ufrmTorpedoParameterDepthSettings;
+
 
 type
   TFrmTorpedoWP = class(TForm)
@@ -218,6 +220,7 @@ type
     FFrmDepthPlot                : TfrmDepthPlot;
     FFrmTorpedoParameters        : TfrmTorpedoParameterSetting;
     FFrmEngagementDataOverview   : TfrmEngagementDataOverview;
+    FfrmTorpedoParameterDepth    : TfrmTorpedoParameterDepthSettings;
 
     procedure SubmodeSelect(Sender: Tobject);
     procedure FuncTaskRightSelect(Sender: Tobject);
@@ -330,7 +333,7 @@ begin
 //    FRings.ConvertCoord(aCvt);
 //    FRings.Draw(aCnv);
 
-    // BEARING 0°
+    // BEARING 0ï¿½
 //    FBearing0.CircleRect := FCircleRect;
 //    FBearing0.ConvertCoord(aCvt);
 //    FBearing0.Draw(aCnv);
@@ -440,9 +443,9 @@ begin
         if round(CurValue) mod 30 = 0 then
         begin
           if CurValue > 180 then
-             StrValue := Format(Mask, [CurValue - 360]) + '°'
+             StrValue := Format(Mask, [CurValue - 360]) + 'ï¿½'
           else
-            StrValue := Format(Mask, [CurValue]) + '°';
+            StrValue := Format(Mask, [CurValue]) + 'ï¿½';
 
           P1.X := P1.X - TextWidth(StrValue) div 2;
           P1.Y := P1.Y - TextHeight(StrValue) div 2;
@@ -2256,14 +2259,26 @@ begin
   {$ENDREGION}
 
   {$REGION 'Torpedo Parameters Setting'}
-  if not Assigned(FFrmTorpedoParameters) then
+//  if not Assigned(FFrmTorpedoParameters) then
+//  begin
+//    pnlTorpedoParamSettings.Caption := '';
+//
+//    FFrmTorpedoParameters        := TfrmTorpedoParameterSetting.Create(Self);
+//    FFrmTorpedoParameters.Parent := pnlTorpedoParamSettings;
+//    FFrmTorpedoParameters.Align  := alClient;
+//    FFrmTorpedoParameters.Show;
+//  end;
+  {$ENDREGION}
+
+  {$REGION 'Parameter Depth Settings'}
+  if not Assigned(FfrmTorpedoParameterDepth) then
   begin
     pnlTorpedoParamSettings.Caption := '';
 
-    FFrmTorpedoParameters        := TfrmTorpedoParameterSetting.Create(Self);
-    FFrmTorpedoParameters.Parent := pnlTorpedoParamSettings;
-    FFrmTorpedoParameters.Align  := alClient;
-    FFrmTorpedoParameters.Show;
+    FfrmTorpedoParameterDepth        := TfrmTorpedoParameterDepthSettings.Create(Self);
+    FfrmTorpedoParameterDepth.Parent := pnlTorpedoParamSettings;
+    FfrmTorpedoParameterDepth.Align  := alClient;
+    FfrmTorpedoParameterDepth.Show;
   end;
   {$ENDREGION}
 

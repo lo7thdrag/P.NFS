@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
   RzButton, RzRadChk, uSutBlacksharkManager,
-  UfrmRadar, uVehicleManager;
+  UfrmRadar, uVehicleManager,
+
+  ufrmTorpedoAllocation;
 
 //const
 //  MAX_TARGET = 50;
@@ -39,6 +41,8 @@ type
   private
     BearingCount : Integer;
     FFrmRadar : TFrmRadar;
+
+    FFrmTorpedoAllocation : TfrmTorpedoAllocation;
     procedure UpdateRadarDisplay;
     { Public declarations }
   end;
@@ -91,8 +95,22 @@ begin
       FFrmRadar.Show;
     end;
 
+
+    {$REGION 'Torpedo Allocation'}
+    if not Assigned(FFrmTorpedoAllocation) then
+    begin
+      pnlToolArea.Caption := '';
+
+      FFrmTorpedoAllocation        := TfrmTorpedoAllocation.Create(Self);
+      FFrmTorpedoAllocation.Parent := pnlToolArea;
+      FFrmTorpedoAllocation.Align  := alClient;
+      FFrmTorpedoAllocation.Show;
+    end;
+    {$ENDREGION}
+
     Exit;
   end;
+
 end;
 
 end.

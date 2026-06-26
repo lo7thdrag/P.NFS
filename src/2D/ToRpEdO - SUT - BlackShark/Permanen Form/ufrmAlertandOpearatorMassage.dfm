@@ -2,8 +2,8 @@ object frmAlertsandOpearatorMassage: TfrmAlertsandOpearatorMassage
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 88
-  ClientWidth = 300
+  ClientHeight = 161
+  ClientWidth = 321
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,14 +15,14 @@ object frmAlertsandOpearatorMassage: TfrmAlertsandOpearatorMassage
   TextHeight = 13
   object pnlMain: TPanel
     Left = 0
-    Top = -8
-    Width = 313
-    Height = 121
+    Top = 0
+    Width = 321
+    Height = 161
     BevelOuter = bvNone
     TabOrder = 0
     object Label1: TLabel
       Left = 8
-      Top = 16
+      Top = 2
       Width = 33
       Height = 16
       Caption = 'Alerts'
@@ -46,9 +46,22 @@ object frmAlertsandOpearatorMassage: TfrmAlertsandOpearatorMassage
       Font.Style = []
       ParentFont = False
     end
+    object lblNumberAlert: TLabel
+      Left = 56
+      Top = 2
+      Width = 14
+      Height = 16
+      Caption = '11'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
     object pnlAlerts: TPanel
       Left = 8
-      Top = 36
+      Top = 28
       Width = 281
       Height = 25
       BevelOuter = bvNone
