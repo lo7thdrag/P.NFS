@@ -205,7 +205,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
     end
     object lblApply: TLabel
       Left = 29
-      Top = 306
+      Top = 304
       Width = 30
       Height = 14
       Caption = 'Apply'
@@ -217,8 +217,8 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       ParentFont = False
     end
     object lblApplySetOfficial: TLabel
-      Left = 254
-      Top = 305
+      Left = 230
+      Top = 303
       Width = 116
       Height = 14
       Caption = 'Apply and Set Official'
@@ -230,8 +230,8 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       ParentFont = False
     end
     object lblReset: TLabel
-      Left = 542
-      Top = 305
+      Left = 510
+      Top = 303
       Width = 31
       Height = 14
       Caption = 'Reset'
@@ -332,7 +332,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Height = 173
       ActivePage = AdvDepth
       ActiveFont.Charset = DEFAULT_CHARSET
-      ActiveFont.Color = clWhite
+      ActiveFont.Color = clLime
       ActiveFont.Height = -12
       ActiveFont.Name = 'Tahoma'
       ActiveFont.Style = []
@@ -354,12 +354,12 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       PersistPagesState.Enabled = False
       TabOrder = 4
       object AdvDepth: TAdvTabSheet
-        Caption = '        Depth  '
+        Caption = '       Depth  '
         Color = clBlack
         ColorTo = clNone
         TabColor = clBlack
         TabColorTo = clBlack
-        TextColor = clWhite
+        TextColor = clLime
         ExplicitLeft = 24
         ExplicitTop = 0
         ExplicitWidth = 100
@@ -698,7 +698,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         ColorTo = clNone
         TabColor = clBlack
         TabColorTo = clBlack
-        TextColor = clWhite
+        TextColor = clLime
         ExplicitLeft = 24
         ExplicitTop = 0
         ExplicitWidth = 100
@@ -923,7 +923,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         ColorTo = clNone
         TabColor = clBlack
         TabColorTo = clBlack
-        TextColor = clWhite
+        TextColor = clLime
         ExplicitLeft = 24
         ExplicitTop = 0
         ExplicitWidth = 100
@@ -1271,12 +1271,12 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         end
       end
       object AdvIntGuidance: TAdvTabSheet
-        Caption = '        Int Guid  '
+        Caption = '       Int Guid '
         Color = clBlack
         ColorTo = clNone
         TabColor = clBlack
         TabColorTo = clBlack
-        TextColor = clWhite
+        TextColor = clLime
         ExplicitLeft = 24
         ExplicitTop = 0
         ExplicitWidth = 100
@@ -1427,12 +1427,12 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         end
       end
       object AdvToSo: TAdvTabSheet
-        Caption = '      ToSo   '
+        Caption = '       ToSo  '
         Color = clBlack
         ColorTo = clNone
         TabColor = clBlack
         TabColorTo = clBlack
-        TextColor = clWhite
+        TextColor = clLime
         ExplicitLeft = 24
         ExplicitTop = 0
         ExplicitWidth = 100
@@ -1637,7 +1637,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         ColorTo = clNone
         TabColor = clBlack
         TabColorTo = clBlack
-        TextColor = clWhite
+        TextColor = clLime
         ExplicitLeft = 24
         ExplicitTop = 0
         ExplicitWidth = 100

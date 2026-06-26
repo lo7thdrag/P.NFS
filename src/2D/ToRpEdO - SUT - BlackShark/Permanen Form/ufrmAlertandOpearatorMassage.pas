@@ -12,6 +12,7 @@ type
     Label1: TLabel;
     lblOperatorMassage: TLabel;
     pnlAlerts: TPanel;
+    lblNumberAlert: TLabel;
   private
     { Private declarations }
   public
