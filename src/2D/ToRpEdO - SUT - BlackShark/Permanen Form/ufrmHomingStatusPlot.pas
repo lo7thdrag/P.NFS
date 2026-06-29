@@ -29,6 +29,7 @@ type
     pbWakeAttack: TPaintBox;
     pbWakeLost: TPaintBox;
     pbToSoCoveragePlot: TPaintBox;
+    pnlToSo: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure pbToSoCoveragePlotPaint(Sender: TObject);
     procedure pbTgtLostSubPaint(Sender: TObject);

@@ -1,4 +1,4 @@
-unit ufrmTorpedoWP;
+﻿unit ufrmTorpedoWP;
 
 interface
 
@@ -130,6 +130,9 @@ type
     pnlDepthPlot: TPanel;
     pnlTorpedoHomingStatusPlot: TPanel;
     pnlTorpedoParamSettings: TPanel;
+    pnlToSo: TPanel;
+    pnlSystemStatus: TPanel;
+    pnlSystemInfo: TPanel;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;
@@ -798,6 +801,21 @@ begin
 
   pnlTacticalBtnMouseDown(pnlTorpedoBtn, mbLeft, [ssLeft], 38, 61);
 
+  {$REGION 'Panel'}
+  pnlOwnshipData.Caption             := '';
+  pnlTargetInControl.Caption         := '';
+  pnlContactInCtrl.Caption           := '';
+  pnlTorpedoTubes.Caption            := '';
+  pnlTorpedoTubesStatus.Caption      := '';
+  pnlTorpedoGuidanceWindow.Caption   := '';
+  pnlTorpedoHomingCmd.Caption        := '';
+  pnlTorpedoHomingStatusPlot.Caption := '';
+  pnlDepthPlot.Caption               := '';
+  pnlTorpedoParamSettings.Caption    := '';
+  pnlGroupInfoBawah.Caption          := '';
+  pnlToSo.Caption                    := '';
+  {$ENDREGION}
+
   UpdateAttachFormDisplay;
 end;
 
@@ -1397,8 +1415,8 @@ begin
 //test rojek
 //  frmTacticalScreen.Monitor := Screen.Monitors[idxPanelAtas];
 //  frmSupportScreen.Monitor := Screen.Monitors[idxPanelBawah];
-   AlignFormToMonitor(idxTactScreen, apLeftTop, xTactScreen, yTactScreen, TForm(frmTacticalScreen));
-   AlignFormToMonitor(idxTorpedoWP, apLeftTop, xTorpedoWP, yTorpedoWP, TForm(frmTorpedoWP));
+   AlignFormToMonitor(0, apLeftTop, -1920, 0, TForm(frmTacticalScreen));
+   AlignFormToMonitor(1, apLeftTop, 0, 0, TForm(frmTorpedoWP));
 //    case Screen.MonitorCount of
 //      1 :
 //        begin
@@ -2174,30 +2192,6 @@ begin
   end;
   {$ENDREGION}
 
-  {$REGION 'Contact In Control'}
-  if not Assigned(FFrmContactInControl) then
-  begin
-    pnlContactInCtrl.Caption := '';
-
-    FFrmContactInControl        := TfrmContactInControl.Create(Self);
-    FFrmContactInControl.Parent := pnlContactInCtrl;
-    FFrmContactInControl.Align  := alClient;
-    FFrmContactInControl.Show;
-  end;
-  {$ENDREGION}
-
-  {$REGION 'Torpedo & Tubes Commands'}
-  if not Assigned(FFrmTorpedoTubesCommand) then
-  begin
-    pnlTorpedoTubes.Caption := '';
-
-    FFrmTorpedoTubesCommand        := TfrmTorpedoTubeCommands.Create(Self);
-    FFrmTorpedoTubesCommand.Parent := pnlTorpedoTubes;
-    FFrmTorpedoTubesCommand.Align  := alClient;
-    FFrmTorpedoTubesCommand.Show;
-  end;
-  {$ENDREGION}
-
   {$REGION 'Torpedo Tubes Status Panel'}
   if not Assigned(FFrmTorpedoTubesStatus) then
   begin
@@ -2219,30 +2213,6 @@ begin
     FFrmTorpedoGuidance.Parent := pnlTorpedoGuidanceWindow;
     FFrmTorpedoGuidance.Align  := alClient;
     FFrmTorpedoGuidance.Show;
-  end;
-  {$ENDREGION}
-
-  {$REGION 'Torpedo Homing Commands'}
-  if not Assigned(FFrmTorpedoHomingCommand) then
-  begin
-    pnlTorpedoHomingCmd.Caption := '';
-
-    FFrmTorpedoHomingCommand        := TfrmHomingCommands.Create(Self);
-    FFrmTorpedoHomingCommand.Parent := pnlTorpedoHomingCmd;
-    FFrmTorpedoHomingCommand.Align  := alClient;
-    FFrmTorpedoHomingCommand.Show;
-  end;
-  {$ENDREGION}
-
-  {$REGION 'Torpedo Homing Status Plot'}
-  if not Assigned(FFrmTorpedoHomingStatusPlot) then
-  begin
-    pnlTorpedoHomingStatusPlot.Caption := '';
-
-    FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
-    FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
-    FFrmTorpedoHomingStatusPlot.Align  := alClient;
-    FFrmTorpedoHomingStatusPlot.Show;
   end;
   {$ENDREGION}
 
@@ -2291,6 +2261,20 @@ begin
     FFrmEngagementDataOverview.Parent := pnlGroupInfoBawah;
     FFrmEngagementDataOverview.Align  := alClient;
     FFrmEngagementDataOverview.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Homing Status Plot'}
+  if not Assigned(FFrmTorpedoHomingStatusPlot) then
+  begin
+    pnlTorpedoHomingStatusPlot.Caption := '';
+
+    FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
+    FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
+    FFrmTorpedoHomingStatusPlot.Align  := alClient;
+    FFrmTorpedoHomingStatusPlot.Show;
+
+    pnlToSo.BringToFront;
   end;
   {$ENDREGION}
 

@@ -68,8 +68,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools6: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -77,6 +77,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools7: TPanel
@@ -99,8 +101,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools7: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -108,6 +110,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools8: TPanel
@@ -130,8 +134,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools8: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -139,6 +143,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools9: TPanel
@@ -161,8 +167,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools9: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -170,6 +176,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlTrackManagement: TPanel
@@ -191,13 +199,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblTrackManagement: TLabel
         Left = 2
         Top = 2
-        Width = 47
-        Height = 26
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Track'#13#10'Mngmnt'
         Layout = tlCenter
         OnMouseDown = pnlFuncTaskRightMouseDown
+        ExplicitWidth = 47
+        ExplicitHeight = 26
       end
     end
     object pnlSystem: TPanel
@@ -221,13 +231,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Tag = 2
         Left = 2
         Top = 2
-        Width = 43
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'System'
         Layout = tlCenter
         OnMouseDown = pnlFuncTaskRightMouseDown
+        ExplicitWidth = 43
+        ExplicitHeight = 13
       end
     end
     object pnlAssFunc1: TPanel
@@ -250,13 +262,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblAssFunc1: TLabel
         Left = 2
         Top = 2
-        Width = 25
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'PMA'
         Layout = tlCenter
         OnMouseDown = pnlAssFuncMouseDown
+        ExplicitWidth = 25
+        ExplicitHeight = 13
       end
     end
     object pnlRadarFreeze: TPanel
@@ -280,13 +294,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Tag = 1
         Left = 2
         Top = 2
-        Width = 38
-        Height = 26
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Radar'#13#10'Freeze'
         Layout = tlCenter
         OnMouseDown = pnlFuncTaskRightMouseDown
+        ExplicitWidth = 38
+        ExplicitHeight = 26
       end
     end
     object pnlAssFunc2: TPanel
@@ -309,13 +325,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblAssFunc2: TLabel
         Left = 2
         Top = 2
-        Width = 53
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Snapshot'
         Layout = tlCenter
         OnMouseDown = pnlAssFuncMouseDown
+        ExplicitWidth = 53
+        ExplicitHeight = 13
       end
     end
     object pnlAssFunc0: TPanel
@@ -337,13 +355,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblAssFunc0: TLabel
         Left = 2
         Top = 2
-        Width = 57
-        Height = 26
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Tactical'#13#10'Recording'
         Layout = tlCenter
         OnMouseDown = pnlAssFuncMouseDown
+        ExplicitWidth = 57
+        ExplicitHeight = 26
       end
     end
     object pnlTorpedoBtn: TPanel
@@ -383,12 +403,14 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblIntercom: TLabel
         Left = 2
         Top = 2
-        Width = 53
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Intercom'
         Layout = tlCenter
+        ExplicitWidth = 53
+        ExplicitHeight = 13
       end
     end
     object pnlTMABtn: TPanel
@@ -429,8 +451,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools16: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -438,6 +460,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools17: TPanel
@@ -460,8 +484,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools17: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -469,6 +493,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools18: TPanel
@@ -491,8 +517,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools18: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -500,6 +526,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools19: TPanel
@@ -522,8 +550,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools19: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -531,6 +559,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlRecordPMA: TPanel
@@ -554,13 +584,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Tag = 3
         Left = 2
         Top = 2
-        Width = 40
-        Height = 26
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Record'#13#10'PMA'
         Layout = tlCenter
         OnMouseDown = pnlFuncTaskRightMouseDown
+        ExplicitWidth = 40
+        ExplicitHeight = 26
       end
     end
     object pnlToolkit: TPanel
@@ -584,13 +616,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Tag = 5
         Left = 2
         Top = 2
-        Width = 39
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Toolkit'
         Layout = tlCenter
         OnMouseDown = pnlFuncTaskRightMouseDown
+        ExplicitWidth = 39
+        ExplicitHeight = 13
       end
     end
     object pnlAssFunc4: TPanel
@@ -613,13 +647,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblAssFunc4: TLabel
         Left = 2
         Top = 2
-        Width = 40
-        Height = 26
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Image '#13#10'Replay'
         Layout = tlCenter
         OnMouseDown = pnlAssFuncMouseDown
+        ExplicitWidth = 40
+        ExplicitHeight = 26
       end
     end
     object pnlControlByNumber: TPanel
@@ -643,13 +679,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Tag = 4
         Left = 2
         Top = 2
-        Width = 44
-        Height = 39
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Control'#13#10'By'#13#10'Number'
         Layout = tlCenter
         OnMouseDown = pnlFuncTaskRightMouseDown
+        ExplicitWidth = 44
+        ExplicitHeight = 39
       end
     end
     object pnlResmBtn: TPanel
@@ -690,12 +728,14 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblAssFunc5: TLabel
         Left = 2
         Top = 2
-        Width = 3
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Layout = tlCenter
         OnMouseDown = pnlAssFuncMouseDown
+        ExplicitWidth = 3
+        ExplicitHeight = 13
       end
     end
     object pnlAssFunc3: TPanel
@@ -718,13 +758,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblAssFunc3: TLabel
         Left = 2
         Top = 2
-        Width = 57
-        Height = 26
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Image'#13#10'Recording'
         Layout = tlCenter
         OnMouseDown = pnlAssFuncMouseDown
+        ExplicitWidth = 57
+        ExplicitHeight = 26
       end
     end
     object pnlPeriscopeBtn: TPanel
@@ -763,12 +805,14 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblAckAlert: TLabel
         Left = 2
         Top = 2
-        Width = 28
-        Height = 26
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Ack'#13#10'Alert'
         Layout = tlCenter
+        ExplicitWidth = 28
+        ExplicitHeight = 26
       end
     end
     object pnlLinkBtn: TPanel
@@ -809,8 +853,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools10: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -818,6 +862,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools11: TPanel
@@ -840,8 +886,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools11: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -849,6 +895,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools12: TPanel
@@ -871,8 +919,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools12: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -880,6 +928,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools13: TPanel
@@ -902,8 +952,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools13: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -911,6 +961,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools14: TPanel
@@ -933,8 +985,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools14: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -942,6 +994,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools0: TPanel
@@ -962,8 +1016,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools0: TLabel
         Left = 2
         Top = 2
-        Width = 34
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'label1'
@@ -971,6 +1025,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 34
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools15: TPanel
@@ -993,8 +1049,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools15: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -1002,6 +1058,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools1: TPanel
@@ -1024,8 +1082,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools1: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -1033,6 +1091,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools2: TPanel
@@ -1055,8 +1115,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools2: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -1064,6 +1124,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools3: TPanel
@@ -1086,8 +1148,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools3: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -1095,6 +1157,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools4: TPanel
@@ -1117,8 +1181,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools4: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -1126,6 +1190,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
     object pnlSubmodeTools5: TPanel
@@ -1148,8 +1214,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
       object lblSubmodeTools5: TLabel
         Left = 2
         Top = 2
-        Width = 37
-        Height = 13
+        Width = 84
+        Height = 84
         Align = alClient
         Alignment = taCenter
         Caption = 'Label1'
@@ -1157,6 +1223,8 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentColor = False
         Layout = tlCenter
         OnMouseDown = pnlSubmodeTools0MouseDown
+        ExplicitWidth = 37
+        ExplicitHeight = 13
       end
     end
   end
@@ -1218,6 +1286,23 @@ object FrmTorpedoWP: TFrmTorpedoWP
             Font.Style = []
             ParentFont = False
             TabOrder = 0
+            object pnlSystemInfo: TPanel
+              Left = 0
+              Top = 0
+              Width = 293
+              Height = 236
+              Align = alClient
+              BevelOuter = bvNone
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              ExplicitLeft = 1328
+              ExplicitTop = 1
+            end
           end
           object pnlGroupInfo: TPanel
             Left = 1
@@ -1298,6 +1383,23 @@ object FrmTorpedoWP: TFrmTorpedoWP
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 3
+                object pnlSystemStatus: TPanel
+                  Left = 1
+                  Top = 1
+                  Width = 437
+                  Height = 159
+                  Align = alClient
+                  BevelOuter = bvLowered
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWhite
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 0
+                  ExplicitLeft = 2
+                  ExplicitTop = 2
+                end
               end
             end
             object pnlGroupInfoBawah: TPanel
@@ -1386,7 +1488,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000A808A804010000000EF6DB501C000000000000000000000000
+          010001180100004805F82A01000000050000001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1395,15 +1497,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000A808A80401000000881300C01C00000000000000000000000000000000
+          0100004805F82A01000000D92091751C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000000020000000000000A
-          000000B0CB97009CCB97000000000004D097002A03F6DA000000000000000000
+          00000000000000000000000000000000000000000000000002000050E9970044
+          E997007E91065080ED97004EA20550B71B065005000000000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -1455,6 +1557,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
           Align = alTop
           Caption = 'TORPEDO HOMING STATUS PLOT && ToSo COVERAGE'
           TabOrder = 0
+          object pnlToSo: TPanel
+            Left = 10
+            Top = 78
+            Width = 561
+            Height = 137
+            BevelOuter = bvNone
+            Caption = 'ToSo'
+            TabOrder = 0
+          end
         end
         object pnlTorpedoParamSettings: TPanel
           Left = 1

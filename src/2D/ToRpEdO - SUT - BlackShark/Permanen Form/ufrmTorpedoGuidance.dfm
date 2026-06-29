@@ -124,6 +124,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Top = 0
           Width = 57
           Height = 14
+          Cursor = crHandPoint
           Caption = 'Homing ...'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -131,12 +132,14 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          OnClick = lblHomingClick
         end
         object lblMainGuidance: TLabel
           Left = 6
           Top = 28
           Width = 92
           Height = 14
+          Cursor = crHandPoint
           Caption = 'Man Guidance ...'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -144,12 +147,14 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          OnClick = lblMainGuidanceClick
         end
         object lblMSIGuidance: TLabel
           Left = 7
           Top = -2
           Width = 74
           Height = 14
+          Cursor = crHandPoint
           Caption = 'MSI Guidance'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -163,6 +168,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Top = 13
           Width = 100
           Height = 14
+          Cursor = crHandPoint
           Caption = 'Torp Int Guidance'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -190,6 +196,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Top = 21
           Width = 46
           Height = 14
+          Cursor = crHandPoint
           Caption = 'Fuse Off'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -203,6 +210,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Top = 4
           Width = 45
           Height = 14
+          Cursor = crHandPoint
           Caption = 'Fuse On'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -216,6 +224,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Top = 3
           Width = 98
           Height = 14
+          Cursor = crHandPoint
           Caption = 'Surf. to Submode'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -229,6 +238,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Top = 18
           Width = 94
           Height = 14
+          Cursor = crHandPoint
           Caption = 'ToSo Act Immed'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -242,6 +252,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Top = 32
           Width = 73
           Height = 14
+          Cursor = crHandPoint
           Caption = 'ToSo Act Off'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite

@@ -87,7 +87,9 @@ uses
   ufrmTrackingList in 'Pop-up form\ufrmTrackingList.pas' {frmTrackListNumber},
   ufrmWakeList in 'Pop-up form\ufrmWakeList.pas' {frmWakeList},
   ufrmTorpedoAllocation in 'Permanen Form\ufrmTorpedoAllocation.pas' {frmTorpedoAllocation},
-  ufrmTorpedoParameterDepthSettings in 'Permanen Form\ufrmTorpedoParameterDepthSettings.pas' {frmTorpedoParameterDepthSettings};
+  ufrmTorpedoParameterDepthSettings in 'Permanen Form\ufrmTorpedoParameterDepthSettings.pas' {frmTorpedoParameterDepthSettings},
+  ufrmSystemStatus in 'Permanen Form\ufrmSystemStatus.pas' {frmSystemStatus},
+  ufrmSystemInfo in 'Permanen Form\ufrmSystemInfo.pas' {frmSystemInfo};
 
 {$R *.res}
 
@@ -97,7 +99,9 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
-//  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
+  Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
+  Application.CreateForm(TfrmSystemInfo, frmSystemInfo);
+  //  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
 //  Application.CreateForm(TfrmWakeList, frmWakeList);
   Application.CreateForm(TfrmTorpedoAllocation, frmTorpedoAllocation);
   Application.CreateForm(TfrmTorpedoParameterDepthSettings, frmTorpedoParameterDepthSettings);

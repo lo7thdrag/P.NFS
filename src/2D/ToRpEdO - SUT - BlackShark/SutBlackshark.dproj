@@ -270,9 +270,19 @@
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmTorpedoAllocation.pas">
             <Form>frmTorpedoAllocation</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmTorpedoParameterDepthSettings.pas">
             <Form>frmTorpedoParameterDepthSettings</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Permanen Form\ufrmSystemStatus.pas">
+            <Form>frmSystemStatus</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Permanen Form\ufrmSystemInfo.pas">
+            <Form>frmSystemInfo</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
