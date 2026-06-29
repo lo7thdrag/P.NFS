@@ -11,7 +11,7 @@ uses
   OverbyteIcsWSocket, uTCPDatatype, uC705SimManager, uLibSettings, uScriptC705,
   uShipModel, uVehicleManager, SpeedButtonImage, AdvGroupBox, AdvPageControl,
   Vcl.ComCtrls, VrButtons, AdvOfficeButtons,
-  uWaypointModel, uWaypointView, uMapViewManager, uShipView;
+  uWaypointModel, uWaypointView, uMapViewManager, uShipView, uCoordDataTypes;
 
 type
   TEditMode = (edNone, edAddWaypoint, edMoveWaypoint, edDeleteWaypoint, edAddRoute, edDeleteRoute);
@@ -279,6 +279,7 @@ type
     pnlModeOperasi: TPanel;
     tmrForm: TTimer;
     Keyboard1: TMenuItem;
+    tmrServiceUpdate: TTimer;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -299,6 +300,8 @@ type
     procedure btnWaypointLvl2Click(Sender: TObject);
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure Keyboard1Click(Sender: TObject);
+    procedure tmrServiceUpdateTimer(Sender: TObject);
+    procedure FMapMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
   protected
     //procedure DrawAngle(aCnv: TCanvas);
     //procedure DrawCompass(aCnv: TCanvas);
@@ -343,6 +346,8 @@ type
     procedure MapZoomIn;
     procedure MapZoomOut;
     procedure MapMove;
+
+    procedure UpdatePosOwnShip;
   public
     { Public declarations }
 
@@ -873,6 +878,26 @@ begin
   FMap.Repaint;
 end;
 
+procedure TfrmRoutePlan.tmrServiceUpdateTimer(Sender: TObject);
+begin
+  UpdatePosOwnShip
+end;
+
+procedure TfrmRoutePlan.UpdatePosOwnShip;
+var
+  OwnShip: TShipContact;
+begin
+  OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
+
+  if not Assigned(OwnShip) then
+    Exit;
+
+  lblNav_LongShip.Caption := FormatLongitude(OwnShip.Lon);
+  lblNav_LatShip.Caption  := FormatLatitude(OwnShip.Lat);
+  lblNav_HdgLShip.Caption := '-90.00';
+  lblNav_HdgRShip.Caption := '90.00';
+end;
+
 procedure TfrmRoutePlan.FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
 begin
   if not Assigned(FCanvas) then
@@ -1110,6 +1135,18 @@ begin
     FMap.CurrentTool := miArrowTool;
   end;
 
+end;
+
+procedure TfrmRoutePlan.FMapMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+var
+  dLong, dLat: double;
+begin
+  // Convert screen coordinate -> World coordinate
+  FMapConverter.ConvertToMap(X, Y, dLong, dLat);
+
+  lblLat_MapInfo.Caption := FormatLatitude(dLat);
+  lblLong_MapInfo.Caption := FormatLongitude(dLong)
 end;
 
 {$ENDREGION}

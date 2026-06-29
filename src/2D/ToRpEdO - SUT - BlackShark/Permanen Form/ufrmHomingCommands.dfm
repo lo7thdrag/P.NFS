@@ -27,6 +27,7 @@ object frmHomingCommands: TfrmHomingCommands
       Top = 6
       Width = 210
       Height = 25
+      Cursor = crHandPoint
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
@@ -50,6 +51,7 @@ object frmHomingCommands: TfrmHomingCommands
       Top = 32
       Width = 210
       Height = 25
+      Cursor = crHandPoint
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
@@ -67,12 +69,14 @@ object frmHomingCommands: TfrmHomingCommands
       Caption = 'ToSo PN'
       Color = clBlack
       TabOrder = 1
+      OnClick = btnToSoPNClick
     end
     object btnToSoPN3D: TVrDemoButton
       Left = 5
       Top = 58
       Width = 210
       Height = 25
+      Cursor = crHandPoint
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
@@ -96,6 +100,7 @@ object frmHomingCommands: TfrmHomingCommands
       Top = 84
       Width = 210
       Height = 25
+      Cursor = crHandPoint
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13
@@ -119,6 +124,7 @@ object frmHomingCommands: TfrmHomingCommands
       Top = 110
       Width = 210
       Height = 25
+      Cursor = crHandPoint
       FontEnter.Charset = ANSI_CHARSET
       FontEnter.Color = clWhite
       FontEnter.Height = -13

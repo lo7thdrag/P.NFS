@@ -10533,6 +10533,7 @@ begin
     ClearScenarioData;
 
     ResetMenuImage;
+    FSelectedMenu := imgController.Tag;
     imgController.Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\imgController_.png');
     pnlController.BringToFront;
 

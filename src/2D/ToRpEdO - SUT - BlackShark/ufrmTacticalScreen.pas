@@ -8,7 +8,7 @@ uses
   RzButton, RzRadChk, uSutBlacksharkManager, uVehicleManager,uSettingFormToMonitorWith_ini, uFormUtil,
   UfrmRadar,ufrmOwnShip, ufrmAlertandOpearatorMassage,ufmTargetInControl,
 
-  ufrmTorpedoAllocation;
+  ufrmTorpedoAllocation, ufrmSystemStatus, ufrmSystemInfo, ufrmCursor;
 
 //const
 //  MAX_TARGET = 50;
@@ -45,8 +45,12 @@ type
     FFrmOwnShipTS                  : TfrmOwnShip;
     FFrmAlertandOpearatorMassageTS : TfrmAlertsandOpearatorMassage;
     FFrmTargetInControlTS          : TfrmTargetInControl;
+    FFrmSystemStatus      : TfrmSystemStatus;
 
     FFrmTorpedoAllocation : TfrmTorpedoAllocation;
+    FFrmSystemInfo        : TfrmSystemInfo;
+    FFrmCursor            : TfrmCursor;
+
     procedure UpdateRadarDisplay;
     procedure SetLayoutForm;
     procedure UpdateAttachFormDisplay;
@@ -183,6 +187,42 @@ begin
 //      FFrmTorpedoAllocation.Align  := alClient;
 //      FFrmTorpedoAllocation.Show;
 //    end;
+    {$ENDREGION}
+
+    {$REGION 'System Status'}
+    if not Assigned(FFrmSystemStatus) then
+    begin
+      pnlSystemStatus.Caption := '';
+
+      FFrmSystemStatus        := TfrmSystemStatus.Create(Self);
+      FFrmSystemStatus.Parent := pnlSystemStatus;
+      FFrmSystemStatus.Align  := alClient;
+      FFrmSystemStatus.Show;
+    end;
+    {$ENDREGION}
+
+    {$REGION 'System Info'}
+    if not Assigned(FFrmSystemInfo) then
+    begin
+      pnlSystemInfo.Caption := '';
+
+      FFrmSystemInfo        := TfrmSystemInfo.Create(Self);
+      FFrmSystemInfo.Parent := pnlSystemInfo;
+      FFrmSystemInfo.Align  := alClient;
+      FFrmSystemInfo.Show;
+    end;
+    {$ENDREGION}
+
+    {$REGION 'Cursor Position'}
+    if not Assigned(FFrmCursor) then
+    begin
+      pnlCursor.Caption := '';
+
+      FFrmCursor        := TfrmCursor.Create(Self);
+      FFrmCursor.Parent := pnlCursor;
+      FFrmCursor.Align  := alClient;
+      FFrmCursor.Show;
+    end;
     {$ENDREGION}
 
     Exit;

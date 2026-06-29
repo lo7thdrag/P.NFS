@@ -73,6 +73,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure imgLaunchClick(Sender: TObject);
     procedure tmrClearFiringTimer(Sender: TObject);
+    procedure imgNumpadClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,7 +90,7 @@ var
 implementation
 
 uses
-  UfrmRoutePlan, uVehicleManager;
+  UfrmRoutePlan, uVehicleManager, UfrmFoeFriendSituationPage;
 
 {$R *.dfm}
 
@@ -225,6 +226,47 @@ begin
   frmRoutePlan.lblStatusMap.Caption := '';
 
   tmrClearFiring.Enabled := False;
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgNumpadClick(Sender: TObject);
+begin
+  if Assigned(frmFoeFriendSituationPage) then
+  begin
+    case (Sender as TImage).Tag of
+      0: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsExit;
+      end;
+      1: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsSituation;
+      end;
+      2: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsFireDistr;
+      end;
+      3: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMInfo;
+      end;
+      4: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsParSetting;
+      end;
+      5: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsChSelect;
+      end;
+      6: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMControl;
+      end;
+      7: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMMonitor;
+      end;
+      8: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsINSTest;
+      end;
+      9: begin
+        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsLaunchData;
+      end;
+    end;
+
+    frmFoeFriendSituationPage.UpdateLayoutTab;
+  end;
 end;
 
 end.

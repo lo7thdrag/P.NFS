@@ -1519,6 +1519,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
           Height = 224
           Align = alTop
           TabOrder = 0
+          object pnlToSo: TPanel
+            Left = 10
+            Top = 78
+            Width = 561
+            Height = 137
+            BevelOuter = bvNone
+            Caption = 'ToSo'
+            TabOrder = 0
+          end
         end
         object pnlTorpedoParamSettings: TPanel
           Left = 1

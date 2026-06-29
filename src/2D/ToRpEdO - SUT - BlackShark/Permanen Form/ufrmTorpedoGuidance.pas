@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvSmoothTabPager, AdvPageControl, Vcl.ComCtrls;
+  AdvSmoothTabPager, AdvPageControl, Vcl.ComCtrls,
+
+  ufrmHomingCommands, ufrmManualGuidance;
 
 type
   TfrmTorpedoGuidanceWindow = class(TForm)
@@ -26,8 +28,12 @@ type
     lblSurftoSubmode: TLabel;
     lblTosoActImmed: TLabel;
     lblToSoActOff: TLabel;
+    procedure lblHomingClick(Sender: TObject);
+    procedure lblMainGuidanceClick(Sender: TObject);
   private
-    { Private declarations }
+    FFrmTorpedoHomingCommand  : TfrmHomingCommands;
+    FFrmManualGuidance        : TfrmManualGuidance;
+
   public
     { Public declarations }
   end;
@@ -38,5 +44,34 @@ var
 implementation
 
 {$R *.dfm}
+
+uses
+  ufrmTorpedoWP;
+
+procedure TfrmTorpedoGuidanceWindow.lblHomingClick(Sender: TObject);
+begin
+  if not Assigned(FFrmTorpedoHomingCommand) then
+  begin
+    frmTorpedoWP.pnlTorpedoHomingCmd.Caption := '';
+
+    FFrmTorpedoHomingCommand        := TfrmHomingCommands.Create(Self);
+    FFrmTorpedoHomingCommand.Parent := frmTorpedoWP.pnlTorpedoHomingCmd;
+    FFrmTorpedoHomingCommand.Align  := alClient;
+    FFrmTorpedoHomingCommand.Show;
+  end;
+end;
+
+procedure TfrmTorpedoGuidanceWindow.lblMainGuidanceClick(Sender: TObject);
+begin
+  if not Assigned(FFrmManualGuidance) then
+  begin
+    frmTorpedoWP.pnlTorpedoHomingCmd.Caption := '';
+
+    FFrmManualGuidance        := TfrmManualGuidance.Create(Self);
+    FFrmManualGuidance.Parent := frmTorpedoWP.pnlTorpedoHomingCmd;
+    FFrmManualGuidance.Align  := alClient;
+    FFrmManualGuidance.Show;
+  end;
+end;
 
 end.
