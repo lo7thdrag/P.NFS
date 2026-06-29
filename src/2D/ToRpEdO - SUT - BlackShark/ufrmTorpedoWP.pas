@@ -1,4 +1,4 @@
-unit ufrmTorpedoWP;
+﻿unit ufrmTorpedoWP;
 
 interface
 
@@ -644,7 +644,7 @@ var
   V: TVehicle;
   i : Integer;
 begin
-  SetLayoutForm;
+//  SetLayoutForm;  // set layout dipindah ke tactical screen karena tactical screen dicreate setelah torpedoWP
   ResetAssociatedFunction;
   ResetSubmodeTools;
   FuncTaskRightMode := 7;
@@ -1593,8 +1593,16 @@ begin
     begin
       FTorpAlloc := not FTorpAlloc;
 
-      if FTorpAlloc then pnlSubmodeTools12.Color := clLime
-      else pnlSubmodeTools12.Color := clBlack;
+      if FTorpAlloc then
+      begin
+        pnlSubmodeTools12.Color := clLime;
+        SutBlacksharkManager.isTorpedoAllocShow := FTorpAlloc;
+      end
+      else
+      begin
+        pnlSubmodeTools12.Color := clBlack;
+        SutBlacksharkManager.isTorpedoAllocShow := FTorpAlloc;
+      end;
     end;
     13:
     begin
@@ -1651,6 +1659,27 @@ begin
         pnlSubmodeTools6.Enabled := false;
         lblSubmodeTools6.Enabled := false;
       end;
+
+      if not Assigned(FFrmTorpedoGuidance) then
+      begin
+//        pnlTorpedoGuidanceWindow.Caption := '';
+
+        FFrmTorpedoGuidance        := TfrmTorpedoGuidanceWindow.Create(Self);
+        FFrmTorpedoGuidance.Parent := pnlTorpedoGuidanceWindow;
+        FFrmTorpedoGuidance.Align  := alClient;
+        FFrmTorpedoGuidance.Show;
+      end
+      else FreeAndNil(FFrmTorpedoGuidance);
+
+      if not Assigned(FFrmTorpedoHomingStatusPlot) then
+      begin
+
+        FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
+        FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
+        FFrmTorpedoHomingStatusPlot.Align  := alClient;
+        FFrmTorpedoHomingStatusPlot.Show;
+      end
+      else FreeAndNil(FFrmTorpedoHomingStatusPlot);
     end;
     17:
     begin
@@ -2211,39 +2240,39 @@ begin
   {$ENDREGION}
 
   {$REGION 'Torpedo Guidance'}
-  if not Assigned(FFrmTorpedoGuidance) then
-  begin
-    pnlTorpedoGuidanceWindow.Caption := '';
-
-    FFrmTorpedoGuidance        := TfrmTorpedoGuidanceWindow.Create(Self);
-    FFrmTorpedoGuidance.Parent := pnlTorpedoGuidanceWindow;
-    FFrmTorpedoGuidance.Align  := alClient;
-    FFrmTorpedoGuidance.Show;
-  end;
+//  if not Assigned(FFrmTorpedoGuidance) then
+//  begin
+//    pnlTorpedoGuidanceWindow.Caption := '';
+//
+//    FFrmTorpedoGuidance        := TfrmTorpedoGuidanceWindow.Create(Self);
+//    FFrmTorpedoGuidance.Parent := pnlTorpedoGuidanceWindow;
+//    FFrmTorpedoGuidance.Align  := alClient;
+//    FFrmTorpedoGuidance.Show;
+//  end;
   {$ENDREGION}
 
   {$REGION 'Torpedo Homing Commands'}
-  if not Assigned(FFrmTorpedoHomingCommand) then
-  begin
-    pnlTorpedoHomingCmd.Caption := '';
-
-    FFrmTorpedoHomingCommand        := TfrmHomingCommands.Create(Self);
-    FFrmTorpedoHomingCommand.Parent := pnlTorpedoHomingCmd;
-    FFrmTorpedoHomingCommand.Align  := alClient;
-    FFrmTorpedoHomingCommand.Show;
-  end;
+//  if not Assigned(FFrmTorpedoHomingCommand) then  // di create saat menekan "Homing" button di torpedo guidance window
+//  begin
+//    pnlTorpedoHomingCmd.Caption := '';
+//
+//    FFrmTorpedoHomingCommand        := TfrmHomingCommands.Create(Self);
+//    FFrmTorpedoHomingCommand.Parent := pnlTorpedoHomingCmd;
+//    FFrmTorpedoHomingCommand.Align  := alClient;
+//    FFrmTorpedoHomingCommand.Show;
+//  end;
   {$ENDREGION}
 
   {$REGION 'Torpedo Homing Status Plot'}
-  if not Assigned(FFrmTorpedoHomingStatusPlot) then
-  begin
-    pnlTorpedoHomingStatusPlot.Caption := '';
-
-    FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
-    FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
-    FFrmTorpedoHomingStatusPlot.Align  := alClient;
-    FFrmTorpedoHomingStatusPlot.Show;
-  end;
+//  if not Assigned(FFrmTorpedoHomingStatusPlot) then
+//  begin
+//    pnlTorpedoHomingStatusPlot.Caption := '';
+//
+//    FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
+//    FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
+//    FFrmTorpedoHomingStatusPlot.Align  := alClient;
+//    FFrmTorpedoHomingStatusPlot.Show;
+//  end;
   {$ENDREGION}
 
   {$REGION 'Depth Plot'}
@@ -2271,15 +2300,15 @@ begin
   {$ENDREGION}
 
   {$REGION 'Parameter Depth Settings'}
-  if not Assigned(FfrmTorpedoParameterDepth) then
-  begin
-    pnlTorpedoParamSettings.Caption := '';
-
-    FfrmTorpedoParameterDepth        := TfrmTorpedoParameterDepthSettings.Create(Self);
-    FfrmTorpedoParameterDepth.Parent := pnlTorpedoParamSettings;
-    FfrmTorpedoParameterDepth.Align  := alClient;
-    FfrmTorpedoParameterDepth.Show;
-  end;
+//  if not Assigned(FfrmTorpedoParameterDepth) then // di spawn saat start Engagement Analysis
+//  begin
+//    pnlTorpedoParamSettings.Caption := '';
+//
+//    FfrmTorpedoParameterDepth        := TfrmTorpedoParameterDepthSettings.Create(Self);
+//    FfrmTorpedoParameterDepth.Parent := pnlTorpedoParamSettings;
+//    FfrmTorpedoParameterDepth.Align  := alClient;
+//    FfrmTorpedoParameterDepth.Show;
+//  end;
   {$ENDREGION}
 
   {$REGION 'Engagement Data Overview'}

@@ -867,15 +867,22 @@ begin
       begin
 
         // Draw Contact
-        FMapCnv.Pen.Style := psSolid;
-        FMapCnv.Pen.Width := 1;
-//        FPaintBox.Canvas.Brush.Style:= bsSolid;
-        FMapCnv.Brush.Style := bsClear;
-//        FPaintBox.Canvas.Brush.Color := RGB(0, Round(255 * Ship.LastHit), 0);
-        FMapCnv.Brush.Color := RGB(0, {Round(255 * RadarShip.LastHit)} 255, 0);
         FMapCnv.Pen.Color := FMapCnv.Brush.Color;
-//        FPaintBox.Canvas.Ellipse(DX - 3, DY - 3, DX + 3, DY + 3);
-        FMapCnv.Ellipse(RadarDX - 3, RadarDY - 3, RadarDX + 3, RadarDY + 3);
+        FMapCnv.Pen.Style := psClear;
+        FMapCnv.Pen.Width := 1;
+
+        FMapCnv.Brush.Color := RGB(243, 235, 118);
+        FMapCnv.Brush.Style := bsSolid;
+        if Ship.Domain = 1 then
+        begin
+          FMapCnv.Ellipse(RadarDX - 10, RadarDY - 5, RadarDX + 10, RadarDY + 5);
+          FMapCnv.Ellipse(RadarDX - 5, RadarDY - 10, RadarDX + 5, RadarDY + 10);
+        end
+        else if Ship.Domain = 3 then
+        begin
+          FMapCnv.Ellipse(RadarDX - 10, RadarDY - 5, RadarDX + 10, RadarDY + 5);
+          FMapCnv.Ellipse(RadarDX - 5, RadarDY - 5, RadarDX + 5, RadarDY + 10);
+        end;
 
         // Draw Contact
         FMapCnv.Pen.Style := psSolid;

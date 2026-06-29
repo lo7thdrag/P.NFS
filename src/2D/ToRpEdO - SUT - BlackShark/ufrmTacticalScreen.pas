@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
-  RzButton, RzRadChk, uSutBlacksharkManager,
-  UfrmRadar, uVehicleManager,
+  RzButton, RzRadChk, uSutBlacksharkManager, uVehicleManager,uSettingFormToMonitorWith_ini, uFormUtil,
+  UfrmRadar,ufrmOwnShip, ufrmAlertandOpearatorMassage,ufmTargetInControl,
 
   ufrmTorpedoAllocation;
 
@@ -42,8 +42,14 @@ type
     BearingCount : Integer;
     FFrmRadar : TFrmRadar;
 
+    FFrmOwnShipTS                  : TfrmOwnShip;
+    FFrmAlertandOpearatorMassageTS : TfrmAlertsandOpearatorMassage;
+    FFrmTargetInControlTS          : TfrmTargetInControl;
+
     FFrmTorpedoAllocation : TfrmTorpedoAllocation;
     procedure UpdateRadarDisplay;
+    procedure SetLayoutForm;
+    procedure UpdateAttachFormDisplay;
     { Public declarations }
   end;
 
@@ -74,12 +80,68 @@ procedure TFrmTacticalScreen.FormCreate(Sender: TObject);
 var
   i : Integer;
 begin
+  SetLayoutForm;
+  UpdateAttachFormDisplay;
+end;
 
+procedure TFrmTacticalScreen.SetLayoutForm;
+var
+  path : string;
+  idxTactScreen, alTactScreen, xTactScreen, yTactScreen,
+  idxTorpedoWP, alTorpedoWP, xTorpedoWP, yTorpedoWP,
+  bdrPanelAtas,  bdrPanelBawah,  bdrTemp: Integer;
+begin
+   path := ExtractFilePath(Application.ExeName) + 'SetFormBlackSharkToMonitor.ini';
+
+   Getsettingform(path, 'TACTICAL_SCREEN',  idxTactScreen,  alTactScreen,    xTactScreen,   yTactScreen);
+   Getsettingform(path, 'TORPEDO_WP', idxTorpedoWP, alTorpedoWP,   xTorpedoWP,  yTorpedoWP);
+
+// rojek
+   AlignFormToMonitor(idxTactScreen, apLeftTop, xTactScreen, yTactScreen, TForm(frmTacticalScreen));
+   AlignFormToMonitor(idxTorpedoWP, apLeftTop, xTorpedoWP, yTorpedoWP, TForm(frmTorpedoWP));
 end;
 
 procedure TFrmTacticalScreen.tmrUpdateTPTimer(Sender: TObject);
 begin
   UpdateRadarDisplay;
+
+  // get variable pada blackshark manager disini
+
+end;
+
+procedure TFrmTacticalScreen.UpdateAttachFormDisplay;
+begin
+  {$REGION 'Ownship Data'}
+  if not Assigned(FFrmOwnShipTS) then
+  begin
+    FFrmOwnShipTS        := TfrmOwnShip.Create(Self);
+    FFrmOwnShipTS.Parent := pnlOwnShip;
+    FFrmOwnShipTS.Align  := alClient;
+    FFrmOwnShipTS.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Alert and Operator Messages'}
+  if not Assigned(FFrmAlertandOpearatorMassageTS) then
+  begin
+    FFrmAlertandOpearatorMassageTS        := TfrmAlertsandOpearatorMassage.Create(Self);
+    FFrmAlertandOpearatorMassageTS.Parent := pnlAlert;
+    FFrmAlertandOpearatorMassageTS.Align  := alClient;
+    FFrmAlertandOpearatorMassageTS.Show;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Target In Control'}
+  if not Assigned(FFrmTargetInControltS) then
+  begin
+    FFrmTargetInControltS.Caption := '';
+
+    FFrmTargetInControltS        := TfrmTargetInControl.Create(Self);
+    FFrmTargetInControltS.Parent := pnlObjectInControl;
+    FFrmTargetInControltS.Align  := alClient;
+    FFrmTargetInControltS.Show;
+  end;
+  {$ENDREGION}
 end;
 
 procedure TFrmTacticalScreen.UpdateRadarDisplay;
@@ -95,17 +157,32 @@ begin
       FFrmRadar.Show;
     end;
 
+    if SutBlacksharkManager.isTorpedoAllocShow then
+    begin
+      {$REGION 'Torpedo Allocation'}
+      if not Assigned(FFrmTorpedoAllocation) then      // di create saat tombol TEP torp alloc
+      begin
+        FFrmTorpedoAllocation        := TfrmTorpedoAllocation.Create(Self);
+        FFrmTorpedoAllocation.Parent := pnlToolArea;
+        FFrmTorpedoAllocation.Align  := alClient;
+        FFrmTorpedoAllocation.Show;
+      end;
+      {$ENDREGION}
+    end
+    else
+    begin
+      if Assigned(FFrmTorpedoAllocation) then
+        FreeAndNil(FFrmTorpedoAllocation);
+    end;
 
     {$REGION 'Torpedo Allocation'}
-    if not Assigned(FFrmTorpedoAllocation) then
-    begin
-      pnlToolArea.Caption := '';
-
-      FFrmTorpedoAllocation        := TfrmTorpedoAllocation.Create(Self);
-      FFrmTorpedoAllocation.Parent := pnlToolArea;
-      FFrmTorpedoAllocation.Align  := alClient;
-      FFrmTorpedoAllocation.Show;
-    end;
+//    if not Assigned(FFrmTorpedoAllocation) then      // di create saat tombol TEP torp alloc
+//    begin
+//      FFrmTorpedoAllocation        := TfrmTorpedoAllocation.Create(Self);
+//      FFrmTorpedoAllocation.Parent := pnlToolArea;
+//      FFrmTorpedoAllocation.Align  := alClient;
+//      FFrmTorpedoAllocation.Show;
+//    end;
     {$ENDREGION}
 
     Exit;

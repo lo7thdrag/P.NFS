@@ -23,12 +23,17 @@ type
     btnZoomIn: TButton;
     btnZoomOut: TButton;
     tmrDisplay: TTimer;
-    AdvComboBox1: TAdvComboBox;
+    cbbZoomScale: TAdvComboBox;
     cbbMotionMode: TAdvComboBox;
-    ImageButton1: TImageButton;
-    ImageButton2: TImageButton;
-    Label3: TLabel;
+    ibBoxedZoom: TImageButton;
+    ibGrab: TImageButton;
+    lblZoomScaleSat: TLabel;
     FMap: TMap;
+    ibZoomIn: TImageButton;
+    ibZoomOut: TImageButton;
+    lblMapFilter: TLabel;
+    lblOwnShipCenter: TLabel;
+    lblCursorCenter: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure tmrDisplayTimer(Sender: TObject);
@@ -36,6 +41,12 @@ type
     procedure btnZoomOutClick(Sender: TObject);
     procedure FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch;
       hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
+    procedure ibGrabClick(Sender: TObject);
+    procedure ibBoxedZoomClick(Sender: TObject);
+    procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure lblCursorCenterClick(Sender: TObject);
+    procedure lblOwnShipCenterClick(Sender: TObject);
   private
     { Private declarations }
     FDisplay: TRadarDisplay;
@@ -44,6 +55,7 @@ type
     FDeltaTimeDisplay: Double;
     FLyrDraw: CMapXLayer;
     FMapCanvas     : TCanvas;
+    FCursorX, FCursorY :Double;
 
     procedure LoadGeoset(const aGst: string); virtual;
   public
@@ -92,10 +104,31 @@ begin
   FMapCanvas.Free;
 end;
 
+procedure TfrmRadar.ibBoxedZoomClick(Sender: TObject);
+begin
+  // zoom ke box yang dibuat
+end;
+
+procedure TfrmRadar.ibGrabClick(Sender: TObject);
+begin
+  // ganti mode grab kalo lagi di true motion
+end;
+
+procedure TfrmRadar.lblCursorCenterClick(Sender: TObject);
+begin
+  // cursor center
+end;
+
+procedure TfrmRadar.lblOwnShipCenterClick(Sender: TObject);
+begin
+  // ownship center
+end;
+
 procedure TfrmRadar.FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch;
   hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
   var
   Tick: UINT64;
+  CrsrX, CrsrY : Single;
 begin
   if Assigned(FMapCanvas) then
   begin
@@ -106,8 +139,44 @@ begin
     FLastDisplayTick := Tick;
 
     FDisplay.Render(FDeltaTimeDisplay, FMapCanvas);
+    if FCursorX <> 0 then
+    begin
+      FMapCanvas.Pen.Color := clWhite;
+      FMapCanvas.Pen.Style := psSolid;
+      FMapCanvas.Pen.Width := 1;
+
+      FMapCanvas.Brush.Color := clWhite;
+      FMapCanvas.Brush.Style := bsSolid;
+      FMap.ConvertCoord(CrsrX, CrsrY, FCursorX, FCursorY, 0);
+
+      FMapCanvas.Rectangle(Round(CrsrX)-1, Round(CrsrY)-15, Round(CrsrX)+1, Round(CrsrY)-4); // cursor bagian atas
+      FMapCanvas.Rectangle(Round(CrsrX)-1, Round(CrsrY)+15, Round(CrsrX)+1, Round(CrsrY)+4); // cursor bagian bawah
+
+      FMapCanvas.Rectangle(Round(CrsrX)-15, Round(CrsrY)-1, Round(CrsrX)-4, Round(CrsrY)+1); // cursor bagian kiri
+      FMapCanvas.Rectangle(Round(CrsrX)+4, Round(CrsrY)-1, Round(CrsrX)+15, Round(CrsrY)+1); // cursor bagian kanan
+    end;
+
 //    DrawAll(FMapCanvas, FMapConverter, FFlag);
   end;
+end;
+
+procedure TfrmRadar.FMapMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+posX, posY :Single;
+begin
+  // create cursor dan gambar cursor, juga kirim posisi cursor ke blackshark manager buat di set di form cursor
+  posX := x;
+  posY := y;
+  FMap.ConvertCoord(posX, posY, FCursorX, FCursorY, 1);
+//  FMapCanvas.Pen.Color := clWhite;
+//  FMapCanvas.Pen.Style := psClear;
+//  FMapCanvas.Pen.Width := 1;
+//
+//  FMapCanvas.Brush.Color := RGB(243, 235, 118);
+//  FMapCanvas.Brush.Style := bsSolid;
+//  FMapCanvas.Rectangle(x-1, y-6, x+1, y-6); // cursor bagian atas
+//  FMapCanvas.Rectangle(x-1, y+6, x+1, y+6); // cursor bagian bawah
 end;
 
 procedure TfrmRadar.FormCreate(Sender: TObject);
@@ -136,7 +205,7 @@ begin
   FDisplay.OwnShipHeadingVisible:= False;
   FDisplay.OuterRingCompassVisible:= True;
   FDisplay.SweepVisible:= False;
-  FDisplay.ContactShipHeadingVisible:= True;
+  FDisplay.ContactShipHeadingVisible:= false;
 
   FDisplay.BackgroundColor:= clBlack;
   FDisplay.CompasOuterRingColor:= clLime;

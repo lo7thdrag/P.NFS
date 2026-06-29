@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uSutBlacksharkManager;
 
 type
   TfrmOwnShip = class(TForm)
@@ -34,8 +34,8 @@ type
     { Public declarations }
   end;
 
-var
-  frmOwnShip: TfrmOwnShip;
+//var
+//  frmOwnShip: TfrmOwnShip;
 
 implementation
 
