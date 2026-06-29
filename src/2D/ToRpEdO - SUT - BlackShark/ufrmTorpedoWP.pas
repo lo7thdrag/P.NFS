@@ -131,8 +131,6 @@ type
     pnlTorpedoHomingStatusPlot: TPanel;
     pnlTorpedoParamSettings: TPanel;
     pnlToSo: TPanel;
-    pnlSystemStatus: TPanel;
-    pnlSystemInfo: TPanel;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;

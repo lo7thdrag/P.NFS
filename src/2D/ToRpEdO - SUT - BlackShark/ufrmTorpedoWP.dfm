@@ -1286,23 +1286,6 @@ object FrmTorpedoWP: TFrmTorpedoWP
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            object pnlSystemInfo: TPanel
-              Left = 0
-              Top = 0
-              Width = 293
-              Height = 236
-              Align = alClient
-              BevelOuter = bvNone
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWhite
-              Font.Height = -11
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              ParentFont = False
-              TabOrder = 0
-              ExplicitLeft = 1328
-              ExplicitTop = 1
-            end
           end
           object pnlGroupInfo: TPanel
             Left = 1
@@ -1383,23 +1366,6 @@ object FrmTorpedoWP: TFrmTorpedoWP
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 3
-                object pnlSystemStatus: TPanel
-                  Left = 1
-                  Top = 1
-                  Width = 437
-                  Height = 159
-                  Align = alClient
-                  BevelOuter = bvLowered
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWhite
-                  Font.Height = -11
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  ParentFont = False
-                  TabOrder = 0
-                  ExplicitLeft = 2
-                  ExplicitTop = 2
-                end
               end
             end
             object pnlGroupInfoBawah: TPanel
@@ -1488,7 +1454,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100004805F82A01000000050000001C000000000000000000000000
+          010001180100004805F82A010000000EF6DB501C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1497,15 +1463,15 @@ object FrmTorpedoWP: TFrmTorpedoWP
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100004805F82A01000000D92091751C00000000000000000000000000000000
+          0100004805F82A01000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          00000000000000000000000000000000000000000000000002000050E9970044
-          E997007E91065080ED97004EA20550B71B065005000000000000000000000000
+          000000000000000000000000000000000000000000000000020000000000000A
+          0000006D0065003CE2970000000000A4E6970010506F1F000000000000000000
           000088B3400000000000408F400001000001}
       end
     end

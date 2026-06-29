@@ -8,7 +8,7 @@ uses
   RzButton, RzRadChk, uSutBlacksharkManager,
   UfrmRadar, uVehicleManager,
 
-  ufrmTorpedoAllocation;
+  ufrmTorpedoAllocation, ufrmSystemStatus, ufrmSystemInfo;
 
 //const
 //  MAX_TARGET = 50;
@@ -39,10 +39,12 @@ type
     tmrUpdateTP: TTimer;    procedure FormCreate(Sender: TObject);
     procedure tmrUpdateTPTimer(Sender: TObject);
   private
-    BearingCount : Integer;
-    FFrmRadar : TFrmRadar;
-
+    BearingCount          : Integer;
+    FFrmRadar             : TFrmRadar;
+    FFrmSystemStatus      : TfrmSystemStatus;
     FFrmTorpedoAllocation : TfrmTorpedoAllocation;
+    FFrmSystemInfo        : TfrmSystemInfo;
+
     procedure UpdateRadarDisplay;
     { Public declarations }
   end;
@@ -105,6 +107,30 @@ begin
       FFrmTorpedoAllocation.Parent := pnlToolArea;
       FFrmTorpedoAllocation.Align  := alClient;
       FFrmTorpedoAllocation.Show;
+    end;
+    {$ENDREGION}
+
+    {$REGION 'System Status'}
+    if not Assigned(FFrmSystemStatus) then
+    begin
+      pnlSystemStatus.Caption := '';
+
+      FFrmSystemStatus        := TfrmSystemStatus.Create(Self);
+      FFrmSystemStatus.Parent := pnlSystemStatus;
+      FFrmSystemStatus.Align  := alClient;
+      FFrmSystemStatus.Show;
+    end;
+    {$ENDREGION}
+
+    {$REGION 'System Status'}
+    if not Assigned(FFrmSystemInfo) then
+    begin
+      pnlSystemInfo.Caption := '';
+
+      FFrmSystemInfo        := TfrmSystemInfo.Create(Self);
+      FFrmSystemInfo.Parent := pnlSystemInfo;
+      FFrmSystemInfo.Align  := alClient;
+      FFrmSystemInfo.Show;
     end;
     {$ENDREGION}
 

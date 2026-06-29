@@ -2,8 +2,8 @@ object frmSystemStatus: TfrmSystemStatus
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 159
-  ClientWidth = 437
+  ClientHeight = 162
+  ClientWidth = 550
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,13 +16,13 @@ object frmSystemStatus: TfrmSystemStatus
   object pnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 437
-    Height = 159
+    Width = 550
+    Height = 162
     BevelOuter = bvNone
     TabOrder = 0
     object Label1: TLabel
       Left = 9
-      Top = 7
+      Top = 6
       Width = 20
       Height = 14
       Caption = 'MSI'
@@ -35,7 +35,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object imgMSI: TImage
       Left = 8
-      Top = 29
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -131,8 +131,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object Label2: TLabel
-      Left = 37
-      Top = 7
+      Left = 44
+      Top = 6
       Width = 24
       Height = 14
       Caption = 'NAV'
@@ -144,8 +144,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object imgNAV: TImage
-      Left = 43
-      Top = 29
+      Left = 50
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -241,8 +241,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object Label3: TLabel
-      Left = 69
-      Top = 7
+      Left = 83
+      Top = 6
       Width = 20
       Height = 14
       Caption = 'Rad'
@@ -254,8 +254,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 97
-      Top = 7
+      Left = 118
+      Top = 6
       Width = 30
       Height = 14
       Caption = 'RESM'
@@ -267,8 +267,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object imgRad: TImage
-      Left = 78
-      Top = 29
+      Left = 92
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -364,8 +364,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object imgRESM: TImage
-      Left = 113
-      Top = 29
+      Left = 134
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -461,8 +461,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object Label5: TLabel
-      Left = 135
-      Top = 7
+      Left = 163
+      Top = 6
       Width = 31
       Height = 14
       Caption = 'Perisc'
@@ -474,8 +474,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 174
-      Top = 7
+      Left = 209
+      Top = 6
       Width = 31
       Height = 14
       Caption = 'Sonar'
@@ -487,8 +487,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 213
-      Top = 7
+      Left = 255
+      Top = 6
       Width = 25
       Height = 14
       Caption = 'Mast'
@@ -500,8 +500,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object Label8: TLabel
-      Left = 246
-      Top = 7
+      Left = 295
+      Top = 6
       Width = 21
       Height = 14
       Caption = 'Link'
@@ -513,8 +513,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object imgPerisc: TImage
-      Left = 148
-      Top = 29
+      Left = 176
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -610,8 +610,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object imgSonar: TImage
-      Left = 183
-      Top = 29
+      Left = 218
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -707,8 +707,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object imgMast: TImage
-      Left = 218
-      Top = 29
+      Left = 260
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -804,8 +804,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object imgLink: TImage
-      Left = 253
-      Top = 29
+      Left = 302
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -901,8 +901,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object Label9: TLabel
-      Left = 275
-      Top = 7
+      Left = 331
+      Top = 6
       Width = 41
       Height = 14
       Caption = 'WTSRC'
@@ -914,8 +914,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object imgWTSRC: TImage
-      Left = 288
-      Top = 29
+      Left = 344
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -1011,8 +1011,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object Label10: TLabel
-      Left = 324
-      Top = 7
+      Left = 387
+      Top = 6
       Width = 19
       Height = 14
       Caption = 'TBI'
@@ -1024,8 +1024,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object imgTBI: TImage
-      Left = 323
-      Top = 29
+      Left = 386
+      Top = 28
       Width = 20
       Height = 20
       Picture.Data = {
@@ -1121,8 +1121,8 @@ object frmSystemStatus: TfrmSystemStatus
       Stretch = True
     end
     object lblSystemMode: TLabel
-      Left = 385
-      Top = 7
+      Left = 481
+      Top = 8
       Width = 49
       Height = 14
       Caption = 'Tactical'
@@ -1135,7 +1135,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object Label11: TLabel
       Left = 9
-      Top = 87
+      Top = 100
       Width = 81
       Height = 14
       Caption = 'Torpedo Mode'
@@ -1148,7 +1148,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object lblTorpedoMode: TLabel
       Left = 117
-      Top = 87
+      Top = 100
       Width = 50
       Height = 14
       Caption = 'Allocated'
@@ -1161,7 +1161,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object Label13: TLabel
       Left = 9
-      Top = 111
+      Top = 124
       Width = 89
       Height = 14
       Caption = 'Simulation Mode'
@@ -1174,7 +1174,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object lblSimulationMode: TLabel
       Left = 117
-      Top = 111
+      Top = 124
       Width = 17
       Height = 14
       Caption = 'Off'
@@ -1187,7 +1187,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object Label15: TLabel
       Left = 241
-      Top = 87
+      Top = 100
       Width = 95
       Height = 14
       Caption = 'Fire Authorization'
@@ -1200,7 +1200,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object lblFireAuthorization: TLabel
       Left = 349
-      Top = 87
+      Top = 100
       Width = 16
       Height = 14
       Caption = 'On'
@@ -1213,7 +1213,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object Label17: TLabel
       Left = 241
-      Top = 111
+      Top = 124
       Width = 42
       Height = 14
       Caption = 'Console'
@@ -1226,7 +1226,7 @@ object frmSystemStatus: TfrmSystemStatus
     end
     object lblConsole: TLabel
       Left = 349
-      Top = 111
+      Top = 124
       Width = 49
       Height = 14
       Caption = 'Sonar 04'
@@ -1238,8 +1238,8 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object pnlStatus: TPanel
-      Left = 351
-      Top = 16
+      Left = 431
+      Top = 9
       Width = 30
       Height = 30
       Caption = '...'
