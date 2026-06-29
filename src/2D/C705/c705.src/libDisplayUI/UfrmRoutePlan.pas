@@ -16,6 +16,8 @@ uses
 type
   TEditMode = (edNone, edAddWaypoint, edMoveWaypoint, edDeleteWaypoint, edAddRoute, edDeleteRoute);
 
+  TCurrentToolState = (stDefaultCenterView, stRuler, stZoomIn, stZoomOut, stMove, stSelectArrow);
+
   TfrmRoutePlan = class(TForm)
     {$REGION 'Components'}
     pnlBase: TPanel;
@@ -335,6 +337,7 @@ type
     FWaypointViews: TObjectList<TWaypointView>;
 
     FSelectMode : Boolean;
+    FCurrentTool: TCurrentToolState;
 
     function FindShipAt(X,Y: Integer): TShipContact;
     function FindWaypointAtScreen(X, Y: Integer): TWaypoint;
@@ -348,6 +351,9 @@ type
     procedure MapMove;
 
     procedure UpdatePosOwnShip;
+
+    procedure SetDefaultMapTool;
+    procedure SetDefaultFormView;
   public
     { Public declarations }
 
@@ -561,11 +567,12 @@ begin
   FRouteList := TObjectList<TRoutePlanning>.Create(True);
   FWaypointViews := TObjectList<TWaypointView>.Create(True);
 
+  { Set Default Tool Bar }
+  SetDefaultMapTool;
+
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
-var
-  deltaWidth: integer;
 begin
 //  pnlBasemap.Width := Width;
 //  pnlBasemap.Left := 0;
@@ -580,45 +587,7 @@ begin
 
   //FMap.Visible := False;
 
-  lblStatusMap.Caption := '';
-
-  advpgcRoutePlanCmd.ActivePage := advtsCmdSet;
-  advpgcTargetParam.ActivePage := advtsPage1;
-
-  pnlModeOperasi.Top := pnlHeaderTitle.Top + pnlHeaderTitle.Height;
-  pnlModeOperasi.Left := pnlBase.Left;
-  pnlModeOperasi.Caption := 'Passive Mode';   // default mode operasi route plan
-
-  // Panel Parameter Display / Sub Window-3
-  pnlParamDisplay.Left := pnlBase.Width - pnlParamDisplay.Width;
-  pnlParamDisplay.Top := pnlHeaderTitle.Top + pnlHeaderTitle.Height;
-  pnlParamDisplay.Visible := False;
-
-  deltaWidth := pnlParamDisplay.Width - pnlObstacleInfo.Width;
-
-  // Panel Obstacle Information / Sub Window-4
-  pnlObstacleInfo.Left := pnlParamDisplay.Left + deltaWidth;
-  pnlObstacleInfo.Top := pnlParamDisplay.Top;
-  pnlObstacleInfo.Visible := False;
-
-  pnlRoutePlanControlCmd.Left := pnlParamDisplay.Left;
-  pnlRoutePlanControlCmd.Top := pnlParamDisplay.Top;
-  pnlRoutePlanControlCmd.Visible := False;
-
-  // Panel Map Info / Sub window-1
-  pnlMapInfo.Left := pnlBase.Left;
-  pnlMapInfo.Visible := True;
-  lblZoomRateMap.Caption := Format('%8.2f', [Self.FCurrentRange * C_Meter_To_NauticalMile]);
-
-  pnlNavInfo.Visible := False;
-
-  pnlWaypointLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
-  pnlWaypointLvl2.Left := btnMoveMap.Left;
-  pnlWaypointLvl2.Visible := False;
-
-  pnlIslandLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
-  pnlIslandLvl2.Left := btnDisplayChannel.Left;
-  pnlIslandLvl2.Visible := False;
+  SetDefaultFormView;
 end;
 
 procedure TfrmRoutePlan.InitMapMainForm(const GeosetPath: string);
@@ -634,16 +603,25 @@ begin
 end;
 
 {$REGION 'Map Section'}
-
 procedure TfrmRoutePlan.MapMove;
 begin
   FMap.CurrentTool := miPanTool;
-
+  FCurrentTool := stMove;
   lblStatusMap.Caption := 'Move Map';
 end;
 
 procedure TfrmRoutePlan.MapZoomIn;
 begin
+  FMap.CurrentTool := miZoomInTool;
+  FCurrentTool := stZoomIn;
+  lblStatusMap.Caption := 'Zoom In Map';
+  {
+  if FIndexRange > 0 then
+    Dec(FIndexRange);
+
+  SetMapRange(CRangeOperation[FIndexRange]);
+  }
+  {
   if self.FIndexRange > 0 then
   begin
     dec(self.FIndexRange);
@@ -656,10 +634,22 @@ begin
 
   //lblZoomRateMap.Caption := FloatToStr(Self.FCurrentRange * C_Meter_To_NauticalMile);
   lblZoomRateMap.Caption := Format('%8.2f', [Self.FCurrentRange * C_Meter_To_NauticalMile]);
+  }
 end;
 
 procedure TfrmRoutePlan.MapZoomOut;
 begin
+  FMap.CurrentTool := miZoomOutTool;
+  FCurrentTool := stZoomOut;
+  lblStatusMap.Caption := 'Zoom Out Map';
+
+  {
+  if FIndexRange < CCountRange - 1 then
+    Inc(FIndexRange);
+
+  SetMapRange(CRangeOperation[FIndexRange]);
+  }
+  {
   if self.FIndexRange < CCountRange - 1 then
   begin
     inc(self.FIndexRange);
@@ -671,6 +661,7 @@ begin
   FMap.ZoomTo((Self.FCurrentRange * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
 
   lblZoomRateMap.Caption := Format('%8.2f', [Self.FCurrentRange * C_Meter_To_NauticalMile]);
+  }
 end;
 
 procedure TfrmRoutePlan.LoadGeoset(const aGst: string);
@@ -894,8 +885,8 @@ begin
 
   lblNav_LongShip.Caption := FormatLongitude(OwnShip.Lon);
   lblNav_LatShip.Caption  := FormatLatitude(OwnShip.Lat);
-  lblNav_HdgLShip.Caption := '-90.00';
-  lblNav_HdgRShip.Caption := '90.00';
+  lblNav_HdgLShip.Caption := FormatFloat('0.00', NormalizeHeading(OwnShip.Heading - 90));//'-90.00';
+  lblNav_HdgRShip.Caption := FormatFloat('0.00', NormalizeHeading(OwnShip.Heading ++ 90));//'90.00';
 end;
 
 procedure TfrmRoutePlan.FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
@@ -1133,7 +1124,11 @@ begin
     // Ganti Cursor ke bentuk semula
     FMap.MousePointer := miDefaultCursor;
     FMap.CurrentTool := miArrowTool;
+    FCurrentTool := stSelectArrow;
   end;
+
+  if (FCurrentTool = stZoomIn) or (FCurrentTool = stZoomOut) then
+    lblZoomRateMap.Caption := FormatFloat('0.00', FMap.Zoom);
 
 end;
 
@@ -1150,6 +1145,8 @@ begin
 end;
 
 {$ENDREGION}
+
+{$REGION 'Tool Bar'}
 
 procedure TfrmRoutePlan.SetImgBtn;
 var
@@ -1224,21 +1221,8 @@ begin
   {$REGION ' Button Exit Rotue Plan '}
   btnExitRoutePl.Glyph.LoadFromFile(strpath + 'Button Exit Route Plan.bmp');
   {$ENDREGION}
-end;
 
-procedure TfrmRoutePlan.pnlShowMapInfoClick(Sender: TObject);
-begin
-  pnlShowMapInfo.Visible := False;
-  pnlMapInfo.Visible := True;
 end;
-
-procedure TfrmRoutePlan.pnlShowNavClick(Sender: TObject);
-begin
-  pnlShowNav.Visible := False;
-  pnlNavInfo.Visible := True;
-end;
-
-{$REGION 'Tool Bar'}
 
 procedure TfrmRoutePlan.btnToolBarsClick(Sender: TObject);
 var
@@ -1262,14 +1246,16 @@ begin
     100: begin
       FMap.MousePointer := miDefaultCursor;
       FMap.CurrentTool := miArrowTool;
+      FCurrentTool := stSelectArrow;
       FSelectMode := False;
 
       SimManager.RoutePlanMode := mPassive;
       (Sender as TSpeedButton).Tag := 0;
     end;
     1: begin
-      {$REGION 'Optimal Proportion'}
+      {$REGION 'Optimal Proportion / Default View'}
       FMap.CurrentTool := miArrowTool;
+      FCurrentTool := stSelectArrow;
 
       if not Assigned(VehicleMgr) then Exit;
 
@@ -1279,6 +1265,13 @@ begin
 
       FMap.CenterX := OwnShip.Lon;
       FMap.CenterY := OwnShip.Lat;
+
+      // Radius 180 km
+      FMap.ZoomTo(
+        ((C_DefaultViewRadiusKm * 1000) * C_Meter_To_NauticalMile) * 2,
+        OwnShip.Lon,
+        OwnShip.Lat
+      );
 
       FMap.Refresh;
 
@@ -1433,7 +1426,71 @@ begin
   advrbStartPt.Parent := advpgcTargetParam.ActivePage;
 end;
 
+procedure TfrmRoutePlan.SetDefaultFormView;
+var
+  deltaWidth: integer;
+begin
+  lblStatusMap.Caption := '';
+
+  advpgcRoutePlanCmd.ActivePage := advtsCmdSet;
+  advpgcTargetParam.ActivePage := advtsPage1;
+
+  pnlModeOperasi.Top := pnlHeaderTitle.Top + pnlHeaderTitle.Height;
+  pnlModeOperasi.Left := pnlBase.Left;
+  pnlModeOperasi.Caption := 'Passive Mode';   // default mode operasi route plan
+
+  // Panel Parameter Display / Sub Window-3
+  pnlParamDisplay.Left := pnlBase.Width - pnlParamDisplay.Width;
+  pnlParamDisplay.Top := pnlHeaderTitle.Top + pnlHeaderTitle.Height;
+  pnlParamDisplay.Visible := False;
+
+  deltaWidth := pnlParamDisplay.Width - pnlObstacleInfo.Width;
+
+  // Panel Obstacle Information / Sub Window-4
+  pnlObstacleInfo.Left := pnlParamDisplay.Left + deltaWidth;
+  pnlObstacleInfo.Top := pnlParamDisplay.Top;
+  pnlObstacleInfo.Visible := False;
+
+  pnlRoutePlanControlCmd.Left := pnlParamDisplay.Left;
+  pnlRoutePlanControlCmd.Top := pnlParamDisplay.Top;
+  pnlRoutePlanControlCmd.Visible := False;
+
+  // Panel Map Info / Sub window-1
+  pnlMapInfo.Left := pnlBase.Left;
+  pnlMapInfo.Visible := True;
+  lblZoomRateMap.Caption := Format('%8.2f', [Self.FCurrentRange * C_Meter_To_NauticalMile]);
+
+  pnlNavInfo.Visible := False;
+
+  pnlWaypointLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
+  pnlWaypointLvl2.Left := btnMoveMap.Left;
+  pnlWaypointLvl2.Visible := False;
+
+  pnlIslandLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
+  pnlIslandLvl2.Left := btnDisplayChannel.Left;
+  pnlIslandLvl2.Visible := False;
+end;
+
+procedure TfrmRoutePlan.SetDefaultMapTool;
+begin
+  FMap.CurrentTool := miArrowTool;
+  FCurrentTool := stSelectArrow;
+  lblStatusMap.Caption := '';
+end;
+
 {$ENDREGION}
+
+procedure TfrmRoutePlan.pnlShowMapInfoClick(Sender: TObject);
+begin
+  pnlShowMapInfo.Visible := False;
+  pnlMapInfo.Visible := True;
+end;
+
+procedure TfrmRoutePlan.pnlShowNavClick(Sender: TObject);
+begin
+  pnlShowNav.Visible := False;
+  pnlNavInfo.Visible := True;
+end;
 
 procedure TfrmRoutePlan.pnlHeaderTitleMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin

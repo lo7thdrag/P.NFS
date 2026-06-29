@@ -564,12 +564,6 @@ type
     imgLoadC705StarboardLauncher1: TImage;
     lblC705StarboardLauncher1: TLabel;
     btnC705StarboardLoading: TButton;
-    lblStbdC7051: TLabel;
-    lblStbdC7052: TLabel;
-    lblPortC7052: TLabel;
-    lblPortC7051: TLabel;
-    lblShowPanelFrom: TLabel;
-    memoDebugState: TMemo;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -2506,6 +2500,7 @@ var
   WeaponShip  : TWeaponOnShip;
   i: Integer;
 begin
+  {
   for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
   begin
     if Assigned(SimManager.TrackObject.WeaponOnShip_List[i]) then begin
@@ -2526,6 +2521,7 @@ begin
       end;
     end;
   end;
+  }
 end;
 
 procedure TfWeaponStatus.ASROCClickCheckBox(Sender: TObject);
@@ -3155,6 +3151,7 @@ procedure TfWeaponStatus.grpC705StatusConsoleMouseDown(Sender: TObject;
 begin
   if (ssShift in Shift) then
   begin
+    {
     lblPortC7051.Visible := not lblPortC7051.Visible;
     lblPortC7052.Visible := not lblPortC7052.Visible;
     lblStbdC7051.Visible := not lblStbdC7051.Visible;
@@ -3163,6 +3160,7 @@ begin
     memoDebugState.Visible := not memoDebugState.Visible;
 
     lblShowPanelFrom.Visible := not lblShowPanelFrom.Visible;
+    }
   end;
 end;
 
@@ -5070,7 +5068,6 @@ begin
               tsLoading : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgLoading);
               tsLaunch  : LoadImageLight(imgLoadC705StarboardLauncher1, LoadImgRunning);
             end;
-            lblstbdC7051.Caption := 'Stbd 1: ' + IntToStr(Ord(WeaponC705.LauncherStbd));
 
             //loading Launcher Port
             case WeaponC705.LauncherPort of
@@ -5078,7 +5075,6 @@ begin
               tsLoading : LoadImageLight(imgLoadC705PortLauncher1, LoadImgLoading);
               tsLaunch  : LoadImageLight(imgLoadC705PortLauncher1, LoadImgRunning);
             end;
-            lblPortC7051.Caption := 'Port 1: ' + IntToStr(Ord(WeaponC705.LauncherPort));
 
           end;
           {$ENDREGION}
