@@ -8,7 +8,7 @@ uses
   RzButton, RzRadChk, uSutBlacksharkManager,
   UfrmRadar, uVehicleManager,
 
-  ufrmTorpedoAllocation, ufrmSystemStatus, ufrmSystemInfo;
+  ufrmTorpedoAllocation, ufrmSystemStatus, ufrmSystemInfo, ufrmCursor;
 
 //const
 //  MAX_TARGET = 50;
@@ -44,6 +44,7 @@ type
     FFrmSystemStatus      : TfrmSystemStatus;
     FFrmTorpedoAllocation : TfrmTorpedoAllocation;
     FFrmSystemInfo        : TfrmSystemInfo;
+    FFrmCursor            : TfrmCursor;
 
     procedure UpdateRadarDisplay;
     { Public declarations }
@@ -122,7 +123,7 @@ begin
     end;
     {$ENDREGION}
 
-    {$REGION 'System Status'}
+    {$REGION 'System Info'}
     if not Assigned(FFrmSystemInfo) then
     begin
       pnlSystemInfo.Caption := '';
@@ -131,6 +132,18 @@ begin
       FFrmSystemInfo.Parent := pnlSystemInfo;
       FFrmSystemInfo.Align  := alClient;
       FFrmSystemInfo.Show;
+    end;
+    {$ENDREGION}
+
+    {$REGION 'Cursor Position'}
+    if not Assigned(FFrmCursor) then
+    begin
+      pnlCursor.Caption := '';
+
+      FFrmCursor        := TfrmCursor.Create(Self);
+      FFrmCursor.Parent := pnlCursor;
+      FFrmCursor.Align  := alClient;
+      FFrmCursor.Show;
     end;
     {$ENDREGION}
 

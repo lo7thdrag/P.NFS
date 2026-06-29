@@ -89,7 +89,8 @@ uses
   ufrmTorpedoAllocation in 'Permanen Form\ufrmTorpedoAllocation.pas' {frmTorpedoAllocation},
   ufrmTorpedoParameterDepthSettings in 'Permanen Form\ufrmTorpedoParameterDepthSettings.pas' {frmTorpedoParameterDepthSettings},
   ufrmSystemStatus in 'Permanen Form\ufrmSystemStatus.pas' {frmSystemStatus},
-  ufrmSystemInfo in 'Permanen Form\ufrmSystemInfo.pas' {frmSystemInfo};
+  ufrmSystemInfo in 'Permanen Form\ufrmSystemInfo.pas' {frmSystemInfo},
+  ufrmCursor in 'Permanen Form\ufrmCursor.pas' {frmCursor};
 
 {$R *.res}
 
@@ -101,6 +102,7 @@ begin
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
   Application.CreateForm(TfrmSystemInfo, frmSystemInfo);
+  Application.CreateForm(TfrmCursor, frmCursor);
   //  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
 //  Application.CreateForm(TfrmWakeList, frmWakeList);
   Application.CreateForm(TfrmTorpedoAllocation, frmTorpedoAllocation);
