@@ -206,9 +206,9 @@ begin
   Height := 600;
 
 //  EnableComposited(FMap);
-  EnableComposited(pnlBtmRadar);
+//  EnableComposited(pnlBtmRadar);
   pnlBtmRadar.DoubleBuffered := false;
-  FMapTS.DoubleBuffered := false;
+//  FMapTS.DoubleBuffered := false;
 //  frmRadar.DoubleBuffered := false;
 //  FMap.RedrawInterval := 200;
 

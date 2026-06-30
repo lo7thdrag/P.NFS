@@ -86,7 +86,7 @@ var
 begin
   SetLayoutForm;
   UpdateAttachFormDisplay;
-  frmTacticalScreen.DoubleBuffered := true;
+  frmTacticalScreen.DoubleBuffered := false;
 //  pnlBase.DoubleBuffered := False;
 //  pnlTPGroup.DoubleBuffered := False;
 //  pnlTacticalPicture.DoubleBuffered := False;
@@ -173,7 +173,7 @@ begin
       FFrmRadar.Parent := pnlTacticalPicture;
       FFrmRadar.Align := alClient;
       FFrmRadar.Show;
-//      EnableComposited(pnlTacticalPicture);
+      EnableComposited(pnlTacticalPicture);
     end;
 
     if SutBlacksharkManager.isTorpedoAllocShow then

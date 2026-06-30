@@ -786,7 +786,8 @@ begin
 
       FMapCnv.MoveTo(Round(ScrX), Round(ScrY) - 8);
       FMapCnv.LineTo(Round(ScrX), Round(ScrY) + 8);
-//      Break;
+      Break;
+//      Continue;
     end
 
     else
@@ -814,6 +815,7 @@ begin
         FMapCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
         FMapCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
       end;
+//      Continue;
 //      Break;
     end;
   end;
