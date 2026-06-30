@@ -255,6 +255,7 @@ const
   CMax_Z = 64;
 
 { TFrmTacticalScreen }
+
 procedure EnableComposited(WinControl:TWinControl);
 var
   i:Integer;
@@ -267,6 +268,7 @@ begin
     if WinControl.Controls[i] is TWinControl then
       EnableComposited(TWinControl(WinControl.Controls[i]));
 end;
+
 function ZoomIndexToScale(const i: Integer): double;
 begin
   if i < -3 then
@@ -2316,17 +2318,17 @@ begin
   {$ENDREGION}
 
   {$REGION 'Homing Status Plot'}
-  if not Assigned(FFrmTorpedoHomingStatusPlot) then
-  begin
-    pnlTorpedoHomingStatusPlot.Caption := '';
-
-    FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
-    FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
-    FFrmTorpedoHomingStatusPlot.Align  := alClient;
-    FFrmTorpedoHomingStatusPlot.Show;
-
-    pnlToSo.BringToFront;
-  end;
+//  if not Assigned(FFrmTorpedoHomingStatusPlot) then
+//  begin
+//    pnlTorpedoHomingStatusPlot.Caption := '';
+//
+//    FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
+//    FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
+//    FFrmTorpedoHomingStatusPlot.Align  := alClient;
+//    FFrmTorpedoHomingStatusPlot.Show;
+//
+//    pnlToSo.BringToFront;
+//  end;
   {$ENDREGION}
 
 end;

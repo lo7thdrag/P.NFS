@@ -86,6 +86,10 @@ var
 begin
   SetLayoutForm;
   UpdateAttachFormDisplay;
+  frmTacticalScreen.DoubleBuffered := true;
+//  pnlBase.DoubleBuffered := False;
+//  pnlTPGroup.DoubleBuffered := False;
+//  pnlTacticalPicture.DoubleBuffered := False;
 end;
 
 procedure TFrmTacticalScreen.SetLayoutForm;
@@ -146,6 +150,18 @@ begin
     FFrmTargetInControltS.Show;
   end;
   {$ENDREGION}
+
+  {$REGION 'Cursor Position'}
+  if not Assigned(FFrmCursor) then
+  begin
+    pnlCursor.Caption := '';
+
+    FFrmCursor        := TfrmCursor.Create(Self);
+    FFrmCursor.Parent := pnlCursor;
+    FFrmCursor.Align  := alClient;
+    FFrmCursor.Show;
+  end;
+  {$ENDREGION}
 end;
 
 procedure TFrmTacticalScreen.UpdateRadarDisplay;
@@ -153,12 +169,11 @@ begin
   if VehicleMgr.ObjectList <> nil then
   begin
     if not Assigned(FFrmRadar) then begin
-      EnableComposited(pnlTacticalPicture);
-
       FFrmRadar := TfrmRadar.Create(Self);
       FFrmRadar.Parent := pnlTacticalPicture;
       FFrmRadar.Align := alClient;
       FFrmRadar.Show;
+//      EnableComposited(pnlTacticalPicture);
     end;
 
     if SutBlacksharkManager.isTorpedoAllocShow then
@@ -213,17 +228,7 @@ begin
     end;
     {$ENDREGION}
 
-    {$REGION 'Cursor Position'}
-    if not Assigned(FFrmCursor) then
-    begin
-      pnlCursor.Caption := '';
 
-      FFrmCursor        := TfrmCursor.Create(Self);
-      FFrmCursor.Parent := pnlCursor;
-      FFrmCursor.Align  := alClient;
-      FFrmCursor.Show;
-    end;
-    {$ENDREGION}
 
     Exit;
   end;

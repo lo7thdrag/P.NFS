@@ -17,7 +17,6 @@ uses
 
 type
   TfrmRadar = class(TForm)
-    PaintBox1: TPaintBox;
     pnlTopRadar: TPanel;
     pnlBtmRadar: TPanel;
     btnZoomIn: TButton;
@@ -28,7 +27,7 @@ type
     ibBoxedZoom: TImageButton;
     ibGrab: TImageButton;
     lblZoomScaleSat: TLabel;
-    FMap: TMap;
+    FMapTS: TMap;
     ibZoomIn: TImageButton;
     ibZoomOut: TImageButton;
     lblMapFilter: TLabel;
@@ -39,11 +38,11 @@ type
     procedure tmrDisplayTimer(Sender: TObject);
     procedure btnZoomInClick(Sender: TObject);
     procedure btnZoomOutClick(Sender: TObject);
-    procedure FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch;
+    procedure FMapTSDrawUserLayer(ASender: TObject; const Layer: IDispatch;
       hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
     procedure ibGrabClick(Sender: TObject);
     procedure ibBoxedZoomClick(Sender: TObject);
-    procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
+    procedure FMapTSMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure lblCursorCenterClick(Sender: TObject);
     procedure lblOwnShipCenterClick(Sender: TObject);
@@ -124,21 +123,22 @@ begin
   // ownship center
 end;
 
-procedure TfrmRadar.FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch;
+procedure TfrmRadar.FMapTSDrawUserLayer(ASender: TObject; const Layer: IDispatch;
   hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
   var
-  Tick: UINT64;
+//  Tick: UINT64;
   CrsrX, CrsrY : Single;
 begin
   if Assigned(FMapCanvas) then
   begin
     FMapCanvas.Handle := hOutputDC;
+//    FMapCanvas.Handle := hAttributeDC;
 
-    Tick := GetTickCount64;
-    FDeltaTimeDisplay := (Tick - FLastDisplayTick) / 1000.0;
-    FLastDisplayTick := Tick;
+//    Tick := GetTickCount64;
+//    FDeltaTimeDisplay := (Tick - FLastDisplayTick) / 1000.0;
+//    FLastDisplayTick := Tick;
 
-    FDisplay.Render(FDeltaTimeDisplay, FMapCanvas);
+
     if FCursorX <> 0 then
     begin
       FMapCanvas.Pen.Color := clWhite;
@@ -147,7 +147,7 @@ begin
 
       FMapCanvas.Brush.Color := clWhite;
       FMapCanvas.Brush.Style := bsSolid;
-      FMap.ConvertCoord(CrsrX, CrsrY, FCursorX, FCursorY, 0);
+      FMapTS.ConvertCoord(CrsrX, CrsrY, FCursorX, FCursorY, 0);
 
       FMapCanvas.Rectangle(Round(CrsrX)-1, Round(CrsrY)-15, Round(CrsrX)+1, Round(CrsrY)-4); // cursor bagian atas
       FMapCanvas.Rectangle(Round(CrsrX)-1, Round(CrsrY)+15, Round(CrsrX)+1, Round(CrsrY)+4); // cursor bagian bawah
@@ -156,11 +156,29 @@ begin
       FMapCanvas.Rectangle(Round(CrsrX)+4, Round(CrsrY)-1, Round(CrsrX)+15, Round(CrsrY)+1); // cursor bagian kanan
     end;
 
+//    else
+//    begin
+//      FMapCanvas.Pen.Color := clWhite;
+//      FMapCanvas.Pen.Style := psSolid;
+//      FMapCanvas.Pen.Width := 1;
+//
+//      FMapCanvas.Brush.Color := clWhite;
+//      FMapCanvas.Brush.Style := bsSolid;
+//      FMapTS.ConvertCoord(CrsrX, CrsrY, FCursorX, FCursorY, 0);
+//
+//      FMapCanvas.Rectangle(Round(FMapTS.Width/2)-1, Round(FMapTS.Height/2)-15, Round(FMapTS.Width/2)+1, Round(FMapTS.Height/2)-4); // cursor bagian atas
+//      FMapCanvas.Rectangle(Round(FMapTS.Width/2)-1, Round(FMapTS.Height/2)+15, Round(FMapTS.Width/2)+1, Round(FMapTS.Height/2)+4); // cursor bagian bawah
+//
+//      FMapCanvas.Rectangle(Round(FMapTS.Width/2)-15, Round(FMapTS.Height/2)-1, Round(FMapTS.Width/2)-4, Round(FMapTS.Height/2)+1); // cursor bagian kiri
+//      FMapCanvas.Rectangle(Round(FMapTS.Width/2)+4, Round(FMapTS.Height/2)-1, Round(FMapTS.Width/2)+15, Round(FMapTS.Height/2)+1); // cursor bagian kanan
+//    end;
+
+    FDisplay.Render(FMapCanvas);
 //    DrawAll(FMapCanvas, FMapConverter, FFlag);
   end;
 end;
 
-procedure TfrmRadar.FMapMouseDown(Sender: TObject; Button: TMouseButton;
+procedure TfrmRadar.FMapTSMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
 posX, posY :Single;
@@ -168,7 +186,9 @@ begin
   // create cursor dan gambar cursor, juga kirim posisi cursor ke blackshark manager buat di set di form cursor
   posX := x;
   posY := y;
-  FMap.ConvertCoord(posX, posY, FCursorX, FCursorY, 1);
+  FMapTS.ConvertCoord(posX, posY, FCursorX, FCursorY, 1); // 1 berarti ngisi ke kanan (geo), 0 berarti ngisi ke kiri(screen)
+  SutBlacksharkManager.CursorX := fcursorX;
+  SutBlacksharkManager.CursorY := FCursorY;
 //  FMapCanvas.Pen.Color := clWhite;
 //  FMapCanvas.Pen.Style := psClear;
 //  FMapCanvas.Pen.Width := 1;
@@ -185,14 +205,14 @@ begin
   Width := 800;
   Height := 600;
 
-  EnableComposited(FMap);
+//  EnableComposited(FMap);
   EnableComposited(pnlBtmRadar);
-  pnlBtmRadar.DoubleBuffered := False;
-  FMap.DoubleBuffered := False;
+  pnlBtmRadar.DoubleBuffered := false;
+  FMapTS.DoubleBuffered := false;
 //  frmRadar.DoubleBuffered := false;
+//  FMap.RedrawInterval := 200;
 
-
-  FDisplay := TRadarDisplay.Create(FMap, 0, VehicleMgr.ObjectList);
+  FDisplay := TRadarDisplay.Create(FMapTS, 0, VehicleMgr.ObjectList);
 
   FDisplay.OwnShipID:= 0;
   FDisplay.RadarRangeNM:= 60.0;
@@ -218,7 +238,7 @@ begin
   FDisplay.ContactTrackedColor:= clLime;
   FDisplay.ContactTrackedTextColor:= clLime;
 
-  FLastDisplayTick := GetTickCount64;
+//  FLastDisplayTick := GetTickCount64;
 //  FDisplayFPS:= 25;
 
 //  tmrDisplay.Interval := Trunc(1000 / FDisplayFPS);
@@ -234,20 +254,20 @@ var i: integer;
   mInfo : CMapXLayerInfo;
 begin
   InitOleVariant(z);
-  FMap.Layers.RemoveAll;
+  FMapTS.Layers.RemoveAll;
 
   if (aGst <> '') and  FileExists(aGst) then begin
-    FMap.Geoset := aGst;
+    FMapTS.Geoset := aGst;
     mInfo := CoLayerInfo.Create;
     mInfo.type_ := miLayerInfoTypeUserDraw ;
     mInfo.AddParameter('Name', 'Animation');
-    FLyrDraw := FMap.Layers.Add(mInfo, 1);
-    FMap.Layers.AnimationLayer := FLyrDraw;
-    FMap.BackColor := $000000000;
-    FMap.MapUnit := miUnitNauticalMile;
-    FMap.CenterX := 112.75;
-    fmap.CenterY := -7.2;
-    FMap.ZoomTo(50, FMap.CenterX, FMap.CenterY);
+    FLyrDraw := FMapTS.Layers.Add(mInfo, 1);
+    FMapTS.Layers.AnimationLayer := FLyrDraw;
+    FMapTS.BackColor := $000000000;
+    FMapTS.MapUnit := miUnitNauticalMile;
+    FMapTS.CenterX := 112.75;
+    FMapTS.CenterY := -7.2;
+    FMapTS.ZoomTo(50, FMapTS.CenterX, FMapTS.CenterY);
   end
 end;
 
@@ -255,6 +275,7 @@ procedure TfrmRadar.tmrDisplayTimer(Sender: TObject);
 var
   Tick: UINT64;
 begin
+//  FMap.Refresh;
 //  Tick := GetTickCount64;
 //  FDeltaTimeDisplay := (Tick - FLastDisplayTick) / 1000.0;
 //  FLastDisplayTick := Tick;

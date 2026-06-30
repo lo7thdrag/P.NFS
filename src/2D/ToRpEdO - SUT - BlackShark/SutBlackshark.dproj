@@ -270,24 +270,26 @@
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmTorpedoAllocation.pas">
             <Form>frmTorpedoAllocation</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmTorpedoParameterDepthSettings.pas">
             <Form>frmTorpedoParameterDepthSettings</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmSystemStatus.pas">
             <Form>frmSystemStatus</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmSystemInfo.pas">
             <Form>frmSystemInfo</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmCursor.pas">
             <Form>frmCursor</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\ShareLib\LibSensor\uTrackFunction.pas"/>
+        <DCCReference Include="..\ShareLib\LibSensor\uDetected.pas"/>
+        <DCCReference Include="..\ShareLib\LibSensor\uLibTDCTracks.pas"/>
+        <DCCReference Include="..\ShareLib\LibObject\uRadarTracks.pas"/>
+        <DCCReference Include="..\ShareLib\LibTDC_WCC\uLibTDCDisplay.pas"/>
+        <DCCReference Include="..\ShareLib\LibTDC_WCC\uTDCConstan.pas"/>
+        <DCCReference Include="..\ShareLib\LibBaseSystem\uStringFunction.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

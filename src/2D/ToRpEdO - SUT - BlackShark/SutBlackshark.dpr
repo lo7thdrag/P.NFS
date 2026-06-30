@@ -90,7 +90,14 @@ uses
   ufrmTorpedoParameterDepthSettings in 'Permanen Form\ufrmTorpedoParameterDepthSettings.pas' {frmTorpedoParameterDepthSettings},
   ufrmSystemStatus in 'Permanen Form\ufrmSystemStatus.pas' {frmSystemStatus},
   ufrmSystemInfo in 'Permanen Form\ufrmSystemInfo.pas' {frmSystemInfo},
-  ufrmCursor in 'Permanen Form\ufrmCursor.pas' {frmCursor};
+  ufrmCursor in 'Permanen Form\ufrmCursor.pas' {frmCursor},
+  uTrackFunction in '..\ShareLib\LibSensor\uTrackFunction.pas',
+  uDetected in '..\ShareLib\LibSensor\uDetected.pas',
+  uLibTDCTracks in '..\ShareLib\LibSensor\uLibTDCTracks.pas',
+  uRadarTracks in '..\ShareLib\LibObject\uRadarTracks.pas',
+  uLibTDCDisplay in '..\ShareLib\LibTDC_WCC\uLibTDCDisplay.pas',
+  uTDCConstan in '..\ShareLib\LibTDC_WCC\uTDCConstan.pas',
+  uStringFunction in '..\ShareLib\LibBaseSystem\uStringFunction.pas';
 
 {$R *.res}
 
@@ -100,13 +107,13 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
-  Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
-  Application.CreateForm(TfrmSystemInfo, frmSystemInfo);
-  Application.CreateForm(TfrmCursor, frmCursor);
+//  Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
+//  Application.CreateForm(TfrmSystemInfo, frmSystemInfo);
+//  Application.CreateForm(TfrmCursor, frmCursor);
   //  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
 //  Application.CreateForm(TfrmWakeList, frmWakeList);
-  Application.CreateForm(TfrmTorpedoAllocation, frmTorpedoAllocation);
-  Application.CreateForm(TfrmTorpedoParameterDepthSettings, frmTorpedoParameterDepthSettings);
+//  Application.CreateForm(TfrmTorpedoAllocation, frmTorpedoAllocation);
+//  Application.CreateForm(TfrmTorpedoParameterDepthSettings, frmTorpedoParameterDepthSettings);
   //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
 
   Application.Run;

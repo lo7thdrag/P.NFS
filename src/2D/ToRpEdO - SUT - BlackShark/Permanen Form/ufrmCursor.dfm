@@ -21,11 +21,13 @@ object frmCursor: TfrmCursor
     BevelOuter = bvNone
     TabOrder = 0
     object lblLat: TLabel
-      Left = 232
+      Left = 242
       Top = 26
       Width = 71
       Height = 16
-      Caption = '00'#176'00.000N '
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = '00'#176'00.000N'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -38,7 +40,9 @@ object frmCursor: TfrmCursor
       Top = 50
       Width = 81
       Height = 16
-      Caption = '000'#176'00.000NE'
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = '000'#176'00.000E'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -62,9 +66,9 @@ object frmCursor: TfrmCursor
     object lblDepth: TLabel
       Left = 416
       Top = 26
-      Width = 39
+      Width = 18
       Height = 16
-      Caption = '9999.9'
+      Caption = '0.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -119,5 +123,10 @@ object frmCursor: TfrmCursor
         'B/R Track'
         'CCG')
     end
+  end
+  object tmrUpdateLatLong: TTimer
+    OnTimer = tmrUpdateLatLongTimer
+    Left = 48
+    Top = 64
   end
 end

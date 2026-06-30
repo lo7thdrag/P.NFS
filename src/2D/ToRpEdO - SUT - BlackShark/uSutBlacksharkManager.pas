@@ -38,7 +38,7 @@ type
     FisTrackSelected: Boolean;
     FisTorpedoAllocShow: Boolean;
 
-    FCursorX, FCursorY : Integer;
+    FCursorX, FCursorY : Double;
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
@@ -63,6 +63,8 @@ type
     property SelectedTrack : TVehicle read FSelectedTrack;
     property isTrackSelected : Boolean read FisTrackSelected;
     property isTorpedoAllocShow : Boolean read FisTorpedoAllocShow write FisTorpedoAllocShow;
+    property CursorX : Double read FCursorX write FCursorX;
+    property CursorY : Double read FCursorY write FCursorY;
 //    property isTorpedoAllocShow : Boolean read FisTorpedoAllocShow write FisTorpedoAllocShow;
 
     // procedure to get and set from another form

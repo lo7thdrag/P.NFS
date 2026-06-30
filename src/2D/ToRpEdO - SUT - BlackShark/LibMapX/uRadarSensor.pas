@@ -5,13 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, System.Contnrs, System.Math,
-  Vcl.ExtCtrls, System.UITypes, MapXLib_TLB,
-
-  uShipModel,
-  uVehicle,
-  uLibConst,
-  uBaseFunction,
-  uBaseConst;
+  Vcl.ExtCtrls, System.UITypes, MapXLib_TLB, uVehicleManager, uShipModel,
+  uVehicle, uLibConst, uBaseFunction, uBaseConst;
 
 type
 
@@ -21,7 +16,7 @@ type
     FPaintBox: TPaintBox;
     FMapCnv : TCanvas;
 
-    FContactList, FRadarContacts: TObjectList;
+//    FContactList, FRadarContacts: TObjectList;
 
     FOwnShipID: Integer;
     FRadarRangeNM, FZoomLevel, FRPM: Double;
@@ -64,10 +59,6 @@ type
     procedure DrawOwnShipHeading(CX, CY, Radius: Integer;
       const OwnShip: TVehicle);
 
-    procedure PaintBoxMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure PaintBoxPaint(Sender: TObject);
-
     procedure DrawTicksDegree;
     procedure DrawLine(Canvas: TCanvas; X1, Y1, X2, Y2: Integer;
       Color: TColor; Width: Integer);
@@ -76,7 +67,7 @@ type
 
     constructor Create(const AMap: TMap; AOwnShipID: Integer; AContactList: TObjectList);
     destructor Destroy; override;
-    procedure Render(ADeltaTime: Double; aCnv: TCanvas);
+    procedure Render(aCnv: TCanvas);
     procedure Update(ADeltaTime: Double);
 
     property RadarCenterLat: Double read FRadarCenterLat;
@@ -114,11 +105,10 @@ implementation
 
 constructor TRadarDisplay.Create(const AMap: TMap; AOwnShipID: Integer; AContactList: TObjectList);
 begin
-  FContactList:= AContactList;
-  FRadarContacts := TObjectList.Create(True);
+//  FContactList:= AContactList;
+//  FRadarContacts := TObjectList.Create(True);
   FRadarMap := AMap;
 //  FMapCnv := AMapCnv;
-//  FPaintBox.OnMouseDown:= PaintBoxMouseDown; // rojek disable select target, select dari track by number
 //  FPaintBox.OnPaint:= PaintBoxPaint;
   OwnShipID := AOwnShipID;
   RadarRangeNM := 6.0;
@@ -130,7 +120,7 @@ end;
 
 destructor TRadarDisplay.Destroy;
 begin
-  FRadarContacts.Free;
+//  FRadarContacts.Free;
 end;
 
 procedure TRadarDisplay.Update(ADeltaTime: Double);
@@ -205,25 +195,25 @@ var
   VehicleContact: TVehicle;
   isFound: Boolean;
 begin
-  Result:= nil;
-  if Assigned(AShip) then begin
-    isFound:= False;
-    for i := 0 to FRadarContacts.Count - 1 do begin
-      VehicleContact:= TVehicle(FRadarContacts[i]);
-      if VehicleContact.ShipID = AShip.ShipID then begin
-        isFound:= True;
-        Break;
-      end;
-    end;
-
-    if not isFound then begin
-      VehicleContact:= TVehicle.Create;
-      VehicleContact.AssignFrom(AShip);
-      FRadarContacts.Add(VehicleContact);
-    end;
-
-    Result:= VehicleContact;
-  end;
+//  Result:= nil;
+//  if Assigned(AShip) then begin
+//    isFound:= False;
+//    for i := 0 to FRadarContacts.Count - 1 do begin
+//      VehicleContact:= TVehicle(FRadarContacts[i]);
+//      if VehicleContact.ShipID = AShip.ShipID then begin
+//        isFound:= True;
+//        Break;
+//      end;
+//    end;
+//
+//    if not isFound then begin
+//      VehicleContact:= TVehicle.Create;
+//      VehicleContact.AssignFrom(AShip);
+//      FRadarContacts.Add(VehicleContact);
+//    end;
+//
+//    Result:= VehicleContact;
+//  end;
 end;
 
 procedure TRadarDisplay.ClearBackground(const ACanvas: TCanvas);
@@ -336,6 +326,7 @@ begin
     Enlarge := TicksEnlarge;
     Degrees := StartAngle;
     Increment := AngleOffset/Ticks;
+    FMapCnv.Pen.Style := psSolid;
     FMapCnv.Pen.Color := clWhite;
     FMapCnv.Pen.Width := 2;
     FMapCnv.Ellipse(R.Left, R.Top, R.Right, R.Bottom);
@@ -440,42 +431,42 @@ end;
 //  end;
 //end;
 
-procedure TRadarDisplay.PaintBoxMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-var
-  i, CX, CY, Radius, Minus, DX, DY: Integer;
-  V: TVehicle;
-  PXNM, RelX, RelY, EffRange, LatAdj: Double;
-begin
-  CX := FRadarMap.Width div 2;
-  CY := FRadarMap.Height div 2;
-  Radius := Min(CX, CY);
-  Minus:= Trunc(((100.0-FRadarRadiusPercentage)/100.0)*Radius);
-  Radius:= Radius - Minus;
-  EffRange := FRadarRangeNM / FZoomLevel;
-  PXNM := Radius / EffRange;
-  LatAdj := Cos(DegToRad(FRadarCenterLat));
-  for i := 0 to FContactList.Count - 1 do
-  begin
-    V := TVehicle(FContactList[i]);
-    if V.ShipID = FOwnShipID then
-      Continue;
-    RelY := (V.PosY - FRadarCenterLat) * 60.0;
-    RelX := (V.PosX - FRadarCenterLon) * (60.0 * LatAdj);
-    DX := CX + Round(RelX * PXNM);
-    DY := CY - Round(RelY * PXNM);
-    if (Abs(X - DX) < 15) and (Abs(Y - DY) < 15) then
-    begin
-      V.IsTracked := not V.IsTracked;
-      Exit;
-    end;
-  end;
-end;
+//procedure TRadarDisplay.PaintBoxMouseDown(Sender: TObject; Button: TMouseButton;
+//  Shift: TShiftState; X, Y: Integer);
+//var
+//  i, CX, CY, Radius, Minus, DX, DY: Integer;
+//  V: TVehicle;
+//  PXNM, RelX, RelY, EffRange, LatAdj: Double;
+//begin
+//  CX := FRadarMap.Width div 2;
+//  CY := FRadarMap.Height div 2;
+//  Radius := Min(CX, CY);
+//  Minus:= Trunc(((100.0-FRadarRadiusPercentage)/100.0)*Radius);
+//  Radius:= Radius - Minus;
+//  EffRange := FRadarRangeNM / FZoomLevel;
+//  PXNM := Radius / EffRange;
+//  LatAdj := Cos(DegToRad(FRadarCenterLat));
+//  for i := 0 to FContactList.Count - 1 do
+//  begin
+//    V := TVehicle(FContactList[i]);
+//    if V.ShipID = FOwnShipID then
+//      Continue;
+//    RelY := (V.PosY - FRadarCenterLat) * 60.0;
+//    RelX := (V.PosX - FRadarCenterLon) * (60.0 * LatAdj);
+//    DX := CX + Round(RelX * PXNM);
+//    DY := CY - Round(RelY * PXNM);
+//    if (Abs(X - DX) < 15) and (Abs(Y - DY) < 15) then
+//    begin
+//      V.IsTracked := not V.IsTracked;
+//      Exit;
+//    end;
+//  end;
+//end;
 
-procedure TRadarDisplay.PaintBoxPaint(Sender: TObject);
-begin
-//  Render(FDeltaTime);
-end;
+//procedure TRadarDisplay.PaintBoxPaint(Sender: TObject);
+//begin
+////  Render(FDeltaTime);
+//end;
 
 {
 procedure TRadarDisplay.DrawCompass(CX, CY, Radius: Integer; EffRange: Double);
@@ -761,166 +752,76 @@ begin
 end;
 }
 
-procedure TRadarDisplay.Render(ADeltaTime: Double; aCnv: TCanvas);
+procedure TRadarDisplay.Render(aCnv: TCanvas);
 var
-  i, CX, CY, Radius, Minus, DX, DY, RadarDX, RadarDY, VX, VY, PanelY: Integer;
-  RadarShip, Ship, OwnShip: TVehicle;
-  PXNM, RX, RY, RadarRX, RadarRY, Eff, LatAdj, Vec, Bearing, RadarBearing, Diff,
-  DegPerSec: Double;
+  i: Integer;
+  Ship, OwnShip: TVehicle;
+  MapX, MapY: Double;
+  ScrX, ScrY: Single;
 begin
   FMapCnv := aCnv;
-  CX := FRadarMap.Width div 2;
-  CY := FRadarMap.Height div 2;
-  Radius:= Min(CX, CY);
-  Minus:= Trunc(((100.0-FRadarRadiusPercentage)/100.0)*Radius);
-  Radius:= Radius - Minus;
-
   OwnShip := nil;
-  for i := 0 to FContactList.Count - 1 do
-    if TVehicle(FContactList[i]).ShipID = OwnShipID then
+  for i := 0 to VehicleMgr.ObjectList.Count - 1 do
+  begin
+    if TVehicle(VehicleMgr.ObjectList[i]).ShipID = OwnShipID then
     begin
-      OwnShip := TVehicle(FContactList[i]);
-      Break;
+      OwnShip := TVehicle(VehicleMgr.ObjectList[i]);
+      FRadarMap.CenterX := OwnShip.PosX;
+      FRadarMap.CenterY := OwnShip.PosY;
+
+      MapX:= OwnShip.PosX;
+      MapY:= OwnShip.PosY;
+
+      FRadarMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+      FMapCnv.Pen.Color := FOwnShipColor;
+      FMapCnv.Pen.Style := psSolid;
+      FMapCnv.Pen.Width := 2;
+      FMapCnv.Brush.Color := FOwnShipColor;
+      FMapCnv.Brush.Style:= bsClear;
+      FMapCnv.Ellipse(Round(ScrX) - 8, Round(ScrY) - 8, Round(ScrX) + 8, Round(ScrY) + 8);
+
+      FMapCnv.MoveTo(Round(ScrX) - 8, Round(ScrY));
+      FMapCnv.LineTo(Round(ScrX) + 8, Round(ScrY));
+
+      FMapCnv.MoveTo(Round(ScrX), Round(ScrY) - 8);
+      FMapCnv.LineTo(Round(ScrX), Round(ScrY) + 8);
+//      Break;
+    end
+
+    else
+    begin
+      Ship := TVehicle(VehicleMgr.ObjectList[i]);
+
+      MapX:= Ship.PosX;
+      MapY:= Ship.PosY;
+
+      FRadarMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+      FMapCnv.Pen.Color := FMapCnv.Brush.Color;
+      FMapCnv.Pen.Style := psClear;
+      FMapCnv.Pen.Width := 1;
+
+      FMapCnv.Brush.Color := RGB(243, 235, 118);
+      FMapCnv.Brush.Style := bsSolid;
+      if Ship.Domain = 1 then
+      begin
+        FMapCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+        FMapCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 10, Round(ScrX) + 5, Round(ScrY) + 10);
+      end
+      else if Ship.Domain = 3 then
+      begin
+        FMapCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+        FMapCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
+      end;
+//      Break;
     end;
-  if not Assigned(OwnShip) then
-    Exit;
+  end;
 
-  FRadarCenterLat := OwnShip.PosY;
-  FRadarCenterLon := OwnShip.PosX;
-  FRadarMap.CenterX := OwnShip.PosX;
-  FRadarMap.CenterY := OwnShip.PosY;
-  LatAdj := Cos(DegToRad(FRadarCenterLat));
-  Eff := RadarRangeNM / ZoomLevel;
-  PXNM := Radius / Eff;
-  DegPerSec := (RPM * 360.0) / 60.0;
-  FSweepAngle := FSweepAngle + (DegPerSec * ADeltaTime);
-  while FSweepAngle >= 360 do
-    FSweepAngle := FSweepAngle - 360;
-
-//  ClearBackground(FMapCnv);
-
-  if FSweepVisible then
-    DrawSmoothSweep(CX, CY, Radius, FSweepTrailWidth);
+//  if not Assigned(OwnShip) then
+//    Exit;
 
   DrawTicksDegree;
-  //DrawCompass(CX, CY, Radius, Eff);
-
-  if FOwnShipHeadingVisible then
-  begin
-    DrawOwnShipHeading(CX, CY, Radius, OwnShip);
-  end;
-
-  PanelY := 20;
-  for i := 0 to FContactList.Count - 1 do
-  begin
-    Ship := TVehicle(FContactList[i]);
-    RadarShip:= UpdateRadarContactList(Ship);
-    RadarShip.IsTracked:= Ship.IsTracked;
-
-    RY := (Ship.PosY - FRadarCenterLat) * 60.0;
-    RX := (Ship.PosX - FRadarCenterLon) * (60.0 * LatAdj);
-    RadarRY := (RadarShip.PosY - FRadarCenterLat) * 60.0;
-    RadarRX := (RadarShip.PosX - FRadarCenterLon) * (60.0 * LatAdj);
-
-    Bearing := RadToDeg(ArcTan2(RX, RY));
-    if Bearing < 0 then
-      Bearing := Bearing + 360;
-    RadarBearing := RadToDeg(ArcTan2(RadarRX, RadarRY));
-    if RadarBearing < 0 then
-      RadarBearing := RadarBearing + 360;
-
-    Diff := Abs(FSweepAngle - Bearing);
-    if (Diff < (DegPerSec * ADeltaTime)) or (Diff > 360 - (DegPerSec * ADeltaTime))
-    then begin
-      Ship.LastHit := 1.0;
-//      RadarShip.LastHit:= Ship.LastHit;
-      RadarShip.AssignFrom(Ship);
-    end else begin
-      Ship.LastHit := Max(0, Ship.LastHit - (0.2 * ADeltaTime));
-      RadarShip.LastHit := Ship.LastHit;
-    end;
-
-    if Sqr(RX * PXNM) + Sqr(RY * PXNM) <= Sqr(Radius) then
-    begin
-      DX := CX + Round(RX * PXNM);
-      DY := CY - Round(RY * PXNM);
-
-      RadarDX := CX + Round(RadarRX * PXNM);
-      RadarDY := CY - Round(RadarRY * PXNM);
-
-      if Ship.ShipID = OwnShipID then
-      begin
-        FMapCnv.Pen.Color := FOwnShipColor;
-        FMapCnv.Pen.Style := psSolid;
-        FMapCnv.Pen.Width := 2;
-        FMapCnv.Brush.Color := FOwnShipColor;
-        FMapCnv.Brush.Style:= bsClear;
-        FMapCnv.Ellipse(DX - 8, DY - 8, DX + 8, DY + 8);
-
-        FMapCnv.MoveTo(DX - 8, DY);
-        FMapCnv.LineTo(DX + 8, DY);
-
-        FMapCnv.MoveTo(DX, DY - 8);
-        FMapCnv.LineTo(DX, DY + 8);
-      end
-      else if (Ship.LastHit > 0.01) {or Ship.IsTracked} then
-      begin
-
-        // Draw Contact
-        FMapCnv.Pen.Color := FMapCnv.Brush.Color;
-        FMapCnv.Pen.Style := psClear;
-        FMapCnv.Pen.Width := 1;
-
-        FMapCnv.Brush.Color := RGB(243, 235, 118);
-        FMapCnv.Brush.Style := bsSolid;
-        if Ship.Domain = 1 then
-        begin
-          FMapCnv.Ellipse(RadarDX - 10, RadarDY - 5, RadarDX + 10, RadarDY + 5);
-          FMapCnv.Ellipse(RadarDX - 5, RadarDY - 10, RadarDX + 5, RadarDY + 10);
-        end
-        else if Ship.Domain = 3 then
-        begin
-          FMapCnv.Ellipse(RadarDX - 10, RadarDY - 5, RadarDX + 10, RadarDY + 5);
-          FMapCnv.Ellipse(RadarDX - 5, RadarDY - 5, RadarDX + 5, RadarDY + 10);
-        end;
-
-        // Draw Contact
-        FMapCnv.Pen.Style := psSolid;
-        FMapCnv.Pen.Width := 1;
-        FMapCnv.Brush.Style := bsClear;
-        FMapCnv.Pen.Color := clGray;
-
-        FMapCnv.TextOut(RadarDX+5, RadarDY-5, Format('%.4d',[RadarShip.ShipID]));
-
-        if FContactShipHeadingVisible then begin
-          Vec := 20;
-          VX := RadarDX + Round(Sin(DegToRad(RadarShip.HeadingDeg)) * Vec);
-          VY := RadarDY - Round(Cos(DegToRad(RadarShip.HeadingDeg)) * Vec);
-
-          FMapCnv.MoveTo(RadarDX, RadarDY);
-          FMapCnv.LineTo(VX, VY);
-        end;
-
-        if RadarShip.IsTracked then begin
-          FMapCnv.Pen.Color := FContactTrackedColor;
-          FMapCnv.Brush.Style := bsClear;
-          FMapCnv.Rectangle(RadarDX - 8, RadarDY - 8, RadarDX + 8, RadarDY + 8);
-
-          FMapCnv.Font.Color := FContactTrackedTextColor;
-          FMapCnv.TextOut(FMapCnv.ClipRect.Right - 150, PanelY,
-            Format('[%d] %s', [RadarShip.ShipID, RadarShip.UniqueID]));
-          FMapCnv.TextOut(FMapCnv.ClipRect.Right - 150,
-            PanelY + 15, Format('S:%0.1f K:%03.0f'#176,
-            [RadarShip.Speed_mps, RadarShip.HeadingDeg]));
-          Inc(PanelY, 45);
-        end;
-
-      end;
-    end;
-  end;
-
-
-
 end;
 
 end.
