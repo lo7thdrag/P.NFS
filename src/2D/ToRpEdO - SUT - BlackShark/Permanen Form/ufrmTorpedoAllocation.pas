@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
-  Vcl.StdCtrls, AdvPageControl;
+  Vcl.StdCtrls, AdvPageControl,
+
+  ufrmTorpedoParameterDepthSettings;
 
 type
   TfrmTorpedoAllocation = class(TForm)
@@ -132,8 +134,10 @@ type
     Label42: TLabel;
     Label43: TLabel;
     Label44: TLabel;
+    procedure pnlEngagementAnalysisStartClick(Sender: TObject);
+    procedure lblCloseClick(Sender: TObject);
   private
-    { Private declarations }
+    FFrmTorpedoParameterSettings : TfrmTorpedoParameterDepthSettings;
   public
     { Public declarations }
   end;
@@ -143,6 +147,27 @@ var
 
 implementation
 
+uses
+  ufrmTorpedoWP;
+
 {$R *.dfm}
+
+procedure TfrmTorpedoAllocation.lblCloseClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmTorpedoAllocation.pnlEngagementAnalysisStartClick(Sender: TObject);
+begin
+  if not Assigned(FFrmTorpedoParameterSettings) then
+  begin
+    frmTorpedoWP.pnlTorpedoParamSettings.Caption := '';
+
+    FFrmTorpedoParameterSettings        := TfrmTorpedoParameterDepthSettings.Create(Self);
+    FFrmTorpedoParameterSettings.Parent := frmTorpedoWP.pnlTorpedoParamSettings;
+    FFrmTorpedoParameterSettings.Align  := alClient;
+    FFrmTorpedoParameterSettings.Show;
+  end;
+end;
 
 end.
