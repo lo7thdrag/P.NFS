@@ -50,6 +50,7 @@ type
   function FormatLongitude(aLong: Double): string;
   function FormatLatitude(aLat: Double): string;
 
+  function NormalizeHeading(Hdg: Double): double;
 const
 
   C_Degree_To_NauticalMile = 60.0;
@@ -153,6 +154,17 @@ begin
   Min := (aLat - Deg) * 60;
 
   Result := Format('%d %.3f'' %s', [Deg, Min, Dir]);
+end;
+
+function NormalizeHeading(Hdg: Double): Double;
+begin
+  while Hdg < 0 do
+    Hdg := Hdg + 360;
+
+  while Hdg >= 360 do
+    Hdg := Hdg - 360;
+
+  Result := Hdg;
 end;
 
 end.

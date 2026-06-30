@@ -43,8 +43,10 @@ begin
     FfrmHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
     FfrmHomingStatusPlot.Parent := frmTorpedoWP.pnlTorpedoHomingStatusPlot;
     FfrmHomingStatusPlot.Align  := alClient;
-    FfrmHomingStatusPlot.Show;
   end;
+
+  FfrmHomingStatusPlot.Show;
+  FfrmHomingStatusPlot.BringToFront;
 end;
 
 end.

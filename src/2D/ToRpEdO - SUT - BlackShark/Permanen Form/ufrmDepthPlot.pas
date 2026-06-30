@@ -85,6 +85,7 @@ begin
     Font.Size  := 7;
 
     Pen.Color := clSilver;
+    Pen.Style := psSolid;
     Pen.Width := 1;
 
     // Line Right
@@ -110,11 +111,13 @@ begin
 
     // Line Yellow
     Pen.Color := clYellow;
+    Pen.Style := psSolid;
     MoveTo(GraphLeft, 5);
     LineTo(GraphLeft + GraphWidth, 5);
 
     // Line White
     Pen.Color := clWhite;
+    Pen.Style := psSolid;
     MoveTo(GraphLeft - 30, 308);
     LineTo(GraphLeft + GraphWidth + 30, 308);
 

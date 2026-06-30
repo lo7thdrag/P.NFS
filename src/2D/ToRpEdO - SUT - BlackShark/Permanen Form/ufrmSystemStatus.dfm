@@ -1147,7 +1147,7 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object lblTorpedoMode: TLabel
-      Left = 117
+      Left = 119
       Top = 100
       Width = 50
       Height = 14
@@ -1173,7 +1173,7 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object lblSimulationMode: TLabel
-      Left = 117
+      Left = 119
       Top = 124
       Width = 17
       Height = 14
@@ -1199,7 +1199,7 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object lblFireAuthorization: TLabel
-      Left = 405
+      Left = 416
       Top = 100
       Width = 16
       Height = 14
@@ -1225,7 +1225,7 @@ object frmSystemStatus: TfrmSystemStatus
       ParentFont = False
     end
     object lblConsole: TLabel
-      Left = 405
+      Left = 416
       Top = 124
       Width = 49
       Height = 14

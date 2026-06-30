@@ -65,6 +65,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object AdvPageTorpedoAllocation: TAdvPageControl
       Left = 4
@@ -3234,10 +3235,11 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           end
         end
         object pnlEngagementAnalysisStart: TPanel
-          Left = 112
+          Left = 104
           Top = 27
-          Width = 265
+          Width = 273
           Height = 25
+          Cursor = crHandPoint
           Caption = 'Start Engagement Analysis'
           Color = clGreen
           Font.Charset = DEFAULT_CHARSET
@@ -3248,6 +3250,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           ParentBackground = False
           ParentFont = False
           TabOrder = 1
+          OnClick = pnlEngagementAnalysisStartClick
         end
       end
       object AdvRealloc: TAdvTabSheet

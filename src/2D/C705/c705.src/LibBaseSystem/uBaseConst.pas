@@ -71,6 +71,7 @@ C_2_Pi          = 2.0 * Pi;
   C_FPS_TO_MPS = C_Feet_To_Meter / C_Minute_to_Second;
   C_MPS_TO_FPS = 1 / C_FPS_TO_MPS;
 
+  C_DefaultViewRadiusKm = 180; //km
 
 implementation
 

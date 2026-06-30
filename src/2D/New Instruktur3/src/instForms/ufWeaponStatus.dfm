@@ -6786,46 +6786,6 @@ object fWeaponStatus: TfWeaponStatus
             Width = 268
             Height = 1
           end
-          object lblStbdC7051: TLabel
-            Left = 302
-            Top = 204
-            Width = 38
-            Height = 13
-            Caption = 'Stbd 1: '
-            Visible = False
-          end
-          object lblStbdC7052: TLabel
-            Left = 302
-            Top = 230
-            Width = 38
-            Height = 13
-            Caption = 'Stbd 2: '
-            Visible = False
-          end
-          object lblPortC7052: TLabel
-            Left = 21
-            Top = 243
-            Width = 39
-            Height = 13
-            Caption = 'Port 2:  '
-            Visible = False
-          end
-          object lblPortC7051: TLabel
-            Left = 21
-            Top = 217
-            Width = 36
-            Height = 13
-            Caption = 'Port 1: '
-            Visible = False
-          end
-          object lblShowPanelFrom: TLabel
-            Left = 7
-            Top = 312
-            Width = 86
-            Height = 13
-            Caption = 'lblShowPanelFrom'
-            Visible = False
-          end
           object grpAssignC705: TGroupBox
             Left = 79
             Top = 328
@@ -7136,16 +7096,6 @@ object fWeaponStatus: TfWeaponStatus
               ParentFont = False
               TabOrder = 2
             end
-          end
-          object memoDebugState: TMemo
-            Left = 75
-            Top = 328
-            Width = 267
-            Height = 89
-            Lines.Strings = (
-              'memoDebugState')
-            TabOrder = 3
-            Visible = False
           end
         end
       end

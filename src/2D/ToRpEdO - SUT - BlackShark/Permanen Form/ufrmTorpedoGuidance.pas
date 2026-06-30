@@ -57,8 +57,10 @@ begin
     FFrmTorpedoHomingCommand        := TfrmHomingCommands.Create(Self);
     FFrmTorpedoHomingCommand.Parent := frmTorpedoWP.pnlTorpedoHomingCmd;
     FFrmTorpedoHomingCommand.Align  := alClient;
-    FFrmTorpedoHomingCommand.Show;
   end;
+
+  FFrmTorpedoHomingCommand.Show;
+  FFrmTorpedoHomingCommand.BringToFront;
 end;
 
 procedure TfrmTorpedoGuidanceWindow.lblMainGuidanceClick(Sender: TObject);
@@ -70,8 +72,10 @@ begin
     FFrmManualGuidance        := TfrmManualGuidance.Create(Self);
     FFrmManualGuidance.Parent := frmTorpedoWP.pnlTorpedoHomingCmd;
     FFrmManualGuidance.Align  := alClient;
-    FFrmManualGuidance.Show;
   end;
+
+  FFrmManualGuidance.Show;
+  FFrmManualGuidance.BringToFront;
 end;
 
 end.
