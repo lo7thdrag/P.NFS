@@ -97,17 +97,19 @@ uses
   uRadarTracks in '..\ShareLib\LibObject\uRadarTracks.pas',
   uLibTDCDisplay in '..\ShareLib\LibTDC_WCC\uLibTDCDisplay.pas',
   uTDCConstan in '..\ShareLib\LibTDC_WCC\uTDCConstan.pas',
-  uStringFunction in '..\ShareLib\LibBaseSystem\uStringFunction.pas';
+  uStringFunction in '..\ShareLib\LibBaseSystem\uStringFunction.pas',
+  uTransparentOverlay in 'uTransparentOverlay.pas';
 
 {$R *.res}
 
 begin
+  ReportMemoryLeaksOnShutdown := False;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
-//  Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
+  //  Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
 //  Application.CreateForm(TfrmSystemInfo, frmSystemInfo);
 //  Application.CreateForm(TfrmCursor, frmCursor);
   //  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);

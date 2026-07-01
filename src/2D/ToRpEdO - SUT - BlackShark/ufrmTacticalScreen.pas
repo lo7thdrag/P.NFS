@@ -10,7 +10,7 @@ uses
   uFormUtil, UfrmRadar, ufrmOwnShip, ufrmAlertandOpearatorMassage,
   ufmTargetInControl, uBaseFunction, ufrmTorpedoAllocation, ufrmSystemStatus,
   ufrmSystemInfo, ufrmCursor, uLibConst, uBaseConst, Vcl.OleCtrls, MapXLib_TLB,
-  AdvCombo, ImageButton;
+  AdvCombo, ImageButton, uTransparentOverlay;
 
 //const
 //  MAX_TARGET = 50;
@@ -22,7 +22,7 @@ type
     Strength: Integer;
   end;
 
-  TFrmTacticalScreen = class(TForm)
+   TFrmTacticalScreen = class(TForm)
     pnlBase: TPanel;
     pnlUpperInfo: TPanel;
     pnlOwnShip: TPanel;
@@ -57,6 +57,7 @@ type
     procedure FMapTPMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure cbbZoomScaleChange(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FMapTPMapViewChanged(Sender: TObject);
   private
     BearingCount: Integer;
     FFrmRadar: TFrmRadar;
@@ -69,12 +70,14 @@ type
     FFrmTorpedoAllocation: TfrmTorpedoAllocation;
     FFrmSystemInfo: TfrmSystemInfo;
     FFrmCursor: TfrmCursor;
-    FMapCanvas: TCanvas;
+//    FMapCanvas: TCanvas;
     FCursorX, FCursorY: Double;
     FLyrDraw: CMapXLayer;
 
-    MemBmp: TBitmap;
-    MapRect: TRect;
+//    MemBmp: TBitmap;
+//    MapRect: TRect;
+
+    FOverlay : TTransparentOverlay;
 
     procedure UpdateRadarDisplay;
     procedure SetLayoutForm;
@@ -84,6 +87,9 @@ type
     function Rotate(Width, Height, Radius: Integer; Degrees: Double): Winapi.Windows.TPoint;
     procedure DrawLine(Canvas: TCanvas; X1, Y1, X2, Y2: Integer; Color: TColor; Width: Integer);
     procedure LoadGeoset(const aGst: string); virtual;
+    procedure PassMouseToMap(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y:Integer);
+
+    procedure OverlayPaint(Sender: TObject; ACanvas: TCanvas);
     { Public declarations }
   end;
 
@@ -114,7 +120,7 @@ procedure TFrmTacticalScreen.cbbZoomScaleChange(Sender: TObject);
 var zoomScale : single;
 begin
   zoomScale := StrToFloat(cbbZoomScale.Text);
-  FMapTP.ZoomTo(3.7025 * zoomScale, FMapTP.CenterX, FMapTP.CenterY);
+  FMapTP.ZoomTo(3.92 * zoomScale, FMapTP.CenterX, FMapTP.CenterY);
 end;
 
 procedure TFrmTacticalScreen.DrawLine(Canvas: TCanvas; X1, Y1, X2, Y2: Integer; Color: TColor; Width: Integer);
@@ -236,60 +242,16 @@ begin
 end;
 
 procedure TFrmTacticalScreen.FMapTPDrawUserLayer(ASender: TObject; const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
-var
-  CrsrX, CrsrY: Single;
-//  MemBmp: TBitmap;
-//  MapRect: TRect;
 begin
-  FMapCanvas.Handle := hOutputDC;
-
-//  MemBmp:= TBitmap.Create;
-  try
-//    MapRect:= Rect(0, 0, FMapTP.Width, FMapTP.Height);
-//    MemBmp.Width:= MapRect.Width;
-//    MemBmp.Height:= MapRect.Height;
-//    MemBmp.PixelFormat:= pf32bit;
-    MemBmp.Canvas.CopyRect(MapRect, FMapCanvas, MapRect);
-
-    if FCursorX <> 0 then
-    begin
-      MemBmp.Canvas.Pen.Color := clWhite;
-      MemBmp.Canvas.Pen.Style := psSolid;
-      MemBmp.Canvas.Pen.Width := 1;
-
-      MemBmp.Canvas.Brush.Color := clWhite;
-      MemBmp.Canvas.Brush.Style := bsSolid;
-      FMapTP.ConvertCoord(CrsrX, CrsrY, FCursorX, FCursorY, 0);
-
-      MemBmp.Canvas.Rectangle(Round(CrsrX) - 1, Round(CrsrY) - 15, Round(CrsrX) + 1, Round(CrsrY) - 4); // cursor bagian atas
-      MemBmp.Canvas.Rectangle(Round(CrsrX) - 1, Round(CrsrY) + 15, Round(CrsrX) + 1, Round(CrsrY) + 4); // cursor bagian bawah
-
-      MemBmp.Canvas.Rectangle(Round(CrsrX) - 15, Round(CrsrY) - 1, Round(CrsrX) - 4, Round(CrsrY) + 1); // cursor bagian kiri
-      MemBmp.Canvas.Rectangle(Round(CrsrX) + 4, Round(CrsrY) - 1, Round(CrsrX) + 15, Round(CrsrY) + 1); // cursor bagian kanan
-
-//      FMapCanvas.Pen.Color := clWhite;
-//      FMapCanvas.Pen.Style := psSolid;
-//      FMapCanvas.Pen.Width := 1;
 //
-//      FMapCanvas.Brush.Color := clWhite;
-//      FMapCanvas.Brush.Style := bsSolid;
-//      FMapTP.ConvertCoord(CrsrX, CrsrY, FCursorX, FCursorY, 0);
-//
-//      FMapCanvas.Rectangle(Round(CrsrX) - 1, Round(CrsrY) - 15, Round(CrsrX) + 1, Round(CrsrY) - 4); // cursor bagian atas
-//      FMapCanvas.Rectangle(Round(CrsrX) - 1, Round(CrsrY) + 15, Round(CrsrX) + 1, Round(CrsrY) + 4); // cursor bagian bawah
-//
-//      FMapCanvas.Rectangle(Round(CrsrX) - 15, Round(CrsrY) - 1, Round(CrsrX) - 4, Round(CrsrY) + 1); // cursor bagian kiri
-//      FMapCanvas.Rectangle(Round(CrsrX) + 4, Round(CrsrY) - 1, Round(CrsrX) + 15, Round(CrsrY) + 1); // cursor bagian kanan
-    end;
+end;
 
-    DrawTicksDegree(MemBmp.Canvas);
-    Render(MemBmp.Canvas);
-
-    BitBlt(FMapCanvas.Handle, 0, 0, FMapTP.Width, FMapTP.Height,
-      MemBmp.Canvas.Handle, 0, 0, SRCCOPY);
-  finally
-//    MemBmp.Free
-  end;
+procedure TFrmTacticalScreen.FMapTPMapViewChanged(Sender: TObject);
+begin
+//  if Assigned(FOverlay) then
+//  begin
+//    FOverlay.Invalidate;
+//  end;
 end;
 
 procedure TFrmTacticalScreen.FMapTPMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -308,22 +270,37 @@ procedure TFrmTacticalScreen.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
-  MemBmp:= TBitmap.Create;
-  MapRect:= Rect(0, 0, FMapTP.Width, FMapTP.Height);
-  MemBmp.Width:= MapRect.Width;
-  MemBmp.Height:= MapRect.Height;
-  MemBmp.PixelFormat:= pf32bit;
+//  MemBmp:= TBitmap.Create;
+//  MapRect:= Rect(0, 0, FMapTP.Width, FMapTP.Height);
+//  MemBmp.Width:= MapRect.Width;
+//  MemBmp.Height:= MapRect.Height;
+//  MemBmp.PixelFormat:= pf32bit;
 
   SetLayoutForm;
   UpdateAttachFormDisplay;
 //  frmTacticalScreen.DoubleBuffered := false;
 
-  FMapCanvas := TCanvas.Create;
+//  FMapCanvas := TCanvas.Create;
   LoadGeoset('..\data\maps\IndonesiaBlackShark.gst');
-  EnableComposited(pnlTacticalPicture);
+
   pnlTacticalPicture.DoubleBuffered := False;
   FMapTP.DoubleBuffered := false;
+  EnableComposited(pnlTacticalPicture);
 
+  FMapTP.Align:= alClient;
+
+  FOverlay := TTransparentOverlay.Create(Self);
+  FOverlay.OnPaint:= OverlayPaint;
+  FOverlay.Parent := pnlTacticalPicture;
+  FOverlay.Align := alClient;
+  
+
+  FOverlay.BringToFront;
+
+  FOverlay.OnMouseDownEvent := PassMouseToMap;
+//  FOverlay.OnMouseMove := PassMouseToMap;
+  FOverlay.OnMouseUpEvent := PassMouseToMap;
+//  FOverlay.pa
 //  pnlBase.DoubleBuffered := False;
 //  pnlTPGroup.DoubleBuffered := False;
 //  pnlTacticalPicture.DoubleBuffered := False;
@@ -331,7 +308,7 @@ end;
 
 procedure TFrmTacticalScreen.FormDestroy(Sender: TObject);
 begin
-  MemBmp.Free;
+//  MemBmp.Free;
 end;
 
 procedure TFrmTacticalScreen.LoadGeoset(const aGst: string);
@@ -355,8 +332,24 @@ begin
     FMapTP.MapUnit := miUnitNauticalMile;
     FMapTP.CenterX := 112.75;
     FMapTP.CenterY := -7.2;
-    FMapTP.ZoomTo(3.7025 * 8, FMapTP.CenterX, FMapTP.CenterY); // 8 Mile circle radius
+    FMapTP.ZoomTo(3.92 * 8, FMapTP.CenterX, FMapTP.CenterY); // 8 Mile circle radius
   end
+end;   
+
+procedure TFrmTacticalScreen.PassMouseToMap(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+  var
+  Msg: UINT;
+  Param : WPARAM;
+begin
+  if Button = mbLeft then Msg := WM_LBUTTONDOWN
+  else Msg := WM_MOUSEMOVE;
+
+  Param := 0;
+  if Button = mbleft then Param := Param or MK_LBUTTON;
+
+  POstMessage(FMapTP.Handle, Msg, Param, MakeLParam(X, Y))
+
 end;
 
 procedure TFrmTacticalScreen.Render(aCnv: TCanvas);
@@ -367,70 +360,73 @@ var
   ScrX, ScrY: Single;
 begin
   OwnShip := nil;
-  for i := 0 to VehicleMgr.ObjectList.Count - 1 do
-  begin
-    if TVehicle(VehicleMgr.ObjectList[i]).ShipID = 0 then
+
+  if VehicleMgr.ObjectList.Count>0 then
+  
+    for i := 0 to VehicleMgr.ObjectList.Count - 1 do
     begin
-      OwnShip := TVehicle(VehicleMgr.ObjectList[i]);
-      FMapTP.CenterX := OwnShip.PosX;
-      FMapTP.CenterY := OwnShip.PosY;
-
-      MapX := OwnShip.PosX;
-      MapY := OwnShip.PosY;
-
-      FMapTP.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-
-      aCnv.Pen.Color := RGB(107, 157, 173);
-      aCnv.Pen.Style := psSolid;
-      aCnv.Pen.Width := 2;
-      aCnv.Brush.Color := RGB(107, 157, 173);
-      aCnv.Brush.Style := bsClear;
-      aCnv.Ellipse(Round(ScrX) - 8, Round(ScrY) - 8, Round(ScrX) + 8, Round(ScrY) + 8);
-
-      aCnv.MoveTo(Round(ScrX) - 8, Round(ScrY));
-      aCnv.LineTo(Round(ScrX) + 8, Round(ScrY));
-
-      aCnv.MoveTo(Round(ScrX), Round(ScrY) - 8);
-      aCnv.LineTo(Round(ScrX), Round(ScrY) + 8);
-//      Break;
-//      Continue;
-    end
-    else
-    begin
-      Ship := TVehicle(VehicleMgr.ObjectList[i]);
-
-      MapX := Ship.PosX;
-      MapY := Ship.PosY;
-
-      FMapTP.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-
-      aCnv.Pen.Color := clBlack;
-      aCnv.Pen.Style := psClear;
-      aCnv.Pen.Width := 1;
-
-      aCnv.Brush.Color := RGB(243, 235, 118);
-      aCnv.Brush.Style := bsSolid;
-      if Ship.Domain = 1 then
+      if TVehicle(VehicleMgr.ObjectList[i]).ShipID = 0 then
       begin
-        aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
-        aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 10, Round(ScrX) + 5, Round(ScrY) + 10);
+        OwnShip := TVehicle(VehicleMgr.ObjectList[i]);
+//        FMapTP.CenterX := OwnShip.PosX;
+//        FMapTP.CenterY := OwnShip.PosY;
+
+        MapX := OwnShip.PosX;
+        MapY := OwnShip.PosY;
+
+        FMapTP.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+        aCnv.Pen.Color := RGB(107, 157, 173);
+        aCnv.Pen.Style := psSolid;
+        aCnv.Pen.Width := 2;
+        aCnv.Brush.Color := RGB(107, 157, 173);
+        aCnv.Brush.Style := bsClear;
+        aCnv.Ellipse(Round(ScrX) - 8, Round(ScrY) - 8, Round(ScrX) + 8, Round(ScrY) + 8);
+
+        aCnv.MoveTo(Round(ScrX) - 8, Round(ScrY));
+        aCnv.LineTo(Round(ScrX) + 8, Round(ScrY));
+
+        aCnv.MoveTo(Round(ScrX), Round(ScrY) - 8);
+        aCnv.LineTo(Round(ScrX), Round(ScrY) + 8);
+  //      Break;
+  //      Continue;
       end
-      else if Ship.Domain = 3 then
+      else
       begin
-        aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
-        aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
+        Ship := TVehicle(VehicleMgr.ObjectList[i]);
+
+        MapX := Ship.PosX;
+        MapY := Ship.PosY;
+
+        FMapTP.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+        aCnv.Pen.Color := clBlack;
+        aCnv.Pen.Style := psClear;
+        aCnv.Pen.Width := 1;
+
+        aCnv.Brush.Color := RGB(243, 235, 118);
+        aCnv.Brush.Style := bsSolid;
+        if Ship.Domain = 1 then
+        begin
+          aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+          aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 10, Round(ScrX) + 5, Round(ScrY) + 10);
+        end
+        else if Ship.Domain = 3 then
+        begin
+          aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+          aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
+        end;
+
+        aCnv.Pen.Style := psSolid;
+        aCnv.Pen.Width := 1;
+        aCnv.Brush.Style := bsClear;
+        aCnv.Pen.Color := clGray;
+
+        aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.4d',[Ship.ShipID])); // perlu diganti dengan ID object
+  //      Continue;
+  //      Break;
       end;
-
-      aCnv.Pen.Style := psSolid;
-      aCnv.Pen.Width := 1;
-      aCnv.Brush.Style := bsClear;
-      aCnv.Pen.Color := clGray;
-
-      aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.4d',[Ship.ShipID])); // perlu diganti dengan ID object
-//      Continue;
-//      Break;
     end;
-  end;
 end;
 
 function TFrmTacticalScreen.Rotate(Width, Height, Radius: Integer; Degrees: Double): Winapi.Windows.TPoint;
@@ -466,6 +462,16 @@ end;
 procedure TFrmTacticalScreen.tmrUpdateTPTimer(Sender: TObject);
 begin
   UpdateRadarDisplay;
+
+//  if Assigned(FOverlay) then begin
+//    FOverlay.BringToFront;
+//    FOverlay.Show;
+//    FOverlay.Paint;    
+//  end;
+  
+  FMapTP.CenterX := SutBlacksharkManager.xShip.PositionX;
+  FMapTP.CenterY := SutBlacksharkManager.xShip.PositionY;
+  pnlTacticalPicture.Repaint;
 
   // get variable pada blackshark manager disini
 
@@ -576,6 +582,26 @@ begin
     Exit;
   end;
 
+end;
+
+procedure TFrmTacticalScreen.OverlayPaint(Sender: TObject; ACanvas: TCanvas);
+var
+  ScreenX, ScreenY : Single;
+begin 
+  ACanvas.Pen.Color := clWhite;
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+
+  FMapTP.ConvertCoord(ScreenX, ScreenY, FCursorX, FCursorY, miMapToScreen);
+
+  ACanvas.Rectangle(Round(ScreenX) - 1, Round(ScreenY) - 15, Round(ScreenX) + 1, Round(ScreenY) - 4); // cursor bagian atas
+  ACanvas.Rectangle(Round(ScreenX) - 1, Round(ScreenY) + 15, Round(ScreenX) + 1, Round(ScreenY) + 4); // cursor bagian bawah
+
+  ACanvas.Rectangle(Round(ScreenX) - 15, Round(ScreenY) - 1, Round(ScreenX) - 4, Round(ScreenY) + 1); // cursor bagian kiri
+  ACanvas.Rectangle(Round(ScreenX) + 4, Round(ScreenY) - 1, Round(ScreenX) + 15, Round(ScreenY) + 1); // cursor bagian kanan
+
+  frmTacticalScreen.DrawTicksDegree(ACanvas);
+  frmTacticalScreen.Render(ACanvas);
 end;
 
 end.

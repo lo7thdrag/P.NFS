@@ -158,10 +158,11 @@ object FrmTacticalScreen: TFrmTacticalScreen
       Caption = 'pnlUpperInfo'
       TabOrder = 2
       object pnlTacticalPicture: TPanel
-        Left = 0
-        Top = 0
-        Width = 1440
-        Height = 878
+        Left = 1
+        Top = 1
+        Width = 1438
+        Height = 835
+        Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -169,24 +170,31 @@ object FrmTacticalScreen: TFrmTacticalScreen
         Font.Style = []
         ParentFont = False
         TabOrder = 0
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 1440
+        ExplicitHeight = 878
         object FMapTP: TMap
           Left = 1
           Top = 1
-          Width = 1438
-          Height = 876
+          Width = 1436
+          Height = 833
           ParentColor = False
           Align = alClient
           TabOrder = 0
+          Visible = False
           OnMouseDown = FMapTPMouseDown
+          OnMapViewChanged = FMapTPMapViewChanged
           OnDrawUserLayer = FMapTPDrawUserLayer
           ExplicitWidth = 1430
+          ExplicitHeight = 876
           ControlData = {
-            8A1A06009F9400008A5A0000010000000F0000FF0D47656F44696374696F6E61
+            8A1A06006A94000018560000010000000F0000FF0D47656F44696374696F6E61
             727905456D70747900E8030000000000000000000002000E001E000000000000
             0000000000000000000000000000000000000000000600010000000000500001
             010000640000000001F4010000050000800C000000000000000000000000FFFF
             FF000100000000000000000000000000000000000000000000000352E30B918F
-            CE119DE300AA004BB85101000000900120120A0005417269616C000352E30B91
+            CE119DE300AA004BB851010000009001F09C090005417269616C000352E30B91
             8FCE119DE300AA004BB851010000009001348C030005417269616C0000000000
             00000000000000000000000000000000000000000000000000000000000000FF
             FFFF000000000000000001370000000000FFFFFF000000000000000352E30B91
@@ -209,8 +217,8 @@ object FrmTacticalScreen: TFrmTacticalScreen
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000700902007009020030
-            E19700467DB3759E080600E4E1970000000000E4E19700000000000000000000
+            0000000000000000000000000000000000000000000000700902007009020090
+            CA9700467DB3759E08060044CB97000000000044CB9700000000000000000000
             000088B3400000000000408F400001000001}
         end
       end
@@ -610,6 +618,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
     end
   end
   object tmrUpdateTP: TTimer
+    Interval = 200
     OnTimer = tmrUpdateTPTimer
     Left = 944
     Top = 528

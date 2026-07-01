@@ -824,6 +824,11 @@ begin
   BitMapLampGrey.Free;
   BitMapLampGreen.Free;
   BitMapLampRed.Free;
+
+  FMapConverter.Free;
+  FMapCanvas.Free;
+  SutBlacksharkManager.Free;
+//  VehicleMgr.Free;
 end;
 
 procedure TFrmTorpedoWP.FormPaint(Sender: TObject);
