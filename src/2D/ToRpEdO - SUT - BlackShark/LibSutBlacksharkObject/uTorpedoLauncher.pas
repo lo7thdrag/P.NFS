@@ -10,7 +10,7 @@ type
   TWaterPressure = (wpDrained, wpPresNotEqualized, wpPresEqualized);
   TTorpedoStatus = (tsOff, tsTesting, tsOnAndOk, tsOnWithRestrict, tsNotOK);
   TBowCap = (bcClosed, bcOpenLeverNotSet, bcOpenLeverSet);
-  TCableStatus = (cbOff, cbTesting, cbTorpOnOK, cbError);
+  TCableStatus = (csOff, csTesting, csTorpOnOK, csError);
   TTorpedoLauncher = class
   private
     FLoaded             : Boolean;
@@ -69,7 +69,7 @@ begin
   FFuseStatus := false;
   FBowCap := bcClosed;
   FWTRSC := false;
-  FCableStatus := cbOff;
+  FCableStatus := csOff;
 
 end;
 
