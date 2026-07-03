@@ -7,21 +7,25 @@ uses
   uCoordConverter, uRadarTargets, windows; // <-- TRadarTargetSymbol di sini
 
 type
+  TWaterPressure = (wpDrained, wpPresNotEqualized, wpPresEqualized);
+  TTorpedoStatus = (tsOff, tsTesting, tsOnAndOk, tsOnWithRestrict, tsNotOK);
+  TBowCap = (bcClosed, bcOpenLeverNotSet, bcOpenLeverSet);
+  TCableStatus = (cbOff, cbTesting, cbTorpOnOK, cbError);
   TTorpedoLauncher = class
   private
     FLoaded             : Boolean;
     FTorpedoType        : Byte;
-    FWaterPressure      : Byte;  // Drained:0(red); Flooded pressure notequalized:1(yellow), Flooded pressure equalized : 2(green)
-    FTorpedoStatus      : Boolean; // off:0 (yellow); testing:1(blink yellow); on and OK:2(fill green); on with restrict:3(open green); not ok after test:4(red)
+    FWaterPressure      : TWaterPressure;  // Drained:0(red); Flooded pressure notequalized:1(yellow), Flooded pressure equalized : 2(green)
+    FTorpedoStatus      : TTorpedoStatus; // off:0 (yellow); testing:1(blink yellow); on and OK:2(fill green); on with restrict:3(open green); not ok after test:4(red)
     FFireRelease        : Boolean;
     FSalvoNumber        : Word;
-    FTargetTrackNumber  : Word;
+    FTargetTrackNumber  : Integer;
     FError              : Boolean;
     FLaunchPhases       : Byte;
     FFuseStatus         : Boolean; // On : 1; Off : 0
-    FBowCap             : Byte; // Cap Closed : 0 (red); Cap open, ready lever not set:1 (yellow), Cap open, lever set:2 (Green)
-    FFWTRSC             : Boolean; // wtrsc on off
-    FCableStatus        : Byte; // off:0 (yellow); testing:1 (blink yellow); torp on and OK:2(green); error:3 (red
+    FBowCap             : TBowCap; // Cap Closed : 0 (red); Cap open, ready lever not set:1 (yellow), Cap open, lever set:2 (Green)
+    FWTRSC              : Boolean; // wtrsc on off
+    FCableStatus        : TCableStatus; // off:0 (yellow); testing:1 (blink yellow); torp on and OK:2(green); error:3 (red
 
   public
     constructor Create; overload;
@@ -30,17 +34,17 @@ type
     // properti state
     property Loaded   : Boolean read FLoaded write FLoaded;
     property TorpedoType : Byte read FTorpedoType write FTorpedoType;
-    property WaterPressure    : Byte read FWaterPressure write FWaterPressure;
-    property TorpedoStatus: Boolean read FTorpedoStatus write FTorpedoStatus;
+    property WaterPressure    : TWaterPressure read FWaterPressure write FWaterPressure;
+    property TorpedoStatus: TTorpedoStatus read FTorpedoStatus write FTorpedoStatus;
     property FireRelease : Boolean read FFireRelease write FFireRelease;
     property SalvoNumber : Word read FSalvoNumber write FSalvoNumber;
-    property TargetTrackNumber : Word read FTargetTrackNumber write FTargetTrackNumber;
+    property TargetTrackNumber : Integer read FTargetTrackNumber write FTargetTrackNumber;
     property Error : Boolean read FError write FError;
     property LaunchPhases : Byte read FLaunchPhases write FLaunchPhases;
     property FuseStatus : Boolean read FFuseStatus write FFuseStatus;
-    property BowCap : Byte read FBowCap write FBowCap;
-    property FWTRSC : Boolean read FFWTRSC write FFWTRSC;
-    property CableStatus : Byte read FCableStatus write FCableStatus;
+    property BowCap : TBowCap read FBowCap write FBowCap;
+    property WTRSC : Boolean read FWTRSC write FWTRSC;
+    property CableStatus : TCableStatus read FCableStatus write FCableStatus;
 
 //    procedure SetSpeedKts(AKnots: Double);
 //    procedure SetSpeedKmh(AKmh: Double);
@@ -53,6 +57,19 @@ implementation
 
 constructor TTorpedoLauncher.Create;
 begin
+  FLoaded := false;
+  FTorpedoType := 0;
+  FWaterPressure := wpDrained;
+  FTorpedoStatus := tsOff;
+  FFireRelease := false;
+  FSalvoNumber := 0;
+  FTargetTrackNumber := 0;
+  FError := False;
+  FLaunchPhases := 0;
+  FFuseStatus := false;
+  FBowCap := bcClosed;
+  FWTRSC := false;
+  FCableStatus := cbOff;
 
 end;
 

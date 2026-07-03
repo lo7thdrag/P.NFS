@@ -47,7 +47,8 @@ type
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
           procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
   public
-    TTorpedoArray : array[0..7] of TTorpedoLauncher;
+    FTorpedoArray : array[0..7] of TTorpedoLauncher;
+
     procedure GetTorpedoWeaponAssigned;
 
     constructor Create;
@@ -161,10 +162,17 @@ begin
 end;
 
 constructor TSutBlacksharkManager.Create;
+var
+  i : Integer;
 begin
   inherited;
   FIsStandAlone := False;
   FIsTrueMotion := False;
+
+  for i := 0 to Length(FTorpedoArray) do
+  begin
+    FTorpedoArray[i] := TTorpedoLauncher.Create;
+  end;
 end;
 
 destructor TSutBlacksharkManager.Destroy;
@@ -297,11 +305,11 @@ var
   Rec: ^TRec3DMissilePos;
 begin
   Rec := @apRec^;
-  if not ((Rec^.ShipID = ShipID) and (rec^.WeaponID = 21)) then Exit;
+  if not ((Rec^.ShipID = ShipID) and (rec^.WeaponID = C_DBID_TORPEDO_BLACKSHARK)) then Exit;
 
   if Rec^.status = ST_MISSILE_LOADED then
   begin
-    // load disini
+    FTorpedoArray[rec^.launcherID-1].Loaded := True;
   end;
 
 //  Rec^.WeaponID;
