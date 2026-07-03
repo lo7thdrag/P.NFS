@@ -1170,6 +1170,26 @@ type
     mTargetId : Integer;
   end;
 
+  TRec_Data_BlackShark = packed record     // Rec_Data_C705 = 69 -> CPID
+    Pc: TPacketCheck;
+
+    // Add New
+    ShipID: word;     // ownship
+    mWeaponID: word; // Diisi sesuai Database
+    mLauncherID: word;
+    mMissileID: word;
+    mMissileNumber: word; // Diisi 0 aj...nanti instruktur yang ngisi ulan
+
+    OrderID: Byte;
+
+    //mTargetHeading : Single;
+    //mTargetSpeed : Single;
+
+    mTargetBearing: single;
+    mTargetRange: single;
+    mTargetId : Integer;
+  end;
+
 const
 
   // aldy map
