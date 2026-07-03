@@ -304,6 +304,7 @@ type
     procedure Keyboard1Click(Sender: TObject);
     procedure tmrServiceUpdateTimer(Sender: TObject);
     procedure FMapMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure FMapMapViewChanged(Sender: TObject);
   protected
     //procedure DrawAngle(aCnv: TCanvas);
     //procedure DrawCompass(aCnv: TCanvas);
@@ -354,6 +355,8 @@ type
 
     procedure SetDefaultMapTool;
     procedure SetDefaultFormView;
+
+    procedure UpdateTextScaleMap;
   public
     { Public declarations }
 
@@ -569,7 +572,6 @@ begin
 
   { Set Default Tool Bar }
   SetDefaultMapTool;
-
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
@@ -889,6 +891,35 @@ begin
   lblNav_HdgRShip.Caption := FormatFloat('0.00', NormalizeHeading(OwnShip.Heading ++ 90));//'90.00';
 end;
 
+procedure TfrmRoutePlan.UpdateTextScaleMap;
+begin
+  lblZoomRateMap.Caption := FormatFloat('0.00', FMap.Zoom);
+//    ShowMessage(FloatToStr(FMap.DisplayCoordSys.ScaleFactor));
+//    ShowMessage(FloatToStr(FMap.NumericCoordSys.ScaleFactor));
+  lblScaleMap.Caption := FloatToStr(FMap.NumericCoordSys.ScaleFactor);
+
+  OutputDebugString(
+    PChar(
+      Format(
+        'PaperUnit=%d  GeoWidth=%f  PaperWidth=%f',
+        [
+          Ord(FMap.PaperUnit),
+          FMap.GeoSetWidth,
+          FMap.MapPaperWidth
+        ]
+      )
+    )
+  );
+
+  OutputDebugString(PChar(Format(
+    'Zoom=%.2f GeoWidth=%.2f PaperWidth=%.2f',
+  [
+    FMap.Zoom,
+    FMap.GeoSetWidth,
+    FMap.MapPaperWidth
+  ])));
+end;
+
 procedure TfrmRoutePlan.FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
 begin
   if not Assigned(FCanvas) then
@@ -899,6 +930,12 @@ begin
   FMapViewManager.DrawAll(FCanvas, FMapConverter);
 
   //DrawAll(FCanvas, FMapConverter);
+end;
+
+procedure TfrmRoutePlan.FMapMapViewChanged(Sender: TObject);
+begin
+  if (FCurrentTool = stZoomIn) or (FCurrentTool = stZoomOut) then
+    UpdateTextScaleMap;
 end;
 
 procedure TfrmRoutePlan.FMapMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -1127,9 +1164,6 @@ begin
     FCurrentTool := stSelectArrow;
   end;
 
-  if (FCurrentTool = stZoomIn) or (FCurrentTool = stZoomOut) then
-    lblZoomRateMap.Caption := FormatFloat('0.00', FMap.Zoom);
-
 end;
 
 procedure TfrmRoutePlan.FMapMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -1286,17 +1320,41 @@ begin
     end;
     3: begin
       {$REGION 'Zoom In'}
-      MapZoomIn;
+      if FCurrentTool = stZoomIn then
+      begin
+        FMap.CurrentTool := miArrowTool;
+        FCurrentTool := stSelectArrow;
+        lblStatusMap.Caption := '';
+      end
+      else begin
+        MapZoomIn;
+      end;
       {$ENDREGION}
     end;
     4: begin
       {$REGION 'Zoom Out'}
-      MapZoomOut;
+      if FCurrentTool = stZoomOut then
+      begin
+        FMap.CurrentTool := miArrowTool;
+        FCurrentTool := stSelectArrow;
+        lblStatusMap.Caption := '';
+      end
+      else begin
+        MapZoomOut;
+      end;
       {$ENDREGION}
     end;
     5: begin
       {$REGION 'Move Map'}
-      MapMove;
+      if FCurrentTool = stZoomOut then
+      begin
+        FMap.CurrentTool := miArrowTool;
+        FCurrentTool := stSelectArrow;
+        lblStatusMap.Caption := '';
+      end
+      else begin
+        MapMove;
+      end;
       {$ENDREGION}
     end;
     6: begin
@@ -1469,6 +1527,8 @@ begin
   pnlIslandLvl2.Top := pnlToolBar.Top - pnlWaypointLvl2.Height;
   pnlIslandLvl2.Left := btnDisplayChannel.Left;
   pnlIslandLvl2.Visible := False;
+
+  UpdateTextScaleMap;
 end;
 
 procedure TfrmRoutePlan.SetDefaultMapTool;
