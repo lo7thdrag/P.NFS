@@ -7,7 +7,8 @@ uses
   Classes, Sysutils,
   windows, uSimulationManager, uTCPDatatype, uBaseSimulationObject, uLibClientObject,
   uBridgeSet, uTestShip, uBaseFunction, uClassDatabase, System.Uitypes, uVehicleManager,
-  uVehicle, System.Math, OverbyteIcsWSocket, uTorpedoLauncher;
+  uVehicle, System.Math, OverbyteIcsWSocket, uTorpedoLauncher, uSimulationTrack, uSubSurfaceTrack, uSurfaceTrack,
+  uBaseConst;
 
 type
   TSutBlacksharkManager = class(TSimulationManager)
@@ -37,6 +38,7 @@ type
     FSelectedTrack: TVehicle;
     FisTrackSelected: Boolean;
     FisTorpedoAllocShow: Boolean;
+    FOperatorMessages: string;
 
     FCursorX, FCursorY : Double;
   protected
@@ -65,6 +67,8 @@ type
     property isTorpedoAllocShow : Boolean read FisTorpedoAllocShow write FisTorpedoAllocShow;
     property CursorX : Double read FCursorX write FCursorX;
     property CursorY : Double read FCursorY write FCursorY;
+
+    property OperatorMessages: string read FOperatorMessages write FOperatorMessages;
 //    property isTorpedoAllocShow : Boolean read FisTorpedoAllocShow write FisTorpedoAllocShow;
 
     // procedure to get and set from another form
@@ -185,9 +189,10 @@ var  sc  : TSimulationClass;
      aRec: ^TRecData3DPosition;
 
      TestHeading : Double;
-     V : TVehicle;
+     Trck : TSimulationTrack;
      vdomain : Integer;
      Ship: TShipContact;
+     range, rangem, bearing, azimuth : Double;
 begin
   aRec := @apRec^;
 
@@ -206,37 +211,46 @@ begin
     FxShip.Roll := aRec.roll;
 
 
-    V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
+    Trck := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
 
-    if not Assigned(v) then
+    if not Assigned(Trck) then
     begin
-      V := VehicleMgr.AddVehicle(FxShip.PositionX, FxShip.PositionY, '', False);
-    //  V.Symbol.SetFontSymbol('Segoe UI Symbol', '▲', clLime, clYellow, 10);
-      V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
-      v.Domain := DataModule1.GetShipDomain(aRec.ShipID);
-      V.SetSpeedKts(FxShip.Speed);
-      V.HeadingDeg := FxShip.Heading; // NE
+      Trck := VehicleMgr.AddOwnShip(FxShip.PositionX, FxShip.PositionY);
+      Trck.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+      Trck.Domain := DataModule1.GetShipDomain(aRec.ShipID);
+      Trck.Speed_knot := FxShip.Speed;
+      Trck.HeadingDeg := FxShip.Heading; // NE
     end
 
     else
     begin
-      v.PosX := FxShip.PositionX;
-      v.PosY := FxShip.PositionY;
-      v.PosZ := FxShip.PositionZ;
+      Trck.PosX := FxShip.PositionX;
+      Trck.PosY := FxShip.PositionY;
+      Trck.PosZ := FxShip.PositionZ;
     end;
   end
   else begin
-    V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
+    Trck := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.ShipID));
 
-    if Assigned(V) then
+    if Assigned(Trck) then
     begin
-      v.PosX := aRec.X;
-      v.PosY := aRec.Y;
-      v.PosZ := aRec.Z;
-      v.SetSpeedKts(aRec.speed);
-      v.ShipID := aRec.ShipID;
+      Trck.PosX := aRec.X;
+      Trck.PosY := aRec.Y;
+      Trck.PosZ := aRec.Z;
+      Trck.Speed_knot := aRec.speed;
+//      Trck.ShipID := aRec.ShipID;
 
-      v.HeadingDeg  := aRec.heading;
+      azimuth := CalcBearing(FxShip.PositionX, FxShip.PositionY, Trck.PosX, Trck.PosY);
+      Trck.Azimuth := azimuth;
+      bearing := azimuth - FxShip.Heading;
+      if bearing < 0 then
+      bearing := bearing + 360;
+      Trck.Bearing := bearing;
+
+      range := CalcRange(FxShip.PositionX, FxShip.PositionY, Trck.PosX, Trck.PosY);
+      Trck.Range := rangem;
+
+      Trck.HeadingDeg  := aRec.heading;
     end
     else
     begin
@@ -244,26 +258,28 @@ begin
 
       if vdomain = 1 then
       begin
-        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, dbID_to_UniqueID(aRec.ShipID), True);
-        V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+        Trck := VehicleMgr.AddVehicleSurface(aRec.X, aRec.Y);
+        Trck.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+        Trck.ShipID := aRec.ShipID;
+        Trck.Domain := vdomain;
 
-        v.Domain := vdomain;
         // pakai bitmap tint: hitam -> kuning
-        V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SurfaceUnknown.bmp');
+//        Trck.Symbol.LoadBitmapFromFile('..\data\Bitmap\SurfaceUnknown.bmp');
 
-        V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
+//        Trck.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
       end
 
       else if vdomain = 3 then
       begin
-        V := VehicleMgr.AddVehicle(aRec.X, aRec.Y, dbID_to_UniqueID(aRec.ShipID), False);
-        V.UniqueID := dbID_to_UniqueID(aRec.ShipID);
-        v.Domain := vdomain;
+        Trck := VehicleMgr.AddVehicleSubSurf(aRec.X, aRec.Y);
+        Trck.UniqueID := dbID_to_UniqueID(aRec.ShipID);
+        Trck.ShipID := aRec.ShipID;
+        Trck.Domain := vdomain;
+
         // pakai bitmap tint: hitam -> kuning
-
-        V.Symbol.LoadBitmapFromFile('..\data\Bitmap\SubsurfaceUnknown.bmp');
-
-        V.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
+//        Trck.Symbol.LoadBitmapFromFile('..\data\Bitmap\SubsurfaceUnknown.bmp');
+//
+//        Trck.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
       end;
     end;
   end;
@@ -277,8 +293,18 @@ end;
 
 procedure TSutBlacksharkManager.EventonRecMissilePosAvailable(apRec: PAnsiChar;
   aSize: integer);
+var
+  Rec: ^TRec3DMissilePos;
 begin
+  Rec := @apRec^;
+  if not ((Rec^.ShipID = ShipID) and (rec^.WeaponID = 21)) then Exit;
 
+  if Rec^.status = ST_MISSILE_LOADED then
+  begin
+    // load disini
+  end;
+
+//  Rec^.WeaponID;
 end;
 
 procedure TSutBlacksharkManager.Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);

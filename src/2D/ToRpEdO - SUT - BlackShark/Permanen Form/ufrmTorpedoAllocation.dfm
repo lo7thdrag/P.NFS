@@ -3165,6 +3165,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Width = 17
             Height = 17
             Caption = 'rbMSI01'
+            Checked = True
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
             Font.Height = -12
@@ -3172,6 +3173,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Font.Style = []
             ParentFont = False
             TabOrder = 1
+            TabStop = True
           end
           object rbSonar: TRadioButton
             Left = 73
@@ -3699,10 +3701,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label22: TLabel
           Left = 8
           Top = 0

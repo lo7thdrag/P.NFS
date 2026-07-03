@@ -590,6 +590,15 @@ interface
     public
       EnableBlackshark : Boolean;
       AssignStatusLauncher2       : Boolean;
+
+      LoadingMissile1,
+      LoadingMissile2,
+      LoadingMissile3,
+      LoadingMissile4,
+      LoadingMissile5,
+      LoadingMissile6,
+      LoadingMissile7,
+      LoadingMissile8  : TStatusWeapon;
       constructor Create(Const aParent : TInsObject; aMap: TMap); override;
       destructor Destroy; override;
    end;
@@ -1898,6 +1907,15 @@ constructor TWeaponOn_Blackshark.Create(const aParent: TInsObject; aMap: TMap);
 begin
   AssignStatusLauncher2 := True;
   inherited;
+
+  LoadingMissile1          := tsOff;
+  LoadingMissile2          := tsOff;
+  LoadingMissile3          := tsOff;
+  LoadingMissile4          := tsOff;
+  LoadingMissile5          := tsOff;
+  LoadingMissile6          := tsOff;
+  LoadingMissile7          := tsOff;
+  LoadingMissile8          := tsOff;
 
 end;
 

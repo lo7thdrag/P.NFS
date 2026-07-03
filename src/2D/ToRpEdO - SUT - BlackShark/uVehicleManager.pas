@@ -4,31 +4,44 @@ interface
 uses
   SysUtils, Classes, Math, Graphics,
   uCoordConverter, windows, uVehicle,
-  System.Contnrs;
+  System.Contnrs, uSimulationTrack, uSubSurfaceTrack, uSurfaceTrack;
 type
   TVehicleManager = class
   private
 //    FList: TList;               // of TVehicle
     FList: TObjectList;               // of TVehicle
     FConv: TCoordConverter;
+    FTrackNumberInc: Integer;
+    FTrackControlled: TSimulationTrack;
   public
 
     constructor Create;
     destructor Destroy; override;
 
     property CoordConverter: TCoordConverter read FConv write FConv;
+    property TrackControlled: TSimulationTrack read FTrackControlled;
 
-    function  AddVehicle: TVehicle; overload;
-    function  AddVehicle(const x, y: Double; const trackLabel: string = ''; const isSurface: Boolean = false): TVehicle; overload;
+//    function  AddVehicle: TVehicle; overload;
+//    function  AddVehicle(const x, y: Double; const trackLabel: string = ''; const isSurface: Boolean = false): TVehicle; overload;
 //    function  AddOwnShip: TVehicle; overload;
 //    function  AddOwnShip(const x, y: Double; const trackLabel: string = ''): TOwnShip; overload;
-    function FindObjectByUid(const aUid: string): TVehicle;
+
+//    function AddVehicle: TSimulationTrack;
+    function AddVehicleSubSurf(const x, y: Double): TSubSurfaceTrack;
+    function AddVehicleSurface(const x, y: Double): TSurfaceTrack;
+    function AddOwnShip(const x, y: Double): TSubSurfaceTrack;
+
+    function FindObjectByUid(const aUid: string): TSimulationTrack;
+
+    function FindTrackByTrackNumber(const TrackNum: Integer): TSimulationTrack;
+    function ControlTrackByTrackNumber(const TrackNum: Integer): Boolean;
 
     procedure RemoveVehicle(V: TVehicle);
     procedure Clear;
 
     function  Count: Integer;
-    function  Items(Index: Integer): TVehicle;
+//    function  Items(Index: Integer): TVehicle;
+    function  Items(Index: Integer): TSimulationTrack;
 
     // loop simulasi
     procedure UpdateAll(const dtSeconds: Double);
@@ -57,6 +70,7 @@ begin
   inherited Create;
   FList := TObjectList.Create;
   FConv := nil;
+  FTrackNumberInc := 110000;
 end;
 
 destructor TVehicleManager.Destroy;
@@ -66,13 +80,13 @@ begin
   inherited;
 end;
 
-function TVehicleManager.AddVehicle: TVehicle;
-begin
-  Result := TVehicle.Create;
-  // suntik converter ke symbol
-  Result.Symbol.CoordConverter := FConv;
-  FList.Add(Result);
-end;
+//function TVehicleManager.AddVehicle: TVehicle;
+//begin
+//  Result := TVehicle.Create;
+//  // suntik converter ke symbol
+//  Result.Symbol.CoordConverter := FConv;
+//  FList.Add(Result);
+//end;
 
 //function TVehicleManager.AddOwnShip(const x, y: Double; const trackLabel: string): TOwnShip;
 //begin
@@ -91,14 +105,14 @@ end;
 //  FOwnShip := Result;
 //end;
 
-function TVehicleManager.AddVehicle(const x, y: Double; const trackLabel: string; const isSurface: Boolean): TVehicle;
-begin
-  Result := AddVehicle;
-  Result.PosX := x;
-  Result.PosY := y;
-  if trackLabel <> '' then
-    Result.Symbol.TrackLabel := trackLabel;
-end;
+//function TVehicleManager.AddVehicle(const x, y: Double; const trackLabel: string; const isSurface: Boolean): TVehicle;
+//begin
+//  Result := AddVehicle;
+//  Result.PosX := x;
+//  Result.PosY := y;
+//  if trackLabel <> '' then
+//    Result.Symbol.TrackLabel := trackLabel;
+//end;
 
 procedure TVehicleManager.RemoveVehicle(V: TVehicle);
 begin
@@ -106,13 +120,67 @@ begin
     V.Free;
 end;
 
+function TVehicleManager.AddOwnShip(const x, y: Double): TSubSurfaceTrack;
+begin
+  Result := TSubSurfaceTrack.Create;
+  Result.PosX := x;
+  Result.PosY := y;
+  Result.MSITrackNumber := 1;
+  FList.Add(Result);
+end;
+
+function TVehicleManager.AddVehicleSubSurf(const x, y: Double): TSubSurfaceTrack;
+begin
+  Result := TSubSurfaceTrack.Create;
+  Result.PosX := x;
+  Result.PosY := y;
+  Inc(FTrackNumberInc);
+  Result.MSITrackNumber := FTrackNumberInc;
+  FList.Add(Result);
+end;
+
+function TVehicleManager.AddVehicleSurface(const x, y: Double): TSurfaceTrack;
+begin
+  Result := TSurfaceTrack.Create;
+  Result.PosX := x;
+  Result.PosY := y;
+  Inc(FTrackNumberInc);
+  Result.MSITrackNumber := FTrackNumberInc;
+  FList.Add(Result);
+end;
+
 procedure TVehicleManager.Clear;
 var
   i: Integer;
 begin
   for i := 0 to FList.Count - 1 do
-    TObject(FList[i]).Free;
+    TSimulationTrack(FList[i]).Free;
+
+//    TObject(FList[i]).Free;
   FList.Clear;
+end;
+
+function TVehicleManager.ControlTrackByTrackNumber(const TrackNum: Integer): Boolean;
+var
+  i : Integer;
+  Found : Boolean;
+begin
+  Result := false;
+  i := 0;
+  FTrackControlled := nil;
+  for i := 0 to FList.Count - 1 do
+  begin
+    if TSimulationTrack(FList[i]).MSITrackNumber = TrackNum then
+    begin
+      TSimulationTrack(FList[i]).Controlled_Track := True;
+      Found := True;
+      FTrackControlled := TSimulationTrack(FList[i]);
+//      sutblacksharkmanager.
+    end
+    else TSimulationTrack(FList[i]).Controlled_Track := False;
+  end;
+
+  result:= Found;
 end;
 
 function TVehicleManager.Count: Integer;
@@ -120,9 +188,10 @@ begin
   Result := FList.Count;
 end;
 
-function TVehicleManager.Items(Index: Integer): TVehicle;
+function TVehicleManager.Items(Index: Integer): TSimulationTrack;
 begin
-  Result := TVehicle(FList[Index]);
+//  Result := TVehicle(FList[Index]);
+  Result := TSimulationTrack(FList[Index]);
 end;
 
 procedure TVehicleManager.UpdateAll(const dtSeconds: Double);
@@ -153,9 +222,9 @@ begin
   end;
 end;
 
-function TVehicleManager.FindObjectByUid(const aUid: string): TVehicle;
+function TVehicleManager.FindObjectByUid(const aUid: string): TSimulationTrack;
   var i   : integer;
-      obj : TVehicle;
+      obj : TSimulationTrack;
       found : boolean;
   begin
     result := nil;
@@ -165,7 +234,7 @@ function TVehicleManager.FindObjectByUid(const aUid: string): TVehicle;
         i := 0;
         found  := false;
         while not found and (i<Count) do begin
-          obj := TVehicle(FList[i]);
+          obj := TSimulationTrack(FList[i]);
           found :=  aUid = obj.UniqueID;
 
           inc(i);
@@ -176,6 +245,26 @@ function TVehicleManager.FindObjectByUid(const aUid: string): TVehicle;
     if found then result := obj;
 
   end;
+
+function TVehicleManager.FindTrackByTrackNumber(
+  const TrackNum: Integer): TSimulationTrack;
+var
+  i : Integer;
+  Track : TSimulationTrack;
+  Found : Boolean;
+begin
+  Result := nil;
+  Track := nil;
+  i := 0;
+  while not Found and (i<Count) do
+  begin
+    Track := TSimulationTrack(FList[i]);
+    Found := TrackNum = Track.MSITrackNumber;
+
+    inc(i);
+  end;
+  if Found then Result := Track;
+end;
 
 procedure TVehicleManager.DeselectAll;
 var

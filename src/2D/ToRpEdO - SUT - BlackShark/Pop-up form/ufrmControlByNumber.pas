@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, RzPanel,
-  RzRadGrp, uSutBlacksharkManager;
+  RzRadGrp, uSutBlacksharkManager, uVehicleManager;
 
 type
   TfrmControlByNumber = class(TForm)
@@ -14,16 +14,20 @@ type
     lblClose: TLabel;
     btnMSITNo: TRadioButton;
     btnLinkY: TRadioButton;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
     edtTrackNo: TEdit;
     Panel1: TPanel;
     RadioGroup1: TRadioGroup;
     Panel2: TPanel;
+    pnlMSITNo: TPanel;
+    pnlLinkYTNo: TPanel;
+    pnlTrackNo: TPanel;
     procedure lblCloseClick(Sender: TObject);
+    procedure edtTrackNoChange(Sender: TObject);
+    procedure lblApplyClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    FApplyBtnEnable : Boolean;
   public
     { Public declarations }
   end;
@@ -34,6 +38,44 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmControlByNumber.edtTrackNoChange(Sender: TObject);
+begin
+  if edtTrackNo.Text = '' then
+  begin
+    lblApply.Font.Color := clGray;
+    FApplyBtnEnable := false;
+  end
+  else
+  begin
+    lblApply.Font.Color := clWhite;
+    FApplyBtnEnable := true;
+  end;
+end;
+
+procedure TfrmControlByNumber.FormCreate(Sender: TObject);
+begin
+  FApplyBtnEnable := False;
+end;
+
+procedure TfrmControlByNumber.lblApplyClick(Sender: TObject);
+var
+  Applied : Boolean;
+begin
+  if FApplyBtnEnable then
+  begin
+    Applied := VehicleMgr.ControlTrackByTrackNumber(StrToInt(edtTrackNo.Text));
+    if not Applied then
+    begin
+      // call di blackshark manager untuk spawn operator messages
+      SutBlacksharkManager.OperatorMessages := 'Invalid Track Number';
+
+      FreeAndNil(frmControlByNumber);
+    end
+    else FreeAndNil(frmControlByNumber);
+  end;
+
+end;
 
 procedure TfrmControlByNumber.lblCloseClick(Sender: TObject);
 begin

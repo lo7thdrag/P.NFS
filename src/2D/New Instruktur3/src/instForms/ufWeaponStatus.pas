@@ -564,6 +564,25 @@ type
     imgLoadC705StarboardLauncher1: TImage;
     lblC705StarboardLauncher1: TLabel;
     btnC705StarboardLoading: TButton;
+    GroupBox3: TGroupBox;
+    imgLoadBlackShark5: TImage;
+    imgLoadBlackShark6: TImage;
+    imgLoadBlackShark7: TImage;
+    imgLoadBlackShark8: TImage;
+    lblLoadBlackShark5: TLabel;
+    lblLoadBlackShark6: TLabel;
+    lblLoadBlackShark7: TLabel;
+    lblLoadBlackShark8: TLabel;
+    btnLoadBlackShark: TButton;
+    cbbLoadBlackShark: TComboBox;
+    imgLoadBlackShark2: TImage;
+    imgLoadBlackShark1: TImage;
+    imgLoadBlackShark3: TImage;
+    imgLoadBlackShark4: TImage;
+    lblLoadBlackShark4: TLabel;
+    lblLoadBlackShark2: TLabel;
+    lblLoadBlackShark1: TLabel;
+    lblLoadBlackShark3: TLabel;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -585,6 +604,7 @@ type
     procedure btnC705LoadingClick(Sender: TObject);
     procedure grpC705StatusConsoleMouseDown(Sender: TObject;
       Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure btnBlackSharkLoadingClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -2489,6 +2509,53 @@ begin
       end;
 
       Break;
+    end;
+  end;
+end;
+
+procedure TfWeaponStatus.btnBlackSharkLoadingClick(Sender: TObject);
+var
+  i, j,
+  launcherID: Integer;
+
+  WeaponShip: TWeaponOnShip;
+  WeaponBlackShark: TWeaponOn_Blackshark;
+
+  recsendcBlackShark : TRecSetTorpedoSUT;
+  arMissile : array[0..7] of Integer;
+begin
+  if SimManager.TrackObject = nil then  Exit;
+
+  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count -1 do
+  begin
+    WeaponShip := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+
+    if WeaponShip is TWeaponOn_Blackshark then
+    begin
+      WeaponBlackShark := TWeaponOn_Blackshark(WeaponShip);
+
+      launcherID := cbbLoadBlackShark.ItemIndex + 1;
+
+      if WeaponBlackShark.EnableBlackshark then begin
+
+        recsendcBlackShark.shipID                  := SimManager.TrackObject.FDataBaseID;
+        recsendcBlackShark.mWeaponID               := WeaponBlackShark.Weapon_ID;
+        recsendcBlackShark.mLauncherID             := launcherID;
+        recsendcBlackShark.mMissileID              := 1;
+        recsendcBlackShark.mMissileNumber          := 1;
+        recsendcBlackShark.mT_ID                   := 0;  // target ID
+        recsendcBlackShark.OrderID                 := __ORD_TORPEDOSUT_LOADING;
+        recsendcBlackShark.mMissileType            := 0;
+        recsendcBlackShark.mTorpedoCourse          := 0;
+        recsendcBlackShark.mTorpedoSpeed           := 0;
+        recsendcBlackShark.mTorpedoDepth           := 0;
+        recsendcBlackShark.mTorpedoSafeDistance    := 0;
+        recsendcBlackShark.mTorpedoEnDis           := 0;
+        recsendcBlackShark.mpredm                  := 0;
+        recsendcBlackShark.mTargetType             := 0;
+
+        SimManager.NetSendTo3D_OrderMissileSUT(recsendcBlackShark);
+      end;
     end;
   end;
 end;
@@ -4730,23 +4797,6 @@ begin
           {$ENDREGION}
         end;
 
-        C_DBID_TORPEDO_BLACKSHARK  :
-        begin
-          {$REGION 'C_DBID_TORPEDO_BLACKSHARK'}
-          if frmMainInstruktur.cekStatusWeapon = 1 then
-          begin
-
-          end;
-          frmMainInstruktur.cekStatusWeapon := 1;
-
-          if weaponship is TWeaponOn_Blackshark then
-          begin
-            WeaponBlackshark := TWeaponOn_Blackshark(weaponship);
-
-          end;
-          {$ENDREGION}
-        end;
-
         C_DBID_CANNON_TYPE_730  :
         begin
           {$REGION 'C_DBID_CANNON_TYPE_730'}
@@ -5074,6 +5124,81 @@ begin
               tsOff     : LoadImageLight(imgLoadC705PortLauncher1, LoadImgOff);
               tsLoading : LoadImageLight(imgLoadC705PortLauncher1, LoadImgLoading);
               tsLaunch  : LoadImageLight(imgLoadC705PortLauncher1, LoadImgRunning);
+            end;
+
+          end;
+          {$ENDREGION}
+        end;
+
+        C_DBID_TORPEDO_BLACKSHARK :
+        begin
+          {$REGION 'C_DBID_TORPEDO_BLACKSHARK'}
+          if frmMainInstruktur.cekStatusWeapon = 1 then
+          begin
+             rzgrpBlackshark.Visible := True;
+             rzgrpBlackshark.Opened := True;
+          end;
+          frmMainInstruktur.cekStatusWeapon := 1;
+
+          if weaponship is TWeaponOn_Blackshark then
+          begin
+            WeaponBlackshark := TWeaponOn_Blackshark(weaponship);
+            // ?? tentative
+            //if WeaponC705.Firing then
+            //loading Missile 1
+            case WeaponBlackshark.LoadingMissile1 of
+              tsOff : LoadImageLight(imgLoadBlackShark1, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadBlackShark1, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadBlackShark1, LoadImgRunning);
+            end;
+
+            //loading Missile 2
+            case WeaponBlackshark.LoadingMissile2 of
+              tsOff : LoadImageLight(imgLoadBlackShark2, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadBlackShark2, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadBlackShark2, LoadImgRunning);
+            end;
+
+            //loading Missile 3
+            case WeaponBlackshark.LoadingMissile3 of
+              tsOff : LoadImageLight(imgLoadBlackShark3, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadBlackShark3, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadBlackShark3, LoadImgRunning);
+            end;
+
+            //loading Missile 4
+            case WeaponBlackshark.LoadingMissile4 of
+              tsOff : LoadImageLight(imgLoadBlackShark4, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadBlackShark4, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadBlackShark4, LoadImgRunning);
+            end;
+
+            //loading Missile 5
+            case WeaponBlackshark.LoadingMissile5 of
+              tsOff : LoadImageLight(imgLoadBlackShark5, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadBlackShark5, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadBlackShark5, LoadImgRunning);
+            end;
+
+            //loading Missile 6
+            case WeaponBlackshark.LoadingMissile6 of
+              tsOff : LoadImageLight(imgLoadBlackShark6, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadBlackShark6, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadBlackShark6, LoadImgRunning);
+            end;
+
+            //loading Missile 7
+            case WeaponBlackshark.LoadingMissile7 of
+              tsOff : LoadImageLight(imgLoadBlackShark7, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadBlackShark7, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadBlackShark7, LoadImgRunning);
+            end;
+
+            //loading Missile 8
+            case WeaponBlackshark.LoadingMissile8 of
+              tsOff : LoadImageLight(imgLoadBlackShark8, LoadImgOff);
+              tsLoading : LoadImageLight(imgLoadBlackShark8, LoadImgLoading);
+              tsLaunch : LoadImageLight(imgLoadBlackShark8, LoadImgRunning);
             end;
 
           end;
@@ -5695,6 +5820,7 @@ var
   WeaponRBU        : TWeaponOn_RBU;
   WeaponVLMica     : TWeaponOn_VLMICA;
   WeaponC705       : TWeaponOn_C705;
+  WeaponBlackShark : TWeaponOn_Blackshark;
 begin
   for i := 0 to SimManager.MainObjList.ItemCount-1 do
   begin
@@ -6080,6 +6206,36 @@ begin
                 WeaponC705.LauncherNumber := 2;
                 WeaponC705.LauncherPort := Status;
               end;
+            end;
+
+//            frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.AddDebugLog(Format(
+//              'STATUS -> ini di LoadingStatus | Port Missile = %d ;Stbd Missile = %d',
+//                [Ord(WeaponC705.LauncherPort), Ord(WeaponC705.LauncherStbd)]));
+
+            frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.ShowWeaponPanel(WeaponShip.Weapon_Name);
+            //frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.lblShowPanelFrom.Caption := 'LoadingStatus';
+            {$ENDREGION}
+          end;
+
+        end
+
+        else if (WeaponShip is TWeaponOn_Blackshark) and (WeaponID = C_DBID_TORPEDO_BLACKSHARK) then
+        begin
+          WeaponShip := TWeaponOnShip(shipInst.WeaponOnShip_List.Items[j]);
+          if WeaponShip is TWeaponOn_Blackshark then
+          begin
+            {$REGION 'TWeaponOn_BlackShark'}
+            WeaponBlackShark := TWeaponOn_Blackshark(WeaponShip);
+
+            case LauncherID of
+              1 : WeaponBlackShark.LoadingMissile1 := Status;
+              2 : WeaponBlackShark.LoadingMissile2 := Status;
+              3 : WeaponBlackShark.LoadingMissile3 := Status;
+              4 : WeaponBlackShark.LoadingMissile4 := Status;
+              5 : WeaponBlackShark.LoadingMissile5 := Status;
+              6 : WeaponBlackShark.LoadingMissile6 := Status;
+              7 : WeaponBlackShark.LoadingMissile7 := Status;
+              8 : WeaponBlackShark.LoadingMissile8 := Status;
             end;
 
 //            frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.AddDebugLog(Format(

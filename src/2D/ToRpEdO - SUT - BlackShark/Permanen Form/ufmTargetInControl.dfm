@@ -98,12 +98,12 @@ object frmTargetInControl: TfrmTargetInControl
       Font.Style = []
       ParentFont = False
     end
-    object lblTargetValue: TLabel
+    object lblTargetTrack: TLabel
       Left = 41
       Top = 10
       Width = 42
       Height = 16
-      Caption = '110000'
+      Caption = '000000'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -151,11 +151,12 @@ object frmTargetInControl: TfrmTargetInControl
       ParentFont = False
     end
     object lblBearing: TLabel
-      Left = 91
+      Left = 96
       Top = 45
-      Width = 25
+      Width = 18
       Height = 16
-      Caption = '90.0'
+      Alignment = taRightJustify
+      Caption = '0.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -181,6 +182,7 @@ object frmTargetInControl: TfrmTargetInControl
       Top = 126
       Width = 18
       Height = 16
+      Alignment = taRightJustify
       Caption = '0.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -207,6 +209,7 @@ object frmTargetInControl: TfrmTargetInControl
       Top = 64
       Width = 18
       Height = 16
+      Alignment = taRightJustify
       Caption = '0.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -220,6 +223,7 @@ object frmTargetInControl: TfrmTargetInControl
       Top = 84
       Width = 18
       Height = 16
+      Alignment = taRightJustify
       Caption = '0.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -233,6 +237,7 @@ object frmTargetInControl: TfrmTargetInControl
       Top = 104
       Width = 18
       Height = 16
+      Alignment = taRightJustify
       Caption = '0.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -449,5 +454,10 @@ object frmTargetInControl: TfrmTargetInControl
       Font.Style = []
       ParentFont = False
     end
+  end
+  object tmrUpdateTIC: TTimer
+    OnTimer = tmrUpdateTICTimer
+    Left = 152
+    Top = 16
   end
 end

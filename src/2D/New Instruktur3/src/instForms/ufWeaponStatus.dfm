@@ -6688,7 +6688,7 @@ object fWeaponStatus: TfWeaponStatus
         CaptionFont.Name = 'MS Sans Serif'
         CaptionFont.Style = [fsBold]
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 923
         DividerVisible = False
         Caption = 'BLACKSHARK'
@@ -6697,11 +6697,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 903
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 0
           object lblBlackShark: TLabel
             Left = 142
             Top = 12
@@ -6723,8 +6724,8 @@ object fWeaponStatus: TfWeaponStatus
           end
           object chkBlacksharkEnableWeapon: TCheckBox
             Tag = 2001
-            Left = 45
-            Top = 65
+            Left = 58
+            Top = 280
             Width = 137
             Height = 17
             Caption = 'Enable Blackshark'
@@ -6735,6 +6736,166 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
+          end
+          object GroupBox3: TGroupBox
+            Left = 50
+            Top = 61
+            Width = 279
+            Height = 193
+            Caption = 'Status Launcher'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 1
+            object imgLoadBlackShark5: TImage
+              Left = 125
+              Top = 116
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgLoadBlackShark6: TImage
+              Left = 48
+              Top = 116
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgLoadBlackShark7: TImage
+              Left = 124
+              Top = 153
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgLoadBlackShark8: TImage
+              Left = 48
+              Top = 153
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object lblLoadBlackShark5: TLabel
+              Left = 112
+              Top = 118
+              Width = 8
+              Height = 13
+              Caption = '5'
+            end
+            object lblLoadBlackShark6: TLabel
+              Left = 32
+              Top = 118
+              Width = 8
+              Height = 13
+              Caption = '6'
+            end
+            object lblLoadBlackShark7: TLabel
+              Left = 112
+              Top = 154
+              Width = 8
+              Height = 13
+              Caption = '7'
+            end
+            object lblLoadBlackShark8: TLabel
+              Left = 31
+              Top = 154
+              Width = 8
+              Height = 13
+              Caption = '8'
+            end
+            object imgLoadBlackShark2: TImage
+              Left = 47
+              Top = 36
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgLoadBlackShark1: TImage
+              Left = 124
+              Top = 36
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgLoadBlackShark3: TImage
+              Left = 125
+              Top = 77
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgLoadBlackShark4: TImage
+              Left = 48
+              Top = 77
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object lblLoadBlackShark4: TLabel
+              Left = 32
+              Top = 79
+              Width = 8
+              Height = 13
+              Caption = '4'
+            end
+            object lblLoadBlackShark2: TLabel
+              Left = 32
+              Top = 39
+              Width = 8
+              Height = 13
+              Caption = '2'
+            end
+            object lblLoadBlackShark1: TLabel
+              Left = 112
+              Top = 38
+              Width = 8
+              Height = 13
+              Caption = '1'
+            end
+            object lblLoadBlackShark3: TLabel
+              Left = 112
+              Top = 80
+              Width = 8
+              Height = 13
+              Caption = '3'
+            end
+            object btnLoadBlackShark: TButton
+              Tag = 3
+              Left = 179
+              Top = 67
+              Width = 75
+              Height = 23
+              Caption = 'Load'
+              TabOrder = 0
+              OnClick = btnC802AssignClick
+            end
+            object cbbLoadBlackShark: TComboBox
+              Left = 179
+              Top = 28
+              Width = 72
+              Height = 21
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -11
+              Font.Name = 'MS Sans Serif'
+              Font.Style = [fsBold]
+              ItemIndex = 0
+              ParentFont = False
+              TabOrder = 1
+              Text = '1'
+              Items.Strings = (
+                '1'
+                '2'
+                '3'
+                '4'
+                '5'
+                '6'
+                '7'
+                '8')
+            end
           end
         end
       end
@@ -6747,7 +6908,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 923
         DividerVisible = False
         Caption = 'C705'
@@ -6762,11 +6923,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 903
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 903
           object lblC705Title: TLabel
             Left = 171
             Top = 11

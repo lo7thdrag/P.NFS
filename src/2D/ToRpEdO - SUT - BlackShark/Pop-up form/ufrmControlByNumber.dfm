@@ -12,6 +12,7 @@ object frmControlByNumber: TfrmControlByNumber
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -32,12 +33,13 @@ object frmControlByNumber: TfrmControlByNumber
       Caption = 'Apply'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clGray
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblApplyClick
     end
     object lblClose: TLabel
       Left = 164
@@ -55,66 +57,15 @@ object frmControlByNumber: TfrmControlByNumber
       ParentFont = False
       OnClick = lblCloseClick
     end
-    object Label3: TLabel
-      Left = 16
-      Top = 125
-      Width = 51
-      Height = 16
-      Caption = 'Track No'
-      Color = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
+    object RadioGroup1: TRadioGroup
+      Left = 6
+      Top = 13
+      Width = 207
+      Height = 141
+      Color = clNone
+      ParentBackground = False
       ParentColor = False
-      ParentFont = False
-    end
-    object Label1: TLabel
-      Left = 55
-      Top = 42
-      Width = 49
-      Height = 16
-      Caption = 'MSI TNo'
-      Color = -1
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-    end
-    object Label2: TLabel
-      Left = 54
-      Top = 74
-      Width = 60
-      Height = 16
-      Caption = 'Link Y TNo'
-      Color = -1
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-    end
-    object edtTrackNo: TEdit
-      Left = 136
-      Top = 123
-      Width = 73
-      Height = 24
-      BevelInner = bvNone
-      BevelOuter = bvNone
-      Color = clBlack
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 2
+      TabOrder = 4
     end
     object Panel1: TPanel
       Left = -9
@@ -125,19 +76,28 @@ object frmControlByNumber: TfrmControlByNumber
       ParentBackground = False
       TabOrder = 3
     end
-    object RadioGroup1: TRadioGroup
-      Left = 16
-      Top = 13
-      Width = 185
-      Height = 105
-      TabOrder = 4
+    object Panel2: TPanel
+      Left = 27
+      Top = 8
+      Width = 125
+      Height = 17
+      BevelOuter = bvNone
+      Caption = 'Control By Number'
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 5
     end
     object btnLinkY: TRadioButton
       Left = 32
       Top = 72
-      Width = 25
+      Width = 19
       Height = 25
-      Caption = 'MSI TNo'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -151,33 +111,88 @@ object frmControlByNumber: TfrmControlByNumber
     object btnMSITNo: TRadioButton
       Left = 32
       Top = 40
-      Width = 25
-      Height = 25
-      Caption = 'MSI TNo'
-      Color = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-      TabOrder = 0
-    end
-    object Panel2: TPanel
-      Left = 27
-      Top = 8
-      Width = 125
-      Height = 17
-      BevelOuter = bvNone
-      Caption = 'Control By Number'
+      Width = 29
+      Height = 26
+      Checked = True
+      Color = clGreen
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ParentColor = False
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 0
+      TabStop = True
+    end
+    object edtTrackNo: TEdit
+      Left = 124
+      Top = 122
+      Width = 81
+      Height = 24
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      NumbersOnly = True
+      ParentFont = False
+      TabOrder = 2
+      OnChange = edtTrackNoChange
+    end
+    object pnlLinkYTNo: TPanel
+      Left = 67
+      Top = 75
+      Width = 62
+      Height = 17
+      BevelOuter = bvNone
+      Caption = 'Link Y TNo'
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 7
+    end
+    object pnlMSITNo: TPanel
+      Left = 67
+      Top = 44
+      Width = 54
+      Height = 17
+      BevelOuter = bvNone
+      Caption = 'MSI TNo'
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 6
+    end
+    object pnlTrackNo: TPanel
+      Left = 32
+      Top = 125
+      Width = 54
+      Height = 17
+      BevelOuter = bvNone
+      Caption = 'Track No'
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 8
     end
   end
 end

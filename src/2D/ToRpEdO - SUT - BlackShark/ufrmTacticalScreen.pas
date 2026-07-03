@@ -10,7 +10,7 @@ uses
   uFormUtil, UfrmRadar, ufrmOwnShip, ufrmAlertandOpearatorMassage,
   ufmTargetInControl, uBaseFunction, ufrmTorpedoAllocation, ufrmSystemStatus,
   ufrmSystemInfo, ufrmCursor, uLibConst, uBaseConst, Vcl.OleCtrls, MapXLib_TLB,
-  AdvCombo, ImageButton, uTransparentOverlay;
+  AdvCombo, ImageButton, uTransparentOverlay, uSimulationTrack, uSurfaceTrack, uSubSurfaceTrack;
 
 //const
 //  MAX_TARGET = 50;
@@ -58,6 +58,7 @@ type
     procedure cbbZoomScaleChange(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FMapTPMapViewChanged(Sender: TObject);
+    procedure pnlOperatorMessagesClick(Sender: TObject);
   private
     BearingCount: Integer;
     FFrmRadar: TFrmRadar;
@@ -352,10 +353,15 @@ begin
 
 end;
 
+procedure TFrmTacticalScreen.pnlOperatorMessagesClick(Sender: TObject);
+begin
+  SutBlacksharkManager.OperatorMessages := '';
+end;
+
 procedure TFrmTacticalScreen.Render(aCnv: TCanvas);
 var
   i: Integer;
-  Ship, OwnShip: TVehicle;
+  Ship, OwnShip: TSimulationTrack;
   MapX, MapY: Double;
   ScrX, ScrY: Single;
 begin
@@ -365,9 +371,9 @@ begin
   
     for i := 0 to VehicleMgr.ObjectList.Count - 1 do
     begin
-      if TVehicle(VehicleMgr.ObjectList[i]).ShipID = 0 then
+      if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = 0 then
       begin
-        OwnShip := TVehicle(VehicleMgr.ObjectList[i]);
+        OwnShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
 //        FMapTP.CenterX := OwnShip.PosX;
 //        FMapTP.CenterY := OwnShip.PosY;
 
@@ -393,7 +399,7 @@ begin
       end
       else
       begin
-        Ship := TVehicle(VehicleMgr.ObjectList[i]);
+        Ship := TSimulationTrack(VehicleMgr.ObjectList[i]);
 
         MapX := Ship.PosX;
         MapY := Ship.PosY;
@@ -417,12 +423,21 @@ begin
           aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
         end;
 
+        if Ship.Controlled_Track then
+        begin
+          aCnv.Pen.Color := clWhite;
+          aCnv.Pen.Style := psSolid;
+          aCnv.Brush.Color := clWhite;
+          aCnv.Brush.Style := bsClear;
+          aCnv.Ellipse(Round(ScrX) - 11, Round(ScrY) - 11, Round(ScrX) + 11, Round(ScrY) + 11);
+        end;
+
         aCnv.Pen.Style := psSolid;
         aCnv.Pen.Width := 1;
         aCnv.Brush.Style := bsClear;
         aCnv.Pen.Color := clGray;
 
-        aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.4d',[Ship.ShipID])); // perlu diganti dengan ID object
+        aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.6d',[Ship.MSITrackNumber])); // perlu diganti dengan ID object
   //      Continue;
   //      Break;
       end;
@@ -473,8 +488,8 @@ begin
   FMapTP.CenterY := SutBlacksharkManager.xShip.PositionY;
   pnlTacticalPicture.Repaint;
 
+  pnlOperatorMessages.Caption := SutBlacksharkManager.OperatorMessages;
   // get variable pada blackshark manager disini
-
 end;
 
 procedure TFrmTacticalScreen.UpdateAttachFormDisplay;

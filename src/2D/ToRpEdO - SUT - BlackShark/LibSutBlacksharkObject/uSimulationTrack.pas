@@ -16,6 +16,10 @@ type
     FIdentity: TIdentity;
     FFreeText: string;
     FControlled_Track: Boolean;
+    FDomain: Integer;
+    FBearing: Double;
+    FAzimuth: Double;
+    FRange: Double;
 
   public
     constructor Create; overload;
@@ -25,6 +29,10 @@ type
     property Identity : TIdentity read FIdentity write FIdentity;
     property FreeText : string read FFreeText write FFreeText;
     property Controlled_Track : Boolean read FControlled_Track write FControlled_Track;
+    property Domain : Integer read FDomain write FDomain;
+    property Bearing: Double read FBearing write FBearing;
+    property Azimuth: Double read FAzimuth write FAzimuth;
+    property Range: Double read FRange write FRange;
 
   end;
 
@@ -40,6 +48,8 @@ begin
   FIdentity := tidUnknown;
   FFreeText := '';
   FControlled_Track := False;
+  FBearing := 0;
+  FAzimuth := 0;
 
 end;
 

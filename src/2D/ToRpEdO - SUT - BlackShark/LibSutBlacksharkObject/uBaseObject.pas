@@ -7,7 +7,7 @@ interface
       protected
         FObjectId: Word;
         FPosX, FPosY, FPosZ : Double;   // Map coords (Lon/Lat deg atau meter)
-        FSpeed_mps          : Double;   // m/s
+        FSpeed_knot          : Double;   // m/s
         FHeadingDeg         : Double;   // 0=N, cw
         FUniqueID: string;
         FDomain: Integer;
@@ -21,7 +21,7 @@ interface
         property PosX      : Double read FPosX write FPosX;
         property PosY      : Double read FPosY write FPosY;
         property PosZ      : Double read FPosZ write FPosZ;
-        property Speed_mps : Double read FSpeed_mps write FSpeed_mps;
+        property Speed_knot : Double read FSpeed_knot write FSpeed_knot;
         property HeadingDeg: Double read FHeadingDeg write FHeadingDeg;
         property UniqueID: string read FUniqueID write FUniqueID;
         property Domain : Integer read FDomain write FDomain;
@@ -39,7 +39,7 @@ begin
   FPosX := 0;
   FPosY := 0;
   FPosZ := 0;
-  FSpeed_mps := 0;
+  FSpeed_knot := 0;
   FUniqueID := '';
   FDomain := 0;
   FShipID := 0;

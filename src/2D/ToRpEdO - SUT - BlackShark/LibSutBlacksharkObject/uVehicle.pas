@@ -63,7 +63,7 @@ constructor TVehicle.Create;
 begin
   inherited Create;
   FPosX := 0; FPosY := 0; FPosZ := 0;
-  FSpeed_mps := 0;
+  FSpeed_knot := 0;
   FHeadingDeg := 0;
   FRollDeg := 0;
   FCoordType := vctGeographicDeg;
@@ -89,7 +89,7 @@ begin
   PosY := AVehicleContact.PosY;
   PosX := AVehicleContact.PosX;
   HeadingDeg := AVehicleContact.HeadingDeg;
-  Speed_mps := AVehicleContact.Speed_mps;
+  Speed_knot := AVehicleContact.Speed_knot;
   LastHit := AVehicleContact.LastHit;
   IsTracked := AVehicleContact.IsTracked;
   isDetected := AVehicleContact.isDetected;
@@ -114,13 +114,13 @@ end;
 procedure TVehicle.SetSpeedKts(AKnots: Double);
 const KNOT_TO_MPS = 0.514444444;
 begin
-  FSpeed_mps := AKnots * KNOT_TO_MPS;
+  FSpeed_knot := AKnots * KNOT_TO_MPS;
 end;
 
 procedure TVehicle.SetSpeedKmh(AKmh: Double);
 const KMH_TO_MPS = 1000.0 / 3600.0;
 begin
-  FSpeed_mps := AKmh * KMH_TO_MPS;
+  FSpeed_knot := AKmh * KMH_TO_MPS;
 end;
 
 procedure TVehicle.UpdateKinematics(const dtSeconds: Double);
@@ -130,10 +130,10 @@ var
   dist_m, ang, dn, de: Double;
   latRad, dLat_deg, dLon_deg: Double;
 begin
-  if (dtSeconds <= 0) or (FSpeed_mps = 0) then Exit;
+  if (dtSeconds <= 0) or (FSpeed_knot = 0) then Exit;
 
   ang    := DegToRad(FHeadingDeg);
-  dist_m := FSpeed_mps * dtSeconds;
+  dist_m := FSpeed_knot * dtSeconds;
   dn     := dist_m * Cos(ang); // north
   de     := dist_m * Sin(ang); // east
 

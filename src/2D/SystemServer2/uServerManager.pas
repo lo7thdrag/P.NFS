@@ -917,42 +917,58 @@ begin
 
   case pc.ID of
     REC_3D_TORPEDO_SUT:
+    begin
+      {$REGION 'REC_3D_TORPEDO_SUT'}
+      recTorpedoSut := @apRec^;
+      if Assigned(OnLogReceived2D) then
+        OnLogReceived2D('REC_3D_TORPEDO_SUT' + #13#10 +
+        'shipID : ' + IntToStr(recTorpedoSut^.ShipID) + #13#10 +
+        'mWeaponID : ' + IntToStr(recTorpedoSut^.mWeaponID) + #13#10 +
+        'mLauncherID : ' + IntToStr(recTorpedoSut^.mLauncherID) + #13#10 +
+        'mMissileID : ' + IntToStr(recTorpedoSut^.mMissileID) + #13#10 +
+        'mMissileNumber : ' + IntToStr(recTorpedoSut^.mMissileNumber) + #13#10 +
+        'OrderID : ' + IntToStr(recTorpedoSut^.OrderID) + #13#10 +
+        'mT_ID : ' + IntToStr(recTorpedoSut^.mT_ID));
+
+      recSenTorpedoSut.ShipID := recTorpedoSut^.ShipID;
+      recSenTorpedoSut.mWeaponID := recTorpedoSut^.mWeaponID;
+      recSenTorpedoSut.mLauncherID := recTorpedoSut^.mLauncherID;
+      recSenTorpedoSut.mMissileID := recTorpedoSut^.mMissileID;
+      recSenTorpedoSut.mMissileNumber := recTorpedoSut^.mMissileNumber;
+      recSenTorpedoSut.mT_ID := recTorpedoSut^.mT_ID;
+      recSenTorpedoSut.OrderID := recTorpedoSut^.OrderID;
+
+      recSenTorpedoSut.mTorpedoCourse := recTorpedoSut^.mTorpedoCourse;
+      recSenTorpedoSut.mTorpedoSpeed := recTorpedoSut^.mTorpedoSpeed;
+      recSenTorpedoSut.mTorpedoDepth := recTorpedoSut^.mTorpedoDepth;
+      recSenTorpedoSut.mTorpedoSafeDistance :=
+        recTorpedoSut^.mTorpedoSafeDistance;
+      recSenTorpedoSut.mTorpedoEnDis := recTorpedoSut^.mTorpedoEnDis;
+      recSenTorpedoSut.mpredm := recTorpedoSut^.mpredm;
+      recSenTorpedoSut.mTargetType := recTorpedoSut^.mTargetType;
+
+      TcpServer3D.SendData(REC_3D_TORPEDO_SUT, recSenTorpedoSut);
+
+      if (recTorpedoSut^.OrderID = __ORD_TORPEDOSUT_LOADING) then
       begin
-        {$REGION 'REC_3D_TORPEDO_SUT'}
-        recTorpedoSut := @apRec^;
-        if Assigned(OnLogReceived2D) then
-          OnLogReceived2D('REC_3D_TORPEDO_SUT' + #13#10 +
-          'shipID : ' + IntToStr(recTorpedoSut^.ShipID) + #13#10 +
-          'mWeaponID : ' + IntToStr(recTorpedoSut^.mWeaponID) + #13#10 +
-          'mLauncherID : ' + IntToStr(recTorpedoSut^.mLauncherID) + #13#10 +
-          'mMissileID : ' + IntToStr(recTorpedoSut^.mMissileID) + #13#10 +
-          'mMissileNumber : ' + IntToStr(recTorpedoSut^.mMissileNumber) + #13#10 +
-          'OrderID : ' + IntToStr(recTorpedoSut^.OrderID) + #13#10 +
-          'mT_ID : ' + IntToStr(recTorpedoSut^.mT_ID));
+        RecSend3DMissilePos.ShipID := recTorpedoSut^.ShipID;
+        RecSend3DMissilePos.WeaponID := recTorpedoSut^.mWeaponID;
+        RecSend3DMissilePos.launcherID := recTorpedoSut^.mLauncherID;
+        RecSend3DMissilePos.missileID := recTorpedoSut^.mMissileID;
+        RecSend3DMissilePos.MissileNumber := 0;
+        RecSend3DMissilePos.status := 0;
+        RecSend3DMissilePos.status := ST_MISSILE_LOADED;
+        RecSend3DMissilePos.X := 0;
+        RecSend3DMissilePos.y := 0;
+        RecSend3DMissilePos.z := 0;
+        RecSend3DMissilePos.heading := 0.0;
+        RecSend3DMissilePos.speed := 0.0;
 
-
-        recSenTorpedoSut.ShipID := recTorpedoSut^.ShipID;
-        recSenTorpedoSut.mWeaponID := recTorpedoSut^.mWeaponID;
-        // Diisi sesuai Database
-        recSenTorpedoSut.mLauncherID := recTorpedoSut^.mLauncherID;
-        recSenTorpedoSut.mMissileID := recTorpedoSut^.mMissileID;
-        recSenTorpedoSut.mMissileNumber := recTorpedoSut^.mMissileNumber;
-        // Diisi 0 aj...nanti instruktur yang ngisi ulang
-        recSenTorpedoSut.mT_ID := recTorpedoSut^.mT_ID;
-        recSenTorpedoSut.OrderID := recTorpedoSut^.OrderID;
-
-        recSenTorpedoSut.mTorpedoCourse := recTorpedoSut^.mTorpedoCourse;
-        recSenTorpedoSut.mTorpedoSpeed := recTorpedoSut^.mTorpedoSpeed;
-        recSenTorpedoSut.mTorpedoDepth := recTorpedoSut^.mTorpedoDepth;
-        recSenTorpedoSut.mTorpedoSafeDistance :=
-          recTorpedoSut^.mTorpedoSafeDistance;
-        recSenTorpedoSut.mTorpedoEnDis := recTorpedoSut^.mTorpedoEnDis;
-        recSenTorpedoSut.mpredm := recTorpedoSut^.mpredm;
-        recSenTorpedoSut.mTargetType := recTorpedoSut^.mTargetType;
-
-        TcpServer3D.SendData(REC_3D_TORPEDO_SUT, recSenTorpedoSut);
+        FServer2D.SendDataEx(REC_3D_MISSILEPOS, @RecSend3DMissilePos, nil);
+      end
+      {$ENDREGION}
+    end;
         {$ENDREGION}
-      end;
     REC_3D_RBU:
       begin
         {$REGION 'REC_3D_RBU'}

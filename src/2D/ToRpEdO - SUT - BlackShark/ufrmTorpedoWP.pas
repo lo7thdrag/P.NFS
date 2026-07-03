@@ -343,7 +343,7 @@ begin
 
 //    TargetMgr.Draw(aCnv);
 
-    VehicleMgr.DrawAll(aCnv);
+//    VehicleMgr.DrawAll(aCnv);
 end;
 
 
@@ -488,7 +488,7 @@ procedure TFrmTorpedoWP.FMapMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
 //  Sel: TRadarTargetSymbol;
-  v : TVehicle;
+//  v : TVehicle;
   rangeX, dH, v0: Double;
   aLow, aHigh, aEnv: Double;
   ok: Boolean;
@@ -497,45 +497,45 @@ begin
 
 //  Sel := TargetMgr.SelectAt(X, Y);
 
-  v := VehicleMgr.SelectAt(X, Y);
+//  v := VehicleMgr.SelectAt(X, Y);
 
 
-  FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
+//  FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
 
-  if Assigned(v) then
-  begin
-    // misalnya tampilkan info target
-    // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
-
-    SutBlacksharkManager.SelectedVehicle := v;
-    rangeX := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
-    dH     := v.PosZ;    // target 20 m lebih rendah
-    v0     := 1035;    // m/s
-
-    SelectedVehicleState := true;
-
-//    FBlinkPanel := pnlSubmodeTools11;
-//    FBlinkState := False;
-//    TimerBlink.Enabled := True;
-
-    if Assigned(SutBlacksharkManager) then
-    begin
-      // 1) Tanpa environment (vakum)
-      ok := SutBlacksharkManager.ComputeGunElevationVacuum(rangeX, dH, v0, aLow, aHigh);
-//      edtLowPR.Text := FormatFloat('0.00', aLow);
-//      edtHighPR.Text := FormatFloat('0.00', aHigh);
-    end;
-  end
-  else
-  begin
-    SelectedVehicleState := false;
-    if (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
-      and (lblSubmodeTools11.Enabled = true)then
-    begin
-      TimerBlink.Enabled := False;
-      pnlSubmodeTools11.Color := clBlack;
-    end;
-  end;
+//  if Assigned(v) then
+//  begin
+//    // misalnya tampilkan info target
+//    // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
+//
+//    SutBlacksharkManager.SelectedVehicle := v;
+//    rangeX := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
+//    dH     := v.PosZ;    // target 20 m lebih rendah
+//    v0     := 1035;    // m/s
+//
+//    SelectedVehicleState := true;
+//
+////    FBlinkPanel := pnlSubmodeTools11;
+////    FBlinkState := False;
+////    TimerBlink.Enabled := True;
+//
+//    if Assigned(SutBlacksharkManager) then
+//    begin
+//      // 1) Tanpa environment (vakum)
+//      ok := SutBlacksharkManager.ComputeGunElevationVacuum(rangeX, dH, v0, aLow, aHigh);
+////      edtLowPR.Text := FormatFloat('0.00', aLow);
+////      edtHighPR.Text := FormatFloat('0.00', aHigh);
+//    end;
+//  end
+//  else
+//  begin
+//    SelectedVehicleState := false;
+//    if (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
+//      and (lblSubmodeTools11.Enabled = true)then
+//    begin
+//      TimerBlink.Enabled := False;
+//      pnlSubmodeTools11.Color := clBlack;
+//    end;
+//  end;
 end;
 
 procedure TFrmTorpedoWP.FMapMouseUp(Sender: TObject; Button: TMouseButton;
@@ -644,7 +644,6 @@ var
 //  T: TRadarTargetSymbol;
   ShipClassName,
   ShipCallSign: string;
-  V: TVehicle;
   i : Integer;
 begin
 //  SetLayoutForm;  // set layout dipindah ke tactical screen karena tactical screen dicreate setelah torpedoWP
