@@ -247,35 +247,47 @@ procedure GameSimManager.netNFS_OnReceiveMissilePos(apRec: PAnsiChar;
   aSize: Integer);
 var
   Rec: ^TRec3DMissilePos;
+  ShipObj: TShipContact;
 begin
   Rec := @apRec^;
 
-  case Rec^.status of
+  ShipObj := VehicleMgr.FindObjectByID(Integer(Rec^.ShipID));
 
-    // MISSILE DI-LOAD (dari instructor)
-    ST_MISSILE_LOADED:
-    begin
-      FLauncherHasMissile[Rec^.launcherID] := True;
-    end;
+  if not Assigned(ShipObj) then
+    Exit;
 
-    // MISSILE DITEMBAKKAN
-    ST_MISSILE_RUN:
-    begin
-      FLauncherHasMissile[Rec^.launcherID] := False;
+  // Cek dari ShipID yang sama
+  if Rec^.ShipID = VOwnShip.ShipID then begin
 
-      FMissileTakeOff := True;
+    case Rec^.status of
 
-      if Assigned(FOnTakeOffChanged) then
-        FOnTakeOffChanged(Self);
-    end;
+      // MISSILE DI-LOAD (dari instructor)
+      ST_MISSILE_LOADED:
+      begin
+        FLauncherHasMissile[Rec^.launcherID] := True;
+      end;
 
-    // MISSILE DIHAPUS / HABIS
-    ST_MISSILE_DEL:
-    begin
-      FLauncherHasMissile[Rec^.launcherID] := False;
+      // MISSILE DITEMBAKKAN
+      ST_MISSILE_RUN:
+      begin
+        FLauncherHasMissile[Rec^.launcherID] := False;
+
+        FMissileTakeOff := True;
+
+        if Assigned(FOnTakeOffChanged) then
+          FOnTakeOffChanged(Self);
+      end;
+
+      // MISSILE DIHAPUS / HABIS
+      ST_MISSILE_DEL:
+      begin
+        FLauncherHasMissile[Rec^.launcherID] := False;
+      end;
+
     end;
 
   end;
+
 end;
 
 procedure GameSimManager.netNFS_OnReceiveStatusConsole(apRec: PAnsiChar;
