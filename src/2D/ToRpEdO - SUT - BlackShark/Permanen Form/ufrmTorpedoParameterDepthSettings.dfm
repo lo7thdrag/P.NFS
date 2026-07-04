@@ -215,6 +215,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = lblApplyClick
     end
     object lblApplySetOfficial: TLabel
       Left = 230
@@ -228,6 +229,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = lblApplySetOfficialClick
     end
     object lblReset: TLabel
       Left = 510
@@ -241,6 +243,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = lblResetClick
     end
     object cbTrialGuidance: TComboBox
       Left = 440
@@ -360,10 +363,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
         object Label9: TLabel
           Left = 7
           Top = 6
@@ -699,10 +698,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
         object Label23: TLabel
           Left = 7
           Top = 50
@@ -924,10 +919,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
         object Label28: TLabel
           Left = 7
           Top = -2
@@ -1277,10 +1268,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
         object Label40: TLabel
           Left = 7
           Top = 4
@@ -1433,10 +1420,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
         object Label50: TLabel
           Left = 7
           Top = 4
@@ -1567,7 +1550,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Style = []
           ParentFont = False
         end
-        object Label60: TLabel
+        object lblOfficialToSoRangeACT: TLabel
           Left = 346
           Top = 92
           Width = 7
@@ -1638,10 +1621,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
         object Label55: TLabel
           Left = 14
           Top = 2
@@ -1765,8 +1744,8 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
             'On')
         end
         object edtTrialProtectionRadius: TEdit
-          Left = 440
-          Top = 55
+          Left = 441
+          Top = 56
           Width = 57
           Height = 21
           Color = clBlack

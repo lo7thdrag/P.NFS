@@ -98,7 +98,8 @@ uses
   uLibTDCDisplay in '..\ShareLib\LibTDC_WCC\uLibTDCDisplay.pas',
   uTDCConstan in '..\ShareLib\LibTDC_WCC\uTDCConstan.pas',
   uStringFunction in '..\ShareLib\LibBaseSystem\uStringFunction.pas',
-  uTransparentOverlay in 'uTransparentOverlay.pas';
+  uTransparentOverlay in 'uTransparentOverlay.pas',
+  uDataParameterSetting in 'uDataParameterSetting.pas';
 
 {$R *.res}
 

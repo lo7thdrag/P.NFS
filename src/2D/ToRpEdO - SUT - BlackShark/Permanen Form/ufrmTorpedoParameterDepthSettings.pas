@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvPageControl, Vcl.ComCtrls;
+  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting;
 
 type
   TfrmTorpedoParameterDepthSettings = class(TForm)
@@ -126,7 +126,7 @@ type
     edtTrialToSoRangePAS: TEdit;
     Label58: TLabel;
     Label59: TLabel;
-    Label60: TLabel;
+    lblOfficialToSoRangeACT: TLabel;
     edtTrialToSoRangeACT: TEdit;
     Label55: TLabel;
     Label56: TLabel;
@@ -139,10 +139,15 @@ type
     cbTrialASH: TComboBox;
     edtTrialProtectionRadius: TEdit;
     chkProtectionRadius: TCheckBox;
+    procedure lblResetClick(Sender: TObject);
+    procedure lblApplySetOfficialClick(Sender: TObject);
+    procedure lblApplyClick(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+   RecDataParameter : TRecParameterSettings;
+
+   procedure ResetControl(AControl: TControl);
   end;
 
 var
@@ -151,5 +156,145 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmTorpedoParameterDepthSettings.ResetControl(AControl: TControl);
+var
+  I: Integer;
+begin
+  if AControl is TEdit then
+    TEdit(AControl).Text := '0'
+
+  else if AControl is TComboBox then
+    TComboBox(AControl).ItemIndex := -1
+
+  else if AControl is TCheckBox then
+    TCheckBox(AControl).Checked := False
+
+  else if AControl is TLabel then
+    TLabel(AControl).Caption := '0';
+
+  if AControl is TWinControl then
+    for I := 0 to TWinControl(AControl).ControlCount - 1 do
+      ResetControl(TWinControl(AControl).Controls[I]);
+end;
+
+procedure TfrmTorpedoParameterDepthSettings.lblApplyClick(Sender: TObject);
+begin
+  {$REGION 'AdvDepth'}
+  RecDataParameter.Ceiling       := StrToIntDef(edtTrialCeiling.Text, 0);
+  RecDataParameter.AttackDepth   := StrToIntDef(edtTrialAttackDepth.Text, 0);
+  RecDataParameter.SearchDepth   := StrToIntDef(edtTrialSearchDepth.Text, 0);
+  RecDataParameter.ApproachDepth := StrToIntDef(edtTrialAppoarchDepth.Text, 0);
+  RecDataParameter.Floor         := StrToIntDef(edtTrialFloor.Text, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvApproach'}
+  RecDataParameter.EnableDistance := StrToIntDef(edtTrialEnablingDist.Text, 0);
+  RecDataParameter.ApproachSpeed  := cbTrialApproachSpeed.ItemIndex;
+  RecDataParameter.ApproachCourse := StrToIntDef(lblTrialApproachCourse.Caption, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvSA'}
+  RecDataParameter.SAUpdating        := cbTrialSAUpdating.ItemIndex;
+  RecDataParameter.CenterOS          := StrToIntDef(lblTrialCenterOS.Caption, 0);
+  RecDataParameter.SALength          := StrToIntDef(lblTrialSALength.Caption, 0);
+  RecDataParameter.SAWidth           := StrToIntDef(lblTrialSAWidth.Caption, 0);
+  RecDataParameter.CenterSSP         := StrToIntDef(edtTrialCenterSSP.Text, 0);
+  RecDataParameter.SearchConfidence  := StrToIntDef(lblTrialSearchConfidence.Caption, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvIntGuidance'}
+  RecDataParameter.SearchPattern := cbTrialSearchPattern.ItemIndex;
+  RecDataParameter.DPCAngle      := StrToIntDef(edtTrialDPCAngle.Text, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvToSo'}
+  RecDataParameter.ToSoMode     := cbTrialToSoMode.ItemIndex;
+  RecDataParameter.ToSoRangePAS := StrToIntDef(edtTrialToSoRangePAS.Text, 0);
+  RecDataParameter.ToSoRangeACT := StrToIntDef(edtTrialToSoRangeACT.Text, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvSafety'}
+  RecDataParameter.ProtectionRadius := StrToIntDef(edtTrialProtectionRadius.Text, 0);
+  RecDataParameter.ASH              := cbTrialASH.ItemIndex;
+  {$ENDREGION}
+end;
+
+procedure TfrmTorpedoParameterDepthSettings.lblApplySetOfficialClick(Sender: TObject);
+begin
+  {$REGION 'AdvDepth'}
+  lblOfficalCeiling.Caption        := edtTrialCeiling.Text;
+  lblOfficialAttackDepth.Caption   := edtTrialAttackDepth.Text;
+  lblOfficialSearchDepth.Caption   := edtTrialSearchDepth.Text;
+  lblOfficialAppoarchDepth.Caption := edtTrialAppoarchDepth.Text;
+  lblOfficialFloor.Caption         := edtTrialFloor.Text;
+
+  RecDataParameter.Ceiling       := StrToIntDef(edtTrialCeiling.Text, 0);
+  RecDataParameter.AttackDepth   := StrToIntDef(edtTrialAttackDepth.Text, 0);
+  RecDataParameter.SearchDepth   := StrToIntDef(edtTrialSearchDepth.Text, 0);
+  RecDataParameter.ApproachDepth := StrToIntDef(edtTrialAppoarchDepth.Text, 0);
+  RecDataParameter.Floor         := StrToIntDef(edtTrialFloor.Text, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvApproach'}
+  lblOfficialEnableDis.Caption      := edtTrialEnablingDist.Text;
+  lblOfficialApproachSpeed.Caption  := cbTrialApproachSpeed.Text;
+  lblOfficialApproachCourse.Caption := lblTrialApproachCourse.Caption;
+
+  RecDataParameter.EnableDistance := StrToIntDef(edtTrialEnablingDist.Text, 0);
+  RecDataParameter.ApproachSpeed  := cbTrialApproachSpeed.ItemIndex;
+  RecDataParameter.ApproachCourse := StrToIntDef(lblTrialApproachCourse.Caption, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvSA'}
+  lblOfficialSAUpdating.Caption       := cbTrialSAUpdating.Text;
+  lblOfficialCenterOS.Caption         := lblTrialCenterOS.Caption;
+  lblOfficialSALength.Caption         := lblTrialSALength.Caption;
+  lblSAWidth.Caption                  := lblTrialSAWidth.Caption;
+  lblOfficialCenterSSP.Caption        := edtTrialCenterSSP.Text;
+  lblOfficialSearchConfidence.Caption := lblTrialSearchConfidence.Caption;
+
+  RecDataParameter.SAUpdating        := cbTrialSAUpdating.ItemIndex;
+  RecDataParameter.CenterOS          := StrToIntDef(lblTrialCenterOS.Caption, 0);
+  RecDataParameter.SALength          := StrToIntDef(lblTrialSALength.Caption, 0);
+  RecDataParameter.SAWidth           := StrToIntDef(lblTrialSAWidth.Caption, 0);
+  RecDataParameter.CenterSSP         := StrToIntDef(edtTrialCenterSSP.Text, 0);
+  RecDataParameter.SearchConfidence  := StrToIntDef(lblTrialSearchConfidence.Caption, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvIntGuidance'}
+  lblOfficialSearchPattern.Caption := cbTrialSearchPattern.Text;
+  lblOfficialDPCAngle.Caption      := edtTrialDPCAngle.Text;
+
+  RecDataParameter.SearchPattern := cbTrialSearchPattern.ItemIndex;
+  RecDataParameter.DPCAngle      := StrToIntDef(edtTrialDPCAngle.Text, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvToSo'}
+  lblOfficialToSoMode.Caption     := cbTrialToSoMode.Text;
+  lblOfficialToSoRangePAS.Caption := edtTrialToSoRangePAS.Text;
+  lblOfficialToSoRangeACT.Caption := edtTrialToSoRangeACT.Text;
+
+  RecDataParameter.ToSoMode     := cbTrialToSoMode.ItemIndex;
+  RecDataParameter.ToSoRangePAS := StrToIntDef(edtTrialToSoRangePAS.Text, 0);
+  RecDataParameter.ToSoRangeACT := StrToIntDef(edtTrialToSoRangeACT.Text, 0);
+  {$ENDREGION}
+
+  {$REGION 'AdvSafety'}
+  lblOfficialProtectionRadius.Caption := edtTrialProtectionRadius.Text;
+  lblOfficialASH.Caption              := cbTrialASH.Text;
+
+  RecDataParameter.ProtectionRadius := StrToIntDef(edtTrialProtectionRadius.Text, 0);
+  RecDataParameter.ASH              := cbTrialASH.ItemIndex;
+  {$ENDREGION}
+end;
+
+procedure TfrmTorpedoParameterDepthSettings.lblResetClick(Sender: TObject);
+var
+  I: Integer;
+begin
+  for I := 0 to AdvPageTorpedoParameterDepth.PageCount - 1 do
+    ResetControl(AdvPageTorpedoParameterDepth.Pages[I]);
+end;
 
 end.
