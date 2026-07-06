@@ -118,7 +118,7 @@ implementation
 
 uses
   uDataModule, ulibSettings,
-    uShipModel;
+    uShipModel, ufrmTorpedoAllocation;
 
 { TSutBlacksharkManager }
 
@@ -166,13 +166,12 @@ var
   i : Integer;
 begin
   inherited;
+
   FIsStandAlone := False;
   FIsTrueMotion := False;
 
-  for i := 0 to Length(FTorpedoArray) do
-  begin
+  for i := 0 to High(FTorpedoArray) do
     FTorpedoArray[i] := TTorpedoLauncher.Create;
-  end;
 end;
 
 destructor TSutBlacksharkManager.Destroy;
@@ -299,20 +298,23 @@ begin
 
 end;
 
-procedure TSutBlacksharkManager.EventonRecMissilePosAvailable(apRec: PAnsiChar;
-  aSize: integer);
+procedure TSutBlacksharkManager.EventonRecMissilePosAvailable(apRec: PAnsiChar;aSize: integer);
 var
   Rec: ^TRec3DMissilePos;
 begin
-  Rec := @apRec^;
-  if not ((Rec^.ShipID = ShipID) and (rec^.WeaponID = C_DBID_TORPEDO_BLACKSHARK)) then Exit;
+  Rec := Pointer(apRec);
 
-  if Rec^.status = ST_MISSILE_LOADED then
-  begin
-    FTorpedoArray[rec^.launcherID-1].Loaded := True;
-  end;
+  if (Rec^.ShipID <> ShipID) or
+     (Rec^.WeaponID <> C_DBID_TORPEDO_BLACKSHARK) then
+    Exit;
 
-//  Rec^.WeaponID;
+  if Rec^.Status <> ST_MISSILE_LOADED then
+    Exit;
+
+  if (Rec^.LauncherID < 1) or (Rec^.LauncherID > 8) then
+    Exit;
+
+  FTorpedoArray[Rec^.LauncherID - 1].Loaded := True;
 end;
 
 procedure TSutBlacksharkManager.Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);

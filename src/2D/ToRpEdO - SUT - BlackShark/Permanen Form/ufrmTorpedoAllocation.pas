@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
   Vcl.StdCtrls, AdvPageControl,
 
-  ufrmTorpedoParameterDepthSettings;
+  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager;
 
 type
   TfrmTorpedoAllocation = class(TForm)
@@ -134,12 +134,15 @@ type
     Label42: TLabel;
     Label43: TLabel;
     Label44: TLabel;
+    tmrImageAllocation: TTimer;
     procedure pnlEngagementAnalysisStartClick(Sender: TObject);
     procedure lblCloseClick(Sender: TObject);
+    procedure tmrImageAllocationTimer(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     FFrmTorpedoParameterSettings : TfrmTorpedoParameterDepthSettings;
   public
-    { Public declarations }
+    procedure UpdateAllocationStatus;
   end;
 
 var
@@ -151,6 +154,11 @@ uses
   ufrmTorpedoWP;
 
 {$R *.dfm}
+
+procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
+begin
+  UpdateAllocationStatus;
+end;
 
 procedure TfrmTorpedoAllocation.lblCloseClick(Sender: TObject);
 begin
@@ -167,6 +175,63 @@ begin
     FFrmTorpedoParameterSettings.Parent := frmTorpedoWP.pnlTorpedoParamSettings;
     FFrmTorpedoParameterSettings.Align  := alClient;
     FFrmTorpedoParameterSettings.Show;
+  end;
+end;
+
+procedure TfrmTorpedoAllocation.tmrImageAllocationTimer(Sender: TObject);
+begin
+  UpdateAllocationStatus;
+end;
+
+procedure TfrmTorpedoAllocation.UpdateAllocationStatus;
+var
+  I: Integer;
+  Img: TImage;
+  ImgPath: string;
+begin
+  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus2.bmp';
+
+  for I := 1 to 8 do
+  begin
+    case I of
+      1: Img := imgAllocation1;
+      2: Img := imgAllocation2;
+      3: Img := imgAllocation3;
+      4: Img := imgAllocation4;
+      5: Img := imgAllocation5;
+      6: Img := imgAllocation6;
+      7: Img := imgAllocation7;
+      8: Img := imgAllocation8;
+    end;
+
+    if SutBlacksharkManager.FTorpedoArray[I-1].Loaded then
+    begin
+      Img.Picture.LoadFromFile(ImgPath);
+
+      case I of
+        1: lblAllocationStatus1.Font.Color := clLime;
+        2: lblAllocationStatus2.Font.Color := clLime;
+        3: lblAllocationStatus3.Font.Color := clLime;
+        4: lblAllocationStatus4.Font.Color := clLime;
+        5: lblAllocationStatus5.Font.Color := clLime;
+        6: lblAllocationStatus6.Font.Color := clLime;
+        7: lblAllocationStatus7.Font.Color := clLime;
+        8: lblAllocationStatus8.Font.Color := clLime;
+      end;
+    end
+    else
+    begin
+      case I of
+        1: lblAllocationStatus1.Font.Color := clWhite;
+        2: lblAllocationStatus2.Font.Color := clWhite;
+        3: lblAllocationStatus3.Font.Color := clWhite;
+        4: lblAllocationStatus4.Font.Color := clWhite;
+        5: lblAllocationStatus5.Font.Color := clWhite;
+        6: lblAllocationStatus6.Font.Color := clWhite;
+        7: lblAllocationStatus7.Font.Color := clWhite;
+        8: lblAllocationStatus8.Font.Color := clWhite;
+      end;
+    end;
   end;
 end;
 
