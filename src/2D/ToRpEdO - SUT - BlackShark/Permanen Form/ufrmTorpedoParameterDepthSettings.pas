@@ -159,23 +159,115 @@ implementation
 
 procedure TfrmTorpedoParameterDepthSettings.ResetControl(AControl: TControl);
 var
-  I: Integer;
+  i,j : Integer;
+  Tab : TAdvTabSheet;
 begin
-  if AControl is TEdit then
-    TEdit(AControl).Text := '0'
-
-  else if AControl is TComboBox then
-    TComboBox(AControl).ItemIndex := -1
-
+  {$REGION 'AdvDepth'}
+  if AControl is TLabel then
+  begin
+    lblOfficalCeiling.Caption        := '0';
+    lblOfficialAttackDepth.Caption   := '0';
+    lblOfficialSearchDepth.Caption   := '0';
+    lblOfficialAppoarchDepth.Caption := '0';
+    lblOfficialFloor.Caption         := '0';
+  end
+  else if AControl is TEdit then
+  begin
+    edtTrialCeiling.Text       := '0';
+    edtTrialAttackDepth.Text   := '0';
+    edtTrialSearchDepth.Text   := '0';
+    edtTrialAppoarchDepth.Text := '0';
+    edtTrialFloor.Text         := '0';
+  end
   else if AControl is TCheckBox then
-    TCheckBox(AControl).Checked := False
+  begin
+    chkTrialCeiling.Checked := True;
+    chkTrialFloor.Checked   := True;
+  end;
+  {$ENDREGION}
 
-  else if AControl is TLabel then
-    TLabel(AControl).Caption := '0';
+  {$REGION 'AdvApproach'}
+  if AControl is TLabel then
+  begin
+    lblOfficialEnableDis.Caption       := '0';
+    lblOfficialApproachSpeed.Caption   := '0';
+    lblOfficialApproachCourse.Caption  := '0';
+    lblTrialApproachCourse.Caption     := '0';
+  end
+  else if AControl is TEdit then
+    edtTrialEnablingDist.Text := '0'
+  else if AControl is TComboBox then
+    cbTrialApproachSpeed.ItemIndex := 9
+  else if AControl is TCheckBox then
+    chkTrialApproachCourse.Checked := False;
+  {$ENDREGION}
+
+  {$REGION 'AdvSA'}
+  if AControl is TLabel then
+  begin
+    lblOfficialCenterOS.Caption         := '0';
+    lblOfficialSALength.Caption         := '0';
+    lblSAWidth.Caption                  := '0';
+    lblOfficialCenterSSP.Caption        := '0';
+    lblOfficialSearchConfidence.Caption := '0';
+    lblTrialCenterOS.Caption            := '0';
+    lblTrialSALength.Caption            := '0';
+    lblTrialSAWidth.Caption             := '0';
+    lblTrialSearchConfidence.Caption    := '0';
+  end
+  else if AControl is TEdit then
+    edtTrialCenterSSP.Text := '0'
+  else if AControl is TComboBox then
+    cbTrialSAUpdating.ItemIndex := 0
+  else if AControl is TCheckBox then
+    chkTrialCenterOS.Checked := True;
+  {$ENDREGION}
+
+  {$REGION 'AdvIntGuidance'}
+  if AControl is TLabel then
+  begin
+    lblOfficialSearchPattern.Caption    := 'Auto';
+    lblOfficialDPCAngle.Caption         := '0';
+  end
+  else if AControl is TEdit then
+    edtTrialDPCAngle.Text := '0'
+  else if AControl is TComboBox then
+    cbTrialSAUpdating.ItemIndex := 0;
+  {$ENDREGION}
+
+  {$REGION 'AdvToSo'}
+  if AControl is TLabel then
+  begin
+    lblOfficialToSoMode.Caption      := 'PASS';
+    lblOfficialToSoRangePAS.Caption  := '0';
+    lblOfficialToSoRangeACT.Caption  := '0';
+  end
+  else if AControl is TEdit then
+  begin
+    edtTrialToSoRangePAS.Text := '0';
+    edtTrialToSoRangeACT.Text := '0';
+  end
+  else if AControl is TComboBox then
+    cbTrialToSoMOde.ItemIndex := 1;
+  {$ENDREGION}
+
+  {$REGION 'AdvSafety'}
+  if AControl is TLabel then
+  begin
+    lblOfficialProtectionRadius.Caption := '0';
+    lblOfficialASH.Caption              := 'On';
+  end
+  else if AControl is TEdit then
+    edtTrialProtectionRadius.Text := '0'
+  else if AControl is TComboBox then
+    cbTrialASH.ItemIndex := 1
+  else if AControl is TCheckBox then
+    chkProtectionRadius.Checked := False;
+  {$ENDREGION}
 
   if AControl is TWinControl then
-    for I := 0 to TWinControl(AControl).ControlCount - 1 do
-      ResetControl(TWinControl(AControl).Controls[I]);
+    for i := 0 to TWinControl(AControl).ControlCount -1 do
+      ResetControl(TWinControl(AControl).Controls[i]);
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblApplyClick(Sender: TObject);
@@ -291,10 +383,10 @@ end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblResetClick(Sender: TObject);
 var
-  I: Integer;
+  i : Integer;
 begin
-  for I := 0 to AdvPageTorpedoParameterDepth.PageCount - 1 do
-    ResetControl(AdvPageTorpedoParameterDepth.Pages[I]);
+  for i := 0 to AdvPageTorpedoParameterDepth.PageCount - 1 do
+    ResetControl(AdvPageTorpedoParameterDepth.Pages[i]);
 end;
 
 end.
