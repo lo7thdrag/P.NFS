@@ -29,18 +29,10 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Height = 80
       TabOrder = 0
       object shpFrameTorpedo2: TShape
-        Left = 8
+        Left = 5
         Top = 16
-        Width = 125
-        Height = 57
-        Brush.Color = clBlack
-        Pen.Color = clWhite
-      end
-      object shpTorpedo2: TShape
-        Left = 0
-        Top = 0
-        Width = 140
-        Height = 95
+        Width = 133
+        Height = 62
         Brush.Color = clBlack
         Pen.Color = clWhite
       end
@@ -148,6 +140,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pbFrameTorpedo2: TPaintBox
+        Left = -5
+        Top = -3
+        Width = 140
+        Height = 80
+        OnPaint = pbFrameTorpedo1Paint
+      end
     end
     object pnlTorpedo4: TPanel
       Left = 7
@@ -156,18 +155,10 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Height = 80
       TabOrder = 1
       object shpFrameTorpedo4: TShape
-        Left = 8
-        Top = 17
-        Width = 125
+        Left = 7
+        Top = 19
+        Width = 130
         Height = 57
-        Brush.Color = clBlack
-        Pen.Color = clWhite
-      end
-      object shpTorpedo4: TShape
-        Left = 0
-        Top = 0
-        Width = 140
-        Height = 95
         Brush.Color = clBlack
         Pen.Color = clWhite
       end
@@ -280,6 +271,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pbFrameTorpedo4: TPaintBox
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 80
+        OnPaint = pbFrameTorpedo1Paint
+      end
     end
     object pnlTorpedo6: TPanel
       Left = 7
@@ -289,17 +287,9 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       TabOrder = 2
       object shpFrameTorpedo: TShape
         Left = 8
-        Top = 18
-        Width = 125
+        Top = 20
+        Width = 130
         Height = 57
-        Brush.Color = clBlack
-        Pen.Color = clWhite
-      end
-      object shpTorpedo6: TShape
-        Left = 0
-        Top = 0
-        Width = 140
-        Height = 95
         Brush.Color = clBlack
         Pen.Color = clWhite
       end
@@ -407,6 +397,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pbFrameTorpedo6: TPaintBox
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 80
+        OnPaint = pbFrameTorpedo1Paint
+      end
     end
     object pnlTorpedo8: TPanel
       Left = 8
@@ -416,17 +413,9 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       TabOrder = 3
       object shpFrameTorpedo8: TShape
         Left = 8
-        Top = 17
-        Width = 125
+        Top = 19
+        Width = 130
         Height = 57
-        Brush.Color = clBlack
-        Pen.Color = clWhite
-      end
-      object shpTorpedo8: TShape
-        Left = 0
-        Top = 0
-        Width = 140
-        Height = 80
         Brush.Color = clBlack
         Pen.Color = clWhite
       end
@@ -534,6 +523,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pbFrameTorpedo8: TPaintBox
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 80
+        OnPaint = pbFrameTorpedo1Paint
+      end
     end
     object pnlTorpedo3: TPanel
       Left = 149
@@ -542,18 +538,10 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Height = 80
       TabOrder = 5
       object shpFrameTorpedo3: TShape
-        Left = 7
-        Top = 18
-        Width = 125
+        Left = 8
+        Top = 19
+        Width = 130
         Height = 57
-        Brush.Color = clBlack
-        Pen.Color = clWhite
-      end
-      object shpTorpedo3: TShape
-        Left = -5
-        Top = 0
-        Width = 145
-        Height = 95
         Brush.Color = clBlack
         Pen.Color = clWhite
       end
@@ -661,6 +649,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pbFrameTorpedo3: TPaintBox
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 80
+        OnPaint = pbFrameTorpedo1Paint
+      end
     end
     object pnlTorpedo5: TPanel
       Left = 149
@@ -671,16 +666,8 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       object shpFrameTorpedo5: TShape
         Left = 8
         Top = 17
-        Width = 125
+        Width = 130
         Height = 57
-        Brush.Color = clBlack
-        Pen.Color = clWhite
-      end
-      object shpTorpedo5: TShape
-        Left = -5
-        Top = 0
-        Width = 145
-        Height = 95
         Brush.Color = clBlack
         Pen.Color = clWhite
       end
@@ -788,6 +775,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pbFrameTorpedo5: TPaintBox
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 80
+        OnPaint = pbFrameTorpedo1Paint
+      end
     end
     object pnlTorpedo7: TPanel
       Left = 149
@@ -798,16 +792,8 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       object shpFrameTorpedo7: TShape
         Left = 9
         Top = 16
-        Width = 125
+        Width = 130
         Height = 57
-        Brush.Color = clBlack
-        Pen.Color = clWhite
-      end
-      object shpTorpedo7: TShape
-        Left = -5
-        Top = 0
-        Width = 145
-        Height = 80
         Brush.Color = clBlack
         Pen.Color = clWhite
       end
@@ -915,6 +901,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pbFrameTorpedo7: TPaintBox
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 80
+        OnPaint = pbFrameTorpedo1Paint
+      end
     end
     object pnlTorpedo1: TPanel
       Left = 149
@@ -923,20 +916,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Height = 80
       TabOrder = 4
       object shpFrameTorpedo1: TShape
-        Left = 7
+        Left = 8
         Top = 17
-        Width = 125
-        Height = 57
+        Width = 130
+        Height = 62
         Brush.Color = clBlack
         Pen.Color = clWhite
-      end
-      object shpTorpedo1: TShape
-        Left = -5
-        Top = 0
-        Width = 145
-        Height = 95
-        Brush.Color = clBlack
-        Pen.Color = clWhite
+        Visible = False
       end
       object lblTorpedo1: TLabel
         Left = 35
@@ -1041,11 +1027,18 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pbFrameTorpedo1: TPaintBox
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 80
+        OnPaint = pbFrameTorpedo1Paint
+      end
     end
   end
   object tmrDrawTube: TTimer
     OnTimer = tmrDrawTubeTimer
-    Left = 136
-    Top = 65534
+    Left = 149
+    Top = 65521
   end
 end

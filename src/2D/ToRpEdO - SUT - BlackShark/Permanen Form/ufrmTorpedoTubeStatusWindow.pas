@@ -51,13 +51,6 @@ type
     pbTubeSymbol6: TPaintBox;
     pbTubeSymbol7: TPaintBox;
     pbTubeSymbol8: TPaintBox;
-    shpTorpedo2: TShape;
-    shpTorpedo1: TShape;
-    shpTorpedo4: TShape;
-    shpTorpedo3: TShape;
-    shpTorpedo6: TShape;
-    shpTorpedo5: TShape;
-    shpTorpedo7: TShape;
     shpFrameTorpedo2: TShape;
     shpFrameTorpedo1: TShape;
     shpFrameTorpedo3: TShape;
@@ -65,7 +58,6 @@ type
     shpFrameTorpedo5: TShape;
     shpFrameTorpedo7: TShape;
     shpFrameTorpedo: TShape;
-    shpTorpedo8: TShape;
     shpFrameTorpedo8: TShape;
     lblActiveToSo1: TLabel;
     lblValueTorpedo1: TLabel;
@@ -99,13 +91,22 @@ type
     lblFuse8: TLabel;
     lblActiveToSo8: TLabel;
     lblValueTorpedo8: TLabel;
+    pbFrameTorpedo1: TPaintBox;
+    pbFrameTorpedo2: TPaintBox;
+    pbFrameTorpedo3: TPaintBox;
+    pbFrameTorpedo4: TPaintBox;
+    pbFrameTorpedo5: TPaintBox;
+    pbFrameTorpedo6: TPaintBox;
+    pbFrameTorpedo7: TPaintBox;
+    pbFrameTorpedo8: TPaintBox;
     procedure tmrDrawTubeTimer(Sender: TObject);
     procedure DrawTube(pBox: TPaintBox; aLauncher: TTorpedoLauncher);
     procedure pbTubeSymbol1Paint(Sender: TObject);
+    procedure pbFrameTorpedo1Paint(Sender: TObject);
   private
     { Private declarations }
   public
-    procedure UpdatePanelStatus;
+    procedure DrawFrame(APaintBox: TPaintBox; ALauncher: TTorpedoLauncher);
   end;
 
 var
@@ -241,34 +242,50 @@ begin
   pbTubeSymbol7.Invalidate;
   pbTubeSymbol8.Invalidate;
 
-  UpdatePanelStatus;
+  pbFrameTorpedo1.Invalidate;
+  pbFrameTorpedo2.Invalidate;
+  pbFrameTorpedo3.Invalidate;
+  pbFrameTorpedo4.Invalidate;
+  pbFrameTorpedo5.Invalidate;
+  pbFrameTorpedo6.Invalidate;
+  pbFrameTorpedo7.Invalidate;
+  pbFrameTorpedo8.Invalidate;
 end;
 
-procedure TfrmTorpedoTubeStatusWindow.UpdatePanelStatus;
+procedure TfrmTorpedoTubeStatusWindow.DrawFrame(APaintBox: TPaintBox; ALauncher: TTorpedoLauncher);
 var
-  i     : Integer;
-  shape : TShape;
+  Frame: TCanvas;
 begin
-  for i := 0 to 7 do
-  begin
-    case i of
-      0: Shape := shpTorpedo1;
-      1: Shape := shpTorpedo2;
-      2: Shape := shpTorpedo3;
-      3: Shape := shpTorpedo4;
-      4: Shape := shpTorpedo5;
-      5: Shape := shpTorpedo6;
-      6: Shape := shpTorpedo7;
-      7: Shape := shpTorpedo8;
-    end;
+  Frame := APaintBox.Canvas;
 
-    if SutBlacksharkManager.FTorpedoArray[i].Loaded then
-      Shape.Pen.Color := clYellow
-    else
-      Shape.Pen.Color := clWhite;
+  Frame.Pen.Width := 2;
 
-    Shape.Repaint;
-  end;
+  // Top
+  Frame.Pen.Color := clWhite;
+  Frame.MoveTo(0,0);
+  Frame.LineTo(APaintBox.Width-1,0);
+
+  // Left
+  Frame.MoveTo(0,0);
+  Frame.LineTo(0,APaintBox.Height-1);
+
+  // Bottom
+  Frame.MoveTo(0,APaintBox.Height-1);
+  Frame.LineTo(APaintBox.Width-1,APaintBox.Height-1);
+
+  // Right
+  if ALauncher.Loaded then
+    Frame.Pen.Color := clYellow
+  else
+    Frame.Pen.Color := clWhite;
+
+  Frame.MoveTo(APaintBox.Width-1,0);
+  Frame.LineTo(APaintBox.Width-1,APaintBox.Height-1);
+end;
+
+procedure TfrmTorpedoTubeStatusWindow.pbFrameTorpedo1Paint(Sender: TObject);
+begin
+  DrawFrame(TPaintBox(Sender), SutBlacksharkManager.FTorpedoArray[TPaintBox(Sender).Tag]);
 end;
 
 end.
