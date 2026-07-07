@@ -252,36 +252,212 @@ type
     Label65: TLabel;
     Label66: TLabel;
     Label67: TLabel;
-    edtInputHigh1: TEdit;
-    edtObsHigh1: TEdit;
-    edtTgt1: TEdit;
+    edtInputHighLnd1: TEdit;
+    edtObsHighLnd1: TEdit;
+    edtTgtLnd1: TEdit;
     advgrpbxLandTgt2: TAdvGroupBox;
     Label68: TLabel;
     Label69: TLabel;
     Label70: TLabel;
-    edtInputHigh2: TEdit;
-    edtObsHigh2: TEdit;
-    edtTgt2: TEdit;
+    edtInputHighLnd2: TEdit;
+    edtObsHighLnd2: TEdit;
+    edtTgtLnd2: TEdit;
     advgrpbxLandTgt3: TAdvGroupBox;
     Label71: TLabel;
     Label72: TLabel;
     Label73: TLabel;
-    edtInputHigh3: TEdit;
-    edtObsHigh3: TEdit;
-    edtTgt3: TEdit;
+    edtInputHighLnd3: TEdit;
+    edtObsHighLnd3: TEdit;
+    edtTgtLnd3: TEdit;
     advgrpbxLandTgt4: TAdvGroupBox;
     Label74: TLabel;
     Label75: TLabel;
     Label76: TLabel;
-    edtInputHigh4: TEdit;
-    edtObsHigh4: TEdit;
-    edtTgt4: TEdit;
+    edtInputHighLnd4: TEdit;
+    edtObsHighLnd4: TEdit;
+    edtTgtLnd4: TEdit;
     btnExit_ObstacleInfo: TSpeedButtonImage;
     btnOkObstacleInfo: TVrDemoButton;
     pnlModeOperasi: TPanel;
     tmrForm: TTimer;
     Keyboard1: TMenuItem;
     tmrServiceUpdate: TTimer;
+    advgrpbxTgtInfoPg2: TAdvGroupBox;
+    Label77: TLabel;
+    Label78: TLabel;
+    Label79: TLabel;
+    Label80: TLabel;
+    Label81: TLabel;
+    Label82: TLabel;
+    Label83: TLabel;
+    Label84: TLabel;
+    Label85: TLabel;
+    edtTgtNoPg2: TEdit;
+    edtTgtLongPg2: TEdit;
+    edtTgtLatPg2: TEdit;
+    edtTgtSpdPg2: TEdit;
+    edtTgtCrsPg2: TEdit;
+    edtTgtRngPg2: TEdit;
+    edtTgtAzimuPg2: TEdit;
+    edtTgtHeightPg2: TEdit;
+    advgrpbxRouteInfoPg2: TAdvGroupBox;
+    Label86: TLabel;
+    Label87: TLabel;
+    Label88: TLabel;
+    Label89: TLabel;
+    Label90: TLabel;
+    Label91: TLabel;
+    Label92: TLabel;
+    Label93: TLabel;
+    Label94: TLabel;
+    Label95: TLabel;
+    Label96: TLabel;
+    Label97: TLabel;
+    imgUpRoutNoPg2: TImage;
+    imgDownRoutNoPg2: TImage;
+    edtRoutTotalPg2: TEdit;
+    edtRoutNoPg2: TEdit;
+    edtFlyRngPg2: TEdit;
+    edtAttackAPg2: TEdit;
+    edtRoutStatusPg2: TEdit;
+    edtLong1Pg2: TEdit;
+    edtLat1Pg2: TEdit;
+    edtLong2Pg2: TEdit;
+    edtLat2Pg2: TEdit;
+    edtLong3Pg2: TEdit;
+    edtLat4Pg2: TEdit;
+    edtLong4Pg2: TEdit;
+    edtLat3Pg2: TEdit;
+    advgrpbxTgtInfoPg4: TAdvGroupBox;
+    Label98: TLabel;
+    Label99: TLabel;
+    Label100: TLabel;
+    Label101: TLabel;
+    Label102: TLabel;
+    Label103: TLabel;
+    Label104: TLabel;
+    Label105: TLabel;
+    Label106: TLabel;
+    edtTgtNoPg4: TEdit;
+    edtTgtLongPg4: TEdit;
+    edtTgtLatPg4: TEdit;
+    edtTgtSpdPg4: TEdit;
+    edtTgtCrsPg4: TEdit;
+    edtTgtRngPg4: TEdit;
+    edtTgtAzimuPg4: TEdit;
+    edtTgtHeightPg4: TEdit;
+    advgrpbxRouteInfoPg4: TAdvGroupBox;
+    Label107: TLabel;
+    Label108: TLabel;
+    Label109: TLabel;
+    Label110: TLabel;
+    Label111: TLabel;
+    Label112: TLabel;
+    Label113: TLabel;
+    Label114: TLabel;
+    Label115: TLabel;
+    Label116: TLabel;
+    Label117: TLabel;
+    Label118: TLabel;
+    imgUpRoutNoPg4: TImage;
+    Image3: TImage;
+    edtRoutTotalPg4: TEdit;
+    edtRoutNoPg4: TEdit;
+    edtFlyRngPg4: TEdit;
+    edtAttackAPg4: TEdit;
+    edtRoutStatusPg4: TEdit;
+    edtLong1Pg4: TEdit;
+    edtLat1Pg4: TEdit;
+    edtLong2Pg4: TEdit;
+    edtLat2Pg4: TEdit;
+    edtLong3Pg4: TEdit;
+    edtLat4Pg4: TEdit;
+    edtLong4Pg4: TEdit;
+    edtLat3Pg4: TEdit;
+    advgrpbxIslTgt1: TAdvGroupBox;
+    Label119: TLabel;
+    Label120: TLabel;
+    Label121: TLabel;
+    edtInputHighIsl1: TEdit;
+    edtObsHighIsl1: TEdit;
+    edtTgtIsl1: TEdit;
+    advgrpbxIslTgt2: TAdvGroupBox;
+    Label122: TLabel;
+    Label123: TLabel;
+    Label124: TLabel;
+    edtInputHighIsl2: TEdit;
+    edtObsHighIsl2: TEdit;
+    edtTgtIsl2: TEdit;
+    advgrpbxIslTgt3: TAdvGroupBox;
+    Label125: TLabel;
+    Label126: TLabel;
+    Label127: TLabel;
+    edtInputHighIsl3: TEdit;
+    edtObsHighIsl3: TEdit;
+    edtTgtIsl3: TEdit;
+    advgrpbxIslTgt4: TAdvGroupBox;
+    Label128: TLabel;
+    Label129: TLabel;
+    Label130: TLabel;
+    edtInputHighIsl4: TEdit;
+    edtObsHighIsl4: TEdit;
+    edtTgtIsl4: TEdit;
+    advgrpbxLandPt1: TAdvGroupBox;
+    Label131: TLabel;
+    Label132: TLabel;
+    Label133: TLabel;
+    edtInputHighPt1: TEdit;
+    edtObsHighPt1: TEdit;
+    edtTgtPt1: TEdit;
+    advgrpbxLandPt2: TAdvGroupBox;
+    Label134: TLabel;
+    Label135: TLabel;
+    Label136: TLabel;
+    edtInputHighPt2: TEdit;
+    edtObsHighPt2: TEdit;
+    edtTgtPt2: TEdit;
+    advgrpbxLandPt3: TAdvGroupBox;
+    Label137: TLabel;
+    Label138: TLabel;
+    Label139: TLabel;
+    edtInputHighPt3: TEdit;
+    edtObsHighPt3: TEdit;
+    edtTgtPt3: TEdit;
+    advgrpbxLandPt4: TAdvGroupBox;
+    Label140: TLabel;
+    Label141: TLabel;
+    Label142: TLabel;
+    edtInputHighPt4: TEdit;
+    edtObsHighPt4: TEdit;
+    edtTgtPt4: TEdit;
+    advgrpbxLandFly1: TAdvGroupBox;
+    Label143: TLabel;
+    Label144: TLabel;
+    Label145: TLabel;
+    edtInputHighFly1: TEdit;
+    edtObsHighFly1: TEdit;
+    edtTgtFly1: TEdit;
+    advgrpbxLandFly2: TAdvGroupBox;
+    Label146: TLabel;
+    Label147: TLabel;
+    Label148: TLabel;
+    edtInputHighFly2: TEdit;
+    edtObsHighFly2: TEdit;
+    edtTgtFly2: TEdit;
+    advgrpbxLandFly3: TAdvGroupBox;
+    Label149: TLabel;
+    Label150: TLabel;
+    Label151: TLabel;
+    edtInputHighFly3: TEdit;
+    edtObsHighFly3: TEdit;
+    edtTgtFly3: TEdit;
+    advgrpbxLandFly4: TAdvGroupBox;
+    Label152: TLabel;
+    Label153: TLabel;
+    Label154: TLabel;
+    edtInputHighFly4: TEdit;
+    edtObsHighFly4: TEdit;
+    edtTgtFly4: TEdit;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -343,6 +519,8 @@ type
     function FindShipAt(X,Y: Integer): TShipContact;
     function FindWaypointAtScreen(X, Y: Integer): TWaypoint;
 
+    function GetCurrentMapRadius: Double; //Nm
+
     procedure LoadInitMap;
     procedure LoadGeoset(const aGst: string); virtual;
     procedure DrawAll(aCnv: TCanvas; aCvt: TCoordConverter);
@@ -355,6 +533,7 @@ type
 
     procedure SetDefaultMapTool;
     procedure SetDefaultFormView;
+    procedure SetDefaultViewPromptBox(aPanel: Integer);
 
     procedure UpdateTextScaleMap;
   public
@@ -570,6 +749,8 @@ begin
   FRouteList := TObjectList<TRoutePlanning>.Create(True);
   FWaypointViews := TObjectList<TWaypointView>.Create(True);
 
+  pnlHeaderTitle.Caption := '  Route Plan Software' + '(Ver: 3.3.0)';
+
   { Set Default Tool Bar }
   SetDefaultMapTool;
 end;
@@ -592,6 +773,39 @@ begin
   SetDefaultFormView;
 end;
 
+{$REGION 'Map Section'}
+{----------------------------------------------------------------------------
+  GetCurrentMapRadiusNM
+
+  Mengembalikan radius area peta yang sedang ditampilkan.
+
+  Nilai dihitung dari batas kiri dan kanan peta (Bounds) kemudian
+  dikonversi menjadi Nautical Mile menggunakan CalcRange().
+
+  Contoh:
+
+      kiri ----------------------------- kanan
+               <----- 48 NM ----->
+
+      Radius = 24 NM
+
+  Nilai ini digunakan untuk indikator Zoom/Range.
+----------------------------------------------------------------------------}
+function TfrmRoutePlan.GetCurrentMapRadius: Double;
+var
+  Bounds: CMapXRectangle;
+begin
+  Bounds := FMap.Bounds;
+
+  Result :=
+    CalcRange(
+      Bounds.XMin,
+      (Bounds.YMin + Bounds.YMax) / 2,
+      Bounds.XMax,
+      (Bounds.YMin + Bounds.YMax) / 2
+    ) / 2;
+end;
+
 procedure TfrmRoutePlan.InitMapMainForm(const GeosetPath: string);
 begin
   { View Draw Object di Map }
@@ -604,7 +818,6 @@ begin
   LoadGeoset(GeosetPath);
 end;
 
-{$REGION 'Map Section'}
 procedure TfrmRoutePlan.MapMove;
 begin
   FMap.CurrentTool := miPanTool;
@@ -720,6 +933,8 @@ begin
   FBitmapBackground.Canvas.FillRect(Rect(0, 0, FBitmapBackground.Width, FBitmapBackground.Height));
 
   imgMapBackground.Picture.Assign(FBitmapBackground);
+
+  UpdateTextScaleMap;
 
   //LoadGeoset('.\data\mapsea\Indonesia.gst');
 //  LoadGeoset('.\.\.\.\bin\2D\data\mapsea\Indonesia.gst');
@@ -892,32 +1107,15 @@ begin
 end;
 
 procedure TfrmRoutePlan.UpdateTextScaleMap;
+var
+  Radius : Double; // Nm
 begin
   lblZoomRateMap.Caption := FormatFloat('0.00', FMap.Zoom);
-//    ShowMessage(FloatToStr(FMap.DisplayCoordSys.ScaleFactor));
-//    ShowMessage(FloatToStr(FMap.NumericCoordSys.ScaleFactor));
-  lblScaleMap.Caption := FloatToStr(FMap.NumericCoordSys.ScaleFactor);
 
-  OutputDebugString(
-    PChar(
-      Format(
-        'PaperUnit=%d  GeoWidth=%f  PaperWidth=%f',
-        [
-          Ord(FMap.PaperUnit),
-          FMap.GeoSetWidth,
-          FMap.MapPaperWidth
-        ]
-      )
-    )
-  );
-
-  OutputDebugString(PChar(Format(
-    'Zoom=%.2f GeoWidth=%.2f PaperWidth=%.2f',
-  [
-    FMap.Zoom,
-    FMap.GeoSetWidth,
-    FMap.MapPaperWidth
-  ])));
+  Radius := GetCurrentMapRadius;
+  { Scale anggap
+    24 NM = 1 : 350000 }
+  lblScaleMap.Caption := Format('1 : %.0f', [(Radius / 24.0) * 350000.0]);
 end;
 
 procedure TfrmRoutePlan.FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch; hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
@@ -1346,7 +1544,7 @@ begin
     end;
     5: begin
       {$REGION 'Move Map'}
-      if FCurrentTool = stZoomOut then
+      if FCurrentTool = stMove then
       begin
         FMap.CurrentTool := miArrowTool;
         FCurrentTool := stSelectArrow;
@@ -1402,6 +1600,8 @@ begin
       end;
 
       pnlObstacleInfo.Visible := not pnlObstacleInfo.Visible;
+
+      SetDefaultViewPromptBox(4);
       {$ENDREGION}
     end;
     12: begin
@@ -1413,6 +1613,8 @@ begin
       end;
 
       pnlParamDisplay.Visible := not pnlParamDisplay.Visible;
+
+      SetDefaultViewPromptBox(3);
       {$ENDREGION}
     end;
     13: begin
@@ -1424,6 +1626,8 @@ begin
       end;
 
       pnlRoutePlanControlCmd.Visible := not pnlRoutePlanControlCmd.Visible;
+
+      SetDefaultViewPromptBox(5);
       {$ENDREGION}
     end;
     14: begin
@@ -1538,7 +1742,49 @@ begin
   lblStatusMap.Caption := '';
 end;
 
-{$ENDREGION}
+procedure TfrmRoutePlan.SetDefaultViewPromptBox(aPanel: Integer);
+begin
+  {
+   SubWindow PromptBox panel 3 : Window Parameter Sasaran;
+   SubWindow PromptBox panel 4 : Window Parameter Obstacle;
+   SubWindow PromptBox panel 5 : Window Parameter Route Control Command;
+
+   ** angka sesuai di manual book
+  }
+
+  case aPanel of
+    3: begin
+      {$REGION 'Target Param Display Prompt Box'}
+      if pnlParamDisplay.Visible then
+      begin
+        advpgcTargetParam.ActivePage := advtsPage1;
+        advrbWayPt.Parent := advpgcTargetParam.ActivePage;
+        advrbStartPt.Parent := advpgcTargetParam.ActivePage;
+      end;
+      {$ENDREGION}
+    end;
+    4: begin
+      {$REGION 'Obstacle Information Display Prompt Box'}
+      if pnlObstacleInfo.Visible then
+      begin
+        advpgcObstacleInfo.ActivePage := advtsLand;
+        btnExit_ObstacleInfo.Parent := advpgcObstacleInfo.ActivePage;
+        btnOkObstacleInfo.Parent := advpgcObstacleInfo.ActivePage;
+      end;
+      {$ENDREGION}
+    end;
+    5: begin
+      {$REGION 'Route Control Command Prompt Box'}
+      if pnlRoutePlanControlCmd.Visible then
+      begin
+        advpgcRoutePlanCmd.ActivePage := advtsCmdSet;
+        btnExit_RoutePlanCmd.Parent := advpgcRoutePlanCmd.ActivePage;
+      end;
+      {$ENDREGION}
+    end;
+  end;
+
+end;
 
 procedure TfrmRoutePlan.pnlShowMapInfoClick(Sender: TObject);
 begin
@@ -1551,6 +1797,8 @@ begin
   pnlShowNav.Visible := False;
   pnlNavInfo.Visible := True;
 end;
+
+{$ENDREGION}
 
 procedure TfrmRoutePlan.pnlHeaderTitleMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
