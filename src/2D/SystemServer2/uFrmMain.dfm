@@ -28,18 +28,27 @@ object frmMain: TfrmMain
     Align = alClient
     Caption = 'SERVER NAFS'
     Color = clBackground
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
     ParentBackground = False
+    ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 250
-    ExplicitHeight = 333
     object pnlContent2D: TPanel
       Left = 1
       Top = 1
       Width = 148
       Height = 344
       Align = alTop
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 248
       object pnlServer2D: TPanel
         Left = 1
         Top = 1
@@ -47,9 +56,14 @@ object frmMain: TfrmMain
         Height = 41
         Align = alTop
         Color = 13666138
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
         ParentBackground = False
+        ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 246
         DesignSize = (
           146
           41)
@@ -80,15 +94,49 @@ object frmMain: TfrmMain
           ParentFont = False
         end
         object btnBack: TButton
-          Left = 61
-          Top = 8
+          Left = 51
+          Top = 10
           Width = 75
           Height = 25
           Anchors = [akTop, akRight]
           Caption = 'Back'
           TabOrder = 0
           OnClick = btnBackClick
-          ExplicitLeft = 161
+          ExplicitLeft = 1243
+        end
+        object Panel1: TPanel
+          Left = -124
+          Top = 9
+          Width = 169
+          Height = 26
+          Anchors = [akTop, akRight]
+          ParentBackground = False
+          TabOrder = 1
+          ExplicitLeft = 1068
+          DesignSize = (
+            169
+            26)
+          object cbbShowLog: TCheckBox
+            Left = 3
+            Top = 4
+            Width = 97
+            Height = 17
+            Anchors = [akTop, akRight]
+            Caption = 'Show 3D Log'
+            TabOrder = 0
+            OnClick = cbbShowLogClick
+          end
+          object btnClearLog: TButton
+            Left = 85
+            Top = 1
+            Width = 75
+            Height = 25
+            Anchors = [akTop, akRight]
+            Caption = 'Clear Log'
+            TabOrder = 1
+            OnClick = btnClearLogClick
+            ExplicitLeft = 149
+          end
         end
       end
       object pnlLogServer2D: TPanel
@@ -98,7 +146,6 @@ object frmMain: TfrmMain
         Height = 301
         Align = alClient
         TabOrder = 1
-        ExplicitWidth = 246
         object Splitter3: TSplitter
           Left = 209
           Top = 1
@@ -119,13 +166,14 @@ object frmMain: TfrmMain
         object mmoLogClientData2D: TMemo
           Left = 213
           Top = 1
-          Width = 32
+          Width = 1124
           Height = 299
           Align = alClient
           BorderStyle = bsNone
           ScrollBars = ssBoth
           TabOrder = 1
           WordWrap = False
+          ExplicitWidth = 32
         end
       end
     end
@@ -136,7 +184,6 @@ object frmMain: TfrmMain
       Height = 4
       Align = alClient
       TabOrder = 1
-      ExplicitWidth = 248
       object pnlServer3D: TPanel
         Left = 1
         Top = 1
@@ -146,7 +193,6 @@ object frmMain: TfrmMain
         Color = 13666138
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 246
         object Label2: TLabel
           Left = 13
           Top = 14
@@ -181,7 +227,6 @@ object frmMain: TfrmMain
         Height = 17
         Align = alClient
         TabOrder = 1
-        ExplicitWidth = 246
         object Splitter2: TSplitter
           Left = 209
           Top = 1
@@ -192,7 +237,7 @@ object frmMain: TfrmMain
         object mmoLog3D: TMemo
           Left = 213
           Top = 1
-          Width = 32
+          Width = 1124
           Height = 15
           Align = alClient
           BevelInner = bvLowered
@@ -202,6 +247,7 @@ object frmMain: TfrmMain
           ScrollBars = ssBoth
           TabOrder = 0
           WordWrap = False
+          ExplicitWidth = 32
         end
         object lbClients3D: TListBox
           Left = 1
@@ -255,8 +301,6 @@ object frmMain: TfrmMain
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 250
-    ExplicitHeight = 333
     TMSStyle = 0
     object lbljudul: TLabel
       Left = 0
@@ -274,8 +318,8 @@ object frmMain: TfrmMain
       ParentFont = False
       Layout = tlCenter
       WordWrap = True
-      ExplicitWidth = 104
-      ExplicitHeight = 66
+      ExplicitWidth = 144
+      ExplicitHeight = 76
     end
     object btn1: TButton
       Left = 0
@@ -292,8 +336,6 @@ object frmMain: TfrmMain
       ParentFont = False
       TabOrder = 0
       OnClick = btn1Click
-      ExplicitTop = 301
-      ExplicitWidth = 250
     end
   end
   object tmrShutdownServer: TTimer

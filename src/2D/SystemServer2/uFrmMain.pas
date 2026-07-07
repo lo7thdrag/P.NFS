@@ -33,6 +33,9 @@ type
     pnl1Home: TAdvSmoothPanel;
     btn1: TButton;
     lbljudul: TLabel;
+    btnClearLog: TButton;
+    Panel1: TPanel;
+    cbbShowLog: TCheckBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -41,6 +44,8 @@ type
     procedure btnBackClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btn1Click(Sender: TObject);
+    procedure cbbShowLogClick(Sender: TObject);
+    procedure btnClearLogClick(Sender: TObject);
   private
     { Private declarations }
     isClose: Boolean;
@@ -103,6 +108,19 @@ begin
   end;
 end;
 
+procedure TfrmMain.btnClearLogClick(Sender: TObject);
+begin
+  mmoLog3D.Clear;
+end;
+
+procedure TfrmMain.cbbShowLogClick(Sender: TObject);
+begin
+  if cbbShowLog.Checked then
+    ServerManager.SetEventLogForServer3D
+  else
+    ServerManager.UnsetEventLogForServer3D;
+end;
+
 procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   // StateManager.StopSimulation;
@@ -143,7 +161,7 @@ begin
   ServerManager.OnLogReceived3D := OnLogReceived3D;
   ServerManager.OnLogListenPort3D := OnLogListenPort3D;
 
-  ServerManager.SetEventLogForServer3D;
+  //ServerManager.SetEventLogForServer3D;
 
   if ServerManager.InitSimulation then
     ServerManager.RunSimulation

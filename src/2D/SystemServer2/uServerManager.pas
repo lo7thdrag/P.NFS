@@ -100,6 +100,7 @@ type
     procedure StopSimulation;
 
     procedure SetEventLogForServer3D;
+    procedure UnsetEventLogForServer3D;
 
     procedure SetLog2DServer(aLog: TStringList);
 
@@ -228,6 +229,13 @@ begin
 
   TcpServer3D.UnregisterAllProcedure;
   TcpServer3D.Stop;
+end;
+
+procedure TServerManager.UnsetEventLogForServer3D;
+begin
+  TcpServer3D.OnGetStatusLog := nil;
+  TcpServer3D.OnGetSendLog := nil;
+  TcpServer3D.OnGetRecvLog := nil;
 end;
 
 procedure TServerManager.SetEventLogForServer3D;
