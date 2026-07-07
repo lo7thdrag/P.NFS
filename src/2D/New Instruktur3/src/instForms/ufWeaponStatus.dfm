@@ -6702,7 +6702,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
           object lblBlackShark: TLabel
             Left = 142
             Top = 12
@@ -6870,7 +6869,7 @@ object fWeaponStatus: TfWeaponStatus
               Height = 23
               Caption = 'Load'
               TabOrder = 0
-              OnClick = btnC802AssignClick
+              OnClick = btnBlackSharkLoadingClick
             end
             object cbbLoadBlackShark: TComboBox
               Left = 179
@@ -6928,7 +6927,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 903
           object lblC705Title: TLabel
             Left = 171
             Top = 11
