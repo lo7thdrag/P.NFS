@@ -11,6 +11,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -247,7 +248,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
     end
     object cbTrialGuidance: TComboBox
       Left = 440
-      Top = 56
+      Top = 55
       Width = 57
       Height = 22
       Color = clBlack
@@ -275,6 +276,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      ReadOnly = True
       TabOrder = 1
       Text = '0'
     end
@@ -608,6 +610,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 0
           Text = '0'
@@ -623,6 +626,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 1
           Text = '0'
@@ -638,6 +642,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 2
           Text = '0'
@@ -653,6 +658,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 3
           Text = '0'
@@ -668,6 +674,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 4
           Text = '0'
@@ -841,19 +848,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Style = []
           ParentFont = False
         end
-        object lblTrialApproachCourse: TLabel
-          Left = 419
-          Top = 100
-          Width = 21
-          Height = 14
-          Caption = '000'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -12
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
         object edtTrialEnablingDist: TEdit
           Left = 416
           Top = 50
@@ -870,7 +864,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Text = '0.0'
         end
         object cbTrialApproachSpeed: TComboBox
-          Left = 416
+          Left = 415
           Top = 72
           Width = 57
           Height = 22
@@ -909,7 +903,24 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 97
           Width = 17
           Height = 20
+          Checked = True
+          State = cbChecked
           TabOrder = 2
+        end
+        object edtTrialApproachCourse: TEdit
+          Left = 415
+          Top = 98
+          Width = 57
+          Height = 21
+          Color = clBlack
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+          Text = '0.0'
         end
       end
       object AdvSA: TAdvTabSheet
@@ -1076,7 +1087,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           ParentFont = False
         end
         object lblOfficialSALength: TLabel
-          Left = 321
+          Left = 320
           Top = 71
           Width = 18
           Height = 14
@@ -1089,7 +1100,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           ParentFont = False
         end
         object lblSAWidth: TLabel
-          Left = 321
+          Left = 320
           Top = 90
           Width = 18
           Height = 14
@@ -1102,7 +1113,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           ParentFont = False
         end
         object lblOfficialCenterSSP: TLabel
-          Left = 321
+          Left = 320
           Top = 111
           Width = 18
           Height = 14
@@ -1166,45 +1177,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Style = []
           ParentFont = False
         end
-        object lblTrialCenterOS: TLabel
-          Left = 448
-          Top = 53
-          Width = 18
-          Height = 14
-          Caption = '0.0'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -12
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblTrialSALength: TLabel
-          Left = 448
-          Top = 74
-          Width = 18
-          Height = 14
-          Caption = '0.0'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -12
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblTrialSAWidth: TLabel
-          Left = 448
-          Top = 92
-          Width = 18
-          Height = 14
-          Caption = '0.0'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -12
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
         object lblTrialSearchConfidence: TLabel
           Left = 451
           Top = 131
@@ -1220,7 +1192,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         end
         object chkTrialCenterOS: TCheckBox
           Left = 482
-          Top = 57
+          Top = 51
           Width = 17
           Height = 20
           Checked = True
@@ -1232,6 +1204,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 108
           Width = 49
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -1259,6 +1232,54 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Items.Strings = (
             'Circ'
             'Vect')
+        end
+        object edtTrialSAWidth: TEdit
+          Left = 420
+          Top = 89
+          Width = 49
+          Height = 21
+          Alignment = taRightJustify
+          Color = clBlack
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+          Text = '0.0'
+        end
+        object edtTrialCenterOS: TEdit
+          Left = 420
+          Top = 51
+          Width = 49
+          Height = 21
+          Alignment = taRightJustify
+          Color = clBlack
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 4
+          Text = '0.0'
+        end
+        object edtTrialSALength: TEdit
+          Left = 420
+          Top = 71
+          Width = 49
+          Height = 21
+          Alignment = taRightJustify
+          Color = clBlack
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 5
+          Text = '0.0'
         end
       end
       object AdvIntGuidance: TAdvTabSheet
@@ -1408,6 +1429,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 1
           Text = '0'
@@ -1594,6 +1616,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 1
           Text = '0'
@@ -1609,6 +1632,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 2
           Text = '0'
@@ -1754,6 +1778,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
+          NumbersOnly = True
           ParentFont = False
           TabOrder = 1
           Text = '0'

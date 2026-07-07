@@ -12,6 +12,7 @@ object frmDepthPlot: TfrmDepthPlot
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -48,7 +49,7 @@ object frmDepthPlot: TfrmDepthPlot
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object lblSet: TLabel
       Left = 175
       Top = 13
       Width = 19
@@ -60,6 +61,7 @@ object frmDepthPlot: TfrmDepthPlot
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = lblSetClick
     end
     object Label3: TLabel
       Left = 112
@@ -108,6 +110,7 @@ object frmDepthPlot: TfrmDepthPlot
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      NumbersOnly = True
       ParentFont = False
       TabOrder = 0
       Text = '0'
@@ -126,9 +129,16 @@ object frmDepthPlot: TfrmDepthPlot
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      NumbersOnly = True
       ParentFont = False
       TabOrder = 1
       Text = '0'
     end
+  end
+  object tmrUpdateDepthPlot: TTimer
+    Interval = 500
+    OnTimer = tmrUpdateDepthPlotTimer
+    Left = 96
+    Top = 184
   end
 end

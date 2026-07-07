@@ -11,6 +11,52 @@ uses
   uBaseConst;
 
 type
+  TSearchPattern = (spAuto, spRight, spLeft, spCenter, spExtl, spHxsn, spOct, spTri, spTrsn);
+
+  TTorpedoParameterSetting = class
+  private
+    // torpedo parameter
+    FTargetTrackID, FSalvoNum, FNoTorp, FLOSDeviation, FSearchSpeed, FCeiling, FAttackDepth, FSearchDepth, FApproachDepth,
+    FFloor, FApproachSpeed, FApproachCourse, FTosoRangePAS, FTosoRangeACT, FProtectionRadius : Integer;
+    FEnablingDist, FCenterOS, FSALength, FSAWidth, FCenterSSP, FDPCAngle : Double;
+    FProtectionRadiusEnable : Boolean; // untuk FSAUpdating False : Circle, True : Vect (search area kotak)
+    FTosoMode, FGuidance , FSAUpdating, FASH: Byte;
+    FSearchPattern : TSearchPattern;
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+
+    property TargetTrackID : Integer read FTargetTrackID write FTargetTrackID;
+    property SalvoNum : Integer read FSalvoNum write FSalvoNum;
+    property NoTorp : Integer read FNoTorp write FNoTorp;
+    property LOSDeviation : Integer read FLOSDeviation write FLOSDeviation;
+    property SearchSpeed : Integer read FSearchSpeed write FSearchSpeed;
+    property Ceiling : Integer read FCeiling write FCeiling;
+    property AttackDepth : Integer read FAttackDepth write FAttackDepth;
+    property SearchDepth : Integer read FSearchDepth write FSearchDepth;
+    property ApproachDepth : Integer read FApproachDepth write FApproachDepth;
+    property Floor : Integer read FFloor write FFloor;
+    property ApproachSpeed : Integer read FApproachSpeed write FApproachSpeed;
+    property ApproachCourse : Integer read FApproachCourse write FApproachCourse;
+    property TosoRangePAS : Integer read FTosoRangePAS write FTosoRangePAS;
+    property TosoRangeACT : Integer read FTosoRangeACT write FTosoRangeACT;
+    property ProtectionRadius : Integer read FProtectionRadius write FProtectionRadius;
+    property EnablingDist : double read FEnablingDist write FEnablingDist;
+    property CenterOS : double read FCenterOS write FCenterOS;
+    property SALength : double read FSALength write FSALength;
+    property SAWidth : double read FSAWidth write FSAWidth;
+    property CenterSSP : double read FCenterSSP write FCenterSSP;
+    property DPCAngle : double read FDPCAngle write FDPCAngle;
+    property TosoMode : byte read FTosoMode write FTosoMode;
+    property Guidance : Byte read FGuidance write FGuidance;
+    property SearchPattern : TSearchPattern read FSearchPattern write FSearchPattern;
+    property SAUpdating : Byte read FSAUpdating write FSAUpdating;
+    property ProtectionRadiusEnable : Boolean read FProtectionRadiusEnable write FProtectionRadiusEnable;
+    property ASH : Byte read FASH write FASH;
+
+  end;
+
   TSutBlacksharkManager = class(TSimulationManager)
   private
     FIsStandAlone: boolean;
@@ -41,6 +87,7 @@ type
     FOperatorMessages: string;
 
     FCursorX, FCursorY : Double;
+
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
@@ -110,6 +157,7 @@ type
 
 var
   SutBlacksharkManager : TSutBlacksharkManager;
+  TorpedoParam : TTorpedoParameterSetting;
 
 const
   G0 = 9.80665; // gravitasi standar (m/s^2)
@@ -413,6 +461,51 @@ function TSutBlacksharkManager.SelectTrackbyID(const TrackID: string): Boolean;
 begin
   //
 
+end;
+
+{ TTorpedoParameterSetting }
+
+constructor TTorpedoParameterSetting.Create;
+begin
+  FGuidance := 1; // 0 : CC, 1 : LOS; (normalnya di video pakai CC)
+  FTargetTrackID := 0;
+  FSalvoNum := 0;
+  FNoTorp := 0;
+  FLOSDeviation := 0;
+  FSearchSpeed := 18;
+
+  FCeiling := 6;
+  FAttackDepth := 11;
+  FSearchDepth := 26;
+  FApproachDepth := 26;
+  FFloor := 70;
+
+  FEnablingDist := 1.0;
+  FApproachSpeed := 18;
+  FApproachCourse := 0;
+
+  FSAUpdating := 0;  // defaultya 0 (circle) namun di video selalu pakai 1 (Vect)
+  FCenterOS := 15.0;
+  FSALength := 20.0;
+  FSAWidth := 2.0;
+  FCenterSSP := 1.0;
+
+  FSearchPattern := spAuto;
+  FDPCAngle := 0;
+
+  FTosoMode := 1; // 0: off, 1: Pass, 2: Mix, 3 : Act
+  FTosoRangePAS := 1000;
+  FTosoRangeACT := 1000;
+
+  FProtectionRadius := 300;
+  FASH := 1;
+
+end;
+
+destructor TTorpedoParameterSetting.Destroy;
+begin
+
+  inherited;
 end;
 
 end.

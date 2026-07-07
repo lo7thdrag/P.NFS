@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
   Vcl.StdCtrls, AdvPageControl,
 
-  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager;
+  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager, uVehicleManager;
 
 type
   TfrmTorpedoAllocation = class(TForm)
@@ -167,6 +167,12 @@ end;
 
 procedure TfrmTorpedoAllocation.pnlEngagementAnalysisStartClick(Sender: TObject);
 begin
+  if not Assigned(TorpedoParam) then
+  begin
+    TorpedoParam := TTorpedoParameterSetting.Create;
+    TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
+  end;
+
   if not Assigned(FFrmTorpedoParameterSettings) then
   begin
     frmTorpedoWP.pnlTorpedoParamSettings.Caption := '';

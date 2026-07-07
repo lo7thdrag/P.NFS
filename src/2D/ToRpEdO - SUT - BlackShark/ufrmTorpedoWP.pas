@@ -655,6 +655,7 @@ begin
 
   BeginGame_SutBlackshark;
   SutBlacksharkManager := TSutBlacksharkManager.Create;
+//  TorpedoParam := TTorpedoParameterSetting.Create;
   SimCenter := SutBlacksharkManager;
   SimCenter.FMap := FMap;
 //  SutBlacksharkManager.OnPtkCommand := ptkCommand; // petek

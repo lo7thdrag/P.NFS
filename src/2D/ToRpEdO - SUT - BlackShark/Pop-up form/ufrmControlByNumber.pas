@@ -72,7 +72,11 @@ begin
 
       FreeAndNil(frmControlByNumber);
     end
-    else FreeAndNil(frmControlByNumber);
+    else
+    begin
+//      TorpedoParam.
+      FreeAndNil(frmControlByNumber);
+    end;
   end;
 
 end;
