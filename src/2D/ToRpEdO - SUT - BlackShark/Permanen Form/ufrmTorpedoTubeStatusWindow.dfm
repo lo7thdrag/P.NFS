@@ -28,6 +28,22 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 0
+      object shpFrameTorpedo2: TShape
+        Left = 8
+        Top = 16
+        Width = 125
+        Height = 57
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object shpTorpedo2: TShape
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 95
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
       object lblTorpedo2: TLabel
         Left = 37
         Top = 1
@@ -76,6 +92,62 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
+      object lblNumberTorpedo2: TLabel
+        Left = 121
+        Top = 25
+        Width = 14
+        Height = 14
+        Caption = '02'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblFuse2: TLabel
+        Left = 126
+        Top = 58
+        Width = 6
+        Height = 14
+        Caption = 'F'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblActiveToSo2: TLabel
+        Left = 19
+        Top = 44
+        Width = 8
+        Height = 14
+        Caption = 'A'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblValueTorpedo2: TLabel
+        Left = 7
+        Top = 59
+        Width = 42
+        Height = 14
+        Caption = '110002'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
     end
     object pnlTorpedo4: TPanel
       Left = 7
@@ -83,6 +155,22 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 1
+      object shpFrameTorpedo4: TShape
+        Left = 8
+        Top = 17
+        Width = 125
+        Height = 57
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object shpTorpedo4: TShape
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 95
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
       object lblTorpedo4: TLabel
         Left = 38
         Top = 2
@@ -98,8 +186,8 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Visible = False
       end
       object lblNumber4: TLabel
-        Left = 8
-        Top = 29
+        Left = 9
+        Top = 25
         Width = 7
         Height = 14
         Caption = '4'
@@ -112,7 +200,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       end
       object lblWTSRC4: TLabel
         Left = 123
-        Top = 38
+        Top = 41
         Width = 12
         Height = 14
         Caption = 'W'
@@ -132,6 +220,66 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
+      object lblNumberTorpedo4: TLabel
+        Left = 121
+        Top = 21
+        Width = 14
+        Height = 14
+        Caption = '04'
+        FocusControl = pnlTorpedo2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblFuse4: TLabel
+        Left = 126
+        Top = 60
+        Width = 6
+        Height = 14
+        Caption = 'F'
+        FocusControl = pnlTorpedo2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblActiveToSo4: TLabel
+        Left = 19
+        Top = 46
+        Width = 8
+        Height = 14
+        Caption = 'A'
+        FocusControl = pnlTorpedo2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblValueTorpedo4: TLabel
+        Left = 8
+        Top = 62
+        Width = 42
+        Height = 14
+        Caption = '110002'
+        FocusControl = pnlTorpedo2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
     end
     object pnlTorpedo6: TPanel
       Left = 7
@@ -139,6 +287,22 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 2
+      object shpFrameTorpedo: TShape
+        Left = 8
+        Top = 18
+        Width = 125
+        Height = 57
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object shpTorpedo6: TShape
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 95
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
       object lblTorpedo6: TLabel
         Left = 43
         Top = 3
@@ -187,6 +351,62 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
+      object lblNumberTorpedo6: TLabel
+        Left = 122
+        Top = 20
+        Width = 14
+        Height = 14
+        Caption = '06'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblFuse6: TLabel
+        Left = 126
+        Top = 57
+        Width = 6
+        Height = 14
+        Caption = 'F'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblActiveToSo6: TLabel
+        Left = 17
+        Top = 45
+        Width = 8
+        Height = 14
+        Caption = 'A'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblValueTorpedo6: TLabel
+        Left = 8
+        Top = 62
+        Width = 42
+        Height = 14
+        Caption = '110002'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
     end
     object pnlTorpedo8: TPanel
       Left = 8
@@ -194,6 +414,22 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 3
+      object shpFrameTorpedo8: TShape
+        Left = 8
+        Top = 17
+        Width = 125
+        Height = 57
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object shpTorpedo8: TShape
+        Left = 0
+        Top = 0
+        Width = 140
+        Height = 80
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
       object lblTorpedo8: TLabel
         Left = 39
         Top = 2
@@ -242,19 +478,12 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
-    end
-    object pnlTorpedo1: TPanel
-      Left = 149
-      Top = 6
-      Width = 140
-      Height = 80
-      TabOrder = 4
-      object lblTorpedo1: TLabel
-        Left = 35
-        Top = 1
-        Width = 73
+      object lblNumberTorpedo8: TLabel
+        Left = 121
+        Top = 20
+        Width = 14
         Height = 14
-        Caption = 'TORP READY'
+        Caption = '07'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
@@ -262,40 +491,48 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Font.Style = []
         ParentFont = False
         Visible = False
-        OnClick = lblTorpedo1Click
       end
-      object lblNumber1: TLabel
-        Left = 10
-        Top = 19
-        Width = 7
+      object lblFuse8: TLabel
+        Left = 126
+        Top = 57
+        Width = 6
         Height = 14
-        Caption = '1'
+        Caption = 'F'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        Visible = False
       end
-      object lblWTSRC1: TLabel
-        Left = 123
-        Top = 39
-        Width = 12
+      object lblActiveToSo8: TLabel
+        Left = 17
+        Top = 48
+        Width = 8
         Height = 14
-        Caption = 'W'
+        Caption = 'A'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        Visible = False
       end
-      object pbTubeSymbol1: TPaintBox
-        Left = 69
-        Top = 23
-        Width = 51
-        Height = 51
-        OnPaint = pbTubeSymbol1Paint
+      object lblValueTorpedo8: TLabel
+        Left = 6
+        Top = 62
+        Width = 42
+        Height = 14
+        Caption = '110002'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
       end
     end
     object pnlTorpedo3: TPanel
@@ -304,6 +541,22 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 5
+      object shpFrameTorpedo3: TShape
+        Left = 7
+        Top = 18
+        Width = 125
+        Height = 57
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object shpTorpedo3: TShape
+        Left = -5
+        Top = 0
+        Width = 145
+        Height = 95
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
       object lblTorpedo3: TLabel
         Left = 38
         Top = 2
@@ -352,6 +605,62 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
+      object lblNumberTorpedo3: TLabel
+        Left = 122
+        Top = 20
+        Width = 14
+        Height = 14
+        Caption = '03'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblFuse3: TLabel
+        Left = 126
+        Top = 57
+        Width = 6
+        Height = 14
+        Caption = 'F'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblActiveToSo3: TLabel
+        Left = 23
+        Top = 46
+        Width = 8
+        Height = 14
+        Caption = 'A'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblValueTorpedo3: TLabel
+        Left = 11
+        Top = 62
+        Width = 42
+        Height = 14
+        Caption = '110002'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
     end
     object pnlTorpedo5: TPanel
       Left = 149
@@ -359,6 +668,22 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 6
+      object shpFrameTorpedo5: TShape
+        Left = 8
+        Top = 17
+        Width = 125
+        Height = 57
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object shpTorpedo5: TShape
+        Left = -5
+        Top = 0
+        Width = 145
+        Height = 95
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
       object lblTorpedo5: TLabel
         Left = 38
         Top = 2
@@ -407,6 +732,62 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
+      object lblActiveToSo5: TLabel
+        Left = 20
+        Top = 43
+        Width = 8
+        Height = 14
+        Caption = 'A'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblValueTorpedo5: TLabel
+        Left = 9
+        Top = 59
+        Width = 42
+        Height = 14
+        Caption = '110002'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblNumberTorpedo5: TLabel
+        Left = 121
+        Top = 20
+        Width = 14
+        Height = 14
+        Caption = '05'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblFuse5: TLabel
+        Left = 126
+        Top = 57
+        Width = 6
+        Height = 14
+        Caption = 'F'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
     end
     object pnlTorpedo7: TPanel
       Left = 149
@@ -414,6 +795,22 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 7
+      object shpFrameTorpedo7: TShape
+        Left = 9
+        Top = 16
+        Width = 125
+        Height = 57
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object shpTorpedo7: TShape
+        Left = -5
+        Top = 0
+        Width = 145
+        Height = 80
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
       object lblTorpedo7: TLabel
         Left = 39
         Top = 1
@@ -462,11 +859,193 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
+      object lblNumberTorpedo7: TLabel
+        Left = 121
+        Top = 21
+        Width = 14
+        Height = 16
+        Caption = '07'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblFuse7: TLabel
+        Left = 126
+        Top = 55
+        Width = 7
+        Height = 16
+        Caption = 'F'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblActiveToSo7: TLabel
+        Left = 18
+        Top = 42
+        Width = 8
+        Height = 16
+        Caption = 'A'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblValueTorpedo7: TLabel
+        Left = 7
+        Top = 57
+        Width = 42
+        Height = 16
+        Caption = '110002'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+    end
+    object pnlTorpedo1: TPanel
+      Left = 149
+      Top = 6
+      Width = 140
+      Height = 80
+      TabOrder = 4
+      object shpFrameTorpedo1: TShape
+        Left = 7
+        Top = 17
+        Width = 125
+        Height = 57
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object shpTorpedo1: TShape
+        Left = -5
+        Top = 0
+        Width = 145
+        Height = 95
+        Brush.Color = clBlack
+        Pen.Color = clWhite
+      end
+      object lblTorpedo1: TLabel
+        Left = 35
+        Top = 1
+        Width = 73
+        Height = 14
+        Caption = 'TORP READY'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblNumber1: TLabel
+        Left = 10
+        Top = 19
+        Width = 7
+        Height = 14
+        Caption = '1'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lblWTSRC1: TLabel
+        Left = 123
+        Top = 39
+        Width = 12
+        Height = 14
+        Caption = 'W'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object pbTubeSymbol1: TPaintBox
+        Left = 69
+        Top = 23
+        Width = 51
+        Height = 51
+        OnPaint = pbTubeSymbol1Paint
+      end
+      object lblActiveToSo1: TLabel
+        Left = 19
+        Top = 44
+        Width = 8
+        Height = 14
+        Caption = 'A'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblValueTorpedo1: TLabel
+        Left = 7
+        Top = 59
+        Width = 42
+        Height = 14
+        Caption = '110002'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblFuse1: TLabel
+        Left = 125
+        Top = 56
+        Width = 6
+        Height = 14
+        Caption = 'F'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
+      object lblNumberTorpedo1: TLabel
+        Left = 122
+        Top = 19
+        Width = 14
+        Height = 14
+        Caption = '01'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        Visible = False
+      end
     end
   end
   object tmrDrawTube: TTimer
     OnTimer = tmrDrawTubeTimer
     Left = 136
-    Top = 40
+    Top = 65534
   end
 end

@@ -1905,32 +1905,32 @@ begin
           begin
             if WeaponYAKHONT.Weapon_Status = 1 then
             begin
-              RecSendYakhont.mLauncherID    := WeaponYAKHONT.Weapon_Launcher;
-              RecSendYakhont.mMissile1 := 1;
+              RecSendYakhont.mLauncherID  := WeaponYAKHONT.Weapon_Launcher;
+              RecSendYakhont.mMissile1    := 1;
             end;
           end
           else if WeaponYAKHONT.Weapon_Launcher = 2 then
           begin
             if WeaponYAKHONT.Weapon_Status = 1 then
             begin
-              RecSendYakhont.mLauncherID    := WeaponYAKHONT.Weapon_Launcher;
-              RecSendYakhont.mMissile2 := 1;
+              RecSendYakhont.mLauncherID  := WeaponYAKHONT.Weapon_Launcher;
+              RecSendYakhont.mMissile2    := 1;
             end;
           end
           else if WeaponYAKHONT.Weapon_Launcher = 3 then
           begin
             if WeaponYAKHONT.Weapon_Status = 1 then
             begin
-              RecSendYakhont.mLauncherID    := WeaponYAKHONT.Weapon_Launcher;
-              RecSendYakhont.mMissile3 := 1;
+              RecSendYakhont.mLauncherID  := WeaponYAKHONT.Weapon_Launcher;
+              RecSendYakhont.mMissile3    := 1;
             end;
           end
           else if WeaponYAKHONT.Weapon_Launcher = 4 then
           begin
             if WeaponYAKHONT.Weapon_Status = 1 then
             begin
-              RecSendYakhont.mLauncherID    := WeaponYAKHONT.Weapon_Launcher;
-              RecSendYakhont.mMissile4 := 1;
+              RecSendYakhont.mLauncherID  := WeaponYAKHONT.Weapon_Launcher;
+              RecSendYakhont.mMissile4    := 1;
             end;
             CountLoading := tmr_YAKHONT;
 //            tmrLoading.Enabled := True;

@@ -51,14 +51,61 @@ type
     pbTubeSymbol6: TPaintBox;
     pbTubeSymbol7: TPaintBox;
     pbTubeSymbol8: TPaintBox;
-    procedure lblTorpedo1Click(Sender: TObject);
+    shpTorpedo2: TShape;
+    shpTorpedo1: TShape;
+    shpTorpedo4: TShape;
+    shpTorpedo3: TShape;
+    shpTorpedo6: TShape;
+    shpTorpedo5: TShape;
+    shpTorpedo7: TShape;
+    shpFrameTorpedo2: TShape;
+    shpFrameTorpedo1: TShape;
+    shpFrameTorpedo3: TShape;
+    shpFrameTorpedo4: TShape;
+    shpFrameTorpedo5: TShape;
+    shpFrameTorpedo7: TShape;
+    shpFrameTorpedo: TShape;
+    shpTorpedo8: TShape;
+    shpFrameTorpedo8: TShape;
+    lblActiveToSo1: TLabel;
+    lblValueTorpedo1: TLabel;
+    lblFuse1: TLabel;
+    lblNumberTorpedo1: TLabel;
+    lblNumberTorpedo2: TLabel;
+    lblFuse2: TLabel;
+    lblActiveToSo2: TLabel;
+    lblValueTorpedo2: TLabel;
+    lblNumberTorpedo3: TLabel;
+    lblFuse3: TLabel;
+    lblActiveToSo3: TLabel;
+    lblValueTorpedo3: TLabel;
+    lblNumberTorpedo4: TLabel;
+    lblFuse4: TLabel;
+    lblActiveToSo4: TLabel;
+    lblValueTorpedo4: TLabel;
+    lblActiveToSo5: TLabel;
+    lblValueTorpedo5: TLabel;
+    lblNumberTorpedo5: TLabel;
+    lblFuse5: TLabel;
+    lblNumberTorpedo6: TLabel;
+    lblFuse6: TLabel;
+    lblActiveToSo6: TLabel;
+    lblValueTorpedo6: TLabel;
+    lblNumberTorpedo7: TLabel;
+    lblFuse7: TLabel;
+    lblActiveToSo7: TLabel;
+    lblValueTorpedo7: TLabel;
+    lblNumberTorpedo8: TLabel;
+    lblFuse8: TLabel;
+    lblActiveToSo8: TLabel;
+    lblValueTorpedo8: TLabel;
     procedure tmrDrawTubeTimer(Sender: TObject);
     procedure DrawTube(pBox: TPaintBox; aLauncher: TTorpedoLauncher);
     procedure pbTubeSymbol1Paint(Sender: TObject);
   private
     { Private declarations }
   public
-    procedure UpdateImage;
+    procedure UpdatePanelStatus;
   end;
 
 var
@@ -75,6 +122,7 @@ var
   aCnv: TCanvas;
   Cx, Cy: Double;
   Points: array[0..2] of TPoint;
+  i : Integer;
 begin
   aCnv := pBox.Canvas;
   Cx := Round(pBox.Width / 2);
@@ -118,13 +166,13 @@ begin
     // draw triangle Torpedo Status
     if aLauncher.TorpedoStatus = tsOff then
     begin
-      aCnv.Pen.Color := clYellow;
+      aCnv.Pen.Color   := clYellow;
       aCnv.Brush.Color := clYellow;
       aCnv.Brush.Style := bsSolid;
     end
     else if aLauncher.TorpedoStatus = tsTesting then // harus dibuat blinking
     begin
-      aCnv.Pen.Color := clYellow;
+      aCnv.Pen.Color   := clYellow;
       aCnv.Brush.Color := clYellow;
       aCnv.Brush.Style := bsSolid;
     end
@@ -175,12 +223,6 @@ begin
 
 end;
 
-procedure TfrmTorpedoTubeStatusWindow.lblTorpedo1Click(Sender: TObject);
-begin
-//  lblTorpedo1.Caption := 'MSI-SRC-SA';
-//  UpdateImage;
-end;
-
 procedure TfrmTorpedoTubeStatusWindow.pbTubeSymbol1Paint(Sender: TObject);
 begin
   DrawTube(TPaintBox(Sender), SutBlacksharkManager.FTorpedoArray[TPaintBox(Sender).Tag]);
@@ -198,28 +240,35 @@ begin
   pbTubeSymbol6.Invalidate;
   pbTubeSymbol7.Invalidate;
   pbTubeSymbol8.Invalidate;
+
+  UpdatePanelStatus;
 end;
 
-procedure TfrmTorpedoTubeStatusWindow.UpdateImage;
+procedure TfrmTorpedoTubeStatusWindow.UpdatePanelStatus;
 var
-  Basepath, Filename: string;
+  i     : Integer;
+  shape : TShape;
 begin
-//  Basepath := 'D:\NFS\P.NFS\bin\2D\data\images\blackshark\';
-//
-//  if lblTorpedo1.Caption = 'TORP READY' then
-//     Filename := Basepath + 'Status1.bmp'
-//  else if lblTorpedo1.Caption = 'MSI-SRC-SA' then
-//     Filename := Basepath + 'Status2.bmp'
-//  else if lblTorpedo1.Caption = 'MAN-HORIZ' then
-//     Filename := Basepath + 'Status3.bmp';
-//
-//  if FileExists(Filename) then
-//  begin
-//     imgTorpedo1.Picture.LoadFromFile(Filename);
-//     imgTorpedo1.Refresh;
-//  end
-//  else
-//    ShowMessage('File not found : ' + Filename);
+  for i := 0 to 7 do
+  begin
+    case i of
+      0: Shape := shpTorpedo1;
+      1: Shape := shpTorpedo2;
+      2: Shape := shpTorpedo3;
+      3: Shape := shpTorpedo4;
+      4: Shape := shpTorpedo5;
+      5: Shape := shpTorpedo6;
+      6: Shape := shpTorpedo7;
+      7: Shape := shpTorpedo8;
+    end;
+
+    if SutBlacksharkManager.FTorpedoArray[i].Loaded then
+      Shape.Pen.Color := clYellow
+    else
+      Shape.Pen.Color := clWhite;
+
+    Shape.Repaint;
+  end;
 end;
 
 end.

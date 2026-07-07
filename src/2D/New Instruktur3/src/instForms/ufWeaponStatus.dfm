@@ -1600,7 +1600,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'YAKHONT'
@@ -1610,11 +1610,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 883
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 0
           object lblYakhontStatus: TLabel
             Left = 151
             Top = 11
@@ -6688,7 +6689,7 @@ object fWeaponStatus: TfWeaponStatus
         CaptionFont.Name = 'MS Sans Serif'
         CaptionFont.Style = [fsBold]
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 923
         DividerVisible = False
         Caption = 'BLACKSHARK'
@@ -6697,11 +6698,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 903
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 903
           object lblBlackShark: TLabel
             Left = 142
             Top = 12
