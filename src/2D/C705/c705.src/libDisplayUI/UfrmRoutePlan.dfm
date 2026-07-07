@@ -3516,7 +3516,7 @@ object frmRoutePlan: TfrmRoutePlan
         Top = 10
         Width = 30
         Height = 30
-        Caption = 'Map'
+        Caption = 'MAP'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -11
@@ -10718,7 +10718,7 @@ object frmRoutePlan: TfrmRoutePlan
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000487AFE1001000000FC9A67771C000000000000000000000000
+          01000118010000B8429B0401000000FC9A67771C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -10727,15 +10727,15 @@ object frmRoutePlan: TfrmRoutePlan
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000487AFE1001000000881300C01C00000000000000000000000000000000
+          010000B8429B0401000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000000010CC97003D8D17751F
-          00000000000000208D17758051A1046770981150CC9700000000000000000000
+          0000000000000000000000000000000000000000000000E8E197003D8D17751F
+          00000000000000208D17754037A110B800395E28E29700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -11191,7 +11191,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 16
               Width = 121
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11205,7 +11204,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 41
               Width = 121
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11219,7 +11217,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 66
               Width = 121
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11233,7 +11230,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 91
               Width = 121
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11247,7 +11243,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 116
               Width = 121
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11261,7 +11256,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 141
               Width = 121
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11275,7 +11269,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 166
               Width = 121
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11289,7 +11282,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 191
               Width = 121
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11530,7 +11522,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 30
               Width = 82
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11544,7 +11535,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 55
               Width = 82
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11558,7 +11548,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 80
               Width = 82
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11572,7 +11561,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 105
               Width = 82
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11586,7 +11574,6 @@ object frmRoutePlan: TfrmRoutePlan
               Top = 130
               Width = 82
               Height = 24
-              Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
               Font.Color = 16732757
               Font.Height = -13
@@ -11749,6 +11736,591 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          object advgrpbxTgtInfoPg2: TAdvGroupBox
+            Left = 5
+            Top = 3
+            Width = 240
+            Height = 222
+            Caption = 'Target2 Info'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentCtl3D = True
+            ParentFont = False
+            TabOrder = 0
+            object Label77: TLabel
+              Left = 15
+              Top = 20
+              Width = 42
+              Height = 16
+              Caption = 'Tgt. No'
+            end
+            object Label78: TLabel
+              Left = 24
+              Top = 27
+              Width = 4
+              Height = 16
+            end
+            object Label79: TLabel
+              Left = 15
+              Top = 45
+              Width = 58
+              Height = 16
+              Caption = 'Tgt. Long.'
+            end
+            object Label80: TLabel
+              Left = 15
+              Top = 70
+              Width = 48
+              Height = 16
+              Caption = 'Tgt. Lat.'
+            end
+            object Label81: TLabel
+              Left = 15
+              Top = 95
+              Width = 63
+              Height = 16
+              Caption = 'Tgt. Speed'
+            end
+            object Label82: TLabel
+              Left = 15
+              Top = 195
+              Width = 63
+              Height = 16
+              Caption = 'Tgt. Height'
+            end
+            object Label83: TLabel
+              Left = 15
+              Top = 170
+              Width = 62
+              Height = 16
+              Caption = 'Tgt. Azimu'
+            end
+            object Label84: TLabel
+              Left = 15
+              Top = 145
+              Width = 63
+              Height = 16
+              Caption = 'Tgt. Range'
+            end
+            object Label85: TLabel
+              Left = 15
+              Top = 120
+              Width = 67
+              Height = 16
+              Caption = 'Tgt. Course'
+            end
+            object edtTgtNoPg2: TEdit
+              Left = 95
+              Top = 16
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+            end
+            object edtTgtLongPg2: TEdit
+              Left = 95
+              Top = 41
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtLatPg2: TEdit
+              Left = 95
+              Top = 66
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+            object edtTgtSpdPg2: TEdit
+              Left = 95
+              Top = 91
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 3
+            end
+            object edtTgtCrsPg2: TEdit
+              Left = 95
+              Top = 116
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 4
+            end
+            object edtTgtRngPg2: TEdit
+              Left = 95
+              Top = 141
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 5
+            end
+            object edtTgtAzimuPg2: TEdit
+              Left = 95
+              Top = 161
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 6
+            end
+            object edtTgtHeightPg2: TEdit
+              Left = 95
+              Top = 191
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 7
+            end
+          end
+          object advgrpbxRouteInfoPg2: TAdvGroupBox
+            Left = 5
+            Top = 230
+            Width = 240
+            Height = 288
+            Caption = 'Route Info Of Target2'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentCtl3D = True
+            ParentFont = False
+            TabOrder = 1
+            object Label86: TLabel
+              Left = 15
+              Top = 34
+              Width = 59
+              Height = 16
+              Caption = 'Rou. Total'
+            end
+            object Label87: TLabel
+              Left = 15
+              Top = 59
+              Width = 49
+              Height = 16
+              Caption = 'Rou. No.'
+            end
+            object Label88: TLabel
+              Left = 15
+              Top = 84
+              Width = 60
+              Height = 16
+              Caption = 'Fly. Range'
+            end
+            object Label89: TLabel
+              Left = 15
+              Top = 109
+              Width = 51
+              Height = 16
+              Caption = 'Attack A.'
+            end
+            object Label90: TLabel
+              Left = 15
+              Top = 134
+              Width = 64
+              Height = 16
+              Caption = 'Rou. status'
+            end
+            object Label91: TLabel
+              Left = 11
+              Top = 160
+              Width = 11
+              Height = 16
+              Caption = 'Pt'
+            end
+            object Label92: TLabel
+              Left = 64
+              Top = 160
+              Width = 24
+              Height = 16
+              Caption = 'Lon.'
+            end
+            object Label93: TLabel
+              Left = 136
+              Top = 160
+              Width = 21
+              Height = 16
+              Caption = 'Lat.'
+            end
+            object Label94: TLabel
+              Left = 14
+              Top = 186
+              Width = 12
+              Height = 16
+              Caption = '1:'
+            end
+            object Label95: TLabel
+              Left = 14
+              Top = 208
+              Width = 12
+              Height = 16
+              Caption = '2:'
+            end
+            object Label96: TLabel
+              Left = 14
+              Top = 256
+              Width = 12
+              Height = 16
+              Caption = '4:'
+            end
+            object Label97: TLabel
+              Left = 14
+              Top = 234
+              Width = 12
+              Height = 16
+              Caption = '3:'
+            end
+            object imgUpRoutNoPg2: TImage
+              Left = 183
+              Top = 55
+              Width = 24
+              Height = 24
+              Picture.Data = {
+                07544269746D6170F6060000424DF60600000000000036000000280000001800
+                0000180000000100180000000000C0060000120B0000120B0000000000000000
+                0000C0C1C0BDBDBDB3B3B3C9C9C9D7D7D7D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9
+                D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D7D7D7C9C9
+                C9B3B3B3BDBEBDC0C1C0C3C4C3EEEEEEC6A5A497525391474891474891474891
+                4748914748914748914748914748914748914748914748914748914748914748
+                914748914748985454C7A6A6EDEDEDC3C4C3EBEBEBC39F9E7000017000017000
+                0170000170000170000170000170000170000170000170000170000170000170
+                0001700001700001700001700001700001700001C4A1A1E9EAE9FEFEFE975253
+                70000170000170000170000170000170000170000170000190393AA05556A055
+                568F3738700001700001700001700001700001700001700001700001985354FE
+                FEFEFDFDFD924A4B700001700001700001700001700001700001700001700001
+                ECDDDDFFFFFFFFFFFFE5D0D07000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001700001EEE1E1FFFFFFFFFFFFE6D2D2700001700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001700001EEE1E1FFFFFFFFFFFFE6D2D270000170
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001EEE1E1FFFFFFFFFF
+                FFE6D2D2700001700001700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001700001700001700001
+                EEE1E1FFFFFFFFFFFFE6D2D27000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001700001EEE1E1FFFFFFFFFFFFE6D2D2700001700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001700001EEE1E1FFFFFFFFFFFFE6D2D270000170
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001EEE1E1FFFFFFFFFF
+                FFE6D2D2700001700001700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001700001700001700001
+                EEE1E1FFFFFFFFFFFFE6D2D27000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B700001700001700001700001770C0DE7
+                D4D4F5EEEEF5EEEEFEFDFDFFFFFFFFFFFFFDFCFCF5EEEEF4EBEBE6D3D3740809
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001D2AEAEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFD1ADAD700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                7000017000017000017000017000017A1112EEE0E0FFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFEDDFDF791011700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B7000017000017000017000017000017000018F3839FCFAFA
+                FFFFFFFFFFFFFFFFFFFFFFFFFCF9F98F37387000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001B27576FFFFFFFFFFFFFFFFFFFFFFFFB07374700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001710102D5B4B4FFFFFFFFFFFFD4B3B371010270
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                7000017000017000017000017000017000017000017000017B1415EFE3E3EEE1
+                E17B1314700001700001700001700001700001700001700001700001924A4BFC
+                FCFCF6F6F6934C4D700001700001700001700001700001700001700001700001
+                7000018322238322237000017000017000017000017000017000017000017000
+                01700001965252F6F6F6EFEFEFB7929370000170000170000170000170000170
+                0001700001700001700001700001700001700001700001700001700001700001
+                700001700001700001700001B79494EFEFEFD3D3D3FFFFFFAB8988884243853B
+                3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B85
+                3B3B853B3B853B3B853B3B853B3B884343AC8A8AFFFFFFD2D2D2C0C1C0D3D3D3
+                F3F3F3FEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEF3F3F3D2D3D2C0
+                C1C0}
+            end
+            object imgDownRoutNoPg2: TImage
+              Left = 210
+              Top = 55
+              Width = 24
+              Height = 24
+              Picture.Data = {
+                07544269746D6170F6060000424DF60600000000000036000000280000001800
+                0000180000000100180000000000C0060000120B0000120B0000000000000000
+                0000C0C1C0BDBDBDB3B3B3C9C9C9D7D7D7D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9
+                D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D7D7D7C9C9
+                C9B3B3B3BDBEBDC0C1C0C3C4C3EEEEEEC6A5A497525391474891474891474891
+                4748914748914748914748914748914748914748914748914748914748914748
+                914748914748985454C7A6A6EDEDEDC3C4C3EBEBEBC39F9E7000017000017000
+                0170000170000170000170000170000170000170000170000170000170000170
+                0001700001700001700001700001700001700001C4A1A1E9EAE9FEFEFE975253
+                7000017000017000017000017000017000017000017000017000018322238423
+                24700001700001700001700001700001700001700001700001700001985354FE
+                FEFEFDFDFD924A4B700001700001700001700001700001700001700001700001
+                7B1314EFE2E2F0E5E57B14157000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001710102D4B3B3FFFFFFFFFFFFD6B6B6710102700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001B07374FFFFFFFFFFFFFFFFFFFFFFFFB2767770
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                7000017000017000017000017000017000018F3738FCF9F9FFFFFFFFFFFFFFFF
+                FFFFFFFFFCFAFA90393A700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001791011EDDFDFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEE0E07A11127000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B700001700001700001700001700001D1
+                ADADFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2AFAF700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001740809E6D3D3F3E9E9F5EEEEFDFCFCFFFFFFFFFFFFFEFDFDF5EEEEF4
+                EBEBE6D2D2760B0C700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001E6D2D2FFFFFFFFFF
+                FFEEE1E1700001700001700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001700001700001700001
+                E6D2D2FFFFFFFFFFFFEEE1E17000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001700001E6D2D2FFFFFFFFFFFFEEE1E1700001700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001700001E6D2D2FFFFFFFFFFFFEEE1E170000170
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001E6D2D2FFFFFFFFFF
+                FFEEE1E1700001700001700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001700001700001700001
+                E6D2D2FFFFFFFFFFFFEEE1E17000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001700001E6D2D2FFFFFFFFFFFFEEE1E1700001700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001700001E6D2D2FFFFFFFFFFFFEEE1E170000170
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001E5D0D0FFFFFFFFFF
+                FFECDDDD700001700001700001700001700001700001700001700001924A4BFC
+                FCFCF6F6F6934C4D700001700001700001700001700001700001700001700001
+                8F3738A05556A055568F38397000017000017000017000017000017000017000
+                01700001965252F6F6F6EFEFEFB7929370000170000170000170000170000170
+                0001700001700001700001700001700001700001700001700001700001700001
+                700001700001700001700001B79494EFEFEFD3D3D3FFFFFFAB8988884243853B
+                3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B85
+                3B3B853B3B853B3B853B3B853B3B884343AC8A8AFFFFFFD2D2D2C0C1C0D3D3D3
+                F3F3F3FEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEF3F3F3D2D3D2C0
+                C1C0}
+            end
+            object edtRoutTotalPg2: TEdit
+              Left = 95
+              Top = 30
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+            end
+            object edtRoutNoPg2: TEdit
+              Left = 95
+              Top = 55
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtFlyRngPg2: TEdit
+              Left = 95
+              Top = 80
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+            object edtAttackAPg2: TEdit
+              Left = 95
+              Top = 105
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 3
+            end
+            object edtRoutStatusPg2: TEdit
+              Left = 95
+              Top = 130
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 4
+            end
+            object edtLong1Pg2: TEdit
+              Left = 35
+              Top = 182
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 5
+            end
+            object edtLat1Pg2: TEdit
+              Left = 126
+              Top = 182
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 6
+            end
+            object edtLong2Pg2: TEdit
+              Left = 35
+              Top = 206
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 7
+            end
+            object edtLat2Pg2: TEdit
+              Left = 126
+              Top = 206
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 8
+            end
+            object edtLong3Pg2: TEdit
+              Left = 35
+              Top = 230
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 9
+            end
+            object edtLat4Pg2: TEdit
+              Left = 126
+              Top = 254
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 10
+            end
+            object edtLong4Pg2: TEdit
+              Left = 35
+              Top = 254
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 11
+            end
+            object edtLat3Pg2: TEdit
+              Left = 126
+              Top = 230
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 12
+            end
+          end
         end
         object advtsPage3: TAdvTabSheet
           Caption = 'Page3'
@@ -12361,6 +12933,591 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          object advgrpbxTgtInfoPg4: TAdvGroupBox
+            Left = 5
+            Top = 3
+            Width = 240
+            Height = 222
+            Caption = 'Target4 Info'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentCtl3D = True
+            ParentFont = False
+            TabOrder = 0
+            object Label98: TLabel
+              Left = 15
+              Top = 20
+              Width = 42
+              Height = 16
+              Caption = 'Tgt. No'
+            end
+            object Label99: TLabel
+              Left = 24
+              Top = 27
+              Width = 4
+              Height = 16
+            end
+            object Label100: TLabel
+              Left = 15
+              Top = 45
+              Width = 58
+              Height = 16
+              Caption = 'Tgt. Long.'
+            end
+            object Label101: TLabel
+              Left = 15
+              Top = 70
+              Width = 48
+              Height = 16
+              Caption = 'Tgt. Lat.'
+            end
+            object Label102: TLabel
+              Left = 15
+              Top = 95
+              Width = 63
+              Height = 16
+              Caption = 'Tgt. Speed'
+            end
+            object Label103: TLabel
+              Left = 15
+              Top = 195
+              Width = 63
+              Height = 16
+              Caption = 'Tgt. Height'
+            end
+            object Label104: TLabel
+              Left = 15
+              Top = 170
+              Width = 62
+              Height = 16
+              Caption = 'Tgt. Azimu'
+            end
+            object Label105: TLabel
+              Left = 15
+              Top = 145
+              Width = 63
+              Height = 16
+              Caption = 'Tgt. Range'
+            end
+            object Label106: TLabel
+              Left = 15
+              Top = 120
+              Width = 67
+              Height = 16
+              Caption = 'Tgt. Course'
+            end
+            object edtTgtNoPg4: TEdit
+              Left = 95
+              Top = 16
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+            end
+            object edtTgtLongPg4: TEdit
+              Left = 95
+              Top = 41
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtLatPg4: TEdit
+              Left = 95
+              Top = 66
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+            object edtTgtSpdPg4: TEdit
+              Left = 95
+              Top = 91
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 3
+            end
+            object edtTgtCrsPg4: TEdit
+              Left = 95
+              Top = 116
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 4
+            end
+            object edtTgtRngPg4: TEdit
+              Left = 95
+              Top = 141
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 5
+            end
+            object edtTgtAzimuPg4: TEdit
+              Left = 95
+              Top = 166
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 6
+            end
+            object edtTgtHeightPg4: TEdit
+              Left = 95
+              Top = 191
+              Width = 121
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 7
+            end
+          end
+          object advgrpbxRouteInfoPg4: TAdvGroupBox
+            Left = 5
+            Top = 230
+            Width = 240
+            Height = 288
+            Caption = 'Route Info Of Target4'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentCtl3D = True
+            ParentFont = False
+            TabOrder = 1
+            object Label107: TLabel
+              Left = 15
+              Top = 34
+              Width = 59
+              Height = 16
+              Caption = 'Rou. Total'
+            end
+            object Label108: TLabel
+              Left = 15
+              Top = 59
+              Width = 49
+              Height = 16
+              Caption = 'Rou. No.'
+            end
+            object Label109: TLabel
+              Left = 15
+              Top = 84
+              Width = 60
+              Height = 16
+              Caption = 'Fly. Range'
+            end
+            object Label110: TLabel
+              Left = 15
+              Top = 109
+              Width = 51
+              Height = 16
+              Caption = 'Attack A.'
+            end
+            object Label111: TLabel
+              Left = 15
+              Top = 134
+              Width = 64
+              Height = 16
+              Caption = 'Rou. status'
+            end
+            object Label112: TLabel
+              Left = 11
+              Top = 160
+              Width = 11
+              Height = 16
+              Caption = 'Pt'
+            end
+            object Label113: TLabel
+              Left = 64
+              Top = 160
+              Width = 24
+              Height = 16
+              Caption = 'Lon.'
+            end
+            object Label114: TLabel
+              Left = 136
+              Top = 160
+              Width = 21
+              Height = 16
+              Caption = 'Lat.'
+            end
+            object Label115: TLabel
+              Left = 14
+              Top = 186
+              Width = 12
+              Height = 16
+              Caption = '1:'
+            end
+            object Label116: TLabel
+              Left = 14
+              Top = 208
+              Width = 12
+              Height = 16
+              Caption = '2:'
+            end
+            object Label117: TLabel
+              Left = 14
+              Top = 256
+              Width = 12
+              Height = 16
+              Caption = '4:'
+            end
+            object Label118: TLabel
+              Left = 14
+              Top = 234
+              Width = 12
+              Height = 16
+              Caption = '3:'
+            end
+            object imgUpRoutNoPg4: TImage
+              Left = 183
+              Top = 55
+              Width = 24
+              Height = 24
+              Picture.Data = {
+                07544269746D6170F6060000424DF60600000000000036000000280000001800
+                0000180000000100180000000000C0060000120B0000120B0000000000000000
+                0000C0C1C0BDBDBDB3B3B3C9C9C9D7D7D7D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9
+                D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D7D7D7C9C9
+                C9B3B3B3BDBEBDC0C1C0C3C4C3EEEEEEC6A5A497525391474891474891474891
+                4748914748914748914748914748914748914748914748914748914748914748
+                914748914748985454C7A6A6EDEDEDC3C4C3EBEBEBC39F9E7000017000017000
+                0170000170000170000170000170000170000170000170000170000170000170
+                0001700001700001700001700001700001700001C4A1A1E9EAE9FEFEFE975253
+                70000170000170000170000170000170000170000170000190393AA05556A055
+                568F3738700001700001700001700001700001700001700001700001985354FE
+                FEFEFDFDFD924A4B700001700001700001700001700001700001700001700001
+                ECDDDDFFFFFFFFFFFFE5D0D07000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001700001EEE1E1FFFFFFFFFFFFE6D2D2700001700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001700001EEE1E1FFFFFFFFFFFFE6D2D270000170
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001EEE1E1FFFFFFFFFF
+                FFE6D2D2700001700001700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001700001700001700001
+                EEE1E1FFFFFFFFFFFFE6D2D27000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001700001EEE1E1FFFFFFFFFFFFE6D2D2700001700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001700001EEE1E1FFFFFFFFFFFFE6D2D270000170
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001EEE1E1FFFFFFFFFF
+                FFE6D2D2700001700001700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001700001700001700001
+                EEE1E1FFFFFFFFFFFFE6D2D27000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B700001700001700001700001770C0DE7
+                D4D4F5EEEEF5EEEEFEFDFDFFFFFFFFFFFFFDFCFCF5EEEEF4EBEBE6D3D3740809
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001D2AEAEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFD1ADAD700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                7000017000017000017000017000017A1112EEE0E0FFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFEDDFDF791011700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B7000017000017000017000017000017000018F3839FCFAFA
+                FFFFFFFFFFFFFFFFFFFFFFFFFCF9F98F37387000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001B27576FFFFFFFFFFFFFFFFFFFFFFFFB07374700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001710102D5B4B4FFFFFFFFFFFFD4B3B371010270
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                7000017000017000017000017000017000017000017000017B1415EFE3E3EEE1
+                E17B1314700001700001700001700001700001700001700001700001924A4BFC
+                FCFCF6F6F6934C4D700001700001700001700001700001700001700001700001
+                7000018322238322237000017000017000017000017000017000017000017000
+                01700001965252F6F6F6EFEFEFB7929370000170000170000170000170000170
+                0001700001700001700001700001700001700001700001700001700001700001
+                700001700001700001700001B79494EFEFEFD3D3D3FFFFFFAB8988884243853B
+                3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B85
+                3B3B853B3B853B3B853B3B853B3B884343AC8A8AFFFFFFD2D2D2C0C1C0D3D3D3
+                F3F3F3FEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEF3F3F3D2D3D2C0
+                C1C0}
+            end
+            object Image3: TImage
+              Left = 210
+              Top = 55
+              Width = 24
+              Height = 24
+              Picture.Data = {
+                07544269746D6170F6060000424DF60600000000000036000000280000001800
+                0000180000000100180000000000C0060000120B0000120B0000000000000000
+                0000C0C1C0BDBDBDB3B3B3C9C9C9D7D7D7D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9
+                D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D9D7D7D7C9C9
+                C9B3B3B3BDBEBDC0C1C0C3C4C3EEEEEEC6A5A497525391474891474891474891
+                4748914748914748914748914748914748914748914748914748914748914748
+                914748914748985454C7A6A6EDEDEDC3C4C3EBEBEBC39F9E7000017000017000
+                0170000170000170000170000170000170000170000170000170000170000170
+                0001700001700001700001700001700001700001C4A1A1E9EAE9FEFEFE975253
+                7000017000017000017000017000017000017000017000017000018322238423
+                24700001700001700001700001700001700001700001700001700001985354FE
+                FEFEFDFDFD924A4B700001700001700001700001700001700001700001700001
+                7B1314EFE2E2F0E5E57B14157000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001710102D4B3B3FFFFFFFFFFFFD6B6B6710102700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001B07374FFFFFFFFFFFFFFFFFFFFFFFFB2767770
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                7000017000017000017000017000017000018F3738FCF9F9FFFFFFFFFFFFFFFF
+                FFFFFFFFFCFAFA90393A700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001791011EDDFDFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEE0E07A11127000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B700001700001700001700001700001D1
+                ADADFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2AFAF700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001740809E6D3D3F3E9E9F5EEEEFDFCFCFFFFFFFFFFFFFEFDFDF5EEEEF4
+                EBEBE6D2D2760B0C700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001E6D2D2FFFFFFFFFF
+                FFEEE1E1700001700001700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001700001700001700001
+                E6D2D2FFFFFFFFFFFFEEE1E17000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001700001E6D2D2FFFFFFFFFFFFEEE1E1700001700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001700001E6D2D2FFFFFFFFFFFFEEE1E170000170
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001E6D2D2FFFFFFFFFF
+                FFEEE1E1700001700001700001700001700001700001700001700001924A4BFD
+                FDFDFDFDFD924A4B700001700001700001700001700001700001700001700001
+                E6D2D2FFFFFFFFFFFFEEE1E17000017000017000017000017000017000017000
+                01700001924A4BFDFDFDFDFDFD924A4B70000170000170000170000170000170
+                0001700001700001E6D2D2FFFFFFFFFFFFEEE1E1700001700001700001700001
+                700001700001700001700001924A4BFDFDFDFDFDFD924A4B7000017000017000
+                01700001700001700001700001700001E6D2D2FFFFFFFFFFFFEEE1E170000170
+                0001700001700001700001700001700001700001924A4BFDFDFDFDFDFD924A4B
+                700001700001700001700001700001700001700001700001E5D0D0FFFFFFFFFF
+                FFECDDDD700001700001700001700001700001700001700001700001924A4BFC
+                FCFCF6F6F6934C4D700001700001700001700001700001700001700001700001
+                8F3738A05556A055568F38397000017000017000017000017000017000017000
+                01700001965252F6F6F6EFEFEFB7929370000170000170000170000170000170
+                0001700001700001700001700001700001700001700001700001700001700001
+                700001700001700001700001B79494EFEFEFD3D3D3FFFFFFAB8988884243853B
+                3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B853B3B85
+                3B3B853B3B853B3B853B3B853B3B884343AC8A8AFFFFFFD2D2D2C0C1C0D3D3D3
+                F3F3F3FEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEF3F3F3D2D3D2C0
+                C1C0}
+            end
+            object edtRoutTotalPg4: TEdit
+              Left = 95
+              Top = 30
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+            end
+            object edtRoutNoPg4: TEdit
+              Left = 95
+              Top = 55
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtFlyRngPg4: TEdit
+              Left = 95
+              Top = 80
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+            object edtAttackAPg4: TEdit
+              Left = 95
+              Top = 105
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 3
+            end
+            object edtRoutStatusPg4: TEdit
+              Left = 95
+              Top = 130
+              Width = 82
+              Height = 24
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 4
+            end
+            object edtLong1Pg4: TEdit
+              Left = 35
+              Top = 182
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 5
+            end
+            object edtLat1Pg4: TEdit
+              Left = 126
+              Top = 182
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 6
+            end
+            object edtLong2Pg4: TEdit
+              Left = 35
+              Top = 206
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 7
+            end
+            object edtLat2Pg4: TEdit
+              Left = 126
+              Top = 206
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 8
+            end
+            object edtLong3Pg4: TEdit
+              Left = 35
+              Top = 230
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 9
+            end
+            object edtLat4Pg4: TEdit
+              Left = 126
+              Top = 254
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 10
+            end
+            object edtLong4Pg4: TEdit
+              Left = 35
+              Top = 254
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 11
+            end
+            object edtLat3Pg4: TEdit
+              Left = 126
+              Top = 230
+              Width = 90
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 12
+            end
+          end
         end
       end
     end
@@ -15108,7 +16265,7 @@ object frmRoutePlan: TfrmRoutePlan
       Top = 998
       Width = 30
       Height = 30
-      Caption = 'Nav'
+      Caption = 'NAV'
       TabOrder = 9
       OnClick = pnlShowNavClick
     end
@@ -15152,6 +16309,300 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          object advgrpbxLandFly1: TAdvGroupBox
+            Left = 3
+            Top = 3
+            Width = 206
+            Height = 110
+            Caption = 'Fly Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 0
+            object Label143: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 1:'
+            end
+            object Label144: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label145: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighFly1: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighFly1: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtFly1: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object advgrpbxLandFly2: TAdvGroupBox
+            Left = 3
+            Top = 119
+            Width = 206
+            Height = 110
+            Caption = 'Fly Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 1
+            object Label146: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 2:'
+            end
+            object Label147: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label148: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighFly2: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighFly2: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtFly2: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object advgrpbxLandFly3: TAdvGroupBox
+            Left = 3
+            Top = 235
+            Width = 206
+            Height = 110
+            Caption = 'Fly Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 2
+            object Label149: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 3:'
+            end
+            object Label150: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label151: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighFly3: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighFly3: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+              Text = '0'
+            end
+            object edtTgtFly3: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+              Text = '0'
+            end
+          end
+          object advgrpbxLandFly4: TAdvGroupBox
+            Left = 3
+            Top = 351
+            Width = 206
+            Height = 110
+            Caption = 'Fly Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 3
+            object Label152: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 4:'
+            end
+            object Label153: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label154: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighFly4: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighFly4: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtFly4: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
         end
         object advtsPoint: TAdvTabSheet
           Caption = 'Point'
@@ -15159,6 +16610,300 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          object advgrpbxLandPt1: TAdvGroupBox
+            Left = 3
+            Top = 3
+            Width = 206
+            Height = 110
+            Caption = 'Point Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 0
+            object Label131: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 1:'
+            end
+            object Label132: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label133: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighPt1: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighPt1: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtPt1: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object advgrpbxLandPt2: TAdvGroupBox
+            Left = 3
+            Top = 119
+            Width = 206
+            Height = 110
+            Caption = 'Point Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 1
+            object Label134: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 2:'
+            end
+            object Label135: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label136: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighPt2: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighPt2: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtPt2: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object advgrpbxLandPt3: TAdvGroupBox
+            Left = 3
+            Top = 235
+            Width = 206
+            Height = 110
+            Caption = 'Point Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 2
+            object Label137: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 3:'
+            end
+            object Label138: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label139: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighPt3: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighPt3: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+              Text = '0'
+            end
+            object edtTgtPt3: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+              Text = '0'
+            end
+          end
+          object advgrpbxLandPt4: TAdvGroupBox
+            Left = 3
+            Top = 351
+            Width = 206
+            Height = 110
+            Caption = 'Point Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 3
+            object Label140: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 4:'
+            end
+            object Label141: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label142: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighPt4: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighPt4: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtPt4: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
         end
         object advtsIsl: TAdvTabSheet
           Caption = 'Isl.'
@@ -15166,6 +16911,300 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
+          object advgrpbxIslTgt1: TAdvGroupBox
+            Left = 3
+            Top = 3
+            Width = 206
+            Height = 110
+            Caption = 'Isl. Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 0
+            object Label119: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 1:'
+            end
+            object Label120: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label121: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighIsl1: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighIsl1: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtIsl1: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object advgrpbxIslTgt2: TAdvGroupBox
+            Left = 3
+            Top = 119
+            Width = 206
+            Height = 110
+            Caption = 'Isl. Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 1
+            object Label122: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 2:'
+            end
+            object Label123: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label124: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighIsl2: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighIsl2: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtIsl2: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
+          object advgrpbxIslTgt3: TAdvGroupBox
+            Left = 3
+            Top = 235
+            Width = 206
+            Height = 110
+            Caption = 'Isl. Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 2
+            object Label125: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 3:'
+            end
+            object Label126: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label127: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighIsl3: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighIsl3: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+              Text = '0'
+            end
+            object edtTgtIsl3: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+              Text = '0'
+            end
+          end
+          object advgrpbxIslTgt4: TAdvGroupBox
+            Left = 3
+            Top = 351
+            Width = 206
+            Height = 110
+            Caption = 'Isl. Target Obs. (0-1900m)'
+            ParentCtl3D = True
+            TabOrder = 3
+            object Label128: TLabel
+              Left = 13
+              Top = 28
+              Width = 54
+              Height = 16
+              Caption = 'Target 4:'
+            end
+            object Label129: TLabel
+              Left = 13
+              Top = 53
+              Width = 60
+              Height = 16
+              Caption = 'Obs. High:'
+            end
+            object Label130: TLabel
+              Left = 13
+              Top = 78
+              Width = 63
+              Height = 16
+              Caption = 'Input High:'
+            end
+            object edtInputHighIsl4: TEdit
+              Left = 93
+              Top = 74
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clSilver
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 0
+              Text = '0'
+            end
+            object edtObsHighIsl4: TEdit
+              Left = 93
+              Top = 49
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 1
+            end
+            object edtTgtIsl4: TEdit
+              Left = 93
+              Top = 24
+              Width = 100
+              Height = 24
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = 16732757
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 2
+            end
+          end
         end
         object advtsLand: TAdvTabSheet
           Caption = 'Land'
@@ -15212,7 +17251,7 @@ object frmRoutePlan: TfrmRoutePlan
               Height = 16
               Caption = 'Input High:'
             end
-            object edtInputHigh1: TEdit
+            object edtInputHighLnd1: TEdit
               Left = 93
               Top = 74
               Width = 100
@@ -15227,7 +17266,7 @@ object frmRoutePlan: TfrmRoutePlan
               TabOrder = 0
               Text = '0'
             end
-            object edtObsHigh1: TEdit
+            object edtObsHighLnd1: TEdit
               Left = 93
               Top = 49
               Width = 100
@@ -15241,9 +17280,9 @@ object frmRoutePlan: TfrmRoutePlan
               ParentFont = False
               TabOrder = 1
             end
-            object edtTgt1: TEdit
+            object edtTgtLnd1: TEdit
               Left = 93
-              Top = 24
+              Top = 19
               Width = 100
               Height = 24
               Alignment = taCenter
@@ -15285,7 +17324,7 @@ object frmRoutePlan: TfrmRoutePlan
               Height = 16
               Caption = 'Input High:'
             end
-            object edtInputHigh2: TEdit
+            object edtInputHighLnd2: TEdit
               Left = 93
               Top = 74
               Width = 100
@@ -15300,7 +17339,7 @@ object frmRoutePlan: TfrmRoutePlan
               TabOrder = 0
               Text = '0'
             end
-            object edtObsHigh2: TEdit
+            object edtObsHighLnd2: TEdit
               Left = 93
               Top = 49
               Width = 100
@@ -15314,7 +17353,7 @@ object frmRoutePlan: TfrmRoutePlan
               ParentFont = False
               TabOrder = 1
             end
-            object edtTgt2: TEdit
+            object edtTgtLnd2: TEdit
               Left = 93
               Top = 24
               Width = 100
@@ -15358,14 +17397,14 @@ object frmRoutePlan: TfrmRoutePlan
               Height = 16
               Caption = 'Input High:'
             end
-            object edtInputHigh3: TEdit
+            object edtInputHighLnd3: TEdit
               Left = 93
               Top = 74
               Width = 100
               Height = 24
               Alignment = taCenter
               Font.Charset = DEFAULT_CHARSET
-              Font.Color = clBlack
+              Font.Color = clWindowText
               Font.Height = -13
               Font.Name = 'Tahoma'
               Font.Style = []
@@ -15373,7 +17412,7 @@ object frmRoutePlan: TfrmRoutePlan
               TabOrder = 0
               Text = '0'
             end
-            object edtObsHigh3: TEdit
+            object edtObsHighLnd3: TEdit
               Left = 93
               Top = 49
               Width = 100
@@ -15388,7 +17427,7 @@ object frmRoutePlan: TfrmRoutePlan
               TabOrder = 1
               Text = '0'
             end
-            object edtTgt3: TEdit
+            object edtTgtLnd3: TEdit
               Left = 93
               Top = 24
               Width = 100
@@ -15433,7 +17472,7 @@ object frmRoutePlan: TfrmRoutePlan
               Height = 16
               Caption = 'Input High:'
             end
-            object edtInputHigh4: TEdit
+            object edtInputHighLnd4: TEdit
               Left = 93
               Top = 74
               Width = 100
@@ -15448,7 +17487,7 @@ object frmRoutePlan: TfrmRoutePlan
               TabOrder = 0
               Text = '0'
             end
-            object edtObsHigh4: TEdit
+            object edtObsHighLnd4: TEdit
               Left = 93
               Top = 49
               Width = 100
@@ -15462,7 +17501,7 @@ object frmRoutePlan: TfrmRoutePlan
               ParentFont = False
               TabOrder = 1
             end
-            object edtTgt4: TEdit
+            object edtTgtLnd4: TEdit
               Left = 93
               Top = 24
               Width = 100
@@ -15478,8 +17517,8 @@ object frmRoutePlan: TfrmRoutePlan
             end
           end
           object btnOkObstacleInfo: TVrDemoButton
-            Left = 48
-            Top = 470
+            Left = 41
+            Top = 471
             Width = 77
             Height = 25
             FontEnter.Charset = DEFAULT_CHARSET

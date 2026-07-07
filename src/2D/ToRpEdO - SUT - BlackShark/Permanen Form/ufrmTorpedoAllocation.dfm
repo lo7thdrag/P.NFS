@@ -7109,7 +7109,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
   end
   object tmrImageAllocation: TTimer
     OnTimer = tmrImageAllocationTimer
-    Left = 416
-    Top = 331
+    Left = 395
+    Top = 363
   end
 end

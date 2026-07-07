@@ -4316,34 +4316,40 @@ end;
 { Asroc }
 procedure TfrmGameController.MainMenuClick(Sender: TObject);
 begin
-  FSelectedMenu := TImage(Sender).Tag;
 
   case TImage(Sender).Tag of
     0:
       begin
+        {$REGION 'img Client'}
         ResetMenuImage;
 
         TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlClient.BringToFront;
+        {$ENDREGION}
       end;
     1:
       begin
+        {$REGION 'img Scenario'}
         ResetMenuImage;
 
         TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlScenario.BringToFront;
         ShowScenario;
+        {$ENDREGION}
       end;
     2:
       begin
+        {$REGION 'img Platform'}
         ResetMenuImage;
 
         TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlPlatform.BringToFront;
         ShowShip;
+        {$ENDREGION}
       end;
     3:
       begin
+        {$REGION 'img Controller'}
         if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
           exit;
 
@@ -4351,9 +4357,11 @@ begin
 
         TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlController.BringToFront;
+        {$ENDREGION}
       end;
     4:
       begin
+        {$REGION 'img Environment'}
         if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
           exit;
 
@@ -4361,9 +4369,11 @@ begin
 
         TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlEnvironment.BringToFront;
+        {$ENDREGION}
       end;
     5:
       begin
+        {$REGION 'img Report'}
         if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
           exit;
 
@@ -4371,8 +4381,11 @@ begin
 
         TImage(Sender).Picture.LoadFromFile('..\data\images\NFS instruktur - interface\imageIns\' + TImage(Sender).Name + '_.png');
         pnlReport.BringToFront;
+        {$ENDREGION}
       end;
   end;
+
+  FSelectedMenu := TImage(Sender).Tag;
 end;
 
 procedure TfrmGameController.MainMenuMouseEnter(Sender: TObject);

@@ -875,7 +875,8 @@ begin
           C_DBID_TETRAL :
           begin
             WeaponShip := TWeaponOn_Tetral.Create(Result, Fmap);
-            Color  := clGreen;
+            Color := TColor($990000);
+            //Color  := clGreen;
           end;
 
           C_DBID_YAKHONT :
@@ -959,7 +960,8 @@ begin
           C_DBID_VLMICA :
           begin
             WeaponShip := TWeaponOn_VLMICA.Create(Result, Fmap);
-            Color  := clGreen;
+            //Color  := clGreen;
+            Color := TColor($990000);
           end;
 
              C_DBID_CANNON_AK230  :
