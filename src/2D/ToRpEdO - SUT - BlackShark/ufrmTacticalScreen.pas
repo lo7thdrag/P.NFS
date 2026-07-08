@@ -59,6 +59,11 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FMapTPMapViewChanged(Sender: TObject);
     procedure pnlOperatorMessagesClick(Sender: TObject);
+    procedure cbbMotionModeChange(Sender: TObject);
+    procedure ibGrabClick(Sender: TObject);
+    procedure lblCursorCenterClick(Sender: TObject);
+    procedure lblOwnShipCenterClick(Sender: TObject);
+    procedure ZoomClick(Sender: TObject);
   private
     BearingCount: Integer;
     FFrmRadar: TFrmRadar;
@@ -74,6 +79,7 @@ type
 //    FMapCanvas: TCanvas;
     FCursorX, FCursorY: Double;
     FLyrDraw: CMapXLayer;
+    FTrueMotion, FEnableGrab: Boolean;
 
 //    MemBmp: TBitmap;
 //    MapRect: TRect;
@@ -115,6 +121,20 @@ begin
   for i := 0 to WinControl.ControlCount - 1 do
     if WinControl.Controls[i] is TWinControl then
       EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
+
+procedure TFrmTacticalScreen.cbbMotionModeChange(Sender: TObject);
+begin
+  if cbbMotionMode.ItemIndex = 0 then
+  begin
+    FTrueMotion := True;
+  end
+  else if cbbMotionMode.ItemIndex = 1 then
+  begin
+    FTrueMotion := false;
+    FMapTP.CurrentTool := miArrowTool;
+    FOverlay.Cursor := crDefault;
+  end;
 end;
 
 procedure TFrmTacticalScreen.cbbZoomScaleChange(Sender: TObject);
@@ -294,13 +314,12 @@ begin
   FOverlay.OnPaint:= OverlayPaint;
   FOverlay.Parent := pnlTacticalPicture;
   FOverlay.Align := alClient;
-  
-
   FOverlay.BringToFront;
-
   FOverlay.OnMouseDownEvent := PassMouseToMap;
-//  FOverlay.OnMouseMove := PassMouseToMap;
   FOverlay.OnMouseUpEvent := PassMouseToMap;
+
+  FTrueMotion := false;
+  FEnableGrab := false;
 //  FOverlay.pa
 //  pnlBase.DoubleBuffered := False;
 //  pnlTPGroup.DoubleBuffered := False;
@@ -310,6 +329,44 @@ end;
 procedure TFrmTacticalScreen.FormDestroy(Sender: TObject);
 begin
 //  MemBmp.Free;
+end;
+
+procedure TFrmTacticalScreen.ibGrabClick(Sender: TObject);
+begin
+  if FTrueMotion then
+  begin
+    FEnableGrab := not FEnableGrab;
+  end;
+
+  if FEnableGrab then
+  begin
+//    FOverlay.ControlState := csPanning;
+    FOverlay.Cursor := crHandPoint;
+    FMapTP.CurrentTool := miPanTool;
+  end
+  else
+  begin
+    FMapTP.CurrentTool := miArrowTool;
+    FOverlay.Cursor := crDefault;
+  end;
+end;
+
+procedure TFrmTacticalScreen.lblCursorCenterClick(Sender: TObject);
+begin
+  if FTrueMotion then
+  begin
+    FMapTP.CenterX := SutBlacksharkManager.CursorX;
+    FMapTP.CenterY := SutBlacksharkManager.CursorY;
+  end;
+end;
+
+procedure TFrmTacticalScreen.lblOwnShipCenterClick(Sender: TObject);
+begin
+  if FTrueMotion then
+  begin
+    FMapTP.CenterX := SutBlacksharkManager.xShip.PositionX;
+    FMapTP.CenterY := SutBlacksharkManager.xShip.PositionY;
+  end;
 end;
 
 procedure TFrmTacticalScreen.LoadGeoset(const aGst: string);
@@ -483,9 +540,12 @@ begin
 //    FOverlay.Show;
 //    FOverlay.Paint;    
 //  end;
-  
-  FMapTP.CenterX := SutBlacksharkManager.xShip.PositionX;
-  FMapTP.CenterY := SutBlacksharkManager.xShip.PositionY;
+
+  if not FTrueMotion then
+  begin
+    FMapTP.CenterX := SutBlacksharkManager.xShip.PositionX;
+    FMapTP.CenterY := SutBlacksharkManager.xShip.PositionY;
+  end;
   pnlTacticalPicture.Repaint;
 
   pnlOperatorMessages.Caption := SutBlacksharkManager.OperatorMessages;
@@ -597,6 +657,26 @@ begin
     Exit;
   end;
 
+end;
+
+procedure TFrmTacticalScreen.ZoomClick(Sender: TObject);
+begin
+  if TImageButton(Sender).Tag = 1 then
+  begin
+    if cbbZoomScale.ItemIndex <> 0 then
+    begin
+      cbbZoomScale.ItemIndex := cbbZoomScale.ItemIndex -1;
+      cbbZoomScaleChange(Sender);
+    end;
+  end
+  else if TImageButton(Sender).Tag = 0 then
+  begin
+    if cbbZoomScale.ItemIndex <> 14 then
+    begin
+      cbbZoomScale.ItemIndex := cbbZoomScale.ItemIndex +1;
+      cbbZoomScaleChange(Sender);
+    end;
+  end;
 end;
 
 procedure TFrmTacticalScreen.OverlayPaint(Sender: TObject; ACanvas: TCanvas);

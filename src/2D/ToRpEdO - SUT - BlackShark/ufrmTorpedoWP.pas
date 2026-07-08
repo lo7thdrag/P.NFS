@@ -99,17 +99,11 @@ type
     lblIntercom: TLabel;
     lblAckAlert: TLabel;
     FMap: TMap;
-    Panel1: TPanel;
     imgListLight: TImageList;
     imgBackgrounSituationZone: TImage;
     Timer1: TTimer;
     tmrUpdateForm: TTimer;
     tmrUpdateDataPos: TTimer;
-    ImageButton1: TImageButton;
-    ImageButton2: TImageButton;
-    AdvComboBox1: TAdvComboBox;
-    Label3: TLabel;
-    cbbMotionMode: TAdvComboBox;
     TimerBlink: TTimer;
     pnlOwnshipData: TPanel;
     pnlAlerts: TPanel;
@@ -131,6 +125,17 @@ type
     pnlTorpedoHomingStatusPlot: TPanel;
     pnlTorpedoParamSettings: TPanel;
     pnlToSo: TPanel;
+    pnlGeo: TPanel;
+    ibBoxedZoom: TImageButton;
+    ibGrab: TImageButton;
+    lblZoomScaleSat: TLabel;
+    ibZoomIn: TImageButton;
+    ibZoomOut: TImageButton;
+    lblMapFilter: TLabel;
+    lblOwnShipCenter: TLabel;
+    lblCursorCenter: TLabel;
+    cbbZoomScale: TAdvComboBox;
+    AdvComboBox2: TAdvComboBox;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;

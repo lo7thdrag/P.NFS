@@ -1,0 +1,9 @@
+﻿{
+	"Host" : "127.0.0.1",
+	"Port" : "8000",
+	"Video" : "main_player",
+	"PosX" : 0,
+	"PosY" : 0,
+	"Width" : 1280,
+	"Height" : 450
+}

@@ -978,7 +978,7 @@ begin
   ExecInfoIR.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
   ExecInfoIR.Wnd := Handle;
   ExecInfoIR.lpVerb := 'open';
-  ExecInfoIR.lpFile := PChar('ViewerIR.exe');
+  ExecInfoIR.lpFile := PChar('Viewer.exe');
   ExecInfoIR.nShow := SW_SHOW;
 
   if not ShellExecuteEx(@ExecInfoIR) then
@@ -1813,7 +1813,7 @@ begin
 //  lblEta.Caption := FormatDateTime('hh:nn:ss',now);
 //  lblUTCTime.Caption := FormatDateTime('hh:nn:ss',TTimeZone.Local.ToUniversalTime(Now));
 //  lblTtg.Caption := FormatDateTime('hh:nn',now);
-  if Assigned(fccmanager.SelectedVehicle) and (FSelectedVehicleState = True) then
+  if Assigned(fccmanager.SelectedVehicle) {and (FSelectedVehicleState = True)} then
   begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;

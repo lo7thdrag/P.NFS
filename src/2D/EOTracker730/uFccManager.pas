@@ -334,18 +334,18 @@ begin
 
       CORD_ID_OperatingMode : // set operating mode
       begin
-        if FOperating_Mode <> arec.TargetType then
+        if FOperating_Mode <> TOperatingMode(arec.TargetType) then
         begin
-          SelectedVehicle := nil;
+          SelectedVehicle.Free;
         end;
         FOperating_Mode := TOperatingMode(aRec.TargetType);
       end;
 
       CORD_ID_TrackerMode : // set operating mode
       begin
-        if FTrackMode <> arec.TargetType then
+        if FTrackMode <> TTrackMode(arec.TargetType) then
         begin
-          SelectedVehicle := nil;
+          SelectedVehicle.Free;
         end;
 
         FTrackMode := TTrackMode(aRec.TargetType);

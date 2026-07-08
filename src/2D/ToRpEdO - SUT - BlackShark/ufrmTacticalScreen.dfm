@@ -198,7 +198,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
             8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
             918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
             6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-            0100011801000098ECA00401000000000000001C000000000000000000000000
+            010001180100002829E31001000000000000001C000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000002
             0000000000000000000000000000000000000000000000000000000000000000
@@ -207,15 +207,15 @@ object FrmTacticalScreen: TFrmTacticalScreen
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             8076C000000000008056C0000000000080764000000000008056400100000018
-            01000098ECA00401000000FC9A31771C00000000000000000000000000000000
+            0100002829E31001000000FC9A31771C00000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000200000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
-            00000000000000000000000000000000000000000000005E0507005E050700A8
-            E79700467DB375060A02005CE89700000000005CE89700000000000000000000
+            00000000000000000000000000000000000000000000005A0906005A09060030
+            E19700467DB375560C2400E4E1970000000000E4E19700000000000000000000
             000088B3400000000000408F400001000001}
         end
       end
@@ -292,6 +292,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           Width = 20
           Height = 20
           Anchors = []
+          OnClick = ibGrabClick
           Picture.Data = {
             C6050000424DC605000000000000360400002800000014000000140000000100
             08000000000090010000120B0000120B00000001000000000000000000000100
@@ -340,6 +341,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
             070008090A0B0C0D000000000000000000000001010002030400000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             00000000000000000000}
+          ShadowColor = clWhite
         end
         object lblZoomScaleSat: TLabel
           Left = 630
@@ -358,11 +360,13 @@ object FrmTacticalScreen: TFrmTacticalScreen
           ParentFont = False
         end
         object ibZoomIn: TImageButton
+          Tag = 1
           Left = 481
-          Top = 10
+          Top = 11
           Width = 20
           Height = 20
           Anchors = []
+          OnClick = ZoomClick
           Picture.Data = {
             C6050000424DC605000000000000360400002800000014000000140000000100
             08000000000090010000120B0000120B00000001000000000000000000000202
@@ -418,6 +422,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           Width = 20
           Height = 20
           Anchors = []
+          OnClick = ZoomClick
           Picture.Data = {
             C6050000424DC605000000000000360400002800000014000000140000000100
             08000000000090010000120B0000120B0000000100000000000000000000090A
@@ -499,6 +504,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           Font.Style = []
           ParentColor = False
           ParentFont = False
+          OnClick = lblOwnShipCenterClick
         end
         object lblCursorCenter: TLabel
           Left = 394
@@ -516,6 +522,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           Font.Style = []
           ParentColor = False
           ParentFont = False
+          OnClick = lblCursorCenterClick
         end
         object btnZoomIn: TButton
           Left = 7
@@ -598,7 +605,10 @@ object FrmTacticalScreen: TFrmTacticalScreen
           Font.Height = -13
           Font.Name = 'Tahoma'
           Font.Style = []
-          ItemIndex = -1
+          ItemIndex = 1
+          Items.Strings = (
+            'True Motion'
+            'Relative Motion')
           LabelFont.Charset = DEFAULT_CHARSET
           LabelFont.Color = clWindowText
           LabelFont.Height = -11
@@ -607,6 +617,7 @@ object FrmTacticalScreen: TFrmTacticalScreen
           ParentFont = False
           TabOrder = 3
           Text = 'Relative Motion'
+          OnChange = cbbMotionModeChange
         end
       end
     end

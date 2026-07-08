@@ -354,7 +354,7 @@ begin
         begin
           V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FShowedVehicle));
           V.isVisible := False;
-          SelectedVehicle := nil;
+          SelectedVehicle.Free;
         end;
       end;
     end;
