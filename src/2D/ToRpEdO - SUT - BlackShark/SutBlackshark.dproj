@@ -200,10 +200,6 @@
             <Form>frmTorpedoTubeCommands</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Permanen Form\ufrmTorpedoTubeStatusWindow.pas">
-            <Form>frmTorpedoTubeStatusWindow</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="Permanen Form\ufrmTrackInfo.pas">
             <Form>frmTrackInfo</Form>
             <FormType>dfm</FormType>
@@ -292,6 +288,10 @@
         <DCCReference Include="..\ShareLib\LibBaseSystem\uStringFunction.pas"/>
         <DCCReference Include="uTransparentOverlay.pas"/>
         <DCCReference Include="uDataParameterSetting.pas"/>
+        <DCCReference Include="Permanen Form\ufrmTorpedoTubeStatusWindow.pas">
+            <Form>frmTorpedoTubeStatusWindow</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

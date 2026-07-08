@@ -69,7 +69,6 @@ uses
   ufrmTorpedoGuidance in 'Permanen Form\ufrmTorpedoGuidance.pas' {frmTorpedoGuidanceWindow},
   ufrmTorpedoParameterSetting in 'Permanen Form\ufrmTorpedoParameterSetting.pas' {frmTorpedoParameterSetting},
   ufrmTorpedoTubeCommands in 'Permanen Form\ufrmTorpedoTubeCommands.pas' {frmTorpedoTubeCommands},
-  ufrmTorpedoTubeStatusWindow in 'Permanen Form\ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow},
   ufrmTrackInfo in 'Permanen Form\ufrmTrackInfo.pas' {frmTrackInfo},
   ufrmControlByNumber in 'Pop-up form\ufrmControlByNumber.pas' {frmControlByNumber},
   ufrmCreateModifyTrack in 'Pop-up form\ufrmCreateModifyTrack.pas' {frmCreateModifyTrack},
@@ -99,7 +98,8 @@ uses
   uTDCConstan in '..\ShareLib\LibTDC_WCC\uTDCConstan.pas',
   uStringFunction in '..\ShareLib\LibBaseSystem\uStringFunction.pas',
   uTransparentOverlay in 'uTransparentOverlay.pas',
-  uDataParameterSetting in 'uDataParameterSetting.pas';
+  uDataParameterSetting in 'uDataParameterSetting.pas',
+  ufrmTorpedoTubeStatusWindow in 'Permanen Form\ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow};
 
 {$R *.res}
 
@@ -110,6 +110,7 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
+  Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
   //  Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
 //  Application.CreateForm(TfrmSystemInfo, frmSystemInfo);
 //  Application.CreateForm(TfrmCursor, frmCursor);

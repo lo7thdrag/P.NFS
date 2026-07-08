@@ -3,110 +3,110 @@ unit ufrmTorpedoTubeStatusWindow;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.ExtCtrls, Vcl.StdCtrls, uSutBlacksharkManager, uTorpedoLauncher;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+
+  uSutBlacksharkManager, uTorpedoLauncher, Vcl.ExtCtrls, Vcl.StdCtrls;
 
 type
   TfrmTorpedoTubeStatusWindow = class(TForm)
     pnlMain: TPanel;
-    pnlTorpedo2: TPanel;
-    pnlTorpedo4: TPanel;
-    pnlTorpedo6: TPanel;
-    pnlTorpedo8: TPanel;
     pnlTorpedo1: TPanel;
-    pnlTorpedo3: TPanel;
-    pnlTorpedo5: TPanel;
-    pnlTorpedo7: TPanel;
-    lblTorpedo1: TLabel;
-    lblTorpedo2: TLabel;
-    lblTorpedo3: TLabel;
-    lblTorpedo4: TLabel;
-    lblTorpedo6: TLabel;
-    lblTorpedo5: TLabel;
-    lblTorpedo8: TLabel;
-    lblTorpedo7: TLabel;
-    lblNumber2: TLabel;
-    lblNumber1: TLabel;
-    lblNumber3: TLabel;
-    lblNumber4: TLabel;
-    lblNumber5: TLabel;
-    lblNumber6: TLabel;
-    lblNumber7: TLabel;
-    lblNumber8: TLabel;
-    lblWTSRC1: TLabel;
-    lblWTSRC2: TLabel;
-    lblWTSRC3: TLabel;
-    lblWTSRC4: TLabel;
-    lblWTSRC5: TLabel;
-    lblWTSRC6: TLabel;
-    lblWTSRC7: TLabel;
-    lblWTSRC8: TLabel;
-    tmrDrawTube: TTimer;
-    pbTubeSymbol1: TPaintBox;
-    pbTubeSymbol2: TPaintBox;
-    pbTubeSymbol3: TPaintBox;
-    pbTubeSymbol4: TPaintBox;
-    pbTubeSymbol5: TPaintBox;
-    pbTubeSymbol6: TPaintBox;
-    pbTubeSymbol7: TPaintBox;
-    pbTubeSymbol8: TPaintBox;
-    shpFrameTorpedo2: TShape;
     shpFrameTorpedo1: TShape;
-    shpFrameTorpedo3: TShape;
-    shpFrameTorpedo4: TShape;
-    shpFrameTorpedo5: TShape;
-    shpFrameTorpedo7: TShape;
-    shpFrameTorpedo: TShape;
-    shpFrameTorpedo8: TShape;
+    shpTorpedo1: TShape;
+    lblTorpedo1: TLabel;
+    lblNumber1: TLabel;
+    lblWTSRC1: TLabel;
+    pbTubeSymbol1: TPaintBox;
     lblActiveToSo1: TLabel;
     lblValueTorpedo1: TLabel;
     lblFuse1: TLabel;
     lblNumberTorpedo1: TLabel;
+    pnlTorpedo2: TPanel;
+    shpFrameTorpedo2: TShape;
+    shpTorpedo2: TShape;
+    lblTorpedo2: TLabel;
+    lblNumber2: TLabel;
+    lblWTSRC2: TLabel;
+    pbTubeSymbol2: TPaintBox;
     lblNumberTorpedo2: TLabel;
     lblFuse2: TLabel;
     lblActiveToSo2: TLabel;
     lblValueTorpedo2: TLabel;
+    pnlTorpedo3: TPanel;
+    shpFrameTorpedo3: TShape;
+    shpTorpedo3: TShape;
+    lblTorpedo3: TLabel;
+    lblNumber3: TLabel;
+    lblWTSRC3: TLabel;
+    pbTubeSymbol3: TPaintBox;
     lblNumberTorpedo3: TLabel;
     lblFuse3: TLabel;
     lblActiveToSo3: TLabel;
     lblValueTorpedo3: TLabel;
+    pnlTorpedo4: TPanel;
+    shpFrameTorpedo4: TShape;
+    shpTorpedo4: TShape;
+    lblTorpedo4: TLabel;
+    lblNumber4: TLabel;
+    lblWTSRC4: TLabel;
+    pbTubeSymbol4: TPaintBox;
     lblNumberTorpedo4: TLabel;
     lblFuse4: TLabel;
     lblActiveToSo4: TLabel;
     lblValueTorpedo4: TLabel;
+    pnlTorpedo5: TPanel;
+    shpFrameTorpedo5: TShape;
+    shpTorpedo5: TShape;
+    lblTorpedo5: TLabel;
+    lblNumber5: TLabel;
+    lblWTSRC5: TLabel;
+    pbTubeSymbol5: TPaintBox;
     lblActiveToSo5: TLabel;
     lblValueTorpedo5: TLabel;
     lblNumberTorpedo5: TLabel;
     lblFuse5: TLabel;
+    pnlTorpedo6: TPanel;
+    shpFrameTorpedo: TShape;
+    shpTorpedo6: TShape;
+    lblTorpedo6: TLabel;
+    lblNumber6: TLabel;
+    lblWTSRC6: TLabel;
+    pbTubeSymbol6: TPaintBox;
     lblNumberTorpedo6: TLabel;
     lblFuse6: TLabel;
     lblActiveToSo6: TLabel;
     lblValueTorpedo6: TLabel;
+    pnlTorpedo7: TPanel;
+    shpFrameTorpedo7: TShape;
+    shpTorpedo7: TShape;
+    lblTorpedo7: TLabel;
+    lblNumber7: TLabel;
+    lblWTSRC7: TLabel;
+    pbTubeSymbol7: TPaintBox;
     lblNumberTorpedo7: TLabel;
     lblFuse7: TLabel;
     lblActiveToSo7: TLabel;
     lblValueTorpedo7: TLabel;
+    pnlTorpedo8: TPanel;
+    shpFrameTorpedo8: TShape;
+    shpTorpedo8: TShape;
+    lblTorpedo8: TLabel;
+    lblNumber8: TLabel;
+    lblWTSRC8: TLabel;
+    pbTubeSymbol8: TPaintBox;
     lblNumberTorpedo8: TLabel;
     lblFuse8: TLabel;
     lblActiveToSo8: TLabel;
     lblValueTorpedo8: TLabel;
-    pbFrameTorpedo1: TPaintBox;
-    pbFrameTorpedo2: TPaintBox;
-    pbFrameTorpedo3: TPaintBox;
-    pbFrameTorpedo4: TPaintBox;
-    pbFrameTorpedo5: TPaintBox;
-    pbFrameTorpedo6: TPaintBox;
-    pbFrameTorpedo7: TPaintBox;
-    pbFrameTorpedo8: TPaintBox;
+    tmrDrawTube: TTimer;
     procedure tmrDrawTubeTimer(Sender: TObject);
-    procedure DrawTube(pBox: TPaintBox; aLauncher: TTorpedoLauncher);
     procedure pbTubeSymbol1Paint(Sender: TObject);
-    procedure pbFrameTorpedo1Paint(Sender: TObject);
   private
     { Private declarations }
   public
-    procedure DrawFrame(APaintBox: TPaintBox; ALauncher: TTorpedoLauncher);
+    procedure DrawTube(pBox: TPaintBox; aLauncher: TTorpedoLauncher);
+    procedure UpdatePanelStatus;
   end;
 
 var
@@ -116,9 +116,7 @@ implementation
 
 {$R *.dfm}
 
-{ TfrmTorpedoTubeStatusWindow }
-
-procedure TfrmTorpedoTubeStatusWindow.DrawTube(pBox: TPaintBox; aLauncher: TTorpedoLauncher);
+procedure TfrmTorpedoTubeStatusWindow.DrawTube(pBox: TPaintBox;aLauncher: TTorpedoLauncher);
 var
   aCnv: TCanvas;
   Cx, Cy: Double;
@@ -221,7 +219,6 @@ begin
     aCnv.MoveTo(Round(cx), Round(cy-21));
     aCnv.LineTo(Round(cx), Round(cy));
   end;
-
 end;
 
 procedure TfrmTorpedoTubeStatusWindow.pbTubeSymbol1Paint(Sender: TObject);
@@ -242,51 +239,36 @@ begin
   pbTubeSymbol7.Invalidate;
   pbTubeSymbol8.Invalidate;
 
-  pbFrameTorpedo1.Invalidate;
-  pbFrameTorpedo2.Invalidate;
-  pbFrameTorpedo3.Invalidate;
-  pbFrameTorpedo4.Invalidate;
-  pbFrameTorpedo5.Invalidate;
-  pbFrameTorpedo6.Invalidate;
-  pbFrameTorpedo7.Invalidate;
-  pbFrameTorpedo8.Invalidate;
+  UpdatePanelStatus;
+
 end;
 
-procedure TfrmTorpedoTubeStatusWindow.DrawFrame(APaintBox: TPaintBox; ALauncher: TTorpedoLauncher);
+procedure TfrmTorpedoTubeStatusWindow.UpdatePanelStatus;
 var
-  Frame: TCanvas;
+  i     : Integer;
+  shape : TShape;
 begin
-  Frame := APaintBox.Canvas;
+  for i := 0 to 7 do
+  begin
+    case i of
+      0: Shape := shpTorpedo1;
+      1: Shape := shpTorpedo2;
+      2: Shape := shpTorpedo3;
+      3: Shape := shpTorpedo4;
+      4: Shape := shpTorpedo5;
+      5: Shape := shpTorpedo6;
+      6: Shape := shpTorpedo7;
+      7: Shape := shpTorpedo8;
+    end;
 
-  Frame.Pen.Width := 2;
+    if SutBlacksharkManager.FTorpedoArray[i].Loaded then
+      Shape.Pen.Color := clYellow
+    else
+      Shape.Pen.Color := clWhite;
 
-  // Top
-  Frame.Pen.Color := clWhite;
-  Frame.MoveTo(0,0);
-  Frame.LineTo(APaintBox.Width-1,0);
+    Shape.Repaint;
+  end;
 
-  // Left
-  Frame.MoveTo(0,0);
-  Frame.LineTo(0,APaintBox.Height-1);
-
-  // Bottom
-  Frame.MoveTo(0,APaintBox.Height-1);
-  Frame.LineTo(APaintBox.Width-1,APaintBox.Height-1);
-
-  // Right
-  if ALauncher.Loaded then
-    Frame.Pen.Color := clYellow
-  else
-    Frame.Pen.Color := clWhite;
-
-  Frame.MoveTo(APaintBox.Width-1,0);
-  Frame.LineTo(APaintBox.Width-1,APaintBox.Height-1);
-end;
-
-procedure TfrmTorpedoTubeStatusWindow.pbFrameTorpedo1Paint(Sender: TObject);
-begin
-  DrawFrame(TPaintBox(Sender), SutBlacksharkManager.FTorpedoArray[TPaintBox(Sender).Tag]);
 end;
 
 end.
-
