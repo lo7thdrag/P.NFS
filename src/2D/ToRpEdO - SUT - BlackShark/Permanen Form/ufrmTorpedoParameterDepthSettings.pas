@@ -244,11 +244,11 @@ procedure TfrmTorpedoParameterDepthSettings.FormShow(Sender: TObject);
 begin
   // ambil semua variable dari torpedoparam
   {$REGION 'Upper'}
-  cbTrialGuidance.ItemIndex := TorpedoParam.Guidance;
-  lblOfficialGuidance.Caption := cbTrialGuidance.Text;
-  edtTrialLOSDeviation.Text := IntToStr(TorpedoParam.LOSDeviation);
-  edtOfficialLOSDeviation.Text := edtTrialLOSDeviation.Text;
-  cbTrialSearchSpeed.ItemIndex := TorpedoParam.SearchSpeed - 9;
+  cbTrialGuidance.ItemIndex      := TorpedoParam.Guidance;
+  lblOfficialGuidance.Caption    := cbTrialGuidance.Text;
+  edtTrialLOSDeviation.Text      := IntToStr(TorpedoParam.LOSDeviation);
+  edtOfficialLOSDeviation.Text   := edtTrialLOSDeviation.Text;
+  cbTrialSearchSpeed.ItemIndex   := TorpedoParam.SearchSpeed - 9;
   lblOfficialSearchSpeed.Caption := cbTrialSearchSpeed.Text;
   {$ENDREGION}
 
@@ -356,11 +356,11 @@ end;
 procedure TfrmTorpedoParameterDepthSettings.lblApplySetOfficialClick(Sender: TObject);
 begin
   {$REGION 'Upper'}
-  TorpedoParam.Guidance := cbTrialGuidance.ItemIndex;
-  lblOfficialGuidance.Caption := cbTrialGuidance.Text;
-  TorpedoParam.LOSDeviation := StrToInt(edtTrialLOSDeviation.Text);
-  edtOfficialLOSDeviation.Text := edtTrialLOSDeviation.Text;
-  TorpedoParam.SearchSpeed := cbTrialSearchSpeed.ItemIndex + 9;
+  TorpedoParam.Guidance          := cbTrialGuidance.ItemIndex;
+  lblOfficialGuidance.Caption    := cbTrialGuidance.Text;
+  TorpedoParam.LOSDeviation      := StrToInt(edtTrialLOSDeviation.Text);
+  edtOfficialLOSDeviation.Text   := edtTrialLOSDeviation.Text;
+  TorpedoParam.SearchSpeed       := cbTrialSearchSpeed.ItemIndex + 9;
   lblOfficialSearchSpeed.Caption := cbTrialSearchSpeed.Text;
   {$ENDREGION}
 

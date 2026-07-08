@@ -240,13 +240,14 @@ begin
   pbTubeSymbol8.Invalidate;
 
   UpdatePanelStatus;
-
 end;
 
 procedure TfrmTorpedoTubeStatusWindow.UpdatePanelStatus;
 var
   i     : Integer;
   shape : TShape;
+
+  aLauncher : TTorpedoLauncher;
 begin
   for i := 0 to 7 do
   begin

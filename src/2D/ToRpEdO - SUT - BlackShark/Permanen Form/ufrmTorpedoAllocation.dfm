@@ -12,6 +12,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -167,6 +168,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 34
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -515,6 +517,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 34
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -857,12 +860,14 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
             Stretch = True
+            OnClick = imgAllocation1Click
           end
           object imgAllocation4: TImage
             Left = 164
             Top = 102
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -1211,6 +1216,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 102
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -1559,6 +1565,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 170
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -1907,6 +1914,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 170
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -2251,10 +2259,12 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Stretch = True
           end
           object imgAllocation8: TImage
+            Tag = 7
             Left = 164
             Top = 238
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -2603,6 +2613,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 238
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -3040,6 +3051,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
+            OnClick = lblAllocateClick
           end
           object lblAllocationStatus1: TLabel
             Left = 237
@@ -3702,6 +3714,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label22: TLabel
           Left = 8
           Top = 0
@@ -4175,6 +4191,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 90
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -4523,6 +4540,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 90
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -4871,6 +4889,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 158
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -5219,6 +5238,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 158
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -5567,6 +5587,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 226
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -5915,6 +5936,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 226
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -6263,6 +6285,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 294
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000
@@ -6611,6 +6634,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 294
             Width = 60
             Height = 60
+            Cursor = crHandPoint
             Picture.Data = {
               07544269746D6170662A0000424D662A00000000000036000000280000003C00
               00003C0000000100180000000000302A0000C30E0000C30E0000000000000000

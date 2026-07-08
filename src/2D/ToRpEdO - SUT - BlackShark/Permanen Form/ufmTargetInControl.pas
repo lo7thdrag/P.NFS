@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uVehicleManager;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uVehicleManager,
+  ufrmTorpedoAllocation;
 
 type
   TfrmTargetInControl = class(TForm)
@@ -61,22 +62,44 @@ procedure TfrmTargetInControl.tmrUpdateTICTimer(Sender: TObject);
 begin
   if Assigned(VehicleMgr.TrackControlled) then
   begin
-    lblTargetTrack.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
-    lblBearing.Caption := FormatFloat('0.0', VehicleMgr.TrackControlled.Bearing);
-    lblRange.Caption := FormatFloat('0.0', VehicleMgr.TrackControlled.Range);
-    lblCourse.Caption := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
-    lblSpeed.Caption := FormatFloat('0.0', (VehicleMgr.TrackControlled.HeadingDeg * 0.514444444));
-    lblDepth.Caption := FormatFloat('0.0', Abs(VehicleMgr.TrackControlled.PosZ));
+    lblTargetTrack.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+    lblTargetTrack.Font.Color := clLime;
+
+    lblBearing.Caption    := FormatFloat('0.0', VehicleMgr.TrackControlled.Bearing);
+    lblBearing.Font.Color := clLime;
+
+    lblRange.Caption    := FormatFloat('0.0', VehicleMgr.TrackControlled.Range);
+    lblRange.Font.Color := clLime;
+
+    lblCourse.Caption   := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
+    lblCourse.Font.Color := clLime;
+
+    lblSpeed.Caption    := FormatFloat('0.0', (VehicleMgr.TrackControlled.HeadingDeg * 0.514444444));
+    lblSpeed.Font.Color := clLime;
+
+    lblDepth.Caption    := FormatFloat('0.0', Abs(VehicleMgr.TrackControlled.PosZ));
+    lblDepth.Font.Color := clLime;
   end
 
   else
   begin
-    lblTargetTrack.Caption := '000000';
-    lblBearing.Caption := '0.0';
-    lblRange.Caption := '0.0';
-    lblCourse.Caption := '0.0';
-    lblSpeed.Caption := '0.0';
-    lblDepth.Caption := '0.0';
+    lblTargetTrack.Caption    := '000000';
+    lblTargetTrack.Font.Color := clWhite;
+
+    lblBearing.Caption    := '0.0';
+    lblBearing.Font.Color := clWhite;
+
+    lblRange.Caption    := '0.0';
+    lblRange.Font.Color := clWhite;
+
+    lblCourse.Caption    := '0.0';
+    lblCourse.Font.Color := clWhite;
+
+    lblSpeed.Caption    := '0.0';
+    lblSpeed.Font.Color := clWhite;
+
+    lblDepth.Caption    := '0.0';
+    lblDepth.Font.Color := clWhite;
   end;
 
 end;

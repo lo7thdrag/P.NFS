@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
   Vcl.StdCtrls, AdvPageControl,
 
-  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager, uVehicleManager;
+  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager, uVehicleManager, ufrmTorpedoTubeCommands;
 
 type
   TfrmTorpedoAllocation = class(TForm)
@@ -139,10 +139,17 @@ type
     procedure lblCloseClick(Sender: TObject);
     procedure tmrImageAllocationTimer(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure lblAllocateClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure imgAllocation1Click(Sender: TObject);
   private
     FFrmTorpedoParameterSettings : TfrmTorpedoParameterDepthSettings;
+    FFrmTorpedoTubeCommands      : TfrmTorpedoTubeCommands;
   public
+    FSelectTube : Integer;
+
     procedure UpdateAllocationStatus;
+    procedure UpdateAllocations;
   end;
 
 var
@@ -151,13 +158,46 @@ var
 implementation
 
 uses
-  ufrmTorpedoWP;
+  ufrmTorpedoWP, ufrmTorpedoTubeStatusWindow;
 
 {$R *.dfm}
+
+procedure TfrmTorpedoAllocation.FormCreate(Sender: TObject);
+begin
+  FSelectTube := -1;
+end;
 
 procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
 begin
   UpdateAllocationStatus;
+end;
+
+procedure TfrmTorpedoAllocation.imgAllocation1Click(Sender: TObject);
+begin
+  FSelectTube := TImage(Sender).Tag;
+end;
+
+procedure TfrmTorpedoAllocation.lblAllocateClick(Sender: TObject);
+begin
+  if FSelectTube <> -1 then
+  begin
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].Loaded := True;
+
+    if Assigned(frmTorpedoTubeStatusWindow) then
+      frmTorpedoTubeStatusWindow.UpdatePanelStatus;
+  end;
+
+  {$REGION 'Torpedo Tube Commands'}
+  if not Assigned(FFrmTorpedoTubeCommands) then
+  begin
+    frmTorpedoWP.pnlTorpedoTubes.Caption := '';
+
+    FFrmTorpedoTubeCommands        := TfrmTorpedoTubeCommands.Create(Self);
+    FFrmTorpedoTubeCommands.Parent := frmTorpedoWP.pnlTorpedoTubes;
+    FFrmTorpedoTubeCommands.Align  := alClient;
+    FFrmTorpedoTubeCommands.Show;
+  end;
+  {$ENDREGION}
 end;
 
 procedure TfrmTorpedoAllocation.lblCloseClick(Sender: TObject);
@@ -187,6 +227,7 @@ end;
 procedure TfrmTorpedoAllocation.tmrImageAllocationTimer(Sender: TObject);
 begin
   UpdateAllocationStatus;
+  UpdateAllocations;
 end;
 
 procedure TfrmTorpedoAllocation.UpdateAllocationStatus;
@@ -239,6 +280,27 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TfrmTorpedoAllocation.UpdateAllocations;
+begin
+  if Assigned(VehicleMgr.TrackControlled) then
+  begin
+    lblToTarget.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+    lblToTarget.Font.Color := clLime;
+
+    lblEngagementAnalysisStarted.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+    lblEngagementAnalysisStarted.Font.Color := clLime;
+  end
+  else
+  begin
+    lblToTarget.Caption    := '000000';
+    lblToTarget.Font.Color := clWhite;
+
+    lblEngagementAnalysisStarted.Caption := '000000';
+    lblToTarget.Font.Color := clWhite;
+  end;
+
 end;
 
 end.
