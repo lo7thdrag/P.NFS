@@ -1615,7 +1615,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
           object lblYakhontStatus: TLabel
             Left = 151
             Top = 11
@@ -2080,7 +2079,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -2140,7 +2139,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -2604,7 +2603,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -2612,8 +2611,8 @@ object fWeaponStatus: TfWeaponStatus
           object pnlWCCIner: TPanel
             Left = 0
             Top = 0
-            Width = 397
-            Height = 0
+            Width = 393
+            Height = 26
             Align = alClient
             BevelOuter = bvNone
             BorderStyle = bsSingle
@@ -2771,7 +2770,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -3257,7 +3256,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -3542,7 +3541,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -4234,7 +4233,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -5014,7 +5013,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -5137,7 +5136,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -5324,7 +5323,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -5844,7 +5843,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6061,7 +6060,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6121,7 +6120,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6567,7 +6566,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6703,7 +6702,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 903
           object lblBlackShark: TLabel
             Left = 142
             Top = 12

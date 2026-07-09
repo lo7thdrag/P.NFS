@@ -3494,6 +3494,10 @@ var
   { Weapon Ship }
   WeaponShip : TWeaponOnShip;
 
+  Ship : TWeaponGetList;
+
+  vehicle : TVehicle;
+
   pmSPSGyroMenuItem,
   pmSPSBarrelMenuItem : TMenuItem;
 
@@ -4785,7 +4789,16 @@ begin
           {$REGION 'C_DBID_CANNON_AK230'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
+            if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
+            begin
+              frmWeaponStatus.rzgrpCannonAK230.Visible := False;
+              frmWeaponStatus.rzgrpCannonAK230.Opened  := False;
 
+              frmWeaponStatus.rzgrpRBU6000.Visible := False;
+              frmWeaponStatus.rzgrpRBU6000.Opened  := False;
+
+              Continue;
+            end;
           end;
           frmMainInstruktur.cekStatusWeapon := 1;
 
@@ -6296,6 +6309,8 @@ begin
       rzgrpBlackshark.Opened := True;
       rzgrpC705.Opened := True;
       firstCekOpenGroupBar := True;
+
+      rzgrpCannonAK230.Opened := True;
     end;
 
     rzgrpStrela.Visible := False;
@@ -6318,6 +6333,8 @@ begin
     rzgrpVLMica.Visible:= False;
     rzgrpBlackshark.Visible := False;
     rzgrpC705.Visible := False;
+
+    rzgrpCannonAK230.Visible := False;
 end;
 
 procedure TfWeaponStatus.WeaponStatusOpen(Sender: TObject);
