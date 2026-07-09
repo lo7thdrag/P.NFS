@@ -26,6 +26,7 @@ type
     FBowCap             : TBowCap; // Cap Closed : 0 (red); Cap open, ready lever not set:1 (yellow), Cap open, lever set:2 (Green)
     FWTRSC              : Boolean; // wtrsc on off
     FCableStatus        : TCableStatus; // off:0 (yellow); testing:1 (blink yellow); torp on and OK:2(green); error:3 (red
+    FFrameStatus        : Boolean;
 
   public
     constructor Create; overload;
@@ -45,6 +46,7 @@ type
     property BowCap : TBowCap read FBowCap write FBowCap;
     property WTRSC : Boolean read FWTRSC write FWTRSC;
     property CableStatus : TCableStatus read FCableStatus write FCableStatus;
+    property FrameStatus : Boolean read FFrameStatus write FFrameStatus;
 
 //    procedure SetSpeedKts(AKnots: Double);
 //    procedure SetSpeedKmh(AKmh: Double);

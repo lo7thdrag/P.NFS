@@ -223,7 +223,11 @@ begin
 end;
 
 destructor TSutBlacksharkManager.Destroy;
+var
+  i : Integer;
 begin
+  for i := 0 to 7 do
+    FTorpedoArray[i].Free;
 
   inherited;
 

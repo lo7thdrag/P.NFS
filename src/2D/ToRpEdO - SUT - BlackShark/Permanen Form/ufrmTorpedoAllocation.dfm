@@ -164,6 +164,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           BevelEdges = [beLeft, beRight]
           TabOrder = 0
           object imgAllocation2: TImage
+            Tag = 1
             Left = 164
             Top = 34
             Width = 60
@@ -863,6 +864,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             OnClick = imgAllocation1Click
           end
           object imgAllocation4: TImage
+            Tag = 3
             Left = 164
             Top = 102
             Width = 60
@@ -1212,6 +1214,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Stretch = True
           end
           object imgAllocation3: TImage
+            Tag = 2
             Left = 232
             Top = 102
             Width = 60
@@ -1561,6 +1564,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Stretch = True
           end
           object imgAllocation6: TImage
+            Tag = 5
             Left = 164
             Top = 170
             Width = 60
@@ -1910,6 +1914,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Stretch = True
           end
           object imgAllocation5: TImage
+            Tag = 4
             Left = 232
             Top = 170
             Width = 60
@@ -2609,6 +2614,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Stretch = True
           end
           object imgAllocation7: TImage
+            Tag = 6
             Left = 232
             Top = 238
             Width = 60
@@ -3044,6 +3050,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 382
             Width = 43
             Height = 14
+            Cursor = crHandPoint
             Caption = 'Allocate'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
@@ -4187,6 +4194,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           BevelEdges = [beLeft, beRight]
           TabOrder = 0
           object imgFireRelease2: TImage
+            Tag = 1
             Left = 156
             Top = 90
             Width = 60
@@ -4534,6 +4542,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A00
               3F7A003F7A003F7A003F7A003F7A003F7A00}
             Stretch = True
+            OnClick = imgFireReleaseClick
           end
           object imgFireRelease1: TImage
             Left = 231
@@ -4883,8 +4892,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A00
               3F7A003F7A003F7A003F7A003F7A003F7A00}
             Stretch = True
+            OnClick = imgFireReleaseClick
           end
           object imgFireRelease4: TImage
+            Tag = 3
             Left = 156
             Top = 158
             Width = 60
@@ -5232,8 +5243,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A00
               3F7A003F7A003F7A003F7A003F7A003F7A00}
             Stretch = True
+            OnClick = imgFireReleaseClick
           end
           object imgFireRelease3: TImage
+            Tag = 2
             Left = 231
             Top = 158
             Width = 60
@@ -5581,8 +5594,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A00
               3F7A003F7A003F7A003F7A003F7A003F7A00}
             Stretch = True
+            OnClick = imgFireReleaseClick
           end
           object imgFireRelease6: TImage
+            Tag = 5
             Left = 156
             Top = 226
             Width = 60
@@ -5930,8 +5945,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A00
               3F7A003F7A003F7A003F7A003F7A003F7A00}
             Stretch = True
+            OnClick = imgFireReleaseClick
           end
           object imgFireRelease5: TImage
+            Tag = 4
             Left = 231
             Top = 226
             Width = 60
@@ -6279,8 +6296,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A00
               3F7A003F7A003F7A003F7A003F7A003F7A00}
             Stretch = True
+            OnClick = imgFireReleaseClick
           end
           object imgFireRelease8: TImage
+            Tag = 7
             Left = 156
             Top = 294
             Width = 60
@@ -6628,8 +6647,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A00
               3F7A003F7A003F7A003F7A003F7A003F7A00}
             Stretch = True
+            OnClick = imgFireReleaseClick
           end
           object imgFireRelease7: TImage
+            Tag = 6
             Left = 231
             Top = 294
             Width = 60
@@ -6977,6 +6998,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A003F7A00
               3F7A003F7A003F7A003F7A003F7A003F7A00}
             Stretch = True
+            OnClick = imgFireReleaseClick
           end
           object lblReleaseAll: TLabel
             Left = 195
@@ -6992,6 +7014,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Font.Style = []
             ParentColor = False
             ParentFont = False
+            OnClick = lblReleaseAllClick
           end
           object Label34: TLabel
             Left = 161

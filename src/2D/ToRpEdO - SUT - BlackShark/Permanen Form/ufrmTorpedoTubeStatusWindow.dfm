@@ -671,7 +671,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 5
-      object shpFrameTorpedo: TShape
+      object shpFrameTorpedo6: TShape
         Left = 5
         Top = 16
         Width = 130

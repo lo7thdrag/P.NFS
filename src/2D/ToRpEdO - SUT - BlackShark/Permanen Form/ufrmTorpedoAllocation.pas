@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
   Vcl.StdCtrls, AdvPageControl,
 
-  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager, uVehicleManager, ufrmTorpedoTubeCommands;
+  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager, uVehicleManager, ufrmTorpedoTubeCommands,
+  uTorpedoLauncher;
 
 type
   TfrmTorpedoAllocation = class(TForm)
@@ -142,14 +143,18 @@ type
     procedure lblAllocateClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure imgAllocation1Click(Sender: TObject);
+    procedure imgFireReleaseClick(Sender: TObject);
+    procedure lblReleaseAllClick(Sender: TObject);
   private
     FFrmTorpedoParameterSettings : TfrmTorpedoParameterDepthSettings;
     FFrmTorpedoTubeCommands      : TfrmTorpedoTubeCommands;
   public
     FSelectTube : Integer;
+    FSelectFireRelease : Integer;
 
     procedure UpdateAllocationStatus;
     procedure UpdateAllocations;
+    procedure UpdateFireRelease;
   end;
 
 var
@@ -165,6 +170,7 @@ uses
 procedure TfrmTorpedoAllocation.FormCreate(Sender: TObject);
 begin
   FSelectTube := -1;
+  FSelectFireRelease := -1;
 end;
 
 procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
@@ -177,14 +183,32 @@ begin
   FSelectTube := TImage(Sender).Tag;
 end;
 
+procedure TfrmTorpedoAllocation.imgFireReleaseClick(Sender: TObject);
+begin
+  FSelectFireRelease := TImage(Sender).Tag;
+
+  if FSelectFireRelease <> -1 then
+  begin
+    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+  end;
+end;
+
 procedure TfrmTorpedoAllocation.lblAllocateClick(Sender: TObject);
+var
+  i      : Integer;
+  shape  : TShape;
+  aFrame : TTorpedoLauncher;
 begin
   if FSelectTube <> -1 then
   begin
-    SutBlacksharkManager.FTorpedoArray[FSelectTube].Loaded := True;
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].Loaded      := True;
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].FrameStatus := True;
 
     if Assigned(frmTorpedoTubeStatusWindow) then
+    begin
       frmTorpedoTubeStatusWindow.UpdatePanelStatus;
+      frmTorpedoTubeStatusWindow.UpdateFrameStatus;
+    end;
   end;
 
   {$REGION 'Torpedo Tube Commands'}
@@ -203,6 +227,22 @@ end;
 procedure TfrmTorpedoAllocation.lblCloseClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfrmTorpedoAllocation.lblReleaseAllClick(Sender: TObject);
+var
+  i       : Integer;
+  Img     : TImage;
+  ImgPath : string;
+begin
+  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus2.bmp';
+
+  for i := 1 to 8 do
+  begin
+    FSelectFireRelease := i;
+    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+    Img.Picture.LoadFromFile(ImgPath);
+  end;
 end;
 
 procedure TfrmTorpedoAllocation.pnlEngagementAnalysisStartClick(Sender: TObject);
@@ -228,19 +268,20 @@ procedure TfrmTorpedoAllocation.tmrImageAllocationTimer(Sender: TObject);
 begin
   UpdateAllocationStatus;
   UpdateAllocations;
+  UpdateFireRelease;
 end;
 
 procedure TfrmTorpedoAllocation.UpdateAllocationStatus;
 var
-  I: Integer;
-  Img: TImage;
-  ImgPath: string;
+  i       : Integer;
+  Img     : TImage;
+  ImgPath : string;
 begin
   ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus2.bmp';
 
-  for I := 1 to 8 do
+  for i := 1 to 8 do
   begin
-    case I of
+    case i of
       1: Img := imgAllocation1;
       2: Img := imgAllocation2;
       3: Img := imgAllocation3;
@@ -251,11 +292,11 @@ begin
       8: Img := imgAllocation8;
     end;
 
-    if SutBlacksharkManager.FTorpedoArray[I-1].Loaded then
+    if SutBlacksharkManager.FTorpedoArray[i-1].Loaded then
     begin
       Img.Picture.LoadFromFile(ImgPath);
 
-      case I of
+      case i of
         1: lblAllocationStatus1.Font.Color := clLime;
         2: lblAllocationStatus2.Font.Color := clLime;
         3: lblAllocationStatus3.Font.Color := clLime;
@@ -268,7 +309,7 @@ begin
     end
     else
     begin
-      case I of
+      case i of
         1: lblAllocationStatus1.Font.Color := clWhite;
         2: lblAllocationStatus2.Font.Color := clWhite;
         3: lblAllocationStatus3.Font.Color := clWhite;
@@ -278,6 +319,34 @@ begin
         7: lblAllocationStatus7.Font.Color := clWhite;
         8: lblAllocationStatus8.Font.Color := clWhite;
       end;
+    end;
+  end;
+end;
+
+procedure TfrmTorpedoAllocation.UpdateFireRelease;
+var
+  i       : Integer;
+  Img     : TImage;
+  ImgPath : string;
+begin
+  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus3.bmp';
+
+  for i := 1 to 8 do
+  begin
+    case i of
+      1: Img := imgFireRelease1;
+      2: Img := imgFireRelease2;
+      3: Img := imgFireRelease3;
+      4: Img := imgFireRelease4;
+      5: Img := imgFireRelease5;
+      6: Img := imgFireRelease6;
+      7: Img := imgFireRelease7;
+      8: Img := imgFireRelease8;
+    end;
+
+    if SutBlacksharkManager.FTorpedoArray[i-1].FireRelease then
+    begin
+      Img.Picture.LoadFromFile(ImgPath);
     end;
   end;
 end;

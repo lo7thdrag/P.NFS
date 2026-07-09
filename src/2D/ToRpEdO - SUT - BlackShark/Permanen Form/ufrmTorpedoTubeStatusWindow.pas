@@ -67,7 +67,7 @@ type
     lblNumberTorpedo5: TLabel;
     lblFuse5: TLabel;
     pnlTorpedo6: TPanel;
-    shpFrameTorpedo: TShape;
+    shpFrameTorpedo6: TShape;
     shpTorpedo6: TShape;
     lblTorpedo6: TLabel;
     lblNumber6: TLabel;
@@ -107,6 +107,7 @@ type
   public
     procedure DrawTube(pBox: TPaintBox; aLauncher: TTorpedoLauncher);
     procedure UpdatePanelStatus;
+    procedure UpdateFrameStatus;
   end;
 
 var
@@ -114,7 +115,10 @@ var
 
 implementation
 
+uses
+  ufrmTorpedoAllocation;
 {$R *.dfm}
+
 
 procedure TfrmTorpedoTubeStatusWindow.DrawTube(pBox: TPaintBox;aLauncher: TTorpedoLauncher);
 var
@@ -240,14 +244,47 @@ begin
   pbTubeSymbol8.Invalidate;
 
   UpdatePanelStatus;
+  UpdateFrameStatus;
 end;
+
+procedure TfrmTorpedoTubeStatusWindow.UpdateFrameStatus;
+var
+  i     : Integer;
+  shape : TShape;
+begin
+  for i := 0 to 7 do
+  begin
+    case i of
+      0: Shape := shpFrameTorpedo1;
+      1: Shape := shpFrameTorpedo2;
+      2: Shape := shpFrameTorpedo3;
+      3: Shape := shpFrameTorpedo4;
+      4: Shape := shpFrameTorpedo5;
+      5: Shape := shpFrameTorpedo6;
+      6: Shape := shpFrameTorpedo7;
+      7: Shape := shpFrameTorpedo8;
+    end;
+
+    if SutBlacksharkManager.FTorpedoArray[i].FrameStatus then
+    begin
+      Shape.Visible   := True;
+      Shape.Pen.Color := clGreen;
+      shape.Pen.Width := 2;
+    end
+    else
+    begin
+      Shape.Visible   := False;
+    end;
+
+    Shape.Repaint;
+  end;
+end;
+
 
 procedure TfrmTorpedoTubeStatusWindow.UpdatePanelStatus;
 var
   i     : Integer;
   shape : TShape;
-
-  aLauncher : TTorpedoLauncher;
 begin
   for i := 0 to 7 do
   begin
