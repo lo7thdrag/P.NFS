@@ -42,7 +42,7 @@ type
     FPtkServer: TListener;
     FPtkHandler : TPtkReceiver;
     FOnPtkCommand: TGetStrProc;
-    FSelectedVehicle: TVehicle;
+    FSelectedVehicleID: Word;
     FTarget2D: Word;
   protected
     procedure  Event_OrderCamera(apRec: PAnsiChar; aSize: integer);
@@ -98,7 +98,7 @@ type
     property ShipCallSign: string read FShipCallSign write FShipCallSign;
 
     property OnPtkCommand : TGetStrProc read FOnPtkCommand write FOnPtkCommand;
-    property SelectedVehicle : TVehicle read FSelectedVehicle write FSelectedVehicle;
+    property SelectedVehicleID : Word read FSelectedVehicleID write FSelectedVehicleID;
 
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -319,7 +319,7 @@ begin
           V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FShowedVehicle));
           V.isVisible := False;
         end;
-        SelectedVehicle := V;
+        SelectedVehicleID := V.ShipID;
       end;
 
       CORD_ID_2DGet_Target :
@@ -333,7 +333,7 @@ begin
         V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.IDTarget2D));
         V.isVisible := True;
 
-        SelectedVehicle := V;
+        SelectedVehicleID := V.ShipID;
         FShowedVehicle := arec.IDTarget2D;
       end;
 
@@ -354,7 +354,7 @@ begin
         begin
           V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FShowedVehicle));
           V.isVisible := False;
-          SelectedVehicle.Free;
+          SelectedVehicleID := 0;
         end;
       end;
     end;

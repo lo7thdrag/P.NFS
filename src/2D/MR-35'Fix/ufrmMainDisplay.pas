@@ -757,37 +757,37 @@ var
   aLow, aHigh, aEnv: Double;
   ok: Boolean;
 begin
-  if Button <> mbLeft then Exit;
-
-  v := VehicleMgr.SelectAt(X, Y);
-
-
-  FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
-
-  if Assigned(v) then
-  begin
-    // misalnya tampilkan info target
-    // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
-
-    FCCManager.SelectedVehicle := v;
-    rangeX := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
-    dH     := v.PosZ;    // target 20 m lebih rendah
-    v0     := 1035;    // m/s
-
-    if Assigned(FCCManager) then
-    begin
-      // 1) Tanpa environment (vakum)
-      ok := FCCManager.ComputeGunElevationVacuum(rangeX, dH, v0, aLow, aHigh);
-//      edtLowPR.Text := FormatFloat('0.00', aLow);
-//      edtHighPR.Text := FormatFloat('0.00', aHigh);
-    end;
-
-    FSelectedVehicleState := true;
-  end
-  else
-  begin
-    FSelectedVehicleState := false;
-  end;
+//  if Button <> mbLeft then Exit;
+//
+//  v := VehicleMgr.SelectAt(X, Y);
+//
+//
+//  FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
+//
+//  if Assigned(v) then
+//  begin
+//    // misalnya tampilkan info target
+//    // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
+//
+//    FCCManager.SelectedVehicleID := v;
+//    rangeX := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
+//    dH     := v.PosZ;    // target 20 m lebih rendah
+//    v0     := 1035;    // m/s
+//
+//    if Assigned(FCCManager) then
+//    begin
+//      // 1) Tanpa environment (vakum)
+//      ok := FCCManager.ComputeGunElevationVacuum(rangeX, dH, v0, aLow, aHigh);
+////      edtLowPR.Text := FormatFloat('0.00', aLow);
+////      edtHighPR.Text := FormatFloat('0.00', aHigh);
+//    end;
+//
+//    FSelectedVehicleState := true;
+//  end
+//  else
+//  begin
+//    FSelectedVehicleState := false;
+//  end;
 end;
 
 procedure TfrmMainFCC.FMapMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -807,119 +807,119 @@ var
   aLow, aHigh: Double;
   range,rangem, bearing, azimuth, elevation : Double;
 begin
-  if Assigned(fccmanager.SelectedVehicle) then
-  begin
-    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
-    rangem := range * C_NauticalMile_To_Metre;
-    azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
-    // range = 3000 m, target lebih rendah 25 m
+//  if (Assigned(FCCManager.SelectedVehicleID)) and (FCCManager.SelectedVehicleID <> nil) then
+//  begin
+//    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicleID.PosX, FCCManager.SelectedVehicleID.PosY);
+//    rangem := range * C_NauticalMile_To_Metre;
+//    azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicleID.PosX, FCCManager.SelectedVehicleID.PosY);
+//    // range = 3000 m, target lebih rendah 25 m
+////    bearing := azimuth - FCCManager.xShip.Heading;
 //    bearing := azimuth - FCCManager.xShip.Heading;
-    bearing := azimuth - FCCManager.xShip.Heading;
-    if bearing < 0 then
-    bearing := bearing + 360;
-//    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
-    elevation := CalcTurretElevation(rangem, 12900);
-
-
-//    case vFccSetting.FccMode of
-//      1 : //MR 35
+//    if bearing < 0 then
+//    bearing := bearing + 360;
+////    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+//    elevation := CalcTurretElevation(rangem, 12900);
+//
+//
+////    case vFccSetting.FccMode of
+////      1 : //MR 35
+////      begin
+////        elevation := Power(rangem/6700, Exp(1.0)) * 45;
+////      end;
+////      2 : //MR 103
+////      begin
+////        elevation := Power(rangem/6700, Exp(1.0)) * 45;
+////      end;
+////      3 : //MR 302
+////      begin
+////        elevation := Power(rangem/3000, Exp(1.0)) * 45;
+////      end;
+////    end;
+//
+//
+//    edtRDRangeVal.Text := format('%.2f', [rangem]);
+//    edtRadarGate.Text := format('%.2f', [rangem]);
+//    edtRAzimuthVal.Text := format('%.2f', [bearing]);
+//    edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicleID.PosZ)]);
+//
+//    edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicleID.UniqueID).ToString();
+//    edtSpeedINDVal.Text := (FCCManager.SelectedVehicleID.Speed_mps * 1.944).ToString;
+//    edtHeadingINDVal.Text := FCCManager.SelectedVehicleID.HeadingDeg.ToString;
+//
+////    lblTgtNo.Caption := FCCManager.SelectedVehicle.ShipID.ToString();
+////    lblLatTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posy]);
+////    lblLonTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posx]);
+////
+////    lblTgtSpd.Caption := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.943844]);
+////    lblTgtCourse.Caption := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
+//
+////    if (aLow <= 80 ) and (aLow >= 0 )then
+////    begin
+//////      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
+////      aLow := FMod(aLow, 360);
+////      if aLow < 0 then
+////        aLow := aLow + 360;
+////
+////      RecSend.ShipID          := FCCManager.ShipID;
+////      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+////      RecSend.mLauncherID     := 0;
+////      RecSend.mMissileID      := 0;
+////      RecSend.mMissileNumber  := 0;
+////      RecSend.mOrderID        := 0;
+////
+////      RecSend.mUpDown             := 0;
+////      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
+////      RecSend.mModeID             := 0;
+////      RecSend.mAutoCorrectElev    := aLow;
+////      RecSend.mAutoCorrectBearing := bearing;
+////
+////      RecSend.mBalistikID         := 0;
+////      RecSend.mSalvoRate          := 30;
+////
+////
+////      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+////      FCCManager.NetSendTo3D_OrderCannon(RecSend);
+////    end
+////    else if (aLow >= 350 )then
+////    begin
+////      alow := FMod(alow, 360);
+////      if alow < 0 then
+////        alow := alow + 360;
+////
+////      RecSend.ShipID          := FCCManager.ShipID;
+////      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+////      RecSend.mLauncherID     := 0;
+////      RecSend.mMissileID      := 0;
+////      RecSend.mMissileNumber  := 0;
+////      RecSend.mOrderID        := 0;
+////
+////      RecSend.mUpDown             := 0;
+////      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
+////      RecSend.mModeID             := 0;
+////      RecSend.mAutoCorrectElev    := alow;
+////      RecSend.mAutoCorrectBearing := bearing;
+////
+////      RecSend.mBalistikID         := 0;
+////      RecSend.mSalvoRate          := 30;
+////
+////
+////      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+////      FCCManager.NetSendTo3D_OrderCannon(RecSend);
+////    end;
+//
+//    if not FSelectedVehicleState then
+//    begin
 //      begin
-//        elevation := Power(rangem/6700, Exp(1.0)) * 45;
-//      end;
-//      2 : //MR 103
-//      begin
-//        elevation := Power(rangem/6700, Exp(1.0)) * 45;
-//      end;
-//      3 : //MR 302
-//      begin
-//        elevation := Power(rangem/3000, Exp(1.0)) * 45;
+//      edtRAzimuthVal.Text := '-';
+//  //    lblTgtDistance.Caption := rangem.ToString();
+//      edtElevationVal.Text := '-';
+//      edtRDRangeVal.Text := '-';
+//      edtLSRangeVal.Text := '-';
+//  //    lblTgtCourse.Caption := '...';
 //      end;
 //    end;
-
-
-    edtRDRangeVal.Text := format('%.2f', [rangem]);
-    edtRadarGate.Text := format('%.2f', [rangem]);
-    edtRAzimuthVal.Text := format('%.2f', [bearing]);
-    edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
-
-    edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
-    edtSpeedINDVal.Text := (FCCManager.SelectedVehicle.Speed_mps * 1.944).ToString;
-    edtHeadingINDVal.Text := FCCManager.SelectedVehicle.HeadingDeg.ToString;
-
-//    lblTgtNo.Caption := FCCManager.SelectedVehicle.ShipID.ToString();
-//    lblLatTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posy]);
-//    lblLonTgt.Caption := format('%.4f', [FCCManager.SelectedVehicle.Posx]);
 //
-//    lblTgtSpd.Caption := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.943844]);
-//    lblTgtCourse.Caption := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
-
-//    if (aLow <= 80 ) and (aLow >= 0 )then
-//    begin
-////      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
-//      aLow := FMod(aLow, 360);
-//      if aLow < 0 then
-//        aLow := aLow + 360;
-//
-//      RecSend.ShipID          := FCCManager.ShipID;
-//      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
-//      RecSend.mLauncherID     := 0;
-//      RecSend.mMissileID      := 0;
-//      RecSend.mMissileNumber  := 0;
-//      RecSend.mOrderID        := 0;
-//
-//      RecSend.mUpDown             := 0;
-//      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
-//      RecSend.mModeID             := 0;
-//      RecSend.mAutoCorrectElev    := aLow;
-//      RecSend.mAutoCorrectBearing := bearing;
-//
-//      RecSend.mBalistikID         := 0;
-//      RecSend.mSalvoRate          := 30;
-//
-//
-//      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
-//      FCCManager.NetSendTo3D_OrderCannon(RecSend);
-//    end
-//    else if (aLow >= 350 )then
-//    begin
-//      alow := FMod(alow, 360);
-//      if alow < 0 then
-//        alow := alow + 360;
-//
-//      RecSend.ShipID          := FCCManager.ShipID;
-//      RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
-//      RecSend.mLauncherID     := 0;
-//      RecSend.mMissileID      := 0;
-//      RecSend.mMissileNumber  := 0;
-//      RecSend.mOrderID        := 0;
-//
-//      RecSend.mUpDown             := 0;
-//      RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;
-//      RecSend.mModeID             := 0;
-//      RecSend.mAutoCorrectElev    := alow;
-//      RecSend.mAutoCorrectBearing := bearing;
-//
-//      RecSend.mBalistikID         := 0;
-//      RecSend.mSalvoRate          := 30;
-//
-//
-//      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
-//      FCCManager.NetSendTo3D_OrderCannon(RecSend);
-//    end;
-
-    if not FSelectedVehicleState then
-    begin
-      begin
-      edtRAzimuthVal.Text := '-';
-  //    lblTgtDistance.Caption := rangem.ToString();
-      edtElevationVal.Text := '-';
-      edtRDRangeVal.Text := '-';
-      edtLSRangeVal.Text := '-';
-  //    lblTgtCourse.Caption := '...';
-      end;
-    end;
-
-  end;
+//  end;
 end;
 
 procedure TfrmMainFCC.FormCreate(Sender: TObject);
@@ -1794,58 +1794,58 @@ var
   aLow, aHigh: Double;
   range,rangem, bearing : Double;
 begin
-  if Assigned(FCCManager.SelectedVehicle) then
-  begin
-    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
-    rangem := range * C_NauticalMile_To_Metre;
-    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
-    // range = 3000 m, target lebih rendah 25 m
-    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
-
-    RecSend.ShipID          := FCCManager.ShipID;
-    RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
-    RecSend.mLauncherID     := 0;
-    RecSend.mMissileID      := 0;
-    RecSend.mMissileNumber  := 0;
-    RecSend.mOrderID        := 0;
-
-    RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;;
-    RecSend.mModeID             := 0;
-    RecSend.mAutoCorrectElev    := aLow;
-    RecSend.mAutoCorrectBearing := bearing;
-
-    RecSend.mBalistikID         := 0;
-    RecSend.mSalvoRate          := 30;
-
-//    FCCManager.SelectedVehicle.
-
-
-    RecSend.mOrderID := __ORD_CANNON_START_F;
-    FCCManager.NetSendTo3D_OrderCannon(RecSend);
-
-    Sleep(1000);
-
-    RecSend.ShipID          := FCCManager.ShipID;
-    RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
-    RecSend.mLauncherID     := 0;
-    RecSend.mMissileID      := 0;
-    RecSend.mMissileNumber  := 0;
-    RecSend.mOrderID        := 0;
-
-    RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := FCCManager.SelectedVehicle.ShipID;;
-    RecSend.mModeID             := 0;
-    RecSend.mAutoCorrectElev    := aLow;
-    RecSend.mAutoCorrectBearing := bearing;
-
-    RecSend.mBalistikID         := 0;
-    RecSend.mSalvoRate          := 30;
-
-
-    RecSend.mOrderID := __ORD_CANNON_STOP_F;
-    FCCManager.NetSendTo3D_OrderCannon(RecSend);
-  end;
+//  if Assigned(FCCManager.SelectedVehicleID) then
+//  begin
+//    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicleID.PosX, FCCManager.SelectedVehicleID.PosY);
+//    rangem := range * C_NauticalMile_To_Metre;
+//    bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicleID.PosX, FCCManager.SelectedVehicleID.PosY);
+//    // range = 3000 m, target lebih rendah 25 m
+//    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicleID.PosZ, 800, aLow, aHigh);
+//
+//    RecSend.ShipID          := FCCManager.ShipID;
+//    RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+//    RecSend.mLauncherID     := 0;
+//    RecSend.mMissileID      := 0;
+//    RecSend.mMissileNumber  := 0;
+//    RecSend.mOrderID        := 0;
+//
+//    RecSend.mUpDown             := 0;
+//    RecSend.mTargetID           := FCCManager.SelectedVehicleID.ShipID;;
+//    RecSend.mModeID             := 0;
+//    RecSend.mAutoCorrectElev    := aLow;
+//    RecSend.mAutoCorrectBearing := bearing;
+//
+//    RecSend.mBalistikID         := 0;
+//    RecSend.mSalvoRate          := 30;
+//
+////    FCCManager.SelectedVehicle.
+//
+//
+//    RecSend.mOrderID := __ORD_CANNON_START_F;
+//    FCCManager.NetSendTo3D_OrderCannon(RecSend);
+//
+//    Sleep(1000);
+//
+//    RecSend.ShipID          := FCCManager.ShipID;
+//    RecSend.mWeaponID       := FCCManager.AssignedWeapon.IDWeapon;
+//    RecSend.mLauncherID     := 0;
+//    RecSend.mMissileID      := 0;
+//    RecSend.mMissileNumber  := 0;
+//    RecSend.mOrderID        := 0;
+//
+//    RecSend.mUpDown             := 0;
+//    RecSend.mTargetID           := FCCManager.SelectedVehicleID.ShipID;;
+//    RecSend.mModeID             := 0;
+//    RecSend.mAutoCorrectElev    := aLow;
+//    RecSend.mAutoCorrectBearing := bearing;
+//
+//    RecSend.mBalistikID         := 0;
+//    RecSend.mSalvoRate          := 30;
+//
+//
+//    RecSend.mOrderID := __ORD_CANNON_STOP_F;
+//    FCCManager.NetSendTo3D_OrderCannon(RecSend);
+//  end;
 end;
 
 procedure TfrmMainFCC.pnlMapRangeClick(Sender: TObject);
@@ -2154,11 +2154,8 @@ var
   CorrectElev : Double;
   aLow, aHigh: Double;
   range,rangem, bearing, azimuth, elevation : Double;
+  v : tvehicle;
 begin
-//  lblBearing.Caption := Format('0',[FBearing0.BearingDeg]);
-//  lblRange.Caption := Format('0.00', [FCurrentRange * C_Meter_To_NauticalMile]);
-//  lblLongtitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionX);
-//  lblLatitude.Caption := FormatFloat('0.0000', FCCManager.xShip.PositionY);
   EdtSpeedNAVIVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
 //  edtSpeedINDVal.Text := FormatFloat('00.0', FCCManager.xShip.Speed);
   EdtHeadingNAVIVal.Text := FormatFloat('0', FCCManager.xShip.Heading);
@@ -2166,16 +2163,17 @@ begin
 //  lblEta.Caption := FormatDateTime('hh:nn:ss',now);
 //  lblUTCTime.Caption := FormatDateTime('hh:nn:ss',TTimeZone.Local.ToUniversalTime(Now));
 //  lblTtg.Caption := FormatDateTime('hh:nn',now);
-  if Assigned(fccmanager.SelectedVehicle) and (FSelectedVehicleState = True) then
+  if fccmanager.SelectedVehicleID <> 0 then
   begin
-    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    v := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FCCManager.SelectedVehicleID));
+    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY);
     rangem := range * C_NauticalMile_To_Metre;
-    azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
+    azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY);
     // range = 3000 m, target lebih rendah 25 m
     bearing := azimuth - FCCManager.xShip.Heading;
     if bearing < 0 then
     bearing := bearing + 360;
-    ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
+    ComputeBallisticAngleVacuum(rangem, v.PosZ, 800, aLow, aHigh);
 //    case vFccSetting.FccMode of
 //      1 : //MR 35
 //      begin
@@ -2194,11 +2192,11 @@ begin
     edtRDRangeVal.Text := format('%.2f', [rangem]);
     edtRadarGate.Text := format('%.2f', [rangem]);
     edtRAzimuthVal.Text := format('%.2f', [bearing]);
-    edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, fccmanager.SelectedVehicle.PosZ)]);
+    edtElevationVal.Text := format('%.2f', [CalcElevation(rangem, 15, v.PosZ)]);
 
-    edtIDTargetVal.Text := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID).ToString();
-    edtSpeedINDVal.Text := format('%.2f', [FCCManager.SelectedVehicle.Speed_mps * 1.944]);
-    edtHeadingINDVal.Text := format('%.2f', [FCCManager.SelectedVehicle.HeadingDeg]);
+    edtIDTargetVal.Text := UniqueID_To_dbID(v.UniqueID).ToString();
+    edtSpeedINDVal.Text := format('%.2f', [v.Speed_mps * 1.944]);
+    edtHeadingINDVal.Text := format('%.2f', [v.HeadingDeg]);
   end;
 end;
 

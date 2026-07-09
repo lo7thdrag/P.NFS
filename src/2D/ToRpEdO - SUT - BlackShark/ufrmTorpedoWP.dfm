@@ -1409,7 +1409,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
       Left = 0
       Top = 239
       Width = 1105
-      Height = 615
+      Height = 616
       Margins.Left = 1
       Margins.Top = 1
       Margins.Right = 1
@@ -1420,7 +1420,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Left = 1
         Top = 1
         Width = 1103
-        Height = 613
+        Height = 614
         Align = alClient
         Visible = False
         ExplicitLeft = 686
@@ -1432,7 +1432,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Left = 1
         Top = 1
         Width = 1103
-        Height = 613
+        Height = 614
         ParentColor = False
         Align = alClient
         TabOrder = 0
@@ -1440,8 +1440,9 @@ object FrmTorpedoWP: TFrmTorpedoWP
         OnMouseDown = FMapMouseDown
         OnDrawUserLayer = FMapDrawUserLayer
         ExplicitLeft = -2
+        ExplicitHeight = 613
         ControlData = {
-          8A1A0600007200005B3F000001000000010000FF0D47656F44696374696F6E61
+          8A1A060000720000753F000001000000010000FF0D47656F44696374696F6E61
           727905456D70747900E8030000000000000000000002000E001E000000000000
           0000000000000000000000000000000000000000000600010000000000500001
           010000640000000001F4010000050000800C000000000000000000000000FFFF
@@ -1453,7 +1454,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          010001180100002829E310010000000EF6DB501C000000000000000000000000
+          01000118010000C0D2B010010000000EF6DB501C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1462,7 +1463,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          0100002829E31001000000880300C01C00000000000000000000000000000000
+          010000C0D2B01001000000880300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
@@ -1470,7 +1471,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000000000000000000000000000000000000000020000000000000A
-          000000000000003CE2970000000000A4E697003663120C000000000000000000
+          0000006D0065003CE2970000000000A4E69700FF76A86F000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -1541,18 +1542,18 @@ object FrmTorpedoWP: TFrmTorpedoWP
     end
     object pnlGeo: TPanel
       Left = 0
-      Top = 848
+      Top = 850
       Width = 1107
-      Height = 40
+      Height = 38
       Color = clBlack
       ParentBackground = False
       TabOrder = 3
       DesignSize = (
         1107
-        40)
+        38)
       object ibBoxedZoom: TImageButton
         Left = 532
-        Top = 11
+        Top = 10
         Width = 20
         Height = 20
         Anchors = []
@@ -1604,10 +1605,11 @@ object FrmTorpedoWP: TFrmTorpedoWP
           090A0B0C0D0E0F10111200000000000000000000000102030405060708000000
           0000000000000000000000000000000000000000000000000000000000000000
           00000000000000000000}
+        ExplicitTop = 11
       end
       object ibGrab: TImageButton
         Left = 501
-        Top = 11
+        Top = 10
         Width = 20
         Height = 20
         Anchors = []
@@ -1660,10 +1662,11 @@ object FrmTorpedoWP: TFrmTorpedoWP
           0000000000000000000000000000000000000000000000000000000000000000
           00000000000000000000}
         ShadowColor = clWhite
+        ExplicitTop = 11
       end
       object lblZoomScaleSat: TLabel
         Left = 795
-        Top = 12
+        Top = 11
         Width = 18
         Height = 16
         Anchors = []
@@ -1676,11 +1679,12 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Font.Style = []
         ParentColor = False
         ParentFont = False
+        ExplicitTop = 12
       end
       object ibZoomIn: TImageButton
         Tag = 1
         Left = 647
-        Top = 11
+        Top = 10
         Width = 20
         Height = 20
         Anchors = []
@@ -1732,10 +1736,11 @@ object FrmTorpedoWP: TFrmTorpedoWP
           0E0F1010101011121314150000000000000000000708090A090B0C0D0E010000
           0000000000000000000203030405050506000000000000000000000000000000
           00000000000000000001}
+        ExplicitTop = 11
       end
       object ibZoomOut: TImageButton
         Left = 621
-        Top = 10
+        Top = 9
         Width = 20
         Height = 20
         Anchors = []
@@ -1787,10 +1792,11 @@ object FrmTorpedoWP: TFrmTorpedoWP
           090A0B0C0D0E0F10111200000000000000000000000102030405060708000000
           0000000000000000000000000000000000000000000000000000000000000000
           00000000000000000000}
+        ExplicitTop = 10
       end
       object lblMapFilter: TLabel
         Left = 859
-        Top = 12
+        Top = 11
         Width = 41
         Height = 16
         Anchors = []
@@ -1803,10 +1809,11 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Font.Style = []
         ParentColor = False
         ParentFont = False
+        ExplicitTop = 12
       end
       object lblOwnShipCenter: TLabel
         Left = 587
-        Top = 11
+        Top = 10
         Width = 28
         Height = 18
         Anchors = []
@@ -1820,10 +1827,11 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Font.Style = []
         ParentColor = False
         ParentFont = False
+        ExplicitTop = 11
       end
       object lblCursorCenter: TLabel
         Left = 565
-        Top = 11
+        Top = 10
         Width = 16
         Height = 18
         Anchors = []
@@ -1837,10 +1845,11 @@ object FrmTorpedoWP: TFrmTorpedoWP
         Font.Style = []
         ParentColor = False
         ParentFont = False
+        ExplicitTop = 11
       end
       object cbbZoomScale: TAdvComboBox
         Left = 677
-        Top = 9
+        Top = 8
         Width = 112
         Height = 24
         Color = clBlack
@@ -1881,10 +1890,11 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentFont = False
         TabOrder = 0
         Text = '8'
+        ExplicitTop = 9
       end
       object AdvComboBox2: TAdvComboBox
         Left = 377
-        Top = 9
+        Top = 8
         Width = 112
         Height = 24
         Color = clBlack
@@ -1912,6 +1922,7 @@ object FrmTorpedoWP: TFrmTorpedoWP
         ParentFont = False
         TabOrder = 1
         Text = 'Relative Motion'
+        ExplicitTop = 9
       end
     end
   end

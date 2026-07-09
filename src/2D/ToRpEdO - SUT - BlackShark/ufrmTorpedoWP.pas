@@ -14,7 +14,7 @@ uses
   ufrmTorpedoTubeStatusWindow, ufrmTorpedoGuidance, ufrmHomingCommands, ufrmHomingStatusPlot, ufrmDepthPlot,
   ufrmTorpedoParameterSetting, ufrmEngagementDataOverview, ufrmControlByNumber, ufrmTrackingList, ufrmSensorTrackList,
   ufrmTackHistory, ufrmCreateModifyTrack, ufrmTorpedoContactList, ufrmWakeList, ufrmTorpedoVerticalView, 
-  ufrmTorpedoParameterDepthSettings;
+  ufrmTorpedoParameterDepthSettings, uTransparentOverlay, uSimulationTrack, uSurfaceTrack, uSubSurfaceTrack;
 
 
 type
@@ -228,6 +228,8 @@ type
     FFrmEngagementDataOverview   : TfrmEngagementDataOverview;
     FfrmTorpedoParameterDepth    : TfrmTorpedoParameterDepthSettings;
 
+    FOverlay : TTransparentOverlay;
+
     procedure SubmodeSelect(Sender: Tobject);
     procedure FuncTaskRightSelect(Sender: Tobject);
     procedure SubmodeToolsSelect(Sender: Tobject);
@@ -239,6 +241,10 @@ type
     procedure DrawAll(aCnv: TCanvas; aCvt: TCoordConverter; aFlag: Byte);
 
     procedure UpdateAttachFormDisplay;
+    procedure PassMouseToMap(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y:Integer);
+    procedure OverlayPaint(Sender: TObject; ACanvas: TCanvas);
+
+    procedure Render(aCnv: TCanvas);
 
   public
     { Public declarations }
@@ -660,11 +666,8 @@ begin
 
   BeginGame_SutBlackshark;
   SutBlacksharkManager := TSutBlacksharkManager.Create;
-//  TorpedoParam := TTorpedoParameterSetting.Create;
   SimCenter := SutBlacksharkManager;
   SimCenter.FMap := FMap;
-//  SutBlacksharkManager.OnPtkCommand := ptkCommand; // petek
-//  SutBlacksharkManager.initEvent;
 
 
   FNorthAngle := 0;
@@ -676,37 +679,23 @@ begin
   VehicleMgr := TVehicleManager.Create;
   VehicleMgr.CoordConverter := FMapConverter;
 
+  pnlTorpedoGeo.DoubleBuffered := False;
+  FMap.DoubleBuffered := false;
   EnableComposited(pnlTorpedoGeo);
-  EnableComposited(pnlBase);
-//  FBitmapBackground := TBitmap.Create;
-//  FBitmapBackground.Height := imgBackgrounSituationZone.Height;
-//  FBitmapBackground.Width := imgBackgrounSituationZone.Width;
-//  FBitmapBackground.Canvas.Brush.Color := clNone; // new color
-//  FBitmapBackground.Canvas.FillRect(
-//   Rect(
-//     0,
-//     0,
-//     FBitmapBackground.Width,
-//     FBitmapBackground.Height
-//    )
-//  );
 
-//  imgBackgrounSituationZone.Picture.Assign(FBitmapBackground);
+  FOverlay := TTransparentOverlay.Create(Self);
+  FOverlay.OnPaint:= OverlayPaint;
+  FOverlay.Parent := pnlTorpedoGeo;
+  FOverlay.Align := alClient;
+  FOverlay.BringToFront;
+  FOverlay.OnMouseDownEvent := PassMouseToMap;
+  FOverlay.OnMouseUpEvent := PassMouseToMap;
 
   LoadGeoset('..\data\maps\IndonesiaNoGrid.gst');
 
   setRegionCircle;
 
-//  FRings := TRadarRangeRings.Create;
-//  FRings.Visible := True;
-
-//  FNorthInd := TRadarNorthIndicator.Create;
-
   FShipHeading := 0; // awal
-
-//  FBearing0 := TRadarBearing.Create(0, clWhite, 'MR35');
-
-//  FMap.ZoomTo((Self.FCurrentRange) * 2, FMap.CenterX, FMap.CenterY);
 
   FMap.ZoomTo(50 * 2, FMap.CenterX, FMap.CenterY);    // rojek coba map di zoom out
 
@@ -716,19 +705,6 @@ begin
   imgListLight.GetBitmap(0, BitMapLampGrey);
   imgListLight.GetBitmap(4, BitMapLampGreen);
   imgListLight.GetBitmap(5, BitMapLampRed);
-
-  {
-  imgMSI.Picture.Bitmap := BitMapLampRed;
-  imgNav.Picture.Bitmap := BitMapLampRed;
-  imgRad.Picture.Bitmap := BitMapLampRed;
-  imgResm.Picture.Bitmap := BitMapLampRed;
-  imgPerisc.Picture.Bitmap := BitMapLampRed;
-  imgSonar.Picture.Bitmap := BitMapLampRed;
-  imgMast.Picture.Bitmap := BitMapLampRed;
-  imgLink.Picture.Bitmap := BitMapLampRed;
-  imgWTSRC.Picture.Bitmap := BitMapLampRed;
-  imgTBI.Picture.Bitmap := BitMapLampRed;
-  }
 
   n := ParamCount ;
   if n < max_param then
@@ -1018,6 +994,33 @@ begin
   Result := FMap.Width;
 end;
 
+procedure TFrmTorpedoWP.OverlayPaint(Sender: TObject; ACanvas: TCanvas);
+var
+  ScreenX, ScreenY : Single;
+begin
+  ACanvas.Pen.Color := clWhite;
+  ACanvas.Pen.Style := psSolid;
+  ACanvas.Pen.Width := 1;
+
+//  frmTacticalScreen.DrawTicksDegree(ACanvas);
+//  frmTacticalScreen.Render(ACanvas);
+end;
+
+procedure TFrmTorpedoWP.PassMouseToMap(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+  var
+  Msg: UINT;
+  Param : WPARAM;
+begin
+  if Button = mbLeft then Msg := WM_LBUTTONDOWN
+  else Msg := WM_MOUSEMOVE;
+
+  Param := 0;
+  if Button = mbleft then Param := Param or MK_LBUTTON;
+
+  POstMessage(FMap.Handle, Msg, Param, MakeLParam(X, Y))
+
+end;
 procedure TFrmTorpedoWP.pnlAssFuncMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
@@ -1256,6 +1259,16 @@ begin
 //    TPanel(Sender).Color := clLime;
     SubmodeSelect(Sender);
 //  (Sender as TPanel).Color := clLime;
+end;
+
+procedure TFrmTorpedoWP.Render(aCnv: TCanvas);
+var
+  i: Integer;
+  Ship, OwnShip: TSimulationTrack;
+  MapX, MapY: Double;
+  ScrX, ScrY: Single;
+begin
+  //
 end;
 
 procedure TFrmTorpedoWP.ResetAssociatedFunction;

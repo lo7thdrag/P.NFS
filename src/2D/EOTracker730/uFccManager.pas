@@ -40,7 +40,7 @@ type
     FPtkServer: TListener;
     FPtkHandler : TPtkReceiver;
     FOnPtkCommand: TGetStrProc;
-    FSelectedVehicle: TVehicle;
+    FSelectedVehicle: Word;
     FTarget2D: Word;
     FTargetType: TTargetType;
     FTrackMode : TTrackMode;
@@ -101,7 +101,7 @@ type
     property ShipCallSign: string read FShipCallSign write FShipCallSign;
 
     property OnPtkCommand : TGetStrProc read FOnPtkCommand write FOnPtkCommand;
-    property SelectedVehicle : TVehicle read FSelectedVehicle write FSelectedVehicle;
+    property SelectedVehicleID : Word read FSelectedVehicle write FSelectedVehicle;
 
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -312,14 +312,14 @@ begin
       begin
         FTarget2D := arec.IDTarget2D;
         V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(arec.ShipID));
-        SelectedVehicle := V;
+        SelectedVehicleID := v.ShipID;
       end;
 
       CORD_ID_2DGet_Target :
       begin
         FTarget2D := arec.IDTarget2D;
         V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(arec.ShipID));
-        SelectedVehicle := V;
+        SelectedVehicleID := V.ShipID;
       end;
 
       CORD_ID_TargetType :
@@ -336,7 +336,7 @@ begin
       begin
         if FOperating_Mode <> TOperatingMode(arec.TargetType) then
         begin
-          SelectedVehicle.Free;
+          SelectedVehicleID := 0;
         end;
         FOperating_Mode := TOperatingMode(aRec.TargetType);
       end;
@@ -345,7 +345,7 @@ begin
       begin
         if FTrackMode <> TTrackMode(arec.TargetType) then
         begin
-          SelectedVehicle.Free;
+          SelectedVehicleID := 0;
         end;
 
         FTrackMode := TTrackMode(aRec.TargetType);
