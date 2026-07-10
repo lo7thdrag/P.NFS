@@ -36,17 +36,10 @@ uses
 {$R *.dfm}
 
 procedure TfrmTorpedoTubeCommands.lblSendCmdClick(Sender: TObject);
-begin
-  lblSendCmd.Font.Color := clLime;
-
-
-end;
-
-procedure TfrmTorpedoTubeCommands.lblTorpOnClick(Sender: TObject);
 var
   i : Integer;
 begin
-  lblTorpOn.Font.Color := clLime;
+  lblSendCmd.Font.Color := clLime;
 
   for i := 0 to 7 do
   begin
@@ -54,6 +47,16 @@ begin
       SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTesting;
   end;
   frmTorpedoTubeStatusWindow.UpdateTextStatus;
+
+  lblTorpOn.Caption    := 'Torpedo Off';
+  lblTorpOn.Font.Color := clLime;
+end;
+
+procedure TfrmTorpedoTubeCommands.lblTorpOnClick(Sender: TObject);
+var
+  i : Integer;
+begin
+  lblTorpOn.Font.Color := clLime;
 end;
 
 end.
