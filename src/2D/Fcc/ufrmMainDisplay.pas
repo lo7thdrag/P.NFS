@@ -3054,11 +3054,6 @@ begin
 //    Inc(FNorthAngle)
 //  else
 //    FNorthAngle := 0;
-  if GetTargetFrom3D then
-  begin
-    FMapMouseUp(sender, mbLeft, [ssLeft], 0, 0);
-    GetTargetFrom3D := false;
-  end;
 
   imgCompas.Repaint;
 
@@ -3083,6 +3078,8 @@ begin
         VehicleMgr.DeselectAll;
         FSelectedVehicleState := False;
       end;
+
+      GetTargetFrom3D := False;
 
 //      if (FOperatingMode = omAutonomous) and (FSelectedVehicleState = false) then
 //      begin
