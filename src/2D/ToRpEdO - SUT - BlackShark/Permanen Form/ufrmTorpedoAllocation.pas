@@ -239,17 +239,17 @@ begin
 
   for i := 0 to 7 do
   begin
-    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+    SutBlacksharkManager.FTorpedoArray[i].FireRelease := True;
 
     case i of
-      1: Img := imgFireRelease1;
-      2: Img := imgFireRelease2;
-      3: Img := imgFireRelease3;
-      4: Img := imgFireRelease4;
-      5: Img := imgFireRelease5;
-      6: Img := imgFireRelease6;
-      7: Img := imgFireRelease7;
-      8: Img := imgFireRelease8;
+      0: Img := imgFireRelease1;
+      1: Img := imgFireRelease2;
+      2: Img := imgFireRelease3;
+      3: Img := imgFireRelease4;
+      4: Img := imgFireRelease5;
+      5: Img := imgFireRelease6;
+      6: Img := imgFireRelease7;
+      7: Img := imgFireRelease8;
     end;
 
     Img.Picture.LoadFromFile(ImgPath);
