@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
 
-  uSutBlacksharkManager, uTorpedoLauncher, Vcl.ExtCtrls, Vcl.StdCtrls;
+  uSutBlacksharkManager, uTorpedoLauncher, Vcl.ExtCtrls, Vcl.StdCtrls, uVehicleManager;
 
 type
   TfrmTorpedoTubeStatusWindow = class(TForm)
@@ -108,6 +108,7 @@ type
     procedure DrawTube(pBox: TPaintBox; aLauncher: TTorpedoLauncher);
     procedure UpdatePanelStatus;
     procedure UpdateFrameStatus;
+    procedure UpdateTextStatus;
   end;
 
 var
@@ -245,6 +246,7 @@ begin
 
   UpdatePanelStatus;
   UpdateFrameStatus;
+  UpdateTextStatus;
 end;
 
 procedure TfrmTorpedoTubeStatusWindow.UpdateFrameStatus;
@@ -265,7 +267,7 @@ begin
       7: Shape := shpFrameTorpedo8;
     end;
 
-    if SutBlacksharkManager.FTorpedoArray[i].FrameStatus then
+    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
     begin
       Shape.Visible   := True;
       Shape.Pen.Color := clGreen;
@@ -307,6 +309,479 @@ begin
     Shape.Repaint;
   end;
 
+end;
+
+procedure TfrmTorpedoTubeStatusWindow.UpdateTextStatus;
+var
+  i,j   : Integer;
+  aText : TTorpedoLauncher;
+  Text1, Text2  : TLabel;
+begin
+  {$REGION 'Status Text Torpedo'}
+  for i := 0 to 7 do
+  begin
+    case i of
+      0:
+      begin
+        Text1 := lblTorpedo1;
+        Text2 := lblValueTorpedo1;
+      end;
+      1:
+      begin
+        Text1 := lblTorpedo2;
+        Text2 := lblValueTorpedo2
+      end;
+      2:
+      begin
+        Text1 := lblTorpedo3;
+        Text2 := lblValueTorpedo3;
+      end;
+      3:
+      begin
+        Text1 := lblTorpedo4;
+        Text2 := lblValueTorpedo4;
+      end;
+      4:
+      begin
+        Text1 := lblTorpedo5;
+        Text2 := lblValueTorpedo5;
+      end;
+      5:
+      begin
+        Text1 := lblTorpedo6;
+        Text2 := lblValueTorpedo6;
+      end;
+      6:
+      begin
+        Text1 := lblTorpedo7;
+        Text2 := lblValueTorpedo7;
+      end;
+      7:
+      begin
+        Text1 := lblTorpedo8;
+        Text2 := lblValueTorpedo8;
+      end;
+    end;
+
+    aText  := SutBlacksharkManager.FTorpedoArray[i];
+
+    Text1.Caption := '';
+    Text1.Visible := False;
+
+    Text2.Caption := '';
+    Text2.Visible := False;
+
+    if aText.Allocated then
+    begin
+      case aText.TextStatus of
+        {$REGION 'NONE'}
+        stNone:
+        begin
+          Text1.Caption    := '';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TESTING'}
+        stTesting:
+        begin
+          Text1.Caption    := 'TESTING';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TORP READY'}
+        stTorpReady:
+        begin
+          Text1.Caption    := 'TORP READY';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'FIRED'}
+        stFired:
+        begin
+          Text1.Caption    := 'FIRED';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'MISFIRED'}
+        stMisfired:
+        begin
+          Text1.Caption    := 'MISFIRED';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'INITIAL RUN'}
+        stInitialRun:
+        begin
+          Text1.Caption    := 'INITIAL RUN';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'MSI-APPR-LOS'}
+        stMsiApprLos:
+        begin
+          Text1.Caption    := 'MSI-APPR-LOS';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'MSI-APPR-CC'}
+        stMsiApprCc:
+        begin
+          Text1.Caption    := 'MSI-APPR-CC';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'MSI-APPR-SA'}
+        stMsiApprSa:
+        begin
+          Text1.Caption    := 'MSI-APPR-SA';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TORP-APPR'}
+        stTorpAppr:
+        begin
+          Text1.Caption    := 'TORP-APPR';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'MSI-SRC-LOS'}
+        stMsiSrcLos:
+        begin
+          Text1.Caption    := 'MSI-SRC-LOS';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'MSI-SRC-CC'}
+        stMsiSrcCc:
+        begin
+          Text1.Caption    := 'MSI-SRC-CC';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'MSI-SRC-SA'}
+        stMsiSrcSa:
+        begin
+          Text1.Caption    := 'MSI-SRC-SA';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TORP-SRC'}
+        stTorpSrc:
+        begin
+          Text1.Caption    := 'TORP-SRC';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TORP-SRC-AUTO'}
+        stTorpSrcAuto:
+        begin
+          Text1.Caption    := 'TORP-SRC-AUTO';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TORP-SRC-SA'}
+        stTorpSrcSa:
+        begin
+          Text1.Caption    := 'TORP-SRC-SA';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TORP-SRC-CSP'}
+        stTorpSrcCsp:
+        begin
+          Text1.Caption    := 'TORP-SRC-CSP';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'WAKE SELF GUID'}
+        stWakeSelfguid:
+        begin
+          Text1.Caption    := 'WAKE SELF GUID';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'MAN-HORIZ'}
+        stManHoriz:
+        begin
+          Text1.Caption    := 'MAN-HORIZ';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'LONG RANGE ATT'}
+        stLongRangeAtt:
+        begin
+          Text1.Caption    := 'LONG RANGE ATT';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'CLOSE-IN ATT'}
+        stCloseInAtt:
+        begin
+          Text1.Caption    := 'CLOSE-IN ATT';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TGT LOST'}
+        stTgtLost:
+        begin
+          Text1.Caption    := 'TGT LOST';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'COMM BREAK'}
+        stCommBreak:
+        begin
+          Text1.Caption    := 'COMM BREAK';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'TERMINATED'}
+        stTerminated:
+        begin
+          Text1.Caption    := 'TERMINATED';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+
+        {$REGION 'IMMED FIRE'}
+        stImmedFired:
+        begin
+          Text1.Caption    := 'IMMED FIRE';
+          Text1.Font.Color := clLime;
+          Text1.Visible    := True;
+
+          if Assigned(VehicleMgr.TrackControlled) then
+          begin
+            Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+            Text2.Font.Color := clLime;
+            Text2.Visible    := True;
+          end;
+        end;
+        {$ENDREGION}
+      end;
+    end
+    else
+    begin
+      Text1.Caption := '';
+      Text2.Caption := '';
+    end;
+    {$ENDREGION}
+  end;
 end;
 
 end.

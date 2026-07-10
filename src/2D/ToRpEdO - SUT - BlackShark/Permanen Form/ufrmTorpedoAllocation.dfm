@@ -74,7 +74,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
       Top = 8
       Width = 470
       Height = 529
-      ActivePage = AdvfireRel
+      ActivePage = AdvEngage
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -13
@@ -4193,6 +4193,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel1: TPanel
           Left = 6
           Top = 5

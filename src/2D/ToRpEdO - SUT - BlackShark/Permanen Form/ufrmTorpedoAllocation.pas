@@ -189,20 +189,19 @@ begin
 
   if FSelectFireRelease <> -1 then
   begin
-    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := not SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease;
   end;
 end;
 
 procedure TfrmTorpedoAllocation.lblAllocateClick(Sender: TObject);
 var
-  i      : Integer;
   shape  : TShape;
   aFrame : TTorpedoLauncher;
 begin
   if FSelectTube <> -1 then
   begin
-    SutBlacksharkManager.FTorpedoArray[FSelectTube].Loaded      := True;
-    SutBlacksharkManager.FTorpedoArray[FSelectTube].FrameStatus := True;
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated := True;
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].TextStatus := stNone;
 
     if Assigned(frmTorpedoTubeStatusWindow) then
     begin
@@ -235,7 +234,7 @@ var
   Img     : TImage;
   ImgPath : string;
 begin
-  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus2.bmp';
+  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus2.bmp';
 
   for i := 0 to 7 do
   begin

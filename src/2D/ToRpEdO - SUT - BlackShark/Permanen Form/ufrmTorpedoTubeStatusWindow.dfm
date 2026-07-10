@@ -49,6 +49,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 1
         Width = 73
         Height = 14
+        Alignment = taCenter
         Caption = 'TORP READY'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -176,6 +177,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 1
         Width = 73
         Height = 14
+        Alignment = taCenter
         Caption = 'TORP READY'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -304,6 +306,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 0
         Width = 64
         Height = 14
+        Alignment = taCenter
         Caption = 'MSI-SRC-SA'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -432,6 +435,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 1
         Width = 73
         Height = 14
+        Alignment = taCenter
         Caption = 'TORP READY'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -565,6 +569,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 2
         Width = 73
         Height = 14
+        Alignment = taCenter
         Caption = 'TORP READY'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -693,6 +698,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 2
         Width = 64
         Height = 14
+        Alignment = taCenter
         Caption = 'MAN-HORIZ'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -821,6 +827,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 1
         Width = 73
         Height = 14
+        Alignment = taCenter
         Caption = 'TORP READY'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -949,6 +956,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 2
         Width = 73
         Height = 14
+        Alignment = taCenter
         Caption = 'TORP READY'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite

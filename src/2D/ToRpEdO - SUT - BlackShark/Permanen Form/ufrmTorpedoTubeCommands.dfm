@@ -72,6 +72,7 @@ object frmTorpedoTubeCommands: TfrmTorpedoTubeCommands
       Top = 72
       Width = 53
       Height = 16
+      Cursor = crHandPoint
       Caption = 'TORP ON'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
@@ -81,6 +82,7 @@ object frmTorpedoTubeCommands: TfrmTorpedoTubeCommands
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblTorpOnClick
     end
     object lblSetReady: TLabel
       Left = 114
@@ -102,6 +104,7 @@ object frmTorpedoTubeCommands: TfrmTorpedoTubeCommands
       Top = 208
       Width = 59
       Height = 16
+      Cursor = crHandPoint
       Caption = 'Send Cmd'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
@@ -111,6 +114,7 @@ object frmTorpedoTubeCommands: TfrmTorpedoTubeCommands
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblSendCmdClick
     end
   end
 end
