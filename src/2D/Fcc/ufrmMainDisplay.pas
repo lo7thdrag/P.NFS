@@ -1371,6 +1371,20 @@ begin
   end
   else
   begin
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.TargetType := 0;
+    RecSend.EnableValue := false;
+
+    RecSend.OrderID := CORD_ID_2DGet_Target;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
     FSelectedVehicleState := false;
   end;
 end;
@@ -1556,7 +1570,7 @@ var
   aLow, aHigh: Double;
   range,rangem, bearing, azimuth : Double;
 begin
-  if Assigned(fccmanager.SelectedVehicle) and FSelectedVehicleState then  // rojek coba jika tidak selected vehicle
+  if (Assigned(fccmanager.SelectedVehicle)) and FSelectedVehicleState then  // rojek coba jika tidak selected vehicle
   begin
     if not IsServoOn then
     Exit;
@@ -3053,21 +3067,36 @@ begin
   if Assigned(FCCManager) then
   begin
     FOperatingMode := FCCManager.Operating_Mode;
-    if FOperatingMode <> FLastOperatingMode then
+    if GetTargetFrom3D then
     begin
-      if (FOperatingMode = omAutonomous) and (FSelectedVehicleState = false) then
+      FCCManager.SelectedVehicle := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FCCManager.Target2D));
+      if FCCManager.SelectedVehicle <> nil then
       begin
-        FCCManager.SelectedVehicle := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FCCManager.Target2D));
-        FSelectedVehicleState := true;
         FMapMouseUp(Sender, mbLeft, [ssLeft], 0, 0);
-
-        FMap.Refresh;
+        FSelectedVehicleState := true;
+        VehicleMgr.DeselectAll;
+        FCCManager.SelectedVehicle.Symbol.Selected := True;
       end
-      else if FSelectedVehicleState = true then
+
+      else
       begin
-        FCCManager.SelectedVehicle := nil;
+        VehicleMgr.DeselectAll;
         FSelectedVehicleState := False;
       end;
+
+//      if (FOperatingMode = omAutonomous) and (FSelectedVehicleState = false) then
+//      begin
+//        FCCManager.SelectedVehicle := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FCCManager.Target2D));
+//        FSelectedVehicleState := true;
+//        FMapMouseUp(Sender, mbLeft, [ssLeft], 0, 0);
+//
+//        FMap.Refresh;
+//      end
+//      else if FSelectedVehicleState = true then
+//      begin
+//        FCCManager.SelectedVehicle := nil;
+//        FSelectedVehicleState := False;
+//      end;
     end;
 
     FLastOperatingMode := FOperatingMode;
