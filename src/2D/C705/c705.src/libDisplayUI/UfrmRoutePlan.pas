@@ -16,7 +16,7 @@ uses
 type
   TEditMode = (edNone, edAddWaypoint, edMoveWaypoint, edDeleteWaypoint, edAddRoute, edDeleteRoute);
 
-  TCurrentToolState = (stDefaultCenterView, stRuler, stZoomIn, stZoomOut, stMove, stSelectArrow);
+  TCurrentToolState = (stDefaultCenterView, stRuler, stZoomIn, stZoomOut, stMove, stSelectArrow, stXhairSelectTgt);
 
   TfrmRoutePlan = class(TForm)
     {$REGION 'Components'}
@@ -536,6 +536,8 @@ type
     procedure SetDefaultViewPromptBox(aPanel: Integer);
 
     procedure UpdateTextScaleMap;
+
+    procedure UpdateTargetParamPnl(aObjTgt: TShipContact; aRange: Double);
   public
     { Public declarations }
 
@@ -1106,6 +1108,20 @@ begin
   lblNav_HdgRShip.Caption := FormatFloat('0.00', NormalizeHeading(OwnShip.Heading ++ 90));//'90.00';
 end;
 
+procedure TfrmRoutePlan.UpdateTargetParamPnl(aObjTgt: TShipContact; aRange: Double);
+begin
+  {$REGION 'Page1'}
+  edtTgtNoPg1.Text := IntToStr(aObjTgt.ID);
+  edtTgtLongPg1.Text := FloatToStr(aObjTgt.Lon);
+  edtTgtLatPg1.Text := FloatToStr(aObjTgt.Lat);
+  edtTgtSpdPg1.Text := FormatFloat('0.00', aObjTgt.Speed);//FloatToStr(aObjTgt.Speed);
+  edtTgtCrsPg1.Text := FormatFloat('0.00', aObjTgt.Heading);//FloatToStr(aObjTgt.Heading);
+  edtTgtRngPg1.Text := FormatFloat('0.00', aRange);//FloatToStr(aRange);
+  //edtTgtAzimuPg1.Text;
+  //edtTgtHeightPg1.Text;
+  {$ENDREGION}
+end;
+
 procedure TfrmRoutePlan.UpdateTextScaleMap;
 var
   Radius : Double; // Nm
@@ -1343,15 +1359,21 @@ begin
 
     lblNav_LongShip.Caption := (TargetObj.Lon).ToString;
     lblNav_LatShip.Caption := (TargetObj.Lat).ToString;
+
   end;
 
-  if FSelectMode and (SimManager.RoutePlanMode = mFiring) then
+  if FSelectMode and (SimManager.RoutePlanMode = mFiring) and
+    (FCurrentTool = stXhairSelectTgt)  then
   begin
     OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
 //    FMap.ConvertCoord(X, Y, Long, Lati, miMapToScreen);
+
     range := CalcRange(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
     FSelectedRange := range * C_NauticalMile_To_Metre;
     FSelectedBearing := CalcBearing(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
+
+    if TargetObj <> nil then
+      UpdateTargetParamPnl(TargetObj, range);
 
     //VehicleMgr.SelectedTargetID := TargetObj.ID;
     //VehicleMgr.isFiring := False;
@@ -1469,6 +1491,7 @@ begin
       {$REGION 'Operating Mode'}
       //FMap.CurrentTool := miCrossCursor;
       FMap.MousePointer := miCrossCursor;
+      FCurrentTool := stXhairSelectTgt;
       FSelectMode := True;
 
       SimManager.RoutePlanMode := mFiring;
