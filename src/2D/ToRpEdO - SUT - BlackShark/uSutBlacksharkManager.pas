@@ -88,11 +88,14 @@ type
 
     FCursorX, FCursorY : Double;
 
+    FTBIFireAuth : Boolean;
+
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
-          procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
+    procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
+    procedure  Event_OnReceiveStatusConsole(apRec: PAnsiChar; aSize: integer);
   public
     FTorpedoArray : array[0..7] of TTorpedoLauncher;
 
@@ -115,6 +118,7 @@ type
     property isTorpedoAllocShow : Boolean read FisTorpedoAllocShow write FisTorpedoAllocShow;
     property CursorX : Double read FCursorX write FCursorX;
     property CursorY : Double read FCursorY write FCursorY;
+    property TBIFireAuth : Boolean read FTBIFireAuth write FTBIFireAuth;
 
     property OperatorMessages: string read FOperatorMessages write FOperatorMessages;
 //    property isTorpedoAllocShow : Boolean read FisTorpedoAllocShow write FisTorpedoAllocShow;
@@ -369,6 +373,24 @@ begin
   FTorpedoArray[Rec^.LauncherID - 1].Loaded := True;
 end;
 
+procedure TSutBlacksharkManager.Event_OnReceiveStatusConsole(apRec: PAnsiChar;
+  aSize: integer);
+var
+  rec: ^TRecStatus_Console;
+  StatusChanged: Boolean;
+begin
+  StatusChanged := False;
+
+  rec := @apRec^;
+
+  case rec^.ErrorID of
+    __STAT_BLACKSHARK_TBI_FIRE_AUTHORIZE: begin
+      if rec^.ParamError = __PARAM_BLACKSHARK_ON then FTBIFireAuth := True
+      else if rec^.ParamError = __PARAM_BLACKSHARK_OFF then FTBIFireAuth := False;
+    end;
+  end;
+end;
+
 procedure TSutBlacksharkManager.Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
 begin
 
@@ -437,6 +459,9 @@ begin
 
   NetComm.RegisterProcedure(
     REC_STAT_CANNON_SPLASH  ,EventonReceiveSplashPoint  ,  sizeof(TRecSplashCannon));
+
+  NetComm.RegisterProcedure(
+    REC_STAT_ORDER_CONSOLE  ,EventonReceiveSplashPoint  ,  sizeof(TRecStatus_Console));
 
   FxShip       := TXShip.Create;
   FxShip.PositionX := 112.75;

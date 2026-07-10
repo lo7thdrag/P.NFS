@@ -583,6 +583,7 @@ type
     lblLoadBlackShark2: TLabel;
     lblLoadBlackShark1: TLabel;
     lblLoadBlackShark3: TLabel;
+    chkBlackSharkFireAuth: TCheckBox;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -932,12 +933,14 @@ begin
   { ==============================BLACKSHARK========================== }
   { BLACKSHARK }
   chkBlacksharkEnableWeapon.Tag       := __STAT_BLACKSHARK_ENABLE;
+  chkBlackSharkFireAuth.Tag           := __STAT_BLACKSHARK_TBI_FIRE_AUTHORIZE;
 //  chkRBU_Unformer1Left.Tag  := __STAT_RBU_UNFORMER_I_LEFT;
 //  chkRBU_Unformer2Left.Tag  := __STAT_RBU_UNFORMER_II_LEFT;
 //  chkRBU_Unformer1Right.Tag := __STAT_RBU_UNFORMER_I_RIGHT;
 //  chkRBU_Unformer2Right.Tag := __STAT_RBU_UNFORMER_II_RIGHT;
 
   chkBlacksharkEnableWeapon.OnClick       := BlacksharkChkClick;
+  chkBlackSharkFireAuth.OnClick           := BlacksharkChkClick;
 //  chkRBU_Unformer1Left.OnClick  := RBUCbbClick;
 //  chkRBU_Unformer2Left.OnClick  := RBUCbbClick;
 //  chkRBU_Unformer1Right.OnClick := RBUCbbClick;
@@ -2536,26 +2539,23 @@ begin
 
       launcherID := cbbLoadBlackShark.ItemIndex + 1;
 
-      if WeaponBlackShark.EnableBlackshark then begin
+      recsendcBlackShark.shipID                  := SimManager.TrackObject.FDataBaseID;
+      recsendcBlackShark.mWeaponID               := WeaponBlackShark.Weapon_ID;
+      recsendcBlackShark.mLauncherID             := launcherID;
+      recsendcBlackShark.mMissileID              := 1;
+      recsendcBlackShark.mMissileNumber          := 1;
+      recsendcBlackShark.mT_ID                   := 0;  // target ID
+      recsendcBlackShark.OrderID                 := __ORD_TORPEDOSUT_LOADING;
+      recsendcBlackShark.mMissileType            := 0;
+      recsendcBlackShark.mTorpedoCourse          := 0;
+      recsendcBlackShark.mTorpedoSpeed           := 0;
+      recsendcBlackShark.mTorpedoDepth           := 0;
+      recsendcBlackShark.mTorpedoSafeDistance    := 0;
+      recsendcBlackShark.mTorpedoEnDis           := 0;
+      recsendcBlackShark.mpredm                  := 0;
+      recsendcBlackShark.mTargetType             := 0;
 
-        recsendcBlackShark.shipID                  := SimManager.TrackObject.FDataBaseID;
-        recsendcBlackShark.mWeaponID               := WeaponBlackShark.Weapon_ID;
-        recsendcBlackShark.mLauncherID             := launcherID;
-        recsendcBlackShark.mMissileID              := 1;
-        recsendcBlackShark.mMissileNumber          := 1;
-        recsendcBlackShark.mT_ID                   := 0;  // target ID
-        recsendcBlackShark.OrderID                 := __ORD_TORPEDOSUT_LOADING;
-        recsendcBlackShark.mMissileType            := 0;
-        recsendcBlackShark.mTorpedoCourse          := 0;
-        recsendcBlackShark.mTorpedoSpeed           := 0;
-        recsendcBlackShark.mTorpedoDepth           := 0;
-        recsendcBlackShark.mTorpedoSafeDistance    := 0;
-        recsendcBlackShark.mTorpedoEnDis           := 0;
-        recsendcBlackShark.mpredm                  := 0;
-        recsendcBlackShark.mTargetType             := 0;
-
-        SimManager.NetSendTo3D_OrderMissileSUT(recsendcBlackShark);
-      end;
+      SimManager.NetSendTo3D_OrderMissileSUT(recsendcBlackShark);
     end;
   end;
 end;
@@ -3113,7 +3113,8 @@ begin
         WeaponBlackshark := TWeaponOn_Blackshark(weaponship);
 
         case id of
-          __STAT_BLACKSHARK_ENABLE : WeaponBlackshark.EnableBlackshark    := TCheckBox(sender).Checked;
+          __STAT_BLACKSHARK_ENABLE : WeaponBlackshark.EnableBlackshark             := TCheckBox(sender).Checked;
+          __STAT_BLACKSHARK_TBI_FIRE_AUTHORIZE : WeaponBlackshark.FireAuthorizeTBI := TCheckBox(sender).Checked;
         end;
       end;
     end;
@@ -3126,7 +3127,7 @@ begin
   else
     aParam := 2;
 
-  SimManager.NetSendStatConsole(ShipStrID, __STAT_BLACKSHARK_ENABLE, id , aParam);
+  SimManager.NetSendStatConsole(ShipStrID, C_DBID_TORPEDO_BLACKSHARK, id , aParam);
 end;
 
 procedure TfWeaponStatus.CannonType730ChkClick(Sender: TObject);

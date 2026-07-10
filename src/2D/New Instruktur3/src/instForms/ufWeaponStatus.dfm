@@ -1600,7 +1600,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'YAKHONT'
@@ -1610,11 +1610,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 883
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 883
           object lblYakhontStatus: TLabel
             Left = 151
             Top = 11
@@ -2079,11 +2080,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl2: TLabel
             Left = 143
             Top = 10
@@ -2139,11 +2141,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object Bevel2: TBevel
             Left = 45
             Top = 24
@@ -2603,16 +2606,17 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object pnlWCCIner: TPanel
             Left = 0
             Top = 0
-            Width = 393
-            Height = 26
+            Width = 397
+            Height = 0
             Align = alClient
             BevelOuter = bvNone
             BorderStyle = bsSingle
@@ -2624,6 +2628,8 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
+            ExplicitWidth = 393
+            ExplicitHeight = 26
             object bvl3: TBevel
               Left = 45
               Top = 41
@@ -2770,11 +2776,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl16: TLabel
             Left = 144
             Top = 11
@@ -3256,11 +3263,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl1: TLabel
             Left = 159
             Top = 11
@@ -3541,11 +3549,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl23: TLabel
             Left = 159
             Top = 11
@@ -4233,11 +4242,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblNameSPS: TLabel
             Left = 159
             Top = 11
@@ -5013,11 +5023,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl4: TLabel
             Left = 145
             Top = 11
@@ -5136,11 +5147,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl200: TLabel
             Left = 145
             Top = 11
@@ -5323,11 +5335,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblExocetMM40Title: TLabel
             Left = 121
             Top = 11
@@ -5843,11 +5856,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblCannon76: TLabel
             Left = 146
             Top = 11
@@ -6060,11 +6074,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl3: TLabel
             Left = 146
             Top = 11
@@ -6120,11 +6135,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblVLMicaTitle: TLabel
             Left = 159
             Top = 11
@@ -6566,11 +6582,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblMilleniumGun35Title: TLabel
             Left = 104
             Top = 12
@@ -6688,7 +6705,7 @@ object fWeaponStatus: TfWeaponStatus
         CaptionFont.Name = 'MS Sans Serif'
         CaptionFont.Style = [fsBold]
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 923
         DividerVisible = False
         Caption = 'BLACKSHARK'
@@ -6697,11 +6714,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 903
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 0
           object lblBlackShark: TLabel
             Left = 142
             Top = 12
@@ -6724,10 +6742,11 @@ object fWeaponStatus: TfWeaponStatus
           object chkBlacksharkEnableWeapon: TCheckBox
             Tag = 2001
             Left = 58
-            Top = 280
+            Top = 331
             Width = 137
             Height = 17
             Caption = 'Enable Blackshark'
+            Enabled = False
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWhite
             Font.Height = -11
@@ -6735,6 +6754,7 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 0
+            Visible = False
           end
           object GroupBox3: TGroupBox
             Left = 50
@@ -6895,6 +6915,21 @@ object fWeaponStatus: TfWeaponStatus
                 '7'
                 '8')
             end
+          end
+          object chkBlackSharkFireAuth: TCheckBox
+            Tag = 2001
+            Left = 58
+            Top = 280
+            Width = 157
+            Height = 17
+            Caption = 'Fire Authorization (TBI)'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
           end
         end
       end

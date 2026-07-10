@@ -589,6 +589,7 @@ interface
 
     public
       EnableBlackshark : Boolean;
+      FireAuthorizeTBI : Boolean;
       AssignStatusLauncher2       : Boolean;
 
       LoadingMissile1,
