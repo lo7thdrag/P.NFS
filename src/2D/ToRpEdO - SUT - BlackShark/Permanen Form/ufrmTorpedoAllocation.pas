@@ -237,10 +237,21 @@ var
 begin
   ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus2.bmp';
 
-  for i := 1 to 8 do
+  for i := 0 to 7 do
   begin
-    FSelectFireRelease := i;
     SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+
+    case i of
+      1: Img := imgFireRelease1;
+      2: Img := imgFireRelease2;
+      3: Img := imgFireRelease3;
+      4: Img := imgFireRelease4;
+      5: Img := imgFireRelease5;
+      6: Img := imgFireRelease6;
+      7: Img := imgFireRelease7;
+      8: Img := imgFireRelease8;
+    end;
+
     Img.Picture.LoadFromFile(ImgPath);
   end;
 end;

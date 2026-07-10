@@ -74,7 +74,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
       Top = 8
       Width = 470
       Height = 529
-      ActivePage = AdvEngage
+      ActivePage = AdvfireRel
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -13
@@ -512,6 +512,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
             Stretch = True
+            OnClick = imgAllocation1Click
           end
           object imgAllocation1: TImage
             Left = 232
@@ -1212,6 +1213,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
             Stretch = True
+            OnClick = imgAllocation1Click
           end
           object imgAllocation3: TImage
             Tag = 2
@@ -1562,6 +1564,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
             Stretch = True
+            OnClick = imgAllocation1Click
           end
           object imgAllocation6: TImage
             Tag = 5
@@ -1912,6 +1915,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
             Stretch = True
+            OnClick = imgAllocation1Click
           end
           object imgAllocation5: TImage
             Tag = 4
@@ -2262,6 +2266,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
             Stretch = True
+            OnClick = imgAllocation1Click
           end
           object imgAllocation8: TImage
             Tag = 7
@@ -2612,6 +2617,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
             Stretch = True
+            OnClick = imgAllocation1Click
           end
           object imgAllocation7: TImage
             Tag = 6
@@ -2962,6 +2968,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
             Stretch = True
+            OnClick = imgAllocation1Click
           end
           object lbl1: TLabel
             Left = 16
@@ -7005,6 +7012,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             Top = 46
             Width = 57
             Height = 14
+            Cursor = crHandPoint
             Caption = 'Release All'
             Color = clBlack
             Font.Charset = DEFAULT_CHARSET
