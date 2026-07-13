@@ -148,6 +148,23 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pnlNumTorpedo1: TPanel
+        Left = 8
+        Top = 20
+        Width = 33
+        Height = 20
+        Caption = '1'
+        Color = clLime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        Visible = False
+      end
     end
     object pnlTorpedo2: TPanel
       Left = 8
@@ -277,6 +294,23 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pnlNumTorpedo2: TPanel
+        Left = 10
+        Top = 19
+        Width = 33
+        Height = 20
+        Caption = '2'
+        Color = clLime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        Visible = False
+      end
     end
     object pnlTorpedo3: TPanel
       Left = 149
@@ -404,6 +438,23 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        Visible = False
+      end
+      object pnlNumTorpedo3: TPanel
+        Left = 9
+        Top = 19
+        Width = 33
+        Height = 20
+        Caption = '3'
+        Color = clLime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
         Visible = False
       end
     end
@@ -540,6 +591,23 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pnlNumTorpedo4: TPanel
+        Left = 9
+        Top = 19
+        Width = 33
+        Height = 20
+        Caption = '4'
+        Color = clLime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        Visible = False
+      end
     end
     object pnlTorpedo5: TPanel
       Left = 149
@@ -667,6 +735,23 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        Visible = False
+      end
+      object pnlNumTorpedo5: TPanel
+        Left = 9
+        Top = 20
+        Width = 33
+        Height = 20
+        Caption = '5'
+        Color = clLime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
         Visible = False
       end
     end
@@ -798,6 +883,23 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pnlNumTorpedo6: TPanel
+        Left = 9
+        Top = 20
+        Width = 33
+        Height = 20
+        Caption = '6'
+        Color = clLime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        Visible = False
+      end
     end
     object pnlTorpedo7: TPanel
       Left = 149
@@ -927,6 +1029,23 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
+      object pnlNumTorpedo7: TPanel
+        Left = 8
+        Top = 18
+        Width = 33
+        Height = 20
+        Caption = '7'
+        Color = clLime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        Visible = False
+      end
     end
     object pnlTorpedo8: TPanel
       Left = 8
@@ -1005,7 +1124,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 20
         Width = 14
         Height = 14
-        Caption = '07'
+        Caption = '08'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
@@ -1054,6 +1173,23 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        Visible = False
+      end
+      object pnlNumTorpedo8: TPanel
+        Left = 7
+        Top = 18
+        Width = 33
+        Height = 20
+        Caption = '8'
+        Color = clLime
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
         Visible = False
       end
     end

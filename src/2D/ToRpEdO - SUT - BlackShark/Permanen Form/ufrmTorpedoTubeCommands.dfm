@@ -117,4 +117,11 @@ object frmTorpedoTubeCommands: TfrmTorpedoTubeCommands
       OnClick = lblSendCmdClick
     end
   end
+  object tmrStatusTextTorpedo: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = tmrStatusTextTorpedoTimer
+    Left = 144
+    Top = 216
+  end
 end

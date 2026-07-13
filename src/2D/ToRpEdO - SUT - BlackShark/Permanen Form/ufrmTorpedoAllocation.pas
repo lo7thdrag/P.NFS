@@ -175,7 +175,7 @@ end;
 
 procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
 begin
-  UpdateAllocationStatus;
+//  UpdateAllocationStatus;
 end;
 
 procedure TfrmTorpedoAllocation.imgAllocation1Click(Sender: TObject);
@@ -219,6 +219,17 @@ begin
     FFrmTorpedoTubeCommands.Parent := frmTorpedoWP.pnlTorpedoTubes;
     FFrmTorpedoTubeCommands.Align  := alClient;
     FFrmTorpedoTubeCommands.Show;
+  end;
+
+  if not SutBlacksharkManager.FTorpedoArray[FSelectTube].TorpedoOnOff then
+  begin
+    FFrmTorpedoTubeCommands.lblTorpOn.Caption    := 'TORPEDO ON';
+    FFrmTorpedoTubeCommands.lblTorpOn.Font.Color := clWhite;
+  end
+  else
+  begin
+    FFrmTorpedoTubeCommands.lblTorpOn.Caption    := 'TORPEDO OFF';
+    FFrmTorpedoTubeCommands.lblTorpOn.Font.Color := clLime;
   end;
   {$ENDREGION}
 end;

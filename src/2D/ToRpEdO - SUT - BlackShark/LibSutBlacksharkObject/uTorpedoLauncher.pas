@@ -32,6 +32,7 @@ type
     FCableStatus        : TCableStatus; // off:0 (yellow); testing:1 (blink yellow); torp on and OK:2(green); error:3 (red
     FAllocated          : Boolean;
     FStatusText         : TStatusText;
+    FTorpedoOnOff       : Boolean;
 
   public
     constructor Create; overload;
@@ -53,6 +54,7 @@ type
     property CableStatus : TCableStatus read FCableStatus write FCableStatus;
     property Allocated : Boolean read FAllocated write FAllocated;
     property TextStatus : TStatusText read FStatusText write FStatusText;
+    property TorpedoOnOff : Boolean read FTorpedoOnOff write FTorpedoOnOff;
 
 //    procedure SetSpeedKts(AKnots: Double);
 //    procedure SetSpeedKmh(AKmh: Double);

@@ -100,6 +100,14 @@ type
     lblActiveToSo8: TLabel;
     lblValueTorpedo8: TLabel;
     tmrDrawTube: TTimer;
+    pnlNumTorpedo1: TPanel;
+    pnlNumTorpedo2: TPanel;
+    pnlNumTorpedo3: TPanel;
+    pnlNumTorpedo4: TPanel;
+    pnlNumTorpedo5: TPanel;
+    pnlNumTorpedo6: TPanel;
+    pnlNumTorpedo7: TPanel;
+    pnlNumTorpedo8: TPanel;
     procedure tmrDrawTubeTimer(Sender: TObject);
     procedure pbTubeSymbol1Paint(Sender: TObject);
   private
@@ -315,7 +323,8 @@ procedure TfrmTorpedoTubeStatusWindow.UpdateTextStatus;
 var
   i,j   : Integer;
   aText : TTorpedoLauncher;
-  Text1, Text2  : TLabel;
+  Text1, Text2: TLabel;
+  PanelNumber : TPanel;
 begin
   {$REGION 'Status Text Torpedo'}
   for i := 0 to 7 do
@@ -325,41 +334,57 @@ begin
       begin
         Text1 := lblTorpedo1;
         Text2 := lblValueTorpedo1;
+
+        PanelNumber := pnlNumTorpedo1;
       end;
       1:
       begin
         Text1 := lblTorpedo2;
-        Text2 := lblValueTorpedo2
+        Text2 := lblValueTorpedo2;
+
+        PanelNumber := pnlNumTorpedo2;
       end;
       2:
       begin
         Text1 := lblTorpedo3;
         Text2 := lblValueTorpedo3;
+
+        PanelNumber := pnlNumTorpedo3;
       end;
       3:
       begin
         Text1 := lblTorpedo4;
         Text2 := lblValueTorpedo4;
+
+        PanelNumber := pnlNumTorpedo4;
       end;
       4:
       begin
         Text1 := lblTorpedo5;
         Text2 := lblValueTorpedo5;
+
+        PanelNumber := pnlNumTorpedo5;
       end;
       5:
       begin
         Text1 := lblTorpedo6;
         Text2 := lblValueTorpedo6;
+
+        PanelNumber := pnlNumTorpedo6;
       end;
       6:
       begin
         Text1 := lblTorpedo7;
         Text2 := lblValueTorpedo7;
+
+        PanelNumber := pnlNumTorpedo7;
       end;
       7:
       begin
         Text1 := lblTorpedo8;
         Text2 := lblValueTorpedo8;
+
+        PanelNumber := pnlNumTorpedo8;
       end;
     end;
 
@@ -371,6 +396,8 @@ begin
     Text2.Caption := '';
     Text2.Visible := False;
 
+    PanelNumber.Visible := False;
+
     if aText.Allocated then
     begin
       case aText.TextStatus of
@@ -380,6 +407,8 @@ begin
           Text1.Caption    := '';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -397,6 +426,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -412,6 +443,8 @@ begin
           Text1.Caption    := 'TORP READY';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -429,6 +462,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -444,6 +479,8 @@ begin
           Text1.Caption    := 'MISFIRED';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -461,6 +498,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -476,6 +515,8 @@ begin
           Text1.Caption    := 'MSI-APPR-LOS';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -493,6 +534,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -508,6 +551,8 @@ begin
           Text1.Caption    := 'MSI-APPR-SA';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -525,6 +570,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -540,6 +587,8 @@ begin
           Text1.Caption    := 'MSI-SRC-LOS';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -557,6 +606,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -572,6 +623,8 @@ begin
           Text1.Caption    := 'MSI-SRC-SA';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -589,6 +642,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -604,6 +659,8 @@ begin
           Text1.Caption    := 'TORP-SRC-AUTO';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -621,6 +678,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -636,6 +695,8 @@ begin
           Text1.Caption    := 'TORP-SRC-CSP';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -653,6 +714,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -668,6 +731,8 @@ begin
           Text1.Caption    := 'MAN-HORIZ';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -685,6 +750,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -700,6 +767,8 @@ begin
           Text1.Caption    := 'CLOSE-IN ATT';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -717,6 +786,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -732,6 +803,8 @@ begin
           Text1.Caption    := 'COMM BREAK';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
@@ -749,6 +822,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          PanelNumber.Visible := True;
+
           if Assigned(VehicleMgr.TrackControlled) then
           begin
             Text2.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
@@ -764,6 +839,8 @@ begin
           Text1.Caption    := 'IMMED FIRE';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
           begin
