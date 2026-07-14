@@ -4,7 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+
+  uSutBlacksharkManager, uTorpedoLauncher;
 
 type
   TfrmSystemStatus = class(TForm)
@@ -39,10 +41,11 @@ type
     lblFireAuthorization: TLabel;
     Label17: TLabel;
     lblConsole: TLabel;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    __stateFire : Boolean;
   end;
 
 var
@@ -51,5 +54,21 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmSystemStatus.FormCreate(Sender: TObject);
+begin
+  SutBlacksharkManager.InitializeSimulation;
+
+  if SutBlacksharkManager.FTBIFireAuth = True then
+  begin
+    lblFireAuthorization.Caption    := 'ON';
+    lblFireAuthorization.Font.Color := clLime;
+  end
+  else if SutBlacksharkManager.FTBIFireAuth = False then
+  begin
+    lblFireAuthorization.Caption    := 'OFF';
+    lblFireAuthorization.Font.Color := clLime;
+  end;
+end;
 
 end.

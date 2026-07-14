@@ -88,8 +88,6 @@ type
 
     FCursorX, FCursorY : Double;
 
-    FTBIFireAuth : Boolean;
-
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
     procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
@@ -98,6 +96,7 @@ type
     procedure  Event_OnReceiveStatusConsole(apRec: PAnsiChar; aSize: integer);
   public
     FTorpedoArray : array[0..7] of TTorpedoLauncher;
+    FTBIFireAuth : Boolean;
 
     procedure GetTorpedoWeaponAssigned;
 
@@ -170,7 +169,7 @@ implementation
 
 uses
   uDataModule, ulibSettings,
-    uShipModel, ufrmTorpedoAllocation;
+    uShipModel, ufrmTorpedoAllocation, ufrmSystemStatus;
 
 { TSutBlacksharkManager }
 
@@ -221,6 +220,7 @@ begin
 
   FIsStandAlone := False;
   FIsTrueMotion := False;
+  FTBIFireAuth  := False;
 
   for i := 0 to High(FTorpedoArray) do
     FTorpedoArray[i] := TTorpedoLauncher.Create;
@@ -377,16 +377,25 @@ procedure TSutBlacksharkManager.Event_OnReceiveStatusConsole(apRec: PAnsiChar;
   aSize: integer);
 var
   rec: ^TRecStatus_Console;
-  StatusChanged: Boolean;
 begin
-  StatusChanged := False;
-
   rec := @apRec^;
 
-  case rec^.ErrorID of
-    __STAT_BLACKSHARK_TBI_FIRE_AUTHORIZE: begin
-      if rec^.ParamError = __PARAM_BLACKSHARK_ON then FTBIFireAuth := True
-      else if rec^.ParamError = __PARAM_BLACKSHARK_OFF then FTBIFireAuth := False;
+  if rec.OWN_SHIP_UID = xShip.UniqueID then
+  begin
+    if rec.ErrorID =  __STAT_BLACKSHARK_TBI_FIRE_AUTHORIZE then
+    begin
+      if rec.ParamError = __PARAM_BLACKSHARK_ON  then
+      begin
+        frmSystemStatus.__stateFire := True;
+        frmSystemStatus.lblFireAuthorization.Caption    := 'ON';
+        frmSystemStatus.lblFireAuthorization.Font.Color := clLime;
+      end
+      else if rec.ParamError = __PARAM_BLACKSHARK_OFF then
+      begin
+        frmSystemStatus.__stateFire := False;
+        frmSystemStatus.lblFireAuthorization.Caption    := 'OFF';
+        frmSystemStatus.lblFireAuthorization.Font.Color := clLime;
+      end;
     end;
   end;
 end;
@@ -462,6 +471,9 @@ begin
 
   NetComm.RegisterProcedure(
     REC_STAT_ORDER_CONSOLE  ,EventonReceiveSplashPoint  ,  sizeof(TRecStatus_Console));
+
+  NetComm.RegisterProcedure(
+    REC_STAT_ORDER_CONSOLE  ,Event_OnReceiveStatusConsole,  sizeof(TRecStatus_Console));
 
   FxShip       := TXShip.Create;
   FxShip.PositionX := 112.75;

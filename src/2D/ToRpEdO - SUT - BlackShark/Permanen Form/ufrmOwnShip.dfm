@@ -116,7 +116,7 @@ object frmOwnShip: TfrmOwnShip
       Top = 24
       Width = 25
       Height = 16
-      Caption = '90.0'
+      Caption = '00.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -127,9 +127,9 @@ object frmOwnShip: TfrmOwnShip
     object lblRange: TLabel
       Left = 80
       Top = 44
-      Width = 18
+      Width = 25
       Height = 16
-      Caption = '5.1'
+      Caption = '00.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -142,7 +142,7 @@ object frmOwnShip: TfrmOwnShip
       Top = 64
       Width = 25
       Height = 16
-      Caption = '90.0'
+      Caption = '00.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -155,7 +155,7 @@ object frmOwnShip: TfrmOwnShip
       Top = 84
       Width = 21
       Height = 16
-      Caption = '100'
+      Caption = '000'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -168,7 +168,7 @@ object frmOwnShip: TfrmOwnShip
       Top = 104
       Width = 25
       Height = 16
-      Caption = '20.0'
+      Caption = '00.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -194,7 +194,7 @@ object frmOwnShip: TfrmOwnShip
       Top = 4
       Width = 14
       Height = 16
-      Caption = '01'
+      Caption = '00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
