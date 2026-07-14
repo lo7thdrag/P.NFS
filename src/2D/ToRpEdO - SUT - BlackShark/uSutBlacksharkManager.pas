@@ -386,15 +386,17 @@ begin
     begin
       if rec.ParamError = __PARAM_BLACKSHARK_ON  then
       begin
-        frmSystemStatus.__stateFire := True;
-        frmSystemStatus.lblFireAuthorization.Caption    := 'ON';
-        frmSystemStatus.lblFireAuthorization.Font.Color := clLime;
+        FTBIFireAuth := True;
+
+        if Assigned(frmSystemStatus) then
+          frmSystemStatus.UpdateFireAuthorization;
       end
       else if rec.ParamError = __PARAM_BLACKSHARK_OFF then
       begin
-        frmSystemStatus.__stateFire := False;
-        frmSystemStatus.lblFireAuthorization.Caption    := 'OFF';
-        frmSystemStatus.lblFireAuthorization.Font.Color := clLime;
+        FTBIFireAuth := False;
+
+        if Assigned(frmSystemStatus) then
+          frmSystemStatus.UpdateFireAuthorization;
       end;
     end;
   end;

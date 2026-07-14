@@ -45,7 +45,7 @@ type
   private
     { Private declarations }
   public
-    __stateFire : Boolean;
+    procedure UpdateFireAuthorization;
   end;
 
 var
@@ -59,16 +59,22 @@ procedure TfrmSystemStatus.FormCreate(Sender: TObject);
 begin
   SutBlacksharkManager.InitializeSimulation;
 
-  if SutBlacksharkManager.FTBIFireAuth = True then
+  UpdateFireAuthorization;
+end;
+
+procedure TfrmSystemStatus.UpdateFireAuthorization;
+begin
+  if SutBlacksharkManager.FTBIFireAuth then
   begin
-    lblFireAuthorization.Caption    := 'ON';
+    lblFireAuthorization.Caption    :=  'ON';
     lblFireAuthorization.Font.Color := clLime;
   end
-  else if SutBlacksharkManager.FTBIFireAuth = False then
+  else
   begin
     lblFireAuthorization.Caption    := 'OFF';
-    lblFireAuthorization.Font.Color := clLime;
+    lblFireAuthorization.Font.Color := clRed;
   end;
+
 end;
 
 end.
