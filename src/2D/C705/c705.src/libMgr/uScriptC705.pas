@@ -25,7 +25,7 @@ uses
   Windows, System.SysUtils,
   uC705SimManager, uLibSettings, uFormMgr, uVehicleManager,
     UfrmRoutePlan, UfrmWCC,
-    uBridgeSet, uTCPDatatype, uDataModule;
+    uBridgeSet, uTCPDatatype, uDataModule, uFrmPnlArea3A, uFrmPnlArea3B;
 
 /// some sub function to keep the main procedure simple;
 

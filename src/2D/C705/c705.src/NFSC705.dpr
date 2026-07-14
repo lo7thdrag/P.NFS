@@ -46,7 +46,9 @@ uses
   uBaseConstan in '..\..\ShareLib\LibBaseSystem\uBaseConstan.pas',
   uTCPDatatype in '..\..\ShareLib\LibNetworks\uTCPDatatype.pas',
   uDataModule in 'libDatabase\uDataModule.pas' {DataModule1: TDataModule},
-  uClassDatabase in 'libDatabase\uClassDatabase.pas';
+  uClassDatabase in 'libDatabase\uClassDatabase.pas',
+  uFrmPnlArea3A in 'libDisplayUI\FrmTab\uFrmPnlArea3A.pas' {frmPnlArea3A},
+  uFrmPnlArea3B in 'libDisplayUI\FrmTab\uFrmPnlArea3B.pas' {frmPnlArea3B};
 
 {$R *.res}
 
@@ -67,6 +69,8 @@ begin
 
   Application.CreateForm(TfrmRoutePlan, frmRoutePlan);
   Application.CreateForm(TDataModule1, DataModule1);
+  //Application.CreateForm(TfrmPnlArea3B, frmPnlArea3B);
+  //Application.CreateForm(TfrmPnlArea3A, frmPnlArea3A);
   //Application.CreateForm(TfrmFoeFriendSituationPage, frmFoeFriendSituationPage);
   Application.CreateForm(TfrmWCC, frmWCC);
   Application.CreateForm(TfrmKeyboardCalcLaunch, frmKeyboardCalcLaunch);

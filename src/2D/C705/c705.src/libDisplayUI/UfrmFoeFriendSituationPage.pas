@@ -14,7 +14,8 @@ uses
   uFrmChannelSelect,
   uFrmINSTest,
   uFrmParamSetting,
-  UfrmRadar;
+  UfrmRadar,
+  uFrmPnlArea3A, uFrmPnlArea3B;
 
 type
   TfrmFoeFriendSituationPage = class(TForm)
@@ -55,84 +56,7 @@ type
     pnlArea3A_FireDist: TPanel;
     pnlArea4_FireDist: TPanel;
     pnlArea3A: TPanel;
-    Image1: TImage;
-    pnl3ATop: TPanel;
-    pnlTrget3A: TPanel;
-    pnlTargetNmb3A: TPanel;
-    pnlTargetName3A: TPanel;
-    pnlTarget3A: TPanel;
-    vrlInitState: TVrLights;
-    lblInitState3A: TLabel;
-    lblInsGnss3A: TLabel;
-    lblMNormal3A: TLabel;
-    lblCalFinished3A: TLabel;
-    lblNavigate3A: TLabel;
-    lblIgnition3A: TLabel;
-    lblTakeOff3A: TLabel;
-    lblParaSetting3A: TLabel;
-    lblInsideSector3A: TLabel;
-    lblSeaTgt3A: TLabel;
-    lblEngine3A: TLabel;
-    lblPowerOn3A: TLabel;
-    lblInitChk3A: TLabel;
-    lblWarmup3A: TLabel;
-    lblLandTgt3A: TLabel;
-    lblFullOpen3A: TLabel;
-    lblParaLocking3A: TLabel;
-    lblBusSupply3A: TLabel;
-    lblPlcChk3A: TLabel;
-    lblInsAlign3A: TLabel;
-    lblSeeker3A: TLabel;
-    lblBoosterArm3A: TLabel;
-    lblBatteryAct3A: TLabel;
-    lblLnchRdy3A: TLabel;
-    lblPwrSwitch3A: TLabel;
     pnlArea3B: TPanel;
-    lblInitState3B: TLabel;
-    lblInsGnss3B: TLabel;
-    lblMNormal3B: TLabel;
-    lblCalFinished3B: TLabel;
-    lblNavigate3B: TLabel;
-    lblIgnition3B: TLabel;
-    lblTakeOff3B: TLabel;
-    lblParaSetting3B: TLabel;
-    lblInsideSector3B: TLabel;
-    lblSeaTgt3B: TLabel;
-    lblEngine3B: TLabel;
-    lblPowerOn3B: TLabel;
-    lblInitChk3B: TLabel;
-    lblWarmup3B: TLabel;
-    lblLandTgt3B: TLabel;
-    lblFullOpen3B: TLabel;
-    lblParaLocking3B: TLabel;
-    lblBusSupply3B: TLabel;
-    lblPlcChk3B: TLabel;
-    lblInsAlign3B: TLabel;
-    lblSeeker3B: TLabel;
-    lblBoosterArm3B: TLabel;
-    lblBatteryAct3B: TLabel;
-    lblLnchRdy3B: TLabel;
-    lblPwrSwitch3B: TLabel;
-    Panel4: TPanel;
-    Image2: TImage;
-    Panel6: TPanel;
-    Panel7: TPanel;
-    Panel8: TPanel;
-    Panel9: TPanel;
-    pnl3ABtm: TPanel;
-    pnlStatus3A: TPanel;
-    Panel10: TPanel;
-    Panel11: TPanel;
-    pnlChn3A: TPanel;
-    lblWarmUpTime3A: TLabel;
-    lblAlignmentStatus3A: TLabel;
-    pnl3BBtm: TPanel;
-    pnlStatus3B: TPanel;
-    Panel13: TPanel;
-    lblAligmentStatus3B: TLabel;
-    Panel14: TPanel;
-    lblWarmupTime3B: TLabel;
-    pnlChn3B: TPanel;
     pnlArea2: TPanel;
     pnlArea2Btm: TPanel;
     pnlArea2Top: TPanel;
@@ -400,56 +324,6 @@ type
     Label63: TLabel;
     pnlPowerOffContentMCtrl: TPanel;
     Label67: TLabel;
-    pnlVrlInitState3A: TPanel;
-    pnlVrlInsGnss3A: TPanel;
-    pnlVrlMNormal3A: TPanel;
-    pnlVrlCalFinished3A: TPanel;
-    pnlVrlNavigate3A: TPanel;
-    pnlVrlIgnition3A: TPanel;
-    pnlVrlSeaTgt3A: TPanel;
-    pnlVrlInsideSector3A: TPanel;
-    pnlVrlParaSetting: TPanel;
-    pnlVrlTakeOff3A: TPanel;
-    pnlVrlPowerOn3A: TPanel;
-    pnlVrlEngine3A: TPanel;
-    pnlVrlFullOpen3A: TPanel;
-    pnlVrlParaLocking3A: TPanel;
-    pnlVrlLandTgt3A: TPanel;
-    pnlVrlInitChk3A: TPanel;
-    pnlVrlWarmUp3A: TPanel;
-    pnlVrlBusSupply3A: TPanel;
-    pnlVrlPlcChk3A: TPanel;
-    pnlVrlBoosterArm3A: TPanel;
-    pnlVrlBatteryAct3A: TPanel;
-    pnlVrlSeeker3A: TPanel;
-    pnlVrlInsAlign3A: TPanel;
-    pnlVrlLnchRdy3A: TPanel;
-    pnlVrlPwrSwitch3A: TPanel;
-    pnlVrlInitState3B: TPanel;
-    pnlVrlInsGnss3B: TPanel;
-    pnlVrlMNormal3B: TPanel;
-    pnlVrlCalFinished3B: TPanel;
-    pnlVrlNavigate3B: TPanel;
-    pnlVrlIgnition3B: TPanel;
-    pnlVrlTakeOff3B: TPanel;
-    pnlVrlParaSetting3B: TPanel;
-    pnlVrlInsideSector3B: TPanel;
-    pnlVrlSeaTgt3B: TPanel;
-    pnlVrlEngine3B: TPanel;
-    pnlVrlPowerOn3B: TPanel;
-    pnlVrlInitChk3B: TPanel;
-    pnlVrlWarmUp3B: TPanel;
-    pnlVrlLandTgt3B: TPanel;
-    pnlVrlFullOpen3B: TPanel;
-    pnlVrlParaLocking3B: TPanel;
-    pnlVrlBusSupply3B: TPanel;
-    pnlVrlPlcChk3B: TPanel;
-    pnlVrlBoosterArm3B: TPanel;
-    pnlVrlBatteryAct3B: TPanel;
-    pnlVrlSeeker3B: TPanel;
-    pnlVrlInsAlign3B: TPanel;
-    pnlVrlLnchRdy3B: TPanel;
-    pnlVrlPwrSwitch3B: TPanel;
     {$ENDREGION}
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
@@ -469,6 +343,8 @@ type
     FFormINSTest: TfrmINSTest; //done UI
     FFormLaunchData: TfrmLaunchData; //done UI
     FFormExit: TfrmRadar; // done UI
+    FFormPnlArea3A: TfrmPnlArea3A;
+    FFormPnlArea3B: TfrmPnlArea3B;
 
     // For tab M. Control (Missile Control)
     FarrHeaderPnlMCtrl: array[0..3] of TPanel;
@@ -489,6 +365,7 @@ type
     procedure SetActiveHeaderMCtrl(idx: Integer);
     procedure ShowActiveContentMCtrl;
     procedure CloseAllContentMCtrl;
+    
   public
     { Public declarations }
     procedure UpdateLayoutTab;
@@ -568,8 +445,15 @@ begin
   if not Assigned(FFormLaunchData) then
     FFormLaunchData := TfrmLaunchData.Create(Self);
 
-  if not Assigned (FFormExit) then
+  if not Assigned(FFormExit) then
     FFormExit := TfrmRadar.Create(Self);
+
+  if not Assigned(FFormPnlArea3A) then
+    FFormPnlArea3A := TfrmPnlArea3A.Create(Self);
+
+  if not Assigned(FFormPnlArea3B) then
+    FFormPnlArea3B := TfrmPnlArea3B.Create(Self);
+
 end;
 
 procedure TfrmFoeFriendSituationPage.AttachPanelTo(aPanel, aParent: TWinControl);
@@ -780,7 +664,15 @@ begin
   HidePanels([pnlArea3A, pnlArea3B, pnlArea4, pnlArea5, pnlInsTestTab, pnlExitTab]);
 
   advpgcFunctionMenuFoe.ActivePage := advtsSituation;
+
   UpdateLayoutTab;
+  EmbedAreaForm(FFormPnlArea3A, pnlArea3A);
+  if Assigned(FFormPnlArea3A) then
+    frmPnlArea3A.RegisterEvents;
+
+  EmbedAreaForm(FFormPnlArea3B, pnlArea3B);
+//  if Assigned(FFormPnlArea3B) then
+//    frmPnlArea3A.RegisterEvents;
 
   UpdateClock; // Update Clock, tidak nunggu 1 detik
   tmrClock.Enabled := True;
