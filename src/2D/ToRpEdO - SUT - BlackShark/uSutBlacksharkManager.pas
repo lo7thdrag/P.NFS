@@ -4,7 +4,7 @@ interface
 uses
   Forms,
   Graphics,
-  Classes, Sysutils,
+  Classes, Sysutils, Dialogs, Messages,
   windows, uSimulationManager, uTCPDatatype, uBaseSimulationObject, uLibClientObject,
   uBridgeSet, uTestShip, uBaseFunction, uClassDatabase, System.Uitypes, uVehicleManager,
   uVehicle, System.Math, OverbyteIcsWSocket, uTorpedoLauncher, uSimulationTrack, uSubSurfaceTrack, uSurfaceTrack,
@@ -233,8 +233,6 @@ begin
   for i := 0 to 7 do
     FTorpedoArray[i].Free;
 
-  inherited;
-
   if not IsStandAlone then
     Net_DisConnect;
 
@@ -243,6 +241,8 @@ begin
 
   if Assigned(FAssignedWeapon) then
     FAssignedWeapon.Free;
+
+  inherited;
 end;
 
 procedure TSutBlacksharkManager.EventOnReceiveDataPosition(apRec: PAnsiChar;
@@ -380,24 +380,30 @@ var
 begin
   rec := @apRec^;
 
-  if rec.OWN_SHIP_UID = xShip.UniqueID then
+  if rec.ErrorID = __STAT_BLACKSHARK_TBI_FIRE_AUTHORIZE then
   begin
-    if rec.ErrorID =  __STAT_BLACKSHARK_TBI_FIRE_AUTHORIZE then
-    begin
-      if rec.ParamError = __PARAM_BLACKSHARK_ON  then
+    case rec.ParamError of
+
+      __PARAM_BLACKSHARK_ON:
       begin
         FTBIFireAuth := True;
 
         if Assigned(frmSystemStatus) then
+        begin
           frmSystemStatus.UpdateFireAuthorization;
-      end
-      else if rec.ParamError = __PARAM_BLACKSHARK_OFF then
+        end;
+      end;
+
+      __PARAM_BLACKSHARK_OFF:
       begin
         FTBIFireAuth := False;
 
         if Assigned(frmSystemStatus) then
+        begin
           frmSystemStatus.UpdateFireAuthorization;
+        end;
       end;
+
     end;
   end;
 end;
@@ -456,6 +462,13 @@ end;
 procedure TSutBlacksharkManager.InitializeSimulation;
 begin
   inherited;
+
+  FxShip       := TXShip.Create;
+  FxShip.PositionX := 112.75;
+  FxShip.PositionY := -7.2;
+  FxShip.Heading := 0;
+  FxShip.CreateDefaultView(Fmap);
+
     NetComm.RegisterProcedure(
       REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
 
@@ -471,17 +484,11 @@ begin
   NetComm.RegisterProcedure(
     REC_STAT_CANNON_SPLASH  ,EventonReceiveSplashPoint  ,  sizeof(TRecSplashCannon));
 
-  NetComm.RegisterProcedure(
-    REC_STAT_ORDER_CONSOLE  ,EventonReceiveSplashPoint  ,  sizeof(TRecStatus_Console));
+//  NetComm.RegisterProcedure(
+//    REC_STAT_ORDER_CONSOLE  ,EventonReceiveSplashPoint  ,  sizeof(TRecStatus_Console));
 
   NetComm.RegisterProcedure(
     REC_STAT_ORDER_CONSOLE  ,Event_OnReceiveStatusConsole,  sizeof(TRecStatus_Console));
-
-  FxShip       := TXShip.Create;
-  FxShip.PositionX := 112.75;
-  FxShip.PositionY := -7.2;
-  FxShip.Heading := 0;
-  FxShip.CreateDefaultView(Fmap);
 
   if not IsStandAlone then
     Net_Connect;

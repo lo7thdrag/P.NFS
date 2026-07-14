@@ -72,9 +72,8 @@ begin
   else
   begin
     lblFireAuthorization.Caption    := 'OFF';
-    lblFireAuthorization.Font.Color := clRed;
+    lblFireAuthorization.Font.Color := clWhite;
   end;
-
 end;
 
 end.

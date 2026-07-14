@@ -1199,19 +1199,6 @@ object frmSystemStatus: TfrmSystemStatus
       Font.Style = []
       ParentFont = False
     end
-    object lblFireAuthorization: TLabel
-      Left = 416
-      Top = 100
-      Width = 17
-      Height = 14
-      Caption = 'Off'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -12
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
     object Label17: TLabel
       Left = 297
       Top = 124
@@ -1233,6 +1220,19 @@ object frmSystemStatus: TfrmSystemStatus
       Caption = 'MSI-01'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblFireAuthorization: TLabel
+      Left = 416
+      Top = 101
+      Width = 17
+      Height = 14
+      Caption = 'Off'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
       Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = []

@@ -34,8 +34,8 @@ type
     { Public declarations }
   end;
 
-//var
-//  frmOwnShip: TfrmOwnShip;
+var
+  frmOwnShip: TfrmOwnShip;
 
 implementation
 
