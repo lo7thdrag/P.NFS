@@ -203,4 +203,9 @@ object frmContactInControl: TfrmContactInControl
       ParentFont = False
     end
   end
+  object tmrContactInControl: TTimer
+    OnTimer = tmrContactInControlTimer
+    Left = 88
+    Top = 48
+  end
 end

@@ -175,7 +175,7 @@ end;
 
 procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
 begin
-//  UpdateAllocationStatus;
+  UpdateAllocationStatus;
 end;
 
 procedure TfrmTorpedoAllocation.imgAllocation1Click(Sender: TObject);
@@ -350,7 +350,7 @@ var
   Img     : TImage;
   ImgPath : string;
 begin
-  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus3.bmp';
+  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus2.bmp';
 
   for i := 1 to 8 do
   begin
