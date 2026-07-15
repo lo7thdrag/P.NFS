@@ -77,14 +77,17 @@ type
     vrlInitState: TVrLights;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     {$ENDREGION}
   private
     { Private declarations }
     //PanelArea3A
     procedure SetAll3ALedOff;
+
+    procedure UpdateStatusPanel3A;
   public
     { Public declarations }
-    procedure RegisterEvents;
+    procedure InitSimulation;
     procedure StatusWeaponConsoleChanged(Sender:TObject; aStatus: TC705StatusType);
   end;
 
@@ -102,53 +105,32 @@ begin
   SetAll3ALedOff;
 end;
 
+procedure TfrmPnlArea3A.FormDestroy(Sender: TObject);
+begin
+  if Assigned(SimManager) then
+    SimManager.UnregisterStatusWeaponEvent(StatusWeaponConsoleChanged);
+end;
+
 procedure TfrmPnlArea3A.FormShow(Sender: TObject);
 begin
   //
 end;
 
-procedure TfrmPnlArea3A.RegisterEvents;
+procedure TfrmPnlArea3A.InitSimulation;
 begin
-  if Assigned(SimManager) then begin
-    SimManager.OnStatusWeaponChanged := StatusWeaponConsoleChanged;
-  end;
+  SimManager.RegisterStatusWeaponEvent(StatusWeaponConsoleChanged);
+  UpdateStatusPanel3A;
 end;
 
 procedure TfrmPnlArea3A.StatusWeaponConsoleChanged(Sender: TObject;
   aStatus: TC705StatusType);
 begin
-  if Assigned(SimManager) then begin
-    case aStatus of
-      stEnableWeapon: begin
-        if SimManager.C705Status.EnableWeapon then begin
-          pnlVrlPowerOn3A.Color := clLime;
-        end
-        else begin
-          pnlVrlPowerOn3A.Color := clRed;
-        end;
-      end;
-      stOpenCover: begin
-        if SimManager.C705Status.OpenCoverLauncher then begin
-          //
-        end
-        else begin
-          //
-        end;
-      end;
-      stSafetyIgnition: begin
-        if SimManager.C705Status.SafetyIgnition then begin     // SAFE
-          //
-        end
-        else begin                                             // ARMED
-          //
-        end;
-      end;
-    end;
-  end;
+  UpdateStatusPanel3A;
 end;
 
 procedure TfrmPnlArea3A.SetAll3ALedOff;
 begin
+  {$REGION 'SetAll3ALedOff'}
   pnlVrlInitState3A.Color := clGray;
   pnlVrlInsGnss3A.Color := clGray;
   pnlVrlMNormal3A.Color := clGray;
@@ -178,8 +160,53 @@ begin
   pnlVrlSeeker3A.Color := clGray;
   pnlVrlInsAlign3A.Color := clGray;
 
-  pnlVrlLnchRdy3A.Color := clGray;
+  pnlVrlLnchRdy3A.Color := clRed;
   pnlVrlPwrSwitch3A.Color := clGray;
+  {$ENDREGION}
+end;
+
+procedure TfrmPnlArea3A.UpdateStatusPanel3A;
+begin
+  // POWER
+  if SimManager.C705Status.EnableWeapon then begin
+    pnlVrlPowerOn3A.Color := clLime;
+    pnlVrlBusSupply3A.Color := clLime;
+    pnlVrlPwrSwitch3A.Color := clLime;
+  end
+  else begin
+    pnlVrlPowerOn3A.Color := clRed;
+    pnlVrlBusSupply3A.Color := clRed;
+    pnlVrlPwrSwitch3A.Color := clRed;
+  end;
+
+  // SAFETY IGNITION BOOSTER ARM
+  if SimManager.C705Status.SafetyIgnition then
+    pnlVrlBoosterArm3A.Color := clLime
+  else
+    pnlVrlBoosterArm3A.Color := clRed;
+
+  // Warm Up; WarmUp
+  if SimManager.C705Status.WarmUpDone then
+    pnlVrlWarmUp3A.Color := clLime
+  else begin
+    // Sedang proses Warm-up
+    if SimManager.C705Status.EnableWeapon then
+      pnlVrlWarmUp3A.Color := clYellow
+    else
+      pnlVrlWarmUp3A.Color := clGray;
+  end;
+
+  // SEEKER
+  if SimManager.C705Status.SeekerReady then
+    pnlVrlSeeker3A.Color := clLime
+  else
+  begin
+    if SimManager.C705Status.EnableWeapon then
+      pnlVrlSeeker3A.Color := clRed
+    else
+      pnlVrlSeeker3A.Color := clGray;
+  end;
+
 end;
 
 end.

@@ -11,7 +11,8 @@ uses
   OverbyteIcsWSocket, uTCPDatatype, uC705SimManager, uLibSettings, uScriptC705,
   uShipModel, uVehicleManager, SpeedButtonImage, AdvGroupBox, AdvPageControl,
   Vcl.ComCtrls, VrButtons, AdvOfficeButtons,
-  uWaypointModel, uWaypointView, uMapViewManager, uShipView, uCoordDataTypes;
+  uWaypointModel, uWaypointView, uMapViewManager, uShipView, uCoordDataTypes,
+  UfrmFoeFriendSituationPage;
 
 type
   TEditMode = (edNone, edAddWaypoint, edMoveWaypoint, edDeleteWaypoint, edAddRoute, edDeleteRoute);
@@ -1372,8 +1373,12 @@ begin
     FSelectedRange := range * C_NauticalMile_To_Metre;
     FSelectedBearing := CalcBearing(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
 
-    if TargetObj <> nil then
+    if TargetObj <> nil then begin
       UpdateTargetParamPnl(TargetObj, range);
+
+      if Assigned(SimManager.OnTargetSelectedAction) then
+        SimManager.OnTargetSelectedAction(Self, TargetObj, Range);
+    end;
 
     //VehicleMgr.SelectedTargetID := TargetObj.ID;
     //VehicleMgr.isFiring := False;

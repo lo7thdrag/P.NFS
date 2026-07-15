@@ -104,11 +104,11 @@ begin
     frmRoutePlan.RegisterEvents;
   end;
 
-  SimManager.InitializeMap;
-
   if Assigned(frmWCC) then begin
-    frmWCC.RegisterEvents;      // register events buat formWCC such as TNotifyEvent dkk
+    frmWCC.InitSimulation;
   end;
+
+  SimManager.InitializeMap;
 
   InitForms;
 end;

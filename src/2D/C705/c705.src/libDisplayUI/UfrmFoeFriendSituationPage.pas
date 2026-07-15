@@ -15,7 +15,8 @@ uses
   uFrmINSTest,
   uFrmParamSetting,
   UfrmRadar,
-  uFrmPnlArea3A, uFrmPnlArea3B;
+  uFrmPnlArea3A, uFrmPnlArea3B,
+  uShipModel, uC705SimManager;
 
 type
   TfrmFoeFriendSituationPage = class(TForm)
@@ -365,10 +366,13 @@ type
     procedure SetActiveHeaderMCtrl(idx: Integer);
     procedure ShowActiveContentMCtrl;
     procedure CloseAllContentMCtrl;
-    
   public
     { Public declarations }
+    procedure RegisterEvents;
+    procedure TargetSelectedEvents(Sender: TObject; aTgt: TShipContact; aRng: Double);
+
     procedure UpdateLayoutTab;
+    procedure UpdatePnlSituationData(aObjTgt: TShipContact; aRange: Double);
   end;
 
 var
@@ -392,6 +396,16 @@ begin
   for I := 0 to WinControl.ControlCount - 1 do
     if WinControl.Controls[i] is TWinControl then
       EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
+
+procedure TfrmFoeFriendSituationPage.RegisterEvents;
+begin
+  SimManager.OnTargetSelectedAction := TargetSelectedEvents;
+end;
+
+procedure TfrmFoeFriendSituationPage.TargetSelectedEvents(Sender: TObject; aTgt: TShipContact; aRng: Double);
+begin
+  UpdatePnlSituationData(aTgt, aRng);
 end;
 
 {$REGION 'Panel Management'}
@@ -448,11 +462,15 @@ begin
   if not Assigned(FFormExit) then
     FFormExit := TfrmRadar.Create(Self);
 
-  if not Assigned(FFormPnlArea3A) then
+  if not Assigned(FFormPnlArea3A) then begin
     FFormPnlArea3A := TfrmPnlArea3A.Create(Self);
+    FFormPnlArea3A.InitSimulation;
+  end;
 
-  if not Assigned(FFormPnlArea3B) then
+  if not Assigned(FFormPnlArea3B) then begin
     FFormPnlArea3B := TfrmPnlArea3B.Create(Self);
+    FFormPnlArea3B.InitSimulation;
+  end;
 
 end;
 
@@ -667,12 +685,7 @@ begin
 
   UpdateLayoutTab;
   EmbedAreaForm(FFormPnlArea3A, pnlArea3A);
-  if Assigned(FFormPnlArea3A) then
-    frmPnlArea3A.RegisterEvents;
-
   EmbedAreaForm(FFormPnlArea3B, pnlArea3B);
-//  if Assigned(FFormPnlArea3B) then
-//    frmPnlArea3A.RegisterEvents;
 
   UpdateClock; // Update Clock, tidak nunggu 1 detik
   tmrClock.Enabled := True;
@@ -897,7 +910,13 @@ end;
 {$REGION 'Semua Tab Sheet'}
 
 {$REGION 'Tab Situation'}
-
+procedure TfrmFoeFriendSituationPage.UpdatePnlSituationData(aObjTgt: TShipContact; aRange: Double);
+begin
+  lblLongParam.Caption := FormatFloat('0.00', aObjTgt.Lon);
+  lblLatParam.Caption := FormatFloat('0.00', aObjTgt.Lat);
+  lblESpdParam.Caption := '';
+  lblNSpdParam.Caption := '';
+end;
 {$ENDREGION}
 
 {$REGION 'Tab Fire Distr.'}

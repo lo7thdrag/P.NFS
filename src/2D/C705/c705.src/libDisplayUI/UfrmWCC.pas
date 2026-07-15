@@ -99,7 +99,7 @@ type
     procedure btnImgPowerMissileClick(Sender: TObject);
     procedure btnImgOpenCoverClick(Sender: TObject);
     procedure imgBtnSafetyBooster_Click(Sender: TObject);
-
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
     FActiveLabel: TLabel;
@@ -119,7 +119,7 @@ type
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
     procedure SetTopMonitor(aMoniHeight: Integer);
 
-    procedure RegisterEvents;
+    procedure InitSimulation;
     procedure StatusWeaponBtnChanged(Sender:TObject; aStatus: TC705StatusType);
 
   end;
@@ -266,8 +266,10 @@ begin
     VK_RETURN:
     begin
       if NextTag = 1 then begin
-        if not Assigned(frmFoeFriendSituationPage) then
+        if not Assigned(frmFoeFriendSituationPage) then begin
           frmFoeFriendSituationPage := TfrmFoeFriendSituationPage.Create(Self);
+          frmFoeFriendSituationPage.RegisterEvents;
+        end;
 
         frmFoeFriendSituationPage.Show;
       end;
@@ -317,8 +319,13 @@ begin
   // Default active menu
   FActiveLabel := lblRealtimeCombat;
   UpdateHighlight;
+end;
 
-  StartCheckHardware;
+procedure TfrmWCC.FormDestroy(Sender: TObject);
+begin
+  // Multicast Notify Event
+  if Assigned(SimManager) then
+    SimManager.UnregisterStatusWeaponEvent(StatusWeaponBtnChanged);
 end;
 
 procedure TfrmWCC.FormShow(Sender: TObject);
@@ -326,11 +333,15 @@ begin
   //
 end;
 
-procedure TfrmWCC.RegisterEvents;
+procedure TfrmWCC.InitSimulation;
 begin
-  if Assigned(SimManager) then begin
-    SimManager.OnStatusWeaponChanged := StatusWeaponBtnChanged;
-  end;
+  StartCheckHardware;
+
+  // Multicast Notify Event
+  SimManager.RegisterStatusWeaponEvent(StatusWeaponBtnChanged);
+
+  // Sinkronisasi kondisi awal
+//  StatusWeaponBtnChanged(Self, SimManager.C705Status);
 end;
 
 procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject; aStatus: TC705StatusType);
@@ -382,7 +393,7 @@ procedure TfrmWCC.imgBtnSafetyBooster_Click(Sender: TObject);
 var
   RecStatus : TRecStatus_Console;
 begin
-  if SimManager.FC705Status.EnableWeapon = False then
+  if SimManager.C705Status.EnableWeapon = False then
     Exit;
 
   RecStatus.OWN_SHIP_UID := dbID_to_UniqueID(VOwnShip.ShipID);
@@ -405,6 +416,11 @@ begin
       // Realtime Combat
       pnlSoftwareExit.Visible := False;
       frmWCC.KeyPreview := False;
+
+      if not Assigned(frmFoeFriendSituationPage) then begin
+        frmFoeFriendSituationPage := TfrmFoeFriendSituationPage.Create(Self);
+        frmFoeFriendSituationPage.RegisterEvents;
+      end;
 
       frmFoeFriendSituationPage.show;
     end;
