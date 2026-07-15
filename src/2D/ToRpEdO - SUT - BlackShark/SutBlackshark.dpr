@@ -100,7 +100,7 @@ uses
   uTransparentOverlay in 'uTransparentOverlay.pas',
   uDataParameterSetting in 'uDataParameterSetting.pas',
   ufrmTorpedoTubeStatusWindow in 'Permanen Form\ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow},
-  ufrmTorpedoTestResultWindow in 'Permanen Form\ufrmTorpedoTestResultWindow.pas' {frmTorpedoStatusResultsWindow};
+  ufrmTorpedoTestResultWindow in 'Pop-up form\ufrmTorpedoTestResultWindow.pas' {frmTorpedoStatusResultsWindow};
 
 {$R *.res}
 

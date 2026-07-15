@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Math,
 
-  uSutBlacksharkManager, uTorpedoLauncher, Vcl.ExtCtrls, Vcl.StdCtrls, uVehicleManager;
+  uSutBlacksharkManager, uTorpedoLauncher, Vcl.ExtCtrls, Vcl.StdCtrls, uVehicleManager, ufrmTorpedoTestResultWindow;
 
 type
   TfrmTorpedoTubeStatusWindow = class(TForm)
@@ -110,9 +110,12 @@ type
     pnlNumTorpedo8: TPanel;
     procedure tmrDrawTubeTimer(Sender: TObject);
     procedure pbTubeSymbol1Paint(Sender: TObject);
+    procedure pnlTorpedoClick(Sender: TObject);
   private
     { Private declarations }
   public
+    FFrmTorpedoTestWindow : TfrmTorpedoStatusResultsWindow;
+    
     procedure DrawTube(pBox: TPaintBox; aLauncher: TTorpedoLauncher);
     procedure UpdatePanelStatus;
     procedure UpdateFrameStatus;
@@ -125,7 +128,7 @@ var
 implementation
 
 uses
-  ufrmTorpedoAllocation;
+  ufrmTorpedoAllocation, ufrmTorpedoWP, ufrmTorpedoTubeCommands;
 {$R *.dfm}
 
 procedure TfrmTorpedoTubeStatusWindow.DrawTube(pBox: TPaintBox;aLauncher: TTorpedoLauncher);
@@ -281,6 +284,20 @@ begin
   DrawTube(TPaintBox(Sender), SutBlacksharkManager.FTorpedoArray[TPaintBox(Sender).Tag]);
 end;
 
+procedure TfrmTorpedoTubeStatusWindow.pnlTorpedoClick(Sender: TObject);
+begin
+  if not Assigned(FFrmTorpedoTestWindow) then
+  begin
+    FFrmTorpedoTestWindow         := TfrmTorpedoStatusResultsWindow.Create(Self);
+    frmTorpedoStatusResultsWindow := FFrmTorpedoTestWindow;
+    FFrmTorpedoTestWindow.Left    := Self.Left + 1335;
+    FFrmTorpedoTestWindow.Top     := Self.Top + 350;
+    FFrmTorpedoTestWindow.Width   := Max(frmTorpedoWP.pnlTorpedoHomingStatusPlot.Width, frmTorpedoWP.pnlTorpedoParamSettings.Width);
+    FFrmTorpedoTestWindow.Height  := frmTorpedoWP.pnlTorpedoHomingStatusPlot.Height + frmTorpedoWP.pnlTorpedoParamSettings.Height;
+    FFrmTorpedoTestWindow.Show;
+  end;  
+end;
+
 procedure TfrmTorpedoTubeStatusWindow.tmrDrawTubeTimer(Sender: TObject);
 var
   i: Integer;
@@ -353,8 +370,11 @@ begin
 
     if SutBlacksharkManager.FTorpedoArray[i].Loaded then
       Shape.Pen.Color := clYellow
-    else
+    else 
       Shape.Pen.Color := clWhite;
+
+    if SutBlacksharkManager.FTorpedoArray[i].TextStatus = stTorpReady then
+       shape.Pen.Color := clLime;
 
     Shape.Repaint;
   end;

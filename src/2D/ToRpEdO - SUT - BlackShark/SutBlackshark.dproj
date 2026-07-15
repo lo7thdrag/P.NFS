@@ -292,7 +292,7 @@
             <Form>frmTorpedoTubeStatusWindow</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Permanen Form\ufrmTorpedoTestResultWindow.pas">
+        <DCCReference Include="Pop-up form\ufrmTorpedoTestResultWindow.pas">
             <Form>frmTorpedoStatusResultsWindow</Form>
             <FormType>dfm</FormType>
         </DCCReference>
