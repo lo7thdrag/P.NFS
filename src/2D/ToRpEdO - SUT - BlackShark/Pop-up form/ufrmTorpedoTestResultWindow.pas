@@ -196,7 +196,10 @@ type
     lblTorpedoHead: TLabel;
     Label87: TLabel;
     lblExerciseHead: TLabel;
+    tmrTorpedoCheck: TTimer;
     procedure FormCreate(Sender: TObject);
+    procedure tmrTorpedoCheckTimer(Sender: TObject);
+    procedure lblCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -213,6 +216,28 @@ implementation
 procedure TfrmTorpedoStatusResultsWindow.FormCreate(Sender: TObject);
 begin
   lblTimeSynthesis.Caption := FormatDateTime('dd/MMMM/yyyy     hh:mm:ss', Now);
+end;
+
+procedure TfrmTorpedoStatusResultsWindow.lblCloseClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmTorpedoStatusResultsWindow.tmrTorpedoCheckTimer(Sender: TObject);
+begin
+  tmrTorpedoCheck.Enabled := False;
+
+  lblTimeSynthesis.Visible     := True;
+  lblBatterySynthesis.Visible  := True;
+  lblTorpedoHead.Visible       := True;
+  lblABSynthesis.Visible       := True;
+  lblMSSynthesis.Visible       := True;
+  lblGuidanceSynthesis.Visible := True;
+  lblAFISynthesis.Visible      := True;
+  lblFuseSynthesis.Visible     := True;
+  lblAHSynthesis.Visible       := True;
+  lblTRSynthesis.Visible       := True;
+  lblExerciseHead.Visible      := True;
 end;
 
 end.

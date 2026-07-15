@@ -293,7 +293,7 @@ begin
     FFrmTorpedoTestWindow.Left    := Self.Left + 1335;
     FFrmTorpedoTestWindow.Top     := Self.Top + 350;
     FFrmTorpedoTestWindow.Width   := Max(frmTorpedoWP.pnlTorpedoHomingStatusPlot.Width, frmTorpedoWP.pnlTorpedoParamSettings.Width);
-    FFrmTorpedoTestWindow.Height  := frmTorpedoWP.pnlTorpedoHomingStatusPlot.Height + frmTorpedoWP.pnlTorpedoParamSettings.Height;
+    FFrmTorpedoTestWindow.Height  := frmTorpedoWP.pnlTorpedoHomingStatusPlot.Height + frmTorpedoWP.pnlTorpedoParamSettings.Height + 25;
     FFrmTorpedoTestWindow.Show;
   end;  
 end;
