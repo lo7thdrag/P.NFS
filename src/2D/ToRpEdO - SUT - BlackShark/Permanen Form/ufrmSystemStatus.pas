@@ -57,8 +57,6 @@ implementation
 
 procedure TfrmSystemStatus.FormCreate(Sender: TObject);
 begin
-  SutBlacksharkManager.InitializeSimulation;
-
   UpdateFireAuthorization;
 end;
 
