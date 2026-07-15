@@ -38,8 +38,8 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       ParentFont = False
     end
     object lblClose: TLabel
-      Left = 549
-      Top = 518
+      Left = 537
+      Top = 517
       Width = 31
       Height = 16
       Caption = 'Close'
@@ -51,6 +51,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object AdvPageTorpedoCheck: TAdvPageControl
       Left = 0
@@ -1279,7 +1280,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       Top = 61
       Width = 585
       Height = 452
-      ActivePage = AdvWCMOnlineStatus
+      ActivePage = AdvTorpedoStatus
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
@@ -1309,10 +1310,6 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvWCMOnlineStatus: TAdvTabSheet
         Caption = '   WCM Online Status'
@@ -2209,6 +2206,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label78: TLabel
           Left = 6
@@ -2235,6 +2233,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label79: TLabel
           Left = 6
@@ -2261,6 +2260,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label80: TLabel
           Left = 7
@@ -2287,6 +2287,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label81: TLabel
           Left = 6
@@ -2313,6 +2314,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label82: TLabel
           Left = 6
@@ -2339,6 +2341,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label83: TLabel
           Left = 5
@@ -2365,6 +2368,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label84: TLabel
           Left = 6
@@ -2391,6 +2395,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label85: TLabel
           Left = 6
@@ -2417,6 +2422,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label86: TLabel
           Left = 257
@@ -2443,6 +2449,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label87: TLabel
           Left = 5
@@ -2469,8 +2476,16 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
       end
     end
+  end
+  object tmrTorpedoCheck: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = tmrTorpedoCheckTimer
+    Left = 517
+    Top = 394
   end
 end
