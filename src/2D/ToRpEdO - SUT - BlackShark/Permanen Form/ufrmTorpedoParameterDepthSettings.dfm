@@ -64,7 +64,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
     object lblNumberSalvo: TLabel
       Left = 295
       Top = 7
-      Width = 14
+      Width = 4
       Height = 14
       Caption = '00'
       Font.Charset = DEFAULT_CHARSET

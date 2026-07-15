@@ -16,11 +16,11 @@ type
   TTorpedoParameterSetting = class
   private
     // torpedo parameter
-    FTargetTrackID, FSalvoNum, FNoTorp, FLOSDeviation, FSearchSpeed, FCeiling, FAttackDepth, FSearchDepth, FApproachDepth,
+    FTargetTrackID, FSalvoNum, FTorpedoAmount, FLOSDeviation, FSearchSpeed, FCeiling, FAttackDepth, FSearchDepth, FApproachDepth,
     FFloor, FApproachSpeed, FApproachCourse, FTosoRangePAS, FTosoRangeACT, FProtectionRadius : Integer;
-    FEnablingDist, FCenterOS, FSALength, FSAWidth, FCenterSSP, FDPCAngle : Double;
-    FProtectionRadiusEnable : Boolean; // untuk FSAUpdating False : Circle, True : Vect (search area kotak)
-    FTosoMode, FGuidance , FSAUpdating, FASH: Byte;
+    FEnablingDist, FCenterOS, FSALength, FSAWidth, FCenterSSP, FOStoSSP, FDPCAngle : Double;
+    FProtectionRadiusEnable : Boolean;
+    FTosoMode, FGuidance , FSAUpdating, FASH: Byte; // untuk FSAUpdating 0 : Circle, 1 : Vect
     FSearchPattern : TSearchPattern;
 
   public
@@ -29,7 +29,7 @@ type
 
     property TargetTrackID : Integer read FTargetTrackID write FTargetTrackID;
     property SalvoNum : Integer read FSalvoNum write FSalvoNum;
-    property NoTorp : Integer read FNoTorp write FNoTorp;
+    property TorpedoAmount : Integer read FTorpedoAmount write FTorpedoAmount;
     property LOSDeviation : Integer read FLOSDeviation write FLOSDeviation;
     property SearchSpeed : Integer read FSearchSpeed write FSearchSpeed;
     property Ceiling : Integer read FCeiling write FCeiling;
@@ -47,6 +47,7 @@ type
     property SALength : double read FSALength write FSALength;
     property SAWidth : double read FSAWidth write FSAWidth;
     property CenterSSP : double read FCenterSSP write FCenterSSP;
+    property OStoSSP : double read FOStoSSP write FOStoSSP;
     property DPCAngle : double read FDPCAngle write FDPCAngle;
     property TosoMode : byte read FTosoMode write FTosoMode;
     property Guidance : Byte read FGuidance write FGuidance;
@@ -87,6 +88,8 @@ type
     FOperatorMessages: string;
 
     FCursorX, FCursorY : Double;
+    FSalvoIndex : Integer;
+    FTorpedoTubeAllocNum : Byte;
 
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
@@ -140,6 +143,8 @@ type
     property ShipID: Integer read FShipID write FShipID;
     property ClassID        : Integer read FClassID write FClassID;
     property AssignedWeapon : TWeaponGetList read FAssignedWeapon;
+    property SalvoIndex : Integer read FSalvoIndex write FSalvoIndex;
+    property TorpedoTubeAllocNum : Byte read FTorpedoTubeAllocNum write FTorpedoTubeAllocNum;
 
     property Env_Map: Integer read FEnv_Map write FEnv_Map;
     property ShipClassID: Integer read FShipClassID write FShipClassID;
@@ -221,6 +226,7 @@ begin
   FIsStandAlone := False;
   FIsTrueMotion := False;
   FTBIFireAuth  := False;
+  FSalvoIndex   := 0;
 
   for i := 0 to High(FTorpedoArray) do
     FTorpedoArray[i] := TTorpedoLauncher.Create;
@@ -464,14 +470,7 @@ end;
 procedure TSutBlacksharkManager.InitializeSimulation;
 begin
   inherited;
-
-  FxShip       := TXShip.Create;
-  FxShip.PositionX := 112.75;
-  FxShip.PositionY := -7.2;
-  FxShip.Heading := 0;
-  FxShip.CreateDefaultView(Fmap);
-
-    NetComm.RegisterProcedure(
+  NetComm.RegisterProcedure(
       REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
 
   NetComm.RegisterProcedure(
@@ -491,6 +490,12 @@ begin
 
   NetComm.RegisterProcedure(
     REC_STAT_ORDER_CONSOLE  ,Event_OnReceiveStatusConsole,  sizeof(TRecStatus_Console));
+
+  FxShip       := TXShip.Create;
+  FxShip.PositionX := 112.75;
+  FxShip.PositionY := -7.2;
+  FxShip.Heading := 0;
+  FxShip.CreateDefaultView(Fmap);
 
   if not IsStandAlone then
     Net_Connect;
@@ -522,7 +527,7 @@ begin
   FGuidance := 1; // 0 : CC, 1 : LOS; (normalnya di video pakai CC)
   FTargetTrackID := 0;
   FSalvoNum := 0;
-  FNoTorp := 0;
+  FTorpedoAmount := 0;
   FLOSDeviation := 0;
   FSearchSpeed := 18;
 
@@ -541,6 +546,7 @@ begin
   FSALength := 20.0;
   FSAWidth := 2.0;
   FCenterSSP := 1.0;
+  FOStoSSP := 0;
 
   FSearchPattern := spAuto;
   FDPCAngle := 0;

@@ -4623,7 +4623,7 @@ begin
   MissileNumber := cbbTorpSUTNumber.ItemIndex + 2;
   TargetType := cbbTorpSUTTargetType.ItemIndex + 1;
 
-  weaponID := 21;
+  weaponID := C_DBID_TORPEDO_BLACKSHARK;
   recRangDeg := TList.Create;
   DataModule1.getRangDeg(shipID, weaponID, lcrID, recRangDeg);
 

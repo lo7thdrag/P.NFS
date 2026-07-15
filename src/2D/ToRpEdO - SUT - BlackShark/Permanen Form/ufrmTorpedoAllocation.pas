@@ -202,6 +202,7 @@ begin
   begin
     SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated := True;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].TextStatus := stNone;
+    SutBlacksharkManager.TorpedoTubeAllocNum := FSelectTube + 1;
 
     if Assigned(frmTorpedoTubeStatusWindow) then
     begin

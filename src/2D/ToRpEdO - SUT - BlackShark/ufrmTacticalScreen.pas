@@ -494,9 +494,7 @@ begin
         aCnv.Brush.Style := bsClear;
         aCnv.Pen.Color := clGray;
 
-        aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.6d',[Ship.MSITrackNumber])); // perlu diganti dengan ID object
-  //      Continue;
-  //      Break;
+        aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.6d',[Ship.MSITrackNumber]));
       end;
     end;
 end;
