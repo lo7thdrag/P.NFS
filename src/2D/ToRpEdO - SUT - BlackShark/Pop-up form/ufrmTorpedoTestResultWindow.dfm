@@ -12,6 +12,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -178,10 +179,6 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
         object AdvTorpedoCheckTBI: TAdvPageControl
           Left = -1
           Top = 2
@@ -1941,7 +1938,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       Top = 89
       Width = 584
       Height = 426
-      ActivePage = AdvBISTReport
+      ActivePage = AdvSynthesisReport
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
@@ -2187,10 +2184,6 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label77: TLabel
           Left = 6
           Top = 67
@@ -2415,9 +2408,9 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         object lblTimeSynthesis: TLabel
           Left = 182
           Top = 7
-          Width = 135
+          Width = 124
           Height = 14
-          Caption = '15/July/26    00:00:00 Z'
+          Caption = '01/July/26    00:00:00'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clLime
           Font.Height = -12

@@ -196,6 +196,7 @@ type
     lblTorpedoHead: TLabel;
     Label87: TLabel;
     lblExerciseHead: TLabel;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -208,5 +209,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmTorpedoStatusResultsWindow.FormCreate(Sender: TObject);
+begin
+  lblTimeSynthesis.Caption := FormatDateTime('dd/MMMM/yyyy     hh:mm:ss', Now);
+end;
 
 end.
