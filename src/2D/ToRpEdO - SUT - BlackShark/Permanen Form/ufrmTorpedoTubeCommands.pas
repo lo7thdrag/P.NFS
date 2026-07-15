@@ -21,10 +21,11 @@ type
     procedure lblTorpOnClick(Sender: TObject);
     procedure lblSendCmdClick(Sender: TObject);
     procedure tmrStatusTextTorpedoTimer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
-    { Public declarations }
+    FTestingTube: Integer;
   end;
 
 var
@@ -37,24 +38,30 @@ uses
 
 {$R *.dfm}
 
+procedure TfrmTorpedoTubeCommands.FormCreate(Sender: TObject);
+begin
+  FTestingTube := -1;
+end;
+
 procedure TfrmTorpedoTubeCommands.lblSendCmdClick(Sender: TObject);
 var
-  i : Integer;
+  Tube: Integer;
 begin
   lblSendCmd.Font.Color := clLime;
 
-  for i := 0 to 7 do
+  Tube := frmTorpedoAllocation.FSelectTube;
+
+  if (Tube >= 0) and
+     SutBlacksharkManager.FTorpedoArray[Tube].Allocated then
   begin
-    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
-    begin
-      SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTesting;
-      frmTorpedoTubeStatusWindow.UpdateTextStatus;
+    SutBlacksharkManager.FTorpedoArray[Tube].TextStatus := stTesting;
 
-      lblTorpOn.Caption    := 'TORPEDO OFF';
-      lblTorpOn.Font.Color := clLime;
+    frmTorpedoTubeStatusWindow.UpdateTextStatus;
 
-      tmrStatusTextTorpedo.Enabled := True;
-    end;
+    lblTorpOn.Caption := 'TORPEDO OFF';
+    lblTorpOn.Font.Color := clLime;
+
+    tmrStatusTextTorpedo.Enabled := False;   // True
   end;
 end;
 
@@ -77,19 +84,20 @@ end;
 
 procedure TfrmTorpedoTubeCommands.tmrStatusTextTorpedoTimer(Sender: TObject);
 var
-  i : Integer;
+  Tube: Integer;
 begin
   tmrStatusTextTorpedo.Enabled := False;
 
-  for i := 0 to 7 do
-  begin
-    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
-    begin
-     SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTorpReady;
-     frmTorpedoTubeStatusWindow.UpdateTextStatus;
-    end;
-  end;
+  Tube := frmTorpedoAllocation.FSelectTube;
 
+  if (Tube >= 0) and SutBlacksharkManager.FTorpedoArray[Tube].Allocated then
+  begin
+    SutBlacksharkManager.FTorpedoArray[Tube].TextStatus := stTorpReady;
+
+    frmTorpedoTubeStatusWindow.UpdateTextStatus;
+
+    FTestingTube := -1;
+  end;
 end;
 
 end.

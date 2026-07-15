@@ -197,9 +197,9 @@ type
     Label87: TLabel;
     lblExerciseHead: TLabel;
     tmrTorpedoCheck: TTimer;
-    procedure FormCreate(Sender: TObject);
     procedure tmrTorpedoCheckTimer(Sender: TObject);
     procedure lblCloseClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -213,9 +213,12 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmTorpedoStatusResultsWindow.FormCreate(Sender: TObject);
+procedure TfrmTorpedoStatusResultsWindow.FormShow(Sender: TObject);
 begin
-  lblTimeSynthesis.Caption := FormatDateTime('dd/MMMM/yyyy     hh:mm:ss', Now);
+  lblTimeSynthesis.Caption    := FormatDateTime('dd/MMMM/yyyy     hh:mm:ss', Now);
+  lblTimeSynthesis.Font.Color := clLime;
+
+  tmrTorpedoCheck.Enabled := True;
 end;
 
 procedure TfrmTorpedoStatusResultsWindow.lblCloseClick(Sender: TObject);
@@ -227,7 +230,6 @@ procedure TfrmTorpedoStatusResultsWindow.tmrTorpedoCheckTimer(Sender: TObject);
 begin
   tmrTorpedoCheck.Enabled := False;
 
-  lblTimeSynthesis.Visible     := True;
   lblBatterySynthesis.Visible  := True;
   lblTorpedoHead.Visible       := True;
   lblABSynthesis.Visible       := True;
