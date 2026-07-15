@@ -167,7 +167,7 @@ var
 begin
   Result := false;
   i := 0;
-  FTrackControlled := nil;
+//  FTrackControlled := nil;
   for i := 0 to FList.Count - 1 do
   begin
     if TSimulationTrack(FList[i]).MSITrackNumber = TrackNum then

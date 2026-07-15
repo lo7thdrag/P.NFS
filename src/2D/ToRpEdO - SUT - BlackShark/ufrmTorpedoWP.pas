@@ -3,7 +3,7 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, System.types,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, uSettingFormToMonitorWith_ini, uFormUtil, ufrmTacticalScreen,
   Vcl.StdCtrls, System.ImageList, Vcl.ImgList, Vcl.OleCtrls, MapXLib_TLB, uBaseFunction, uLibConst,
   uBaseConst, uRadarVisual, uMapXUnitConverter, uCoordConverter, System.Math, uSutBlacksharkManager, uRadarNorthIndicator,
@@ -101,7 +101,7 @@ type
     FMap: TMap;
     imgListLight: TImageList;
     imgBackgrounSituationZone: TImage;
-    Timer1: TTimer;
+    tmrUpdateTWP: TTimer;
     tmrUpdateForm: TTimer;
     tmrUpdateDataPos: TTimer;
     TimerBlink: TTimer;
@@ -135,7 +135,7 @@ type
     lblOwnShipCenter: TLabel;
     lblCursorCenter: TLabel;
     cbbZoomScale: TAdvComboBox;
-    AdvComboBox2: TAdvComboBox;
+    cbbMotionMode: TAdvComboBox;
     {$ENDREGION}
     procedure FormCreate(Sender: TObject);
     procedure pnlTacticalBtnMouseDown(Sender: TObject; Button: TMouseButton;
@@ -150,8 +150,7 @@ type
     procedure FMapDrawUserLayer(ASender: TObject; const Layer: IDispatch;
       hOutputDC, hAttributeDC: Integer; const RectFull, RectInvalid: IDispatch);
     procedure FormPaint(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
-    procedure Label1Click(Sender: TObject);
+    procedure tmrUpdateTWPTimer(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
     procedure tmrUpdateDataPosTimer(Sender: TObject);
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
@@ -159,6 +158,11 @@ type
     procedure FMapMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure TimerBlinkTimer(Sender: TObject);
+    procedure cbbMotionModeChange(Sender: TObject);
+    procedure cbbZoomScaleChange(Sender: TObject);
+    procedure ibGrabClick(Sender: TObject);
+    procedure ZoomClick(Sender: TObject);
+    procedure lblOwnShipCenterClick(Sender: TObject);
 
   protected
     procedure DrawAngle(aCnv: TCanvas);
@@ -208,8 +212,6 @@ type
     pShipID,
     pClassID        : Integer;
 
-
-
     FBlinkPanel: TPanel;
     FBlinkState: Boolean;
 
@@ -228,6 +230,7 @@ type
     FFrmEngagementDataOverview   : TfrmEngagementDataOverview;
     FfrmTorpedoParameterDepth    : TfrmTorpedoParameterDepthSettings;
 
+    FTrueMotion, FEnableGrab: Boolean;
     FOverlay : TTransparentOverlay;
 
     procedure SubmodeSelect(Sender: Tobject);
@@ -310,6 +313,27 @@ begin
     result := Round(z)
   else
     result := 0.001 * Round(z * 1000);
+end;
+
+procedure TFrmTorpedoWP.cbbMotionModeChange(Sender: TObject);
+begin
+  if cbbMotionMode.ItemIndex = 0 then
+  begin
+    FTrueMotion := True;
+  end
+  else if cbbMotionMode.ItemIndex = 1 then
+  begin
+    FTrueMotion := false;
+    FMap.CurrentTool := miArrowTool;
+    FOverlay.Cursor := crDefault;
+  end;
+end;
+
+procedure TFrmTorpedoWP.cbbZoomScaleChange(Sender: TObject);
+var zoomScale : single;
+begin
+  zoomScale := StrToFloat(cbbZoomScale.Text);
+  FMap.ZoomTo(3.92 * zoomScale, FMap.CenterX, FMap.CenterY);
 end;
 
 procedure TFrmTorpedoWP.DrawAll(aCnv: TCanvas; aCvt: TCoordConverter;
@@ -697,7 +721,7 @@ begin
 
   FShipHeading := 0; // awal
 
-  FMap.ZoomTo(50 * 2, FMap.CenterX, FMap.CenterY);    // rojek coba map di zoom out
+  FMap.ZoomTo(3.92 * 8, FMap.CenterX, FMap.CenterY);
 
   BitMapLampGrey := TBitmap.Create;
   BitMapLampGreen := TBitmap.Create;
@@ -953,9 +977,33 @@ begin
   end;
 end;
 
-procedure TFrmTorpedoWP.Label1Click(Sender: TObject);
+procedure TFrmTorpedoWP.ibGrabClick(Sender: TObject);
 begin
-//  Invalidate;
+  if FTrueMotion then
+  begin
+    FEnableGrab := not FEnableGrab;
+  end;
+
+  if FEnableGrab then
+  begin
+//    FOverlay.ControlState := csPanning;
+    FOverlay.Cursor := crHandPoint;
+    FMap.CurrentTool := miPanTool;
+  end
+  else
+  begin
+    FMap.CurrentTool := miArrowTool;
+    FOverlay.Cursor := crDefault;
+  end;
+end;
+
+procedure TFrmTorpedoWP.lblOwnShipCenterClick(Sender: TObject);
+begin
+  if FTrueMotion then
+  begin
+    FMap.CenterX := SutBlacksharkManager.xShip.PositionX;
+    FMap.CenterY := SutBlacksharkManager.xShip.PositionY;
+  end;
 end;
 
 procedure TFrmTorpedoWP.LoadGeoset(const aGst: string);
@@ -979,7 +1027,7 @@ begin
     FMap.CenterX := 112.75;
     fmap.CenterY := -7.2;
 //    FMap.ZoomTo(Self.FCurrentRange * 2, FMap.CenterX, FMap.CenterY);
-    FMap.ZoomTo(50* 2, FMap.CenterX, FMap.CenterY);
+//    FMap.ZoomTo(50* 2, FMap.CenterX, FMap.CenterY);
   end
 
 end;
@@ -1002,8 +1050,7 @@ begin
   ACanvas.Pen.Style := psSolid;
   ACanvas.Pen.Width := 1;
 
-//  frmTacticalScreen.DrawTicksDegree(ACanvas);
-//  frmTacticalScreen.Render(ACanvas);
+  frmTorpedoWP.Render(ACanvas);
 end;
 
 procedure TFrmTorpedoWP.PassMouseToMap(Sender: TObject; Button: TMouseButton;
@@ -1264,11 +1311,207 @@ end;
 procedure TFrmTorpedoWP.Render(aCnv: TCanvas);
 var
   i: Integer;
-  Ship, OwnShip: TSimulationTrack;
-  MapX, MapY: Double;
-  ScrX, ScrY: Single;
+  TempShip, OwnShip, TargetShip: TSimulationTrack;
+  MapX, MapY, Dx, Dy: Double;
+  ScrX, ScrY, ScrDX, ScrDY, ProtScrRadius: Single;
+  ProtRadius, Angle, AngleRect, AngleKanan, AngleKiri: Double; // protection area
+  OSCenter, SALength, OStoSSP, tempRange: Double;
+  SAbox, RelPts: array[0..3] of System.types.TPoint;
+  RectDelta, RotX, RotY: Double;
 begin
-  //
+  OwnShip := nil;
+  TempShip := nil;
+
+  if VehicleMgr.ObjectList.Count>0 then
+
+  for i := 0 to VehicleMgr.ObjectList.Count - 1 do
+  begin
+    if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = 0 then
+    begin
+      OwnShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
+
+      MapX := OwnShip.PosX;
+      MapY := OwnShip.PosY;
+
+      FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+      aCnv.Pen.Color := RGB(107, 157, 173);
+      aCnv.Pen.Style := psSolid;
+      aCnv.Pen.Width := 2;
+      aCnv.Brush.Color := RGB(107, 157, 173);
+      aCnv.Brush.Style := bsClear;
+      aCnv.Ellipse(Round(ScrX) - 8, Round(ScrY) - 8, Round(ScrX) + 8, Round(ScrY) + 8);
+
+      aCnv.MoveTo(Round(ScrX) - 8, Round(ScrY));
+      aCnv.LineTo(Round(ScrX) + 8, Round(ScrY));
+
+      aCnv.MoveTo(Round(ScrX), Round(ScrY) - 8);
+      aCnv.LineTo(Round(ScrX), Round(ScrY) + 8);
+
+      aCnv.Pen.Color := RGB(219,223,110);
+      aCnv.Pen.Width := 2;
+      aCnv.MoveTo(Round(scrX), Round(scrY));
+      Angle := DegToRad(OwnShip.HeadingDeg);
+      ScrX := ScrX + Round(sin(Angle) * 70);
+      ScrY := ScrY - Round(cos(Angle) * 70);
+      aCnv.LineTo(Round(scrX), Round(scrY));
+//      Break;
+//      Continue;
+    end
+    else // draw target
+    begin
+      TempShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
+      if TempShip.Controlled_Track then
+      begin
+        TargetShip := TempShip;
+        MapX := TempShip.PosX;
+        MapY := TempShip.PosY;
+
+        FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+        aCnv.Pen.Color := RGB(219,223,110);
+        aCnv.Pen.Width := 2;
+        aCnv.MoveTo(Round(scrX), Round(scrY));
+        Angle := DegToRad(TargetShip.HeadingDeg);
+        ScrDX := ScrX + Round(sin(Angle) * 500);
+        ScrDY := ScrY - Round(cos(Angle) * 500);
+        aCnv.LineTo(Round(ScrDX), Round(ScrDY));
+
+        aCnv.Pen.Color := clBlack;
+        aCnv.Pen.Style := psClear;
+        aCnv.Pen.Width := 1;
+
+        aCnv.Brush.Color := clRed;
+        aCnv.Brush.Style := bsSolid;
+        aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
+
+        aCnv.Pen.Style := psSolid;
+        aCnv.Pen.Width := 1;
+        aCnv.Brush.Style := bsClear;
+        aCnv.Pen.Color := clGray;
+
+        aCnv.TextOut(Round(ScrX)+4, Round(ScrY)+4, Format('%.6d',[TempShip.MSITrackNumber])); //perlu diganti dengan ID object
+      end;
+    end;
+  end;
+
+  if OwnShip <> nil then
+  begin
+    if Assigned(TorpedoParam) then
+    begin
+      {$REGION 'own ship protection volume'}
+      MapX := OwnShip.PosX;
+      MapY := OwnShip.PosY;
+
+      FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+      ProtRadius := MapX - (TorpedoParam.ProtectionRadius * C_Meter_To_NauticalMile / 60);
+      FMap.ConvertCoord(ScrDX, ScrDY, ProtRadius, MapY, 0);
+      ProtScrRadius := ScrX - ScrDX;
+
+      aCnv.Pen.Color := clRed;
+      aCnv.Pen.Style := psSolid;
+      aCnv.Pen.Width := 1;
+
+      aCnv.Brush.Color := clRed;
+      aCnv.Brush.Style := bsClear;
+      aCnv.Ellipse(Round(ScrX - ProtScrRadius), Round(ScrY - ProtScrRadius),
+        Round(ScrX + ProtScrRadius), Round(ScrY + ProtScrRadius));
+
+      {$ENDREGION}
+
+      {$REGION 'Garis Lurus ke Target'}
+      dx := TargetShip.PosX - OwnShip.PosX;
+      dy := TargetShip.PosY - OwnShip.PosY;
+
+      // Perpanjang garis sampai jauh ke depan
+      dx := OwnShip.PosX + dx * 10;
+      dy := OwnShip.PosY + dy * 10;
+
+      FMap.ConvertCoord(ScrDX, ScrDY, dx, dy, 0);
+
+      aCnv.Pen.Color := clGreen;
+      aCnv.Pen.Style := psSolid;
+      aCnv.Pen.Width := 1;
+      aCnv.MoveTo(Round(scrx), Round(scrY));
+      aCnv.LineTo(Round(scrdx), Round(scrdy));
+      {$ENDREGION}
+
+      {$REGION 'Enable Distance'}
+      dx := TargetShip.PosX - OwnShip.PosX;
+      dy := TargetShip.PosY - OwnShip.PosY;
+      Angle := ArcTan2(dy, dx);
+      angle := -Angle;
+      MapX := OwnShip.PosX + torpedoparam.EnablingDist /60 * Cos(Angle);
+      MapY := OwnShip.PosY + torpedoparam.EnablingDist /60 * Sin(Angle);
+      FMap.ConvertCoord(ScrDX, ScrDY, MapX, MapY, 0);
+
+      aCnv.Pen.Color := clGreen;
+      aCnv.Pen.Style := psSolid;
+      aCnv.Pen.Width := 1;
+      aCnv.MoveTo(Round(ScrDX), Round(scrdy));
+      AngleKanan := Angle - DegToRad(90);
+      ScrX := ScrDX + Round(1000 * cos(AngleKanan));
+      ScrY := ScrDY + Round(1000 * sin(AngleKanan));
+      aCnv.LineTo(Round(scrX), Round(ScrY));
+
+      aCnv.MoveTo(Round(ScrDX), Round(scrdy));
+      AngleKiri := Angle + DegToRad(90);
+      ScrX := ScrDX + Round(1000 * cos(AngleKiri));
+      ScrY := ScrDY + Round(1000 * sin(AngleKiri));
+      aCnv.LineTo(Round(scrX), Round(ScrY));
+      {$ENDREGION}
+
+      {$REGION 'Search Area'}
+      // distance returnnya nautical mile, sesuai dengan settingan di load geoset
+      OSCenter := FMap.Distance(OwnShip.PosX, OwnShip.PosY, TargetShip.PosX, TargetShip.PosY); // distance dari OS ke target
+      OSCenter := OSCenter * C_NauticalMile_To_Degree;
+      SALength := OSCenter * 4/3; // length search area
+      OStoSSP := OSCenter - SALength /2; // ownship to SSP (start search point)
+
+      Dx := -TorpedoParam.SAWidth/2 *C_KMeter_To_Degree;
+      Dy := -SALength/2;
+      RotX := Dx * sin(angle) - Dy * Cos(angle);
+      RotY := Dx * Cos(angle) + Dy * sin(angle);
+      MapX := TargetShip.PosX + RotX;
+      MapY := TargetShip.PosY + RotY;
+      FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+      SAbox[0] := System.Classes.Point(Round(ScrX), Round(ScrY));
+
+      Dx := -TorpedoParam.SAWidth/2 *C_KMeter_To_Degree;
+      Dy := SALength/2;
+      RotX := Dx * sin(angle) - Dy * Cos(angle);
+      RotY := Dx * Cos(angle) + Dy * sin(angle);
+      MapX := TargetShip.PosX + RotX;
+      MapY := TargetShip.PosY + RotY;
+      FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+      SAbox[1] := System.Classes.Point(Round(ScrX), Round(ScrY));
+
+      Dx := TorpedoParam.SAWidth/2 *C_KMeter_To_Degree;
+      Dy := SALength/2;
+      RotX := Dx * sin(angle) - Dy * Cos(angle);
+      RotY := Dx * Cos(angle) + Dy * sin(angle);
+      MapX := TargetShip.PosX + RotX;
+      MapY := TargetShip.PosY + RotY;
+      FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+      SAbox[2] := System.Classes.Point(Round(ScrX), Round(ScrY));
+
+      Dx := TorpedoParam.SAWidth/2 *C_KMeter_To_Degree;
+      Dy := -SALength/2;
+      RotX := Dx * sin(angle) - Dy * Cos(angle);
+      RotY := Dx * Cos(angle) + Dy * sin(angle);
+      MapX := TargetShip.PosX + RotX;
+      MapY := TargetShip.PosY + RotY;
+      FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+      SAbox[3] := System.Classes.Point(Round(ScrX), Round(ScrY));
+
+      aCnv.Pen.Color := clGreen;
+      aCnv.Pen.Width := 1;
+      aCnv.Brush.Style := bsClear;
+      aCnv.Polygon(SAbox);
+      {$ENDREGION}
+    end;
+
+  end;
 end;
 
 procedure TFrmTorpedoWP.ResetAssociatedFunction;
@@ -2121,10 +2364,18 @@ begin
   end;
 end;
 
-procedure TFrmTorpedoWP.Timer1Timer(Sender: TObject);
+procedure TFrmTorpedoWP.tmrUpdateTWPTimer(Sender: TObject);
 begin
   //imgBackgrounSituationZone.Repaint;
-  Invalidate;
+//  Invalidate;
+// manggil invalidate untuk overlay gambar disini
+  if not FTrueMotion then
+  begin
+    FMap.CenterX := SutBlacksharkManager.xShip.PositionX;
+    FMap.CenterY := SutBlacksharkManager.xShip.PositionY;
+  end;
+
+  pnlTorpedoGeo.Repaint;
 end;
 
 procedure TFrmTorpedoWP.TimerBlinkTimer(Sender: TObject);
@@ -2174,26 +2425,26 @@ begin
 
 //  lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
 
-  if Assigned(SutBlacksharkManager) then
-  begin
-    if Assigned(SutBlacksharkManager.xShip) then
-    begin
-//      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
-//      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
-
-      if not SutBlacksharkManager.IsTrueMotion then begin
-        Fmap.CenterX := SutBlacksharkManager.xShip.PositionX;
-        Fmap.CenterY := SutBlacksharkManager.xShip.PositionY;
-      //    FMap.Rotation := 0;
-        FNorthAngle := 0;
-      end
-      else
-      begin
-        FNorthAngle := -SutBlacksharkManager.xShip.Heading;;
-      //    FMap.Rotation := -FCCManager.xShip.Heading;
-      end;
-    end;
-  end;
+//  if Assigned(SutBlacksharkManager) then
+//  begin
+//    if Assigned(SutBlacksharkManager.xShip) then
+//    begin
+////      edtNavDataLAT.Text := FormatFloat('0.000000', FCCManager.xShip.PositionY);
+////      edtNavDataLON.Text := FormatFloat('0.000000', FCCManager.xShip.PositionX);
+//
+//      if not SutBlacksharkManager.IsTrueMotion then begin
+//        Fmap.CenterX := SutBlacksharkManager.xShip.PositionX;
+//        Fmap.CenterY := SutBlacksharkManager.xShip.PositionY;
+//      //    FMap.Rotation := 0;
+//        FNorthAngle := 0;
+//      end
+//      else
+//      begin
+//        FNorthAngle := -SutBlacksharkManager.xShip.Heading;;
+//      //    FMap.Rotation := -FCCManager.xShip.Heading;
+//      end;
+//    end;
+//  end;
 end;
 
 procedure TFrmTorpedoWP.UpdateAttachFormDisplay;
@@ -2296,6 +2547,26 @@ begin
 //  end;
   {$ENDREGION}
 
+end;
+
+procedure TFrmTorpedoWP.ZoomClick(Sender: TObject);
+begin
+  if TImageButton(Sender).Tag = 1 then
+  begin
+    if cbbZoomScale.ItemIndex <> 0 then
+    begin
+      cbbZoomScale.ItemIndex := cbbZoomScale.ItemIndex -1;
+      cbbZoomScaleChange(Sender);
+    end;
+  end
+  else if TImageButton(Sender).Tag = 0 then
+  begin
+    if cbbZoomScale.ItemIndex <> 14 then
+    begin
+      cbbZoomScale.ItemIndex := cbbZoomScale.ItemIndex +1;
+      cbbZoomScaleChange(Sender);
+    end;
+  end;
 end;
 
 end.

@@ -188,7 +188,7 @@ begin // reset perubahan dan ganti trial ke official
   else if AControl is TComboBox then
     cbTrialApproachSpeed.ItemIndex := TorpedoParam.ApproachSpeed - 9
   else if AControl is TCheckBox then
-    chkTrialApproachCourse.Checked := True;
+    chkTrialApproachCourse.Checked := false;
   {$ENDREGION}
 
   {$REGION 'AdvSA'}
@@ -206,7 +206,7 @@ begin // reset perubahan dan ganti trial ke official
   else if AControl is TComboBox then
     cbTrialSAUpdating.ItemIndex := TorpedoParam.SAUpdating
   else if AControl is TCheckBox then
-    chkTrialCenterOS.Checked := True;
+    chkTrialCenterOS.Checked := False;
   {$ENDREGION}
 
   {$REGION 'AdvIntGuidance'}

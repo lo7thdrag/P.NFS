@@ -33,6 +33,8 @@ C_2_Pi          = 2.0 * Pi;
 
   C_Feet_To_Meter             = 0.3048;
   C_Meter_To_NauticalMile     = 1.0 / C_NauticalMile_To_Metre;
+  C_KMeter_To_NauticalMile    = C_Meter_To_NauticalMile * 1000;
+  C_KMeter_To_Degree          = C_KMeter_To_NauticalMile / 60;
   C_Meter_To_Feet             = 3.2808399;
   C_Meter_To_DataMile         = 1.0 / C_DataMile_To_Metre;
   C_HFeet_To_Meter            = C_Feet_To_Meter * 100;

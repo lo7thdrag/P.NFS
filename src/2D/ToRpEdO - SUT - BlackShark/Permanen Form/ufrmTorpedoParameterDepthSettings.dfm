@@ -335,7 +335,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Top = 128
       Width = 569
       Height = 173
-      ActivePage = AdvDepth
+      ActivePage = AdvApproach
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
@@ -705,10 +705,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label23: TLabel
           Left = 7
           Top = 50
@@ -907,8 +903,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 97
           Width = 17
           Height = 20
-          Checked = True
-          State = cbChecked
           TabOrder = 2
         end
         object edtTrialApproachCourse: TEdit
@@ -934,10 +928,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label28: TLabel
           Left = 7
           Top = -2
@@ -1203,8 +1193,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 51
           Width = 17
           Height = 20
-          Checked = True
-          State = cbChecked
           TabOrder = 0
         end
         object edtTrialCenterSSP: TEdit
@@ -1297,10 +1285,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label40: TLabel
           Left = 7
           Top = 4
@@ -1454,10 +1438,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label50: TLabel
           Left = 7
           Top = 4
@@ -1661,10 +1641,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label55: TLabel
           Left = 14
           Top = 2

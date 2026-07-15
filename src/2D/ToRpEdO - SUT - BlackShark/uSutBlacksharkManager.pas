@@ -290,6 +290,8 @@ begin
       Trck.PosX := FxShip.PositionX;
       Trck.PosY := FxShip.PositionY;
       Trck.PosZ := FxShip.PositionZ;
+      Trck.HeadingDeg := FxShip.Heading;
+      Trck.Speed_knot := FxShip.Speed;
     end;
   end
   else begin

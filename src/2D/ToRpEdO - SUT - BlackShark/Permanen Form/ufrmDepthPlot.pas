@@ -84,7 +84,7 @@ begin
   YLabels[1] := '';
   YLabels[2] := IntToStr(Round(MaxDepth/2));
   YLabels[3] := '';
-  YLabels[4] := IntToStr(Round(MaxDepth/2));
+  YLabels[4] := IntToStr(Round(MaxDepth));
   GraphWidth  := pbDepthPlot.ClientWidth  - GraphLeft - RightMargin;
   GraphHeight := pbDepthPlot.ClientHeight - GraphTop  - BottomMargin;
 
