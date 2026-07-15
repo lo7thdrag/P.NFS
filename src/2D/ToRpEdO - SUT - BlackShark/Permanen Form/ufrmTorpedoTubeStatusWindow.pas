@@ -128,7 +128,6 @@ uses
   ufrmTorpedoAllocation;
 {$R *.dfm}
 
-
 procedure TfrmTorpedoTubeStatusWindow.DrawTube(pBox: TPaintBox;aLauncher: TTorpedoLauncher);
 var
   aCnv: TCanvas;
@@ -137,30 +136,50 @@ var
   i : Integer;
 begin
   aCnv := pBox.Canvas;
-  Cx := Round(pBox.Width / 2);
-  Cy := Round(pBox.Height / 2);
+  Cx   := Round(pBox.Width / 2);
+  Cy   := Round(pBox.Height / 2);
 
-  // draw outer circle Water Pressure
-  if aLauncher.WaterPressure = wpDrained then aCnv.Pen.Color := clRed
-  else if aLauncher.WaterPressure = wpPresNotEqualized then aCnv.Pen.Color := clYellow
-  else if aLauncher.WaterPressure = wpPresEqualized then aCnv.Pen.Color := clGreen;
+  {$REGION 'Draw Outer Circle Water Pressure'}
+  if aLauncher.TextStatus = stTorpReady then
+    aCnv.Pen.Color := clGreen
+  else if aLauncher.TextStatus = stFired then
+    aCnv.Pen.Color := clGreen
+  else
+  begin
+    case aLauncher.WaterPressure of
+      wpDrained          : aCnv.Pen.Color := clRed; 
+      wpPresNotEqualized : aCnv.Pen.Color := clYellow;    
+      wpPresEqualized    : aCnv.Pen.Color := clGreen;       
+    end;
+  end;
+
   aCnv.Pen.Style := psSolid;
   aCnv.Pen.Width := 1;
-  aCnv.Brush.Color := clwhite;
   aCnv.Brush.Style := bsClear;
-  aCnv.Ellipse(Round(Cx) - 24, Round(Cy) - 24, Round(Cx) + 24, Round(Cy) + 24);
+  aCnv.Ellipse(Round(Cx)-24, Round(Cy)-24, Round(Cx)+24, Round(Cy)+24);
+  {$ENDREGION}
 
-  // draw inner circle Bow Cap
-  if aLauncher.BowCap = bcClosed then aCnv.Pen.Color := clRed
-  else if aLauncher.BowCap = bcOpenLeverNotSet then aCnv.Pen.Color := clYellow
-  else if aLauncher.BowCap = bcOpenLeverSet then aCnv.Pen.Color := clGreen;
-  aCnv.Pen.Style := psSolid;
-  aCnv.Pen.Width := 1;
-  aCnv.Brush.Color := clwhite;
+  {$REGION 'Draw Inner Circle Bow Cap'}
+  if aLauncher.TextStatus = stTorpReady then
+    aCnv.Pen.Color := clGreen
+  else if aLauncher.TextStatus = stFired then
+    aCnv.Pen.Color := clGreen
+  else
+  begin
+    case aLauncher.BowCap of
+      bcClosed          : aCnv.Pen.Color := clRed;
+      bcOpenLeverNotSet : aCnv.Pen.Color := clYellow;
+      bcOpenLeverSet    : aCnv.Pen.Color := clGreen;
+    end;
+  end;
+
+  aCnv.Pen.Style   := psSolid;
+  aCnv.Pen.Width   := 1;
   aCnv.Brush.Style := bsClear;
-  aCnv.Ellipse(Round(Cx) - 21, Round(Cy) - 21, Round(Cx) + 21, Round(Cy) + 21);
+  aCnv.Ellipse(Round(Cx)-21, Round(Cy)-21, Round(Cx)+21, Round(Cy)+21);
+  {$ENDREGION}
 
-  // red cross fire releases
+  {$REGION 'Red Cross Fire Releases'}
   if not aLauncher.FireRelease then
   begin
     aCnv.Pen.Color := clRed;
@@ -171,67 +190,90 @@ begin
 
     aCnv.MoveTo(Round(cx -19), Round(cy+5));
     aCnv.LineTo(Round(cx+19), Round(cy-5));
+  end
+  else if aLauncher.FireRelease then
+  begin
+    aCnv.Brush.Style := bsClear;
   end;
+  {$ENDREGION}
 
+  {$REGION 'Draw Triangle Torpedo Status'}
   if aLauncher.Loaded then
   begin
-    // draw triangle Torpedo Status
-    if aLauncher.TorpedoStatus = tsOff then
+    if aLauncher.TextStatus = stTorpReady then
     begin
-      aCnv.Pen.Color   := clYellow;
-      aCnv.Brush.Color := clYellow;
-      aCnv.Brush.Style := bsSolid;
-    end
-    else if aLauncher.TorpedoStatus = tsTesting then // harus dibuat blinking
-    begin
-      aCnv.Pen.Color   := clYellow;
-      aCnv.Brush.Color := clYellow;
-      aCnv.Brush.Style := bsSolid;
-    end
-    else if aLauncher.TorpedoStatus = tsOnAndOk then
-    begin
-      aCnv.Pen.Color := clLime;
+      aCnv.Pen.Color   := clLime;
       aCnv.Brush.Color := clLime;
       aCnv.Brush.Style := bsSolid;
     end
-    else if aLauncher.TorpedoStatus = tsOnWithRestrict then
+    else if aLauncher.FireRelease = True then
     begin
-      aCnv.Pen.Color := clLime;
+      aCnv.Pen.Color   := clLime;
       aCnv.Brush.Color := clLime;
       aCnv.Brush.Style := bsClear;
     end
-    else if aLauncher.TorpedoStatus = tsNotOK then
+    else
     begin
-      aCnv.Pen.Color := clRed;
-      aCnv.Brush.Color := clRed;
-      aCnv.Brush.Style := bsSolid;
+      case aLauncher.TorpedoStatus of
+        tsOff:
+        begin
+          aCnv.Pen.Color   := clYellow;
+          aCnv.Brush.Color := clYellow;
+          aCnv.Brush.Style := bsSolid;
+        end;
+        tsTesting:
+        begin
+          aCnv.Pen.Color   := clYellow;
+          aCnv.Brush.Color := clYellow;
+          aCnv.Brush.Style := bsSolid;
+        end;
+        tsOnAndOk:
+        begin
+          aCnv.Pen.Color   := clLime;
+          aCnv.Brush.Color := clLime;
+          aCnv.Brush.Style := bsSolid;
+        end;
+        tsOnWithRestrict:
+        begin
+          aCnv.Pen.Color   := clLime;
+          aCnv.Brush.Color := clLime;
+          aCnv.Brush.Style := bsClear;
+        end;
+       tsNotOK:
+        begin
+          aCnv.Pen.Color   := clRed;
+          aCnv.Brush.Color := clRed;
+          aCnv.Brush.Style := bsSolid;
+        end;
+      end;
     end;
 
-    Points[0] := Point(Round(cx), Round(cy));
-    Points[1] := Point(Round(cx -13), Round(cy +13));
-    Points[2] := Point(Round(cx +13), Round(cx +13));
+    Points[0] := Point(Round(Cx), Round(Cy));
+    Points[1] := Point(Round(Cx - 13), Round(Cy + 13));
+    Points[2] := Point(Round(Cx + 13), Round(Cy + 13));
+
     aCnv.Polygon(Points);
 
-    // vertical line cable status
-    if aLauncher.CableStatus = csOff then
+    {$REGION 'Vertical Line Cable Status'}
+    if aLauncher.TextStatus = stTorpReady then
+      aCnv.Pen.Color := clLime
+    else if aLauncher.FireRelease = True then
+      aCnv.Pen.Color := clLime   
+    else
     begin
-      aCnv.Pen.Color := clYellow;
-    end
-    else if aLauncher.CableStatus = csTesting then // harus dibuat blinking
-    begin
-      aCnv.Pen.Color := clYellow;
-    end
-    else if aLauncher.CableStatus = csTorpOnOK then
-    begin
-      aCnv.Pen.Color := clLime;
-    end
-    else if aLauncher.CableStatus = csError then
-    begin
-      aCnv.Pen.Color := clRed;
+      case aLauncher.CableStatus of
+        csOff      : aCnv.Pen.Color := clYellow;
+        csTesting  : aCnv.Pen.Color := clYellow;
+        csTorpOnOK : aCnv.Pen.Color := clLime;
+        csError    : aCnv.Pen.Color := clRed;
+      end;
     end;
-    aCnv.MoveTo(Round(cx), Round(cy-21));
-    aCnv.LineTo(Round(cx), Round(cy));
+
+    aCnv.MoveTo(Round(Cx), Round(Cy - 21));
+    aCnv.LineTo(Round(Cx), Round(Cy));
+    {$ENDREGION}
   end;
+  {$ENDREGION}
 end;
 
 procedure TfrmTorpedoTubeStatusWindow.pbTubeSymbol1Paint(Sender: TObject);
@@ -323,7 +365,7 @@ procedure TfrmTorpedoTubeStatusWindow.UpdateTextStatus;
 var
   i,j   : Integer;
   aText : TTorpedoLauncher;
-  Text1, Text2: TLabel;
+  Text1, Text2, Text3: TLabel;
   PanelNumber : TPanel;
 begin
   {$REGION 'Status Text Torpedo'}
@@ -334,6 +376,7 @@ begin
       begin
         Text1 := lblTorpedo1;
         Text2 := lblValueTorpedo1;
+        Text3 := lblWTSRC1;
 
         PanelNumber := pnlNumTorpedo1;
       end;
@@ -341,6 +384,7 @@ begin
       begin
         Text1 := lblTorpedo2;
         Text2 := lblValueTorpedo2;
+        Text3 := lblWTSRC2;
 
         PanelNumber := pnlNumTorpedo2;
       end;
@@ -348,6 +392,7 @@ begin
       begin
         Text1 := lblTorpedo3;
         Text2 := lblValueTorpedo3;
+        Text3 := lblWTSRC3;
 
         PanelNumber := pnlNumTorpedo3;
       end;
@@ -355,6 +400,7 @@ begin
       begin
         Text1 := lblTorpedo4;
         Text2 := lblValueTorpedo4;
+        Text3 := lblWTSRC4;
 
         PanelNumber := pnlNumTorpedo4;
       end;
@@ -362,6 +408,7 @@ begin
       begin
         Text1 := lblTorpedo5;
         Text2 := lblValueTorpedo5;
+        Text3 := lblWTSRC5;
 
         PanelNumber := pnlNumTorpedo5;
       end;
@@ -369,6 +416,7 @@ begin
       begin
         Text1 := lblTorpedo6;
         Text2 := lblValueTorpedo6;
+        Text3 := lblWTSRC6;
 
         PanelNumber := pnlNumTorpedo6;
       end;
@@ -376,6 +424,7 @@ begin
       begin
         Text1 := lblTorpedo7;
         Text2 := lblValueTorpedo7;
+        Text3 := lblWTSRC7;
 
         PanelNumber := pnlNumTorpedo7;
       end;
@@ -383,6 +432,7 @@ begin
       begin
         Text1 := lblTorpedo8;
         Text2 := lblValueTorpedo8;
+        Text3 := lblWTSRC8;
 
         PanelNumber := pnlNumTorpedo8;
       end;
@@ -408,6 +458,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -425,6 +477,8 @@ begin
           Text1.Caption    := 'TESTING';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -444,6 +498,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -461,6 +517,8 @@ begin
           Text1.Caption    := 'FIRED';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -480,6 +538,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -497,6 +557,8 @@ begin
           Text1.Caption    := 'INITIAL RUN';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -516,6 +578,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -533,6 +597,8 @@ begin
           Text1.Caption    := 'MSI-APPR-CC';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -552,6 +618,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -569,6 +637,8 @@ begin
           Text1.Caption    := 'TORP-APPR';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -588,6 +658,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -605,6 +677,8 @@ begin
           Text1.Caption    := 'MSI-SRC-CC';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -624,6 +698,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -641,6 +717,8 @@ begin
           Text1.Caption    := 'TORP-SRC';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -660,6 +738,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -677,6 +757,8 @@ begin
           Text1.Caption    := 'TORP-SRC-SA';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -696,6 +778,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -713,6 +797,8 @@ begin
           Text1.Caption    := 'WAKE SELF GUID';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -732,6 +818,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -749,6 +837,8 @@ begin
           Text1.Caption    := 'LONG RANGE ATT';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -768,6 +858,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -785,6 +877,8 @@ begin
           Text1.Caption    := 'TGT LOST';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 
@@ -804,6 +898,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -822,6 +918,8 @@ begin
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
 
+          Text3.Font.Color := clLime;
+
           PanelNumber.Visible := True;
 
           if Assigned(VehicleMgr.TrackControlled) then
@@ -839,6 +937,8 @@ begin
           Text1.Caption    := 'IMMED FIRE';
           Text1.Font.Color := clLime;
           Text1.Visible    := True;
+
+          Text3.Font.Color := clLime;
 
           PanelNumber.Visible := True;
 

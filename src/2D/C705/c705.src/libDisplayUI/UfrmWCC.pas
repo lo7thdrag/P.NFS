@@ -335,35 +335,37 @@ end;
 
 procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject; aStatus: TC705StatusType);
 begin
-  case aStatus of
-    stEnableWeapon: begin
-      if SimManager.C705Status.EnableWeapon then begin
-        btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
-        btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
-      end
-      else begin
-        btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
-        btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+  if Assigned(SimManager) then begin
+    case aStatus of
+      stEnableWeapon: begin
+        if SimManager.C705Status.EnableWeapon then begin
+          btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+          btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+        end
+        else begin
+          btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+          btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+        end;
       end;
-    end;
-    stOpenCover: begin
-      if SimManager.C705Status.OpenCoverLauncher then begin
-        btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
-        btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
-      end
-      else begin
-        btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
-        btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+      stOpenCover: begin
+        if SimManager.C705Status.OpenCoverLauncher then begin
+          btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+          btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+        end
+        else begin
+          btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+          btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+        end;
       end;
-    end;
-    stSafetyIgnition: begin
-      if SimManager.C705Status.SafetyIgnition then begin     // SAFE
-        imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - SAFE.png');
-        imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - SAFE.png');
-      end
-      else begin                                             // ARMED
-        imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - ARMED.png');
-        imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - ARMED.png');
+      stSafetyIgnition: begin
+        if SimManager.C705Status.SafetyIgnition then begin     // SAFE
+          imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - SAFE.png');
+          imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - SAFE.png');
+        end
+        else begin                                             // ARMED
+          imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - ARMED.png');
+          imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - ARMED.png');
+        end;
       end;
     end;
   end;

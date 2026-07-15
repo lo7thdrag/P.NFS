@@ -1895,13 +1895,15 @@ end;
 
 procedure TfrmRoutePlan.TakeOffBtnChanged(Sender: TObject);
 begin
-  if SimManager.MissileTakeOff then begin
-    btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
-    btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
-  end
-  else begin
-    btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
-    btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+  if Assigned(SimManager) then begin
+    if SimManager.MissileTakeOff then begin
+      btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+      btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+    end
+    else begin
+      btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+      btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+    end;
   end;
 end;
 

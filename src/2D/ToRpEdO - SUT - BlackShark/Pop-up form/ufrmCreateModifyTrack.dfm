@@ -355,9 +355,9 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
     object lblReselect: TLabel
       Left = 132
       Top = 501
-      Width = 41
+      Width = 48
       Height = 16
-      Caption = 'Reselct'
+      Caption = 'Reselect'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite

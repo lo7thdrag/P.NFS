@@ -11,6 +11,7 @@ object frmSystemStatus: TfrmSystemStatus
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -1123,7 +1124,7 @@ object frmSystemStatus: TfrmSystemStatus
     object lblSystemMode: TLabel
       Left = 481
       Top = 8
-      Width = 49
+      Width = 41
       Height = 14
       Caption = 'Tactical'
       Font.Charset = DEFAULT_CHARSET
@@ -1198,19 +1199,6 @@ object frmSystemStatus: TfrmSystemStatus
       Font.Style = []
       ParentFont = False
     end
-    object lblFireAuthorization: TLabel
-      Left = 416
-      Top = 100
-      Width = 16
-      Height = 14
-      Caption = 'On'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -12
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
     object Label17: TLabel
       Left = 297
       Top = 124
@@ -1227,9 +1215,22 @@ object frmSystemStatus: TfrmSystemStatus
     object lblConsole: TLabel
       Left = 416
       Top = 124
-      Width = 49
+      Width = 38
       Height = 14
-      Caption = 'Sonar 04'
+      Caption = 'MSI-01'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clLime
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblFireAuthorization: TLabel
+      Left = 416
+      Top = 101
+      Width = 17
+      Height = 14
+      Caption = 'Off'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -12

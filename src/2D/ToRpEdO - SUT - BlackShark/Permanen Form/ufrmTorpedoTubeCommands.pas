@@ -89,6 +89,7 @@ begin
      frmTorpedoTubeStatusWindow.UpdateTextStatus;
     end;
   end;
+
 end;
 
 end.

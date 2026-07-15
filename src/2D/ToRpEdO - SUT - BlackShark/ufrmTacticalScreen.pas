@@ -558,6 +558,7 @@ begin
   if not Assigned(FFrmOwnShipTS) then
   begin
     FFrmOwnShipTS := TfrmOwnShip.Create(Self);
+    frmOwnShip    := FFrmOwnShipTS;
     FFrmOwnShipTS.Parent := pnlOwnShip;
     FFrmOwnShipTS.Align := alClient;
     FFrmOwnShipTS.Show;
@@ -568,6 +569,7 @@ begin
   if not Assigned(FFrmAlertandOpearatorMassageTS) then
   begin
     FFrmAlertandOpearatorMassageTS := TfrmAlertsandOpearatorMassage.Create(Self);
+    frmAlertsandOpearatorMassage   := FFrmAlertandOpearatorMassageTS;
     FFrmAlertandOpearatorMassageTS.Parent := pnlAlert;
     FFrmAlertandOpearatorMassageTS.Align := alClient;
     FFrmAlertandOpearatorMassageTS.Show;
@@ -578,8 +580,8 @@ begin
   if not Assigned(FFrmTargetInControltS) then
   begin
     FFrmTargetInControltS.Caption := '';
-
     FFrmTargetInControltS := TfrmTargetInControl.Create(Self);
+    frmTargetInControl    := FFrmTargetInControltS;
     FFrmTargetInControltS.Parent := pnlObjectInControl;
     FFrmTargetInControltS.Align := alClient;
     FFrmTargetInControltS.Show;
@@ -592,23 +594,25 @@ begin
     pnlSystemStatus.Caption := '';
 
     FFrmSystemStatus := TfrmSystemStatus.Create(Self);
+    frmSystemStatus := FFrmSystemStatus;
     FFrmSystemStatus.Parent := pnlSystemStatus;
     FFrmSystemStatus.Align := alClient;
     FFrmSystemStatus.Show;
   end;
-    {$ENDREGION}
+  {$ENDREGION}
 
-    {$REGION 'System Info'}
+  {$REGION 'System Info'}
   if not Assigned(FFrmSystemInfo) then
   begin
     pnlSystemInfo.Caption := '';
 
     FFrmSystemInfo := TfrmSystemInfo.Create(Self);
+    frmSystemInfo  := FFrmSystemInfo;
     FFrmSystemInfo.Parent := pnlSystemInfo;
     FFrmSystemInfo.Align := alClient;
     FFrmSystemInfo.Show;
   end;
-    {$ENDREGION}
+  {$ENDREGION}
 
   {$REGION 'Cursor Position'}
   if not Assigned(FFrmCursor) then
@@ -616,6 +620,7 @@ begin
     pnlCursor.Caption := '';
 
     FFrmCursor := TfrmCursor.Create(Self);
+    frmCursor  := FFrmCursor;
     FFrmCursor.Parent := pnlCursor;
     FFrmCursor.Align := alClient;
     FFrmCursor.Show;

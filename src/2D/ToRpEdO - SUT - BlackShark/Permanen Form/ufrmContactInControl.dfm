@@ -64,7 +64,7 @@ object frmContactInControl: TfrmContactInControl
       Top = 4
       Width = 21
       Height = 16
-      Caption = '901'
+      Caption = '000'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -90,7 +90,7 @@ object frmContactInControl: TfrmContactInControl
       Top = 24
       Width = 25
       Height = 16
-      Caption = '90.0'
+      Caption = '00.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -129,7 +129,7 @@ object frmContactInControl: TfrmContactInControl
       Top = 43
       Width = 28
       Height = 16
-      Caption = '1900'
+      Caption = '0000'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -166,9 +166,9 @@ object frmContactInControl: TfrmContactInControl
     object lblVerticalBearing: TLabel
       Left = 131
       Top = 64
-      Width = 25
+      Width = 6
       Height = 16
-      Caption = '90.0'
+      Caption = 's'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13

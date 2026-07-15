@@ -45,13 +45,14 @@ object frmAlertsandOpearatorMassage: TfrmAlertsandOpearatorMassage
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      Visible = False
     end
     object lblNumberAlert: TLabel
       Left = 56
       Top = 2
       Width = 14
       Height = 16
-      Caption = '11'
+      Caption = '00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -73,6 +74,7 @@ object frmAlertsandOpearatorMassage: TfrmAlertsandOpearatorMassage
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      Visible = False
     end
   end
 end
