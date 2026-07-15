@@ -27,6 +27,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 0
+      OnClick = pnlTorpedoClick
       object shpFrameTorpedo1: TShape
         Left = 5
         Top = 17
@@ -172,6 +173,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 1
+      OnClick = pnlTorpedoClick
       object shpFrameTorpedo2: TShape
         Left = 5
         Top = 16
@@ -318,6 +320,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 2
+      OnClick = pnlTorpedoClick
       object shpFrameTorpedo3: TShape
         Left = 5
         Top = 16
@@ -464,6 +467,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 3
+      OnClick = pnlTorpedoClick
       object shpFrameTorpedo4: TShape
         Left = 5
         Top = 16
@@ -615,6 +619,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 4
+      OnClick = pnlTorpedoClick
       object shpFrameTorpedo5: TShape
         Left = 4
         Top = 16
@@ -761,6 +766,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 5
+      OnClick = pnlTorpedoClick
       object shpFrameTorpedo6: TShape
         Left = 5
         Top = 16
@@ -907,6 +913,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 6
+      OnClick = pnlTorpedoClick
       object shpFrameTorpedo7: TShape
         Left = 4
         Top = 15
@@ -1053,6 +1060,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       Width = 140
       Height = 80
       TabOrder = 7
+      OnClick = pnlTorpedoClick
       object shpFrameTorpedo8: TShape
         Left = 4
         Top = 15

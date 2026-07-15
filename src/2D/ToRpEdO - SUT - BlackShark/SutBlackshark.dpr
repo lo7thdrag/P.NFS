@@ -99,7 +99,8 @@ uses
   uStringFunction in '..\ShareLib\LibBaseSystem\uStringFunction.pas',
   uTransparentOverlay in 'uTransparentOverlay.pas',
   uDataParameterSetting in 'uDataParameterSetting.pas',
-  ufrmTorpedoTubeStatusWindow in 'Permanen Form\ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow};
+  ufrmTorpedoTubeStatusWindow in 'Permanen Form\ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow},
+  ufrmTorpedoTestResultWindow in 'Pop-up form\ufrmTorpedoTestResultWindow.pas' {frmTorpedoStatusResultsWindow};
 
 {$R *.res}
 
@@ -111,6 +112,7 @@ begin
   Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
+  Application.CreateForm(TfrmTorpedoStatusResultsWindow, frmTorpedoStatusResultsWindow);
   //  Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
 //  Application.CreateForm(TfrmSystemInfo, frmSystemInfo);
 //  Application.CreateForm(TfrmCursor, frmCursor);

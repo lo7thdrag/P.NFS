@@ -40,7 +40,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Top = 7
       Width = 42
       Height = 14
-      Caption = '110002'
+      Caption = '000000'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -12
@@ -66,6 +66,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Top = 7
       Width = 4
       Height = 14
+      Caption = '00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -12
@@ -91,7 +92,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Top = 7
       Width = 7
       Height = 14
-      Caption = '1'
+      Caption = '0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -12
