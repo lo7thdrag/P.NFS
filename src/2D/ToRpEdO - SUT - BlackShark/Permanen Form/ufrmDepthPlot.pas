@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, uSutBlacksharkManager;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, uSutBlacksharkManager, uVehicleManager, uSimulationTrack;
 
 type
   TfrmDepthPlot = class(TForm)
@@ -78,6 +78,8 @@ var
   GraphHeight : Integer;
   ShipY : Double;
   YLabels : array[0..4] of string;
+  TempShip: TSimulationTrack;
+  Rect: array[0..3] of TPoint;
 begin
 //  YLabels := ('','',
   YLabels[0] := '';
@@ -147,6 +149,34 @@ begin
     MoveTo(GraphLeft + 6, Round(ShipY) - 6);
     LineTo(GraphLeft - 6, Round(ShipY) + 6);
 
+    // target ship
+    for i := 0 to VehicleMgr.ObjectList.Count - 1 do
+    begin
+      TempShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
+      if TempShip.Controlled_Track then
+      begin
+        Pen.Color := clRed;
+        Pen.Style := psSolid;
+        Pen.Width := 1;
+        Brush.Style := bsClear;
+
+        ShipY := (Abs(TempShip.PosZ) / MaxDepth * GraphHeight);
+        Rect[0] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY -8));
+        Rect[1] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY +8));
+        Rect[2] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY +8));
+        Rect[3] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY -8));
+        Polygon(Rect);
+
+        Rect[0] := Point(Round(GraphWidth + graphleft) , Round(ShipY -8));
+        Rect[1] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY));
+        Rect[2] := Point(Round(GraphWidth + graphleft) , Round(ShipY +8));
+        Rect[3] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY));
+        Polygon(Rect);
+      end;
+    end;
+
+
+
     if Assigned(TorpedoParam) then
     begin
       // Line Green Floor
@@ -161,6 +191,7 @@ begin
 
       // Line Red
       Pen.Color := clRed;
+      Pen.Width := 1;
       Pen.Style := psDot;
       MoveTo(GraphLeft + 20, GraphTop);
       LineTo(GraphLeft + 20, GraphTop + GraphHeight);

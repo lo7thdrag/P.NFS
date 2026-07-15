@@ -13,6 +13,7 @@ type
     FConv: TCoordConverter;
     FTrackNumberInc: Integer;
     FTrackControlled: TSimulationTrack;
+    FIsAnyTrackControlled : Boolean;
   public
 
     constructor Create;
@@ -20,6 +21,8 @@ type
 
     property CoordConverter: TCoordConverter read FConv write FConv;
     property TrackControlled: TSimulationTrack read FTrackControlled;
+    property IsAnyTrackControlled: Boolean read FIsAnyTrackControlled;
+
 
 //    function  AddVehicle: TVehicle; overload;
 //    function  AddVehicle(const x, y: Double; const trackLabel: string = ''; const isSurface: Boolean = false): TVehicle; overload;
@@ -70,6 +73,7 @@ begin
   inherited Create;
   FList := TObjectList.Create;
   FConv := nil;
+  FIsAnyTrackControlled := False;
   FTrackNumberInc := 110000;
 end;
 
@@ -175,9 +179,14 @@ begin
       TSimulationTrack(FList[i]).Controlled_Track := True;
       Found := True;
       FTrackControlled := TSimulationTrack(FList[i]);
+      FIsAnyTrackControlled := True;
 //      sutblacksharkmanager.
     end
-    else TSimulationTrack(FList[i]).Controlled_Track := False;
+    else
+    begin
+      TSimulationTrack(FList[i]).Controlled_Track := False;
+      FIsAnyTrackControlled := False;
+    end;
   end;
 
   result:= Found;

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting, uSutBlacksharkManager;
+  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting, uSutBlacksharkManager, uVehicleManager;
 
 type
   TfrmTorpedoParameterDepthSettings = class(TForm)
@@ -244,6 +244,8 @@ procedure TfrmTorpedoParameterDepthSettings.FormShow(Sender: TObject);
 begin
   // ambil semua variable dari torpedoparam
   {$REGION 'Upper'}
+  lblNumberTarget.Caption        := '';
+  lblNumberTarget.Caption        := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
   cbTrialGuidance.ItemIndex      := TorpedoParam.Guidance;
   lblOfficialGuidance.Caption    := cbTrialGuidance.Text;
   edtTrialLOSDeviation.Text      := IntToStr(TorpedoParam.LOSDeviation);
@@ -421,6 +423,13 @@ begin
   TorpedoParam.ASH                    := cbTrialASH.ItemIndex;
   lblOfficialASH.Caption              := cbTrialASH.Text;
   {$ENDREGION}
+
+  if TorpedoParam.SalvoNum = 0 then
+  begin
+    SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
+    TorpedoParam.SalvoNum := SutBlacksharkManager.SalvoIndex;
+    lblNumberSalvo.Caption := IntToStr(TorpedoParam.SalvoNum);
+  end;
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblResetClick(Sender: TObject);

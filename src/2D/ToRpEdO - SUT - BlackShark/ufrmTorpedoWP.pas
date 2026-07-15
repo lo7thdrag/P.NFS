@@ -236,6 +236,7 @@ type
     procedure SubmodeSelect(Sender: Tobject);
     procedure FuncTaskRightSelect(Sender: Tobject);
     procedure SubmodeToolsSelect(Sender: Tobject);
+    procedure BlackSharkFireClick(Sender: Tobject);
     procedure SetLayoutForm;
     procedure ResetSubmodeTools;
     procedure ResetAssociatedFunction;
@@ -315,6 +316,35 @@ begin
     result := 0.001 * Round(z * 1000);
 end;
 
+procedure TFrmTorpedoWP.BlackSharkFireClick(Sender: Tobject);
+var
+  RecSend : TRecSetTorpedoSUT;
+  TargetTrack : TSimulationTrack;
+begin
+  if VehicleMgr.IsAnyTrackControlled then TargetTrack := VehicleMgr.TrackControlled;
+
+  RecSend.ShipID              := SutBlacksharkManager.ShipID;
+  RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+  RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
+  RecSend.mMissileID          := 1; // selalu 1
+  RecSend.mMissileNumber      := 1; // selalu 1
+  RecSend.mT_ID               := TargetTrack.ShipID;
+  RecSend.OrderID             := __ORD_TORPEDOSUT_FIRED;
+  RecSend.mMissileType        := 0;
+  RecSend.mTorpedoCourse      := 0; // diambil dari torpedo param, automatis di set saat start analysis
+
+  RecSend.mTorpedoSpeed       := TorpedoParam.SearchSpeed;
+
+  RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;
+  RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
+  RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
+  RecSend.mpredm              := 0;
+  RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
+
+  SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+
+end;
+
 procedure TFrmTorpedoWP.cbbMotionModeChange(Sender: TObject);
 begin
   if cbbMotionMode.ItemIndex = 0 then
@@ -343,11 +373,11 @@ var
   z: double;
   i: Integer;
 begin
-  aCvt.ConvertToScreen(FMap.CenterX, FMap.CenterY, pnt.X, pnt.Y);
+//  aCvt.ConvertToScreen(FMap.CenterX, FMap.CenterY, pnt.X, pnt.Y);
 
-  z := FixMapZoom(FMap.Zoom);
-  i := FindClosestZoomIndex(z);
-  z := ZoomIndexToScale(i);
+//  z := FixMapZoom(FMap.Zoom);
+//  i := FindClosestZoomIndex(z);
+//  z := ZoomIndexToScale(i);
 
     // --- North Indicator ---
 //    FNorthInd.CenterX       := FCircleCX;
@@ -530,47 +560,6 @@ var
 begin
   if Button <> mbLeft then Exit;
 
-//  Sel := TargetMgr.SelectAt(X, Y);
-
-//  v := VehicleMgr.SelectAt(X, Y);
-
-
-//  FMap.Refresh; // langsung repaint untuk tunjukkan kotak putih
-
-//  if Assigned(v) then
-//  begin
-//    // misalnya tampilkan info target
-//    // ShowMessage('Target terpilih: ' + Sel.TrackLabel);
-//
-//    SutBlacksharkManager.SelectedVehicle := v;
-//    rangeX := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, v.PosX, v.PosY) * C_NauticalMile_To_Metre;   // 3 km
-//    dH     := v.PosZ;    // target 20 m lebih rendah
-//    v0     := 1035;    // m/s
-//
-//    SelectedVehicleState := true;
-//
-////    FBlinkPanel := pnlSubmodeTools11;
-////    FBlinkState := False;
-////    TimerBlink.Enabled := True;
-//
-//    if Assigned(SutBlacksharkManager) then
-//    begin
-//      // 1) Tanpa environment (vakum)
-//      ok := SutBlacksharkManager.ComputeGunElevationVacuum(rangeX, dH, v0, aLow, aHigh);
-////      edtLowPR.Text := FormatFloat('0.00', aLow);
-////      edtHighPR.Text := FormatFloat('0.00', aHigh);
-//    end;
-//  end
-//  else
-//  begin
-//    SelectedVehicleState := false;
-//    if (lblSubmodeTools11.Caption = 'Imme-' + #13#10 + 'diate' + #13#10 + 'Firing') and (pnlSubmodeTools11.Enabled = true)
-//      and (lblSubmodeTools11.Enabled = true)then
-//    begin
-//      TimerBlink.Enabled := False;
-//      pnlSubmodeTools11.Color := clBlack;
-//    end;
-//  end;
 end;
 
 procedure TFrmTorpedoWP.FMapMouseUp(Sender: TObject; Button: TMouseButton;
@@ -584,93 +573,7 @@ var
   aLow, aHigh: Double;
   range,rangem, bearing : Double;
 begin
-
-  if SelectedVehicleState = false then
-  begin
-    RecSend.ShipID              := SutBlacksharkManager.ShipID;
-    RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-    RecSend.mLauncherID         := 1;
-    RecSend.mMissileID          := 0;
-    RecSend.mMissileNumber      := 0;
-//      RecSend.OrderID             := 0;
-
-    RecSend.mTorpedoSpeed       := 0;
-    RecSend.mT_ID               := 0;
-    RecSend.mMissileType        := 0;
-    RecSend.mTorpedoDepth       := 0;
-    RecSend.mTorpedoCourse      := 0;
-
-    RecSend.mTargetType         := 0;
-//      RecSend.mSalvoRate          := 30;
-
-
-    RecSend.OrderID := __ORD_TORPEDOSUT_MANUAL;
-    SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
-    Exit;
-  end;
-
-  if (Assigned(SutBlacksharkManager.SelectedVehicle)) and (SelectedVehicleState = true)then
-  begin
-    range := CalcRange(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
-    rangem := range * C_NauticalMile_To_Metre;
-    bearing := CalcBearing(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY, SutBlacksharkManager.SelectedVehicle.PosX, SutBlacksharkManager.SelectedVehicle.PosY);
-    // range = 3000 m, target lebih rendah 25 m
-    ComputeBallisticAngleVacuum(rangem, SutBlacksharkManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
-
-    if (aLow <= 80 ) and (aLow >= 0 )then
-    begin
-//      FTargetAngleElevasi:= StrToFloatDef(edtElevasi.Text, 0);
-      aLow := FMod(aLow, 360);
-      if aLow < 0 then
-        aLow := aLow + 360;
-
-      RecSend.ShipID              := SutBlacksharkManager.ShipID;
-      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-      RecSend.mLauncherID         := 1;
-      RecSend.mMissileID          := 0;
-      RecSend.mMissileNumber      := 0;
-//      RecSend.OrderID             := 0;
-
-      RecSend.mTorpedoSpeed       := 0;
-      RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
-      RecSend.mMissileType        := 0;
-      RecSend.mTorpedoDepth       := aLow;
-      RecSend.mTorpedoCourse      := bearing;
-
-      RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
-//      RecSend.mSalvoRate          := 30;
-
-
-      RecSend.OrderID := __ORD_TORPEDOSUT_NAVIGATE;
-      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
-    end
-    else if (aLow >= 350 )then
-    begin
-      alow := FMod(alow, 360);
-      if alow < 0 then
-        alow := alow + 360;
-
-      RecSend.ShipID              := SutBlacksharkManager.ShipID;
-      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-      RecSend.mLauncherID         := 1;
-      RecSend.mMissileID          := 0;
-      RecSend.mMissileNumber      := 0;
-//      RecSend.OrderID             := 0;
-
-      RecSend.mTorpedoSpeed       := 0;
-      RecSend.mT_ID               := SutBlacksharkManager.SelectedVehicle.ShipID;
-      RecSend.mMissileType        := 0;
-      RecSend.mTorpedoDepth       := aLow;
-      RecSend.mTorpedoCourse      := bearing;
-
-      RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
-//      RecSend.mSalvoRate          := 30;
-
-
-      RecSend.OrderID := __ORD_TORPEDOSUT_NAVIGATE;
-      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
-    end;
-  end;
+  //
 end;
 
 procedure TFrmTorpedoWP.FormCreate(Sender: TObject);
@@ -1377,8 +1280,8 @@ begin
         ScrDY := ScrY - Round(cos(Angle) * 500);
         aCnv.LineTo(Round(ScrDX), Round(ScrDY));
 
-        aCnv.Pen.Color := clBlack;
-        aCnv.Pen.Style := psClear;
+        aCnv.Pen.Color := clRed;
+//        aCnv.Pen.Style := psClear;
         aCnv.Pen.Width := 1;
 
         aCnv.Brush.Color := clRed;
@@ -1386,11 +1289,12 @@ begin
         aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
 
         aCnv.Pen.Style := psSolid;
+        aCnv.Pen.Color := clWhite;
+        aCnv.Font.Color := clWhite;
         aCnv.Pen.Width := 1;
         aCnv.Brush.Style := bsClear;
-        aCnv.Pen.Color := clGray;
 
-        aCnv.TextOut(Round(ScrX)+4, Round(ScrY)+4, Format('%.6d',[TempShip.MSITrackNumber])); //perlu diganti dengan ID object
+        aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
       end;
     end;
   end;
@@ -1441,8 +1345,8 @@ begin
       dy := TargetShip.PosY - OwnShip.PosY;
       Angle := ArcTan2(dy, dx);
       angle := -Angle;
-      MapX := OwnShip.PosX + torpedoparam.EnablingDist /60 * Cos(Angle);
-      MapY := OwnShip.PosY + torpedoparam.EnablingDist /60 * Sin(Angle);
+      MapX := OwnShip.PosX + (torpedoparam.EnablingDist * C_KMeter_To_Degree * cos(Angle));
+      MapY := OwnShip.PosY - (torpedoparam.EnablingDist * C_KMeter_To_Degree * sin(Angle));
       FMap.ConvertCoord(ScrDX, ScrDY, MapX, MapY, 0);
 
       aCnv.Pen.Color := clGreen;
@@ -1467,6 +1371,10 @@ begin
       OSCenter := OSCenter * C_NauticalMile_To_Degree;
       SALength := OSCenter * 4/3; // length search area
       OStoSSP := OSCenter - SALength /2; // ownship to SSP (start search point)
+      TorpedoParam.CenterOS := OSCenter;
+      TorpedoParam.SALength := SALength;
+      TorpedoParam.OStoSSP := OStoSSP;
+
 
       Dx := -TorpedoParam.SAWidth/2 *C_KMeter_To_Degree;
       Dy := -SALength/2;
@@ -1899,6 +1807,7 @@ begin
         lblSubmodeTools3.Caption := 'Fire';
         pnlSubmodeTools3.Enabled := True;
         lblSubmodeTools3.Enabled := True;
+        lblSubmodeTools3.OnClick := BlackSharkFireClick;
 
         lblSubmodeTools4.Caption := 'Stop' + #13#10 + 'Fire'+ #13#10 + 'Seq';
         pnlSubmodeTools4.Enabled := True;
@@ -1911,6 +1820,7 @@ begin
         lblSubmodeTools3.Caption := '';
         pnlSubmodeTools3.Enabled := false;
         lblSubmodeTools3.Enabled := false;
+        lblSubmodeTools3.OnClick := nil;
 
         lblSubmodeTools4.Caption := '';
         pnlSubmodeTools4.Enabled := false;

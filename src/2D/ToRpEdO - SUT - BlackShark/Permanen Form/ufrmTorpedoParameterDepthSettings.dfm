@@ -64,9 +64,8 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
     object lblNumberSalvo: TLabel
       Left = 295
       Top = 7
-      Width = 14
+      Width = 4
       Height = 14
-      Caption = '01'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -12
@@ -335,7 +334,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Top = 128
       Width = 569
       Height = 173
-      ActivePage = AdvApproach
+      ActivePage = AdvDepth
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
