@@ -295,12 +295,6 @@ begin
     FFrmTorpedoTestWindow.Width   := Max(frmTorpedoWP.pnlTorpedoHomingStatusPlot.Width, frmTorpedoWP.pnlTorpedoParamSettings.Width);
     FFrmTorpedoTestWindow.Height  := frmTorpedoWP.pnlTorpedoHomingStatusPlot.Height + frmTorpedoWP.pnlTorpedoParamSettings.Height + 25;
     FFrmTorpedoTestWindow.Show;
-
-    if Assigned(frmTorpedoTubeCommands) then
-    begin
-      frmTorpedoTubeCommands.tmrStatusTextTorpedo.Enabled := False;
-      frmTorpedoTubeCommands.tmrStatusTextTorpedo.Enabled := True;
-    end;
   end;
 end;
 

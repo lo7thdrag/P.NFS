@@ -45,23 +45,23 @@ end;
 
 procedure TfrmTorpedoTubeCommands.lblSendCmdClick(Sender: TObject);
 var
-  Tube: Integer;
+  i: Integer;
 begin
   lblSendCmd.Font.Color := clLime;
 
-  Tube := frmTorpedoAllocation.FSelectTube;
-
-  if (Tube >= 0) and
-     SutBlacksharkManager.FTorpedoArray[Tube].Allocated then
+  for i := 0 to 7 do
   begin
-    SutBlacksharkManager.FTorpedoArray[Tube].TextStatus := stTesting;
+    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
+    begin
+      SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTesting;
 
-    frmTorpedoTubeStatusWindow.UpdateTextStatus;
+      frmTorpedoTubeStatusWindow.UpdateTextStatus;
 
-    lblTorpOn.Caption := 'TORPEDO OFF';
-    lblTorpOn.Font.Color := clLime;
+      lblTorpOn.Caption    := 'TORPEDO OFF';
+      lblTorpOn.Font.Color := clLime;
 
-    tmrStatusTextTorpedo.Enabled := False;   // True
+      tmrStatusTextTorpedo.Enabled := True;
+    end;
   end;
 end;
 
@@ -84,19 +84,18 @@ end;
 
 procedure TfrmTorpedoTubeCommands.tmrStatusTextTorpedoTimer(Sender: TObject);
 var
-  Tube: Integer;
+  i: Integer;
 begin
   tmrStatusTextTorpedo.Enabled := False;
 
-  Tube := frmTorpedoAllocation.FSelectTube;
-
-  if (Tube >= 0) and SutBlacksharkManager.FTorpedoArray[Tube].Allocated then
+  for i := 0 to 7 do
   begin
-    SutBlacksharkManager.FTorpedoArray[Tube].TextStatus := stTorpReady;
+    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
+    begin
+     SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTorpReady;
 
-    frmTorpedoTubeStatusWindow.UpdateTextStatus;
-
-    FTestingTube := -1;
+     frmTorpedoTubeStatusWindow.UpdateTextStatus;
+    end;
   end;
 end;
 
