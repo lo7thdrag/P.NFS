@@ -21,11 +21,10 @@ type
     procedure lblTorpOnClick(Sender: TObject);
     procedure lblSendCmdClick(Sender: TObject);
     procedure tmrStatusTextTorpedoTimer(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
 
   public
-    FTestingTube: Integer;
+
   end;
 
 var
@@ -38,30 +37,25 @@ uses
 
 {$R *.dfm}
 
-procedure TfrmTorpedoTubeCommands.FormCreate(Sender: TObject);
-begin
-  FTestingTube := -1;
-end;
-
 procedure TfrmTorpedoTubeCommands.lblSendCmdClick(Sender: TObject);
 var
   i: Integer;
 begin
   lblSendCmd.Font.Color := clLime;
 
-  for i := 0 to 7 do
+  if (SutBlacksharkManager.FTubeIndex < 0) or (SutBlacksharkManager.FTubeIndex > 7) then
+    Exit;
+
+  if SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].Allocated then
   begin
-    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
-    begin
-      SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTesting;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].TextStatus := stTesting;
 
-      frmTorpedoTubeStatusWindow.UpdateTextStatus;
+    frmTorpedoTubeStatusWindow.UpdateTextStatus;
 
-      lblTorpOn.Caption    := 'TORPEDO OFF';
-      lblTorpOn.Font.Color := clLime;
+    lblTorpOn.Caption := 'TORPEDO OFF';
+    lblTorpOn.Font.Color := clLime;
 
-      tmrStatusTextTorpedo.Enabled := True;
-    end;
+    tmrStatusTextTorpedo.Enabled := True;
   end;
 end;
 
@@ -88,14 +82,13 @@ var
 begin
   tmrStatusTextTorpedo.Enabled := False;
 
-  for i := 0 to 7 do
-  begin
-    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
-    begin
-     SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTorpReady;
+  if (SutBlacksharkManager.FTubeIndex < 0) or (SutBlacksharkManager.FTubeIndex > 7) then
+    Exit;
 
-     frmTorpedoTubeStatusWindow.UpdateTextStatus;
-    end;
+  if SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].Allocated then
+  begin
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].TextStatus := stTorpReady;
+    frmTorpedoTubeStatusWindow.UpdateTextStatus;
   end;
 end;
 

@@ -100,6 +100,7 @@ type
   public
     FTorpedoArray : array[0..7] of TTorpedoLauncher;
     FTBIFireAuth : Boolean;
+    FTubeIndex : Integer;
 
     procedure GetTorpedoWeaponAssigned;
 
@@ -121,6 +122,7 @@ type
     property CursorX : Double read FCursorX write FCursorX;
     property CursorY : Double read FCursorY write FCursorY;
     property TBIFireAuth : Boolean read FTBIFireAuth write FTBIFireAuth;
+    property TubeIndex : Integer read FTubeIndex write FTubeIndex;
 
     property OperatorMessages: string read FOperatorMessages write FOperatorMessages;
 //    property isTorpedoAllocShow : Boolean read FisTorpedoAllocShow write FisTorpedoAllocShow;

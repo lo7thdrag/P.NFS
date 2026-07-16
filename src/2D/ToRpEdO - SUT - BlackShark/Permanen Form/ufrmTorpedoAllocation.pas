@@ -200,7 +200,7 @@ var
 begin
   if FSelectTube <> -1 then
   begin
-    SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated := True;
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated  := True;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].TextStatus := stNone;
     SutBlacksharkManager.TorpedoTubeAllocNum := FSelectTube + 1;
 
@@ -221,6 +221,8 @@ begin
     FFrmTorpedoTubeCommands.Align  := alClient;
     FFrmTorpedoTubeCommands.Show;
   end;
+
+  SutBlacksharkManager.TubeIndex := FSelectTube;
 
   if not SutBlacksharkManager.FTorpedoArray[FSelectTube].TorpedoOnOff then
   begin
