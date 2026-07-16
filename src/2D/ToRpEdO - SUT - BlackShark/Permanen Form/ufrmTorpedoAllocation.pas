@@ -228,11 +228,14 @@ begin
   begin
     FFrmTorpedoTubeCommands.lblTorpOn.Caption    := 'TORPEDO ON';
     FFrmTorpedoTubeCommands.lblTorpOn.Font.Color := clWhite;
+
+    FFrmTorpedoTubeCommands.lblSendCmd.Caption    := 'Send Cmd';
+    FFrmTorpedoTubeCommands.lblSendCmd.Font.Color := clWhite;
   end
   else
   begin
-    FFrmTorpedoTubeCommands.lblTorpOn.Caption    := 'TORPEDO OFF';
-    FFrmTorpedoTubeCommands.lblTorpOn.Font.Color := clLime;
+    FFrmTorpedoTubeCommands.lblSendCmd.Caption    := 'Send Cmd';
+    FFrmTorpedoTubeCommands.lblSendCmd.Font.Color := clWhite;
   end;
   {$ENDREGION}
 end;

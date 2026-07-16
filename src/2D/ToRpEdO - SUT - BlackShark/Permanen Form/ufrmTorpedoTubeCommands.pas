@@ -38,8 +38,6 @@ uses
 {$R *.dfm}
 
 procedure TfrmTorpedoTubeCommands.lblSendCmdClick(Sender: TObject);
-var
-  i: Integer;
 begin
   lblSendCmd.Font.Color := clLime;
 
@@ -52,7 +50,7 @@ begin
 
     frmTorpedoTubeStatusWindow.UpdateTextStatus;
 
-    lblTorpOn.Caption := 'TORPEDO OFF';
+    lblTorpOn.Caption    := 'TORPEDO OFF';
     lblTorpOn.Font.Color := clLime;
 
     tmrStatusTextTorpedo.Enabled := True;
@@ -77,8 +75,6 @@ begin
 end;
 
 procedure TfrmTorpedoTubeCommands.tmrStatusTextTorpedoTimer(Sender: TObject);
-var
-  i: Integer;
 begin
   tmrStatusTextTorpedo.Enabled := False;
 

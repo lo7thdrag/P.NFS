@@ -112,6 +112,7 @@ begin
   Application.CreateForm(TFrmTorpedoWP, FrmTorpedoWP);
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
+  Application.CreateForm(TfrmTorpedoStatusResultsWindow, frmTorpedoStatusResultsWindow);
 
   Application.Run;
 end.

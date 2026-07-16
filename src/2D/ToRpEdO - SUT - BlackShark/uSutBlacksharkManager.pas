@@ -99,8 +99,8 @@ type
     procedure  Event_OnReceiveStatusConsole(apRec: PAnsiChar; aSize: integer);
   public
     FTorpedoArray : array[0..7] of TTorpedoLauncher;
-    FTBIFireAuth : Boolean;
-    FTubeIndex : Integer;
+    FTBIFireAuth  : Boolean;
+    FTubeIndex    : Integer;
 
     procedure GetTorpedoWeaponAssigned;
 

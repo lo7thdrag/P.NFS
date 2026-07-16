@@ -58,7 +58,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       Top = 34
       Width = 585
       Height = 479
-      ActivePage = advTorp1
+      ActivePage = advTorp8
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
@@ -88,6 +88,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvTorp2: TAdvTabSheet
         Caption = '  Torp 2'
@@ -96,6 +100,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvTorp3: TAdvTabSheet
         Caption = '  Torp 3'
@@ -104,6 +112,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvTorp4: TAdvTabSheet
         Caption = '  Torp 4'
@@ -112,6 +124,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvTorp5: TAdvTabSheet
         Caption = '  Torp 5'
@@ -120,6 +136,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvTorp6: TAdvTabSheet
         Caption = '  Torp 6'
@@ -128,6 +148,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvTorp7: TAdvTabSheet
         Caption = '  Torp 7'
@@ -136,6 +160,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object advTorp8: TAdvTabSheet
         Caption = ' Torp 8'
@@ -152,6 +180,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object AdvTorpedoCheckTBI: TAdvPageControl
           Left = -1
           Top = 2
@@ -187,6 +219,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
             TabColor = clBlack
             TabColorTo = clBlack
             TextColor = clLime
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object lblCPUPS: TLabel
               Left = 284
               Top = 27
@@ -715,6 +751,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
             TabColor = clBlack
             TabColorTo = clBlack
             TextColor = clLime
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Label3: TLabel
               Left = 15
               Top = 13
@@ -1282,6 +1322,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label8: TLabel
           Left = 6
           Top = 11
@@ -1524,6 +1568,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label56: TLabel
           Left = 6
           Top = 29
@@ -1925,6 +1973,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object lblAfterBody: TLabel
           Left = 183
           Top = 22

@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvPageControl, Vcl.ComCtrls;
+  AdvPageControl, Vcl.ComCtrls,
+
+  uSutBlacksharkManager, uTorpedoLauncher, uVehicleManager;
 
 type
   TfrmTorpedoStatusResultsWindow = class(TForm)
@@ -210,6 +212,10 @@ var
   frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow;
 
 implementation
+
+
+uses
+  ufrmTorpedoTubeStatusWindow;
 
 {$R *.dfm}
 
