@@ -288,14 +288,16 @@ procedure TfrmTorpedoTubeStatusWindow.pnlTorpedoClick(Sender: TObject);
 begin
   frmTorpedoStatusResultsWindow.AdvPageTorpedoCheck.ActivePageIndex := (Sender as TPanel).tag;
 
-  if Assigned(frmTorpedoStatusResultsWindow) then
+  if not frmTorpedoStatusResultsWindow.Visible then
   begin
    frmTorpedoStatusResultsWindow.Left    := Self.Left + 1335;
    frmTorpedoStatusResultsWindow.Top     := Self.Top + 350;
    frmTorpedoStatusResultsWindow.Width   := Max(frmTorpedoWP.pnlTorpedoHomingStatusPlot.Width, frmTorpedoWP.pnlTorpedoParamSettings.Width);
    frmTorpedoStatusResultsWindow.Height  := frmTorpedoWP.pnlTorpedoHomingStatusPlot.Height + frmTorpedoWP.pnlTorpedoParamSettings.Height + 25;
    frmTorpedoStatusResultsWindow.Show;
-  end;
+  end
+  else
+    frmTorpedoStatusResultsWindow.BringToFront;
 end;
 
 procedure TfrmTorpedoTubeStatusWindow.tmrDrawTubeTimer(Sender: TObject);
@@ -378,7 +380,6 @@ begin
 
     Shape.Repaint;
   end;
-
 end;
 
 procedure TfrmTorpedoTubeStatusWindow.UpdateTextStatus;
