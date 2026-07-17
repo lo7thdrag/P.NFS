@@ -3530,7 +3530,6 @@ begin
 
   for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
   begin
-
     weaponship := TWeaponOnShip(TInsObject(SimManager.TrackObject).WeaponOnShip_List[i]);
     if weaponship.Weapon_Name = WeaponName then
     begin
@@ -4790,23 +4789,13 @@ begin
           {$REGION 'C_DBID_CANNON_AK230'}
           if frmMainInstruktur.cekStatusWeapon = 1 then
           begin
-            if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
-            begin
-              frmWeaponStatus.rzgrpCannonAK230.Visible := False;
-              frmWeaponStatus.rzgrpCannonAK230.Opened  := False;
 
-              frmWeaponStatus.rzgrpRBU6000.Visible := False;
-              frmWeaponStatus.rzgrpRBU6000.Opened  := False;
-
-              Continue;
-            end;
           end;
           frmMainInstruktur.cekStatusWeapon := 1;
 
           if weaponship is TWeaponOn_CannonAK230 then
           begin
             WeaponCannonAK230 := TWeaponOn_CannonAK230(weaponship);
-
           end;
           {$ENDREGION}
         end;
