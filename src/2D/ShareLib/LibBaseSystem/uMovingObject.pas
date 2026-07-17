@@ -165,9 +165,9 @@ end;
 
 procedure TMover.Move(const aDt: double);
 begin
-   Calc_Speed(aDt);
-   Calc_Direction(aDt);
-   Calc_Movement(aDt);
+//   Calc_Speed(aDt);
+//   Calc_Direction(aDt);
+//   Calc_Movement(aDt);
 end;
 
 function TMover.GetDeltaDir: double;
