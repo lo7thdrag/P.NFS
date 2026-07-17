@@ -366,6 +366,9 @@ type
     procedure SetActiveHeaderMCtrl(idx: Integer);
     procedure ShowActiveContentMCtrl;
     procedure CloseAllContentMCtrl;
+
+    function SeaStateToStr(aState: Word): string;
+    procedure EnvironmentChanged(Sender: TObject);
   public
     { Public declarations }
     procedure RegisterEvents;
@@ -400,7 +403,10 @@ end;
 
 procedure TfrmFoeFriendSituationPage.RegisterEvents;
 begin
+  SimManager.OnEnvironmentChanged := EnvironmentChanged;
   SimManager.OnTargetSelectedAction := TargetSelectedEvents;
+
+  EnvironmentChanged(Self);
 end;
 
 procedure TfrmFoeFriendSituationPage.TargetSelectedEvents(Sender: TObject; aTgt: TShipContact; aRng: Double);
@@ -910,6 +916,23 @@ end;
 {$REGION 'Semua Tab Sheet'}
 
 {$REGION 'Tab Situation'}
+function TfrmFoeFriendSituationPage.SeaStateToStr(aState: Word): string;
+begin
+  case aState of
+    0: Result:= 'Low';
+    1: Result:= 'Low';
+    2: Result:= 'Medium';
+    3: Result:= 'Medium';
+    4: Result:= 'High';
+    5: Result:= 'High';
+  end;
+end;
+
+procedure TfrmFoeFriendSituationPage.EnvironmentChanged(Sender: TObject);
+begin
+  lblSeaStateParam.Caption := SeaStateToStr(SimManager.Environment.SeaState);//IntToStr(SimManager.Environment.SeaState);
+end;
+
 procedure TfrmFoeFriendSituationPage.UpdatePnlSituationData(aObjTgt: TShipContact; aRange: Double);
 begin
   lblLongParam.Caption := FormatFloat('0.00', aObjTgt.Lon);

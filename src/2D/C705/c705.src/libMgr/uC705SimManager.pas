@@ -43,7 +43,18 @@ type
     WarmUpDone: Boolean;
 
     // TRUE apabila Seeker telah siap digunakan
-    SeekerReady: Boolean;
+    SeekerRdy,
+    SeaTargetRdy,
+    InsideSectorRdy,
+    ParaSettingRdy,
+    PLCChkRdy,
+    INITChkRdy,
+    INITStateRdy,
+    INSGNSSRdy,
+    MNormalRdy,
+    CalFinishRdy,
+    ParaLockRdy,
+    FullOpenRdy: Boolean;
   end;
 
   // Multicast Notify Event
@@ -54,6 +65,12 @@ type
   public
     Event: TStatusWeaponChangedEvent;
   end;
+
+  TEnvironmentStatus = record
+    SeaState: Word;
+  end;
+
+  TEnvironmentChanged = procedure(Sender: TObject) of object;
 
   GameSimManager = class
   private
@@ -77,6 +94,14 @@ type
     // Timer simulasi Warmup missile.
     // Digunakan untuk mensimulasikan proses pemanasan seeker setelah Weapon Power On
     FWarmUpTimer: TTimer;
+    // Timer buat Sequence setelah klik Target
+    FTargetSequenceTimer: TTimer;
+
+    FIdxTargetStep: Integer;
+
+    { Environment }
+    FEnvironment: TEnvironmentStatus;
+    FOnEnvironmentChanged : TEnvironmentChanged;
 
     procedure NotifyStatusWeaponChanged(aStatus: TC705StatusType);
 
@@ -84,14 +109,17 @@ type
     procedure OnConnected(msg: string);
     procedure OnDisconnected(msg: string);
 
+    procedure AddRegisterProcedure;
     { Receive procedure from NFS }
     procedure netNFS_OnReceiveData3DPosition(apRec: PAnsiChar; aSize: integer);
     procedure netNFS_OnReceive2DOrder(apRec: PAnsiChar; aSize: integer);
     procedure netNFS_OnDeleteShip(apRec: PAnsiChar; aSize: integer);
     procedure netNFS_OnReceiveStatusConsole(apRec: PAnsiChar; aSize: Integer);
     procedure netNFS_OnReceiveMissilePos(apRec: PAnsiChar; aSize: Integer);
+    procedure netNFS_OnReceiveEnvironment(apRec: PAnsiChar; aSize: Integer);
 
     procedure tmrWarmUpTimer(Sender: TObject);
+    procedure tmrTargetSequenceTimer(Sender: TObject);
   public
     FRoutePlanMode: TRoutePlanMode;
     NFSNetRecv: TTCPClient;
@@ -103,19 +131,20 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    procedure InitializeMap;
-
     function isReadyToLaunchC705: Boolean;
-
     function GetLauncherStateStr(aLauncherID: Integer): string;
 
-    procedure ResetLauncher(aLauncherID: Integer);
-
-    procedure SetImgPowerConsole(aStatus: Boolean);
+    procedure InitializeMap;
+    // Send Data
+    procedure netNFS_OnSendDataC705(rec: TRec_Data_C705);
 
     // for Multicast Notify Event
     procedure RegisterStatusWeaponEvent(aEvent : TStatusWeaponChangedEvent);
     procedure UnregisterStatusWeaponEvent(aEvent : TStatusWeaponChangedEvent);
+
+    // Memulai proces Target Acquisition
+    // Ganti panel SeaTgt, InsideSector, ParamSetting.
+    procedure StartTargetSequence;
 
     property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
     property OnMapInit: TOnMapInit read FOnMapInit write FOnMapInit;
@@ -125,11 +154,10 @@ type
     property OnStatusWeaponChanged: TStatusWeaponChanged read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
     property OnTakeOffChanged: TNotifyEvent read FOnTakeOffChanged write FOnTakeOffChanged;
     property OnTargetSelectedAction: TTargetSelectedEvent read FOnTargetSelectedAction write FOnTargetSelectedAction;
+    property Environment : TEnvironmentStatus read FEnvironment;
+    property OnEnvironmentChanged : TEnvironmentChanged read FOnEnvironmentChanged write FOnEnvironmentChanged;
 
     property MissileTakeOff: Boolean read FMissileTakeOff write FMissileTakeOff;
-
-    // Send Data
-    procedure netNFS_OnSendDataC705(rec: TRec_Data_C705);
   published
     {
       Main Function of Simulation
@@ -142,6 +170,23 @@ var
 implementation
 
 { GameSimManager }
+
+procedure GameSimManager.AddRegisterProcedure;
+begin
+  NFSNetRecv.RegisterProcedure(REC_3D_POSITION, netNFS_OnReceiveData3DPosition, SizeOf(TRecData3DPosition));
+  NFSNetRecv.RegisterProcedure(REC_2D_ORDER, netNFS_OnReceive2DOrder, SizeOf(TRecData2DOrder));
+  NFSNetRecv.RegisterProcedure(REC_3D_ORDER, netNFS_OnDeleteShip, SizeOf(TRecData3DOrder));
+
+  NFSNetRecv.RegisterProcedure(Rec_Data_C705, nil, SizeOf(TRec_Data_C705));
+
+  NFSNetRecv.RegisterProcedure(REC_3D_MISSILEPOS, netNFS_OnReceiveMissilePos, SizeOf(TRec3DMissilePos));
+
+  // C705 Status
+  //NFSNetRecv.RegisterProcedure(REC_STAT_ORDER_CONSOLE, netNFS_OnReceiveStatusConsole, SizeOf(TRecStatus_Console_C705));
+  NFSNetRecv.RegisterProcedure(REC_STAT_ORDER_CONSOLE, netNFS_OnReceiveStatusConsole, SizeOf(TRecStatus_Console));
+
+  NFSNetRecv.RegisterProcedure(REC_ENVI, netNFS_OnReceiveEnvironment, SizeOf(TRecDataEnvironment));
+end;
 
 constructor GameSimManager.Create;
 var
@@ -163,17 +208,10 @@ begin
   NFSNetRecv.OnDisconnected := OnDisconnected;
 
   {Register Procedure NetNFS}
-  NFSNetRecv.RegisterProcedure(REC_3D_POSITION, netNFS_OnReceiveData3DPosition, SizeOf(TRecData3DPosition));
-  NFSNetRecv.RegisterProcedure(REC_2D_ORDER, netNFS_OnReceive2DOrder, SizeOf(TRecData2DOrder));
-  NFSNetRecv.RegisterProcedure(REC_3D_ORDER, netNFS_OnDeleteShip, SizeOf(TRecData3DOrder));
-
-  NFSNetRecv.RegisterProcedure(Rec_Data_C705, nil, SizeOf(TRec_Data_C705));
-
-  NFSNetRecv.RegisterProcedure(REC_3D_MISSILEPOS, netNFS_OnReceiveMissilePos, SizeOf(TRec3DMissilePos));
-
-  // C705 Status
-  //NFSNetRecv.RegisterProcedure(REC_STAT_ORDER_CONSOLE, netNFS_OnReceiveStatusConsole, SizeOf(TRecStatus_Console_C705));
-  NFSNetRecv.RegisterProcedure(REC_STAT_ORDER_CONSOLE, netNFS_OnReceiveStatusConsole, SizeOf(TRecStatus_Console));
+  AddRegisterProcedure;
+  OutputDebugString(PChar(
+    Format('SizeOf(TRecDataEnvironment) = %d',
+    [SizeOf(TRecDataEnvironment)])));
 
   {Timer untuk Connect ke Bridge}
   FAutoConnectToBridgeTimer := TTimer.Create(nil);
@@ -193,7 +231,13 @@ begin
   FWarmUpTimer := TTimer.Create(nil);
   FWarmUpTimer.Enabled := False;
   FWarmUpTimer.Interval := 3000;  // 3 detik
-  FWarmUpTimer.OnTimer := tmrWarmUpTimer;;
+  FWarmUpTimer.OnTimer := tmrWarmUpTimer;
+
+  // Timer Sequence setelah klik Target
+  FTargetSequenceTimer := TTimer.Create(nil);
+  FTargetSequenceTimer.Enabled := False;
+  FTargetSequenceTimer.Interval := 2000;
+  FTargetSequenceTimer.OnTimer := tmrTargetSequenceTimer;
 end;
 
 destructor GameSimManager.Destroy;
@@ -220,6 +264,13 @@ begin
     FreeAndNil(FWarmUpTimer);
   end;
 
+  if Assigned(FTargetSequenceTimer) then
+  begin
+    FTargetSequenceTimer.Enabled := False;
+    FTargetSequenceTimer.OnTimer := nil;
+    FreeAndNil(FTargetSequenceTimer);
+  end;
+
   inherited;
 end;
 
@@ -232,6 +283,13 @@ begin
     Result := 'READY'
   else
     Result := 'EMPTY';
+end;
+
+function GameSimManager.IsReadyToLaunchC705: Boolean;
+begin
+  Result :=
+    FC705Status.EnableWeapon and FC705Status.OpenCoverLauncher
+      and FC705Status.SafetyIgnition;
 end;
 
 // LoadMap, LoadGeoset pakai path
@@ -365,12 +423,11 @@ begin
 
       if FC705Status.EnableWeapon <> (rec^.ParamError = __PARAM_C705_ON) then begin
         FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
-        NotifyStatusWeaponChanged(stEnableWeapon);
 
         if FC705Status.EnableWeapon then begin
           // Mulai Simulasi WarmUp dengan Timer
           FC705Status.WarmUpDone := False;
-          FC705Status.SeekerReady := False;
+          FC705Status.SeekerRdy := False;
 
           FWarmUpTimer.Enabled := False;
           FWarmUpTimer.Enabled := True;
@@ -380,8 +437,10 @@ begin
           FWarmUpTimer.Enabled := False;
 
           FC705Status.WarmUpDone := False;
-          FC705Status.SeekerReady := False;
+          FC705Status.SeekerRdy := False;
         end;
+
+        NotifyStatusWeaponChanged(stEnableWeapon);
       end;
 
     end;
@@ -408,6 +467,31 @@ begin
 
 end;
 
+procedure GameSimManager.netNFS_OnReceiveEnvironment(apRec: PAnsiChar;
+  aSize: Integer);
+var
+  rec: ^TRecDataEnvironment;
+begin
+  rec:= @apRec^;
+
+  OutputDebugString(PChar(
+    Format('SizeOf(TRecDataEnvironment) = %d | kedua',
+    [SizeOf(TRecDataEnvironment)])));
+
+  FEnvironment.SeaState := Rec^.seaState;
+//  FEnvironment.WindVelocity := Rec^.WindVelocity;
+//  FEnvironment.WindHeading := Rec^.WindHeading;
+//  FEnvironment.SeaCurrentVelocity := Rec^.SeaCurrentVelocity;
+//  FEnvironment.SeaCurrentHeading := Rec^.SeaCurrentHeading;
+//  FEnvironment.Temperature := Rec^.Temperature;
+//  FEnvironment.Humidity := Rec^.Humidity;
+//  FEnvironment.SurfacePressure := Rec^.SurfacePressure;
+//  FEnvironment.FogIntensity := Rec^.FogIntensity;
+
+  if Assigned(FOnEnvironmentChanged) then
+    FOnEnvironmentChanged(Self);
+end;
+
 procedure GameSimManager.netNFS_OnSendDataC705(rec: TRec_Data_C705);
 begin
   if (NFSNetRecv <> nil) and (NFSNetRecv.State in [wsConnected]) then
@@ -416,19 +500,23 @@ end;
 
 {$ENDREGION}
 
-function GameSimManager.IsReadyToLaunchC705: Boolean;
-begin
-  Result :=
-    FC705Status.EnableWeapon and FC705Status.OpenCoverLauncher
-      and FC705Status.SafetyIgnition;
-end;
-
+{$REGION 'Sequence to Change Panel in PanelArea3A dan PanelArea3B'}
 procedure GameSimManager.NotifyStatusWeaponChanged(aStatus: TC705StatusType);
 var
   i : Integer;
 begin
   for i := 0 to FStatusWeaponEvents.Count-1 do
     TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event(Self, aStatus);
+end;
+
+procedure GameSimManager.RegisterStatusWeaponEvent(aEvent: TStatusWeaponChangedEvent);
+var
+  Item : TStatusWeaponEventItem;
+begin
+  Item := TStatusWeaponEventItem.Create;
+  Item.Event := aEvent;
+
+  FStatusWeaponEvents.Add(Item);
 end;
 
 procedure GameSimManager.UnregisterStatusWeaponEvent(aEvent: TStatusWeaponChangedEvent);
@@ -451,27 +539,17 @@ begin
   end;
 end;
 
-procedure GameSimManager.RegisterStatusWeaponEvent(aEvent: TStatusWeaponChangedEvent);
-var
-  Item : TStatusWeaponEventItem;
+procedure GameSimManager.StartTargetSequence;
 begin
-  Item := TStatusWeaponEventItem.Create;
-  Item.Event := aEvent;
+  FC705Status.SeaTargetRdy := False;
+  FC705Status.InsideSectorRdy := False;
+  FC705Status.ParaSettingRdy := False;
 
-  FStatusWeaponEvents.Add(Item);
-end;
+  NotifyStatusWeaponChanged(stEnableWeapon);
 
-procedure GameSimManager.ResetLauncher(aLauncherID: Integer);
-begin
-  FLauncherHasMissile[aLauncherID] := False;
+  FIdxTargetStep := 0;
 
-  // Reset -> Kosong semua
-end;
-
-procedure GameSimManager.SetImgPowerConsole(aStatus: Boolean);
-begin
-  if aStatus then
-
+  FTargetSequenceTimer.Enabled := True;
 end;
 
 {
@@ -483,10 +561,88 @@ begin
   FWarmUpTimer.Enabled := False;
 
   FC705Status.WarmUpDone := True;
-  FC705Status.SeekerReady := True;
+  FC705Status.SeekerRdy := True;
 
   NotifyStatusWeaponChanged(stEnableWeapon);
 end;
+
+procedure GameSimManager.tmrTargetSequenceTimer(Sender: TObject);
+begin
+  case FIdxTargetStep of
+
+    //--------------------------------------------------------
+    // STEP-1
+    // Sea Target
+    //--------------------------------------------------------
+    0:  begin
+      FC705Status.SeaTargetRdy := True;
+
+      NotifyStatusWeaponChanged(stEnableWeapon);
+
+      Inc(FIdxTargetStep);
+    end;
+
+    //--------------------------------------------------------
+    // STEP-2
+    // Inside Sector
+    //--------------------------------------------------------
+    1:  begin
+      FC705Status.InsideSectorRdy := True;
+
+      NotifyStatusWeaponChanged(stEnableWeapon);
+
+      Inc(FIdxTargetStep);
+    end;
+
+    //--------------------------------------------------------
+    // STEP-3
+    // Parameter Setting
+    //--------------------------------------------------------
+    2:  begin
+      FC705Status.ParaSettingRdy := True;
+
+      NotifyStatusWeaponChanged(stEnableWeapon);
+
+      FTargetSequenceTimer.Enabled := False;
+      //tunggu 5 detik
+      FTargetSequenceTimer.Interval := 5000;
+    end;
+
+    3:  begin
+      FC705Status.PlcChkRdy := True;
+
+      // balik lagi ke 2 detik
+      FTargetSequenceTimer.Interval := 2000;
+    end;
+
+    4:
+      FC705Status.InitChkRdy := True;
+
+    5:
+      FC705Status.InitStateRdy := True;
+
+    6:
+      FC705Status.InsGnssRdy := True;
+
+    7:
+      FC705Status.MNormalRdy := True;
+
+    8:
+      FC705Status.CalFinishRdy := True;
+
+    9:
+      FC705Status.ParaLockRdy := True;
+
+    10: begin
+      FC705Status.FullOpenRdy := True;
+
+      FTargetSequenceTimer.Enabled := False;
+    end;
+
+  end;
+end;
+
+{$ENDREGION}
 
 end.
 

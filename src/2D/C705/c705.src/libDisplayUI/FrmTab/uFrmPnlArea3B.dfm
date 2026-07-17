@@ -348,9 +348,6 @@ object frmPnlArea3B: TfrmPnlArea3B
     Height = 80
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = 1
-    ExplicitTop = 1
-    ExplicitWidth = 950
     object Image2: TImage
       Left = 1
       Top = 1
@@ -1117,9 +1114,6 @@ object frmPnlArea3B: TfrmPnlArea3B
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 1
-    ExplicitTop = 258
-    ExplicitWidth = 950
     object pnlStatus3B: TPanel
       Left = 857
       Top = 0
@@ -1136,7 +1130,6 @@ object frmPnlArea3B: TfrmPnlArea3B
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 855
     end
     object Panel13: TPanel
       Left = 409
@@ -1153,7 +1146,6 @@ object frmPnlArea3B: TfrmPnlArea3B
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
-      ExplicitWidth = 351
       object lblAligmentStatus3B: TLabel
         Left = 28
         Top = 13
@@ -1213,7 +1205,6 @@ object frmPnlArea3B: TfrmPnlArea3B
       ParentBackground = False
       ParentFont = False
       TabOrder = 3
-      ExplicitLeft = 760
     end
   end
   object pnlVrlBatteryAct3B: TPanel
