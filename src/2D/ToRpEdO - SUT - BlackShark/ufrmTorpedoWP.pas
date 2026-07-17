@@ -13,8 +13,9 @@ uses
   ufrmOwnShip, ufrmAlertandOpearatorMassage, ufmTargetInControl, ufrmContactInControl, ufrmTorpedoTubeCommands,
   ufrmTorpedoTubeStatusWindow, ufrmTorpedoGuidance, ufrmHomingCommands, ufrmHomingStatusPlot, ufrmDepthPlot,
   ufrmTorpedoParameterSetting, ufrmEngagementDataOverview, ufrmControlByNumber, ufrmTrackingList, ufrmSensorTrackList,
-  ufrmTackHistory, ufrmCreateModifyTrack, ufrmTorpedoContactList, ufrmWakeList, ufrmTorpedoVerticalView, 
-  ufrmTorpedoParameterDepthSettings, uTransparentOverlay, uSimulationTrack, uSurfaceTrack, uSubSurfaceTrack;
+  ufrmTackHistory, ufrmCreateModifyTrack, ufrmTorpedoContactList, ufrmWakeList, ufrmTorpedoVerticalView,
+  ufrmTorpedoParameterDepthSettings, uTransparentOverlay, uSimulationTrack, uSurfaceTrack, uSubSurfaceTrack, uTorpedoTrack
+  , uTorpedoLauncher;
 
 
 type
@@ -320,29 +321,41 @@ procedure TFrmTorpedoWP.BlackSharkFireClick(Sender: Tobject);
 var
   RecSend : TRecSetTorpedoSUT;
   TargetTrack : TSimulationTrack;
+  Torpedo : TTorpedoTrack;
 begin
-  if VehicleMgr.IsAnyTrackControlled then TargetTrack := VehicleMgr.TrackControlled;
+  if VehicleMgr.IsAnyTrackControlled then {TargetTrack := VehicleMgr.TrackControlled;}
+  begin
+    RecSend.ShipID              := SutBlacksharkManager.ShipID;
+    RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
+    RecSend.mMissileID          := 1; // selalu 1
+    RecSend.mMissileNumber      := 1; // selalu 1
+    RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
+    RecSend.OrderID             := __ORD_TORPEDOSUT_FIRED;
+    RecSend.mMissileType        := 0;
+    RecSend.mTorpedoCourse      := TorpedoParam.ApproachCourse; // diambil dari torpedo param, automatis di set saat start analysis
 
-  RecSend.ShipID              := SutBlacksharkManager.ShipID;
-  RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-  RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
-  RecSend.mMissileID          := 1; // selalu 1
-  RecSend.mMissileNumber      := 1; // selalu 1
-  RecSend.mT_ID               := TargetTrack.ShipID;
-  RecSend.OrderID             := __ORD_TORPEDOSUT_FIRED;
-  RecSend.mMissileType        := 0;
-  RecSend.mTorpedoCourse      := 0; // diambil dari torpedo param, automatis di set saat start analysis
+    RecSend.mTorpedoSpeed       := TorpedoParam.SearchSpeed;
 
-  RecSend.mTorpedoSpeed       := TorpedoParam.SearchSpeed;
+    RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;
+    RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
+    RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
+    RecSend.mpredm              := 0;
+    RecSend.mTargetType         := VehicleMgr.TrackControlled.Domain;
 
-  RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;
-  RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
-  RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
-  RecSend.mpredm              := 0;
-  RecSend.mTargetType         := SutBlacksharkManager.SelectedVehicle.Domain;
+    SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
 
-  SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+    Torpedo := VehicleMgr.AddTorpedo(SutBlacksharkManager.TorpedoTubeAllocNum);
+    Torpedo.ToSoRangePsv := TorpedoParam.TosoRangePAS;
+    Torpedo.TosoRangeActv := TorpedoParam.TosoRangeACT;
+    Torpedo.BatteryCapacity := 75;
+    Torpedo.MaxWireRange := 23;
+    Torpedo.CurrentWireLeft := 23;
+    Torpedo.ShipID := 0;
+    Torpedo.TimeLaunch := Now;
 
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum-1].TextStatus := stfired;
+  end;
 end;
 
 procedure TFrmTorpedoWP.cbbMotionModeChange(Sender: TObject);
@@ -1213,11 +1226,13 @@ end;
 
 procedure TFrmTorpedoWP.Render(aCnv: TCanvas);
 var
-  i: Integer;
+  i,X1, X2, Y1, Y2: Integer;
   TempShip, OwnShip, TargetShip: TSimulationTrack;
+  Torp: TTorpedoTrack;
   MapX, MapY, Dx, Dy: Double;
-  ScrX, ScrY, ScrDX, ScrDY, ProtScrRadius: Single;
-  ProtRadius, Angle, AngleRect, AngleKanan, AngleKiri: Double; // protection area
+  ScrX, ScrY, ScrDX, ScrDY, ProtScrRadius, ToSoScrRadius: Single;
+  PieCenterX, PieCenterY: Double;
+  ProtRadius, ToSoRadiusDeg, Angle, AngleRect, AngleKanan, AngleKiri: Double; // protection area
   OSCenter, SALength, OStoSSP, tempRange: Double;
   SAbox, RelPts: array[0..3] of System.types.TPoint;
   RectDelta, RotX, RotY: Double;
@@ -1229,7 +1244,7 @@ begin
 
   for i := 0 to VehicleMgr.ObjectList.Count - 1 do
   begin
-    if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = 0 then
+    if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = UniqueID_To_dbID(SutBlacksharkManager.xShip.UniqueID) then
     begin
       OwnShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
 
@@ -1261,41 +1276,116 @@ begin
 //      Break;
 //      Continue;
     end
-    else // draw target
+    else
     begin
-      TempShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
-      if TempShip.Controlled_Track then
+      if VehicleMgr.ObjectList[i] is TTorpedoTrack then
       begin
-        TargetShip := TempShip;
-        MapX := TempShip.PosX;
-        MapY := TempShip.PosY;
+        Torp := TTorpedoTrack(VehicleMgr.ObjectList[i]);
+        if Torp.IsExist then
+        begin
+          // gambar torpedo disini
+          {$REGION 'Torpedo'}
 
-        FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+          MapX := Torp.PosX;
+          MapY := Torp.PosY;
 
-        aCnv.Pen.Color := RGB(219,223,110);
-        aCnv.Pen.Width := 2;
-        aCnv.MoveTo(Round(scrX), Round(scrY));
-        Angle := DegToRad(TargetShip.HeadingDeg);
-        ScrDX := ScrX + Round(sin(Angle) * 500);
-        ScrDY := ScrY - Round(cos(Angle) * 500);
-        aCnv.LineTo(Round(ScrDX), Round(ScrDY));
+          FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
 
-        aCnv.Pen.Color := clRed;
-//        aCnv.Pen.Style := psClear;
-        aCnv.Pen.Width := 1;
+          aCnv.Pen.Color := clGreen;
+          aCnv.Pen.Width := 1;
 
-        aCnv.Brush.Color := clRed;
-        aCnv.Brush.Style := bsSolid;
-        aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
+          aCnv.Brush.Color := clRed;
+          aCnv.Brush.Style := bsSolid;
+          aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
 
-        aCnv.Pen.Style := psSolid;
-        aCnv.Pen.Color := clWhite;
-        aCnv.Font.Color := clWhite;
-        aCnv.Pen.Width := 1;
-        aCnv.Brush.Style := bsClear;
+          aCnv.Pen.Color := clGreen;
+          aCnv.Pen.Width := 1;
+          aCnv.MoveTo(Round(scrX), Round(scrY));
+          Angle := DegToRad(Torp.HeadingDeg);
+          ScrDX := ScrX + Round(sin(Angle) * 600);
+          ScrDY := ScrY - Round(cos(Angle) * 600);
+          aCnv.LineTo(Round(ScrDX), Round(ScrDY));
 
-        aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
+          aCnv.Pen.Style := psSolid;
+          aCnv.Pen.Color := clWhite;
+          aCnv.Font.Color := clWhite;
+          aCnv.Pen.Width := 1;
+          aCnv.Brush.Style := bsClear;
+
+          aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, IntToStr(Torp.LauncherID));
+          {$ENDREGION}
+
+          {$REGION 'ToSo Area'}
+          FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+          ToSoRadiusDeg := MapX - (Torp.ToSoRangePsv / 1000 * C_KMeter_To_Degree);
+          FMap.ConvertCoord(ScrDX, ScrDY, ToSoRadiusDeg, MapY, 0);
+          ToSoScrRadius := ScrX - ScrDX;
+
+          Angle := DegToRad(Torp.HeadingDeg - 90); // heading kapal
+          AngleKiri := Angle + DegToRad(55); // 110/2
+          AngleKanan   := Angle - DegToRad(55);
+
+          X1 := Round(ScrX + cos(AngleKiri) * ToSoScrRadius);
+          Y1 := Round(ScrY + sin(AngleKiri) * ToSoScrRadius);
+
+          X2 := Round(ScrX + cos(AngleKanan) * ToSoScrRadius);
+          Y2 := Round(ScrY + sin(AngleKanan) * ToSoScrRadius);
+
+          aCnv.Brush.Style := bsClear;
+          aCnv.Pen.Color := clYellow;
+          aCnv.pen.Width := 1;
+          aCnv.Pen.Style := psdot;
+          if Torp.fuseon then aCnv.Pen.Style := psSolid;
+
+          aCnv.Pie(Round(ScrX - ToSoScrRadius), Round(ScrY - ToSoScrRadius),
+                     Round(ScrX + ToSoScrRadius), Round(ScrY + ToSoScrRadius),
+                     X1, Y1, X2, Y2);
+          {$ENDREGION}
+
+          {$REGION 'Target Bearing'}
+
+
+          {$ENDREGION}
+        end;
+      end
+
+      else // draw target
+      begin
+        TempShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
+        if TempShip.Controlled_Track then
+        begin
+          TargetShip := TempShip;
+          MapX := TempShip.PosX;
+          MapY := TempShip.PosY;
+
+          FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+          aCnv.Pen.Color := RGB(219,223,110);
+          aCnv.Pen.Width := 2;
+          aCnv.MoveTo(Round(scrX), Round(scrY));
+          Angle := DegToRad(TargetShip.HeadingDeg);
+          ScrDX := ScrX + Round(sin(Angle) * 500);
+          ScrDY := ScrY - Round(cos(Angle) * 500);
+          aCnv.LineTo(Round(ScrDX), Round(ScrDY));
+
+          aCnv.Pen.Color := clRed;
+  //        aCnv.Pen.Style := psClear;
+          aCnv.Pen.Width := 1;
+
+          aCnv.Brush.Color := clRed;
+          aCnv.Brush.Style := bsSolid;
+          aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
+
+          aCnv.Pen.Style := psSolid;
+          aCnv.Pen.Color := clWhite;
+          aCnv.Font.Color := clWhite;
+          aCnv.Pen.Width := 1;
+          aCnv.Brush.Style := bsClear;
+
+          aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
+        end;
       end;
+
     end;
   end;
 

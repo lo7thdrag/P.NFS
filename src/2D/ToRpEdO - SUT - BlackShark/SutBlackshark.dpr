@@ -100,7 +100,8 @@ uses
   uTransparentOverlay in 'uTransparentOverlay.pas',
   uDataParameterSetting in 'uDataParameterSetting.pas',
   ufrmTorpedoTubeStatusWindow in 'Permanen Form\ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow},
-  ufrmTorpedoTestResultWindow in 'Pop-up form\ufrmTorpedoTestResultWindow.pas' {frmTorpedoStatusResultsWindow};
+  ufrmTorpedoTestResultWindow in 'Pop-up form\ufrmTorpedoTestResultWindow.pas' {frmTorpedoStatusResultsWindow},
+  uTorpedoTrack in 'LibSutBlacksharkObject\uTorpedoTrack.pas';
 
 {$R *.res}
 

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting, uSutBlacksharkManager, uVehicleManager;
+  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting, uSutBlacksharkManager, uVehicleManager, uBaseFunction;
 
 type
   TfrmTorpedoParameterDepthSettings = class(TForm)
@@ -183,7 +183,7 @@ begin // reset perubahan dan ganti trial ke official
   if AControl is TEdit then
   begin
     edtTrialEnablingDist.Text := FormatFloat('0.0',TorpedoParam.EnablingDist);
-    edtTrialApproachCourse.Text := IntToStr(TorpedoParam.ApproachCourse);
+    edtTrialApproachCourse.Text := IntToStr(Round(TorpedoParam.ApproachCourse));
   end
   else if AControl is TComboBox then
     cbTrialApproachSpeed.ItemIndex := TorpedoParam.ApproachSpeed - 9
@@ -241,6 +241,8 @@ begin // reset perubahan dan ganti trial ke official
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.FormShow(Sender: TObject);
+var
+  bearing, azimuth : Double;
 begin
   // ambil semua variable dari torpedoparam
   {$REGION 'Upper'}
@@ -272,7 +274,14 @@ begin
   lblOfficialEnableDis.Caption      := edtTrialEnablingDist.Text;
   cbTrialApproachSpeed.ItemIndex    := TorpedoParam.ApproachSpeed - 9;
   lblOfficialApproachSpeed.Caption  := cbTrialApproachSpeed.Text;
-  edtTrialApproachCourse.Text       := IntToStr(TorpedoParam.ApproachCourse);
+  // approach course automatically set
+  azimuth := CalcBearing(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY,
+    VehicleMgr.TrackControlled.PosX, VehicleMgr.TrackControlled.PosY);
+  bearing := azimuth - SutBlacksharkManager.xShip.Heading;
+  if bearing < 0 then
+  bearing := bearing + 360;
+  TorpedoParam.ApproachCourse       := bearing;
+  edtTrialApproachCourse.Text       := IntToStr(Round(TorpedoParam.ApproachCourse));
   lblOfficialApproachCourse.Caption := edtTrialApproachCourse.Text;
   {$ENDREGION}
 
@@ -356,6 +365,8 @@ begin
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblApplySetOfficialClick(Sender: TObject);
+var
+  bearing, azimuth : Double;
 begin
   {$REGION 'Upper'}
   TorpedoParam.Guidance          := cbTrialGuidance.ItemIndex;
@@ -384,8 +395,14 @@ begin
   lblOfficialEnableDis.Caption      := edtTrialEnablingDist.Text;
   TorpedoParam.ApproachSpeed        := cbTrialApproachSpeed.ItemIndex + 9;
   lblOfficialApproachSpeed.Caption  := cbTrialApproachSpeed.Text;
-  TorpedoParam.ApproachCourse       := StrToInt(edtTrialApproachCourse.Text);
-  lblOfficialApproachCourse.Caption := edtTrialApproachCourse.Text;
+  // approach course automatically set
+  azimuth := CalcBearing(SutBlacksharkManager.xShip.PositionX, SutBlacksharkManager.xShip.PositionY,
+    VehicleMgr.TrackControlled.PosX, VehicleMgr.TrackControlled.PosY);
+  bearing := azimuth - SutBlacksharkManager.xShip.Heading;
+  if bearing < 0 then
+  bearing := bearing + 360;
+  TorpedoParam.ApproachCourse       := bearing;
+  lblOfficialApproachCourse.Caption := IntToStr(Round(TorpedoParam.ApproachCourse));
   {$ENDREGION}
 
   {$REGION 'AdvSA'}

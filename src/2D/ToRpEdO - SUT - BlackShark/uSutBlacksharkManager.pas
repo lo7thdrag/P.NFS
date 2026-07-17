@@ -8,7 +8,7 @@ uses
   windows, uSimulationManager, uTCPDatatype, uBaseSimulationObject, uLibClientObject,
   uBridgeSet, uTestShip, uBaseFunction, uClassDatabase, System.Uitypes, uVehicleManager,
   uVehicle, System.Math, OverbyteIcsWSocket, uTorpedoLauncher, uSimulationTrack, uSubSurfaceTrack, uSurfaceTrack,
-  uBaseConst;
+  uBaseConst, uTorpedoTrack;
 
 type
   TSearchPattern = (spAuto, spRight, spLeft, spCenter, spExtl, spHxsn, spOct, spTri, spTrsn);
@@ -17,7 +17,8 @@ type
   private
     // torpedo parameter
     FTargetTrackID, FSalvoNum, FTorpedoAmount, FLOSDeviation, FSearchSpeed, FCeiling, FAttackDepth, FSearchDepth, FApproachDepth,
-    FFloor, FApproachSpeed, FApproachCourse, FTosoRangePAS, FTosoRangeACT, FProtectionRadius : Integer;
+    FFloor, FApproachSpeed, FTosoRangePAS, FTosoRangeACT, FProtectionRadius : Integer;
+    FApproachCourse : Single;
     FEnablingDist, FCenterOS, FSALength, FSAWidth, FCenterSSP, FOStoSSP, FDPCAngle : Double;
     FProtectionRadiusEnable : Boolean;
     FTosoMode, FGuidance , FSAUpdating, FASH: Byte; // untuk FSAUpdating 0 : Circle, 1 : Vect
@@ -38,7 +39,7 @@ type
     property ApproachDepth : Integer read FApproachDepth write FApproachDepth;
     property Floor : Integer read FFloor write FFloor;
     property ApproachSpeed : Integer read FApproachSpeed write FApproachSpeed;
-    property ApproachCourse : Integer read FApproachCourse write FApproachCourse;
+    property ApproachCourse : Single read FApproachCourse write FApproachCourse;
     property TosoRangePAS : Integer read FTosoRangePAS write FTosoRangePAS;
     property TosoRangeACT : Integer read FTosoRangeACT write FTosoRangeACT;
     property ProtectionRadius : Integer read FProtectionRadius write FProtectionRadius;
@@ -289,6 +290,7 @@ begin
       Trck.Domain := DataModule1.GetShipDomain(aRec.ShipID);
       Trck.Speed_knot := FxShip.Speed;
       Trck.HeadingDeg := FxShip.Heading; // NE
+      Trck.ShipID := arec.ShipID;
     end
 
     else
@@ -365,6 +367,7 @@ end;
 procedure TSutBlacksharkManager.EventonRecMissilePosAvailable(apRec: PAnsiChar;aSize: integer);
 var
   Rec: ^TRec3DMissilePos;
+  Torp: TTorpedoTrack;
 begin
   Rec := Pointer(apRec);
 
@@ -372,13 +375,38 @@ begin
      (Rec^.WeaponID <> C_DBID_TORPEDO_BLACKSHARK) then
     Exit;
 
-  if Rec^.Status <> ST_MISSILE_LOADED then
-    Exit;
+  case Rec^.status of
+    ST_MISSILE_RUN:
+    begin
+      Torp := VehicleMgr.FindTorpedoByLauncherID(rec^.launcherID);
+      if Assigned(Torp) then
+      begin
+        Torp.IsExist := True;
+        Torp.PosX := rec^.X;
+        Torp.PosY := rec^.Y;
+        Torp.PosZ := rec^.Z;
+        Torp.Speed_knot := rec^.Speed;
+        Torp.HeadingDeg := rec^.Heading;
+      end;
 
-  if (Rec^.LauncherID < 1) or (Rec^.LauncherID > 8) then
-    Exit;
+      FTorpedoArray[rec^.launcherID-1].Loaded := false;
+      FTorpedoArray[rec^.launcherID-1].BowCap := bcOpenLeverNotSet;
 
-  FTorpedoArray[Rec^.LauncherID - 1].Loaded := True;
+    end;
+    ST_MISSILE_DEL:
+    begin
+      Torp := VehicleMgr.FindTorpedoByLauncherID(rec^.launcherID);
+      if Assigned(Torp) then Torp.Free;
+
+      //      FreeAndNil(Torp);
+    end;
+    ST_MISSILE_LOADED:
+    begin
+      if (Rec^.LauncherID > 0) or (Rec^.LauncherID < 9) then
+        FTorpedoArray[Rec^.LauncherID - 1].Loaded := True;
+        FTorpedoArray[rec^.launcherID].TextStatus := stCommBreak;
+    end;
+  end;
 end;
 
 procedure TSutBlacksharkManager.Event_OnReceiveStatusConsole(apRec: PAnsiChar;
