@@ -12,7 +12,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -38,8 +38,8 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       ParentFont = False
     end
     object lblClose: TLabel
-      Left = 549
-      Top = 518
+      Left = 537
+      Top = 517
       Width = 31
       Height = 16
       Caption = 'Close'
@@ -51,13 +51,14 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblCloseClick
     end
     object AdvPageTorpedoCheck: TAdvPageControl
       Left = 0
       Top = 34
       Width = 585
       Height = 479
-      ActivePage = advTorp1
+      ActivePage = advTorp8
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
@@ -87,6 +88,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvTorp2: TAdvTabSheet
         Caption = '  Torp 2'
@@ -155,10 +160,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
+        ExplicitLeft = 0
         ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object advTorp8: TAdvTabSheet
         Caption = ' Torp 8'
@@ -167,10 +172,6 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 24
-        ExplicitTop = 0
-        ExplicitWidth = 100
-        ExplicitHeight = 100
       end
       object AdvTBI: TAdvTabSheet
         Caption = ' TBI'
@@ -179,6 +180,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object AdvTorpedoCheckTBI: TAdvPageControl
           Left = -1
           Top = 2
@@ -217,7 +222,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
             ExplicitLeft = 0
             ExplicitTop = 0
             ExplicitWidth = 0
-            ExplicitHeight = 397
+            ExplicitHeight = 0
             object lblCPUPS: TLabel
               Left = 284
               Top = 27
@@ -1279,7 +1284,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       Top = 61
       Width = 585
       Height = 452
-      ActivePage = AdvWCMOnlineStatus
+      ActivePage = AdvTorpedoStatus
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
@@ -1309,10 +1314,6 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvWCMOnlineStatus: TAdvTabSheet
         Caption = '   WCM Online Status'
@@ -1321,6 +1322,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label8: TLabel
           Left = 6
           Top = 11
@@ -1968,6 +1973,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object lblAfterBody: TLabel
           Left = 183
           Top = 22
@@ -2209,6 +2218,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label78: TLabel
           Left = 6
@@ -2235,6 +2245,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label79: TLabel
           Left = 6
@@ -2261,6 +2272,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label80: TLabel
           Left = 7
@@ -2287,6 +2299,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label81: TLabel
           Left = 6
@@ -2313,6 +2326,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label82: TLabel
           Left = 6
@@ -2339,6 +2353,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label83: TLabel
           Left = 5
@@ -2365,6 +2380,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label84: TLabel
           Left = 6
@@ -2391,6 +2407,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label85: TLabel
           Left = 6
@@ -2412,11 +2429,12 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Height = 14
           Caption = '01/July/26    00:00:00'
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clLime
+          Font.Color = clWhite
           Font.Height = -12
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label86: TLabel
           Left = 257
@@ -2443,6 +2461,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
         object Label87: TLabel
           Left = 5
@@ -2469,8 +2488,16 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          Visible = False
         end
       end
     end
+  end
+  object tmrTorpedoCheck: TTimer
+    Enabled = False
+    Interval = 5000
+    OnTimer = tmrTorpedoCheckTimer
+    Left = 517
+    Top = 394
   end
 end

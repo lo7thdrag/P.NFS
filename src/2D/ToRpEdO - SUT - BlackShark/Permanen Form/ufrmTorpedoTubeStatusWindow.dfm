@@ -168,6 +168,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       end
     end
     object pnlTorpedo2: TPanel
+      Tag = 1
       Left = 8
       Top = 6
       Width = 140
@@ -315,6 +316,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       end
     end
     object pnlTorpedo3: TPanel
+      Tag = 2
       Left = 149
       Top = 87
       Width = 140
@@ -462,6 +464,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       end
     end
     object pnlTorpedo4: TPanel
+      Tag = 3
       Left = 7
       Top = 87
       Width = 140
@@ -614,6 +617,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       end
     end
     object pnlTorpedo5: TPanel
+      Tag = 4
       Left = 149
       Top = 168
       Width = 140
@@ -761,6 +765,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       end
     end
     object pnlTorpedo6: TPanel
+      Tag = 5
       Left = 7
       Top = 168
       Width = 140
@@ -908,6 +913,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       end
     end
     object pnlTorpedo7: TPanel
+      Tag = 6
       Left = 149
       Top = 249
       Width = 140
@@ -1055,6 +1061,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
       end
     end
     object pnlTorpedo8: TPanel
+      Tag = 7
       Left = 8
       Top = 249
       Width = 140

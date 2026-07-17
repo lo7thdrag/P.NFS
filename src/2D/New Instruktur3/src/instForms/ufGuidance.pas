@@ -421,6 +421,8 @@ implementation
 
 
 {$R *.dfm}
+uses
+  uClassDatabase, uDataModule;
 
 /// <summary>
 /// Update or set input method of guidance (every activated, not based on time)
@@ -753,6 +755,7 @@ begin
   end;
 end;
 
+{ //lama
 procedure TfGuidance.edtStraightLineOrderedGroundSpeedKeyPress(
   Sender: TObject; var Key: Char);
 var
@@ -777,6 +780,46 @@ begin
     end
     else
       ShowMessage('Invalid Speed Input');
+  end;
+end;
+}
+
+procedure TfGuidance.edtStraightLineOrderedGroundSpeedKeyPress(
+  Sender: TObject; var Key: Char);
+var
+  speed: double;
+  sID: integer;
+  recVehicleDb: TVehicle;
+  maxSpd, MinSpd: Integer;
+begin
+  if Key = #13 then
+  begin
+    if not Assigned(SimManager.TrackObject) then
+      Exit;
+
+    recVehicleDb := DataModule1.GetShipByID(SimManager.TrackObject.FDataBaseID);
+
+    if Assigned(recVehicleDb) then begin
+
+      maxSpd := Round(recVehicleDb.Vehicle_Maxspeed);
+      MinSpd := Round(recVehicleDb.Vehicle_MaxspeedAstern);
+
+      if strtoint(TEdit(Sender).Text) > maxSpd then
+        TEdit(Sender).Text := maxSpd.ToString
+      else if  strtoint(TEdit(Sender).Text) < MinSpd  then
+        TEdit(Sender).Text := MinSpd.ToString;
+
+      sID := UniqueID_To_dbID(SimManager.TrackObject.UniqueID);
+      if TryStrToFloat(TEdit(Sender).Text, speed) then
+      begin
+        SimManager.NetSendTo3D_SetCommandOrder(sid, ORD_THROTTLE, speed, VG_StraightLine,0,0,0);
+        SimManager.TrackObject.OrderedSpeed := speed;
+      end
+      else
+        ShowMessage('Invalid Speed Input');
+
+    end;
+
   end;
 end;
 
@@ -875,6 +918,7 @@ begin
   end;
 end;
 
+{ //lama
 procedure TfGuidance.edtOrderAltStraightKeyPress(Sender: TObject;
   var Key: Char);
 var
@@ -914,6 +958,57 @@ begin
 //    end
 //    else
 //      ShowMessage('Invalid Input');
+  end;
+end;
+}
+procedure TfGuidance.edtOrderAltStraightKeyPress(Sender: TObject;
+  var Key: Char);
+var
+  OrderAlt : double;
+  sID      : integer;
+  minDepth, maxDepth,
+  maxAlt, MinAlt: Integer;
+begin
+  if Key = #13 then
+  begin
+    if not Assigned(SimManager.TrackObject) then
+      Exit;
+
+    if (SimManager.TrackObject is TISubMarineObject) then begin
+      minDepth := 0;
+      maxDepth := -500; //ft
+
+      if (strtoint(TEdit(Sender).Text) * -1) < maxDepth then
+        TEdit(Sender).Text := (maxDepth * -1).ToString
+      else if  strtoint(TEdit(Sender).Text) > minDepth  then
+        TEdit(Sender).Text := (minDepth * -1).ToString;
+    end
+    else if ((SimManager.TrackObject is TIHeliObject) or (SimManager.TrackObject is TIAirCraftObject))
+    then begin
+      maxAlt := 35000; // ft
+      MinAlt := 0;
+
+      if strtoint(TEdit(Sender).Text) > maxAlt then
+        TEdit(Sender).Text := maxAlt.ToString
+      else if  strtoint(TEdit(Sender).Text) < MinAlt  then
+        TEdit(Sender).Text := MinAlt.ToString;
+    end;
+
+    sID := UniqueID_To_dbID(SimManager.TrackObject.UniqueID);
+
+    if (SimManager.TrackObject is TISubMarineObject) and (TryStrToFloat(TEdit(Sender).Text, OrderAlt)) then begin
+      OrderAlt := OrderAlt * -1;
+      SimManager.NetSendTo3D_SetCommandOrder(sid, ORD_ALT, OrderAlt, VG_Helm,0,0,0);
+      SimManager.TrackObject.OrderedZ := OrderAlt;
+    end
+    else if ((SimManager.TrackObject is TIHeliObject) or (SimManager.TrackObject is TIAirCraftObject))
+      and (TryStrToFloat(TEdit(Sender).Text, OrderAlt)) then begin
+      SimManager.NetSendTo3D_SetCommandOrder(sid, ORD_ALT, OrderAlt, VG_Helm,0,0,0);
+      SimManager.TrackObject.OrderedZ := OrderAlt;
+    end
+    else begin
+      ShowMessage('Invalid Input');
+    end;
   end;
 end;
 

@@ -24,7 +24,7 @@ type
   private
 
   public
-    { Public declarations }
+
   end;
 
 var
@@ -33,28 +33,27 @@ var
 implementation
 
 uses
-  ufrmTorpedoTubeStatusWindow, ufrmTorpedoAllocation;
+  ufrmTorpedoTubeStatusWindow, ufrmTorpedoAllocation, ufrmTorpedoTestResultWindow;
 
 {$R *.dfm}
 
 procedure TfrmTorpedoTubeCommands.lblSendCmdClick(Sender: TObject);
-var
-  i : Integer;
 begin
   lblSendCmd.Font.Color := clLime;
 
-  for i := 0 to 7 do
+  if (SutBlacksharkManager.FTubeIndex < 0) or (SutBlacksharkManager.FTubeIndex > 7) then
+    Exit;
+
+  if SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].Allocated then
   begin
-    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
-    begin
-      SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTesting;
-      frmTorpedoTubeStatusWindow.UpdateTextStatus;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].TextStatus := stTesting;
 
-      lblTorpOn.Caption    := 'TORPEDO OFF';
-      lblTorpOn.Font.Color := clLime;
+    frmTorpedoTubeStatusWindow.UpdateTextStatus;
 
-      tmrStatusTextTorpedo.Enabled := True;
-    end;
+    lblTorpOn.Caption    := 'TORPEDO OFF';
+    lblTorpOn.Font.Color := clLime;
+
+    tmrStatusTextTorpedo.Enabled := True;
   end;
 end;
 
@@ -76,20 +75,17 @@ begin
 end;
 
 procedure TfrmTorpedoTubeCommands.tmrStatusTextTorpedoTimer(Sender: TObject);
-var
-  i : Integer;
 begin
   tmrStatusTextTorpedo.Enabled := False;
 
-  for i := 0 to 7 do
-  begin
-    if SutBlacksharkManager.FTorpedoArray[i].Allocated then
-    begin
-     SutBlacksharkManager.FTorpedoArray[i].TextStatus := stTorpReady;
-     frmTorpedoTubeStatusWindow.UpdateTextStatus;
-    end;
-  end;
+  if (SutBlacksharkManager.FTubeIndex < 0) or (SutBlacksharkManager.FTubeIndex > 7) then
+    Exit;
 
+  if SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].Allocated then
+  begin
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].TextStatus := stTorpReady;
+    frmTorpedoTubeStatusWindow.UpdateTextStatus;
+  end;
 end;
 
 end.

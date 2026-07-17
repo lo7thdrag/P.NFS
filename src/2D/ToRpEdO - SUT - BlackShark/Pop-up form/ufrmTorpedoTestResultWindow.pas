@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvPageControl, Vcl.ComCtrls;
+  AdvPageControl, Vcl.ComCtrls,
+
+  uSutBlacksharkManager, uTorpedoLauncher, uVehicleManager;
 
 type
   TfrmTorpedoStatusResultsWindow = class(TForm)
@@ -196,7 +198,10 @@ type
     lblTorpedoHead: TLabel;
     Label87: TLabel;
     lblExerciseHead: TLabel;
-    procedure FormCreate(Sender: TObject);
+    tmrTorpedoCheck: TTimer;
+    procedure tmrTorpedoCheckTimer(Sender: TObject);
+    procedure lblCloseClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -208,11 +213,39 @@ var
 
 implementation
 
+
+uses
+  ufrmTorpedoTubeStatusWindow;
+
 {$R *.dfm}
 
-procedure TfrmTorpedoStatusResultsWindow.FormCreate(Sender: TObject);
+procedure TfrmTorpedoStatusResultsWindow.FormShow(Sender: TObject);
 begin
-  lblTimeSynthesis.Caption := FormatDateTime('dd/MMMM/yyyy     hh:mm:ss', Now);
+  lblTimeSynthesis.Caption    := FormatDateTime('dd/MMMM/yyyy     hh:mm:ss', Now);
+  lblTimeSynthesis.Font.Color := clLime;
+
+  tmrTorpedoCheck.Enabled := True;
+end;
+
+procedure TfrmTorpedoStatusResultsWindow.lblCloseClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmTorpedoStatusResultsWindow.tmrTorpedoCheckTimer(Sender: TObject);
+begin
+  tmrTorpedoCheck.Enabled := False;
+
+  lblBatterySynthesis.Visible  := True;
+  lblTorpedoHead.Visible       := True;
+  lblABSynthesis.Visible       := True;
+  lblMSSynthesis.Visible       := True;
+  lblGuidanceSynthesis.Visible := True;
+  lblAFISynthesis.Visible      := True;
+  lblFuseSynthesis.Visible     := True;
+  lblAHSynthesis.Visible       := True;
+  lblTRSynthesis.Visible       := True;
+  lblExerciseHead.Visible      := True;
 end;
 
 end.

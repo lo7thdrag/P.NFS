@@ -200,7 +200,7 @@ var
 begin
   if FSelectTube <> -1 then
   begin
-    SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated := True;
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated  := True;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].TextStatus := stNone;
     SutBlacksharkManager.TorpedoTubeAllocNum := FSelectTube + 1;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].SalvoNumber := SutBlacksharkManager.SalvoIndex;
@@ -223,15 +223,20 @@ begin
     FFrmTorpedoTubeCommands.Show;
   end;
 
+  SutBlacksharkManager.TubeIndex := FSelectTube;
+
   if not SutBlacksharkManager.FTorpedoArray[FSelectTube].TorpedoOnOff then
   begin
     FFrmTorpedoTubeCommands.lblTorpOn.Caption    := 'TORPEDO ON';
     FFrmTorpedoTubeCommands.lblTorpOn.Font.Color := clWhite;
+
+    FFrmTorpedoTubeCommands.lblSendCmd.Caption    := 'Send Cmd';
+    FFrmTorpedoTubeCommands.lblSendCmd.Font.Color := clWhite;
   end
   else
   begin
-    FFrmTorpedoTubeCommands.lblTorpOn.Caption    := 'TORPEDO OFF';
-    FFrmTorpedoTubeCommands.lblTorpOn.Font.Color := clLime;
+    FFrmTorpedoTubeCommands.lblSendCmd.Caption    := 'Send Cmd';
+    FFrmTorpedoTubeCommands.lblSendCmd.Font.Color := clWhite;
   end;
   {$ENDREGION}
 end;

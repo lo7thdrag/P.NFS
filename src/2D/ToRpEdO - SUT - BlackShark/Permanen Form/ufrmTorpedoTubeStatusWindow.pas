@@ -289,16 +289,16 @@ end;
 
 procedure TfrmTorpedoTubeStatusWindow.pnlTorpedoClick(Sender: TObject);
 begin
-  if not Assigned(FFrmTorpedoTestWindow) then
+  frmTorpedoStatusResultsWindow.AdvPageTorpedoCheck.ActivePageIndex := (Sender as TPanel).tag;
+
+  if Assigned(frmTorpedoStatusResultsWindow) then
   begin
-    FFrmTorpedoTestWindow         := TfrmTorpedoStatusResultsWindow.Create(Self);
-    frmTorpedoStatusResultsWindow := FFrmTorpedoTestWindow;
-    FFrmTorpedoTestWindow.Left    := Self.Left + 1335;
-    FFrmTorpedoTestWindow.Top     := Self.Top + 350;
-    FFrmTorpedoTestWindow.Width   := Max(frmTorpedoWP.pnlTorpedoHomingStatusPlot.Width, frmTorpedoWP.pnlTorpedoParamSettings.Width);
-    FFrmTorpedoTestWindow.Height  := frmTorpedoWP.pnlTorpedoHomingStatusPlot.Height + frmTorpedoWP.pnlTorpedoParamSettings.Height;
-    FFrmTorpedoTestWindow.Show;
-  end;  
+   frmTorpedoStatusResultsWindow.Left    := Self.Left + 1335;
+   frmTorpedoStatusResultsWindow.Top     := Self.Top + 350;
+   frmTorpedoStatusResultsWindow.Width   := Max(frmTorpedoWP.pnlTorpedoHomingStatusPlot.Width, frmTorpedoWP.pnlTorpedoParamSettings.Width);
+   frmTorpedoStatusResultsWindow.Height  := frmTorpedoWP.pnlTorpedoHomingStatusPlot.Height + frmTorpedoWP.pnlTorpedoParamSettings.Height + 25;
+   frmTorpedoStatusResultsWindow.Show;
+  end;
 end;
 
 procedure TfrmTorpedoTubeStatusWindow.tmrDrawTubeTimer(Sender: TObject);

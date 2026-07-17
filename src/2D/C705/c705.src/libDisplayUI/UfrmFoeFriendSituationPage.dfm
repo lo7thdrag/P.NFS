@@ -36,7 +36,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     Top = 0
     Width = 1920
     Height = 1080
-    ActivePage = advtsChSelect
+    ActivePage = advtsSituation
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = 10908270
     ActiveFont.Height = -13
@@ -1421,7 +1421,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 5
           object lblSeaStateParam: TLabel
             Left = 22
-            Top = 9
+            Top = 6
             Width = 32
             Height = 18
             Caption = 'Low'

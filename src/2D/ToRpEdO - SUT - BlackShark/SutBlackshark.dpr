@@ -114,14 +114,6 @@ begin
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
   Application.CreateForm(TfrmTorpedoStatusResultsWindow, frmTorpedoStatusResultsWindow);
-  //  Application.CreateForm(TfrmSystemStatus, frmSystemStatus);
-//  Application.CreateForm(TfrmSystemInfo, frmSystemInfo);
-//  Application.CreateForm(TfrmCursor, frmCursor);
-  //  Application.CreateForm(TfrmTrackListNumber, frmTrackListNumber);
-//  Application.CreateForm(TfrmWakeList, frmWakeList);
-//  Application.CreateForm(TfrmTorpedoAllocation, frmTorpedoAllocation);
-//  Application.CreateForm(TfrmTorpedoParameterDepthSettings, frmTorpedoParameterDepthSettings);
-  //    Application.CreateForm(TfrmMainSutBlackshark, frmMainSutBlackshark);
 
   Application.Run;
 end.

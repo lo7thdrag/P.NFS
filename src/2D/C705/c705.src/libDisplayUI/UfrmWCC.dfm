@@ -15,6 +15,7 @@ object frmWCC: TfrmWCC
   OldCreateOrder = False
   Position = poDesigned
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96

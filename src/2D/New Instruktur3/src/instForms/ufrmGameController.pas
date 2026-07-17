@@ -1432,7 +1432,7 @@ var
 implementation
 
 uses
-  DateUtils, ufListScenario, Math, ufrmeLeftControl, ufEnvi, ufrmShipEditor;
+  DateUtils, ufListScenario, Math, ufrmeLeftControl, ufEnvi, ufrmShipEditor, ufWeaponStatus;
 
 {$R *.dfm}
 
@@ -2130,6 +2130,8 @@ var
   sceWeapon: TScenarioWeapon;
   strPicture, worldproject: string;
   weaponOnShipTemp: TWeaponOnShip;
+
+  WeaponName: string;
 begin
   VisibleStatusShip(false, 1);
   lvRuntimeMissile.Selected := nil;
@@ -2195,6 +2197,37 @@ begin
           Weapon.launcherID := weaponOnShipTemp.Weapon_Launcher;
           Weapon.MissileName := weaponOnShipTemp.Weapon_Name;
           Weapon.Game_Type := weaponOnShipTemp.Weapon_GameType;
+
+          // Filter weapon status
+          if weaponOnShipTemp.Weapon_Name = WeaponName then
+          begin
+            case weaponOnShipTemp.Weapon_ID of
+              C_DBID_CANNON_AK230 :
+              begin
+                if frmMainInstruktur.cekStatusWeapon = 1 then
+                begin
+                  if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
+                  begin
+                    frmWeaponStatus.rzgrpCannonAK230.Visible := False;
+                    frmWeaponStatus.rzgrpCannonAK230.Opened  := False;
+                  end;
+
+
+                end;
+              end;
+              C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL :
+              begin
+                if frmMainInstruktur.cekStatusWeapon = 1 then
+                begin
+                  if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
+                  begin
+                    frmWeaponStatus.rzgrpRBU6000.Visible := False;
+                    frmWeaponStatus.rzgrpRBU6000.Opened  := False;
+                  end;
+                end;
+              end;
+            end;
+          end;
 
           if Weapon.Game_Type = 0 then
           begin

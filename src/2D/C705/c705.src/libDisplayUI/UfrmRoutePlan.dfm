@@ -10727,15 +10727,15 @@ object frmRoutePlan: TfrmRoutePlan
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000F815A62A01000000880300C01C00000000000000000000000000000000
+          010000F815A62A01000000881300C01C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000E8E197003D8D17751F
-          00000000000000208D1775C047AC2A4925CD7028E29700000000000000000000
+          0000000000000000000000000000000000000000000000D0CC97003D8D17751F
+          00000000000000208D1775C047AC2AA108CD7010CD9700000000000000000000
           000088B3400000000000408F400001000001}
       end
     end
@@ -11736,10 +11736,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object advgrpbxTgtInfoPg2: TAdvGroupBox
             Left = 5
             Top = 3
@@ -12332,10 +12328,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object advgrpbxTgtInfoPg3: TAdvGroupBox
             Left = 5
             Top = 3
@@ -12941,10 +12933,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object advgrpbxTgtInfoPg4: TAdvGroupBox
             Left = 5
             Top = 3
@@ -13964,10 +13952,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
     end
@@ -16325,10 +16309,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object advgrpbxLandFly1: TAdvGroupBox
             Left = 3
             Top = 3
@@ -16630,10 +16610,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object advgrpbxLandPt1: TAdvGroupBox
             Left = 3
             Top = 3
@@ -16935,10 +16911,6 @@ object frmRoutePlan: TfrmRoutePlan
           ColorTo = clNone
           TabColor = clBtnFace
           TabColorTo = clNone
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object advgrpbxIslTgt1: TAdvGroupBox
             Left = 3
             Top = 3

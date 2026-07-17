@@ -320,6 +320,12 @@ begin
   cbTrialASH.ItemIndex                := TorpedoParam.ASH;
   lblOfficialASH.Caption              := cbTrialASH.Text;
   {$ENDREGION}
+
+  if Assigned(VehicleMgr.TrackControlled) then
+  begin
+    lblNumberTarget.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+    lblNumberTarget.Font.Color := clLime;
+  end;
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblApplyClick(Sender: TObject);

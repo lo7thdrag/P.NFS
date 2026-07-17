@@ -20,10 +20,39 @@ type
   TStatusWeaponChanged =
     procedure(Sender: TObject; AStatus: TC705StatusType) of object;
 
+  TTargetSelectedEvent =
+    procedure(Sender: TObject; aTarget: TShipContact; Range: Double) of object;
+
   TC705Status = record
+    {
+      Console Status
+      ----------------
+      Berasal langsung dari Console WCC
+    }
     EnableWeapon,
     OpenCoverLauncher,
     SafetyIgnition : Boolean;
+
+    {
+      Internal Simulation Status
+      ---------------------------
+      Status berikut bukan berasal dari network,
+      melainkan dihitung oleh Simulation Manager.
+    }
+    // TRUE apabila proses Warm-up selesai.
+    WarmUpDone: Boolean;
+
+    // TRUE apabila Seeker telah siap digunakan
+    SeekerReady: Boolean;
+  end;
+
+  // Multicast Notify Event
+  TStatusWeaponChangedEvent = procedure(Sender: TObject;
+    aStatus: TC705StatusType) of object;
+
+  TStatusWeaponEventItem = class
+  public
+    Event: TStatusWeaponChangedEvent;
   end;
 
   GameSimManager = class
@@ -37,7 +66,19 @@ type
     FOnTakeOffChanged: TNotifyEvent;
     FMissileTakeOff: Boolean;
 
+    FStatusWeaponEvents : TObjectList;
+
     FOnStatusWeaponChanged: TStatusWeaponChanged;
+    FOnTargetSelectedAction: TTargetSelectedEvent;
+
+    FC705Status: TC705Status;
+
+    // WarmUp Missile
+    // Timer simulasi Warmup missile.
+    // Digunakan untuk mensimulasikan proses pemanasan seeker setelah Weapon Power On
+    FWarmUpTimer: TTimer;
+
+    procedure NotifyStatusWeaponChanged(aStatus: TC705StatusType);
 
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
     procedure OnConnected(msg: string);
@@ -50,11 +91,9 @@ type
     procedure netNFS_OnReceiveStatusConsole(apRec: PAnsiChar; aSize: Integer);
     procedure netNFS_OnReceiveMissilePos(apRec: PAnsiChar; aSize: Integer);
 
+    procedure tmrWarmUpTimer(Sender: TObject);
   public
     FRoutePlanMode: TRoutePlanMode;
-
-    FC705Status: TC705Status;
-
     NFSNetRecv: TTCPClient;
 
     // TRUE  = EMPTY SLOT     // FALSE = MISSILE READY
@@ -74,6 +113,10 @@ type
 
     procedure SetImgPowerConsole(aStatus: Boolean);
 
+    // for Multicast Notify Event
+    procedure RegisterStatusWeaponEvent(aEvent : TStatusWeaponChangedEvent);
+    procedure UnregisterStatusWeaponEvent(aEvent : TStatusWeaponChangedEvent);
+
     property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
     property OnMapInit: TOnMapInit read FOnMapInit write FOnMapInit;
 
@@ -81,6 +124,7 @@ type
     //property OnStatusWeaponChanged: TNotifyEvent read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
     property OnStatusWeaponChanged: TStatusWeaponChanged read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
     property OnTakeOffChanged: TNotifyEvent read FOnTakeOffChanged write FOnTakeOffChanged;
+    property OnTargetSelectedAction: TTargetSelectedEvent read FOnTargetSelectedAction write FOnTargetSelectedAction;
 
     property MissileTakeOff: Boolean read FMissileTakeOff write FMissileTakeOff;
 
@@ -143,8 +187,13 @@ begin
     FLauncherHasMissile[i] := False;
   end;
 
-//  FLauncherLoaded[1] := False;
-//  FLauncherLoaded[2] := False;
+  FStatusWeaponEvents := TObjectList.Create(True); // Auto Free Object
+
+  // Timer Set Panel Area3A & Area3B
+  FWarmUpTimer := TTimer.Create(nil);
+  FWarmUpTimer.Enabled := False;
+  FWarmUpTimer.Interval := 3000;  // 3 detik
+  FWarmUpTimer.OnTimer := tmrWarmUpTimer;;
 end;
 
 destructor GameSimManager.Destroy;
@@ -160,6 +209,15 @@ begin
     NFSNetRecv.OnDisconnected := nil;
     NFSNetRecv.Disconnect;
     FreeAndNil(NFSNetRecv);
+  end;
+
+  FreeAndNil(FStatusWeaponEvents);
+
+  if Assigned(FWarmUpTimer) then
+  begin
+    FWarmUpTimer.Enabled := False;
+    FWarmUpTimer.OnTimer := nil;
+    FreeAndNil(FWarmUpTimer);
   end;
 
   inherited;
@@ -213,6 +271,7 @@ begin
     SimManager.NFSNetRecv.Connect(VNfsNetwork.ServerIP, IntToStr(VNfsNetwork.Serverport));
   end
 end;
+
 {$ENDREGION}
 
 {$REGION 'NetNFS Receive Order'}
@@ -295,11 +354,8 @@ procedure GameSimManager.netNFS_OnReceiveStatusConsole(apRec: PAnsiChar;
 var
   //rec : ^TRecStatus_Console_C705;
   rec: ^TRecStatus_Console;
-  StatusChanged: Boolean;
   TheChanges: TC705StatusType;
 begin
-  StatusChanged := False;
-
   rec := @apRec^;
 
   case rec^.ErrorID of
@@ -309,10 +365,25 @@ begin
 
       if FC705Status.EnableWeapon <> (rec^.ParamError = __PARAM_C705_ON) then begin
         FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
-        StatusChanged := True;
+        NotifyStatusWeaponChanged(stEnableWeapon);
 
-        TheChanges := stEnableWeapon;
+        if FC705Status.EnableWeapon then begin
+          // Mulai Simulasi WarmUp dengan Timer
+          FC705Status.WarmUpDone := False;
+          FC705Status.SeekerReady := False;
+
+          FWarmUpTimer.Enabled := False;
+          FWarmUpTimer.Enabled := True;
+        end
+        else begin
+          // Reset seluruh status internal (WarmUp, SeekerReady)
+          FWarmUpTimer.Enabled := False;
+
+          FC705Status.WarmUpDone := False;
+          FC705Status.SeekerReady := False;
+        end;
       end;
+
     end;
 
     __STAT_C705_OpenCoverLauncherC705: begin
@@ -320,9 +391,7 @@ begin
 
       if FC705Status.OpenCoverLauncher <> (rec^.ParamError = __PARAM_C705_ON) then begin
         FC705Status.OpenCoverLauncher := rec^.ParamError = __PARAM_C705_ON;
-        StatusChanged := True;
-
-        TheChanges := stOpenCover;
+        NotifyStatusWeaponChanged(stOpenCover);
       end;
     end;
 
@@ -331,16 +400,12 @@ begin
 
       if FC705Status.SafetyIgnition <> (rec^.ParamError = __PARAM_C705_ON) then begin
         FC705Status.SafetyIgnition := rec^.ParamError = __PARAM_C705_ON;
-        StatusChanged := True;
-
-        TheChanges := stSafetyIgnition
+        NotifyStatusWeaponChanged(stSafetyIgnition);
       end;
     end;
 
   end;
 
-  if Assigned(FOnStatusWeaponChanged) and StatusChanged then
-    FOnStatusWeaponChanged(Self, TheChanges);
 end;
 
 procedure GameSimManager.netNFS_OnSendDataC705(rec: TRec_Data_C705);
@@ -358,6 +423,44 @@ begin
       and FC705Status.SafetyIgnition;
 end;
 
+procedure GameSimManager.NotifyStatusWeaponChanged(aStatus: TC705StatusType);
+var
+  i : Integer;
+begin
+  for i := 0 to FStatusWeaponEvents.Count-1 do
+    TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event(Self, aStatus);
+end;
+
+procedure GameSimManager.UnregisterStatusWeaponEvent(aEvent: TStatusWeaponChangedEvent);
+var
+  i : Integer;
+  M1,M2 : TMethod;
+begin
+  M1 := TMethod(aEvent);
+
+  for i := FStatusWeaponEvents.Count-1 downto 0 do
+  begin
+    M2 := TMethod(TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event);
+
+    if (M1.Code = M2.Code) and
+       (M1.Data = M2.Data) then
+    begin
+      FStatusWeaponEvents.Delete(i);
+      Break;
+    end;
+  end;
+end;
+
+procedure GameSimManager.RegisterStatusWeaponEvent(aEvent: TStatusWeaponChangedEvent);
+var
+  Item : TStatusWeaponEventItem;
+begin
+  Item := TStatusWeaponEventItem.Create;
+  Item.Event := aEvent;
+
+  FStatusWeaponEvents.Add(Item);
+end;
+
 procedure GameSimManager.ResetLauncher(aLauncherID: Integer);
 begin
   FLauncherHasMissile[aLauncherID] := False;
@@ -369,6 +472,20 @@ procedure GameSimManager.SetImgPowerConsole(aStatus: Boolean);
 begin
   if aStatus then
 
+end;
+
+{
+ Warm-up Timer.
+ Dipanggil otomatis setelah Weapon Power On (dari WCC/ Instruktur) selama 3 detik
+}
+procedure GameSimManager.tmrWarmUpTimer(Sender: TObject);
+begin
+  FWarmUpTimer.Enabled := False;
+
+  FC705Status.WarmUpDone := True;
+  FC705Status.SeekerReady := True;
+
+  NotifyStatusWeaponChanged(stEnableWeapon);
 end;
 
 end.

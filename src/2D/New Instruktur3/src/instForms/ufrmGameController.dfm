@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              010001180100002065A5100100000065204F761C000000000000000000000000
+              01000118010000001C9A040100000065209B771C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              0100002065A51001000000000000001C00000000000000000000000000000000
+              010000001C9A0401000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000030F39700E0
-              EE9700000000006688CE50000200006B88CE506688CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000060CE970010
+              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -251892,6 +251892,10 @@ object frmGameController: TfrmGameController
                 ImageIndex = 3
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object lblInfo: TLabel
                   Left = 307
                   Top = 136
@@ -251913,6 +251917,10 @@ object frmGameController: TfrmGameController
                 ImageIndex = 6
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxWCC: TScrollBox
                   Left = 0
                   Top = 0
@@ -255087,6 +255095,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxExocetMM40: TScrollBox
                   Left = 0
                   Top = 0
@@ -258951,6 +258963,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxC705: TScrollBox
                   Left = 0
                   Top = 0
