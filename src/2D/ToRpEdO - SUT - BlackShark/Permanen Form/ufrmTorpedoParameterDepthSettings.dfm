@@ -604,6 +604,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 26
           Width = 49
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -620,6 +621,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 48
           Width = 49
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -636,6 +638,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 70
           Width = 49
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -652,6 +655,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 92
           Width = 49
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -668,6 +672,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 114
           Width = 49
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -857,6 +862,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 50
           Width = 57
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -914,6 +920,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 98
           Width = 57
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -922,7 +929,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Font.Style = []
           ParentFont = False
           TabOrder = 3
-          Text = '0.0'
+          Text = '0'
         end
       end
       object AdvSA: TAdvTabSheet
@@ -1431,6 +1438,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 60
           Width = 57
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -1622,6 +1630,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 68
           Width = 57
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -1638,6 +1647,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 89
           Width = 57
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -1788,6 +1798,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 56
           Width = 57
           Height = 21
+          Alignment = taRightJustify
           Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite

@@ -60,7 +60,7 @@ implementation
 
 procedure TfrmTargetInControl.tmrUpdateTICTimer(Sender: TObject);
 begin
-  if Assigned(VehicleMgr.TrackControlled) then
+  if VehicleMgr.IsAnyTrackControlled then
   begin
     lblTargetTrack.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
     lblTargetTrack.Font.Color := clLime;

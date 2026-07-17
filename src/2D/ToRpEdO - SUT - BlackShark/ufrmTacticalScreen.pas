@@ -10,7 +10,7 @@ uses
   uFormUtil, UfrmRadar, ufrmOwnShip, ufrmAlertandOpearatorMassage,
   ufmTargetInControl, uBaseFunction, ufrmTorpedoAllocation, ufrmSystemStatus,
   ufrmSystemInfo, ufrmCursor, uLibConst, uBaseConst, Vcl.OleCtrls, MapXLib_TLB,
-  AdvCombo, ImageButton, uTransparentOverlay, uSimulationTrack, uSurfaceTrack, uSubSurfaceTrack;
+  AdvCombo, ImageButton, uTransparentOverlay, uSimulationTrack, uSurfaceTrack, uSubSurfaceTrack, uTorpedoTrack;
 
 //const
 //  MAX_TARGET = 50;
@@ -428,11 +428,9 @@ begin
   
     for i := 0 to VehicleMgr.ObjectList.Count - 1 do
     begin
-      if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = 0 then
+      if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = UniqueID_To_dbID(SutBlacksharkManager.xShip.UniqueID) then
       begin
         OwnShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
-//        FMapTP.CenterX := OwnShip.PosX;
-//        FMapTP.CenterY := OwnShip.PosY;
 
         MapX := OwnShip.PosX;
         MapY := OwnShip.PosY;
@@ -456,45 +454,53 @@ begin
       end
       else
       begin
-        Ship := TSimulationTrack(VehicleMgr.ObjectList[i]);
-
-        MapX := Ship.PosX;
-        MapY := Ship.PosY;
-
-        FMapTP.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-
-        aCnv.Pen.Color := clBlack;
-        aCnv.Pen.Style := psClear;
-        aCnv.Pen.Width := 1;
-
-        aCnv.Brush.Color := RGB(243, 235, 118);
-        aCnv.Brush.Style := bsSolid;
-        if Ship.Domain = 1 then
+        if VehicleMgr.ObjectList[i] is TTorpedoTrack then
         begin
-          aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
-          aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 10, Round(ScrX) + 5, Round(ScrY) + 10);
+          // gambar torpedo disini
         end
-        else if Ship.Domain = 3 then
-        begin
-          aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
-          aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
-        end;
 
-        if Ship.Controlled_Track then
+        else
         begin
-          aCnv.Pen.Color := clWhite;
+          Ship := TSimulationTrack(VehicleMgr.ObjectList[i]);
+
+          MapX := Ship.PosX;
+          MapY := Ship.PosY;
+
+          FMapTP.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+          aCnv.Pen.Color := clBlack;
+          aCnv.Pen.Style := psClear;
+          aCnv.Pen.Width := 1;
+
+          aCnv.Brush.Color := RGB(243, 235, 118);
+          aCnv.Brush.Style := bsSolid;
+          if Ship.Domain = 1 then
+          begin
+            aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+            aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 10, Round(ScrX) + 5, Round(ScrY) + 10);
+          end
+          else if Ship.Domain = 3 then
+          begin
+            aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+            aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
+          end;
+
+          if Ship.Controlled_Track then
+          begin
+            aCnv.Pen.Color := clWhite;
+            aCnv.Pen.Style := psSolid;
+            aCnv.Brush.Color := clWhite;
+            aCnv.Brush.Style := bsClear;
+            aCnv.Ellipse(Round(ScrX) - 11, Round(ScrY) - 11, Round(ScrX) + 11, Round(ScrY) + 11);
+          end;
+
           aCnv.Pen.Style := psSolid;
-          aCnv.Brush.Color := clWhite;
+          aCnv.Pen.Width := 1;
           aCnv.Brush.Style := bsClear;
-          aCnv.Ellipse(Round(ScrX) - 11, Round(ScrY) - 11, Round(ScrX) + 11, Round(ScrY) + 11);
+          aCnv.Pen.Color := clGray;
+
+          aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.6d',[Ship.MSITrackNumber]));
         end;
-
-        aCnv.Pen.Style := psSolid;
-        aCnv.Pen.Width := 1;
-        aCnv.Brush.Style := bsClear;
-        aCnv.Pen.Color := clGray;
-
-        aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.6d',[Ship.MSITrackNumber]));
       end;
     end;
 end;
@@ -536,7 +542,7 @@ begin
 //  if Assigned(FOverlay) then begin
 //    FOverlay.BringToFront;
 //    FOverlay.Show;
-//    FOverlay.Paint;    
+//    FOverlay.Paint;
 //  end;
 
   if not FTrueMotion then

@@ -135,7 +135,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
-      object lblNumberTorpedo1: TLabel
+      object lblSalvoNumber1: TLabel
         Left = 118
         Top = 19
         Width = 14
@@ -241,7 +241,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
-      object lblNumberTorpedo2: TLabel
+      object lblSalvoNumber2: TLabel
         Left = 117
         Top = 19
         Width = 14
@@ -389,7 +389,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
-      object lblNumberTorpedo3: TLabel
+      object lblSalvoNumber3: TLabel
         Left = 117
         Top = 20
         Width = 14
@@ -538,7 +538,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
-      object lblNumberTorpedo4: TLabel
+      object lblSalvoNumber4: TLabel
         Left = 116
         Top = 21
         Width = 14
@@ -718,7 +718,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         ParentFont = False
         Visible = False
       end
-      object lblNumberTorpedo5: TLabel
+      object lblSalvoNumber5: TLabel
         Left = 117
         Top = 20
         Width = 14
@@ -838,7 +838,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
-      object lblNumberTorpedo6: TLabel
+      object lblSalvoNumber6: TLabel
         Left = 119
         Top = 20
         Width = 14
@@ -986,7 +986,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
-      object lblNumberTorpedo7: TLabel
+      object lblSalvoNumber7: TLabel
         Left = 116
         Top = 21
         Width = 14
@@ -1134,7 +1134,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Height = 51
         OnPaint = pbTubeSymbol1Paint
       end
-      object lblNumberTorpedo8: TLabel
+      object lblSalvoNumber8: TLabel
         Left = 116
         Top = 20
         Width = 14

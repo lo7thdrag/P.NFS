@@ -203,6 +203,7 @@ begin
     SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated  := True;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].TextStatus := stNone;
     SutBlacksharkManager.TorpedoTubeAllocNum := FSelectTube + 1;
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].SalvoNumber := SutBlacksharkManager.SalvoIndex;
 
     if Assigned(frmTorpedoTubeStatusWindow) then
     begin
@@ -277,6 +278,7 @@ begin
   if not Assigned(TorpedoParam) then
   begin
     TorpedoParam := TTorpedoParameterSetting.Create;
+    // ini harus dihandle biar di track dulu targetnya rojek
     TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
   end;
 
@@ -380,7 +382,7 @@ end;
 
 procedure TfrmTorpedoAllocation.UpdateAllocations;
 begin
-  if Assigned(VehicleMgr.TrackControlled) then
+  if VehicleMgr.IsAnyTrackControlled then
   begin
     lblToTarget.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
     lblToTarget.Font.Color := clLime;

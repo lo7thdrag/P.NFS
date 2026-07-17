@@ -4,7 +4,7 @@ interface
 uses
   SysUtils, Classes, Math, Graphics,
   uCoordConverter, windows, uVehicle,
-  System.Contnrs, uSimulationTrack, uSubSurfaceTrack, uSurfaceTrack;
+  System.Contnrs, uSimulationTrack, uSubSurfaceTrack, uSurfaceTrack, uTorpedoTrack;
 type
   TVehicleManager = class
   private
@@ -32,9 +32,12 @@ type
 //    function AddVehicle: TSimulationTrack;
     function AddVehicleSubSurf(const x, y: Double): TSubSurfaceTrack;
     function AddVehicleSurface(const x, y: Double): TSurfaceTrack;
+    function AddTorpedo(const LchrID: Word): TTorpedotrack;
     function AddOwnShip(const x, y: Double): TSubSurfaceTrack;
 
     function FindObjectByUid(const aUid: string): TSimulationTrack;
+
+    function FindTorpedoByLauncherID(const LnchrID: Word): TTorpedoTrack;
 
     function FindTrackByTrackNumber(const TrackNum: Integer): TSimulationTrack;
     function ControlTrackByTrackNumber(const TrackNum: Integer): Boolean;
@@ -66,6 +69,7 @@ var
   VehicleMgr: TVehicleManager;
 
 implementation
+
 { TVehicleManager }
 
 constructor TVehicleManager.Create;
@@ -133,6 +137,15 @@ begin
   FList.Add(Result);
 end;
 
+function TVehicleManager.AddTorpedo(const LchrID: Word): TTorpedotrack;
+begin
+  Result := TTorpedotrack.Create;
+  Result.WeaponID := 21;
+  Result.LauncherID := LchrID;
+  Result.MissileID := 1;
+  FList.Add(Result);
+end;
+
 function TVehicleManager.AddVehicleSubSurf(const x, y: Double): TSubSurfaceTrack;
 begin
   Result := TSubSurfaceTrack.Create;
@@ -172,6 +185,7 @@ begin
   Result := false;
   i := 0;
 //  FTrackControlled := nil;
+  FIsAnyTrackControlled := False;
   for i := 0 to FList.Count - 1 do
   begin
     if TSimulationTrack(FList[i]).MSITrackNumber = TrackNum then
@@ -185,7 +199,6 @@ begin
     else
     begin
       TSimulationTrack(FList[i]).Controlled_Track := False;
-      FIsAnyTrackControlled := False;
     end;
   end;
 
@@ -254,6 +267,27 @@ function TVehicleManager.FindObjectByUid(const aUid: string): TSimulationTrack;
     if found then result := obj;
 
   end;
+
+function TVehicleManager.FindTorpedoByLauncherID(
+  const LnchrID: word): TTorpedoTrack;
+var
+  i : Integer;
+  V : TSimulationTrack;
+begin
+  for i := FList.Count - 1 downto 0 do
+  begin
+//    V := TSimulationTrack(FList[i]);
+    if FList[i] is TTorpedoTrack then
+    begin
+      if TTorpedoTrack(FList[i]).LauncherID = LnchrID then
+      begin
+        Result := TTorpedoTrack(FList[i]);
+        Break;
+      end;
+
+    end;
+  end;
+end;
 
 function TVehicleManager.FindTrackByTrackNumber(
   const TrackNum: Integer): TSimulationTrack;

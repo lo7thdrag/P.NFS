@@ -69,7 +69,7 @@ const
   RightMargin  = 31;
   BottomMargin = 24;
 
-  YPos    : array[0..4] of Integer = (0,80,160,240,300);
+  YPos    : array[0..4] of Integer = (0,75,150,225,300);
 
 var
   i : Integer;
@@ -141,13 +141,13 @@ begin
     Pen.Width := 2;
     Brush.Style := bsClear;
     ShipY := (Abs(SutBlacksharkManager.xShip.PositionZ) / MaxDepth * GraphHeight);
-    Ellipse(GraphLeft - 9, Round(ShipY) - 9, GraphLeft + 9, Round(ShipY) + 9);
+    Ellipse(GraphLeft - 9, Round(ShipY + graphtop) - 9, GraphLeft + 9, Round(ShipY + graphtop) + 9);
 
-    MoveTo(GraphLeft - 6, Round(ShipY) - 6);
-    LineTo(GraphLeft + 6, Round(ShipY) + 6);
+    MoveTo(GraphLeft - 6, Round(ShipY + graphtop) - 6);
+    LineTo(GraphLeft + 6, Round(ShipY + graphtop) + 6);
 
-    MoveTo(GraphLeft + 6, Round(ShipY) - 6);
-    LineTo(GraphLeft - 6, Round(ShipY) + 6);
+    MoveTo(GraphLeft + 6, Round(ShipY + graphtop) - 6);
+    LineTo(GraphLeft - 6, Round(ShipY + graphtop) + 6);
 
     // target ship
     for i := 0 to VehicleMgr.ObjectList.Count - 1 do
@@ -161,16 +161,16 @@ begin
         Brush.Style := bsClear;
 
         ShipY := (Abs(TempShip.PosZ) / MaxDepth * GraphHeight);
-        Rect[0] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY -8));
-        Rect[1] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY +8));
-        Rect[2] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY +8));
-        Rect[3] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY -8));
+        Rect[0] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY + graphtop -8));
+        Rect[1] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY + graphtop +8));
+        Rect[2] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY + graphtop +8));
+        Rect[3] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY + graphtop -8));
         Polygon(Rect);
 
-        Rect[0] := Point(Round(GraphWidth + graphleft) , Round(ShipY -8));
-        Rect[1] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY));
-        Rect[2] := Point(Round(GraphWidth + graphleft) , Round(ShipY +8));
-        Rect[3] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY));
+        Rect[0] := Point(Round(GraphWidth + graphleft) , Round(ShipY + graphtop -8));
+        Rect[1] := Point(Round(GraphWidth + graphleft -8) , Round(ShipY + graphtop));
+        Rect[2] := Point(Round(GraphWidth + graphleft) , Round(ShipY + graphtop +8));
+        Rect[3] := Point(Round(GraphWidth + graphleft +8) , Round(ShipY + graphtop));
         Polygon(Rect);
       end;
     end;
