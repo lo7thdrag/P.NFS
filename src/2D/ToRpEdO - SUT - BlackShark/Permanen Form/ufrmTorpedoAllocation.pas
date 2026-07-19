@@ -152,6 +152,8 @@ type
     FSelectTube : Integer;
     FSelectFireRelease : Integer;
 
+    function IsReadyForEngagementAnalysis: Boolean;
+
     procedure UpdateAllocationStatus;
     procedure UpdateAllocations;
     procedure UpdateFireRelease;
@@ -163,9 +165,28 @@ var
 implementation
 
 uses
-  ufrmTorpedoWP, ufrmTorpedoTubeStatusWindow;
+  ufrmTorpedoWP, ufrmTorpedoTubeStatusWindow, ufrmTacticalScreen;
 
 {$R *.dfm}
+
+function TfrmTorpedoAllocation.IsReadyForEngagementAnalysis: Boolean;
+begin
+  Result := False;
+
+  if not Assigned(VehicleMgr) then
+  begin
+    SutBlacksharkManager.OperatorMessages := 'Vehicle Manager belum siap.';
+    Exit;
+  end;
+
+  if not Assigned(VehicleMgr.TrackControlled) then
+  begin
+    SutBlacksharkManager.OperatorMessages := 'Silakan pilih target terlebih dahulu.';
+    Exit;
+  end;
+
+  Result := True;
+end;
 
 procedure TfrmTorpedoAllocation.FormCreate(Sender: TObject);
 begin
@@ -275,6 +296,9 @@ end;
 
 procedure TfrmTorpedoAllocation.pnlEngagementAnalysisStartClick(Sender: TObject);
 begin
+  if not IsReadyForEngagementAnalysis then
+    Exit;
+
   if not Assigned(TorpedoParam) then
   begin
     TorpedoParam := TTorpedoParameterSetting.Create;
@@ -298,6 +322,10 @@ begin
   UpdateAllocationStatus;
   UpdateAllocations;
   UpdateFireRelease;
+
+  // Message Operator
+  if Assigned(SutBlacksharkManager) then
+    frmTacticalScreen.pnlOperatorMessages.Caption := SutBlacksharkManager.OperatorMessages
 end;
 
 procedure TfrmTorpedoAllocation.UpdateAllocationStatus;

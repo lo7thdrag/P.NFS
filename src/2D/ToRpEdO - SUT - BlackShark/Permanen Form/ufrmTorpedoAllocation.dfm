@@ -3728,10 +3728,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label22: TLabel
           Left = 8
           Top = 0
@@ -4193,10 +4189,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Panel1: TPanel
           Left = 6
           Top = 5
