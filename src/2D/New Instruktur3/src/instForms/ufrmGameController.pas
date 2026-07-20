@@ -2184,44 +2184,73 @@ begin
     ClearListViewData(lvWeapon);
     worldproject := SimManager.instProjectSet.World;
 
-    // Filter Weapon Status
+    {$REGION 'Filter Weapon Status'}
     if frmMainInstruktur.cekStatusWeapon = 1 then
     begin
-      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpCannonAK230.Visible := True;
-      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpCannonAK230.Visible := False;
+      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible     := False;;
 
       if worldproject = 'NAFS' then
       begin
         if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
         begin
           frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpCannonAK230.Visible := False;
-          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpCannonAK230.Opened := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpCannonAK230.Opened  := False;
 
           frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
-          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
         end
         else if Vehicle.Vehicle_Name = 'KAPITAN PATIMURA' then
         begin
           frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
-          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
         end
         else if Vehicle.Vehicle_Name = 'UNTUNG SUROPATI' then
         begin
           frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
-          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
         end
         else if Vehicle.Vehicle_Name = 'HASAN BASRI' then
         begin
           frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
-          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
         end
         else if Vehicle.Vehicle_Name = 'LAMBUNG MANGKURAT' then
         begin
           frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
-          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
+        end
+      end
+      else if worldproject = 'NSSFS' then
+      begin
+        if Vehicle.Vehicle_Name = 'KAPITAN PATIMURA' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+        else if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+        else if Vehicle.Vehicle_Name = 'UNTUNG SUROPATI' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+        else if Vehicle.Vehicle_Name = 'HASAN BASRI' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+        else if Vehicle.Vehicle_Name = 'LAMBUNG MANGKURAT' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
         end
       end;
     end;
+    {$ENDREGION}
 
     try
       if Assigned(SimManager.TrackObject) then
