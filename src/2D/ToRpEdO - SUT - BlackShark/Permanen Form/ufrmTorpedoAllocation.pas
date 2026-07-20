@@ -175,13 +175,13 @@ begin
 
   if not Assigned(VehicleMgr) then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Vehicle Manager belum siap.';
+    SutBlacksharkManager.OperatorMessages := 'Input Track Control by Number';
     Exit;
   end;
 
   if not Assigned(VehicleMgr.TrackControlled) then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Silakan pilih target terlebih dahulu.';
+    SutBlacksharkManager.OperatorMessages := 'Select the Target First';
     Exit;
   end;
 
@@ -200,17 +200,35 @@ begin
 end;
 
 procedure TfrmTorpedoAllocation.imgAllocation1Click(Sender: TObject);
+var
+  i : Integer;
 begin
-  FSelectTube := TImage(Sender).Tag;
+  if SutBlacksharkManager.FTorpedoArray[i].Loaded then
+  begin
+    FSelectTube := TImage(Sender).Tag;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages := 'Select Loaded Torpedo in Instructor';
+    ShowMessage('Select Loaded Torpedo in Instructor');
+    Exit;
+  end;
 end;
 
 procedure TfrmTorpedoAllocation.imgFireReleaseClick(Sender: TObject);
+var
+  i : Integer;
 begin
-  FSelectFireRelease := TImage(Sender).Tag;
-
-  if FSelectFireRelease <> -1 then
+  if SutBlacksharkManager.FTorpedoArray[i].TextStatus = stTorpReady then
   begin
-    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := not SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease;
+    FSelectFireRelease := TImage(Sender).Tag;
+    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages := 'Torpedo Not Ready';
+    ShowMessage('Torpedo Not Ready');
+    Exit;
   end;
 end;
 
@@ -231,6 +249,12 @@ begin
       frmTorpedoTubeStatusWindow.UpdatePanelStatus;
       frmTorpedoTubeStatusWindow.UpdateFrameStatus;
     end;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages := 'Select Torpedo First';
+    ShowMessage('Select Torpedo First');
+    Exit;
   end;
 
   {$REGION 'Torpedo Tube Commands'}
