@@ -1113,8 +1113,8 @@ procedure TfrmRoutePlan.UpdateTargetParamPnl(aObjTgt: TShipContact; aRange: Doub
 begin
   {$REGION 'Page1'}
   edtTgtNoPg1.Text := IntToStr(aObjTgt.ID);
-  edtTgtLongPg1.Text := FloatToStr(aObjTgt.Lon);
-  edtTgtLatPg1.Text := FloatToStr(aObjTgt.Lat);
+  edtTgtLongPg1.Text := FormatFloat('0.00', aObjTgt.Lon);//FloatToStr(aObjTgt.Lon);
+  edtTgtLatPg1.Text := FormatFloat('0.00', aObjTgt.Lat);//FloatToStr(aObjTgt.Lat);
   edtTgtSpdPg1.Text := FormatFloat('0.00', aObjTgt.Speed);//FloatToStr(aObjTgt.Speed);
   edtTgtCrsPg1.Text := FormatFloat('0.00', aObjTgt.Heading);//FloatToStr(aObjTgt.Heading);
   edtTgtRngPg1.Text := FormatFloat('0.00', aRange);//FloatToStr(aRange);
@@ -1375,6 +1375,8 @@ begin
 
     if TargetObj <> nil then begin
       UpdateTargetParamPnl(TargetObj, range);
+
+      SimManager.StartTargetSequence;
 
       if Assigned(SimManager.OnTargetSelectedAction) then
         SimManager.OnTargetSelectedAction(Self, TargetObj, Range);

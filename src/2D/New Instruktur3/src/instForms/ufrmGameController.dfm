@@ -183296,7 +183296,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000001C9A040100000065209B771C000000000000000000000000
+              01000118010000E0CABB29010000004F66D5761C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183305,15 +183305,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              010000001C9A0401000000000000001C00000000000000000000000000000000
+              010000E0CABB2901000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000060CE970010
-              CA9700000000006688CE50000200006B88CE506688CE50000000000000000000
+              00000000000000000000000000000000000000000000000000000038F39700E8
+              EE9700000000006688CE5058EF97006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -184551,8 +184551,8 @@ object frmGameController: TfrmGameController
         object imgRuangIns: TImage
           Left = 1
           Top = 1
-          Width = 1424
-          Height = 928
+          Width = 1426
+          Height = 930
           Align = alClient
           AutoSize = True
           Picture.Data = {
@@ -200766,8 +200766,6 @@ object frmGameController: TfrmGameController
             882019000000000000007020F78D6FFD2F826400000000000000C0BECAB2D4FF
             0751917630A324DA410000000049454E44AE426082}
           Proportional = True
-          ExplicitWidth = 1426
-          ExplicitHeight = 930
         end
         object img3DNAFS: TImage
           Left = 1253
@@ -202030,8 +202028,8 @@ object frmGameController: TfrmGameController
           object lblScenarioName: TLabel
             Left = 0
             Top = 0
-            Width = 1490
-            Height = 74
+            Width = 113
+            Height = 18
             Align = alClient
             Alignment = taCenter
             Caption = 'Scenario Name'
@@ -202042,8 +202040,6 @@ object frmGameController: TfrmGameController
             Font.Style = [fsBold]
             ParentFont = False
             Layout = tlCenter
-            ExplicitWidth = 113
-            ExplicitHeight = 18
           end
         end
         object pnlsprScen2: TPanel
@@ -204819,8 +204815,8 @@ object frmGameController: TfrmGameController
           object lblShipName1: TLabel
             Left = 0
             Top = 0
-            Width = 1486
-            Height = 74
+            Width = 80
+            Height = 18
             Align = alClient
             Alignment = taCenter
             Caption = 'Ship Name'
@@ -204831,8 +204827,6 @@ object frmGameController: TfrmGameController
             Font.Style = [fsBold]
             ParentFont = False
             Layout = tlCenter
-            ExplicitWidth = 80
-            ExplicitHeight = 18
           end
         end
         object pnl2: TPanel
@@ -210300,7 +210294,7 @@ object frmGameController: TfrmGameController
                   Left = 8
                   Top = 34
                   Width = 146
-                  Height = 24
+                  Height = 28
                   TabOrder = 0
                   TabStop = False
                   Version = '1.2.1.2'
@@ -248067,6 +248061,10 @@ object frmGameController: TfrmGameController
                 ColorTo = clNone
                 TabColor = 7301478
                 TabColorTo = clWhite
+                ExplicitLeft = 0
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object scrlbxTOCOS: TScrollBox
                   Left = 0
                   Top = 0

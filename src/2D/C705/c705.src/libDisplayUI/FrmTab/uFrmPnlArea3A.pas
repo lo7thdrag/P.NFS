@@ -197,7 +197,7 @@ begin
   end;
 
   // SEEKER
-  if SimManager.C705Status.SeekerReady then
+  if SimManager.C705Status.SeekerRdy then
     pnlVrlSeeker3A.Color := clLime
   else
   begin
@@ -206,6 +206,24 @@ begin
     else
       pnlVrlSeeker3A.Color := clGray;
   end;
+
+  // SEA TARGET
+  if SimManager.C705Status.SeaTargetRdy then
+    pnlVrlSeaTgt3A.Color := clLime
+  else
+    pnlVrlSeaTgt3A.Color := clRed;
+
+  // INSIDE SECTOR
+  if SimManager.C705Status.InsideSectorRdy then
+    pnlVrlInsideSector3A.Color := clLime
+  else
+    pnlVrlInsideSector3A.Color := clRed;
+
+  // PARA SETTING
+  if SimManager.C705Status.ParaSettingRdy then
+    pnlVrlParaSetting3A.Color := clLime
+  else
+    pnlVrlParaSetting3A.Color := clRed;
 
 end;
 

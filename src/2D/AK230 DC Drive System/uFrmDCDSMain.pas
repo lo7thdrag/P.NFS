@@ -268,6 +268,7 @@ type
     procedure edtTrainingValueKeyPress(Sender: TObject; var Key: Char);
     procedure edtElevationValueChange(Sender: TObject);
     procedure edtTrainingValueChange(Sender: TObject);
+    procedure btnBrakeOnClick(Sender: TObject);
   private
     { Private declarations }
     FbootTime : Integer;
@@ -516,6 +517,28 @@ begin
   edtAcTrainValue.Text := FloatToStr(dblVal);
 end;
 
+procedure TfrmDCDSMain.btnBrakeOnClick(Sender: TObject);
+var
+  canFire : Boolean;
+begin
+  canFire :=  btnBrakeOn.Down and
+              (FVTgtElevation >= -10) and
+              (FVTgtElevation <= 85) and
+              ((FVTgtTraining <= 120) or (FVTgtTraining >= 240)) and
+              ((LeftMagazine <> 0) or (RightMagazine <> 0));
+
+  if CanFire then
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath +
+      '\buttonAK230\bttn_firingon.bmp')
+  else
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath +
+      '\buttonAK230\bttn_firingoff.bmp');
+
+  btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+  btnFiring.Enabled := CanFire;
+
+end;
+
 procedure TfrmDCDSMain.btnClearListClick(Sender: TObject);
 begin
   mmoLogger.Clear;
@@ -661,9 +684,9 @@ begin
   if ((FVTgtElevation < -10) or (FVTgtElevation > 85)) or
   ((FVTgtTraining > 120) and (FVTgtTraining < 240 )) then
   begin
-    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
-    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-    btnFiring.Enabled := False;
+//    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
+//    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//    btnFiring.Enabled := False;
 
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
     btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
@@ -673,9 +696,9 @@ begin
   end
   else
   begin
-    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
-    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-    btnFiring.Enabled := True;
+//    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
+//    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//    btnFiring.Enabled := True;
 
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
     btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
@@ -840,23 +863,23 @@ begin
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
     btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
 
-    if FisPowerOn and TryStrToFloat(edtOmRangeValue.Text, dblVal) then
-    begin
-      if dblVal > 0 then
-      begin
-        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
-//        btnFiring.Glyph := FimgTemp.Picture.Bitmap;
-        btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-        btnFiring.Enabled := True;
-      end
-      else
-      begin
-        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
-//        btnFiring.Glyph := FimgTemp.Picture.Bitmap;
-        btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-        btnFiring.Enabled := False;
-      end;
-    end;
+//    if FisPowerOn and TryStrToFloat(edtOmRangeValue.Text, dblVal) then
+//    begin
+//      if dblVal > 0 then
+//      begin
+//        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
+////        btnFiring.Glyph := FimgTemp.Picture.Bitmap;
+//        btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//        btnFiring.Enabled := True;
+//      end
+//      else
+//      begin
+//        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
+////        btnFiring.Glyph := FimgTemp.Picture.Bitmap;
+//        btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//        btnFiring.Enabled := False;
+//      end;
+//    end;
     if FisPowerOn then
       tmrRotate.Enabled := True
     else
@@ -867,9 +890,10 @@ begin
     pnlLmHeading.Visible := False;
     pnlLmElevation.Visible := False;
     pnlLmTraining.Visible := False;
-    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
-//    btnFiring.Glyph := FimgTemp.Picture.Bitmap;
-    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
+////    btnFiring.Glyph := FimgTemp.Picture.Bitmap;
+//    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//    btnFiring.Enabled := False;
     tmrRotate.Enabled := False;
   end;
 end;
@@ -911,9 +935,9 @@ begin
   edtBulCntLf2.Text := IntToStr(LeftMagazine);
   edtBulCntRg2.Text := IntToStr(RightMagazine);
 
-  FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
-  btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-  btnFiring.Enabled := True;
+//  FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
+//  btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//  btnFiring.Enabled := True;
 end;
 
 procedure TfrmDCDSMain.btnOmKolonkaClick(Sender: TObject);
@@ -970,31 +994,34 @@ begin
     maxRan := 0;
 //  edtValueHeding.Text := FormatFloat('0.#', bearVal);
 
-  if btnfirevolt.down then
-  begin
-    if FisPowerOn and TryStrToFloat(edtOmRangeValue.Text, ranVal) then
-    begin
-      if (ranVal >= 0.16) and (ranVal <= maxRan) then
-      begin
-        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
-//        btnFiring.Glyph := FimgTemp.Picture.Bitmap;
-        btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-      end
-      else
-      begin
-        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
-//        btnFiring.Glyph := FimgTemp.Picture.Bitmap;
-        btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-        ShowMessage('Out of Range!');
-      end;
-    end;
-  end
-  else
-  begin
-    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
-//    btnFiring.Glyph := FimgTemp.Picture.Bitmap;
-    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-  end;
+//  if btnfirevolt.down then
+//  begin
+//    if FisPowerOn and TryStrToFloat(edtOmRangeValue.Text, ranVal) then
+//    begin
+//      if (ranVal >= 0.16) and (ranVal <= maxRan) then
+//      begin
+//        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
+////        btnFiring.Glyph := FimgTemp.Picture.Bitmap;
+//        btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//        btnFiring.Enabled := True;
+//      end
+//      else
+//      begin
+//        FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
+////        btnFiring.Glyph := FimgTemp.Picture.Bitmap;
+//        btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//        btnFiring.Enabled := False;
+//        ShowMessage('Out of Range!');
+//      end;
+//    end;
+//  end
+//  else
+//  begin
+//    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
+////    btnFiring.Glyph := FimgTemp.Picture.Bitmap;
+//    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+//    btnFiring.Enabled := False;
+//  end;
 end;
 
 procedure TfrmDCDSMain.btnOpenFileClick(Sender: TObject);
@@ -1208,6 +1235,10 @@ begin
   end;
 
   AK230Manager.InitializeSimulation;
+
+  pnlLmHeading.DoubleBuffered := True;
+  pnlLmTraining.DoubleBuffered := True;
+  pnlLmElevation.DoubleBuffered := True;
 
 //  GunL := TGun.Create(1);
 //  GunR := TGun.Create(1);

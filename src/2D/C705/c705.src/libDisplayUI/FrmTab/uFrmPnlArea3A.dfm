@@ -359,9 +359,6 @@ object frmPnlArea3A: TfrmPnlArea3A
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 1
-    ExplicitTop = 258
-    ExplicitWidth = 950
     object pnlStatus3A: TPanel
       Left = 857
       Top = 0
@@ -378,7 +375,6 @@ object frmPnlArea3A: TfrmPnlArea3A
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 855
     end
     object Panel10: TPanel
       Left = 409
@@ -395,7 +391,6 @@ object frmPnlArea3A: TfrmPnlArea3A
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
-      ExplicitWidth = 351
       object lblAlignmentStatus3A: TLabel
         Left = 28
         Top = 13
@@ -455,7 +450,6 @@ object frmPnlArea3A: TfrmPnlArea3A
       ParentBackground = False
       ParentFont = False
       TabOrder = 3
-      ExplicitLeft = 760
     end
   end
   object pnl3ATop: TPanel
@@ -465,9 +459,6 @@ object frmPnlArea3A: TfrmPnlArea3A
     Height = 80
     Align = alTop
     TabOrder = 1
-    ExplicitLeft = 1
-    ExplicitTop = 1
-    ExplicitWidth = 950
     object Image1: TImage
       Left = 1
       Top = 1
@@ -1302,7 +1293,7 @@ object frmPnlArea3A: TfrmPnlArea3A
   end
   object pnlVrlParaSetting3A: TPanel
     Left = 186
-    Top = 197
+    Top = 192
     Width = 20
     Height = 10
     Color = clGray
@@ -1329,7 +1320,7 @@ object frmPnlArea3A: TfrmPnlArea3A
   end
   object pnlVrlPwrSwitch3A: TPanel
     Left = 641
-    Top = 191
+    Top = 192
     Width = 20
     Height = 10
     Color = clYellow

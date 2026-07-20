@@ -2184,6 +2184,74 @@ begin
     ClearListViewData(lvWeapon);
     worldproject := SimManager.instProjectSet.World;
 
+    {$REGION 'Filter Weapon Status'}
+    if frmMainInstruktur.cekStatusWeapon = 1 then
+    begin
+      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpCannonAK230.Visible := False;
+      frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible     := False;;
+
+      if worldproject = 'NAFS' then
+      begin
+        if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpCannonAK230.Visible := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpCannonAK230.Opened  := False;
+
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
+        end
+        else if Vehicle.Vehicle_Name = 'KAPITAN PATIMURA' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
+        end
+        else if Vehicle.Vehicle_Name = 'UNTUNG SUROPATI' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
+        end
+        else if Vehicle.Vehicle_Name = 'HASAN BASRI' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
+        end
+        else if Vehicle.Vehicle_Name = 'LAMBUNG MANGKURAT' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := False;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := False;
+        end
+      end
+      else if worldproject = 'NSSFS' then
+      begin
+        if Vehicle.Vehicle_Name = 'KAPITAN PATIMURA' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+        else if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+        else if Vehicle.Vehicle_Name = 'UNTUNG SUROPATI' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+        else if Vehicle.Vehicle_Name = 'HASAN BASRI' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+        else if Vehicle.Vehicle_Name = 'LAMBUNG MANGKURAT' then
+        begin
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Visible := True;
+          frmMainInstruktur.FrameControlLeft.FrameWeaponStatus.rzgrpRBU6000.Opened  := True;
+        end
+      end;
+    end;
+    {$ENDREGION}
+
     try
       if Assigned(SimManager.TrackObject) then
       begin
@@ -2197,37 +2265,6 @@ begin
           Weapon.launcherID := weaponOnShipTemp.Weapon_Launcher;
           Weapon.MissileName := weaponOnShipTemp.Weapon_Name;
           Weapon.Game_Type := weaponOnShipTemp.Weapon_GameType;
-
-          // Filter weapon status
-          if weaponOnShipTemp.Weapon_Name = WeaponName then
-          begin
-            case weaponOnShipTemp.Weapon_ID of
-              C_DBID_CANNON_AK230 :
-              begin
-                if frmMainInstruktur.cekStatusWeapon = 1 then
-                begin
-                  if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
-                  begin
-                    frmWeaponStatus.rzgrpCannonAK230.Visible := False;
-                    frmWeaponStatus.rzgrpCannonAK230.Opened  := False;
-                  end;
-
-
-                end;
-              end;
-              C_DBID_RBU6000, C_DBID_RBU6000_DIGITAL :
-              begin
-                if frmMainInstruktur.cekStatusWeapon = 1 then
-                begin
-                  if Vehicle.Vehicle_Name = 'SULTAN THAHA SYAIFUDDIN' then
-                  begin
-                    frmWeaponStatus.rzgrpRBU6000.Visible := False;
-                    frmWeaponStatus.rzgrpRBU6000.Opened  := False;
-                  end;
-                end;
-              end;
-            end;
-          end;
 
           if Weapon.Game_Type = 0 then
           begin
