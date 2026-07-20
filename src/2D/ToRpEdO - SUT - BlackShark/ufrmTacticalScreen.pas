@@ -421,6 +421,7 @@ var
   Ship, OwnShip: TSimulationTrack;
   MapX, MapY: Double;
   ScrX, ScrY: Single;
+  TrkHstry : TTrackPoint;
 begin
   OwnShip := nil;
 
@@ -431,6 +432,23 @@ begin
       if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = UniqueID_To_dbID(SutBlacksharkManager.xShip.UniqueID) then
       begin
         OwnShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
+
+        OwnShip.HistorySaveCounter := OwnShip.HistorySaveCounter + 1;
+        if OwnShip.HistorySaveCounter = OwnShip.HistoryCountToSave then
+        begin
+          OwnShip.HistorySaveCounter := 0;
+          TrkHstry := TTrackPoint.Create;
+          TrkHstry.PosX := OwnShip.PosX;
+          TrkHstry.PosY := OwnShip.PosY;
+          OwnShip.TrackHistory.Add(TrkHstry);
+          if OwnShip.TrackHistory.Count > 20 then
+          begin
+//            TTrackPoint(OwnShip.TrackHistory[0]).Free;
+            TObject(OwnShip.TrackHistory[0]).Free;
+            OwnShip.TrackHistory.Delete(0);
+          end;
+
+        end;
 
         MapX := OwnShip.PosX;
         MapY := OwnShip.PosY;
@@ -462,6 +480,22 @@ begin
         else
         begin
           Ship := TSimulationTrack(VehicleMgr.ObjectList[i]);
+
+          Ship.HistorySaveCounter := Ship.HistorySaveCounter + 1;
+          if Ship.HistoryCountToSave = Ship.HistoryCountToSave then
+          begin
+            Ship.HistorySaveCounter := 0;
+            TrkHstry := TTrackPoint.Create;
+            TrkHstry.PosX := Ship.PosX;
+            TrkHstry.PosY := Ship.PosY;
+            Ship.TrackHistory.Add(TrkHstry);
+            if Ship.TrackHistory.Count > 20 then
+            begin
+              TObject(Ship.TrackHistory[0]).Free;
+              Ship.TrackHistory.Delete(0);
+            end;
+
+          end;
 
           MapX := Ship.PosX;
           MapY := Ship.PosY;

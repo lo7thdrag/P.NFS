@@ -9,7 +9,7 @@ type
   TRadarNorthIndicator = class
   private
     FVisible       : Boolean;
-    FUseTrueMotion : Boolean; // TRUE: utara relatif heading kapal
+    FUseRelativeMotion : Boolean; // TRUE: utara relatif heading kapal
     FHeadingDeg    : Double;  // heading kapal (0..360)
 
     FCenterX       : Integer; // pusat lingkaran radar
@@ -25,7 +25,7 @@ type
     constructor Create;
 
     property Visible       : Boolean read FVisible write FVisible;
-    property UseTrueMotion : Boolean read FUseTrueMotion write FUseTrueMotion;
+    property UseRelativeMotion : Boolean read FUseRelativeMotion write FUseRelativeMotion;
     property HeadingDeg    : Double  read FHeadingDeg write FHeadingDeg;
 
     property CenterX       : Integer read FCenterX write FCenterX;
@@ -47,7 +47,7 @@ constructor TRadarNorthIndicator.Create;
 begin
   inherited Create;
   FVisible       := True;
-  FUseTrueMotion := False;
+  FUseRelativeMotion := False;
   FHeadingDeg    := 0;
 
   FCenterX       := 0;
@@ -99,7 +99,7 @@ begin
   rOuter := FRadiusPx;
 
   // Tentukan sudut penunjuk
-  if FUseTrueMotion then
+  if FUseRelativeMotion then
   begin
     // utara relatif heading kapal: --------------------------------------------------
     // jika kapal heading 90°, utara berada di 270° (kiri),  ---- ini penjelasan lama-
@@ -114,7 +114,7 @@ begin
 //    // selalu ke 0° (atas layar) // jika
 //    baseAngleDeg := 0;
 
-    // [rojek] segitiga digunakan untuk menunjukan heading kapal
+    // [rojek] segitiga digunakan untuk menunjukan heading
     baseAngleDeg := FHeadingDeg;
   end;
 

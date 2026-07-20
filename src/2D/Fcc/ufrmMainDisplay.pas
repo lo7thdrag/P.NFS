@@ -920,7 +920,11 @@ begin
     if Assigned(FCCManager) then
     begin
       if Assigned(FCCManager.xShip) then
-        AreaBlindZone1.HeadingDeg    := FCCManager.xShip.Heading;
+      begin
+        if FCCManager.IsRelativeMotion then  AreaBlindZone1.HeadingDeg := 0
+        else AreaBlindZone1.HeadingDeg  := FCCManager.xShip.Heading;
+      end;
+
     end;
 
     AreaBlindZone1.Draw(aCnv);
@@ -937,7 +941,10 @@ begin
     if Assigned(FCCManager) then
     begin
       if Assigned(FCCManager.xShip) then
-        AreaBlindZone.HeadingDeg    := FCCManager.xShip.Heading;
+      begin
+        if FCCManager.IsRelativeMotion then AreaBlindZone.HeadingDeg := 0
+        else AreaBlindZone.HeadingDeg    := FCCManager.xShip.Heading;
+      end;
     end;
 
     AreaBlindZone.Draw(aCnv);
@@ -953,7 +960,10 @@ begin
     if Assigned(FCCManager) then
     begin
       if Assigned(FCCManager.xShip) then
-        AreaPenembakan.HeadingDeg    := FCCManager.xShip.Heading;
+      begin
+        if FCCManager.IsRelativeMotion then AreaPenembakan.HeadingDeg := 0
+        else AreaPenembakan.HeadingDeg    := FCCManager.xShip.Heading;
+      end;
     end;
 
     AreaPenembakan.Draw(aCnv);
@@ -969,7 +979,10 @@ begin
     if Assigned(FCCManager) then
     begin
       if Assigned(FCCManager.xShip) then
-        AreaTracker.HeadingDeg    := FCCManager.xShip.Heading;
+      begin
+        if FCCManager.IsRelativeMotion then AreaTracker.HeadingDeg := 0
+        else AreaTracker.HeadingDeg    := FCCManager.xShip.Heading;
+      end;
     end;
 
     AreaTracker.Draw(aCnv);
@@ -990,7 +1003,7 @@ begin
 //
 //    AreaGunPoint.Draw(aCnv);
 
-    // --- North Indicator ---
+    // --- bukan north indicator, tapi heading kapal kemana ---
     FNorthInd.CenterX       := FCircleCX;
     FNorthInd.CenterY       := FCircleCY;
     FNorthInd.RadiusPx      := FCircleR;
@@ -999,7 +1012,7 @@ begin
       if Assigned(FCCManager.xShip) then
       begin
         FNorthInd.HeadingDeg    := FCCManager.xShip.Heading;
-        FNorthInd.UseTrueMotion := FCCManager.IsTrueMotion; // TRUE or FALSE
+        FNorthInd.UseRelativeMotion := FCCManager.IsRelativeMotion; // TRUE or FALSE
       end;
     end;
     FNorthInd.Draw(aCnv);
@@ -1019,8 +1032,8 @@ begin
     begin
       if Assigned(FCCManager.xShip) then
       begin
-        if FCCManager.IsTrueMotion then FBearing0.BearingDeg := 0
-        else FBearing0.BearingDeg := 360 - FCCManager.xShip.Heading;
+        if FCCManager.IsRelativeMotion then FBearing0.BearingDeg := 360 - FCCManager.xShip.Heading
+        else FBearing0.BearingDeg := 0;
       end;
     end;
     FBearing0.Draw(aCnv);
@@ -1032,9 +1045,15 @@ begin
     begin
       if Assigned(FCCManager.xShip) then
       begin
-        TurretHeading := (FCCManager.xShip.Heading + FCurrBearing);
-        if TurretHeading >= 360 then TurretHeading := TurretHeading - 360;
-
+        if FCCManager.IsRelativeMotion then
+        begin
+          TurretHeading := (FCurrBearing);
+        end
+        else
+        begin
+          TurretHeading := (FCCManager.xShip.Heading + FCurrBearing);
+          if TurretHeading >= 360 then TurretHeading := TurretHeading - 360;
+        end;
         FBearingGun.BearingDeg  := TurretHeading;
       end;
     end;
@@ -1045,7 +1064,14 @@ begin
     FBearingEO.ConvertCoord(aCvt, 2.7);
     if Assigned(FCCManager) then
     begin
-      EOHeading := FCCManager.xShip.Heading + FCCManager.EOBearing;
+      if FCCManager.IsRelativeMotion then
+      begin
+        EOHeading := FCCManager.EOBearing;
+      end
+      else
+      begin
+        EOHeading := FCCManager.xShip.Heading + FCCManager.EOBearing;
+      end;
       FBearingEO.BearingDeg  := EOHeading;
     end;
     FBearingEO.Draw(aCnv);
@@ -1078,7 +1104,7 @@ begin
     Brush.Color := clBlack; // or clBlack, clWhite, etc.
     FillRect(ClipRect); // clears the drawing area
   end;
-  if FCCManager.IsTrueMotion then
+  if not FCCManager.IsRelativeMotion then  // jika tidak true motion (relative motion terhadap kapal)
   begin
     if Assigned(FCCManager) then
     begin
@@ -2168,7 +2194,7 @@ begin
   begin
     pnlCombatLs.Caption := 'Combat';
   end
-  else if (Token = 'Confirm') then
+  else if (Token = 'ConfirmOM') then
   begin
 //    FTempOperatingMode := omWait;
     RecSendFccSet.ShipID := FCCManager.ShipID;
@@ -2527,7 +2553,7 @@ procedure TfrmMainFCC.imgCompasClick(Sender: TObject);
 begin
   if Assigned(FCCManager) then
   begin
-    FCCManager.IsTrueMotion := not FCCManager.IsTrueMotion;
+    FCCManager.IsRelativeMotion := not FCCManager.IsRelativeMotion;
   end;
 end;
 
@@ -3110,7 +3136,7 @@ begin
         edtNavDataRoll.Text := FormatFloat('0.00', FCCManager.xShip.Roll);
 //        edtNavDataVoyage.Text := FormatFloat('0.00', FCCManager.xShip.);
 
-        if not FCCManager.IsTrueMotion then begin
+        if not FCCManager.IsRelativeMotion then begin
           Fmap.CenterX := FCCManager.xShip.PositionX;
           Fmap.CenterY := FCCManager.xShip.PositionY;
         //    FMap.Rotation := 0;

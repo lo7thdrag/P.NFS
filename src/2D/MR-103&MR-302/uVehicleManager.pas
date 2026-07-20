@@ -123,6 +123,12 @@ begin
     // sinkronkan posisi symbol
     V.PrepareForDraw;
 
+    if v.Symbol.Selected then
+    begin
+      v.Symbol.BitmapTintColor := RGB(255,0,0); // merah
+    end
+    else
+      v.Symbol.BitmapTintColor := RGB(255,255,0); // kuning
     // gambar
     V.Symbol.Draw(ACanvas);
   end;

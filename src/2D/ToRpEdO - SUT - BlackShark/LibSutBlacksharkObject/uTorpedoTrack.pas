@@ -6,10 +6,12 @@ interface
   uCoordConverter, uRadarTargets, windows, uBaseObject, uSimulationTrack, uSubSurfaceTrack;
 
 type
+  TGuidanceMode = (gmMSIGuide, gmInterGuide, gmHoming, gmManual);
   TTorpedoPhase = (tpInitial, tpApproach, tpSearch, tpManualGuide, tpHomingLong, tpHomingClose);
   TTorpedoTrack = class(TSubSurfaceTrack)
   private
     FTargetTrackID : Integer;
+    FTorpGuidanceMode : TGuidanceMode;
     FTorpLaunchPhase : TTorpedoPhase;
     FWeaponID, FLauncherID, FMissileID : Word;
     FToSoRangePsv, FTosoRangeActv : Integer;
@@ -26,6 +28,7 @@ type
     destructor Destroy; override;
     property TargetTrackID : Integer read FTargetTrackID write FTargetTrackID;
     property TorpLaunchPhase : TTorpedoPhase read FTorpLaunchPhase write FTorpLaunchPhase;
+    property TorpGuidanceMode : TGuidanceMode read FTorpGuidanceMode write FTorpGuidanceMode;
     property WeaponID : Word read FWeaponID write FWeaponID;
     property LauncherID : Word read FLauncherID write FLauncherID;
     property MissileID : Word read FMissileID write FMissileID;

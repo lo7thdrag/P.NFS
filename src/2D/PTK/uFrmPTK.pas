@@ -966,7 +966,7 @@ begin
   FBtnArray[26].Name := 'btn_26';
   FBtnArray[27].Name := 'btn_ZeroFlyOff';
   FBtnArray[28].Name := 'btn_28';
-  FBtnArray[29].Name := 'btn_Confirm';
+  FBtnArray[29].Name := 'btn_ConfirmOM';
 
   SetOperationModeDisplay;
 end;

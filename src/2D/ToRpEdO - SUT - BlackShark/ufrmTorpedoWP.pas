@@ -637,7 +637,7 @@ begin
 
   FShipHeading := 0; // awal
 
-  FMap.ZoomTo(3.92 * 8, FMap.CenterX, FMap.CenterY);
+  FMap.ZoomTo(3.92 * 4, FMap.CenterX, FMap.CenterY);
 
   BitMapLampGrey := TBitmap.Create;
   BitMapLampGreen := TBitmap.Create;
@@ -1226,7 +1226,7 @@ end;
 
 procedure TFrmTorpedoWP.Render(aCnv: TCanvas);
 var
-  i,X1, X2, Y1, Y2: Integer;
+  i, indx ,X1, X2, Y1, Y2: Integer;
   TempShip, OwnShip, TargetShip: TSimulationTrack;
   Torp: TTorpedoTrack;
   MapX, MapY, Dx, Dy: Double;
@@ -1273,8 +1273,19 @@ begin
       ScrX := ScrX + Round(sin(Angle) * 70);
       ScrY := ScrY - Round(cos(Angle) * 70);
       aCnv.LineTo(Round(scrX), Round(scrY));
-//      Break;
-//      Continue;
+
+      // spawn track history
+      for indx := 0 to OwnShip.TrackHistory.Count -1 do
+      begin
+        MapX := TTrackPoint(OwnShip.TrackHistory[indx]).PosX;
+        MapY := TTrackPoint(OwnShip.TrackHistory[indx]).PosY;
+//
+        FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+        aCnv.Pen.Color := clGray;
+        aCnv.Pen.Width := 1;
+        aCnv.Pen.Style := psSolid;
+        aCnv.Ellipse(Round(scrx -1), Round(scry-1), Round(scrx+1), Round(scry+1));
+      end;
     end
     else
     begin
@@ -1343,8 +1354,36 @@ begin
           {$ENDREGION}
 
           {$REGION 'Target Bearing'}
+          // digambar setelah melewati enabling distance atau fuse nyala
+          dx := TargetShip.PosX - Torp.PosX;
+          dy := TargetShip.PosY - Torp.PosY;
 
+          // Perpanjang garis sampai jauh ke depan
+          dx := Torp.PosX + dx * 10;
+          dy := Torp.PosY + dy * 10;
 
+          FMap.ConvertCoord(ScrDX, ScrDY, dx, dy, 0);
+
+          // outside ToSo Range
+          aCnv.Pen.Color := clYellow;
+          aCnv.Pen.Style := psDot;
+          aCnv.Pen.Width := 1;
+          aCnv.MoveTo(Round(scrx), Round(scrY));
+          aCnv.LineTo(Round(scrdx), Round(scrdy));
+
+          // inside Toso Range
+          aCnv.Pen.Style := psSolid;
+          aCnv.Pen.Width := 1;
+          aCnv.MoveTo(Round(scrx), Round(scrY));
+
+          dx := TargetShip.PosX - Torp.PosX;
+          dy := TargetShip.PosY - Torp.PosY;
+          Angle := ArcTan2(dy, dx);
+          angle := -Angle;
+          MapX := Torp.PosX + (torpedoparam.EnablingDist * C_KMeter_To_Degree * cos(Angle));
+          MapY := Torp.PosY - (torpedoparam.EnablingDist * C_KMeter_To_Degree * sin(Angle));
+          FMap.ConvertCoord(ScrDX, ScrDY, MapX, MapY, 0);
+          aCnv.LineTo(Round(ScrDX), Round(ScrDY));
           {$ENDREGION}
         end;
       end
@@ -1383,6 +1422,19 @@ begin
           aCnv.Brush.Style := bsClear;
 
           aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
+
+          // spawn track history
+          for indx := 0 to TargetShip.TrackHistory.Count -1 do
+          begin
+            MapX := TTrackPoint(TargetShip.TrackHistory[indx]).PosX;
+            MapY := TTrackPoint(TargetShip.TrackHistory[indx]).PosY;
+
+            FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+            aCnv.Pen.Color := clGray;
+            aCnv.Pen.Width := 1;
+            aCnv.Pen.Style := psSolid;
+            aCnv.Ellipse(Round(scrx-1), Round(scry-1), Round(scrx+1), Round(scry+1));
+          end;
         end;
       end;
 

@@ -544,6 +544,11 @@ var
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
   Angle := 0;
+  if Assigned(FCCManager) then
+  begin
+    if Assigned(FCCManager.xShip) then
+      Angle    := Round(FCCManager.xShip.Heading); // rojek add buat mutar angle sesuai arah kapal
+  end;
   baseAngle := round(CBaseAngle);
   AngleOffset := round(CBaseAngle);
   labelsfont := TFont.Create();

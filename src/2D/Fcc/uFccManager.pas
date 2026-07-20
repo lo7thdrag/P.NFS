@@ -15,7 +15,7 @@ type
   private
     FIsStandAlone: boolean;
     FxShip       : TXShip;
-    FIsTrueMotion: boolean;
+    FIsRelativeMotion: boolean;
     FServer_Port: string;
     FCurrentScenID: integer;
     FShipID: Integer;
@@ -62,7 +62,7 @@ type
     procedure NetSendTo3D_FCCSet(rec : TrecData_MeriamFCC);
 
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
-    property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
+    property IsRelativeMotion: boolean read FIsRelativeMotion write FIsRelativeMotion;
     property xShip : TXShip read FxShip;
 
     property LaserRange :  double read FLaserRange;
@@ -157,7 +157,7 @@ constructor TFCCManager.Create;
 begin
   inherited;
   FIsStandAlone := False;
-  FIsTrueMotion := True; // rojek set default to True Motion atau Heading Up
+  FIsRelativeMotion := True; // rojek set default to True Motion atau Heading Up
 
   FPtkServer := TListener.Create;
   FPtkHandler := TPtkReceiver.Create;
