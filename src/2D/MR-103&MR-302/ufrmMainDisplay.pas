@@ -766,7 +766,13 @@ procedure TfrmMainFCC.FMapDrawUserLayer(ASender: TObject;
   RectInvalid: IDispatch);
 begin
   FMapCanvas.Handle := hOutputDC;
-  DrawAll(FMapCanvas, FMapConverter, FFlag);
+//  DrawAll(FMapCanvas, FMapConverter, FFlag);
+
+  try
+    DrawAll(FMapCanvas, FMapConverter, FFlag);
+  finally
+    FMapCanvas.Handle := 0;
+  end;
 end;
 
 procedure TfrmMainFCC.FMapMouseDown(Sender: TObject; Button: TMouseButton;
