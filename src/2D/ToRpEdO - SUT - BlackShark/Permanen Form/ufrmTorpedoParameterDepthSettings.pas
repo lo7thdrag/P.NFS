@@ -450,8 +450,9 @@ begin
   if TorpedoParam.SalvoNum = 0 then
   begin
     SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
-    TorpedoParam.SalvoNum := SutBlacksharkManager.SalvoIndex;
-    lblNumberSalvo.Caption := IntToStr(TorpedoParam.SalvoNum);
+    TorpedoParam.SalvoNum           := SutBlacksharkManager.SalvoIndex;
+    lblNumberSalvo.Caption          := IntToStr(TorpedoParam.SalvoNum);
+    lblNumberSalvo.Font.Color       := clLime;
   end;
 end;
 

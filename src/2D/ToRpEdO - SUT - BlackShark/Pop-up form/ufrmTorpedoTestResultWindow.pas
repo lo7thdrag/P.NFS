@@ -113,7 +113,7 @@ type
     Label8: TLabel;
     lblCPUWCM: TLabel;
     Label47: TLabel;
-    lblInputOtputBoard1: TLabel;
+    lblInputOutputBoard1: TLabel;
     Label48: TLabel;
     lblInputOutputBoard2: TLabel;
     Label49: TLabel;
@@ -198,14 +198,12 @@ type
     lblTorpedoHead: TLabel;
     Label87: TLabel;
     lblExerciseHead: TLabel;
-    tmrTorpedoCheck: TTimer;
-    procedure tmrTorpedoCheckTimer(Sender: TObject);
     procedure lblCloseClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+
   end;
 
 var
@@ -223,19 +221,9 @@ procedure TfrmTorpedoStatusResultsWindow.FormShow(Sender: TObject);
 begin
   lblTimeSynthesis.Caption    := FormatDateTime('dd/MMMM/yyyy     hh:mm:ss', Now);
   lblTimeSynthesis.Font.Color := clLime;
+  lblTimeSynthesis.Visible    := True;
 
-  tmrTorpedoCheck.Enabled := True;
-end;
-
-procedure TfrmTorpedoStatusResultsWindow.lblCloseClick(Sender: TObject);
-begin
-  Close;
-end;
-
-procedure TfrmTorpedoStatusResultsWindow.tmrTorpedoCheckTimer(Sender: TObject);
-begin
-  tmrTorpedoCheck.Enabled := False;
-
+  {$REGION 'Synthesis Report'}
   lblBatterySynthesis.Visible  := True;
   lblTorpedoHead.Visible       := True;
   lblABSynthesis.Visible       := True;
@@ -246,6 +234,49 @@ begin
   lblAHSynthesis.Visible       := True;
   lblTRSynthesis.Visible       := True;
   lblExerciseHead.Visible      := True;
+  {$ENDREGION}
+
+  {$REGION 'BIST Report'}
+  lblAfterBody.Visible      := True;
+  lblMotorSection.Visible   := True;
+  lblGuidance.Visible       := True;
+  lblBattery.Visible        := True;
+  lblAFI.Visible            := True;
+  lblFuse.Visible           := True;
+  lblAcousticHead.Visible   := True;
+  lblTorpedoRunning.Visible := True;
+  {$ENDREGION}
+
+  {$REGION 'WCM Online Status'}
+  lblBatteryMonitor.Visible     := True;
+  lblCommunicationBoard.Visible := True;
+  lblCPUWCM.Visible             := True;
+  lblInputOutputBoard1.Visible  := True;
+  lblInputOutputBoard2.Visible  := True;
+  lblTorpedoVAC.Visible         := True;
+  lblTorpedoVDC.Visible         := True;
+  {$ENDREGION}
+
+  {$REGION 'WCM Online Offline'}
+  lbl24VCommBoard.Visible             := True;
+  lbl24VOffline.Visible               := True;
+  lbl48VOffline.Visible               := True;
+  lblBatteryWCMOffline.Visible        := True;
+  lblCPUWCMOffline.Visible            := True;
+  lblInputOutputBoard1Offline.Visible := True;
+  lblInputOutputBoard2Offline.Visible := True;
+  lblPowerSupply12V.Visible           := True;
+  lblPowerSupply5V.Visible            := True;
+  lblSerialLines.Visible              := True;
+  lblTimeWCMOffline.Visible           := True;
+  lblVACOffline.Visible               := True;
+  lblVDCOffline.Visible               := True;
+  lblWatchDog.Visible                 := True;
+  {$ENDREGION}
 end;
 
+procedure TfrmTorpedoStatusResultsWindow.lblCloseClick(Sender: TObject);
+begin
+  Close;
+end;
 end.

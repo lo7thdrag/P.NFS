@@ -58,7 +58,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       Top = 34
       Width = 585
       Height = 479
-      ActivePage = advTorp8
+      ActivePage = AdvTorp4
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
@@ -124,10 +124,6 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
       object AdvTorp5: TAdvTabSheet
         Caption = '  Torp 5'
@@ -172,6 +168,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvTBI: TAdvTabSheet
         Caption = ' TBI'
@@ -1284,7 +1284,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
       Top = 61
       Width = 585
       Height = 452
-      ActivePage = AdvTorpedoStatus
+      ActivePage = AdvWCMOfflineStatus
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -12
@@ -1314,6 +1314,10 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object AdvWCMOnlineStatus: TAdvTabSheet
         Caption = '   WCM Online Status'
@@ -1365,7 +1369,7 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
           Font.Style = []
           ParentFont = False
         end
-        object lblInputOtputBoard1: TLabel
+        object lblInputOutputBoard1: TLabel
           Left = 182
           Top = 33
           Width = 16
@@ -1568,10 +1572,6 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label56: TLabel
           Left = 6
           Top = 29
@@ -2492,12 +2492,5 @@ object frmTorpedoStatusResultsWindow: TfrmTorpedoStatusResultsWindow
         end
       end
     end
-  end
-  object tmrTorpedoCheck: TTimer
-    Enabled = False
-    Interval = 5000
-    OnTimer = tmrTorpedoCheckTimer
-    Left = 517
-    Top = 394
   end
 end

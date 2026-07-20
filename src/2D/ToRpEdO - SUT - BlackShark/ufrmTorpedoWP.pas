@@ -1941,15 +1941,24 @@ begin
     13:
     begin
       FLaunchSalvo := not FLaunchSalvo;
+      FFire := not FFire;
 
       if FLaunchSalvo then
       begin
-        pnlSubmodeTools13.Color := clLime;
+        if SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].FireRelease and SutBlacksharkManager.FTBIFireAuth = True then
+        begin
+          pnlSubmodeTools13.Color := clLime;
 
-        lblSubmodeTools3.Caption := 'Fire';
-        pnlSubmodeTools3.Enabled := True;
-        lblSubmodeTools3.Enabled := True;
-        lblSubmodeTools3.OnClick := BlackSharkFireClick;
+          lblSubmodeTools3.Caption := 'Fire';
+          pnlSubmodeTools3.Enabled := True;
+          lblSubmodeTools3.Enabled := True;
+          lblSubmodeTools3.OnClick := BlackSharkFireClick;
+        end
+        else
+        begin
+          ShowMessage('There are step missing');
+          SutBlacksharkManager.OperatorMessages := 'There are step missing';
+        end;
 
         lblSubmodeTools4.Caption := 'Stop' + #13#10 + 'Fire'+ #13#10 + 'Seq';
         pnlSubmodeTools4.Enabled := True;
