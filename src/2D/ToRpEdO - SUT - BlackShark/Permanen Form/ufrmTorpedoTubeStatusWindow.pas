@@ -290,6 +290,7 @@ end;
 procedure TfrmTorpedoTubeStatusWindow.pnlTorpedoClick(Sender: TObject);
 begin
   frmTorpedoStatusResultsWindow.AdvPageTorpedoCheck.ActivePageIndex := (Sender as TPanel).tag;
+  frmTorpedoTubeCommands := TfrmTorpedoTubeCommands.Create(Self);
 
   if not frmTorpedoStatusResultsWindow.Visible then
   begin
@@ -301,6 +302,9 @@ begin
   end
   else
     frmTorpedoStatusResultsWindow.BringToFront;
+
+  if frmTorpedoStatusResultsWindow.Visible then
+      frmTorpedoTubeCommands.tmrStatusTextTorpedo.Enabled := True;
 end;
 
 procedure TfrmTorpedoTubeStatusWindow.tmrDrawTubeTimer(Sender: TObject);
