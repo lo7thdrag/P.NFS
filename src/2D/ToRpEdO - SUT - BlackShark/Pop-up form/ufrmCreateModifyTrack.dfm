@@ -12,6 +12,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label8: TLabel
@@ -630,7 +631,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       TabOrder = 11
       Text = '0.00'
     end
-    object Edit1: TEdit
+    object edtRange: TEdit
       Left = 137
       Top = 364
       Width = 65
@@ -679,7 +680,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       TabOrder = 14
       Text = '0.00'
     end
-    object Edit3: TEdit
+    object edtDatumTime: TEdit
       Left = 290
       Top = 235
       Width = 145

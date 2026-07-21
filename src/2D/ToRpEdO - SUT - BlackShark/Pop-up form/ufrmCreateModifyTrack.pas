@@ -4,7 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+
+  uVehicleManager, uSutBlacksharkManager, uSubSurfaceTrack, uSurfaceTrack, uSimulationTrack, uTCPDatatype;
 
 type
   TfrmCreateModifyTrack = class(TForm)
@@ -36,11 +38,11 @@ type
     Label12: TLabel;
     edtbearing: TEdit;
     Label13: TLabel;
-    Edit1: TEdit;
+    edtRange: TEdit;
     cbRange: TComboBox;
     Label14: TLabel;
     edtCourse: TEdit;
-    Edit3: TEdit;
+    edtDatumTime: TEdit;
     Label15: TLabel;
     Label16: TLabel;
     edtSpeed: TEdit;
@@ -56,10 +58,11 @@ type
     lblClose: TLabel;
     Panel1: TPanel;
     procedure lblCloseClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure CreateModifyTrackChange;
   end;
 
 var
@@ -69,9 +72,56 @@ implementation
 
 {$R *.dfm}
 
+procedure TfrmCreateModifyTrack.FormShow(Sender: TObject);
+begin
+  CreateModifyTrackChange;
+end;
+
 procedure TfrmCreateModifyTrack.lblCloseClick(Sender: TObject);
 begin
   FreeAndNil(frmCreateModifyTrack);
+end;
+
+procedure TfrmCreateModifyTrack.CreateModifyTrackChange;
+var
+  Category : Integer;
+begin
+  if VehicleMgr.IsAnyTrackControlled then
+  begin
+    edtTrackNo.Text       := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+    edtTrackNo.Font.Color := clLime;
+
+    edtbearing.Text       := FormatFloat('0.0', VehicleMgr.TrackControlled.Bearing);
+    edtbearing.Font.Color := clLime;
+
+    edtRange.Text       := FormatFloat('0.0', VehicleMgr.TrackControlled.Range);
+    edtRange.Font.Color := clLime;
+
+    edtCourse.Text       := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
+    edtCourse.Font.Color := clLime;
+
+    edtSpeed.Text       := FormatFloat('0.0', (VehicleMgr.TrackControlled.Speed_knot * 0.514444444));
+    edtSpeed.Font.Color := clLime;
+
+    edtDepth.Text       := FormatFloat('0.0', Abs(VehicleMgr.TrackControlled.PosZ));
+    edtDepth.Font.Color := clLime;
+
+    edtDatumTime.Text       := FormatDateTime('dd/MMMM/yyyy  hh:mm:ss', Now);
+    edtDatumTime.Font.Color := clLime;
+
+    Category := VehicleMgr.TrackControlled.MSITrackNumber;
+
+    if Category = VehicleMgr.TrackControlled.MSITrackNumber then
+    begin
+      cbCategory.ItemIndex  := 1;
+      cbCategory.Font.Color := clLime;
+    end
+    else
+    begin
+      cbCategory.ItemIndex  := 0;
+      cbCategory.Font.Color := clLime;
+    end
+  end
 end;
 
 end.
