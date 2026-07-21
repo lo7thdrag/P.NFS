@@ -1,10 +1,11 @@
-unit ufrmEngagementDataOverview;
+﻿unit ufrmEngagementDataOverview;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uSutBlacksharkManager,
+  uTorpedoTrack, uVehicleManager;
 
 type
   TfrmEngagementDataOverview = class(TForm)
@@ -15,20 +16,22 @@ type
     lblTimeBBRF: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    lblTime: TLabel;
-    lblLength: TLabel;
-    lblTime1: TLabel;
-    lblLength1: TLabel;
-    lblTime2: TLabel;
-    lblLength2: TLabel;
+    lblRunTime: TLabel;
+    lblRunLength: TLabel;
+    lblApproachTime: TLabel;
+    lblApproachLength: TLabel;
+    lblSearchTime: TLabel;
+    lblSearchLength: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    lblDistance: TLabel;
-    lblDistanceLength: TLabel;
+    lblBatteryCapacity: TLabel;
+    lblWireLeft: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     pbTrackBar: TPaintBox;
+    tmrUpdateTorpInfo: TTimer;
     procedure pbTrackBarPaint(Sender: TObject);
+    procedure tmrUpdateTorpInfoTimer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -127,6 +130,25 @@ begin
     MoveTo(480, 55);
     LineTo(480, 62);
     {$ENDREGION}
+  end;
+end;
+
+procedure TfrmEngagementDataOverview.tmrUpdateTorpInfoTimer(Sender: TObject);
+var
+  Torp: TTorpedoTrack;
+begin
+ //
+  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+  if Torp <> nil then
+  begin
+    lblruntime.Caption := FormatDateTime('hh:nn:ss', (Now - Torp.TimeLaunch));
+    lblRunLength.Caption := FormatFloat('0.0', Torp.RunLength / 1000);
+
+    lblApproachTime.Caption := FormatDateTime('hh:nn:ss', Torp.ApproachTime);
+    lblApproachLength.Caption := FormatFloat('0.0', Torp.ApproachLength / 1000);
+
+    lblBatteryCapacity.Caption := FormatFloat('0.0', Torp.BatteryCapacity);
+//    lblWireLeft.Caption := FormatFloat('0.0', Torp.CurrentWireLeft / 1000);
   end;
 end;
 

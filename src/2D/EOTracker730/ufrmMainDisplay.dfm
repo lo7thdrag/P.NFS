@@ -2097,6 +2097,7 @@ object frmMainFCC: TfrmMainFCC
       Cursor = crHandPoint
       AllowAllUp = True
       Color = clSilver
+      ColorFocused = clSilver
       ColorDown = clLime
       GroupIndex = 1
       Caption = 'CATCH'
@@ -2119,6 +2120,7 @@ object frmMainFCC: TfrmMainFCC
       Cursor = crHandPoint
       AllowAllUp = True
       Color = clSilver
+      ColorFocused = clSilver
       ColorDown = clLime
       GroupIndex = 1
       Caption = 'TRACK'

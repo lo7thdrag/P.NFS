@@ -90,7 +90,7 @@ type
 
     FCursorX, FCursorY : Double;
     FSalvoIndex : Integer;
-    FTorpedoTubeAllocNum : Byte;
+    FTorpedoTubeAllocNum : Byte;  // 1 ... 8
 
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);

@@ -274,6 +274,7 @@ var
   i : Integer;
   V : TSimulationTrack;
 begin
+  Result := nil;
   for i := FList.Count - 1 downto 0 do
   begin
 //    V := TSimulationTrack(FList[i]);

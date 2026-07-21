@@ -74,7 +74,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Style = []
       ParentFont = False
     end
-    object lblTime: TLabel
+    object lblRunTime: TLabel
       Left = 823
       Top = 24
       Width = 50
@@ -87,7 +87,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Style = []
       ParentFont = False
     end
-    object lblLength: TLabel
+    object lblRunLength: TLabel
       Left = 823
       Top = 48
       Width = 50
@@ -100,7 +100,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Style = []
       ParentFont = False
     end
-    object lblTime1: TLabel
+    object lblApproachTime: TLabel
       Left = 887
       Top = 24
       Width = 50
@@ -113,7 +113,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Style = []
       ParentFont = False
     end
-    object lblLength1: TLabel
+    object lblApproachLength: TLabel
       Left = 887
       Top = 48
       Width = 50
@@ -126,7 +126,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Style = []
       ParentFont = False
     end
-    object lblTime2: TLabel
+    object lblSearchTime: TLabel
       Left = 951
       Top = 24
       Width = 50
@@ -139,7 +139,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Style = []
       ParentFont = False
     end
-    object lblLength2: TLabel
+    object lblSearchLength: TLabel
       Left = 951
       Top = 48
       Width = 49
@@ -178,7 +178,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Style = []
       ParentFont = False
     end
-    object lblDistance: TLabel
+    object lblBatteryCapacity: TLabel
       Left = 1071
       Top = 24
       Width = 25
@@ -191,7 +191,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Font.Style = []
       ParentFont = False
     end
-    object lblDistanceLength: TLabel
+    object lblWireLeft: TLabel
       Left = 1071
       Top = 48
       Width = 25
@@ -260,5 +260,10 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
       TabOrder = 1
     end
+  end
+  object tmrUpdateTorpInfo: TTimer
+    OnTimer = tmrUpdateTorpInfoTimer
+    Left = 648
+    Top = 24
   end
 end

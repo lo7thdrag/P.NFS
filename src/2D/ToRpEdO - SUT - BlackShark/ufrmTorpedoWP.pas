@@ -104,7 +104,7 @@ type
     imgBackgrounSituationZone: TImage;
     tmrUpdateTWP: TTimer;
     tmrUpdateForm: TTimer;
-    tmrUpdateDataPos: TTimer;
+    tmrUpdateTorpedoData: TTimer;
     TimerBlink: TTimer;
     pnlOwnshipData: TPanel;
     pnlAlerts: TPanel;
@@ -153,7 +153,7 @@ type
     procedure FormPaint(Sender: TObject);
     procedure tmrUpdateTWPTimer(Sender: TObject);
     procedure tmrUpdateFormTimer(Sender: TObject);
-    procedure tmrUpdateDataPosTimer(Sender: TObject);
+    procedure tmrUpdateTorpedoDataTimer(Sender: TObject);
     procedure FMapMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FMapMouseUp(Sender: TObject; Button: TMouseButton;
@@ -348,11 +348,14 @@ begin
     Torpedo := VehicleMgr.AddTorpedo(SutBlacksharkManager.TorpedoTubeAllocNum);
     Torpedo.ToSoRangePsv := TorpedoParam.TosoRangePAS;
     Torpedo.TosoRangeActv := TorpedoParam.TosoRangeACT;
-    Torpedo.BatteryCapacity := 75;
-    Torpedo.MaxWireRange := 23;
-    Torpedo.CurrentWireLeft := 23;
+    Torpedo.BatteryCapacity := 26.3;
+    Torpedo.MaxWireRange := 18;
+    Torpedo.CurrentWireLeft := 18;
     Torpedo.ShipID := 0;
     Torpedo.TimeLaunch := Now;
+    Torpedo.LastUpdated := 0;
+    Torpedo.SpeedMS := TorpedoParam.SearchSpeed;
+    Torpedo.TorpLaunchPhase := tpApproach;
 
     SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum-1].TextStatus := stfired;
   end;
@@ -1355,35 +1358,38 @@ begin
 
           {$REGION 'Target Bearing'}
           // digambar setelah melewati enabling distance atau fuse nyala
-          dx := TargetShip.PosX - Torp.PosX;
-          dy := TargetShip.PosY - Torp.PosY;
+          if Torp.FuseOn then
+          begin
+            dx := TargetShip.PosX - Torp.PosX;
+            dy := TargetShip.PosY - Torp.PosY;
 
-          // Perpanjang garis sampai jauh ke depan
-          dx := Torp.PosX + dx * 10;
-          dy := Torp.PosY + dy * 10;
+            // Perpanjang garis sampai jauh ke depan
+            dx := Torp.PosX + dx * 10;
+            dy := Torp.PosY + dy * 10;
 
-          FMap.ConvertCoord(ScrDX, ScrDY, dx, dy, 0);
+            FMap.ConvertCoord(ScrDX, ScrDY, dx, dy, 0);
 
-          // outside ToSo Range
-          aCnv.Pen.Color := clYellow;
-          aCnv.Pen.Style := psDot;
-          aCnv.Pen.Width := 1;
-          aCnv.MoveTo(Round(scrx), Round(scrY));
-          aCnv.LineTo(Round(scrdx), Round(scrdy));
+            // outside ToSo Range
+            aCnv.Pen.Color := clYellow;
+            aCnv.Pen.Style := psDot;
+            aCnv.Pen.Width := 1;
+            aCnv.MoveTo(Round(scrx), Round(scrY));
+            aCnv.LineTo(Round(scrdx), Round(scrdy));
 
-          // inside Toso Range
-          aCnv.Pen.Style := psSolid;
-          aCnv.Pen.Width := 1;
-          aCnv.MoveTo(Round(scrx), Round(scrY));
+            // inside Toso Range
+            aCnv.Pen.Style := psSolid;
+            aCnv.Pen.Width := 1;
+            aCnv.MoveTo(Round(scrx), Round(scrY));
 
-          dx := TargetShip.PosX - Torp.PosX;
-          dy := TargetShip.PosY - Torp.PosY;
-          Angle := ArcTan2(dy, dx);
-          angle := -Angle;
-          MapX := Torp.PosX + (torpedoparam.EnablingDist * C_KMeter_To_Degree * cos(Angle));
-          MapY := Torp.PosY - (torpedoparam.EnablingDist * C_KMeter_To_Degree * sin(Angle));
-          FMap.ConvertCoord(ScrDX, ScrDY, MapX, MapY, 0);
-          aCnv.LineTo(Round(ScrDX), Round(ScrDY));
+            dx := TargetShip.PosX - Torp.PosX;
+            dy := TargetShip.PosY - Torp.PosY;
+            Angle := ArcTan2(dy, dx);
+            angle := -Angle;
+            MapX := Torp.PosX + (torpedoparam.EnablingDist * C_KMeter_To_Degree * cos(Angle));
+            MapY := Torp.PosY - (torpedoparam.EnablingDist * C_KMeter_To_Degree * sin(Angle));
+            FMap.ConvertCoord(ScrDX, ScrDY, MapX, MapY, 0);
+            aCnv.LineTo(Round(ScrDX), Round(ScrDY));
+          end;
           {$ENDREGION}
         end;
       end
@@ -2457,22 +2463,58 @@ begin
   end;
 end;
 
-procedure TFrmTorpedoWP.tmrUpdateDataPosTimer(Sender: TObject);
+procedure TFrmTorpedoWP.tmrUpdateTorpedoDataTimer(Sender: TObject);
+var
+  i : Integer;
+  Torp : TTorpedoTrack;
+  CurrentTick: UInt64;
+  DeltaSeconds: Double;
 begin
-  {
-  lblTanggaljam.Caption := FormatDateTime('dd/mm/yyyy hh:nn:ss',now);
-  lblOwnshipHeadingVal.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.Heading);
-  lblOwnshipLatPosVal.Caption := FormatFloat('0.0000', SutBlacksharkManager.xShip.PositionY);
-  lblOwnshipLongPosVal.Caption := FormatFloat('0.0000', SutBlacksharkManager.xShip.PositionX);
-  lblOwnshipSpeedVal.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.Speed);
-  lblOwnshipDepth.Caption := FormatFloat('00.0', SutBlacksharkManager.xShip.PositionZ );
+  for i := 0 to VehicleMgr.ObjectList.Count - 1 do
+  begin
+    if VehicleMgr.ObjectList[i] is TTorpedoTrack then
+    begin
+      Torp := TTorpedoTrack(VehicleMgr.ObjectList[i]);
+      if Torp.IsExist then
+      begin
+        if Torp.LastUpdated = 0 then
+        begin
+          Torp.LastUpdated := GetTickCount64;
+          Break;
+        end;
+        CurrentTick := GetTickCount64;
+        DeltaSeconds := (CurrentTick - Torp.LastUpdated) / 1000.0; // ms → detik
+        Torp.LastUpdated := CurrentTick;
 
-  OwnshipHeadingVal := lblOwnshipHeadingVal.Caption;
-  OwnshipLatPosVal := lblOwnshipLatPosVal.Caption;
-  OwnshipLongPosVal:= lblOwnshipLongPosVal.Caption;
-  OwnshipSpeedVal:= lblOwnshipSpeedVal.Caption;
-  OwnshipDepth := lblOwnshipDepth.Caption;
-   }
+        {$REGION 'Update Distance, Remaining Wire'}
+        Torp.RunLength := Torp.RunLength + Torp.SpeedMS * DeltaSeconds;
+        Torp.CurrentWireLeft := Torp.CurrentWireLeft - (Torp.RunLength /1000);
+        {$ENDREGION}
+
+        {$REGION 'Update Battery'}
+        Torp.BatteryCapacity := Torp.BatteryCapacity - (0.01 * DeltaSeconds);
+        {$ENDREGION}
+
+        {$REGION 'Update Time'}
+        if not Torp.FuseOn then
+        begin
+          Torp.ApproachLength := TorpedoParam.EnablingDist - torp.RunLength;
+          Torp.ApproachTime := (Torp.ApproachLength * 1000) / TorpedoParam.SearchSpeed;
+
+          if Torp.ApproachTime < 0.05 then
+          begin
+            Torp.TorpLaunchPhase := tpSearch;
+            torp.FuseOn := True;
+            torp.ApproachTime := 0.0;
+            Torp.ApproachLength := 0.0;
+          end;
+        end;
+        
+        
+        {$ENDREGION}
+      end;
+    end
+  end;
 end;
 
 procedure TFrmTorpedoWP.tmrUpdateFormTimer(Sender: TObject);
