@@ -83,8 +83,6 @@ begin
 end;
 
 procedure TfrmCreateModifyTrack.CreateModifyTrackChange;
-var
-  Category : Integer;
 begin
   if VehicleMgr.IsAnyTrackControlled then
   begin
@@ -109,18 +107,11 @@ begin
     edtDatumTime.Text       := FormatDateTime('dd/MMMM/yyyy  hh:mm:ss', Now);
     edtDatumTime.Font.Color := clLime;
 
-    Category := VehicleMgr.TrackControlled.MSITrackNumber;
-
-    if Category = VehicleMgr.TrackControlled.MSITrackNumber then
-    begin
-      cbCategory.ItemIndex  := 1;
-      cbCategory.Font.Color := clLime;
-    end
-    else
-    begin
-      cbCategory.ItemIndex  := 0;
-      cbCategory.Font.Color := clLime;
-    end
+    case VehicleMgr.TrackControlled.Domain of
+      1: cbCategory.ItemIndex := 0;
+      2: cbCategory.ItemIndex := 2;
+      3: cbCategory.ItemIndex := 1;
+    end;
   end
 end;
 

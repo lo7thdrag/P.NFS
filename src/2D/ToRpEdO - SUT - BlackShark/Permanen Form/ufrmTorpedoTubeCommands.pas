@@ -68,6 +68,8 @@ begin
       SutBlacksharkManager.FTorpedoArray[i].TorpedoOnOff := True;
       lblTorpOn.Caption    := 'TORPEDO ON';
       lblTorpOn.Font.Color := clLime;
+
+      tmrStatusTextTorpedo.Enabled := True;
     end;
   end;
 end;
