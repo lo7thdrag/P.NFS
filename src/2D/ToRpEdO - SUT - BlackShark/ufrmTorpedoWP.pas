@@ -1959,11 +1959,16 @@ begin
           pnlSubmodeTools3.Enabled := True;
           lblSubmodeTools3.Enabled := True;
           lblSubmodeTools3.OnClick := BlackSharkFireClick;
+
+          SutBlacksharkManager.OperatorMessages                  := '';
+          frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+          frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
         end
         else
         begin
-          ShowMessage('There are step missing');
-          SutBlacksharkManager.OperatorMessages := 'There are step missing';
+          SutBlacksharkManager.OperatorMessages                  := 'There are step missing';
+          frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+          frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
         end;
 
         lblSubmodeTools4.Caption := 'Stop' + #13#10 + 'Fire'+ #13#10 + 'Seq';

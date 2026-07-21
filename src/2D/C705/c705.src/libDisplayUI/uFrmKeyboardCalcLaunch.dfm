@@ -2,7 +2,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 768
+  ClientHeight = 772
   ClientWidth = 1024
   Color = clBtnFace
   DefaultMonitor = dmDesktop
@@ -2260,6 +2260,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       42C32F23D4F07F40FB8E2870D372321D8BA6E9C68CCD67FF01144D8F52935347
       4B0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgEscClick
   end
   object imgEnter: TImage
     Left = 557
@@ -2336,6 +2337,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       A1F2CB044B2806F4D7292DDCE7807F2D9AB61B390F86FD0F04F106706C2CED49
       0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgEnterClick
   end
   object imgArrowUp: TImage
     Left = 525
@@ -2377,8 +2379,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       8D4082A8D902DB147757B21A57FFA0EC27F23AAF0B56AA7DC93B935BF72F002A
       51B3506FA3465ED73624AF7F05BEF3BF49AA5E0D040000000049454E44AE4260
       82}
+    OnClick = imgArrowClick
   end
   object imgArrowDown: TImage
+    Tag = 1
     Left = 525
     Top = 552
     Width = 48
@@ -2417,8 +2421,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       5A8C7BB7F29177FCB0BEB4C8C7D7554DA4C57A232233C86D83758ABBEB588DD3
       BF2869465EE775C14AF528427F8265FF023A1BA26EA116A14E5E571A93D77F02
       FC459B490675A0F10000000049454E44AE426082}
+    OnClick = imgArrowClick
   end
   object imgArrowLeft: TImage
+    Tag = 2
     Left = 447
     Top = 552
     Width = 48
@@ -2454,8 +2460,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       1363F0B6AB83D9F18D8A4829F2E63A6B510F1472169B1CB04E73F72EB971C617
       0566EC759A17E4540720F722B9FD04B837C2EA44A59A9AEC7595297BFD378935
       AD49CA9A9A6E0000000049454E44AE426082}
+    OnClick = imgArrowClick
   end
   object imgArrowRight: TImage
+    Tag = 3
     Left = 603
     Top = 552
     Width = 48
@@ -2491,6 +2499,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       7A746404BE0C0D40DBAB26A87F704FD35ABC853CF78FB5A8060A09C6261B96A6
       B97B99DC38CD3F327AEC75DA17E4547B2237214DFB0900C6617AA3B6C0B4BD2E
       D765AFFF062FBC834914D023380000000049454E44AE426082}
+    OnClick = imgArrowClick
   end
   object Panel1: TPanel
     Left = 673

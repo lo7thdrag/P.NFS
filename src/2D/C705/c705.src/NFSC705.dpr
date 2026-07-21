@@ -48,7 +48,8 @@ uses
   uDataModule in 'libDatabase\uDataModule.pas' {DataModule1: TDataModule},
   uClassDatabase in 'libDatabase\uClassDatabase.pas',
   uFrmPnlArea3A in 'libDisplayUI\FrmTab\uFrmPnlArea3A.pas' {frmPnlArea3A},
-  uFrmPnlArea3B in 'libDisplayUI\FrmTab\uFrmPnlArea3B.pas' {frmPnlArea3B};
+  uFrmPnlArea3B in 'libDisplayUI\FrmTab\uFrmPnlArea3B.pas' {frmPnlArea3B},
+  uKeyboardManager in 'libMgr\uKeyboardManager.pas';
 
 {$R *.res}
 

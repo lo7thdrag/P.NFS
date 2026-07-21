@@ -19,7 +19,8 @@ uses
   UfrmWCC,
   UfrmRoutePlan,
   uFrmKeyboardCalcLaunch,
-  uLibSettings;
+  uLibSettings,
+  UfrmFoeFriendSituationPage;
 
 { ========================================================= }
 { Utility }
@@ -177,6 +178,10 @@ begin
       frmWCC.Left := Screen.Monitors[0].WorkareaRect.Left;
       frmWCC.Top  := VMonitorTopLeft.MonMiddle_Top;
 
+      frmFoeFriendSituationPage.SetTopMonitor(VMonitorTopLeft.MonMiddle_Top);
+      frmFoeFriendSituationPage.Left := Screen.Monitors[0].WorkareaRect.Left;
+      frmFoeFriendSituationPage.Top  := VMonitorTopLeft.MonMiddle_Top;
+
       frmKeyboardCalcLaunch.SetTopMonitor(VMonitorTopLeft.MonMini_Top);
 
       frmWCC.Show;
@@ -188,7 +193,6 @@ begin
     end;
 
   end;
-
 
 end;
 

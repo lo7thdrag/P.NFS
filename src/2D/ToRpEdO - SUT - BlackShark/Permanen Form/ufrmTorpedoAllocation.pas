@@ -206,11 +206,16 @@ begin
   if SutBlacksharkManager.FTorpedoArray[i].Loaded then
   begin
     FSelectTube := TImage(Sender).Tag;
+
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end
   else
   begin
-    SutBlacksharkManager.OperatorMessages := 'Select Loaded Torpedo in Instructor';
-    ShowMessage('Select Loaded Torpedo in Instructor');
+    SutBlacksharkManager.OperatorMessages                  := 'Select Loaded Torpedo in Instructor';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
   end;
 end;
@@ -223,11 +228,16 @@ begin
   begin
     FSelectFireRelease := TImage(Sender).Tag;
     SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end
   else
   begin
-    SutBlacksharkManager.OperatorMessages := 'Torpedo Not Ready';
-    ShowMessage('Torpedo Not Ready');
+    SutBlacksharkManager.OperatorMessages                  := 'Torpedo Not Ready';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
   end;
 end;
@@ -249,11 +259,16 @@ begin
       frmTorpedoTubeStatusWindow.UpdatePanelStatus;
       frmTorpedoTubeStatusWindow.UpdateFrameStatus;
     end;
+
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end
   else
   begin
-    SutBlacksharkManager.OperatorMessages := 'Select Torpedo First';
-    ShowMessage('Select Torpedo First');
+    SutBlacksharkManager.OperatorMessages                  := 'Select Torpedo First';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
   end;
 

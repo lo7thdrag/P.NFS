@@ -52,8 +52,6 @@ begin
 
     lblTorpOn.Caption    := 'TORPEDO OFF';
     lblTorpOn.Font.Color := clLime;
-
-    tmrStatusTextTorpedo.Enabled := True;
   end;
 end;
 

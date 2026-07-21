@@ -16,7 +16,7 @@ uses
   uFrmParamSetting,
   UfrmRadar,
   uFrmPnlArea3A, uFrmPnlArea3B,
-  uShipModel, uC705SimManager;
+  uShipModel, uC705SimManager, uKeyboardManager;
 
 type
   TfrmFoeFriendSituationPage = class(TForm)
@@ -371,11 +371,16 @@ type
     procedure EnvironmentChanged(Sender: TObject);
   public
     { Public declarations }
+    procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
+    procedure SetTopMonitor(aMoniHeight: Integer);
+
     procedure RegisterEvents;
     procedure TargetSelectedEvents(Sender: TObject; aTgt: TShipContact; aRng: Double);
 
     procedure UpdateLayoutTab;
     procedure UpdatePnlSituationData(aObjTgt: TShipContact; aRange: Double);
+
+    procedure HandleKeyboardDown(var Key: Word; Shift: TShiftState);
   end;
 
 var
@@ -386,7 +391,7 @@ implementation
 {$R *.dfm}
 
 uses
-  UfrmWCC;
+  UfrmWCC, uLibSettings;
 
 procedure EnableComposited(WinControl:TWinControl);
 var
@@ -499,6 +504,9 @@ procedure TfrmFoeFriendSituationPage.UpdateLayoutTab;
 begin
   EnsureAreas;
 
+  if Assigned(KeyboardMgr) then
+    KeyboardMgr.SetContext(kbFFSMenu);
+
   if Assigned(FFormChSelect) then
     FFormChSelect.DeactivateFrmChSelect;  // inactive keyboard di form Ch Select
 
@@ -548,6 +556,7 @@ begin
     AttachPanelTo(pnlArea5, pnlArea5_ParSetting);
 
     EmbedAreaForm(FFormParSetting, pnlArea1_ParSetting);
+    KeyboardMgr.SetActiveAreaForm(FFormParSetting);
     {$ENDREGION}
   end
   else if advpgcFunctionMenuFoe.ActivePage = advtsChSelect then
@@ -560,6 +569,7 @@ begin
     AttachPanelTo(pnlArea5, pnlArea5_ChSelect);
 
     EmbedAreaForm(FFormChSelect, pnlArea1_ChSelect);
+    KeyboardMgr.SetActiveAreaForm(FFormChSelect);
     {$ENDREGION}
   end
   else if advpgcFunctionMenuFoe.ActivePage = advtsMControl then
@@ -572,7 +582,7 @@ begin
     AttachPanelTo(pnlArea5, pnlArea5_MControl);
 
     EmbedAreaForm(FFormMissileControl, pnlArea1_MControl);
-    //pnlMissileControl.Visible := True;
+    pnlMissileControl.Visible := True;
     {$ENDREGION}
   end
   else if advpgcFunctionMenuFoe.ActivePage = advtsMMonitor then
@@ -666,16 +676,6 @@ begin
       TPanel(Components[i]).Caption := '';
   end;
 
-  // For tab M. Control purpose
-  FarrHeaderPnlMCtrl[0] := pnlPowerOnMCtrl;
-  FarrHeaderPnlMCtrl[1] := pnlReCheckMCtrl;
-  FarrHeaderPnlMCtrl[2] := pnlINSAlignMCtrl;
-  FarrHeaderPnlMCtrl[3] := pnlPowerOffMCtrl;
-
-  FActivePnlIdxMCtrl := 0;
-  SetActiveHeaderMCtrl(FActivePnlIdxMCtrl);
-  CloseAllContentMCtrl;
-
   // For tab Sitation purpose
   EnableComposited(pnlMap_Situation);
   EnableComposited(pnlArea1_MControl);
@@ -695,6 +695,19 @@ begin
 
   UpdateClock; // Update Clock, tidak nunggu 1 detik
   tmrClock.Enabled := True;
+
+  // For tab M. Control purpose
+  FarrHeaderPnlMCtrl[0] := pnlPowerOnMCtrl;
+  FarrHeaderPnlMCtrl[1] := pnlReCheckMCtrl;
+  FarrHeaderPnlMCtrl[2] := pnlINSAlignMCtrl;
+  FarrHeaderPnlMCtrl[3] := pnlPowerOffMCtrl;
+
+  FActivePnlIdxMCtrl := 0;
+  SetActiveHeaderMCtrl(FActivePnlIdxMCtrl);
+  CloseAllContentMCtrl;
+
+  if Assigned(KeyboardMgr) then
+    KeyboardMgr.SetContext(kbFFSMenu);
 end;
 
 procedure TfrmFoeFriendSituationPage.FormHide(Sender: TObject);
@@ -702,8 +715,7 @@ begin
   tmrClock.Enabled := False;
 end;
 
-procedure TfrmFoeFriendSituationPage.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfrmFoeFriendSituationPage.HandleKeyboardDown(var Key: Word; Shift: TShiftState);
 begin
   {$REGION 'Case untuk Form Ch Select'}
   // case ketika di tab Ch Select, jadi navigasi untuk form Ch Select only
@@ -732,7 +744,7 @@ begin
       end;
 
       //HandleTabShortcut(Key); // move to Keyboard Form
-      advpgcFunctionMenuFoeChange(Sender);
+      advpgcFunctionMenuFoeChange(nil);
       //UpdateLayoutTab;
 
       Exit; // stop shortcut global
@@ -791,8 +803,8 @@ begin
         end;
 
         VK_RETURN: begin
-          ShowActiveContentMCtrl;
-          Exit;
+          //ShowActiveContentMCtrl;
+          //Exit;
         end;
 
         VK_ESCAPE: begin
@@ -801,6 +813,7 @@ begin
         end;
       end;
 
+      ShowActiveContentMCtrl;
       Exit;
     end;
 
@@ -834,7 +847,7 @@ begin
       end;
 
       //HandleTabShortcut(Key); // move to Keyboard Form
-      advpgcFunctionMenuFoeChange(Sender);
+      advpgcFunctionMenuFoeChange(nil);
       //UpdateLayoutTab;
 
       Exit; // stop shortcut global
@@ -876,7 +889,7 @@ begin
     end;
   end;
 
-  advpgcFunctionMenuFoeChange(Sender);
+  advpgcFunctionMenuFoeChange(nil);
   //UpdateLayoutTab;
 
   {$REGION 'Case untuk form INS Test'}
@@ -904,13 +917,19 @@ begin
 
       VK_RETURN:
         begin
-          frmWCC.show;
+          frmWCC.Show;
+          frmFoeFriendSituationPage.Hide;
           //Application.Terminate;
         end;
     end;
   end;
   {$ENDREGION}
+end;
 
+procedure TfrmFoeFriendSituationPage.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  HandleKeyboardDown(Key, Shift);
 end;
 
 {$REGION 'Semua Tab Sheet'}
@@ -921,9 +940,9 @@ begin
   case aState of
     0: Result:= 'Low';
     1: Result:= 'Low';
-    2: Result:= 'Medium';
-    3: Result:= 'Medium';
-    4: Result:= 'High';
+    2: Result:= 'Low';
+    3: Result:= 'Low';
+    4: Result:= 'Low';
     5: Result:= 'High';
   end;
 end;
@@ -1044,6 +1063,36 @@ end;
 procedure TfrmFoeFriendSituationPage.tmrClockTimer(Sender: TObject);
 begin
   UpdateClock;
+end;
+
+procedure TfrmFoeFriendSituationPage.SetMonitor(aMonitorIdx, aLeft,
+  aTop: Integer);
+begin
+  Position := poDesigned;
+  WindowState := wsNormal;
+
+  Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
+  Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage(Format('WCC di Monitor %d Top=%d',[aMonitorIdx,Screen.Monitors[aMonitorIdx].Top]));
+end;
+
+procedure TfrmFoeFriendSituationPage.SetTopMonitor(aMoniHeight: Integer);
+var
+  idxMainMoni: Integer;
+  R: TRect;
+begin
+//  Position := poDesigned;
+//  WindowState := wsNormal;
+
+  idxMainMoni := 0;
+
+  Left := Screen.Monitors[idxMainMoni].WorkareaRect.Left;
+  Top := aMoniHeight;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage('WCC form Top=' + IntToStr(frmWCC.Top));
 end;
 
 end.

@@ -11,6 +11,7 @@ type
   TRoutePlanMode = (mPassive, mActive, mFiring);
   TOnMapInit = procedure(const GeosetPath: string) of object;
 
+  { Ini adalah informasi apa yang baru saja berubah, buat Notify Event }
   TC705StatusType = (
     stEnableWeapon,
     stOpenCover,
@@ -23,6 +24,7 @@ type
   TTargetSelectedEvent =
     procedure(Sender: TObject; aTarget: TShipContact; Range: Double) of object;
 
+  { Ini adalah kondisi / state simulasi saat ini }
   TC705Status = record
     {
       Console Status
@@ -548,7 +550,7 @@ begin
   NotifyStatusWeaponChanged(stEnableWeapon);
 
   FIdxTargetStep := 0;
-
+  FTargetSequenceTimer.Interval := 2000;
   FTargetSequenceTimer.Enabled := True;
 end;
 
@@ -576,10 +578,6 @@ begin
     //--------------------------------------------------------
     0:  begin
       FC705Status.SeaTargetRdy := True;
-
-      NotifyStatusWeaponChanged(stEnableWeapon);
-
-      Inc(FIdxTargetStep);
     end;
 
     //--------------------------------------------------------
@@ -590,8 +588,6 @@ begin
       FC705Status.InsideSectorRdy := True;
 
       NotifyStatusWeaponChanged(stEnableWeapon);
-
-      Inc(FIdxTargetStep);
     end;
 
     //--------------------------------------------------------
@@ -603,7 +599,6 @@ begin
 
       NotifyStatusWeaponChanged(stEnableWeapon);
 
-      FTargetSequenceTimer.Enabled := False;
       //tunggu 5 detik
       FTargetSequenceTimer.Interval := 5000;
     end;
@@ -615,23 +610,17 @@ begin
       FTargetSequenceTimer.Interval := 2000;
     end;
 
-    4:
-      FC705Status.InitChkRdy := True;
+    4: FC705Status.InitChkRdy := True;
 
-    5:
-      FC705Status.InitStateRdy := True;
+    5: FC705Status.InitStateRdy := True;
 
-    6:
-      FC705Status.InsGnssRdy := True;
+    6: FC705Status.InsGnssRdy := True;
 
-    7:
-      FC705Status.MNormalRdy := True;
+    7: FC705Status.MNormalRdy := True;
 
-    8:
-      FC705Status.CalFinishRdy := True;
+    8: FC705Status.CalFinishRdy := True;
 
-    9:
-      FC705Status.ParaLockRdy := True;
+    9: FC705Status.ParaLockRdy := True;
 
     10: begin
       FC705Status.FullOpenRdy := True;
@@ -640,6 +629,9 @@ begin
     end;
 
   end;
+
+  Inc(FIdxTargetStep);
+  NotifyStatusWeaponChanged(stEnableWeapon);
 end;
 
 {$ENDREGION}
