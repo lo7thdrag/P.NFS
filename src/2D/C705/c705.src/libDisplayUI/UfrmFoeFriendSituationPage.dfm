@@ -36,7 +36,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     Top = 0
     Width = 1920
     Height = 1080
-    ActivePage = advtsSituation
+    ActivePage = advtsMControl
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = 10908270
     ActiveFont.Height = -13

@@ -23,26 +23,29 @@ implementation
 
 uses
   Windows, System.SysUtils,
-  uC705SimManager, uLibSettings, uFormMgr, uVehicleManager,
+  uC705SimManager, uLibSettings, uFormMgr, uVehicleManager, uKeyboardManager,
     UfrmRoutePlan, UfrmWCC,
-    uBridgeSet, uTCPDatatype, uDataModule, uFrmPnlArea3A, uFrmPnlArea3B;
+    uBridgeSet, uTCPDatatype, uDataModule, uFrmPnlArea3A, uFrmPnlArea3B,
+      UfrmFoeFriendSituationPage;
 
 /// some sub function to keep the main procedure simple;
 
 { ****
     Visual flow LoadMap, Load Geoset
-BeginScript
-     ->
-SimManager.OnMapInit := frmRoutePlan.InitMapMainForm
-     ->
-SimManager.InitializeMap
-     ->
-event dipanggil
-     ->
-frmRoutePlan.InitMapMainForm
-     ->
-LoadGeoset di frmRoutePlan
-**** }
+
+  BeginScript
+       ->
+  SimManager.OnMapInit := frmRoutePlan.InitMapMainForm
+       ->
+  SimManager.InitializeMap
+       ->
+  event dipanggil
+       ->
+  frmRoutePlan.InitMapMainForm
+       ->
+  LoadGeoset di frmRoutePlan
+  ****
+}
 
 
 //main procedure of c705------------------------------------------------------->>
@@ -95,6 +98,12 @@ begin
   { Create SimManager }
   SimManager := GameSimManager.Create;    // create platform & create thread
   VehicleMgr := TVehicleManager.Create;
+  KeyboardMgr := TKeyboardManager.Create;
+
+  if not Assigned(frmFoeFriendSituationPage) then begin
+    frmFoeFriendSituationPage := TfrmFoeFriendSituationPage.Create(nil);
+    frmFoeFriendSituationPage.RegisterEvents;
+  end;
 
   if Assigned(frmRoutePlan) then begin
     SimManager.OnMapInit := frmRoutePlan.InitMapMainForm;
@@ -106,6 +115,8 @@ begin
 
   if Assigned(frmWCC) then begin
     frmWCC.InitSimulation;
+    if Assigned(KeyboardMgr) then
+      KeyboardMgr.SetContext(kbWCCMenu)
   end;
 
   SimManager.InitializeMap;
@@ -115,8 +126,12 @@ end;
 
 procedure EndC705;
 begin
+  frmFoeFriendSituationPage.Free;
+  frmFoeFriendSituationPage := nil;
+
   SimManager.Free;
   VehicleMgr.Free;
+  KeyboardMgr.Free;
 end;
 
 end.

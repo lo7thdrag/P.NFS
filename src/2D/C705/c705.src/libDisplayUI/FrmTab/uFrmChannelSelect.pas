@@ -59,6 +59,7 @@ type
     procedure CloseAllContent;
 
     procedure SetActiveSelectedContent(idx: Integer);
+
   public
     { Public declarations }
     procedure ActivateFrmChSelect;
@@ -78,7 +79,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uLibConst;
+  uLibConst, uKeyboardManager;
 
 procedure TfrmChannelSelect.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -114,7 +115,8 @@ end;
 
 procedure TfrmChannelSelect.FormShow(Sender: TObject);
 begin
-  //
+  if Assigned(KeyboardMgr) then
+    KeyboardMgr.SetContext(kbAreaFormFFS);
 end;
 
 procedure TfrmChannelSelect.SetActiveHeader(idx: Integer);

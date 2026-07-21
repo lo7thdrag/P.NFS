@@ -74,6 +74,9 @@ type
     procedure imgLaunchClick(Sender: TObject);
     procedure tmrClearFiringTimer(Sender: TObject);
     procedure imgNumpadClick(Sender: TObject);
+    procedure imgArrowClick(Sender: TObject);
+    procedure imgEnterClick(Sender: TObject);
+    procedure imgEscClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -90,7 +93,8 @@ var
 implementation
 
 uses
-  UfrmRoutePlan, uVehicleManager, UfrmFoeFriendSituationPage;
+  UfrmRoutePlan, uVehicleManager, UfrmFoeFriendSituationPage,
+    uKeyboardManager;
 
 {$R *.dfm}
 
@@ -105,6 +109,64 @@ end;
 procedure TfrmKeyboardCalcLaunch.FormShow(Sender: TObject);
 begin
   //
+end;
+
+procedure TfrmKeyboardCalcLaunch.SetBottomMonitor;
+var
+  m: TMonitor;
+begin
+  Position := poDesigned;
+  WindowState := wsNormal;
+
+  m := Screen.Monitors[0];
+
+  if Screen.Monitors[1].Top > m.Top then m := Screen.Monitors[1];
+  if Screen.Monitors[2].Top > m.Top then m := Screen.Monitors[2];
+
+  Left := m.Left;
+  Top  := m.Top;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage('Keyboard Top=' + IntToStr(frmKeyboardCalcLaunch.Top));
+end;
+
+procedure TfrmKeyboardCalcLaunch.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
+begin
+  Position := poDesigned;
+  WindowState := wsNormal;
+
+  Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
+  Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage(Format('Keyboard di Monitor %d Top=%d',[aMonitorIdx,Screen.Monitors[aMonitorIdx].Top]));
+end;
+
+procedure TfrmKeyboardCalcLaunch.SetTopMonitor(aMoniHeight: Integer);
+var
+  idxMainMoni: Integer;
+begin
+//  Position := poDesigned;
+//  WindowState := wsNormal;
+
+  idxMainMoni := 0;
+
+  Left := Screen.Monitors[idxMainMoni].WorkareaRect.Left;
+  Top := aMoniHeight;
+
+  if VIdentSetting.ModeDebug then
+    ShowMessage('Keyboard Top=' + IntToStr(frmKeyboardCalcLaunch.Top));
+end;
+
+procedure TfrmKeyboardCalcLaunch.tmrClearFiringTimer(Sender: TObject);
+begin
+  VehicleMgr.IsFiring := False;
+  VehicleMgr.SelectedTargetID := 0; // INI YANG HILANGKAN GARIS
+
+  frmRoutePlan.FMap.Refresh;
+  frmRoutePlan.lblStatusMap.Caption := '';
+
+  tmrClearFiring.Enabled := False;
 end;
 
 procedure TfrmKeyboardCalcLaunch.imgLaunchClick(Sender: TObject);
@@ -169,65 +231,6 @@ begin
 
 end;
 
-procedure TfrmKeyboardCalcLaunch.SetBottomMonitor;
-var
-  m: TMonitor;
-begin
-  Position := poDesigned;
-  WindowState := wsNormal;
-
-  m := Screen.Monitors[0];
-
-  if Screen.Monitors[1].Top > m.Top then m := Screen.Monitors[1];
-  if Screen.Monitors[2].Top > m.Top then m := Screen.Monitors[2];
-
-  Left := m.Left;
-  Top  := m.Top;
-
-  if VIdentSetting.ModeDebug then
-    ShowMessage('Keyboard Top=' + IntToStr(frmKeyboardCalcLaunch.Top));
-end;
-
-procedure TfrmKeyboardCalcLaunch.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
-begin
-  Position := poDesigned;
-  WindowState := wsNormal;
-
-  Left := Screen.Monitors[aMonitorIdx].WorkareaRect.Left + aLeft;
-  Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
-
-  if VIdentSetting.ModeDebug then
-    ShowMessage(Format('Keyboard di Monitor %d Top=%d',[aMonitorIdx,Screen.Monitors[aMonitorIdx].Top]));
-end;
-
-procedure TfrmKeyboardCalcLaunch.SetTopMonitor(aMoniHeight: Integer);
-var
-  idxMainMoni: Integer;
-  R: TRect;
-begin
-//  Position := poDesigned;
-//  WindowState := wsNormal;
-
-  idxMainMoni := 0;
-
-  Left := Screen.Monitors[idxMainMoni].WorkareaRect.Left;
-  Top := aMoniHeight;
-
-  if VIdentSetting.ModeDebug then
-    ShowMessage('Keyboard Top=' + IntToStr(frmKeyboardCalcLaunch.Top));
-end;
-
-procedure TfrmKeyboardCalcLaunch.tmrClearFiringTimer(Sender: TObject);
-begin
-  VehicleMgr.IsFiring := False;
-  VehicleMgr.SelectedTargetID := 0; // INI YANG HILANGKAN GARIS
-
-  frmRoutePlan.FMap.Refresh;
-  frmRoutePlan.lblStatusMap.Caption := '';
-
-  tmrClearFiring.Enabled := False;
-end;
-
 procedure TfrmKeyboardCalcLaunch.imgNumpadClick(Sender: TObject);
 begin
   if Assigned(frmFoeFriendSituationPage) then
@@ -267,6 +270,26 @@ begin
 
     frmFoeFriendSituationPage.UpdateLayoutTab;
   end;
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgArrowClick(Sender: TObject);
+begin
+  case (Sender as TImage).Tag of
+    0: KeyboardMgr.SendKey(VK_UP);
+    1: KeyboardMgr.SendKey(VK_DOWN);
+    2: KeyboardMgr.SendKey(VK_LEFT);
+    3: KeyboardMgr.SendKey(VK_RIGHT);
+  end;
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgEnterClick(Sender: TObject);
+begin
+  KeyboardMgr.SendKey(VK_RETURN);
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgEscClick(Sender: TObject);
+begin
+  KeyboardMgr.SendKey(VK_ESCAPE);
 end;
 
 end.

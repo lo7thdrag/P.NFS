@@ -122,6 +122,8 @@ type
     procedure InitSimulation;
     procedure StatusWeaponBtnChanged(Sender:TObject; aStatus: TC705StatusType);
 
+    procedure HandleKeyboardDown(Key: Word);
+
   end;
 
 var
@@ -132,7 +134,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uFormMgr, UfrmFoeFriendSituationPage;
+  uFormMgr, UfrmFoeFriendSituationPage, uKeyboardManager;
 
 
 {$REGION 'Menu Navigasi'}
@@ -229,8 +231,7 @@ begin
     tmrHardwareCheck.Enabled := False;
 end;
 
-procedure TfrmWCC.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfrmWCC.HandleKeyboardDown(Key: Word);
 var
   NextTag: Integer;
   NextLabel: TLabel;
@@ -254,6 +255,15 @@ begin
   end;
   {$ENDREGION}
 
+  {$REGION 'Panel Hardware Check'}
+  if pnlHardwareCheck.Visible = True then
+  begin
+    case Key of
+      VK_ESCAPE: pnlHardwareCheck.Visible := False;
+    end;
+  end;
+  {$ENDREGION}
+
   {$REGION ' Menu Navigation Key Arrow '}
   if FActiveLabel = nil then Exit;
 
@@ -271,6 +281,7 @@ begin
           frmFoeFriendSituationPage.RegisterEvents;
         end;
 
+        frmWCC.Hide;
         frmFoeFriendSituationPage.Show;
       end;
 
@@ -301,6 +312,12 @@ begin
   {$ENDREGION}
 
 end;
+
+procedure TfrmWCC.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  HandleKeyboardDown(Key);
+end;
 {$ENDREGION}
 
 procedure TfrmWCC.FormCreate(Sender: TObject);
@@ -330,7 +347,23 @@ end;
 
 procedure TfrmWCC.FormShow(Sender: TObject);
 begin
-  //
+  lblHardwareCheck.Tag := 2;
+  lblSoftwareExit.Tag := 3;
+  pnlHardwareCheck.Tag := 2;
+  pnlSoftwareExit.Tag := 3;
+
+  lblSimulateRoute.Tag := 5;
+  lblSimulateTraining.Tag := 6;
+  pnlSimulateTraining.Tag := 6;
+
+  lblHardwareCheck.Top := lblSimulateRoute.Top;
+  lblSoftwareExit.Top := lblSimulateTraining.Top;
+
+  lblSimulateRoute.Visible := False;
+  lblSimulateTraining.Visible := False;
+
+  if Assigned(KeyboardMgr) then
+    KeyboardMgr.SetContext(kbWCCMenu)
 end;
 
 procedure TfrmWCC.InitSimulation;
@@ -422,6 +455,7 @@ begin
         frmFoeFriendSituationPage.RegisterEvents;
       end;
 
+      frmWCC.Hide;
       frmFoeFriendSituationPage.show;
     end;
     2: begin
