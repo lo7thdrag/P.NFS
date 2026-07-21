@@ -74,13 +74,12 @@ begin
     lblCourse.Caption   := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
     lblCourse.Font.Color := clLime;
 
-    lblSpeed.Caption    := FormatFloat('0.0', (VehicleMgr.TrackControlled.HeadingDeg * 0.514444444));
+    lblSpeed.Caption    := FormatFloat('0.0', (VehicleMgr.TrackControlled.Speed_knot * 0.514444444));
     lblSpeed.Font.Color := clLime;
 
     lblDepth.Caption    := FormatFloat('0.0', Abs(VehicleMgr.TrackControlled.PosZ));
     lblDepth.Font.Color := clLime;
   end
-
   else
   begin
     lblTargetTrack.Caption    := '000000';
