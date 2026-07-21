@@ -19,9 +19,11 @@ type
     FMaxWireRange, FCurrentWireLeft, FRunLength, FApproachLength, FSearchLength : Double;
     FBatteryCapacity: Double;
     FTimeLaunch  : TDateTime;
-    FApproachTime, FSearchTime :TTime;
+    FLastUpdated : UInt64;
+    FApproachTime, FSearchTime :Double;
     FIsExist : Boolean;
     FFuseOn: Boolean;
+    FSpeedMS : Double;
 
   public
     constructor Create; overload;
@@ -42,10 +44,12 @@ type
     property SearchLength : Double read FSearchLength write FSearchLength;
     property BatteryCapacity : Double read FBatteryCapacity write FBatteryCapacity;
     property TimeLaunch : TDateTime read FTimeLaunch write FTimeLaunch;
-    property ApproachTime : TTime read FApproachTime write FApproachTime;
-    property SearchTime : TTime read FSearchTime write FSearchTime;
+    property LastUpdated : UInt64 read FLastUpdated write FLastUpdated;
+    property ApproachTime : Double read FApproachTime write FApproachTime;
+    property SearchTime : Double read FSearchTime write FSearchTime;
     property IsExist : Boolean read FIsExist write FIsExist;
     property FuseOn : Boolean read FFuseOn write FFuseOn;
+    property SpeedMS : Double read FSpeedMS write FSpeedMS;
 
   end;
 

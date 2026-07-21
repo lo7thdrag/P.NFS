@@ -225,6 +225,49 @@ begin
   else
     pnlVrlParaSetting3A.Color := clRed;
 
+  // INIT CHK
+  if SimManager.C705Status.INITChkRdy then
+    pnlVrlInitChk3A.Color := clLime
+  else
+    pnlVrlInitChk3A.Color := clRed;
+
+  // INIT STATE
+  if SimManager.C705Status.INITStateRdy then
+    pnlVrlInitState3A.Color := clLime
+  else
+    pnlVrlInitState3A.Color := clRed;
+
+  // INS GNSS
+  if SimManager.C705Status.INSGNSSRdy then
+    pnlVrlInsGnss3A.Color := clLime
+  else
+    pnlVrlInsGnss3A.Color := clRed;
+
+  // M. NORMAL
+  if SimManager.C705Status.MNormalRdy then
+    pnlVrlMNormal3A.Color := clLime
+  else
+    pnlVrlInsGnss3A.Color := clRed;
+
+  // Cal. Finished
+  if SimManager.C705Status.CalFinishRdy then
+    pnlVrlCalFinished3A.Color := clLime
+  else
+    pnlVrlCalFinished3A.Color := clRed;
+
+  // PARA LOCKING
+  if SimManager.C705Status.ParaLockRdy then
+    pnlVrlParaLocking3A.Color := clLime
+  else
+    pnlVrlParaLocking3A.Color := clRed;
+
+  // FULL OPEN
+  if SimManager.C705Status.FullOpenRdy then
+    pnlVrlFullOpen3A.Color := clLime
+  else
+    pnlVrlFullOpen3A.Color := clRed;
+
+
 end;
 
 end.

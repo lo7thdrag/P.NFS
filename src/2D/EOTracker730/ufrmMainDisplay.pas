@@ -437,12 +437,16 @@ begin
       FCCManager.TrackMode := TMSearch;
       edtWorkStateVal.Text := 'Wait';
       edtTrackStateVal.Text := 'Search';
+      btnCatchEO.ColorFocused := btnCatchEO.Color;
+//      btnTrackEO.ColorHighLight := btnTrackEO.Color;
     end
     else
     begin
       FCCManager.TrackMode := TMCatch;
       edtWorkStateVal.Text := 'Catch';
       edtTrackStateVal.Text := 'Tracking';
+//      btnCatchEO.ColorHighLight := btnCatchEO.ColorDown;
+      btnCatchEO.ColorFocused := btnCatchEO.ColorDown;
     end;
   end
   else if TFlatbutton(sender).Tag = 2 then
@@ -454,12 +458,14 @@ begin
       FCCManager.TrackMode := TMSearch;
       edtWorkStateVal.Text := 'Wait';
       edtTrackStateVal.Text := 'Search';
+      btnTrackEO.ColorFocused := btnTrackEO.Color;
     end
     else
     begin
       FCCManager.TrackMode := TMTrack;
       edtWorkStateVal.Text := 'Track';
       edtTrackStateVal.Text := 'Tracking';
+      btnTrackEO.ColorFocused := btnTrackEO.ColorDown;
     end;
   end;
   // send ke 3d untuk ganti trackmode
@@ -956,8 +962,9 @@ begin
   ExecPTK.lpFile := PChar('PTK_EOTracker730.exe');
   ExecPTK.nShow := SW_SHOW;
 
-  if not ShellExecuteEx(@ExecPTK) then
-    RaiseLastOSError;
+  ShellExecuteEx(@ExecPTK);
+//  if not ShellExecuteEx(@ExecPTK) then
+//    RaiseLastOSError;
 
   setting:= TFile.ReadAllText('settings.json', TEncoding.UTF8); // load json
   TgoBsonSerializer.Deserialize(setting, config);
@@ -983,8 +990,9 @@ begin
   ExecInfoIR.lpFile := PChar('Viewer.exe');
   ExecInfoIR.nShow := SW_SHOW;
 
-  if not ShellExecuteEx(@ExecInfoIR) then
-    RaiseLastOSError;
+  ShellExecuteEx(@ExecInfoIR);
+//  if not ShellExecuteEx(@ExecInfoIR) then
+//    RaiseLastOSError;
 
   // init ke 3D bahwa EO sudah menyala
   RecSend.ShipID := FCCManager.ShipID;
