@@ -200,13 +200,11 @@ begin
 end;
 
 procedure TfrmTorpedoAllocation.imgAllocation1Click(Sender: TObject);
-var
-  i : Integer;
 begin
-  if SutBlacksharkManager.FTorpedoArray[i].Loaded then
-  begin
-    FSelectTube := TImage(Sender).Tag;
+  FSelectTube := TImage(Sender).Tag;
 
+  if SutBlacksharkManager.FTorpedoArray[FSelectTube].Loaded then
+  begin
     SutBlacksharkManager.OperatorMessages                  := '';
     frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
     frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
@@ -221,12 +219,11 @@ begin
 end;
 
 procedure TfrmTorpedoAllocation.imgFireReleaseClick(Sender: TObject);
-var
-  i : Integer;
 begin
-  if SutBlacksharkManager.FTorpedoArray[i].TextStatus = stTorpReady then
+  FSelectFireRelease := TImage(Sender).Tag;
+
+  if SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].TextStatus = stTorpReady then
   begin
-    FSelectFireRelease := TImage(Sender).Tag;
     SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
 
     SutBlacksharkManager.OperatorMessages                  := '';
