@@ -976,16 +976,24 @@ begin
 
     if (SimManager.TrackObject is TISubMarineObject) then begin
       minDepth := 0;
-      maxDepth := -500; //ft
+      //maxDepth := -500; //ft
+      maxDepth := 152; //m
 
-      if (strtoint(TEdit(Sender).Text) * -1) < maxDepth then
-        TEdit(Sender).Text := (maxDepth * -1).ToString
-      else if  strtoint(TEdit(Sender).Text) > minDepth  then
-        TEdit(Sender).Text := (minDepth * -1).ToString;
+//      if (strtoint(TEdit(Sender).Text)) < maxDepth then
+//        TEdit(Sender).Text := (maxDepth).ToString
+//      else if  strtoint(TEdit(Sender).Text) > minDepth  then
+//        TEdit(Sender).Text := (minDepth).ToString;
+
+      if (strtoint(TEdit(Sender).Text)) > maxDepth then
+        TEdit(Sender).Text := (maxDepth).ToString
+      else if  strtoint(TEdit(Sender).Text) < minDepth  then
+        TEdit(Sender).Text := (minDepth).ToString;
+
     end
     else if ((SimManager.TrackObject is TIHeliObject) or (SimManager.TrackObject is TIAirCraftObject))
     then begin
-      maxAlt := 35000; // ft
+      //maxAlt := 35000; // ft
+      maxAlt := 10668; // m
       MinAlt := 0;
 
       if strtoint(TEdit(Sender).Text) > maxAlt then
