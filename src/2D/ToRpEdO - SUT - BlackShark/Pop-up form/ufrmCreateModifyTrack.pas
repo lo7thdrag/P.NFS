@@ -59,6 +59,10 @@ type
     Panel1: TPanel;
     procedure lblCloseClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure cbIdentityChange(Sender: TObject);
+    procedure lblApplyClick(Sender: TObject);
+    procedure lblResetClick(Sender: TObject);
+    procedure lblReselectClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -77,41 +81,95 @@ begin
   CreateModifyTrackChange;
 end;
 
+procedure TfrmCreateModifyTrack.lblApplyClick(Sender: TObject);
+var
+  SubTrack: TSubSurfaceTrack;
+begin
+  if not VehicleMgr.IsAnyTrackControlled then
+    Exit;
+
+  with VehicleMgr.TrackControlled do
+  begin
+    MSITrackNumber := StrToIntDef(edtTrackNo.Text, MSITrackNumber);
+    Bearing        := StrToFloatDef(edtbearing.Text, Bearing);
+    Range          := StrToFloatDef(edtRange.Text, Range);
+    HeadingDeg     := StrToFloatDef(edtCourse.Text, HeadingDeg);
+    Speed_knot     := StrToFloatDef(edtSpeed.Text, Speed_knot * 0.514444444) / 0.514444444;
+    PosZ           := -Abs(StrToFloatDef(edtDepth.Text, Abs(PosZ)));
+
+    Identity := TIdentity(cbIdentity.ItemIndex);
+
+    case cbCategory.ItemIndex of
+      0: Domain := 1;   // surface
+      1: Domain := 3;   // air
+      2: Domain := 2;   // subsurface
+    end;
+
+    FreeText := edtFreeText.Text;
+  end;
+
+  if VehicleMgr.TrackControlled is TSubSurfaceTrack then
+  begin
+    SubTrack                    := TSubSurfaceTrack(VehicleMgr.TrackControlled);
+    SubTrack.DataReportType     := TDataReportType(cbDataReport.ItemIndex);
+    SubTrack.SubmarineConfLevel := TSubmarineConfLevel(cbSubmarineConf.ItemIndex);
+    SubTrack.EstimatedDepth     := TEstimatedDepth(cbEstimatedDepth.ItemIndex);
+    SubTrack.DatumTime          := StrToDateTimeDef(edtDatumTime.Text, Now);
+  end;
+  CreateModifyTrackChange;
+end;
+
 procedure TfrmCreateModifyTrack.lblCloseClick(Sender: TObject);
 begin
   FreeAndNil(frmCreateModifyTrack);
+end;
+
+procedure TfrmCreateModifyTrack.lblReselectClick(Sender: TObject);
+begin
+  CreateModifyTrackChange;
+end;
+
+procedure TfrmCreateModifyTrack.lblResetClick(Sender: TObject);
+begin
+  edtTrackNo.Clear;
+  edtbearing.Text := '0';
+  edtRange.Text   := '0';
+  edtCourse.Text  := '0';
+  edtSpeed.Text   := '0';
+  edtDepth.Text   := '0';
+  edtFreeText.Clear;
+
+  cbCategory.ItemIndex := 0;
+  cbIdentity.ItemIndex := 0;
+
+  edtDatumTime.Text := FormatDateTime('dd/MMMM/yyyy hh:mm:ss', Now);
+end;
+
+procedure TfrmCreateModifyTrack.cbIdentityChange(Sender: TObject);
+begin
+  if VehicleMgr.IsAnyTrackControlled then
+    VehicleMgr.TrackControlled.Identity := TIdentity(cbIdentity.ItemIndex);
 end;
 
 procedure TfrmCreateModifyTrack.CreateModifyTrackChange;
 begin
   if VehicleMgr.IsAnyTrackControlled then
   begin
-    edtTrackNo.Text       := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
-    edtTrackNo.Font.Color := clLime;
-
-    edtbearing.Text       := FormatFloat('0.0', VehicleMgr.TrackControlled.Bearing);
-    edtbearing.Font.Color := clLime;
-
+    edtTrackNo.Text     := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+    edtbearing.Text     := FormatFloat('0.0', VehicleMgr.TrackControlled.Bearing);
     edtRange.Text       := FormatFloat('0.0', VehicleMgr.TrackControlled.Range);
-    edtRange.Font.Color := clLime;
-
-    edtCourse.Text       := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
-    edtCourse.Font.Color := clLime;
-
+    edtCourse.Text      := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
     edtSpeed.Text       := FormatFloat('0.0', (VehicleMgr.TrackControlled.Speed_knot * 0.514444444));
-    edtSpeed.Font.Color := clLime;
-
     edtDepth.Text       := FormatFloat('0.0', Abs(VehicleMgr.TrackControlled.PosZ));
-    edtDepth.Font.Color := clLime;
-
-    edtDatumTime.Text       := FormatDateTime('dd/MMMM/yyyy  hh:mm:ss', Now);
-    edtDatumTime.Font.Color := clLime;
+    edtDatumTime.Text   := FormatDateTime('dd/MMMM/yyyy  hh:mm:ss', Now);
 
     case VehicleMgr.TrackControlled.Domain of
       1: cbCategory.ItemIndex := 0;
       2: cbCategory.ItemIndex := 2;
       3: cbCategory.ItemIndex := 1;
     end;
+
+    cbIdentity.ItemIndex := Ord(VehicleMgr.TrackControlled.Identity);
   end
 end;
 

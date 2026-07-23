@@ -352,6 +352,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblApplyClick
     end
     object lblReselect: TLabel
       Left = 132
@@ -367,6 +368,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblReselectClick
     end
     object lblReset: TLabel
       Left = 268
@@ -382,6 +384,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblResetClick
     end
     object lblClose: TLabel
       Left = 404
@@ -406,7 +409,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -420,7 +423,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -442,7 +445,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -461,13 +464,14 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       TabOrder = 3
       Text = 'Unknown'
+      OnChange = cbIdentityChange
       Items.Strings = (
         'Unknown'
         'Ass. Friend'
@@ -484,7 +488,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -501,7 +505,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -518,7 +522,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -535,7 +539,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -560,7 +564,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -578,7 +582,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -623,7 +627,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -638,7 +642,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -653,7 +657,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -672,7 +676,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -687,7 +691,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -701,7 +705,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -716,7 +720,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -731,7 +735,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -746,7 +750,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 24
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
