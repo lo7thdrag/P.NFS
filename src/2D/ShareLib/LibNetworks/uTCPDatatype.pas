@@ -1298,7 +1298,7 @@ const
   { ORD TORP SUT }
   __ORD_TORPEDOSUT_FIRED = 1; // FIRE
   __ORD_TORPEDOSUT_NAVIGATE = 2; // NAVIGATE -> Assign Target atau UPDATE COURSE, ENDIS DAN DEPTH
-  __ORD_TORPEDOSUT_HOMING = 3; // HOMMING ->
+//  __ORD_TORPEDOSUT_HOMING = 3; // HOMMING ->
   __ORD_TORPEDOSUT_SEARCH = 4;
   // ACTIVE SEARCH SONAR TORPEDO -> Pergerakan based on Intercept or Bearing mode
   __ORD_TORPEDOSUT_MANUAL = 5; // deassign target atau MANUALY UPDATE COURSE DAN DEPTH
@@ -1308,6 +1308,11 @@ const
   __ORD_TORPEDOSUT_OFF = 9;
   __ORD_TORPEDOSUT_DELETE = 10;
   __ORD_TORPEDOSUT_TARGETSEARCHPROGRAM = 11;
+  __ORD_TORPEDOSUT_MSIGuide            = 12;
+  __ORD_TORPEDOSUT_TorpInternalGuide   = 13;
+  __ORD_TORPEDOSUT_ManualGuide         = 14;
+  __ORD_TORPEDOSUT_Homing              = 15;
+
   { ORD TORP SUT }
 
   __TORPEDOSUT_TARGET_SURFACE = 1; // search surface

@@ -86,12 +86,12 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Font.Style = []
           ParentFont = False
         end
-        object lblToSoHomingPN3D: TLabel
+        object lblStatusHoming: TLabel
           Left = 2
           Top = 20
-          Width = 114
+          Width = 151
           Height = 16
-          Caption = 'ToSo homing PN 3D'
+          Caption = 'No homing status received'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -13
@@ -117,7 +117,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
           Top = 6
           Width = 7
           Height = 16
-          Caption = '1'
+          Caption = '0'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -13
@@ -262,5 +262,10 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
         end
       end
     end
+  end
+  object tmrUpdateTorpedoHoming: TTimer
+    OnTimer = tmrUpdateTorpedoHomingTimer
+    Left = 280
+    Top = 96
   end
 end

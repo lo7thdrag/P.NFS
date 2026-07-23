@@ -393,7 +393,7 @@ procedure TfrmTorpedoTubeStatusWindow.UpdateTextStatus;
 var
   i,j   : Integer;
   aText : TTorpedoLauncher;
-  Text1, Text2, Text3, Text4: TLabel;
+  Text1, Text2, Text3, Text4, Text5: TLabel;
   PanelNumber : TPanel;
 begin
   {$REGION 'Status Text Torpedo'}
@@ -406,6 +406,7 @@ begin
         Text2 := lblValueTorpedo1;
         Text3 := lblWTSRC1;
         Text4 := lblSalvoNumber1;
+        Text5 := lblFuse1;
 
         PanelNumber := pnlNumTorpedo1;
       end;
@@ -415,6 +416,7 @@ begin
         Text2 := lblValueTorpedo2;
         Text3 := lblWTSRC2;
         Text4 := lblSalvoNumber2;
+        Text5 := lblFuse2;
 
         PanelNumber := pnlNumTorpedo2;
       end;
@@ -424,6 +426,7 @@ begin
         Text2 := lblValueTorpedo3;
         Text3 := lblWTSRC3;
         Text4 := lblSalvoNumber3;
+        Text5 := lblFuse3;
 
         PanelNumber := pnlNumTorpedo3;
       end;
@@ -433,6 +436,7 @@ begin
         Text2 := lblValueTorpedo4;
         Text3 := lblWTSRC4;
         Text4 := lblSalvoNumber4;
+        Text5 := lblFuse4;
 
         PanelNumber := pnlNumTorpedo4;
       end;
@@ -442,6 +446,7 @@ begin
         Text2 := lblValueTorpedo5;
         Text3 := lblWTSRC5;
         Text4 := lblSalvoNumber5;
+        Text5 := lblFuse5;
 
         PanelNumber := pnlNumTorpedo5;
       end;
@@ -451,6 +456,7 @@ begin
         Text2 := lblValueTorpedo6;
         Text3 := lblWTSRC6;
         Text4 := lblSalvoNumber6;
+        Text5 := lblFuse6;
 
         PanelNumber := pnlNumTorpedo6;
       end;
@@ -460,6 +466,7 @@ begin
         Text2 := lblValueTorpedo7;
         Text3 := lblWTSRC7;
         Text4 := lblSalvoNumber7;
+        Text5 := lblFuse7;
 
         PanelNumber := pnlNumTorpedo7;
       end;
@@ -469,6 +476,7 @@ begin
         Text2 := lblValueTorpedo8;
         Text3 := lblWTSRC8;
         Text4 := lblSalvoNumber8;
+        Text5 := lblFuse8;
 
         PanelNumber := pnlNumTorpedo8;
       end;
@@ -486,6 +494,9 @@ begin
 
     if SutBlacksharkManager.FTorpedoArray[i].SalvoNumber <> 0 then
       Text4.Caption := IntToStr(SutBlacksharkManager.FTorpedoArray[i].SalvoNumber);
+
+    if aText.FuseStatus then Text5.Caption := 'F'
+    else Text5.Caption := '';
 
     if aText.Allocated then
     begin

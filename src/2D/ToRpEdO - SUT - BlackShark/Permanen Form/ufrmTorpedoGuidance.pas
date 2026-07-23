@@ -5,9 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvSmoothTabPager, AdvPageControl, Vcl.ComCtrls,
-
-  ufrmHomingCommands, ufrmManualGuidance;
+  AdvSmoothTabPager, AdvPageControl, Vcl.ComCtrls, uSutBlacksharkManager, uVehicleManager, uTorpedoTrack,
+  uTCPDatatype, ufrmHomingCommands, ufrmManualGuidance;
 
 type
   TfrmTorpedoGuidanceWindow = class(TForm)
@@ -20,7 +19,7 @@ type
     AdvTabTorpedoControl: TAdvTabSheet;
     AdvTabSpecialSettings: TAdvTabSheet;
     lblHoming: TLabel;
-    lblMainGuidance: TLabel;
+    lblManGuidance: TLabel;
     lblMSIGuidance: TLabel;
     lblTorpIntGuidance: TLabel;
     lblFuseOff: TLabel;
@@ -29,7 +28,8 @@ type
     lblTosoActImmed: TLabel;
     lblToSoActOff: TLabel;
     procedure lblHomingClick(Sender: TObject);
-    procedure lblMainGuidanceClick(Sender: TObject);
+    procedure lblManGuidanceClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     FFrmTorpedoHomingCommand  : TfrmHomingCommands;
     FFrmManualGuidance        : TfrmManualGuidance;
@@ -48,6 +48,13 @@ implementation
 uses
   ufrmTorpedoWP;
 
+procedure TfrmTorpedoGuidanceWindow.FormCreate(Sender: TObject);
+var
+  Torp : TTorpedoTrack;
+begin
+  //
+end;
+
 procedure TfrmTorpedoGuidanceWindow.lblHomingClick(Sender: TObject);
 begin
   if not Assigned(FFrmTorpedoHomingCommand) then
@@ -63,7 +70,10 @@ begin
   FFrmTorpedoHomingCommand.BringToFront;
 end;
 
-procedure TfrmTorpedoGuidanceWindow.lblMainGuidanceClick(Sender: TObject);
+procedure TfrmTorpedoGuidanceWindow.lblManGuidanceClick(Sender: TObject);
+var
+  Torp: TTorpedoTrack;
+  RecSend : TRecSetTorpedoSUT;
 begin
   if not Assigned(FFrmManualGuidance) then
   begin

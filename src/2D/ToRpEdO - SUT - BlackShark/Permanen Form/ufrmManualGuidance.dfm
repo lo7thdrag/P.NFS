@@ -13,6 +13,7 @@ object frmManualGuidance: TfrmManualGuidance
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -22,45 +23,6 @@ object frmManualGuidance: TfrmManualGuidance
     Height = 145
     BevelOuter = bvNone
     TabOrder = 0
-    object lblManualGuidance: TLabel
-      Left = 64
-      Top = 7
-      Width = 97
-      Height = 16
-      Caption = 'Manual Guidance'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object lblDegMinus: TLabel
-      Left = 20
-      Top = 39
-      Width = 31
-      Height = 16
-      Caption = 'Deg -'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object lblDegPlus: TLabel
-      Left = 169
-      Top = 39
-      Width = 34
-      Height = 16
-      Caption = 'Deg +'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
     object lblcourse: TLabel
       Left = 8
       Top = 63
@@ -74,15 +36,92 @@ object frmManualGuidance: TfrmManualGuidance
       Font.Style = []
       ParentFont = False
     end
-    object edtCourse: TEdit
-      Left = 139
+    object lblCourseVal: TLabel
+      Left = 151
       Top = 64
-      Width = 65
+      Width = 53
       Height = 21
-      Color = clBlack
-      MaxLength = 360
-      TabOrder = 0
-      Text = '0.0'
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
+    object edtCourse: TEdit
+      Left = 151
+      Top = 64
+      Width = 53
+      Height = 21
+      Alignment = taRightJustify
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 360
+      ParentFont = False
+      TabOrder = 0
+      Text = '0'
+      Visible = False
+      OnEnter = edtCourseEnter
+    end
+    object pnlManualGuidance: TPanel
+      Left = 5
+      Top = 7
+      Width = 198
+      Height = 25
+      Caption = 'Manual Guidance'
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+      OnClick = pnlManualGuidanceClick
+    end
+    object pnlDegMinus: TPanel
+      Left = 5
+      Top = 38
+      Width = 52
+      Height = 20
+      Caption = 'Deg -'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      OnClick = ChangeCourseDegree
+    end
+    object pnlDegPlus: TPanel
+      Tag = 1
+      Left = 151
+      Top = 38
+      Width = 52
+      Height = 20
+      Caption = 'Deg +'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnClick = ChangeCourseDegree
+    end
+  end
+  object tmrUpdateTorpCourse: TTimer
+    OnTimer = tmrUpdateTorpCourseTimer
+    Left = 104
+    Top = 48
   end
 end

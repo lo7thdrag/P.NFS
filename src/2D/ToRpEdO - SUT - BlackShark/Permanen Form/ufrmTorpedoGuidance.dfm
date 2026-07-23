@@ -12,6 +12,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -70,6 +71,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       Top = 3
       Width = 17
       Height = 17
+      Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -77,6 +79,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      TabStop = True
     end
     object AdvTorpedoGuidance: TAdvPageControl
       Left = 16
@@ -134,7 +137,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           ParentFont = False
           OnClick = lblHomingClick
         end
-        object lblMainGuidance: TLabel
+        object lblManGuidance: TLabel
           Left = 6
           Top = 28
           Width = 92
@@ -147,7 +150,7 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          OnClick = lblMainGuidanceClick
+          OnClick = lblManGuidanceClick
         end
         object lblMSIGuidance: TLabel
           Left = 7

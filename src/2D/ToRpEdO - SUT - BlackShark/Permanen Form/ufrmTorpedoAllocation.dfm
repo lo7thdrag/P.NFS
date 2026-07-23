@@ -97,6 +97,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
       PersistPagesState.Location = plRegistry
       PersistPagesState.Enabled = False
       TabOrder = 0
+      OnChange = AdvPageTorpedoAllocationChange
       object AdvEngage: TAdvTabSheet
         Caption = '     Engage '
         Color = clBlack
@@ -3270,7 +3271,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Height = 25
           Cursor = crHandPoint
           Caption = 'Start Engagement Analysis'
-          Color = clGreen
+          Color = clBlack
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3289,10 +3290,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clNone
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label8: TLabel
           Left = 8
           Top = 0
@@ -3308,7 +3305,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label9: TLabel
           Left = 8
-          Top = 104
+          Top = 184
           Width = 64
           Height = 14
           Caption = 'Reallocation'
@@ -3321,7 +3318,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label10: TLabel
           Left = 8
-          Top = 128
+          Top = 208
           Width = 37
           Height = 14
           Caption = 'Target'
@@ -3334,7 +3331,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lbltarget: TLabel
           Left = 104
-          Top = 128
+          Top = 208
           Width = 42
           Height = 14
           Caption = '110002'
@@ -3347,7 +3344,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label11: TLabel
           Left = 216
-          Top = 128
+          Top = 208
           Width = 56
           Height = 14
           Caption = 'To Target'
@@ -3360,7 +3357,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblNumberToTarget: TLabel
           Left = 312
-          Top = 128
+          Top = 208
           Width = 42
           Height = 14
           Caption = '110003'
@@ -3373,7 +3370,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label12: TLabel
           Left = 8
-          Top = 155
+          Top = 235
           Width = 37
           Height = 14
           Caption = 'Realloc'
@@ -3386,7 +3383,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label13: TLabel
           Left = 8
-          Top = 184
+          Top = 264
           Width = 42
           Height = 14
           Caption = 'Console'
@@ -3399,7 +3396,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label14: TLabel
           Left = 88
-          Top = 184
+          Top = 264
           Width = 38
           Height = 14
           Caption = 'MSI-01'
@@ -3412,7 +3409,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label15: TLabel
           Left = 88
-          Top = 208
+          Top = 288
           Width = 49
           Height = 14
           Caption = 'Sonar-04'
@@ -3426,7 +3423,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label16: TLabel
           Left = 178
-          Top = 185
+          Top = 265
           Width = 38
           Height = 14
           Caption = 'MSI-02'
@@ -3440,7 +3437,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label17: TLabel
           Left = 178
-          Top = 208
+          Top = 288
           Width = 49
           Height = 14
           Caption = 'Sonar-05'
@@ -3454,7 +3451,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label18: TLabel
           Left = 274
-          Top = 185
+          Top = 265
           Width = 73
           Height = 14
           Caption = 'MSI/Radar-03'
@@ -3468,7 +3465,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblReallocate: TLabel
           Left = 218
-          Top = 230
+          Top = 310
           Width = 55
           Height = 14
           Caption = 'Reallocate'
@@ -3481,7 +3478,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label19: TLabel
           Left = 9
-          Top = 243
+          Top = 323
           Width = 92
           Height = 14
           Caption = 'Change Torpedo'
@@ -3494,7 +3491,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label20: TLabel
           Left = 10
-          Top = 267
+          Top = 347
           Width = 71
           Height = 14
           Caption = 'Torp in Salvo'
@@ -3507,7 +3504,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label21: TLabel
           Left = 218
-          Top = 267
+          Top = 347
           Width = 76
           Height = 14
           Caption = 'New Torpedo'
@@ -3520,7 +3517,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblRemoveTorpedo: TLabel
           Left = 66
-          Top = 294
+          Top = 374
           Width = 95
           Height = 14
           Caption = 'Remove Torpedo'
@@ -3533,7 +3530,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblChangeTorpedo: TLabel
           Left = 250
-          Top = 292
+          Top = 372
           Width = 92
           Height = 14
           Caption = 'Change Torpedo'
@@ -3545,25 +3542,25 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           ParentFont = False
         end
         object lvReallocation: TListView
-          Left = 8
-          Top = 24
+          Left = 6
+          Top = 26
           Width = 450
-          Height = 65
+          Height = 136
           Color = clBlack
           Columns = <
             item
               Caption = 'Target'
-              Width = 100
+              Width = 111
             end
             item
               Alignment = taCenter
               Caption = 'Salvo'
-              Width = 100
+              Width = 112
             end
             item
               Alignment = taCenter
               Caption = 'Torpedo'
-              Width = 100
+              Width = 111
             end
             item
               Alignment = taCenter
@@ -3579,10 +3576,11 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           ParentFont = False
           TabOrder = 0
           ViewStyle = vsReport
+          OnSelectItem = lvReallocationSelectItem
         end
         object cbReallocate: TComboBox
           Left = 72
-          Top = 152
+          Top = 232
           Width = 81
           Height = 22
           Color = clBlack
@@ -3607,7 +3605,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbReallocateMSI01: TRadioButton
           Left = 65
-          Top = 184
+          Top = 264
           Width = 17
           Height = 17
           Caption = 'rbMSI01'
@@ -3621,7 +3619,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbReallocateSonar04: TRadioButton
           Left = 65
-          Top = 208
+          Top = 288
           Width = 17
           Height = 17
           Caption = 'RadioButton1'
@@ -3636,7 +3634,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbReallocateMSI02: TRadioButton
           Left = 155
-          Top = 184
+          Top = 264
           Width = 17
           Height = 17
           Caption = 'MSI-02'
@@ -3651,7 +3649,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbReallocateSonar05: TRadioButton
           Left = 155
-          Top = 207
+          Top = 287
           Width = 17
           Height = 17
           Caption = 'rbSonar05'
@@ -3666,7 +3664,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbReallocateMSI03: TRadioButton
           Left = 251
-          Top = 184
+          Top = 264
           Width = 17
           Height = 17
           Caption = 'RadioButton1'
@@ -3681,7 +3679,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object cbTorpInSalvo: TComboBox
           Left = 106
-          Top = 264
+          Top = 344
           Width = 81
           Height = 22
           Color = clBlack
@@ -3705,7 +3703,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object ComboBox1: TComboBox
           Left = 314
-          Top = 264
+          Top = 344
           Width = 81
           Height = 22
           Color = clBlack
@@ -3735,10 +3733,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label22: TLabel
           Left = 8
           Top = 0
@@ -3754,7 +3748,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label23: TLabel
           Left = 7
-          Top = 152
+          Top = 190
           Width = 77
           Height = 14
           Caption = 'Transfer Salvo'
@@ -3767,7 +3761,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label24: TLabel
           Left = 8
-          Top = 176
+          Top = 214
           Width = 37
           Height = 14
           Caption = 'Target'
@@ -3780,7 +3774,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblTargetTransfer: TLabel
           Left = 104
-          Top = 176
+          Top = 214
           Width = 42
           Height = 14
           Caption = '110002'
@@ -3793,7 +3787,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label25: TLabel
           Left = 8
-          Top = 200
+          Top = 238
           Width = 28
           Height = 14
           Caption = 'Salvo'
@@ -3806,7 +3800,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblSalvoTransfer: TLabel
           Left = 104
-          Top = 200
+          Top = 238
           Width = 42
           Height = 14
           Caption = '       01'
@@ -3819,7 +3813,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label26: TLabel
           Left = 8
-          Top = 224
+          Top = 262
           Width = 42
           Height = 14
           Caption = 'Console'
@@ -3832,7 +3826,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label27: TLabel
           Left = 88
-          Top = 224
+          Top = 262
           Width = 38
           Height = 14
           Caption = 'MSI-01'
@@ -3845,7 +3839,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label28: TLabel
           Left = 88
-          Top = 248
+          Top = 286
           Width = 49
           Height = 14
           Caption = 'Sonar-04'
@@ -3859,7 +3853,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label29: TLabel
           Left = 178
-          Top = 225
+          Top = 263
           Width = 38
           Height = 14
           Caption = 'MSI-02'
@@ -3873,7 +3867,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label30: TLabel
           Left = 178
-          Top = 248
+          Top = 286
           Width = 49
           Height = 14
           Caption = 'Sonar-05'
@@ -3887,7 +3881,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label31: TLabel
           Left = 274
-          Top = 225
+          Top = 263
           Width = 73
           Height = 14
           Caption = 'MSI/Radar-03'
@@ -3901,7 +3895,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblTransferTorpedoSalvo: TLabel
           Left = 202
-          Top = 294
+          Top = 332
           Width = 128
           Height = 14
           Caption = 'Transfer Torpedo Salvo'
@@ -3916,19 +3910,22 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Left = 8
           Top = 24
           Width = 450
-          Height = 65
+          Height = 135
           Color = clBlack
           Columns = <
             item
               Caption = 'Target'
+              Width = 111
             end
             item
               Alignment = taCenter
               Caption = 'Salvo'
+              Width = 112
             end
             item
               Alignment = taCenter
               Caption = 'Torpedo'
+              Width = 111
             end
             item
               Alignment = taCenter
@@ -3944,10 +3941,11 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           ParentFont = False
           TabOrder = 0
           ViewStyle = vsReport
+          OnSelectItem = lvTransferSelectItem
         end
         object rbTransferMSI01: TRadioButton
           Left = 65
-          Top = 224
+          Top = 262
           Width = 17
           Height = 17
           Caption = 'rbMSI01'
@@ -3961,7 +3959,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbTransferSonar04: TRadioButton
           Left = 65
-          Top = 248
+          Top = 286
           Width = 17
           Height = 17
           Caption = 'RadioButton1'
@@ -3976,7 +3974,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbTransferMSI02: TRadioButton
           Left = 155
-          Top = 224
+          Top = 262
           Width = 17
           Height = 17
           Caption = 'MSI-02'
@@ -3991,7 +3989,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbTransferSonar05: TRadioButton
           Left = 155
-          Top = 247
+          Top = 285
           Width = 17
           Height = 17
           Caption = 'rbSonar05'
@@ -4006,7 +4004,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object rbTransferMSI03: TRadioButton
           Left = 251
-          Top = 224
+          Top = 262
           Width = 17
           Height = 17
           Caption = 'RadioButton1'
@@ -4027,10 +4025,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label32: TLabel
           Left = 8
           Top = 0
@@ -4046,7 +4040,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblTerminateAllocation: TLabel
           Left = 336
-          Top = 160
+          Top = 164
           Width = 112
           Height = 14
           Caption = 'Terminate Allocation'
@@ -4108,6 +4102,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          OnClick = lblSwitchRunToOffClick
         end
         object lblDeleteSalvoInfo: TLabel
           Left = 337
@@ -4121,6 +4116,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          OnClick = lblDeleteSalvoInfoClick
         end
         object Label36: TLabel
           Left = 8
@@ -4135,12 +4131,29 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Style = []
           ParentFont = False
         end
-        object Label37: TLabel
+        object lblTerminateSalvoNumber: TLabel
           Left = 104
           Top = 285
           Width = 42
           Height = 14
-          Caption = '       01'
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '0'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblTerminateTargetNumber: TLabel
+          Left = 96
+          Top = 236
+          Width = 50
+          Height = 14
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '0'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -4149,22 +4162,25 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           ParentFont = False
         end
         object lvTermination: TListView
-          Left = 5
+          Left = 3
           Top = 23
           Width = 450
-          Height = 65
+          Height = 135
           Color = clBlack
           Columns = <
             item
               Caption = 'Target'
+              Width = 111
             end
             item
               Alignment = taCenter
               Caption = 'Salvo'
+              Width = 112
             end
             item
               Alignment = taCenter
               Caption = 'Torpedo'
+              Width = 111
             end
             item
               Alignment = taCenter
@@ -4180,6 +4196,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           ParentFont = False
           TabOrder = 0
           ViewStyle = vsReport
+          OnSelectItem = lvTerminationSelectItem
         end
         object cbTorpedoTerminate: TComboBox
           Left = 72
@@ -4204,10 +4221,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Panel1: TPanel
           Left = 6
           Top = 5
@@ -7180,6 +7193,11 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
   object tmrImageAllocation: TTimer
     OnTimer = tmrImageAllocationTimer
     Left = 395
-    Top = 363
+    Top = 227
+  end
+  object tmrEngagement: TTimer
+    OnTimer = tmrEngagementTimer
+    Left = 392
+    Top = 360
   end
 end
