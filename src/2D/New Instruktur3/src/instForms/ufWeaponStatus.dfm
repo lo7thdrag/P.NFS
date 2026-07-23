@@ -6556,7 +6556,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'MILLENIUM GUN 35 mm'
@@ -6566,11 +6566,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 883
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 0
           object lblMilleniumGun35Title: TLabel
             Left = 104
             Top = 12
@@ -6620,6 +6621,36 @@ object fWeaponStatus: TfWeaponStatus
             ParentFont = False
             TabOrder = 1
           end
+          object chkMilleniumGun35EnableMAS: TCheckBox
+            Tag = 601
+            Left = 45
+            Top = 124
+            Width = 123
+            Height = 17
+            Caption = 'Man Aloft Switch'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
+          end
+          object chkMilleniumGun35EnableMisfire: TCheckBox
+            Tag = 601
+            Left = 45
+            Top = 150
+            Width = 127
+            Height = 17
+            Caption = 'Simulate Misfire'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 3
+          end
         end
       end
       object rzgrpCannonAK230: TRzGroup
@@ -6629,7 +6660,7 @@ object fWeaponStatus: TfWeaponStatus
         CaptionFont.Name = 'MS Sans Serif'
         CaptionFont.Style = [fsBold]
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 923
         DividerVisible = False
         BiDiMode = bdLeftToRight
@@ -6640,12 +6671,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 903
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
+          ExplicitHeight = 903
           object lbl22: TLabel
             Left = 146
             Top = 11
@@ -6703,7 +6734,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 903
           object lblBlackShark: TLabel
             Left = 142
             Top = 12
@@ -7259,6 +7289,7 @@ object fWeaponStatus: TfWeaponStatus
               Font.Style = []
               ParentFont = False
               TabOrder = 1
+              Visible = False
             end
             object chkSafetyIgnitionC705: TCheckBox
               Left = 44
@@ -7274,6 +7305,7 @@ object fWeaponStatus: TfWeaponStatus
               Font.Style = []
               ParentFont = False
               TabOrder = 2
+              Visible = False
             end
           end
         end

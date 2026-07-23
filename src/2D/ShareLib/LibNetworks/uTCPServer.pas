@@ -114,6 +114,7 @@ constructor TTCPServer.Create;
 begin
   inherited;
   FWSocketServer := TWSocketServer.Create(nil);
+  // Bump buffers to 64KB or 128KB depending on network conditions
   FRealLog := TStringList.Create;
   FLog := FRealLog;
   // pLogPointer:= pointer(FLog);
@@ -266,8 +267,8 @@ begin
           aClient.ProcessMessages;
           end;
         }
-        if not AClient.AllSent then
-          FLog.Add(TimeToStr(Now) + ': AllSent flag is false');
+//        if not AClient.AllSent then
+//          FLog.Add(TimeToStr(Now) + ': AllSent flag is false');
 
 //        FLog.Add(TimeToStr(Now) + ': ' + strTemp);
         try
@@ -294,8 +295,8 @@ begin
             FWSocketServer.Client[i].ProcessMessages;
             end;
           }
-          if not FWSocketServer.Client[i].AllSent then
-            FLog.Add(TimeToStr(Now) + ': AllSent flag is false');
+//          if not FWSocketServer.Client[i].AllSent then
+//            FLog.Add(TimeToStr(Now) + ': AllSent flag is false');
 
 //          FLog.Add(TimeToStr(Now) + ': ' + strTemp + ', to: ' +
 //            FWSocketServer.Client[i].GetPeerAddr);
@@ -343,6 +344,13 @@ procedure TTCPServer.ClientConnect(Sender: TObject; Client: TWSocketClient;
 var
   cCon: TClientConnected;
 begin
+  { Need for Bridge & System Server }
+  // Apply to Receive Buffer
+//  Client.SocketRcvBufSize:= 1 * 1024 * 1024;
+
+  // Apply to Send Buffer
+//  Client.SocketSndBufSize:= 1 * 1024 * 1024;
+
   cCon := TClientConnected(Client);
   getMem(cCon.FReceivedBuffer, 1024 * 1024);
   getMem(cCon.FBuffer, BUFFER_SIZE);
@@ -516,18 +524,18 @@ begin
   begin
     if Assigned(arrayProcedure[lPc.ID]) then
     begin
-      FLog.Add(TimeToStr(Now) + ': ' + ' (ID= ' + inttostr(lPc.ID) + ')' +
-        C_REC_PACKETNAME[lPc.ID]);
+//      FLog.Add(TimeToStr(Now) + ': ' + ' (ID= ' + inttostr(lPc.ID) + ')' +
+//        C_REC_PACKETNAME[lPc.ID]);
       arrayProcedure[lPc.ID](aP, arrSize[lPc.ID], TWSocketClient(Sender));
     end
     else
-      FLog.Add(DateTimeToStr(Now) + ': ' + 'Unidentified data available (ID= ' +
-        inttostr(lPc.ID) + ')');
+//      FLog.Add(DateTimeToStr(Now) + ': ' + 'Unidentified data available (ID= ' +
+//        inttostr(lPc.ID) + ')');
   end
   else
   begin
-    FLog.Add(DateTimeToStr(Now) + ': ' + 'Unidentified data available (ID= ' +
-      inttostr(lPc.ID) + ')');
+//    FLog.Add(DateTimeToStr(Now) + ': ' + 'Unidentified data available (ID= ' +
+//      inttostr(lPc.ID) + ')');
   end;
 end;
 

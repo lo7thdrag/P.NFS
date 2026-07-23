@@ -584,6 +584,8 @@ type
     lblLoadBlackShark1: TLabel;
     lblLoadBlackShark3: TLabel;
     chkBlackSharkFireAuth: TCheckBox;
+    chkMilleniumGun35EnableMAS: TCheckBox;
+    chkMilleniumGun35EnableMisfire: TCheckBox;
     procedure btnASROCAssign1FCClick(Sender: TObject);
     procedure btnC802AssignClick(Sender: TObject);
     procedure btnRBUAssignClick(Sender: TObject);
@@ -1136,9 +1138,13 @@ begin
   { Cannon 35 }
   chkMilleniumGun35EnableCannon.OnClick := Cannon35ChkClick;
   chkMilleniumGun35CAP.OnClick := Cannon35ChkClick;
+  chkMilleniumGun35EnableMAS.OnClick := Cannon35ChkClick;
+  chkMilleniumGun35EnableMisfire.OnClick := Cannon35ChkClick;
 
   chkMilleniumGun35EnableCannon.Tag     := __STAT_CANNON35_ENABLE;
   chkMilleniumGun35CAP.Tag := __STAT_CANNON35_CAP;
+  chkMilleniumGun35EnableMAS.Tag := __STAT_CANNON35_MAS;
+  chkMilleniumGun35EnableMisfire.Tag := __STAT_CANNON35_MISFIRE;
 
   { =========================================================== }
 
@@ -2992,6 +2998,8 @@ begin
         case id of
           __STAT_CANNON35_ENABLE : WeaponCannon35.EnableCannon35 := TCheckBox(sender).Checked;
           __STAT_CANNON35_CAP : WeaponCannon35.CAP := TCheckBox(sender).Checked;
+          __STAT_CANNON35_MAS : WeaponCannon35.ManAloft := TCheckBox(sender).Checked;
+          __STAT_CANNON35_MISFIRE : WeaponCannon35.MisFire := TCheckBox(sender).Checked;
         end;
       end;
     end;
@@ -3377,7 +3385,7 @@ begin
   edtC705Track.Text := TInsObject(sender).ObjName;
 end;
 
- procedure TfWeaponStatus.C705ChkClick(Sender: TObject);
+procedure TfWeaponStatus.C705ChkClick(Sender: TObject);
 var
   aTag : integer;
   ShipStrID : string;
@@ -5114,6 +5122,9 @@ begin
               chkSafetyIgnitionC705.Enabled     := False;
               chkOpenCoverLauncherC705.Enabled  := False;
             end;
+
+//            chkSafetyIgnitionC705.Visible := False;
+//            chkOpenCoverLauncherC705.Visible := False;
 
             //loading Launcher Starboard
             case WeaponC705.LauncherStbd of

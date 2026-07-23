@@ -97,8 +97,6 @@ begin
   WSocket.OnSessionClosed := WSocket_OnSessionClosed;
   WSocket.OnDataSent := WSocket_OnDataSent;
 
-
-
   FRealLog := TStringList.Create;
   FLog := FRealLog;
   // pLogPointer:= pointer(FLog);
@@ -176,7 +174,7 @@ begin
     if not WSocket.AllSent then
       raise exception.Create('in process...');
 
-    FLog.Add(TimeToStr(Now) + ': ' + 'Sending data');
+//    FLog.Add(TimeToStr(Now) + ': ' + 'Sending data');
     WSocket.Send(buffer, size);
   end
 end;
@@ -229,8 +227,8 @@ begin
   end
   else
   begin
-    FLog.Add(TimeToStr(Now) + ': ' + 'Trying to send unknown packet (ID= ' +
-      inttostr(aID) + ')');
+//    FLog.Add(TimeToStr(Now) + ': ' + 'Trying to send unknown packet (ID= ' +
+//      inttostr(aID) + ')');
   end;
 end;
 
@@ -457,18 +455,18 @@ begin
   begin
     if Assigned(arrayProcedure[lPc.ID]) then
     begin
-      FLog.Add(TimeToStr(Now) + ': ' + '(ID= ' + inttostr(lPc.ID) + ')' +
-        C_REC_PACKETNAME[lPc.ID]);
+//      FLog.Add(TimeToStr(Now) + ': ' + '(ID= ' + inttostr(lPc.ID) + ')' +
+//        C_REC_PACKETNAME[lPc.ID]);
       arrayProcedure[lPc.ID](aP, arrSize[lPc.ID]);
-    end
-    else
-      FLog.Add(TimeToStr(Now) + ': ' + 'Unregistered (ID= ' +
-        inttostr(lPc.ID) + ')');
+    end;
+//    else
+//      FLog.Add(TimeToStr(Now) + ': ' + 'Unregistered (ID= ' +
+//        inttostr(lPc.ID) + ')');
   end
   else
   begin
-    FLog.Add(TimeToStr(Now) + ': ' + 'Unregistered (ID= ' +
-      inttostr(lPc.ID) + ')');
+//    FLog.Add(TimeToStr(Now) + ': ' + 'Unregistered (ID= ' +
+//      inttostr(lPc.ID) + ')');
   end;
 end;
 
@@ -479,7 +477,7 @@ end;
 
 procedure TTCPClient.WSocket_OnDataSent(Sender: TObject; Error: Word);
 begin
-  FLog.Add('Sent: ' + Sender.ClassName + ' - ' + inttostr(Error));
+//  FLog.Add('Sent: ' + Sender.ClassName + ' - ' + inttostr(Error));
 end;
 
 procedure TTCPClient.RegisterProcedure(aType: Word; aProcedure: TCPT_PROCEDURE;

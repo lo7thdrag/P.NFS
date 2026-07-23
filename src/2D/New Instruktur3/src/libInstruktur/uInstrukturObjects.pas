@@ -550,6 +550,9 @@ interface
       EnableCannon35 : Boolean;
       CAP: Boolean;
       AssignStatusLauncher2       : Boolean;
+      ManAloft: Boolean;
+      MisFire: Boolean;
+
       constructor Create(Const aParent : TInsObject; aMap: TMap); override;
       destructor Destroy; override;
   end;
@@ -1130,7 +1133,7 @@ begin
   FDataPosition.heading := aRec.heading;
   FDataPosition.speed   := aRec.Speed;
 
-  FSpeed      := 1.944 * aRec.speed;
+  FSpeed      := {1.944 *} aRec.speed;
   FPosition.X := aRec.X;
   FPosition.Y := aRec.Y;
   FPosition.Z := aRec.Z;
