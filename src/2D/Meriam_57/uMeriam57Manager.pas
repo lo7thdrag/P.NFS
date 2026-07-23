@@ -224,6 +224,7 @@ begin
         FBearing := 0;
         FElevation := 0;
         FisDesig := False;
+        FTargetAssigned := True;
       end;
     end;
   end;

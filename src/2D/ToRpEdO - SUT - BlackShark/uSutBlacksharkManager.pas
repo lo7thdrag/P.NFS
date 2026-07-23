@@ -23,6 +23,8 @@ type
     FProtectionRadiusEnable : Boolean;
     FTosoMode, FGuidance , FSAUpdating, FASH: Byte; // untuk FSAUpdating 0 : Circle, 1 : Vect
     FSearchPattern : TSearchPattern;
+    FEngagementID : Word;
+    FTorpedoIdx : Byte;
 
   public
     constructor Create;
@@ -56,6 +58,8 @@ type
     property SAUpdating : Byte read FSAUpdating write FSAUpdating;
     property ProtectionRadiusEnable : Boolean read FProtectionRadiusEnable write FProtectionRadiusEnable;
     property ASH : Byte read FASH write FASH;
+    property EngagementID : word read FEngagementID write FEngagementID;
+    property TorpedoIdx : Byte read FTorpedoIdx write FTorpedoIdx;
 
   end;
 
@@ -370,6 +374,7 @@ procedure TSutBlacksharkManager.EventonRecMissilePosAvailable(apRec: PAnsiChar;a
 var
   Rec: ^TRec3DMissilePos;
   Torp: TTorpedoTrack;
+  TorpIdx: Integer;
 begin
   Rec := Pointer(apRec);
 
@@ -397,16 +402,25 @@ begin
     end;
     ST_MISSILE_DEL:
     begin
-      Torp := VehicleMgr.FindTorpedoByLauncherID(rec^.launcherID);
-      if Assigned(Torp) then Torp.Free;
+//      Torp := VehicleMgr.FindTorpedoByLauncherID(rec^.launcherID);
+      TorpIdx := VehicleMgr.FindTorpedoIdxByLauncherID(rec^.launcherID);
+      if Assigned(Torp) then
+      begin
+        VehicleMgr.ObjectList.Delete(TorpIdx);
+//        Torp.Free;
+//        VehicleMgr.RemoveVehicle(Torp);
+//        VehicleMgr.ObjectList.Remove(Torp);
+//        Torp.Free;
+//        FreeAndNil(Torp);
 
-      //      FreeAndNil(Torp);
+        FTorpedoArray[rec^.launcherID-1].TextStatus := stCommBreak;
+      end;
     end;
     ST_MISSILE_LOADED:
     begin
       if (Rec^.LauncherID > 0) or (Rec^.LauncherID < 9) then
         FTorpedoArray[Rec^.LauncherID - 1].Loaded := True;
-        FTorpedoArray[rec^.launcherID].TextStatus := stCommBreak;
+
     end;
   end;
 end;
@@ -587,6 +601,9 @@ begin
 
   FProtectionRadius := 300;
   FASH := 1;
+
+  FEngagementID := 0;
+  ftorpedoidx := 0;
 
 end;
 

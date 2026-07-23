@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, AdvSmoothTabPager,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, AdvSmoothTabPager, uSutBlacksharkManager, uVehicleManager, uTorpedoTrack,
   Vcl.ExtCtrls, AdvPageControl, Vcl.ComCtrls;
 
 type
@@ -19,7 +19,7 @@ type
     lblCloseInSub: TLabel;
     lblLongRangeAttack: TLabel;
     lblTgtLostSub: TLabel;
-    lblToSoHomingPN3D: TLabel;
+    lblStatusHoming: TLabel;
     lblToSotargetacquiredclose: TLabel;
     lblValContact: TLabel;
     lblValTorpedo: TLabel;
@@ -30,12 +30,14 @@ type
     pbWakeLost: TPaintBox;
     pbToSoCoveragePlot: TPaintBox;
     pnlToSo: TPanel;
+    tmrUpdateTorpedoHoming: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure pbToSoCoveragePlotPaint(Sender: TObject);
     procedure pbTgtLostSubPaint(Sender: TObject);
     procedure pbWakeAttackPaint(Sender: TObject);
     procedure pbWakeLostPaint(Sender: TObject);
     procedure pbLongRangePaint(Sender: TObject);
+    procedure tmrUpdateTorpedoHomingTimer(Sender: TObject);
   private
 
   public
@@ -87,6 +89,10 @@ end;
 procedure TfrmHomingStatusPlot.FormCreate(Sender: TObject);
 begin
   DoubleBuffered := True;
+  if SutBlacksharkManager.TorpedoTubeAllocNum <> 0 then
+  begin
+    lblValTorpedo.Caption := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
+  end;
 end;
 
 procedure TfrmHomingStatusPlot.DrawTarget(C: TCanvas; X, Y: Double);
@@ -121,27 +127,34 @@ begin
 end;
 
 procedure TfrmHomingStatusPlot.pbLongRangePaint(Sender: TObject);
+var
+  Torp: TTorpedoTrack;
 begin
-  with pbLongRange.Canvas do
+  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+  if Torp <> nil then
   begin
-    Brush.Color := clBlack;
-    FillRect(pbLongRange.ClientRect);
+    with pbLongRange.Canvas do
+    begin
+      Brush.Color := clBlack;
+      FillRect(pbLongRange.ClientRect);
 
-    // Left circle
-    Pen.Color := clLime;
-    Pen.Width := 2;
-    Brush.Style := bsClear;
-    Ellipse(4, 4, 35, 35);
+      // Left circle
+      Pen.Color := clGreen;
+      Pen.Width := 2;
+      Brush.Color := clLime;
+      Brush.Style := bsSolid;
+      Ellipse(4, 4, 35, 35);
 
-    // Lines
-    MoveTo(35, 18);
-    LineTo(100, 25);
+      // Lines hanya saat sudah jadi Close-in attack
+  //    MoveTo(35, 18);
+  //    LineTo(100, 25);
 
-    //Right Circle
-    Brush.Style := bsSolid;
-    Brush.Color := clLime;
-    Pen.Color   := clGreen;
-    Ellipse(90, 4, 120, 35);
+      //Right Circle
+      Pen.Color   := clGreen;
+      Brush.Color := clBlack;
+
+      Ellipse(90, 4, 120, 35);
+    end;
   end;
 end;
 
@@ -149,21 +162,27 @@ procedure TfrmHomingStatusPlot.pbTgtLostSubPaint(Sender: TObject);
 var
   Diameter : Integer;
   X, Y     : Integer;
+  Torp: TTorpedoTrack;
 begin
-  Diameter := 31;
-
-  X := (pbTgtLostSub.Width - Diameter) div 2;
-  Y := (pbTgtLostSub.Height - Diameter) div 2;
-
-  with pbTgtLostSub.Canvas do
+  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+  if Torp <> nil then
   begin
-    Pen.Width := 2;
-    Brush.Style := bsClear;
+    Diameter := 31;
 
-    Ellipse(X, Y, X + Diameter, Y + Diameter);
-    pbTgtLostSub.Canvas.Pen.Color := clLime;
-    pbTgtLostSub.Canvas.Ellipse(13, 1, 44, 32);
+    X := (pbTgtLostSub.Width - Diameter) div 2;
+    Y := (pbTgtLostSub.Height - Diameter) div 2;
+
+    with pbTgtLostSub.Canvas do
+    begin
+      Pen.Width := 2;
+      Brush.Style := bsClear;
+
+      Ellipse(X, Y, X + Diameter, Y + Diameter);
+      pbTgtLostSub.Canvas.Pen.Color := clLime;
+      pbTgtLostSub.Canvas.Ellipse(13, 1, 44, 32);
+    end;
   end;
+
 end;
 
 procedure TfrmHomingStatusPlot.DrawGraphHoming;
@@ -248,20 +267,25 @@ procedure TfrmHomingStatusPlot.pbWakeAttackPaint(Sender: TObject);
 var
   Diameter : Integer;
   X, Y     : Integer;
+  Torp: TTorpedoTrack;
 begin
-  Diameter := 31;
-
-  X := (pbWakeAttack.Width - Diameter) div 2;
-  Y := (pbWakeAttack.Height - Diameter) div 2;
-
-  with pbWakeAttack.Canvas do
+  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+  if Torp <> nil then
   begin
-    Pen.Width := 2;
-    Brush.Style := bsClear;
+    Diameter := 31;
 
-    Ellipse(X, Y, X + Diameter, Y + Diameter);
-    pbWakeAttack.Canvas.Pen.Color := clLime;
-    pbWakeAttack.Canvas.Ellipse(13, 1, 44, 32);
+    X := (pbWakeAttack.Width - Diameter) div 2;
+    Y := (pbWakeAttack.Height - Diameter) div 2;
+
+    with pbWakeAttack.Canvas do
+    begin
+      Pen.Width := 2;
+      Brush.Style := bsClear;
+
+      Ellipse(X, Y, X + Diameter, Y + Diameter);
+      pbWakeAttack.Canvas.Pen.Color := clLime;
+      pbWakeAttack.Canvas.Ellipse(13, 1, 44, 32);
+    end;
   end;
 end;
 
@@ -269,20 +293,53 @@ procedure TfrmHomingStatusPlot.pbWakeLostPaint(Sender: TObject);
 var
   Diameter : Integer;
   X, Y     : Integer;
+  Torp: TTorpedoTrack;
 begin
-  Diameter := 31;
-
-  X := (pbWakeLost.Width - Diameter) div 2;
-  Y := (pbWakeLost.Height - Diameter) div 2;
-
-  with pbWakeLost.Canvas do
+  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+  if Torp <> nil then
   begin
-    Pen.Width := 2;
-    Brush.Style := bsClear;
+    Diameter := 31;
 
-    Ellipse(X, Y, X + Diameter, Y + Diameter);
-    pbWakeLost.Canvas.Pen.Color := clLime;
-    pbWakeLost.Canvas.Ellipse(13, 1, 44, 32);
+    X := (pbWakeLost.Width - Diameter) div 2;
+    Y := (pbWakeLost.Height - Diameter) div 2;
+
+    with pbWakeLost.Canvas do
+    begin
+      Pen.Width := 2;
+      Brush.Style := bsClear;
+
+      Ellipse(X, Y, X + Diameter, Y + Diameter);
+      pbWakeLost.Canvas.Pen.Color := clLime;
+      pbWakeLost.Canvas.Ellipse(13, 1, 44, 32);
+    end;
+  end;
+end;
+
+procedure TfrmHomingStatusPlot.tmrUpdateTorpedoHomingTimer(Sender: TObject);
+var
+  Torp: TTorpedoTrack;
+begin
+  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+  if Torp <> nil then
+  begin
+    if Torp.TorpGuidanceMode = gmHoming then
+    begin
+      lblStatusHoming.Caption := 'ToSo homing PN 2D';
+      pnlToSo.Visible := true;
+      pbLongRange.Repaint;
+      pbTgtLostSub.Repaint;
+      pbWakeLost.Repaint;
+      pbWakeAttack.Repaint;
+    end
+    else
+    begin
+      lblStatusHoming.Caption := 'No Homing status Received';
+      pnlToSo.Visible := false;
+    end;
+  end
+  else
+  begin
+    pnlToSo.Visible := False;
   end;
 end;
 

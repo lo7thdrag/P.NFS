@@ -126,28 +126,26 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 56
         Width = 6
         Height = 14
-        Caption = 'F'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblSalvoNumber1: TLabel
         Left = 118
         Top = 19
         Width = 14
         Height = 14
-        Caption = '01'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object pnlNumTorpedo1: TPanel
         Left = 8
@@ -246,28 +244,26 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 19
         Width = 14
         Height = 14
-        Caption = '02'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblFuse2: TLabel
         Left = 121
         Top = 56
         Width = 6
         Height = 14
-        Caption = 'F'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblActiveToSo2: TLabel
         Left = 20
@@ -394,28 +390,26 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 20
         Width = 14
         Height = 14
-        Caption = '03'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblFuse3: TLabel
         Left = 121
         Top = 57
         Width = 6
         Height = 14
-        Caption = 'F'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblActiveToSo3: TLabel
         Left = 19
@@ -543,7 +537,7 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 21
         Width = 14
         Height = 14
-        Caption = '04'
+        AutoSize = False
         FocusControl = pnlTorpedo2
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -551,14 +545,13 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblFuse4: TLabel
         Left = 121
         Top = 60
         Width = 6
         Height = 14
-        Caption = 'F'
+        AutoSize = False
         FocusControl = pnlTorpedo2
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -566,7 +559,6 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblActiveToSo4: TLabel
         Left = 19
@@ -723,28 +715,26 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 20
         Width = 14
         Height = 14
-        Caption = '05'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblFuse5: TLabel
         Left = 122
         Top = 57
         Width = 6
         Height = 14
-        Caption = 'F'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object pnlNumTorpedo5: TPanel
         Left = 9
@@ -843,28 +833,26 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 20
         Width = 14
         Height = 14
-        Caption = '06'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblFuse6: TLabel
         Left = 123
         Top = 57
         Width = 6
         Height = 14
-        Caption = 'F'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblActiveToSo6: TLabel
         Left = 18
@@ -991,28 +979,26 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 21
         Width = 14
         Height = 16
-        Caption = '07'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblFuse7: TLabel
         Left = 121
         Top = 55
         Width = 7
         Height = 16
-        Caption = 'F'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblActiveToSo7: TLabel
         Left = 18
@@ -1139,28 +1125,26 @@ object frmTorpedoTubeStatusWindow: TfrmTorpedoTubeStatusWindow
         Top = 20
         Width = 14
         Height = 14
-        Caption = '08'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblFuse8: TLabel
         Left = 121
         Top = 57
         Width = 6
         Height = 14
-        Caption = 'F'
+        AutoSize = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        Visible = False
       end
       object lblActiveToSo8: TLabel
         Left = 18

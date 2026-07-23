@@ -65,8 +65,8 @@ begin
   FBearing := 0;
   FAzimuth := 0;
   FHistorySaveCounter := 0;
-  FHistoryCountToSave := 25; // save every 5 detik
-  FMaxTrackHistory := 10;
+  FHistoryCountToSave := 75; // save every 15 detik
+  FMaxTrackHistory := 20;
   FTrackHistory := TList.Create;
 
 end;

@@ -482,7 +482,7 @@ begin
           Ship := TSimulationTrack(VehicleMgr.ObjectList[i]);
 
           Ship.HistorySaveCounter := Ship.HistorySaveCounter + 1;
-          if Ship.HistoryCountToSave = Ship.HistoryCountToSave then
+          if Ship.HistorySaveCounter = Ship.HistoryCountToSave then
           begin
             Ship.HistorySaveCounter := 0;
             TrkHstry := TTrackPoint.Create;

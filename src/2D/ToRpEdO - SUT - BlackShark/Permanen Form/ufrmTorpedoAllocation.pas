@@ -107,7 +107,7 @@ type
     lblSwitchRunToOff: TLabel;
     lblDeleteSalvoInfo: TLabel;
     Label36: TLabel;
-    Label37: TLabel;
+    lblTerminateSalvoNumber: TLabel;
     Panel1: TPanel;
     imgFireRelease2: TImage;
     imgFireRelease1: TImage;
@@ -136,6 +136,8 @@ type
     Label43: TLabel;
     Label44: TLabel;
     tmrImageAllocation: TTimer;
+    tmrEngagement: TTimer;
+    lblTerminateTargetNumber: TLabel;
     procedure pnlEngagementAnalysisStartClick(Sender: TObject);
     procedure lblCloseClick(Sender: TObject);
     procedure tmrImageAllocationTimer(Sender: TObject);
@@ -145,9 +147,20 @@ type
     procedure imgAllocation1Click(Sender: TObject);
     procedure imgFireReleaseClick(Sender: TObject);
     procedure lblReleaseAllClick(Sender: TObject);
+    procedure tmrEngagementTimer(Sender: TObject);
+    procedure AdvPageTorpedoAllocationChange(Sender: TObject);
+    procedure lvReallocationSelectItem(Sender: TObject; Item: TListItem;
+      Selected: Boolean);
+    procedure lvTransferSelectItem(Sender: TObject; Item: TListItem;
+      Selected: Boolean);
+    procedure lvTerminationSelectItem(Sender: TObject; Item: TListItem;
+      Selected: Boolean);
+    procedure lblSwitchRunToOffClick(Sender: TObject);
+    procedure lblDeleteSalvoInfoClick(Sender: TObject);
   private
     FFrmTorpedoParameterSettings : TfrmTorpedoParameterDepthSettings;
     FFrmTorpedoTubeCommands      : TfrmTorpedoTubeCommands;
+    FEngagementAnalysisStart     : Boolean;
   public
     FSelectTube : Integer;
     FSelectFireRelease : Integer;
@@ -188,10 +201,44 @@ begin
   Result := True;
 end;
 
+procedure TfrmTorpedoAllocation.AdvPageTorpedoAllocationChange(Sender: TObject);
+var
+  item : TListItem;
+  listVw : TListView;
+begin
+  if AdvPageTorpedoAllocation.ActivePageIndex = 1 then
+  begin
+    listVw := lvReallocation;
+  end
+
+  else if AdvPageTorpedoAllocation.ActivePageIndex = 2 then
+  begin
+    listVw := lvTransfer;
+  end
+
+  else if AdvPageTorpedoAllocation.ActivePageIndex = 3 then
+  begin
+    listVw := lvTermination;
+  end
+
+  else Exit;
+
+  listVw.Clear;
+  if Assigned(TorpedoParam) then
+  begin
+    item := listVw.Items.Add;
+    item.Caption := IntToStr(TorpedoParam.TargetTrackID);
+    item.SubItems.Add(IntToStr(TorpedoParam.SalvoNum));
+    item.SubItems.Add(IntToStr(TorpedoParam.TorpedoIdx));
+    item.SubItems.Add('MSI-01');
+  end;
+end;
+
 procedure TfrmTorpedoAllocation.FormCreate(Sender: TObject);
 begin
   FSelectTube := -1;
   FSelectFireRelease := -1;
+  FEngagementAnalysisStart := False;
 end;
 
 procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
@@ -222,21 +269,23 @@ procedure TfrmTorpedoAllocation.imgFireReleaseClick(Sender: TObject);
 begin
   FSelectFireRelease := TImage(Sender).Tag;
 
-  if SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].TextStatus = stTorpReady then
-  begin
-    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+  SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := not SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease;
 
-    SutBlacksharkManager.OperatorMessages                  := '';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
-  end
-  else
-  begin
-    SutBlacksharkManager.OperatorMessages                  := 'Torpedo Not Ready';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
-    Exit;
-  end;
+//  if SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].TextStatus = stTorpReady then
+//  begin
+//    SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := True;
+//
+//    SutBlacksharkManager.OperatorMessages                  := '';
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//  end
+//  else
+//  begin
+//    SutBlacksharkManager.OperatorMessages                  := 'Torpedo Not Ready';
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    Exit;
+//  end;
 end;
 
 procedure TfrmTorpedoAllocation.lblAllocateClick(Sender: TObject);
@@ -303,13 +352,24 @@ begin
   Close;
 end;
 
+procedure TfrmTorpedoAllocation.lblDeleteSalvoInfoClick(Sender: TObject);
+begin
+  // delete salvo info dan torpedo param
+  TorpedoParam.Free;
+  FEngagementAnalysisStart := False;
+  pnlEngagementAnalysisStart.Color := clBlack;
+
+  // close semua form yang dibuka
+  FreeAndNil(FFrmTorpedoParameterSettings);
+end;
+
 procedure TfrmTorpedoAllocation.lblReleaseAllClick(Sender: TObject);
 var
   i       : Integer;
   Img     : TImage;
-  ImgPath : string;
+  ImgPathTrue, ImgPathFalse : string;
 begin
-  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus2.bmp';
+  ImgPathTrue := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus2.bmp';
 
   for i := 0 to 7 do
   begin
@@ -326,8 +386,54 @@ begin
       7: Img := imgFireRelease8;
     end;
 
-    Img.Picture.LoadFromFile(ImgPath);
+    Img.Picture.LoadFromFile(ImgPathTrue);
   end;
+end;
+
+procedure TfrmTorpedoAllocation.lblSwitchRunToOffClick(Sender: TObject);
+begin
+  // matikan torpedo di torpedo launcher dan non aktifkan semua isinya
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TorpedoType := 0;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].WaterPressure := wpDrained;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TorpedoStatus := tsOff;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].SalvoNumber := 0;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].FuseStatus := False;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].BowCap := bcClosed;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].WTRSC := False;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].CableStatus := csOff;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Allocated := False;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stNone;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
+end;
+
+procedure TfrmTorpedoAllocation.lvReallocationSelectItem(Sender: TObject;
+  Item: TListItem; Selected: Boolean);
+begin
+  // select item di realloc
+end;
+
+procedure TfrmTorpedoAllocation.lvTerminationSelectItem(Sender: TObject;
+  Item: TListItem; Selected: Boolean);
+begin
+  // select item di termination
+  if Assigned(TorpedoParam) then
+  begin
+    if lvTermination.Selected.Index = 0 then
+    begin
+      lblTerminateTargetNumber.Caption := IntToStr(TorpedoParam.TargetTrackID);
+      lblTerminateSalvoNumber.Caption := IntToStr(TorpedoParam.SalvoNum);
+      cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
+    end;
+
+  end;
+end;
+
+procedure TfrmTorpedoAllocation.lvTransferSelectItem(Sender: TObject;
+  Item: TListItem; Selected: Boolean);
+begin
+  // select item di transfer (which is ga fungsi)
 end;
 
 procedure TfrmTorpedoAllocation.pnlEngagementAnalysisStartClick(Sender: TObject);
@@ -335,21 +441,44 @@ begin
   if not IsReadyForEngagementAnalysis then
     Exit;
 
-  if not Assigned(TorpedoParam) then
+//  FEngagementAnalysisStart := not FEngagementAnalysisStart;
+  if not FEngagementAnalysisStart then FEngagementAnalysisStart := True;
+
+  if FEngagementAnalysisStart then
   begin
-    TorpedoParam := TTorpedoParameterSetting.Create;
-    // ini harus dihandle biar di track dulu targetnya rojek
-    TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
+    pnlEngagementAnalysisStart.Color := clGreen;
+
+    if not Assigned(TorpedoParam) then
+    begin
+      TorpedoParam := TTorpedoParameterSetting.Create;
+      // ini harus dihandle biar di track dulu targetnya rojek
+      TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
+    end;
+
+    if not Assigned(FFrmTorpedoParameterSettings) then
+    begin
+      frmTorpedoWP.pnlTorpedoParamSettings.Caption := '';
+
+      FFrmTorpedoParameterSettings        := TfrmTorpedoParameterDepthSettings.Create(Self);
+      FFrmTorpedoParameterSettings.Parent := frmTorpedoWP.pnlTorpedoParamSettings;
+      FFrmTorpedoParameterSettings.Align  := alClient;
+      FFrmTorpedoParameterSettings.Show;
+    end;
   end;
+//  else
+//  begin
+//    pnlEngagementAnalysisStart.Color := clBlack;
+//  end;
 
-  if not Assigned(FFrmTorpedoParameterSettings) then
+
+end;
+
+procedure TfrmTorpedoAllocation.tmrEngagementTimer(Sender: TObject);
+begin
+  // update engagement list
+  if Assigned(TorpedoParam) then
   begin
-    frmTorpedoWP.pnlTorpedoParamSettings.Caption := '';
 
-    FFrmTorpedoParameterSettings        := TfrmTorpedoParameterDepthSettings.Create(Self);
-    FFrmTorpedoParameterSettings.Parent := frmTorpedoWP.pnlTorpedoParamSettings;
-    FFrmTorpedoParameterSettings.Align  := alClient;
-    FFrmTorpedoParameterSettings.Show;
   end;
 end;
 
@@ -420,10 +549,10 @@ procedure TfrmTorpedoAllocation.UpdateFireRelease;
 var
   i       : Integer;
   Img     : TImage;
-  ImgPath : string;
+  ImgPathTrue, ImgPathFalse : string;
 begin
-  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus2.bmp';
-
+  ImgPathTrue := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus2.bmp';
+  ImgPathFalse := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus1.bmp';
   for i := 1 to 8 do
   begin
     case i of
@@ -439,8 +568,10 @@ begin
 
     if SutBlacksharkManager.FTorpedoArray[i-1].FireRelease then
     begin
-      Img.Picture.LoadFromFile(ImgPath);
-    end;
+      Img.Picture.LoadFromFile(ImgPathTrue);
+    end
+    else
+      Img.Picture.LoadFromFile(ImgPathFalse);
   end;
 end;
 

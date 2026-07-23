@@ -24,6 +24,7 @@ type
     FIsExist : Boolean;
     FFuseOn: Boolean;
     FSpeedMS : Double;
+    FOSToSSP : Double;
 
   public
     constructor Create; overload;
@@ -50,6 +51,8 @@ type
     property IsExist : Boolean read FIsExist write FIsExist;
     property FuseOn : Boolean read FFuseOn write FFuseOn;
     property SpeedMS : Double read FSpeedMS write FSpeedMS;
+    property OSToSSP : Double read FOSToSSP write FOSToSSP;
+
 
   end;
 

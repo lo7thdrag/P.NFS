@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, VrControls,
-  VrButtons,
+  VrButtons, uVehicleManager, uTorpedoTrack, uSutBlacksharkManager, uTCPDatatype,
 
   ufrmHomingStatusPlot;
 
@@ -35,18 +35,52 @@ uses
 {$R *.dfm}
 
 procedure TfrmHomingCommands.btnToSoPNClick(Sender: TObject);
+var
+  Torp: TTorpedoTrack;
+  RecSend : TRecSetTorpedoSUT;
 begin
-  if not Assigned(FfrmHomingStatusPlot) then
+  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+  if Torp <> nil then
   begin
-    frmTorpedoWP.pnlTorpedoHomingStatusPlot.Caption := '';
+    Torp.TorpGuidanceMode := gmHoming;
 
-    FfrmHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
-    FfrmHomingStatusPlot.Parent := frmTorpedoWP.pnlTorpedoHomingStatusPlot;
-    FfrmHomingStatusPlot.Align  := alClient;
+    RecSend.ShipID              := SutBlacksharkManager.ShipID;
+    RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+    RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
+    RecSend.mMissileID          := 1; // selalu 1
+    RecSend.mMissileNumber      := 1; // selalu 1
+    RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
+    RecSend.OrderID             := __ORD_TORPEDOSUT_Homing;
+    RecSend.mMissileType        := 0;
+    RecSend.mTorpedoCourse      := TorpedoParam.ApproachCourse; // diambil dari torpedo param, automatis di set saat start analysis
+
+    RecSend.mTorpedoSpeed       := 25;
+
+    RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;
+    RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
+    RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
+    RecSend.mpredm              := 0;
+    RecSend.mTargetType         := VehicleMgr.TrackControlled.Domain;
+
+    SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+
+    Torp.SpeedMS := 25;
   end;
 
-  FfrmHomingStatusPlot.Show;
-  FfrmHomingStatusPlot.BringToFront;
+
+//  if not Assigned(frmHomingStatusPlot) then
+//  begin
+//    frmTorpedoWP.pnlTorpedoHomingStatusPlot.Caption := '';
+//
+//    frmHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
+//    frmHomingStatusPlot.Parent := frmTorpedoWP.pnlTorpedoHomingStatusPlot;
+//    frmHomingStatusPlot.Align  := alClient;
+//  end;
+//
+//  frmHomingStatusPlot.Show;
+//  frmHomingStatusPlot.BringToFront;
+
+
 end;
 
 end.

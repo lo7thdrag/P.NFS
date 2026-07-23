@@ -1242,6 +1242,7 @@ var
 begin
   OwnShip := nil;
   TempShip := nil;
+  Torp := nil;
 
   if VehicleMgr.ObjectList.Count>0 then
 
@@ -1250,6 +1251,21 @@ begin
     if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = UniqueID_To_dbID(SutBlacksharkManager.xShip.UniqueID) then
     begin
       OwnShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
+
+      // spawn track history
+      for indx := 0 to OwnShip.TrackHistory.Count -1 do
+      begin
+        MapX := TTrackPoint(OwnShip.TrackHistory[indx]).PosX;
+        MapY := TTrackPoint(OwnShip.TrackHistory[indx]).PosY;
+//
+        FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+        aCnv.Pen.Color := clwhite;
+        aCnv.Pen.Width := 1;
+        aCnv.Pen.Style := psSolid;
+        aCnv.Brush.Style := bsSolid;
+        aCnv.Brush.Color := clwhite;
+        aCnv.Ellipse(Round(scrx -2), Round(scry-2), Round(scrx+2), Round(scry+2));
+      end;
 
       MapX := OwnShip.PosX;
       MapY := OwnShip.PosY;
@@ -1276,19 +1292,6 @@ begin
       ScrX := ScrX + Round(sin(Angle) * 70);
       ScrY := ScrY - Round(cos(Angle) * 70);
       aCnv.LineTo(Round(scrX), Round(scrY));
-
-      // spawn track history
-      for indx := 0 to OwnShip.TrackHistory.Count -1 do
-      begin
-        MapX := TTrackPoint(OwnShip.TrackHistory[indx]).PosX;
-        MapY := TTrackPoint(OwnShip.TrackHistory[indx]).PosY;
-//
-        FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-        aCnv.Pen.Color := clGray;
-        aCnv.Pen.Width := 1;
-        aCnv.Pen.Style := psSolid;
-        aCnv.Ellipse(Round(scrx -1), Round(scry-1), Round(scrx+1), Round(scry+1));
-      end;
     end
     else
     begin
@@ -1364,13 +1367,15 @@ begin
             dy := TargetShip.PosY - Torp.PosY;
 
             // Perpanjang garis sampai jauh ke depan
-            dx := Torp.PosX + dx * 10;
-            dy := Torp.PosY + dy * 10;
+            dx := Torp.PosX + dx * 100;
+            dy := Torp.PosY + dy * 100;
 
             FMap.ConvertCoord(ScrDX, ScrDY, dx, dy, 0);
 
             // outside ToSo Range
-            aCnv.Pen.Color := clYellow;
+            if Torp.TorpGuidanceMode = gmHoming then aCnv.Pen.Color := clGreen
+            else aCnv.Pen.Color := clYellow;
+
             aCnv.Pen.Style := psDot;
             aCnv.Pen.Width := 1;
             aCnv.MoveTo(Round(scrx), Round(scrY));
@@ -1400,6 +1405,21 @@ begin
         if TempShip.Controlled_Track then
         begin
           TargetShip := TempShip;
+
+          for indx := 0 to TargetShip.TrackHistory.Count -1 do
+          begin
+            MapX := TTrackPoint(TargetShip.TrackHistory[indx]).PosX;
+            MapY := TTrackPoint(TargetShip.TrackHistory[indx]).PosY;
+
+            FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+            aCnv.Pen.Color := clwhite;
+            aCnv.Pen.Width := 1;
+            aCnv.Pen.Style := psSolid;
+            aCnv.Brush.Style := bsSolid;
+            aCnv.Brush.Color := clwhite;
+            aCnv.Ellipse(Round(scrx-2), Round(scry-2), Round(scrx+2), Round(scry+2));
+          end;
+
           MapX := TempShip.PosX;
           MapY := TempShip.PosY;
 
@@ -1430,17 +1450,7 @@ begin
           aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
 
           // spawn track history
-          for indx := 0 to TargetShip.TrackHistory.Count -1 do
-          begin
-            MapX := TTrackPoint(TargetShip.TrackHistory[indx]).PosX;
-            MapY := TTrackPoint(TargetShip.TrackHistory[indx]).PosY;
 
-            FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-            aCnv.Pen.Color := clGray;
-            aCnv.Pen.Width := 1;
-            aCnv.Pen.Style := psSolid;
-            aCnv.Ellipse(Round(scrx-1), Round(scry-1), Round(scrx+1), Round(scry+1));
-          end;
         end;
       end;
 
@@ -1519,6 +1529,10 @@ begin
       OSCenter := OSCenter * C_NauticalMile_To_Degree;
       SALength := OSCenter * 4/3; // length search area
       OStoSSP := OSCenter - SALength /2; // ownship to SSP (start search point)
+      if Torp <> nil then
+      begin
+        Torp.OSToSSP := OStoSSP;
+      end;
       TorpedoParam.CenterOS := OSCenter;
       TorpedoParam.SALength := SALength;
       TorpedoParam.OStoSSP := OStoSSP;
@@ -2027,17 +2041,17 @@ begin
       end
       else FreeAndNil(FFrmTorpedoGuidance);
 
-      if not Assigned(FFrmTorpedoHomingStatusPlot) then
+      if not Assigned(frmHomingStatusPlot) then
       begin
 
-        FFrmTorpedoHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
-        FFrmTorpedoHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
-        FFrmTorpedoHomingStatusPlot.Align  := alClient;
-        FFrmTorpedoHomingStatusPlot.Show;
+        frmHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
+        frmHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
+        frmHomingStatusPlot.Align  := alClient;
+        frmHomingStatusPlot.Show;
 
-        pnlToSo.BringToFront;
+//        pnlToSo.BringToFront;
       end
-      else FreeAndNil(FFrmTorpedoHomingStatusPlot);
+      else FreeAndNil(frmHomingStatusPlot);
     end;
     17:
     begin
@@ -2497,13 +2511,13 @@ begin
         {$ENDREGION}
 
         {$REGION 'Update Battery'}
-        Torp.BatteryCapacity := Torp.BatteryCapacity - (0.01 * DeltaSeconds);
+        Torp.BatteryCapacity := Torp.BatteryCapacity - (0.02 * DeltaSeconds);
         {$ENDREGION}
 
         {$REGION 'Update Time'}
         if not Torp.FuseOn then
         begin
-          Torp.ApproachLength := TorpedoParam.EnablingDist - torp.RunLength;
+          Torp.ApproachLength := TorpedoParam.EnablingDist - (torp.RunLength / 1000);
           Torp.ApproachTime := (Torp.ApproachLength * 1000) / TorpedoParam.SearchSpeed;
 
           if Torp.ApproachTime < 0.05 then
@@ -2512,10 +2526,18 @@ begin
             torp.FuseOn := True;
             torp.ApproachTime := 0.0;
             Torp.ApproachLength := 0.0;
+
+            SutBlacksharkManager.FTorpedoArray[Torp.LauncherID - 1].FuseStatus := True;
           end;
         end;
-        
-        
+        {$ENDREGION}
+
+        {$REGION 'Update OS to SSP'}
+        if (Torp.OSToSSP * C_NauticalMile_To_Metre) - Torp.RunLength > 55  then
+        begin
+          // ganti ke msi SA
+        end;
+
         {$ENDREGION}
       end;
     end
