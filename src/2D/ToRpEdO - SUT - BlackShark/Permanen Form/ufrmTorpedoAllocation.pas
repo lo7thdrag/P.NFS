@@ -355,12 +355,15 @@ end;
 procedure TfrmTorpedoAllocation.lblDeleteSalvoInfoClick(Sender: TObject);
 begin
   // delete salvo info dan torpedo param
-  TorpedoParam.Free;
+  FreeAndNil(TorpedoParam);
   FEngagementAnalysisStart := False;
   pnlEngagementAnalysisStart.Color := clBlack;
 
   // close semua form yang dibuka
-  FreeAndNil(FFrmTorpedoParameterSettings);
+  if Assigned(FFrmTorpedoParameterSettings) then
+    FreeAndNil(FFrmTorpedoParameterSettings);
+
+  AdvPageTorpedoAllocationChange(Sender);
 end;
 
 procedure TfrmTorpedoAllocation.lblReleaseAllClick(Sender: TObject);
