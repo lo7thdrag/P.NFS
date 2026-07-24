@@ -25,6 +25,7 @@ type
     procedure edtTrackNoChange(Sender: TObject);
     procedure lblApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FApplyBtnEnable : Boolean;
@@ -56,6 +57,11 @@ end;
 procedure TfrmControlByNumber.FormCreate(Sender: TObject);
 begin
   FApplyBtnEnable := False;
+end;
+
+procedure TfrmControlByNumber.FormShow(Sender: TObject);
+begin
+  edtTrackNo.SetFocus;
 end;
 
 procedure TfrmControlByNumber.lblApplyClick(Sender: TObject);

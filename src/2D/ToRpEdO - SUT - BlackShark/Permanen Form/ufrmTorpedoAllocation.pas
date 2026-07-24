@@ -244,6 +244,7 @@ end;
 procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
 begin
   UpdateAllocationStatus;
+  AdvPageTorpedoAllocation.ActivePageIndex(0);
 end;
 
 procedure TfrmTorpedoAllocation.imgAllocation1Click(Sender: TObject);
@@ -298,6 +299,7 @@ begin
     SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated  := True;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].TextStatus := stNone;
     SutBlacksharkManager.TorpedoTubeAllocNum := FSelectTube + 1;
+    TorpedoParam.TorpedoIdx := FSelectTube + 1;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].SalvoNumber := SutBlacksharkManager.SalvoIndex;
 
     if Assigned(frmTorpedoTubeStatusWindow) then
@@ -500,9 +502,10 @@ procedure TfrmTorpedoAllocation.UpdateAllocationStatus;
 var
   i       : Integer;
   Img     : TImage;
-  ImgPath : string;
+  ImgPathOn, ImgPathOff : string;
 begin
-  ImgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus2.bmp';
+  ImgPathOn := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus2.bmp';
+  ImgPathOff := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus1.bmp';
 
   for i := 1 to 8 do
   begin
@@ -519,7 +522,7 @@ begin
 
     if SutBlacksharkManager.FTorpedoArray[i-1].Loaded then
     begin
-      Img.Picture.LoadFromFile(ImgPath);
+      Img.Picture.LoadFromFile(ImgPathOn);
 
       case i of
         1: lblAllocationStatus1.Font.Color := clLime;
@@ -534,6 +537,7 @@ begin
     end
     else
     begin
+      Img.Picture.LoadFromFile(ImgPathOff);
       case i of
         1: lblAllocationStatus1.Font.Color := clWhite;
         2: lblAllocationStatus2.Font.Color := clWhite;

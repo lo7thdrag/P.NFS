@@ -74,7 +74,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
       Top = 8
       Width = 470
       Height = 529
-      ActivePage = AdvTerminate
+      ActivePage = AdvEngage
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -13
@@ -3054,7 +3054,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             ParentFont = False
           end
           object lblAllocate: TLabel
-            Left = 191
+            Left = 192
             Top = 382
             Width = 43
             Height = 14
@@ -3334,7 +3334,9 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Top = 208
           Width = 42
           Height = 14
-          Caption = '110002'
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '000000'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3360,7 +3362,9 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Top = 208
           Width = 42
           Height = 14
-          Caption = '110003'
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '000000'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3609,6 +3613,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Width = 17
           Height = 17
           Caption = 'rbMSI01'
+          Checked = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3616,6 +3621,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Style = []
           ParentFont = False
           TabOrder = 2
+          TabStop = True
         end
         object rbReallocateSonar04: TRadioButton
           Left = 65
@@ -3777,7 +3783,9 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Top = 214
           Width = 42
           Height = 14
-          Caption = '110002'
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '000000'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3803,7 +3811,9 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Top = 238
           Width = 42
           Height = 14
-          Caption = '       01'
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '0'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3949,6 +3959,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Width = 17
           Height = 17
           Caption = 'rbMSI01'
+          Checked = True
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3956,6 +3967,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Style = []
           ParentFont = False
           TabOrder = 1
+          TabStop = True
         end
         object rbTransferSonar04: TRadioButton
           Left = 65

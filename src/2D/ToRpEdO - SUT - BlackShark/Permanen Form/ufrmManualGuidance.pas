@@ -20,8 +20,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure pnlManualGuidanceClick(Sender: TObject);
     procedure ChangeCourseDegree(Sender: TObject);
-    procedure edtCourseEnter(Sender: TObject);
     procedure tmrUpdateTorpCourseTimer(Sender: TObject);
+    procedure edtCourseKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     FManualGuidance : Boolean;
@@ -78,41 +78,45 @@ begin
   end;
 end;
 
-procedure TfrmManualGuidance.edtCourseEnter(Sender: TObject);
+procedure TfrmManualGuidance.edtCourseKeyPress(Sender: TObject; var Key: Char);
 var
   Torp: TTorpedoTrack;
   RecSend : TRecSetTorpedoSUT;
 begin
-  // kirim 3d perintah manual guidance
-  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
-  if Torp <> nil then
+  if Key = #13 then  // #13 = Enter
   begin
-    RecSend.ShipID              := SutBlacksharkManager.ShipID;
-    RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-    RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
-    RecSend.mMissileID          := 1; // selalu 1
-    RecSend.mMissileNumber      := 1; // selalu 1
-    RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
-    RecSend.OrderID             := __ORD_TORPEDOSUT_NAVIGATE;
-    RecSend.mMissileType        := 0;
-    RecSend.mTorpedoCourse      := StrToFloat(edtCourse.Text); // diambil dari torpedo param, automatis di set saat start analysis
+    // kirim 3d perintah manual guidance
+    Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+    if Torp <> nil then
+    begin
+      RecSend.ShipID              := SutBlacksharkManager.ShipID;
+      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
+      RecSend.mMissileID          := 1; // selalu 1
+      RecSend.mMissileNumber      := 1; // selalu 1
+      RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
+      RecSend.OrderID             := __ORD_TORPEDOSUT_NAVIGATE;
+      RecSend.mMissileType        := 0;
+      RecSend.mTorpedoCourse      := StrToFloat(edtCourse.Text); // diambil dari torpedo param, automatis di set saat start analysis
 
-    RecSend.mTorpedoSpeed       := TorpedoParam.SearchSpeed;
+      RecSend.mTorpedoSpeed       := TorpedoParam.SearchSpeed;
 
-    RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;
-    RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
-    RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
-    RecSend.mpredm              := 0;
-    RecSend.mTargetType         := VehicleMgr.TrackControlled.Domain;
+      RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;
+      RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
+      RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
+      RecSend.mpredm              := 0;
+      RecSend.mTargetType         := VehicleMgr.TrackControlled.Domain;
 
-    SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
 
-    Torp.SpeedMS := TorpedoParam.SearchSpeed;
+      Torp.SpeedMS := TorpedoParam.SearchSpeed;
+    end;
   end;
 end;
 
 procedure TfrmManualGuidance.FormCreate(Sender: TObject);
 begin
+  tmrUpdateTorpCourseTimer(Sender);
   FManualGuidance := false;
 end;
 
@@ -143,8 +147,8 @@ begin
       RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
       RecSend.OrderID             := __ORD_TORPEDOSUT_ManualGuide;
       RecSend.mMissileType        := 0;
-      RecSend.mTorpedoCourse      := TorpedoParam.ApproachCourse; // diambil dari torpedo param, automatis di set saat start analysis
-
+//      RecSend.mTorpedoCourse      := TorpedoParam.ApproachCourse; // diambil dari torpedo param, automatis di set saat start analysis
+      RecSend.mTorpedoCourse      := StrToFloat(lblCourseVal.Caption);
       RecSend.mTorpedoSpeed       := TorpedoParam.SearchSpeed;
 
       RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;

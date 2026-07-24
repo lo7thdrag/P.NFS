@@ -490,6 +490,11 @@ begin
     Text2.Caption := '';
     Text2.Visible := False;
 
+    Text3.Color := clWhite;
+
+    Text4.Caption    := '';
+    Text5.Caption    := '';
+
     PanelNumber.Visible := False;
 
     if SutBlacksharkManager.FTorpedoArray[i].SalvoNumber <> 0 then

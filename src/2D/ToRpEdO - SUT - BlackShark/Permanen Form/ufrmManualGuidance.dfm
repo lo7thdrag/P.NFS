@@ -68,7 +68,7 @@ object frmManualGuidance: TfrmManualGuidance
       TabOrder = 0
       Text = '0'
       Visible = False
-      OnEnter = edtCourseEnter
+      OnKeyPress = edtCourseKeyPress
     end
     object pnlManualGuidance: TPanel
       Left = 5
