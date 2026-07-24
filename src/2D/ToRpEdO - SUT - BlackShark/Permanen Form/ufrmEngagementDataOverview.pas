@@ -144,8 +144,8 @@ begin
     lblruntime.Caption := FormatDateTime('hh:nn:ss', (Now - Torp.TimeLaunch));
     lblRunLength.Caption := FormatFloat('0.0', Torp.RunLength / 1000);
 
-    lblApproachTime.Caption := FormatDateTime('hh:nn:ss', Torp.ApproachTime);
-    lblApproachLength.Caption := FormatFloat('0.0', Torp.ApproachLength / 1000);
+    lblApproachTime.Caption := FormatDateTime('hh:nn:ss', Torp.ApproachTime/86400);
+    lblApproachLength.Caption := FormatFloat('0.0', Torp.ApproachLength);
 
     lblBatteryCapacity.Caption := FormatFloat('0.0', Torp.BatteryCapacity);
 //    lblWireLeft.Caption := FormatFloat('0.0', Torp.CurrentWireLeft / 1000);
