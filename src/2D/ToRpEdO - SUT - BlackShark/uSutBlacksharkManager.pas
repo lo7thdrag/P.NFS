@@ -402,11 +402,11 @@ begin
     end;
     ST_MISSILE_DEL:
     begin
-//      Torp := VehicleMgr.FindTorpedoByLauncherID(rec^.launcherID);
-      TorpIdx := VehicleMgr.FindTorpedoIdxByLauncherID(rec^.launcherID);
+      Torp := VehicleMgr.FindTorpedoByLauncherID(rec^.launcherID);
+//      TorpIdx := VehicleMgr.FindTorpedoIdxByLauncherID(rec^.launcherID);
       if Assigned(Torp) then
       begin
-        VehicleMgr.ObjectList.Delete(TorpIdx);
+        VehicleMgr.ObjectList.Remove(Torp);
 //        Torp.Free;
 //        VehicleMgr.RemoveVehicle(Torp);
 //        VehicleMgr.ObjectList.Remove(Torp);

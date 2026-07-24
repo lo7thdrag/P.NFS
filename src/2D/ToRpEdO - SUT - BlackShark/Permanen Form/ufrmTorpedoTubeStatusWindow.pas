@@ -212,12 +212,12 @@ begin
       aCnv.Brush.Color := clLime;
       aCnv.Brush.Style := bsSolid;
     end
-    else if aLauncher.FireRelease = True then
-    begin
-      aCnv.Pen.Color   := clLime;
-      aCnv.Brush.Color := clLime;
-      aCnv.Brush.Style := bsClear;
-    end
+//    else if aLauncher.FireRelease = True then
+//    begin
+//      aCnv.Pen.Color   := clLime;
+//      aCnv.Brush.Color := clLime;
+//      aCnv.Brush.Style := bsClear;
+//    end
     else
     begin
       case aLauncher.TorpedoStatus of
@@ -263,8 +263,8 @@ begin
     {$REGION 'Vertical Line Cable Status'}
     if aLauncher.TextStatus = stTorpReady then
       aCnv.Pen.Color := clLime
-    else if aLauncher.FireRelease = True then
-      aCnv.Pen.Color := clLime   
+//    else if aLauncher.FireRelease = True then
+//      aCnv.Pen.Color := clLime
     else
     begin
       case aLauncher.CableStatus of

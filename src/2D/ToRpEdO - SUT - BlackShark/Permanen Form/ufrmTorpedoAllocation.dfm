@@ -74,7 +74,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
       Top = 8
       Width = 470
       Height = 529
-      ActivePage = AdvEngage
+      ActivePage = AdvTerminate
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -13
