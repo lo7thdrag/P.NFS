@@ -493,10 +493,21 @@ begin
     PanelNumber.Visible := False;
 
     if SutBlacksharkManager.FTorpedoArray[i].SalvoNumber <> 0 then
-      Text4.Caption := IntToStr(SutBlacksharkManager.FTorpedoArray[i].SalvoNumber);
+    begin
+      Text4.Caption    := IntToStr(SutBlacksharkManager.FTorpedoArray[i].SalvoNumber);
+      Text4.Font.Color := clLime;
+    end;
 
-    if aText.FuseStatus then Text5.Caption := 'F'
-    else Text5.Caption := '';
+    if aText.FuseStatus then
+    begin
+      Text5.Caption    := 'F';
+      Text5.Font.Color := clLime;
+    end
+    else
+    begin
+      Text5.Caption    := '';
+      Text5.Font.Color := clWhite;
+    end;
 
     if aText.Allocated then
     begin
