@@ -94,7 +94,7 @@ begin
     Bearing        := StrToFloatDef(edtbearing.Text, Bearing);
     Range          := StrToFloatDef(edtRange.Text, Range);
     HeadingDeg     := StrToFloatDef(edtCourse.Text, HeadingDeg);
-    Speed_knot     := StrToFloatDef(edtSpeed.Text, Speed_knot * 0.514444444) / 0.514444444;
+    Speed_knot     := StrToFloatDef(edtSpeed.Text, Speed_knot * 0.514444444);
     PosZ           := -Abs(StrToFloatDef(edtDepth.Text, Abs(PosZ)));
 
     Identity := TIdentity(cbIdentity.ItemIndex);

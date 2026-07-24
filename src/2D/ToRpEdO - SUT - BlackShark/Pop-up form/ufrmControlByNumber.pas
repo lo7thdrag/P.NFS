@@ -78,7 +78,6 @@ begin
       FreeAndNil(frmControlByNumber);
     end;
   end;
-
 end;
 
 procedure TfrmControlByNumber.lblCloseClick(Sender: TObject);

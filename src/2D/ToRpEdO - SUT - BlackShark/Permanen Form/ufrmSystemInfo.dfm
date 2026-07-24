@@ -47,7 +47,13 @@ object frmSystemInfo: TfrmSystemInfo
           Caption = 'Console'
           Width = 100
         end>
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clLime
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       GridLines = True
+      ParentFont = False
       TabOrder = 0
       ViewStyle = vsReport
     end

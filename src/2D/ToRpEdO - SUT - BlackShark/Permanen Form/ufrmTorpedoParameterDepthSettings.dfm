@@ -710,10 +710,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label23: TLabel
           Left = 7
           Top = 50
@@ -939,10 +935,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label28: TLabel
           Left = 7
           Top = -2
@@ -1300,10 +1292,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label40: TLabel
           Left = 7
           Top = 4
@@ -1458,10 +1446,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label50: TLabel
           Left = 7
           Top = 4
@@ -1667,10 +1651,6 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label55: TLabel
           Left = 14
           Top = 2

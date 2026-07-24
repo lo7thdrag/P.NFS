@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting, uSutBlacksharkManager, uVehicleManager, uBaseFunction;
+  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting, uSutBlacksharkManager, uVehicleManager, uBaseFunction, ufrmSystemInfo;
 
 type
   TfrmTorpedoParameterDepthSettings = class(TForm)
@@ -254,6 +254,7 @@ begin
   edtOfficialLOSDeviation.Text   := edtTrialLOSDeviation.Text;
   cbTrialSearchSpeed.ItemIndex   := TorpedoParam.SearchSpeed - 9;
   lblOfficialSearchSpeed.Caption := cbTrialSearchSpeed.Text;
+  lblNoTorpedoes.Caption         := IntToStr(TorpedoParam.TorpedoIdx);
   {$ENDREGION}
 
   {$REGION 'AdvDepth'}
@@ -454,6 +455,9 @@ begin
     lblNumberSalvo.Caption          := IntToStr(TorpedoParam.SalvoNum);
     lblNumberSalvo.Font.Color       := clLime;
   end;
+
+  if Assigned(frmSystemInfo) and frmSystemInfo.Visible then
+    frmSystemInfo.UpdateEngagementList;
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblResetClick(Sender: TObject);

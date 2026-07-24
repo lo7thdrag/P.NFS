@@ -13,6 +13,7 @@ type
     pnlMain: TPanel;
     lvEngagementList: TListView;
     procedure FormShow(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -35,34 +36,18 @@ end;
 
 procedure TfrmSystemInfo.UpdateEngagementList;
 var
-  i: Integer;
   Item: TListItem;
 begin
-  lvEngagementList.Items.BeginUpdate;
+  lvEngagementList.Clear;
 
-  try
-    lvEngagementList.Items.Clear;
-
-    if not VehicleMgr.IsAnyTrackControlled then
-      Exit;
-
-    for i := 0 to 7 do
-    begin
-      if SutBlacksharkManager.FTorpedoArray[i].FireRelease then
-      begin
-        Item := lvEngagementList.Items.Add;
-
-        Item.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
-        Item.SubItems.Add(IntToStr(TorpedoParam.SalvoNum));
-        Item.SubItems.Add(IntToStr(i + 1));
-        Item.SubItems.Add('MSI-01');
-      end;
-    end;
-
-  finally
-    lvEngagementList.Items.EndUpdate;
+  if Assigned(TorpedoParam) then
+  begin
+    Item := lvEngagementList.Items.Add;
+    Item.Caption := IntToStr(TorpedoParam.TargetTrackID);
+    Item.SubItems.Add(IntToStr(TorpedoParam.SalvoNum));
+    Item.SubItems.Add(IntToStr(TorpedoParam.TorpedoIdx));
+    Item.SubItems.Add('MSI-01');
   end;
-
 end;
 
 end.
