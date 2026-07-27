@@ -639,6 +639,11 @@ type
     SPSStatusLoadport     : Boolean;
     SPSStatusLoadStaboard : Boolean;
 
+    BlackSharkLoad_1, BlackSharkLoad_2,
+    BlackSharkLoad_3, BlackSharkLoad_4,
+    BlackSharkLoad_5, BlackSharkLoad_6,
+    BlackSharkLoad_7, BlackSharkLoad_8 : Boolean;
+
 
     { Handle Event }
     { SPS }
@@ -752,6 +757,7 @@ const
   tmr_SPS              = 30;
   tmr_VLMica           = 40;
   tmr_RBU              = 55;
+  tmr_BLACKSHARK       = 65;
 
 
 
@@ -2535,33 +2541,122 @@ var
 begin
   if SimManager.TrackObject = nil then  Exit;
 
-  for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count -1 do
+  BlackSharkLoad_1 := False;
+  BlackSharkLoad_2 := False;
+  BlackSharkLoad_3 := False;
+  BlackSharkLoad_4 := False;
+  BlackSharkLoad_5 := False;
+  BlackSharkLoad_6 := False;
+  BlackSharkLoad_7 := False;
+  BlackSharkLoad_8 := False;
+
+  if TComponent(Sender).Tag = 3 then
   begin
-    WeaponShip := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
-
-    if WeaponShip is TWeaponOn_Blackshark then
+    for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count -1 do
     begin
-      WeaponBlackShark := TWeaponOn_Blackshark(WeaponShip);
+      WeaponShip := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
 
-      launcherID := cbbLoadBlackShark.ItemIndex + 1;
+      if WeaponShip is TWeaponOn_Blackshark then
+      begin
+        WeaponBlackShark := TWeaponOn_Blackshark(WeaponShip);
 
-      recsendcBlackShark.shipID                  := SimManager.TrackObject.FDataBaseID;
-      recsendcBlackShark.mWeaponID               := WeaponBlackShark.Weapon_ID;
-      recsendcBlackShark.mLauncherID             := launcherID;
-      recsendcBlackShark.mMissileID              := 1;
-      recsendcBlackShark.mMissileNumber          := 1;
-      recsendcBlackShark.mT_ID                   := 0;  // target ID
-      recsendcBlackShark.OrderID                 := __ORD_TORPEDOSUT_LOADING;
-      recsendcBlackShark.mMissileType            := 0;
-      recsendcBlackShark.mTorpedoCourse          := 0;
-      recsendcBlackShark.mTorpedoSpeed           := 0;
-      recsendcBlackShark.mTorpedoDepth           := 0;
-      recsendcBlackShark.mTorpedoSafeDistance    := 0;
-      recsendcBlackShark.mTorpedoEnDis           := 0;
-      recsendcBlackShark.mpredm                  := 0;
-      recsendcBlackShark.mTargetType             := 0;
+        recsendcBlackShark.shipID                  := SimManager.TrackObject.FDataBaseID;
+        recsendcBlackShark.mWeaponID               := WeaponBlackShark.Weapon_ID;
+        recsendcBlackShark.mLauncherID             := WeaponBlackShark.Weapon_Launcher;
+        recsendcBlackShark.mMissileID              := 1;
+        recsendcBlackShark.mMissileNumber          := 1;
+        recsendcBlackShark.mT_ID                   := 0;  // target ID
+        recsendcBlackShark.OrderID                 := __ORD_TORPEDOSUT_LOADING;
+        recsendcBlackShark.mMissileType            := 0;
+        recsendcBlackShark.mTorpedoCourse          := 0;
+        recsendcBlackShark.mTorpedoSpeed           := 0;
+        recsendcBlackShark.mTorpedoDepth           := 0;
+        recsendcBlackShark.mTorpedoSafeDistance    := 0;
+        recsendcBlackShark.mTorpedoEnDis           := 0;
+        recsendcBlackShark.mpredm                  := 0;
+        recsendcBlackShark.mTargetType             := 0;
 
-      SimManager.NetSendTo3D_OrderMissileSUT(recsendcBlackShark);
+        if cbbLoadBlackShark.Text = 'ALL' then
+        begin
+          if WeaponBlackShark.Weapon_Launcher = 1 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := WeaponBlackShark.Weapon_Launcher;
+              BlackSharkLoad_1 := True;
+            end;
+          end
+          else if WeaponBlackShark.Weapon_Launcher = 2 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := WeaponBlackShark.Weapon_Launcher;
+              BlackSharkLoad_2 := True;
+            end;
+          end
+          else if WeaponBlackShark.Weapon_Launcher = 3 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := WeaponBlackShark.Weapon_Launcher;
+              BlackSharkLoad_3 := True;
+            end;
+          end
+          else if WeaponBlackShark.Weapon_Launcher = 4 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := WeaponBlackShark.Weapon_Launcher;
+              BlackSharkLoad_4 := True;
+            end;
+          end
+          else if WeaponBlackShark.Weapon_Launcher = 5 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := WeaponBlackShark.Weapon_Launcher;
+              BlackSharkLoad_5 := True;
+            end;
+          end
+          else if WeaponBlackShark.Weapon_Launcher = 6 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := WeaponBlackShark.Weapon_Launcher;
+              BlackSharkLoad_6 := True;
+            end;
+          end
+          else if WeaponBlackShark.Weapon_Launcher = 7 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := WeaponBlackShark.Weapon_Launcher;
+              BlackSharkLoad_7 := True;
+            end;
+          end
+          else if WeaponBlackShark.Weapon_Launcher = 8 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := WeaponBlackShark.Weapon_Launcher;
+              BlackSharkLoad_8 := True;
+            end;
+            CountLoading := tmr_BLACKSHARK;
+          end;
+          SimManager.NetSendTo3D_OrderMissileSUT(recsendcBlackShark);
+        end
+        else
+        begin
+          if WeaponBlackShark.Weapon_Launcher = cbbLoadBlackShark.ItemIndex + 1 then
+          begin
+            if WeaponBlackShark.Weapon_Status = 1 then
+            begin
+              recsendcBlackShark.mLauncherID := StrToInt(cbbLoadBlackShark.Text);
+              SimManager.NetSendTo3D_OrderMissileSUT(recsendcBlackShark);
+            end;
+          end;
+        end;
+      end;
     end;
   end;
 end;

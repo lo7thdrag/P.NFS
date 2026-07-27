@@ -63,14 +63,19 @@ end;
 
 procedure TfrmSystemStatus.FormShow(Sender: TObject);
 var
-  imgPath : string;
+  imgPathLedGreen, imgPathLedYellow : string;
 begin
-  imgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AB_Indikator_On_SMALL.bmp';
+  imgPathLedGreen  := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\Indikator_green.bmp';
+  imgPathLedYellow := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\Indikator_yellow.bmp';
 
-  imgMSI.Picture.LoadFromFile(imgPath);
-  imgSonar.Picture.LoadFromFile(imgPath);
-  imgWTSRC.Picture.LoadFromFile(imgPath);
-  imgTBI.Picture.LoadFromFile(imgPath);
+  imgMSI.Picture.LoadFromFile(imgPathLedYellow);
+  imgNAV.Picture.LoadFromFile(imgPathLedYellow);
+  imgRad.Picture.LoadFromFile(imgPathLedYellow);
+  imgSonar.Picture.LoadFromFile(imgPathLedGreen);
+  imgWTSRC.Picture.LoadFromFile(imgPathLedGreen);
+  imgTBI.Picture.LoadFromFile(imgPathLedGreen);
+  imgPerisc.Picture.LoadFromFile(imgPathLedGreen);
+  imgMast.Picture.LoadFromFile(imgPathLedGreen);
 end;
 
 procedure TfrmSystemStatus.UpdateFireAuthorization;

@@ -6556,7 +6556,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'MILLENIUM GUN 35 mm'
@@ -6566,12 +6566,11 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 883
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 0
           object lblMilleniumGun35Title: TLabel
             Left = 104
             Top = 12
@@ -6676,7 +6675,6 @@ object fWeaponStatus: TfWeaponStatus
           Color = clGray
           ParentColor = False
           TabOrder = 0
-          ExplicitHeight = 903
           object lbl22: TLabel
             Left = 146
             Top = 11
@@ -6720,7 +6718,7 @@ object fWeaponStatus: TfWeaponStatus
         CaptionFont.Name = 'MS Sans Serif'
         CaptionFont.Style = [fsBold]
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 923
         DividerVisible = False
         Caption = 'BLACKSHARK'
@@ -6729,7 +6727,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 903
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6915,7 +6913,6 @@ object fWeaponStatus: TfWeaponStatus
               Font.Height = -11
               Font.Name = 'MS Sans Serif'
               Font.Style = [fsBold]
-              ItemIndex = 0
               ParentFont = False
               TabOrder = 1
               Text = '1'
@@ -6927,7 +6924,8 @@ object fWeaponStatus: TfWeaponStatus
                 '5'
                 '6'
                 '7'
-                '8')
+                '8'
+                'ALL')
             end
           end
           object chkBlackSharkFireAuth: TCheckBox
