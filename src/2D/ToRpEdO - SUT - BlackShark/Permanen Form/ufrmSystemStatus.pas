@@ -42,6 +42,7 @@ type
     Label17: TLabel;
     lblConsole: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,6 +59,18 @@ implementation
 procedure TfrmSystemStatus.FormCreate(Sender: TObject);
 begin
   UpdateFireAuthorization;
+end;
+
+procedure TfrmSystemStatus.FormShow(Sender: TObject);
+var
+  imgPath : string;
+begin
+  imgPath := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AB_Indikator_On_SMALL.bmp';
+
+  imgMSI.Picture.LoadFromFile(imgPath);
+  imgSonar.Picture.LoadFromFile(imgPath);
+  imgWTSRC.Picture.LoadFromFile(imgPath);
+  imgTBI.Picture.LoadFromFile(imgPath);
 end;
 
 procedure TfrmSystemStatus.UpdateFireAuthorization;

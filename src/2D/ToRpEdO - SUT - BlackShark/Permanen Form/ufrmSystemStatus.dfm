@@ -12,6 +12,7 @@ object frmSystemStatus: TfrmSystemStatus
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
