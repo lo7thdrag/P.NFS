@@ -188,14 +188,32 @@ begin
 
   if not Assigned(VehicleMgr) then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Input Track Control by Number';
+    SutBlacksharkManager.OperatorMessages                  := 'Input Track Control by Number';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+
     Exit;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   if not Assigned(VehicleMgr.TrackControlled) then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Select the Target First';
+    SutBlacksharkManager.OperatorMessages                  := 'Select the Target First';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+
     Exit;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   Result := True;
@@ -244,7 +262,7 @@ end;
 procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
 begin
   UpdateAllocationStatus;
-  AdvPageTorpedoAllocation.ActivePageIndex(0);
+  AdvPageTorpedoAllocation.ActivePageIndex := 0;
 end;
 
 procedure TfrmTorpedoAllocation.imgAllocation1Click(Sender: TObject);
@@ -495,7 +513,7 @@ begin
 
   // Message Operator
   if Assigned(SutBlacksharkManager) then
-    frmTacticalScreen.pnlOperatorMessages.Caption := SutBlacksharkManager.OperatorMessages
+    frmTacticalScreen.pnlOperatorMessages.Caption := SutBlacksharkManager.OperatorMessages;
 end;
 
 procedure TfrmTorpedoAllocation.UpdateAllocationStatus;

@@ -458,6 +458,9 @@ begin
 
   if Assigned(frmSystemInfo) and frmSystemInfo.Visible then
     frmSystemInfo.UpdateEngagementList;
+
+  lblNoTorpedoes.Caption    := IntToStr(TorpedoParam.TorpedoIdx);
+  lblNoTorpedoes.Font.Color := clLime;
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblResetClick(Sender: TObject);
