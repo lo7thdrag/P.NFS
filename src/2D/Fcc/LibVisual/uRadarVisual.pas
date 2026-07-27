@@ -288,6 +288,7 @@ procedure TRadarBearing.Draw(ACanvas: TCanvas);
 var
   a: Double;
   x, y: Integer;
+  deltaX, deltaY : Double;
 begin
   if (not Visible) or (FLengthPx <= 0) then
     Exit;
@@ -307,11 +308,10 @@ begin
     ACanvas.Brush.Style := bsClear;
     ACanvas.Font.Color  := Color;
     ACanvas.Font.Size   := 8;
-    ACanvas.TextOut(
-      x - (ACanvas.TextWidth(LabelText) div 2),
-      y + 4,
-      LabelText
-    );
+//    ACanvas.TextOut(x - (ACanvas.TextWidth(LabelText) div 2), y + 10, LabelText);
+    deltaX := 20 * Sin(DegToRad(BearingDeg));
+    deltaY := 20 * Cos(DegToRad(BearingDeg));
+    ACanvas.TextOut(x - Round(deltaX), y + Round(deltaY), LabelText);
   end;
 end;
 

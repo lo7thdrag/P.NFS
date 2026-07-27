@@ -3075,6 +3075,8 @@ begin
 end;
 
 procedure TfrmMainFCC.tmrUpdateFormTimer(Sender: TObject);
+var
+  FmapRot : Double;
 begin
 //  if FNorthAngle < 360 then
 //    Inc(FNorthAngle)
@@ -3139,11 +3141,15 @@ begin
         if not FCCManager.IsRelativeMotion then begin
           Fmap.CenterX := FCCManager.xShip.PositionX;
           Fmap.CenterY := FCCManager.xShip.PositionY;
+          FMap.Rotation := 0;
+
         //    FMap.Rotation := 0;
           FNorthAngle := 0;
         end
         else
         begin
+          FmapRot := 360 -FCCManager.xShip.Heading;
+          FMap.Rotation := FmapRot;
           Fmap.CenterX := FCCManager.xShip.PositionX;
           Fmap.CenterY := FCCManager.xShip.PositionY;
           FNorthAngle := -FCCManager.xShip.Heading; // antara pakai begini atau pakai 360 - heading
