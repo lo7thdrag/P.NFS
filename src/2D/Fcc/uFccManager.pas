@@ -157,7 +157,7 @@ constructor TFCCManager.Create;
 begin
   inherited;
   FIsStandAlone := False;
-  FIsRelativeMotion := True; // rojek set default to True Motion atau Heading Up
+  FIsRelativeMotion := false; // rojek set default to North Up
 
   FPtkServer := TListener.Create;
   FPtkHandler := TPtkReceiver.Create;
