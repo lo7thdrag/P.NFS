@@ -101,7 +101,8 @@ uses
   uDataParameterSetting in 'uDataParameterSetting.pas',
   ufrmTorpedoTubeStatusWindow in 'Permanen Form\ufrmTorpedoTubeStatusWindow.pas' {frmTorpedoTubeStatusWindow},
   ufrmTorpedoTestResultWindow in 'Pop-up form\ufrmTorpedoTestResultWindow.pas' {frmTorpedoStatusResultsWindow},
-  uTorpedoTrack in 'LibSutBlacksharkObject\uTorpedoTrack.pas';
+  uTorpedoTrack in 'LibSutBlacksharkObject\uTorpedoTrack.pas',
+  ufrmOwnshipData in 'Permanen Form\ufrmOwnshipData.pas' {frmOwnshipData};
 
 {$R *.res}
 
@@ -114,5 +115,6 @@ begin
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
   Application.CreateForm(TfrmTorpedoStatusResultsWindow, frmTorpedoStatusResultsWindow);
+  Application.CreateForm(TfrmOwnshipData, frmOwnshipData);
   Application.Run;
 end.

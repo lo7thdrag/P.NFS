@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, uVehicle, RzButton, RzRadChk,
   uSutBlacksharkManager, uVehicleManager, uSettingFormToMonitorWith_ini,
-  uFormUtil, UfrmRadar, ufrmOwnShip, ufrmAlertandOpearatorMassage,
+  uFormUtil, UfrmRadar, ufrmOwnshipData, ufrmAlertandOpearatorMassage,
   ufmTargetInControl, uBaseFunction, ufrmTorpedoAllocation, ufrmSystemStatus,
   ufrmSystemInfo, ufrmCursor, uLibConst, uBaseConst, Vcl.OleCtrls, MapXLib_TLB,
   AdvCombo, ImageButton, uTransparentOverlay, uSimulationTrack, uSurfaceTrack, uSubSurfaceTrack, uTorpedoTrack;
@@ -25,7 +25,7 @@ type
    TFrmTacticalScreen = class(TForm)
     pnlBase: TPanel;
     pnlUpperInfo: TPanel;
-    pnlOwnShip: TPanel;
+    pnlOwnshipData: TPanel;
     pnlAlert: TPanel;
     pnlSystemStatus: TPanel;
     pnlOperatorMessages: TPanel;
@@ -68,7 +68,7 @@ type
     BearingCount: Integer;
     FFrmRadar: TFrmRadar;
 
-    FFrmOwnShipTS: TfrmOwnShip;
+    FFrmOwnshipData: TfrmOwnshipData;
     FFrmAlertandOpearatorMassageTS: TfrmAlertsandOpearatorMassage;
     FFrmTargetInControlTS: TfrmTargetInControl;
     FFrmSystemStatus: TfrmSystemStatus;
@@ -593,13 +593,13 @@ end;
 procedure TFrmTacticalScreen.UpdateAttachFormDisplay;
 begin
   {$REGION 'Ownship Data'}
-  if not Assigned(FFrmOwnShipTS) then
+  if not Assigned(FFrmOwnshipData) then
   begin
-    FFrmOwnShipTS := TfrmOwnShip.Create(Self);
-    frmOwnShip    := FFrmOwnShipTS;
-    FFrmOwnShipTS.Parent := pnlOwnShip;
-    FFrmOwnShipTS.Align := alClient;
-    FFrmOwnShipTS.Show;
+    FFrmOwnshipData        := TfrmOwnshipData.Create(Self);
+    frmOwnshipData         := FFrmOwnshipData;
+    FFrmOwnshipData.Parent := pnlOwnshipData;
+    FFrmOwnshipData.Align  := alClient;
+    FFrmOwnshipData.Show;
   end;
   {$ENDREGION}
 

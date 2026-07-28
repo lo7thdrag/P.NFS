@@ -10,7 +10,7 @@ uses
   uVehicleManager, uScriptSutBlackshark, uSimulationManager, uBridgeSet, ulibSettings, uDataModule, uVehicle,
   ImageButton, AdvCombo, Vcl.Grids, AdvUtil, AdvObj, BaseGrid, AdvGrid, uTCPDatatype,
 
-  ufrmOwnShip, ufrmAlertandOpearatorMassage, ufmTargetInControl, ufrmContactInControl, ufrmTorpedoTubeCommands,
+  ufrmInformationTorpedo, ufrmAlertandOpearatorMassage, ufmTargetInControl, ufrmContactInControl, ufrmTorpedoTubeCommands,
   ufrmTorpedoTubeStatusWindow, ufrmTorpedoGuidance, ufrmHomingCommands, ufrmHomingStatusPlot, ufrmDepthPlot,
   ufrmTorpedoParameterSetting, ufrmEngagementDataOverview, ufrmControlByNumber, ufrmTrackingList, ufrmSensorTrackList,
   ufrmTackHistory, ufrmCreateModifyTrack, ufrmTorpedoContactList, ufrmWakeList, ufrmTorpedoVerticalView,
@@ -106,7 +106,7 @@ type
     tmrUpdateForm: TTimer;
     tmrUpdateTorpedoData: TTimer;
     TimerBlink: TTimer;
-    pnlOwnshipData: TPanel;
+    pnlInformationTorpedo: TPanel;
     pnlAlerts: TPanel;
     pnlTargetInControl: TPanel;
     pnlContactInCtrl: TPanel;
@@ -217,7 +217,7 @@ type
     FBlinkState: Boolean;
 
     {Attach Form}
-    FFrmOwnShip                  : TfrmOwnShip;
+    FFrmInformationTorpedo       : TfrmInformationTorpedo;
     FFrmAlertandOpearatorMassage : TfrmAlertsandOpearatorMassage;
     FFrmTargetInControl          : TfrmTargetInControl;
     FFrmContactInControl         : TfrmContactInControl;
@@ -726,7 +726,7 @@ begin
   pnlTacticalBtnMouseDown(pnlTorpedoBtn, mbLeft, [ssLeft], 38, 61);
 
   {$REGION 'Panel'}
-  pnlOwnshipData.Caption             := '';
+  pnlInformationTorpedo.Caption      := '';
   pnlTargetInControl.Caption         := '';
   pnlContactInCtrl.Caption           := '';
   pnlTorpedoTubes.Caption            := '';
@@ -2580,14 +2580,14 @@ end;
 procedure TFrmTorpedoWP.UpdateAttachFormDisplay;
 begin
   {$REGION 'Ownship Data'}
-  if not Assigned(FFrmOwnShip) then
+  if not Assigned(FFrmInformationTorpedo) then
   begin
-    pnlOwnshipData.Caption := '';
+    pnlInformationTorpedo.Caption := '';
 
-    FFrmOwnShip        := TfrmOwnShip.Create(Self);
-    FFrmOwnShip.Parent := pnlOwnshipData;
-    FFrmOwnShip.Align  := alClient;
-    FFrmOwnShip.Show;
+    FFrmInformationTorpedo        := TfrmInformationTorpedo.Create(Self);
+    FFrmInformationTorpedo.Parent := pnlInformationTorpedo;
+    FFrmInformationTorpedo.Align  := alClient;
+    FFrmInformationTorpedo.Show;
   end;
   {$ENDREGION}
 
