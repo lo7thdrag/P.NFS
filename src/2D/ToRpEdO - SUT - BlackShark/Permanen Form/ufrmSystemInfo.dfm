@@ -11,7 +11,6 @@ object frmSystemInfo: TfrmSystemInfo
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -56,6 +55,7 @@ object frmSystemInfo: TfrmSystemInfo
       ParentFont = False
       TabOrder = 0
       ViewStyle = vsReport
+      OnClick = lvEngagementListClick
     end
   end
 end
