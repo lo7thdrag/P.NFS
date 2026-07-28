@@ -1,4 +1,4 @@
-unit ufrmOwnShip;
+unit ufrmInformationTorpedo;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uSutBlacksharkManager;
 
 type
-  TfrmOwnShip = class(TForm)
+  TfrmInformationTorpedo = class(TForm)
     pnlMain: TPanel;
     Label1: TLabel;
     Label2: TLabel;
@@ -35,7 +35,7 @@ type
   end;
 
 var
-  frmOwnShip: TfrmOwnShip;
+  frmInformationTorpedo: TfrmInformationTorpedo;
 
 implementation
 

@@ -1,4 +1,4 @@
-object frmOwnShip: TfrmOwnShip
+object frmOwnshipData: TfrmOwnshipData
   Left = 0
   Top = 0
   BorderStyle = bsNone
@@ -16,18 +16,18 @@ object frmOwnShip: TfrmOwnShip
   object pnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 321
-    Height = 169
+    Width = 154
+    Height = 126
     BevelOuter = bvNone
     TabOrder = 0
-    object Label1: TLabel
+    object lblTime: TLabel
       Left = 8
       Top = 4
-      Width = 27
+      Width = 137
       Height = 16
-      Caption = 'Torp'
+      Caption = '28/July/2026   17:00:00'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -36,9 +36,9 @@ object frmOwnShip: TfrmOwnShip
     object Label2: TLabel
       Left = 8
       Top = 24
-      Width = 43
+      Width = 46
       Height = 16
-      Caption = 'Bearing'
+      Caption = 'Heading'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -49,9 +49,9 @@ object frmOwnShip: TfrmOwnShip
     object Label3: TLabel
       Left = 8
       Top = 44
-      Width = 36
+      Width = 25
       Height = 16
-      Caption = 'Range'
+      Caption = 'SOG'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -62,32 +62,6 @@ object frmOwnShip: TfrmOwnShip
     object Label4: TLabel
       Left = 8
       Top = 64
-      Width = 40
-      Height = 16
-      Caption = 'Course'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label5: TLabel
-      Left = 8
-      Top = 84
-      Width = 36
-      Height = 16
-      Caption = 'Speed'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label6: TLabel
-      Left = 8
-      Top = 104
       Width = 33
       Height = 16
       Caption = 'Depth'
@@ -98,12 +72,12 @@ object frmOwnShip: TfrmOwnShip
       Font.Style = []
       ParentFont = False
     end
-    object lblTorpedoValue: TLabel
-      Left = 48
-      Top = 4
-      Width = 7
+    object Label5: TLabel
+      Left = 8
+      Top = 84
+      Width = 21
       Height = 16
-      Caption = '0'
+      Caption = 'Latt'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -111,8 +85,21 @@ object frmOwnShip: TfrmOwnShip
       Font.Style = []
       ParentFont = False
     end
-    object lblBearing: TLabel
-      Left = 80
+    object Label6: TLabel
+      Left = 8
+      Top = 104
+      Width = 27
+      Height = 16
+      Caption = 'Long'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblHeading: TLabel
+      Left = 72
       Top = 24
       Width = 25
       Height = 16
@@ -124,8 +111,8 @@ object frmOwnShip: TfrmOwnShip
       Font.Style = []
       ParentFont = False
     end
-    object lblRange: TLabel
-      Left = 80
+    object lblSOG: TLabel
+      Left = 72
       Top = 44
       Width = 25
       Height = 16
@@ -137,8 +124,8 @@ object frmOwnShip: TfrmOwnShip
       Font.Style = []
       ParentFont = False
     end
-    object lblCourse: TLabel
-      Left = 80
+    object lblDepth: TLabel
+      Left = 72
       Top = 64
       Width = 25
       Height = 16
@@ -150,8 +137,8 @@ object frmOwnShip: TfrmOwnShip
       Font.Style = []
       ParentFont = False
     end
-    object lblSpeed: TLabel
-      Left = 80
+    object lblLatt: TLabel
+      Left = 72
       Top = 84
       Width = 21
       Height = 16
@@ -163,38 +150,12 @@ object frmOwnShip: TfrmOwnShip
       Font.Style = []
       ParentFont = False
     end
-    object lblDepth: TLabel
-      Left = 80
+    object lblLong: TLabel
+      Left = 72
       Top = 104
       Width = 25
       Height = 16
       Caption = '00.0'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label7: TLabel
-      Left = 77
-      Top = 4
-      Width = 31
-      Height = 16
-      Caption = 'Salvo'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object lblSalvoValue: TLabel
-      Left = 125
-      Top = 4
-      Width = 14
-      Height = 16
-      Caption = '00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -218,32 +179,6 @@ object frmOwnShip: TfrmOwnShip
     object Label9: TLabel
       Left = 112
       Top = 44
-      Width = 17
-      Height = 16
-      Caption = 'km'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label10: TLabel
-      Left = 112
-      Top = 64
-      Width = 21
-      Height = 16
-      Caption = 'deg'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label11: TLabel
-      Left = 112
-      Top = 84
       Width = 22
       Height = 16
       Caption = 'm/s'
@@ -254,9 +189,9 @@ object frmOwnShip: TfrmOwnShip
       Font.Style = []
       ParentFont = False
     end
-    object Label12: TLabel
+    object Label10: TLabel
       Left = 112
-      Top = 104
+      Top = 64
       Width = 11
       Height = 16
       Caption = 'm'
