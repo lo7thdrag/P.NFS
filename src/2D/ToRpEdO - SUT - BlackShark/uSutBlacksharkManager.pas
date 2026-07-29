@@ -185,7 +185,7 @@ implementation
 
 uses
   uDataModule, ulibSettings,
-    uShipModel, ufrmTorpedoAllocation, ufrmSystemStatus;
+    uShipModel, ufrmSystemStatus;
 
 { TSutBlacksharkManager }
 

@@ -33,7 +33,7 @@ var
 implementation
 
 uses
-  ufrmTorpedoTubeStatusWindow, ufrmTorpedoAllocation, ufrmTorpedoTestResultWindow;
+  ufrmTorpedoTubeStatusWindow, ufrmTorpedoTestResultWindow;
 
 {$R *.dfm}
 

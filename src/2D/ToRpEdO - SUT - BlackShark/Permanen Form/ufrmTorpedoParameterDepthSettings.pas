@@ -156,9 +156,6 @@ var
 
 implementation
 
-uses
-  ufrmTorpedoAllocation;
-
 {$R *.dfm}
 
 procedure TfrmTorpedoParameterDepthSettings.ResetControl(AControl: TControl);
@@ -460,8 +457,8 @@ begin
 
   if TorpedoParam.TorpedoNum = 0 then
   begin
-    SutBlacksharkManager.TorpedoIndex := SutBlacksharkManager.TorpedoIndex + 1;
-    TorpedoParam.TorpedoNum           := SutBlacksharkManager.TorpedoIndex;
+//    SutBlacksharkManager.TorpedoIndex := SutBlacksharkManager.TorpedoIndex + 1;
+//    TorpedoParam.TorpedoNum           := SutBlacksharkManager.TorpedoIndex;
     lblNoTorpedoes.Caption            := IntToStr(TorpedoParam.TorpedoNum);
     lblNoTorpedoes.Font.Color         := clLime;
   end;

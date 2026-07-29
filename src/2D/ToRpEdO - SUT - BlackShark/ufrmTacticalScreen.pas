@@ -73,7 +73,7 @@ type
     FFrmTargetInControlTS: TfrmTargetInControl;
     FFrmSystemStatus: TfrmSystemStatus;
 
-    FFrmTorpedoAllocation: TfrmTorpedoAllocation;
+//    FFrmTorpedoAllocation: TfrmTorpedoAllocation;
     FFrmSystemInfo: TfrmSystemInfo;
     FFrmCursor: TfrmCursor;
 //    FMapCanvas: TCanvas;
@@ -849,19 +849,19 @@ begin
     if SutBlacksharkManager.isTorpedoAllocShow then
     begin
       {$REGION 'Torpedo Allocation'}
-      if not Assigned(FFrmTorpedoAllocation) then      // di create saat tombol TEP torp alloc
+      if not Assigned(frmTorpedoAllocation) then      // di create saat tombol TEP torp alloc
       begin
-        FFrmTorpedoAllocation := TfrmTorpedoAllocation.Create(Self);
-        FFrmTorpedoAllocation.Parent := pnlToolArea;
-        FFrmTorpedoAllocation.Align := alClient;
-        FFrmTorpedoAllocation.Show;
+        frmTorpedoAllocation := TfrmTorpedoAllocation.Create(Self);
+        frmTorpedoAllocation.Parent := pnlToolArea;
+        frmTorpedoAllocation.Align := alClient;
+        frmTorpedoAllocation.Show;
       end;
       {$ENDREGION}
     end
     else
     begin
-      if Assigned(FFrmTorpedoAllocation) then
-        FreeAndNil(FFrmTorpedoAllocation);
+      if Assigned(frmTorpedoAllocation) then
+        FreeAndNil(frmTorpedoAllocation);
     end;
     {$ENDREGION}
     Exit;

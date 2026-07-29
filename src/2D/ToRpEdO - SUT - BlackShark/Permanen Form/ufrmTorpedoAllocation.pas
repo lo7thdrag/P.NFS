@@ -179,7 +179,7 @@ var
 implementation
 
 uses
-  ufrmTorpedoWP, ufrmTorpedoTubeStatusWindow, ufrmTacticalScreen;
+  ufrmTorpedoWP, ufrmTorpedoTubeStatusWindow;
 
 {$R *.dfm}
 
@@ -190,31 +190,31 @@ begin
   if not Assigned(VehicleMgr) then
   begin
     SutBlacksharkManager.OperatorMessages                  := 'Input Track Control by Number';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
 
     Exit;
   end
   else
   begin
     SutBlacksharkManager.OperatorMessages                  := '';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   if not Assigned(VehicleMgr.TrackControlled) then
   begin
     SutBlacksharkManager.OperatorMessages                  := 'Select the Target First';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
 
     Exit;
   end
   else
   begin
     SutBlacksharkManager.OperatorMessages                  := '';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   Result := True;
@@ -279,14 +279,14 @@ begin
   if SutBlacksharkManager.FTorpedoArray[FSelectTube].Loaded then
   begin
     SutBlacksharkManager.OperatorMessages                  := '';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end
   else
   begin
     SutBlacksharkManager.OperatorMessages                  := 'Select Loaded Torpedo in Instructor';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
   end;
 end;
@@ -346,14 +346,14 @@ begin
     end;
 
     SutBlacksharkManager.OperatorMessages                  := '';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end
   else
   begin
     SutBlacksharkManager.OperatorMessages                  := 'Select Torpedo First';
-    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
   end;
 
@@ -571,8 +571,8 @@ begin
   UpdateFireRelease;
 
   // Message Operator
-  if Assigned(SutBlacksharkManager) then
-    frmTacticalScreen.pnlOperatorMessages.Caption := SutBlacksharkManager.OperatorMessages;
+//  if Assigned(SutBlacksharkManager) then
+//    frmTacticalScreen.pnlOperatorMessages.Caption := SutBlacksharkManager.OperatorMessages;
 end;
 
 procedure TfrmTorpedoAllocation.UpdateAllocationStatus;

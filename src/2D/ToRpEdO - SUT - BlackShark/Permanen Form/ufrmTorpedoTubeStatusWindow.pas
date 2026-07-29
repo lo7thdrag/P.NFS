@@ -131,7 +131,7 @@ var
 implementation
 
 uses
-  ufrmTorpedoAllocation, ufrmTorpedoWP, ufrmTorpedoTubeCommands;
+  ufrmTorpedoWP, ufrmTorpedoTubeCommands;
 {$R *.dfm}
 
 procedure TfrmTorpedoTubeStatusWindow.DrawTube(pBox: TPaintBox;aLauncher: TTorpedoLauncher);
