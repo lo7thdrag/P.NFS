@@ -146,17 +146,10 @@ begin
   Cy   := Round(pBox.Height / 2);
 
   {$REGION 'Draw Outer Circle Water Pressure'}
-  if aLauncher.TextStatus = stTorpReady then
-    aCnv.Pen.Color := clGreen
-  else if aLauncher.TextStatus = stFired then
-    aCnv.Pen.Color := clGreen
-  else
-  begin
-    case aLauncher.WaterPressure of
-      wpDrained          : aCnv.Pen.Color := clRed; 
-      wpPresNotEqualized : aCnv.Pen.Color := clYellow;    
-      wpPresEqualized    : aCnv.Pen.Color := clGreen;       
-    end;
+  case aLauncher.WaterPressure of
+    wpDrained          : aCnv.Pen.Color := clRed;
+    wpPresNotEqualized : aCnv.Pen.Color := clYellow;
+    wpPresEqualized    : aCnv.Pen.Color := clGreen;
   end;
 
   aCnv.Pen.Style := psSolid;
@@ -166,19 +159,11 @@ begin
   {$ENDREGION}
 
   {$REGION 'Draw Inner Circle Bow Cap'}
-  if aLauncher.TextStatus = stTorpReady then
-    aCnv.Pen.Color := clGreen
-  else if aLauncher.TextStatus = stFired then
-    aCnv.Pen.Color := clGreen
-  else
-  begin
-    case aLauncher.BowCap of
-      bcClosed          : aCnv.Pen.Color := clRed;
-      bcOpenLeverNotSet : aCnv.Pen.Color := clYellow;
-      bcOpenLeverSet    : aCnv.Pen.Color := clGreen;
-    end;
+  case aLauncher.BowCap of
+    bcClosed          : aCnv.Pen.Color := clRed;
+    bcOpenLeverNotSet : aCnv.Pen.Color := clYellow;
+    bcOpenLeverSet    : aCnv.Pen.Color := clGreen;
   end;
-
   aCnv.Pen.Style   := psSolid;
   aCnv.Pen.Width   := 1;
   aCnv.Brush.Style := bsClear;
@@ -206,51 +191,36 @@ begin
   {$REGION 'Draw Triangle Torpedo Status'}
   if aLauncher.Loaded then
   begin
-    if aLauncher.TextStatus = stTorpReady then
-    begin
-      aCnv.Pen.Color   := clLime;
-      aCnv.Brush.Color := clLime;
-      aCnv.Brush.Style := bsSolid;
-    end
-//    else if aLauncher.FireRelease = True then
-//    begin
-//      aCnv.Pen.Color   := clLime;
-//      aCnv.Brush.Color := clLime;
-//      aCnv.Brush.Style := bsClear;
-//    end
-    else
-    begin
-      case aLauncher.TorpedoStatus of
-        tsOff:
-        begin
-          aCnv.Pen.Color   := clYellow;
-          aCnv.Brush.Color := clYellow;
-          aCnv.Brush.Style := bsSolid;
-        end;
-        tsTesting:
-        begin
-          aCnv.Pen.Color   := clYellow;
-          aCnv.Brush.Color := clYellow;
-          aCnv.Brush.Style := bsSolid;
-        end;
-        tsOnAndOk:
-        begin
-          aCnv.Pen.Color   := clLime;
-          aCnv.Brush.Color := clLime;
-          aCnv.Brush.Style := bsSolid;
-        end;
-        tsOnWithRestrict:
-        begin
-          aCnv.Pen.Color   := clLime;
-          aCnv.Brush.Color := clLime;
-          aCnv.Brush.Style := bsClear;
-        end;
-       tsNotOK:
-        begin
-          aCnv.Pen.Color   := clRed;
-          aCnv.Brush.Color := clRed;
-          aCnv.Brush.Style := bsSolid;
-        end;
+    case aLauncher.TorpedoStatus of
+      tsOff:
+      begin
+        aCnv.Pen.Color   := clYellow;
+        aCnv.Brush.Color := clYellow;
+        aCnv.Brush.Style := bsSolid;
+      end;
+      tsTesting:
+      begin
+        aCnv.Pen.Color   := clYellow;
+        aCnv.Brush.Color := clYellow;
+        aCnv.Brush.Style := bsSolid;
+      end;
+      tsOnAndOk:
+      begin
+        aCnv.Pen.Color   := clLime;
+        aCnv.Brush.Color := clLime;
+        aCnv.Brush.Style := bsSolid;
+      end;
+      tsOnWithRestrict:
+      begin
+        aCnv.Pen.Color   := clLime;
+        aCnv.Brush.Color := clLime;
+        aCnv.Brush.Style := bsClear;
+      end;
+     tsNotOK:
+      begin
+        aCnv.Pen.Color   := clRed;
+        aCnv.Brush.Color := clRed;
+        aCnv.Brush.Style := bsSolid;
       end;
     end;
 
@@ -261,18 +231,11 @@ begin
     aCnv.Polygon(Points);
 
     {$REGION 'Vertical Line Cable Status'}
-    if aLauncher.TextStatus = stTorpReady then
-      aCnv.Pen.Color := clLime
-//    else if aLauncher.FireRelease = True then
-//      aCnv.Pen.Color := clLime
-    else
-    begin
-      case aLauncher.CableStatus of
-        csOff      : aCnv.Pen.Color := clYellow;
-        csTesting  : aCnv.Pen.Color := clYellow;
-        csTorpOnOK : aCnv.Pen.Color := clLime;
-        csError    : aCnv.Pen.Color := clRed;
-      end;
+    case aLauncher.CableStatus of
+      csOff      : aCnv.Pen.Color := clYellow;
+      csTesting  : aCnv.Pen.Color := clYellow;
+      csTorpOnOK : aCnv.Pen.Color := clLime;
+      csError    : aCnv.Pen.Color := clRed;
     end;
 
     aCnv.MoveTo(Round(Cx), Round(Cy - 21));

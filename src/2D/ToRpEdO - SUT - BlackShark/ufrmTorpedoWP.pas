@@ -223,9 +223,6 @@ type
     FFrmContactInControl         : TfrmContactInControl;
     FFrmTorpedoTubesCommand      : TfrmTorpedoTubeCommands;
     FFrmTorpedoTubesStatus       : TfrmTorpedoTubeStatusWindow;
-    FFrmTorpedoGuidance          : TfrmTorpedoGuidanceWindow;
-    FFrmTorpedoHomingCommand     : TfrmHomingCommands;
-    FFrmTorpedoHomingStatusPlot  : TfrmHomingStatusPlot;
     FFrmDepthPlot                : TfrmDepthPlot;
     FFrmTorpedoParameters        : TfrmTorpedoParameterSetting;
     FFrmEngagementDataOverview   : TfrmEngagementDataOverview;
@@ -256,6 +253,9 @@ type
     rCX, rCY: integer;
     OwnshipHeadingVal, OwnshipLatPosVal, OwnshipLongPosVal, OwnshipSpeedVal, OwnshipDepth : string;
     SelectedVehicleState : Boolean;
+
+    property LaunchSalvo : Boolean read FLaunchSalvo write FLaunchSalvo;
+    property TorpCtrl : Boolean read FTorpCtrl write FTorpCtrl;
   end;
 
 var
@@ -323,42 +323,74 @@ var
   TargetTrack : TSimulationTrack;
   Torpedo : TTorpedoTrack;
 begin
-  if VehicleMgr.IsAnyTrackControlled then {TargetTrack := VehicleMgr.TrackControlled;}
+  //  check fire release
+  if not SutBlacksharkManager.FTorpedoArray[TorpedoParam.TorpedoIdx].FireRelease then
   begin
-    RecSend.ShipID              := SutBlacksharkManager.ShipID;
-    RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
-    RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
-    RecSend.mMissileID          := 1; // selalu 1
-    RecSend.mMissileNumber      := 1; // selalu 1
-    RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
-    RecSend.OrderID             := __ORD_TORPEDOSUT_FIRED;
-    RecSend.mMissileType        := 0;
-    RecSend.mTorpedoCourse      := TorpedoParam.ApproachCourse; // diambil dari torpedo param, automatis di set saat start analysis
+    SutBlacksharkManager.OperatorMessages := 'Fire Release is OFF';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    Exit;
+  end;  
 
-    RecSend.mTorpedoSpeed       := TorpedoParam.SearchSpeed;
-
-    RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;
-    RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
-    RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
-    RecSend.mpredm              := 0;
-    RecSend.mTargetType         := VehicleMgr.TrackControlled.Domain;
-
-    SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
-
-    Torpedo := VehicleMgr.AddTorpedo(SutBlacksharkManager.TorpedoTubeAllocNum);
-    Torpedo.ToSoRangePsv := TorpedoParam.TosoRangePAS;
-    Torpedo.TosoRangeActv := TorpedoParam.TosoRangeACT;
-    Torpedo.BatteryCapacity := 26.3;
-    Torpedo.MaxWireRange := 18;
-    Torpedo.CurrentWireLeft := 18;
-    Torpedo.ShipID := 0;
-    Torpedo.TimeLaunch := Now;
-    Torpedo.LastUpdated := 0;
-    Torpedo.SpeedMS := TorpedoParam.SearchSpeed;
-    Torpedo.TorpLaunchPhase := tpApproach;
-
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum-1].TextStatus := stfired;
+  // check tbi
+  if not SutBlacksharkManager.TBIFireAuth then
+  begin
+    SutBlacksharkManager.OperatorMessages := 'TBI Fire Authorization is OFF';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    Exit;
   end;
+
+  // check torp ready
+  if not (SutBlacksharkManager.FTorpedoArray[TorpedoParam.TorpedoIdx].TorpedoStatus = tsOnAndOk) then
+  begin
+    SutBlacksharkManager.OperatorMessages := 'Torpedo is not ready';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    exit;
+  end;
+
+  frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+  
+  RecSend.ShipID              := SutBlacksharkManager.ShipID;
+  RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+  RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
+  RecSend.mMissileID          := 1; // selalu 1
+  RecSend.mMissileNumber      := 1; // selalu 1
+//    RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
+  RecSend.mT_ID               := VehicleMgr.FindShipIDByTrackNumber(TorpedoParam.TargetTrackID);
+  RecSend.OrderID             := __ORD_TORPEDOSUT_FIRED;
+  RecSend.mMissileType        := 0;
+  RecSend.mTorpedoCourse      := TorpedoParam.ApproachCourse; // diambil dari torpedo param, automatis di set saat start analysis
+
+  RecSend.mTorpedoSpeed       := TorpedoParam.SearchSpeed;
+
+  RecSend.mTorpedoDepth       := TorpedoParam.SearchDepth;
+  RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
+  RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
+  RecSend.mpredm              := 0;
+//    RecSend.mTargetType         := VehicleMgr.TrackControlled.Domain;
+  RecSend.mTargetType         := VehicleMgr.TrackControlled.Domain;
+
+  SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+
+  Torpedo := VehicleMgr.AddTorpedo(SutBlacksharkManager.TorpedoTubeAllocNum);
+  Torpedo.ToSoRangePsv := TorpedoParam.TosoRangePAS;
+  Torpedo.TosoRangeActv := TorpedoParam.TosoRangeACT;
+  Torpedo.BatteryCapacity := 26.3;
+  Torpedo.MaxWireRange := 18;
+  Torpedo.CurrentWireLeft := 18;
+  Torpedo.ShipID := 0;
+  Torpedo.TimeLaunch := Now;
+  Torpedo.LastUpdated := 0;
+  Torpedo.SpeedMS := TorpedoParam.SearchSpeed;
+  Torpedo.TorpLaunchPhase := tpApproach;
+
+  TorpedoParam.isFired := True;
+  lblSubmodeTools3.OnClick := nil;
+  lblSubmodeTools3.Font.Color := clGray;
+
+  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum-1].TextStatus := stfired;
 end;
 
 procedure TFrmTorpedoWP.cbbMotionModeChange(Sender: TObject);
@@ -1401,57 +1433,62 @@ begin
 
       else // draw target
       begin
-        TempShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
-        if TempShip.Controlled_Track then
+        if Assigned(TorpedoParam) then
         begin
-          TargetShip := TempShip;
-
-          for indx := 0 to TargetShip.TrackHistory.Count -1 do
+//                  TempShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
+          TempShip := VehicleMgr.FindTrackByTrackNumber(TorpedoParam.TargetTrackID);
+          if TempShip.Controlled_Track then
           begin
-            MapX := TTrackPoint(TargetShip.TrackHistory[indx]).PosX;
-            MapY := TTrackPoint(TargetShip.TrackHistory[indx]).PosY;
+            TargetShip := TempShip;
+
+            for indx := 0 to TargetShip.TrackHistory.Count -1 do
+            begin
+              MapX := TTrackPoint(TargetShip.TrackHistory[indx]).PosX;
+              MapY := TTrackPoint(TargetShip.TrackHistory[indx]).PosY;
+
+              FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+              aCnv.Pen.Color := clwhite;
+              aCnv.Pen.Width := 1;
+              aCnv.Pen.Style := psSolid;
+              aCnv.Brush.Style := bsSolid;
+              aCnv.Brush.Color := clwhite;
+              aCnv.Ellipse(Round(scrx-2), Round(scry-2), Round(scrx+2), Round(scry+2));
+            end;
+
+            MapX := TempShip.PosX;
+            MapY := TempShip.PosY;
 
             FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-            aCnv.Pen.Color := clwhite;
+
+            aCnv.Pen.Color := RGB(219,223,110);
+            aCnv.Pen.Width := 2;
+            aCnv.MoveTo(Round(scrX), Round(scrY));
+            Angle := DegToRad(TargetShip.HeadingDeg);
+            ScrDX := ScrX + Round(sin(Angle) * 500);
+            ScrDY := ScrY - Round(cos(Angle) * 500);
+            aCnv.LineTo(Round(ScrDX), Round(ScrDY));
+
+            aCnv.Pen.Color := clRed;
+    //        aCnv.Pen.Style := psClear;
             aCnv.Pen.Width := 1;
-            aCnv.Pen.Style := psSolid;
+
+            aCnv.Brush.Color := clRed;
             aCnv.Brush.Style := bsSolid;
-            aCnv.Brush.Color := clwhite;
-            aCnv.Ellipse(Round(scrx-2), Round(scry-2), Round(scrx+2), Round(scry+2));
+            aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
+
+            aCnv.Pen.Style := psSolid;
+            aCnv.Pen.Color := clWhite;
+            aCnv.Font.Color := clWhite;
+            aCnv.Pen.Width := 1;
+            aCnv.Brush.Style := bsClear;
+
+            aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
+
+            // spawn track history
+
           end;
-
-          MapX := TempShip.PosX;
-          MapY := TempShip.PosY;
-
-          FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-
-          aCnv.Pen.Color := RGB(219,223,110);
-          aCnv.Pen.Width := 2;
-          aCnv.MoveTo(Round(scrX), Round(scrY));
-          Angle := DegToRad(TargetShip.HeadingDeg);
-          ScrDX := ScrX + Round(sin(Angle) * 500);
-          ScrDY := ScrY - Round(cos(Angle) * 500);
-          aCnv.LineTo(Round(ScrDX), Round(ScrDY));
-
-          aCnv.Pen.Color := clRed;
-  //        aCnv.Pen.Style := psClear;
-          aCnv.Pen.Width := 1;
-
-          aCnv.Brush.Color := clRed;
-          aCnv.Brush.Style := bsSolid;
-          aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
-
-          aCnv.Pen.Style := psSolid;
-          aCnv.Pen.Color := clWhite;
-          aCnv.Font.Color := clWhite;
-          aCnv.Pen.Width := 1;
-          aCnv.Brush.Style := bsClear;
-
-          aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
-
-          // spawn track history
-
         end;
+
       end;
 
     end;
@@ -1960,34 +1997,47 @@ begin
     end;
     13:
     begin
-      FLaunchSalvo := not FLaunchSalvo;
-      FFire := not FFire;
-
-      if FLaunchSalvo then
+      if Assigned(TorpedoParam) then
       begin
-        if SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].FireRelease and SutBlacksharkManager.FTBIFireAuth = True then
+        FLaunchSalvo := not FLaunchSalvo;
+//        FFire := not FFire;
+        if FLaunchSalvo then
         begin
           pnlSubmodeTools13.Color := clLime;
 
           lblSubmodeTools3.Caption := 'Fire';
-          pnlSubmodeTools3.Enabled := True;
-          lblSubmodeTools3.Enabled := True;
-          lblSubmodeTools3.OnClick := BlackSharkFireClick;
+          if TorpedoParam.isFired then
+          begin
+            pnlSubmodeTools3.Enabled := True;
+            lblSubmodeTools3.Enabled := True;
+            lblSubmodeTools3.OnClick := nil;
+            lblSubmodeTools3.Font.Color := clGray;
+          end
+          else
+          begin
+            pnlSubmodeTools3.Enabled := True;
+            lblSubmodeTools3.Enabled := True;
+            lblSubmodeTools3.OnClick := BlackSharkFireClick;
+            lblSubmodeTools3.Font.Color := clWhite;
+          end;
 
-          SutBlacksharkManager.OperatorMessages                  := '';
-          frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-          frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+          lblSubmodeTools4.Caption := 'Stop' + #13#10 + 'Fire'+ #13#10 + 'Seq';
+          pnlSubmodeTools4.Enabled := True;
+          lblSubmodeTools4.Enabled := True;
         end
         else
         begin
-          SutBlacksharkManager.OperatorMessages                  := 'There are step missing';
-          frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-          frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
-        end;
+          pnlSubmodeTools13.Color := clBlack;
 
-        lblSubmodeTools4.Caption := 'Stop' + #13#10 + 'Fire'+ #13#10 + 'Seq';
-        pnlSubmodeTools4.Enabled := True;
-        lblSubmodeTools4.Enabled := True;
+          lblSubmodeTools3.Caption := '';
+          pnlSubmodeTools3.Enabled := false;
+          lblSubmodeTools3.Enabled := false;
+          lblSubmodeTools3.OnClick := nil;
+
+          lblSubmodeTools4.Caption := '';
+          pnlSubmodeTools4.Enabled := false;
+          lblSubmodeTools4.Enabled := false;
+        end;
       end
       else
       begin
@@ -2001,7 +2051,10 @@ begin
         lblSubmodeTools4.Caption := '';
         pnlSubmodeTools4.Enabled := false;
         lblSubmodeTools4.Enabled := false;
+
+        SutBlacksharkManager.OperatorMessages := 'No Salvo Available';
       end;
+
     end;
     14:
     begin
@@ -2013,45 +2066,57 @@ begin
     end;
     16:
     begin
-      FTorpCtrl := not FTorpCtrl;
+      if Assigned(TorpedoParam) then
+      begin
+        if TorpedoParam.isFired then
+        begin
+          FTorpCtrl := not FTorpCtrl;
 
-      if FTorpCtrl then
-      begin
-        pnlSubmodeTools16.Color := clLime;
-        lblSubmodeTools6.Caption := 'Guide' + #13#10 + 'To'+ #13#10 + 'Bearing';
-        pnlSubmodeTools6.Enabled := True;
-        lblSubmodeTools6.Enabled := True;
-      end
-      else
-      begin
-        pnlSubmodeTools16.Color := clBlack;
-        lblSubmodeTools6.Caption := '';
-        pnlSubmodeTools6.Enabled := false;
-        lblSubmodeTools6.Enabled := false;
+          if FTorpCtrl then
+          begin
+            pnlSubmodeTools16.Color := clLime;
+            lblSubmodeTools6.Caption := 'Guide' + #13#10 + 'To'+ #13#10 + 'Bearing';
+            pnlSubmodeTools6.Enabled := True;
+            lblSubmodeTools6.Enabled := True;
+          end
+          else
+          begin
+            pnlSubmodeTools16.Color := clBlack;
+            lblSubmodeTools6.Caption := '';
+            pnlSubmodeTools6.Enabled := false;
+            lblSubmodeTools6.Enabled := false;
+          end;
+
+          if not Assigned(frmTorpedoGuidanceWindow) then
+          begin
+            frmTorpedoGuidanceWindow        := TfrmTorpedoGuidanceWindow.Create(Self);
+            frmTorpedoGuidanceWindow.Parent := pnlTorpedoGuidanceWindow;
+            frmTorpedoGuidanceWindow.Align  := alClient;
+            frmTorpedoGuidanceWindow.Show;
+          end
+          else FreeAndNil(frmTorpedoGuidanceWindow);
+
+          if not Assigned(frmHomingStatusPlot) then
+          begin
+
+            frmHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
+            frmHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
+            frmHomingStatusPlot.Align  := alClient;
+            frmHomingStatusPlot.Show;
+          end
+          else FreeAndNil(frmHomingStatusPlot);
+        end
+        else
+        begin
+          pnlSubmodeTools16.Color := clBlack;
+          lblSubmodeTools6.Caption := '';
+          pnlSubmodeTools6.Enabled := false;
+          lblSubmodeTools6.Enabled := false;
+
+          SutBlacksharkManager.OperatorMessages := 'No Torpedo to Control';
+        end;
       end;
-
-      if not Assigned(FFrmTorpedoGuidance) then
-      begin
-//        pnlTorpedoGuidanceWindow.Caption := '';
-
-        FFrmTorpedoGuidance        := TfrmTorpedoGuidanceWindow.Create(Self);
-        FFrmTorpedoGuidance.Parent := pnlTorpedoGuidanceWindow;
-        FFrmTorpedoGuidance.Align  := alClient;
-        FFrmTorpedoGuidance.Show;
-      end
-      else FreeAndNil(FFrmTorpedoGuidance);
-
-      if not Assigned(frmHomingStatusPlot) then
-      begin
-
-        frmHomingStatusPlot        := TfrmHomingStatusPlot.Create(Self);
-        frmHomingStatusPlot.Parent := pnlTorpedoHomingStatusPlot;
-        frmHomingStatusPlot.Align  := alClient;
-        frmHomingStatusPlot.Show;
-
-//        pnlToSo.BringToFront;
-      end
-      else FreeAndNil(frmHomingStatusPlot);
+      
     end;
     17:
     begin

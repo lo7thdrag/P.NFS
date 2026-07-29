@@ -64,11 +64,11 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
     object lblNumberSalvo: TLabel
       Left = 295
       Top = 7
-      Width = 14
+      Width = 21
       Height = 14
-      Caption = '00'
+      AutoSize = False
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -93,9 +93,9 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Width = 14
       Height = 14
       AutoSize = False
-      Caption = '00'
+      Caption = '1'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clLime
       Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = []

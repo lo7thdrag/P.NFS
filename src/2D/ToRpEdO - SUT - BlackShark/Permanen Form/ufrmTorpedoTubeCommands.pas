@@ -84,6 +84,10 @@ begin
   if SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].Allocated then
   begin
     SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].TextStatus := stTorpReady;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].waterPressure := wpPresEqualized;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].bowCap := bcOpenLeverSet;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].TorpedoStatus := tsOnAndOk;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.FTubeIndex].CableStatus := csTorpOnOK;
     frmTorpedoTubeStatusWindow.UpdateTextStatus;
   end;
 end;

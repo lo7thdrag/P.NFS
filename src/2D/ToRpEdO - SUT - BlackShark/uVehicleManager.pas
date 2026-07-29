@@ -42,6 +42,7 @@ type
     function FindTorpedoIdxByLauncherID(const LnchrID: Word): Integer;
 
     function FindTrackByTrackNumber(const TrackNum: Integer): TSimulationTrack;
+    function FindShipIDByTrackNumber(const TrackNum: Integer): Word;
     function ControlTrackByTrackNumber(const TrackNum: Integer): Boolean;
 
     procedure RemoveVehicle(V: TVehicle);
@@ -269,6 +270,24 @@ function TVehicleManager.FindObjectByUid(const aUid: string): TSimulationTrack;
     if found then result := obj;
 
   end;
+
+function TVehicleManager.FindShipIDByTrackNumber(
+  const TrackNum: Integer): Word;
+var
+  i : Integer;
+  V : TSimulationTrack;
+begin
+  Result := 0;
+  for i := FList.Count - 1 downto 0 do
+  begin
+    V := TSimulationTrack(FList[i]);
+    if v.MSITrackNumber = TrackNum then
+    begin
+      Result := v.ShipID;
+    end;
+  end;
+
+end;
 
 function TVehicleManager.FindTorpedoByLauncherID(
   const LnchrID: word): TTorpedoTrack;

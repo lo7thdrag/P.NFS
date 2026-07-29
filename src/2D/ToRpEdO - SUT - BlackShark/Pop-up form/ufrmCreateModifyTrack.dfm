@@ -187,6 +187,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      Visible = False
     end
     object Label10: TLabel
       Left = 12
@@ -202,10 +203,11 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      Visible = False
     end
     object Label11: TLabel
       Left = 12
-      Top = 282
+      Top = 262
       Width = 93
       Height = 16
       Caption = 'Estimated Depth'
@@ -217,10 +219,11 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      Visible = False
     end
     object Label12: TLabel
       Left = 12
-      Top = 341
+      Top = 363
       Width = 78
       Height = 16
       Caption = 'Bearing (deg)'
@@ -235,7 +238,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
     end
     object Label13: TLabel
       Left = 12
-      Top = 365
+      Top = 387
       Width = 36
       Height = 16
       Caption = 'Range'
@@ -254,21 +257,6 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Width = 75
       Height = 16
       Caption = 'Course (deg)'
-      Color = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-    end
-    object Label15: TLabel
-      Left = 12
-      Top = 236
-      Width = 70
-      Height = 16
-      Caption = 'Datum Time'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -299,21 +287,6 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Width = 58
       Height = 16
       Caption = 'Depth (m)'
-      Color = clWhite
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-    end
-    object Label18: TLabel
-      Left = 246
-      Top = 410
-      Width = 60
-      Height = 16
-      Caption = 'Error (km)'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -401,6 +374,38 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentColor = False
       ParentFont = False
       OnClick = lblCloseClick
+    end
+    object lblTrackQuality: TLabel
+      Left = 12
+      Top = 214
+      Width = 75
+      Height = 16
+      Caption = 'Track Quality'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      Visible = False
+    end
+    object lblDataValidTime: TLabel
+      Left = 12
+      Top = 295
+      Width = 91
+      Height = 16
+      Caption = 'Data Valid Time'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      Visible = False
     end
     object edtTrackNo: TEdit
       Left = 96
@@ -546,6 +551,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentFont = False
       TabOrder = 7
       Text = 'No Statement'
+      Visible = False
       Items.Strings = (
         'No Statement'
         'Possub Low 1'
@@ -571,13 +577,14 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentFont = False
       TabOrder = 8
       Text = 'Subsurface'
+      Visible = False
       Items.Strings = (
         'Subsurface'
         'Datum')
     end
     object cbEstimatedDepth: TComboBox
       Left = 290
-      Top = 281
+      Top = 261
       Width = 145
       Height = 24
       Color = clBlack
@@ -589,6 +596,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentFont = False
       TabOrder = 9
       Text = 'No Statement'
+      Visible = False
       Items.Strings = (
         'No Statement'
         'Unknown'
@@ -601,7 +609,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
     end
     object cbPositionFormat: TComboBox
       Left = 11
-      Top = 309
+      Top = 331
       Width = 145
       Height = 24
       Color = clBlack
@@ -622,9 +630,10 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
     end
     object edtbearing: TEdit
       Left = 137
-      Top = 340
+      Top = 362
       Width = 65
       Height = 24
+      Alignment = taRightJustify
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
@@ -637,9 +646,10 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
     end
     object edtRange: TEdit
       Left = 137
-      Top = 364
+      Top = 386
       Width = 65
       Height = 24
+      Alignment = taRightJustify
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
@@ -652,7 +662,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
     end
     object cbRange: TComboBox
       Left = 57
-      Top = 362
+      Top = 384
       Width = 46
       Height = 24
       Color = clBlack
@@ -674,6 +684,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Top = 340
       Width = 65
       Height = 24
+      Alignment = taRightJustify
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
@@ -684,11 +695,12 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       TabOrder = 14
       Text = '0.00'
     end
-    object edtDatumTime: TEdit
-      Left = 290
-      Top = 235
-      Width = 145
+    object edtSpeed: TEdit
+      Left = 371
+      Top = 363
+      Width = 65
       Height = 24
+      Alignment = taRightJustify
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
@@ -697,12 +709,14 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentFont = False
       TabOrder = 15
+      Text = '0.00'
     end
-    object edtSpeed: TEdit
+    object edtDepth: TEdit
       Left = 371
-      Top = 363
+      Top = 386
       Width = 65
       Height = 24
+      Alignment = taRightJustify
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
@@ -713,11 +727,12 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       TabOrder = 16
       Text = '0.00'
     end
-    object edtDepth: TEdit
-      Left = 371
-      Top = 386
-      Width = 65
+    object edtFreeText: TEdit
+      Left = 276
+      Top = 447
+      Width = 162
       Height = 24
+      Alignment = taRightJustify
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
@@ -726,37 +741,6 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Style = []
       ParentFont = False
       TabOrder = 17
-      Text = '0.00'
-    end
-    object edtError: TEdit
-      Left = 371
-      Top = 409
-      Width = 65
-      Height = 24
-      Color = clBlack
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clLime
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 18
-      Text = '0.00'
-    end
-    object edtFreeText: TEdit
-      Left = 373
-      Top = 444
-      Width = 65
-      Height = 24
-      Color = clBlack
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clLime
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 19
-      Text = '0.00'
     end
     object Panel1: TPanel
       Left = -12
@@ -765,7 +749,43 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Height = 1
       Color = clWhite
       ParentBackground = False
+      TabOrder = 18
+    end
+    object cbTrackQuality: TComboBox
+      Left = 290
+      Top = 213
+      Width = 145
+      Height = 24
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clLime
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ItemIndex = 1
+      ParentFont = False
+      TabOrder = 19
+      Text = 'RT'
+      Visible = False
+      Items.Strings = (
+        'NRT'
+        'RT')
+    end
+    object edtDataValidTime: TEdit
+      Left = 273
+      Top = 291
+      Width = 162
+      Height = 24
+      Alignment = taRightJustify
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clLime
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 20
+      Visible = False
     end
   end
 end

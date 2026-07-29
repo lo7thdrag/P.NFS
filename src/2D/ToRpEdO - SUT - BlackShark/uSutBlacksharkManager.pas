@@ -17,7 +17,7 @@ type
   private
     // torpedo parameter
     FTargetTrackID, FSalvoNum, FTorpedoAmount, FLOSDeviation, FSearchSpeed, FCeiling, FAttackDepth, FSearchDepth, FApproachDepth,
-    FFloor, FApproachSpeed, FTosoRangePAS, FTosoRangeACT, FProtectionRadius, FTorpedoNum : Integer;
+    FFloor, FApproachSpeed, FTosoRangePAS, FTosoRangeACT, FProtectionRadius : Integer;
     FApproachCourse : Single;
     FEnablingDist, FCenterOS, FSALength, FSAWidth, FCenterSSP, FOStoSSP, FDPCAngle : Double;
     FProtectionRadiusEnable : Boolean;
@@ -25,6 +25,7 @@ type
     FSearchPattern : TSearchPattern;
     FEngagementID : Word;
     FTorpedoIdx : Byte;
+    FisFired : Boolean;
 
   public
     constructor Create;
@@ -60,7 +61,7 @@ type
     property ASH : Byte read FASH write FASH;
     property EngagementID : word read FEngagementID write FEngagementID;
     property TorpedoIdx : Byte read FTorpedoIdx write FTorpedoIdx;
-    property TorpedoNum : Integer read FTorpedoNum write FTorpedoNum;
+    property isFired : Boolean read FisFired write FisFired;
 
   end;
 

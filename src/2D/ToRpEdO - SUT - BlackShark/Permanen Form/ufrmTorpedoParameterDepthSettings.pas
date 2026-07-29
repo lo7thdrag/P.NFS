@@ -447,27 +447,16 @@ begin
   lblOfficialASH.Caption              := cbTrialASH.Text;
   {$ENDREGION}
 
-  if TorpedoParam.SalvoNum = 0 then
-  begin
-//    SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
-    TorpedoParam.SalvoNum           := SutBlacksharkManager.SalvoIndex;
-    lblNumberSalvo.Caption          := IntToStr(TorpedoParam.SalvoNum);
-    lblNumberSalvo.Font.Color       := clLime;
-  end;
-
-  if TorpedoParam.TorpedoNum = 0 then
-  begin
-//    SutBlacksharkManager.TorpedoIndex := SutBlacksharkManager.TorpedoIndex + 1;
-//    TorpedoParam.TorpedoNum           := SutBlacksharkManager.TorpedoIndex;
-    lblNoTorpedoes.Caption            := IntToStr(TorpedoParam.TorpedoNum);
-    lblNoTorpedoes.Font.Color         := clLime;
-  end;
+//  if TorpedoParam.SalvoNum = 0 then
+//  begin
+////    SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
+//    TorpedoParam.SalvoNum           := SutBlacksharkManager.SalvoIndex;
+//    lblNumberSalvo.Caption          := IntToStr(TorpedoParam.SalvoNum);
+//    lblNumberSalvo.Font.Color       := clLime;
+//  end;
 
   if Assigned(frmSystemInfo) and frmSystemInfo.Visible then
     frmSystemInfo.UpdateEngagementList;
-
-  lblNoTorpedoes.Caption    := '1';
-  lblNoTorpedoes.Font.Color := clLime;
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblResetClick(Sender: TObject);

@@ -123,7 +123,8 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Top = 7
           Width = 42
           Height = 14
-          Caption = '000000'
+          Alignment = taRightJustify
+          AutoSize = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -151,7 +152,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Height = 14
           Alignment = taRightJustify
           AutoSize = False
-          Caption = '000000'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3483,6 +3483,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          OnClick = lblReallocateClick
         end
         object Label19: TLabel
           Left = 9
@@ -3700,6 +3701,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Height = -12
           Font.Name = 'Tahoma'
           Font.Style = []
+          ItemIndex = 0
           ParentFont = False
           TabOrder = 7
           Text = 'Torp 1'
@@ -3713,7 +3715,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
             'Torp 7'
             'Torp 8')
         end
-        object ComboBox1: TComboBox
+        object cbNewTorp: TComboBox
           Left = 314
           Top = 384
           Width = 81
@@ -3724,6 +3726,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Height = -12
           Font.Name = 'Tahoma'
           Font.Style = []
+          ItemIndex = 0
           ParentFont = False
           TabOrder = 8
           Text = 'Torp 1'
@@ -3745,10 +3748,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label22: TLabel
           Left = 8
           Top = 0
@@ -4247,10 +4246,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Panel1: TPanel
           Left = 6
           Top = 5
@@ -7218,7 +7213,6 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
       ParentColor = False
       ParentFont = False
       TabOrder = 1
-      StyleElements = [seClient, seBorder]
       OnClick = chkReserveFunctionsClick
     end
   end

@@ -8,7 +8,7 @@ uses
   Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, uVehicle, RzButton, RzRadChk,
   uSutBlacksharkManager, uVehicleManager, uSettingFormToMonitorWith_ini,
   uFormUtil, UfrmRadar, ufrmOwnshipData, ufrmAlertandOpearatorMassage,
-  ufmTargetInControl, uBaseFunction, ufrmTorpedoAllocation, ufrmSystemStatus,
+  ufmTargetInControl, uBaseFunction, ufrmSystemStatus,
   ufrmSystemInfo, ufrmCursor, uLibConst, uBaseConst, Vcl.OleCtrls, MapXLib_TLB,
   AdvCombo, ImageButton, uTransparentOverlay, uSimulationTrack, uSurfaceTrack, uSubSurfaceTrack, uTorpedoTrack;
 
@@ -106,7 +106,7 @@ var
 implementation
 
 uses
-  ufrmTorpedoWP;
+  ufrmTorpedoWP, ufrmTorpedoAllocation;
 
 {$R *.dfm}
 
@@ -413,6 +413,7 @@ end;
 procedure TFrmTacticalScreen.pnlOperatorMessagesClick(Sender: TObject);
 begin
   SutBlacksharkManager.OperatorMessages := '';
+  pnlOperatorMessages.Color := clBlack;
 end;
 
 procedure TFrmTacticalScreen.Render(aCnv: TCanvas);

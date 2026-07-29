@@ -42,14 +42,10 @@ type
     cbRange: TComboBox;
     Label14: TLabel;
     edtCourse: TEdit;
-    edtDatumTime: TEdit;
-    Label15: TLabel;
     Label16: TLabel;
     edtSpeed: TEdit;
     Label17: TLabel;
     edtDepth: TEdit;
-    Label18: TLabel;
-    edtError: TEdit;
     Label19: TLabel;
     edtFreeText: TEdit;
     lblApply: TLabel;
@@ -57,6 +53,10 @@ type
     lblReset: TLabel;
     lblClose: TLabel;
     Panel1: TPanel;
+    cbTrackQuality: TComboBox;
+    lblTrackQuality: TLabel;
+    lblDataValidTime: TLabel;
+    edtDataValidTime: TEdit;
     procedure lblCloseClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure cbIdentityChange(Sender: TObject);
@@ -65,6 +65,7 @@ type
     procedure lblReselectClick(Sender: TObject);
   private
     { Private declarations }
+    SelectedTrack : TSimulationTrack;
   public
     procedure CreateModifyTrackChange;
   end;
@@ -114,7 +115,6 @@ begin
     SubTrack.DataReportType     := TDataReportType(cbDataReport.ItemIndex);
     SubTrack.SubmarineConfLevel := TSubmarineConfLevel(cbSubmarineConf.ItemIndex);
     SubTrack.EstimatedDepth     := TEstimatedDepth(cbEstimatedDepth.ItemIndex);
-    SubTrack.DatumTime          := StrToDateTimeDef(edtDatumTime.Text, Now);
   end;
   CreateModifyTrackChange;
 end;
@@ -125,11 +125,6 @@ begin
 end;
 
 procedure TfrmCreateModifyTrack.lblReselectClick(Sender: TObject);
-begin
-  CreateModifyTrackChange;
-end;
-
-procedure TfrmCreateModifyTrack.lblResetClick(Sender: TObject);
 begin
   edtTrackNo.Clear;
   edtbearing.Text := '0';
@@ -142,13 +137,19 @@ begin
   cbCategory.ItemIndex := 0;
   cbIdentity.ItemIndex := 0;
 
-  edtDatumTime.Text := FormatDateTime('dd/MMMM/yyyy hh:mm:ss', Now);
+//  edtDatumTime.Text := FormatDateTime('dd/MMMM/yyyy hh:mm:ss', Now);
+
+end;
+
+procedure TfrmCreateModifyTrack.lblResetClick(Sender: TObject);
+begin
+  CreateModifyTrackChange;
 end;
 
 procedure TfrmCreateModifyTrack.cbIdentityChange(Sender: TObject);
 begin
-  if VehicleMgr.IsAnyTrackControlled then
-    VehicleMgr.TrackControlled.Identity := TIdentity(cbIdentity.ItemIndex);
+//  if VehicleMgr.IsAnyTrackControlled then
+//    VehicleMgr.TrackControlled.Identity := TIdentity(cbIdentity.ItemIndex);
 end;
 
 procedure TfrmCreateModifyTrack.CreateModifyTrackChange;
@@ -161,7 +162,7 @@ begin
     edtCourse.Text      := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
     edtSpeed.Text       := FormatFloat('0.0', (VehicleMgr.TrackControlled.Speed_knot * 0.514444444));
     edtDepth.Text       := FormatFloat('0.0', Abs(VehicleMgr.TrackControlled.PosZ));
-    edtDatumTime.Text   := FormatDateTime('dd/MMMM/yyyy  hh:mm:ss', Now);
+//    edtDatumTime.Text   := FormatDateTime('dd/MMMM/yyyy  hh:mm:ss', Now);
 
     case VehicleMgr.TrackControlled.Domain of
       1: cbCategory.ItemIndex := 0;

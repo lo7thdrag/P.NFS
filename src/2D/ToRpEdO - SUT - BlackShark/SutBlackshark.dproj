@@ -242,7 +242,6 @@
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmInformationTorpedo.pas">
             <Form>frmInformationTorpedo</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmAlertandOpearatorMassage.pas">
             <Form>frmAlertsandOpearatorMassage</Form>
@@ -299,7 +298,6 @@
         <DCCReference Include="LibSutBlacksharkObject\uTorpedoTrack.pas"/>
         <DCCReference Include="Permanen Form\ufrmOwnshipData.pas">
             <Form>frmOwnshipData</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

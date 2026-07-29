@@ -3,12 +3,11 @@ unit ufrmTorpedoAllocation;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
-  Vcl.StdCtrls, AdvPageControl,
-
-  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager, uVehicleManager, ufrmTorpedoTubeCommands,
-  uTorpedoLauncher;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, AdvPageControl,
+  ufrmTorpedoParameterDepthSettings, uSutBlacksharkManager, uVehicleManager,
+  ufrmTorpedoTubeCommands, uTorpedoLauncher;
 
 type
   TfrmTorpedoAllocation = class(TForm)
@@ -71,7 +70,7 @@ type
     Label20: TLabel;
     cbTorpInSalvo: TComboBox;
     Label21: TLabel;
-    ComboBox1: TComboBox;
+    cbNewTorp: TComboBox;
     chkReserveFunctions: TCheckBox;
     Label6: TLabel;
     lblReset: TLabel;
@@ -149,22 +148,20 @@ type
     procedure lblReleaseAllClick(Sender: TObject);
     procedure tmrEngagementTimer(Sender: TObject);
     procedure AdvPageTorpedoAllocationChange(Sender: TObject);
-    procedure lvReallocationSelectItem(Sender: TObject; Item: TListItem;
-      Selected: Boolean);
-    procedure lvTransferSelectItem(Sender: TObject; Item: TListItem;
-      Selected: Boolean);
-    procedure lvTerminationSelectItem(Sender: TObject; Item: TListItem;
-      Selected: Boolean);
+    procedure lvReallocationSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
+    procedure lvTransferSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
+    procedure lvTerminationSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
     procedure lblSwitchRunToOffClick(Sender: TObject);
     procedure lblDeleteSalvoInfoClick(Sender: TObject);
     procedure chkReserveFunctionsClick(Sender: TObject);
+    procedure lblReallocateClick(Sender: TObject);
   private
-    FFrmTorpedoParameterSettings : TfrmTorpedoParameterDepthSettings;
-    FFrmTorpedoTubeCommands      : TfrmTorpedoTubeCommands;
-    FEngagementAnalysisStart     : Boolean;
+    FFrmTorpedoParameterSettings: TfrmTorpedoParameterDepthSettings;
+    FFrmTorpedoTubeCommands: TfrmTorpedoTubeCommands;
+    FEngagementAnalysisStart: Boolean;
   public
-    FSelectTube : Integer;
-    FSelectFireRelease : Integer;
+    FSelectTube: Integer;
+    FSelectFireRelease: Integer;
 
     function IsReadyForEngagementAnalysis: Boolean;
 
@@ -179,7 +176,7 @@ var
 implementation
 
 uses
-  ufrmTorpedoWP, ufrmTorpedoTubeStatusWindow;
+  ufrmTorpedoWP, ufrmTorpedoTubeStatusWindow, ufrmTacticalScreen, ufrmHomingStatusPlot, ufrmTorpedoGuidance;
 
 {$R *.dfm}
 
@@ -189,32 +186,32 @@ begin
 
   if not Assigned(VehicleMgr) then
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Input Track Control by Number';
-//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    SutBlacksharkManager.OperatorMessages := 'Input Track Control by Number';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
 
     Exit;
   end
   else
   begin
-    SutBlacksharkManager.OperatorMessages                  := '';
-//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    SutBlacksharkManager.OperatorMessages := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   if not Assigned(VehicleMgr.TrackControlled) then
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Select the Target First';
-//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    SutBlacksharkManager.OperatorMessages := 'No Track in Control';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
 
     Exit;
   end
   else
   begin
-    SutBlacksharkManager.OperatorMessages                  := '';
-//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    SutBlacksharkManager.OperatorMessages := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   Result := True;
@@ -222,25 +219,23 @@ end;
 
 procedure TfrmTorpedoAllocation.AdvPageTorpedoAllocationChange(Sender: TObject);
 var
-  item : TListItem;
-  listVw : TListView;
+  item: TListItem;
+  listVw: TListView;
 begin
   if AdvPageTorpedoAllocation.ActivePageIndex = 1 then
   begin
     listVw := lvReallocation;
   end
-
   else if AdvPageTorpedoAllocation.ActivePageIndex = 2 then
   begin
     listVw := lvTransfer;
   end
-
   else if AdvPageTorpedoAllocation.ActivePageIndex = 3 then
   begin
     listVw := lvTermination;
   end
-
-  else Exit;
+  else
+    Exit;
 
   listVw.Clear;
   if Assigned(TorpedoParam) then
@@ -278,15 +273,15 @@ begin
 
   if SutBlacksharkManager.FTorpedoArray[FSelectTube].Loaded then
   begin
-    SutBlacksharkManager.OperatorMessages                  := '';
-//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    SutBlacksharkManager.OperatorMessages := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end
   else
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Select Loaded Torpedo in Instructor';
-//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    SutBlacksharkManager.OperatorMessages := 'Select Loaded Torpedo in Instructor';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
   end;
 end;
@@ -295,7 +290,7 @@ procedure TfrmTorpedoAllocation.imgFireReleaseClick(Sender: TObject);
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
     Exit;
   end;
 
@@ -322,22 +317,26 @@ end;
 
 procedure TfrmTorpedoAllocation.lblAllocateClick(Sender: TObject);
 var
-  shape  : TShape;
-  aFrame : TTorpedoLauncher;
+  shape: TShape;
+  aFrame: TTorpedoLauncher;
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
     Exit;
   end;
 
   if FSelectTube <> -1 then
   begin
-    SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated  := True;
+    SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated := True;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].TextStatus := stNone;
     SutBlacksharkManager.TorpedoTubeAllocNum := FSelectTube + 1;
     TorpedoParam.TorpedoIdx := FSelectTube + 1;
+    SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
+    TorpedoParam.SalvoNum := SutBlacksharkManager.SalvoIndex;
     SutBlacksharkManager.FTorpedoArray[FSelectTube].SalvoNumber := SutBlacksharkManager.SalvoIndex;
+
+    FFrmTorpedoParameterSettings.lblNumberSalvo.Caption := IntToStr(SutBlacksharkManager.SalvoIndex);
 
     if Assigned(frmTorpedoTubeStatusWindow) then
     begin
@@ -345,15 +344,17 @@ begin
       frmTorpedoTubeStatusWindow.UpdateFrameStatus;
     end;
 
-    SutBlacksharkManager.OperatorMessages                  := '';
-//    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
-//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    SutBlacksharkManager.OperatorMessages := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+
+
   end
   else
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Select Torpedo First';
-//    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
-//    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
+    SutBlacksharkManager.OperatorMessages := 'Select Torpedo First';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
   end;
 
@@ -362,9 +363,9 @@ begin
   begin
     frmTorpedoWP.pnlTorpedoTubes.Caption := '';
 
-    FFrmTorpedoTubeCommands        := TfrmTorpedoTubeCommands.Create(Self);
+    FFrmTorpedoTubeCommands := TfrmTorpedoTubeCommands.Create(Self);
     FFrmTorpedoTubeCommands.Parent := frmTorpedoWP.pnlTorpedoTubes;
-    FFrmTorpedoTubeCommands.Align  := alClient;
+    FFrmTorpedoTubeCommands.Align := alClient;
     FFrmTorpedoTubeCommands.Show;
   end;
 
@@ -372,15 +373,15 @@ begin
 
   if not SutBlacksharkManager.FTorpedoArray[FSelectTube].TorpedoOnOff then
   begin
-    FFrmTorpedoTubeCommands.lblTorpOn.Caption    := 'TORPEDO ON';
+    FFrmTorpedoTubeCommands.lblTorpOn.Caption := 'TORPEDO ON';
     FFrmTorpedoTubeCommands.lblTorpOn.Font.Color := clWhite;
 
-    FFrmTorpedoTubeCommands.lblSendCmd.Caption    := 'Send Cmd';
+    FFrmTorpedoTubeCommands.lblSendCmd.Caption := 'Send Cmd';
     FFrmTorpedoTubeCommands.lblSendCmd.Font.Color := clWhite;
   end
   else
   begin
-    FFrmTorpedoTubeCommands.lblSendCmd.Caption    := 'Send Cmd';
+    FFrmTorpedoTubeCommands.lblSendCmd.Caption := 'Send Cmd';
     FFrmTorpedoTubeCommands.lblSendCmd.Font.Color := clWhite;
   end;
   {$ENDREGION}
@@ -395,7 +396,7 @@ procedure TfrmTorpedoAllocation.lblDeleteSalvoInfoClick(Sender: TObject);
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
     Exit;
   end;
 
@@ -411,14 +412,60 @@ begin
       FreeAndNil(FFrmTorpedoParameterSettings);
 
     AdvPageTorpedoAllocationChange(Sender);
+
+    {$REGION 'Turn off torpedo salvo di TEP'}
+    frmTorpedoWP.LaunchSalvo := False;
+    frmTorpedoWP.pnlSubmodeTools13.Color := clBlack;
+
+    frmTorpedoWP.lblSubmodeTools3.Caption := '';
+    frmTorpedoWP.pnlSubmodeTools3.Enabled := false;
+    frmTorpedoWP.lblSubmodeTools3.Enabled := false;
+    frmTorpedoWP.lblSubmodeTools3.OnClick := nil;
+
+    frmTorpedoWP.lblSubmodeTools4.Caption := '';
+    frmTorpedoWP.pnlSubmodeTools4.Enabled := false;
+    frmTorpedoWP.lblSubmodeTools4.Enabled := false;
+    {$ENDREGION}
+
+    {$REGION 'Turn off torpedo control di TEP & close form torp ctrl'}
+    frmTorpedoWP.TorpCtrl := False;
+    frmTorpedoWP.pnlSubmodeTools16.Color := clBlack;
+    frmTorpedoWP.lblSubmodeTools6.Caption := '';
+    frmTorpedoWP.pnlSubmodeTools6.Enabled := false;
+    frmTorpedoWP.lblSubmodeTools6.Enabled := false;
+
+    if Assigned(frmHomingStatusPlot) then
+    begin
+      FreeAndNil(frmHomingStatusPlot);
+    end;
+    if Assigned(frmTorpedoGuidanceWindow) then
+    begin
+      FreeAndNil(frmTorpedoGuidanceWindow); // form homing command dan manual guidance otomatis dihapus disini
+    end;
+    {$ENDREGION}
+  end;
+end;
+
+procedure TfrmTorpedoAllocation.lblReallocateClick(Sender: TObject);
+begin
+  if not sutblackSharkManager.ReserveFunction then
+  begin
+    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
+    Exit;
+  end;
+
+  if lvReallocation.Selected.Index = 0 then
+  begin
+    TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
+    AdvPageTorpedoAllocationChange(Sender);
   end;
 end;
 
 procedure TfrmTorpedoAllocation.lblReleaseAllClick(Sender: TObject);
 var
-  i       : Integer;
-  Img     : TImage;
-  ImgPathTrue, ImgPathFalse : string;
+  i: Integer;
+  Img: TImage;
+  ImgPathTrue, ImgPathFalse: string;
 begin
   ImgPathTrue := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus2.bmp';
 
@@ -427,14 +474,22 @@ begin
     SutBlacksharkManager.FTorpedoArray[i].FireRelease := True;
 
     case i of
-      0: Img := imgFireRelease1;
-      1: Img := imgFireRelease2;
-      2: Img := imgFireRelease3;
-      3: Img := imgFireRelease4;
-      4: Img := imgFireRelease5;
-      5: Img := imgFireRelease6;
-      6: Img := imgFireRelease7;
-      7: Img := imgFireRelease8;
+      0:
+        Img := imgFireRelease1;
+      1:
+        Img := imgFireRelease2;
+      2:
+        Img := imgFireRelease3;
+      3:
+        Img := imgFireRelease4;
+      4:
+        Img := imgFireRelease5;
+      5:
+        Img := imgFireRelease6;
+      6:
+        Img := imgFireRelease7;
+      7:
+        Img := imgFireRelease8;
     end;
 
     Img.Picture.LoadFromFile(ImgPathTrue);
@@ -445,32 +500,31 @@ procedure TfrmTorpedoAllocation.lblSwitchRunToOffClick(Sender: TObject);
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
     Exit;
   end;
 
   // matikan torpedo di torpedo launcher dan non aktifkan semua isinya
   if lvTermination.Selected.Index = 0 then
   begin
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TorpedoType := 0;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].WaterPressure := wpDrained;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TorpedoStatus := tsOff;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].SalvoNumber := 0;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].FuseStatus := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].BowCap := bcClosed;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].WTRSC := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].CableStatus := csOff;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Allocated := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stNone;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TorpedoType := 0;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].WaterPressure := wpDrained;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TorpedoStatus := tsOff;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].SalvoNumber := 0;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].FuseStatus := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].BowCap := bcClosed;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].WTRSC := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].CableStatus := csOff;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Allocated := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TextStatus := stNone;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
   end;
 
 end;
 
-procedure TfrmTorpedoAllocation.lvReallocationSelectItem(Sender: TObject;
-  Item: TListItem; Selected: Boolean);
+procedure TfrmTorpedoAllocation.lvReallocationSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
 begin
   // select item di realloc
   if Assigned(TorpedoParam) then
@@ -478,17 +532,18 @@ begin
     if lvReallocation.Selected.Index = 0 then
     begin
       lbltarget.Caption := IntToStr(Torpedoparam.TargetTrackID);
-      lblnumbertotarget.Caption := IntToStr(TorpedoParam.SalvoNum);
-//      lblnumber
+      lblnumbertotarget.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
 
-      cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
+      cbTorpInSalvo.ItemIndex := TorpedoParam.TorpedoIdx;
+      cbNewTorp.ItemHeight := TorpedoParam.TorpedoIdx;
+
+//      cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
     end;
 
   end;
 end;
 
-procedure TfrmTorpedoAllocation.lvTerminationSelectItem(Sender: TObject;
-  Item: TListItem; Selected: Boolean);
+procedure TfrmTorpedoAllocation.lvTerminationSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
 begin
   // select item di termination
   if Assigned(TorpedoParam) then
@@ -503,8 +558,7 @@ begin
   end;
 end;
 
-procedure TfrmTorpedoAllocation.lvTransferSelectItem(Sender: TObject;
-  Item: TListItem; Selected: Boolean);
+procedure TfrmTorpedoAllocation.lvTransferSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
 begin
   // select item di transfer (which is ga fungsi)
 end;
@@ -516,13 +570,14 @@ begin
 
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
     Exit;
   end;
 
 
 //  FEngagementAnalysisStart := not FEngagementAnalysisStart;
-  if not FEngagementAnalysisStart then FEngagementAnalysisStart := True;
+  if not FEngagementAnalysisStart then
+    FEngagementAnalysisStart := True;
 
   if FEngagementAnalysisStart then
   begin
@@ -533,17 +588,17 @@ begin
       TorpedoParam := TTorpedoParameterSetting.Create;
       // ini harus dihandle biar di track dulu targetnya rojek
       TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
-      SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
-      TorpedoParam.SalvoNum := SutBlacksharkManager.SalvoIndex;
+      lblEngagementAnalysisStarted.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+      lblEngagementAnalysisStarted.Font.Color := clLime;
     end;
 
     if not Assigned(FFrmTorpedoParameterSettings) then
     begin
       frmTorpedoWP.pnlTorpedoParamSettings.Caption := '';
 
-      FFrmTorpedoParameterSettings        := TfrmTorpedoParameterDepthSettings.Create(Self);
+      FFrmTorpedoParameterSettings := TfrmTorpedoParameterDepthSettings.Create(Self);
       FFrmTorpedoParameterSettings.Parent := frmTorpedoWP.pnlTorpedoParamSettings;
-      FFrmTorpedoParameterSettings.Align  := alClient;
+      FFrmTorpedoParameterSettings.Align := alClient;
       FFrmTorpedoParameterSettings.Show;
     end;
   end;
@@ -577,9 +632,9 @@ end;
 
 procedure TfrmTorpedoAllocation.UpdateAllocationStatus;
 var
-  i       : Integer;
-  Img     : TImage;
-  ImgPathOn, ImgPathOff : string;
+  i: Integer;
+  Img: TImage;
+  ImgPathOn, ImgPathOff: string;
 begin
   ImgPathOn := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus2.bmp';
   ImgPathOff := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\AllocationStatus1.bmp';
@@ -587,43 +642,67 @@ begin
   for i := 1 to 8 do
   begin
     case i of
-      1: Img := imgAllocation1;
-      2: Img := imgAllocation2;
-      3: Img := imgAllocation3;
-      4: Img := imgAllocation4;
-      5: Img := imgAllocation5;
-      6: Img := imgAllocation6;
-      7: Img := imgAllocation7;
-      8: Img := imgAllocation8;
+      1:
+        Img := imgAllocation1;
+      2:
+        Img := imgAllocation2;
+      3:
+        Img := imgAllocation3;
+      4:
+        Img := imgAllocation4;
+      5:
+        Img := imgAllocation5;
+      6:
+        Img := imgAllocation6;
+      7:
+        Img := imgAllocation7;
+      8:
+        Img := imgAllocation8;
     end;
 
-    if SutBlacksharkManager.FTorpedoArray[i-1].Loaded then
+    if SutBlacksharkManager.FTorpedoArray[i - 1].Loaded then
     begin
       Img.Picture.LoadFromFile(ImgPathOn);
 
       case i of
-        1: lblAllocationStatus1.Font.Color := clLime;
-        2: lblAllocationStatus2.Font.Color := clLime;
-        3: lblAllocationStatus3.Font.Color := clLime;
-        4: lblAllocationStatus4.Font.Color := clLime;
-        5: lblAllocationStatus5.Font.Color := clLime;
-        6: lblAllocationStatus6.Font.Color := clLime;
-        7: lblAllocationStatus7.Font.Color := clLime;
-        8: lblAllocationStatus8.Font.Color := clLime;
+        1:
+          lblAllocationStatus1.Font.Color := clLime;
+        2:
+          lblAllocationStatus2.Font.Color := clLime;
+        3:
+          lblAllocationStatus3.Font.Color := clLime;
+        4:
+          lblAllocationStatus4.Font.Color := clLime;
+        5:
+          lblAllocationStatus5.Font.Color := clLime;
+        6:
+          lblAllocationStatus6.Font.Color := clLime;
+        7:
+          lblAllocationStatus7.Font.Color := clLime;
+        8:
+          lblAllocationStatus8.Font.Color := clLime;
       end;
     end
     else
     begin
       Img.Picture.LoadFromFile(ImgPathOff);
       case i of
-        1: lblAllocationStatus1.Font.Color := clWhite;
-        2: lblAllocationStatus2.Font.Color := clWhite;
-        3: lblAllocationStatus3.Font.Color := clWhite;
-        4: lblAllocationStatus4.Font.Color := clWhite;
-        5: lblAllocationStatus5.Font.Color := clWhite;
-        6: lblAllocationStatus6.Font.Color := clWhite;
-        7: lblAllocationStatus7.Font.Color := clWhite;
-        8: lblAllocationStatus8.Font.Color := clWhite;
+        1:
+          lblAllocationStatus1.Font.Color := clWhite;
+        2:
+          lblAllocationStatus2.Font.Color := clWhite;
+        3:
+          lblAllocationStatus3.Font.Color := clWhite;
+        4:
+          lblAllocationStatus4.Font.Color := clWhite;
+        5:
+          lblAllocationStatus5.Font.Color := clWhite;
+        6:
+          lblAllocationStatus6.Font.Color := clWhite;
+        7:
+          lblAllocationStatus7.Font.Color := clWhite;
+        8:
+          lblAllocationStatus8.Font.Color := clWhite;
       end;
     end;
   end;
@@ -631,26 +710,34 @@ end;
 
 procedure TfrmTorpedoAllocation.UpdateFireRelease;
 var
-  i       : Integer;
-  Img     : TImage;
-  ImgPathTrue, ImgPathFalse : string;
+  i: Integer;
+  Img: TImage;
+  ImgPathTrue, ImgPathFalse: string;
 begin
   ImgPathTrue := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus2.bmp';
   ImgPathFalse := IncludeTrailingPathDelimiter(ExpandFileName(ExtractFilePath(Application.ExeName) + '..\')) + 'data\images\blackshark\FireStatus1.bmp';
   for i := 1 to 8 do
   begin
     case i of
-      1: Img := imgFireRelease1;
-      2: Img := imgFireRelease2;
-      3: Img := imgFireRelease3;
-      4: Img := imgFireRelease4;
-      5: Img := imgFireRelease5;
-      6: Img := imgFireRelease6;
-      7: Img := imgFireRelease7;
-      8: Img := imgFireRelease8;
+      1:
+        Img := imgFireRelease1;
+      2:
+        Img := imgFireRelease2;
+      3:
+        Img := imgFireRelease3;
+      4:
+        Img := imgFireRelease4;
+      5:
+        Img := imgFireRelease5;
+      6:
+        Img := imgFireRelease6;
+      7:
+        Img := imgFireRelease7;
+      8:
+        Img := imgFireRelease8;
     end;
 
-    if SutBlacksharkManager.FTorpedoArray[i-1].FireRelease then
+    if SutBlacksharkManager.FTorpedoArray[i - 1].FireRelease then
     begin
       Img.Picture.LoadFromFile(ImgPathTrue);
     end
@@ -663,21 +750,22 @@ procedure TfrmTorpedoAllocation.UpdateAllocations;
 begin
   if VehicleMgr.IsAnyTrackControlled then
   begin
-    lblToTarget.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+    lblToTarget.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
     lblToTarget.Font.Color := clLime;
 
-    lblEngagementAnalysisStarted.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
-    lblEngagementAnalysisStarted.Font.Color := clLime;
+//    lblEngagementAnalysisStarted.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+//    lblEngagementAnalysisStarted.Font.Color := clLime;
   end
   else
   begin
-    lblToTarget.Caption    := '000000';
+    lblToTarget.Caption := '';
     lblToTarget.Font.Color := clWhite;
 
-    lblEngagementAnalysisStarted.Caption := '000000';
-    lblToTarget.Font.Color := clWhite;
+//    lblEngagementAnalysisStarted.Caption := '';
+//    lblToTarget.Font.Color := clWhite;
   end;
 
 end;
 
 end.
+
