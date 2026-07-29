@@ -23,6 +23,8 @@ type
     Label8: TLabel;
     Label9: TLabel;
     Label10: TLabel;
+    tmrOwnshipData: TTimer;
+    procedure tmrOwnshipDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,5 +37,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmOwnshipData.tmrOwnshipDataTimer(Sender: TObject);
+begin
+  lblTime.Caption := FormatDateTime('dd/MMMM/yyyy   hh:mm:ss', Now);
+end;
 
 end.

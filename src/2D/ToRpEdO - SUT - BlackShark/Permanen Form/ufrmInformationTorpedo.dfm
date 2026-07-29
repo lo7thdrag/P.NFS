@@ -203,7 +203,7 @@ object frmInformationTorpedo: TfrmInformationTorpedo
       ParentFont = False
     end
     object Label8: TLabel
-      Left = 112
+      Left = 121
       Top = 24
       Width = 21
       Height = 16
@@ -216,7 +216,7 @@ object frmInformationTorpedo: TfrmInformationTorpedo
       ParentFont = False
     end
     object Label9: TLabel
-      Left = 112
+      Left = 121
       Top = 44
       Width = 17
       Height = 16
@@ -229,7 +229,7 @@ object frmInformationTorpedo: TfrmInformationTorpedo
       ParentFont = False
     end
     object Label10: TLabel
-      Left = 112
+      Left = 121
       Top = 64
       Width = 21
       Height = 16
@@ -242,7 +242,7 @@ object frmInformationTorpedo: TfrmInformationTorpedo
       ParentFont = False
     end
     object Label11: TLabel
-      Left = 112
+      Left = 121
       Top = 84
       Width = 22
       Height = 16
@@ -255,7 +255,7 @@ object frmInformationTorpedo: TfrmInformationTorpedo
       ParentFont = False
     end
     object Label12: TLabel
-      Left = 112
+      Left = 121
       Top = 104
       Width = 11
       Height = 16
@@ -267,5 +267,10 @@ object frmInformationTorpedo: TfrmInformationTorpedo
       Font.Style = []
       ParentFont = False
     end
+  end
+  object tmrInformationTorpedo: TTimer
+    OnTimer = tmrInformationTorpedoTimer
+    Left = 8
+    Top = 112
   end
 end

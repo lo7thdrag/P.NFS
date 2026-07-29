@@ -203,4 +203,9 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
   end
+  object tmrOwnshipData: TTimer
+    OnTimer = tmrOwnshipDataTimer
+    Left = 112
+    Top = 88
+  end
 end
