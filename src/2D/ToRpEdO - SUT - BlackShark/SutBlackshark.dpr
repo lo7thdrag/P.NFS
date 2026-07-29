@@ -79,7 +79,7 @@ uses
   ufrmTrackFilter in 'Pop-up form\ufrmTrackFilter.pas' {frmTrackFilter},
   ufrmEngagementDataOverview in 'Permanen Form\ufrmEngagementDataOverview.pas' {frmEngagementDataOverview},
   ufrmManualGuidance in 'Permanen Form\ufrmManualGuidance.pas' {frmManualGuidance},
-  ufrmOwnShip in 'Permanen Form\ufrmOwnShip.pas' {frmOwnShip},
+  ufrmInformationTorpedo in 'Permanen Form\ufrmInformationTorpedo.pas' {frmInformationTorpedo},
   ufrmAlertandOpearatorMassage in 'Permanen Form\ufrmAlertandOpearatorMassage.pas' {frmAlertsandOpearatorMassage},
   ufmTargetInControl in 'Permanen Form\ufmTargetInControl.pas' {frmTargetInControl},
   ufrmContactInControl in 'Permanen Form\ufrmContactInControl.pas' {frmContactInControl},
@@ -114,6 +114,5 @@ begin
   Application.CreateForm(TFrmTacticalScreen, FrmTacticalScreen);
   Application.CreateForm(TfrmTorpedoTubeStatusWindow, frmTorpedoTubeStatusWindow);
   Application.CreateForm(TfrmTorpedoStatusResultsWindow, frmTorpedoStatusResultsWindow);
-
   Application.Run;
 end.

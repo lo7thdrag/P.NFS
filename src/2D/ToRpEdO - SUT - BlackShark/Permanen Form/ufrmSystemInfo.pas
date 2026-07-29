@@ -15,6 +15,7 @@ type
     tmrUpdateEngagementList: TTimer;
     procedure FormShow(Sender: TObject);
     procedure tmrUpdateEngagementListTimer(Sender: TObject);
+    procedure lvEngagementListClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -31,7 +32,7 @@ implementation
 
 { TfrmSystemInfo }
 
-procedure TfrmSystemInfo.FormShow(Sender: TObject);
+procedure TfrmSystemInfo.lvEngagementListClick(Sender: TObject);
 begin
   UpdateEngagementList;
 end;

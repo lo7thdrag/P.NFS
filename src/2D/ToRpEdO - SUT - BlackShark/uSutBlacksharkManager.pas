@@ -17,7 +17,7 @@ type
   private
     // torpedo parameter
     FTargetTrackID, FSalvoNum, FTorpedoAmount, FLOSDeviation, FSearchSpeed, FCeiling, FAttackDepth, FSearchDepth, FApproachDepth,
-    FFloor, FApproachSpeed, FTosoRangePAS, FTosoRangeACT, FProtectionRadius : Integer;
+    FFloor, FApproachSpeed, FTosoRangePAS, FTosoRangeACT, FProtectionRadius, FTorpedoNum : Integer;
     FApproachCourse : Single;
     FEnablingDist, FCenterOS, FSALength, FSAWidth, FCenterSSP, FOStoSSP, FDPCAngle : Double;
     FProtectionRadiusEnable : Boolean;
@@ -60,6 +60,7 @@ type
     property ASH : Byte read FASH write FASH;
     property EngagementID : word read FEngagementID write FEngagementID;
     property TorpedoIdx : Byte read FTorpedoIdx write FTorpedoIdx;
+    property TorpedoNum : Integer read FTorpedoNum write FTorpedoNum;
 
   end;
 
@@ -93,7 +94,7 @@ type
     FOperatorMessages: string;
 
     FCursorX, FCursorY : Double;
-    FSalvoIndex : Integer;
+    FSalvoIndex, FTorpedoIndex : Integer;
     FTorpedoTubeAllocNum : Byte;  // 1 ... 8
     FReserveFunction : Boolean;
 
@@ -154,6 +155,7 @@ type
     property SalvoIndex : Integer read FSalvoIndex write FSalvoIndex;
     property TorpedoTubeAllocNum : Byte read FTorpedoTubeAllocNum write FTorpedoTubeAllocNum;
     property ReserveFunction : Boolean read FReserveFunction write FReserveFunction;
+    property TorpedoIndex : Integer read FTorpedoIndex write FTorpedoIndex;
 
     property Env_Map: Integer read FEnv_Map write FEnv_Map;
     property ShipClassID: Integer read FShipClassID write FShipClassID;

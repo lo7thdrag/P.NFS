@@ -156,6 +156,9 @@ var
 
 implementation
 
+uses
+  ufrmTorpedoAllocation;
+
 {$R *.dfm}
 
 procedure TfrmTorpedoParameterDepthSettings.ResetControl(AControl: TControl);
@@ -254,7 +257,6 @@ begin
   edtOfficialLOSDeviation.Text   := edtTrialLOSDeviation.Text;
   cbTrialSearchSpeed.ItemIndex   := TorpedoParam.SearchSpeed - 9;
   lblOfficialSearchSpeed.Caption := cbTrialSearchSpeed.Text;
-  lblNoTorpedoes.Caption         := IntToStr(TorpedoParam.TorpedoIdx);
   {$ENDREGION}
 
   {$REGION 'AdvDepth'}
@@ -454,6 +456,14 @@ begin
     TorpedoParam.SalvoNum           := SutBlacksharkManager.SalvoIndex;
     lblNumberSalvo.Caption          := IntToStr(TorpedoParam.SalvoNum);
     lblNumberSalvo.Font.Color       := clLime;
+  end;
+
+  if TorpedoParam.TorpedoNum = 0 then
+  begin
+    SutBlacksharkManager.TorpedoIndex := SutBlacksharkManager.TorpedoIndex + 1;
+    TorpedoParam.TorpedoNum           := SutBlacksharkManager.TorpedoIndex;
+    lblNoTorpedoes.Caption            := IntToStr(TorpedoParam.TorpedoNum);
+    lblNoTorpedoes.Font.Color         := clLime;
   end;
 
   if Assigned(frmSystemInfo) and frmSystemInfo.Visible then

@@ -87,7 +87,7 @@
         <DCC_DcuOutput>.\bin\comp</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Debugger_RunParams>-192.168.0.66 -2120 -192.168.0.66 -mysql -dbNSuFs -root -admin -46 -8</Debugger_RunParams>
+        <Debugger_RunParams>-192.168.0.115 -2120 -192.168.0.115 -mysql -dbNSuFs -root -T3server! -46 -8</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -240,8 +240,8 @@
             <Form>frmManualGuidance</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Permanen Form\ufrmOwnShip.pas">
-            <Form>frmOwnShip</Form>
+        <DCCReference Include="Permanen Form\ufrmInformationTorpedo.pas">
+            <Form>frmInformationTorpedo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Permanen Form\ufrmAlertandOpearatorMassage.pas">
