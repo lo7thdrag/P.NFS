@@ -157,6 +157,7 @@ type
       Selected: Boolean);
     procedure lblSwitchRunToOffClick(Sender: TObject);
     procedure lblDeleteSalvoInfoClick(Sender: TObject);
+    procedure chkReserveFunctionsClick(Sender: TObject);
   private
     FFrmTorpedoParameterSettings : TfrmTorpedoParameterDepthSettings;
     FFrmTorpedoTubeCommands      : TfrmTorpedoTubeCommands;
@@ -252,6 +253,11 @@ begin
   end;
 end;
 
+procedure TfrmTorpedoAllocation.chkReserveFunctionsClick(Sender: TObject);
+begin
+  SutBlacksharkManager.ReserveFunction := chkreserveFunctions.Checked;
+end;
+
 procedure TfrmTorpedoAllocation.FormCreate(Sender: TObject);
 begin
   FSelectTube := -1;
@@ -263,6 +269,7 @@ procedure TfrmTorpedoAllocation.FormShow(Sender: TObject);
 begin
   UpdateAllocationStatus;
   AdvPageTorpedoAllocation.ActivePageIndex := 0;
+  chkReserveFunctions.checked := SutBlacksharkManager.ReserveFunction;
 end;
 
 procedure TfrmTorpedoAllocation.imgAllocation1Click(Sender: TObject);
@@ -286,6 +293,12 @@ end;
 
 procedure TfrmTorpedoAllocation.imgFireReleaseClick(Sender: TObject);
 begin
+  if not sutblackSharkManager.ReserveFunction then
+  begin
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    Exit;
+  end;
+
   FSelectFireRelease := TImage(Sender).Tag;
 
   SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease := not SutBlacksharkManager.FTorpedoArray[FSelectFireRelease].FireRelease;
@@ -312,6 +325,12 @@ var
   shape  : TShape;
   aFrame : TTorpedoLauncher;
 begin
+  if not sutblackSharkManager.ReserveFunction then
+  begin
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    Exit;
+  end;
+
   if FSelectTube <> -1 then
   begin
     SutBlacksharkManager.FTorpedoArray[FSelectTube].Allocated  := True;
@@ -374,16 +393,25 @@ end;
 
 procedure TfrmTorpedoAllocation.lblDeleteSalvoInfoClick(Sender: TObject);
 begin
+  if not sutblackSharkManager.ReserveFunction then
+  begin
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    Exit;
+  end;
+
   // delete salvo info dan torpedo param
-  FreeAndNil(TorpedoParam);
-  FEngagementAnalysisStart := False;
-  pnlEngagementAnalysisStart.Color := clBlack;
+  if lvTermination.Selected.Index = 0 then
+  begin
+    FreeAndNil(TorpedoParam);
+    FEngagementAnalysisStart := False;
+    pnlEngagementAnalysisStart.Color := clBlack;
 
-  // close semua form yang dibuka
-  if Assigned(FFrmTorpedoParameterSettings) then
-    FreeAndNil(FFrmTorpedoParameterSettings);
+    // close semua form yang dibuka
+    if Assigned(FFrmTorpedoParameterSettings) then
+      FreeAndNil(FFrmTorpedoParameterSettings);
 
-  AdvPageTorpedoAllocationChange(Sender);
+    AdvPageTorpedoAllocationChange(Sender);
+  end;
 end;
 
 procedure TfrmTorpedoAllocation.lblReleaseAllClick(Sender: TObject);
@@ -415,26 +443,48 @@ end;
 
 procedure TfrmTorpedoAllocation.lblSwitchRunToOffClick(Sender: TObject);
 begin
+  if not sutblackSharkManager.ReserveFunction then
+  begin
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    Exit;
+  end;
+
   // matikan torpedo di torpedo launcher dan non aktifkan semua isinya
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TorpedoType := 0;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].WaterPressure := wpDrained;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TorpedoStatus := tsOff;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].SalvoNumber := 0;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].FuseStatus := False;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].BowCap := bcClosed;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].WTRSC := False;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].CableStatus := csOff;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Allocated := False;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stNone;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
-  SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
+  if lvTermination.Selected.Index = 0 then
+  begin
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TorpedoType := 0;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].WaterPressure := wpDrained;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TorpedoStatus := tsOff;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].SalvoNumber := 0;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].FuseStatus := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].BowCap := bcClosed;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].WTRSC := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].CableStatus := csOff;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Allocated := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stNone;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
+    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].Loaded := False;
+  end;
+
 end;
 
 procedure TfrmTorpedoAllocation.lvReallocationSelectItem(Sender: TObject;
   Item: TListItem; Selected: Boolean);
 begin
   // select item di realloc
+  if Assigned(TorpedoParam) then
+  begin
+    if lvReallocation.Selected.Index = 0 then
+    begin
+      lbltarget.Caption := IntToStr(Torpedoparam.TargetTrackID);
+      lblnumbertotarget.Caption := IntToStr(TorpedoParam.SalvoNum);
+//      lblnumber
+
+      cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
+    end;
+
+  end;
 end;
 
 procedure TfrmTorpedoAllocation.lvTerminationSelectItem(Sender: TObject;
@@ -464,6 +514,13 @@ begin
   if not IsReadyForEngagementAnalysis then
     Exit;
 
+  if not sutblackSharkManager.ReserveFunction then
+  begin
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    Exit;
+  end;
+
+
 //  FEngagementAnalysisStart := not FEngagementAnalysisStart;
   if not FEngagementAnalysisStart then FEngagementAnalysisStart := True;
 
@@ -476,6 +533,8 @@ begin
       TorpedoParam := TTorpedoParameterSetting.Create;
       // ini harus dihandle biar di track dulu targetnya rojek
       TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
+      SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
+      TorpedoParam.SalvoNum := SutBlacksharkManager.SalvoIndex;
     end;
 
     if not Assigned(FFrmTorpedoParameterSettings) then

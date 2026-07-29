@@ -95,6 +95,7 @@ type
     FCursorX, FCursorY : Double;
     FSalvoIndex : Integer;
     FTorpedoTubeAllocNum : Byte;  // 1 ... 8
+    FReserveFunction : Boolean;
 
   protected
     procedure  EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
@@ -152,6 +153,7 @@ type
     property AssignedWeapon : TWeaponGetList read FAssignedWeapon;
     property SalvoIndex : Integer read FSalvoIndex write FSalvoIndex;
     property TorpedoTubeAllocNum : Byte read FTorpedoTubeAllocNum write FTorpedoTubeAllocNum;
+    property ReserveFunction : Boolean read FReserveFunction write FReserveFunction;
 
     property Env_Map: Integer read FEnv_Map write FEnv_Map;
     property ShipClassID: Integer read FShipClassID write FShipClassID;
@@ -182,6 +184,7 @@ implementation
 uses
   uDataModule, ulibSettings,
     uShipModel, ufrmTorpedoAllocation, ufrmSystemStatus;
+    uShipModel, ufrmSystemStatus;
 
 { TSutBlacksharkManager }
 
@@ -234,6 +237,8 @@ begin
   FIsTrueMotion := False;
   FTBIFireAuth  := False;
   FSalvoIndex   := 0;
+  FReserveFunction := false;
+//  Freserve
 
   for i := 0 to High(FTorpedoArray) do
     FTorpedoArray[i] := TTorpedoLauncher.Create;

@@ -12,7 +12,9 @@ type
   TfrmSystemInfo = class(TForm)
     pnlMain: TPanel;
     lvEngagementList: TListView;
+    tmrUpdateEngagementList: TTimer;
     procedure FormShow(Sender: TObject);
+    procedure tmrUpdateEngagementListTimer(Sender: TObject);
 
   private
     { Private declarations }
@@ -30,6 +32,11 @@ implementation
 { TfrmSystemInfo }
 
 procedure TfrmSystemInfo.FormShow(Sender: TObject);
+begin
+  UpdateEngagementList;
+end;
+
+procedure TfrmSystemInfo.tmrUpdateEngagementListTimer(Sender: TObject);
 begin
   UpdateEngagementList;
 end;

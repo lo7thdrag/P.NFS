@@ -319,6 +319,8 @@ begin
           V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FShowedVehicle));
           V.isVisible := False;
         end;
+        V := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(aRec.IDTarget2D));
+        V.isVisible := True;
         SelectedVehicleID := V.ShipID;
       end;
 

@@ -26,6 +26,7 @@ type
     procedure lblApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure edtTrackNoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     FApplyBtnEnable : Boolean;
@@ -54,6 +55,34 @@ begin
   end;
 end;
 
+procedure TfrmControlByNumber.edtTrackNoKeyPress(Sender: TObject;
+  var Key: Char);
+  var
+  Applied : Boolean;
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    lblApplyClick(nil);
+//    if FApplyBtnEnable then
+//    begin
+//      Applied := VehicleMgr.ControlTrackByTrackNumber(StrToInt(edtTrackNo.Text));
+//      if not Applied then
+//      begin
+//        // call di blackshark manager untuk spawn operator messages
+//        SutBlacksharkManager.OperatorMessages := 'Invalid Track Number';
+//
+//        FreeAndNil(frmControlByNumber);
+//      end
+//      else
+//      begin
+//  //      TorpedoParam.
+//        FreeAndNil(frmControlByNumber);
+//      end;
+//    end;
+  end;
+end;
+
 procedure TfrmControlByNumber.FormCreate(Sender: TObject);
 begin
   FApplyBtnEnable := False;
@@ -75,13 +104,14 @@ begin
     begin
       // call di blackshark manager untuk spawn operator messages
       SutBlacksharkManager.OperatorMessages := 'Invalid Track Number';
-
-      FreeAndNil(frmControlByNumber);
+      frmControlByNumber.Close;
+//      FreeAndNil(frmControlByNumber);
     end
     else
     begin
 //      TorpedoParam.
-      FreeAndNil(frmControlByNumber);
+      frmControlByNumber.Close;
+//      FreeAndNil(frmControlByNumber);
     end;
   end;
 end;

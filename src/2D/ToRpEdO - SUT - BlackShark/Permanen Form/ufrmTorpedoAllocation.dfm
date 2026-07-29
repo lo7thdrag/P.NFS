@@ -74,7 +74,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
       Top = 8
       Width = 470
       Height = 529
-      ActivePage = AdvfireRel
+      ActivePage = AdvRealloc
       ActiveFont.Charset = DEFAULT_CHARSET
       ActiveFont.Color = clLime
       ActiveFont.Height = -13
@@ -105,6 +105,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label1: TLabel
           Left = 8
           Top = 7
@@ -149,7 +153,9 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Top = 58
           Width = 42
           Height = 14
-          Caption = '110002'
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '000000'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
@@ -3290,6 +3296,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clNone
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label8: TLabel
           Left = 8
           Top = 0
@@ -3468,10 +3478,12 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           ParentFont = False
         end
         object lblReallocate: TLabel
-          Left = 218
-          Top = 310
-          Width = 55
+          Left = 192
+          Top = 316
+          Width = 76
           Height = 14
+          Alignment = taCenter
+          AutoSize = False
           Caption = 'Reallocate'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
@@ -3482,7 +3494,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label19: TLabel
           Left = 9
-          Top = 323
+          Top = 363
           Width = 92
           Height = 14
           Caption = 'Change Torpedo'
@@ -3495,7 +3507,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label20: TLabel
           Left = 10
-          Top = 347
+          Top = 387
           Width = 71
           Height = 14
           Caption = 'Torp in Salvo'
@@ -3508,7 +3520,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object Label21: TLabel
           Left = 218
-          Top = 347
+          Top = 387
           Width = 76
           Height = 14
           Caption = 'New Torpedo'
@@ -3521,7 +3533,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblRemoveTorpedo: TLabel
           Left = 66
-          Top = 374
+          Top = 414
           Width = 95
           Height = 14
           Caption = 'Remove Torpedo'
@@ -3534,7 +3546,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object lblChangeTorpedo: TLabel
           Left = 250
-          Top = 372
+          Top = 412
           Width = 92
           Height = 14
           Caption = 'Change Torpedo'
@@ -3577,6 +3589,8 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Name = 'Tahoma'
           Font.Style = []
           GridLines = True
+          ReadOnly = True
+          RowSelect = True
           ParentFont = False
           TabOrder = 0
           ViewStyle = vsReport
@@ -3685,7 +3699,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object cbTorpInSalvo: TComboBox
           Left = 106
-          Top = 344
+          Top = 384
           Width = 81
           Height = 22
           Color = clBlack
@@ -3709,7 +3723,7 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         end
         object ComboBox1: TComboBox
           Left = 314
-          Top = 344
+          Top = 384
           Width = 81
           Height = 22
           Color = clBlack
@@ -3952,6 +3966,8 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Name = 'Tahoma'
           Font.Style = []
           GridLines = True
+          ReadOnly = True
+          RowSelect = True
           ParentFont = False
           TabOrder = 0
           ViewStyle = vsReport
@@ -4041,6 +4057,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label32: TLabel
           Left = 8
           Top = 0
@@ -4209,6 +4229,8 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
           Font.Name = 'Tahoma'
           Font.Style = []
           GridLines = True
+          ReadOnly = True
+          RowSelect = True
           ParentFont = False
           TabOrder = 0
           ViewStyle = vsReport
@@ -4237,6 +4259,10 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
         TabColor = clBlack
         TabColorTo = clBlack
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel1: TPanel
           Left = 6
           Top = 5
@@ -7193,17 +7219,19 @@ object frmTorpedoAllocation: TfrmTorpedoAllocation
     object chkReserveFunctions: TCheckBox
       Left = 9
       Top = 548
-      Width = 17
+      Width = 124
       Height = 17
-      Color = clBlack
+      Color = clBtnFace
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -12
+      Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentColor = False
       ParentFont = False
       TabOrder = 1
+      StyleElements = [seClient, seBorder]
+      OnClick = chkReserveFunctionsClick
     end
   end
   object tmrImageAllocation: TTimer

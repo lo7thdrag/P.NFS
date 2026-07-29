@@ -30,22 +30,22 @@ object frmSystemInfo: TfrmSystemInfo
       Columns = <
         item
           Caption = 'Target'
-          Width = 100
+          Width = 113
         end
         item
           Alignment = taCenter
           Caption = 'Salvo'
-          Width = 100
+          Width = 114
         end
         item
           Alignment = taCenter
           Caption = 'Torpedo'
-          Width = 150
+          Width = 113
         end
         item
           Alignment = taCenter
           Caption = 'Console'
-          Width = 100
+          Width = 113
         end>
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
@@ -57,5 +57,11 @@ object frmSystemInfo: TfrmSystemInfo
       TabOrder = 0
       ViewStyle = vsReport
     end
+  end
+  object tmrUpdateEngagementList: TTimer
+    Interval = 2000
+    OnTimer = tmrUpdateEngagementListTimer
+    Left = 224
+    Top = 88
   end
 end

@@ -90,9 +90,10 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
     object lblNoTorpedoes: TLabel
       Left = 497
       Top = 7
-      Width = 7
+      Width = 14
       Height = 14
-      Caption = '0'
+      AutoSize = False
+      Caption = '00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -12
