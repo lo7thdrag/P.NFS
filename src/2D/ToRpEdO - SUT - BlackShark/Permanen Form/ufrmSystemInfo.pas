@@ -13,7 +13,6 @@ type
     pnlMain: TPanel;
     lvEngagementList: TListView;
     tmrUpdateEngagementList: TTimer;
-    procedure FormShow(Sender: TObject);
     procedure tmrUpdateEngagementListTimer(Sender: TObject);
     procedure lvEngagementListClick(Sender: TObject);
 
