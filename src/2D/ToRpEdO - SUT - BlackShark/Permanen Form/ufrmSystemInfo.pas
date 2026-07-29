@@ -12,6 +12,8 @@ type
   TfrmSystemInfo = class(TForm)
     pnlMain: TPanel;
     lvEngagementList: TListView;
+    tmrUpdateEngagementList: TTimer;
+    procedure tmrUpdateEngagementListTimer(Sender: TObject);
     procedure lvEngagementListClick(Sender: TObject);
 
   private
@@ -30,6 +32,11 @@ implementation
 { TfrmSystemInfo }
 
 procedure TfrmSystemInfo.lvEngagementListClick(Sender: TObject);
+begin
+  UpdateEngagementList;
+end;
+
+procedure TfrmSystemInfo.tmrUpdateEngagementListTimer(Sender: TObject);
 begin
   UpdateEngagementList;
 end;

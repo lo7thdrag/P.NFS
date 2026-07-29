@@ -955,7 +955,7 @@ begin
 //    RaiseLastOSError;
 
   ZeroMemory(@ExecPTK, SizeOf(ExecPTK));
-  ExecPTK.cbSize := SizeOf(ExecInfo);
+  ExecPTK.cbSize := SizeOf(ExecPTK);
   ExecPTK.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
   ExecPTK.Wnd := Handle;
   ExecPTK.lpVerb := 'open';
@@ -983,7 +983,7 @@ begin
   tfile.WriteAllText('settingsIR.json', setting, TEncoding.UTF8); // save json before launch
 
   ZeroMemory(@ExecInfoIR, SizeOf(ExecInfoIR));
-  ExecInfoIR.cbSize := SizeOf(ExecInfo);
+  ExecInfoIR.cbSize := SizeOf(ExecInfoIR);
   ExecInfoIR.fMask := SEE_MASK_NOCLOSEPROCESS; // <-- penting!
   ExecInfoIR.Wnd := Handle;
   ExecInfoIR.lpVerb := 'open';

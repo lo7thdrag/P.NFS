@@ -452,7 +452,7 @@ begin
 
   if TorpedoParam.SalvoNum = 0 then
   begin
-    SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
+//    SutBlacksharkManager.SalvoIndex := SutBlacksharkManager.SalvoIndex + 1;
     TorpedoParam.SalvoNum           := SutBlacksharkManager.SalvoIndex;
     lblNumberSalvo.Caption          := IntToStr(TorpedoParam.SalvoNum);
     lblNumberSalvo.Font.Color       := clLime;
@@ -468,6 +468,9 @@ begin
 
   if Assigned(frmSystemInfo) and frmSystemInfo.Visible then
     frmSystemInfo.UpdateEngagementList;
+
+  lblNoTorpedoes.Caption    := '1';
+  lblNoTorpedoes.Font.Color := clLime;
 end;
 
 procedure TfrmTorpedoParameterDepthSettings.lblResetClick(Sender: TObject);

@@ -422,6 +422,9 @@ var
   MapX, MapY: Double;
   ScrX, ScrY: Single;
   TrkHstry : TTrackPoint;
+  R1, R2, R3 : Integer;
+  Polygn: array[0..3] of System.types.TPoint;
+  PolySuspect: array[0..4] of System.types.TPoint;
 begin
   OwnShip := nil;
 
@@ -502,21 +505,185 @@ begin
 
           FMapTP.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
 
-          aCnv.Pen.Color := clBlack;
-          aCnv.Pen.Style := psClear;
-          aCnv.Pen.Width := 1;
+          if Ship.Identity = tidUnknown then
+          begin
+            aCnv.Pen.Color := clBlack;
+            aCnv.Pen.Style := psClear;
+            aCnv.Pen.Width := 1;
 
-          aCnv.Brush.Color := RGB(243, 235, 118);
-          aCnv.Brush.Style := bsSolid;
-          if Ship.Domain = 1 then
-          begin
-            aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
-            aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 10, Round(ScrX) + 5, Round(ScrY) + 10);
+            aCnv.Brush.Color := RGB(243, 235, 118); // kuning cerah
+            aCnv.Brush.Style := bsSolid;
+            if Ship.Domain = 1 then
+            begin
+              aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+              aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 10, Round(ScrX) + 5, Round(ScrY) + 10);
+            end
+            else if Ship.Domain = 3 then
+            begin
+              aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+              aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
+            end;
           end
-          else if Ship.Domain = 3 then
+          else if Ship.Identity = tidAssdFriend then
           begin
-            aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
-            aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
+            aCnv.Pen.Color := clBlack;
+            aCnv.Pen.Style := psClear;
+            aCnv.Pen.Width := 1;
+
+            aCnv.Brush.Color := RGB(118, 185, 218); // biru cerah
+            aCnv.Brush.Style := bsSolid;
+
+            R1 := 7;
+            R2 := 9;
+            aCnv.Ellipse(Round(scrx - R1), Round(Scry - R1), Round(ScrX + R1), Round(ScrY + r1));
+
+            if Ship.Domain = 3 then
+            begin
+              Polygn[0] := System.Classes.Point(Round(ScrX) - R2, Round(ScrY) - R2);
+              Polygn[1] := System.Classes.Point(Round(ScrX)- R1, Round(ScrY));
+              Polygn[2] := System.Classes.Point(Round(ScrX) + R1 - 2, Round(ScrY));
+              Polygn[3] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY) - R2);
+              aCnv.Polygon(polygn);
+            end;
+          end
+          else if Ship.Identity = tidFriend then
+          begin
+            aCnv.Pen.Color := clBlack;
+            aCnv.Pen.Style := psClear;
+            aCnv.Pen.Width := 1;
+
+            aCnv.Brush.Color := RGB(118, 185, 218); // biru cerah
+            aCnv.Brush.Style := bsSolid;
+
+            R1 := 7;
+            R2 := 9;
+            aCnv.Ellipse(Round(scrx - R1), Round(Scry - R1), Round(ScrX + R1), Round(ScrY + r1));
+
+            if Ship.Domain = 3 then
+            begin
+              Polygn[0] := System.Classes.Point(Round(ScrX) - R2, Round(ScrY) - R2);
+              Polygn[1] := System.Classes.Point(Round(ScrX)- R1, Round(ScrY));
+              Polygn[2] := System.Classes.Point(Round(ScrX) + R1 - 2, Round(ScrY));
+              Polygn[3] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY) - R2);
+              aCnv.Polygon(polygn);
+            end;
+          end
+          else if Ship.Identity = tidNeutral then
+          begin
+            if Ship.Domain = 1 then
+            begin
+              R1 := 7;
+              aCnv.Pen.Color := clGreen;
+              aCnv.Pen.Style := psSolid;
+              aCnv.Pen.Width := 1;
+
+              aCnv.Brush.Color := RGB(156, 202, 134); // hijau cerah
+              aCnv.Brush.Style := bsSolid;
+
+              aCnv.Rectangle(Round(ScrX) - R1, Round(ScrY) -R1, Round(ScrX) + R1, Round(ScrY) + R1);
+            end
+            else if Ship.Domain = 3 then
+            begin
+              R1 := 7;
+              aCnv.Pen.Color := clGreen;
+              aCnv.Pen.Style := psClear;
+              aCnv.Pen.Width := 1;
+
+              aCnv.Brush.Color := RGB(156, 202, 134); // hijau cerah
+              aCnv.Brush.Style := bsSolid;
+
+              aCnv.Rectangle(Round(ScrX) - R1, Round(ScrY) -R1, Round(ScrX) + R1, Round(ScrY) + R1);
+
+              aCnv.Pen.Style := psSolid;
+              aCnv.MoveTo(Round(ScrX) - R1, Round(ScrY) - R1 - 1);
+              aCnv.LineTo(Round(ScrX) - R1, Round(ScrY) + R1 - 1);
+              aCnv.MoveTo(Round(ScrX) - R1, Round(ScrY) + R1 - 1);
+              aCnv.LineTo(Round(ScrX) + R1, Round(ScrY) + R1 - 1);
+              aCnv.MoveTo(Round(ScrX) + R1 - 1, Round(ScrY) + R1 - 1);
+              aCnv.LineTo(Round(ScrX) + R1 - 1, Round(ScrY) - R1 - 1);
+            end;
+          end
+          else if Ship.Identity = tidSuspect then
+          begin
+            aCnv.Pen.Color := clBlack;
+            aCnv.Pen.Style := psClear;
+            aCnv.Pen.Width := 1;
+
+            aCnv.Brush.Color := RGB(233, 118, 123); // merah cerah
+            aCnv.Brush.Style := bsSolid;
+
+            if Ship.Domain = 1 then
+            begin
+              R1 := 8;
+              Polygn[0] := System.Classes.Point(Round(ScrX) - R1, Round(ScrY));
+              Polygn[1] := System.Classes.Point(Round(ScrX), Round(ScrY) + R1);
+              Polygn[2] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY));
+              Polygn[3] := System.Classes.Point(Round(ScrX), Round(ScrY) - R1);
+              aCnv.Polygon(polygn);
+            end
+            else if Ship.Domain = 3 then
+            begin
+              R1 := 6;
+              R2 := 1;
+              R3 := 8;
+              PolySuspect[0] := System.Classes.Point(Round(ScrX) - R1, Round(ScrY) - R1);
+              PolySuspect[1] := System.Classes.Point(Round(ScrX) - R1, Round(ScrY) + R2);
+              PolySuspect[2] := System.Classes.Point(Round(ScrX), Round(ScrY) + R3);
+              PolySuspect[3] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY) + R2);
+              PolySuspect[4] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY) - R1);
+              aCnv.Polygon(PolySuspect);
+            end;
+          end
+          else if Ship.Identity = tidHostile then
+          begin
+            aCnv.Pen.Color := clBlack;
+            aCnv.Pen.Style := psClear;
+            aCnv.Pen.Width := 1;
+
+            aCnv.Brush.Color := RGB(233, 118, 123); // merah cerah
+            aCnv.Brush.Style := bsSolid;
+
+            if Ship.Domain = 1 then
+            begin
+              R1 := 8;
+              Polygn[0] := System.Classes.Point(Round(ScrX) - R1, Round(ScrY));
+              Polygn[1] := System.Classes.Point(Round(ScrX), Round(ScrY) + R1);
+              Polygn[2] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY));
+              Polygn[3] := System.Classes.Point(Round(ScrX), Round(ScrY) - R1);
+              aCnv.Polygon(polygn);
+            end
+            else if Ship.Domain = 3 then
+            begin
+              R1 := 6;
+              R2 := 1;
+              R3 := 8;
+              PolySuspect[0] := System.Classes.Point(Round(ScrX) - R1, Round(ScrY) - R1);
+              PolySuspect[1] := System.Classes.Point(Round(ScrX) - R1, Round(ScrY) + R2);
+              PolySuspect[2] := System.Classes.Point(Round(ScrX), Round(ScrY) + R3);
+              PolySuspect[3] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY) + R2);
+              PolySuspect[4] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY) - R1);
+              aCnv.Polygon(PolySuspect);
+            end;
+          end
+
+          else if Ship.Identity = tidPending then
+          begin
+            aCnv.Pen.Color := clBlack;
+            aCnv.Pen.Style := psClear;
+            aCnv.Pen.Width := 1;
+
+            aCnv.Brush.Color := RGB(243, 235, 118); // kuning cerah
+            aCnv.Brush.Style := bsSolid;
+            if Ship.Domain = 1 then
+            begin
+              aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+              aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 10, Round(ScrX) + 5, Round(ScrY) + 10);
+            end
+            else if Ship.Domain = 3 then
+            begin
+              aCnv.Ellipse(Round(ScrX) - 10, Round(ScrY) - 5, Round(ScrX) + 10, Round(ScrY) + 5);
+              aCnv.Ellipse(Round(ScrX) - 5, Round(ScrY) - 5, Round(ScrX) + 5, Round(ScrY) + 10);
+            end;
           end;
 
           if Ship.Controlled_Track then

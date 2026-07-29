@@ -544,6 +544,12 @@ var
   diffBeetwinWH : Integer;  //differnt beetwin width and height width - height, kemudian dibagi dua sebagai batas left dan right,supaya lingkarannya tetap center.
 begin
   Angle := 0;
+  with aCnv do
+  begin
+    Brush.Style := bsSolid;
+    Brush.Color := clBlack; // or clBlack, clWhite, etc.
+    FillRect(ClipRect); // clears the drawing area
+  end;
   if Assigned(FCCManager) then
   begin
     if Assigned(FCCManager.xShip) then
@@ -738,10 +744,13 @@ begin
       FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
 
       fbDesigTarget.Down := True;
+      fbDesigTarget.ColorFocused := clLime;
+      fbBreakTarget.ColorFocused := clGreen;
     end
     else
     begin
       fbDesigTarget.Down := False;
+      fbDesigTarget.ColorFocused := clGreen;
     end;
 
   end
@@ -762,6 +771,8 @@ begin
 
     FCCManager.NetSendTo3D_FCCSet(RecSend); // send target ke EO dan ke 3D
     fbBreakTarget.Down := True;
+    fbDesigTarget.ColorFocused := clGreen;
+    fbBreakTarget.ColorFocused := clLime;
   end;
 
 end;
@@ -1763,7 +1774,7 @@ begin
   lblSystemTimeVal.Caption := FormatDateTime('hh:nn:ss',now);
 
   imgCompas.Repaint;
-//  frmMainFCC.Repaint;
+  frmMainFCC.Invalidate;
 
 //  lblBiteTimeSystemValue.Caption := FormatDateTime('hh:nn:ss',now);
 

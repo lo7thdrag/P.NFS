@@ -143,6 +143,7 @@ object frmControlByNumber: TfrmControlByNumber
       ParentFont = False
       TabOrder = 2
       OnChange = edtTrackNoChange
+      OnKeyPress = edtTrackNoKeyPress
     end
     object pnlLinkYTNo: TPanel
       Left = 67
