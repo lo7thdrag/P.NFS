@@ -29,7 +29,7 @@ type
       FAssignedWeapon : TWeaponGetList;
       FTarget2D: Word;
       FTargetObj : TClientObject;
-      FBearing, FElevation : Double;
+      FBearing, FElevation, FRange : Double;
       FisDesig, FTargetAssigned : Boolean;
     protected
       procedure EventOnMainTimer(const dt: double); override;
@@ -67,6 +67,7 @@ type
       property TargetAssigned : Boolean read FTargetAssigned write FTargetAssigned;
       property Bearing : double read FBearing;
       property Elevation : double read FElevation;
+      property Range : Double read FRange;
 
 
       property CurrentScenID  : integer read FCurrentScenID write FCurrentScenID;
@@ -209,6 +210,7 @@ begin
         FTarget2D := arec.IDTarget2D;
         FBearing := arec.Bearing;
         FElevation := arec.Elevation;
+        FRange := arec.Range;
         FisDesig := True;
         FTargetAssigned := True;
       end;
@@ -218,8 +220,9 @@ begin
         FTarget2D := 0;
         FBearing := 0;
         FElevation := 0;
+        FRange := 0;
         FisDesig := False;
-        FTargetAssigned := True;
+        FTargetAssigned := False;
       end;
     end;
   end;

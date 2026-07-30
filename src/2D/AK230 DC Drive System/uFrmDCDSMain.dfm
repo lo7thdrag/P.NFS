@@ -10957,8 +10957,9 @@ object frmDCDSMain: TfrmDCDSMain
                     ColorDown = clLime
                     GroupIndex = 1
                     Caption = 'START'
+                    Enabled = False
                     Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clBlack
+                    Font.Color = clWindowText
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = [fsBold]
@@ -10977,6 +10978,7 @@ object frmDCDSMain: TfrmDCDSMain
                     GroupIndex = 1
                     Down = True
                     Caption = 'STOP'
+                    Enabled = False
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clBlack
                     Font.Height = -13

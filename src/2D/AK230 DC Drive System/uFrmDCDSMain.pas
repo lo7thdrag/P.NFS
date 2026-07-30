@@ -520,12 +520,39 @@ end;
 procedure TfrmDCDSMain.btnBrakeOnClick(Sender: TObject);
 var
   canFire : Boolean;
+  Elevation: Double;
+  MaxRan: Double;
 begin
+  Elevation := StrToFloat(edtValueElevation.Text);
+  MaxRan := 1.62;
+
+  // Tentukan maximum range berdasarkan elevation
+  if (Elevation >= -10) and (Elevation < 0) then
+    MaxRan := 0
+  else if (Elevation >= 0) and (Elevation < 15) then
+    MaxRan := 1.62
+  else if (Elevation >= 15) and (Elevation < 30) then
+    MaxRan := 1.80
+  else if (Elevation >= 30) and (Elevation < 45) then
+    MaxRan := 1.98
+  else if Elevation = 45 then
+    MaxRan := 2.16
+  else if (Elevation > 45) and (Elevation < 60) then
+    MaxRan := 1.98
+  else if (Elevation >= 60) and (Elevation < 75) then
+    MaxRan := 1.80
+  else if (Elevation >= 75) and (Elevation <= 85) then
+    MaxRan := 1.62
+  else
+    MaxRan := 0;
+
   canFire :=  btnBrakeOn.Down and
               (FVTgtElevation >= -10) and
               (FVTgtElevation <= 85) and
               ((FVTgtTraining <= 120) or (FVTgtTraining >= 240)) and
-              ((LeftMagazine <> 0) or (RightMagazine <> 0));
+              ((LeftMagazine <> 0) or (RightMagazine <> 0)) and
+              (StrToFloat(edtOmRangeValue.Text) >= 0.16) and
+              (StrToFloat(edtOmRangeValue.Text) <= MaxRan);
 
   if CanFire then
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath +
@@ -1660,7 +1687,9 @@ begin
     RotateAndDisplayFixedSize(imgHeadPtr, FOriginalPngHeading, -FVCurHeading);
   end
   else
-    FVCurHeading := FVTgtHeading;
+  begin
+    FVTgtHeading := AK230Manager.xShip.Heading;
+  end;
 
   edtValueTraining.Text := FormatFloat('0.#', FVCurTraining);
   edtValueElevation.Text := FormatFloat('0.#', FVCurElevation);
@@ -1676,9 +1705,24 @@ begin
   begin
     edtElevationValue.Text := FormatFloat('0.0', AK230Manager.Elevation);
     edtTrainingValue.Text := FormatFloat('0.0', AK230Manager.Bearing);
+    edtOmRangeValue.Text := FormatFloat('0.0', AK230Manager.Range);
 
     btnDcdcExecuteClick(nil);
     AK230Manager.TargetAssigned := False;
+
+//    if AK230Manager.TargetAssigned then
+//    begin
+//      btnDcdcExecuteClick(nil);
+//      AK230Manager.TargetAssigned := False;
+//    end;
+  end
+  else
+  begin
+    edtElevationValue.Text := IntToStr(0);
+    edtTrainingValue.Text := IntToStr(0);
+    edtOmRangeValue.Text := IntToStr(0);
+
+    btnDcdcExecuteClick(nil);
   end;
 
   FVTgtHeading := AK230Manager.xShip.Heading;

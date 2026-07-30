@@ -269,7 +269,7 @@ type
 
     FOwnShipHeading : Double;
 
-    FBearing, FElevation : Double;
+    FBearing, FElevation, FRange : Double;
 
     procedure LoadGeoset(const aGst: string); virtual;
     procedure InitializeForm();
@@ -729,7 +729,8 @@ begin
     if FCCManager.SelectedVehicle <> nil then
     begin
       RecSend.ShipID := FCCManager.ShipID; // harus dipindah di desig dan break
-      RecSend.Range := 0;
+//      RecSend.Range := 0;
+      RecSend.Range := FRange;
       RecSend.Bearing := FBearing;
       RecSend.Elevation := FElevation;
       RecSend.EOBearing := 0;
@@ -857,6 +858,7 @@ begin
   begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
+    FRange := range;
 
     azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     bearing := azimuth - FCCManager.xShip.Heading;
@@ -1030,8 +1032,8 @@ begin
   FCCManager.Running := True;
 
 
-//  DoubleBuffered := False;
-//  EnableComposited(pnlSituationZone);
+  DoubleBuffered := False;
+  EnableComposited(pnlSituationZone);
 end;
 
 procedure TfrmMainFCC.FormDestroy(Sender: TObject);
@@ -1850,6 +1852,7 @@ begin
   begin
     range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     rangem := range * C_NauticalMile_To_Metre;
+    FRange := range;
     azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     // range = 3000 m, target lebih rendah 25 m
     bearing := azimuth - FCCManager.xShip.Heading;
