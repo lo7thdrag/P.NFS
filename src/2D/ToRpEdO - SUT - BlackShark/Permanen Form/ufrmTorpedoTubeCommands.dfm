@@ -66,6 +66,7 @@ object frmTorpedoTubeCommands: TfrmTorpedoTubeCommands
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      Visible = False
     end
     object lblTorpOn: TLabel
       Left = 12
@@ -98,6 +99,7 @@ object frmTorpedoTubeCommands: TfrmTorpedoTubeCommands
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      Visible = False
     end
     object lblSendCmd: TLabel
       Left = 12

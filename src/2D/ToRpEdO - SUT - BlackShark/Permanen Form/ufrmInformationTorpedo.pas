@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uSutBlacksharkManager,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uSutBlacksharkManager, uTCPDatatype, uBaseFunction,
 
-  uVehicleManager, ufrmTorpedoParameterDepthSettings;
+  uVehicleManager, ufrmTorpedoParameterDepthSettings, uTorpedoTrack, uTrackFunction, uSimulationTrack, uTestShip, uSubSurfaceTrack;
 
 type
   TfrmInformationTorpedo = class(TForm)
@@ -33,9 +33,8 @@ type
     tmrInformationTorpedo: TTimer;
     procedure tmrInformationTorpedoTimer(Sender: TObject);
   private
-    { Private declarations }
+
   public
-    { Public declarations }
   end;
 
 var
@@ -46,52 +45,49 @@ implementation
 {$R *.dfm}
 
 procedure TfrmInformationTorpedo.tmrInformationTorpedoTimer(Sender: TObject);
+var
+  i : Integer;
+  Torp  : TTorpedoTrack;
 begin
-  if VehicleMgr.IsAnyTrackControlled then
+  Torp := nil;
+
+  for i := 0 to VehicleMgr.ObjectList.Count - 1 do
   begin
-    lblTorpedoValue.Caption    := IntToStr(SutBlacksharkManager.TorpedoIndex);
+    if VehicleMgr.ObjectList[i] is TTorpedoTrack then
+    begin
+      if TTorpedoTrack(VehicleMgr.ObjectList[i]).LauncherID = TorpedoParam.TorpedoIdx then
+      begin
+        Torp := TTorpedoTrack(VehicleMgr.ObjectList[i]);
+        Break;
+      end;
+    end;
+  end;
+
+  if Assigned(TorpedoParam) then
+  begin
+    lblTorpedoValue.Caption    := IntToStr(TorpedoParam.TorpedoIdx);
     lblTorpedoValue.Font.Color := clLime;
 
     lblSalvoValue.Caption    := IntToStr(SutBlacksharkManager.SalvoIndex);
     lblSalvoValue.Font.Color := clLime;
+  end;
 
-    lblBearing.Caption    := FormatFloat('0.0', VehicleMgr.TrackControlled.Bearing);
+  if Assigned(Torp) then
+  begin
+    lblBearing.Caption    := FormatFloat('0.0', Torp.Bearing);
     lblBearing.Font.Color := clLime;
 
-    lblRange.Caption    := FormatFloat('0.0', VehicleMgr.TrackControlled.Range);
+    lblRange.Caption    := FormatFloat('0.0', Torp.Range);
     lblRange.Font.Color := clLime;
 
-    lblCourse.Caption    := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
+    lblCourse.Caption    := FormatFloat('0.0', Torp.HeadingDeg);
     lblCourse.Font.Color := clLime;
 
-    lblSpeed.Caption    := FormatFloat('0.0', (VehicleMgr.TrackControlled.Speed_knot * 0.514444444));
+    lblSpeed.Caption    := FormatFloat('0.0', Torp.Speed_knot * 0.514444444);
     lblSpeed.Font.Color := clLime;
 
-    lblDepth.Caption    := FormatFloat('0.0', Abs(VehicleMgr.TrackControlled.PosZ));
+    lblDepth.Caption    := FormatFloat('0.0', Abs(Torp.PosZ));
     lblDepth.Font.Color := clLime;
-  end
-  else
-  begin
-    lblTorpedoValue.Caption    := '0.0';
-    lblTorpedoValue.Font.Color := clWhite;
-
-    lblSalvoValue.Caption    := '0.0';
-    lblSalvoValue.Font.Color := clWhite;
-
-    lblBearing.Caption    := '0.0';
-    lblBearing.Font.Color := clWhite;
-
-    lblRange.Caption    := '0.0';
-    lblRange.Font.Color := clWhite;
-
-    lblCourse.Caption    := '0.0';
-    lblCourse.Font.Color := clWhite;
-
-    lblSpeed.Caption    := '0.0';
-    lblSpeed.Font.Color := clWhite;
-
-    lblDepth.Caption    := '0.0';
-    lblDepth.Font.Color := clWhite;
   end;
 end;
 

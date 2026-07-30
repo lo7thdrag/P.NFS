@@ -290,8 +290,16 @@ procedure TfrmTorpedoAllocation.imgFireReleaseClick(Sender: TObject);
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   FSelectFireRelease := TImage(Sender).Tag;
@@ -322,8 +330,16 @@ var
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   if FSelectTube <> -1 then
@@ -396,8 +412,16 @@ procedure TfrmTorpedoAllocation.lblDeleteSalvoInfoClick(Sender: TObject);
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   // delete salvo info dan torpedo param
@@ -450,8 +474,16 @@ procedure TfrmTorpedoAllocation.lblReallocateClick(Sender: TObject);
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   if lvReallocation.Selected.Index = 0 then
@@ -500,8 +532,16 @@ procedure TfrmTorpedoAllocation.lblSwitchRunToOffClick(Sender: TObject);
 begin
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
   // matikan torpedo di torpedo launcher dan non aktifkan semua isinya
@@ -570,8 +610,16 @@ begin
 
   if not sutblackSharkManager.ReserveFunction then
   begin
-    SutBlacksharkManager.OperatorMessages := 'Reserve Function is OFF';
+    SutBlacksharkManager.OperatorMessages                  := 'Reserve Function is OFF';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
+  end
+  else
+  begin
+    SutBlacksharkManager.OperatorMessages                  := '';
+    frmTacticalScreen.pnlOperatorMessages.Color            := clBlack;
+    frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
   end;
 
 
