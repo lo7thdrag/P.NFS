@@ -104,14 +104,14 @@ begin
     begin
       // call di blackshark manager untuk spawn operator messages
       SutBlacksharkManager.OperatorMessages := 'Invalid Track Number';
-      frmControlByNumber.Close;
-//      FreeAndNil(frmControlByNumber);
+//      frmControlByNumber.Close;
+      FreeAndNil(frmControlByNumber);
     end
     else
     begin
 //      TorpedoParam.
-      frmControlByNumber.Close;
-//      FreeAndNil(frmControlByNumber);
+//      frmControlByNumber.Close;
+      FreeAndNil(frmControlByNumber);
     end;
   end;
 end;
