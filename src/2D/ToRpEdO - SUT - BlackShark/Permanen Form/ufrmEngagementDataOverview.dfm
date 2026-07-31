@@ -75,13 +75,13 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblRunTime: TLabel
-      Left = 698
+      Left = 696
       Top = 16
-      Width = 50
+      Width = 52
       Height = 16
       Alignment = taRightJustify
       AutoSize = False
-      Caption = '00.00.41'
+      Caption = '00:00:41'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -105,13 +105,13 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblApproachTime: TLabel
-      Left = 762
+      Left = 760
       Top = 16
-      Width = 50
+      Width = 52
       Height = 16
       Alignment = taRightJustify
       AutoSize = False
-      Caption = '00.03.43'
+      Caption = '00:03:43'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -135,13 +135,13 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblSearchTime: TLabel
-      Left = 826
+      Left = 824
       Top = 16
-      Width = 50
+      Width = 52
       Height = 16
       Alignment = taRightJustify
       AutoSize = False
-      Caption = '00.11.09'
+      Caption = '00:11:09'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
@@ -527,7 +527,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
   end
   object tmrUpdateTorpInfo: TTimer
     OnTimer = tmrUpdateTorpInfoTimer
-    Left = 824
-    Top = 16
+    Left = 1040
+    Top = 8
   end
 end

@@ -73,7 +73,7 @@ begin
     lblBatteryCapacity.Caption := FormatFloat('0.0', Torp.BatteryCapacity);
 
     lblSearchTime.Caption := FormatDateTime('hh:nn:ss', Torp.SearchTime/86400);
-    lblSearchLength.Caption := FormatDateTime('hh:nn:ss', Torp.SearchLength/1000);
+    lblSearchLength.Caption := FormatFloat('0.0', Torp.SearchLength/1000);
 
     lblRunDist.Caption := FormatFloat('0.0', Torp.RunDistance - (Torp.RunLength / 1000));
 //    lblWireLeft.Caption := FormatFloat('0.0', Torp.CurrentWireLeft / 1000);
