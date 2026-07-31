@@ -425,48 +425,51 @@ begin
   end;
 
   // delete salvo info dan torpedo param
-  if lvTermination.Selected.Index = 0 then
+  if lvTermination.Selected <> nil then
   begin
-    FreeAndNil(TorpedoParam);
-    FEngagementAnalysisStart := False;
-    pnlEngagementAnalysisStart.Color := clBlack;
-
-    // close semua form yang dibuka
-    if Assigned(FFrmTorpedoParameterSettings) then
-      FreeAndNil(FFrmTorpedoParameterSettings);
-
-    AdvPageTorpedoAllocationChange(Sender);
-
-    {$REGION 'Turn off torpedo salvo di TEP'}
-    frmTorpedoWP.LaunchSalvo := False;
-    frmTorpedoWP.pnlSubmodeTools13.Color := clBlack;
-
-    frmTorpedoWP.lblSubmodeTools3.Caption := '';
-    frmTorpedoWP.pnlSubmodeTools3.Enabled := false;
-    frmTorpedoWP.lblSubmodeTools3.Enabled := false;
-    frmTorpedoWP.lblSubmodeTools3.OnClick := nil;
-
-    frmTorpedoWP.lblSubmodeTools4.Caption := '';
-    frmTorpedoWP.pnlSubmodeTools4.Enabled := false;
-    frmTorpedoWP.lblSubmodeTools4.Enabled := false;
-    {$ENDREGION}
-
-    {$REGION 'Turn off torpedo control di TEP & close form torp ctrl'}
-    frmTorpedoWP.TorpCtrl := False;
-    frmTorpedoWP.pnlSubmodeTools16.Color := clBlack;
-    frmTorpedoWP.lblSubmodeTools6.Caption := '';
-    frmTorpedoWP.pnlSubmodeTools6.Enabled := false;
-    frmTorpedoWP.lblSubmodeTools6.Enabled := false;
-
-    if Assigned(frmHomingStatusPlot) then
+    if lvTermination.Selected.Index = 0 then
     begin
-      FreeAndNil(frmHomingStatusPlot);
+      FreeAndNil(TorpedoParam);
+      FEngagementAnalysisStart := False;
+      pnlEngagementAnalysisStart.Color := clBlack;
+
+      // close semua form yang dibuka
+      if Assigned(FFrmTorpedoParameterSettings) then
+        FreeAndNil(FFrmTorpedoParameterSettings);
+
+      AdvPageTorpedoAllocationChange(Sender);
+
+      {$REGION 'Turn off torpedo salvo di TEP'}
+      frmTorpedoWP.LaunchSalvo := False;
+      frmTorpedoWP.pnlSubmodeTools13.Color := clBlack;
+
+      frmTorpedoWP.lblSubmodeTools3.Caption := '';
+      frmTorpedoWP.pnlSubmodeTools3.Enabled := false;
+      frmTorpedoWP.lblSubmodeTools3.Enabled := false;
+      frmTorpedoWP.lblSubmodeTools3.OnClick := nil;
+
+      frmTorpedoWP.lblSubmodeTools4.Caption := '';
+      frmTorpedoWP.pnlSubmodeTools4.Enabled := false;
+      frmTorpedoWP.lblSubmodeTools4.Enabled := false;
+      {$ENDREGION}
+
+      {$REGION 'Turn off torpedo control di TEP & close form torp ctrl'}
+      frmTorpedoWP.TorpCtrl := False;
+      frmTorpedoWP.pnlSubmodeTools16.Color := clBlack;
+      frmTorpedoWP.lblSubmodeTools6.Caption := '';
+      frmTorpedoWP.pnlSubmodeTools6.Enabled := false;
+      frmTorpedoWP.lblSubmodeTools6.Enabled := false;
+
+      if Assigned(frmHomingStatusPlot) then
+      begin
+        FreeAndNil(frmHomingStatusPlot);
+      end;
+      if Assigned(frmTorpedoGuidanceWindow) then
+      begin
+        FreeAndNil(frmTorpedoGuidanceWindow); // form homing command dan manual guidance otomatis dihapus disini
+      end;
+      {$ENDREGION}
     end;
-    if Assigned(frmTorpedoGuidanceWindow) then
-    begin
-      FreeAndNil(frmTorpedoGuidanceWindow); // form homing command dan manual guidance otomatis dihapus disini
-    end;
-    {$ENDREGION}
   end;
 end;
 
@@ -545,23 +548,28 @@ begin
   end;
 
   // matikan torpedo di torpedo launcher dan non aktifkan semua isinya
-  if lvTermination.Selected.Index = 0 then
+  if lvTermination.Selected <> nil then
   begin
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TorpedoType := 0;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].WaterPressure := wpDrained;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TorpedoStatus := tsOff;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].SalvoNumber := 0;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].FuseStatus := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].BowCap := bcClosed;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].WTRSC := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].CableStatus := csOff;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Allocated := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TextStatus := stNone;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
-    SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
+    if lvTermination.Selected.Index = 0 then
+    begin
+      if SutBlacksharkManager.TorpedoTubeAllocNum <> 0 then
+      begin
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TorpedoType := 0;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].WaterPressure := wpDrained;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TorpedoStatus := tsOff;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].SalvoNumber := 0;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].FuseStatus := False;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].BowCap := bcClosed;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].WTRSC := False;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].CableStatus := csOff;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Allocated := False;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].TextStatus := stNone;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum - 1].Loaded := False;
+      end;
+    end;
   end;
-
 end;
 
 procedure TfrmTorpedoAllocation.lvReallocationSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
@@ -569,17 +577,19 @@ begin
   // select item di realloc
   if Assigned(TorpedoParam) then
   begin
-    if lvReallocation.Selected.Index = 0 then
+    if lvReallocation.Selected <> nil then
     begin
-      lbltarget.Caption := IntToStr(Torpedoparam.TargetTrackID);
-      lblnumbertotarget.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
+      if lvReallocation.Selected.Index = 0 then
+      begin
+        lbltarget.Caption := IntToStr(Torpedoparam.TargetTrackID);
+        lblnumbertotarget.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
 
-      cbTorpInSalvo.ItemIndex := TorpedoParam.TorpedoIdx;
-      cbNewTorp.ItemHeight := TorpedoParam.TorpedoIdx;
+        cbTorpInSalvo.ItemIndex := TorpedoParam.TorpedoIdx;
+        cbNewTorp.ItemHeight := TorpedoParam.TorpedoIdx;
 
-//      cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
+  //      cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
+      end;
     end;
-
   end;
 end;
 
@@ -588,11 +598,14 @@ begin
   // select item di termination
   if Assigned(TorpedoParam) then
   begin
-    if lvTermination.Selected.Index = 0 then
+    if lvTermination.Selected <> nil then
     begin
-      lblTerminateTargetNumber.Caption := IntToStr(TorpedoParam.TargetTrackID);
-      lblTerminateSalvoNumber.Caption := IntToStr(TorpedoParam.SalvoNum);
-      cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
+      if lvTermination.Selected.Index = 0 then
+      begin
+        lblTerminateTargetNumber.Caption := IntToStr(TorpedoParam.TargetTrackID);
+        lblTerminateSalvoNumber.Caption := IntToStr(TorpedoParam.SalvoNum);
+        cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
+      end;
     end;
 
   end;

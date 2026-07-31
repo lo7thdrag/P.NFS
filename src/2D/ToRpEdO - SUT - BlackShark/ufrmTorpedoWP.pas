@@ -177,7 +177,7 @@ type
     Submode, SubmodeTools, FuncTaskRightMode : Byte;
     BitMapLampGrey, BitMapLampGreen, BitMapLampRed : TBitmap;
     FDropSonar, FToSoAudio, FFire, FStopFireSeq, FClassification, FGuideToBearing, FTorpVertView, FTorpContactMngmnt, FSPA,
-    FTorpExcercise, FImmediateFire, FTorpAlloc, FLaunchSalvo, FTorpEmergencyExe,
+    FTorpExcercise, FImmediateFire, FTorpAlloc, FLaunchSalvo, FTorpEmergencyExe, FTrackMngmnt,
     FMarkSpecialEvent, FTorpCtrl, FSim, FPresetTorpParam, FCoverage :Boolean;
     FLyrDraw: CMapXLayer;
     FCurrentRange, FBearingVal, FElevVal : Double;  // meter
@@ -324,13 +324,13 @@ var
   Torpedo : TTorpedoTrack;
 begin
   //  check fire release
-  if not SutBlacksharkManager.FTorpedoArray[TorpedoParam.TorpedoIdx].FireRelease then
+  if not SutBlacksharkManager.FTorpedoArray[TorpedoParam.TorpedoIdx-1].FireRelease then
   begin
     SutBlacksharkManager.OperatorMessages := 'Fire Release is OFF';
     frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
     frmTacticalScreen.pnlOperatorMessages.ParentBackground := False;
     Exit;
-  end;  
+  end;
 
   // check tbi
   if not SutBlacksharkManager.TBIFireAuth then
@@ -342,7 +342,7 @@ begin
   end;
 
   // check torp ready
-  if not (SutBlacksharkManager.FTorpedoArray[TorpedoParam.TorpedoIdx].TorpedoStatus = tsOnAndOk) then
+  if not (SutBlacksharkManager.FTorpedoArray[TorpedoParam.TorpedoIdx-1].TorpedoStatus = tsOnAndOk) then
   begin
     SutBlacksharkManager.OperatorMessages := 'Torpedo is not ready';
     frmTacticalScreen.pnlOperatorMessages.Color            := clRed;
