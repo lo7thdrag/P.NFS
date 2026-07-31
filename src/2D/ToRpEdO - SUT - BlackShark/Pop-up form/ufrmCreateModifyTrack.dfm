@@ -173,9 +173,9 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentColor = False
       ParentFont = False
     end
-    object Label9: TLabel
+    object lblSubmarineConfLevel: TLabel
       Left = 12
-      Top = 189
+      Top = 191
       Width = 125
       Height = 16
       Caption = 'Submarine Conf Level'
@@ -189,9 +189,9 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentFont = False
       Visible = False
     end
-    object Label10: TLabel
+    object lblDataReportType: TLabel
       Left = 12
-      Top = 212
+      Top = 214
       Width = 100
       Height = 16
       Caption = 'Data Report Type'
@@ -205,7 +205,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentFont = False
       Visible = False
     end
-    object Label11: TLabel
+    object lblEstimatedDepth: TLabel
       Left = 12
       Top = 262
       Width = 93
@@ -281,7 +281,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       ParentColor = False
       ParentFont = False
     end
-    object Label17: TLabel
+    object lblDepth: TLabel
       Left = 246
       Top = 387
       Width = 58
@@ -319,13 +319,12 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Caption = 'Apply'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clGray
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentColor = False
       ParentFont = False
-      OnClick = lblApplyClick
     end
     object lblReselect: TLabel
       Left = 132
@@ -351,13 +350,12 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Caption = 'Reset'
       Color = clWhite
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clGray
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentColor = False
       ParentFont = False
-      OnClick = lblResetClick
     end
     object lblClose: TLabel
       Left = 404
@@ -418,8 +416,10 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      NumbersOnly = True
       ParentFont = False
       TabOrder = 0
+      OnKeyPress = edtTrackNoKeyPress
     end
     object cbTrackType: TComboBox
       Left = 95
@@ -454,13 +454,13 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 2
       Text = 'Surface'
       Items.Strings = (
         'Surface'
-        'Subsurface'
-        'Air')
+        'Subsurface')
     end
     object cbIdentity: TComboBox
       Left = 290
@@ -473,6 +473,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 3
       Text = 'Unknown'
@@ -497,6 +498,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 4
       Text = 'No Statement'
@@ -514,6 +516,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 5
       Text = 'No Statement'
@@ -531,6 +534,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 6
       Text = 'No Statement'
@@ -563,7 +567,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
         'Nonsub'
         'Acoustic Positive')
     end
-    object cbDataReport: TComboBox
+    object cbDataReportType: TComboBox
       Left = 290
       Top = 211
       Width = 145
@@ -574,17 +578,17 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 8
       Text = 'Subsurface'
       Visible = False
       Items.Strings = (
-        'Subsurface'
-        'Datum')
+        'Subsurface')
     end
     object cbEstimatedDepth: TComboBox
       Left = 290
-      Top = 261
+      Top = 259
       Width = 145
       Height = 24
       Color = clBlack
@@ -593,6 +597,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 9
       Text = 'No Statement'
@@ -739,6 +744,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
+      MaxLength = 10
       ParentFont = False
       TabOrder = 17
     end
@@ -784,6 +790,7 @@ object frmCreateModifyTrack: TfrmCreateModifyTrack
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      ReadOnly = True
       TabOrder = 20
       Visible = False
     end

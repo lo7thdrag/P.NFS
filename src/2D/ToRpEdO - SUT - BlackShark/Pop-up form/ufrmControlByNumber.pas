@@ -60,10 +60,10 @@ procedure TfrmControlByNumber.edtTrackNoKeyPress(Sender: TObject;
   var
   Applied : Boolean;
 begin
-  if Key = #13 then
-  begin
-    Key := #0;
-    lblApplyClick(nil);
+//  if Key = #13 then
+//  begin
+//    Key := #0;
+//    lblApplyClick(nil);
 //    if FApplyBtnEnable then
 //    begin
 //      Applied := VehicleMgr.ControlTrackByTrackNumber(StrToInt(edtTrackNo.Text));
@@ -80,7 +80,7 @@ begin
 //        FreeAndNil(frmControlByNumber);
 //      end;
 //    end;
-  end;
+//  end;
 end;
 
 procedure TfrmControlByNumber.FormCreate(Sender: TObject);

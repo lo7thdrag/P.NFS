@@ -33,7 +33,7 @@ implementation
 constructor TSubSurfaceTrack.Create;
 begin
   inherited Create;
-  FDataReportType := drtNone;
+  FDataReportType := drtSubSurface;
   FDatumTime := Now;
   FSubmarineConfLevel := sclNone;
   FEstimatedDepth := tedNone;
