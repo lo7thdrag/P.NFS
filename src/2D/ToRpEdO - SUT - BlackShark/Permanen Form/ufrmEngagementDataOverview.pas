@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uSutBlacksharkManager,
-  uTorpedoTrack, uVehicleManager;
+  uTorpedoTrack, uVehicleManager, AdvTrackBar;
 
 type
   TfrmEngagementDataOverview = class(TForm)
@@ -30,6 +30,12 @@ type
     Label7: TLabel;
     pbTrackBar: TPaintBox;
     tmrUpdateTorpInfo: TTimer;
+    Label8: TLabel;
+    lblRunDist: TLabel;
+    Label10: TLabel;
+    advrSliderTorpRuntime1: TAdvRangeSlider;
+    advrSliderTorpRuntime2: TAdvRangeSlider;
+    Panel2: TPanel;
     procedure pbTrackBarPaint(Sender: TObject);
     procedure tmrUpdateTorpInfoTimer(Sender: TObject);
   private
@@ -46,91 +52,8 @@ implementation
 {$R *.dfm}
 
 procedure TfrmEngagementDataOverview.pbTrackBarPaint(Sender: TObject);
-const
-  GraphLeft    = 30;
-  GraphTop     = 2;
-  RightMargin  = 25;
-  BottomMargin = 13;
-
-  XLabels : array[0..14] of string   = ('0','','','','','5','','','','','10','','','','min');
-  XPos    : array[0..14] of Integer  = (10,47,94,148,188,235,282,329,376,423,470,517,564,611,695);
-var
-  i : Integer;
-
-  GraphWidth  : Integer;
-  GraphHeight : Integer;
 begin
-  GraphWidth  := pbTrackBar.ClientWidth  - GraphLeft - RightMargin;
-  GraphHeight := pbTrackBar.ClientHeight - GraphTop  - BottomMargin;
-
-  with pbTrackBar.Canvas do
-  begin
-    Brush.Color := clBlack;
-    FillRect(pbTrackBar.ClientRect);
-
-    Font.Color := clSilver;
-    Font.Size  := 7;
-
-    Pen.Color := clSilver;
-    Pen.Width := 1;
-
-    MoveTo(GraphLeft, GraphTop + GraphHeight);
-    LineTo(GraphLeft + GraphWidth, GraphTop + GraphHeight);
-
-    for I := Low(XLabels) to High(XLabels) do
-    begin
-      MoveTo(GraphLeft + XPos[I], GraphTop + GraphHeight - 3);
-      LineTo(GraphLeft + XPos[I], GraphTop + GraphHeight + 3);
-      TextOut(GraphLeft + XPos[I] - 2, GraphTop + GraphHeight + 2, XLabels[I]);
-    end;
-
-    {$REGION 'Bar Top'}
-    Brush.Color := clYellow;
-    FillRect(Rect(230, 3, 610, 15));
-
-    Brush.Color := clRed;
-    FillRect(Rect(610, 3, 650, 15));
-
-    Brush.Color := clGray;
-    FillRect(Rect(40, 3, 230, 15));
-
-    //Yellow Bar
-    MoveTo(20, 55);
-    LineTo(20, 62);
-
-    //Red Bar
-    MoveTo(250, 55);
-    LineTo(250, 62);
-
-    //Gray Bar
-    MoveTo(5, 55);
-    LineTo(100, 62);
-
-    {$ENDREGION}
-
-    {$REGION 'Bar Bottom'}
-    Brush.Color := clLime;
-    FillRect(Rect(210, 20, 690, 30));
-
-    Brush.Color := clRed;
-    FillRect(Rect(690, 20, 725, 30));
-
-    Brush.Color := clGray;
-    FillRect(Rect(40, 20, 210, 30));
-
-    //Lime Bar
-    MoveTo(480, 55);
-    LineTo(480, 62);
-
-    //Red Bar
-    MoveTo(480, 55);
-    LineTo(480, 62);
-
-    //Gray Bar
-    MoveTo(480, 55);
-    LineTo(480, 62);
-    {$ENDREGION}
-  end;
+  //
 end;
 
 procedure TfrmEngagementDataOverview.tmrUpdateTorpInfoTimer(Sender: TObject);
@@ -148,6 +71,11 @@ begin
     lblApproachLength.Caption := FormatFloat('0.0', Torp.ApproachLength);
 
     lblBatteryCapacity.Caption := FormatFloat('0.0', Torp.BatteryCapacity);
+
+    lblSearchTime.Caption := FormatDateTime('hh:nn:ss', Torp.SearchTime/86400);
+    lblSearchLength.Caption := FormatDateTime('hh:nn:ss', Torp.SearchLength/1000);
+
+    lblRunDist.Caption := FormatFloat('0.0', Torp.RunDistance - (Torp.RunLength / 1000));
 //    lblWireLeft.Caption := FormatFloat('0.0', Torp.CurrentWireLeft / 1000);
   end;
 end;

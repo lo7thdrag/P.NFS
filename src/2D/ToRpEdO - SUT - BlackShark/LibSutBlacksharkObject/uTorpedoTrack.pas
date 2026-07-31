@@ -16,7 +16,7 @@ type
     FWeaponID, FLauncherID, FMissileID : Word;
     FToSoRangePsv, FTosoRangeActv : Integer;
     FCourse : double;
-    FMaxWireRange, FCurrentWireLeft, FRunLength, FApproachLength, FSearchLength : Double;
+    FMaxWireRange, FCurrentWireLeft, FRunLength, FApproachLength, FSearchLength, FRunDistance : Double;
     FBatteryCapacity: Double;
     FTimeLaunch  : TDateTime;
     FLastUpdated : UInt64;
@@ -43,6 +43,7 @@ type
     property RunLength : Double read FRunLength write FRunLength;
     property ApproachLength : Double read FApproachLength write FApproachLength;
     property SearchLength : Double read FSearchLength write FSearchLength;
+    property RunDistance : Double read FRunDistance write FRunDistance;
     property BatteryCapacity : Double read FBatteryCapacity write FBatteryCapacity;
     property TimeLaunch : TDateTime read FTimeLaunch write FTimeLaunch;
     property LastUpdated : UInt64 read FLastUpdated write FLastUpdated;

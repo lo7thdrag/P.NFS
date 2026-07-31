@@ -377,9 +377,10 @@ begin
   Torpedo := VehicleMgr.AddTorpedo(SutBlacksharkManager.TorpedoTubeAllocNum);
   Torpedo.ToSoRangePsv := TorpedoParam.TosoRangePAS;
   Torpedo.TosoRangeActv := TorpedoParam.TosoRangeACT;
-  Torpedo.BatteryCapacity := 26.3;
-  Torpedo.MaxWireRange := 18;
-  Torpedo.CurrentWireLeft := 18;
+  Torpedo.BatteryCapacity := 27;
+  Torpedo.RunDistance := 23;
+  Torpedo.MaxWireRange := 23;
+  Torpedo.CurrentWireLeft := 23;
   Torpedo.ShipID := 0;
   Torpedo.TimeLaunch := Now;
   Torpedo.LastUpdated := 0;
@@ -2576,7 +2577,9 @@ begin
         {$ENDREGION}
 
         {$REGION 'Update Battery'}
-        Torp.BatteryCapacity := Torp.BatteryCapacity - (0.02 * DeltaSeconds);
+        Torp.BatteryCapacity := Torp.BatteryCapacity - (0.025 * DeltaSeconds);
+        Torp.SearchTime := Torp.BatteryCapacity / 0.025; // adalah jumlah waktu dalam detik
+        Torp.SearchLength := Torp.SearchTime * Torp.SpeedMS; // adalah jumlah length dalam meter
         {$ENDREGION}
 
         {$REGION 'Update Time'}

@@ -49,8 +49,8 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label2: TLabel
-      Left = 775
-      Top = 24
+      Left = 650
+      Top = 16
       Width = 29
       Height = 16
       Caption = 'Time'
@@ -62,8 +62,8 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 775
-      Top = 48
+      Left = 650
+      Top = 40
       Width = 38
       Height = 16
       Caption = 'Length'
@@ -75,10 +75,12 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblRunTime: TLabel
-      Left = 823
-      Top = 24
+      Left = 698
+      Top = 16
       Width = 50
       Height = 16
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '00.00.41'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -88,10 +90,12 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblRunLength: TLabel
-      Left = 823
-      Top = 48
+      Left = 698
+      Top = 40
       Width = 50
       Height = 16
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '        0.7'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -101,10 +105,12 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblApproachTime: TLabel
-      Left = 887
-      Top = 24
+      Left = 762
+      Top = 16
       Width = 50
       Height = 16
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '00.03.43'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -114,10 +120,12 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblApproachLength: TLabel
-      Left = 887
-      Top = 48
+      Left = 762
+      Top = 40
       Width = 50
       Height = 16
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '        4.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -127,10 +135,12 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblSearchTime: TLabel
-      Left = 951
-      Top = 24
+      Left = 826
+      Top = 16
       Width = 50
       Height = 16
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '00.11.09'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -140,10 +150,12 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblSearchLength: TLabel
-      Left = 951
-      Top = 48
+      Left = 826
+      Top = 40
       Width = 49
       Height = 16
+      Alignment = taRightJustify
+      AutoSize = False
       Caption = '      12.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -153,8 +165,8 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 1012
-      Top = 24
+      Left = 887
+      Top = 16
       Width = 34
       Height = 16
       Caption = 'h:m:s'
@@ -166,8 +178,8 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 1012
-      Top = 48
+      Left = 887
+      Top = 40
       Width = 17
       Height = 16
       Caption = 'km'
@@ -179,10 +191,11 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblBatteryCapacity: TLabel
-      Left = 1071
-      Top = 24
+      Left = 946
+      Top = 16
       Width = 25
       Height = 16
+      Alignment = taRightJustify
       Caption = '75.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -192,10 +205,11 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object lblWireLeft: TLabel
-      Left = 1071
-      Top = 48
+      Left = 946
+      Top = 40
       Width = 25
       Height = 16
+      Alignment = taRightJustify
       Caption = '23.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -205,8 +219,8 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 1103
-      Top = 24
+      Left = 978
+      Top = 16
       Width = 25
       Height = 16
       Caption = 'kWh'
@@ -218,8 +232,8 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 1103
-      Top = 48
+      Left = 978
+      Top = 40
       Width = 17
       Height = 16
       Caption = 'km'
@@ -231,11 +245,52 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
     end
     object pbTrackBar: TPaintBox
-      Left = 8
-      Top = 11
-      Width = 753
-      Height = 49
+      Left = 0
+      Top = 8
+      Width = 650
+      Height = 40
       OnPaint = pbTrackBarPaint
+    end
+    object Label8: TLabel
+      Left = 1012
+      Top = 40
+      Width = 47
+      Height = 16
+      Caption = 'Run Dist'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblRunDist: TLabel
+      Left = 1062
+      Top = 40
+      Width = 28
+      Height = 16
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = '0.0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 1095
+      Top = 40
+      Width = 17
+      Height = 16
+      Caption = 'km'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object rbBBRFSolution: TRadioGroup
       Left = 1135
@@ -260,10 +315,219 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       ParentFont = False
       TabOrder = 1
     end
+    object advrSliderTorpRuntime2: TAdvRangeSlider
+      Left = 0
+      Top = 48
+      Width = 650
+      Height = 23
+      BorderColor = clNone
+      BorderColorDisabled = clNone
+      ColorTo = clNone
+      ColorDisabled = clNone
+      ColorDisabledTo = clNone
+      Direction = gdHorizontal
+      Color = clNone
+      Max = 35
+      Slider.BorderColor = clNone
+      Slider.BorderColorDisabled = clNone
+      Slider.Color = clNone
+      Slider.ColorTo = clNone
+      Slider.ColorDisabled = clNone
+      Slider.ColorDisabledTo = clNone
+      Slider.ColorCompleted = clNone
+      Slider.ColorCompletedTo = clNone
+      Slider.ColorCompletedDisabled = clNone
+      Slider.ColorCompletedDisabledTo = clNone
+      Slider.Direction = gdHorizontal
+      Slider.Offset = -15
+      Slider.ColorRemaining = clNone
+      Slider.ColorRemainingTo = clNone
+      Slider.ColorRemainingDisabled = clNone
+      Slider.ColorRemainingDisabledTo = clNone
+      TabOrder = 3
+      ThumbLeft.BorderColor = clNone
+      ThumbLeft.BorderColorHot = 10079963
+      ThumbLeft.BorderColorDown = 4548219
+      ThumbLeft.BorderColorDisabled = clBlack
+      ThumbLeft.Color = 15653832
+      ThumbLeft.ColorTo = 16178633
+      ThumbLeft.ColorDown = 7778289
+      ThumbLeft.ColorDownTo = 4296947
+      ThumbLeft.ColorHot = 15465983
+      ThumbLeft.ColorHotTo = 11332863
+      ThumbLeft.ColorDisabled = clBlack
+      ThumbLeft.ColorDisabledTo = clBlack
+      ThumbLeft.ColorMirror = 15586496
+      ThumbLeft.ColorMirrorTo = 16245200
+      ThumbLeft.ColorMirrorHot = 5888767
+      ThumbLeft.ColorMirrorHotTo = 10807807
+      ThumbLeft.ColorMirrorDown = 946929
+      ThumbLeft.ColorMirrorDownTo = 5021693
+      ThumbLeft.ColorMirrorDisabled = clBlack
+      ThumbLeft.ColorMirrorDisabledTo = clBlack
+      ThumbLeft.Gradient = ggVertical
+      ThumbLeft.GradientMirror = ggRadial
+      ThumbLeft.Shape = tsPointer
+      ThumbRight.BorderColor = clNone
+      ThumbRight.BorderColorHot = 10079963
+      ThumbRight.BorderColorDown = 4548219
+      ThumbRight.BorderColorDisabled = clNone
+      ThumbRight.Color = 15653832
+      ThumbRight.ColorTo = 16178633
+      ThumbRight.ColorDown = 7778289
+      ThumbRight.ColorDownTo = 4296947
+      ThumbRight.ColorHot = 15465983
+      ThumbRight.ColorHotTo = 11332863
+      ThumbRight.ColorDisabled = clBlack
+      ThumbRight.ColorDisabledTo = clBlack
+      ThumbRight.ColorMirror = 15586496
+      ThumbRight.ColorMirrorTo = 16245200
+      ThumbRight.ColorMirrorHot = 5888767
+      ThumbRight.ColorMirrorHotTo = 10807807
+      ThumbRight.ColorMirrorDown = 946929
+      ThumbRight.ColorMirrorDownTo = 5021693
+      ThumbRight.ColorMirrorDisabled = clBlack
+      ThumbRight.ColorMirrorDisabledTo = clBlack
+      ThumbRight.Gradient = ggVertical
+      ThumbRight.GradientMirror = ggRadial
+      ThumbRight.Shape = tsPointer
+      TickMark.Color = clWhite
+      TickMark.ColorDisabled = clBlack
+      TickMark.Font.Charset = DEFAULT_CHARSET
+      TickMark.Font.Color = clWhite
+      TickMark.Font.Height = -11
+      TickMark.Font.Name = 'Tahoma'
+      TickMark.Font.Style = []
+      TickMark.Size = 10
+      TrackHint = False
+      TrackLabel.Position = lpBottomRight
+      TrackLabel.Font.Charset = DEFAULT_CHARSET
+      TrackLabel.Font.Color = clWhite
+      TrackLabel.Font.Height = -11
+      TrackLabel.Font.Name = 'Tahoma'
+      TrackLabel.Font.Style = []
+      TrackLabel.Format = 'min'
+      TrackLabel.Spacing = 0
+      Version = '1.6.10.2'
+    end
+    object advrSliderTorpRuntime1: TAdvRangeSlider
+      Left = 0
+      Top = 50
+      Width = 650
+      Height = 23
+      BorderColor = clNone
+      BorderColorDisabled = clNone
+      ColorTo = clNone
+      ColorDisabled = clNone
+      ColorDisabledTo = clNone
+      Direction = gdHorizontal
+      Color = clNone
+      Max = 35
+      ParentShowHint = False
+      ShowHint = False
+      Slider.BorderColor = clNone
+      Slider.BorderColorDisabled = clNone
+      Slider.Color = clNone
+      Slider.ColorTo = clNone
+      Slider.ColorDisabled = clNone
+      Slider.ColorDisabledTo = clNone
+      Slider.ColorCompleted = clNone
+      Slider.ColorCompletedTo = clNone
+      Slider.ColorCompletedDisabled = clNone
+      Slider.ColorCompletedDisabledTo = clNone
+      Slider.Direction = gdHorizontal
+      Slider.Offset = -15
+      Slider.ColorRemaining = clNone
+      Slider.ColorRemainingTo = clNone
+      Slider.ColorRemainingDisabled = clNone
+      Slider.ColorRemainingDisabledTo = clNone
+      TabOrder = 2
+      ThumbLeft.BorderColor = clNone
+      ThumbLeft.BorderColorHot = 10079963
+      ThumbLeft.BorderColorDown = 4548219
+      ThumbLeft.BorderColorDisabled = clBlack
+      ThumbLeft.Color = 15653832
+      ThumbLeft.ColorTo = 16178633
+      ThumbLeft.ColorDown = 7778289
+      ThumbLeft.ColorDownTo = 4296947
+      ThumbLeft.ColorHot = 15465983
+      ThumbLeft.ColorHotTo = 11332863
+      ThumbLeft.ColorDisabled = clBlack
+      ThumbLeft.ColorDisabledTo = clBlack
+      ThumbLeft.ColorMirror = 15586496
+      ThumbLeft.ColorMirrorTo = 16245200
+      ThumbLeft.ColorMirrorHot = 5888767
+      ThumbLeft.ColorMirrorHotTo = 10807807
+      ThumbLeft.ColorMirrorDown = 946929
+      ThumbLeft.ColorMirrorDownTo = 5021693
+      ThumbLeft.ColorMirrorDisabled = clBlack
+      ThumbLeft.ColorMirrorDisabledTo = clBlack
+      ThumbLeft.Gradient = ggVertical
+      ThumbLeft.GradientMirror = ggRadial
+      ThumbLeft.Shape = tsPointer
+      ThumbRight.BorderColor = clNone
+      ThumbRight.BorderColorHot = 10079963
+      ThumbRight.BorderColorDown = 4548219
+      ThumbRight.BorderColorDisabled = clNone
+      ThumbRight.Color = 15653832
+      ThumbRight.ColorTo = 16178633
+      ThumbRight.ColorDown = 7778289
+      ThumbRight.ColorDownTo = 4296947
+      ThumbRight.ColorHot = 15465983
+      ThumbRight.ColorHotTo = 11332863
+      ThumbRight.ColorDisabled = clBlack
+      ThumbRight.ColorDisabledTo = clBlack
+      ThumbRight.ColorMirror = 15586496
+      ThumbRight.ColorMirrorTo = 16245200
+      ThumbRight.ColorMirrorHot = 5888767
+      ThumbRight.ColorMirrorHotTo = 10807807
+      ThumbRight.ColorMirrorDown = 946929
+      ThumbRight.ColorMirrorDownTo = 5021693
+      ThumbRight.ColorMirrorDisabled = clBlack
+      ThumbRight.ColorMirrorDisabledTo = clBlack
+      ThumbRight.Gradient = ggVertical
+      ThumbRight.GradientMirror = ggRadial
+      ThumbRight.Shape = tsPointer
+      TickMark.Color = clWhite
+      TickMark.ColorDisabled = clNone
+      TickMark.Font.Charset = DEFAULT_CHARSET
+      TickMark.Font.Color = clWhite
+      TickMark.Font.Height = -11
+      TickMark.Font.Name = 'Tahoma'
+      TickMark.Font.Style = []
+      TickMark.ShowText = True
+      TickMark.ShowImageAtSteps = 5
+      TickMark.Size = 8
+      TrackHint = False
+      TrackLabel.Position = lpBottomRight
+      TrackLabel.Font.Charset = DEFAULT_CHARSET
+      TrackLabel.Font.Color = clWhite
+      TrackLabel.Font.Height = -11
+      TrackLabel.Font.Name = 'Tahoma'
+      TrackLabel.Font.Style = []
+      TrackLabel.Format = 'min'
+      TrackLabel.Spacing = 0
+      Version = '1.6.10.2'
+    end
+    object Panel2: TPanel
+      Left = 623
+      Top = 54
+      Width = 28
+      Height = 15
+      BevelOuter = bvNone
+      Caption = 'min'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+    end
   end
   object tmrUpdateTorpInfo: TTimer
     OnTimer = tmrUpdateTorpInfoTimer
-    Left = 648
-    Top = 24
+    Left = 824
+    Top = 16
   end
 end
