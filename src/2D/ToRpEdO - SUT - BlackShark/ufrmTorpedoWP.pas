@@ -1438,56 +1438,50 @@ begin
         begin
 //                  TempShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
           TempShip := VehicleMgr.FindTrackByTrackNumber(TorpedoParam.TargetTrackID);
-          if TempShip.Controlled_Track then
+          TargetShip := TempShip;
+
+          for indx := 0 to TargetShip.TrackHistory.Count -1 do
           begin
-            TargetShip := TempShip;
-
-            for indx := 0 to TargetShip.TrackHistory.Count -1 do
-            begin
-              MapX := TTrackPoint(TargetShip.TrackHistory[indx]).PosX;
-              MapY := TTrackPoint(TargetShip.TrackHistory[indx]).PosY;
-
-              FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-              aCnv.Pen.Color := clwhite;
-              aCnv.Pen.Width := 1;
-              aCnv.Pen.Style := psSolid;
-              aCnv.Brush.Style := bsSolid;
-              aCnv.Brush.Color := clwhite;
-              aCnv.Ellipse(Round(scrx-2), Round(scry-2), Round(scrx+2), Round(scry+2));
-            end;
-
-            MapX := TempShip.PosX;
-            MapY := TempShip.PosY;
+            MapX := TTrackPoint(TargetShip.TrackHistory[indx]).PosX;
+            MapY := TTrackPoint(TargetShip.TrackHistory[indx]).PosY;
 
             FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
-
-            aCnv.Pen.Color := RGB(219,223,110);
-            aCnv.Pen.Width := 2;
-            aCnv.MoveTo(Round(scrX), Round(scrY));
-            Angle := DegToRad(TargetShip.HeadingDeg);
-            ScrDX := ScrX + Round(sin(Angle) * 500);
-            ScrDY := ScrY - Round(cos(Angle) * 500);
-            aCnv.LineTo(Round(ScrDX), Round(ScrDY));
-
-            aCnv.Pen.Color := clRed;
-    //        aCnv.Pen.Style := psClear;
+            aCnv.Pen.Color := clwhite;
             aCnv.Pen.Width := 1;
-
-            aCnv.Brush.Color := clRed;
-            aCnv.Brush.Style := bsSolid;
-            aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
-
             aCnv.Pen.Style := psSolid;
-            aCnv.Pen.Color := clWhite;
-            aCnv.Font.Color := clWhite;
-            aCnv.Pen.Width := 1;
-            aCnv.Brush.Style := bsClear;
-
-            aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
-
-            // spawn track history
-
+            aCnv.Brush.Style := bsSolid;
+            aCnv.Brush.Color := clwhite;
+            aCnv.Ellipse(Round(scrx-2), Round(scry-2), Round(scrx+2), Round(scry+2));
           end;
+
+          MapX := TempShip.PosX;
+          MapY := TempShip.PosY;
+
+          FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+          aCnv.Pen.Color := RGB(219,223,110);
+          aCnv.Pen.Width := 2;
+          aCnv.MoveTo(Round(scrX), Round(scrY));
+          Angle := DegToRad(TargetShip.HeadingDeg);
+          ScrDX := ScrX + Round(sin(Angle) * 500);
+          ScrDY := ScrY - Round(cos(Angle) * 500);
+          aCnv.LineTo(Round(ScrDX), Round(ScrDY));
+
+          aCnv.Pen.Color := clRed;
+  //        aCnv.Pen.Style := psClear;
+          aCnv.Pen.Width := 1;
+
+          aCnv.Brush.Color := clRed;
+          aCnv.Brush.Style := bsSolid;
+          aCnv.Ellipse(Round(ScrX) - 4, Round(ScrY) - 4, Round(ScrX) + 4, Round(ScrY) + 4);
+
+          aCnv.Pen.Style := psSolid;
+          aCnv.Pen.Color := clWhite;
+          aCnv.Font.Color := clWhite;
+          aCnv.Pen.Width := 1;
+          aCnv.Brush.Style := bsClear;
+
+          aCnv.TextOut(Round(ScrX)+3, Round(ScrY)+3, Format('%.6d',[TargetShip.MSITrackNumber]));
         end;
 
       end;
