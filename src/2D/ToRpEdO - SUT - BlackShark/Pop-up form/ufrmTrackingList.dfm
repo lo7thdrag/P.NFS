@@ -12,6 +12,7 @@ object frmTrackListNumber: TfrmTrackListNumber
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -24,9 +25,6 @@ object frmTrackListNumber: TfrmTrackListNumber
     Color = -1
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -1
-    ExplicitWidth = 372
-    ExplicitHeight = 674
     object lblNumberofTracks: TLabel
       Left = 16
       Top = 10

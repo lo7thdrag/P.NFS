@@ -47,9 +47,12 @@ implementation
 procedure TfrmInformationTorpedo.tmrInformationTorpedoTimer(Sender: TObject);
 var
   i : Integer;
-  Torp  : TTorpedoTrack;
+  Torp   : TTorpedoTrack;
+  OwnShip: TSimulationTrack;
+  range  : Double;
 begin
   Torp := nil;
+  OwnShip := nil;
 
   for i := 0 to VehicleMgr.ObjectList.Count - 1 do
   begin
@@ -58,6 +61,19 @@ begin
       if TTorpedoTrack(VehicleMgr.ObjectList[i]).LauncherID = TorpedoParam.TorpedoIdx then
       begin
         Torp := TTorpedoTrack(VehicleMgr.ObjectList[i]);
+        Break;
+      end;
+    end;
+  end;
+
+  for i := 0 to VehicleMgr.ObjectList.Count - 1 do
+  begin
+    if VehicleMgr.ObjectList[i] is TSimulationTrack then
+    begin
+      if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID =
+         UniqueID_To_dbID(SutBlacksharkManager.xShip.UniqueID) then
+      begin
+        OwnShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
         Break;
       end;
     end;
@@ -74,10 +90,12 @@ begin
 
   if Assigned(Torp) then
   begin
+    range := CalcRange(OwnShip.PosX, OwnShip.PosY,Torp.PosX, Torp.PosY);
+
     lblBearing.Caption    := FormatFloat('0.0', Torp.Bearing);
     lblBearing.Font.Color := clLime;
 
-    lblRange.Caption    := FormatFloat('0.0', Torp.Range);
+    lblRange.Caption    := FormatFloat('0.0', Torp.range);
     lblRange.Font.Color := clLime;
 
     lblCourse.Caption    := FormatFloat('0.0', Torp.HeadingDeg);
