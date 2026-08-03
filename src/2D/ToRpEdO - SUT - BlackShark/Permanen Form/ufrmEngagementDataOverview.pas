@@ -60,22 +60,19 @@ var
   ElapsedWidth, RemainingWidth : Integer;
 begin
   Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
-
-  if Torp <> nil then
+  aCnv := pbTrackBar.Canvas;
+  BarWidth := pbTrackBar.Width;
+  BarHeight := pbTrackBar.Height;
+  MidHeight := Round(BarHeight/2);
+  if (Torp <> nil) and (Torp.SearchTime <> 0) then
   begin
-    aCnv := pbTrackBar.Canvas;
-
-    ElapsedMin := (Now - Torp.TimeLaunch) / 1440;
-    RemainingMin := Torp.SearchTime / 1440;
+    ElapsedMin := (Now - Torp.TimeLaunch) * 1440;
+    RemainingMin := Torp.SearchTime / 60;
     TotalMin := Round(ElapsedMin + RemainingMin);
     advrSliderTorpRuntime1.Min := -Round(ElapsedMin);
     advrSliderTorpRuntime1.Max := Round(RemainingMin);
     advrSliderTorpRuntime2.Min := -Round(ElapsedMin);
     advrSliderTorpRuntime2.Max := Round(RemainingMin);
-
-    BarWidth := pbTrackBar.Width;
-    BarHeight := pbTrackBar.Height;
-    MidHeight := Round(BarHeight/2);
 
     ElapsedWidth := Round(ElapsedMin / TotalMin * BarWidth);
     RemainingWidth := Round(RemainingMin / TotalMin * BarWidth);
@@ -94,7 +91,7 @@ begin
     aCnv.Brush.Color := clYellow;
     aCnv.Brush.Style := bsSolid;
 
-    aCnv.Rectangle(ElapsedWidth, 0, RemainingWidth, MidHeight -1);
+    aCnv.Rectangle(ElapsedWidth, 0, BarWidth, MidHeight -1);
     {$ENDREGION}
 
     {$REGION 'Elapsed Official'}
@@ -108,7 +105,7 @@ begin
     aCnv.Brush.Color := clGreen;
     aCnv.Brush.Style := bsSolid;
 
-    aCnv.Rectangle(ElapsedWidth, MidHeight +1, RemainingWidth, BarHeight);
+    aCnv.Rectangle(ElapsedWidth, MidHeight +1, BarWidth, BarHeight);
     {$ENDREGION}
   end
   else
