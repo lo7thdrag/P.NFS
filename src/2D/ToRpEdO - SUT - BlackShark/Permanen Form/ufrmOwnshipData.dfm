@@ -2,8 +2,8 @@ object frmOwnshipData: TfrmOwnshipData
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 126
-  ClientWidth = 154
+  ClientHeight = 162
+  ClientWidth = 240
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,16 +16,16 @@ object frmOwnshipData: TfrmOwnshipData
   object pnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 154
-    Height = 126
+    Width = 240
+    Height = 162
     BevelOuter = bvNone
     TabOrder = 0
     object lblTime: TLabel
       Left = 8
       Top = 4
-      Width = 137
+      Width = 193
       Height = 16
-      Caption = '28/July/2026   17:00:00'
+      Caption = '28/July/2026         17:00:00     '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clLime
       Font.Height = -13
@@ -99,7 +99,7 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
     object lblHeading: TLabel
-      Left = 72
+      Left = 80
       Top = 24
       Width = 25
       Height = 16
@@ -112,7 +112,7 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
     object lblSOG: TLabel
-      Left = 72
+      Left = 80
       Top = 44
       Width = 25
       Height = 16
@@ -125,7 +125,7 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
     object lblDepth: TLabel
-      Left = 72
+      Left = 80
       Top = 64
       Width = 25
       Height = 16
@@ -138,7 +138,7 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
     object lblLatt: TLabel
-      Left = 72
+      Left = 80
       Top = 84
       Width = 21
       Height = 16
@@ -151,7 +151,7 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
     object lblLong: TLabel
-      Left = 72
+      Left = 80
       Top = 104
       Width = 25
       Height = 16
@@ -164,7 +164,7 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
     object Label8: TLabel
-      Left = 112
+      Left = 128
       Top = 24
       Width = 21
       Height = 16
@@ -177,7 +177,7 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
     object Label9: TLabel
-      Left = 112
+      Left = 128
       Top = 44
       Width = 22
       Height = 16
@@ -190,7 +190,7 @@ object frmOwnshipData: TfrmOwnshipData
       ParentFont = False
     end
     object Label10: TLabel
-      Left = 112
+      Left = 128
       Top = 64
       Width = 11
       Height = 16
@@ -205,7 +205,7 @@ object frmOwnshipData: TfrmOwnshipData
   end
   object tmrOwnshipData: TTimer
     OnTimer = tmrOwnshipDataTimer
-    Left = 112
-    Top = 88
+    Left = 200
+    Top = 120
   end
 end

@@ -129,6 +129,7 @@ object frmTrackListNumber: TfrmTrackListNumber
       ParentFont = False
       TabOrder = 0
       ViewStyle = vsReport
+      OnSelectItem = lvTracklistNumberSelectItem
     end
     object Panel1: TPanel
       Left = 4

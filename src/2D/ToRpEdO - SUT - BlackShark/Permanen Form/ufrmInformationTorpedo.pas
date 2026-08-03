@@ -49,7 +49,7 @@ var
   i : Integer;
   Torp   : TTorpedoTrack;
   OwnShip: TSimulationTrack;
-  range  : Double;
+  rangeTorpedo, bearingTorpedo  : Double;
 begin
   Torp := nil;
   OwnShip := nil;
@@ -90,12 +90,13 @@ begin
 
   if Assigned(Torp) then
   begin
-    range := CalcRange(OwnShip.PosX, OwnShip.PosY,Torp.PosX, Torp.PosY);
+    rangeTorpedo   := CalcRange(OwnShip.PosX, OwnShip.PosY,Torp.PosX, Torp.PosY);
+    bearingTorpedo := CalcBearing(OwnShip.PosX, OwnShip.PosY,Torp.PosX, Torp.PosY);
 
-    lblBearing.Caption    := FormatFloat('0.0', Torp.Bearing);
+    lblBearing.Caption    := FormatFloat('0.0', bearingTorpedo);
     lblBearing.Font.Color := clLime;
 
-    lblRange.Caption    := FormatFloat('0.0', Torp.range);
+    lblRange.Caption    := FormatFloat('0.0', rangeTorpedo * 1.852);
     lblRange.Font.Color := clLime;
 
     lblCourse.Caption    := FormatFloat('0.0', Torp.HeadingDeg);
