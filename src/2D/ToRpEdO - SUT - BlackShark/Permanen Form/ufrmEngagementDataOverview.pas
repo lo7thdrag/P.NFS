@@ -3,7 +3,7 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.Math, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uSutBlacksharkManager,
   uTorpedoTrack, uVehicleManager, AdvTrackBar;
 
@@ -33,13 +33,15 @@ type
     Label8: TLabel;
     lblRunDist: TLabel;
     Label10: TLabel;
-    advrSliderTorpRuntime1: TAdvRangeSlider;
-    advrSliderTorpRuntime2: TAdvRangeSlider;
-    Panel2: TPanel;
+    pnlValueMin: TPanel;
+    pbMinuteTick: TPaintBox;
     procedure pbTrackBarPaint(Sender: TObject);
     procedure tmrUpdateTorpInfoTimer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure pbMinuteTickPaint(Sender: TObject);
   private
     { Private declarations }
+    FElapsedMin, FRemainingMin : Double;
   public
     { Public declarations }
   end;
@@ -50,6 +52,72 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmEngagementDataOverview.FormCreate(Sender: TObject);
+begin
+  FElapsedMin := 0;
+  FRemainingMin := 35;
+end;
+
+procedure TfrmEngagementDataOverview.pbMinuteTickPaint(Sender: TObject);
+var
+  aCnv : TCanvas;
+  i, pbWidth, pbHeight : Integer;
+  TickSpacing, currTickX, CurrMin : Integer;
+  TotalMin : Double;
+begin
+  currTickX := 0;
+  aCnv := pbMinuteTick.Canvas;
+  pbWidth := pbTrackBar.Width;
+  pbHeight := pbTrackBar.Height;
+
+  TotalMin := FElapsedMin + FRemainingMin;
+  TickSpacing := Round(pbWidth / TotalMin); // jarak antar tick
+
+  aCnv.Pen.Color := clWhite;
+  aCnv.Pen.Style := psSolid;
+  aCnv.Pen.Width := 1;
+  aCnv.Brush.Color := clWhite;
+  acnv.Brush.Style := bsClear;
+  aCnv.Font.Color := clWhite;
+  aCnv.Font.Size := 10;
+
+  for i := 0 to System.Math.Floor(FElapsedMin) do
+  begin
+    CurrMin := System.Math.Floor(FElapsedMin) - i;
+    if i = 0 then
+    begin
+      currTickX := currTickX + round(TickSpacing * System.Math.FMod(FElapsedMin, 1));
+      aCnv.MoveTo(currTickX, 0);
+      aCnv.LineTo(currTickX, 4);
+    end
+    else
+    begin
+      currTickX := currTickX + TickSpacing;
+      aCnv.MoveTo(currTickX, 0);
+      aCnv.LineTo(currTickX, 4);
+    end;
+
+    if (CurrMin mod 5) = 0 then
+    begin
+      aCnv.TextOut(currTickX - 3, 6, IntToStr(-CurrMin));
+    end;
+  end;
+
+  for i := 1 to System.Math.Ceil(FRemainingMin) do
+  begin
+    CurrMin := i;
+
+    currTickX := currTickX + TickSpacing;
+    aCnv.MoveTo(currTickX, 0);
+    aCnv.LineTo(currTickX, 4);
+
+    if (CurrMin mod 5) = 0 then
+    begin
+      aCnv.TextOut(currTickX - 3, 6, IntToStr(CurrMin));
+    end;
+  end;
+end;
 
 procedure TfrmEngagementDataOverview.pbTrackBarPaint(Sender: TObject);
 var
@@ -69,10 +137,10 @@ begin
     ElapsedMin := (Now - Torp.TimeLaunch) * 1440;
     RemainingMin := Torp.SearchTime / 60;
     TotalMin := Round(ElapsedMin + RemainingMin);
-    advrSliderTorpRuntime1.Min := -Round(ElapsedMin);
-    advrSliderTorpRuntime1.Max := Round(RemainingMin);
-    advrSliderTorpRuntime2.Min := -Round(ElapsedMin);
-    advrSliderTorpRuntime2.Max := Round(RemainingMin);
+
+    FElapsedMin := ElapsedMin;
+    FRemainingMin := RemainingMin;
+//    advrSliderTorpRuntime1.Min := -Round(ElapsedMin);
 
     ElapsedWidth := Round(ElapsedMin / TotalMin * BarWidth);
     RemainingWidth := Round(RemainingMin / TotalMin * BarWidth);
@@ -81,7 +149,7 @@ begin
     aCnv.Pen.Color := clBlack;
     aCnv.Pen.Style := psClear;
     aCnv.Pen.Width := 1;
-    aCnv.Brush.Color := RGB(150,75,0); // Coklat
+    aCnv.Brush.Color := RGB(191, 146, 101); // Coklat
     aCnv.Brush.Style := bsSolid;
 
     aCnv.Rectangle(0, 0, ElapsedWidth, MidHeight -1);
@@ -95,7 +163,7 @@ begin
     {$ENDREGION}
 
     {$REGION 'Elapsed Official'}
-    aCnv.Brush.Color := RGB(150,75,0);; // Coklat
+    aCnv.Brush.Color := RGB(191, 146, 101);; // Coklat
     aCnv.Brush.Style := bsSolid;
 
     aCnv.Rectangle(0, MidHeight +1, ElapsedWidth, BarHeight);
@@ -107,13 +175,12 @@ begin
 
     aCnv.Rectangle(ElapsedWidth, MidHeight +1, BarWidth, BarHeight);
     {$ENDREGION}
+
   end
   else
   begin
-    advrSliderTorpRuntime1.Min := 0;
-    advrSliderTorpRuntime1.Max := 35;
-    advrSliderTorpRuntime2.Min := 0;
-    advrSliderTorpRuntime2.Max := 35;
+    FElapsedMin := 10.5;
+    FRemainingMin := 15.2;
 
     {$REGION 'Trial'}
     aCnv.Pen.Color := clBlack;
@@ -138,7 +205,6 @@ procedure TfrmEngagementDataOverview.tmrUpdateTorpInfoTimer(Sender: TObject);
 var
   Torp: TTorpedoTrack;
 begin
- //
   Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
   if Torp <> nil then
   begin
@@ -158,6 +224,7 @@ begin
   end;
 
   pbTrackBar.Invalidate;
+  pbMinuteTick.Invalidate;
 end;
 
 end.
