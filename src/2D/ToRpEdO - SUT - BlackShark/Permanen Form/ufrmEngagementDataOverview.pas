@@ -63,8 +63,8 @@ procedure TfrmEngagementDataOverview.pbMinuteTickPaint(Sender: TObject);
 var
   aCnv : TCanvas;
   i, pbWidth, pbHeight : Integer;
-  TickSpacing, currTickX, CurrMin : Integer;
-  TotalMin : Double;
+  currTickX, CurrMin : Integer;
+  TotalMin, TickSpacing : Double;
 begin
   currTickX := 0;
   aCnv := pbMinuteTick.Canvas;
@@ -72,7 +72,7 @@ begin
   pbHeight := pbTrackBar.Height;
 
   TotalMin := FElapsedMin + FRemainingMin;
-  TickSpacing := Round(pbWidth / TotalMin); // jarak antar tick
+  TickSpacing := pbWidth / TotalMin; // jarak antar tick
 
   aCnv.Pen.Color := clWhite;
   aCnv.Pen.Style := psSolid;
@@ -93,7 +93,7 @@ begin
     end
     else
     begin
-      currTickX := currTickX + TickSpacing;
+      currTickX := currTickX + Round(TickSpacing);
       aCnv.MoveTo(currTickX, 0);
       aCnv.LineTo(currTickX, 4);
     end;
@@ -108,7 +108,7 @@ begin
   begin
     CurrMin := i;
 
-    currTickX := currTickX + TickSpacing;
+    currTickX := currTickX + Round(TickSpacing);
     aCnv.MoveTo(currTickX, 0);
     aCnv.LineTo(currTickX, 4);
 
@@ -149,7 +149,7 @@ begin
     aCnv.Pen.Color := clBlack;
     aCnv.Pen.Style := psClear;
     aCnv.Pen.Width := 1;
-    aCnv.Brush.Color := RGB(191, 146, 101); // Coklat
+    aCnv.Brush.Color := RGB(181, 122, 63); // Coklat
     aCnv.Brush.Style := bsSolid;
 
     aCnv.Rectangle(0, 0, ElapsedWidth, MidHeight -1);
@@ -163,7 +163,7 @@ begin
     {$ENDREGION}
 
     {$REGION 'Elapsed Official'}
-    aCnv.Brush.Color := RGB(191, 146, 101);; // Coklat
+    aCnv.Brush.Color := RGB(181, 122, 63);; // Coklat
     aCnv.Brush.Style := bsSolid;
 
     aCnv.Rectangle(0, MidHeight +1, ElapsedWidth, BarHeight);
@@ -179,8 +179,8 @@ begin
   end
   else
   begin
-    FElapsedMin := 10.5;
-    FRemainingMin := 15.2;
+    FElapsedMin := 0;
+    FRemainingMin := 11.2;
 
     {$REGION 'Trial'}
     aCnv.Pen.Color := clBlack;
