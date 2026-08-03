@@ -247,7 +247,7 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
     object pbTrackBar: TPaintBox
       Left = 0
       Top = 8
-      Width = 650
+      Width = 630
       Height = 40
       OnPaint = pbTrackBarPaint
     end
@@ -316,9 +316,9 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       TabOrder = 1
     end
     object advrSliderTorpRuntime2: TAdvRangeSlider
-      Left = 0
+      Left = -9
       Top = 48
-      Width = 650
+      Width = 646
       Height = 23
       BorderColor = clNone
       BorderColorDisabled = clNone
@@ -411,9 +411,9 @@ object frmEngagementDataOverview: TfrmEngagementDataOverview
       Version = '1.6.10.2'
     end
     object advrSliderTorpRuntime1: TAdvRangeSlider
-      Left = 0
+      Left = -9
       Top = 50
-      Width = 650
+      Width = 646
       Height = 23
       BorderColor = clNone
       BorderColorDisabled = clNone
