@@ -52,8 +52,89 @@ implementation
 {$R *.dfm}
 
 procedure TfrmEngagementDataOverview.pbTrackBarPaint(Sender: TObject);
+var
+  Torp: TTorpedoTrack;
+  aCnv: TCanvas;
+  ElapsedMin, RemainingMin, TotalMin : Double;
+  BarWidth, BarHeight, MidHeight : Integer;
+  ElapsedWidth, RemainingWidth : Integer;
 begin
-  //
+  Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+
+  if Torp <> nil then
+  begin
+    aCnv := pbTrackBar.Canvas;
+
+    ElapsedMin := (Now - Torp.TimeLaunch) / 1440;
+    RemainingMin := Torp.SearchTime / 1440;
+    TotalMin := Round(ElapsedMin + RemainingMin);
+    advrSliderTorpRuntime1.Min := -Round(ElapsedMin);
+    advrSliderTorpRuntime1.Max := Round(RemainingMin);
+    advrSliderTorpRuntime2.Min := -Round(ElapsedMin);
+    advrSliderTorpRuntime2.Max := Round(RemainingMin);
+
+    BarWidth := pbTrackBar.Width;
+    BarHeight := pbTrackBar.Height;
+    MidHeight := Round(BarHeight/2);
+
+    ElapsedWidth := Round(ElapsedMin / TotalMin * BarWidth);
+    RemainingWidth := Round(RemainingMin / TotalMin * BarWidth);
+
+    {$REGION 'Elapsed Trial'}
+    aCnv.Pen.Color := clBlack;
+    aCnv.Pen.Style := psClear;
+    aCnv.Pen.Width := 1;
+    aCnv.Brush.Color := RGB(150,75,0); // Coklat
+    aCnv.Brush.Style := bsSolid;
+
+    aCnv.Rectangle(0, 0, ElapsedWidth, MidHeight -1);
+    {$ENDREGION}
+
+    {$REGION 'Remaining Trial'}
+    aCnv.Brush.Color := clYellow;
+    aCnv.Brush.Style := bsSolid;
+
+    aCnv.Rectangle(ElapsedWidth, 0, RemainingWidth, MidHeight -1);
+    {$ENDREGION}
+
+    {$REGION 'Elapsed Official'}
+    aCnv.Brush.Color := RGB(150,75,0);; // Coklat
+    aCnv.Brush.Style := bsSolid;
+
+    aCnv.Rectangle(0, MidHeight +1, ElapsedWidth, BarHeight);
+    {$ENDREGION}
+
+    {$REGION 'Remaining Official'}
+    aCnv.Brush.Color := clGreen;
+    aCnv.Brush.Style := bsSolid;
+
+    aCnv.Rectangle(ElapsedWidth, MidHeight +1, RemainingWidth, BarHeight);
+    {$ENDREGION}
+  end
+  else
+  begin
+    advrSliderTorpRuntime1.Min := 0;
+    advrSliderTorpRuntime1.Max := 35;
+    advrSliderTorpRuntime2.Min := 0;
+    advrSliderTorpRuntime2.Max := 35;
+
+    {$REGION 'Trial'}
+    aCnv.Pen.Color := clBlack;
+    aCnv.Pen.Style := psClear;
+    aCnv.Pen.Width := 1;
+    aCnv.Brush.Color := clYellow;
+    aCnv.Brush.Style := bsSolid;
+
+    aCnv.Rectangle(0, 0, BarWidth, MidHeight -1);
+    {$ENDREGION}
+
+    {$REGION 'Official'}
+    aCnv.Brush.Color := clGreen;
+    aCnv.Brush.Style := bsSolid;
+
+    aCnv.Rectangle(0, MidHeight +1, BarWidth, BarHeight);
+    {$ENDREGION}
+  end;
 end;
 
 procedure TfrmEngagementDataOverview.tmrUpdateTorpInfoTimer(Sender: TObject);
@@ -78,6 +159,8 @@ begin
     lblRunDist.Caption := FormatFloat('0.0', Torp.RunDistance - (Torp.RunLength / 1000));
 //    lblWireLeft.Caption := FormatFloat('0.0', Torp.CurrentWireLeft / 1000);
   end;
+
+  pbTrackBar.Invalidate;
 end;
 
 end.

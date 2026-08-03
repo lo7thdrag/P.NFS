@@ -22,6 +22,7 @@ type
     procedure ChangeCourseDegree(Sender: TObject);
     procedure tmrUpdateTorpCourseTimer(Sender: TObject);
     procedure edtCourseKeyPress(Sender: TObject; var Key: Char);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FManualGuidance : Boolean;
@@ -120,6 +121,15 @@ begin
   FManualGuidance := false;
 end;
 
+procedure TfrmManualGuidance.FormShow(Sender: TObject);
+begin
+  // jika di click manual guidance di Torpedo Guidance, maka tombol Manual Guidance harus off
+  if FManualGuidance then
+  begin
+    pnlManualGuidanceClick(Sender);
+  end;
+end;
+
 procedure TfrmManualGuidance.pnlManualGuidanceClick(Sender: TObject);
 var
   Torp: TTorpedoTrack;
@@ -128,11 +138,6 @@ begin
   FManualGuidance := not FManualGuidance;
   if FManualGuidance then
   begin
-    pnlManualGuidance.Color := clLime;
-    edtCourse.Visible := True;
-    lblCourseVal.Visible := False;
-
-    edtCourse.Text := lblCourseVal.Caption;
     // kirim 3d perintah manual guidance
     Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
     if Torp <> nil then
@@ -159,6 +164,11 @@ begin
 
       SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
     end;
+    pnlManualGuidance.Color := clLime;
+    edtCourse.Visible := True;
+    lblCourseVal.Visible := False;
+
+    edtCourse.Text := lblCourseVal.Caption;
   end
   else
   begin
