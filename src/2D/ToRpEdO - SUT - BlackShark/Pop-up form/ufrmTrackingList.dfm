@@ -12,7 +12,6 @@ object frmTrackListNumber: TfrmTrackListNumber
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -122,7 +121,7 @@ object frmTrackListNumber: TfrmTrackListNumber
           Width = 73
         end>
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clLime
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -140,5 +139,10 @@ object frmTrackListNumber: TfrmTrackListNumber
       ParentBackground = False
       TabOrder = 1
     end
+  end
+  object tmrTracklistNumber: TTimer
+    OnTimer = tmrTracklistNumberTimer
+    Left = 24
+    Top = 464
   end
 end

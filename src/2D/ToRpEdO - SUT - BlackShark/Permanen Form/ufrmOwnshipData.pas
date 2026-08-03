@@ -69,7 +69,7 @@ begin
     lblDepth.Caption    := FormatFloat('0.0', OwnShip.PosZ);
     lblDepth.Font.Color := clLime;
 
-    lblSOG.Caption     := FormatFloat('0.0', OwnShip.Speed_knot);
+    lblSOG.Caption     := FormatFloat('0.0', OwnShip.Speed_knot * 0.514444444);
     lblSOG.Font.Color  := clLime;
 
     lblHeading.Caption := FormatFloat('0.0', OwnShip.HeadingDeg);
