@@ -1106,6 +1106,25 @@ begin
 
   end
 
+  else if Token = 'ToZero' then
+  begin
+    // kirim To Zero ke 3D
+    RecSend.ShipID := FCCManager.ShipID;
+    RecSend.Range := 0;
+    RecSend.Bearing := 0;
+    RecSend.Elevation := 0;
+    RecSend.EOBearing := 0;
+    RecSend.EOElevation := 0;
+    RecSend.IDTarget3D := 0;
+    RecSend.IDTarget2D := 0;
+    RecSend.TargetType := 0;
+
+    RecSend.OrderID := CORD_ID_ToZero;
+    RecSend.EnableValue := false;
+
+    FCCManager.NetSendTo3D_FCCSet(RecSend);
+  end
+
   else if Token = 'Automatic' then
   begin
     // kirim automatic disini ke 3D
