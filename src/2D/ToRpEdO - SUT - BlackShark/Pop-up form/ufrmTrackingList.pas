@@ -87,7 +87,12 @@ begin
       end;
 
       Item.SubItems.Add(IntToStr(Ord(Track.Identity)));
-      Item.SubItems.Add(IntToStr(Ord(Track.Source)));
+
+      case Track.Source of
+        scCAS: Item.SubItems.Add('CAS');
+        scFAS: Item.SubItems.Add('FAS');
+        scMAN: Item.SubItems.Add('MAN');
+      end;
     end;
   end;
 end;
