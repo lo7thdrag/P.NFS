@@ -61,7 +61,7 @@ implementation
 
 procedure TfrmTargetInControl.tmrUpdateTICTimer(Sender: TObject);
 var
-  range : Double;
+  range, bearing : Double;
   OwnShip: TSimulationTrack;
   i : Integer;
 begin
@@ -82,12 +82,13 @@ begin
 
   if Assigned(OwnShip) and VehicleMgr.IsAnyTrackControlled then
   begin
-    range := CalcRange(OwnShip.PosX, OwnShip.PosY, VehicleMgr.TrackControlled.PosX, VehicleMgr.TrackControlled.PosY);
+    range   := CalcRange(OwnShip.PosX, OwnShip.PosY, VehicleMgr.TrackControlled.PosX, VehicleMgr.TrackControlled.PosY);
+    bearing := CalcBearing(OwnShip.PosX, OwnShip.PosY, VehicleMgr.TrackControlled.PosX, VehicleMgr.TrackControlled.PosY);
 
     lblTargetTrack.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
     lblTargetTrack.Font.Color := clLime;
 
-    lblBearing.Caption    := FormatFloat('0.0', VehicleMgr.TrackControlled.Bearing);
+    lblBearing.Caption    := FormatFloat('0.0', bearing);
     lblBearing.Font.Color := clLime;
 
     lblRange.Caption    := FormatFloat('0.00', range * 1.852);
