@@ -87,10 +87,8 @@ begin
       end;
 
       Item.SubItems.Add(IntToStr(Ord(Track.Identity)));
+      Item.SubItems.Add(IntToStr(Ord(Track.Source)));
     end;
-
-
-
   end;
 end;
 

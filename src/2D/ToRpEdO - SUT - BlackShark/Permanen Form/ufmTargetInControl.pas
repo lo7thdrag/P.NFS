@@ -4,7 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uVehicleManager;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+
+  uVehicleManager, uSutBlacksharkManager, uBaseFunction, uSimulationTrack, uTestShip, uTorpedoTrack;
 
 type
   TfrmTargetInControl = class(TForm)
@@ -45,7 +47,7 @@ type
     tmrUpdateTIC: TTimer;
     procedure tmrUpdateTICTimer(Sender: TObject);
   private
-    { Private declarations }
+    FxShip : TXShip;
   public
     { Public declarations }
   end;
@@ -58,16 +60,37 @@ implementation
 {$R *.dfm}
 
 procedure TfrmTargetInControl.tmrUpdateTICTimer(Sender: TObject);
+var
+  range : Double;
+  OwnShip: TSimulationTrack;
+  i : Integer;
 begin
-  if VehicleMgr.IsAnyTrackControlled then
+  OwnShip := nil;
+
+  for i := 0 to VehicleMgr.ObjectList.Count - 1 do
   begin
+    if VehicleMgr.ObjectList[i] is TSimulationTrack then
+    begin
+      if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID =
+         UniqueID_To_dbID(SutBlacksharkManager.xShip.UniqueID) then
+      begin
+        OwnShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
+        Break;
+      end;
+    end;
+  end;
+
+  if Assigned(OwnShip) and VehicleMgr.IsAnyTrackControlled then
+  begin
+    range := CalcRange(OwnShip.PosX, OwnShip.PosY, VehicleMgr.TrackControlled.PosX, VehicleMgr.TrackControlled.PosY);
+
     lblTargetTrack.Caption    := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
     lblTargetTrack.Font.Color := clLime;
 
     lblBearing.Caption    := FormatFloat('0.0', VehicleMgr.TrackControlled.Bearing);
     lblBearing.Font.Color := clLime;
 
-    lblRange.Caption    := FormatFloat('0.0', VehicleMgr.TrackControlled.Range);
+    lblRange.Caption    := FormatFloat('0.00', range * 1.852);
     lblRange.Font.Color := clLime;
 
     lblCourse.Caption   := FormatFloat('0.0', VehicleMgr.TrackControlled.HeadingDeg);
