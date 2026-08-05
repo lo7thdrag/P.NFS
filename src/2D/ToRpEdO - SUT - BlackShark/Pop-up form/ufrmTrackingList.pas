@@ -40,21 +40,15 @@ begin
   FreeAndNil(frmTrackListNumber);
 end;
 
-procedure TfrmTrackListNumber.lvTracklistNumberSelectItem(Sender: TObject;
-  Item: TListItem; Selected: Boolean);
+procedure TfrmTrackListNumber.lvTracklistNumberSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
 var
   TrackNum : Integer;
 begin
-  if not Selected then
-     Exit;
+  if lvTracklistNumber.Selected = nil then
+    Exit;
 
-  lblNumber.Caption    := Item.Caption;
-  lblNumber.Font.Color := clLime;
-
-  TrackNum := StrToIntDef(Item.SubItems[0], -1);
-
-  if TrackNum <> -1 then
-    VehicleMgr.ControlTrackByTrackNumber(TrackNum)
+  TrackNum := StrToIntDef(lvTracklistNumber.Selected.SubItems[0], -1);
+  VehicleMgr.ControlTrackByTrackNumber(TrackNum);
 end;
 
 procedure TfrmTrackListNumber.tmrTracklistNumberTimer(Sender: TObject);
@@ -76,8 +70,13 @@ begin
     begin
       Track := TSimulationTrack(VehicleMgr.ObjectList[i]);
 
+      if Track.MSITrackNumber = 1 then
+        Continue;
+
       Item := lvTracklistNumber.Items.Add;
+
       Item.Caption := IntToStr(Item.Index + 1);
+
       Item.SubItems.Add(IntToStr(Track.MSITrackNumber));
       Item.SubItems.Add('No Statement');
 
@@ -95,6 +94,9 @@ begin
       end;
     end;
   end;
+
+  lblNumber.Caption    := IntToStr(lvTracklistNumber.Items.Count);
+  lblNumber.Font.Color := clLime;
 end;
 
 end.

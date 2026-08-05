@@ -126,6 +126,7 @@ object frmTrackListNumber: TfrmTrackListNumber
       Font.Name = 'Tahoma'
       Font.Style = []
       GridLines = True
+      RowSelect = True
       ParentFont = False
       TabOrder = 0
       ViewStyle = vsReport
