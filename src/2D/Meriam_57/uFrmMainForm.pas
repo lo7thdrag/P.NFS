@@ -1001,7 +1001,7 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := 0;
-    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+    if Meriam57Manager.isDesigFromMR then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
       RecSend.mModeID             := 0;
@@ -1031,7 +1031,7 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := 0;
-    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+    if Meriam57Manager.isDesigFromMR then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
       RecSend.mModeID             := 0;
@@ -1069,7 +1069,7 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := Meriam57Manager.Target2D;
-    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+    if Meriam57Manager.isDesigFromMR then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
       RecSend.mModeID             := 0;
@@ -1109,7 +1109,7 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := Meriam57Manager.Target2D;
-    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+    if Meriam57Manager.isDesigFromMR then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
       RecSend.mModeID             := 0;
@@ -1150,7 +1150,7 @@ begin
 
     RecSend.mUpDown             := 0;
     RecSend.mTargetID           := Meriam57Manager.Target2D;
-    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+    if Meriam57Manager.isDesigFromMR then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       RecSend.mModeID             := 1
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
       RecSend.mModeID             := 0;
@@ -1173,35 +1173,79 @@ var
 begin
   if (StrToFloatDef(edtTraining.Text, 0) < Meriam57Manager.AssignedWeapon.ENDANGLE ) and (StrToFloatDef(edtTraining.Text, 0) > Meriam57Manager.AssignedWeapon.STARTANGLE )then
   begin
-    FTargetAngleKolonka := StrToFloatDef(edtTraining.Text, 0);
-    FTargetAngleKolonka := FMod(FTargetAngleKolonka, 360);
-    if FTargetAngleKolonka < 0 then
-      FTargetAngleKolonka := FTargetAngleKolonka + 360;
+    if (Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
+    begin
+      FTargetAngleKolonka := StrToFloatDef(edtTraining.Text, 0);
+      FTargetAngleKolonka := FMod(FTargetAngleKolonka, 360);
+      if FTargetAngleKolonka < 0 then
+        FTargetAngleKolonka := FTargetAngleKolonka + 360;
 
-    RecSend.ShipID          := Meriam57Manager.ShipID;
-    RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
-    RecSend.mLauncherID     := 0;
-    RecSend.mMissileID      := 0;
-    RecSend.mMissileNumber  := 0;
-    RecSend.mOrderID        := 0;
+      RecSend.ShipID          := Meriam57Manager.ShipID;
+      RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID     := 0;
+      RecSend.mMissileID      := 0;
+      RecSend.mMissileNumber  := 0;
+      RecSend.mUpDown             := 0;
+      RecSend.mTargetID           := Meriam57Manager.Target2D;
 
-    RecSend.mUpDown             := 0;
-    RecSend.mTargetID           := Meriam57Manager.Target2D;
+      RecSend.mModeID             := 1;
 
-    if Meriam57Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
-      RecSend.mModeID             := 1
-    else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+      RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
+      RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
+
+      RecSend.mBalistikID         := 0;
+      RecSend.mSalvoRate          := 30;
+
+      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+      Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+    end
+    else if (not Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
+    begin
+      FTargetAngleKolonka := 0;
+
+      RecSend.ShipID          := Meriam57Manager.ShipID;
+      RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID     := 0;
+      RecSend.mMissileID      := 0;
+      RecSend.mMissileNumber  := 0;
+      RecSend.mUpDown             := 0;
+      RecSend.mTargetID           := Meriam57Manager.Target2D;
+      RecSend.mModeID             := 1;
+
+      RecSend.mAutoCorrectElev    := 0;
+      RecSend.mAutoCorrectBearing := 0;
+
+      RecSend.mBalistikID         := 0;
+      RecSend.mSalvoRate          := 30;
+
+      RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
+      Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+    end
+    else
+    begin
+      FTargetAngleKolonka := StrToFloatDef(edtTraining.Text, 0);
+      FTargetAngleKolonka := FMod(FTargetAngleKolonka, 360);
+      if FTargetAngleKolonka < 0 then
+        FTargetAngleKolonka := FTargetAngleKolonka + 360;
+
+      RecSend.ShipID          := Meriam57Manager.ShipID;
+      RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID     := 0;
+      RecSend.mMissileID      := 0;
+      RecSend.mMissileNumber  := 0;
+      RecSend.mUpDown             := 0;
+      RecSend.mTargetID           := Meriam57Manager.Target2D;
       RecSend.mModeID             := 0;
 
-    RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
-    RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
+      RecSend.mAutoCorrectElev    := FTargetAngleElevasi;
+      RecSend.mAutoCorrectBearing := FTargetAngleKolonka;
 
-    RecSend.mBalistikID         := 0;
-    RecSend.mSalvoRate          := 30;
+      RecSend.mBalistikID         := 0;
+      RecSend.mSalvoRate          := 30;
 
-
-    RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
-    Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+      RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+      Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+    end;
   end;
 end;
 
@@ -1209,7 +1253,7 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 var
   PngSrc, PngSrc2: TPngImage;
 begin
-  if (Meriam57Manager.isDesig) and (Meriam57Manager.TargetAssigned) then
+  if (Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
   begin
     FTargetAngleKolonka := Meriam57Manager.Bearing;
     FTargetAngleElevasi := Meriam57Manager.Elevation;
@@ -1218,7 +1262,18 @@ begin
     edtElevasi.Text := FormatFloat('0.00', FTargetAngleElevasi);
 
     RzBmpBtnTrainingClick(Sender);
-    Meriam57Manager.TargetAssigned := False;
+    Meriam57Manager.DesigtChange := False;
+  end
+  else if (not Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
+  begin
+    FTargetAngleKolonka := 0;
+    FTargetAngleElevasi := 0;
+
+    edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
+    edtElevasi.Text := FormatFloat('0.00', FTargetAngleElevasi);
+
+    RzBmpBtnTrainingClick(Sender);
+    Meriam57Manager.DesigtChange := False;
   end;
 
   UpdateAngle;

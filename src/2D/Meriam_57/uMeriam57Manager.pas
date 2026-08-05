@@ -30,7 +30,7 @@ type
       FTarget2D: Word;
       FTargetObj : TClientObject;
       FBearing, FElevation : Double;
-      FisDesig, FTargetAssigned : Boolean;
+      FisDesigFromMR, FDesigtChange, FisDesigt : Boolean;
     protected
       procedure EventOnMainTimer(const dt: double); override;
 
@@ -64,8 +64,9 @@ type
       property ShipCallSign: string read FShipCallSign write FShipCallSign;
 
       property Target2D : Word read FTarget2D;
-      property isDesig : Boolean read FisDesig;
-      property TargetAssigned : Boolean read FTargetAssigned write FTargetAssigned;
+      property isDesigFromMR : Boolean read FisDesigFromMR;
+      property DesigtChange : Boolean read FDesigtChange write FDesigtChange;
+      property isDesigt : Boolean read FisDesigt write FisDesigt;
       property Bearing : double read FBearing;
       property Elevation : double read FElevation;
 
@@ -95,8 +96,8 @@ constructor TMeriam57Manager.Create;
 begin
   inherited;
   FIsStandAlone := False;
-  FisDesig := False;
-  FTargetAssigned := False;
+  FisDesigFromMR := False;
+  FDesigtChange := False;
 end;
 
 destructor TMeriam57Manager.Destroy;
@@ -214,8 +215,9 @@ begin
         FTarget2D := arec.IDTarget2D;
         FBearing := arec.Bearing;
         FElevation := arec.Elevation;
-        FisDesig := True;
-        FTargetAssigned := True;
+        FisDesigFromMR := True;
+        FisDesigt := True;
+        FDesigtChange := True;
       end;
 
       CORD_ID_2D_Break :
@@ -223,8 +225,9 @@ begin
         FTarget2D := 0;
         FBearing := 0;
         FElevation := 0;
-        FisDesig := False;
-        FTargetAssigned := True;
+        FisDesigFromMR := False;
+        FisDesigt := false;
+        FDesigtChange := True;
       end;
     end;
   end;

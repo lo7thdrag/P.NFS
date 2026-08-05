@@ -2846,24 +2846,24 @@ begin
         begin
           if RoundToShoot <= LeftDrum then
           begin
-            ActualFireTimeMS := Round(RoundToShoot/35);
+            ActualFireTimeMS := FireTimeMS;
           end
           else
           begin
             RoundToShoot := LeftDrum;
-            ActualFireTimeMS := FireTimeMS;
+            ActualFireTimeMS := Round(RoundToShoot/35* 1000);
           end;
         end
         else if DrumPosState then // kurangi right drum
         begin
           if RoundToShoot <= RightDrum then
           begin
-            ActualFireTimeMS := Round(RoundToShoot/35);
+            ActualFireTimeMS := FireTimeMS;
           end
           else
           begin
             RoundToShoot := RightDrum;
-            ActualFireTimeMS := FireTimeMS;
+            ActualFireTimeMS := Round(RoundToShoot/35* 1000);
           end;
         end;
 
@@ -2897,28 +2897,26 @@ begin
         begin
           if RoundToShoot <= LeftDrum then
           begin
-            ActualFireTimeMS := Round(RoundToShoot/4);
+            ActualFireTimeMS := FireTimeMS;
           end
           else
           begin
             RoundToShoot := LeftDrum;
-            ActualFireTimeMS := FireTimeMS;
+            ActualFireTimeMS := Round(RoundToShoot/4* 1000);
           end;
         end
         else if DrumPosState then // kurangi right drum
         begin
           if RoundToShoot <= RightDrum then
           begin
-            ActualFireTimeMS := Round(RoundToShoot/4);
+            ActualFireTimeMS := FireTimeMS;
           end
           else
           begin
             RoundToShoot := RightDrum;
-            ActualFireTimeMS := FireTimeMS;
+            ActualFireTimeMS := Round(RoundToShoot/4 * 1000);
           end;
         end;
-
-//        Sleep(500);
 
         if not DrumPosState then // kurangi left drum
         begin
@@ -2932,17 +2930,7 @@ begin
         pnlFire.Enabled := False;
         pnlFireFcc2.Enabled := False;
         Application.ProcessMessages;
-        Sleep(Round(FireTimeMS));
-
-//        Sleep(Round(FireTimeMS/2));
-//        if not DrumPosState then // kurangi left drum
-//        begin
-//          TargetRoundInDrum := LeftDrum - 4;
-//        end
-//        else if DrumPosState then // kurangi right drum
-//        begin
-//          TargetRoundInDrum := RightDrum - 4;
-//        end
+        Sleep(Round(ActualFireTimeMS));
       end;
     end;
     RecSend.mAutoCorrectElev    := aLow;
