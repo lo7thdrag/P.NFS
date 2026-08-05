@@ -30,7 +30,7 @@ type
       FTarget2D: Word;
       FTargetObj : TClientObject;
       FBearing, FElevation, FRange : Double;
-      FisDesig, FTargetAssigned : Boolean;
+      FisDesigFromMR, FDesigtChange, FisDesigt : Boolean;
     protected
       procedure EventOnMainTimer(const dt: double); override;
 
@@ -63,8 +63,9 @@ type
       property ShipCallSign: string read FShipCallSign write FShipCallSign;
 
       property Target2D : Word read FTarget2D;
-      property isDesig : Boolean read FisDesig;
-      property TargetAssigned : Boolean read FTargetAssigned write FTargetAssigned;
+      property isDesigFromMR : Boolean read FisDesigFromMR;
+      property isDesigt : Boolean read FisDesigt;
+      property DesigtChange : Boolean read FDesigtChange write FDesigtChange;
       property Bearing : double read FBearing;
       property Elevation : double read FElevation;
       property Range : Double read FRange;
@@ -211,8 +212,9 @@ begin
         FBearing := arec.Bearing;
         FElevation := arec.Elevation;
         FRange := arec.Range;
-        FisDesig := True;
-        FTargetAssigned := True;
+        FisDesigFromMR := True;
+        FisDesigt := True;
+        FDesigtChange := True;
       end;
 
       CORD_ID_2D_Break :
@@ -221,8 +223,9 @@ begin
         FBearing := 0;
         FElevation := 0;
         FRange := 0;
-        FisDesig := False;
-        FTargetAssigned := False;
+        FisDesigFromMR := False;
+        FisDesigt := False;
+        FDesigtChange := True;
       end;
     end;
   end;

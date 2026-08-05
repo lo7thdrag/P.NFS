@@ -767,30 +767,75 @@ begin
     imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
   end;
 
-  lRec.ShipID := AK230Manager.ShipID;
-  lRec.mWeaponID := AK230Manager.AssignedWeapon.IDWeapon;
-  lRec.mLauncherID     := 0;
-  lRec.mMissileID      := 0;
-  lRec.mMissileNumber  := 0;
-  lRec.mOrderID        := 0;
+  if (AK230Manager.DesigtChange) and (AK230Manager.isDesigt) then
+  begin
+    lRec.ShipID := AK230Manager.ShipID;
+    lRec.mWeaponID := AK230Manager.AssignedWeapon.IDWeapon;
+    lRec.mLauncherID     := 0;
+    lRec.mMissileID      := 0;
+    lRec.mMissileNumber  := 0;
+    lRec.mOrderID        := 0;
 
-  lRec.mUpDown             := 0;
-  lRec.mTargetID           := AK230Manager.Target2D;
+    lRec.mUpDown             := 0;
+    lRec.mTargetID           := AK230Manager.Target2D;
+    lRec.mModeID             := 3;
 
-  if AK230Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
-    lRec.mModeID             := 3
-  else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
+    lRec.mAutoCorrectElev    := FVTgtElevation;
+    lRec.mAutoCorrectBearing := FVTgtTraining;
+
+    lRec.mBalistikID         := 0;
+    lRec.mSalvoRate          := 30;
+
+
+    lRec.mOrderID := __ORD_CANNON_ASSIGNED;
+    AK230Manager.NetSendTo3D_OrderCannon(lRec);
+  end
+  else if (AK230Manager.DesigtChange) and not (AK230Manager.isDesigt) then
+  begin
+    lRec.ShipID := AK230Manager.ShipID;
+    lRec.mWeaponID := AK230Manager.AssignedWeapon.IDWeapon;
+    lRec.mLauncherID     := 0;
+    lRec.mMissileID      := 0;
+    lRec.mMissileNumber  := 0;
+    lRec.mOrderID        := 0;
+
+    lRec.mUpDown             := 0;
+    lRec.mTargetID           := AK230Manager.Target2D;
+    lRec.mModeID             := 3;
+
+    lRec.mAutoCorrectElev    := 0;
+    lRec.mAutoCorrectBearing := 0;
+
+    lRec.mBalistikID         := 0;
+    lRec.mSalvoRate          := 30;
+
+    lRec.mOrderID := __ORD_CANNON_DEASSIGNED;
+    AK230Manager.NetSendTo3D_OrderCannon(lRec);
+  end
+  else
+  begin
+    lRec.ShipID := AK230Manager.ShipID;
+    lRec.mWeaponID := AK230Manager.AssignedWeapon.IDWeapon;
+    lRec.mLauncherID     := 0;
+    lRec.mMissileID      := 0;
+    lRec.mMissileNumber  := 0;
+    lRec.mOrderID        := 0;
+
+    lRec.mUpDown             := 0;
+    lRec.mTargetID           := AK230Manager.Target2D;
     lRec.mModeID             := 0;
 
-  lRec.mAutoCorrectElev    := FVTgtElevation;
-  lRec.mAutoCorrectBearing := FVTgtTraining;
+    lRec.mAutoCorrectElev    := FVTgtElevation;
+    lRec.mAutoCorrectBearing := FVTgtTraining;
 
-  lRec.mBalistikID         := 0;
-  lRec.mSalvoRate          := 30;
+    lRec.mBalistikID         := 0;
+    lRec.mSalvoRate          := 30;
 
 
-  lRec.mOrderID := __ORD_CANNON_ASSIGNED;
-  AK230Manager.NetSendTo3D_OrderCannon(lRec);
+    lRec.mOrderID := __ORD_CANNON_ASSIGNED;
+    AK230Manager.NetSendTo3D_OrderCannon(lRec);
+  end;
+
 end;
 
 procedure TfrmDCDSMain.btnDcdcTrainDecreaseClick(Sender: TObject);
@@ -1459,7 +1504,7 @@ begin
     lRec.mUpDown :=  0;
     lRec.mTargetID := AK230Manager.Target2D;
 
-    if AK230Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+    if AK230Manager.isDesigFromMR then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       lRec.mModeID             := 3
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
       lRec.mModeID             := 0;
@@ -1495,7 +1540,7 @@ begin
 
     lRec.mUpDown :=  0;
     lRec.mTargetID := AK230Manager.Target2D;
-    if AK230Manager.isDesig then    // jika di desig, maka modeID 1 dan 3d akan auto lock
+    if AK230Manager.isDesigFromMR then    // jika di desig, maka modeID 1 dan 3d akan auto lock
       lRec.mModeID             := 3
     else                               // jika tidak desig, maka modeID 0 dan 3d akan menembak sesuai bearing dan elev
       lRec.mModeID             := 0;
@@ -1701,14 +1746,14 @@ begin
   edtDateValue.Text := FormatDateTime('MM/DD/YYYY', Now);
   edtTimeValue.Text := FormatDateTime('hh:mm:ss ampm', Now);
 
-  if (AK230Manager.isDesig) and (AK230Manager.TargetAssigned) then
+  if (AK230Manager.isDesigt) and (AK230Manager.DesigtChange) then
   begin
     edtElevationValue.Text := FormatFloat('0.0', AK230Manager.Elevation);
     edtTrainingValue.Text := FormatFloat('0.0', AK230Manager.Bearing);
     edtOmRangeValue.Text := FormatFloat('0.0', AK230Manager.Range);
 
     btnDcdcExecuteClick(nil);
-    AK230Manager.TargetAssigned := False;
+    AK230Manager.DesigtChange := False;
 
 //    if AK230Manager.TargetAssigned then
 //    begin
@@ -1716,14 +1761,23 @@ begin
 //      AK230Manager.TargetAssigned := False;
 //    end;
   end
-  else
+  else if (not AK230Manager.isDesigt) and (AK230Manager.DesigtChange) then
   begin
-    edtElevationValue.Text := IntToStr(0);
-    edtTrainingValue.Text := IntToStr(0);
-    edtOmRangeValue.Text := IntToStr(0);
+    edtElevationValue.Text := '0';
+    edtTrainingValue.Text := '0';
+    edtOmRangeValue.Text := '0';
 
     btnDcdcExecuteClick(nil);
+    AK230Manager.DesigtChange := False;
   end;
+//  else
+//  begin
+//    edtElevationValue.Text := IntToStr(0);
+//    edtTrainingValue.Text := IntToStr(0);
+//    edtOmRangeValue.Text := IntToStr(0);
+//
+//    btnDcdcExecuteClick(nil);
+//  end;
 
   FVTgtHeading := AK230Manager.xShip.Heading;
 end;
