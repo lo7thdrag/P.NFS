@@ -22,6 +22,7 @@ type
     procedure tmrTracklistNumberTimer(Sender: TObject);
     procedure lvTracklistNumberSelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);
+    procedure lblResetClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,6 +39,12 @@ implementation
 procedure TfrmTrackListNumber.lblCloseClick(Sender: TObject);
 begin
   FreeAndNil(frmTrackListNumber);
+end;
+
+procedure TfrmTrackListNumber.lblResetClick(Sender: TObject);
+begin
+  lvTracklistNumber.ClearSelection;
+  VehicleMgr.ClearControlledTrack;
 end;
 
 procedure TfrmTrackListNumber.lvTracklistNumberSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);

@@ -53,6 +53,7 @@ object frmTrackListNumber: TfrmTrackListNumber
       Font.Style = []
       ParentColor = False
       ParentFont = False
+      OnClick = lblResetClick
     end
     object lblClose: TLabel
       Left = 285
