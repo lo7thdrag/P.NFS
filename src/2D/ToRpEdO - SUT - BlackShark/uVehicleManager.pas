@@ -47,6 +47,7 @@ type
 
     procedure RemoveVehicle(V: TVehicle);
     procedure Clear;
+    procedure ClearControlledTrack;
 
     function  Count: Integer;
 //    function  Items(Index: Integer): TVehicle;
@@ -178,6 +179,17 @@ begin
 
 //    TObject(FList[i]).Free;
   FList.Clear;
+end;
+
+procedure TVehicleManager.ClearControlledTrack;
+var
+  i: Integer;
+begin
+  for i := 0 to FList.Count - 1 do
+    TSimulationTrack(FList[i]).Controlled_Track := False;
+
+  FTrackControlled := nil;
+  FIsAnyTrackControlled := False;
 end;
 
 function TVehicleManager.ControlTrackByTrackNumber(const TrackNum: Integer): Boolean;
