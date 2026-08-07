@@ -9993,12 +9993,6 @@ begin
   RecSend.surfacePressure := tbBaroPressure.Position;
   RecSend.fogIntensity := tbFogIntensity.Position;
 
-//  OutputDebugString(PChar(
-//  Format('SizeOf(TRecDataEnvironment) = %d',
-//  [SizeOf(TRecDataEnvironment)])));
-//
-//  SimManager.NetSendTo2D_Envi(RecSend);
-
   SimManager.NetSendTo3D_OrderEnvironment(RecSend);
 
 end;

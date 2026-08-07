@@ -1133,6 +1133,8 @@ var
 begin
   if isDatabaseMode then Exit;
 
+  if not SimManager.MainObjList.isLoadScenario then Exit;
+
   // receive from 3D server.
   aRec := @apRec^;
   if IsNan(aRec^.X) or
