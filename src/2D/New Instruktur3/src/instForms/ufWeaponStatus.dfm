@@ -3531,7 +3531,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'RBU 6000'
@@ -3541,7 +3541,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 883
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -3826,7 +3826,6 @@ object fWeaponStatus: TfWeaponStatus
             Font.Style = [fsBold]
             ParentFont = False
             TabOrder = 2
-            Visible = False
             object grp2: TGroupBox
               Left = 21
               Top = 16
@@ -4233,7 +4232,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -5013,7 +5012,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -5136,7 +5135,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -5323,7 +5322,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -5843,7 +5842,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6060,7 +6059,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6120,7 +6119,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6566,7 +6565,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 0
+          Height = 30
           Align = alClient
           Color = clGray
           ParentColor = False
@@ -6718,7 +6717,7 @@ object fWeaponStatus: TfWeaponStatus
         CaptionFont.Name = 'MS Sans Serif'
         CaptionFont.Style = [fsBold]
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 923
         DividerVisible = False
         Caption = 'BLACKSHARK'
@@ -6727,7 +6726,7 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 903
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False

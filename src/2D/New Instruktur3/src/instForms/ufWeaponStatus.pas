@@ -1892,9 +1892,6 @@ var
 begin
   if not Assigned(SimManager.TrackObject) then Exit;
 
-
-  if not Assigned(SimManager.TrackObject) then Exit;
-
   if TComponent(Sender).Tag = 3 then
   begin
     for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
@@ -2124,30 +2121,34 @@ begin
       begin
         RecSendRBU.ShipID         := SimManager.TrackObject.FDataBaseID;
         RecSendRBU.mMissileNumber := 1;
+        RecSendRBU.mMissileID     := 1;
         RecSendRBU.OrderID        := __ORD_RBU_LOADING;
-        RecSendRBU.mLauncherID    := 1;
+        RecSendRBU.mLauncherID    := WeaponRBU.Weapon_Launcher;
         RecSendRBU.mLncrBearing   := 0;
         RecSendRBU.mLncRange      := 0;
         RecSendRBU.mWeaponID      := WeaponRBU.Weapon_ID;
 
-          if WeaponRBU.Weapon_Status = 1 then
-          begin
-            RBUStatusLoad_1 := True;
-            RBUStatusLoad_2 := True;
-            RBUStatusLoad_3 := True;
-            RBUStatusLoad_4 := True;
-            RBUStatusLoad_5 := True;
-            RBUStatusLoad_6 := True;
-            RBUStatusLoad_7 := True;
-            RBUStatusLoad_8 := True;
-            RBUStatusLoad_9 := True;
-            RBUStatusLoad_10 := True;
-            RBUStatusLoad_11 := True;
-            RBUStatusLoad_12 := True;
-          end;
-          CountLoading := tmr_RBU;
-          tmrLoading.Enabled := True;
-          Break;
+        if WeaponRBU.Weapon_Status = 1 then
+        begin
+          RecSendRBU.mLauncherID := WeaponRBU.Weapon_Launcher;
+
+          RBUStatusLoad_1  := True;
+          RBUStatusLoad_2  := True;
+          RBUStatusLoad_3  := True;
+          RBUStatusLoad_4  := True;
+          RBUStatusLoad_5  := True;
+          RBUStatusLoad_6  := True;
+          RBUStatusLoad_7  := True;
+          RBUStatusLoad_8  := True;
+          RBUStatusLoad_9  := True;
+          RBUStatusLoad_10 := True;
+          RBUStatusLoad_11 := True;
+          RBUStatusLoad_12 := True;
+        end;
+        CountLoading := tmr_RBU;
+        tmrLoading.Enabled := True;
+        SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+        Break;
       end
       else if (TComponent(Sender).Tag = 4) and (chkRBUAlirKapal.Checked = True) and (chkRBU_Unformer1Right.Checked = true)
       and (chkRBU_Unformer2Right.Checked = true) then
@@ -2155,29 +2156,32 @@ begin
         RecSendRBU.ShipID         := SimManager.TrackObject.FDataBaseID;
         RecSendRBU.mMissileNumber := 1;
         RecSendRBU.OrderID        := __ORD_RBU_LOADING;
-        RecSendRBU.mLauncherID    := 2;
+        RecSendRBU.mLauncherID    := WeaponRBU.Weapon_Launcher;
         RecSendRBU.mLncrBearing   := 0;
         RecSendRBU.mLncRange      := 0;
         RecSendRBU.mWeaponID      := WeaponRBU.Weapon_ID;
 
-          if WeaponRBU.Weapon_Status = 1 then
-          begin
-            RBUStatusLoad_1 := True;
-            RBUStatusLoad_2 := True;
-            RBUStatusLoad_3 := True;
-            RBUStatusLoad_4 := True;
-            RBUStatusLoad_5 := True;
-            RBUStatusLoad_6 := True;
-            RBUStatusLoad_7 := True;
-            RBUStatusLoad_8 := True;
-            RBUStatusLoad_9 := True;
-            RBUStatusLoad_10 := True;
-            RBUStatusLoad_11 := True;
-            RBUStatusLoad_12 := True;
-          end;
-          CountLoading := tmr_RBU;
-          tmrLoading.Enabled := True;
-          Break;
+        if WeaponRBU.Weapon_Status = 1 then
+        begin
+          RecSendRBU.mLauncherID := WeaponRBU.Weapon_Launcher;
+
+          RBUStatusLoad_1  := True;
+          RBUStatusLoad_2  := True;
+          RBUStatusLoad_3  := True;
+          RBUStatusLoad_4  := True;
+          RBUStatusLoad_5  := True;
+          RBUStatusLoad_6  := True;
+          RBUStatusLoad_7  := True;
+          RBUStatusLoad_8  := True;
+          RBUStatusLoad_9  := True;
+          RBUStatusLoad_10 := True;
+          RBUStatusLoad_11 := True;
+          RBUStatusLoad_12 := True;
+        end;
+        CountLoading := tmr_RBU;
+        tmrLoading.Enabled := True;
+        SimManager.NetSendTo3D_OrderMissileRBU6000(RecSendRBU);
+        Break;
       end
     end;
 
