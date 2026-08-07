@@ -331,7 +331,8 @@ begin
 
       CORD_ID_2D_Break :
       begin
-
+        SelectedVehicle := nil;
+        FTarget2D := 0;
       end;
     end;
   end;

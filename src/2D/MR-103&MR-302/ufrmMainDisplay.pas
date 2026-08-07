@@ -853,6 +853,7 @@ var
   CorrectElev : Double;
   aLow, aHigh: Double;
   range,rangem, bearing, azimuth, elevation, deltaZ : Double;
+  maxRange : Double;
 begin
   if Assigned(fccmanager.SelectedVehicle) then
   begin
@@ -862,6 +863,7 @@ begin
 
     azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     bearing := azimuth - FCCManager.xShip.Heading;
+    FBearing := bearing;
     if bearing < 0 then
     bearing := bearing + 360;
     // range = 3000 m, target lebih rendah 25 m
@@ -869,12 +871,17 @@ begin
       2 : //MR 103
       begin
         elevation := CalcTurretElevation(rangem, 12900);
+
       end;
       3 : //MR 302
       begin
 //        deltaZ := Abs(FCCManager.SelectedVehicle.PosZ - FCCManager.xShip.PositionZ);
 //        rangem := Sqrt(Power(rangem) * Power(deltaZ)); // masukan rumus c2 = a2 + b2 karena target AIR  gajadi dipake
         elevation := CalcElevation(rangem, 6, fccmanager.SelectedVehicle.PosZ);
+        FElevation := elevation;
+        maxRange := 1.62;
+        if range > MaxRange then
+          fbBreakTargetClick(fbBreakTarget);
       end;
     end;
 
@@ -1034,12 +1041,16 @@ begin
 
   DoubleBuffered := False;
   EnableComposited(pnlSituationZone);
+
+  tmrUpdateShipPos.Enabled := True;
 end;
 
 procedure TfrmMainFCC.FormDestroy(Sender: TObject);
 var
   i : Integer;
 begin
+  tmrUpdateShipPos.Enabled := False;
+
   if vFccSetting.FccMode <> 4 then
   begin
     TerminateProcess(ExecInfo.hProcess, 0);
@@ -1835,6 +1846,7 @@ var
   CorrectElev : Double;
   aLow, aHigh: Double;
   range,rangem, bearing, azimuth, elevation : Double;
+  maxRange : Double;
 begin
 //  lblBearing.Caption := Format('0',[FBearing0.BearingDeg]);
 //  lblRange.Caption := Format('0.00', [FCurrentRange * C_Meter_To_NauticalMile]);
@@ -1856,17 +1868,34 @@ begin
     azimuth := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.SelectedVehicle.PosX, FCCManager.SelectedVehicle.PosY);
     // range = 3000 m, target lebih rendah 25 m
     bearing := azimuth - FCCManager.xShip.Heading;
+
     if bearing < 0 then
     bearing := bearing + 360;
+
+    FBearing := bearing;
     ComputeBallisticAngleVacuum(rangem, FCCManager.SelectedVehicle.PosZ, 800, aLow, aHigh);
     case vFccSetting.FccMode of
       2 : //MR 103
       begin
         elevation := CalcTurretElevation(rangem, 12900);
+        FElevation := elevation;
+        maxRange := 3.61;
+        if (range > MaxRange) or
+        (elevation < -10) or
+        (elevation > 80) or
+        ((bearing > 50) and (bearing < 310)) then
+          fbBreakTargetClick(fbBreakTarget);
       end;
       3 : //MR 302
       begin
         elevation := CalcElevation(rangem, 6, fccmanager.SelectedVehicle.PosZ);
+        FElevation := elevation;
+        maxRange := 1.62;
+        if (range > MaxRange) or
+        (elevation < -10) or
+        (elevation > 85) or
+        ((bearing > 120) and (bearing < 240)) then
+          fbBreakTargetClick(fbBreakTarget);
       end;
     end;
 
