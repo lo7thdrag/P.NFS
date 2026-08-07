@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.StdCtrls,
-  uC705SimManager;
+  uC705SimManager, uC705Launcher;
 
 type
   TfrmPnlArea3B = class(TForm)
@@ -44,7 +44,7 @@ type
     pnl3BBtm: TPanel;
     pnlStatus3B: TPanel;
     Panel13: TPanel;
-    lblAligmentStatus3B: TLabel;
+    lblAlignmentStatus3B: TLabel;
     Panel14: TPanel;
     lblWarmupTime3B: TLabel;
     pnlChn3B: TPanel;
@@ -76,6 +76,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure lblAlignmentStatus3BClick(Sender: TObject);
     {$ENDREGION}
   private
     { Private declarations }
@@ -85,7 +86,8 @@ type
   public
     { Public declarations }
     procedure InitSimulation;
-    procedure StatusWeaponConsoleChanged(Sender:TObject; aStatus: TC705StatusType);
+    //procedure StatusWeaponConsoleChanged(Sender:TObject; aStatus: TC705StatusType);
+    procedure StatusWeaponConsoleChanged(Sender:TObject);
   end;
 
 var
@@ -119,8 +121,16 @@ begin
   UpdateStatusPanel3B;
 end;
 
-procedure TfrmPnlArea3B.StatusWeaponConsoleChanged(Sender: TObject;
-  aStatus: TC705StatusType);
+procedure TfrmPnlArea3B.lblAlignmentStatus3BClick(Sender: TObject);
+var
+  Launcher : TC705Launcher;
+begin
+  Launcher := SimManager.GetLauncher(2);
+  Launcher.FinishINSAlignInstant;
+end;
+
+//procedure TfrmPnlArea3B.StatusWeaponConsoleChanged(Sender: TObject; aStatus: TC705StatusType);
+procedure TfrmPnlArea3B.StatusWeaponConsoleChanged(Sender: TObject);
 begin
   UpdateStatusPanel3B;
 end;
@@ -163,9 +173,122 @@ begin
 end;
 
 procedure TfrmPnlArea3B.UpdateStatusPanel3B;
+var
+  Launcher: TC705Launcher;
 begin
+  Launcher := SimManager.GetLauncher(2);
+
+  if Launcher.C705Status.EnableWeapon then
+    pnlVrlPowerOn3B.Color := clLime
+  else
+    pnlVrlPowerOn3B.Color := clGray;
+
+  if Launcher.C705Status.InitStateRdy then
+    pnlVrlInitState3B.Color := clLime
+  else
+    pnlVrlInitState3B.Color := clGray;
+
+  if Launcher.C705Status.BusSupplyRdy then
+    pnlVrlBusSupply3B.Color := clLime
+  else
+    pnlVrlBusSupply3B.Color := clGray;
+
+  if Launcher.C705Status.SeekerRdy then
+    pnlVrlSeeker3B.Color := clLime
+  else
+    pnlVrlSeeker3B.Color := clGray;
+
+  if Launcher.C705Status.INSGNSSRdy then
+    pnlVrlInsGnss3B.Color := clLime
+  else
+    pnlVrlInsGnss3B.Color := clGray;
+
+  if Launcher.C705Status.EngineRdy then
+    pnlVrlEngine3B.Color := clLime
+  else
+    pnlVrlEngine3B.Color := clGray;
+
+  if Launcher.C705Status.INSAlignRunning then begin
+    //lblAlignmentStatus3A.Caption := 'Aligment 00:00'
+    lblAlignmentStatus3B.Caption :=
+    Format('Alignment %2.2d:%2.2d',
+      [Launcher.INSAlignElapsed div 60,
+       Launcher.INSAlignElapsed mod 60]);
+  end
+  else if Launcher.C705Status.INSAlignDone then begin
+    lblAlignmentStatus3B.Caption := 'Alignment Complete';
+    pnlVrlInsAlign3B.Color := clLime;
+  end
+  else begin
+    lblAlignmentStatus3B.Caption := 'Waiting Aligment';
+  end;
+
+  if Launcher.C705Status.MNormalRdy then
+  begin
+    pnlVrlMNormal3B.Color := clLime;
+  end
+  else begin
+    pnlVrlMNormal3B.Color := clGray;
+  end;
+
+  if Launcher.C705Status.CalFinishRdy then
+  begin
+    pnlVrlCalFinished3B.Color := clLime;
+  end
+  else
+  begin
+    pnlVrlCalFinished3B.Color := clGray;
+  end;
+
+  if Launcher.C705Status.InsideSectorRdy then
+  begin
+    pnlVrlInsideSector3B.Color := clLime;
+  end
+  else begin
+    pnlVrlInsideSector3B.Color := clGray;
+  end;
+
+  if Launcher.C705Status.OpenCoverLauncher and
+    Launcher.C705Status.SelfLatch then begin
+    pnlVrlFullOpen3B.Color := clLime;
+  end
+  else begin
+    pnlVrlFullOpen3B.Color := clGray
+  end;
+
+  if Launcher.C705Status.SafetyIgnition then begin
+    pnlVrlBoosterArm3B.Color := clGray
+  end
+  else begin
+    pnlVrlBoosterArm3B.Color := clLime;
+  end;
+
+  // SEA TARGET
+  if Launcher.C705Status.SeaTargetRdy then
+    pnlVrlSeaTgt3B.Color := clLime
+  else
+    pnlVrlSeaTgt3B.Color := clGray;
+
+  // PLC CHECK
+  if Launcher.C705Status.PLCChkRdy then
+    pnlVrlPlcChk3B.Color := clLime
+  else
+    pnlVrlPlcChk3B.Color := clGray;
+
+  if Launcher.C705Status.TakeOffRdy then
+    pnlVrlTakeOff3B.Color := clLime
+  else
+    pnlVrlTakeOff3B.Color := clGray;
+
+  if Launcher.C705Status.FullOpenRdy then
+    pnlVrlLnchRdy3B.Color := clLime
+  else
+    pnlVrlLnchRdy3B.Color := clGray;
+
+  {$REGION 'Old concept'}
+  {
   // POWER
-  if SimManager.C705Status.EnableWeapon then begin
+  if Launcher.C705Status.EnableWeapon then begin
     pnlVrlPowerOn3B.Color := clLime;
     pnlVrlBusSupply3B.Color := clLime;
     pnlVrlPwrSwitch3B.Color := clLime;
@@ -177,50 +300,95 @@ begin
   end;
 
   // SAFETY IGNITION BOOSTER ARM
-  if SimManager.C705Status.SafetyIgnition then
+  if Launcher.C705Status.SafetyIgnition then
     pnlVrlBoosterArm3B.Color := clLime
   else
     pnlVrlBoosterArm3B.Color := clRed;
 
   // Warm Up; WarmUp
-  if SimManager.C705Status.WarmUpDone then
+  if Launcher.C705Status.WarmUpDone then
     pnlVrlWarmUp3B.Color := clLime
   else begin
     // Sedang proses Warm-up
-    if SimManager.C705Status.EnableWeapon then
+    if Launcher.C705Status.EnableWeapon then
       pnlVrlWarmUp3B.Color := clYellow
     else
       pnlVrlWarmUp3B.Color := clGray;
   end;
 
   // SEEKER
-  if SimManager.C705Status.SeekerRdy then
+  if Launcher.C705Status.SeekerRdy then
     pnlVrlSeeker3B.Color := clLime
   else
   begin
-    if SimManager.C705Status.EnableWeapon then
+    if Launcher.C705Status.EnableWeapon then
       pnlVrlSeeker3B.Color := clRed
     else
       pnlVrlSeeker3B.Color := clGray;
   end;
 
   // SEA TARGET
-  if SimManager.C705Status.SeaTargetRdy then
+  if Launcher.C705Status.SeaTargetRdy then
     pnlVrlSeaTgt3B.Color := clLime
   else
     pnlVrlSeaTgt3B.Color := clRed;
 
   // INSIDE SECTOR
-  if SimManager.C705Status.InsideSectorRdy then
+  if Launcher.C705Status.InsideSectorRdy then
     pnlVrlInsideSector3B.Color := clLime
   else
     pnlVrlInsideSector3B.Color := clRed;
 
   // PARA SETTING
-  if SimManager.C705Status.ParaSettingRdy then
+  if Launcher.C705Status.ParaSettingRdy then
     pnlVrlParaSetting3B.Color := clLime
   else
     pnlVrlParaSetting3B.Color := clRed;
+
+  // INIT CHK
+  if Launcher.C705Status.INITChkRdy then
+    pnlVrlInitChk3B.Color := clLime
+  else
+    pnlVrlInitChk3B.Color := clRed;
+
+  // INIT STATE
+  if Launcher.C705Status.INITStateRdy then
+    pnlVrlInitState3B.Color := clLime
+  else
+    pnlVrlInitState3B.Color := clRed;
+
+  // INS GNSS
+  if Launcher.C705Status.INSGNSSRdy then
+    pnlVrlInsGnss3B.Color := clLime
+  else
+    pnlVrlInsGnss3B.Color := clRed;
+
+  // M. NORMAL
+  if Launcher.C705Status.MNormalRdy then
+    pnlVrlMNormal3B.Color := clLime
+  else
+    pnlVrlInsGnss3B.Color := clRed;
+
+  // Cal. Finished
+  if Launcher.C705Status.CalFinishRdy then
+    pnlVrlCalFinished3B.Color := clLime
+  else
+    pnlVrlCalFinished3B.Color := clRed;
+
+  // PARA LOCKING
+  if Launcher.C705Status.ParaLockRdy then
+    pnlVrlParaLocking3B.Color := clLime
+  else
+    pnlVrlParaLocking3B.Color := clRed;
+
+  // FULL OPEN
+  if Launcher.C705Status.FullOpenRdy then
+    pnlVrlFullOpen3B.Color := clLime
+  else
+    pnlVrlFullOpen3B.Color := clRed;
+          }
+  {$ENDREGION}
+
 end;
 
 end.

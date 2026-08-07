@@ -115,8 +115,8 @@ end;
 
 procedure TfrmChannelSelect.FormShow(Sender: TObject);
 begin
-  if Assigned(KeyboardMgr) then
-    KeyboardMgr.SetContext(kbAreaFormFFS);
+//  if Assigned(KeyboardMgr) then
+//    KeyboardMgr.SetContext(kbAreaFormFFS);
 end;
 
 procedure TfrmChannelSelect.SetActiveHeader(idx: Integer);

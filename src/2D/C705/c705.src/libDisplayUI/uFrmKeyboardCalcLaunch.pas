@@ -5,9 +5,23 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.StdCtrls, uTCPDatatype, uLibSettings, uC705SimManager;
+  Vcl.StdCtrls, uTCPDatatype, uLibSettings, uC705SimManager, uC705Launcher;
 
 type
+  {
+    Event yang dipanggil ketika tombol ENTER pada keyboard ditekan.
+
+    Keyboard hanya mengirim notifikasi bahwa input telah selesai.
+    Form pemanggil yang menentukan apa yang akan dilakukan terhadap
+    isi Edit yang sedang aktif.
+  }
+  TKeyboardEnterEvent = procedure (Sender: TObject) of object;
+
+  TKeyboardMode = (
+    mdNavigation,
+    mdInput
+  );
+
   TfrmKeyboardCalcLaunch = class(TForm)
     {$REGION 'Components'}
     imgMissCont: TImage;
@@ -77,13 +91,29 @@ type
     procedure imgArrowClick(Sender: TObject);
     procedure imgEnterClick(Sender: TObject);
     procedure imgEscClick(Sender: TObject);
+    procedure imgBackSpClick(Sender: TObject);
   private
     { Private declarations }
+
+    {
+    Menyimpan komponen Edit yang sedang menggunakan
+    Virtual Keyboard.
+
+    Nilai ini diisi oleh Form pemanggil ketika user
+    mengklik sebuah TEdit.
+    }
+    FActiveEdit: TEdit;
+
+    { Mode Keyboard saat ini }
+    FKeyboardMode: TKeyboardMode;
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
     procedure SetTopMonitor(aMoniHeight: Integer);
     procedure SetBottomMonitor;
+
+    property ActiveEdit: TEdit read FActiveEdit write FActiveEdit;
+    property KeyboardMode: TKeyboardMode read FKeyboardMode write FKeyboardMode;
   end;
 
 var
@@ -103,6 +133,7 @@ begin
   Width := 1024;
   Height := 768;
 
+  FKeyboardMode := mdInput;
   //Show;
 end;
 
@@ -110,6 +141,8 @@ procedure TfrmKeyboardCalcLaunch.FormShow(Sender: TObject);
 begin
   //
 end;
+
+{$REGION 'Set Form Properties'}
 
 procedure TfrmKeyboardCalcLaunch.SetBottomMonitor;
 var
@@ -158,6 +191,8 @@ begin
     ShowMessage('Keyboard Top=' + IntToStr(frmKeyboardCalcLaunch.Top));
 end;
 
+{$ENDREGION}
+
 procedure TfrmKeyboardCalcLaunch.tmrClearFiringTimer(Sender: TObject);
 begin
   VehicleMgr.IsFiring := False;
@@ -173,28 +208,54 @@ procedure TfrmKeyboardCalcLaunch.imgLaunchClick(Sender: TObject);
 var
   recDataC705 : TRec_Data_C705;
   LauncherID: Integer;
+  LauncherR, LauncherL: TC705Launcher;
 begin
 
   { Kalau bukan mode Firing }
   if SimManager.RoutePlanMode <> mFiring then
     Exit;
 
-  { Kalau tidak dapat input dari INSTRUKTUR }
-  if not SimManager.isReadyToLaunchC705 then
-    Exit;
-
-  // Tag 1 = Starboard (Kanan), Tag 2 = Port (Kiri)
+  { Tag 1 = Starboard (Kanan), Tag 2 = Port (Kiri) }
   LauncherID := ((Sender as TImage).Tag);
   if (LauncherID < 1) or (LauncherID > 2) then Exit;
 
+  { cek status Launch Ready }
+  LauncherR := SimManager.GetLauncher(1);
+  LauncherL := SimManager.GetLauncher(2);
+
+  if LauncherID = 1 then
+  begin
+    if not LauncherR.C705Status.LaunchRdy then
+      Exit;
+  end
+  else if LauncherID = 2 then
+  begin
+    if not LauncherL.C705Status.LaunchRdy then
+      Exit;
+  end;
+
+  { Kalau tidak dapat input dari INSTRUKTUR }
+  if not SimManager.GetLauncher(LauncherID).IsReadyToLaunch then
+    Exit;
+
+//  if not SimManager.isReadyToLaunchC705 then
+//    Exit;
+
                 //         for now
-  if not SimManager.FLauncherHasMissile[LauncherID] then
+  if not SimManager.GetLauncher(LauncherID).isHaveMissile then
   begin
     ShowMessage('Missile habis!');
     Exit;
   end;
 
+//  if not SimManager.FLauncherHasMissile[LauncherID] then
+//  begin
+//    ShowMessage('Missile habis!');
+//    Exit;
+//  end;
+
 //  frmRoutePlan.FSelectedBearing
+{
   recDataC705.ShipID := VOwnShip.ShipID;
   recDataC705.mWeaponID := VOwnShip.WeaponId;
   recDataC705.mLauncherID := LauncherID;
@@ -220,56 +281,21 @@ begin
 //  frmRoutePlan.lblStatusMap.Caption :=
 //    'Launched | STBD: ' + IntToStr(SimManager.GetMissileCount(1)) +
 //      ' | PORT: ' + IntToStr(SimManager.GetMissileCount(2));
+ }
 
-  frmRoutePlan.lblStatusMap.Caption := 'Missile Launched';
+  // di sini kah?
+  if LauncherID = 1 then
+    LauncherR.StartAfterLaunch
+  else if LauncherID = 2 then
+    LauncherL.StartAfterLaunch;
 
   tmrClearFiring.Interval := 2000; // 2 detik
   tmrClearFiring.Enabled := True;
 
+  frmRoutePlan.lblStatusMap.Caption := 'Missile Launched';
+
   if VIdentSetting.ModeDebug then
     ShowMessage('No, INS Done fire');
-
-end;
-
-procedure TfrmKeyboardCalcLaunch.imgNumpadClick(Sender: TObject);
-begin
-  if Assigned(frmFoeFriendSituationPage) then
-  begin
-    case (Sender as TImage).Tag of
-      0: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsExit;
-      end;
-      1: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsSituation;
-      end;
-      2: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsFireDistr;
-      end;
-      3: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMInfo;
-      end;
-      4: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsParSetting;
-      end;
-      5: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsChSelect;
-      end;
-      6: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMControl;
-      end;
-      7: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMMonitor;
-      end;
-      8: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsINSTest;
-      end;
-      9: begin
-        frmFoeFriendSituationPage.advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsLaunchData;
-      end;
-    end;
-
-    frmFoeFriendSituationPage.UpdateLayoutTab;
-  end;
 end;
 
 procedure TfrmKeyboardCalcLaunch.imgArrowClick(Sender: TObject);
@@ -282,9 +308,23 @@ begin
   end;
 end;
 
+procedure TfrmKeyboardCalcLaunch.imgBackSpClick(Sender: TObject);
+begin
+  KeyboardMgr.SendKey(VK_BACK);
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgNumpadClick(Sender: TObject);
+begin
+  KeyboardMgr.SendKey((Sender as TImage).Tag);
+end;
+
 procedure TfrmKeyboardCalcLaunch.imgEnterClick(Sender: TObject);
 begin
   KeyboardMgr.SendKey(VK_RETURN);
+
+  { Mode keyboard dikembalikan lagi ke mode Navigation }
+  FKeyboardMode := mdNavigation;
+  FActiveEdit := nil;
 end;
 
 procedure TfrmKeyboardCalcLaunch.imgEscClick(Sender: TObject);

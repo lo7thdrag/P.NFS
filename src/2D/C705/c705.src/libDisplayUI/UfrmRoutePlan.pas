@@ -40,8 +40,8 @@ type
     Label6: TLabel;
     btnImgTakeOff2: TSpeedButton;
     btnImgTakeOff1: TSpeedButton;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
+    btnImgEmergencyLaunch1: TSpeedButton;
+    btnImgEmergencyLaunch2: TSpeedButton;
     SpeedButton5: TSpeedButton;
     SpeedButton6: TSpeedButton;
     Label7: TLabel;
@@ -482,6 +482,7 @@ type
     procedure tmrServiceUpdateTimer(Sender: TObject);
     procedure FMapMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure FMapMapViewChanged(Sender: TObject);
+    procedure btnImgEmergencyLaunchClick(Sender: TObject);
   protected
     //procedure DrawAngle(aCnv: TCanvas);
     //procedure DrawCompass(aCnv: TCanvas);
@@ -567,7 +568,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uFormMgr;
+  uFormMgr, uC705Launcher;
 
 const
   CMin_Z = 0;
@@ -1376,7 +1377,13 @@ begin
     if TargetObj <> nil then begin
       UpdateTargetParamPnl(TargetObj, range);
 
-      SimManager.StartTargetSequence;
+      { Simpan data target ke Launcher }
+      SimManager.GetLauncher(1).SetTargetData(TargetObj.ID, FSelectedBearing, FSelectedRange);
+      SimManager.GetLauncher(2).SetTargetData(TargetObj.ID, FSelectedBearing, FSelectedRange);
+
+      //SimManager.StartTargetSequence;
+      SimManager.GetLauncher(1).StartTargetSequence;
+      SimManager.GetLauncher(2).StartTargetSequence;
 
       if Assigned(SimManager.OnTargetSelectedAction) then
         SimManager.OnTargetSelectedAction(Self, TargetObj, Range);
@@ -1703,6 +1710,50 @@ begin
       pnlRoutePlanControlCmd.Visible := False;
     end;
   end;
+end;
+
+procedure TfrmRoutePlan.btnImgEmergencyLaunchClick(Sender: TObject);
+var
+  Launcher: TC705Launcher;
+  OwnShip: TShipContact;
+
+  TgtLat, TgtLong: Double;
+begin
+  OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
+
+  if OwnShip = nil then
+    Exit;
+
+  case (Sender as TSpeedButton).Tag of
+    1: // kanan
+    begin
+      Launcher := SimManager.GetLauncher(1);
+    end;
+    2: // kiri
+    begin
+      Launcher := SimManager.GetLauncher(2);
+    end;
+  end;
+
+  if Launcher = nil then
+    Exit;
+
+  // apakah emergency launch perlu aktifin missile?
+  if not Launcher.C705Status.EnableWeapon or
+    not Launcher.C705Status.EnableMissile then
+  begin
+    ShowMessage('Launcher belum Ready');
+    Exit;
+  end;
+
+  { Hitung titik Emergency Launch (90 derajat dan 100 meter) }
+  Launcher.SetTargetData
+    (0,   // tidak ada target object
+    90,   // bearing emergency
+    100); // range emergency (meter)
+
+  { Langsung jalankan proses Launch }
+  Launcher.DoLaunchMissile;
 end;
 
 procedure TfrmRoutePlan.advpgcObstacleInfoChange(Sender: TObject);

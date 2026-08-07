@@ -89252,7 +89252,7 @@ object frmWCC: TfrmWCC
       end
       object btnImgPowerMissile2: TSpeedButton
         Tag = 2
-        Left = 28
+        Left = 24
         Top = 23
         Width = 80
         Height = 80
@@ -91880,7 +91880,7 @@ object frmWCC: TfrmWCC
           A6D2DFF7F5105A0000000049454E44AE426082}
       end
       object imgBtnSafe_L: TImage
-        Tag = 1
+        Tag = 2
         Left = 13
         Top = 35
         Width = 103
@@ -91904,7 +91904,7 @@ object frmWCC: TfrmWCC
         OnClick = imgBtnSafetyBooster_Click
       end
       object imgBtnArm_R: TImage
-        Tag = 2
+        Tag = 1
         Left = 295
         Top = 94
         Width = 105
@@ -91918,7 +91918,7 @@ object frmWCC: TfrmWCC
       Width = 441
       Height = 241
       TabOrder = 3
-      object Image3: TImage
+      object imgSelfLatch2: TImage
         Left = 8
         Top = 23
         Width = 170
@@ -92100,8 +92100,9 @@ object frmWCC: TfrmWCC
           2320A112464042258C80844A1881D34225CC86844A180109953002122A610424
           54C20848A884119050092320A112464042258C80844A18C1FF0340442886A0D2
           92F00000000049454E44AE426082}
+        OnClick = imgSelfLatchClick
       end
-      object Image4: TImage
+      object imgSelfLatch1: TImage
         Left = 223
         Top = 24
         Width = 237
@@ -92293,6 +92294,7 @@ object frmWCC: TfrmWCC
           14803E03D202D067405A00FA0C480B409F016901E833202D007D06A405A0CF80
           B400F4199016803E03D202D067405A00FA8CFF07E02B2186B0136FC700000000
           49454E44AE426082}
+        OnClick = imgSelfLatchClick
       end
       object Label1: TLabel
         Left = 118

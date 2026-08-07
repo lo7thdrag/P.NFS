@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, Vcl.ExtCtrls, System.Contnrs, OverbyteIcsWSocket, uTCPClient,
-  uTCPDatatype, uLibSettings, uShipModel, uVehicleManager,
+  uTCPDatatype, uLibSettings, uShipModel, uVehicleManager, uC705Launcher,
   Winapi.Windows, Vcl.Dialogs, System.Classes;
 
 type
@@ -13,9 +13,10 @@ type
 
   { Ini adalah informasi apa yang baru saja berubah, buat Notify Event }
   TC705StatusType = (
-    stEnableWeapon,
-    stOpenCover,
-    stSafetyIgnition
+    stAvailability,     // berasal dari INSTRUKTUR
+    stEnableWeapon,     // berasal dari tombol Power For M untuk Launcher
+    stOpenCover,        // berasal dari tombol Open Cover untuk Launcher
+    stSafetyIgnition    // berasal dari tombol SAFE/ARMED untuk Launcher
   );
 
   TStatusWeaponChanged =
@@ -24,44 +25,9 @@ type
   TTargetSelectedEvent =
     procedure(Sender: TObject; aTarget: TShipContact; Range: Double) of object;
 
-  { Ini adalah kondisi / state simulasi saat ini }
-  TC705Status = record
-    {
-      Console Status
-      ----------------
-      Berasal langsung dari Console WCC
-    }
-    EnableWeapon,
-    OpenCoverLauncher,
-    SafetyIgnition : Boolean;
-
-    {
-      Internal Simulation Status
-      ---------------------------
-      Status berikut bukan berasal dari network,
-      melainkan dihitung oleh Simulation Manager.
-    }
-    // TRUE apabila proses Warm-up selesai.
-    WarmUpDone: Boolean;
-
-    // TRUE apabila Seeker telah siap digunakan
-    SeekerRdy,
-    SeaTargetRdy,
-    InsideSectorRdy,
-    ParaSettingRdy,
-    PLCChkRdy,
-    INITChkRdy,
-    INITStateRdy,
-    INSGNSSRdy,
-    MNormalRdy,
-    CalFinishRdy,
-    ParaLockRdy,
-    FullOpenRdy: Boolean;
-  end;
-
   // Multicast Notify Event
-  TStatusWeaponChangedEvent = procedure(Sender: TObject;
-    aStatus: TC705StatusType) of object;
+  //TStatusWeaponChangedEvent = procedure(Sender: TObject; aStatus: TC705StatusType) of object;
+  TStatusWeaponChangedEvent = procedure(Sender: TObject) of object;
 
   TStatusWeaponEventItem = class
   public
@@ -90,22 +56,18 @@ type
     FOnStatusWeaponChanged: TStatusWeaponChanged;
     FOnTargetSelectedAction: TTargetSelectedEvent;
 
-    FC705Status: TC705Status;
-
-    // WarmUp Missile
-    // Timer simulasi Warmup missile.
-    // Digunakan untuk mensimulasikan proses pemanasan seeker setelah Weapon Power On
-    FWarmUpTimer: TTimer;
-    // Timer buat Sequence setelah klik Target
-    FTargetSequenceTimer: TTimer;
-
-    FIdxTargetStep: Integer;
+    { Console Availability }
+    FC705Available: Boolean;
 
     { Environment }
     FEnvironment: TEnvironmentStatus;
     FOnEnvironmentChanged : TEnvironmentChanged;
 
-    procedure NotifyStatusWeaponChanged(aStatus: TC705StatusType);
+    procedure LauncherStatusChanged(Sender: TObject; LauncherID: TC705LauncherID);
+    procedure LauncherMissileLaunched(Sender: TObject; LauncherID: TC705LauncherID);
+
+    //procedure NotifyStatusWeaponChanged(aStatus: TC705StatusType);
+    procedure NotifyStatusWeaponChanged;
 
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
     procedure OnConnected(msg: string);
@@ -120,23 +82,19 @@ type
     procedure netNFS_OnReceiveMissilePos(apRec: PAnsiChar; aSize: Integer);
     procedure netNFS_OnReceiveEnvironment(apRec: PAnsiChar; aSize: Integer);
 
-    procedure tmrWarmUpTimer(Sender: TObject);
-    procedure tmrTargetSequenceTimer(Sender: TObject);
   public
     FRoutePlanMode: TRoutePlanMode;
     NFSNetRecv: TTCPClient;
 
-    // TRUE  = EMPTY SLOT     // FALSE = MISSILE READY
-    FLauncherHasMissile: array[1..2] of Boolean;
-    //** “Saat ini launcher MASIH ADA missile” **
+    FC705Launcher: array[TC705LauncherID] of TC705Launcher;
 
     constructor Create;
     destructor Destroy; override;
 
-    function isReadyToLaunchC705: Boolean;
-    function GetLauncherStateStr(aLauncherID: Integer): string;
+    function GetLauncher(LauncherID: Integer): TC705Launcher;
 
     procedure InitializeMap;
+
     // Send Data
     procedure netNFS_OnSendDataC705(rec: TRec_Data_C705);
 
@@ -144,22 +102,15 @@ type
     procedure RegisterStatusWeaponEvent(aEvent : TStatusWeaponChangedEvent);
     procedure UnregisterStatusWeaponEvent(aEvent : TStatusWeaponChangedEvent);
 
-    // Memulai proces Target Acquisition
-    // Ganti panel SeaTgt, InsideSector, ParamSetting.
-    procedure StartTargetSequence;
-
     property RoutePlanMode: TRoutePlanMode read FRoutePlanMode write FRoutePlanMode;
     property OnMapInit: TOnMapInit read FOnMapInit write FOnMapInit;
-
-    property C705Status: TC705Status read FC705Status write FC705Status;
-    //property OnStatusWeaponChanged: TNotifyEvent read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
     property OnStatusWeaponChanged: TStatusWeaponChanged read FOnStatusWeaponChanged write FOnStatusWeaponChanged;
     property OnTakeOffChanged: TNotifyEvent read FOnTakeOffChanged write FOnTakeOffChanged;
     property OnTargetSelectedAction: TTargetSelectedEvent read FOnTargetSelectedAction write FOnTargetSelectedAction;
     property Environment : TEnvironmentStatus read FEnvironment;
     property OnEnvironmentChanged : TEnvironmentChanged read FOnEnvironmentChanged write FOnEnvironmentChanged;
-
     property MissileTakeOff: Boolean read FMissileTakeOff write FMissileTakeOff;
+    property C705Available: Boolean read FC705Available;
   published
     {
       Main Function of Simulation
@@ -172,6 +123,21 @@ var
 implementation
 
 { GameSimManager }
+
+function GameSimManager.GetLauncher(LauncherID: Integer): TC705Launcher;
+begin
+  case LauncherID of
+    1 : Result := FC705Launcher[lchRight];
+    2 : Result := FC705Launcher[lchLeft];
+  else
+    Result := nil;
+  end;
+end;
+
+//function GameSimManager.GetLauncher(LauncherID: TC705LauncherID): TC705Launcher;
+//begin
+//  Result := FC705Launcher[LauncherID];
+//end;
 
 procedure GameSimManager.AddRegisterProcedure;
 begin
@@ -191,17 +157,12 @@ begin
 end;
 
 constructor GameSimManager.Create;
-var
-  i, j : Integer;
 begin
   // Default Operation Route Planning
   FRoutePlanMode := mPassive;
 
-  FC705Status.EnableWeapon := False;
-  FC705Status.OpenCoverLauncher := False;
-  FC705Status.SafetyIgnition := False;
-
   FMissileTakeOff := False;
+  FC705Available := False;
 
   {Socket NFS}
   NFSNetRecv := TTCPClient.Create;
@@ -221,25 +182,30 @@ begin
   FAutoConnectToBridgeTimer.OnTimer := tmrAutoConnectToBridgeTimer;
   FAutoConnectToBridgeTimer.Enabled := True;
 
-  // Load Missile
-  for i := 1 to 2 do
-  begin
-    FLauncherHasMissile[i] := False;
-  end;
-
   FStatusWeaponEvents := TObjectList.Create(True); // Auto Free Object
 
-  // Timer Set Panel Area3A & Area3B
-  FWarmUpTimer := TTimer.Create(nil);
-  FWarmUpTimer.Enabled := False;
-  FWarmUpTimer.Interval := 3000;  // 3 detik
-  FWarmUpTimer.OnTimer := tmrWarmUpTimer;
+  // Load Missile
+  FC705Launcher[lchRight] := TC705Launcher.Create(lchRight);
+  FC705Launcher[lchLeft]  := TC705Launcher.Create(lchLeft);
 
-  // Timer Sequence setelah klik Target
-  FTargetSequenceTimer := TTimer.Create(nil);
-  FTargetSequenceTimer.Enabled := False;
-  FTargetSequenceTimer.Interval := 2000;
-  FTargetSequenceTimer.OnTimer := tmrTargetSequenceTimer;
+  FC705Launcher[lchRight].ResetLauncher;
+  FC705Launcher[lchLeft].ResetLauncher;
+
+  FC705Launcher[lchRight].OnStatusLauncherChanged := LauncherStatusChanged;
+  FC705Launcher[lchLeft].OnStatusLauncherChanged := LauncherStatusChanged;
+
+  FC705Launcher[lchRight].OnMissileLaunch := LauncherMissileLaunched;
+  FC705Launcher[lchLeft].OnMissileLaunch := LauncherMissileLaunched;
+
+  {
+  OutputDebugString(PChar(
+  Format('TC705Launcher.Create SafetyIgnition R = %d',
+  [Ord(GetLauncher(1).C705Status.SafetyIgnition)])));
+
+  OutputDebugString(PChar(
+  Format('TC705Launcher.Create SafetyIgnition L = %d',
+  [Ord(GetLauncher(2).C705Status.SafetyIgnition)])));
+  }
 end;
 
 destructor GameSimManager.Destroy;
@@ -259,39 +225,10 @@ begin
 
   FreeAndNil(FStatusWeaponEvents);
 
-  if Assigned(FWarmUpTimer) then
-  begin
-    FWarmUpTimer.Enabled := False;
-    FWarmUpTimer.OnTimer := nil;
-    FreeAndNil(FWarmUpTimer);
-  end;
-
-  if Assigned(FTargetSequenceTimer) then
-  begin
-    FTargetSequenceTimer.Enabled := False;
-    FTargetSequenceTimer.OnTimer := nil;
-    FreeAndNil(FTargetSequenceTimer);
-  end;
+  FreeAndNil(FC705Launcher[lchRight]);
+  FreeAndNil(FC705Launcher[lchLeft]);
 
   inherited;
-end;
-
-function GameSimManager.GetLauncherStateStr(aLauncherID: Integer): string;
-var
-  s1, s2: string;
-begin
-  // TRUE = EMPTY
-  if FLauncherHasMissile[aLauncherID] then
-    Result := 'READY'
-  else
-    Result := 'EMPTY';
-end;
-
-function GameSimManager.IsReadyToLaunchC705: Boolean;
-begin
-  Result :=
-    FC705Status.EnableWeapon and FC705Status.OpenCoverLauncher
-      and FC705Status.SafetyIgnition;
 end;
 
 // LoadMap, LoadGeoset pakai path
@@ -299,6 +236,47 @@ procedure GameSimManager.InitializeMap;
 begin
   if Assigned(FOnMapInit) then
     FOnMapInit(VMapSetting.MapGeosetDay);
+end;
+
+procedure GameSimManager.LauncherMissileLaunched(Sender: TObject; LauncherID: TC705LauncherID);
+var
+  RecDataC705 : TRec_Data_C705;
+  Launcher : TC705Launcher;
+begin
+  Launcher := TC705Launcher(Sender);
+
+  if Launcher = nil then
+    Exit;
+
+  recDataC705.ShipID := VOwnShip.ShipID;
+  recDataC705.mWeaponID := VOwnShip.WeaponId;
+
+  //recDataC705.mLauncherID := LauncherID;
+  case LauncherID of
+    lchRight: recDataC705.mLauncherID := 1;
+
+    lchLeft:  recDataC705.mLauncherID := 2;
+  end;
+
+  recDataC705.mMissileID := 1;
+  recDataC705.mMissileNumber := 1;
+  //recDataC705.OrderID := 0; // harusnya diganti per command, misal fire, atau yang lain
+  recDataC705.OrderID := __ORD_ID_Fire_C705;
+  recDataC705.mTargetBearing := Launcher.TargetBearing;
+  recDataC705.mTargetRange := Launcher.TargetRange;
+  recDataC705.mTargetId := 0; //Launcher.TargetID;
+
+  netNFS_OnSendDataC705(recDataC705);
+
+  // RESET TARGET
+  VehicleMgr.SelectedTargetID := -1;
+  SimManager.RoutePlanMode := mPassive;
+end;
+
+procedure GameSimManager.LauncherStatusChanged(Sender: TObject; LauncherID: TC705LauncherID);
+begin
+  //NotifyStatusWeaponChanged(stEnableWeapon);
+  NotifyStatusWeaponChanged;
 end;
 
 {$REGION 'NFS Socket'}
@@ -367,12 +345,16 @@ procedure GameSimManager.netNFS_OnReceiveMissilePos(apRec: PAnsiChar;
 var
   Rec: ^TRec3DMissilePos;
   ShipObj: TShipContact;
+  LauncherWpn: TC705Launcher;
 begin
   Rec := @apRec^;
 
   ShipObj := VehicleMgr.FindObjectByID(Integer(Rec^.ShipID));
-
   if not Assigned(ShipObj) then
+    Exit;
+
+  LauncherWpn := GetLauncher(rec^.launcherID);
+  if not Assigned(LauncherWpn) then
     Exit;
 
   // Cek dari ShipID yang sama
@@ -383,13 +365,16 @@ begin
       // MISSILE DI-LOAD (dari instructor)
       ST_MISSILE_LOADED:
       begin
-        FLauncherHasMissile[Rec^.launcherID] := True;
+        //FLauncherHasMissile[Rec^.launcherID] := True;
+        LauncherWpn.SetHaveMissile(True);
       end;
 
       // MISSILE DITEMBAKKAN
       ST_MISSILE_RUN:
       begin
-        FLauncherHasMissile[Rec^.launcherID] := False;
+        //FLauncherHasMissile[Rec^.launcherID] := False;
+        LauncherWpn.SetHaveMissile(False);
+        LauncherWpn.LaunchMissileC705;
 
         FMissileTakeOff := True;
 
@@ -400,7 +385,8 @@ begin
       // MISSILE DIHAPUS / HABIS
       ST_MISSILE_DEL:
       begin
-        FLauncherHasMissile[Rec^.launcherID] := False;
+        //FLauncherHasMissile[Rec^.launcherID] := False;
+        LauncherWpn.SetHaveMissile(False);
       end;
 
     end;
@@ -419,51 +405,42 @@ begin
   rec := @apRec^;
 
   case rec^.ErrorID of
-
     __STAT_C705_ENABLE: begin
-      //FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
+      FC705Available := rec^.ParamError = __PARAM_C705_ON;
 
-      if FC705Status.EnableWeapon <> (rec^.ParamError = __PARAM_C705_ON) then begin
-        FC705Status.EnableWeapon := rec^.ParamError = __PARAM_C705_ON;
+      {
+      OutputDebugString(PChar(
+      Format('netNFS_OnReceiveStatusConsole SafetyIgnition R = %d',
+      [Ord(SimManager.GetLauncher(1).C705Status.SafetyIgnition)])));
 
-        if FC705Status.EnableWeapon then begin
-          // Mulai Simulasi WarmUp dengan Timer
-          FC705Status.WarmUpDone := False;
-          FC705Status.SeekerRdy := False;
+      OutputDebugString(PChar(
+      Format('netNFS_OnReceiveStatusConsole SafetyIgnition L = %d',
+      [Ord(SimManager.GetLauncher(2).C705Status.SafetyIgnition)])));
+      }
+      //NotifyStatusWeaponChanged;
+    end;
+    {
+    __STAT_C705_ENABLE: begin
+      FC705Launcher[lchRight].SetEnableWeapon(rec^.ParamError=__PARAM_C705_ON);
+      FC705Launcher[lchLeft].SetEnableWeapon(rec^.ParamError=__PARAM_C705_ON);
 
-          FWarmUpTimer.Enabled := False;
-          FWarmUpTimer.Enabled := True;
-        end
-        else begin
-          // Reset seluruh status internal (WarmUp, SeekerReady)
-          FWarmUpTimer.Enabled := False;
-
-          FC705Status.WarmUpDone := False;
-          FC705Status.SeekerRdy := False;
-        end;
-
-        NotifyStatusWeaponChanged(stEnableWeapon);
-      end;
-
+      //NotifyStatusWeaponChanged(stEnableWeapon);
     end;
 
     __STAT_C705_OpenCoverLauncherC705: begin
-      //FC705Status.OpenCoverLauncher := rec^.ParamError = __PARAM_C705_ON;
+      FC705Launcher[lchRight].SetOpenCover(rec^.ParamError=__PARAM_C705_ON);
+      FC705Launcher[lchLeft].SetOpenCover(rec^.ParamError=__PARAM_C705_ON);
 
-      if FC705Status.OpenCoverLauncher <> (rec^.ParamError = __PARAM_C705_ON) then begin
-        FC705Status.OpenCoverLauncher := rec^.ParamError = __PARAM_C705_ON;
-        NotifyStatusWeaponChanged(stOpenCover);
-      end;
+      //NotifyStatusWeaponChanged(stOpenCover);
     end;
 
     __STAT_C705_SafetyIgnition: begin
-      //FC705Status.SafetyIgnition := rec^.ParamError = __PARAM_C705_ON;
+      FC705Launcher[lchRight].SetSafetyIgnition(rec^.ParamError=__PARAM_C705_ON);
+      FC705Launcher[lchLeft].SetSafetyIgnition(rec^.ParamError=__PARAM_C705_ON);
 
-      if FC705Status.SafetyIgnition <> (rec^.ParamError = __PARAM_C705_ON) then begin
-        FC705Status.SafetyIgnition := rec^.ParamError = __PARAM_C705_ON;
-        NotifyStatusWeaponChanged(stSafetyIgnition);
-      end;
+      //NotifyStatusWeaponChanged(stSafetyIgnition);
     end;
+    }
 
   end;
 
@@ -503,12 +480,19 @@ end;
 {$ENDREGION}
 
 {$REGION 'Sequence to Change Panel in PanelArea3A dan PanelArea3B'}
-procedure GameSimManager.NotifyStatusWeaponChanged(aStatus: TC705StatusType);
+//procedure GameSimManager.NotifyStatusWeaponChanged(aStatus: TC705StatusType);
+//var
+//  i : Integer;
+//begin
+//  for i := 0 to FStatusWeaponEvents.Count-1 do
+//    TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event(Self, aStatus);
+//end;
+procedure GameSimManager.NotifyStatusWeaponChanged;
 var
   i : Integer;
 begin
   for i := 0 to FStatusWeaponEvents.Count-1 do
-    TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event(Self, aStatus);
+    TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event(Self);
 end;
 
 procedure GameSimManager.RegisterStatusWeaponEvent(aEvent: TStatusWeaponChangedEvent);
@@ -539,99 +523,6 @@ begin
       Break;
     end;
   end;
-end;
-
-procedure GameSimManager.StartTargetSequence;
-begin
-  FC705Status.SeaTargetRdy := False;
-  FC705Status.InsideSectorRdy := False;
-  FC705Status.ParaSettingRdy := False;
-
-  NotifyStatusWeaponChanged(stEnableWeapon);
-
-  FIdxTargetStep := 0;
-  FTargetSequenceTimer.Interval := 2000;
-  FTargetSequenceTimer.Enabled := True;
-end;
-
-{
- Warm-up Timer.
- Dipanggil otomatis setelah Weapon Power On (dari WCC/ Instruktur) selama 3 detik
-}
-procedure GameSimManager.tmrWarmUpTimer(Sender: TObject);
-begin
-  FWarmUpTimer.Enabled := False;
-
-  FC705Status.WarmUpDone := True;
-  FC705Status.SeekerRdy := True;
-
-  NotifyStatusWeaponChanged(stEnableWeapon);
-end;
-
-procedure GameSimManager.tmrTargetSequenceTimer(Sender: TObject);
-begin
-  case FIdxTargetStep of
-
-    //--------------------------------------------------------
-    // STEP-1
-    // Sea Target
-    //--------------------------------------------------------
-    0:  begin
-      FC705Status.SeaTargetRdy := True;
-    end;
-
-    //--------------------------------------------------------
-    // STEP-2
-    // Inside Sector
-    //--------------------------------------------------------
-    1:  begin
-      FC705Status.InsideSectorRdy := True;
-
-      NotifyStatusWeaponChanged(stEnableWeapon);
-    end;
-
-    //--------------------------------------------------------
-    // STEP-3
-    // Parameter Setting
-    //--------------------------------------------------------
-    2:  begin
-      FC705Status.ParaSettingRdy := True;
-
-      NotifyStatusWeaponChanged(stEnableWeapon);
-
-      //tunggu 5 detik
-      FTargetSequenceTimer.Interval := 5000;
-    end;
-
-    3:  begin
-      FC705Status.PlcChkRdy := True;
-
-      // balik lagi ke 2 detik
-      FTargetSequenceTimer.Interval := 2000;
-    end;
-
-    4: FC705Status.InitChkRdy := True;
-
-    5: FC705Status.InitStateRdy := True;
-
-    6: FC705Status.InsGnssRdy := True;
-
-    7: FC705Status.MNormalRdy := True;
-
-    8: FC705Status.CalFinishRdy := True;
-
-    9: FC705Status.ParaLockRdy := True;
-
-    10: begin
-      FC705Status.FullOpenRdy := True;
-
-      FTargetSequenceTimer.Enabled := False;
-    end;
-
-  end;
-
-  Inc(FIdxTargetStep);
-  NotifyStatusWeaponChanged(stEnableWeapon);
 end;
 
 {$ENDREGION}

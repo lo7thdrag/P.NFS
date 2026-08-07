@@ -403,6 +403,7 @@ object frmPnlArea3A: TfrmPnlArea3A
         Font.Name = 'Verdana'
         Font.Style = []
         ParentFont = False
+        OnClick = lblAlignmentStatus3AClick
       end
     end
     object Panel11: TPanel

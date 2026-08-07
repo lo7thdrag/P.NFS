@@ -49,7 +49,8 @@ uses
   uClassDatabase in 'libDatabase\uClassDatabase.pas',
   uFrmPnlArea3A in 'libDisplayUI\FrmTab\uFrmPnlArea3A.pas' {frmPnlArea3A},
   uFrmPnlArea3B in 'libDisplayUI\FrmTab\uFrmPnlArea3B.pas' {frmPnlArea3B},
-  uKeyboardManager in 'libMgr\uKeyboardManager.pas';
+  uKeyboardManager in 'libMgr\uKeyboardManager.pas',
+  uC705Launcher in 'libObjects\uC705Launcher.pas';
 
 {$R *.res}
 

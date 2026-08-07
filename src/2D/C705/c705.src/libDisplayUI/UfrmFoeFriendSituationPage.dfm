@@ -578,36 +578,6 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           ParentFont = False
           TabOrder = 0
         end
-        object pnlPowerOnContentMCtrl: TPanel
-          Left = 152
-          Top = 68
-          Width = 313
-          Height = 162
-          BevelOuter = bvNone
-          TabOrder = 1
-          object Label58: TLabel
-            Left = 191
-            Top = 12
-            Width = 33
-            Height = 18
-            Caption = '1~2'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clBlue
-            Font.Height = -16
-            Font.Name = 'Verdana'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Panel19: TPanel
-            Left = 10
-            Top = 5
-            Width = 175
-            Height = 32
-            Color = clBlue
-            ParentBackground = False
-            TabOrder = 0
-          end
-        end
         object pnlPowerOnMCtrl: TPanel
           Tag = 61
           Left = 20
@@ -644,24 +614,6 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           ParentFont = False
           TabOrder = 3
         end
-        object pnlINSAlignMCtrl: TPanel
-          Tag = 63
-          Left = 20
-          Top = 152
-          Width = 122
-          Height = 35
-          BevelInner = bvLowered
-          BevelOuter = bvLowered
-          Caption = 'INS Align.'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentBackground = False
-          ParentFont = False
-          TabOrder = 4
-        end
         object pnlPowerOffMCtrl: TPanel
           Tag = 64
           Left = 20
@@ -688,8 +640,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           BevelOuter = bvNone
           TabOrder = 6
           object Label61: TLabel
-            Left = 191
-            Top = 12
+            Left = 207
+            Top = 132
             Width = 66
             Height = 18
             Caption = 'Recheck'
@@ -699,6 +651,92 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
             Font.Name = 'Verdana'
             Font.Style = []
             ParentFont = False
+            Visible = False
+          end
+          object Label3: TLabel
+            Left = 191
+            Top = 12
+            Width = 33
+            Height = 18
+            Caption = '1~2'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtRecheckMissile: TEdit
+            Left = 10
+            Top = 9
+            Width = 175
+            Height = 24
+            Color = clBlue
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            Text = '1'
+            OnClick = edtRecheckMissileClick
+          end
+        end
+        object pnlINSAlignMCtrl: TPanel
+          Tag = 63
+          Left = 20
+          Top = 152
+          Width = 122
+          Height = 35
+          BevelInner = bvLowered
+          BevelOuter = bvLowered
+          Caption = 'INS Align.'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 4
+        end
+        object pnlPowerOnContentMCtrl: TPanel
+          Left = 152
+          Top = 68
+          Width = 313
+          Height = 162
+          BevelOuter = bvNone
+          TabOrder = 1
+          object Label58: TLabel
+            Left = 191
+            Top = 12
+            Width = 33
+            Height = 18
+            Caption = '1~2'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtPwrOnMissile: TEdit
+            Tag = 1
+            Left = 10
+            Top = 9
+            Width = 175
+            Height = 24
+            Color = clBlue
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            Text = '1'
+            OnClick = edtPwrOnMissileClick
           end
         end
         object pnlINSAlignContentMCtrl: TPanel
@@ -708,9 +746,9 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           Height = 162
           BevelOuter = bvNone
           TabOrder = 7
-          object Label63: TLabel
-            Left = 191
-            Top = 12
+          object lblStateINSAlign: TLabel
+            Left = 199
+            Top = 132
             Width = 82
             Height = 18
             Caption = 'INS Align.'
@@ -720,6 +758,36 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
             Font.Name = 'Verdana'
             Font.Style = []
             ParentFont = False
+            Visible = False
+          end
+          object Label4: TLabel
+            Left = 191
+            Top = 12
+            Width = 33
+            Height = 18
+            Caption = '1~2'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtINSAlignMissile: TEdit
+            Left = 10
+            Top = 9
+            Width = 175
+            Height = 24
+            Color = clBlue
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            Text = '1'
+            OnClick = edtINSAlignMissileClick
           end
         end
         object pnlPowerOffContentMCtrl: TPanel
@@ -731,7 +799,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           TabOrder = 8
           object Label67: TLabel
             Left = 191
-            Top = 12
+            Top = 132
             Width = 74
             Height = 18
             Caption = 'PowerOff'
@@ -741,6 +809,37 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
             Font.Name = 'Verdana'
             Font.Style = []
             ParentFont = False
+            Visible = False
+          end
+          object Label5: TLabel
+            Left = 191
+            Top = 12
+            Width = 33
+            Height = 18
+            Caption = '1~2'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentFont = False
+          end
+          object edtPwrOffMissile: TEdit
+            Tag = 2
+            Left = 10
+            Top = 9
+            Width = 175
+            Height = 24
+            Color = clBlue
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            Text = '1'
+            OnClick = edtPwrOffMissileClick
           end
         end
       end
@@ -1253,8 +1352,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     end
   end
   object pnlArea3A: TPanel
-    Left = 928
-    Top = 57
+    Left = 920
+    Top = 33
     Width = 952
     Height = 300
     Color = clWhite
@@ -1262,8 +1361,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     TabOrder = 1
   end
   object pnlArea3B: TPanel
-    Left = 1005
-    Top = 424
+    Left = 966
+    Top = 271
     Width = 952
     Height = 300
     Color = clWhite
@@ -1791,8 +1890,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     end
   end
   object pnlArea4: TPanel
-    Left = 0
-    Top = 450
+    Left = 950
+    Top = 500
     Width = 954
     Height = 372
     TabOrder = 4

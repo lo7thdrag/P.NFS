@@ -2197,6 +2197,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       8B465CC117B9D82740FA6513756C05F8391581FB92903F8BC67263D32F6EFF03
       24850C706E42A0FE0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgBackSpClick
   end
   object imgEsc: TImage
     Left = 442

@@ -16,7 +16,9 @@ uses
   uFrmParamSetting,
   UfrmRadar,
   uFrmPnlArea3A, uFrmPnlArea3B,
-  uShipModel, uC705SimManager, uKeyboardManager;
+  uShipModel, uC705SimManager, uKeyboardManager,
+  uC705Launcher,
+  uFrmKeyboardCalcLaunch;
 
 type
   TfrmFoeFriendSituationPage = class(TForm)
@@ -314,7 +316,6 @@ type
     pnlMCtrlHeader: TPanel;
     pnlPowerOnContentMCtrl: TPanel;
     Label58: TLabel;
-    Panel19: TPanel;
     pnlPowerOnMCtrl: TPanel;
     pnlReCheckMCtrl: TPanel;
     pnlINSAlignMCtrl: TPanel;
@@ -322,9 +323,16 @@ type
     pnlReCheckContentMCtrl: TPanel;
     Label61: TLabel;
     pnlINSAlignContentMCtrl: TPanel;
-    Label63: TLabel;
+    lblStateINSAlign: TLabel;
     pnlPowerOffContentMCtrl: TPanel;
     Label67: TLabel;
+    edtPwrOnMissile: TEdit;
+    edtRecheckMissile: TEdit;
+    Label3: TLabel;
+    edtINSAlignMissile: TEdit;
+    Label4: TLabel;
+    edtPwrOffMissile: TEdit;
+    Label5: TLabel;
     {$ENDREGION}
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
@@ -332,6 +340,10 @@ type
     procedure advpgcFunctionMenuFoeChange(Sender: TObject);
     procedure tmrClockTimer(Sender: TObject);
     procedure FormHide(Sender: TObject);
+    procedure edtPwrOnMissileClick(Sender: TObject);
+    procedure edtRecheckMissileClick(Sender: TObject);
+    procedure edtINSAlignMissileClick(Sender: TObject);
+    procedure edtPwrOffMissileClick(Sender: TObject);
   private
     { Private declarations }
     FFormRadar: TfrmRadar;
@@ -369,6 +381,11 @@ type
 
     function SeaStateToStr(aState: Word): string;
     procedure EnvironmentChanged(Sender: TObject);
+
+    procedure MissileCtrlKeyboardEnterMissile(Sender: TObject);
+    procedure MissileCtrlKeyboardEnterINSAlign(Sender: TObject);
+
+    procedure UpdateMissileControl;
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
@@ -381,6 +398,8 @@ type
     procedure UpdatePnlSituationData(aObjTgt: TShipContact; aRange: Double);
 
     procedure HandleKeyboardDown(var Key: Word; Shift: TShiftState);
+
+    procedure StatusWeaponBtnChanged(Sender: TObject);
   end;
 
 var
@@ -412,6 +431,9 @@ begin
   SimManager.OnTargetSelectedAction := TargetSelectedEvents;
 
   EnvironmentChanged(Self);
+
+  // Multicast Notify Event
+  SimManager.RegisterStatusWeaponEvent(StatusWeaponBtnChanged);
 end;
 
 procedure TfrmFoeFriendSituationPage.TargetSelectedEvents(Sender: TObject; aTgt: TShipContact; aRng: Double);
@@ -583,6 +605,8 @@ begin
 
     EmbedAreaForm(FFormMissileControl, pnlArea1_MControl);
     pnlMissileControl.Visible := True;
+
+    KeyboardMgr.SetActiveAreaForm(FFormMissileControl);
     {$ENDREGION}
   end
   else if advpgcFunctionMenuFoe.ActivePage = advtsMMonitor then
@@ -648,6 +672,19 @@ end;
 procedure TfrmFoeFriendSituationPage.HandleTabShortcut(Key: Word);
 begin
   case Key of
+    1: advpgcFunctionMenuFoe.ActivePage := advtsSituation;
+    2: advpgcFunctionMenuFoe.ActivePage := advtsFireDistr;
+    3: advpgcFunctionMenuFoe.ActivePage := advtsMInfo;
+    4: advpgcFunctionMenuFoe.ActivePage := advtsParSetting;
+    5: advpgcFunctionMenuFoe.ActivePage := advtsChSelect;
+    6: advpgcFunctionMenuFoe.ActivePage := advtsMControl;
+    7: advpgcFunctionMenuFoe.ActivePage := advtsMMonitor;
+    8: advpgcFunctionMenuFoe.ActivePage := advtsINSTest;
+    9: advpgcFunctionMenuFoe.ActivePage := advtsLaunchData;
+    0: advpgcFunctionMenuFoe.ActivePage := advtsExit;
+  end;
+  {
+  case Key of
     Ord('1'): advpgcFunctionMenuFoe.ActivePage := advtsSituation;
     Ord('2'): advpgcFunctionMenuFoe.ActivePage := advtsFireDistr;
     Ord('3'): advpgcFunctionMenuFoe.ActivePage := advtsMInfo;
@@ -658,7 +695,7 @@ begin
     Ord('8'): advpgcFunctionMenuFoe.ActivePage := advtsINSTest;
     Ord('9'): advpgcFunctionMenuFoe.ActivePage := advtsLaunchData;
     Ord('0'): advpgcFunctionMenuFoe.ActivePage := advtsExit;
-  end;
+  end;}
 end;
 {$ENDREGION}
 
@@ -716,7 +753,10 @@ begin
 end;
 
 procedure TfrmFoeFriendSituationPage.HandleKeyboardDown(var Key: Word; Shift: TShiftState);
+var
+  S: string;
 begin
+
   {$REGION 'Case untuk Form Ch Select'}
   // case ketika di tab Ch Select, jadi navigasi untuk form Ch Select only
   {
@@ -733,17 +773,25 @@ begin
         VK_RETURN: begin
           FFormChSelect.ActivateFrmChSelect;
           Key := 0;
+
+          if Assigned(KeyboardMgr) then
+            KeyboardMgr.SetContext(kbAreaFormFFS);
+
           Exit;
         end;
 
         VK_ESCAPE: begin
           FFormChSelect.DeactivateFrmChSelect;
           Key := 0;
+
+          if Assigned(KeyboardMgr) then
+            KeyboardMgr.SetContext(kbFFSMenu);
+
           Exit;
         end;
       end;
 
-      //HandleTabShortcut(Key); // move to Keyboard Form
+      HandleTabShortcut(Key); // move to Keyboard Form
       advpgcFunctionMenuFoeChange(nil);
       //UpdateLayoutTab;
 
@@ -788,6 +836,105 @@ begin
       //Exit;
     end
     else begin
+      {$REGION 'Case untuk Missile Control sedang melakukan input dari frmKeyboard '}
+      if Key = VK_ESCAPE then
+        frmKeyboardCalcLaunch.ActiveEdit := nil;
+      
+      //if edtPwrOnMissile.Focused then
+      if frmKeyboardCalcLaunch.ActiveEdit = edtPwrOnMissile then
+      begin
+        case Key of
+          1: edtPwrOnMissile.Text := '1';
+          2: edtPwrOnMissile.Text := '2';
+          VK_BACK: begin
+            //edtPwrOnMissile.Clear;
+            S := edtPwrOnMissile.Text;
+
+            if S <> '' then
+            begin
+              Delete(S, Length(S), 1);
+              edtPwrOnMissile.Text := S;
+            end;
+          end;
+          VK_RETURN : begin
+            MissileCtrlKeyboardEnterMissile(Self);
+            Exit;
+          end;
+        end;
+
+        Exit;
+      end;
+
+      //if edtRecheckMissile.Focused then
+      if frmKeyboardCalcLaunch.ActiveEdit = edtRecheckMissile then
+      begin
+        case Key of
+          1: edtRecheckMissile.Text := '1';
+          2: edtRecheckMissile.Text := '2';
+          VK_BACK: begin
+            //edtPwrOnMissile.Clear;
+            S := edtRecheckMissile.Text;
+
+            if S <> '' then
+            begin
+              Delete(S, Length(S), 1);
+              edtRecheckMissile.Text := S;
+            end;
+          end;
+          VK_RETURN : begin
+            MissileCtrlKeyboardEnterMissile(Self);
+            Exit;
+          end;
+        end;
+      end;
+
+      //if edtINSAlignMissile.Focused then
+      if frmKeyboardCalcLaunch.ActiveEdit = edtINSAlignMissile then
+      begin
+        case Key of
+          1: edtINSAlignMissile.Text := '1';
+          2: edtINSAlignMissile.Text := '2';
+          VK_BACK: begin
+            //edtPwrOnMissile.Clear;
+            S := edtINSAlignMissile.Text;
+
+            if S <> '' then
+            begin
+              Delete(S, Length(S), 1);
+              edtINSAlignMissile.Text := S;
+            end;
+          end;
+          VK_RETURN : begin
+            MissileCtrlKeyboardEnterINSAlign(Self);
+            Exit;
+          end;
+        end;
+      end;
+
+      //if edtPwrOffMissile.Focused then
+      if frmKeyboardCalcLaunch.ActiveEdit = edtPwrOffMissile then
+      begin
+        case Key of
+          1: edtPwrOffMissile.Text := '1';
+          2: edtPwrOffMissile.Text := '2';
+          VK_BACK: begin
+            //edtPwrOnMissile.Clear;
+            S := edtPwrOffMissile.Text;
+
+            if S <> '' then
+            begin
+              Delete(S, Length(S), 1);
+              edtPwrOffMissile.Text := S;
+            end;
+          end;
+          VK_RETURN : begin
+            MissileCtrlKeyboardEnterMissile(Self);
+            Exit;
+          end;
+        end;
+      end;
+      {$ENDREGION}
+
       case Key of
         VK_UP: begin
           if FActivePnlIdxMCtrl > 0 then
@@ -803,18 +950,22 @@ begin
         end;
 
         VK_RETURN: begin
-          //ShowActiveContentMCtrl;
-          //Exit;
+          ShowActiveContentMCtrl;
+          Exit;
         end;
 
         VK_ESCAPE: begin
-          pnlMissileControl.Visible := False;
+          //pnlMissileControl.Visible := False;
+          pnlPowerOnContentMCtrl.Visible := False;
+          pnlReCheckContentMCtrl.Visible := False;
+          pnlPowerOffContentMCtrl.Visible := False;
+          pnlINSAlignContentMCtrl.Visible := False;
           Exit;
         end;
       end;
 
-      ShowActiveContentMCtrl;
-      Exit;
+      //ShowActiveContentMCtrl;
+      //Exit;
     end;
 
   end;
@@ -846,7 +997,7 @@ begin
         end;
       end;
 
-      //HandleTabShortcut(Key); // move to Keyboard Form
+      HandleTabShortcut(Key); // move to Keyboard Form
       advpgcFunctionMenuFoeChange(nil);
       //UpdateLayoutTab;
 
@@ -880,7 +1031,7 @@ begin
   {
     Global Form Foe Friend Situation shortcuts
   }
-  //HandleTabShortcut(Key); // move to Keyboard Form
+  HandleTabShortcut(Key); // move to Keyboard Form
 
   case Key of
     VK_ESCAPE:
@@ -924,10 +1075,47 @@ begin
     end;
   end;
   {$ENDREGION}
+
+  {$REGION 'Case handle keyboard Navigation'}
+//  case Key of
+//    0: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsExit;
+//    end;
+//    1: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsSituation;
+//    end;
+//    2: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsFireDistr;
+//    end;
+//    3: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMInfo;
+//    end;
+//    4: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsParSetting;
+//    end;
+//    5: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsChSelect;
+//    end;
+//    6: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMControl;
+//    end;
+//    7: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsMMonitor;
+//    end;
+//    8: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsINSTest;
+//    end;
+//    9: begin
+//      advpgcFunctionMenuFoe.ActivePage := frmFoeFriendSituationPage.advtsLaunchData;
+//    end;
+//  end;
+//  UpdateLayoutTab;
+
+  {$ENDREGION}
+
 end;
 
-procedure TfrmFoeFriendSituationPage.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfrmFoeFriendSituationPage.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   HandleKeyboardDown(Key, Shift);
 end;
@@ -942,7 +1130,7 @@ begin
     1: Result:= 'Low';
     2: Result:= 'Low';
     3: Result:= 'Low';
-    4: Result:= 'Low';
+    4: Result:= 'High';
     5: Result:= 'High';
   end;
 end;
@@ -977,7 +1165,70 @@ end;
 
 {$ENDREGION}
 
-{$REGION 'Tab M. Control}
+{$REGION 'Tab M. Control'}
+procedure TfrmFoeFriendSituationPage.UpdateMissileControl;
+var
+  Launcher: TC705Launcher;
+  LauncherID: Integer;
+begin
+  LauncherID := StrToInt(edtINSAlignMissile.Text);
+  if (LauncherID < 1) or (LauncherID > 2) then
+    Exit;
+
+  Launcher:= SimManager.GetLauncher(LauncherID);
+
+  if Launcher.C705Status.INSAlignDone then begin
+    lblStateINSAlign.Caption := 'Allow';
+    lblStateINSAlign.Visible := True;
+  end;
+end;
+
+procedure TfrmFoeFriendSituationPage.MissileCtrlKeyboardEnterINSAlign(Sender: TObject);
+var
+  LauncherID: Integer;
+  Launcher: TC705Launcher;
+begin
+  LauncherID := StrToIntDef(frmKeyboardCalcLaunch.ActiveEdit.Text,0);
+
+  Launcher := SimManager.GetLauncher(LauncherID);
+
+  if Launcher = nil then
+    Exit;
+
+  if not Launcher.C705Status.EnableMissile then
+  begin
+    ShowMessage('Missile belum Power ON');
+    Exit;
+  end;
+
+  Launcher.StartINSAlign;
+end;
+
+procedure TfrmFoeFriendSituationPage.MissileCtrlKeyboardEnterMissile(Sender: TObject);
+var
+  LauncherID: Integer;
+  Launcher: TC705Launcher;
+begin
+  // 1 = LauncherRight; 2 = LauncherLeft;
+  LauncherID := StrToIntDef(frmKeyboardCalcLaunch.ActiveEdit.Text, 0);
+  Launcher := SimManager.GetLauncher(LauncherID);
+
+  if Launcher = nil then
+    Exit;
+
+  if not Launcher.C705Status.EnableWeapon then
+  begin
+    ShowMessage('Launcher belum ON');;
+    Exit;
+  end;
+
+  if (frmKeyboardCalcLaunch.ActiveEdit.Text = '1') then
+    Launcher.SetEnableMissile(True)
+  else if (frmKeyboardCalcLaunch.ActiveEdit.Text = '2') then
+    Launcher.SetEnableMissile(False);
+
+end;
+
 procedure TfrmFoeFriendSituationPage.SetActiveHeaderMCtrl(idx: Integer);
 var
   i: Integer;
@@ -1007,18 +1258,26 @@ begin
     0: begin
       pnlPowerOnContentMCtrl.Visible := True;
       pnlPowerOnContentMCtrl.BringToFront;
+
+      edtPwrOnMissile.Focused;
     end;
     1: begin
       pnlReCheckContentMCtrl.Visible := True;
       pnlReCheckContentMCtrl.BringToFront;
+
+      edtRecheckMissile.Focused;
     end;
     2: begin
       pnlINSAlignContentMCtrl.Visible := True;
       pnlINSAlignContentMCtrl.BringToFront;
+
+      edtINSAlignMissile.Focused;
     end;
-    4: begin
+    3: begin
       pnlPowerOffContentMCtrl.Visible := True;
       pnlPowerOffContentMCtrl.BringToFront;
+
+      edtPwrOffMissile.Focused;
     end;
   end;
 end;
@@ -1035,6 +1294,43 @@ begin
 //  FarrHeaderPnlMCtrl[2] := nil;
 //  FarrHeaderPnlMCtrl[3] := nil;
 end;
+
+procedure TfrmFoeFriendSituationPage.edtINSAlignMissileClick(Sender: TObject);
+begin
+  // beritau frmKeyboard bahwa TEdit ini adalah yang sedang diedit
+  frmKeyboardCalcLaunch.ActiveEdit := edtINSAlignMissile;
+
+  // set mode Keyboard ke input
+  frmKeyboardCalcLaunch.KeyboardMode := mdInput;
+end;
+
+procedure TfrmFoeFriendSituationPage.edtPwrOffMissileClick(Sender: TObject);
+begin
+  // beritau frmKeyboard bahwa TEdit ini adalah yang sedang diedit
+  frmKeyboardCalcLaunch.ActiveEdit := edtPwrOffMissile;
+
+  // set mode Keyboard ke input
+  frmKeyboardCalcLaunch.KeyboardMode := mdInput;
+end;
+
+procedure TfrmFoeFriendSituationPage.edtPwrOnMissileClick(Sender: TObject);
+begin
+  // beritau frmKeyboard bahwa TEdit ini adalah yang sedang diedit
+  frmKeyboardCalcLaunch.ActiveEdit := edtPwrOnMissile;
+
+  // set mode Keyboard ke input
+  frmKeyboardCalcLaunch.KeyboardMode := mdInput;
+end;
+
+procedure TfrmFoeFriendSituationPage.edtRecheckMissileClick(Sender: TObject);
+begin
+  // beritau frmKeyboard bahwa TEdit ini adalah yang sedang diedit
+  frmKeyboardCalcLaunch.ActiveEdit := edtRecheckMissile;
+
+  // set mode Keyboard ke input
+  frmKeyboardCalcLaunch.KeyboardMode := mdInput;
+end;
+
 {$ENDREGION}
 
 {$REGION 'Tab M. Monitor}
@@ -1055,6 +1351,13 @@ end;
 
 {$ENDREGION}
 
+procedure TfrmFoeFriendSituationPage.StatusWeaponBtnChanged(Sender: TObject);
+begin
+
+  UpdateMissileControl;
+
+end;
+
 procedure TfrmFoeFriendSituationPage.UpdateClock;
 begin
   pnlTimeClock.Caption := FormatDateTime('hh:nn:ss', Now);
@@ -1065,8 +1368,7 @@ begin
   UpdateClock;
 end;
 
-procedure TfrmFoeFriendSituationPage.SetMonitor(aMonitorIdx, aLeft,
-  aTop: Integer);
+procedure TfrmFoeFriendSituationPage.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
 begin
   Position := poDesigned;
   WindowState := wsNormal;

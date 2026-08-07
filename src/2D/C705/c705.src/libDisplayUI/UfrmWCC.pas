@@ -3,10 +3,11 @@ unit UfrmWCC;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Vcl.Imaging.jpeg,
-  uLibSettings, uC705SimManager, uTCPDatatype, uBaseFunction;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.Buttons, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus,
+  Vcl.Imaging.jpeg, uLibSettings, uC705SimManager, uTCPDatatype, uBaseFunction,
+  uFormMgr, uKeyboardManager, uC705Launcher;
 
 type
   TfrmWCC = class(TForm)
@@ -30,8 +31,8 @@ type
     imgBtnSafe_L: TImage;
     imgBtnSafe_R: TImage;
     Panel3: TPanel;
-    Image3: TImage;
-    Image4: TImage;
+    imgSelfLatch2: TImage;
+    imgSelfLatch1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     PopupMenu1: TPopupMenu;
@@ -100,6 +101,7 @@ type
     procedure btnImgOpenCoverClick(Sender: TObject);
     procedure imgBtnSafetyBooster_Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure imgSelfLatchClick(Sender: TObject);
   private
     { Private declarations }
     FActiveLabel: TLabel;
@@ -114,13 +116,19 @@ type
     procedure StartCheckHardware;
 
     procedure HideAllPnlContent;
+
+    procedure UpdateStatusWeapon(aLauncherR, aLauncherL: TC705Launcher);
+    procedure UpdateStatusOpenCover(aLauncherR, aLauncherL: TC705Launcher);
+    procedure UpdateStatusSafetyIgnition(aLauncherR, aLauncherL: TC705Launcher);
+    procedure UpdateStatusSelfLatch(aLauncherR, aLauncherL: TC705Launcher);
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
     procedure SetTopMonitor(aMoniHeight: Integer);
 
     procedure InitSimulation;
-    procedure StatusWeaponBtnChanged(Sender:TObject; aStatus: TC705StatusType);
+    //procedure StatusWeaponBtnChanged(Sender:TObject; aStatus: TC705StatusType);
+    procedure StatusWeaponBtnChanged(Sender: TObject);
 
     procedure HandleKeyboardDown(Key: Word);
 
@@ -134,7 +142,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uFormMgr, UfrmFoeFriendSituationPage, uKeyboardManager;
+  UfrmFoeFriendSituationPage;
 
 
 {$REGION 'Menu Navigasi'}
@@ -145,8 +153,7 @@ begin
   Result := nil;
 
   for i := 0 to pnlMainMenu.ControlCount - 1 do
-    if (pnlMainMenu.Controls[i] is TLabel) and
-       (pnlMainMenu.Controls[i].Tag = ATag) and (pnlMainMenu.Controls[i].Tag > 0) then
+    if (pnlMainMenu.Controls[i] is TLabel) and (pnlMainMenu.Controls[i].Tag = ATag) and (pnlMainMenu.Controls[i].Tag > 0) then
       Exit(TLabel(pnlMainMenu.Controls[i]));
 end;
 
@@ -156,49 +163,27 @@ var
   aLbl: TLabel;
 begin
   for i := 0 to pnlMainMenu.ControlCount - 1 do
-  if (pnlMainMenu.Controls[i] is TLabel) and
-      (pnlMainMenu.Controls[i].Tag > 0) then
-  begin
-    aLbl := TLabel(pnlMainMenu.Controls[i]);
-
-    if aLbl = FActiveLabel then
+    if (pnlMainMenu.Controls[i] is TLabel) and (pnlMainMenu.Controls[i].Tag > 0) then
     begin
-      aLbl.Font.Style := [fsBold];
-      aLbl.Font.Color := clWhite;
-      aLbl.Color := clHighlight;
-      aLbl.Transparent := False;
+      aLbl := TLabel(pnlMainMenu.Controls[i]);
+
+      if aLbl = FActiveLabel then
+      begin
+        aLbl.Font.Style := [fsBold];
+        aLbl.Font.Color := clWhite;
+        aLbl.Color := clHighlight;
+        aLbl.Transparent := False;
 
       //ShowPanelForMenu(aLbl);
-    end
-    else
-    begin
-      aLbl.Font.Style := [];
-      aLbl.Font.Color := clSilver;
-      aLbl.Color := clNone;
-      aLbl.Transparent := True;
+      end
+      else
+      begin
+        aLbl.Font.Style := [];
+        aLbl.Font.Color := clSilver;
+        aLbl.Color := clNone;
+        aLbl.Transparent := True;
+      end;
     end;
-  end;
-end;
-
-procedure TfrmWCC.ShowPanelForMenu(aLabel: TLabel);
-var
-  i: Integer;
-  aPnl: TPanel;
-begin
-  if (aLabel = nil) or (aLabel.Tag <= 0) then Exit;
-
-  for i := 0 to pnlMainMenu.ControlCount - 1 do
-  if pnlMainMenu.Controls[i] is TPanel then
-  begin
-    aPnl := TPanel(pnlMainMenu.Controls[i]);
-    aPnl.Visible := (aPnl.Tag = aLabel.Tag);
-
-//    if aPnl.Tag = 1 then
-//    begin
-//      if Assigned(frmFoeFriendSituationPage) then
-//        frmFoeFriendSituationPage.Show;
-//    end;
-  end;
 end;
 
 procedure TfrmWCC.StartCheckHardware;
@@ -217,18 +202,53 @@ end;
 procedure TfrmWCC.tmrHardwareCheckTimer(Sender: TObject);
 begin
   case FCheckIndex of
-    0: lblCheckP105B.Caption := 'PASS';
-    1: lblCheckP301a.Caption := 'PASS';
-    2: lblCheck301b.Caption := 'PASS';
-    3: lblCheckHbFB23a.Caption := 'PASS';
-    4: lblCheckHbFB23b.Caption := 'PASS';
-    5: lblCheckGSWK.Caption := 'PASS';
+    0:
+      lblCheckP105B.Caption := 'PASS';
+    1:
+      lblCheckP301a.Caption := 'PASS';
+    2:
+      lblCheck301b.Caption := 'PASS';
+    3:
+      lblCheckHbFB23a.Caption := 'PASS';
+    4:
+      lblCheckHbFB23b.Caption := 'PASS';
+    5:
+      lblCheckGSWK.Caption := 'PASS';
   end;
 
   Inc(FCheckIndex);
 
   if FCheckIndex > 5 then
     tmrHardwareCheck.Enabled := False;
+end;
+
+procedure TfrmWCC.ShowPanelForMenu(aLabel: TLabel);
+var
+  i: Integer;
+  aPnl: TPanel;
+begin
+  if (aLabel = nil) or (aLabel.Tag <= 0) then
+    Exit;
+
+  for i := 0 to pnlMainMenu.ControlCount - 1 do
+    if pnlMainMenu.Controls[i] is TPanel then
+    begin
+      aPnl := TPanel(pnlMainMenu.Controls[i]);
+      aPnl.Visible := (aPnl.Tag = aLabel.Tag);
+
+//    if aPnl.Tag = 1 then
+//    begin
+//      if Assigned(frmFoeFriendSituationPage) then
+//        frmFoeFriendSituationPage.Show;
+//    end;
+    end;
+end;
+
+procedure TfrmWCC.HideAllPnlContent;
+begin
+  pnlHardwareCheck.Visible := False;
+  pnlSimulateTraining.Visible := False;
+  pnlSoftwareExit.Visible := False;
 end;
 
 procedure TfrmWCC.HandleKeyboardDown(Key: Word);
@@ -259,34 +279,40 @@ begin
   if pnlHardwareCheck.Visible = True then
   begin
     case Key of
-      VK_ESCAPE: pnlHardwareCheck.Visible := False;
+      VK_ESCAPE:
+        pnlHardwareCheck.Visible := False;
     end;
   end;
   {$ENDREGION}
 
   {$REGION ' Menu Navigation Key Arrow '}
-  if FActiveLabel = nil then Exit;
+  if FActiveLabel = nil then
+    Exit;
 
   NextTag := FActiveLabel.Tag;
 
   case Key of
-    VK_UP:   Dec(NextTag);
-    VK_DOWN: Inc(NextTag);
+    VK_UP:
+      Dec(NextTag);
+    VK_DOWN:
+      Inc(NextTag);
 
     VK_RETURN:
-    begin
-      if NextTag = 1 then begin
-        if not Assigned(frmFoeFriendSituationPage) then begin
-          frmFoeFriendSituationPage := TfrmFoeFriendSituationPage.Create(Self);
-          frmFoeFriendSituationPage.RegisterEvents;
+      begin
+        if NextTag = 1 then
+        begin
+          if not Assigned(frmFoeFriendSituationPage) then
+          begin
+            frmFoeFriendSituationPage := TfrmFoeFriendSituationPage.Create(Self);
+            frmFoeFriendSituationPage.RegisterEvents;
+          end;
+
+          frmWCC.Hide;
+          frmFoeFriendSituationPage.Show;
         end;
 
-        frmWCC.Hide;
-        frmFoeFriendSituationPage.Show;
-      end;
-
       //Exit;
-    end;
+      end;
 
   else
     Exit;
@@ -305,7 +331,8 @@ begin
     HideAllPnlContent;
 
     case Key of
-      VK_RETURN: ShowPanelForMenu(NextLabel);
+      VK_RETURN:
+        ShowPanelForMenu(NextLabel);
     end;
 
   end;
@@ -313,11 +340,60 @@ begin
 
 end;
 
-procedure TfrmWCC.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfrmWCC.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   HandleKeyboardDown(Key);
 end;
+
+procedure TfrmWCC.lblMenuClick(Sender: TObject);
+begin
+
+  case (Sender as TLabel).Tag of
+    1:
+      begin
+      // Realtime Combat
+        pnlSoftwareExit.Visible := False;
+        frmWCC.KeyPreview := False;
+
+        if not Assigned(frmFoeFriendSituationPage) then
+        begin
+          frmFoeFriendSituationPage := TfrmFoeFriendSituationPage.Create(Self);
+          frmFoeFriendSituationPage.RegisterEvents;
+        end;
+
+        frmWCC.Hide;
+        frmFoeFriendSituationPage.show;
+      end;
+    2:
+      begin
+      // Simulate Route
+        pnlSoftwareExit.Visible := False;
+        frmWCC.KeyPreview := False;
+      end;
+    3:
+      begin
+      // Simulate Training
+        pnlSoftwareExit.Visible := False;
+        frmWCC.KeyPreview := False;
+        pnlSimulateTraining.BringToFront;
+      end;
+    4:
+      begin
+      // Hardware Check
+        pnlSoftwareExit.Visible := False;
+        frmWCC.KeyPreview := False;
+      end;
+    5:
+      begin
+      // Software Exit
+        pnlSoftwareExit.Visible := True;
+        frmWCC.KeyPreview := True;
+        pnlSoftwareExit.BringToFront;
+      end;
+  end;
+
+end;
+
 {$ENDREGION}
 
 procedure TfrmWCC.FormCreate(Sender: TObject);
@@ -374,161 +450,235 @@ begin
   SimManager.RegisterStatusWeaponEvent(StatusWeaponBtnChanged);
 
   // Sinkronisasi kondisi awal
+  StatusWeaponBtnChanged(Self);
 //  StatusWeaponBtnChanged(Self, SimManager.C705Status);
 end;
 
-procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject; aStatus: TC705StatusType);
+{$REGION 'Tombol Panel Kanan'}
+procedure TfrmWCC.btnImgPowerMissileClick(Sender: TObject);
+var
+  Launcher: TC705Launcher;
+  LauncherID: Integer;
+  stateEnableWeapon: Boolean;
 begin
-  if Assigned(SimManager) then begin
-    case aStatus of
-      stEnableWeapon: begin
-        if SimManager.C705Status.EnableWeapon then begin
-          btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
-          btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
-        end
-        else begin
-          btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
-          btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
-        end;
-      end;
-      stOpenCover: begin
-        if SimManager.C705Status.OpenCoverLauncher then begin
-          btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
-          btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
-        end
-        else begin
-          btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
-          btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
-        end;
-      end;
-      stSafetyIgnition: begin
-        if SimManager.C705Status.SafetyIgnition then begin     // SAFE
-          imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - SAFE.png');
-          imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - SAFE.png');
-        end
-        else begin                                             // ARMED
-          imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - ARMED.png');
-          imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - ARMED.png');
-        end;
-      end;
-    end;
+  if not SimManager.C705Available then
+  begin
+    ShowMessage('Weapon C705 belum Available');
+    Exit;
   end;
+
+  LauncherID := (Sender as TSpeedButton).Tag;
+  Launcher := SimManager.GetLauncher(LauncherID);
+  if Launcher = nil then
+    Exit;
+
+  stateEnableWeapon := Launcher.C705Status.EnableWeapon;
+  Launcher.SetEnableWeapon(not stateEnableWeapon);
+
 end;
 
-procedure TfrmWCC.HideAllPnlContent;
+procedure TfrmWCC.imgSelfLatchClick(Sender: TObject);
+var
+  Launcher: TC705Launcher;
 begin
-  pnlHardwareCheck.Visible := False;
-  pnlSimulateTraining.Visible := False;
-  pnlSoftwareExit.Visible := False;
+  if (Sender = ImgSelfLatch1) then
+    Launcher := simmanager.GetLauncher(1)
+  else
+    Launcher := SimManager.GetLauncher(2);
+
+  if not Launcher.C705Status.EnableWeapon then
+    Exit;
+
+  if not Launcher.C705Status.INSAlignDone then
+    Exit;
+
+  if (Sender = imgSelfLatch1) then
+    Launcher.SetSelfLatch(True)
+  else
+    Launcher.SetSelfLatch(False);
+end;
+
+procedure TfrmWCC.btnImgOpenCoverClick(Sender: TObject);
+var
+  Launcher: TC705Launcher;
+  LauncherID: Integer;
+  stateOpenCover: Boolean;
+begin
+  LauncherID := (Sender as TSpeedButton).Tag;
+  Launcher := SimManager.GetLauncher(LauncherID);
+  if Launcher = nil then
+    Exit;
+
+  if not Launcher.C705Status.EnableWeapon then
+    Exit;
+
+  if not Launcher.C705Status.SelfLatch then
+    Exit;
+
+  stateOpenCover := Launcher.C705Status.OpenCoverLauncher;
+  Launcher.SetOpenCover(not stateOpenCover);
+
 end;
 
 procedure TfrmWCC.imgBtnSafetyBooster_Click(Sender: TObject);
 var
-  RecStatus : TRecStatus_Console;
+  Launcher: TC705Launcher;
 begin
-  if SimManager.C705Status.EnableWeapon = False then
+  if (Sender = imgBtnArm_L) or (Sender = imgBtnSafe_L) then
+    Launcher := SimManager.GetLauncher(2)
+  else
+    Launcher := SimManager.GetLauncher(1);
+
+  if not Launcher.C705Status.EnableWeapon then
     Exit;
 
-  RecStatus.OWN_SHIP_UID := dbID_to_UniqueID(VOwnShip.ShipID);
-  RecStatus.WeaponID := VOwnShip.WeaponId;
-  RecStatus.ErrorID := __STAT_C705_SafetyIgnition;
+  if not Launcher.C705Status.OpenCoverLauncher then
+    Exit;
 
-  case (Sender as TImage).Tag of
-    1: RecStatus.ParamError := 1;     // SAFE
-    2: RecStatus.ParamError := 2;     // ARMED
-  end;
+  if (Sender = imgBtnSafe_L) or (Sender = imgBtnSafe_R) then
+    Launcher.SetSafetyIgnition(True)     // SAFE
+  else
+    Launcher.SetSafetyIgnition(False);   // ARMED
 
-  SimManager.NFSNetRecv.sendDataEx(REC_STAT_ORDER_CONSOLE, @RecStatus);
 end;
 
-procedure TfrmWCC.lblMenuClick(Sender: TObject);
+//procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject; aStatus: TC705StatusType);
+procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject);
+var
+  RightLauncher, LeftLauncher: TC705Launcher;
 begin
+  if Assigned(SimManager) then
+  begin
+    RightLauncher := SimManager.GetLauncher(1);
+    LeftLauncher := SimManager.GetLauncher(2);
 
-  case (Sender as TLabel).Tag of
-    1: begin
-      // Realtime Combat
-      pnlSoftwareExit.Visible := False;
-      frmWCC.KeyPreview := False;
+    if not SimManager.C705Available then
+    begin
+//      btnImgPowerMissile1.Enabled := False;
+//      btnImgPowerMissile2.Enabled := False;
 
-      if not Assigned(frmFoeFriendSituationPage) then begin
-        frmFoeFriendSituationPage := TfrmFoeFriendSituationPage.Create(Self);
-        frmFoeFriendSituationPage.RegisterEvents;
-      end;
+//      btnImgOpenCover1.Enabled := False;
+//      btnImgOpenCover2.Enabled := False;
 
-      frmWCC.Hide;
-      frmFoeFriendSituationPage.show;
+      imgSafetyBooster_L.Enabled := False;
+      imgSafetyBooster_R.Enabled := False;
+
+      imgSafetyBooster_R.Enabled := False;
+      imgSafetyBooster_R.Enabled := False;
+
+      Exit;
     end;
-    2: begin
-      // Simulate Route
-      pnlSoftwareExit.Visible := False;
-      frmWCC.KeyPreview := False;
-    end;
-    3: begin
-      // Simulate Training
-      pnlSoftwareExit.Visible := False;
-      frmWCC.KeyPreview := False;
-      pnlSimulateTraining.BringToFront;
-    end;
-    4: begin
-      // Hardware Check
-      pnlSoftwareExit.Visible := False;
-      frmWCC.KeyPreview := False;
-    end;
-    5: begin
-      // Software Exit
-      pnlSoftwareExit.Visible := True;
-      frmWCC.KeyPreview := True;
-      pnlSoftwareExit.BringToFront;
-    end;
+
+    UpdateStatusWeapon(RightLauncher, LeftLauncher);
+
+    UpdateStatusOpenCover(RightLauncher, LeftLauncher);
+
+    //OutputDebugString(PChar(Format('SafetyIgnition R = %d', [Ord(RightLauncher.C705Status.SafetyIgnition)])));
+    //OutputDebugString(PChar(Format('SafetyIgnition L = %d', [Ord(LeftLauncher.C705Status.SafetyIgnition)])));
+
+    UpdateStatusSafetyIgnition(RightLauncher, LeftLauncher);
+
+    UpdateStatusSelfLatch(RightLauncher, LeftLauncher);
+  end;
+end;
+
+procedure TfrmWCC.UpdateStatusOpenCover(aLauncherR, aLauncherL: TC705Launcher);
+begin
+  {$REGION 'OPEN COVER'}
+  if aLauncherR.C705Status.OpenCoverLauncher then
+  begin
+    btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-glowing.bmp');
+  end
+  else
+  begin
+    btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-normal.bmp');
   end;
 
+  if aLauncherL.C705Status.OpenCoverLauncher then
+  begin
+    btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-glowing.bmp');
+  end
+  else
+  begin
+    btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-normal.bmp');
+  end;
+  {$ENDREGION}
 end;
+
+procedure TfrmWCC.UpdateStatusSafetyIgnition(aLauncherR, aLauncherL: TC705Launcher);
+begin
+  {$REGION 'SAFETY IGNITION'}
+  if aLauncherR.C705Status.SafetyIgnition then
+  begin              //SAFE
+    imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - SAFE.png');
+  end
+  else
+  begin              //ARMED
+    imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - ARMED.png');
+  end;
+
+  if aLauncherL.C705Status.SafetyIgnition then
+  begin              //SAFE
+    imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - SAFE.png');
+  end
+  else
+  begin              //ARMED
+    imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - ARMED.png');
+  end;
+  {$ENDREGION}
+end;
+
+procedure TfrmWCC.UpdateStatusWeapon(aLauncherR, aLauncherL: TC705Launcher);
+begin
+  {$REGION 'ENABLE WEAPON'}
+  if aLauncherR.C705Status.EnableWeapon then
+  begin
+    btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-glowing.bmp');
+  end
+  else
+  begin
+    btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-normal.bmp');
+  end;
+
+  if aLauncherL.C705Status.EnableWeapon then
+  begin
+    btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-glowing.bmp');
+  end
+  else
+  begin
+    btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-normal.bmp');
+  end;
+  {$ENDREGION}
+end;
+
+procedure TfrmWCC.UpdateStatusSelfLatch(aLauncherR, aLauncherL: TC705Launcher);
+begin
+  {$REGION 'SELF LATCH'}
+  if aLauncherR.C705Status.SelfLatch then
+  begin
+    imgSelfLatch1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_1 - ON.png');
+  end
+  else
+  begin
+    imgSelfLatch1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_1 - OFF.png');
+  end;
+
+  if aLauncherL.C705Status.SelfLatch then
+  begin
+    imgSelfLatch2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_2 - ON.png');
+  end
+  else
+  begin
+    imgSelfLatch2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_2 - OFF.png');
+  end;
+  {$ENDREGION}
+end;
+{$ENDREGION}
 
 procedure TfrmWCC.RoutePlan1Click(Sender: TObject);
 begin
   // pindah ke form Route Plan ketika 1 monitor menggunakan PopupMenu
   SwitchView(vmRoutePlan);
-end;
-
-procedure TfrmWCC.btnImgOpenCoverClick(Sender: TObject);
-var
-  RecStatus : TRecStatus_Console;
-begin
-  if SimManager.C705Status.EnableWeapon = False then
-    Exit;
-
-  RecStatus.OWN_SHIP_UID := dbID_to_UniqueID(VOwnShip.ShipID);
-  RecStatus.WeaponID := VOwnShip.WeaponId;
-  RecStatus.ErrorID := __STAT_C705_OpenCoverLauncherC705;
-
-  if (Sender as TSpeedButton).Tag = 1 then
-    RecStatus.ParamError := 1
-  else
-    RecStatus.ParamError := 2;
-
-  SimManager.NFSNetRecv.sendDataEx(REC_STAT_ORDER_CONSOLE, @RecStatus);
-end;
-
-procedure TfrmWCC.btnImgPowerMissileClick(Sender: TObject);
-var
-  RecStatus : TRecStatus_Console;
-begin
-  RecStatus.OWN_SHIP_UID := dbID_to_UniqueID(VOwnShip.ShipID);
-  RecStatus.WeaponID := VOwnShip.WeaponId;
-  RecStatus.ErrorID := __STAT_C705_ENABLE;
-
-  if (Sender as TSpeedButton).Tag = 1 then
-    RecStatus.ParamError := 1
-  else
-    RecStatus.ParamError := 2;
-
-  SimManager.NFSNetRecv.sendDataEx(REC_STAT_ORDER_CONSOLE, @RecStatus);
-end;
-
-procedure TfrmWCC.Close1Click(Sender: TObject);
-begin
-  Application.Terminate;
-  //Close;
 end;
 
 procedure TfrmWCC.Keyboard1Click(Sender: TObject);
@@ -546,7 +696,7 @@ begin
   Top := Screen.Monitors[aMonitorIdx].WorkareaRect.Top + aTop;
 
   if VIdentSetting.ModeDebug then
-    ShowMessage(Format('WCC di Monitor %d Top=%d',[aMonitorIdx,Screen.Monitors[aMonitorIdx].Top]));
+    ShowMessage(Format('WCC di Monitor %d Top=%d', [aMonitorIdx, Screen.Monitors[aMonitorIdx].Top]));
 end;
 
 procedure TfrmWCC.SetTopMonitor(aMoniHeight: Integer);
@@ -566,4 +716,11 @@ begin
     ShowMessage('WCC form Top=' + IntToStr(frmWCC.Top));
 end;
 
+procedure TfrmWCC.Close1Click(Sender: TObject);
+begin
+  Application.Terminate;
+  //Close;
+end;
+
 end.
+

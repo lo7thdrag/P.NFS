@@ -1146,7 +1146,7 @@ object frmPnlArea3B: TfrmPnlArea3B
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
-      object lblAligmentStatus3B: TLabel
+      object lblAlignmentStatus3B: TLabel
         Left = 28
         Top = 13
         Width = 117
@@ -1158,6 +1158,7 @@ object frmPnlArea3B: TfrmPnlArea3B
         Font.Name = 'Verdana'
         Font.Style = []
         ParentFont = False
+        OnClick = lblAlignmentStatus3BClick
       end
     end
     object Panel14: TPanel
