@@ -3,8 +3,8 @@ object frmMain: TfrmMain
   Top = 0
   BorderStyle = bsNone
   Caption = 'System Server'
-  ClientHeight = 293
-  ClientWidth = 150
+  ClientHeight = 783
+  ClientWidth = 1052
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,253 +20,11 @@ object frmMain: TfrmMain
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object pnl2Log: TPanel
-    Left = 0
-    Top = 0
-    Width = 150
-    Height = 293
-    Align = alClient
-    Caption = 'SERVER NAFS'
-    Color = clBackground
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentBackground = False
-    ParentFont = False
-    TabOrder = 0
-    object pnlContent2D: TPanel
-      Left = 1
-      Top = 1
-      Width = 148
-      Height = 344
-      Align = alTop
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 0
-      object pnlServer2D: TPanel
-        Left = 1
-        Top = 1
-        Width = 146
-        Height = 41
-        Align = alTop
-        Color = 13666138
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentBackground = False
-        ParentFont = False
-        TabOrder = 0
-        DesignSize = (
-          146
-          41)
-        object Label1: TLabel
-          Left = 13
-          Top = 14
-          Width = 153
-          Height = 16
-          Caption = 'Listen Port Server For 2D :'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lbl2DServerPort: TLabel
-          Left = 176
-          Top = 14
-          Width = 28
-          Height = 16
-          Caption = '5001'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object btnBack: TButton
-          Left = 51
-          Top = 10
-          Width = 75
-          Height = 25
-          Anchors = [akTop, akRight]
-          Caption = 'Back'
-          TabOrder = 0
-          OnClick = btnBackClick
-          ExplicitLeft = 1243
-        end
-        object Panel1: TPanel
-          Left = -124
-          Top = 9
-          Width = 169
-          Height = 26
-          Anchors = [akTop, akRight]
-          ParentBackground = False
-          TabOrder = 1
-          ExplicitLeft = 1068
-          DesignSize = (
-            169
-            26)
-          object cbbShowLog: TCheckBox
-            Left = 3
-            Top = 4
-            Width = 97
-            Height = 17
-            Anchors = [akTop, akRight]
-            Caption = 'Show 3D Log'
-            TabOrder = 0
-            OnClick = cbbShowLogClick
-          end
-          object btnClearLog: TButton
-            Left = 85
-            Top = 1
-            Width = 75
-            Height = 25
-            Anchors = [akTop, akRight]
-            Caption = 'Clear Log'
-            TabOrder = 1
-            OnClick = btnClearLogClick
-            ExplicitLeft = 149
-          end
-        end
-      end
-      object pnlLogServer2D: TPanel
-        Left = 1
-        Top = 42
-        Width = 146
-        Height = 301
-        Align = alClient
-        TabOrder = 1
-        object Splitter3: TSplitter
-          Left = 209
-          Top = 1
-          Width = 4
-          Height = 299
-          ExplicitLeft = 217
-          ExplicitTop = 2
-        end
-        object mmoLogClient2D: TMemo
-          Left = 1
-          Top = 1
-          Width = 208
-          Height = 299
-          Align = alLeft
-          BorderStyle = bsNone
-          TabOrder = 0
-        end
-        object mmoLogClientData2D: TMemo
-          Left = 213
-          Top = 1
-          Width = 1124
-          Height = 299
-          Align = alClient
-          BorderStyle = bsNone
-          ScrollBars = ssBoth
-          TabOrder = 1
-          WordWrap = False
-          ExplicitWidth = 32
-        end
-      end
-    end
-    object pnlContent3D: TPanel
-      Left = 1
-      Top = 345
-      Width = 148
-      Height = 4
-      Align = alClient
-      TabOrder = 1
-      object pnlServer3D: TPanel
-        Left = 1
-        Top = 1
-        Width = 146
-        Height = 41
-        Align = alTop
-        Color = 13666138
-        ParentBackground = False
-        TabOrder = 0
-        object Label2: TLabel
-          Left = 13
-          Top = 14
-          Width = 153
-          Height = 16
-          Caption = 'Listen Port Server For 3D :'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lbl3DServerPort: TLabel
-          Left = 176
-          Top = 14
-          Width = 28
-          Height = 16
-          Caption = '5002'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-      end
-      object pnlLogServer3D: TPanel
-        Left = 1
-        Top = 42
-        Width = 146
-        Height = 17
-        Align = alClient
-        TabOrder = 1
-        object Splitter2: TSplitter
-          Left = 209
-          Top = 1
-          Width = 4
-          Height = 15
-          ExplicitHeight = 308
-        end
-        object mmoLog3D: TMemo
-          Left = 213
-          Top = 1
-          Width = 1124
-          Height = 15
-          Align = alClient
-          BevelInner = bvLowered
-          BevelOuter = bvNone
-          BorderStyle = bsNone
-          ReadOnly = True
-          ScrollBars = ssBoth
-          TabOrder = 0
-          WordWrap = False
-          ExplicitWidth = 32
-        end
-        object lbClients3D: TListBox
-          Left = 1
-          Top = 1
-          Width = 208
-          Height = 15
-          Align = alLeft
-          BorderStyle = bsNone
-          ItemHeight = 13
-          TabOrder = 1
-        end
-      end
-    end
-  end
   object pnl1Home: TAdvSmoothPanel
     Left = 0
     Top = 0
-    Width = 150
-    Height = 293
+    Width = 1052
+    Height = 783
     Cursor = crDefault
     Caption.Location = plTopCenter
     Caption.HatchStyle = HatchStyleDiagonalBrick
@@ -301,12 +59,14 @@ object frmMain: TfrmMain
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 150
+    ExplicitHeight = 293
     TMSStyle = 0
     object lbljudul: TLabel
       Left = 0
       Top = 0
-      Width = 150
-      Height = 261
+      Width = 1052
+      Height = 751
       Align = alClient
       Alignment = taCenter
       Caption = 'SERVER NAFS'
@@ -323,8 +83,8 @@ object frmMain: TfrmMain
     end
     object btn1: TButton
       Left = 0
-      Top = 261
-      Width = 150
+      Top = 751
+      Width = 1052
       Height = 32
       Align = alBottom
       Caption = 'Show Log'
@@ -336,6 +96,281 @@ object frmMain: TfrmMain
       ParentFont = False
       TabOrder = 0
       OnClick = btn1Click
+      ExplicitTop = 261
+      ExplicitWidth = 150
+    end
+  end
+  object pnl2Log: TPanel
+    Left = 0
+    Top = 0
+    Width = 1052
+    Height = 783
+    Align = alClient
+    Caption = 'SERVER NAFS'
+    Color = clBackground
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    ExplicitWidth = 150
+    ExplicitHeight = 293
+    object pnlContent2D: TPanel
+      Left = 1
+      Top = 1
+      Width = 1050
+      Height = 344
+      Align = alTop
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      ExplicitWidth = 148
+      object pnlServer2D: TPanel
+        Left = 1
+        Top = 1
+        Width = 1048
+        Height = 41
+        Align = alTop
+        Color = 13666138
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        ExplicitWidth = 146
+        DesignSize = (
+          1048
+          41)
+        object Label1: TLabel
+          Left = 13
+          Top = 14
+          Width = 153
+          Height = 16
+          Caption = 'Listen Port Server For 2D :'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lbl2DServerPort: TLabel
+          Left = 176
+          Top = 14
+          Width = 28
+          Height = 16
+          Caption = '5001'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object btnBack: TButton
+          Left = 953
+          Top = 10
+          Width = 75
+          Height = 25
+          Anchors = [akTop, akRight]
+          Caption = 'Back'
+          TabOrder = 0
+          OnClick = btnBackClick
+          ExplicitLeft = 51
+        end
+        object Panel1: TPanel
+          Left = 696
+          Top = 9
+          Width = 251
+          Height = 26
+          Anchors = [akTop, akRight]
+          ParentBackground = False
+          TabOrder = 1
+          DesignSize = (
+            251
+            26)
+          object cbbShowLog: TCheckBox
+            Left = 91
+            Top = 4
+            Width = 97
+            Height = 17
+            Anchors = [akTop, akRight]
+            Caption = 'Show 3D Log'
+            TabOrder = 0
+            OnClick = cbbShowLogClick
+          end
+          object btnClearLog: TButton
+            Left = 173
+            Top = 1
+            Width = 75
+            Height = 25
+            Anchors = [akTop, akRight]
+            Caption = 'Clear Log'
+            TabOrder = 1
+            OnClick = btnClearLogClick
+          end
+          object cbbShowListObj: TCheckBox
+            Left = 5
+            Top = 4
+            Width = 84
+            Height = 17
+            Anchors = [akTop, akRight]
+            Caption = 'Show List Obj'
+            TabOrder = 2
+            OnClick = cbbShowListObjClick
+          end
+        end
+      end
+      object pnlLogServer2D: TPanel
+        Left = 1
+        Top = 42
+        Width = 1048
+        Height = 301
+        Align = alClient
+        TabOrder = 1
+        ExplicitWidth = 146
+        object Splitter3: TSplitter
+          Left = 209
+          Top = 1
+          Width = 4
+          Height = 299
+          ExplicitLeft = 217
+          ExplicitTop = 2
+        end
+        object mmoLogClient2D: TMemo
+          Left = 1
+          Top = 1
+          Width = 208
+          Height = 299
+          Align = alLeft
+          BorderStyle = bsNone
+          TabOrder = 0
+        end
+        object mmoLogClientData2D: TMemo
+          Left = 213
+          Top = 1
+          Width = 675
+          Height = 299
+          Align = alClient
+          BorderStyle = bsNone
+          ScrollBars = ssBoth
+          TabOrder = 1
+          WordWrap = False
+          ExplicitWidth = 436
+        end
+        object mmoListObj: TMemo
+          Left = 888
+          Top = 1
+          Width = 159
+          Height = 299
+          Align = alRight
+          BorderStyle = bsNone
+          ScrollBars = ssBoth
+          TabOrder = 2
+          Visible = False
+        end
+      end
+    end
+    object pnlContent3D: TPanel
+      Left = 1
+      Top = 345
+      Width = 1050
+      Height = 437
+      Align = alClient
+      TabOrder = 1
+      ExplicitWidth = 148
+      ExplicitHeight = 4
+      object pnlServer3D: TPanel
+        Left = 1
+        Top = 1
+        Width = 1048
+        Height = 41
+        Align = alTop
+        Color = 13666138
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitWidth = 146
+        object Label2: TLabel
+          Left = 13
+          Top = 14
+          Width = 153
+          Height = 16
+          Caption = 'Listen Port Server For 3D :'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lbl3DServerPort: TLabel
+          Left = 176
+          Top = 14
+          Width = 28
+          Height = 16
+          Caption = '5002'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
+      object pnlLogServer3D: TPanel
+        Left = 1
+        Top = 42
+        Width = 1048
+        Height = 394
+        Align = alClient
+        TabOrder = 1
+        ExplicitWidth = 146
+        ExplicitHeight = 17
+        object Splitter2: TSplitter
+          Left = 209
+          Top = 1
+          Width = 4
+          Height = 392
+          ExplicitHeight = 308
+        end
+        object mmoLog3D: TMemo
+          Left = 213
+          Top = 1
+          Width = 834
+          Height = 392
+          Align = alClient
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          BorderStyle = bsNone
+          ReadOnly = True
+          ScrollBars = ssBoth
+          TabOrder = 0
+          WordWrap = False
+          ExplicitWidth = 1124
+          ExplicitHeight = 15
+        end
+        object lbClients3D: TListBox
+          Left = 1
+          Top = 1
+          Width = 208
+          Height = 392
+          Align = alLeft
+          BorderStyle = bsNone
+          ItemHeight = 13
+          TabOrder = 1
+          ExplicitHeight = 15
+        end
+      end
     end
   end
   object tmrShutdownServer: TTimer

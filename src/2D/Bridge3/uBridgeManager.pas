@@ -32,6 +32,8 @@ type
     bridgeSet: TRecBridgeSet;
     bridgeSetPath: string;
 
+    FIsLoadScenario: Boolean;
+
     // For Connect to Server 3D
     // Use Timer For always check Server Because There is no Form
     FTimerConnect: TTimer;
@@ -152,6 +154,8 @@ begin
   // Save CurrentLastScenarioID and Status Game
   LastScenarioID := 0;
   GameStatus := 0;
+
+  FIsLoadScenario:= False;
 end;
 
 destructor TBridgeManager.Destroy;
@@ -1040,11 +1044,15 @@ begin
       GameStatus:= 1;
       FPacketBuff.Clear;
       LastScenarioID := RecStatusGame.ScenarioID;
+
+      FIsLoadScenario:= True;
     end
     else if RecStatusGame.StatusConnect = 2 then begin
       GameStatus:= 0;
       FPacketBuff.Clear;
       LastScenarioID := RecStatusGame.ScenarioID;
+
+      FIsLoadScenario:= False;
     end;
     // else
     // FPacketBuff.PutPacket(apRec, aSize);
@@ -1455,6 +1463,8 @@ begin
 //  if Assigned(OnLogClient3D) then
 //    OnLogClient3D('Receive Ship Position ' + 'X:' + FloatToStr(aRec^.x) + '--' +
 //      'Y:' + FloatToStr(aRec^.y) + '--' + 'Z:' + FloatToStr(aRec^.z));
+
+  if FIsLoadScenario = False then Exit;
 
   if IsNan(aRec^.x) or IsNan(aRec^.y) or IsNan(aRec^.z) or IsNan(aRec^.Heading)
     or IsNan(aRec^.Speed) or IsNan(aRec^.pitch) or IsNan(aRec^.roll) or

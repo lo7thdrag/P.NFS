@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
 
-  uServerManager, AdvSmoothPanel;
+  uServerManager, AdvSmoothPanel, uStateObject;
 
 type
   TfrmMain = class(TForm)
@@ -36,6 +36,8 @@ type
     btnClearLog: TButton;
     Panel1: TPanel;
     cbbShowLog: TCheckBox;
+    mmoListObj: TMemo;
+    cbbShowListObj: TCheckBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -46,11 +48,13 @@ type
     procedure btn1Click(Sender: TObject);
     procedure cbbShowLogClick(Sender: TObject);
     procedure btnClearLogClick(Sender: TObject);
+    procedure cbbShowListObjClick(Sender: TObject);
   private
     { Private declarations }
     isClose: Boolean;
     ServerManager: TServerManager;
 
+    procedure ShowHomePanel;
   public
     { Public declarations }
 
@@ -111,6 +115,42 @@ end;
 procedure TfrmMain.btnClearLogClick(Sender: TObject);
 begin
   mmoLog3D.Clear;
+end;
+
+procedure TfrmMain.cbbShowListObjClick(Sender: TObject);
+var
+  i: Integer;
+  Obj: TObject;
+  Ship: TShipObject;
+begin
+  if cbbShowListObj.Checked then
+  begin
+    mmoListObj.Visible := True;
+    mmoListObj.Clear;
+
+    mmoListObj.Lines.Add(
+          Format('Total Count Object=%d',
+          [ServerManager.StateManager.Count]));
+
+    for i := 0 to ServerManager.StateManager.Count - 1 do
+    begin
+      Obj := ServerManager.StateManager.Items[i];
+
+      if Obj is TShipObject then
+      begin
+        Ship := TShipObject(Obj);
+
+        mmoListObj.Lines.Add(
+          Format('ShipID=%d - %s',
+          [Ship.IDShip, Ship.ClassName]));
+      end;
+    end;
+  end
+  else
+  begin
+    mmoListObj.Visible := False;
+  end;
+
 end;
 
 procedure TfrmMain.cbbShowLogClick(Sender: TObject);
@@ -220,6 +260,8 @@ begin
     Left  := 991;
   end;
 
+  ShowHomePanel;
+
 end;
 
 procedure TfrmMain.OnClientStatus3D(const s: string);
@@ -251,6 +293,35 @@ begin
     mmoLog3D.Lines.Add(s);
   finally
     mmoLog3D.Lines.EndUpdate;
+  end;
+end;
+
+procedure TfrmMain.ShowHomePanel;
+var
+  mProject : string;
+
+begin
+  Height := 293;
+  Width := 150;
+  pnl1Home.BringToFront;
+  BorderStyle := bsNone;
+
+  mProject := ServerManager.PubBridgeSet.mSystemServer.Project;
+
+  if mProject = 'NAFS' then
+  begin
+    Top   := 10;
+    Left  := 991;
+  end
+  else if mProject = 'NSFS' then
+  begin
+    Top   := 313;
+    Left  := 991;
+  end
+  else
+  begin
+    Top   := 616;
+    Left  := 991;
   end;
 end;
 

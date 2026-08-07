@@ -41,6 +41,7 @@ type
     TimerGetPacket: TTimer;
 
     FLastScenarioActive: Integer;
+    FIsLoadScenario: Boolean;
 
     procedure OnTimerGetPacketRun(sender: TObject);
 
@@ -126,6 +127,7 @@ type
       write FOnLogListenPort3D;
     property PubBridgeSet: TRecBridgeSet read bridgeSet
       write bridgeSet;
+    property StateManager: TStateManager read FStateManager;
   end;
 
 implementation
@@ -159,6 +161,8 @@ begin
   TimerGetPacket.Enabled := False;
   TimerGetPacket.Interval := 16;
   TimerGetPacket.OnTimer := OnTimerGetPacketRun;
+
+  FIsLoadScenario := False;
 
   FTimerBroadcast := TTimer.Create(nil);
   FTimerBroadcast.Enabled := True;
@@ -334,6 +338,9 @@ begin
 //     apRec.pitch := incoming_data.pitch;
 //     apRec.roll := incoming_data.roll;
 //     apRec.rudder := incoming_data.rudder;
+
+    if FIsLoadScenario = False then
+      Exit;
 
     o := FindObjectByShipID(incoming_data.ShipID);
     if Assigned(o) then
@@ -570,6 +577,7 @@ begin
   recScenarioStat.StatusSce := 2;
   TcpServer3D.SendData(REC_SCESTAT, recScenarioStat);
 
+  FIsLoadScenario := True;
 end;
 
 procedure TServerManager.StopScenario;
@@ -579,6 +587,8 @@ begin
   FStateManager.ClearAll;
   recScenarioStat.StatusSce := 3;
   TcpServer3D.SendData(REC_SCESTAT, recScenarioStat);
+
+  FIsLoadScenario := False;
 end;
 
 procedure TServerManager.ListenServer3D(Address, Port: string);
@@ -758,7 +768,6 @@ begin
   FServer2D.RegisterProcedure(REC_CMD_TYPE730, Server2DReceive_Server3DSend, sizeof(TrecData_MeriamFCC));
   FServer2D.RegisterProcedure(REC_CMD_AK230, Server2DReceive_Server3DSend, sizeof(TrecData_MeriamFCC));
 
-
 end;
 
 procedure TServerManager.Prepare_As_Server3D;
@@ -805,7 +814,8 @@ begin
   TcpServer3D.RegisterProcedure(REC_3D_UTIL_TOOLS, ServerRecv_3D_Server2DSend);
   TcpServer3D.RegisterProcedure(REC_STATUS_MESSAGE, ServerRecv_3D_Server2DSend);
   TcpServer3D.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET_3D, nil);
-  TcpServer3D.RegisterProcedure(REC_ENVI_3D, nil);
+  //TcpServer3D.RegisterProcedure(REC_ENVI_3D, nil);
+  TcpServer3D.RegisterProcedure(REC_ENVI_3D, ServerRecv_3D_Server2DSend);
 
   // For Cannon FCC Set
   TcpServer3D.RegisterProcedure(REC_CMD_FCC573D, ServerRecv_3D_Server2DSend);
@@ -899,6 +909,7 @@ var
 
   RecCmdSetEnvi: ^TRecDataEnvironment;
   RecCmdSetEnvi3D: TRecDataEnvironment3D;
+  RecCmdSetEnvi2D: TRecDataEnvironment;
 
   RecDataFireC705: ^TRec_Data_C705;
   RecDataFireC7053D: TRecData_C7053D;
@@ -1136,6 +1147,8 @@ begin
         TcpServer3D.SendData(REC_3D_EXOCET, recSendExocet);
         {$ENDREGION}
       end;
+
+      {$REGION '//commented REC_3D_ASROCK'}
     {
       REC_3D_ASROCK:
       begin
@@ -1158,7 +1171,9 @@ begin
 
       TcpServer3D.SendData(REC_3D_ASROCK, recSendASROC);
       end;
-    }
+      }
+    {$ENDREGION}
+
     C_REC_CANNON:
       begin
         {$REGION 'C_REC_CANNON'}
@@ -1198,6 +1213,8 @@ begin
         TcpServer3D.SendData(C_REC_CANNON, RecSendMeriamTo3D);
         {$ENDREGION}
       end;
+
+    {$REGION '//commented REC_3D_WCC'}
     {
       REC_3D_WCC:
       begin
@@ -1237,6 +1254,8 @@ begin
       TcpServer3D.SendData(REC_3D_WCC, RecSendMeriamTo3D);
       end;
     }
+    {$ENDREGION}
+
     REC_DATA_Yakhont:
       begin
         {$REGION 'REC_DATA_Yakhont'}
@@ -1697,7 +1716,7 @@ begin
       end;
     REC_GUIDANCE:
       begin
-        {$REGION 'REC_GUIDANCE'}     
+        {$REGION 'REC_GUIDANCE'}
         recGuidance := @apRec^;
         recSendGuidance.ShipID := recGuidance^.ShipID;
         recSendGuidance.GuidanceID := recGuidance^.GuidanceID;
@@ -1833,6 +1852,8 @@ begin
         end;
         {$ENDREGION}
       end;
+
+    {$REGION '//commented REC_CMD_SET_CAMERA_TARGET'}
 //    REC_CMD_SET_CAMERA_TARGET:
 //      begin
 //        RecCmdSetCameraTarget := @apRec^;
@@ -1845,6 +1866,8 @@ begin
 //
 //        TcpServer3D.SendData(REC_CMD_SET_CAMERA_TARGET_3D, RecCmdSetCameraTarget3D);
 //      end;
+    {$ENDREGION}
+
     Rec_CMD_CAMERA_CONTROLLER:
       begin
         {$REGION 'Rec_CMD_CAMERA_CONTROLLER'}
@@ -1892,7 +1915,18 @@ begin
         RecCmdSetEnvi3D.surfacePressure := RecCmdSetEnvi^.surfacePressure;
         RecCmdSetEnvi3D.fogIntensity := RecCmdSetEnvi^.fogIntensity;
 
+        RecCmdSetEnvi2D.seaState := RecCmdSetEnvi^.seaState;
+        RecCmdSetEnvi2D.windVelocity := RecCmdSetEnvi^.windVelocity;
+        RecCmdSetEnvi2D.windHeading := RecCmdSetEnvi^.windHeading;
+        RecCmdSetEnvi2D.seaCurrentVelocity := RecCmdSetEnvi^.seaCurrentVelocity;
+        RecCmdSetEnvi2D.seaCurrentHeading := RecCmdSetEnvi^.seaCurrentHeading;
+        RecCmdSetEnvi2D.temperature := RecCmdSetEnvi^.temperature;
+        RecCmdSetEnvi2D.humidity := RecCmdSetEnvi^.humidity;
+        RecCmdSetEnvi2D.surfacePressure := RecCmdSetEnvi^.surfacePressure;
+        RecCmdSetEnvi2D.fogIntensity := RecCmdSetEnvi^.fogIntensity;
+
         TcpServer3D.SendData(REC_ENVI_3D, RecCmdSetEnvi3D);
+        FServer2D.SendDataEx(REC_ENVI_3D, @RecCmdSetEnvi2D, nil);
         {$ENDREGION}
       end;
 
@@ -2036,7 +2070,7 @@ begin
 
     REC_CMD_57DIG:
     begin
-      {$REGION 'REC_CMD_FCC57'}
+      {$REGION 'REC_CMD_57DIG'}
       RecDataFccSet := @apRec^;
 
       if Assigned(OnLogReceived2D) then
@@ -2213,6 +2247,7 @@ begin
       {$ENDREGION}
     end;
 
+    {$REGION '//commented REC_CMD_MISTRAL'}
     { REC_CMD_MISTRAL:
       begin
       RecMistral := @apRec^;
@@ -2233,6 +2268,9 @@ begin
       TcpServer3D.SendData(REC_CMD_MISTRAL, RecSendMistral);
       end;
     }
+    {$ENDREGION}
+
+    {$REGION '//commented REC_CMD_STRELLA'}
     { REC_CMD_STRELLA:
       begin
       RecStrella := @apRec^;
@@ -2253,6 +2291,7 @@ begin
       TcpServer3D.SendData(REC_CMD_STRELLA, recSendStrella);
       end;
     }
+    {$ENDREGION}
   end;
 
   if pc.ID = REC_STAT_CANNON_SPLASH then
@@ -2679,6 +2718,9 @@ var
   incoming_data_fcc: TrecData_MeriamFCC3D;
   apRec_fcc: TrecData_MeriamFCC;
 
+  incoming_data_envi: TRecDataEnvironment3D;
+  apRec_envi: TRecDataEnvironment;
+
 begin
   if Length(AContent) > 0 then
   begin
@@ -2825,7 +2867,25 @@ begin
       FServer2D.SendDataEx(C_REC_CANNON, @apRec_cannon, nil);
 
       TcpServer3D.SendData(REC_SET_CANNON, incoming_data_cannon);
-    end;
+    end
+
+    else if AHeader.PacketID=REC_ENVI_3D then
+    begin
+
+      TgoBsonSerializer.Deserialize<TRecDataEnvironment3D>(AContent, incoming_data_envi);
+
+      apRec_envi.seaState := incoming_data_envi.seaState;
+      apRec_envi.windVelocity := incoming_data_envi.windVelocity;
+      apRec_envi.windHeading := incoming_data_envi.windHeading;
+      apRec_envi.seaCurrentVelocity := incoming_data_envi.seaCurrentVelocity;
+      apRec_envi.seaCurrentHeading := incoming_data_envi.seaCurrentHeading;
+      apRec_envi.temperature := incoming_data_envi.temperature;
+      apRec_envi.humidity := incoming_data_envi.humidity;
+      apRec_envi.surfacePressure := incoming_data_envi.surfacePressure;
+      apRec_envi.fogIntensity := incoming_data_envi.fogIntensity;
+
+      FServer2D.SendDataEx(REC_ENVI, @apRec, nil);
+    end
   end;
 end;
 
