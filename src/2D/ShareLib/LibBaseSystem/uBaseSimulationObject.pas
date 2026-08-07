@@ -67,11 +67,50 @@ type
 
   end;
 
+  TSimulationContainerNoLock = class(TObject)
+  private
+    FIsLoadScenario : Boolean;
+    function getItemCount: integer;
+
+  protected
+    FListItem: TList;
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+
+    procedure AddObject(aObj: TObject); virtual;
+
+    { remove from list and destroy the object }
+    procedure RemoveObject(aObj: TObject); virtual;
+    procedure RemoveObjectIndex(const Index: integer); virtual;
+    procedure ClearObject(); virtual;
+
+    procedure MarkMember_NeedFree(); virtual; abstract;
+    procedure CleanUpObject(); virtual; abstract;
+    // delete marked 'unused' object;
+
+    { do not remove from list and return it }
+    function getObject(const Index: integer): TObject;
+
+    { remove from list and return it }
+    function popObject(const Index: integer): TObject;
+
+    procedure ReturnList;
+    function GetList: TList;
+
+  public
+    property ItemCount: integer read getItemCount;
+    property IsLoadScenario: Boolean read FIsLoadScenario write FIsLoadScenario;
+
+  end;
+
   TSimulationClass = class;
 
   // == TViewContainer ==========================================================
   //
-  TViewContainer = class(TSimulationContainer)
+  //TViewContainer = class(TSimulationContainer)
+  TViewContainer = class(TSimulationContainerNoLock)
   public
 
     constructor Create;
@@ -88,8 +127,8 @@ type
 
   // == TObjectContainer =======================================================
   //
-  TObjectContainer = class(TSimulationContainer)
-
+  //TObjectContainer = class(TSimulationContainer)
+  TObjectContainer = class(TSimulationContainerNoLock)
   public
     constructor Create;
     destructor Destroy; override;
@@ -350,7 +389,7 @@ var
   i: integer;
   View: TSimulationView;
 begin
-
+  {
   with FListItem.LockList do
     try
       for i := 0 to Count - 1 do
@@ -363,6 +402,17 @@ begin
     finally
       FListItem.UnlockList;
     end;
+    }
+  with FListItem do
+  begin
+    for i := 0 to Count - 1 do
+    begin
+      if Assigned(Items[i]) then begin
+        View := TSimulationView(Items[i]);
+        View.ConvertDataPosition();
+      end;
+    end;
+  end;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -371,7 +421,7 @@ var
   i: integer;
   View: TSimulationView;
 begin
-
+  {
   with FListItem.LockList do
     try
       if Count > 0 then
@@ -386,6 +436,19 @@ begin
     finally
       FListItem.UnlockList;
     end;
+    }
+  with FListItem do
+  begin
+    if Count > 0 then
+      for i := 0 to Count - 1 do
+      begin
+        if Assigned(Items[i]) then begin
+          View := TSimulationView(Items[i]);
+          if View.Visible then
+            View.DrawView(aCnv);
+        end;
+      end;
+  end;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -395,6 +458,7 @@ var
   i: integer;
   View: TSimulationView;
 begin
+  {
   with FListItem.LockList do
     try
       for i := Count - 1 downto 0 do
@@ -407,6 +471,18 @@ begin
     finally
       FListItem.UnlockList;
     end;
+    }
+
+  with FListItem do
+  begin
+    for i := Count - 1 downto 0 do
+    begin
+      if Assigned(Items[i]) then begin
+        View := TSimulationView(Items[i]);
+        View.MarkAs_NeedToBeFree;
+      end;
+    end
+  end;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -416,6 +492,7 @@ var
   i: integer;
   View: TSimulationView;
 begin
+  {
   with FListItem.LockList do
     try
       for i := Count - 1 downto 0 do
@@ -433,6 +510,22 @@ begin
     finally
       FListItem.UnlockList;
     end;
+    }
+
+  with FListItem do begin
+    for i := Count - 1 downto 0 do
+    begin
+      if Assigned(Items[i]) then begin
+        View := TSimulationView(Items[i]);
+        if View.FNeedToBeFree then
+        begin
+          View.Free;
+          Delete(i);
+        end;
+      end;
+    end;
+    Pack;
+  end;
 end;
 
 procedure TViewContainer.ClearObjectByParent(aParent: TSimulationClass);
@@ -440,6 +533,7 @@ var
   i: integer;
   View: TSimulationView;
 begin
+  {
   with FListItem.LockList do
     try
       for i := Count - 1 downto 0 do
@@ -456,6 +550,22 @@ begin
     finally
       FListItem.UnlockList;
     end;
+    }
+
+  with FListItem do
+  begin
+    for i := Count - 1 downto 0 do
+    begin
+      if Assigned(Items[i]) then begin
+        View := TSimulationView(Items[i]);
+        if View.FParent = aParent then
+        begin
+          View.Free;
+          Delete(i);
+        end;
+      end;
+    end
+  end;
 end;
 
 
@@ -481,6 +591,7 @@ var
   i: integer;
   obj: TSimulationClass;
 begin
+  {
   with FListItem.LockList do
     try
       for i := 0 to Count - 1 do
@@ -494,6 +605,18 @@ begin
     finally
       FListItem.UnlockList;
     end;
+    }
+  with FListItem do
+  begin
+    for i := 0 to Count - 1 do
+    begin
+      if Assigned(Items[i]) then begin
+        obj := TSimulationClass(Items[i]);
+        if obj.Enabled then
+          obj.Run(aDeltaMs);
+      end;
+    end
+  end;
 
 end;
 
@@ -503,6 +626,7 @@ var
   i: integer;
   obj: TSimulationClass;
 begin
+  {
   with FListItem.LockList do
     try
       for i := 0 to Count - 1 do
@@ -516,7 +640,19 @@ begin
     finally
       FListItem.UnlockList;
     end;
+   }
 
+  with FListItem do
+  begin
+    for i := 0 to Count - 1 do
+    begin
+      if Assigned(Items[i]) then begin
+        obj := TSimulationClass(Items[i]);
+        if obj.Enabled then
+          obj.Update
+      end;
+    end
+  end;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -525,6 +661,7 @@ var
   i: integer;
   obj: TSimulationClass;
 begin
+  {
   with FListItem.LockList do
     try
       for i := Count - 1 downto 0 do
@@ -537,6 +674,18 @@ begin
     finally
       FListItem.UnlockList;
     end;
+    }
+
+  with FListItem do
+  begin
+    for i := Count - 1 downto 0 do
+    begin
+      if Assigned(Items[i]) then begin
+        obj := TSimulationClass(Items[i]);
+        obj.MarkAs_NeedToBeFree;
+      end;
+    end
+  end;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -568,8 +717,9 @@ procedure TObjectContainer.CleanUpObject;
 var
   i: integer;
   obj: TSimulationClass;
-  NewList: TThreadList;
+  NewList: TList;
 begin
+  {
   NewList := TThreadList.Create;
   with FListItem.LockList do
     try
@@ -595,6 +745,29 @@ begin
     end;
 
   FListItem := NewList;
+  }
+  NewList := TList.Create;
+  with FListItem do
+  begin
+    for i := 0 to Count - 1 do
+    begin
+      if Assigned(Items[i]) then begin
+        obj := TSimulationClass(Items[i]);
+        if obj.FNeedToBeFree then
+        begin
+          obj.DeleteAllChildren;
+          obj.Free;
+        end
+        else
+        begin
+          NewList.Add(obj);
+        end
+      end;
+    end;
+    Clear;
+  end;
+
+  FListItem := NewList;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -606,6 +779,7 @@ var
 begin
   result := nil;
   obj := nil;
+  {
   with FListItem.LockList do
     try
       i := 0;
@@ -624,6 +798,24 @@ begin
 
   if found then
     result := obj;
+    }
+
+  with FListItem do
+  begin
+    i := 0;
+    found := false;
+    while not found and (i < Count) do
+    begin
+      if Assigned(Items[i]) then begin
+        obj := TSimulationClass(Items[i]);
+        found := aUid = obj.FUniqueID;
+      end;
+      inc(i);
+    end;
+  end;
+
+  if found then
+    result := obj;
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -637,6 +829,7 @@ begin
   else
     ss := TStringList.Create;
 
+  {
   with FListItem.LockList do
     try
       for i := 0 to Count - 1 do
@@ -649,6 +842,18 @@ begin
     finally
       FListItem.UnlockList;
     end;
+   }
+
+  with FListItem do
+  begin
+    for i := 0 to Count - 1 do
+    begin
+      if Assigned(Items[i]) then begin
+        obj := TSimulationClass(Items[i]);
+        ss.Add(obj.UniqueID);
+      end;
+    end;
+  end;
 
   TStringList(ss).Sort;
 
@@ -793,6 +998,120 @@ begin
   end;
 
   aObjList.ReturnList;
+end;
+
+{ TSimulationContainerNoLock }
+
+constructor TSimulationContainerNoLock.Create;
+begin
+  FListItem := TList.Create;
+end;
+
+destructor TSimulationContainerNoLock.Destroy;
+begin
+  ClearObject;
+  FListItem.Free;
+  FListItem := nil;
+
+  inherited;
+end;
+
+procedure TSimulationContainerNoLock.AddObject(aObj: TObject);
+var
+  AList: TList;
+begin
+  AList:= FListItem;
+  AList.Add(aObj);
+end;
+
+procedure TSimulationContainerNoLock.ClearObject;
+var
+  AList: TList;
+  i: integer;
+  obj: TObject;
+begin
+  AList := FListItem;
+  for i := 0 to AList.Count - 1 do
+  begin
+    if Assigned(AList.Items[i]) then begin
+      obj := TObject(AList.Items[i]);
+      if Assigned(obj) then
+      try
+        obj.Free;
+      except
+      end;
+      AList.Items[i]:= nil;
+    end;
+  end;
+  AList.Clear;
+end;
+
+function TSimulationContainerNoLock.getItemCount: integer;
+begin
+  result := FListItem.Count;
+end;
+
+function TSimulationContainerNoLock.GetList: TList;
+begin
+  result := FListItem;
+end;
+
+function TSimulationContainerNoLock.getObject(const Index: integer): TObject;
+begin
+  result := nil;
+  with FListItem do
+  begin
+    if (Index >= 0) and (Index < Count) then
+    begin
+      result := Items[Index];
+    end;
+  end;
+end;
+
+function TSimulationContainerNoLock.popObject(const Index: integer): TObject;
+begin
+  result := nil;
+  with FListItem do
+  begin
+    if (Index >= 0) and (Index < Count) then
+    begin
+      result := Items[Index];
+      Delete(Index);
+    end;
+  end;
+end;
+
+procedure TSimulationContainerNoLock.RemoveObject(aObj: TObject);
+var
+  AList: TList;
+begin
+  AList:= FListItem;
+  begin
+    if (AList.Remove(aObj)>0) and Assigned(aObj) then
+      aObj.Free;
+  end;
+end;
+
+procedure TSimulationContainerNoLock.RemoveObjectIndex(const Index: integer);
+var
+  obj: TObject;
+begin
+  with FListItem do
+  begin
+    if (Index >= 0) and (Index < Count) then
+    begin
+      if Assigned(Items[Index]) then begin
+        obj := Items[Index];
+        Delete(Index);
+        obj.Free;
+      end;
+    end;
+  end;
+end;
+
+procedure TSimulationContainerNoLock.ReturnList;
+begin
+  //FListItem.UnlockList;
 end;
 
 end.

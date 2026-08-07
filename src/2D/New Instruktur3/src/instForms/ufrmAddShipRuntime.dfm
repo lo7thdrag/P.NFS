@@ -76,6 +76,7 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       Align = alClient
       ActivePage = tsShipKRI
       Color = 7301478
+      TabPosition = tpTopLeft
       TabSettings.LeftMargin = 0
       TabSettings.RightMargin = 0
       TabSettings.StartMargin = 10
@@ -536,6 +537,7 @@ object frmAddShipRuntime: TfrmAddShipRuntime
         PageAppearance.ShadowColor = 3355443
         PageAppearance.ShadowOffset = 0
         PageAppearance.Glow = gmNone
+        TabVisible = False
         TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
         TabAppearance.Appearance.Font.Color = clWhite
         TabAppearance.Appearance.Font.Height = -13

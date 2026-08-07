@@ -109,6 +109,8 @@ begin
   SimManager.Minimap1 := frmGameController.MiniMap1;
   SimManager.initializeSimulation;
 
+  SimManager.MainObjList.IsLoadScenario := False;
+
   { Ruler Distance }
   frmDistance.Map     := frmMainInstruktur.MainMap;
 

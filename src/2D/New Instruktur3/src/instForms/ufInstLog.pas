@@ -10,6 +10,7 @@ type
   TfrmMainLog = class(TForm)
     mmoLog: TMemo;
     mmoConnection: TMemo;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -22,5 +23,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmMainLog.FormShow(Sender: TObject);
+begin
+  Self.Caption := 'Instruktur Network Log (v1.2 20260803 LOC SBY)';
+end;
 
 end.

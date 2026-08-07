@@ -2592,9 +2592,11 @@ begin
 
           Range :=  CalcRange(ShipObject.PositionX, ShipObject.PositionY, SimManager.selectedObject.PositionX, SimManager.selectedObject.PositionY );
           rangeM := Range * C_NauticalMiles_TO_Meter;
-          ComputeBallisticAngleVacuum(rangem, SimManager.selectedObject.PositionZ, 350, aLow, aHigh);
 
-          frmGameController.edtCannonCorrElev.Text := FormatFloat('0.00',(aLow));
+          //ComputeBallisticAngleVacuum(rangem, SimManager.selectedObject.PositionZ, 350, aLow, aHigh);
+          //CalcTurretElevation(rangeM, frmGameController.MaxCannonRange);
+
+          frmGameController.edtCannonCorrElev.Text := FormatFloat('0.00',(CalcTurretElevation(rangeM, frmGameController.MaxCannonRange)));
 //          frmGameController.edtCannonCorrElev23.Text :=
 //          Format('%.2f',[CalcElevation(Rangem, 0, SimManager.selectedObject.PositionZ)]);
 

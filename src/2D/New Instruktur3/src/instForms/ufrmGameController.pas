@@ -1318,7 +1318,8 @@ type
     procedure lvShipListSelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);
     procedure eRBU6000BearingKeyPress(Sender: TObject; var Key: Char);
-    procedure mmoReportClick(Sender: TObject);
+    procedure mmoReportMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
     ObserverID: integer;
@@ -1360,6 +1361,8 @@ type
     StateRange : Boolean;
     ServerState: Byte; {1: connected; 0: else}
     GameType: Integer; {0:NAFS; 1:NSFS; 2:NSSFS}
+
+    MaxCannonRange: Double;
 
     { Public declarations }
     procedure SetFormLayout;
@@ -3725,6 +3728,7 @@ begin
     ClearListViewData(lvRuntimeMissileTrajectory);
     ClearListViewData(lvRuntimeShip);
 
+    SimManager.MainObjList.IsLoadScenario := False;
     SimManager.MainObjList.ClearObject;
   end;
 end;
@@ -5384,6 +5388,10 @@ begin
     {Ngeprint ke list view}
     with lvShipList.Items.Add do
     begin
+      { Class GENERAL SHIP tidak perlu dimasukkan ke List View }
+      if DataModule1.IDclassbyName(Ship.Vehicle_ID) = 'GENERAL SHIP' then
+        Exit;
+
       Caption := IntToStr(Ship.Vehicle_ID);
       SubItems.Add(Ship.Vehicle_Name);
 
@@ -5934,6 +5942,7 @@ begin
             begin
               AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON57, Weapon.launcherID, 0, True);
             end;
+            MaxCannonRange := 12900; //meter
           end
           else if (ClientConsole.WeaponID = C_DBID_CANNON_AK230) then
           begin
@@ -5945,6 +5954,7 @@ begin
             begin
               AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_AK230, Weapon.launcherID, 0, True);
             end;
+            MaxCannonRange := 3000; //meter
           end
           else if (ClientConsole.WeaponID = C_DBID_CANNON_TYPE_730) then
           begin
@@ -5956,6 +5966,7 @@ begin
             begin
               AssignStatus(Vehicle.Vehicle_ID, C_DBID_CANNON_TYPE_730, Weapon.launcherID, 0, True);
             end;
+            MaxCannonRange := 3000; //meter
           end
           else if (ClientConsole.WeaponID = C_DBID_CANNON57_DIGITAL) then
           begin
@@ -6024,7 +6035,16 @@ begin
             begin
               AssignStatus(Vehicle.Vehicle_ID, C_DBID_STRELA, Weapon.launcherID, 0, True);
             end;
+          end
+          else if (ClientConsole.WeaponID = C_DBID_CANNON76) then
+          begin
+            MaxCannonRange := 16000; // meter
+          end
+          else if (ClientConsole.WeaponID = C_DBID_CANNON35) then
+          begin
+            MaxCannonRange := 5000; // meter
           end;
+
         end;
       end;
 
@@ -7595,9 +7615,13 @@ begin
   tempString2.Free;
 end;
 
-procedure TfrmGameController.mmoReportClick(Sender: TObject);
+procedure TfrmGameController.mmoReportMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  frmMainLog.Show;
+  if (ssShift in Shift) then
+  begin
+    frmMainLog.Show;
+  end;
 end;
 
 procedure TfrmGameController.lvClientCustomDrawSubItem(Sender: TCustomListView; Item: TListItem; SubItem: Integer; State: TCustomDrawState; var DefaultDraw: Boolean);
@@ -9969,6 +9993,12 @@ begin
   RecSend.surfacePressure := tbBaroPressure.Position;
   RecSend.fogIntensity := tbFogIntensity.Position;
 
+//  OutputDebugString(PChar(
+//  Format('SizeOf(TRecDataEnvironment) = %d',
+//  [SizeOf(TRecDataEnvironment)])));
+//
+//  SimManager.NetSendTo2D_Envi(RecSend);
+
   SimManager.NetSendTo3D_OrderEnvironment(RecSend);
 
 end;
@@ -10621,6 +10651,7 @@ begin
     pnlController.BringToFront;
 
     frmMainInstruktur.FrameControlLeft.Width := 357;
+    SimManager.MainObjList.isLoadScenario := True;
   end
   else
     ShowMessage('Select Scenario First');
