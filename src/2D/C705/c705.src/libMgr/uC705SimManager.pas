@@ -63,11 +63,11 @@ type
     FEnvironment: TEnvironmentStatus;
     FOnEnvironmentChanged : TEnvironmentChanged;
 
-    procedure LauncherStatusChanged(Sender: TObject; LauncherID: TC705LauncherID);
-    procedure LauncherMissileLaunched(Sender: TObject; LauncherID: TC705LauncherID);
+    procedure LauncherStatusChanged(Sender: TObject);
+    procedure LauncherMissileLaunched(Sender: TObject);
 
     //procedure NotifyStatusWeaponChanged(aStatus: TC705StatusType);
-    procedure NotifyStatusWeaponChanged;
+    procedure NotifyStatusWeaponChanged(Sender: TObject);
 
     procedure tmrAutoConnectToBridgeTimer(Sender: TObject);
     procedure OnConnected(msg: string);
@@ -236,47 +236,6 @@ procedure GameSimManager.InitializeMap;
 begin
   if Assigned(FOnMapInit) then
     FOnMapInit(VMapSetting.MapGeosetDay);
-end;
-
-procedure GameSimManager.LauncherMissileLaunched(Sender: TObject; LauncherID: TC705LauncherID);
-var
-  RecDataC705 : TRec_Data_C705;
-  Launcher : TC705Launcher;
-begin
-  Launcher := TC705Launcher(Sender);
-
-  if Launcher = nil then
-    Exit;
-
-  recDataC705.ShipID := VOwnShip.ShipID;
-  recDataC705.mWeaponID := VOwnShip.WeaponId;
-
-  //recDataC705.mLauncherID := LauncherID;
-  case LauncherID of
-    lchRight: recDataC705.mLauncherID := 1;
-
-    lchLeft:  recDataC705.mLauncherID := 2;
-  end;
-
-  recDataC705.mMissileID := 1;
-  recDataC705.mMissileNumber := 1;
-  //recDataC705.OrderID := 0; // harusnya diganti per command, misal fire, atau yang lain
-  recDataC705.OrderID := __ORD_ID_Fire_C705;
-  recDataC705.mTargetBearing := Launcher.TargetBearing;
-  recDataC705.mTargetRange := Launcher.TargetRange;
-  recDataC705.mTargetId := 0; //Launcher.TargetID;
-
-  netNFS_OnSendDataC705(recDataC705);
-
-  // RESET TARGET
-  VehicleMgr.SelectedTargetID := -1;
-  SimManager.RoutePlanMode := mPassive;
-end;
-
-procedure GameSimManager.LauncherStatusChanged(Sender: TObject; LauncherID: TC705LauncherID);
-begin
-  //NotifyStatusWeaponChanged(stEnableWeapon);
-  NotifyStatusWeaponChanged;
 end;
 
 {$REGION 'NFS Socket'}
@@ -480,6 +439,47 @@ end;
 {$ENDREGION}
 
 {$REGION 'Sequence to Change Panel in PanelArea3A dan PanelArea3B'}
+procedure GameSimManager.LauncherMissileLaunched(Sender: TObject);
+var
+  RecDataC705 : TRec_Data_C705;
+  Launcher : TC705Launcher;
+begin
+  Launcher := TC705Launcher(Sender);
+
+  if Launcher = nil then
+    Exit;
+
+  recDataC705.ShipID := VOwnShip.ShipID;
+  recDataC705.mWeaponID := VOwnShip.WeaponId;
+
+  //recDataC705.mLauncherID := LauncherID;
+  case Launcher.LauncherID of
+    lchRight: recDataC705.mLauncherID := 1;
+
+    lchLeft:  recDataC705.mLauncherID := 2;
+  end;
+
+  recDataC705.mMissileID := 1;
+  recDataC705.mMissileNumber := 1;
+  //recDataC705.OrderID := 0; // harusnya diganti per command, misal fire, atau yang lain
+  recDataC705.OrderID := __ORD_ID_Fire_C705;
+  recDataC705.mTargetBearing := Launcher.TargetBearing;
+  recDataC705.mTargetRange := Launcher.TargetRange;
+  recDataC705.mTargetId := 0; //Launcher.TargetID;
+
+  netNFS_OnSendDataC705(recDataC705);
+
+  // RESET TARGET
+  VehicleMgr.SelectedTargetID := -1;
+  SimManager.RoutePlanMode := mPassive;
+end;
+
+procedure GameSimManager.LauncherStatusChanged(Sender: TObject);
+begin
+  //NotifyStatusWeaponChanged(stEnableWeapon);
+  NotifyStatusWeaponChanged(Sender);
+end;
+
 //procedure GameSimManager.NotifyStatusWeaponChanged(aStatus: TC705StatusType);
 //var
 //  i : Integer;
@@ -487,7 +487,7 @@ end;
 //  for i := 0 to FStatusWeaponEvents.Count-1 do
 //    TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event(Self, aStatus);
 //end;
-procedure GameSimManager.NotifyStatusWeaponChanged;
+procedure GameSimManager.NotifyStatusWeaponChanged(Sender: TObject);
 var
   i : Integer;
 begin

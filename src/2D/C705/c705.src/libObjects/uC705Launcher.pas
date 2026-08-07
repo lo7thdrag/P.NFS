@@ -64,10 +64,10 @@ type
   end;
 
   //TLauncherStatusChanged = procedure (Sender: TObject) of object;
-  TC705LauncherChanged = procedure(Sender: TObject; LauncherID: TC705LauncherID) of object;
+  TC705LauncherChanged = procedure(Sender: TObject) of object;
 
   // Event ketika Missile Launch dan setelah seluruh proses Launch selesai
-  TOnMissileLaunch = procedure(Sender: TObject; LauncherID: TC705LauncherID) of object;
+  TOnMissileLaunch = procedure(Sender: TObject) of object;
 
   TC705Launcher = class
   private
@@ -160,6 +160,7 @@ type
     procedure DoStatusLauncherChanged;
 
     property LauncherStatus: TC705LauncherStatus read FC705Status;
+    property LauncherID: TC705LauncherID read FLauncherID write FLauncherID;
     property isHaveMissile: Boolean read FisHaveMissile;
     //property OnStatusLauncherChanged: TLauncherStatusChanged read FOnStatusChanged write FOnStatusChanged;
     property OnStatusLauncherChanged: TC705LauncherChanged read FOnStatusChanged write FOnStatusChanged;
@@ -552,7 +553,7 @@ begin
   DoStatusLauncherChanged;
 
   if Assigned(FOnMissileLaunch) then
-    FOnMissileLaunch(Self, FLauncherID);
+    FOnMissileLaunch(Self);
 end;
 
 procedure TC705Launcher.SetEnableMissile(aVal: Boolean);

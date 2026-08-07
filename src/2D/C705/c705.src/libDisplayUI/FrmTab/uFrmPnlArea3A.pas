@@ -134,7 +134,14 @@ end;
 
 //procedure TfrmPnlArea3A.StatusWeaponConsoleChanged(Sender: TObject; aStatus: TC705StatusType);
 procedure TfrmPnlArea3A.StatusWeaponConsoleChanged(Sender: TObject);
+var
+  Launcher: TC705Launcher;
 begin
+  Launcher := TC705Launcher(Sender);
+
+  if Launcher.LauncherID <> lchRight then
+    Exit;
+
   UpdateStatusPanel3A;
 end;
 

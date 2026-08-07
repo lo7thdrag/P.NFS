@@ -545,7 +545,8 @@ end;
 //procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject; aStatus: TC705StatusType);
 procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject);
 var
-  RightLauncher, LeftLauncher: TC705Launcher;
+  RightLauncher, LeftLauncher,
+  Launcher: TC705Launcher;
 begin
   if Assigned(SimManager) then
   begin
