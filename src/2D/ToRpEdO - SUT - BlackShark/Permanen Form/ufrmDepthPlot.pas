@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, uSutBlacksharkManager, uVehicleManager, uSimulationTrack;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, uSutBlacksharkManager, uVehicleManager, uSimulationTrack,
+  uTorpedoTrack;
 
 type
   TfrmDepthPlot = class(TForm)
@@ -69,6 +70,9 @@ const
   RightMargin  = 31;
   BottomMargin = 24;
 
+  ArrowLength = 6;
+  ArrowWidth = 3;
+
   YPos    : array[0..4] of Integer = (0,75,150,225,300);
 
 var
@@ -80,6 +84,7 @@ var
   YLabels : array[0..4] of string;
   TempShip: TSimulationTrack;
   Rect: array[0..3] of TPoint;
+  Torp : TTorpedoTrack;
 begin
 //  YLabels := ('','',
   YLabels[0] := '';
@@ -189,38 +194,95 @@ begin
       MoveTo(GraphLeft, Round(TorpedoParam.Ceiling / maxdepth * GraphHeight));
       LineTo(GraphLeft + GraphWidth, Round(TorpedoParam.ceiling / maxdepth * GraphHeight));
 
-      // Line Red
+      // Line Red (Protection Area)
       Pen.Color := clRed;
       Pen.Width := 1;
       Pen.Style := psDot;
-      MoveTo(GraphLeft + 20, GraphTop);
-      LineTo(GraphLeft + 20, GraphTop + GraphHeight);
+      MoveTo(GraphLeft + 28, GraphTop);
+      LineTo(GraphLeft + 28, GraphTop + GraphHeight);
 
 
 
-//      // Line Green Vertical
-//      Pen.Color := clGreen;
-//      Pen.Style := psSolid;
-//      MoveTo(GraphLeft + 60, GraphTop);
-//      LineTo(GraphLeft + 60, GraphTop + GraphHeight - 165);
+      // Line Green Vertical
+      Pen.Color := clGreen;
+      Pen.Style := psSolid;
+      MoveTo(GraphLeft + Round(GraphWidth/2), GraphTop);
+      LineTo(GraphLeft + Round(GraphWidth/2), GraphTop + GraphHeight);
 
-//      // Arrow
-//      DrawArrow(GraphLeft + 90, GraphTop + 10, 40);
-//      DrawArrow(GraphLeft, GraphTop + 20, 60);
-//      DrawArrow(GraphLeft + 45, GraphTop + 30, 45);
-//      DrawArrow(GraphLeft, GraphTop + 50, 45);
+      // Arrow Search Depth
+      Pen.Color := clGreen;
+      Pen.Style := psSolid;
+      MoveTo(GraphLeft, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
 
-//      // Line Green Dots Vertical
-//      Pen.Color := clGreen;
-//      Pen.Style := psDot;
-//      MoveTo(GraphLeft + 45, GraphTop);
-//      LineTo(GraphLeft + 45, GraphTop + GraphHeight - 230);
+      MoveTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 50 - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) - ArrowWidth);
 
-//      // Line Green Dots Vertical
-//      Pen.Color := clGreen;
-//      Pen.Style := psDot;
-//      MoveTo(GraphLeft + 90, GraphTop);
-//      LineTo(GraphLeft + 90, GraphTop + GraphHeight - 230);
+      MoveTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 50 - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) + ArrowWidth);
+
+      // Line-Dotted Search Depth to ApproachDepth
+      Pen.Color := clGreen;
+      Pen.Style := psDot;
+      MoveTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 50, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+
+      // Arrow ApproachDepth
+      Pen.Color := clGreen;
+      Pen.Style := psSolid;
+      MoveTo(GraphLeft + 50, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 100, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+
+      MoveTo(GraphLeft + 100, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 100 - ArrowLength, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight) - ArrowWidth);
+
+      MoveTo(GraphLeft + 100, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 100 - ArrowLength, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight) + ArrowWidth);
+
+      // Line-Dotted ApproachDepth to Attack Depth
+      Pen.Color := clGreen;
+      Pen.Style := psDot;
+      MoveTo(GraphLeft + 100, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 100, Round(TorpedoParam.AttackDepth / maxdepth * GraphHeight));
+
+      // Arrow Attack Depth
+      Pen.Color := clGreen;
+      Pen.Style := psSolid;
+      MoveTo(GraphLeft + 100, Round(TorpedoParam.AttackDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 150, Round(TorpedoParam.AttackDepth / maxdepth * GraphHeight));
+
+      MoveTo(GraphLeft + 150, Round(TorpedoParam.AttackDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 150 - ArrowLength, Round(TorpedoParam.AttackDepth / maxdepth * GraphHeight) - ArrowWidth);
+
+      MoveTo(GraphLeft + 150, Round(TorpedoParam.AttackDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 150 - ArrowLength, Round(TorpedoParam.AttackDepth / maxdepth * GraphHeight) + ArrowWidth);
+    end;
+
+    // arrow torpedo
+    Torp := nil;
+    for i := 0 to VehicleMgr.ObjectList.Count - 1 do
+    begin
+      if VehicleMgr.ObjectList[i] is TTorpedoTrack then
+      begin
+        if TTorpedoTrack(VehicleMgr.ObjectList[i]).LauncherID = TorpedoParam.TorpedoIdx then
+        begin
+          Torp := TTorpedoTrack(VehicleMgr.ObjectList[i]);
+          Break;
+        end;
+      end;
+    end;
+    if Torp <> nil then
+    begin
+      Pen.Color := clGreen;
+      Pen.Style := psSolid;
+      MoveTo(GraphLeft, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + Round(GraphWidth/2), Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+
+      MoveTo(GraphLeft + Round(GraphWidth/2), Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) - ArrowWidth);
+
+      MoveTo(GraphLeft + Round(GraphWidth/2), Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) + ArrowWidth);
     end;
   end;
 end;

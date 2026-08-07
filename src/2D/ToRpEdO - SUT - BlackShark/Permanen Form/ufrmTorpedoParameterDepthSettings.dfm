@@ -423,7 +423,7 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
           Top = 96
           Width = 90
           Height = 14
-          Caption = 'Appoarch Depth'
+          Caption = 'Approach Depth'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -12
