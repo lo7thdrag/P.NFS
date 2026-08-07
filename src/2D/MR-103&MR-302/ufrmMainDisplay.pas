@@ -1883,7 +1883,7 @@ begin
         if (range > MaxRange) or
         (elevation < -10) or
         (elevation > 80) or
-        ((bearing > 50) and (bearing < 310)) then
+        ((bearing < 50) or (bearing > 310)) then
           fbBreakTargetClick(fbBreakTarget);
       end;
       3 : //MR 302

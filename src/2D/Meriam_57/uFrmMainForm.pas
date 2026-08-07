@@ -1201,7 +1201,7 @@ begin
     end
     else if (not Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
     begin
-      FTargetAngleKolonka := 0;
+      FTargetAngleKolonka := 180;
 
       RecSend.ShipID          := Meriam57Manager.ShipID;
       RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
@@ -1266,7 +1266,7 @@ begin
   end
   else if (not Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
   begin
-    FTargetAngleKolonka := 0;
+    FTargetAngleKolonka := 180;
     FTargetAngleElevasi := 0;
 
     edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
@@ -1471,8 +1471,8 @@ begin
   EndA := Normalize(EndAngle);
 
   // Jika target di luar batas area, maka tidak rotasi
-  if not IsInRange(Target, StartA, EndA) then
-    Exit;
+//  if not IsInRange(Target, StartA, EndA) then
+//    Exit;
 
   // Rotasi berdasarkan arah, bukan jalur terpendek
   if Target > CurrentAngle then
