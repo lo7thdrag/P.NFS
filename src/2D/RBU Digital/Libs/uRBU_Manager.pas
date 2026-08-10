@@ -78,6 +78,9 @@ type
      procedure EventOnReceive3DOrder(apRec: PAnsiChar; aSize: integer);
      procedure EventOnReceiveSonarMode(apRec: PAnsiChar; aSize: integer);
      procedure Event_RcvRBUSetting(apRec: PAnsiChar; aSize: integer);
+
+     procedure EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
+
 //     function  ReadValConsoleSetting(val : integer): Boolean;
      procedure AddToMemoLog(const str: string);
      procedure SendEvenRBU(EvenId: Word; const Prm1 :double = 0; Prm2 : double = 0; Prm3: double = 0);
@@ -237,6 +240,9 @@ begin
         Datcom.Log.Add(' ShipName ' + ShipName );
         Datcom.Log.Add(' ShipClassName ' + ShipClassName );
     end;
+
+    NetComm.RegisterProcedure(REC_STAT_ORDER_CONSOLE, Event_RcvRBUSetting, SizeOf(TRecStatus_Console));
+    NetComm.RegisterProcedure(REC_MISSILEPOS, EventOnReceiveMissileStatus, SizeOf(TRecMissilePos));
 
     Env_Map := DataModule1.GetMapById(pCurrentScenID);
     DataModule1.GetOffsetMapByEnvMap(Env_Map ,OffX_Map, OffY_Map);
@@ -649,6 +655,29 @@ begin
      TargetID := 0;
    end;
 
+end;
+
+procedure TRBUManager.EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
+var
+  aRec : ^TRecMissilePos;
+  i    : Integer;
+begin
+  aRec := @apRec^;
+  if (pShipID = aRec^.shipID) and (aRec^.WeaponID = C_DBID_RBU6000_DIGITAL) then
+  begin
+    case aRec^.launcherID of
+      1 :
+      begin
+        case aRec^.status of
+          ST_MISSILE_LOADED :
+          begin
+
+
+          end;
+        end;
+      end;
+    end;
+  end;
 end;
 
 procedure TRBUManager.EventOnReceiveSonarMode(apRec: PAnsiChar; aSize: integer);

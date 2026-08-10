@@ -1703,10 +1703,10 @@ object frmMainDisplay: TfrmMainDisplay
         ParentFont = False
         TabOrder = 0
         object btnBurjaLama: TFlatButton
-          Left = 8
-          Top = 30
-          Width = 120
-          Height = 40
+          Left = 24
+          Top = 24
+          Width = 110
+          Height = 35
           Color = clYellow
           ColorDown = clLime
           GroupIndex = 1
@@ -1722,10 +1722,10 @@ object frmMainDisplay: TfrmMainDisplay
           OnClick = btnUnitSelectClick
         end
         object btnBurjaBaru: TFlatButton
-          Left = 173
-          Top = 30
-          Width = 120
-          Height = 40
+          Left = 185
+          Top = 24
+          Width = 110
+          Height = 35
           Color = clYellow
           ColorDown = clLime
           GroupIndex = 1
@@ -1740,6 +1740,384 @@ object frmMainDisplay: TfrmMainDisplay
           ParentColor = False
           TabOrder = 1
           OnClick = btnUnitSelectClick
+        end
+        object grpLauncherStatus: TGroupBox
+          Left = 12
+          Top = 69
+          Width = 300
+          Height = 212
+          Caption = 'Launcher Status'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 2
+          object grpLauncher1: TGroupBox
+            Left = 13
+            Top = 16
+            Width = 273
+            Height = 81
+            Caption = 'Launcher 1 Loading'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 0
+            object lbl55: TLabel
+              Left = 7
+              Top = 20
+              Width = 8
+              Height = 13
+              Caption = '1'
+            end
+            object lbl56: TLabel
+              Left = 44
+              Top = 20
+              Width = 8
+              Height = 13
+              Caption = '2'
+            end
+            object lbl57: TLabel
+              Left = 81
+              Top = 20
+              Width = 8
+              Height = 13
+              Caption = '3'
+            end
+            object lbl58: TLabel
+              Left = 118
+              Top = 20
+              Width = 8
+              Height = 13
+              Caption = '4'
+            end
+            object lbl59: TLabel
+              Left = 155
+              Top = 20
+              Width = 8
+              Height = 13
+              Caption = '5'
+            end
+            object lbl60: TLabel
+              Left = 192
+              Top = 20
+              Width = 8
+              Height = 13
+              Caption = '6'
+            end
+            object lbl61: TLabel
+              Left = 229
+              Top = 20
+              Width = 8
+              Height = 13
+              Caption = '7'
+            end
+            object lbl62: TLabel
+              Left = 7
+              Top = 52
+              Width = 8
+              Height = 19
+              Caption = '8'
+            end
+            object lbl63: TLabel
+              Left = 44
+              Top = 53
+              Width = 8
+              Height = 19
+              Caption = '9'
+            end
+            object lbl64: TLabel
+              Left = 79
+              Top = 53
+              Width = 15
+              Height = 19
+              Caption = '10'
+            end
+            object lbl65: TLabel
+              Left = 123
+              Top = 53
+              Width = 15
+              Height = 19
+              Caption = '11'
+            end
+            object lbl66: TLabel
+              Left = 167
+              Top = 53
+              Width = 15
+              Height = 19
+              Caption = '12'
+            end
+            object imgRBU1Load1: TImage
+              Left = 21
+              Top = 18
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load4: TImage
+              Left = 132
+              Top = 18
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load7: TImage
+              Left = 243
+              Top = 18
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load2: TImage
+              Left = 58
+              Top = 18
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load5: TImage
+              Left = 169
+              Top = 18
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load8: TImage
+              Left = 204
+              Top = 18
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load10: TImage
+              Left = 100
+              Top = 51
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load11: TImage
+              Left = 144
+              Top = 51
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load3: TImage
+              Left = 95
+              Top = 18
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load6: TImage
+              Left = 21
+              Top = 50
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load9: TImage
+              Left = 58
+              Top = 51
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU1Load12: TImage
+              Left = 188
+              Top = 51
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+          end
+          object grpLauncher2: TGroupBox
+            Left = 13
+            Top = 115
+            Width = 273
+            Height = 86
+            Caption = 'Launcher 2 Loading'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 1
+            object lbl67: TLabel
+              Left = 8
+              Top = 22
+              Width = 8
+              Height = 13
+              Caption = '1'
+            end
+            object lbl68: TLabel
+              Left = 45
+              Top = 22
+              Width = 8
+              Height = 13
+              Caption = '2'
+            end
+            object lbl69: TLabel
+              Left = 82
+              Top = 22
+              Width = 8
+              Height = 13
+              Caption = '3'
+            end
+            object lbl70: TLabel
+              Left = 119
+              Top = 22
+              Width = 8
+              Height = 13
+              Caption = '4'
+            end
+            object lbl71: TLabel
+              Left = 156
+              Top = 22
+              Width = 8
+              Height = 13
+              Caption = '5'
+            end
+            object lbl72: TLabel
+              Left = 193
+              Top = 22
+              Width = 8
+              Height = 13
+              Caption = '6'
+            end
+            object lbl73: TLabel
+              Left = 230
+              Top = 22
+              Width = 8
+              Height = 13
+              Caption = '7'
+            end
+            object lbl74: TLabel
+              Left = 8
+              Top = 57
+              Width = 8
+              Height = 13
+              Caption = '8'
+            end
+            object lbl75: TLabel
+              Left = 45
+              Top = 58
+              Width = 8
+              Height = 13
+              Caption = '9'
+            end
+            object lbl76: TLabel
+              Left = 79
+              Top = 58
+              Width = 15
+              Height = 13
+              Caption = '10'
+            end
+            object lbl77: TLabel
+              Left = 123
+              Top = 58
+              Width = 15
+              Height = 13
+              Caption = '11'
+            end
+            object lbl78: TLabel
+              Left = 167
+              Top = 58
+              Width = 15
+              Height = 13
+              Caption = '12'
+            end
+            object imgRBU2Load1: TImage
+              Left = 22
+              Top = 20
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load2: TImage
+              Left = 59
+              Top = 20
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load3: TImage
+              Left = 96
+              Top = 20
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load4: TImage
+              Left = 133
+              Top = 20
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load5: TImage
+              Left = 170
+              Top = 20
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load6: TImage
+              Left = 207
+              Top = 20
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load7: TImage
+              Left = 244
+              Top = 20
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load8: TImage
+              Left = 22
+              Top = 55
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load9: TImage
+              Left = 59
+              Top = 56
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load10: TImage
+              Left = 100
+              Top = 56
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load11: TImage
+              Left = 144
+              Top = 56
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+            object imgRBU2Load12: TImage
+              Left = 188
+              Top = 56
+              Width = 17
+              Height = 17
+              Transparent = True
+            end
+          end
         end
       end
       object grpEndProcess: TGroupBox
@@ -1821,7 +2199,7 @@ object frmMainDisplay: TfrmMainDisplay
         8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
         918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
         6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-        0100011801000058E7832A010000004966FF761C000000000000000000000000
+        0100011801000058E7832A0100000069E0DB501C000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000002
         0000000000000000000000000000000000000000000000000000000000000000
@@ -1830,7 +2208,7 @@ object frmMainDisplay: TfrmMainDisplay
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         8076C000000000008056C0000000000080764000000000008056400100000018
-        01000058E7832A01000000010000001C00000000000000000000000000000000
+        01000058E7832A01000000621402001C00000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000200000000
         0000000000000000000000000000000000000000000000000000000000000000
@@ -1838,7 +2216,7 @@ object frmMainDisplay: TfrmMainDisplay
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         00000000000000000000000000000000000000000000000000000058E7970008
-        E39700D565FF7658E3970000040000F0E29700090E3C33000000000000000000
+        E39700D565FF7658E3970000040000F0E2970000000000000000000000000000
         000088B3400000000000408F400001000001}
     end
     object pnlTCP_PCOM: TPanel

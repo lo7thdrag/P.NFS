@@ -242,6 +242,57 @@ type
     VrShipSpeed: TVrAngularMeter;
     imgTargetSpeedBackground: TImage;
     VrTargetSpeed: TVrAngularMeter;
+    grpLauncherStatus: TGroupBox;
+    grpLauncher1: TGroupBox;
+    lbl55: TLabel;
+    lbl56: TLabel;
+    lbl57: TLabel;
+    lbl58: TLabel;
+    lbl59: TLabel;
+    lbl60: TLabel;
+    lbl61: TLabel;
+    lbl62: TLabel;
+    lbl63: TLabel;
+    lbl64: TLabel;
+    lbl65: TLabel;
+    lbl66: TLabel;
+    imgRBU1Load1: TImage;
+    imgRBU1Load4: TImage;
+    imgRBU1Load7: TImage;
+    imgRBU1Load2: TImage;
+    imgRBU1Load5: TImage;
+    imgRBU1Load8: TImage;
+    imgRBU1Load10: TImage;
+    imgRBU1Load11: TImage;
+    imgRBU1Load3: TImage;
+    imgRBU1Load6: TImage;
+    imgRBU1Load9: TImage;
+    imgRBU1Load12: TImage;
+    grpLauncher2: TGroupBox;
+    lbl67: TLabel;
+    lbl68: TLabel;
+    lbl69: TLabel;
+    lbl70: TLabel;
+    lbl71: TLabel;
+    lbl72: TLabel;
+    lbl73: TLabel;
+    lbl74: TLabel;
+    lbl75: TLabel;
+    lbl76: TLabel;
+    lbl77: TLabel;
+    lbl78: TLabel;
+    imgRBU2Load1: TImage;
+    imgRBU2Load2: TImage;
+    imgRBU2Load3: TImage;
+    imgRBU2Load4: TImage;
+    imgRBU2Load5: TImage;
+    imgRBU2Load6: TImage;
+    imgRBU2Load7: TImage;
+    imgRBU2Load8: TImage;
+    imgRBU2Load9: TImage;
+    imgRBU2Load10: TImage;
+    imgRBU2Load11: TImage;
+    imgRBU2Load12: TImage;
     procedure FormResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -470,11 +521,11 @@ begin
   FVTgtTrainning := FVTgtBrngTrgt;
 
 
-//  for i := 1 to 12 do
-//  begin
-//    ListMissileR[i].Available := True;
-//    ListMissileL[i].Available := True;
-//  end;
+  for i := 1 to 12 do
+  begin
+    ListMissileR[i].Available := True;
+    ListMissileL[i].Available := True;
+  end;
 
   if FLauncherId = 0 then
   begin
@@ -994,7 +1045,7 @@ begin
     FFiringMode := 0;
     lRec.ShipID          := RBU_MAnager.pShipID;
     lRec.mWeaponID       := C_DBID_RBU6000;
-    lRec.mLauncherID     := 1;
+    lRec.mLauncherID     := 1;     // 1
     lRec.mMissileID      := 0;
     lRec.mMissileNumber  := 0;
     lRec.mCount          := 0;
