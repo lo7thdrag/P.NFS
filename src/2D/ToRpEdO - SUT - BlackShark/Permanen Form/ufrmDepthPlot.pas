@@ -209,40 +209,40 @@ begin
       MoveTo(GraphLeft + Round(GraphWidth/2), GraphTop);
       LineTo(GraphLeft + Round(GraphWidth/2), GraphTop + GraphHeight);
 
+      // Arrow Approach Depth
+      Pen.Color := clGreen;
+      Pen.Style := psSolid;
+      MoveTo(GraphLeft, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 50, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+
+      MoveTo(GraphLeft + 50, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 50 - ArrowLength, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight) - ArrowWidth);
+
+      MoveTo(GraphLeft + 50, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 50 - ArrowLength, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight) + ArrowWidth);
+
+      // Line-Dotted Approach Depth to Search Depth
+      Pen.Color := clGreen;
+      Pen.Style := psDot;
+      MoveTo(GraphLeft + 50, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+
       // Arrow Search Depth
       Pen.Color := clGreen;
       Pen.Style := psSolid;
-      MoveTo(GraphLeft, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
-
       MoveTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + 50 - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) - ArrowWidth);
+      LineTo(GraphLeft + 100, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
 
-      MoveTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + 50 - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) + ArrowWidth);
+      MoveTo(GraphLeft + 100, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 100 - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) - ArrowWidth);
 
-      // Line-Dotted Search Depth to ApproachDepth
+      MoveTo(GraphLeft + 100, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      LineTo(GraphLeft + 100 - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) + ArrowWidth);
+
+      // Line-Dotted Search Depth to Attack Depth
       Pen.Color := clGreen;
       Pen.Style := psDot;
-      MoveTo(GraphLeft + 50, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + 50, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
-
-      // Arrow ApproachDepth
-      Pen.Color := clGreen;
-      Pen.Style := psSolid;
-      MoveTo(GraphLeft + 50, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + 100, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
-
-      MoveTo(GraphLeft + 100, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + 100 - ArrowLength, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight) - ArrowWidth);
-
-      MoveTo(GraphLeft + 100, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + 100 - ArrowLength, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight) + ArrowWidth);
-
-      // Line-Dotted ApproachDepth to Attack Depth
-      Pen.Color := clGreen;
-      Pen.Style := psDot;
-      MoveTo(GraphLeft + 100, Round(TorpedoParam.ApproachDepth / maxdepth * GraphHeight));
+      MoveTo(GraphLeft + 100, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
       LineTo(GraphLeft + 100, Round(TorpedoParam.AttackDepth / maxdepth * GraphHeight));
 
       // Arrow Attack Depth

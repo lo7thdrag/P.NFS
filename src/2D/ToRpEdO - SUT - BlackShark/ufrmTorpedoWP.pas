@@ -2600,7 +2600,8 @@ begin
         {$ENDREGION}
 
         {$REGION 'Update Battery'}
-        Torp.BatteryCapacity := Torp.BatteryCapacity - (0.025 * DeltaSeconds);
+        if Torp.BatteryCapacity > 0 then
+          Torp.BatteryCapacity := Torp.BatteryCapacity - (0.025 * DeltaSeconds);
         Torp.SearchTime := Torp.BatteryCapacity / 0.025; // adalah jumlah waktu dalam detik
         Torp.SearchLength := Torp.SearchTime * Torp.SpeedMS; // adalah jumlah length dalam meter
         {$ENDREGION}
