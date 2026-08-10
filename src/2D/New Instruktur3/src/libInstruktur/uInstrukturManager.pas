@@ -936,7 +936,7 @@ begin
           C_DBID_CANNON76  :
           begin
             WeaponShip := TWeaponOn_Cannon76.Create(Result, Fmap);
-            Color := TColor($33FF33);  //hijau muda
+            Color := TColor($660000);  //
           end;
 
           C_DBID_CANNON120 :

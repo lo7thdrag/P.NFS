@@ -470,11 +470,11 @@ begin
   FVTgtTrainning := FVTgtBrngTrgt;
 
 
-  for i := 1 to 12 do
-  begin
-    ListMissileR[i].Available := True;
-    ListMissileL[i].Available := True;
-  end;
+//  for i := 1 to 12 do
+//  begin
+//    ListMissileR[i].Available := True;
+//    ListMissileL[i].Available := True;
+//  end;
 
   if FLauncherId = 0 then
   begin
