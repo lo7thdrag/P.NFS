@@ -1886,14 +1886,15 @@ begin
   // Show Images instead of Map
   if (ssShift in Shift) then
   begin
-    imgMapBackground.Visible := not imgMapBackground.Visible;
+//    imgMapBackground.Visible := not imgMapBackground.Visible;
 
 //    if imgMap.Visible = False then
 //      pnlBaseMap.Visible := False
 //    else
 //      pnlBaseMap.Visible := True;
 
-    imgMapBackground.BringToFront;
+//    imgMapBackground.BringToFront;
+    pnlHeaderTitle.Caption := 'Route Plan Software V1.1 20260810 1553';
   end;
 end;
 
@@ -1954,6 +1955,19 @@ end;
 procedure TfrmRoutePlan.TakeOffBtnChanged(Sender: TObject);
 begin
   if Assigned(SimManager) then begin
+    // reset kedua indikator
+    btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
+    btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
+
+    if SimManager.MissileTakeOff then
+    begin
+      case SimManager.MissileTakeOffLauncherID of
+        1: btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
+        2: btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
+      end;
+    end;
+
+    {
     if SimManager.MissileTakeOff then begin
       btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-glowing.bmp');
       btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-glowing.bmp');
@@ -1962,6 +1976,7 @@ begin
       btnImgTakeOff1.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no1-normal.bmp');
       btnImgTakeOff2.Glyph.LoadFromFile(VImgPath.imgPath + '\'+ 'no2-normal.bmp');
     end;
+    }
   end;
 end;
 

@@ -886,6 +886,8 @@ begin
             Exit;
           end;
         end;
+
+        Exit;
       end;
 
       //if edtINSAlignMissile.Focused then
@@ -909,6 +911,8 @@ begin
             Exit;
           end;
         end;
+
+        Exit;
       end;
 
       //if edtPwrOffMissile.Focused then
@@ -932,6 +936,8 @@ begin
             Exit;
           end;
         end;
+
+        Exit;
       end;
       {$ENDREGION}
 
@@ -961,6 +967,11 @@ begin
           pnlPowerOffContentMCtrl.Visible := False;
           pnlINSAlignContentMCtrl.Visible := False;
           Exit;
+        end;
+
+        VK_BACK: begin
+          if frmKeyboardCalcLaunch.ActiveEdit = nil then
+            Exit;
         end;
       end;
 
@@ -1070,6 +1081,7 @@ begin
         begin
           frmWCC.Show;
           frmFoeFriendSituationPage.Hide;
+          frmKeyboardCalcLaunch.BringToFront;
           //Application.Terminate;
         end;
     end;
@@ -1222,10 +1234,13 @@ begin
     Exit;
   end;
 
+  if frmKeyboardCalcLaunch.ActiveEdit = edtRecheckMissile then
+    Launcher.SetEnableMissile(False); // di reset jadi False dulu
+
   if (frmKeyboardCalcLaunch.ActiveEdit.Text = '1') then
     Launcher.SetEnableMissile(True)
   else if (frmKeyboardCalcLaunch.ActiveEdit.Text = '2') then
-    Launcher.SetEnableMissile(False);
+    Launcher.SetEnableMissile(True);
 
 end;
 

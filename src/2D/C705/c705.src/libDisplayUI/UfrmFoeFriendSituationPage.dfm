@@ -66,6 +66,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlLeft_Situation: TPanel
         Left = 0
         Top = 0
@@ -142,6 +146,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlArea5_FireDist: TPanel
         Left = 0
         Top = 999
@@ -218,6 +226,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlArea5_MInfo: TPanel
         Left = 0
         Top = 999
@@ -294,6 +306,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlArea5_ParSetting: TPanel
         Left = 0
         Top = 999
@@ -370,6 +386,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlArea5_ChSelect: TPanel
         Left = 0
         Top = 999
@@ -850,6 +870,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlArea5_MMonitor: TPanel
         Left = 0
         Top = 999
@@ -926,6 +950,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlArea5_InsTest: TPanel
         Left = 0
         Top = 999
@@ -1103,6 +1131,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlArea5_LaunchData: TPanel
         Left = 0
         Top = 999
@@ -1179,6 +1211,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
       ColorTo = clNone
       TabColor = 10790913
       TabColorTo = clNone
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object pnlArea5_Exit: TPanel
         Left = 0
         Top = 999

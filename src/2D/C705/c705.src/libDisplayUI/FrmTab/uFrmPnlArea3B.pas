@@ -136,7 +136,7 @@ var
 begin
   Launcher := TC705Launcher(Sender);
 
-  if Launcher.LauncherID <> lchRight then
+  if Launcher.LauncherID <> lchLeft then
     Exit;
 
   UpdateStatusPanel3B;
@@ -287,7 +287,7 @@ begin
   else
     pnlVrlTakeOff3B.Color := clGray;
 
-  if Launcher.C705Status.FullOpenRdy then
+  if Launcher.C705Status.LaunchRdy then
     pnlVrlLnchRdy3B.Color := clLime
   else
     pnlVrlLnchRdy3B.Color := clGray;

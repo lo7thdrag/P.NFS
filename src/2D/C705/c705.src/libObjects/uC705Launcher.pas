@@ -397,11 +397,11 @@ end;
 procedure TC705Launcher.tmrToLaunchTimer(Sender: TObject);
 begin
   case FIdxToLaunchRdy of
-    0: FC705Status.FullOpenRdy := True;
-    1: FC705Status.CalFinishRdy := True;
-    2: FC705Status.InsideSectorRdy := True;
+    0: FC705Status.CalFinishRdy := True;
+    1: FC705Status.InsideSectorRdy := True;
+    2: FC705Status.MNormalRdy := True;
     3: begin
-      FC705Status.MNormalRdy := True;
+      FC705Status.LaunchRdy := True;
       FToLaunchRdyTimer.Enabled := False;
     end;
   end;
@@ -605,14 +605,14 @@ begin
   // for now SEMENTARA
   if aVal then
   begin
-    StartLaunchRdySequence;
+    //StartLaunchRdySequence;
   end
   else begin
-    FC705Status.MNormalRdy := False;
-    FC705Status.CalFinishRdy := False;
-    FC705Status.InsideSectorRdy := False;
-    FC705Status.FullOpenRdy := False;
-    FC705Status.LaunchRdy := False;
+//    FC705Status.MNormalRdy := False;
+//    FC705Status.CalFinishRdy := False;
+//    FC705Status.InsideSectorRdy := False;
+//    FC705Status.FullOpenRdy := False;
+//    FC705Status.LaunchRdy := False;
   end;
 
   DoStatusLauncherChanged;
@@ -628,17 +628,26 @@ begin
   // for now SEMENTARA
   if not aVal then
   begin
+    StartLaunchRdySequence;
+          {
     if FC705Status.MNormalRdy and
       FC705Status.CalFinishRdy and
-        FC705Status.InsideSectorRdy and
-          FC705Status.FullOpenRdy then
+        FC705Status.InsideSectorRdy
+        and FC705Status.FullOpenRdy then
     begin
       FC705Status.LaunchRdy := True;
     end
     else begin
       FC705Status.LaunchRdy := False;
     end;
-
+         }
+  end
+  else begin
+    FC705Status.MNormalRdy := False;
+    FC705Status.CalFinishRdy := False;
+    FC705Status.InsideSectorRdy := False;
+    //FC705Status.FullOpenRdy := False;
+    FC705Status.LaunchRdy := False;
   end;
 
   DoStatusLauncherChanged;

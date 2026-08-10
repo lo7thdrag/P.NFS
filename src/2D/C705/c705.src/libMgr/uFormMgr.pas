@@ -164,6 +164,7 @@ begin
 
       frmRoutePlan.SetTopMonitor(VMonitorTopLeft.MonTop_Top);
       frmRoutePlan.Left := Screen.Monitors[1].WorkareaRect.Left;
+      //frmRoutePlan.Left := Screen.Monitors[VMonitorSetting.MoniRoutePlan].WorkareaRect.Left;
       frmRoutePlan.Top  := VMonitorTopLeft.MonTop_Top;
 
       if VIdentSetting.ModeDebug then
@@ -176,10 +177,12 @@ begin
 
       frmWCC.SetTopMonitor(VMonitorTopLeft.MonMiddle_Top);
       frmWCC.Left := Screen.Monitors[0].WorkareaRect.Left;
+      //frmWCC.Left := Screen.Monitors[VMonitorSetting.MoniWCC].WorkareaRect.Left;
       frmWCC.Top  := VMonitorTopLeft.MonMiddle_Top;
 
       frmFoeFriendSituationPage.SetTopMonitor(VMonitorTopLeft.MonMiddle_Top);
       frmFoeFriendSituationPage.Left := Screen.Monitors[0].WorkareaRect.Left;
+      //frmFoeFriendSituationPage.Left := Screen.Monitors[VMonitorSetting.MoniWCC].WorkareaRect.Left;
       frmFoeFriendSituationPage.Top  := VMonitorTopLeft.MonMiddle_Top;
 
       frmKeyboardCalcLaunch.SetTopMonitor(VMonitorTopLeft.MonMini_Top);
@@ -189,7 +192,9 @@ begin
 
       frmKeyboardCalcLaunch.Show;
       frmKeyboardCalcLaunch.Left := Screen.Monitors[0].WorkareaRect.Left;
+      //frmKeyboardCalcLaunch.Left := Screen.Monitors[VMonitorSetting.MoniKeyboard].WorkareaRect.Left;
       frmKeyboardCalcLaunch.Top  := VMonitorTopLeft.MonMini_Top;
+      frmKeyboardCalcLaunch.BringToFront;
     end;
 
   end;

@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.Buttons, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus,
   Vcl.Imaging.jpeg, uLibSettings, uC705SimManager, uTCPDatatype, uBaseFunction,
-  uFormMgr, uKeyboardManager, uC705Launcher;
+  uFormMgr, uKeyboardManager, uC705Launcher, uFrmKeyboardCalcLaunch;
 
 type
   TfrmWCC = class(TForm)
@@ -117,10 +117,10 @@ type
 
     procedure HideAllPnlContent;
 
-    procedure UpdateStatusWeapon(aLauncherR, aLauncherL: TC705Launcher);
-    procedure UpdateStatusOpenCover(aLauncherR, aLauncherL: TC705Launcher);
-    procedure UpdateStatusSafetyIgnition(aLauncherR, aLauncherL: TC705Launcher);
-    procedure UpdateStatusSelfLatch(aLauncherR, aLauncherL: TC705Launcher);
+    procedure UpdateStatusWeapon(aLauncher: TC705Launcher);
+    procedure UpdateStatusOpenCover(aLauncher: TC705Launcher);
+    procedure UpdateStatusSafetyIgnition(aLauncher: TC705Launcher);
+    procedure UpdateStatusSelfLatch(aLauncher: TC705Launcher);
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
@@ -309,6 +309,7 @@ begin
 
           frmWCC.Hide;
           frmFoeFriendSituationPage.Show;
+          frmKeyboardCalcLaunch.BringToFront;
         end;
 
       //Exit;
@@ -450,6 +451,8 @@ begin
   SimManager.RegisterStatusWeaponEvent(StatusWeaponBtnChanged);
 
   // Sinkronisasi kondisi awal
+//  StatusWeaponBtnChanged(SimManager.GetLauncher(1));
+//  StatusWeaponBtnChanged(SimManager.GetLauncher(2));
   StatusWeaponBtnChanged(Self);
 //  StatusWeaponBtnChanged(Self, SimManager.C705Status);
 end;
@@ -480,22 +483,23 @@ end;
 procedure TfrmWCC.imgSelfLatchClick(Sender: TObject);
 var
   Launcher: TC705Launcher;
+  stateSelfLatch: Boolean;
 begin
   if (Sender = ImgSelfLatch1) then
     Launcher := simmanager.GetLauncher(1)
   else
     Launcher := SimManager.GetLauncher(2);
 
+  // Self Latch hanya bisa diubah jika Launcher sudah ON
   if not Launcher.C705Status.EnableWeapon then
     Exit;
 
+  // Self Latch hanya bisa diubah setelah INS Alignment selesai
   if not Launcher.C705Status.INSAlignDone then
     Exit;
 
-  if (Sender = imgSelfLatch1) then
-    Launcher.SetSelfLatch(True)
-  else
-    Launcher.SetSelfLatch(False);
+  stateSelfLatch := Launcher.C705Status.SelfLatch;
+  Launcher.SetSelfLatch(not stateSelfLatch);
 end;
 
 procedure TfrmWCC.btnImgOpenCoverClick(Sender: TObject);
@@ -545,22 +549,22 @@ end;
 //procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject; aStatus: TC705StatusType);
 procedure TfrmWCC.StatusWeaponBtnChanged(Sender: TObject);
 var
-  RightLauncher, LeftLauncher,
   Launcher: TC705Launcher;
+  LauncherID : TC705LauncherID;
 begin
+  if not Assigned(Sender) then
+    Exit;
+
   if Assigned(SimManager) then
   begin
-    RightLauncher := SimManager.GetLauncher(1);
-    LeftLauncher := SimManager.GetLauncher(2);
+    Launcher := TC705Launcher(Sender);
+    if Launcher = nil then
+      Exit;
+
+    LauncherID := Launcher.LauncherID;
 
     if not SimManager.C705Available then
     begin
-//      btnImgPowerMissile1.Enabled := False;
-//      btnImgPowerMissile2.Enabled := False;
-
-//      btnImgOpenCover1.Enabled := False;
-//      btnImgOpenCover2.Enabled := False;
-
       imgSafetyBooster_L.Enabled := False;
       imgSafetyBooster_R.Enabled := False;
 
@@ -570,107 +574,125 @@ begin
       Exit;
     end;
 
-    UpdateStatusWeapon(RightLauncher, LeftLauncher);
-
-    UpdateStatusOpenCover(RightLauncher, LeftLauncher);
+    UpdateStatusWeapon(Launcher);
+    UpdateStatusOpenCover(Launcher);
 
     //OutputDebugString(PChar(Format('SafetyIgnition R = %d', [Ord(RightLauncher.C705Status.SafetyIgnition)])));
     //OutputDebugString(PChar(Format('SafetyIgnition L = %d', [Ord(LeftLauncher.C705Status.SafetyIgnition)])));
 
-    UpdateStatusSafetyIgnition(RightLauncher, LeftLauncher);
-
-    UpdateStatusSelfLatch(RightLauncher, LeftLauncher);
+    UpdateStatusSafetyIgnition(Launcher);
+    UpdateStatusSelfLatch(Launcher);
   end;
 end;
 
-procedure TfrmWCC.UpdateStatusOpenCover(aLauncherR, aLauncherL: TC705Launcher);
+procedure TfrmWCC.UpdateStatusOpenCover(aLauncher: TC705Launcher);
 begin
   {$REGION 'OPEN COVER'}
-  if aLauncherR.C705Status.OpenCoverLauncher then
-  begin
-    btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-glowing.bmp');
-  end
-  else
-  begin
-    btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-normal.bmp');
+  case aLauncher.LauncherID of
+    lchRight: begin
+      if aLauncher.C705Status.OpenCoverLauncher then
+      begin
+        btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-glowing.bmp');
+      end
+      else
+      begin
+        btnImgOpenCover1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-normal.bmp');
+      end;
+    end;
+    lchLeft: begin
+      if aLauncher.C705Status.OpenCoverLauncher then
+      begin
+        btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-glowing.bmp');
+      end
+      else
+      begin
+        btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-normal.bmp');
+      end;
+    end;
   end;
-
-  if aLauncherL.C705Status.OpenCoverLauncher then
-  begin
-    btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-glowing.bmp');
-  end
-  else
-  begin
-    btnimgOpenCover2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-normal.bmp');
-  end;
-  {$ENDREGION}
+  {$ENDREGION}
 end;
 
-procedure TfrmWCC.UpdateStatusSafetyIgnition(aLauncherR, aLauncherL: TC705Launcher);
+procedure TfrmWCC.UpdateStatusSafetyIgnition(aLauncher: TC705Launcher);
 begin
   {$REGION 'SAFETY IGNITION'}
-  if aLauncherR.C705Status.SafetyIgnition then
-  begin              //SAFE
-    imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - SAFE.png');
-  end
-  else
-  begin              //ARMED
-    imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - ARMED.png');
+  case aLauncher.LauncherID of
+    lchRight: begin
+      if aLauncher.C705Status.SafetyIgnition then
+      begin              //SAFE
+        imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - SAFE.png');
+      end
+      else
+      begin              //ARMED
+        imgSafetyBooster_R.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_R - ARMED.png');
+      end;
+    end;
+    lchLeft: begin
+      if aLauncher.C705Status.SafetyIgnition then
+      begin              //SAFE
+        imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - SAFE.png');
+      end
+      else
+      begin              //ARMED
+        imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - ARMED.png');
+      end;
+    end;
   end;
-
-  if aLauncherL.C705Status.SafetyIgnition then
-  begin              //SAFE
-    imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - SAFE.png');
-  end
-  else
-  begin              //ARMED
-    imgSafetyBooster_L.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSafetyBooster_L - ARMED.png');
-  end;
-  {$ENDREGION}
+  {$ENDREGION}
 end;
 
-procedure TfrmWCC.UpdateStatusWeapon(aLauncherR, aLauncherL: TC705Launcher);
+procedure TfrmWCC.UpdateStatusWeapon(aLauncher: TC705Launcher);
 begin
   {$REGION 'ENABLE WEAPON'}
-  if aLauncherR.C705Status.EnableWeapon then
-  begin
-    btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-glowing.bmp');
-  end
-  else
-  begin
-    btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-normal.bmp');
+  case aLauncher.LauncherID of
+    lchRight: begin
+      if aLauncher.C705Status.EnableWeapon then
+      begin
+        btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-glowing.bmp');
+      end
+      else
+      begin
+        btnImgPowerMissile1.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no1-normal.bmp');
+      end;
+    end;
+    lchLeft: begin
+      if aLauncher.C705Status.EnableWeapon then
+      begin
+        btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-glowing.bmp');
+      end
+      else
+      begin
+        btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-normal.bmp');
+      end;
+    end;
   end;
-
-  if aLauncherL.C705Status.EnableWeapon then
-  begin
-    btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-glowing.bmp');
-  end
-  else
-  begin
-    btnImgPowerMissile2.Glyph.LoadFromFile(VImgPath.imgPath + '\' + 'no2-normal.bmp');
-  end;
-  {$ENDREGION}
+  {$ENDREGION}
 end;
 
-procedure TfrmWCC.UpdateStatusSelfLatch(aLauncherR, aLauncherL: TC705Launcher);
+procedure TfrmWCC.UpdateStatusSelfLatch(aLauncher: TC705Launcher);
 begin
   {$REGION 'SELF LATCH'}
-  if aLauncherR.C705Status.SelfLatch then
-  begin
-    imgSelfLatch1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_1 - ON.png');
-  end
-  else
-  begin
-    imgSelfLatch1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_1 - OFF.png');
-  end;
-
-  if aLauncherL.C705Status.SelfLatch then
-  begin
-    imgSelfLatch2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_2 - ON.png');
-  end
-  else
-  begin
-    imgSelfLatch2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_2 - OFF.png');
+  case aLauncher.LauncherID of
+    lchRight: begin
+      if aLauncher.C705Status.SelfLatch then
+      begin
+        imgSelfLatch1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_1 - ON.png');
+      end
+      else
+      begin
+        imgSelfLatch1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_1 - OFF.png');
+      end;
+    end;
+    lchLeft: begin
+      if aLauncher.C705Status.SelfLatch then
+      begin
+        imgSelfLatch2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_2 - ON.png');
+      end
+      else
+      begin
+        imgSelfLatch2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'imgSelfLatch_2 - OFF.png');
+      end;
+    end;
   end;
   {$ENDREGION}
 end;

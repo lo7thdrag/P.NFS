@@ -290,7 +290,7 @@ begin
   else
     pnlVrlTakeOff3A.Color := clGray;
 
-  if Launcher.C705Status.FullOpenRdy then
+  if Launcher.C705Status.LaunchRdy then
     pnlVrlLnchRdy3A.Color := clLime
   else
     pnlVrlLnchRdy3A.Color := clGray;

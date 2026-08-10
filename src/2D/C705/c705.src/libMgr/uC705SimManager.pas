@@ -50,6 +50,7 @@ type
     //FOnStatusWeaponChanged,
     FOnTakeOffChanged: TNotifyEvent;
     FMissileTakeOff: Boolean;
+    FMissileTakeOffLauncherID: Integer;
 
     FStatusWeaponEvents : TObjectList;
 
@@ -111,6 +112,7 @@ type
     property OnEnvironmentChanged : TEnvironmentChanged read FOnEnvironmentChanged write FOnEnvironmentChanged;
     property MissileTakeOff: Boolean read FMissileTakeOff write FMissileTakeOff;
     property C705Available: Boolean read FC705Available;
+    property MissileTakeOffLauncherID : Integer read FMissileTakeOffLauncherID write FMissileTakeOffLauncherID;
   published
     {
       Main Function of Simulation
@@ -336,6 +338,7 @@ begin
         LauncherWpn.LaunchMissileC705;
 
         FMissileTakeOff := True;
+        FMissileTakeOffLauncherID := Rec^.launcherID;
 
         if Assigned(FOnTakeOffChanged) then
           FOnTakeOffChanged(Self);
@@ -346,6 +349,12 @@ begin
       begin
         //FLauncherHasMissile[Rec^.launcherID] := False;
         LauncherWpn.SetHaveMissile(False);
+
+        FMissileTakeOff := False;
+        FMissileTakeOffLauncherID := 0;
+
+        if Assigned(FOnTakeOffChanged) then
+          FOnTakeOffChanged(Self);
       end;
 
     end;
@@ -492,7 +501,7 @@ var
   i : Integer;
 begin
   for i := 0 to FStatusWeaponEvents.Count-1 do
-    TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event(Self);
+    TStatusWeaponEventItem(FStatusWeaponEvents[i]).Event(Sender);
 end;
 
 procedure GameSimManager.RegisterStatusWeaponEvent(aEvent: TStatusWeaponChangedEvent);
