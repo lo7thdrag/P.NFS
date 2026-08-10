@@ -86,6 +86,7 @@ begin
 
   FFrmManualGuidance.Show;
   FFrmManualGuidance.BringToFront;
+  FFrmManualGuidance.FormShow(nil);
 end;
 
 end.

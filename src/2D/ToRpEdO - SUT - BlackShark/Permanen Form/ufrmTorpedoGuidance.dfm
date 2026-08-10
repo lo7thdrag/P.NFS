@@ -194,6 +194,10 @@ object frmTorpedoGuidanceWindow: TfrmTorpedoGuidanceWindow
         TabColor = clBlack
         TabColorTo = clNone
         TextColor = clLime
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object lblFuseOff: TLabel
           Left = 172
           Top = 21

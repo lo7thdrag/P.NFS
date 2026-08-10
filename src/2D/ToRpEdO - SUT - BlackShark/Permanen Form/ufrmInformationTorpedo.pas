@@ -102,8 +102,9 @@ begin
     lblCourse.Caption    := FormatFloat('0.0', Torp.HeadingDeg);
     lblCourse.Font.Color := clLime;
 
-    lblSpeed.Caption    := FormatFloat('0.0', Torp.Speed_knot * 0.514444444);
-    lblSpeed.Font.Color := clLime;
+    lblSpeed.Caption         := FormatFloat('0.0', Torp.Speed_knot * 0.514444444);
+//    TorpedoParam.SearchSpeed := StrToInt(lblSpeed.Caption);
+    lblSpeed.Font.Color      := clLime;
 
     lblDepth.Caption    := FormatFloat('0.0', Abs(Torp.PosZ));
     lblDepth.Font.Color := clLime;

@@ -352,7 +352,7 @@ begin
       pnlToSo.Visible := true;
       range := CalcRange(Torp.PosX, Torp.PosY, TgtTrack.PosX, TgtTrack.PosY);
       rangem := range * C_NauticalMile_To_Metre;
-      if range > 350 then
+      if rangem > 350 then
         SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stLongRangeAtt
       else
         SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stCloseInAtt;

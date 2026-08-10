@@ -356,7 +356,8 @@ begin
   Result := nil;
   Track := nil;
   i := 0;
-  while not Found and (i<Count) do
+  Found := False;
+  while not Found and (i<FList.Count) do
   begin
     Track := TSimulationTrack(FList[i]);
     Found := TrackNum = Track.MSITrackNumber;

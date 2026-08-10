@@ -38,7 +38,7 @@ object frmTorpedoContactList: TfrmTorpedoContactList
       ParentFont = False
     end
     object lblClose: TLabel
-      Left = 356
+      Left = 348
       Top = 235
       Width = 31
       Height = 16
@@ -74,9 +74,20 @@ object frmTorpedoContactList: TfrmTorpedoContactList
           Caption = 'Range (m)'
           Width = 137
         end>
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clLime
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       GridLines = True
+      ParentFont = False
       TabOrder = 0
       ViewStyle = vsReport
     end
+  end
+  object tmrTorpedoContactList: TTimer
+    OnTimer = tmrTorpedoContactListTimer
+    Left = 48
+    Top = 224
   end
 end

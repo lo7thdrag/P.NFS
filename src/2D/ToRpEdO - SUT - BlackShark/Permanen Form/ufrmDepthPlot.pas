@@ -275,14 +275,14 @@ begin
     begin
       Pen.Color := clGreen;
       Pen.Style := psSolid;
-      MoveTo(GraphLeft, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + Round(GraphWidth/2), Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
+      MoveTo(GraphLeft, Round(Torp.PosZ / maxdepth * GraphHeight));
+      LineTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
 
-      MoveTo(GraphLeft + Round(GraphWidth/2), Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) - ArrowWidth);
+      MoveTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
+      LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(Torp.PosZ / maxdepth * GraphHeight) - ArrowWidth);
 
-      MoveTo(GraphLeft + Round(GraphWidth/2), Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight));
-      LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(TorpedoParam.SearchDepth / maxdepth * GraphHeight) + ArrowWidth);
+      MoveTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
+      LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(Torp.PosZ / maxdepth * GraphHeight) + ArrowWidth);
     end;
   end;
 end;

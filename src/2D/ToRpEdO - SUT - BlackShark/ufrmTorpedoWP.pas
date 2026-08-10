@@ -2576,7 +2576,7 @@ var
   i : Integer;
   Torp : TTorpedoTrack;
   CurrentTick: UInt64;
-  DeltaSeconds: Double;
+  DeltaSeconds, OStoSSPmeter: Double;
 begin
   for i := 0 to VehicleMgr.ObjectList.Count - 1 do
   begin
@@ -2627,7 +2627,8 @@ begin
         {$ENDREGION}
 
         {$REGION 'Update OS to SSP'}
-        if (Torp.OSToSSP * C_NauticalMile_To_Metre) - Torp.RunLength > 55  then
+        OStoSSPmeter := Torp.OSToSSP * C_Degree_To_Meter;
+        if (OStoSSPmeter - Torp.RunLength) < 55  then
         begin
           if Torp.TorpGuidanceMode = gmMSIGuide then
               SutBlacksharkManager.FTorpedoArray[Torp.LauncherID - 1].TextStatus := stMsiSrcSa;
