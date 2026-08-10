@@ -241,7 +241,7 @@ begin
   if Assigned(TorpedoParam) then
   begin
     item := listVw.Items.Add;
-    item.Caption := IntToStr(TorpedoParam.TargetTrackID);
+    item.Caption := IntToStr(TorpedoParam.TargetTrackNumber);
     item.SubItems.Add(IntToStr(TorpedoParam.SalvoNum));
     item.SubItems.Add(IntToStr(TorpedoParam.TorpedoIdx));
     item.SubItems.Add('MSI-01');
@@ -491,7 +491,7 @@ begin
 
   if lvReallocation.Selected.Index = 0 then
   begin
-    TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
+    TorpedoParam.TargetTrackNumber := VehicleMgr.TrackControlled.MSITrackNumber;
     AdvPageTorpedoAllocationChange(Sender);
   end;
 end;
@@ -581,7 +581,7 @@ begin
     begin
       if lvReallocation.Selected.Index = 0 then
       begin
-        lbltarget.Caption := IntToStr(Torpedoparam.TargetTrackID);
+        lbltarget.Caption := IntToStr(Torpedoparam.TargetTrackNumber);
         lblnumbertotarget.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
 
         cbTorpInSalvo.ItemIndex := TorpedoParam.TorpedoIdx;
@@ -602,7 +602,7 @@ begin
     begin
       if lvTermination.Selected.Index = 0 then
       begin
-        lblTerminateTargetNumber.Caption := IntToStr(TorpedoParam.TargetTrackID);
+        lblTerminateTargetNumber.Caption := IntToStr(TorpedoParam.TargetTrackNumber);
         lblTerminateSalvoNumber.Caption := IntToStr(TorpedoParam.SalvoNum);
         cbTorpedoTerminate.Text := IntToStr(SutBlacksharkManager.TorpedoTubeAllocNum);
       end;
@@ -648,7 +648,7 @@ begin
     begin
       TorpedoParam := TTorpedoParameterSetting.Create;
       // ini harus dihandle biar di track dulu targetnya rojek
-      TorpedoParam.TargetTrackID := VehicleMgr.TrackControlled.MSITrackNumber;
+      TorpedoParam.TargetTrackNumber := VehicleMgr.TrackControlled.MSITrackNumber;
       lblEngagementAnalysisStarted.Caption := IntToStr(VehicleMgr.TrackControlled.MSITrackNumber);
       lblEngagementAnalysisStarted.Font.Color := clLime;
     end;

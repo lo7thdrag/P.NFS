@@ -358,7 +358,7 @@ begin
   RecSend.mMissileID          := 1; // selalu 1
   RecSend.mMissileNumber      := 1; // selalu 1
 //    RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
-  RecSend.mT_ID               := VehicleMgr.FindShipIDByTrackNumber(TorpedoParam.TargetTrackID);
+  RecSend.mT_ID               := VehicleMgr.FindShipIDByTrackNumber(TorpedoParam.TargetTrackNumber);
   RecSend.OrderID             := __ORD_TORPEDOSUT_FIRED;
   RecSend.mMissileType        := 0;
   RecSend.mTorpedoCourse      := TorpedoParam.ApproachCourse; // diambil dari torpedo param, automatis di set saat start analysis
@@ -386,6 +386,7 @@ begin
   Torpedo.LastUpdated := 0;
   Torpedo.SpeedMS := TorpedoParam.SearchSpeed;
   Torpedo.TorpLaunchPhase := tpApproach;
+  Torpedo.TorpGuidanceMode := gmMSIGuide;
 
   TorpedoParam.isFired := True;
   lblSubmodeTools3.OnClick := nil;
@@ -1333,6 +1334,34 @@ begin
         Torp := TTorpedoTrack(VehicleMgr.ObjectList[i]);
         if Torp.IsExist then
         begin
+          {$REGION 'Track History'}
+          for indx := 0 to Torp.TrackHistory.Count -1 do
+          begin
+            MapX := TTrackPoint(Torp.TrackHistory[indx]).PosX;
+            MapY := TTrackPoint(Torp.TrackHistory[indx]).PosY;
+
+            FMap.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+            if Torp.TorpGuidanceMode = gmHoming then
+              aCnv.Pen.Color := clGreen
+            else
+              aCnv.Pen.Color := clwhite;
+            aCnv.Pen.Width := 1;
+            aCnv.Pen.Style := psSolid;
+            aCnv.Brush.Style := bsSolid;
+            aCnv.Brush.Color := clwhite;
+            if indx = 0 then
+            begin
+              aCnv.MoveTo(Round(ScrX), Round(ScrY));
+            end
+            else
+            begin
+              aCnv.LineTo(Round(ScrX), Round(ScrY));
+              aCnv.MoveTo(Round(ScrX), Round(ScrY));
+            end;
+          end;
+          {$ENDREGION}
+
           // gambar torpedo disini
           {$REGION 'Torpedo'}
 
@@ -1437,7 +1466,7 @@ begin
         if Assigned(TorpedoParam) then
         begin
 //                  TempShip := TSimulationTrack(VehicleMgr.ObjectList[i]);
-          TempShip := VehicleMgr.FindTrackByTrackNumber(TorpedoParam.TargetTrackID);
+          TempShip := VehicleMgr.FindTrackByTrackNumber(TorpedoParam.TargetTrackNumber);
           TargetShip := TempShip;
 
           for indx := 0 to TargetShip.TrackHistory.Count -1 do
@@ -2590,6 +2619,8 @@ begin
             Torp.ApproachLength := 0.0;
 
             SutBlacksharkManager.FTorpedoArray[Torp.LauncherID - 1].FuseStatus := True;
+            if Torp.TorpGuidanceMode = gmMSIGuide then
+              SutBlacksharkManager.FTorpedoArray[Torp.LauncherID - 1].TextStatus := stMsiSrcCc;
           end;
         end;
         {$ENDREGION}
@@ -2597,7 +2628,8 @@ begin
         {$REGION 'Update OS to SSP'}
         if (Torp.OSToSSP * C_NauticalMile_To_Metre) - Torp.RunLength > 55  then
         begin
-          // ganti ke msi SA
+          if Torp.TorpGuidanceMode = gmMSIGuide then
+              SutBlacksharkManager.FTorpedoArray[Torp.LauncherID - 1].TextStatus := stMsiSrcSa;
         end;
 
         {$ENDREGION}

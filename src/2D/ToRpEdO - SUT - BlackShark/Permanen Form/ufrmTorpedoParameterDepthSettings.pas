@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting, uSutBlacksharkManager, uVehicleManager, uBaseFunction, ufrmSystemInfo;
+  AdvPageControl, Vcl.ComCtrls, uDataParameterSetting, uSutBlacksharkManager, uVehicleManager, uBaseFunction, ufrmSystemInfo,
+  uTCPDatatype, uTorpedoTrack;
 
 type
   TfrmTorpedoParameterDepthSettings = class(TForm)
@@ -373,7 +374,42 @@ end;
 procedure TfrmTorpedoParameterDepthSettings.lblApplySetOfficialClick(Sender: TObject);
 var
   bearing, azimuth : Double;
+  Torp: TTorpedoTrack;
+  RecSend : TRecSetTorpedoSUT;
 begin
+  if TorpedoParam.isFired then
+  begin
+    Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+    if Torp <> nil then
+    begin
+      RecSend.ShipID              := SutBlacksharkManager.ShipID;
+      RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
+      RecSend.mLauncherID         := SutBlacksharkManager.TorpedoTubeAllocNum; // allocated launcher/tube
+      RecSend.mMissileID          := 1; // selalu 1
+      RecSend.mMissileNumber      := 1; // selalu 1
+      RecSend.mT_ID               := VehicleMgr.TrackControlled.ShipID;
+      RecSend.OrderID             := __ORD_TORPEDOSUT_NAVIGATE;
+      RecSend.mMissileType        := 0;
+      RecSend.mTorpedoCourse      := 0; // diambil dari torpedo param, automatis di set saat start analysis
+
+      if Torp.TorpGuidanceMode <> gmHoming then
+        RecSend.mTorpedoSpeed       := cbTrialSearchSpeed.ItemIndex + 9
+      else
+        RecSend.mTorpedoSpeed       := Torp.SpeedMS;
+
+      RecSend.mTorpedoDepth       := StrToInt(edtTrialSearchDepth.Text);
+      RecSend.mTorpedoSafeDistance:= TorpedoParam.ProtectionRadius; // satuan meter
+      RecSend.mTorpedoEnDis       := TorpedoParam.EnablingDist; // satuan Km
+      RecSend.mpredm              := 0;
+      RecSend.mTargetType         := VehicleMgr.TrackControlled.Domain;
+
+      SutBlacksharkManager.NetSendTo3D_OrderSutTorpedo(RecSend);
+
+      if Torp.TorpGuidanceMode <> gmHoming then
+        Torp.SpeedMS := cbTrialSearchSpeed.ItemIndex + 9;
+    end;
+  end;
+
   {$REGION 'Upper'}
   TorpedoParam.Guidance          := cbTrialGuidance.ItemIndex;
   lblOfficialGuidance.Caption    := cbTrialGuidance.Text;

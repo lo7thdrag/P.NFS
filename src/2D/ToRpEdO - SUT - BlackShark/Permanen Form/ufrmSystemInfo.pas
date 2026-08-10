@@ -50,7 +50,7 @@ begin
   if Assigned(TorpedoParam) then
   begin
     Item := lvEngagementList.Items.Add;
-    Item.Caption := IntToStr(TorpedoParam.TargetTrackID);
+    Item.Caption := IntToStr(TorpedoParam.TargetTrackNumber);
     Item.SubItems.Add(IntToStr(TorpedoParam.SalvoNum));
     Item.SubItems.Add(IntToStr(TorpedoParam.TorpedoIdx));
     Item.SubItems.Add('MSI-01');

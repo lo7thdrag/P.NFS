@@ -16,22 +16,22 @@ type
   TTorpedoParameterSetting = class
   private
     // torpedo parameter
-    FTargetTrackID, FSalvoNum, FTorpedoAmount, FLOSDeviation, FSearchSpeed, FCeiling, FAttackDepth, FSearchDepth, FApproachDepth,
+    FTargetTrackNumber, FSalvoNum, FTorpedoAmount, FLOSDeviation, FSearchSpeed, FCeiling, FAttackDepth, FSearchDepth, FApproachDepth,
     FFloor, FApproachSpeed, FTosoRangePAS, FTosoRangeACT, FProtectionRadius : Integer;
     FApproachCourse : Single;
     FEnablingDist, FCenterOS, FSALength, FSAWidth, FCenterSSP, FOStoSSP, FDPCAngle : Double;
     FProtectionRadiusEnable : Boolean;
-    FTosoMode, FGuidance , FSAUpdating, FASH: Byte; // untuk FSAUpdating 0 : Circle, 1 : Vect
+    FTosoMode, FGuidance , FSAUpdating, FASH: Byte; // untuk FSAUpdating 0 : Circle, 1 : Vect // FGuidance 0 = CC; 1 = LOS
     FSearchPattern : TSearchPattern;
     FEngagementID : Word;
     FTorpedoIdx : Byte;
-    FisFired : Boolean;
+    FisFired, FUpdate3dFlag : Boolean;
 
   public
     constructor Create;
     destructor Destroy; override;
 
-    property TargetTrackID : Integer read FTargetTrackID write FTargetTrackID;
+    property TargetTrackNumber : Integer read FTargetTrackNumber write FTargetTrackNumber;
     property SalvoNum : Integer read FSalvoNum write FSalvoNum;
     property TorpedoAmount : Integer read FTorpedoAmount write FTorpedoAmount;
     property LOSDeviation : Integer read FLOSDeviation write FLOSDeviation;
@@ -62,6 +62,7 @@ type
     property EngagementID : word read FEngagementID write FEngagementID;
     property TorpedoIdx : Byte read FTorpedoIdx write FTorpedoIdx;
     property isFired : Boolean read FisFired write FisFired;
+    property Update3dFlag : Boolean read FUpdate3dFlag write FUpdate3dFlag;
 
   end;
 
@@ -405,6 +406,8 @@ begin
 
       FTorpedoArray[rec^.launcherID-1].Loaded := false;
       FTorpedoArray[rec^.launcherID-1].BowCap := bcOpenLeverNotSet;
+      if FTorpedoArray[rec^.launcherID-1].TextStatus = stFired then
+        FTorpedoArray[rec^.launcherID-1].TextStatus := stMsiApprCc;
 
     end;
     ST_MISSILE_DEL:
@@ -575,8 +578,8 @@ end;
 
 constructor TTorpedoParameterSetting.Create;
 begin
-  FGuidance := 1; // 0 : CC, 1 : LOS; (normalnya di video pakai CC)
-  FTargetTrackID := 0;
+  FGuidance := 0; // 0 : CC, 1 : LOS; (normalnya di video pakai CC)
+  FTargetTrackNumber := 0;
   FSalvoNum := 0;
   FTorpedoAmount := 0;
   FLOSDeviation := 0;

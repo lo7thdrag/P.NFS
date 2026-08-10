@@ -420,6 +420,7 @@ procedure TFrmTacticalScreen.Render(aCnv: TCanvas);
 var
   i: Integer;
   Ship, OwnShip: TSimulationTrack;
+  Torp: TTorpedoTrack;
   MapX, MapY: Double;
   ScrX, ScrY: Single;
   TrkHstry : TTrackPoint;
@@ -445,7 +446,7 @@ begin
           TrkHstry.PosX := OwnShip.PosX;
           TrkHstry.PosY := OwnShip.PosY;
           OwnShip.TrackHistory.Add(TrkHstry);
-          if OwnShip.TrackHistory.Count > 20 then
+          if OwnShip.TrackHistory.Count > OwnShip.MaxTrackHistory then
           begin
 //            TTrackPoint(OwnShip.TrackHistory[0]).Free;
             TObject(OwnShip.TrackHistory[0]).Free;
@@ -478,7 +479,55 @@ begin
       begin
         if VehicleMgr.ObjectList[i] is TTorpedoTrack then
         begin
+          torp := TTorpedoTrack(VehicleMgr.ObjectList[i]);
+          torp.HistorySaveCounter := torp.HistorySaveCounter + 1;
+          if torp.HistorySaveCounter = torp.HistoryCountToSave then
+          begin
+            torp.HistorySaveCounter := 0;
+            TrkHstry := TTrackPoint.Create;
+            TrkHstry.PosX := torp.PosX;
+            TrkHstry.PosY := torp.PosY;
+            torp.TrackHistory.Add(TrkHstry);
+            if torp.TrackHistory.Count > Torp.MaxTrackHistory then
+            begin
+              TObject(torp.TrackHistory[0]).Free;
+              torp.TrackHistory.Delete(0);
+            end;
+          end;
+
           // gambar torpedo disini
+          MapX := Torp.PosX;
+          MapY := Torp.PosY;
+
+          FMapTP.ConvertCoord(ScrX, ScrY, MapX, MapY, 0);
+
+          aCnv.Pen.Color := clBlack;
+          aCnv.Pen.Style := psClear;
+          aCnv.Pen.Width := 1;
+
+          aCnv.Brush.Color := RGB(118, 185, 218); // biru cerah
+          aCnv.Brush.Style := bsSolid;
+
+          R1 := 7;
+          R2 := 9;
+          aCnv.Ellipse(Round(scrx - R1), Round(Scry - R1), Round(ScrX + R1), Round(ScrY + r1));
+          Polygn[0] := System.Classes.Point(Round(ScrX) - R2, Round(ScrY) - R2);
+          Polygn[1] := System.Classes.Point(Round(ScrX)- R1, Round(ScrY));
+          Polygn[2] := System.Classes.Point(Round(ScrX) + R1 - 2, Round(ScrY));
+          Polygn[3] := System.Classes.Point(Round(ScrX) + R1, Round(ScrY) - R2);
+          aCnv.Polygon(polygn);
+
+          aCnv.Brush.Color := clBlack;
+          aCnv.Brush.Style := bsSolid;
+
+          Polygn[0] := System.Classes.Point(Round(ScrX) - 4, Round(ScrY) - 1);
+          Polygn[1] := System.Classes.Point(Round(ScrX)- 4, Round(ScrY) + 1);
+          Polygn[2] := System.Classes.Point(Round(ScrX) + 4, Round(ScrY) +1);
+          Polygn[3] := System.Classes.Point(Round(ScrX) + 4, Round(ScrY) -1);
+          aCnv.Polygon(polygn);
+
+          aCnv.Font.Color := clGray;
+          aCnv.TextOut(Round(ScrX)+5, Round(ScrY)+5, Format('%.6d',[Torp.LauncherID]));
         end
 
         else
@@ -493,7 +542,7 @@ begin
             TrkHstry.PosX := Ship.PosX;
             TrkHstry.PosY := Ship.PosY;
             Ship.TrackHistory.Add(TrkHstry);
-            if Ship.TrackHistory.Count > 20 then
+            if Ship.TrackHistory.Count > Ship.MaxTrackHistory then
             begin
               TObject(Ship.TrackHistory[0]).Free;
               Ship.TrackHistory.Delete(0);

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, AdvSmoothTabPager, uSutBlacksharkManager, uVehicleManager, uTorpedoTrack,
-  Vcl.ExtCtrls, AdvPageControl, Vcl.ComCtrls;
+  Vcl.ExtCtrls, AdvPageControl, Vcl.ComCtrls, uTorpedoLauncher, uSimulationTrack, uBaseFunction, uBaseConst;
 
 type
   TfrmHomingStatusPlot = class(TForm)
@@ -20,7 +20,7 @@ type
     lblLongRangeAttack: TLabel;
     lblTgtLostSub: TLabel;
     lblStatusHoming: TLabel;
-    lblToSotargetacquiredclose: TLabel;
+    lblToSoTargetAcq: TLabel;
     lblValContact: TLabel;
     lblValTorpedo: TLabel;
     lblWakeAttaack: TLabel;
@@ -138,22 +138,43 @@ begin
       Brush.Color := clBlack;
       FillRect(pbLongRange.ClientRect);
 
-      // Left circle
-      Pen.Color := clGreen;
-      Pen.Width := 2;
-      Brush.Color := clLime;
-      Brush.Style := bsSolid;
-      Ellipse(4, 4, 35, 35);
+      if SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus = stLongRangeAtt then
+      begin
+        // Left circle
+        Pen.Color := clGreen;
+        Pen.Width := 2;
+        Brush.Color := clLime;
+        Brush.Style := bsSolid;
+        Ellipse(4, 4, 35, 35);
 
-      // Lines hanya saat sudah jadi Close-in attack
-  //    MoveTo(35, 18);
-  //    LineTo(100, 25);
+        //Right Circle
+        Pen.Color   := clGreen;
+        Brush.Color := clBlack;
 
-      //Right Circle
-      Pen.Color   := clGreen;
-      Brush.Color := clBlack;
+        Ellipse(90, 4, 120, 35);
+        lblToSoTargetAcq.Caption := 'ToSo target acquired far';
+      end
+      else
+      begin
+        // Left circle
+        Pen.Color := clGreen;
+        Pen.Width := 2;
+        Brush.Color := clBlack;
+        Brush.Style := bsSolid;
+        Ellipse(4, 4, 35, 35);
 
-      Ellipse(90, 4, 120, 35);
+        // Lines hanya saat sudah jadi Close-in attack
+        MoveTo(35, 18);
+        LineTo(100, 25);
+
+        //Right Circle
+        Pen.Color   := clGreen;
+        Brush.Color := clLime;
+
+        Ellipse(90, 4, 120, 35);
+        lblToSoTargetAcq.Caption := 'ToSo target acquired close';
+      end;
+
     end;
   end;
 end;
@@ -318,14 +339,23 @@ end;
 procedure TfrmHomingStatusPlot.tmrUpdateTorpedoHomingTimer(Sender: TObject);
 var
   Torp: TTorpedoTrack;
+  TgtTrack: TSimulationTrack;
+  range, rangem: Double;
 begin
   Torp := VehicleMgr.FindTorpedoByLauncherID(SutBlacksharkManager.TorpedoTubeAllocNum);
+  TgtTrack := VehicleMgr.FindTrackByTrackNumber(TorpedoParam.TargetTrackNumber);
   if Torp <> nil then
   begin
     if Torp.TorpGuidanceMode = gmHoming then
     begin
       lblStatusHoming.Caption := 'ToSo homing PN 2D';
       pnlToSo.Visible := true;
+      range := CalcRange(Torp.PosX, Torp.PosY, TgtTrack.PosX, TgtTrack.PosY);
+      rangem := range * C_NauticalMile_To_Metre;
+      if range > 350 then
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stLongRangeAtt
+      else
+        SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stCloseInAtt;
       pbLongRange.Repaint;
       pbTgtLostSub.Repaint;
       pbWakeLost.Repaint;

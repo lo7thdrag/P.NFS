@@ -173,7 +173,7 @@ object frmHomingStatusPlot: TfrmHomingStatusPlot
             Font.Style = []
             ParentFont = False
           end
-          object lblToSotargetacquiredclose: TLabel
+          object lblToSoTargetAcq: TLabel
             Left = 2
             Top = 121
             Width = 154

@@ -171,7 +171,8 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Top = 58
       Width = 22
       Height = 14
-      Caption = 'LOS'
+      AutoSize = False
+      Caption = 'CC'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -12
@@ -258,9 +259,10 @@ object frmTorpedoParameterDepthSettings: TfrmTorpedoParameterDepthSettings
       Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = []
+      ItemIndex = 0
       ParentFont = False
       TabOrder = 0
-      Text = 'LOS'
+      Text = 'CC'
       Items.Strings = (
         'CC'
         'LOS')

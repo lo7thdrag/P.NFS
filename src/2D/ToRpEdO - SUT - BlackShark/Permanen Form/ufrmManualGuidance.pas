@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, uTorpedoTrack, uTCPDatatype, uVehicleManager,
-  uSutBlacksharkManager;
+  uSutBlacksharkManager, uTorpedoLauncher;
 
 type
   TfrmManualGuidance = class(TForm)
@@ -143,6 +143,7 @@ begin
     if Torp <> nil then
     begin
       Torp.TorpGuidanceMode := gmManual;
+      SutBlacksharkManager.FTorpedoArray[SutBlacksharkManager.TorpedoTubeAllocNum -1].TextStatus := stManHoriz;
 
       RecSend.ShipID              := SutBlacksharkManager.ShipID;
       RecSend.mWeaponID           := SutBlacksharkManager.AssignedWeapon.IDWeapon;
