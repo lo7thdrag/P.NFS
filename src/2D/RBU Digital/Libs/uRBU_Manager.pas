@@ -81,6 +81,8 @@ type
 
      procedure EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
 
+     function IsMissileReady(LauncherID, MissileID: Integer): Boolean;
+
 //     function  ReadValConsoleSetting(val : integer): Boolean;
      procedure AddToMemoLog(const str: string);
      procedure SendEvenRBU(EvenId: Word; const Prm1 :double = 0; Prm2 : double = 0; Prm3: double = 0);
@@ -124,6 +126,7 @@ begin
        RecRBU_SonarMode_ORDER, EventOnReceiveSonarMode, SizeOf(TRecRBU_SonarMode));
 
    Datcom.RegisterProcedure(REC_STAT_ORDER_CONSOLE, Event_RcvRBUSetting , sizeof(TRecStatus_Console));
+   Datcom.RegisterProcedure(REC_MISSILEPOS, EventOnReceiveMissileStatus, SizeOf(TRecMissilePos));
 
 //   Datcom.setLog(TStringList(frm_Main.mmo1.Lines));
 
@@ -241,9 +244,6 @@ begin
         Datcom.Log.Add(' ShipClassName ' + ShipClassName );
     end;
 
-    NetComm.RegisterProcedure(REC_STAT_ORDER_CONSOLE, Event_RcvRBUSetting, SizeOf(TRecStatus_Console));
-    NetComm.RegisterProcedure(REC_MISSILEPOS, EventOnReceiveMissileStatus, SizeOf(TRecMissilePos));
-
     Env_Map := DataModule1.GetMapById(pCurrentScenID);
     DataModule1.GetOffsetMapByEnvMap(Env_Map ,OffX_Map, OffY_Map);
  //    GetAsrocWeaponAssigned;
@@ -254,6 +254,19 @@ begin
   stRIGHT_UNFORMER1 := True;
   stRIGHT_UNFORMER2 := True;
 
+end;
+
+function TRBUManager.IsMissileReady(LauncherID, MissileID: Integer): Boolean;
+begin
+  Result := False;
+
+  if (MissileID < 1) or (MissileID > 12) then
+    Exit;
+
+  case LauncherID of
+    1: Result := ListMissileR[MissileID].Available and ListMissileR[MissileID].Condition;
+    2: Result := ListMissileL[MissileID].Available and ListMissileL[MissileID].Condition;
+  end;
 end;
 
 procedure TRBUManager.GetAsrocWeaponAssigned;
@@ -659,21 +672,47 @@ end;
 
 procedure TRBUManager.EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
 var
-  aRec : ^TRecMissilePos;
-  i    : Integer;
+  aRec: ^TRecMissilePos;
+  MissileID: Integer;
 begin
   aRec := @apRec^;
-  if (pShipID = aRec^.shipID) and (aRec^.WeaponID = C_DBID_RBU6000_DIGITAL) then
-  begin
-    case aRec^.launcherID of
-      1 :
-      begin
-        case aRec^.status of
-          ST_MISSILE_LOADED :
-          begin
 
+  if aRec^.shipID <> pShipID then
+    Exit;
 
-          end;
+  if aRec^.WeaponID <> C_DBID_RBU6000_DIGITAL then
+    Exit;
+
+  MissileID := aRec^.missileID;
+
+  if (MissileID < 1) or (MissileID > 12) then
+    Exit;
+
+  case aRec^.launcherID of
+    1:
+    begin
+      case aRec^.status of
+        ST_MISSILE_LOADED:
+        begin
+          ListMissileR[MissileID].Available := True;
+        end;
+        ST_MISSILE_RUN,ST_MISSILE_DEL:
+        begin
+          ListMissileR[MissileID].Available := False;
+        end;
+
+      end;
+    end;
+    2:
+    begin
+      case aRec^.status of
+        ST_MISSILE_LOADED:
+        begin
+          ListMissileL[MissileID].Available := True;
+        end;
+        ST_MISSILE_RUN, ST_MISSILE_DEL:
+        begin
+          ListMissileL[MissileID].Available := False;
         end;
       end;
     end;

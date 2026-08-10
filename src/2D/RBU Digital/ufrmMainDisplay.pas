@@ -411,6 +411,8 @@ type
     function SendFireRBU(Lonchr: TLoncher; aCount: Integer): Boolean;
     function CalcTrueBearing(const aHeading, aRelativeBearing: Double): Double;
     function CalcRelativeBearing(const aHeading, aTrueBearing: Double): Double;
+    function CheckMissileReady(LauncherID: Integer; MissileID: Integer): Boolean;
+    function CheckFireCondition: Boolean;
     procedure RunLauncherRBU(Launcher : TLoncher; Mode : Word);
   end;
 
@@ -492,71 +494,69 @@ end;
 
 procedure TfrmMainDisplay.btnActualClick(Sender: TObject);
 var
-  i : Integer;
   lncr: TLoncher;
   orderID: Word;
   trainVal: Double;
 begin
   FVTgtTrgtDepth := StrToFloat(edtTargetDepthValue.Text);
   FVTgtRangeTrgt := StrToFloat(edtTargetRangeValue.Text);
-  FVTgtBrngTrgt := StrToFloat(edtBearingRelTargetVal.Text);
-  FVTgtBrngTrgt2 := StrToFloat(edtBearingRelTargetVal.Text) + RBU_MAnager.Heading;    //true bearing
-  trainVal := ValidateDegree(FVTgtBrngTrgt2);
+  FVTgtBrngTrgt  := StrToFloat(edtBearingRelTargetVal.Text);
+
+  FVTgtBrngTrgt2 := StrToFloat(edtBearingRelTargetVal.Text) + RBU_Manager.Heading;
+  trainVal       := ValidateDegree(FVTgtBrngTrgt2);
   FVTgtElevation := StrToFloat(edtElevationValue.Text);
 
-
+  // Setting launcher
   Lonch1.CorrElev := StrToFloat(edtRbuElvCorrectionValue.Text);
   Lonch2.CorrElev := Lonch1.CorrElev;
+
   Lonch1.CorrTraining := StrToFloat(edtRbuTrngCorrectionValue.Text);
   Lonch2.CorrTraining := Lonch1.CorrTraining;
+
   Lonch1.TrainingValue := FVTgtBrngTrgt;
   Lonch2.TrainingValue := FVTgtBrngTrgt;
-  Lonch1.ElevationAngle := StrToFloat(edtElevationValue.Text);
+
+  Lonch1.ElevationAngle :=StrToFloat(edtElevationValue.Text);
   Lonch2.ElevationAngle := Lonch1.ElevationAngle;
+
   Lonch1.TrainingOn := True;
   Lonch2.TrainingOn := True;
+
   Lonch1.ElevOn := True;
   Lonch2.ElevOn := True;
 
   FVTgtTrainning := FVTgtBrngTrgt;
 
-
-  for i := 1 to 12 do
-  begin
-    ListMissileR[i].Available := True;
-    ListMissileL[i].Available := True;
-  end;
-
+  // Launcher selection
   if FLauncherId = 0 then
   begin
     ShowMessage('Silahkan pilih mode penembakan terlebih dahulu');
     Exit;
   end;
 
+  if FLauncherId = 1 then
+    lncr := Lonch1
+  else
+  if FLauncherId = 2 then
+    lncr := Lonch2
+  else
+    Exit;
 
-  if FLauncherId = 1 then //R
-  begin
-    lncr := Lonch1;
-  end
-  else if FLauncherId = 2 then //L
-  begin
-    lncr := Lonch2;
-  end;
-
-  if RBU_MAnager.IsSonarTracked then
+  // Auto / Assigned
+  if RBU_Manager.IsSonarTracked then
     orderID := __ORD_RBU_AUTO
   else
     orderID := __ORD_RBU_ASSIGNED;
 
-  RunLauncherRBU(Lncr, orderID);
+  RunLauncherRBU(lncr,orderID);
 
-  trcbrTraining.Position := scrlbrBearingRelTarget.Position * 10; // set bearing
+  // Bearing
+  trcbrTraining.Position := scrlbrBearingRelTarget.Position * 10;
 
-  FTargetElevation := Power(scrlbrTargetRange.Position/6000, Exp(1.0)) * 45;  // perhitungan sama seperti di 3D || get elev
-  trcbrElevation.Position := Round(FTargetElevation) * 10; // set elev
-
+  // Elevation
+  FTargetElevation := Power(scrlbrTargetRange.Position / 6000, Exp(1.0)) * 45;
+  trcbrElevation.Position := Round(FTargetElevation) * 10;
   btnTrnElvClick(Sender);
-
 end;
 
 procedure TfrmMainDisplay.btnControlModeClick(Sender: TObject);
@@ -575,144 +575,229 @@ end;
 
 procedure TfrmMainDisplay.btnExecuteClick(Sender: TObject);
 var
-  i, aCount: Integer;
+  i: Integer;
+  aCount: Integer;
   range: Double;
+  MissileID: Integer;
+  lncr: TLoncher;
 begin
   if FFiringMode = 0 then
+  begin
+    ShowMessage('Silahkan pilih mode penembakan terlebih dahulu.');
     Exit;
+  end;
+
+  if not TryStrToFloat(edtTargetRangeValue.Text, range) then
+  begin
+    ShowMessage('Nilai range target tidak valid.');
+    Exit;
+  end;
 
   edtTrgtRangeValue.Text := edtTargetRangeValue.Text;
-  range := StrToFloat(edtTrgtRangeValue.Text);
 
-//  if (range > 500) and (range < 1500) then
-//  BalistikMode := Balistik1
-//  else
   BalistikMode := BlAuto;
-  aCount := 1;
 
   if not GetBalistik(BalistikMode, range, Use_Balistik) then
     Exit;
 
   if FLauncherId = 0 then
   begin
-    ShowMessage('Silahkan pilih mode penembakan terlebih dahulu');
+    ShowMessage('Silahkan pilih launcher terlebih dahulu.');
     Exit;
   end;
 
-  if IsReadyToFire then //IsReadyToFire
+  if FLauncherId = 1 then
   begin
-    case FFiringMode of
-      0: //no select
-      begin
+    { Launcher kanan }
+    if not Lonch1.Enabled then
+    begin
+      ShowMessage('Launcher kanan tidak tersedia.');
+      Exit;
+    end;
 
+    if not Lonch1.Ready then
+    begin
+      ShowMessage('Launcher kanan belum READY.');
+      Exit;
+    end;
+
+    lncr := Lonch1;
+  end
+  else
+  if FLauncherId = 2 then
+  begin
+    { Launcher kiri }
+    if not Lonch2.Enabled then
+    begin
+      ShowMessage('Launcher kiri tidak tersedia.');
+      Exit;
+    end;
+
+    if not Lonch2.Ready then
+    begin
+      ShowMessage('Launcher kiri belum READY.');
+      Exit;
+    end;
+
+    lncr := Lonch2;
+  end
+  else
+  begin
+    ShowMessage('Launcher tidak valid.');
+    Exit;
+  end;
+
+  case FFiringMode of
+    1:
+    begin
+      MissileID := 12;
+
+      if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+      begin
+        ShowMessage(Format('Missile %d pada launcher %d belum READY.',
+            [MissileID, FLauncherId]));
+        Exit;
       end;
-      1: //Single12
-      begin
-        if FLauncherId = 1 then  //R
-        begin
-          Lonch1.OrderFire.Add(ListMissileR[12]);
-          TempSingleFireR := 12;
-        end
-        else if FLauncherId = 2 then //L
-        begin
-          Lonch2.OrderFire.Add(ListMissileL[12]);
-          TempSingleFireL := 12;
-        end;
 
+      if FLauncherId = 1 then
+        lncr.OrderFire.Add(ListMissileR[12])
+      else
+        lncr.OrderFire.Add(ListMissileL[12]);
+
+      aCount := 1;
+    end;
+    2:
+    begin
+      MissileID := 6;
+
+      if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+      begin
+        ShowMessage(Format('Missile %d pada launcher %d belum READY.',
+            [MissileID, FLauncherId]));
+        Exit;
       end;
-      2: //Single6
-      begin
-        if FLauncherId = 1 then  //R
-        begin
-          Lonch1.OrderFire.Add(ListMissileR[6]);
-          TempSingleFireR := 6;
-        end
-        else if FLauncherId = 2 then //L
-        begin
-          Lonch2.OrderFire.Add(ListMissileL[6]);
-          TempSingleFireL := 6;
-        end;
 
+      if FLauncherId = 1 then
+        lncr.OrderFire.Add(ListMissileR[MissileID])
+      else
+        lncr.OrderFire.Add(ListMissileL[MissileID]);
+
+      aCount := 1;
+    end;
+    3:
+    begin
+      MissileID := 11;
+
+      if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+      begin
+        ShowMessage(Format('Missile %d pada launcher %d belum READY.',
+            [MissileID, FLauncherId]));
+        Exit;
       end;
-      3: //Single11
-      begin
-        if FLauncherId = 1 then  //R
-        begin
-          Lonch1.OrderFire.Add(ListMissileR[11]);
-          TempSingleFireR := 11;
-        end
-        else if FLauncherId = 2 then //L
-        begin
-          Lonch2.OrderFire.Add(ListMissileL[11]);
-          TempSingleFireL := 11;
-        end;
 
+      if FLauncherId = 1 then
+        lncr.OrderFire.Add(ListMissileR[MissileID])
+      else
+        lncr.OrderFire.Add(ListMissileL[MissileID]);
+
+      aCount := 1;
+    end;
+    4:
+    begin
+      aCount := 4;
+
+      for i := 1 to 4 do
+      begin
+        MissileID := SequenceMissile[i];
+
+        if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+        begin
+          ShowMessage(Format('Salvo 4 gagal.' + sLineBreak + 'Missile %d pada launcher %d belum READY.',
+              [MissileID, FLauncherId]));
+          Exit;
+        end;
       end;
-      4: //Salvo4
-      begin
-        for i := 1 to 4 do
-        begin
-          if FLauncherId = 1 then  //R
-          begin
-            Lonch1.OrderFire.Add(ListMissileR[SequenceMissile[i]]);
-            TempSingleFireR := 1;
-          end
-          else if FLauncherId = 2 then //L
-          begin
-            Lonch2.OrderFire.Add(ListMissileL[SequenceMissile[i]]);
-            TempSingleFireL := 1;
-          end;
-        end;
-        aCount := 4;
 
-      end;
-      5: //Salvo8
+      for i := 1 to 4 do
       begin
-        for i := 1 to 8 do
-        begin
-          if FLauncherId = 1 then  //R
-          begin
-            Lonch1.OrderFire.Add(ListMissileR[SequenceMissile[i]]);
-            TempSingleFireR := 1;
-          end
-          else if FLauncherId = 2 then //L
-          begin
-            Lonch2.OrderFire.Add(ListMissileL[SequenceMissile[i]]);
-            TempSingleFireL := 1;
-          end;
-        end;
-        aCount := 8;
+        MissileID := SequenceMissile[i];
 
-      end;
-      6: //Salvo12
-      begin
-        for i := 1 to 12 do
-        begin
-          if FLauncherId = 1 then  //R
-          begin
-            Lonch1.OrderFire.Add(ListMissileR[SequenceMissile[i]]);
-            TempSingleFireR := 1;
-          end
-          else if FLauncherId = 2 then //L
-          begin
-            Lonch2.OrderFire.Add(ListMissileL[SequenceMissile[i]]);
-            TempSingleFireL := 1;
-          end;
-        end;
-        aCount := 12;
-
+        if FLauncherId = 1 then
+          lncr.OrderFire.Add(ListMissileR[MissileID])
+        else
+          lncr.OrderFire.Add(ListMissileL[MissileID]);
       end;
     end;
 
-    if (Lonch1.OrderFire.Count < 1) and (Lonch2.OrderFire.Count < 1) then
+    5:
+    begin
+      aCount := 8;
+
+      for i := 1 to 8 do
+      begin
+        MissileID := SequenceMissile[i];
+
+        if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+        begin
+          ShowMessage(Format('Salvo 8 gagal.' + sLineBreak +'Missile %d pada launcher %d belum READY.',
+              [MissileID, FLauncherId]));
+          Exit;
+        end;
+      end;
+
+      for i := 1 to 8 do
+      begin
+        MissileID := SequenceMissile[i];
+
+        if FLauncherId = 1 then
+          lncr.OrderFire.Add(ListMissileR[MissileID])
+        else
+          lncr.OrderFire.Add(ListMissileL[MissileID]);
+      end;
+    end;
+    6:
+    begin
+      aCount := 12;
+
+      for i := 1 to 12 do
+      begin
+        MissileID := SequenceMissile[i];
+
+        if not RBU_Manager.IsMissileReady(FLauncherId,MissileID) then
+        begin
+          ShowMessage(Format('Salvo 12 gagal.' + sLineBreak +'Missile %d pada launcher %d belum READY.',
+                      [MissileID, FLauncherId]));
+          Exit;
+        end;
+      end;
+
+      for i := 1 to 12 do
+      begin
+        MissileID := SequenceMissile[i];
+
+        if FLauncherId = 1 then
+          lncr.OrderFire.Add(ListMissileR[MissileID])
+        else
+          lncr.OrderFire.Add(ListMissileL[MissileID]);
+      end;
+    end;
+  else
+    begin
+      ShowMessage('Mode penembakan tidak valid.');
       Exit;
-
-    SendFireRBU(Lonch1, aCount);
-    SendFireRBU(Lonch2, aCount);
-
-    Lonch1.OrderFire.Clear;
-    Lonch2.OrderFire.Clear;
+    end;
   end;
+
+  if lncr.OrderFire.Count = 0 then
+    Exit;
+
+  SendFireRBU(lncr, aCount);
+  lncr.OrderFire.Clear;
+
+  trcbrTraining.Position  := scrlbrBearingRelTarget.Position * 10;
+  FTargetElevation        := Power(scrlbrTargetRange.Position / 6000, Exp(1.0)) * 45;
+  trcbrElevation.Position := Round(FTargetElevation) * 10;
+  btnTrnElvClick(Sender);
 end;
 
 procedure TfrmMainDisplay.btnExitClick(Sender: TObject);
@@ -817,6 +902,135 @@ function TfrmMainDisplay.CalcTrueBearing(const aHeading,
   aRelativeBearing: Double): Double;
 begin
   Result := ValidateDegree(aRelativeBearing + aHeading);
+end;
+
+function TfrmMainDisplay.CheckFireCondition: Boolean;
+var
+  i: Integer;
+  MissileID: Integer;
+begin
+  Result := False;
+
+  if FLauncherId = 0 then
+  begin
+    ShowMessage('Silahkan pilih launcher terlebih dahulu.');
+    Exit;
+  end;
+
+  if FFiringMode = 0 then
+  begin
+    ShowMessage('Silahkan pilih mode penembakan terlebih dahulu.');
+    Exit;
+  end;
+
+  if FLauncherId = 1 then
+  begin
+    if not Lonch1.Enabled then
+    begin
+      ShowMessage('Launcher 1 tidak tersedia.');
+      Exit;
+    end;
+
+    if not Lonch1.Ready then
+    begin
+      ShowMessage('Launcher 1 belum READY.');
+      Exit;
+    end;
+  end
+  else
+  if FLauncherId = 2 then
+  begin
+    if not Lonch2.Enabled then
+    begin
+      ShowMessage('Launcher 2 tidak tersedia.');
+      Exit;
+    end;
+
+    if not Lonch2.Ready then
+    begin
+      ShowMessage('Launcher 2 belum READY.');
+      Exit;
+    end;
+  end;
+
+  case FFiringMode of
+    1:
+    begin
+      MissileID := 12;
+
+      if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+      begin
+        ShowMessage(Format('Missile %d pada Launcher %d belum READY.',[MissileID, FLauncherId]));
+        Exit;
+      end;
+    end;
+    2:
+    begin
+      MissileID := 6;
+
+      if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+      begin
+        ShowMessage(Format('Missile %d pada Launcher %d belum READY.',[MissileID, FLauncherId]));
+        Exit;
+      end;
+    end;
+    3:
+    begin
+      MissileID := 11;
+
+      if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+      begin
+        ShowMessage(Format('Missile %d pada Launcher %d belum READY.',[MissileID, FLauncherId]));
+        Exit;
+      end;
+    end;
+    4:
+    begin
+      for i := 1 to 4 do
+      begin
+        MissileID := SequenceMissile[i];
+
+        if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+        begin
+          ShowMessage(Format('Salvo 4 gagal. Missile %d pada Launcher %d belum READY.',[MissileID, FLauncherId]));
+          Exit;
+        end;
+      end;
+    end;
+    5:
+    begin
+      for i := 1 to 8 do
+      begin
+        MissileID := SequenceMissile[i];
+
+        if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+        begin
+          ShowMessage(Format('Salvo 8 gagal. Missile %d pada Launcher %d belum READY.',[MissileID, FLauncherId]));
+          Exit;
+        end;
+      end;
+    end;
+    6:
+    begin
+      for i := 1 to 12 do
+      begin
+        MissileID := SequenceMissile[i];
+
+        if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
+        begin
+          ShowMessage(Format('Salvo 12 gagal. Missile %d pada Launcher %d belum READY.',[MissileID, FLauncherId]));
+          Exit;
+        end;
+      end;
+    end;
+  end;
+
+  Result := True;
+end;
+
+function TfrmMainDisplay.CheckMissileReady(LauncherID,MissileID: Integer): Boolean;
+begin
+  Result := RBU_Manager.IsMissileReady(LauncherID, MissileID);
 end;
 
 procedure TfrmMainDisplay.DrawAll(aCnv: TCanvas; aCvt: TCoordConverter;
