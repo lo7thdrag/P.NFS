@@ -4186,7 +4186,7 @@ object fWeaponStatus: TfWeaponStatus
                 Transparent = True
               end
               object imgRBU2Load11: TImage
-                Left = 107
+                Left = 105
                 Top = 105
                 Width = 17
                 Height = 17

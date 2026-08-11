@@ -269,7 +269,6 @@ type
     lbl108: TLabel;
     lbl109: TLabel;
     lbl76: TLabel;
-    lbl77: TLabel;
     lbl46: TLabel;
     btnRBUsetPos: TSpeedButton;
     eRBUTargetID: TEdit;
@@ -4349,7 +4348,10 @@ begin
        //fire
       3:
         begin
-          RecSend.OrderID := __ORD_RBU_FIRE;
+          if CountSalvo > 1 then
+            RecSend.OrderID := __ORD_RBU_FIRE_SALVO
+          else if CountSalvo = 1 then
+            RecSend.OrderID := __ORD_RBU_FIRE;
           SimManager.NetSendTo3D_OrderMissileRBU6000(RecSend);
         end;
        //loading

@@ -636,6 +636,13 @@ type
     RBUStatusLoad_9, RBUStatusLoad_10,
     RBUStatusLoad_11, RBUStatusLoad_12 : Boolean;
 
+    RBUStatusLoad2_1, RBUStatusLoad2_2,
+    RBUStatusLoad2_3, RBUStatusLoad2_4,
+    RBUStatusLoad2_5, RBUStatusLoad2_6,
+    RBUStatusLoad2_7, RBUStatusLoad2_8,
+    RBUStatusLoad2_9, RBUStatusLoad2_10,
+    RBUStatusLoad2_11, RBUStatusLoad2_12 : Boolean;
+
     SPSStatusLoadport     : Boolean;
     SPSStatusLoadStaboard : Boolean;
 
@@ -2123,27 +2130,30 @@ begin
         RecSendRBU.mMissileNumber := 1;
         RecSendRBU.mMissileID     := 1;
         RecSendRBU.OrderID        := __ORD_RBU_LOADING;
-        RecSendRBU.mLauncherID    := WeaponRBU.Weapon_Launcher;
+        RecSendRBU.mLauncherID    := 1;
         RecSendRBU.mLncrBearing   := 0;
         RecSendRBU.mLncRange      := 0;
         RecSendRBU.mWeaponID      := WeaponRBU.Weapon_ID;
 
-        if WeaponRBU.Weapon_Status = 1 then
+        if WeaponRBU.Weapon_Launcher = 1 then
         begin
-          RecSendRBU.mLauncherID := WeaponRBU.Weapon_Launcher;
+          if WeaponRBU.Weapon_Status = 1 then
+          begin
+            RecSendRBU.mLauncherID := 1;
 
-          RBUStatusLoad_1  := True;
-          RBUStatusLoad_2  := True;
-          RBUStatusLoad_3  := True;
-          RBUStatusLoad_4  := True;
-          RBUStatusLoad_5  := True;
-          RBUStatusLoad_6  := True;
-          RBUStatusLoad_7  := True;
-          RBUStatusLoad_8  := True;
-          RBUStatusLoad_9  := True;
-          RBUStatusLoad_10 := True;
-          RBUStatusLoad_11 := True;
-          RBUStatusLoad_12 := True;
+            RBUStatusLoad_1  := True;
+            RBUStatusLoad_2  := True;
+            RBUStatusLoad_3  := True;
+            RBUStatusLoad_4  := True;
+            RBUStatusLoad_5  := True;
+            RBUStatusLoad_6  := True;
+            RBUStatusLoad_7  := True;
+            RBUStatusLoad_8  := True;
+            RBUStatusLoad_9  := True;
+            RBUStatusLoad_10 := True;
+            RBUStatusLoad_11 := True;
+            RBUStatusLoad_12 := True;
+          end;
         end;
         CountLoading := tmr_RBU;
         tmrLoading.Enabled := True;
@@ -2156,27 +2166,30 @@ begin
         RecSendRBU.ShipID         := SimManager.TrackObject.FDataBaseID;
         RecSendRBU.mMissileNumber := 1;
         RecSendRBU.OrderID        := __ORD_RBU_LOADING;
-        RecSendRBU.mLauncherID    := WeaponRBU.Weapon_Launcher;
+        RecSendRBU.mLauncherID    := 2;
         RecSendRBU.mLncrBearing   := 0;
         RecSendRBU.mLncRange      := 0;
         RecSendRBU.mWeaponID      := WeaponRBU.Weapon_ID;
 
-        if WeaponRBU.Weapon_Status = 1 then
+        if WeaponRBU.Weapon_Launcher = 2 then
         begin
-          RecSendRBU.mLauncherID := WeaponRBU.Weapon_Launcher;
+          if WeaponRBU.Weapon_Status = 2 then
+          begin
+            RecSendRBU.mLauncherID := 2;
 
-          RBUStatusLoad_1  := True;
-          RBUStatusLoad_2  := True;
-          RBUStatusLoad_3  := True;
-          RBUStatusLoad_4  := True;
-          RBUStatusLoad_5  := True;
-          RBUStatusLoad_6  := True;
-          RBUStatusLoad_7  := True;
-          RBUStatusLoad_8  := True;
-          RBUStatusLoad_9  := True;
-          RBUStatusLoad_10 := True;
-          RBUStatusLoad_11 := True;
-          RBUStatusLoad_12 := True;
+            RBUStatusLoad2_1  := True;
+            RBUStatusLoad2_2  := True;
+            RBUStatusLoad2_3  := True;
+            RBUStatusLoad2_4  := True;
+            RBUStatusLoad2_5  := True;
+            RBUStatusLoad2_6  := True;
+            RBUStatusLoad2_7  := True;
+            RBUStatusLoad2_8  := True;
+            RBUStatusLoad2_9  := True;
+            RBUStatusLoad2_10 := True;
+            RBUStatusLoad2_11 := True;
+            RBUStatusLoad2_12 := True;
+          end;
         end;
         CountLoading := tmr_RBU;
         tmrLoading.Enabled := True;
