@@ -511,11 +511,23 @@ begin
   i := FindClosestZoomIndex(z);
   z := ZoomIndexToScale(i);
 
+    AreaPenembakan.CenterMode     := cmMapPosition;
+    AreaPenembakan.MapPosX        := FMap.CenterX;
+    AreaPenembakan.MapPosY        := FMap.CenterY;
+    AreaPenembakan.CoordConverter := aCvt;
+
+    AreaPenembakan.OuterRadiusPx  := FCircleR;
+    AreaPenembakan.CurrentRange_m := Self.FCurrentRange;
+
+    AreaPenembakan.Draw(aCnv);
+
     // RANGE RINGS
     FRings.CircleRect    := FCircleRect;
     FRings.CurrentRange_m := FCurrentRange;
     FRings.ConvertCoord(aCvt);
     FRings.Draw(aCnv);
+
+
 
     // BEARING 0°
 //    FBearing0.CircleRect := FCircleRect;
@@ -871,7 +883,13 @@ begin
       2 : //MR 103
       begin
         elevation := CalcTurretElevation(rangem, 12900);
-
+        FElevation := elevation;
+//        maxRange := 3.61;
+//        if (range > MaxRange) or
+//        (elevation < -10) or
+//        (elevation > 80) or
+//        ((bearing < 50) or (bearing > 310)) then
+//          fbBreakTargetClick(fbBreakTarget);
       end;
       3 : //MR 302
       begin
@@ -879,9 +897,12 @@ begin
 //        rangem := Sqrt(Power(rangem) * Power(deltaZ)); // masukan rumus c2 = a2 + b2 karena target AIR  gajadi dipake
         elevation := CalcElevation(rangem, 6, fccmanager.SelectedVehicle.PosZ);
         FElevation := elevation;
-        maxRange := 1.62;
-        if range > MaxRange then
-          fbBreakTargetClick(fbBreakTarget);
+//        maxRange := 1.62;
+//        if (range > MaxRange) or
+//        (elevation < -10) or
+//        (elevation > 85) or
+//        ((bearing > 120) and (bearing < 240)) then
+//          fbBreakTargetClick(fbBreakTarget);
       end;
     end;
 
@@ -1021,12 +1042,20 @@ begin
       FCCManager.Get57WeaponAssigned;
       AdvTabMR35.Caption := 'MR103';
       lblMR35MR35.Caption := 'MR103';
+
+      AreaPenembakan := TRadarDynamicSector.Create;
+      AreaPenembakan.Color := RGB(53,80,75);
+      AreaPenembakan.AddSlice(50,310, 0.0, 6685.72); // dari 1–3 km
     end;
     3 : //MR 302
     begin
       FCCManager.Get57WeaponAssigned;
       AdvTabMR35.Caption := 'MR302';
       lblMR35MR35.Caption := 'MR302';
+
+      AreaPenembakan := TRadarDynamicSector.Create;
+      AreaPenembakan.Color := RGB(53,80,75);
+      AreaPenembakan.AddSlice(240,120, 0.0, 3000.0); // dari 1–3 km
     end;
   end;
     FCCManager.Running := True;
@@ -1879,23 +1908,23 @@ begin
       begin
         elevation := CalcTurretElevation(rangem, 12900);
         FElevation := elevation;
-        maxRange := 3.61;
-        if (range > MaxRange) or
-        (elevation < -10) or
-        (elevation > 80) or
-        ((bearing < 50) or (bearing > 310)) then
-          fbBreakTargetClick(fbBreakTarget);
+//        maxRange := 3.61;
+//        if (range > MaxRange) or
+//        (elevation < -10) or
+//        (elevation > 80) or
+//        ((bearing < 50) or (bearing > 310)) then
+//          fbBreakTargetClick(fbBreakTarget);
       end;
       3 : //MR 302
       begin
         elevation := CalcElevation(rangem, 6, fccmanager.SelectedVehicle.PosZ);
         FElevation := elevation;
-        maxRange := 1.62;
-        if (range > MaxRange) or
-        (elevation < -10) or
-        (elevation > 85) or
-        ((bearing > 120) and (bearing < 240)) then
-          fbBreakTargetClick(fbBreakTarget);
+//        maxRange := 1.62;
+//        if (range > MaxRange) or
+//        (elevation < -10) or
+//        (elevation > 85) or
+//        ((bearing > 120) and (bearing < 240)) then
+//          fbBreakTargetClick(fbBreakTarget);
       end;
     end;
 
