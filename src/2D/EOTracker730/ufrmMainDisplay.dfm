@@ -3395,6 +3395,7 @@ object frmMainFCC: TfrmMainFCC
       000000000000}
   end
   object NLDJoystick1: TNLDJoystick
+    Active = True
     OnButtonDown = NLDJoystick1ButtonDown
     OnButtonUp = NLDJoystick1ButtonUp
     OnMove = NLDJoystick1Move

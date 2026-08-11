@@ -1838,8 +1838,12 @@ begin
   if FCCManager.SelectedVehicleID <> 0 then
   begin
     v := VehicleMgr.FindObjectByUid(dbID_to_UniqueID(FCCManager.SelectedVehicleID));
-    range := CalcRange(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY);
+    range := CalcRangeXYZ(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, FCCManager.xShip.PositionZ, 
+      v.PosX, v.PosY, v.PosZ);
     rangem := range * C_NauticalMile_To_Metre;
+    edtEODistanceVal.Text := FormatFloat('0.0', rangem);
+    edtIndDistanceVal.Text := FormatFloat('0.0', rangem);
+    
     bearing := CalcBearing(FCCManager.xShip.PositionX, FCCManager.xShip.PositionY, v.PosX, v.PosY);
     // range = 3000 m, target lebih rendah 25 m
     ComputeBallisticAngleVacuum(rangem, v.PosZ, 800, aLow, aHigh);

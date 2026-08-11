@@ -82,6 +82,7 @@ interface
 
 //    function NorthToEast(const degree: double): double ;
     function CalcRange(const x1, y1, x2, y2: double):Double;
+    function CalcRangeXYZ(const x1, y1, z1, x2, y2, z2: double):Double;
     function CalcBearing(const x1, y1, x2, y2: double):Double;
     function CalcElevation(const r, z1, z2: double): double;
     function CalcTurretElevation(const rangem, gunMaxRange:double): Double;
@@ -585,6 +586,17 @@ end;
     dy := (y2 - y1) * C_Degree_To_NauticalMile;
 
     result := sqrt(sqr(dx) + sqr(dy));
+  end;
+
+  function CalcRangeXYZ(const x1, y1, z1, x2, y2, z2: double):Double;
+  var dx, dy, dz : Extended;
+  begin
+   {input dec degree, output nautical mile, }
+    dx := (x2 - x1) * C_Degree_To_NauticalMile;
+    dy := (y2 - y1) * C_Degree_To_NauticalMile;
+    dz := (z2 - z1) / 1852;
+
+    result := Sqrt(Sqr(dx) + Sqr(dy) + Sqr(dz));
   end;
 
   function CalcBearing(const x1, y1, x2, y2: double):Double;
