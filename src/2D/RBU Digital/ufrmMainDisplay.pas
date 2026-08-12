@@ -654,8 +654,7 @@ begin
 
       if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
       begin
-        ShowMessage(Format('Missile %d pada launcher %d belum READY.',
-            [MissileID, FLauncherId]));
+        ShowMessage(Format('Missile %d pada launcher %d belum READY.',[MissileID, FLauncherId]));
         Exit;
       end;
 
@@ -672,8 +671,7 @@ begin
 
       if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
       begin
-        ShowMessage(Format('Missile %d pada launcher %d belum READY.',
-            [MissileID, FLauncherId]));
+        ShowMessage(Format('Missile %d pada launcher %d belum READY.', [MissileID, FLauncherId]));
         Exit;
       end;
 
@@ -690,8 +688,7 @@ begin
 
       if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
       begin
-        ShowMessage(Format('Missile %d pada launcher %d belum READY.',
-            [MissileID, FLauncherId]));
+        ShowMessage(Format('Missile %d pada launcher %d belum READY.', [MissileID, FLauncherId]));
         Exit;
       end;
 
@@ -712,8 +709,7 @@ begin
 
         if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
         begin
-          ShowMessage(Format('Salvo 4 gagal.' + sLineBreak + 'Missile %d pada launcher %d belum READY.',
-              [MissileID, FLauncherId]));
+          ShowMessage(Format('Salvo 4 gagal.' + sLineBreak + 'Missile %d pada launcher %d belum READY.', [MissileID, FLauncherId]));
           Exit;
         end;
       end;

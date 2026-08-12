@@ -94,13 +94,14 @@ type
 //     property SelectedVehicle : TVehicle read FSelectedVehicle write FSelectedVehicle;
 
    end;
+
 var
   RBU_MAnager  : TRBUManager;
 
 implementation
 uses
   uFormUtil, Windows, SysUtils, Controls, Dialogs, {uMain,} uDataModule,
-  uSettingFormToMonitorWith_ini;
+  uSettingFormToMonitorWith_ini, ufrmMainDisplay;
 
 procedure TRBUManager.BeginSimulation;
 var
@@ -110,23 +111,16 @@ begin
    SetLayOutForm;
    Initialize;
 
-   Datcom.RegisterProcedure(
-      REC_3D_POSITION, EventOnReceiveDataPosition , SizeOf(TRecData3DPosition));
-
-   Datcom.RegisterProcedure(
-      REC_3D_MISSILEPOS, EventOnReceive3DOrder , SizeOf(TRec3DMissilePos));
-
-   Datcom.RegisterProcedure(
-      REC_SET_RBU, nil, SizeOf(TRec3DSetRBU));
-
-   Datcom.RegisterProcedure(
-      REC_EVENT_LOG, nil, SizeOf(TRecEventLog));
-
-   Datcom.RegisterProcedure(
-       RecRBU_SonarMode_ORDER, EventOnReceiveSonarMode, SizeOf(TRecRBU_SonarMode));
+   Datcom.RegisterProcedure(REC_3D_POSITION, EventOnReceiveDataPosition , SizeOf(TRecData3DPosition));
+   Datcom.RegisterProcedure(REC_3D_MISSILEPOS, EventOnReceive3DOrder , SizeOf(TRec3DMissilePos));
+   Datcom.RegisterProcedure(REC_SET_RBU, nil, SizeOf(TRec3DSetRBU));
+   Datcom.RegisterProcedure(REC_EVENT_LOG, nil, SizeOf(TRecEventLog));
+   Datcom.RegisterProcedure(RecRBU_SonarMode_ORDER, EventOnReceiveSonarMode, SizeOf(TRecRBU_SonarMode));
 
    Datcom.RegisterProcedure(REC_STAT_ORDER_CONSOLE, Event_RcvRBUSetting , sizeof(TRecStatus_Console));
+
    Datcom.RegisterProcedure(REC_MISSILEPOS, EventOnReceiveMissileStatus, SizeOf(TRecMissilePos));
+//   Datcom.RegisterProcedure(REC_2D_ORDER, nil, SizeOf(TRecData2DOrder));
 
 //   Datcom.setLog(TStringList(frm_Main.mmo1.Lines));
 
@@ -677,42 +671,46 @@ var
 begin
   aRec := @apRec^;
 
-  if aRec^.shipID <> pShipID then
-    Exit;
+//  if aRec^.shipID <> pShipID then
+//    Exit;
+//
+//  if aRec^.WeaponID <> C_DBID_RBU6000_DIGITAL then
+//    Exit;
+//
+//  MissileID := aRec^.missileID;
+//
+//  if (MissileID < 1) or (MissileID > 12) then
+//    Exit;
 
-  if aRec^.WeaponID <> C_DBID_RBU6000_DIGITAL then
-    Exit;
+  if (pShipID = aRec^.ShipID) and (aRec^.WeaponID = C_DBID_RBU6000_DIGITAL) then
+  begin
+    case aRec^.launcherID of
+      1:
+      begin
+        case aRec^.status of
+          ST_MISSILE_LOADED:
+          begin
+            ListMissileR[MissileID].Available := True;
+            missileLoaded1 := True;
+          end;
+          ST_MISSILE_RUN,ST_MISSILE_DEL:
+          begin
+            ListMissileR[MissileID].Available := False;
+          end;
 
-  MissileID := aRec^.missileID;
-
-  if (MissileID < 1) or (MissileID > 12) then
-    Exit;
-
-  case aRec^.launcherID of
-    1:
-    begin
-      case aRec^.status of
-        ST_MISSILE_LOADED:
-        begin
-          ListMissileR[MissileID].Available := True;
         end;
-        ST_MISSILE_RUN,ST_MISSILE_DEL:
-        begin
-          ListMissileR[MissileID].Available := False;
-        end;
-
       end;
-    end;
-    2:
-    begin
-      case aRec^.status of
-        ST_MISSILE_LOADED:
-        begin
-          ListMissileL[MissileID].Available := True;
-        end;
-        ST_MISSILE_RUN, ST_MISSILE_DEL:
-        begin
-          ListMissileL[MissileID].Available := False;
+      2:
+      begin
+        case aRec^.status of
+          ST_MISSILE_LOADED:
+          begin
+            ListMissileL[MissileID].Available := True;
+          end;
+          ST_MISSILE_RUN, ST_MISSILE_DEL:
+          begin
+            ListMissileL[MissileID].Available := False;
+          end;
         end;
       end;
     end;
@@ -765,87 +763,232 @@ begin
 end;
 
 procedure TRBUManager.Event_RcvRBUSetting(apRec: PAnsiChar; aSize: integer);
-  var  aRec: ^TRecStatus_Console;
+var
+  aRec: ^TRecStatus_Console;
   Id :Integer;
+  MissileID: Integer;
+  Picture_Path : string;
+  LoadImgAvailable, LoadImgOff : string;
 begin
+  Picture_Path     := Copy(ExtractFilePath(Application.ExeName),1,length(ExtractFilePath(Application.ExeName))-4);
+  LoadImgAvailable := Picture_Path + 'bin\data\images\light\GREEN.bmp';
+  LoadImgOff       := Picture_Path + 'bin\data\images\light\RED.bmp';
+
   aRec := @apRec^;
- if aRec.OWN_SHIP_UID  = OwnShip.ShipId then begin
+
+  if aRec.OWN_SHIP_UID  = OwnShip.ShipId then begin
    case aRec^.ErrorID of
-        __STAT_RBU_BALISTIK12 : begin
-//          if aRec^.ParamError = __PARAM_RBU_ON then
-//            frmTopBurja.img_Balistik17.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_on.bmp')
-//          else
-//            frmTopBurja.img_Balistik17.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_off.bmp'); //__PARAM_BALISTIK17_OFF  = 301;
-        end;
-        __STAT_RBU_PERUBAHAN_HALU : begin
-//          if aRec^.ParamError = __PARAM_RBU_ON then
-//            frmTopBurja.img_Perubahan_Halu.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_on.bmp')
-//          else
-//            frmTopBurja.img_Perubahan_Halu.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_off.bmp'); //__PARAM_PERUBAHAN_HALU_OFF = 302;
-        end;
-        __STAT_RBU_BAHAYA_TPO : begin
-//          if aRec^.ParamError = __PARAM_RBU_ON then
-//            frmTopBurja.img_Bahaya_Tpo.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_on.bmp')
-//          else
-//            frmTopBurja.img_Bahaya_Tpo.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_off.bmp'); //__PARAM_BAHAYA_TPO_OFF = 303;
-        end;
-        __STAT_RBU_KONTAK_HILANG : begin
-//          if aRec^.ParamError = __PARAM_RBU_ON then begin
-//            frmTopBurja.img_KontakHilang.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_on.bmp');
-//            frmPanelFire.img_KontakHilang.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_on.bmp');
-//            frmPanelFire.img_AdaKontak.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_off.bmp');
-//          end
-//          else begin
-//            frmTopBurja.img_KontakHilang.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_off.bmp'); //__PARAM_KONTAK_HILANG_OFF = 304;
-//            frmPanelFire.img_KontakHilang.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_off.bmp');
-//            frmPanelFire.img_AdaKontak.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_on.bmp');
-//          end;
-        end;
-        __STAT_RBU_ALIRAN_KAPAL : begin
-//          if aRec^.ParamError = __PARAM_RBU_ON then begin
-//            frm108Kiri.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108 + 'lampu indikator on.bmp');  //__STAT_ALIRAN_KAPAL = 305;
-//            frm108Kanan.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108 + 'lampu indikator on.bmp');
-//
-//            frm108Kiri.ShipLink_is_On := True;
-//            frm108Kanan.ShipLink_is_On := True;
-//            {LOG}
-//            SendEvenRBU(8);
-//          end
-//          else begin
-//            frm108Kiri.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108  + 'lampu indikator off.bmp');
-//            frm108Kanan.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108 + 'lampu indikator off.bmp');
-//
-//            frm108Kiri.ShipLink_is_On := false;
-//            frm108Kanan.ShipLink_is_On := false;
-//            {LOG}
-//            SendEvenRBU(9);
-//          end;
-        end;
+    __STAT_RBU_BALISTIK12 :
+      begin
+  //      if aRec^.ParamError = __PARAM_RBU_ON then
+  //        frmTopBurja.img_Balistik17.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_on.bmp')
+  //      else
+  //        frmTopBurja.img_Balistik17.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_off.bmp'); //__PARAM_BALISTIK17_OFF  = 301;
+      end;
+    __STAT_RBU_PERUBAHAN_HALU :
+    begin
+  //    if aRec^.ParamError = __PARAM_RBU_ON then
+  //      frmTopBurja.img_Perubahan_Halu.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_on.bmp')
+  //    else
+  //      frmTopBurja.img_Perubahan_Halu.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_off.bmp'); //__PARAM_PERUBAHAN_HALU_OFF = 302;
+    end;
+    __STAT_RBU_BAHAYA_TPO :
+    begin
+  //    if aRec^.ParamError = __PARAM_RBU_ON then
+  //      frmTopBurja.img_Bahaya_Tpo.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_on.bmp')
+  //    else
+  //      frmTopBurja.img_Bahaya_Tpo.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_off.bmp'); //__PARAM_BAHAYA_TPO_OFF = 303;
+    end;
+    __STAT_RBU_KONTAK_HILANG :
+    begin
+  //    if aRec^.ParamError = __PARAM_RBU_ON then begin
+  //      frmTopBurja.img_KontakHilang.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_on.bmp');
+  //      frmPanelFire.img_KontakHilang.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_on.bmp');
+  //      frmPanelFire.img_AdaKontak.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_off.bmp');
+  //    end
+  //    else begin
+  //      frmTopBurja.img_KontakHilang.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_off.bmp'); //__PARAM_KONTAK_HILANG_OFF = 304;
+  //      frmPanelFire.img_KontakHilang.Picture.LoadFromFile(path_image_panelFire + 'Red_Indikator_off.bmp');
+  //      frmPanelFire.img_AdaKontak.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_on.bmp');
+  //    end;
+    end;
+    __STAT_RBU_ALIRAN_KAPAL :
+    begin
+  //    if aRec^.ParamError = __PARAM_RBU_ON then begin
+  //      frm108Kiri.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108 + 'lampu indikator on.bmp');  //__STAT_ALIRAN_KAPAL = 305;
+  //      frm108Kanan.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108 + 'lampu indikator on.bmp');
+  //
+  //      frm108Kiri.ShipLink_is_On := True;
+  //      frm108Kanan.ShipLink_is_On := True;
+  //      {LOG}
+  //      SendEvenRBU(8);
+  //    end
+  //    else begin
+  //      frm108Kiri.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108  + 'lampu indikator off.bmp');
+  //      frm108Kanan.img_Aliran_Kapal.Picture.LoadFromFile(path_image_108 + 'lampu indikator off.bmp');
+  //
+  //      frm108Kiri.ShipLink_is_On := false;
+  //      frm108Kanan.ShipLink_is_On := false;
+  //      {LOG}
+  //      SendEvenRBU(9);
+  //    end;
+    end;
 
-        __STAT_RBU_UNFORMER_I_LEFT : begin
-            stLEFT_UNFORMER1:= ReadValConsoleSetting( aRec^.ParamError);
-        end;
-        __STAT_RBU_UNFORMER_II_LEFT : begin
-           stLEFT_UNFORMER2:= ReadValConsoleSetting( aRec^.ParamError);
-        end;
-        __STAT_RBU_UNFORMER_I_RIGHT : begin
-            stRIGHT_UNFORMER1:= ReadValConsoleSetting( aRec^.ParamError);
-        end;
-        __STAT_RBU_UNFORMER_II_RIGHT : begin
-           stRIGHT_UNFORMER2:= ReadValConsoleSetting( aRec^.ParamError);
-        end;
+    __STAT_RBU_UNFORMER_I_LEFT :
+    begin
+      stLEFT_UNFORMER1:= ReadValConsoleSetting( aRec^.ParamError);
 
-        311..322 : begin
-         Id :=  aRec^.ErrorID - 310;
-         ListMissileR[Id].Condition := ReadValConsoleSetting( aRec^.ParamError);
-        end;
+      if aRec^.ParamError = __PARAM_RBU_ON then
+      begin
+        frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgAvailable);
+      end
+      else if aRec^.ParamError = __PARAM_RBU_OFF then
+      begin
+        frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgOff);
+      end;
+    end;
+    __STAT_RBU_UNFORMER_II_LEFT :
+    begin
+      stLEFT_UNFORMER2:= ReadValConsoleSetting( aRec^.ParamError);
 
-        331..342 : begin
-         Id :=  aRec^.ErrorID - 330;
-         ListMissileL[Id].Condition := ReadValConsoleSetting( aRec^.ParamError);
-        end;
+      if aRec^.ParamError = __PARAM_RBU_ON then
+      begin
+        frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgAvailable);
+      end
+      else if aRec^.ParamError = __PARAM_RBU_OFF then
+      begin
+        frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgOff);
+      end;
+    end;
+    __STAT_RBU_UNFORMER_I_RIGHT :
+    begin
+      stRIGHT_UNFORMER1:= ReadValConsoleSetting( aRec^.ParamError);
+
+      if aRec^.ParamError = __PARAM_RBU_ON then
+      begin
+        frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgAvailable);
+      end
+      else if aRec^.ParamError = __PARAM_RBU_OFF then
+      begin
+        frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgOff);
+      end;
+    end;
+    __STAT_RBU_UNFORMER_II_RIGHT :
+    begin
+      stRIGHT_UNFORMER2:= ReadValConsoleSetting( aRec^.ParamError);
+
+      if aRec^.ParamError = __PARAM_RBU_ON then
+      begin
+        frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgAvailable);
+        frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgAvailable);
+      end
+      else if aRec^.ParamError = __PARAM_RBU_OFF then
+      begin
+        frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgOff);
+        frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgOff);
+      end;
+    end;
+
+    311..322 :
+    begin
+      Id :=  aRec^.ErrorID - 310;
+      ListMissileR[Id].Available := ReadValConsoleSetting( aRec^.ParamError);
+    end;
+
+    331..342 :
+    begin
+      Id :=  aRec^.ErrorID - 330;
+      ListMissileL[Id].Available := ReadValConsoleSetting( aRec^.ParamError);
+    end;
    end;
- end;
+  end;
+
 end;
 
 //function TRBUManager.ReadValConsoleSetting(val: integer): Boolean;
