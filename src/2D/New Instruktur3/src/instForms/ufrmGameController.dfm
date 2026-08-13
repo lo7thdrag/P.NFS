@@ -183343,7 +183343,7 @@ object frmGameController: TfrmGameController
               8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
               918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
               6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-              01000118010000E83FB22901000000D4E097001C000000000000000000000000
+              010001180100008833552B01000000E56884751C000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000002
               0000000000000000000000000000000000000000000000000000000000000000
@@ -183352,15 +183352,15 @@ object frmGameController: TfrmGameController
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               8076C000000000008056C0000000000080764000000000008056400100000018
-              010000E83FB22901000000000000001C00000000000000000000000000000000
+              0100008833552B01000000000000001C00000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000200000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
               0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000009FD25300000000004
-              E59700B4E09700000000006688CE50000200006B88CE50000000000000000000
+              000000000000000000000000000000000000000000000000000000C8E7970078
+              E39700000000006688CE50000200006B88CE506688CE50000000000000000000
               000088B3400000000000408F400001000001}
           end
         end
@@ -183588,7 +183588,7 @@ object frmGameController: TfrmGameController
           object Label8: TLabel
             Left = 58
             Top = 140
-            Width = 62
+            Width = 70
             Height = 18
             Caption = 'Sea State'
             Font.Charset = ANSI_CHARSET
@@ -183602,7 +183602,7 @@ object frmGameController: TfrmGameController
           object Label9: TLabel
             Left = 58
             Top = 228
-            Width = 80
+            Width = 87
             Height = 18
             Caption = 'Wind Speed'
             Font.Charset = ANSI_CHARSET
@@ -183616,7 +183616,7 @@ object frmGameController: TfrmGameController
           object Label10: TLabel
             Left = 58
             Top = 316
-            Width = 93
+            Width = 102
             Height = 18
             Caption = 'Current Speed'
             Font.Charset = ANSI_CHARSET
@@ -183630,7 +183630,7 @@ object frmGameController: TfrmGameController
           object Label11: TLabel
             Left = 58
             Top = 404
-            Width = 86
+            Width = 87
             Height = 18
             Caption = 'Temperature'
             Font.Charset = ANSI_CHARSET
@@ -183644,7 +183644,7 @@ object frmGameController: TfrmGameController
           object Label12: TLabel
             Left = 58
             Top = 492
-            Width = 129
+            Width = 141
             Height = 18
             Caption = 'Barometer Pressure'
             Font.Charset = ANSI_CHARSET
@@ -183672,7 +183672,7 @@ object frmGameController: TfrmGameController
           object Label14: TLabel
             Left = 58
             Top = 668
-            Width = 82
+            Width = 87
             Height = 18
             Caption = 'Fog Intensity'
             Font.Charset = ANSI_CHARSET
@@ -183785,8 +183785,8 @@ object frmGameController: TfrmGameController
           object Label28: TLabel
             Left = 58
             Top = 79
-            Width = 39
-            Height = 18
+            Width = 42
+            Height = 19
             Caption = 'Port :'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -248065,7 +248065,7 @@ object frmGameController: TfrmGameController
               Width = 1109
               Height = 561
               Cursor = crHandPoint
-              ActivePage = pgtwRBU6000
+              ActivePage = pgtwDefault
               ActiveFont.Charset = DEFAULT_CHARSET
               ActiveFont.Color = clWhite
               ActiveFont.Height = -13
@@ -251891,10 +251891,6 @@ object frmGameController: TfrmGameController
                 ImageIndex = 3
                 TabColor = 7301478
                 TabColorTo = clWhite
-                ExplicitLeft = 0
-                ExplicitTop = 0
-                ExplicitWidth = 0
-                ExplicitHeight = 0
                 object lblInfo: TLabel
                   Left = 307
                   Top = 136

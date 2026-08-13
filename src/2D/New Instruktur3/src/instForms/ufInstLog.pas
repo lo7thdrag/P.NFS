@@ -26,7 +26,7 @@ implementation
 
 procedure TfrmMainLog.FormShow(Sender: TObject);
 begin
-  Self.Caption := 'Instruktur Network Log (v1.2 20260810 1554 LOC SBY)';
+  Self.Caption := 'Instruktur Network Log (v1.4 20260813 0930 LOC SBY)';
 end;
 
 end.

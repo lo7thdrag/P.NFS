@@ -537,7 +537,6 @@ object frmAddShipRuntime: TfrmAddShipRuntime
         PageAppearance.ShadowColor = 3355443
         PageAppearance.ShadowOffset = 0
         PageAppearance.Glow = gmNone
-        TabVisible = False
         TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
         TabAppearance.Appearance.Font.Color = clWhite
         TabAppearance.Appearance.Font.Height = -13

@@ -4234,6 +4234,9 @@ begin
         begin
           RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
           SimManager.NetSendTo3D_OrderCannon(RecSend);
+
+          edtCannonTargetID.Text := '0';
+          TargetID := 0;
         end;
       //Fire
       5:
@@ -5229,6 +5232,7 @@ begin
         SimManager.NetSendTo3D_OrderMissileSetTargetTorpedo(RecAssignTorpedoSPS);
 
         edtTorpedoSpsTarget.Text := '0';
+        TargetID := 0;
       end;
   end;
 
@@ -5391,8 +5395,8 @@ begin
     with lvShipList.Items.Add do
     begin
       { Class GENERAL SHIP tidak perlu dimasukkan ke List View }
-      if DataModule1.IDclassbyName(Ship.Vehicle_ID) = 'GENERAL SHIP' then
-        Exit;
+//      if DataModule1.IDclassbyName(Ship.Vehicle_ID) = 'GENERAL SHIP' then
+//        Exit;
 
       Caption := IntToStr(Ship.Vehicle_ID);
       SubItems.Add(Ship.Vehicle_Name);
