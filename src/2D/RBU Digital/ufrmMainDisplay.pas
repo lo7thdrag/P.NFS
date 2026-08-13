@@ -609,6 +609,8 @@ begin
   if FLauncherId = 1 then
   begin
     { Launcher kanan }
+//    ShowMessage('L1 Enabled=' + BoolToStr(Lonch1.Enabled, True) + ', Ready=' + BoolToStr(Lonch1.Ready, True));
+
     if not Lonch1.Enabled then
     begin
       ShowMessage('Launcher kanan tidak tersedia.');
@@ -627,6 +629,8 @@ begin
   if FLauncherId = 2 then
   begin
     { Launcher kiri }
+
+//    ShowMessage('L2 Enabled=' + BoolToStr(Lonch2.Enabled, True) + ', Ready=' + BoolToStr(Lonch2.Ready, True));
     if not Lonch2.Enabled then
     begin
       ShowMessage('Launcher kiri tidak tersedia.');

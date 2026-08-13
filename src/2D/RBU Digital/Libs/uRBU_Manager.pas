@@ -78,6 +78,7 @@ type
      procedure EventOnReceive3DOrder(apRec: PAnsiChar; aSize: integer);
      procedure EventOnReceiveSonarMode(apRec: PAnsiChar; aSize: integer);
      procedure Event_RcvRBUSetting(apRec: PAnsiChar; aSize: integer);
+     procedure EventOnReceiveRBUOrder(apRec: PAnsiChar; aSize: integer);
 
      procedure EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
 
@@ -110,6 +111,7 @@ begin
    CreateObjek;
    SetLayOutForm;
    Initialize;
+   GetAsrocWeaponAssigned;
 
    Datcom.RegisterProcedure(REC_3D_POSITION, EventOnReceiveDataPosition , SizeOf(TRecData3DPosition));
    Datcom.RegisterProcedure(REC_3D_MISSILEPOS, EventOnReceive3DOrder , SizeOf(TRec3DMissilePos));
@@ -118,6 +120,7 @@ begin
    Datcom.RegisterProcedure(RecRBU_SonarMode_ORDER, EventOnReceiveSonarMode, SizeOf(TRecRBU_SonarMode));
 
    Datcom.RegisterProcedure(REC_STAT_ORDER_CONSOLE, Event_RcvRBUSetting , sizeof(TRecStatus_Console));
+   Datcom.RegisterProcedure(REC_3D_RBU, EventOnReceiveRBUOrder, SizeOf(TRec3DSetRBU));
 
    Datcom.RegisterProcedure(REC_MISSILEPOS, EventOnReceiveMissileStatus, SizeOf(TRecMissilePos));
 //   Datcom.RegisterProcedure(REC_2D_ORDER, nil, SizeOf(TRecData2DOrder));
@@ -152,6 +155,10 @@ begin
 
    OwnShip     := TShipRBU.Create;
    TargetShip  := TShipRBU.Create;
+
+   Lonch1 := TLoncher.Create;
+   Lonch2 := TLoncher.Create;
+
    TargetID    := 0;
 //   frmPanelFire    := TfrmPanelFire.Create(nil);
 //
@@ -240,7 +247,7 @@ begin
 
     Env_Map := DataModule1.GetMapById(pCurrentScenID);
     DataModule1.GetOffsetMapByEnvMap(Env_Map ,OffX_Map, OffY_Map);
- //    GetAsrocWeaponAssigned;
+//     GetAsrocWeaponAssigned;
   end;
 
   stLEFT_UNFORMER1  := True;
@@ -264,29 +271,34 @@ begin
 end;
 
 procedure TRBUManager.GetAsrocWeaponAssigned;
-var WeaponAssigned : TScenarioWeapon;
-    ListWeaponAssigned : TList;
-    I : Integer;
+var
+  WeaponAssigned : TScenarioWeapon;
+  ListWeaponAssigned : TList;
+  I : Integer;
 begin
- ListWeaponAssigned := TList.Create;
- if DataModule1.GetListWeaponOnShipBySceID( pCurrentScenID , pShipID, ListWeaponAssigned) > 0 then
- begin
-   for i := 0 to ListWeaponAssigned.Count - 1 do begin
-     WeaponAssigned := TScenarioWeapon.Create;
-     WeaponAssigned := TScenarioWeapon(ListWeaponAssigned.Items[i]);
-     if WeaponAssigned.WeaponID = C_DBID_RBU6000 then begin
-       case WeaponAssigned.LauncherID of
-         1 : begin
-               Lonch1.Enabled := True;
-             end;
-         2 : begin
-               Lonch2.Enabled := True;
-             end;
+   ListWeaponAssigned := TList.Create;
+
+   if DataModule1.GetListWeaponOnShipBySceID(pCurrentScenID , pShipID, ListWeaponAssigned) > 0 then
+   begin
+     for i := 0 to ListWeaponAssigned.Count - 1 do begin
+       WeaponAssigned := TScenarioWeapon.Create;
+       WeaponAssigned := TScenarioWeapon(ListWeaponAssigned.Items[i]);
+       if WeaponAssigned.WeaponID = C_DBID_RBU6000 then begin
+         case WeaponAssigned.LauncherID of
+           1 :
+           begin
+            Lonch1.Enabled := True;
+           end;
+           2 :
+           begin
+            Lonch2.Enabled := True;
+           end;
+         end;
        end;
+       WeaponAssigned.Free;
      end;
-     WeaponAssigned.Free;
    end;
- end;
+
   ListWeaponAssigned.Free;
 
   if Lonch1.Enabled then
@@ -298,7 +310,6 @@ begin
     Datcom.Log.Add('Lonc2 is assigned')
   else
     Datcom.Log.Add('Lonc2 is not assigned');
-
 end;
 
 procedure TRBUManager.FrmNetShow;
@@ -433,91 +444,106 @@ end;
 
 procedure TRBUManager.EventOnReceive3DOrder(apRec: PAnsiChar; aSize: integer);
 var
-aRec: ^TRec3DMissilePos;
-lRec : TRec3DSetRBU;
+  aRec: ^TRec3DMissilePos;
+  lRec : TRec3DSetRBU;
 
-i: Integer;
-isValid : Boolean;
-LauncherMissile : TRecMissile;
+  i: Integer;
+  isValid: Boolean;
+  LauncherMissile: TRecMissile;
+  Launcher: TLoncher;
 begin
   aRec := @apRec^;
 
-//  if aRec^.shipID <> pShipID then Exit;
-//
-//  case aRec^.status   of
-//
-//    ST_MISSILE_RUN, ST_MISSILE_DEL:
-//    begin
-//      if aRec^.WeaponID = C_DBID_RBU6000 then
-//      begin
-//        case aRec^.launcherID of
-//          1 :
-//          begin
-//            isValid := True;
-//
-//            if Lonch1.OrderFire.Count > 1 then
-//            begin
-//              for i := 0 to Lonch1.OrderFire.Count - 1 do
-//              begin
-//                LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[i]);
-//                if i+1 = aRec^.missileID then
-//                begin
-//                  LauncherMissile.isLaunch := True;
-//                end;
-//              end;
-//            end
-//            else
-//            begin
-//              LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[0]);
-//              if LauncherMissile.Missile = aRec^.missileID then
-//              begin
-//                LauncherMissile.isLaunch := True;
-//              end;
-//            end;
-//
-//
-//            for i := 0 to Lonch1.OrderFire.Count - 1 do
-//            begin
-//              LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[i]);
-//              if not LauncherMissile.isLaunch then isValid := false;
-//            end;
-//
-//            if isValid then
-//            begin
-//              if Lonch1.isReadyFire then
-//              begin
-//                lRec.ShipID          := pShipID;
-//                lRec.mWeaponID       := C_DBID_RBU6000;
-//                lRec.mLauncherID     := aRec^.launcherID;
-//                lRec.mMissileID      := 0;
-//                lRec.mMissileNumber  := 0;
-//                lRec.mCount          := 0;
-//                lRec.mMissileType    := 0;
-//                lRec.mTargetID       := 0;
-//                lRec.mLncrBearing    := 0;
-//                lRec.mLncRange       := 0;
-//                lRec.mTargetDepth    := 0;
-//                lRec.mCorrBearing    := 0;
-//                lRec.mCorrElev       := 0;
-//                lRec.OrderID         := __ORD_RBU_DEASSIGNED;
-//
-//                if Datcom <> nil then
-//                begin
-//                  Datcom.sendDataEx(REC_3D_RBU, @lRec);
-//                end;
-//
-//                Lonch1.isReadyFire := false;
-//                Lonch1.OrderFire.Clear;
-//              end;
-//            end;
-//          end;
-//        end;
-//      end;
-//    end;
-//
-//
-//  end;
+  if aRec^.shipID <> pShipID then
+    Exit;
 
+  if aRec^.WeaponID <> C_DBID_RBU6000 then
+    Exit;
+
+  case aRec^.status of
+    ST_MISSILE_RUN, ST_MISSILE_DEL:
+    begin
+      case aRec^.launcherID of
+        1: Launcher := Lonch1;
+        2: Launcher := Lonch2;
+      else
+        Exit;
+      end;
+
+      if not Assigned(Launcher) then
+        Exit;
+
+      if Launcher.OrderFire.Count = 0 then
+        Exit;
+
+      isValid := True;
+
+      if Launcher.OrderFire.Count > 1 then
+      begin
+        for i := 0 to Launcher.OrderFire.Count - 1 do
+        begin
+          LauncherMissile :=
+            TRecMissile(Launcher.OrderFire.Items[i]);
+
+          if i + 1 = aRec^.missileID then
+          begin
+            LauncherMissile.isLaunch := True;
+            Break;
+          end;
+        end;
+      end
+      else
+      begin
+        LauncherMissile := TRecMissile(Launcher.OrderFire.Items[0]);
+
+        if LauncherMissile.Missile = aRec^.missileID then
+          LauncherMissile.isLaunch := True;
+      end;
+
+      for i := 0 to Launcher.OrderFire.Count - 1 do
+      begin
+        LauncherMissile := TRecMissile(Launcher.OrderFire.Items[i]);
+
+        if not LauncherMissile.isLaunch then
+        begin
+          isValid := False;
+          Break;
+        end;
+      end;
+
+      if isValid then
+      begin
+        if Launcher.isReadyFire then
+        begin
+          FillChar(lRec, SizeOf(lRec), 0);
+
+          lRec.ShipID         := pShipID;
+          lRec.mWeaponID      := C_DBID_RBU6000;
+          lRec.mLauncherID    := aRec^.launcherID;
+          lRec.mMissileID     := 0;
+          lRec.mMissileNumber := 0;
+          lRec.mCount         := 0;
+          lRec.mMissileType   := 0;
+          lRec.mTargetID      := 0;
+          lRec.mLncrBearing   := 0;
+          lRec.mLncRange      := 0;
+          lRec.mTargetDepth   := 0;
+          lRec.mCorrBearing   := 0;
+          lRec.mCorrElev      := 0;
+          lRec.OrderID        := __ORD_RBU_DEASSIGNED;
+
+          if Assigned(Datcom) then
+            Datcom.sendDataEx(REC_3D_RBU, @lRec);
+
+          Launcher.isReadyFire := False;
+          Launcher.Ready := False;
+
+          Launcher.IsLoading := True;
+          Launcher.OrderFire.Clear;
+        end;
+      end;
+    end;
+  end;
 end;
 
 procedure  TRBUManager.EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
@@ -668,50 +694,140 @@ procedure TRBUManager.EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integ
 var
   aRec: ^TRecMissilePos;
   MissileID: Integer;
+
+  LoadImgAvailable, LoadImgOff : string;
+  Picture_Path: string;
 begin
   aRec := @apRec^;
 
-//  if aRec^.shipID <> pShipID then
-//    Exit;
-//
-//  if aRec^.WeaponID <> C_DBID_RBU6000_DIGITAL then
-//    Exit;
-//
-//  MissileID := aRec^.missileID;
-//
-//  if (MissileID < 1) or (MissileID > 12) then
-//    Exit;
+  Picture_Path     := Copy(ExtractFilePath(Application.ExeName),1,length(ExtractFilePath(Application.ExeName))-4);
+  LoadImgAvailable := Picture_Path + 'bin\data\images\light\GREEN.bmp';
+  LoadImgOff       := Picture_Path + 'bin\data\images\light\RED.bmp';
 
-  if (pShipID = aRec^.ShipID) and (aRec^.WeaponID = C_DBID_RBU6000_DIGITAL) then
-  begin
-    case aRec^.launcherID of
-      1:
-      begin
-        case aRec^.status of
-          ST_MISSILE_LOADED:
-          begin
-            ListMissileR[MissileID].Available := True;
-            missileLoaded1 := True;
-          end;
-          ST_MISSILE_RUN,ST_MISSILE_DEL:
-          begin
-            ListMissileR[MissileID].Available := False;
-          end;
+  if aRec^.shipID <> pShipID then
+    Exit;
 
+  if aRec^.WeaponID <> C_DBID_RBU6000 then
+    Exit;
+
+  MissileID := aRec^.missileID;
+
+  if (MissileID < 1) or (MissileID > 12) then
+    Exit;
+
+  case aRec^.launcherID of
+    1:
+    begin
+      case aRec^.status of
+        ST_MISSILE_LOADED:
+        begin
+          ListMissileR[MissileID].Available := True;
+
+          Lonch1.IsLoading := False;
+          Lonch1.Ready := True;
+          Lonch1.Enabled := True;
+
+          frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgAvailable);
+        end;
+        ST_MISSILE_RUN,ST_MISSILE_DEL:
+        begin
+          ListMissileR[MissileID].Available := False;
+
+          frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgOff);
+        end;
+
+      end;
+    end;
+    2:
+    begin
+      case aRec^.status of
+        ST_MISSILE_LOADED:
+        begin
+          ListMissileL[MissileID].Available := True;
+
+          Lonch2.IsLoading := False;
+          Lonch2.Ready := True;
+          lonch2.Enabled := True;
+
+          frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgAvailable);
+          frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgAvailable);
+        end;
+        ST_MISSILE_RUN, ST_MISSILE_DEL:
+        begin
+          ListMissileL[MissileID].Available := False;
+
+          frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgOff);
+          frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgOff);
         end;
       end;
-      2:
+    end;
+  end;
+end;
+
+procedure TRBUManager.EventOnReceiveRBUOrder(apRec: PAnsiChar;  aSize: Integer);
+var
+  aRec: ^TRec3DSetRBU;
+begin
+  aRec := @apRec^;
+
+  if aRec^.ShipID <> pShipID then
+    Exit;
+
+  case aRec^.OrderID of
+    __ORD_RBU_LOADING:
+    begin
+      if aRec^.mLauncherID = 1 then
       begin
-        case aRec^.status of
-          ST_MISSILE_LOADED:
-          begin
-            ListMissileL[MissileID].Available := True;
-          end;
-          ST_MISSILE_RUN, ST_MISSILE_DEL:
-          begin
-            ListMissileL[MissileID].Available := False;
-          end;
-        end;
+        Lonch1.IsLoading := True;
+        Lonch1.Ready := False;
+      end
+      else
+      if aRec^.mLauncherID = 2 then
+      begin
+        Lonch2.IsLoading := True;
+        Lonch2.Ready := False;
       end;
     end;
   end;
@@ -768,12 +884,7 @@ var
   Id :Integer;
   MissileID: Integer;
   Picture_Path : string;
-  LoadImgAvailable, LoadImgOff : string;
 begin
-  Picture_Path     := Copy(ExtractFilePath(Application.ExeName),1,length(ExtractFilePath(Application.ExeName))-4);
-  LoadImgAvailable := Picture_Path + 'bin\data\images\light\GREEN.bmp';
-  LoadImgOff       := Picture_Path + 'bin\data\images\light\RED.bmp';
-
   aRec := @apRec^;
 
   if aRec.OWN_SHIP_UID  = OwnShip.ShipId then begin
@@ -837,142 +948,18 @@ begin
     __STAT_RBU_UNFORMER_I_LEFT :
     begin
       stLEFT_UNFORMER1:= ReadValConsoleSetting( aRec^.ParamError);
-
-      if aRec^.ParamError = __PARAM_RBU_ON then
-      begin
-        frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgAvailable);
-      end
-      else if aRec^.ParamError = __PARAM_RBU_OFF then
-      begin
-        frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgOff);
-      end;
     end;
     __STAT_RBU_UNFORMER_II_LEFT :
     begin
       stLEFT_UNFORMER2:= ReadValConsoleSetting( aRec^.ParamError);
-
-      if aRec^.ParamError = __PARAM_RBU_ON then
-      begin
-        frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgAvailable);
-      end
-      else if aRec^.ParamError = __PARAM_RBU_OFF then
-      begin
-        frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgOff);
-      end;
     end;
     __STAT_RBU_UNFORMER_I_RIGHT :
     begin
       stRIGHT_UNFORMER1:= ReadValConsoleSetting( aRec^.ParamError);
-
-      if aRec^.ParamError = __PARAM_RBU_ON then
-      begin
-        frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgAvailable);
-      end
-      else if aRec^.ParamError = __PARAM_RBU_OFF then
-      begin
-        frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgOff);
-      end;
     end;
     __STAT_RBU_UNFORMER_II_RIGHT :
     begin
       stRIGHT_UNFORMER2:= ReadValConsoleSetting( aRec^.ParamError);
-
-      if aRec^.ParamError = __PARAM_RBU_ON then
-      begin
-        frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgAvailable);
-        frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgAvailable);
-      end
-      else if aRec^.ParamError = __PARAM_RBU_OFF then
-      begin
-        frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgOff);
-        frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgOff);
-      end;
     end;
 
     311..322 :

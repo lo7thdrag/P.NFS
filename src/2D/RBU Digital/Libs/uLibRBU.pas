@@ -182,6 +182,9 @@ var
   stRIGHT_UNFORMER1,
   stRIGHT_UNFORMER2  : boolean;
 
+  missileLoaded1, missileLoaded2, missileLoaded3, missileLoaded4, missileLoaded5, missileLoaded6,
+  missileLoaded7, missileLoaded8, missileLoaded9, missileLoaded10, missileLoaded11, missileLoaded12 : Boolean;
+
   //Panel Fire
   ListMissileR,
   ListMissileL       : array [1..12] of TRecMissile;
@@ -349,14 +352,18 @@ end;
 
 constructor TLoncher.Create;
 begin
-   vTraining    := 0.00;
-   vElev        := 0.00;
-   IsElevOn     := false;
-   IsTrainingOn := false;
-   Isused       := False;
-   IsLoading    := False;
-   OrderFire:= TList.Create;
-   isReadyFire := false;
+  vTraining    := 0.00;
+  vElev        := 0.00;
+
+  IsElevOn     := False;
+  IsTrainingOn := False;
+
+  Isused       := False;
+  IsReady      := False;
+  IsLoading    := False;
+  isReadyFire  := False;
+
+  OrderFire := TList.Create;
 end;
 
 destructor TLoncher.Destroy;
@@ -393,7 +400,7 @@ end;
 
 function TLoncher.GetReady: boolean;
 begin
-Result := IsReady;
+  Result := IsReady;
 end;
 
 function TLoncher.GetTrainingOn: boolean;
