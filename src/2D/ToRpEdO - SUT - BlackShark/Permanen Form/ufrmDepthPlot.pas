@@ -267,22 +267,22 @@ begin
         if TTorpedoTrack(VehicleMgr.ObjectList[i]).LauncherID = TorpedoParam.TorpedoIdx then
         begin
           Torp := TTorpedoTrack(VehicleMgr.ObjectList[i]);
+          Pen.Color := clGreen;
+          Pen.Style := psSolid;
+          MoveTo(GraphLeft, Round(Torp.PosZ / maxdepth * GraphHeight));
+          LineTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
+
+          MoveTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
+          LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(Torp.PosZ / maxdepth * GraphHeight) - ArrowWidth);
+
+          MoveTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
+          LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(Torp.PosZ / maxdepth * GraphHeight) + ArrowWidth);
+
+          Font.Color := clGreen;
+          TextOut(GraphLeft + Round(GraphWidth/2) + 5, GraphLeft + Round(GraphWidth/2) - 5, IntToStr(Torp.LauncherID));
           Break;
         end;
       end;
-    end;
-    if Torp <> nil then
-    begin
-      Pen.Color := clGreen;
-      Pen.Style := psSolid;
-      MoveTo(GraphLeft, Round(Torp.PosZ / maxdepth * GraphHeight));
-      LineTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
-
-      MoveTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
-      LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(Torp.PosZ / maxdepth * GraphHeight) - ArrowWidth);
-
-      MoveTo(GraphLeft + Round(GraphWidth/2), Round(Torp.PosZ / maxdepth * GraphHeight));
-      LineTo(GraphLeft + Round(GraphWidth/2) - ArrowLength, Round(Torp.PosZ / maxdepth * GraphHeight) + ArrowWidth);
     end;
   end;
 end;
