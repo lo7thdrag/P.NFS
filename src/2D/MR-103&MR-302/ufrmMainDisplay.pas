@@ -270,6 +270,7 @@ type
     FOwnShipHeading : Double;
 
     FBearing, FElevation, FRange : Double;
+    FIsTargetDesigned: Boolean;
 
     procedure LoadGeoset(const aGst: string); virtual;
     procedure InitializeForm();
@@ -519,6 +520,15 @@ begin
     AreaPenembakan.OuterRadiusPx  := FCircleR;
     AreaPenembakan.CurrentRange_m := Self.FCurrentRange;
 
+    if Assigned(FCCManager) then
+    begin
+      if Assigned(FCCManager.xShip) then
+      begin
+        if FCCManager.IsRelativeMotion then AreaPenembakan.HeadingDeg := 0
+        else AreaPenembakan.HeadingDeg    := FCCManager.xShip.Heading;
+      end;
+    end;
+
     AreaPenembakan.Draw(aCnv);
 
     // RANGE RINGS
@@ -526,7 +536,6 @@ begin
     FRings.CurrentRange_m := FCurrentRange;
     FRings.ConvertCoord(aCvt);
     FRings.Draw(aCnv);
-
 
 
     // BEARING 0°
@@ -740,6 +749,7 @@ begin
   begin
     if FCCManager.SelectedVehicle <> nil then
     begin
+      FIsTargetDesigned := True;
       RecSend.ShipID := FCCManager.ShipID; // harus dipindah di desig dan break
 //      RecSend.Range := 0;
       RecSend.Range := FRange;
@@ -769,6 +779,7 @@ begin
   end
   else if (Sender as TFlatButton) = fbBreakTarget then
   begin
+    FIsTargetDesigned := False;
     RecSend.ShipID := FCCManager.ShipID; // harus dipindah di desig dan break
     RecSend.Range := 0;
     RecSend.Bearing := 0;
@@ -952,6 +963,7 @@ begin
   FCCManager.OnPtkCommand := ptkCommand;
   FCCManager.initEvent;
 
+  FIsTargetDesigned:= False;
   FNorthAngle := 0;
   FMapCanvas := TCanvas.Create;
   FMapConverter := TMapXUnitConverter.Create;
@@ -1876,6 +1888,7 @@ var
   aLow, aHigh: Double;
   range,rangem, bearing, azimuth, elevation : Double;
   maxRange : Double;
+  RecSend: TrecData_MeriamFCC;
 begin
 //  lblBearing.Caption := Format('0',[FBearing0.BearingDeg]);
 //  lblRange.Caption := Format('0.00', [FCurrentRange * C_Meter_To_NauticalMile]);
@@ -1913,19 +1926,31 @@ begin
 //        (elevation < -10) or
 //        (elevation > 80) or
 //        ((bearing < 50) or (bearing > 310)) then
-//          fbBreakTargetClick(fbBreakTarget);
+//          fbBreakTargetClick(fbDesigTarget);
       end;
       3 : //MR 302
       begin
         elevation := CalcElevation(rangem, 6, fccmanager.SelectedVehicle.PosZ);
         FElevation := elevation;
-//        maxRange := 1.62;
-//        if (range > MaxRange) or
-//        (elevation < -10) or
-//        (elevation > 85) or
-//        ((bearing > 120) and (bearing < 240)) then
-//          fbBreakTargetClick(fbBreakTarget);
       end;
+    end;
+
+    if FIsTargetDesigned = True then
+    begin
+      RecSend.ShipID := FCCManager.ShipID; // harus dipindah di desig dan break
+      RecSend.Range := FRange;
+      RecSend.Bearing := FBearing;
+      RecSend.Elevation := FElevation;
+      RecSend.EOBearing := 0;
+      RecSend.EOElevation := 0;
+      RecSend.TargetType := 0;
+      RecSend.EnableValue := false;
+
+      RecSend.OrderID := CORD_ID_2D_Desig;
+      RecSend.IDTarget3D := 0;
+      RecSend.IDTarget2D := UniqueID_To_dbID(FCCManager.SelectedVehicle.UniqueID);
+
+      FCCManager.NetSendTo3D_FCCSet(RecSend);
     end;
 
     if fbRangeMeter.Down then edtRDRangeVal.Text := format('%.2f', [rangem])

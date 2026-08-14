@@ -4657,7 +4657,7 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentFont = False
                 end
                 object btnDcdcExecute: TFlatButton
-                  Left = 105
+                  Left = 185
                   Top = 136
                   Width = 90
                   Height = 30
@@ -4879,6 +4879,24 @@ object frmDCDSMain: TfrmDCDSMain
                   ParentBackground = False
                   ParentFont = False
                   TabOrder = 6
+                end
+                object btnToZero: TFlatButton
+                  Left = 35
+                  Top = 136
+                  Width = 90
+                  Height = 30
+                  Color = clYellow
+                  ColorDown = clLime
+                  Caption = 'To Zero'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clBlack
+                  Font.Height = -13
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentFont = False
+                  ParentColor = False
+                  TabOrder = 7
+                  OnClick = btnToZeroClick
                 end
               end
             end
@@ -17312,6 +17330,7 @@ object frmDCDSMain: TfrmDCDSMain
     Top = 944
   end
   object tmrRotate: TTimer
+    Interval = 33
     OnTimer = tmrRotateTimer
     Left = 24
     Top = 1000

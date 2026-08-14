@@ -222,6 +222,7 @@ type
     tmrTime: TTimer;
     tmrRotate: TTimer;
     tmrAmmo: TTimer;
+    btnToZero: TFlatButton;
     procedure tmr1Timer(Sender: TObject);
     procedure btnPowerSwitchClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -269,6 +270,7 @@ type
     procedure edtElevationValueChange(Sender: TObject);
     procedure edtTrainingValueChange(Sender: TObject);
     procedure btnBrakeOnClick(Sender: TObject);
+    procedure btnToZeroClick(Sender: TObject);
   private
     { Private declarations }
     FbootTime : Integer;
@@ -286,6 +288,7 @@ type
     FVCurElevation,
     FVCurHeading: Double;
     FFileName : String;
+    FIsTargetDesigned: Boolean;
 
     LeftMagazine, RightMagazine : Integer;
     LeftShot, RightShot : Integer;
@@ -333,6 +336,9 @@ type
     procedure AddLog;
     procedure ApplyFilter;
     procedure LoadFileToMemo(const AFileName: string);
+    procedure CheckTraining;
+    procedure CheckElevation;
+    procedure CheckRange;
 
   end;
 
@@ -382,6 +388,144 @@ begin
  mmoLogger.Font.Color := clGray;
  tmrAmmo.Enabled := False;
  btnStartLog.Down := False;
+end;
+
+procedure TfrmDCDSMain.btnToZeroClick(Sender: TObject);
+begin
+  edtElevationValue.Text := '0';
+  edtTrainingValue.Text := '0';
+  edtOmRangeValue.Text := '0';
+  edtOmBearingValue.Text := '0';
+
+  btnDcdcExecuteClick(nil);
+end;
+
+procedure TfrmDCDSMain.CheckElevation;
+var
+  maxRan : Double;
+begin
+  maxRan := 1.62;
+  if ((FVTgtElevation < -10) or (FVTgtElevation > 85)) or
+  ((FVTgtTraining > 120) and (FVTgtTraining < 240 )) or
+  (StrToFloat(edtOmRangeValue.Text) < 0.16) or ((StrToFloat(edtOmRangeValue.Text)) > maxRan) then
+  begin
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+  end
+  else
+  begin
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
+    btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+  end;
+
+  if (FVTgtElevation < -10) then
+  begin
+    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else if (FVTgtElevation > 85) then
+  begin
+    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else
+  begin
+    imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end;
+end;
+
+procedure TfrmDCDSMain.CheckRange;
+var
+  maxRan : Double;
+begin
+  maxRan := 1.62;
+  if StrToFloat(edtValueElevation.Text) = 45 then
+    maxRan := 2.16;
+  if (StrToFloat(edtValueElevation.Text) >= -10) and (StrToFloat(edtValueElevation.Text) < 0) then
+    maxRan := 0;
+  if (StrToFloat(edtValueElevation.Text) >= 0) and (StrToFloat(edtValueElevation.Text) < 15) then
+    maxRan := 1.62;
+  if (StrToFloat(edtValueElevation.Text) >= 15) and (StrToFloat(edtValueElevation.Text) < 30) then
+    maxRan := 1.80;
+  if (StrToFloat(edtValueElevation.Text) >= 30) and (StrToFloat(edtValueElevation.Text) < 45) then
+    maxRan := 1.98;
+  if (StrToFloat(edtValueElevation.Text) > 45) and (StrToFloat(edtValueElevation.Text) < 60) then
+    maxRan := 1.98;
+  if (StrToFloat(edtValueElevation.Text) >= 60) and (StrToFloat(edtValueElevation.Text) < 75) then
+    maxRan := 1.80;
+  if (StrToFloat(edtValueElevation.Text) >= 75) and (StrToFloat(edtValueElevation.Text) <= 85) then
+    maxRan := 1.62;
+  if (StrToFloat(edtValueElevation.Text) > 85) then
+    maxRan := 0;
+
+  if ((FVTgtElevation < -10) or (FVTgtElevation > 85)) or
+  ((FVTgtTraining > 120) and (FVTgtTraining < 240 )) or
+  (StrToFloat(edtOmRangeValue.Text) < 0.16) or ((StrToFloat(edtOmRangeValue.Text)) > maxRan) then
+  begin
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+
+    ShowMessage('Out of Range!');
+  end
+  else
+  begin
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
+    btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+  end;
+end;
+
+procedure TfrmDCDSMain.CheckTraining;
+var
+  maxRan : Double;
+begin
+  maxRan := 1.62;
+  if ((FVTgtElevation < -10) or (FVTgtElevation > 85)) or
+  ((FVTgtTraining > 120) and (FVTgtTraining < 240 )) or
+  (StrToFloat(edtOmRangeValue.Text) < 0.16) or ((StrToFloat(edtOmRangeValue.Text)) > maxRan) then
+  begin
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+  end
+  else
+  begin
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
+    btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
+
+    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
+    btnPlunger.Glyph.Assign(FimgTemp.Picture.Graphic);
+  end;
+
+  if (FVTgtTraining >= 180) and (FVTgtTraining < 240) then
+  begin
+    imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else if (FVTgtTraining > 120) and (FVTgtTraining <= 180) then
+  begin
+    imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\merah_S.png');
+    imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end
+  else
+  begin
+    imgTrainingLeftLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+    imgTrainingRightLimitStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
+  end;
 end;
 
 procedure TfrmDCDSMain.drvcbb1Change(Sender: TObject);
@@ -434,6 +578,7 @@ begin
   if not (Key in ['0'..'9', '-','.', #8]) then
     Key := #0;
 end;
+
 
 procedure TfrmDCDSMain.fllst1Change(Sender: TObject);
 begin
@@ -520,33 +665,17 @@ end;
 procedure TfrmDCDSMain.btnBrakeOnClick(Sender: TObject);
 var
   canFire : Boolean;
-  Elevation: Double;
   MaxRan: Double;
 begin
-  Elevation := StrToFloat(edtValueElevation.Text);
   MaxRan := 1.62;
+  if btnBrakeOn.Down then
+  begin
+    CheckRange;
+    CheckTraining;
+    CheckElevation;
+  end;
 
-  // Tentukan maximum range berdasarkan elevation
-  if (Elevation >= -10) and (Elevation < 0) then
-    MaxRan := 0
-  else if (Elevation >= 0) and (Elevation < 15) then
-    MaxRan := 1.62
-  else if (Elevation >= 15) and (Elevation < 30) then
-    MaxRan := 1.80
-  else if (Elevation >= 30) and (Elevation < 45) then
-    MaxRan := 1.98
-  else if Elevation = 45 then
-    MaxRan := 2.16
-  else if (Elevation > 45) and (Elevation < 60) then
-    MaxRan := 1.98
-  else if (Elevation >= 60) and (Elevation < 75) then
-    MaxRan := 1.80
-  else if (Elevation >= 75) and (Elevation <= 85) then
-    MaxRan := 1.62
-  else
-    MaxRan := 0;
-
-  canFire :=  btnBrakeOn.Down and
+  canFire :=  btnBrakeOn.Down and btnCmAggregate.Down and
               (FVTgtElevation >= -10) and
               (FVTgtElevation <= 85) and
               ((FVTgtTraining <= 120) or (FVTgtTraining >= 240)) and
@@ -657,6 +786,7 @@ end;
 procedure TfrmDCDSMain.btnDcdcExecuteClick(Sender: TObject);
 var
   elevVal, trainVal, acElevVal, acTrainVal: Double;
+  maxRan : Double;
   lRec : TRec3DSetWCC;
 begin
   if edtElevationValue.Text = '' then
@@ -707,14 +837,11 @@ begin
   FVTgtElevation := elevVal+acElevVal;
 //  edtValueTraining.Text := FormatFloat('0.#', FVTgtTraining);
 //  edtValueElevation.Text := FormatFloat('0.#', FVTgtElevation);
-
+  maxRan := 1.62;
   if ((FVTgtElevation < -10) or (FVTgtElevation > 85)) or
-  ((FVTgtTraining > 120) and (FVTgtTraining < 240 )) then
+  ((FVTgtTraining > 120) and (FVTgtTraining < 240 )) or
+  (StrToFloat(edtOmRangeValue.Text) < 0.16) or ((StrToFloat(edtOmRangeValue.Text)) > maxRan) then
   begin
-//    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingoff.bmp');
-//    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-//    btnFiring.Enabled := False;
-
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenon.bmp');
     btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
 
@@ -723,10 +850,6 @@ begin
   end
   else
   begin
-//    FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_firingon.bmp');
-//    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
-//    btnFiring.Enabled := True;
-
     FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\buttonAK230\bttn_greenoff.bmp');
     btnTaboZone.Glyph.Assign(FimgTemp.Picture.Graphic);
 
@@ -762,7 +885,6 @@ begin
   end
   else
   begin
-    // NORMAL ZONE (-10 s/d 80)
     imgElevationLowStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
     imgElevationHighStatus.Picture.LoadFromFile(vPathImageSetting.ImgPath + '\led\hijau_S.png');
   end;
@@ -1311,6 +1433,7 @@ begin
   pnlLmHeading.DoubleBuffered := True;
   pnlLmTraining.DoubleBuffered := True;
   pnlLmElevation.DoubleBuffered := True;
+  pnlBackground.DoubleBuffered := True;
 
 //  GunL := TGun.Create(1);
 //  GunR := TGun.Create(1);
@@ -1753,13 +1876,8 @@ begin
     edtOmRangeValue.Text := FormatFloat('0.0', AK230Manager.Range);
 
     btnDcdcExecuteClick(nil);
-    AK230Manager.DesigtChange := False;
+//    AK230Manager.DesigtChange := False;
 
-//    if AK230Manager.TargetAssigned then
-//    begin
-//      btnDcdcExecuteClick(nil);
-//      AK230Manager.TargetAssigned := False;
-//    end;
   end
   else if (not AK230Manager.isDesigt) and (AK230Manager.DesigtChange) then
   begin
@@ -1768,16 +1886,8 @@ begin
     edtOmRangeValue.Text := '0';
 
     btnDcdcExecuteClick(nil);
-    AK230Manager.DesigtChange := False;
+//    AK230Manager.DesigtChange := False;
   end;
-//  else
-//  begin
-//    edtElevationValue.Text := IntToStr(0);
-//    edtTrainingValue.Text := IntToStr(0);
-//    edtOmRangeValue.Text := IntToStr(0);
-//
-//    btnDcdcExecuteClick(nil);
-//  end;
 
   FVTgtHeading := AK230Manager.xShip.Heading;
 end;

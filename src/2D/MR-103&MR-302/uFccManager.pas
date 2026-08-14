@@ -13,6 +13,7 @@ type
   TFCCManager = class(TSimulationManager)
   private
     FIsStandAlone: boolean;
+    FIsRelativeMotion: boolean;
     FxShip       : TXShip;
     FIsTrueMotion: boolean;
     FServer_Port: string;
@@ -62,6 +63,7 @@ type
     procedure NetSendTo3D_FCCSet(rec : TrecData_MeriamFCC);
 
     property IsStandAlone:boolean read FIsStandAlone write FIsStandAlone;
+    property IsRelativeMotion: boolean read FIsRelativeMotion write FIsRelativeMotion;
     property IsTrueMotion: boolean read FIsTrueMotion write FIsTrueMotion;
     property xShip : TXShip read FxShip;
 

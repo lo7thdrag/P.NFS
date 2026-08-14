@@ -1262,7 +1262,7 @@ begin
     edtElevasi.Text := FormatFloat('0.00', FTargetAngleElevasi);
 
     RzBmpBtnTrainingClick(Sender);
-    Meriam57Manager.DesigtChange := False;
+//    Meriam57Manager.DesigtChange := False;
   end
   else if (not Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
   begin
@@ -1273,7 +1273,7 @@ begin
     edtElevasi.Text := FormatFloat('0.00', FTargetAngleElevasi);
 
     RzBmpBtnTrainingClick(Sender);
-    Meriam57Manager.DesigtChange := False;
+//    Meriam57Manager.DesigtChange := False;
   end;
 
   UpdateAngle;
