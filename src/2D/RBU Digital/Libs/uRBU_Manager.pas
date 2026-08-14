@@ -64,7 +64,9 @@ type
      OffX_Map, OffY_Map: Double;
      // Weapon Assigned
 
-     IsSonarTracked : Boolean;
+     IsSonarTracked    : Boolean;
+     FLastSonarTracked : Boolean;
+
      procedure BeginSimulation;
      procedure EndSimulation;
      procedure Initialize;
@@ -83,6 +85,9 @@ type
      procedure EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
 
      function IsMissileReady(LauncherID, MissileID: Integer): Boolean;
+     function IsLauncherFullyLoaded(LauncherID: Integer): Boolean;
+
+     procedure UpdateLauncherIndicator(LauncherID: Integer);
 
 //     function  ReadValConsoleSetting(val : integer): Boolean;
      procedure AddToMemoLog(const str: string);
@@ -142,24 +147,27 @@ end;
 constructor TRBUManager.Create;
 begin
 //  inherited;
-  IsSonarTracked  := False;
-
+  IsSonarTracked    := False;
+  FLastSonarTracked := False;
 end;
 
 procedure TRBUManager.CreateObjek;
 var i :Integer;
 begin
-   Datcom  := TTCPClient.Create;
+  Datcom  := TTCPClient.Create;
 
-   Datcom.setLog(TStringList(Logmemo));
+  Datcom.setLog(TStringList(Logmemo));
 
-   OwnShip     := TShipRBU.Create;
-   TargetShip  := TShipRBU.Create;
+  OwnShip     := TShipRBU.Create;
+  TargetShip  := TShipRBU.Create;
 
-   Lonch1 := TLoncher.Create;
-   Lonch2 := TLoncher.Create;
+  Lonch1 := TLoncher.Create;
+  Lonch1.ID := 1;
 
-   TargetID    := 0;
+  Lonch2 := TLoncher.Create;
+  Lonch2.ID := 2;
+
+  TargetID    := 0;
 //   frmPanelFire    := TfrmPanelFire.Create(nil);
 //
 //   frmTopBurja      := TfrmBurjaAtas.Create(nil);
@@ -176,20 +184,19 @@ begin
 //   frm108Kanan.Name := 'frm108Kanan';
 //   frm108Kanan.unitform := '108 Kanan ';
 
-   for i := 1 to  12 do begin
+  for i := 1 to  12 do begin
+    ListMissileR[i]           := TRecMissile.Create;
+    ListMissileR[i].Launcher  := 1;
+    ListMissileR[i].Missile   := i;
+    ListMissileR[i].Available := False;
+    ListMissileR[i].Condition := True;
 
-       ListMissileR[i] := TRecMissile.Create;
-       ListMissileR[i].Launcher := 1;
-       ListMissileR[i].Missile := i;
-       ListMissileR[i].Available := False;
-       ListMissileR[i].Condition := True;
-
-       ListMissileL[i] := TRecMissile.Create;
-       ListMissileL[i].Launcher := 2;
-       ListMissileL[i].Missile := i;
-       ListMissileL[i].Available := False;
-       ListMissileL[i].Condition := True;
-   end;
+    ListMissileL[i]           := TRecMissile.Create;
+    ListMissileL[i].Launcher  := 2;
+    ListMissileL[i].Missile   := i;
+    ListMissileL[i].Available := False;
+    ListMissileL[i].Condition := True;
+  end;
 
 //   frmPanelFire.Left := frm108Kiri.Width - frmPanelFire.Width - 10;
 //   frmPanelFire.Top  := 0;
@@ -257,6 +264,32 @@ begin
 
 end;
 
+function TRBUManager.IsLauncherFullyLoaded(LauncherID: Integer): Boolean;
+var
+  i : Integer;
+begin
+  Result := False;
+
+  if (LauncherID < 1) or (LauncherID > 2) then
+    Exit;
+
+  for i := 1 to 12 do
+  begin
+    if LauncherID = 1 then
+    begin
+      if not ListMissileR[i].Available then
+        Exit;
+    end
+    else
+    begin
+      if not ListMissileL[i].Available then
+        Exit;
+    end;
+  end;
+
+  Result := True;
+end;
+
 function TRBUManager.IsMissileReady(LauncherID, MissileID: Integer): Boolean;
 begin
   Result := False;
@@ -270,46 +303,188 @@ begin
   end;
 end;
 
+procedure TRBUManager.UpdateLauncherIndicator(LauncherID: Integer);
+var
+  PicturePath      : string;
+  LoadImgAvailable : string;
+  LoadImgOff       : string;
+begin
+  PicturePath      := Copy(ExtractFilePath(Application.ExeName),1,length(ExtractFilePath(Application.ExeName))-4);
+  LoadImgAvailable := PicturePath + 'bin\data\images\light\GREEN.bmp';
+  LoadImgOff       := PicturePath + 'bin\data\images\light\RED.bmp';
+
+  if LauncherID = 1 then
+  begin
+    if ListMissileR[1].Available then
+      frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[2].Available then
+      frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[3].Available then
+      frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[4].Available then
+      frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[5].Available then
+      frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[6].Available then
+      frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[7].Available then
+      frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[8].Available then
+      frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[9].Available then
+      frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[10].Available then
+      frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[11].Available then
+      frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileR[12].Available then
+      frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgOff);
+  end
+  else
+  if LauncherID = 2 then
+  begin
+    if ListMissileL[1].Available then
+      frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[2].Available then
+      frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[3].Available then
+      frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[4].Available then
+      frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[5].Available then
+      frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[6].Available then
+      frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[7].Available then
+      frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[8].Available then
+      frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[9].Available then
+      frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[10].Available then
+      frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[11].Available then
+      frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgOff);
+
+    if ListMissileL[12].Available then
+      frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgAvailable)
+    else
+      frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgOff);
+  end;
+end;
+
 procedure TRBUManager.GetAsrocWeaponAssigned;
 var
-  WeaponAssigned : TScenarioWeapon;
+  WeaponAssigned     : TScenarioWeapon;
   ListWeaponAssigned : TList;
-  I : Integer;
+
+  i : Integer;
 begin
    ListWeaponAssigned := TList.Create;
 
-   if DataModule1.GetListWeaponOnShipBySceID(pCurrentScenID , pShipID, ListWeaponAssigned) > 0 then
-   begin
-     for i := 0 to ListWeaponAssigned.Count - 1 do begin
-       WeaponAssigned := TScenarioWeapon.Create;
-       WeaponAssigned := TScenarioWeapon(ListWeaponAssigned.Items[i]);
-       if WeaponAssigned.WeaponID = C_DBID_RBU6000 then begin
-         case WeaponAssigned.LauncherID of
-           1 :
-           begin
-            Lonch1.Enabled := True;
-           end;
-           2 :
-           begin
-            Lonch2.Enabled := True;
-           end;
-         end;
-       end;
-       WeaponAssigned.Free;
-     end;
-   end;
+  try
+    Lonch1.Enabled := False;
+    Lonch2.Enabled := False;
 
-  ListWeaponAssigned.Free;
+    if DataModule1.GetListWeaponOnShipBySceID(pCurrentScenID, pShipID, ListWeaponAssigned) > 0 then
+    begin
+      for I := 0 to ListWeaponAssigned.Count - 1 do
+      begin
+        WeaponAssigned := TScenarioWeapon(ListWeaponAssigned.Items[I]);
 
-  if Lonch1.Enabled then
-    Datcom.Log.Add('Lonc1 is assigned')
-  else
-    Datcom.Log.Add('Lonc1 is not assigned');
+        if WeaponAssigned.WeaponID = C_DBID_RBU6000 then
+        begin
+          case WeaponAssigned.LauncherID of
+            1:
+              Lonch1.Enabled := True;
 
-  if Lonch2.Enabled then
-    Datcom.Log.Add('Lonc2 is assigned')
-  else
-    Datcom.Log.Add('Lonc2 is not assigned');
+            2:
+              Lonch2.Enabled := True;
+          end;
+        end;
+      end;
+    end;
+
+    if Lonch1.Enabled then
+      Datcom.Log.Add('Lonc1 is assigned')
+    else
+      Datcom.Log.Add('Lonc1 is not assigned');
+
+    if Lonch2.Enabled then
+      Datcom.Log.Add('Lonc2 is assigned')
+    else
+      Datcom.Log.Add('Lonc2 is not assigned');
+
+  finally
+    ListWeaponAssigned.Free;
+  end;
 end;
 
 procedure TRBUManager.FrmNetShow;
@@ -482,8 +657,7 @@ begin
       begin
         for i := 0 to Launcher.OrderFire.Count - 1 do
         begin
-          LauncherMissile :=
-            TRecMissile(Launcher.OrderFire.Items[i]);
+          LauncherMissile := TRecMissile(Launcher.OrderFire.Items[i]);
 
           if i + 1 = aRec^.missileID then
           begin
@@ -536,7 +710,7 @@ begin
             Datcom.sendDataEx(REC_3D_RBU, @lRec);
 
           Launcher.isReadyFire := False;
-          Launcher.Ready := False;
+          Launcher.Ready       := False;
 
           Launcher.IsLoading := True;
           Launcher.OrderFire.Clear;
@@ -694,15 +868,8 @@ procedure TRBUManager.EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integ
 var
   aRec: ^TRecMissilePos;
   MissileID: Integer;
-
-  LoadImgAvailable, LoadImgOff : string;
-  Picture_Path: string;
 begin
   aRec := @apRec^;
-
-  Picture_Path     := Copy(ExtractFilePath(Application.ExeName),1,length(ExtractFilePath(Application.ExeName))-4);
-  LoadImgAvailable := Picture_Path + 'bin\data\images\light\GREEN.bmp';
-  LoadImgOff       := Picture_Path + 'bin\data\images\light\RED.bmp';
 
   if aRec^.shipID <> pShipID then
     Exit;
@@ -715,92 +882,71 @@ begin
   if (MissileID < 1) or (MissileID > 12) then
     Exit;
 
-  case aRec^.launcherID of
-    1:
-    begin
-      case aRec^.status of
-        ST_MISSILE_LOADED:
-        begin
-          ListMissileR[MissileID].Available := True;
+  if aRec^.LauncherID = 1 then
+  begin
+    case aRec^.Status of
+      ST_MISSILE_LOADED:
+      begin
+        ListMissileR[MissileID].Available := True;
+        ListMissileR[MissileID].Condition := True;
 
+        UpdateLauncherIndicator(1);
+
+        if IsLauncherFullyLoaded(1) then
+        begin
           Lonch1.IsLoading := False;
-          Lonch1.Ready := True;
-          Lonch1.Enabled := True;
-
-          frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgAvailable);
-        end;
-        ST_MISSILE_RUN,ST_MISSILE_DEL:
+          Lonch1.Ready     := True;
+        end
+        else
         begin
-          ListMissileR[MissileID].Available := False;
-
-          frmMainDisplay.imgRBU1Load1.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load2.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load3.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load4.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load5.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load6.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load7.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load8.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load9.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load10.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load11.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU1Load12.Picture.LoadFromFile(LoadImgOff);
+          Lonch1.IsLoading := True;
+          Lonch1.Ready     := False;
         end;
-
       end;
+
+      ST_MISSILE_RUN, ST_MISSILE_DEL:
+      begin
+        ListMissileR[MissileID].Available := False;
+
+        Lonch1.Ready     := False;
+        Lonch1.IsLoading := False;
+
+        UpdateLauncherIndicator(1);
+      end;
+
     end;
-    2:
-    begin
-      case aRec^.status of
-        ST_MISSILE_LOADED:
-        begin
-          ListMissileL[MissileID].Available := True;
+  end
+  else
+  if aRec^.LauncherID = 2 then
+  begin
+    case aRec^.Status of
+      ST_MISSILE_LOADED:
+      begin
+        ListMissileL[MissileID].Available := True;
+        ListMissileL[MissileID].Condition := True;
 
+        UpdateLauncherIndicator(2);
+
+        if IsLauncherFullyLoaded(2) then
+        begin
           Lonch2.IsLoading := False;
-          Lonch2.Ready := True;
-          lonch2.Enabled := True;
-
-          frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgAvailable);
-          frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgAvailable);
-        end;
-        ST_MISSILE_RUN, ST_MISSILE_DEL:
+          Lonch2.Ready     := True;
+        end
+        else
         begin
-          ListMissileL[MissileID].Available := False;
-
-          frmMainDisplay.imgRBU2Load1.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load2.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load3.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load4.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load5.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load6.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load7.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load8.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load9.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load10.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load11.Picture.LoadFromFile(LoadImgOff);
-          frmMainDisplay.imgRBU2Load12.Picture.LoadFromFile(LoadImgOff);
+          Lonch2.IsLoading := True;
+          Lonch2.Ready     := False;
         end;
+      end;
+
+      ST_MISSILE_RUN, ST_MISSILE_DEL:
+      begin
+        ListMissileL[MissileID].Available := False;
+
+        Lonch2.Ready     := False;
+        Lonch2.IsLoading := False;
+
+        UpdateLauncherIndicator(2);
       end;
     end;
   end;
@@ -812,6 +958,8 @@ var
 begin
   aRec := @apRec^;
 
+  ShowMessage(Format('RECEIVE RBU: OrderID=%d, Launcher=%d, ShipID=%d',[aRec^.OrderID,aRec^.mLauncherID,aRec^.ShipID]));
+
   if aRec^.ShipID <> pShipID then
     Exit;
 
@@ -821,61 +969,64 @@ begin
       if aRec^.mLauncherID = 1 then
       begin
         Lonch1.IsLoading := True;
-        Lonch1.Ready := False;
+        Lonch1.Ready     := False;
       end
       else
       if aRec^.mLauncherID = 2 then
       begin
         Lonch2.IsLoading := True;
-        Lonch2.Ready := False;
+        Lonch2.Ready     := False;
       end;
     end;
   end;
 end;
 
 procedure TRBUManager.EventOnReceiveSonarMode(apRec: PAnsiChar; aSize: integer);
-  var  aRec: ^TRecRBU_SonarMode;
-       lRec : TRec3DSetRBU;
-       I: Integer;
-       cekKondisilaucher : array [1..2] of Boolean;
+var
+  aRec: ^TRecRBU_SonarMode;
+  lRec : TRec3DSetRBU;
+  I: Integer;
+  cekKondisilaucher : array [1..2] of Boolean;
 begin
-   aRec := @apRec^;
-   if aRec^.OWN_SHIP_UID = OwnShip.ShipId then begin
-      TargetShip.ShipId := aRec^.TARGET_SHIP_UID;
-      IsSonarTracked    := aRec^.Mode;
-      cekKondisilaucher[1] := Lonch1.Ready;
-      cekKondisilaucher[2] := Lonch2.Ready;
+  aRec := @apRec^;
 
-      if IsSonarTracked then begin
-//        frmPanelFire.img_Automatis.Picture.LoadFromFile( path_image_panelFire  + 'Auto_indikator_on.bmp');
-//        frmPanelFire.img_AdaKontak.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_on.bmp');
-        lRec.OrderID        := __ORD_RBU_AUTO;
-        {LOG}
-        SendEvenRBU(6);
-      end
-      else begin
-//        frmPanelFire.img_AdaKontak.Picture.LoadFromFile(path_image_panelFire + 'Blue_Indikator_off.bmp');
-//        frmPanelFire.img_Automatis.Picture.LoadFromFile(path_image_panelFire + 'Auto_indikator_off.bmp');
-        lRec.OrderID        := __ORD_RBU_DEASSIGNED;
-        {LOG}
-        SendEvenRBU(7);
-      end;
+  if aRec^.OWN_SHIP_UID = OwnShip.ShipId then
+  begin
+    TargetShip.ShipId := aRec^.TARGET_SHIP_UID;
+    IsSonarTracked    := aRec^.Mode;
 
-      for I := 1 to 2 do begin
-        lRec.ShipID         := RBU_MAnager.pShipID;
-        lRec.mWeaponID      := C_DBID_RBU6000;
-        lRec.mMissileNumber := 0;
-        lRec.mMissileType   := 2;
-        lRec.mMissileID     := 0;
-        lRec.mTargetID      := UniqueID_To_dbID(TargetShip.ShipId);
-        lRec.mLncrBearing   := 0;
-        lRec.mLncRange      := 0;
-        lRec.mTargetDepth   := 0;
-        lRec.mLauncherID    := I;
-        if cekKondisilaucher[I] and (RBU_MAnager.Datcom <> nil) then
-           RBU_MAnager.Datcom.sendDataEx(REC_3D_RBU, @lRec);
-      end;
-   end;
+    cekKondisilaucher[1] := Lonch1.Ready;
+    cekKondisilaucher[2] := Lonch2.Ready;
+
+    if IsSonarTracked then
+    begin
+      lRec.OrderID  := __ORD_RBU_AUTO;
+      {LOG}
+      SendEvenRBU(6);
+    end
+    else
+    begin
+      lRec.OrderID  := __ORD_RBU_DEASSIGNED;
+      {LOG}
+      SendEvenRBU(7);
+    end;
+
+    for I := 1 to 2 do begin
+      lRec.ShipID         := RBU_MAnager.pShipID;
+      lRec.mWeaponID      := C_DBID_RBU6000;
+      lRec.mMissileNumber := 0;
+      lRec.mMissileType   := 2;
+      lRec.mMissileID     := 0;
+      lRec.mTargetID      := UniqueID_To_dbID(TargetShip.ShipId);
+      lRec.mLncrBearing   := 0;
+      lRec.mLncRange      := 0;
+      lRec.mTargetDepth   := 0;
+      lRec.mLauncherID    := I;
+
+      if cekKondisilaucher[I] and (RBU_MAnager.Datcom <> nil) then
+         RBU_MAnager.Datcom.sendDataEx(REC_3D_RBU, @lRec);
+    end;
+  end;
 end;
 
 procedure TRBUManager.Event_RcvRBUSetting(apRec: PAnsiChar; aSize: integer);

@@ -611,7 +611,7 @@ begin
     { Launcher kanan }
 //    ShowMessage('L1 Enabled=' + BoolToStr(Lonch1.Enabled, True) + ', Ready=' + BoolToStr(Lonch1.Ready, True));
 
-    if not Lonch1.Enabled then
+    if not Assigned(Lonch1) then
     begin
       ShowMessage('Launcher kanan tidak tersedia.');
       Exit;
@@ -630,8 +630,7 @@ begin
   begin
     { Launcher kiri }
 
-//    ShowMessage('L2 Enabled=' + BoolToStr(Lonch2.Enabled, True) + ', Ready=' + BoolToStr(Lonch2.Ready, True));
-    if not Lonch2.Enabled then
+    if not Assigned(Lonch2) then
     begin
       ShowMessage('Launcher kiri tidak tersedia.');
       Exit;
@@ -652,6 +651,7 @@ begin
   end;
 
   case FFiringMode of
+    {$REGION 'Single 12'}
     1:
     begin
       MissileID := 12;
@@ -663,12 +663,15 @@ begin
       end;
 
       if FLauncherId = 1 then
-        lncr.OrderFire.Add(ListMissileR[12])
+        lncr.OrderFire.Add(ListMissileR[MissileID])
       else
-        lncr.OrderFire.Add(ListMissileL[12]);
+        lncr.OrderFire.Add(ListMissileL[MissileID]);
 
       aCount := 1;
     end;
+    {$ENDREGION}
+
+    {$REGION 'single 6'}
     2:
     begin
       MissileID := 6;
@@ -686,6 +689,9 @@ begin
 
       aCount := 1;
     end;
+    {$ENDREGION}
+
+    {$REGION 'Single 11'}
     3:
     begin
       MissileID := 11;
@@ -703,6 +709,9 @@ begin
 
       aCount := 1;
     end;
+    {$ENDREGION}
+
+    {$REGION 'Salvo 4'}
     4:
     begin
       aCount := 4;
@@ -728,7 +737,9 @@ begin
           lncr.OrderFire.Add(ListMissileL[MissileID]);
       end;
     end;
+    {$ENDREGION}
 
+    {$REGION 'Salvo 8'}
     5:
     begin
       aCount := 8;
@@ -755,6 +766,9 @@ begin
           lncr.OrderFire.Add(ListMissileL[MissileID]);
       end;
     end;
+    {$ENDREGION}
+
+    {$REGION 'Salvo 12'}
     6:
     begin
       aCount := 12;
@@ -791,7 +805,13 @@ begin
   if lncr.OrderFire.Count = 0 then
     Exit;
 
-  SendFireRBU(lncr, aCount);
+  if not SendFireRBU(lncr, aCount) then
+  begin
+    lncr.OrderFire.Clear;
+    ShowMessage('Perintah fire gagal dikirim.');
+    Exit;
+  end;
+
   lncr.OrderFire.Clear;
 
   trcbrTraining.Position  := scrlbrBearingRelTarget.Position * 10;
@@ -1593,10 +1613,10 @@ begin
 //  RBU_Manager := TRBUManager.Create;
   RBU_MAnager.BeginSimulation;
 
-  Lonch1 := TLoncher.Create;
-  Lonch1.ID := 1;
-  Lonch2 := TLoncher.Create;
-  Lonch2.ID := 2;
+//  Lonch1 := TLoncher.Create;
+//  Lonch1.ID := 1;
+//  Lonch2 := TLoncher.Create;
+//  Lonch2.ID := 2;
   IsReadyToFire := False;
 
 //  SetComposited(pnlCenter, true);
@@ -1963,6 +1983,7 @@ begin
   lRec.mMissileType := Use_Balistik;
   lRec.mTargetID    := TargetID;
   lRec.mTargetDepth := Abs(StrToFloat(edtTrgtDepthValue.Text));
+  lRec.OrderID      := 0;
 
   Count := 0;
 
