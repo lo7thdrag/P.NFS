@@ -817,7 +817,7 @@ begin
   trcbrTraining.Position  := scrlbrBearingRelTarget.Position * 10;
   FTargetElevation        := Power(scrlbrTargetRange.Position / 6000, Exp(1.0)) * 45;
   trcbrElevation.Position := Round(FTargetElevation) * 10;
-  btnTrnElvClick(Sender);
+//  btnTrnElvClick(Sender);
 end;
 
 procedure TfrmMainDisplay.btnExitClick(Sender: TObject);
@@ -2084,7 +2084,12 @@ begin
       FTrueBearing := bearing;
       bearing := bearing - RBU_MAnager.Heading;
 
-      if bearing > 180 then targetBearing := bearing - 360;
+      targetBearing := bearing;
+
+      if targetBearing > 180 then
+        targetBearing := targetBearing - 360
+      else if targetBearing < -180 then
+        targetBearing := targetBearing + 360;
 
       scrlbrBearingRelTarget.Position := Round(targetBearing);
 

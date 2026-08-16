@@ -990,42 +990,20 @@ var
 begin
   aRec := @apRec^;
 
-  if aRec^.OWN_SHIP_UID = OwnShip.ShipId then
+  if aRec^.OWN_SHIP_UID <> OwnShip.ShipId then
+    Exit;
+
+  TargetShip.ShipId := aRec^.TARGET_SHIP_UID;
+  IsSonarTracked    := aRec^.Mode;
+
+  if IsSonarTracked then
   begin
-    TargetShip.ShipId := aRec^.TARGET_SHIP_UID;
-    IsSonarTracked    := aRec^.Mode;
-
-    cekKondisilaucher[1] := Lonch1.Ready;
-    cekKondisilaucher[2] := Lonch2.Ready;
-
-    if IsSonarTracked then
-    begin
-      lRec.OrderID  := __ORD_RBU_AUTO;
-      {LOG}
-      SendEvenRBU(6);
-    end
-    else
-    begin
-      lRec.OrderID  := __ORD_RBU_DEASSIGNED;
-      {LOG}
-      SendEvenRBU(7);
-    end;
-
-    for I := 1 to 2 do begin
-      lRec.ShipID         := RBU_MAnager.pShipID;
-      lRec.mWeaponID      := C_DBID_RBU6000;
-      lRec.mMissileNumber := 0;
-      lRec.mMissileType   := 2;
-      lRec.mMissileID     := 0;
-      lRec.mTargetID      := UniqueID_To_dbID(TargetShip.ShipId);
-      lRec.mLncrBearing   := 0;
-      lRec.mLncRange      := 0;
-      lRec.mTargetDepth   := 0;
-      lRec.mLauncherID    := I;
-
-      if cekKondisilaucher[I] and (RBU_MAnager.Datcom <> nil) then
-         RBU_MAnager.Datcom.sendDataEx(REC_3D_RBU, @lRec);
-    end;
+    SendEvenRBU(6);
+  end
+  else
+  begin
+    SendEvenRBU(7);
+    TargetShip.ShipId := '';
   end;
 end;
 
