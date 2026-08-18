@@ -408,7 +408,7 @@ type
 
     FControlMode: Byte; // Manual: 0, Auto:1
 
-    function SendFireRBU(Lonchr: TLoncher; aCount: Integer): Boolean;
+    function SendFireRBU(Lonchr: TLoncher; aCount: Integer; aMissileID: Integer): Boolean;
     function CalcTrueBearing(const aHeading, aRelativeBearing: Double): Double;
     function CalcRelativeBearing(const aHeading, aTrueBearing: Double): Double;
     function CheckMissileReady(LauncherID: Integer; MissileID: Integer): Boolean;
@@ -578,7 +578,7 @@ var
   i: Integer;
   aCount: Integer;
   range: Double;
-  MissileID: Integer;
+  MissileID, FireMissileID: Integer;
   lncr: TLoncher;
 begin
   if FFiringMode = 0 then
@@ -609,8 +609,6 @@ begin
   if FLauncherId = 1 then
   begin
     { Launcher kanan }
-//    ShowMessage('L1 Enabled=' + BoolToStr(Lonch1.Enabled, True) + ', Ready=' + BoolToStr(Lonch1.Ready, True));
-
     if not Assigned(Lonch1) then
     begin
       ShowMessage('Launcher kanan tidak tersedia.');
@@ -650,11 +648,16 @@ begin
     Exit;
   end;
 
+  aCount        := 0;
+  MissileID     := 0;
+  FireMissileID := 0;
+
   case FFiringMode of
     {$REGION 'Single 12'}
     1:
     begin
-      MissileID := 12;
+      MissileID     := 12;
+      FireMissileID := MissileID;
 
       if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
       begin
@@ -675,6 +678,7 @@ begin
     2:
     begin
       MissileID := 6;
+      FireMissileID := MissileID;
 
       if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
       begin
@@ -695,6 +699,7 @@ begin
     3:
     begin
       MissileID := 11;
+      FireMissileID := MissileID;
 
       if not RBU_Manager.IsMissileReady(FLauncherId, MissileID) then
       begin
@@ -715,6 +720,7 @@ begin
     4:
     begin
       aCount := 4;
+      FireMissileID := 0;
 
       for i := 1 to 4 do
       begin
@@ -743,6 +749,7 @@ begin
     5:
     begin
       aCount := 8;
+      FireMissileID := 0;
 
       for i := 1 to 8 do
       begin
@@ -772,6 +779,7 @@ begin
     6:
     begin
       aCount := 12;
+      FireMissileID := 0;
 
       for i := 1 to 12 do
       begin
@@ -805,7 +813,7 @@ begin
   if lncr.OrderFire.Count = 0 then
     Exit;
 
-  if not SendFireRBU(lncr, aCount) then
+  if not SendFireRBU(lncr, aCount, FireMissileID) then
   begin
     lncr.OrderFire.Clear;
     ShowMessage('Perintah fire gagal dikirim.');
@@ -1944,7 +1952,7 @@ begin
 end;
 
 function TfrmMainDisplay.SendFireRBU(Lonchr: TLoncher;
-  aCount: Integer): Boolean;
+  aCount: Integer; aMissileID: Integer): Boolean;
 var
   lRec : TRec3DSetRBU;
   PktToFire : TRecMissile;
@@ -1978,6 +1986,9 @@ begin
     (ValidateDegree(BearingToFire) <= BlindZone_End) then
     Exit;
 
+  if aMissileID < 0 then
+    Exit;
+
   lRec.ShipID       := RBU_MAnager.pShipID;
   lRec.mWeaponID    := C_DBID_RBU6000;
   lRec.mMissileType := Use_Balistik;
@@ -1998,6 +2009,9 @@ begin
 
   end;
 
+  if Count <= 0 then
+     Exit;
+
   if Count > 0 then
   begin
     if Count > 1 then
@@ -2005,11 +2019,14 @@ begin
     else
       Order := __ORD_RBU_FIRE;
 
+//    lRec.mLauncherID := Lonchr.ID;
+//    if Lonchr = Lonch1 then
+//      lRec.mMissileID := TempSingleFireR
+//    else
+//      lRec.mMissileID := TempSingleFireL;
+
     lRec.mLauncherID := Lonchr.ID;
-    if Lonchr = Lonch1 then
-      lRec.mMissileID := TempSingleFireR
-    else
-      lRec.mMissileID := TempSingleFireL;
+    lRec.mMissileID  := aMissileID;
 
     lRec.mMissileNumber := 1;
     lRec.mCount         := aCount;

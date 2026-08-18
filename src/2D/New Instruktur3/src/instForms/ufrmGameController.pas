@@ -4636,7 +4636,7 @@ begin
     TorpSpeed := IntToStr(34);
   end;
 
-  if cbbLauncherID.Text = 'Launcher 1' then                   //kiri
+  if cbbLauncherID.Text = 'Launcher 1' then
   begin
     Idlauncher := IntToStr(1);
     frmMainInstruktur.searchTorpSUT(1);
@@ -4665,6 +4665,16 @@ begin
   begin
     Idlauncher := IntToStr(6);
     frmMainInstruktur.searchTorpSUT(6);
+  end
+  else if cbbLauncherID.Text = 'Launcher 7' then
+  begin
+    Idlauncher := IntToStr(7);
+    frmMainInstruktur.searchTorpSUT(7);
+  end
+  else if cbbLauncherID.Text = 'Launcher 8' then
+  begin
+    Idlauncher := IntToStr(8);
+    frmMainInstruktur.searchTorpSUT(8);
   end;
 
   isvalid := True;
