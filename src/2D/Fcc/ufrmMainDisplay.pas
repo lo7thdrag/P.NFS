@@ -702,6 +702,7 @@ type
     rCX, rCY: integer;
     DAttackState : Boolean;
     GetTargetFrom3D : Boolean;
+
   end;
 
 var
@@ -891,6 +892,7 @@ begin
 //  fmap.Zoom := self.FCurrentRange;
   FMap.ZoomTo((Self.FCurrentRange  * C_Meter_To_NauticalMile) * 2, FMap.CenterX, FMap.CenterY);
 end;
+
 
 procedure TfrmMainFCC.DrawAll(aCnv: TCanvas; aCvt: TCoordConverter;
   aFlag: Byte);
@@ -1637,7 +1639,14 @@ begin
           begin
             imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampred;
             InsideZone := False;
+            pnlFireFcc2.Enabled := False;
             Exit;
+          end
+          else
+          begin
+            imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampGreen;
+            InsideZone := True;
+            pnlFireFcc2.Enabled := True;
           end;
 
           RecSend.mModeID             := 3;
@@ -1646,11 +1655,13 @@ begin
             imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampGreen;
             imgGunStateReturnZero.Picture.Bitmap := BitMapLampGrey;
             InsideZone := True;
+            pnlFireFcc2.Enabled := True;
           end
           else
           begin
             imgCtrlStateLimitZone.Picture.Bitmap := BitMapLampred;
             InsideZone := False;
+            pnlFireFcc2.Enabled := False;
             Exit;
           end;
         end;
@@ -1660,7 +1671,14 @@ begin
           begin
             imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampRed;
             InsideZone := False;
+            pnlFireFcc2.Enabled := False;
             Exit;
+          end
+          else
+          begin
+            imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampGreen;
+            InsideZone := True;
+            pnlFireFcc2.Enabled := True;
           end;
 
           RecSend.mModeID             := 1;
@@ -1669,6 +1687,7 @@ begin
           begin
             imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampRed;
             InsideZone := False;
+            pnlFireFcc2.Enabled := False;
             Exit;
           end
           else
@@ -1676,6 +1695,7 @@ begin
             imgCtrlStateLimitZoneFCC2.Picture.Bitmap := BitMapLampGreen;
             imgGunStateReturnZeroFCC2.Picture.Bitmap := BitMapLampGrey;
             InsideZone := True;
+            pnlFireFcc2.Enabled := True;
           end;
         end;
       end;
@@ -1717,7 +1737,7 @@ begin
         begin
           RecSend.mModeID             := 1;
 
-          if (bearing > 315) and (bearing < 45) then
+          if (bearing > 315) or (bearing < 45) then
             Exit;
         end;
       end;
@@ -3088,14 +3108,13 @@ begin
         VehicleMgr.DeselectAll;
         FCCManager.SelectedVehicle.Symbol.Selected := True;
       end
-
       else
       begin
         VehicleMgr.DeselectAll;
         FSelectedVehicleState := False;
       end;
 
-      GetTargetFrom3D := False;
+//      GetTargetFrom3D := False;
 
 //      if (FOperatingMode = omAutonomous) and (FSelectedVehicleState = false) then
 //      begin
