@@ -66,6 +66,11 @@ type
      procedure EventOnReceive3DOrder(apRec: PAnsiChar; aSize: integer);
      procedure EventOnReceiveSonarMode(apRec: PAnsiChar; aSize: integer);
      procedure Event_RcvRBUSetting(apRec: PAnsiChar; aSize: integer);
+
+     procedure EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
+
+     function IsLauncherFullyLoaded(LauncherID: Integer): Boolean;
+
 //     function  ReadValConsoleSetting(val : integer): Boolean;
      procedure AddToMemoLog(const str: string);
      procedure SendEvenRBU(EvenId: Word; const Prm1 :double = 0; Prm2 : double = 0; Prm3: double = 0);
@@ -87,22 +92,13 @@ begin
    SetLayOutForm;
    Initialize;
 
-   Datcom.RegisterProcedure(
-      REC_3D_POSITION, EventOnReceiveDataPosition , SizeOf(TRecData3DPosition));
-
-   Datcom.RegisterProcedure(
-      REC_3D_MISSILEPOS, EventOnReceive3DOrder , SizeOf(TRec3DMissilePos));
-
-   Datcom.RegisterProcedure(
-      REC_SET_RBU, nil, SizeOf(TRec3DSetRBU));
-
-   Datcom.RegisterProcedure(
-      REC_EVENT_LOG, nil, SizeOf(TRecEventLog));
-
-   Datcom.RegisterProcedure(
-       RecRBU_SonarMode_ORDER, EventOnReceiveSonarMode, SizeOf(TRecRBU_SonarMode));
-
+   Datcom.RegisterProcedure(REC_3D_POSITION, EventOnReceiveDataPosition , SizeOf(TRecData3DPosition));
+   Datcom.RegisterProcedure(REC_3D_MISSILEPOS, EventOnReceive3DOrder , SizeOf(TRec3DMissilePos));
+   Datcom.RegisterProcedure(REC_SET_RBU, nil, SizeOf(TRec3DSetRBU));
+   Datcom.RegisterProcedure(REC_EVENT_LOG, nil, SizeOf(TRecEventLog));
+   Datcom.RegisterProcedure(RecRBU_SonarMode_ORDER, EventOnReceiveSonarMode, SizeOf(TRecRBU_SonarMode));
    Datcom.RegisterProcedure(REC_STAT_ORDER_CONSOLE, Event_RcvRBUSetting , sizeof(TRecStatus_Console));
+   Datcom.RegisterProcedure(REC_MISSILEPOS, EventOnReceiveMissileStatus, SizeOf(TRecMissilePos));
 
    Datcom.setLog(TStringList(frm_Main.mmo1.Lines));
 
@@ -230,6 +226,32 @@ begin
   stRIGHT_UNFORMER1 := True;
   stRIGHT_UNFORMER2 := True;
 
+end;
+
+function TRBUManager.IsLauncherFullyLoaded(LauncherID: Integer): Boolean;
+var
+  i : Integer;
+begin
+  Result := False;
+
+  if (LauncherID < 1) or (LauncherID > 2) then
+    Exit;
+
+  for i := 1 to 12 do
+  begin
+    if LauncherID = 1 then
+    begin
+      if not ListMissileR[i].Available then
+        Exit;
+    end
+    else
+    begin
+      if not ListMissileL[i].Available then
+        Exit;
+    end;
+  end;
+
+  Result := True;
 end;
 
 procedure TRBUManager.GetAsrocWeaponAssigned;
@@ -411,82 +433,78 @@ LauncherMissile : TRecMissile;
 begin
   aRec := @apRec^;
 
-//  if aRec^.shipID <> pShipID then Exit;
-//
-//  case aRec^.status   of
-//
-//    ST_MISSILE_RUN, ST_MISSILE_DEL:
-//    begin
-//      if aRec^.WeaponID = C_DBID_RBU6000 then
-//      begin
-//        case aRec^.launcherID of
-//          1 :
-//          begin
-//            isValid := True;
-//
-//            if Lonch1.OrderFire.Count > 1 then
-//            begin
-//              for i := 0 to Lonch1.OrderFire.Count - 1 do
-//              begin
-//                LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[i]);
-//                if i+1 = aRec^.missileID then
-//                begin
-//                  LauncherMissile.isLaunch := True;
-//                end;
-//              end;
-//            end
-//            else
-//            begin
-//              LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[0]);
-//              if LauncherMissile.Missile = aRec^.missileID then
-//              begin
-//                LauncherMissile.isLaunch := True;
-//              end;
-//            end;
-//
-//
-//            for i := 0 to Lonch1.OrderFire.Count - 1 do
-//            begin
-//              LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[i]);
-//              if not LauncherMissile.isLaunch then isValid := false;
-//            end;
-//
-//            if isValid then
-//            begin
-//              if Lonch1.isReadyFire then
-//              begin
-//                lRec.ShipID          := pShipID;
-//                lRec.mWeaponID       := C_DBID_RBU6000;
-//                lRec.mLauncherID     := aRec^.launcherID;
-//                lRec.mMissileID      := 0;
-//                lRec.mMissileNumber  := 0;
-//                lRec.mCount          := 0;
-//                lRec.mMissileType    := 0;
-//                lRec.mTargetID       := 0;
-//                lRec.mLncrBearing    := 0;
-//                lRec.mLncRange       := 0;
-//                lRec.mTargetDepth    := 0;
-//                lRec.mCorrBearing    := 0;
-//                lRec.mCorrElev       := 0;
-//                lRec.OrderID         := __ORD_RBU_DEASSIGNED;
-//
-//                if Datcom <> nil then
-//                begin
-//                  Datcom.sendDataEx(REC_3D_RBU, @lRec);
-//                end;
-//
-//                Lonch1.isReadyFire := false;
-//                Lonch1.OrderFire.Clear;
-//              end;
-//            end;
-//          end;
-//        end;
-//      end;
-//    end;
-//
-//
-//  end;
+  if aRec^.shipID <> pShipID then Exit;
 
+  case aRec^.status   of
+    ST_MISSILE_RUN, ST_MISSILE_DEL:
+    begin
+      if aRec^.WeaponID = C_DBID_RBU6000 then
+      begin
+        case aRec^.launcherID of
+          1 :
+          begin
+            isValid := True;
+
+            if Lonch1.OrderFire.Count > 1 then
+            begin
+              for i := 0 to Lonch1.OrderFire.Count - 1 do
+              begin
+                LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[i]);
+                if i+1 = aRec^.missileID then
+                begin
+                  LauncherMissile.isLaunch := True;
+                end;
+              end;
+            end
+            else
+            begin
+              LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[0]);
+              if LauncherMissile.Missile = aRec^.missileID then
+              begin
+                LauncherMissile.isLaunch := True;
+              end;
+            end;
+
+
+            for i := 0 to Lonch1.OrderFire.Count - 1 do
+            begin
+              LauncherMissile := TRecMissile(Lonch1.OrderFire.Items[i]);
+              if not LauncherMissile.isLaunch then isValid := false;
+            end;
+
+            if isValid then
+            begin
+              if Lonch1.isReadyFire then
+              begin
+                lRec.ShipID          := pShipID;
+                lRec.mWeaponID       := C_DBID_RBU6000;
+                lRec.mLauncherID     := aRec^.launcherID;
+                lRec.mMissileID      := 0;
+                lRec.mMissileNumber  := 0;
+                lRec.mCount          := 0;
+                lRec.mMissileType    := 0;
+                lRec.mTargetID       := 0;
+                lRec.mLncrBearing    := 0;
+                lRec.mLncRange       := 0;
+                lRec.mTargetDepth    := 0;
+                lRec.mCorrBearing    := 0;
+                lRec.mCorrElev       := 0;
+                lRec.OrderID         := __ORD_RBU_DEASSIGNED;
+
+                if Datcom <> nil then
+                begin
+                  Datcom.sendDataEx(REC_3D_RBU, @lRec);
+                end;
+
+                Lonch1.isReadyFire := false;
+                Lonch1.OrderFire.Clear;
+              end;
+            end;
+          end;
+        end;
+      end;
+    end;
+  end;
 end;
 
 procedure  TRBUManager.EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
@@ -539,6 +557,94 @@ begin
    else begin
      TargetID := 0;
    end;
+end;
+
+procedure TRBUManager.EventOnReceiveMissileStatus(apRec: PAnsiChar;aSize: integer);
+var
+  aRec: ^TRecMissilePos;
+  MissileID: Integer;
+begin
+  aRec := @apRec^;
+
+  if aRec^.shipID <> pShipID then
+    Exit;
+
+  if aRec^.WeaponID <> C_DBID_RBU6000 then
+    Exit;
+
+  MissileID := aRec^.missileID;
+
+  if (MissileID < 1) or (MissileID > 12) then
+    Exit;
+
+  if aRec^.LauncherID = 1 then
+  begin
+    case aRec^.Status of
+      ST_MISSILE_LOADED:
+      begin
+        ListMissileR[MissileID].Available := True;
+        ListMissileR[MissileID].Condition := True;
+
+        frm108.RefreshMissileIndikator(1);
+
+        if IsLauncherFullyLoaded(1) then
+        begin
+          Lonch1.IsLoading := False;
+          Lonch1.Ready     := True;
+        end
+        else
+        begin
+          Lonch1.IsLoading := True;
+          Lonch1.Ready     := False;
+        end;
+      end;
+
+      ST_MISSILE_RUN, ST_MISSILE_DEL:
+      begin
+        ListMissileR[MissileID].Available := False;
+
+        Lonch1.Ready     := False;
+        Lonch1.IsLoading := False;
+
+        frm108.RefreshMissileIndikator(1);
+      end;
+
+    end;
+  end
+  else
+  if aRec^.LauncherID = 2 then
+  begin
+    case aRec^.Status of
+      ST_MISSILE_LOADED:
+      begin
+        ListMissileL[MissileID].Available := True;
+        ListMissileL[MissileID].Condition := True;
+
+        frm108.RefreshMissileIndikator(1);
+
+        if IsLauncherFullyLoaded(2) then
+        begin
+          Lonch2.IsLoading := False;
+          Lonch2.Ready     := True;
+        end
+        else
+        begin
+          Lonch2.IsLoading := True;
+          Lonch2.Ready     := False;
+        end;
+      end;
+
+      ST_MISSILE_RUN, ST_MISSILE_DEL:
+      begin
+        ListMissileL[MissileID].Available := False;
+
+        Lonch2.Ready     := False;
+        Lonch2.IsLoading := False;
+
+        frm108.RefreshMissileIndikator(1);
+      end;
+    end;
+  end;
 end;
 
 procedure TRBUManager.EventOnReceiveSonarMode(apRec: PAnsiChar; aSize: integer);
