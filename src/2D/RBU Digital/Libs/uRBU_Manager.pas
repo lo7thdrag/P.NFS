@@ -86,6 +86,7 @@ type
 
      function IsMissileReady(LauncherID, MissileID: Integer): Boolean;
      function IsLauncherFullyLoaded(LauncherID: Integer): Boolean;
+     function IsLauncherReady(LauncherID: Integer): Boolean;
 
      procedure UpdateLauncherIndicator(LauncherID: Integer);
 
@@ -300,6 +301,25 @@ begin
   case LauncherID of
     1: Result := ListMissileR[MissileID].Available and ListMissileR[MissileID].Condition;
     2: Result := ListMissileL[MissileID].Available and ListMissileL[MissileID].Condition;
+  end;
+end;
+
+function TRBUManager.IsLauncherReady(LauncherID: Integer): Boolean;
+var
+  i: Integer;
+begin
+  Result := False;
+
+  if (LauncherID < 1) or (LauncherID > 2) then
+    Exit;
+
+  for i := 1 to 12 do
+  begin
+    if IsMissileReady(LauncherID, i) then
+    begin
+      Result := True;
+      Exit;
+    end;
   end;
 end;
 
@@ -864,7 +884,7 @@ begin
 
 end;
 
-procedure TRBUManager.EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
+procedure TRBUManager.EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: Integer);
 var
   aRec: ^TRecMissilePos;
   MissileID: Integer;
@@ -885,31 +905,28 @@ begin
   if aRec^.LauncherID = 1 then
   begin
     case aRec^.Status of
+
       ST_MISSILE_LOADED:
       begin
         ListMissileR[MissileID].Available := True;
         ListMissileR[MissileID].Condition := True;
 
-        UpdateLauncherIndicator(1);
+        Lonch1.Ready := IsLauncherReady(1);
 
         if IsLauncherFullyLoaded(1) then
-        begin
-          Lonch1.IsLoading := False;
-          Lonch1.Ready     := True;
-        end
+          Lonch1.IsLoading := False
         else
-        begin
           Lonch1.IsLoading := True;
-          Lonch1.Ready     := False;
-        end;
+
+        UpdateLauncherIndicator(1);
       end;
 
       ST_MISSILE_RUN, ST_MISSILE_DEL:
       begin
         ListMissileR[MissileID].Available := False;
 
-        Lonch1.Ready     := False;
-        Lonch1.IsLoading := False;
+        Lonch1.Ready := IsLauncherReady(1);
+        Lonch1.IsLoading := True;
 
         UpdateLauncherIndicator(1);
       end;
@@ -920,31 +937,28 @@ begin
   if aRec^.LauncherID = 2 then
   begin
     case aRec^.Status of
+
       ST_MISSILE_LOADED:
       begin
         ListMissileL[MissileID].Available := True;
         ListMissileL[MissileID].Condition := True;
 
-        UpdateLauncherIndicator(2);
+        Lonch2.Ready := IsLauncherReady(2);
 
         if IsLauncherFullyLoaded(2) then
-        begin
-          Lonch2.IsLoading := False;
-          Lonch2.Ready     := True;
-        end
+          Lonch2.IsLoading := False
         else
-        begin
           Lonch2.IsLoading := True;
-          Lonch2.Ready     := False;
-        end;
+
+        UpdateLauncherIndicator(2);
       end;
 
       ST_MISSILE_RUN, ST_MISSILE_DEL:
       begin
         ListMissileL[MissileID].Available := False;
 
-        Lonch2.Ready     := False;
-        Lonch2.IsLoading := False;
+        Lonch2.Ready := IsLauncherReady(2);
+        Lonch2.IsLoading := True;
 
         UpdateLauncherIndicator(2);
       end;
