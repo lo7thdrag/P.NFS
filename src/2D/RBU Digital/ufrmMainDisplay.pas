@@ -803,6 +803,7 @@ begin
           lncr.OrderFire.Add(ListMissileL[MissileID]);
       end;
     end;
+    {$ENDREGION}
   else
     begin
       ShowMessage('Mode penembakan tidak valid.');

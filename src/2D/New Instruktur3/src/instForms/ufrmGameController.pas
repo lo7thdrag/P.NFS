@@ -4727,7 +4727,7 @@ begin
     RecSend.ShipID := shipID;
     RecSend.mWeaponID := C_DBID_TORPEDO_BLACKSHARK;
     RecSend.mLauncherID := lcrID;
-    RecSend.mMissileID := 0;          // MissileID
+    RecSend.mMissileID  := 1;          // MissileID
     RecSend.mMissileNumber := 0;  // MissileNumber
 
     RecSend.OrderID := 0;
@@ -8108,26 +8108,26 @@ begin
   end
   else if edtTampung.Text = '1' then
   begin
-    edtTorpSUTCourse.Visible := True;
-    cbbTorpSutSpeed.Visible := True;
-    edtTorpSUTDepth.Visible := True;
-    btnhandleTorpedoSUT.Visible := True;
-    btnHomingTorpedoSUT.Visible := True;
-    btnSearchTorpedoSUT.Visible := True;
+    edtTorpSUTCourse.Visible := False;
+    cbbTorpSutSpeed.Visible := False;
+    edtTorpSUTDepth.Visible := False;
+    btnFireTorpodoSUT.Visible := True;
+//    btnhandleTorpedoSUT.Visible := True;
+//    btnHomingTorpedoSUT.Visible := True;
+//    btnSearchTorpedoSUT.Visible := True;
 //    label7.Visible := True;
 //    label6.Visible := True;
 //    label5.Visible := True;
-    lbl18.Visible := True;
-    lbl19.Visible := True;
-    lbl20.Visible := True;
+    lbl18.Visible := False;
+    lbl19.Visible := False;
+    lbl20.Visible := False;
 
-    edtTorpSUTSafeDis.Visible := False;
-    edtTorpedoSUTEnDis.Visible := False;
-    btnFireTorpodoSUT.Visible := False;
+    edtTorpSUTSafeDis.Visible := True;
+    edtTorpedoSUTEnDis.Visible := True;
 //    Label60.Visible := False;
-    lbl52.Visible := False;
-    lbl21.Visible := False;
-    lbl53.Visible := False;
+    lbl52.Visible := True;
+    lbl21.Visible := True;
+    lbl53.Visible := True;
   end;
 end;
 
