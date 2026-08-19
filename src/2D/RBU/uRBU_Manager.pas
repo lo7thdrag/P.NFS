@@ -116,7 +116,7 @@ end;
 
 constructor TRBUManager.Create;
 begin
-//  inherited;
+  inherited;
   IsSonarTracked  := False;
 
 end;
@@ -175,19 +175,18 @@ end;
 
 destructor TRBUManager.Destroy;
 begin
- //inherited;
-     frm108Kiri.Free;
-     frm108Kanan.Free;
-     frmTopBurja.Free;
-     frmBottomBurja.Free;
-     frmPanelFire.Free;
+ inherited;
+ frm108Kiri.Free;
+ frm108Kanan.Free;
+ frmTopBurja.Free;
+ frmBottomBurja.Free;
+ frmPanelFire.Free;
 
-     frmNet.Free;
-     Datcom.Free;
+ frmNet.Free;
+ Datcom.Free;
 
-     FreeAndNil(OwnShip);
-     FreeAndNil(TargetShip);
-
+ FreeAndNil(OwnShip);
+ FreeAndNil(TargetShip);
 end;
 
 procedure TRBUManager.Initialize;
@@ -359,7 +358,6 @@ begin
        frmTopBurja.BorderStyle    := TFormBorderStyle(bdrBurjaAtas);
        frmBottomBurja.BorderStyle := TFormBorderStyle(bdrBurjaBawah);
        frmPanelFire.BorderStyle   := TFormBorderStyle(bdrAnjungan);
-
      end;
      2,3: begin
 //       frmTopBurja.Height := 1080;
@@ -580,12 +578,13 @@ begin
   if aRec^.LauncherID = 1 then
   begin
     case aRec^.Status of
+
       ST_MISSILE_LOADED:
       begin
         ListMissileR[MissileID].Available := True;
         ListMissileR[MissileID].Condition := True;
 
-        frm108.RefreshMissileIndikator(1);
+        frm108Kanan.RefreshMissileIndikator(MissileID);
 
         if IsLauncherFullyLoaded(1) then
         begin
@@ -606,7 +605,7 @@ begin
         Lonch1.Ready     := False;
         Lonch1.IsLoading := False;
 
-        frm108.RefreshMissileIndikator(1);
+        frm108Kanan.RefreshMissileIndikator(MissileID);
       end;
 
     end;
@@ -615,12 +614,13 @@ begin
   if aRec^.LauncherID = 2 then
   begin
     case aRec^.Status of
+
       ST_MISSILE_LOADED:
       begin
         ListMissileL[MissileID].Available := True;
         ListMissileL[MissileID].Condition := True;
 
-        frm108.RefreshMissileIndikator(1);
+        frm108Kiri.RefreshMissileIndikator(MissileID);
 
         if IsLauncherFullyLoaded(2) then
         begin
@@ -641,8 +641,9 @@ begin
         Lonch2.Ready     := False;
         Lonch2.IsLoading := False;
 
-        frm108.RefreshMissileIndikator(1);
+        frm108Kiri.RefreshMissileIndikator(MissileID);
       end;
+
     end;
   end;
 end;
