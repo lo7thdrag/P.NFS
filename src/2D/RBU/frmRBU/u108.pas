@@ -178,8 +178,8 @@ type
     { Public declarations }
   end;
 
-var
-  frm108: Tfrm108;
+//var
+//  frm108: Tfrm108;
 
 implementation
 uses
