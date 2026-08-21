@@ -1865,6 +1865,8 @@ begin
 end;
 
 procedure TfrmDCDSMain.tmrTimeTimer(Sender: TObject);
+var
+  canFire : Boolean;
 begin
   edtDateValue.Text := FormatDateTime('MM/DD/YYYY', Now);
   edtTimeValue.Text := FormatDateTime('hh:mm:ss ampm', Now);
@@ -1877,6 +1879,24 @@ begin
 
     btnDcdcExecuteClick(nil);
 //    AK230Manager.DesigtChange := False;
+
+    canFire :=  btnBrakeOn.Down and btnCmAggregate.Down and
+                (FVTgtElevation >= -10) and
+                (FVTgtElevation <= 85) and
+                ((FVTgtTraining <= 120) or (FVTgtTraining >= 240)) and
+                ((LeftMagazine <> 0) or (RightMagazine <> 0)) and
+                (StrToFloat(edtOmRangeValue.Text) >= 0.16) and
+                (StrToFloat(edtOmRangeValue.Text) <= 1.62);
+
+    if CanFire then
+      FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath +
+        '\buttonAK230\bttn_firingon.bmp')
+    else
+      FimgTemp.Picture.LoadFromFile(vPathImageSetting.ImgPath +
+        '\buttonAK230\bttn_firingoff.bmp');
+
+    btnFiring.Glyph.Assign(FimgTemp.Picture.Graphic);
+    btnFiring.Enabled := CanFire;
 
   end
   else if (not AK230Manager.isDesigt) and (AK230Manager.DesigtChange) then
