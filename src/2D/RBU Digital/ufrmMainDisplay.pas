@@ -817,7 +817,7 @@ begin
   if not SendFireRBU(lncr, aCount, FireMissileID) then
   begin
     lncr.OrderFire.Clear;
-    ShowMessage('Perintah fire gagal dikirim.');
+//    ShowMessage('Perintah fire gagal dikirim.');
     Exit;
   end;
 
@@ -2212,6 +2212,8 @@ begin
   VrBrngTrgt.Position := Round(FVTgtBrngTrgt);
   edtValBrngTrgt.Text := FormatFloat('0.#', FVTgtBrngTrgt);
   edtValBrngTrgt1.Text := FormatFloat('0.#', FVTgtBrngTrgt);
+
+  edtTrgtBearingValue.Text := FormatFloat('0.#', FVTgtBrngTrgt);
 
   // PUTAR HEADING SHIP
   VrHdgShip.Position := Round(FVTgtHdngShp);

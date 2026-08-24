@@ -5,7 +5,7 @@ object frmMainDisplay: TfrmMainDisplay
   BorderStyle = bsNone
   Caption = 'ANTI SUB MARINE SYSTEM (BURJA)'
   ClientHeight = 1200
-  ClientWidth = 1920
+  ClientWidth = 1936
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -27,7 +27,7 @@ object frmMainDisplay: TfrmMainDisplay
   object pnlLeft: TPanel
     Left = 0
     Top = 0
-    Width = 510
+    Width = 526
     Height = 1200
     Align = alClient
     BevelOuter = bvNone
@@ -35,10 +35,11 @@ object frmMainDisplay: TfrmMainDisplay
     ParentBackground = False
     ParentDoubleBuffered = False
     TabOrder = 0
+    ExplicitWidth = 510
     object pnlLTop: TPanel
       Left = 0
       Top = 0
-      Width = 510
+      Width = 526
       Height = 697
       Align = alTop
       Color = clBlue
@@ -50,8 +51,9 @@ object frmMainDisplay: TfrmMainDisplay
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
+      ExplicitWidth = 510
       object pnlLTRight: TPanel
-        Left = 319
+        Left = 335
         Top = 1
         Width = 190
         Height = 695
@@ -65,6 +67,7 @@ object frmMainDisplay: TfrmMainDisplay
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
+        ExplicitLeft = 319
         object grpEquipmentStatus: TGroupBox
           Left = 1
           Top = 1
@@ -669,16 +672,17 @@ object frmMainDisplay: TfrmMainDisplay
       object pnlLTLeft: TPanel
         Left = 1
         Top = 1
-        Width = 318
+        Width = 334
         Height = 695
         Align = alClient
         Color = clBlue
         ParentBackground = False
         TabOrder = 1
+        ExplicitWidth = 318
         object grpLoadingManual: TGroupBox
           Left = 1
           Top = 77
-          Width = 316
+          Width = 332
           Height = 452
           Align = alTop
           Caption = 'Loading Manual'
@@ -689,6 +693,7 @@ object frmMainDisplay: TfrmMainDisplay
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
+          ExplicitWidth = 316
           object pnlLoadingManual: TPanel
             Left = 8
             Top = 20
@@ -1133,7 +1138,7 @@ object frmMainDisplay: TfrmMainDisplay
         object grpControlMode: TGroupBox
           Left = 1
           Top = 1
-          Width = 316
+          Width = 332
           Height = 76
           Align = alTop
           Caption = 'Control Mode'
@@ -1144,6 +1149,7 @@ object frmMainDisplay: TfrmMainDisplay
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 1
+          ExplicitWidth = 316
           object pnlTgtSwap: TPanel
             Left = 8
             Top = 20
@@ -1198,7 +1204,7 @@ object frmMainDisplay: TfrmMainDisplay
         object grpDirectPosisition: TGroupBox
           Left = 1
           Top = 529
-          Width = 316
+          Width = 332
           Height = 165
           Align = alClient
           Caption = 'Direct Posisition'
@@ -1209,6 +1215,7 @@ object frmMainDisplay: TfrmMainDisplay
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 2
+          ExplicitWidth = 316
           object pnlDirectPosisition: TPanel
             Left = 8
             Top = 20
@@ -1419,14 +1426,15 @@ object frmMainDisplay: TfrmMainDisplay
     object pnlLCenter: TPanel
       Left = 0
       Top = 697
-      Width = 510
+      Width = 526
       Height = 210
       Align = alTop
       Color = clBlue
       ParentBackground = False
       TabOrder = 1
+      ExplicitWidth = 510
       object grpControlRoom: TGroupBox
-        Left = 321
+        Left = 337
         Top = 1
         Width = 188
         Height = 208
@@ -1439,6 +1447,7 @@ object frmMainDisplay: TfrmMainDisplay
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
+        ExplicitLeft = 321
         object pnlControlRoom: TPanel
           Left = 8
           Top = 20
@@ -1489,7 +1498,7 @@ object frmMainDisplay: TfrmMainDisplay
       object grpRbuCorrection: TGroupBox
         Left = 1
         Top = 1
-        Width = 320
+        Width = 336
         Height = 208
         Align = alClient
         Caption = 'Rbu Correction'
@@ -1500,6 +1509,7 @@ object frmMainDisplay: TfrmMainDisplay
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 1
+        ExplicitWidth = 320
         object pnlRbuCorrection: TPanel
           Left = 8
           Top = 20
@@ -1682,16 +1692,17 @@ object frmMainDisplay: TfrmMainDisplay
     object pnlLBottom: TPanel
       Left = 0
       Top = 907
-      Width = 510
+      Width = 526
       Height = 293
       Align = alClient
       Color = clBlue
       ParentBackground = False
       TabOrder = 2
+      ExplicitWidth = 510
       object grpUnitSelect: TGroupBox
         Left = 1
         Top = 1
-        Width = 320
+        Width = 336
         Height = 291
         Align = alClient
         Caption = 'Unit Select'
@@ -1702,6 +1713,7 @@ object frmMainDisplay: TfrmMainDisplay
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
+        ExplicitWidth = 320
         object btnBurjaLama: TFlatButton
           Left = 24
           Top = 24
@@ -1789,63 +1801,63 @@ object frmMainDisplay: TfrmMainDisplay
               Caption = '3'
             end
             object lbl58: TLabel
-              Left = 118
+              Left = 124
               Top = 20
               Width = 8
               Height = 13
               Caption = '4'
             end
             object lbl59: TLabel
-              Left = 155
+              Left = 170
               Top = 20
               Width = 8
               Height = 13
               Caption = '5'
             end
             object lbl60: TLabel
-              Left = 192
+              Left = 216
               Top = 20
               Width = 8
               Height = 13
               Caption = '6'
             end
             object lbl61: TLabel
-              Left = 229
-              Top = 20
+              Left = 7
+              Top = 52
               Width = 8
               Height = 13
               Caption = '7'
             end
             object lbl62: TLabel
-              Left = 7
+              Left = 44
               Top = 52
               Width = 8
               Height = 13
               Caption = '8'
             end
             object lbl63: TLabel
-              Left = 44
+              Left = 81
               Top = 53
               Width = 8
               Height = 13
               Caption = '9'
             end
             object lbl64: TLabel
-              Left = 79
+              Left = 121
               Top = 53
               Width = 15
               Height = 13
               Caption = '10'
             end
             object lbl65: TLabel
-              Left = 123
+              Left = 167
               Top = 53
               Width = 15
               Height = 13
               Caption = '11'
             end
             object lbl66: TLabel
-              Left = 167
+              Left = 213
               Top = 53
               Width = 15
               Height = 13
@@ -1859,15 +1871,15 @@ object frmMainDisplay: TfrmMainDisplay
               Transparent = True
             end
             object imgRBU1Load4: TImage
-              Left = 132
+              Left = 142
               Top = 18
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU1Load7: TImage
-              Left = 243
-              Top = 18
+              Left = 21
+              Top = 50
               Width = 17
               Height = 17
               Transparent = True
@@ -1880,28 +1892,28 @@ object frmMainDisplay: TfrmMainDisplay
               Transparent = True
             end
             object imgRBU1Load5: TImage
-              Left = 169
+              Left = 188
               Top = 18
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU1Load8: TImage
-              Left = 20
+              Left = 57
               Top = 51
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU1Load10: TImage
-              Left = 100
+              Left = 142
               Top = 51
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU1Load11: TImage
-              Left = 144
+              Left = 188
               Top = 51
               Width = 17
               Height = 17
@@ -1915,21 +1927,21 @@ object frmMainDisplay: TfrmMainDisplay
               Transparent = True
             end
             object imgRBU1Load6: TImage
-              Left = 205
-              Top = 18
+              Left = 235
+              Top = 19
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU1Load9: TImage
-              Left = 58
+              Left = 95
               Top = 51
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU1Load12: TImage
-              Left = 188
+              Left = 235
               Top = 51
               Width = 17
               Height = 17
@@ -1971,63 +1983,63 @@ object frmMainDisplay: TfrmMainDisplay
               Caption = '3'
             end
             object lbl70: TLabel
-              Left = 119
+              Left = 125
               Top = 22
               Width = 8
               Height = 13
               Caption = '4'
             end
             object lbl71: TLabel
-              Left = 156
+              Left = 170
               Top = 22
               Width = 8
               Height = 13
               Caption = '5'
             end
             object lbl72: TLabel
-              Left = 193
+              Left = 214
               Top = 22
               Width = 8
               Height = 13
               Caption = '6'
             end
             object lbl73: TLabel
-              Left = 230
-              Top = 22
+              Left = 9
+              Top = 56
               Width = 8
               Height = 13
               Caption = '7'
             end
             object lbl74: TLabel
-              Left = 8
+              Left = 45
               Top = 57
               Width = 8
               Height = 13
               Caption = '8'
             end
             object lbl75: TLabel
-              Left = 45
+              Left = 82
               Top = 58
               Width = 8
               Height = 13
               Caption = '9'
             end
             object lbl76: TLabel
-              Left = 79
+              Left = 121
               Top = 58
               Width = 15
               Height = 13
               Caption = '10'
             end
             object lbl77: TLabel
-              Left = 123
+              Left = 166
               Top = 58
               Width = 15
               Height = 13
               Caption = '11'
             end
             object lbl78: TLabel
-              Left = 167
+              Left = 210
               Top = 58
               Width = 15
               Height = 13
@@ -2055,63 +2067,63 @@ object frmMainDisplay: TfrmMainDisplay
               Transparent = True
             end
             object imgRBU2Load4: TImage
-              Left = 133
+              Left = 143
               Top = 20
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU2Load5: TImage
-              Left = 170
+              Left = 188
               Top = 20
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU2Load6: TImage
-              Left = 207
+              Left = 232
               Top = 20
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU2Load7: TImage
-              Left = 244
-              Top = 20
+              Left = 23
+              Top = 54
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU2Load8: TImage
-              Left = 22
+              Left = 59
               Top = 55
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU2Load9: TImage
-              Left = 59
+              Left = 96
               Top = 56
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU2Load10: TImage
-              Left = 100
+              Left = 142
               Top = 56
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU2Load11: TImage
-              Left = 144
+              Left = 187
               Top = 56
               Width = 17
               Height = 17
               Transparent = True
             end
             object imgRBU2Load12: TImage
-              Left = 188
+              Left = 231
               Top = 56
               Width = 17
               Height = 17
@@ -2121,7 +2133,7 @@ object frmMainDisplay: TfrmMainDisplay
         end
       end
       object grpEndProcess: TGroupBox
-        Left = 321
+        Left = 337
         Top = 1
         Width = 188
         Height = 291
@@ -2134,6 +2146,7 @@ object frmMainDisplay: TfrmMainDisplay
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 1
+        ExplicitLeft = 321
         object btnExit: TFlatButton
           Left = 36
           Top = 30
@@ -2156,13 +2169,14 @@ object frmMainDisplay: TfrmMainDisplay
     end
   end
   object pnlCenter: TPanel
-    Left = 510
+    Left = 526
     Top = 0
     Width = 1040
     Height = 1200
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitLeft = 510
     object imgBackgroundZone: TImage
       Left = 0
       Top = 0
@@ -2199,7 +2213,7 @@ object frmMainDisplay: TfrmMainDisplay
         8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
         918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
         6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-        01000118010000F0A49D280100000069E0DB501C000000000000000000000000
+        01000118010000C8919C040100000069E0DB501C000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000002
         0000000000000000000000000000000000000000000000000000000000000000
@@ -2208,15 +2222,15 @@ object frmMainDisplay: TfrmMainDisplay
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         8076C000000000008056C0000000000080764000000000008056400100000018
-        010000F0A49D28010000006E0064001C00000000000000000000000000000000
+        010000C8919C0401000000000000001C00000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000200000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000000000000000000000000000000000000000058E7970008
-        E39700E568B27558E3970000040000F0E2970000000000000000000000000000
+        000000000000000000000000000000000000000000000000000000C0D0970070
+        CC9700E5686D75C0CC97000004000058CC970000000000000000000000000000
         000088B3400000000000408F400001000001}
     end
     object pnlTCP_PCOM: TPanel
@@ -2366,7 +2380,7 @@ object frmMainDisplay: TfrmMainDisplay
     end
   end
   object pnlRight: TPanel
-    Left = 1550
+    Left = 1566
     Top = 0
     Width = 370
     Height = 1200
@@ -2375,6 +2389,7 @@ object frmMainDisplay: TfrmMainDisplay
     DoubleBuffered = True
     ParentDoubleBuffered = False
     TabOrder = 2
+    ExplicitLeft = 1550
     object pnlR1: TPanel
       Left = 0
       Top = 0
