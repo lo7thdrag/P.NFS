@@ -385,6 +385,7 @@ type
     FVCurShpSpeed,
     FVCurTrgtSpeed,
     FVTgtTrgtDepth,
+    FWindSpeed, FWindDirect,
     FVCurTrgtDepth : Double;
 
     FLauncherId,
@@ -1615,6 +1616,9 @@ begin
   FVTgtTrgtDepth := 0;
   FVCurTrgtDepth := 0;
 
+  FWindSpeed  := 0;
+  FWindDirect := 0;
+
 //  FAngle := 0;
   tmrRotate.Interval := 25; // butuh diganti ke 25, biar jadi 40 degree/sec   aslinya 250
   tmrRotate.Enabled := True;
@@ -2115,6 +2119,7 @@ begin
 //      FTargetElevation := Power(rangeX/6000, Exp(1.0)) * 45;  // perhitungan sama seperti di 3D
 
       FVTgtHdngTrgt := v.HeadingDeg;
+      FVTgtTrgtDepth := v.PosZ;
 
       FVTgtShpSpeed := RBU_MAnager.Speed;
       FVTgtTrgtSpeed := v.Speed_mps * 1.944;
@@ -2215,10 +2220,16 @@ begin
 
   edtTrgtBearingValue.Text := FormatFloat('0.#', FVTgtBrngTrgt);
 
+  // TARGET DEPTH
+  edtTargetDepthValue.Text := FormatFloat('0.#', FVTgtTrgtDepth);
+  edtTrgtDepthValue.Text   := FormatFloat('0.#', FVTgtTrgtDepth);
+
   // PUTAR HEADING SHIP
   VrHdgShip.Position := Round(FVTgtHdngShp);
   edtValHdngShp.Text := FormatFloat('0.#', FVTgtHdngShp);
   edtValHdngTrgt.Text := FormatFloat('0.#', FVTgtHdngTrgt);
+
+  edtShipHeadingValue.Text := FormatFloat('0.#', FVTgtHdngShp);
 
   // PUTAR BRNG TARGET 2 (real heading)
   VrBrngTrgt2.Position := Round(FTrueBearing);
