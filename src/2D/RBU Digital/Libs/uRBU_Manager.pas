@@ -83,6 +83,7 @@ type
      procedure EventOnReceiveRBUOrder(apRec: PAnsiChar; aSize: integer);
 
      procedure EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
+     procedure EventOnReceiveEnvironment(apRec: PAnsiChar; aSize: integer);
 
      function IsMissileReady(LauncherID, MissileID: Integer): Boolean;
      function IsLauncherFullyLoaded(LauncherID: Integer): Boolean;
@@ -129,7 +130,7 @@ begin
    Datcom.RegisterProcedure(REC_3D_RBU, EventOnReceiveRBUOrder, SizeOf(TRec3DSetRBU));
 
    Datcom.RegisterProcedure(REC_MISSILEPOS, EventOnReceiveMissileStatus, SizeOf(TRecMissilePos));
-//   Datcom.RegisterProcedure(REC_2D_ORDER, nil, SizeOf(TRecData2DOrder));
+   Datcom.RegisterProcedure(REC_ENVIRONMENT, EventOnReceiveEnvironment, SizeOf(TRecDataEnvironment));
 
 //   Datcom.setLog(TStringList(frm_Main.mmo1.Lines));
 
@@ -641,6 +642,7 @@ procedure TRBUManager.EventOnReceive3DOrder(apRec: PAnsiChar; aSize: integer);
 var
   aRec: ^TRec3DMissilePos;
   lRec : TRec3DSetRBU;
+  windRec : TRecData3DOrder;
 
   i: Integer;
   isValid: Boolean;
@@ -738,6 +740,17 @@ begin
       end;
     end;
   end;
+
+//  case windRec.sOrder of
+//    ORD_WINDSPEED :
+//    begin
+//      frmMainDisplay.edtWindSpeedValue.Text := IntToStr(Round(windRec.mValue));
+//    end;
+//    ORD_WINDDIRECTION :
+//    begin
+//      frmMainDisplay.edtWindDirectValue.Text := IntToStr(Round(windRec.mValue));
+//    end;
+//  end;
 end;
 
 procedure  TRBUManager.EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
@@ -884,6 +897,21 @@ begin
 
 end;
 
+procedure TRBUManager.EventOnReceiveEnvironment(apRec: PAnsiChar; aSize: integer);
+var
+  Rec: ^TRecDataEnvironment;
+begin
+  ShowMessage('EventOnReceiveEnvironment MASUK. Size = ' + IntToStr(aSize) + ' / Expected = ' + IntToStr(SizeOf(TRecDataEnvironment)));
+
+  if aSize <> SizeOf(TRecDataEnvironment) then
+    Exit;
+
+  Rec := @apRec^;
+
+  frmMainDisplay.edtWindSpeedValue.Text  := FloatToStr(Rec^.windVelocity);
+  frmMainDisplay.edtWindDirectValue.Text := FloatToStr(Rec^.windHeading);
+end;
+
 procedure TRBUManager.EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: Integer);
 var
   aRec: ^TRecMissilePos;
@@ -929,6 +957,11 @@ begin
         Lonch1.IsLoading := True;
 
         UpdateLauncherIndicator(1);
+      end;
+
+      _CM_CLIENT_CHECKSCENARIOID :
+      begin
+
       end;
 
     end;
