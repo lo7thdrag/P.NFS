@@ -39,7 +39,7 @@ type
   TStateToolButton = (sZoomCenter, sZoomOut, sZoomIn, sZoomValue,
                       sSelectArrow, sSelectMove, sSelectMoveAll,
                       sToolRuler, sRecordStart, sRecordPause, sHand,
-                      sToolTikas, sToolZoomCenterMap1, sToolZoomCenterMap2, sAddVehicle);
+                      sToolTikas, sToolZoomCenterMap1, sToolZoomCenterMap2, sAddVehicle, sRemoveVehicle);
 
   TfrmMainInstruktur = class(TForm)
     pnlMain: TPanel;
@@ -121,6 +121,7 @@ type
     lblZoomLvl: TLabel;
     btnClose: TSpeedButtonImage;
     btnAddVehicle: TSpeedButtonImage;
+    btnRemoveVehicle: TSpeedButtonImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -149,6 +150,7 @@ type
     procedure btnSelectArrowClick(Sender: TObject);
     procedure pnlMainMenuMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure btnRemoveVehicleClick(Sender: TObject);
   private
     { Private declarations }
 //    TimerDestroy : TTimer;
@@ -174,7 +176,7 @@ type
     ImListToolTikas,
     ImListToolMonitor,
     ImListMinimap,
-    ImListClose : TImageList;
+    ImListClose, ImListRemoveVehicle : TImageList;
 
     IsDown,
     isDragMulti,
@@ -344,6 +346,7 @@ begin
   btnZoomCenterMap1.Tag := 12;
   btnZoomCenterMap2.Tag := 13;
   btnAddVehicle.Tag     := 14;
+  btnRemoveVehicle.Tag  := 15;
 
   btnZoomCenter.OnClick     := OnClick_ToolButton;
   btnZoomCenterMap1.OnClick := OnClick_ToolButton;
@@ -360,6 +363,7 @@ begin
   btnHand.OnClick           := OnClick_ToolButton;
   btnToolTikas.OnClick      := OnClick_ToolButton;
   btnAddVehicle.OnClick     := OnClick_ToolButton;
+  btnRemoveVehicle.OnClick  := OnClick_ToolButton;
 end;
 
 procedure TfrmMainInstruktur.SetDefaultMapTool;
@@ -368,6 +372,7 @@ begin
   btnSelectMove.ImageIndex      := 0;
   btnSelectMoveAll.ImageIndex   := 0;
   btnAddVehicle.ImageIndex      := 0;
+  btnRemoveVehicle.ImageIndex   := 0;
 
   btnHand.ImageIndex            := 0;
   btnZoomCenter.ImageIndex      := 0;
@@ -398,6 +403,7 @@ begin
   btnSelectMove.ImageIndex      := 0;
   btnSelectMoveAll.ImageIndex   := 0;
   btnAddVehicle.ImageIndex      := 0;
+  btnRemoveVehicle.ImageIndex   := 0;
 
   btnHand.ImageIndex            := 0;
   btnZoomCenter.ImageIndex      := 0;
@@ -450,6 +456,7 @@ begin
   btnRecordPause.ImageIndex    := 0;
   btnHand.ImageIndex           := 0;
  // btnToolTikas.ImageIndex      := 0;
+ btnRemoveVehicle.ImageIndex := 0;
 
   if FToolSelected <> sSelectMove then SimManager.Selections.ClearSelection;
 
@@ -783,6 +790,29 @@ begin
       lblToolUsed.Caption := 'Add Vehicle';
       {$ENDREGION}
     end;
+
+    sRemoveVehicle :
+    begin
+      {$REGION 'sRemoveVehicle'}
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+      begin
+        btnRemoveVehicle.ImageIndex := 0;
+        Exit;
+      end;
+
+      btnRemoveVehicle.ImageIndex := 1;
+
+      if MainMap.Geoset = '' then
+        Exit;
+
+      MainMap.CurrentTool := TOOL_REMOVE_VEHICLE;
+
+      SimManager.Selections.ClearSelection;
+      SimManager.VSelect.Visible := False;
+
+      lblToolUsed.Caption := 'Remove Vehicle';
+      {$ENDREGION}
+    end;
   end;
 end;
 
@@ -846,6 +876,7 @@ begin
   MainMap.CreateCustomTool(TOOL_SELECT_C705TARGET, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_SELECT_COORD_C705, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_SELECT_VLMICA_TARGET, miToolTypePoint, miCrossCursor, miCrossCursor);
+  MainMap.CreateCustomTool(TOOL_REMOVE_VEHICLE, miToolTypePoint, miCrossCursor, miCrossCursor);
 
 //  TimerDestroy := TTimer.Create(nil);
 //  TimerDestroy.Enabled  := false;
@@ -1014,6 +1045,30 @@ begin
   end;
   btnAddVehicle.ImageList  := ImListAddVehicle;
   btnAddVehicle.ImageIndex := 0;
+  {$ENDREGION}
+
+  {$REGION 'Remove Vehcile'}
+  ImListRemoveVehicle        := TImageList.Create(Self);
+  ImListRemoveVehicle.Width  := btnRemoveVehicle.Width;
+  ImListRemoveVehicle.Height := btnRemoveVehicle.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'btn_remove_vehicle-1.bmp');
+  finally
+    ImListRemoveVehicle.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'btn_remove_vehicle-2.bmp');
+  finally
+    ImListRemoveVehicle.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnRemoveVehicle.ImageList  := ImListRemoveVehicle;
+  btnRemoveVehicle.ImageIndex := 0;
+
   {$ENDREGION}
 
   {$REGION ' Move Map '}
@@ -2760,6 +2815,14 @@ begin
       frmaddshipruntime.PosX := mx;
       frmaddshipruntime.PosY := my;
      end;
+
+     TOOL_REMOVE_VEHICLE :
+     begin
+      sx := x;
+      sy := y;
+
+      MainMap.ConvertCoord(sx, sy, mx, my, miScreenToMap);
+     end;
     end;
   end
   else
@@ -3131,12 +3194,20 @@ begin
   btnAddVehicle.ImageIndex := 0;
 end;
 
+procedure TfrmMainInstruktur.btnRemoveVehicleClick(Sender: TObject);
+begin
+  if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+    exit;
+
+  btnRemoveVehicle.BringToFront;
+end;
+
 procedure TfrmMainInstruktur.btnSelectArrowClick(Sender: TObject);
 begin
   if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
-        exit;
+    exit;
 
-     btnSelectArrow.BringToFront;
+  btnSelectArrow.BringToFront;
 end;
 
 procedure TfrmMainInstruktur.btnShowtikasClick(Sender: TObject);

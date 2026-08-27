@@ -143,7 +143,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomCenter: TSpeedButtonImage
           Left = 19
-          Top = 312
+          Top = 371
           Width = 48
           Height = 48
           Hint = 'Center Map'
@@ -157,7 +157,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomOut: TSpeedButtonImage
           Left = 19
-          Top = 370
+          Top = 429
           Width = 48
           Height = 48
           Hint = 'ZoomOut'
@@ -168,7 +168,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomIn: TSpeedButtonImage
           Left = 19
-          Top = 428
+          Top = 487
           Width = 48
           Height = 48
           Hint = 'ZoomIn'
@@ -179,7 +179,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomValue: TSpeedButtonImage
           Left = 19
-          Top = 486
+          Top = 545
           Width = 48
           Height = 48
           Hint = 'ZoomScale'
@@ -190,7 +190,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnToolRuler: TSpeedButtonImage
           Left = 19
-          Top = 544
+          Top = 603
           Width = 48
           Height = 48
           Hint = 'Ruler'
@@ -201,7 +201,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnToolTikas: TSpeedButtonImage
           Left = 19
-          Top = 602
+          Top = 661
           Width = 48
           Height = 48
           Hint = 'History'
@@ -212,7 +212,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnHand: TSpeedButtonImage
           Left = 19
-          Top = 254
+          Top = 313
           Width = 48
           Height = 48
           Hint = 'Move Map'
@@ -224,7 +224,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnMiniMap: TSpeedButtonImage
           Left = 19
-          Top = 660
+          Top = 719
           Width = 48
           Height = 48
           Hint = 'Mini Map'
@@ -237,7 +237,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         object btnMonitor: TSpeedButtonImage
           Tag = 1
           Left = 19
-          Top = 718
+          Top = 777
           Width = 48
           Height = 48
           Hint = 'Game Controller'
@@ -273,6 +273,20 @@ object frmMainInstruktur: TfrmMainInstruktur
           ParentShowHint = False
           ShowHint = True
           Spacing = 0
+          OnClick = btnAddVehicleClick
+        end
+        object btnRemoveVehicle: TSpeedButtonImage
+          Left = 19
+          Top = 254
+          Width = 48
+          Height = 48
+          Hint = 'Remove Vehicle'
+          Caption = ''
+          Flat = True
+          ParentShowHint = False
+          ShowHint = True
+          Spacing = 0
+          OnClick = btnRemoveVehicleClick
         end
       end
       object pnlMap: TPanel
@@ -315,7 +329,7 @@ object frmMainInstruktur: TfrmMainInstruktur
             8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
             918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
             6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-            0100011801000048B663120100000055FF6D6C1C000000000000000000000000
+            010001180100009855A60F01000000C5FECB6B1C000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000002
             0000000000000000000000000000000000000000000000000000000000000000
@@ -324,15 +338,15 @@ object frmMainInstruktur: TfrmMainInstruktur
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             8076C000000000008056C0000000000080764000000000008056400100000018
-            01000048B6631201000000693689751C00000000000000000000000000000000
+            0100009855A60F01000000F931C1751C00000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000200000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
-            000000000000000000000000000000000000000000000000000000C4240700C4
-            240700C424070060EF9700868088751A09050014F09700000000000000000000
+            0000000000000000000000000000000000000000000000000000007608090076
+            0809007608090060EF9700367CC075A20D380014F09700000000000000000000
             000088B3400000000000408F400001000001}
         end
         object pnlHeader: TPanel
@@ -14196,7 +14210,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          0100011801000048B6631201000000000000001C000000000000000000000000
+          010001180100009855A60F01000000000000001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -14205,7 +14219,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          01000048B6631201000000000000001C00000000000000000000000000000000
+          0100009855A60F01000000000000001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000

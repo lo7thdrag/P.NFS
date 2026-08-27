@@ -290,7 +290,7 @@ begin
       frmGameController.tbWindSpeed.Position := Round(Rec.mValue);
       //frmGameController.tbWindSpeed.OnChange := frmGameController.tbWindSpeedChange;
       frmGameController.edtWindSpeed.Text := IntToStr(Round(Rec.mValue));
-
+      frmGameController.edtPortWindSpeed.Text := IntToStr(Round(Rec.mValue));
   end
   else
   if Rec.sOrder = ORD_WINDDIRECTION   then
@@ -308,6 +308,7 @@ begin
       frmGameController.vrwhlWindDirec.Position := Round(newDir);
      // frmGameController.vrwhlWindDirec.OnChange := frmGameController.vrwhlWindDirecChange;
       frmGameController.lblWindDirection.Caption := IntToStr(Round(Rec.mValue));
+      frmGameController.edtWindDirection.Text := IntToStr(Round(Rec.mValue));
 
   end
   else
