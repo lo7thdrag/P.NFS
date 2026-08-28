@@ -1790,6 +1790,10 @@ begin
                 float_random := Random;
                 GamaZ := int_random + float_random;
                 pnlGamaZ_1.Caption := FormatFloat('0.00', GamaZ);
+
+                pnlDis_1.Caption := FormatFloat('0.00',Distance/1000);
+                pnlAzm_1.Caption := FormatFloat('0',Azimuth);
+                pnlSpd_1.Caption := FormatFloat('0.00',Speed);
               end;
             end;
           end
@@ -1836,6 +1840,10 @@ begin
               float_random := Random;
               GamaZ := int_random + float_random;
               pnlGamaZ_2.Caption := FormatFloat('0.00', GamaZ);
+
+              pnlDis_2.Caption := FormatFloat('0.00',Distance/1000);
+              pnlAzm_2.Caption := FormatFloat('0',Azimuth);
+              pnlSpd_2.Caption := FormatFloat('0.00',Speed);
             end;
           end;
 
@@ -1844,6 +1852,7 @@ begin
       end;
     end;
   end;
+
 
   { draw target }
   if not Assigned(ListAssignedObjects[0]) then
@@ -1873,7 +1882,7 @@ begin
       EventForm.drawTarget(FCanvas, Target2.Longitude, Target2.Latitude, Target2.Number);
     end;
   end;
-
+  FCanvas.Handle := 0;
 end;
 
 
@@ -3193,6 +3202,7 @@ begin
   end;
 end;
 
+
 procedure TPanelBawah.UpButton;
 begin
   case ActivePage of
@@ -3445,7 +3455,8 @@ end;
 procedure TPanelBawah.PanelEditOn(panel: TPanel);
 begin
   panel.Color := clBlue;
-  panel.Font.Color  := clBlack;
+//  panel.Font.Color  := clBlack;
+  panel.Font.Color  := clWhite;
   ActivePanel := panel;
   {
   if ActivePanel = pnlTargetSet_1_Number then
@@ -3506,6 +3517,7 @@ begin
 
   pnlMap.Color:= clBlack;
   EnableComposited(pnlMainMenu);
+//  EnableComposited(pnlMap);
 end;
 
 procedure TPanelBawah.FormDestroy(Sender: TObject);
@@ -4245,7 +4257,7 @@ begin
         pnlAzm_1.Caption := FormatFloat('0',Azimuth);
 
       if Speed <> 1000 then
-        pnlSpd_1.Caption := FormatFloat('0.00',Speed * C_Ms_To_knot);
+        pnlSpd_1.Caption := FormatFloat('0.00',Speed);
 
       if Course <> 1000 then
         pnlCou_1.Caption := FormatFloat('0',Course);
@@ -4293,7 +4305,7 @@ begin
         pnlAzm_2.Caption := FormatFloat('0',Azimuth);
 
       if Speed <> 1000 then
-        pnlSpd_2.Caption := FormatFloat('0.00',Speed * C_Ms_To_knot);
+        pnlSpd_2.Caption := FormatFloat('0.00',Speed);
 
       if Course <> 1000 then
         pnlCou_2.Caption := FormatFloat('0',Course);
