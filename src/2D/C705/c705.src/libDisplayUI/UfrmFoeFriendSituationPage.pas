@@ -378,12 +378,14 @@ type
     procedure SetActiveHeaderMCtrl(idx: Integer);
     procedure ShowActiveContentMCtrl;
     procedure CloseAllContentMCtrl;
+    procedure SetFocusEdt(Sender: TObject);
 
     function SeaStateToStr(aState: Word): string;
     procedure EnvironmentChanged(Sender: TObject);
 
-    procedure MissileCtrlKeyboardEnterMissile(Sender: TObject);
+    procedure MissileCtrlKeyboardEnterOnMissile(Sender: TObject);
     procedure MissileCtrlKeyboardEnterINSAlign(Sender: TObject);
+    procedure MissileCtrlKeyboardEnterOffMissile(Sender: TObject);
 
     procedure UpdateMissileControl;
   public
@@ -745,6 +747,14 @@ begin
 
   if Assigned(KeyboardMgr) then
     KeyboardMgr.SetContext(kbFFSMenu);
+
+  if VIdentSetting.ModeConsole then
+  begin
+    frmFoeFriendSituationPage.SetTopMonitor(VMonitorTopLeft.MonMiddle_Top);
+    frmFoeFriendSituationPage.Left := Screen.Monitors[0].WorkareaRect.Left;
+    //frmFoeFriendSituationPage.Left := Screen.Monitors[VMonitorSetting.MoniWCC].WorkareaRect.Left;
+    frmFoeFriendSituationPage.Top  := VMonitorTopLeft.MonMiddle_Top;
+  end;
 end;
 
 procedure TfrmFoeFriendSituationPage.FormHide(Sender: TObject);
@@ -844,8 +854,14 @@ begin
       if frmKeyboardCalcLaunch.ActiveEdit = edtPwrOnMissile then
       begin
         case Key of
-          1: edtPwrOnMissile.Text := '1';
-          2: edtPwrOnMissile.Text := '2';
+          1: begin
+            edtPwrOnMissile.Text := '1';
+            SetFocusEdt(edtPwrOnMissile);
+          end;
+          2: begin
+            edtPwrOnMissile.Text := '2';
+            SetFocusEdt(edtPwrOnMissile);
+          end;
           VK_BACK: begin
             //edtPwrOnMissile.Clear;
             S := edtPwrOnMissile.Text;
@@ -855,9 +871,11 @@ begin
               Delete(S, Length(S), 1);
               edtPwrOnMissile.Text := S;
             end;
+            SetFocusEdt(edtPwrOnMissile);
           end;
           VK_RETURN : begin
-            MissileCtrlKeyboardEnterMissile(Self);
+            MissileCtrlKeyboardEnterOnMissile(Self);
+            SetFocusEdt(edtPwrOnMissile);
             Exit;
           end;
         end;
@@ -869,8 +887,14 @@ begin
       if frmKeyboardCalcLaunch.ActiveEdit = edtRecheckMissile then
       begin
         case Key of
-          1: edtRecheckMissile.Text := '1';
-          2: edtRecheckMissile.Text := '2';
+          1: begin
+            edtRecheckMissile.Text := '1';
+            SetFocusEdt(edtRecheckMissile);
+          end;
+          2: begin
+            edtRecheckMissile.Text := '2';
+            SetFocusEdt(edtRecheckMissile);
+          end;
           VK_BACK: begin
             //edtPwrOnMissile.Clear;
             S := edtRecheckMissile.Text;
@@ -880,9 +904,11 @@ begin
               Delete(S, Length(S), 1);
               edtRecheckMissile.Text := S;
             end;
+            SetFocusEdt(edtRecheckMissile);
           end;
           VK_RETURN : begin
-            MissileCtrlKeyboardEnterMissile(Self);
+            MissileCtrlKeyboardEnterOnMissile(Self);
+            SetFocusEdt(edtRecheckMissile);
             Exit;
           end;
         end;
@@ -894,8 +920,14 @@ begin
       if frmKeyboardCalcLaunch.ActiveEdit = edtINSAlignMissile then
       begin
         case Key of
-          1: edtINSAlignMissile.Text := '1';
-          2: edtINSAlignMissile.Text := '2';
+          1: begin
+            edtINSAlignMissile.Text := '1';
+            SetFocusEdt(edtINSAlignMissile);
+          end;
+          2: begin
+            edtINSAlignMissile.Text := '2';
+            SetFocusEdt(edtINSAlignMissile);
+          end;
           VK_BACK: begin
             //edtPwrOnMissile.Clear;
             S := edtINSAlignMissile.Text;
@@ -905,9 +937,11 @@ begin
               Delete(S, Length(S), 1);
               edtINSAlignMissile.Text := S;
             end;
+            SetFocusEdt(edtINSAlignMissile);
           end;
           VK_RETURN : begin
             MissileCtrlKeyboardEnterINSAlign(Self);
+            SetFocusEdt(edtINSAlignMissile);
             Exit;
           end;
         end;
@@ -919,8 +953,14 @@ begin
       if frmKeyboardCalcLaunch.ActiveEdit = edtPwrOffMissile then
       begin
         case Key of
-          1: edtPwrOffMissile.Text := '1';
-          2: edtPwrOffMissile.Text := '2';
+          1: begin
+            edtPwrOffMissile.Text := '1';
+            SetFocusEdt(edtPwrOffMissile);
+          end;
+          2: begin
+            edtPwrOffMissile.Text := '2';
+            SetFocusEdt(edtPwrOffMissile);
+          end;
           VK_BACK: begin
             //edtPwrOnMissile.Clear;
             S := edtPwrOffMissile.Text;
@@ -930,9 +970,11 @@ begin
               Delete(S, Length(S), 1);
               edtPwrOffMissile.Text := S;
             end;
+            SetFocusEdt(edtPwrOffMissile);
           end;
           VK_RETURN : begin
-            MissileCtrlKeyboardEnterMissile(Self);
+            MissileCtrlKeyboardEnterOffMissile(Self);
+            SetFocusEdt(edtPwrOffMissile);
             Exit;
           end;
         end;
@@ -1044,13 +1086,6 @@ begin
   }
   HandleTabShortcut(Key); // move to Keyboard Form
 
-  case Key of
-    VK_ESCAPE:
-    begin
-      frmWCC.show;
-    end;
-  end;
-
   advpgcFunctionMenuFoeChange(nil);
   //UpdateLayoutTab;
 
@@ -1087,6 +1122,16 @@ begin
     end;
   end;
   {$ENDREGION}
+
+  case Key of
+    VK_ESCAPE:
+    begin
+      frmWCC.show;
+      frmFoeFriendSituationPage.Hide;
+      frmKeyboardCalcLaunch.BringToFront;
+      Exit;
+    end;
+  end;
 
   {$REGION 'Case handle keyboard Navigation'}
 //  case Key of
@@ -1192,7 +1237,12 @@ begin
   if Launcher.C705Status.INSAlignDone then begin
     lblStateINSAlign.Caption := 'Allow';
     lblStateINSAlign.Visible := True;
+  end
+  else
+  begin
+    lblStateINSAlign.Visible := False;
   end;
+
 end;
 
 procedure TfrmFoeFriendSituationPage.MissileCtrlKeyboardEnterINSAlign(Sender: TObject);
@@ -1200,8 +1250,10 @@ var
   LauncherID: Integer;
   Launcher: TC705Launcher;
 begin
-  LauncherID := StrToIntDef(frmKeyboardCalcLaunch.ActiveEdit.Text,0);
+  if Trim(frmKeyboardCalcLaunch.ActiveEdit.Text) = '' then
+    Exit;
 
+  LauncherID := StrToIntDef(frmKeyboardCalcLaunch.ActiveEdit.Text,0);
   Launcher := SimManager.GetLauncher(LauncherID);
 
   if Launcher = nil then
@@ -1216,11 +1268,42 @@ begin
   Launcher.StartINSAlign;
 end;
 
-procedure TfrmFoeFriendSituationPage.MissileCtrlKeyboardEnterMissile(Sender: TObject);
+procedure TfrmFoeFriendSituationPage.MissileCtrlKeyboardEnterOffMissile(Sender: TObject);
 var
   LauncherID: Integer;
   Launcher: TC705Launcher;
 begin
+  if Trim(frmKeyboardCalcLaunch.ActiveEdit.Text) = '' then
+    Exit;
+
+  // 1 = LauncherRight; 2 = LauncherLeft;
+  LauncherID := StrToIntDef(frmKeyboardCalcLaunch.ActiveEdit.Text, 0);
+  Launcher := SimManager.GetLauncher(LauncherID);
+
+  if Launcher = nil then
+    Exit;
+
+  if not Launcher.C705Status.EnableWeapon then
+  begin
+    ShowMessage('Launcher belum ON');;
+    Exit;
+  end;
+
+  if (frmKeyboardCalcLaunch.ActiveEdit.Text = '1') then
+    Launcher.SetEnableMissile(False)
+  else if (frmKeyboardCalcLaunch.ActiveEdit.Text = '2') then
+    Launcher.SetEnableMissile(False);
+
+end;
+
+procedure TfrmFoeFriendSituationPage.MissileCtrlKeyboardEnterOnMissile(Sender: TObject);
+var
+  LauncherID: Integer;
+  Launcher: TC705Launcher;
+begin
+  if Trim(frmKeyboardCalcLaunch.ActiveEdit.Text) = '' then
+    Exit;
+
   // 1 = LauncherRight; 2 = LauncherLeft;
   LauncherID := StrToIntDef(frmKeyboardCalcLaunch.ActiveEdit.Text, 0);
   Launcher := SimManager.GetLauncher(LauncherID);
@@ -1265,6 +1348,17 @@ begin
   FActivePnlIdxMCtrl:= idx;
 end;
 
+procedure TfrmFoeFriendSituationPage.SetFocusEdt(Sender: TObject);
+var
+  edtPnl : TEdit;
+begin
+  edtPnl := Sender as TEdit;
+
+  edtPnl.SetFocus;
+  edtPnl.SelStart := Length(edtPnl.Text);
+  edtPnl.SelLength := 0;
+end;
+
 procedure TfrmFoeFriendSituationPage.ShowActiveContentMCtrl;
 begin
   CloseAllContentMCtrl;
@@ -1274,25 +1368,29 @@ begin
       pnlPowerOnContentMCtrl.Visible := True;
       pnlPowerOnContentMCtrl.BringToFront;
 
-      edtPwrOnMissile.Focused;
+      SetFocusEdt(edtPwrOnMissile);
+      frmKeyboardCalcLaunch.ActiveEdit := edtPwrOnMissile;
     end;
     1: begin
       pnlReCheckContentMCtrl.Visible := True;
       pnlReCheckContentMCtrl.BringToFront;
 
-      edtRecheckMissile.Focused;
+      SetFocusEdt(edtRecheckMissile);
+      frmKeyboardCalcLaunch.ActiveEdit := edtRecheckMissile;
     end;
     2: begin
       pnlINSAlignContentMCtrl.Visible := True;
       pnlINSAlignContentMCtrl.BringToFront;
 
-      edtINSAlignMissile.Focused;
+      SetFocusEdt(edtINSAlignMissile);
+      frmKeyboardCalcLaunch.ActiveEdit := edtINSAlignMissile;
     end;
     3: begin
       pnlPowerOffContentMCtrl.Visible := True;
       pnlPowerOffContentMCtrl.BringToFront;
 
-      edtPwrOffMissile.Focused;
+      SetFocusEdt(edtPwrOffMissile);
+      frmKeyboardCalcLaunch.ActiveEdit := edtPwrOffMissile;
     end;
   end;
 end;

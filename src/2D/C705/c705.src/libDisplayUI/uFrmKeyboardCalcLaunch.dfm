@@ -18,6 +18,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
   PixelsPerInch = 96
   TextHeight = 13
   object imgMissCont: TImage
+    Tag = 6
     Left = 42
     Top = 533
     Width = 180
@@ -147,6 +148,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       D5D7C6075FB9E62B1E43A29EF4A473C277CA50CB7CE506C31977F35EB7D07F01
       4C1064208C21BFCB0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgExit: TImage
     Left = 242
@@ -247,8 +249,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       2D4BFD0E2AD2A4E5A3284CFCF0752104CE586EAE0B36FA3F984E9F02EC1A6CFA
       0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgParSetting: TImage
+    Tag = 4
     Left = 40
     Top = 463
     Width = 180
@@ -365,8 +369,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       14B1AB3FF103BBBCF9D66863AF2A55299F3CF56A267EFC44128633EEE627E193
       FE07507E6E11C398EBAD0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgLaunchDat: TImage
+    Tag = 9
     Left = 242
     Top = 463
     Width = 180
@@ -495,8 +501,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       EAC742C76FB57232BD476797A04B7ED5723AA84DFCF8E1110C67969B4F2513FD
       1FE6830120015EB9210000000049454E44AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgMissInfo: TImage
+    Tag = 3
     Left = 42
     Top = 393
     Width = 180
@@ -622,8 +630,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       3B64A865BEDD8CE14CB8F948F2A0FF016A452E202A56214D0000000049454E44
       AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgInsTest: TImage
+    Tag = 8
     Left = 242
     Top = 393
     Width = 180
@@ -739,8 +749,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       D0081345ECEACF7C37C1777C45D9B4D24F50930F5A5E7B85891F1F7E6238B3DC
       FCCA2CF43F20CA4711A34B49FC0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgFireDist: TImage
+    Tag = 2
     Left = 42
     Top = 323
     Width = 180
@@ -858,8 +870,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       DFBA8115DE7C825CA3D87750295FB5F0E322A865BE6CC670C6DDFC4EAFF45F39
       6580115AA0EFAB0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgMissMon: TImage
+    Tag = 7
     Left = 242
     Top = 323
     Width = 180
@@ -988,8 +1002,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       8D3051C4AF7E30DEF86D0016120F8CBAD295F609BF908959E63719709C09379F
       722BFD171B6F46201FF426CF0000000049454E44AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgChanSelect: TImage
+    Tag = 5
     Left = 242
     Top = 253
     Width = 180
@@ -1124,8 +1140,10 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       0F02A296F989240C67969BB7BA37FD1F9777E611B9BC59110000000049454E44
       AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgSituation: TImage
+    Tag = 1
     Left = 42
     Top = 253
     Width = 180
@@ -1248,6 +1266,7 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
       A8273DE99CB0A11BB5CCB783319C71371FF34FFA3F17A4D71184DA1D7D000000
       0049454E44AE426082}
     Stretch = True
+    OnClick = imgNumpadClick
   end
   object imgSpare: TImage
     Left = 242
@@ -2651,6 +2670,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
         AE426082}
       Stretch = True
       OnClick = imgLaunchClick
+      OnMouseDown = imgLaunch2MouseDown
+      OnMouseUp = imgLaunch2MouseUp
     end
     object imgLaunch1: TImage
       Tag = 1
@@ -2786,6 +2807,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
         A0B0F80000000049454E44AE426082}
       Stretch = True
       OnClick = imgLaunchClick
+      OnMouseDown = imgLaunch1MouseDown
+      OnMouseUp = imgLaunch1MouseUp
     end
     object imgCancel2: TImage
       Left = 7
@@ -2917,6 +2940,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
         51347FF413992B599048B429BF6634E79886FDB7A76579DE9BBAE3E0FF70DE7A
         3A3D2918B80000000049454E44AE426082}
       Stretch = True
+      OnMouseDown = imgCancel2MouseDown
+      OnMouseUp = imgCancel2MouseUp
     end
     object imgCancel1: TImage
       Left = 115
@@ -3050,6 +3075,8 @@ object frmKeyboardCalcLaunch: TfrmKeyboardCalcLaunch
         C7FF8CC7BC440A22C0934E13C64D69FEEA6C59BEA5407B5661F83F5634424A84
         A0B0F80000000049454E44AE426082}
       Stretch = True
+      OnMouseDown = imgCancel1MouseDown
+      OnMouseUp = imgCancel1MouseUp
     end
     object Image40: TImage
       Left = 40

@@ -5,12 +5,19 @@ interface
 uses
   MapXLib_TLB, Vcl.Graphics, Winapi.Windows, System.SysUtils,
     uMapXUnitConverter, uMapViewBase, uShipModel, uVehicleManager, uCoordConverter,
-    uLibSettings, Math;
+    uLibSettings, Math, uC705Launcher;
 
 type
   TShipView = class(TMapViewBase)
   private
     FVehicleMgr: TVehicleManager;
+
+    procedure DrawC705Missiles(aCnv: TCanvas; aCvt: TCoordConverter);
+
+    //procedure DrawMissile(aCnv: TCanvas; aCvt: TCoordConverter);
+      {aCnv: TCanvas;
+      aCvt: TCoordConverter;
+      aLon, aLat, aBearing: Double);}
 
   public
     constructor Create(aMap: TMap; aVehicleMgr: TVehicleManager);
@@ -223,6 +230,202 @@ begin
 
   end;
 
+  { ============================== }
+  { GAMBAR MISSILE C705 }
+  { ============================== }
+  aCnv.Pen.Color := RGB($03, $1C, $4E); //031C4E
+  aCnv.Pen.Width := 2;
+  DrawC705Missiles(aCnv, aCvt);
+
 end;
+
+procedure TShipView.DrawC705Missiles(aCnv: TCanvas; aCvt: TCoordConverter);
+var
+  x, y: Single;
+  CenterX, CenterY: Integer;
+  LeftX, LeftY: Integer;
+  NoseX, NoseY: Integer;
+  RightX, RightY: Integer;
+  Missile: TMissileVisual;
+  MissileLong, MissileLat: Double;
+  DotX, DotY: Integer;
+begin
+  Missile := SimManager.MissileVisual;
+
+  if not Missile.Active then
+    Exit;
+
+  MissileLong := Missile.X;
+  MissileLat := Missile.Y;
+
+  FMap.ConvertCoord(
+    x,
+    y,
+    MissileLong,
+    MissileLat,
+    miMapToScreen
+  );
+
+  CenterX := Round(x);
+  CenterY := Round(y);
+
+  { Kiri bagian dasar }
+  RotatePoint(
+    CenterX,
+    CenterY,
+    -8, 8,
+    Missile.Heading,
+    LeftX,
+    LeftY
+  );
+
+  { Ujung depan missile }
+  RotatePoint(
+    CenterX,
+    CenterY,
+    0, -12,
+    Missile.Heading,
+    NoseX,
+    NoseY
+  );
+
+  { Kanan bagian dasar }
+  RotatePoint(
+    CenterX,
+    CenterY,
+    8, 8,
+    Missile.Heading,
+    RightX,
+    RightY
+  );
+
+  { Titik di tengah bagian dasar missile }
+  RotatePoint(
+    CenterX,
+    CenterY,
+    0, 8,
+    Missile.Heading,
+    DotX,
+    DotY
+  );
+
+  { Bentuk missile segitiga tanpa dasar }
+  aCnv.MoveTo(LeftX, LeftY);
+  aCnv.LineTo(NoseX, NoseY);
+  aCnv.LineTo(RightX, RightY);
+
+  { Titik }
+  aCnv.Ellipse(
+    DotX - 2,
+    DotY - 2,
+    DotX + 2,
+    DotY + 2
+  );
+end;
+
+//procedure TShipView.DrawMissile(aCnv: TCanvas; aCvt: TCoordConverter; aLon,
+//  aLat, aBearing: Double);
+//var
+//  x, y: Single;
+//  CenterX, CenterY: Integer;
+//  LeftX, LeftY: Integer;
+//  NoseX, NoseY: Integer;
+//  RightX, RightY: Integer;
+//begin
+//  FMap.ConvertCoord(
+//    x,
+//    y,
+//    aLon,
+//    aLat,
+//    miMapToScreen
+//  );
+//
+//  { ================================= }
+//  { Bentuk missile }
+//  { ================================= }
+//
+//  {
+//          Nose
+//           /\
+//          /  \
+//         /    \
+//        /      \
+//
+//           •
+//  }
+//
+//  CenterX := Round(x);
+//  CenterY := Round(y);
+//
+//  RotatePoint(
+//    CenterX, CenterY,
+//    -8, 8,
+//    aBearing,
+//    LeftX,
+//    LeftY
+//  );
+//
+//  RotatePoint(
+//    CenterX, CenterY,
+//    0, -15,
+//    aBearing,
+//    NoseX,
+//    NoseY
+//  );
+//
+//  RotatePoint(
+//    CenterX, CenterY,
+//    8, 8,
+//    aBearing,
+//    RightX,
+//    RightY
+//  );
+//
+//
+//  aCnv.Pen.Color := clRed;
+//  aCnv.Pen.Width := 2;
+//  aCnv.Pen.Style := psSolid;
+//
+//  aCnv.Brush.Style := bsClear;
+//
+//
+//  { Sisi kiri }
+//  aCnv.MoveTo(
+//    LeftX,
+//    LeftY
+//  );
+//
+//  aCnv.LineTo(
+//    NoseX,
+//    NoseY
+//  );
+//
+//
+//  { Sisi kanan }
+//  aCnv.MoveTo(
+//    NoseX,
+//    NoseY
+//  );
+//
+//  aCnv.LineTo(
+//    RightX,
+//    RightY
+//  );
+//
+//
+//  { ================================= }
+//  { Titik di tengah bawah }
+//  { ================================= }
+//
+//  aCnv.Brush.Style := bsSolid;
+//  aCnv.Brush.Color := clRed;
+//
+//  aCnv.Ellipse(
+//    CenterX - 2,
+//    CenterY - 2,
+//    CenterX + 2,
+//    CenterY + 2
+//  );
+//end;
 
 end.

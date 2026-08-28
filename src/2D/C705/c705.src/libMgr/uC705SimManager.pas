@@ -40,6 +40,31 @@ type
 
   TEnvironmentChanged = procedure(Sender: TObject) of object;
 
+  TMissileRunEvent = procedure(Sender: TObject) of object;
+
+  TMissileVisual = record
+  private
+    FActive: Boolean;
+    FLauncherID: Integer;
+
+    FX: Double;       // Longitude
+    FY: Double;       // Latitude
+    FZ: Double;       // Altitude
+
+    FSpeed: Double;
+    FHeading: Double;
+  public
+    property Active: Boolean read FActive;
+    property LauncherID: Integer read FLauncherID;
+
+    property X: Double read FX;
+    property Y: Double read FY;
+    property Z: Double read FZ;
+
+    property Speed: Double read FSpeed;
+    property Heading: Double read FHeading;
+  end;
+
   GameSimManager = class
   private
     { NFS Dependencies }
@@ -51,6 +76,9 @@ type
     FOnTakeOffChanged: TNotifyEvent;
     FMissileTakeOff: Boolean;
     FMissileTakeOffLauncherID: Integer;
+
+    FMissileVisual: TMissileVisual;
+    FOnMissileRun: TMissileRunEvent;
 
     FStatusWeaponEvents : TObjectList;
 
@@ -113,6 +141,8 @@ type
     property MissileTakeOff: Boolean read FMissileTakeOff write FMissileTakeOff;
     property C705Available: Boolean read FC705Available;
     property MissileTakeOffLauncherID : Integer read FMissileTakeOffLauncherID write FMissileTakeOffLauncherID;
+    property OnMissileRun: TMissileRunEvent read FOnMissileRun write FOnMissileRun;
+    property MissileVisual: TMissileVisual read FMissileVisual;
   published
     {
       Main Function of Simulation
@@ -174,9 +204,6 @@ begin
 
   {Register Procedure NetNFS}
   AddRegisterProcedure;
-  OutputDebugString(PChar(
-    Format('SizeOf(TRecDataEnvironment) = %d',
-    [SizeOf(TRecDataEnvironment)])));
 
   {Timer untuk Connect ke Bridge}
   FAutoConnectToBridgeTimer := TTimer.Create(nil);
@@ -199,6 +226,8 @@ begin
   FC705Launcher[lchRight].OnMissileLaunch := LauncherMissileLaunched;
   FC705Launcher[lchLeft].OnMissileLaunch := LauncherMissileLaunched;
 
+  FC705Launcher[lchRight].SetHaveMissile(False);
+  FC705Launcher[lchLeft].SetHaveMissile(False);
   {
   OutputDebugString(PChar(
   Format('TC705Launcher.Create SafetyIgnition R = %d',
@@ -307,6 +336,7 @@ var
   Rec: ^TRec3DMissilePos;
   ShipObj: TShipContact;
   LauncherWpn: TC705Launcher;
+  OwnShip: TShipContact;
 begin
   Rec := @apRec^;
 
@@ -337,11 +367,26 @@ begin
         LauncherWpn.SetHaveMissile(False);
         LauncherWpn.LaunchMissileC705;
 
+        { Simpan posisi/ state missile }
+        FMissileVisual.FActive := True;
+        FMissileVisual.FLauncherID := rec^.launcherID;
+
+        FMissileVisual.FX := rec^.X;
+        FMissileVisual.FY := rec^.Y;
+        FMissileVisual.FZ := rec^.Z;
+
+        FMissileVisual.FSpeed := Rec^.Speed;
+        FMissileVisual.FHeading := Rec^.Heading;
+
         FMissileTakeOff := True;
         FMissileTakeOffLauncherID := Rec^.launcherID;
 
         if Assigned(FOnTakeOffChanged) then
           FOnTakeOffChanged(Self);
+
+        { Beritahu Map bahwa posisi missile berubah }
+        if Assigned(FOnMissileRun) then
+          FOnMissileRun(Self);
       end;
 
       // MISSILE DIHAPUS / HABIS
@@ -350,8 +395,16 @@ begin
         //FLauncherHasMissile[Rec^.launcherID] := False;
         LauncherWpn.SetHaveMissile(False);
 
+        FMissileVisual.FActive := False;
+        FMissileVisual.FLauncherID := 0;
+        FMissileVisual.FX := 0;
+        FMissileVisual.FY := 0;
+        FMissileVisual.FZ := 0;
+
         FMissileTakeOff := False;
         FMissileTakeOffLauncherID := 0;
+
+        //LauncherWpn.C705Status.TakeOffRdy := False;
 
         if Assigned(FOnTakeOffChanged) then
           FOnTakeOffChanged(Self);

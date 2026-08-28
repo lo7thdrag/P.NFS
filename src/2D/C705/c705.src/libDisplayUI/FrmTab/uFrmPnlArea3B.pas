@@ -228,6 +228,7 @@ begin
   end
   else begin
     lblAlignmentStatus3B.Caption := 'Waiting Aligment';
+    pnlVrlInsAlign3B.Color := clGray;
   end;
 
   if Launcher.C705Status.MNormalRdy then

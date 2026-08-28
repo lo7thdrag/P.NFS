@@ -78,7 +78,7 @@ end;
 procedure TVehicleManager.StopFiring;
 begin
   isFiring := False;
-  SelectedTargetID := 0;
+  SelectedTargetID := -1; //0; //HILANGKAN GARIS
 end;
 
 procedure TVehicleManager.UpdateObjectList(AShipInfo: PRecData3DPosition);

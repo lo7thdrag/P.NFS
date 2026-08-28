@@ -3,7 +3,8 @@ unit uC705Launcher;
 interface
 
 uses
-  System.SysUtils, Vcl.ExtCtrls, System.Contnrs, Winapi.Windows;
+  System.SysUtils, Vcl.ExtCtrls, System.Contnrs, Winapi.Windows, Math,
+  uBaseConst;
 
 type
   TC705LauncherID = (lchRight, lchLeft);
@@ -66,6 +67,8 @@ type
   //TLauncherStatusChanged = procedure (Sender: TObject) of object;
   TC705LauncherChanged = procedure(Sender: TObject) of object;
 
+  TMissilePosChangedEvent = procedure(Sender: TObject) of object;
+
   // Event ketika Missile Launch dan setelah seluruh proses Launch selesai
   TOnMissileLaunch = procedure(Sender: TObject) of object;
 
@@ -75,6 +78,9 @@ type
     FTargetRange: Double;
     FTargetID: Integer; // lock target
 
+    { state Missile }
+    FMissileActive: Boolean;
+
     { Status simulasi launcher }
     FC705Status: TC705LauncherStatus;
     { Identitas launcher }
@@ -82,6 +88,8 @@ type
 
     //FOnStatusChanged: TLauncherStatusChanged;
     FOnStatusChanged: TC705LauncherChanged;
+
+    FOnMissilePosChanged: TMissilePosChangedEvent;
 
     FHeadingLauncherOffset: Double;
 
@@ -164,12 +172,14 @@ type
     property isHaveMissile: Boolean read FisHaveMissile;
     //property OnStatusLauncherChanged: TLauncherStatusChanged read FOnStatusChanged write FOnStatusChanged;
     property OnStatusLauncherChanged: TC705LauncherChanged read FOnStatusChanged write FOnStatusChanged;
+    property OnMissilePosChanged: TMissilePosChangedEvent read FOnMissilePosChanged write FOnMissilePosChanged;
     property OnMissileLaunch: TOnMissileLaunch read FOnMissileLaunch write FOnMissileLaunch;
     property C705Status: TC705LauncherStatus read FC705Status write FC705Status;
     property INSAlignElapsed : Integer read FINSAlignElapsed write FINSAlignElapsed;
     property TargetBearing : Double read FTargetBearing write FTargetBearing;
     property TargetRange   : Double read FTargetRange write FTargetRange;
     property TargetID      : Integer read FTargetID write FTargetID;
+    property MissileActive: Boolean read FMissileActive;
   end;
 
 implementation
@@ -357,10 +367,18 @@ begin
   //FPowerSequenceTimer.Enabled := False;
   FInsAlignTimer.Enabled := False;
 
-  FC705Status.EnableMissile := False;
-
   FC705Status.INSAlignRunning := False;
   FC705Status.INSAlignDone := False;
+
+  FPowerSequenceTimer.Enabled := False;
+
+  FC705Status.INITStateRdy := False;
+  FC705Status.BusSupplyRdy := False;
+  FC705Status.SeekerRdy := False;
+  FC705Status.INSGNSSRdy := False;
+  FC705Status.EngineRdy := False;
+
+  SetSafetyIgnition(True); // ubah jadi SAFE
 end;
 
 procedure TC705Launcher.SetHaveMissile(aVal: Boolean);
@@ -432,11 +450,14 @@ procedure TC705Launcher.StartPowerSequence;
 begin
   FPowerSequenceTimer.Enabled := False;
 
+  {
   FC705Status.INITStateRdy := False;
   FC705Status.BusSupplyRdy := False;
   FC705Status.SeekerRdy := False;
   FC705Status.INSGNSSRdy := False;
   FC705Status.EngineRdy := False;
+  }
+  ResetMissile;
 
   FPowerStep:= 0;
   FPowerSequenceTimer.Enabled := True;
@@ -465,6 +486,9 @@ end;
 
 procedure TC705Launcher.StartTargetSequence;
 begin
+  if FTargetSequenceTimer.Enabled then
+    Exit;
+
   FC705Status.SeaTargetRdy := False;
   FC705Status.InsideSectorRdy := False;
   FC705Status.ParaSettingRdy := False;
@@ -506,6 +530,9 @@ begin
     4: begin
       FC705Status.InitChkRdy := True;
       FTargetSequenceTimer.Enabled := False;
+
+      //SEMENTARA
+//      StartAfterLaunch;
     end;
 
   end;
@@ -565,8 +592,10 @@ begin
 
   if aVal then
     StartPowerSequence
-  else
+  else begin
+    //FC705Status.EnableMissile := False;
     ResetMissile;
+  end;
 
   DoStatusLauncherChanged;
 end;
@@ -628,6 +657,7 @@ begin
   // for now SEMENTARA
   if not aVal then
   begin
+    { SEMENTARA }
     StartLaunchRdySequence;
           {
     if FC705Status.MNormalRdy and

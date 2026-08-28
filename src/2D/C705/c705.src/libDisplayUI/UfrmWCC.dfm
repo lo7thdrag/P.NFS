@@ -91912,7 +91912,7 @@ object frmWCC: TfrmWCC
         OnClick = imgBtnSafetyBooster_Click
       end
     end
-    object Panel3: TPanel
+    object pnlSelfLatch: TPanel
       Left = 24
       Top = 280
       Width = 441

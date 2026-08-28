@@ -30,7 +30,7 @@ type
     imgSafetyBooster_R: TImage;
     imgBtnSafe_L: TImage;
     imgBtnSafe_R: TImage;
-    Panel3: TPanel;
+    pnlSelfLatch: TPanel;
     imgSelfLatch2: TImage;
     imgSelfLatch1: TImage;
     Label1: TLabel;
@@ -397,6 +397,19 @@ end;
 
 {$ENDREGION}
 
+procedure EnableComposited(WinControl: TWinControl);
+var
+  i: Integer;
+  NewExStyle: DWORD;
+begin
+  NewExStyle := GetWindowLong(WinControl.Handle, GWL_EXSTYLE) or WS_EX_COMPOSITED;
+  SetWindowLong(WinControl.Handle, GWL_EXSTYLE, NewExStyle);
+
+  for i := 0 to WinControl.ControlCount - 1 do
+    if WinControl.Controls[i] is TWinControl then
+      EnableComposited(TWinControl(WinControl.Controls[i]));
+end;
+
 procedure TfrmWCC.FormCreate(Sender: TObject);
 begin
   Width := 1920;
@@ -413,6 +426,11 @@ begin
   // Default active menu
   FActiveLabel := lblRealtimeCombat;
   UpdateHighlight;
+
+  EnableComposited(pnlPowerForM);
+  EnableComposited(pnlSelfLatch);
+  EnableComposited(pnlOpenCover);
+  EnableComposited(pnlSafeArm);
 end;
 
 procedure TfrmWCC.FormDestroy(Sender: TObject);

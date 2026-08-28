@@ -505,6 +505,7 @@ type
     FMapConverter: TMapXUnitConverter;
 
     TargetObj : TShipContact;
+    FSelectedBearing, FSelectedRange : Double;
 
     { Route Plan Waypoint }
     FEditMode: TEditMode;
@@ -533,6 +534,7 @@ type
 
     procedure UpdatePosOwnShip;
 
+    procedure RestoreCurrentModeTool;
     procedure SetDefaultMapTool;
     procedure SetDefaultFormView;
     procedure SetDefaultViewPromptBox(aPanel: Integer);
@@ -542,8 +544,6 @@ type
     procedure UpdateTargetParamPnl(aObjTgt: TShipContact; aRange: Double);
   public
     { Public declarations }
-
-    FSelectedBearing, FSelectedRange : Double;
     strPath: string;
 
     procedure InitMapMainForm(const GeosetPath: string);
@@ -555,8 +555,12 @@ type
 
     procedure RegisterEvents;
     procedure TakeOffBtnChanged(Sender: TObject);
+    procedure MissilePositionChanged(Sender: TObject);
 
     property SelectMode: Boolean read FSelectMode write FSelectMode;
+
+    property SelectedBearing: Double read FSelectedBearing write FSelectedBearing;
+    property SelectedRange: Double read FSelectedRange write FSelectedRange;
 
   end;
 
@@ -637,6 +641,11 @@ begin
   for i := 0 to VehicleMgr.NFSObjectList.Count - 1 do
   begin
     Ship := VehicleMgr.NFSObjectList[i] as TShipContact;
+
+    if Ship = nil then
+      Continue;
+    if Ship.ID = VOwnShip.ShipID then
+      Continue;
 
     // convert posisi kapal ke screen
     FMap.ConvertCoord(xShip, yShip, Ship.Lon, Ship.Lat, miMapToScreen);
@@ -726,6 +735,10 @@ begin
   Self.DoubleBuffered := False;
   EnableComposited(pnlBasemap);
 
+  EnableComposited(pnlTakeOff);
+  EnableComposited(pnlPortStarboard);
+  EnableComposited(pnlEmergencyLaunch);
+
   FCanvas := TCanvas.Create;
 
   { Load Map }
@@ -753,7 +766,7 @@ begin
   FRouteList := TObjectList<TRoutePlanning>.Create(True);
   FWaypointViews := TObjectList<TWaypointView>.Create(True);
 
-  pnlHeaderTitle.Caption := '  Route Plan Software' + '(Ver: 3.3.0)';
+  pnlHeaderTitle.Caption := '  Route Plan Software'; //+ '(Ver: 3.3.0)';
 
   { Set Default Tool Bar }
   SetDefaultMapTool;
@@ -824,16 +837,18 @@ end;
 
 procedure TfrmRoutePlan.MapMove;
 begin
+  FMap.MousePointer := miDefaultCursor;
   FMap.CurrentTool := miPanTool;
   FCurrentTool := stMove;
-  lblStatusMap.Caption := 'Move Map';
+  //lblStatusMap.Caption := 'Move Map';
 end;
 
 procedure TfrmRoutePlan.MapZoomIn;
 begin
+  FMap.MousePointer := miDefaultCursor;
   FMap.CurrentTool := miZoomInTool;
   FCurrentTool := stZoomIn;
-  lblStatusMap.Caption := 'Zoom In Map';
+  //lblStatusMap.Caption := 'Zoom In Map';
   {
   if FIndexRange > 0 then
     Dec(FIndexRange);
@@ -858,9 +873,10 @@ end;
 
 procedure TfrmRoutePlan.MapZoomOut;
 begin
+  FMap.MousePointer := miDefaultCursor;
   FMap.CurrentTool := miZoomOutTool;
   FCurrentTool := stZoomOut;
-  lblStatusMap.Caption := 'Zoom Out Map';
+  //lblStatusMap.Caption := 'Zoom Out Map';
 
   {
   if FIndexRange < CCountRange - 1 then
@@ -1076,12 +1092,34 @@ begin
     if SimManager.RoutePlanMode = mPassive then
     begin
       pnlModeOperasi.Caption := 'Passive Mode';
+
+      if Assigned(TargetObj) then begin
+        TargetObj := nil;
+        VehicleMgr.SelectedTargetID := -1;
+
+        // Ganti Cursor ke bentuk semula
+        FMap.MousePointer := miDefaultCursor;
+        FMap.CurrentTool := miArrowTool;
+        FCurrentTool := stSelectArrow;
+      end;
+
+      FSelectMode := False;
     end
     else if SimManager.RoutePlanMode = mFiring then
     begin
       pnlModeOperasi.Caption := 'Firing Mode';
+      FSelectMode := True;
     end;
   end;
+
+  if FCurrentTool = stZoomIn then
+    lblStatusMap.Caption := 'Zoom In Map'
+  else if FCurrentTool = stZoomOut then
+    lblStatusMap.Caption := 'Zoom Out Map'
+  else if FCurrentTool = stMove then
+    lblStatusMap.Caption := 'Move Map'
+  else
+    lblStatusMap.Caption := '';
 
 end;
 
@@ -1162,6 +1200,7 @@ var
   OwnShip: TShipContact;
   range, bearing : Double;
   Long, Lati : Double;
+  LauncherR, LauncherL: TC705Launcher;
 begin
   if Button <> mbLeft then
     Exit;
@@ -1347,55 +1386,63 @@ begin
 
     end;
     {$ENDREGION}
+    
   end;
 
-  TargetObj := FindShipAt(X,Y);
-
-  if Assigned(TargetObj) then
-  begin
-    if (SimManager.RoutePlanMode = mFiring) then
-    begin
-      VehicleMgr.SelectedTargetID := TargetObj.ID;
-      FMap.Refresh;
-    end;
-
-    lblNav_LongShip.Caption := (TargetObj.Lon).ToString;
-    lblNav_LatShip.Caption := (TargetObj.Lat).ToString;
-
-  end;
-
-  if FSelectMode and (SimManager.RoutePlanMode = mFiring) and
-    (FCurrentTool = stXhairSelectTgt)  then
+  if SimManager.RoutePlanMode = mFiring then
   begin
     OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
+
+    if FSelectMode and (FCurrentTool = stXhairSelectTgt)  then
+    begin
 //    FMap.ConvertCoord(X, Y, Long, Lati, miMapToScreen);
 
-    range := CalcRange(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
-    FSelectedRange := range * C_NauticalMile_To_Metre;
-    FSelectedBearing := CalcBearing(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
+      if OwnShip = nil then
+        Exit;
 
-    if TargetObj <> nil then begin
-      UpdateTargetParamPnl(TargetObj, range);
+      TargetObj := FindShipAt(X,Y);
 
-      { Simpan data target ke Launcher }
-      SimManager.GetLauncher(1).SetTargetData(TargetObj.ID, FSelectedBearing, FSelectedRange);
-      SimManager.GetLauncher(2).SetTargetData(TargetObj.ID, FSelectedBearing, FSelectedRange);
+      if TargetObj <> nil then begin
+        VehicleMgr.SelectedTargetID := TargetObj.ID;
+        FMap.Refresh;
 
-      //SimManager.StartTargetSequence;
-      SimManager.GetLauncher(1).StartTargetSequence;
-      SimManager.GetLauncher(2).StartTargetSequence;
+        lblNav_LongShip.Caption := (TargetObj.Lon).ToString;
+        lblNav_LatShip.Caption := (TargetObj.Lat).ToString;
 
-      if Assigned(SimManager.OnTargetSelectedAction) then
-        SimManager.OnTargetSelectedAction(Self, TargetObj, Range);
+        //range := CalcRange(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
+        range := CalcRange(OwnShip.Lon, OwnShip.Lat, TargetObj.Lon, TargetObj.Lat);
+        FSelectedRange := range * C_NauticalMile_To_Metre;
+        //FSelectedBearing := CalcBearing(OwnShip.Lon, OwnShip.Lat, dLong, dLat);
+        FSelectedBearing := CalcBearing(OwnShip.Lon, OwnShip.Lat, TargetObj.Lon, TargetObj.Lat);
+
+        { Update ke Panel Target Information }
+        UpdateTargetParamPnl(TargetObj, range);
+
+        { Simpan data target ke Launcher }
+        LauncherR := SimManager.GetLauncher(1);
+        LauncherL := SimManager.GetLauncher(2);
+
+        if Assigned(LauncherR) and (LauncherR.C705Status.EnableWeapon) then
+        begin
+          LauncherR.SetTargetData(TargetObj.ID, FSelectedBearing, FSelectedRange);
+          LauncherR.StartTargetSequence;
+        end;
+
+        if Assigned(LauncherL) and LauncherL.C705Status.EnableWeapon then begin
+          LauncherL.SetTargetData(TargetObj.ID, FSelectedBearing, FSelectedRange);
+          LauncherL.StartTargetSequence;
+        end;
+
+        if Assigned(SimManager.OnTargetSelectedAction) then
+          SimManager.OnTargetSelectedAction(Self, TargetObj, Range);
+      end;
     end;
-
-    //VehicleMgr.SelectedTargetID := TargetObj.ID;
-    //VehicleMgr.isFiring := False;
-
-    // Ganti Cursor ke bentuk semula
-    FMap.MousePointer := miDefaultCursor;
-    FMap.CurrentTool := miArrowTool;
-    FCurrentTool := stSelectArrow;
+  end
+  else begin
+    if Assigned(TargetObj) then begin
+      TargetObj := nil;
+      VehicleMgr.SelectedTargetID := -1;
+    end;
   end;
 
 end;
@@ -1492,39 +1539,59 @@ begin
 
 end;
 
+procedure TfrmRoutePlan.RestoreCurrentModeTool;
+begin
+  if not Assigned(SimManager) then
+    Exit;
+
+  if SimManager.RoutePlanMode = mFiring then
+  begin
+    FMap.MousePointer := miCrossCursor;
+    FMap.CurrentTool := miArrowTool;
+    FCurrentTool := stXhairSelectTgt;
+  end
+  else
+  begin
+    FMap.MousePointer := miDefaultCursor;
+    FMap.CurrentTool := miArrowTool;
+    FCurrentTool := stSelectArrow;
+  end;
+end;
+
 procedure TfrmRoutePlan.btnToolBarsClick(Sender: TObject);
 var
   OwnShip: TShipContact;
 begin
-  FSelectMode := False;
-  SimManager.RoutePlanMode := mPassive;
-  FMap.MousePointer := miDefaultCursor;
+  //FSelectMode := False;
+  //SimManager.RoutePlanMode := mPassive;
+  //FMap.MousePointer := miDefaultCursor;
 
   case (Sender as TSpeedButton).Tag of
     0: begin
-      {$REGION 'Operating Mode'}
-      //FMap.CurrentTool := miCrossCursor;
-      FMap.MousePointer := miCrossCursor;
-      FCurrentTool := stXhairSelectTgt;
-      FSelectMode := True;
-
+      {$REGION 'Operating Firing Mode'}
       SimManager.RoutePlanMode := mFiring;
+      FMap.MousePointer := miCrossCursor;
+      FMap.CurrentTool := miArrowTool;
+      FCurrentTool := stXhairSelectTgt;
+
       (Sender as TSpeedButton).Tag := 100;
       {$ENDREGION}
     end;
     100: begin
+      {$REGION 'Operating Passive Mode'}
       FMap.MousePointer := miDefaultCursor;
       FMap.CurrentTool := miArrowTool;
       FCurrentTool := stSelectArrow;
-      FSelectMode := False;
 
       SimManager.RoutePlanMode := mPassive;
       (Sender as TSpeedButton).Tag := 0;
+      {$ENDREGION}
     end;
     1: begin
       {$REGION 'Optimal Proportion / Default View'}
-      FMap.CurrentTool := miArrowTool;
-      FCurrentTool := stSelectArrow;
+//      FMap.CurrentTool := miArrowTool;
+//      FCurrentTool := stSelectArrow;
+      RestoreCurrentModeTool;
 
       if not Assigned(VehicleMgr) then Exit;
 
@@ -1557,9 +1624,10 @@ begin
       {$REGION 'Zoom In'}
       if FCurrentTool = stZoomIn then
       begin
-        FMap.CurrentTool := miArrowTool;
-        FCurrentTool := stSelectArrow;
-        lblStatusMap.Caption := '';
+        //FMap.CurrentTool := miArrowTool;
+        //FCurrentTool := stSelectArrow;
+        RestoreCurrentModeTool;
+        //lblStatusMap.Caption := '';
       end
       else begin
         MapZoomIn;
@@ -1570,9 +1638,10 @@ begin
       {$REGION 'Zoom Out'}
       if FCurrentTool = stZoomOut then
       begin
-        FMap.CurrentTool := miArrowTool;
-        FCurrentTool := stSelectArrow;
-        lblStatusMap.Caption := '';
+//        FMap.CurrentTool := miArrowTool;
+//        FCurrentTool := stSelectArrow;
+        RestoreCurrentModeTool;
+        //lblStatusMap.Caption := '';
       end
       else begin
         MapZoomOut;
@@ -1583,9 +1652,10 @@ begin
       {$REGION 'Move Map'}
       if FCurrentTool = stMove then
       begin
-        FMap.CurrentTool := miArrowTool;
-        FCurrentTool := stSelectArrow;
-        lblStatusMap.Caption := '';
+//        FMap.CurrentTool := miArrowTool;
+//        FCurrentTool := stSelectArrow;
+        RestoreCurrentModeTool;
+        //lblStatusMap.Caption := '';
       end
       else begin
         MapMove;
@@ -1625,11 +1695,13 @@ begin
     end;
     10: begin
       {$REGION 'Edit Island'}
+      RestoreCurrentModeTool;
       pnlIslandLvl2.Visible := not pnlIslandLvl2.Visible;
       {$ENDREGION}
     end;
     11: begin
       {$REGION 'Obstacle Information Display'}
+      RestoreCurrentModeTool;
       if not pnlObstacleInfo.Visible then
       begin
         pnlRoutePlanControlCmd.Visible := False;
@@ -1643,6 +1715,7 @@ begin
     end;
     12: begin
       {$REGION 'Target Param Display'}
+      RestoreCurrentModeTool;
       if not pnlParamDisplay.Visible then
       begin
         pnlObstacleInfo.Visible := False;
@@ -1656,6 +1729,7 @@ begin
     end;
     13: begin
       {$REGION 'Route Control Command'}
+      RestoreCurrentModeTool;
       if not pnlRoutePlanControlCmd.Visible then
       begin
         pnlObstacleInfo.Visible := False;
@@ -1894,7 +1968,10 @@ begin
 //      pnlBaseMap.Visible := True;
 
 //    imgMapBackground.BringToFront;
-    pnlHeaderTitle.Caption := 'Route Plan Software V1.1 20260810 1553';
+    if pnlHeaderTitle.Caption = '  Route Plan Software' then
+      pnlHeaderTitle.Caption := 'Route Plan Software Ver: 2.0 20260824 1305'
+    else
+      pnlHeaderTitle.Caption := '  Route Plan Software';
   end;
 end;
 
@@ -1949,7 +2026,17 @@ procedure TfrmRoutePlan.RegisterEvents;
 begin
   if Assigned(SimManager) then begin
     SimManager.OnTakeOffChanged := TakeOffBtnChanged;
+
+//    SimManager.GetLauncher(1).OnMissilePosChanged := MissilePositionChanged;
+//    SimManager.GetLauncher(2).OnMissilePosChanged := MissilePositionChanged;
+
+    SimManager.OnMissileRun := MissilePositionChanged;
   end;
+end;
+
+procedure TfrmRoutePlan.MissilePositionChanged(Sender: TObject);
+begin
+  FMap.Refresh;
 end;
 
 procedure TfrmRoutePlan.TakeOffBtnChanged(Sender: TObject);

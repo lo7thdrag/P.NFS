@@ -92,6 +92,22 @@ type
     procedure imgEnterClick(Sender: TObject);
     procedure imgEscClick(Sender: TObject);
     procedure imgBackSpClick(Sender: TObject);
+    procedure imgLaunch1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgLaunch1MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgLaunch2MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgLaunch2MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgCancel1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgCancel1MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgCancel2MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure imgCancel2MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
 
@@ -195,8 +211,9 @@ end;
 
 procedure TfrmKeyboardCalcLaunch.tmrClearFiringTimer(Sender: TObject);
 begin
-  VehicleMgr.IsFiring := False;
-  VehicleMgr.SelectedTargetID := 0; // INI YANG HILANGKAN GARIS
+  VehicleMgr.StopFiring;
+//  VehicleMgr.IsFiring := False;
+//  VehicleMgr.SelectedTargetID := -1; // INI YANG HILANGKAN GARIS
 
   frmRoutePlan.FMap.Refresh;
   frmRoutePlan.lblStatusMap.Caption := '';
@@ -204,90 +221,108 @@ begin
   tmrClearFiring.Enabled := False;
 end;
 
+procedure TfrmKeyboardCalcLaunch.imgLaunch1MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  imgLaunch1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'FireDistribution' + '\' + '1Launch_Down.png');
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgLaunch1MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  imgLaunch1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'FireDistribution' + '\' + '1Launch_Up.png');
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgLaunch2MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  imgLaunch2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'FireDistribution' + '\' + '2Launch_Down.png');
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgLaunch2MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  imgLaunch2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'FireDistribution' + '\' + '2Launch_Up.png');
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgCancel1MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  imgCancel1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'FireDistribution' + '\' + '1Cancel_Down.png');
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgCancel1MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  imgCancel1.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'FireDistribution' + '\' + '1Cancel_Up.png');
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgCancel2MouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  imgCancel2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'FireDistribution' + '\' + '2Cancel_Down.png');
+end;
+
+procedure TfrmKeyboardCalcLaunch.imgCancel2MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  imgCancel2.Picture.LoadFromFile(VImgPath.imgPath + '\' + 'FireDistribution' + '\' + '2Cancel_Up.png');
+end;
+
 procedure TfrmKeyboardCalcLaunch.imgLaunchClick(Sender: TObject);
 var
   recDataC705 : TRec_Data_C705;
   LauncherID: Integer;
-  LauncherR, LauncherL: TC705Launcher;
+  Launcher: TC705Launcher;
 begin
 
   { Kalau bukan mode Firing }
   if SimManager.RoutePlanMode <> mFiring then
     Exit;
 
-  { Tag 1 = Starboard (Kanan), Tag 2 = Port (Kiri) }
+  { Tag 1 = Starboard (Kanan),
+    Tag 2 = Port (Kiri) }
   LauncherID := ((Sender as TImage).Tag);
   if (LauncherID < 1) or (LauncherID > 2) then Exit;
 
   { cek status Launch Ready }
-  LauncherR := SimManager.GetLauncher(1);
-  LauncherL := SimManager.GetLauncher(2);
+  Launcher := SimManager.GetLauncher(LauncherID);
 
-  if LauncherID = 1 then
-  begin
-    if not LauncherR.C705Status.LaunchRdy then
-      Exit;
-  end
-  else if LauncherID = 2 then
-  begin
-    if not LauncherL.C705Status.LaunchRdy then
-      Exit;
-  end;
+  if Launcher = nil then
+    Exit;
 
   { Kalau tidak dapat input dari INSTRUKTUR }
   if not SimManager.GetLauncher(LauncherID).IsReadyToLaunch then
     Exit;
 
-//  if not SimManager.isReadyToLaunchC705 then
-//    Exit;
-
-                //         for now
-  if not SimManager.GetLauncher(LauncherID).isHaveMissile then
-  begin
-    ShowMessage('Missile habis!');
+  if not Launcher.C705Status.LaunchRdy then begin
+    ShowMessage('Launcher belum Launch Ready.');
     Exit;
   end;
 
-//  if not SimManager.FLauncherHasMissile[LauncherID] then
-//  begin
-//    ShowMessage('Missile habis!');
-//    Exit;
-//  end;
+  //         for now SEMENTARA (memastikan missile mempunyai isi)
+  if not SimManager.GetLauncher(LauncherID).isHaveMissile then
+  begin
+    ShowMessage('Launcher tidak memiliki missile!');
+    Exit;
+  end;
 
-//  frmRoutePlan.FSelectedBearing
-{
-  recDataC705.ShipID := VOwnShip.ShipID;
-  recDataC705.mWeaponID := VOwnShip.WeaponId;
-  recDataC705.mLauncherID := LauncherID;
-  //recDataC705.mMissileID := SimManager.GetMissileCount(LauncherID);
-  recDataC705.mMissileID := 1;
-  recDataC705.mMissileNumber := 1;
-  //recDataC705.OrderID := 0; // harusnya diganti per command, misal fire, atau yang lain
-  recDataC705.OrderID := __ORD_ID_Fire_C705;
-  recDataC705.mTargetBearing := frmRoutePlan.FSelectedBearing;
-  recDataC705.mTargetRange := frmRoutePlan.FSelectedRange;
-  recDataC705.mTargetId := 0;
+//  { Simpan target ke launcher yang DIPILIH saja. }
+//  Launcher.SetTargetData(
+//    VehicleMgr.SelectedTargetID,
+//    frmRoutePlan.SelectedBearing,
+//    frmRoutePlan.SelectedRange
+//  );
 
-  SimManager.netNFS_OnSendDataC705(recDataC705);
+//  { Jalankan sequence target hanya untuk launcher yang dipilih
+//  SeaTargetRdy
+//  InsideSectorRdy
+//  PlcChkRdy
+//  InitChkRdy }
+//  Launcher.StartTargetSequence;
 
-  // RESET TARGET
-  VehicleMgr.SelectedTargetID := -1;
-  SimManager.RoutePlanMode := mPassive;
-
-//  frmRoutePlan.lblStatusMap.Caption :=
-//  'Launched | PORT: ' + SimManager.GetLauncherStateStr(1) +
-//  ' | STBD: ' + SimManager.GetLauncherStateStr(2);
-
-//  frmRoutePlan.lblStatusMap.Caption :=
-//    'Launched | STBD: ' + IntToStr(SimManager.GetMissileCount(1)) +
-//      ' | PORT: ' + IntToStr(SimManager.GetMissileCount(2));
- }
-
-  // di sini kah?
-  if LauncherID = 1 then
-    LauncherR.StartAfterLaunch
-  else if LauncherID = 2 then
-    LauncherL.StartAfterLaunch;
+  // di sini kah? SEMENTARA
+  Launcher.StartAfterLaunch;
 
   tmrClearFiring.Interval := 2000; // 2 detik
   tmrClearFiring.Enabled := True;
@@ -324,7 +359,7 @@ begin
 
   { Mode keyboard dikembalikan lagi ke mode Navigation }
   FKeyboardMode := mdNavigation;
-  FActiveEdit := nil;
+  //FActiveEdit := nil;
 end;
 
 procedure TfrmKeyboardCalcLaunch.imgEscClick(Sender: TObject);
