@@ -27,8 +27,7 @@ object TFLogBridge: TTFLogBridge
     Height = 293
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 250
-    ExplicitHeight = 333
+    ExplicitWidth = 1057
     object Splitter1: TSplitter
       Left = 257
       Top = 1
@@ -61,7 +60,6 @@ object TFLogBridge: TTFLogBridge
       Height = 260
       Align = alLeft
       TabOrder = 0
-      ExplicitHeight = 300
       object mLogClient: TMemo
         Left = 1
         Top = 50
@@ -71,7 +69,6 @@ object TFLogBridge: TTFLogBridge
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitHeight = 208
       end
       object pnlClientUp: TPanel
         Left = 1
@@ -90,7 +87,6 @@ object TFLogBridge: TTFLogBridge
         Align = alBottom
         Caption = 'Status : Not Connected'
         TabOrder = 2
-        ExplicitTop = 258
       end
     end
     object pnlServer: TPanel
@@ -100,7 +96,6 @@ object TFLogBridge: TTFLogBridge
       Height = 260
       Align = alLeft
       TabOrder = 1
-      ExplicitHeight = 300
       object mLogServer: TMemo
         Left = 1
         Top = 50
@@ -110,7 +105,6 @@ object TFLogBridge: TTFLogBridge
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitHeight = 249
       end
       object pnlServerUp: TPanel
         Left = 1
@@ -129,7 +123,6 @@ object TFLogBridge: TTFLogBridge
       Height = 260
       Align = alLeft
       TabOrder = 2
-      ExplicitHeight = 300
       object pnlSettingUp: TPanel
         Left = 1
         Top = 1
@@ -148,22 +141,20 @@ object TFLogBridge: TTFLogBridge
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 1
-        ExplicitHeight = 249
       end
     end
     object pnlPacket: TPanel
       Left = 799
       Top = 1
-      Width = 232
+      Width = 257
       Height = 260
       Align = alClient
       Caption = 'pnlPacket'
       TabOrder = 3
-      ExplicitHeight = 300
       object pnlUppacket: TPanel
         Left = 1
         Top = 1
-        Width = 230
+        Width = 255
         Height = 49
         Align = alTop
         Caption = 'Packet'
@@ -172,14 +163,13 @@ object TFLogBridge: TTFLogBridge
       object mmoPacket: TMemo
         Left = 1
         Top = 50
-        Width = 230
+        Width = 255
         Height = 209
         Align = alClient
         Alignment = taCenter
         BorderStyle = bsNone
         ScrollBars = ssBoth
         TabOrder = 1
-        ExplicitHeight = 249
       end
     end
     object Panel1: TPanel
@@ -189,21 +179,77 @@ object TFLogBridge: TTFLogBridge
       Height = 31
       Align = alBottom
       TabOrder = 4
-      ExplicitTop = 301
-      ExplicitWidth = 248
+      ExplicitWidth = 1055
       DesignSize = (
         148
         31)
       object btnBack: TButton
-        Left = 56
+        Left = 68
         Top = 3
         Width = 75
         Height = 25
         Anchors = [akTop, akRight]
-        Caption = 'Back'
+        Caption = '<<< Back'
         TabOrder = 0
         OnClick = btnBackClick
-        ExplicitLeft = 156
+        ExplicitLeft = 975
+      end
+      object btnClearLog_Packet: TButton
+        Left = -33
+        Top = 2
+        Width = 75
+        Height = 25
+        Anchors = [akTop, akRight]
+        Caption = 'Clear Log'
+        TabOrder = 1
+        OnClick = btnClearLog_PacketClick
+        ExplicitLeft = 874
+      end
+      object chkVerboseLog_Cli3D: TCheckBox
+        Left = 5
+        Top = 6
+        Width = 83
+        Height = 17
+        Caption = 'Log Client 3D'
+        TabOrder = 2
+        OnClick = chkVerboseLog_Cli3DClick
+      end
+      object chkVerboseLog_Svr2D: TCheckBox
+        Left = 262
+        Top = 6
+        Width = 89
+        Height = 17
+        Caption = 'Log Server 2D'
+        TabOrder = 3
+        OnClick = chkVerboseLog_Svr2DClick
+      end
+      object chkVerboseLog_Packet: TCheckBox
+        Left = -108
+        Top = 6
+        Width = 66
+        Height = 17
+        Anchors = [akTop, akRight]
+        Caption = 'Log Packet'
+        TabOrder = 4
+        ExplicitLeft = 799
+      end
+      object btnClearLog_Cli3D: TButton
+        Left = 93
+        Top = 2
+        Width = 60
+        Height = 25
+        Caption = 'Clear Log'
+        TabOrder = 5
+        OnClick = btnClearLog_Cli3DClick
+      end
+      object btnClearLog_Svr2D: TButton
+        Left = 355
+        Top = 2
+        Width = 60
+        Height = 25
+        Caption = 'Clear Log'
+        TabOrder = 6
+        OnClick = btnClearLog_Svr2DClick
       end
     end
   end
@@ -246,8 +292,7 @@ object TFLogBridge: TTFLogBridge
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 250
-    ExplicitHeight = 333
+    ExplicitWidth = 1057
     TMSStyle = 0
     object lbljudul: TLabel
       Left = 0
@@ -265,8 +310,8 @@ object TFLogBridge: TTFLogBridge
       ParentFont = False
       Layout = tlCenter
       WordWrap = True
-      ExplicitWidth = 84
-      ExplicitHeight = 66
+      ExplicitWidth = 127
+      ExplicitHeight = 76
     end
     object btn1: TButton
       Left = 0
@@ -283,8 +328,7 @@ object TFLogBridge: TTFLogBridge
       ParentFont = False
       TabOrder = 0
       OnClick = btn1Click
-      ExplicitTop = 301
-      ExplicitWidth = 250
+      ExplicitWidth = 1057
     end
   end
   object tmrShutdownServer: TTimer

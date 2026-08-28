@@ -76,6 +76,7 @@ type
     // function GetClientOfServer(ip : string): TWSocketClient;
 
     procedure SetLog2DServer(aLog: TStringList);
+    procedure SetLog3DClient(aLog: TStringList);
 
     procedure Prepare_As_Server2D;
     procedure Prepare_As_Client3D;
@@ -547,8 +548,8 @@ begin
   TcpClient.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, nil,
       sizeof(TRec_CameraController));
 
-  TcpClient.RegisterProcedure(REC_ENVI, nil,
-      sizeof(TRecDataEnvironment));
+  //TcpClient.RegisterProcedure(REC_ENVI, nil, sizeof(TRecDataEnvironment));
+  TcpClient.RegisterProcedure(REC_ENVI, ClientReceive_ServerSend, sizeof(TRecDataEnvironment));     //ENVI BARU
 
 end;
 
@@ -1088,6 +1089,11 @@ begin
   TcpServer.setLog(aLog);
 end;
 
+procedure TBridgeManager.SetLog3DClient(aLog: TStringList);
+begin
+  TcpClient.setLog(aLog);
+end;
+
 procedure TBridgeManager.StopSimulation;
 begin
 
@@ -1380,6 +1386,7 @@ var
   RecRecvTorpState: ^TRec_TorpStatus;
   RecRecvStatusMessage: ^TRecMessageHandling;
   RecRecvMeriamFCC: ^TrecData_MeriamFCC;
+  RecRecvEnvi: ^TRecDataEnvironment;
   strWeapon: string;
 begin
   // client socket received. server socket rebroadcast.
@@ -1448,6 +1455,15 @@ begin
       FloatToStr(RecRecvStatusMessage^.Cmd2) + '-' +
       FloatToStr(RecRecvStatusMessage^.Cmd3) + '-' +
       FloatToStr(RecRecvStatusMessage^.Cmd4));
+  end
+  else if pc.ID = REC_ENVI then
+  begin
+    //ENVI BARU
+    RecRecvStatusMessage := @apRec^;
+
+    OnLogPacket('Receive Message' + ' ENVI BARU' +' ' +
+      FloatToStr(RecRecvEnvi^.seaState) + '-'
+      );
   end;
 end;
 

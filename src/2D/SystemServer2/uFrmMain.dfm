@@ -3,8 +3,8 @@ object frmMain: TfrmMain
   Top = 0
   BorderStyle = bsNone
   Caption = 'System Server'
-  ClientHeight = 783
-  ClientWidth = 1052
+  ClientHeight = 293
+  ClientWidth = 150
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,91 +20,11 @@ object frmMain: TfrmMain
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object pnl1Home: TAdvSmoothPanel
-    Left = 0
-    Top = 0
-    Width = 1052
-    Height = 783
-    Cursor = crDefault
-    Caption.Location = plTopCenter
-    Caption.HatchStyle = HatchStyleDiagonalBrick
-    Caption.HTMLFont.Charset = DEFAULT_CHARSET
-    Caption.HTMLFont.Color = clWindowText
-    Caption.HTMLFont.Height = -13
-    Caption.HTMLFont.Name = 'Tahoma'
-    Caption.HTMLFont.Style = []
-    Caption.Font.Charset = DEFAULT_CHARSET
-    Caption.Font.Color = clWindowText
-    Caption.Font.Height = -16
-    Caption.Font.Name = 'Tahoma'
-    Caption.Font.Style = [fsBold]
-    Caption.Top = 20
-    Caption.ColorStart = clWhite
-    Caption.ColorEnd = clWhite
-    Caption.GradientType = gtHorizontal
-    Caption.LineColor = clBlack
-    Caption.Line = False
-    Fill.Color = 5788239
-    Fill.ColorTo = 15000804
-    Fill.ColorMirror = 15000804
-    Fill.ColorMirrorTo = 5788239
-    Fill.GradientType = gtVertical
-    Fill.GradientMirrorType = gtVertical
-    Fill.BorderColor = clSilver
-    Fill.BorderWidth = 5
-    Fill.Rounding = 10
-    Fill.ShadowColor = clNone
-    Fill.ShadowOffset = 10
-    Fill.Glow = gmNone
-    Version = '1.6.0.1'
-    Align = alClient
-    TabOrder = 1
-    ExplicitWidth = 150
-    ExplicitHeight = 293
-    TMSStyle = 0
-    object lbljudul: TLabel
-      Left = 0
-      Top = 0
-      Width = 1052
-      Height = 751
-      Align = alClient
-      Alignment = taCenter
-      Caption = 'SERVER NAFS'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = 5788239
-      Font.Height = -33
-      Font.Name = 'Deusex'
-      Font.Style = []
-      ParentFont = False
-      Layout = tlCenter
-      WordWrap = True
-      ExplicitWidth = 144
-      ExplicitHeight = 76
-    end
-    object btn1: TButton
-      Left = 0
-      Top = 751
-      Width = 1052
-      Height = 32
-      Align = alBottom
-      Caption = 'Show Log'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 0
-      OnClick = btn1Click
-      ExplicitTop = 261
-      ExplicitWidth = 150
-    end
-  end
   object pnl2Log: TPanel
     Left = 0
     Top = 0
-    Width = 1052
-    Height = 783
+    Width = 150
+    Height = 293
     Align = alClient
     Caption = 'SERVER NAFS'
     Color = clBackground
@@ -116,12 +36,12 @@ object frmMain: TfrmMain
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 150
-    ExplicitHeight = 293
+    ExplicitWidth = 1052
+    ExplicitHeight = 783
     object pnlContent2D: TPanel
       Left = 1
       Top = 1
-      Width = 1050
+      Width = 148
       Height = 344
       Align = alTop
       Font.Charset = DEFAULT_CHARSET
@@ -131,11 +51,11 @@ object frmMain: TfrmMain
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 148
+      ExplicitWidth = 1050
       object pnlServer2D: TPanel
         Left = 1
         Top = 1
-        Width = 1048
+        Width = 146
         Height = 41
         Align = alTop
         Color = 13666138
@@ -147,9 +67,9 @@ object frmMain: TfrmMain
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 146
+        ExplicitWidth = 1048
         DesignSize = (
-          1048
+          146
           41)
         object Label1: TLabel
           Left = 13
@@ -177,25 +97,15 @@ object frmMain: TfrmMain
           Font.Style = []
           ParentFont = False
         end
-        object btnBack: TButton
-          Left = 953
-          Top = 10
-          Width = 75
-          Height = 25
-          Anchors = [akTop, akRight]
-          Caption = 'Back'
-          TabOrder = 0
-          OnClick = btnBackClick
-          ExplicitLeft = 51
-        end
         object Panel1: TPanel
-          Left = 696
+          Left = -206
           Top = 9
           Width = 251
           Height = 26
           Anchors = [akTop, akRight]
           ParentBackground = False
           TabOrder = 1
+          ExplicitLeft = 696
           DesignSize = (
             251
             26)
@@ -230,15 +140,26 @@ object frmMain: TfrmMain
             OnClick = cbbShowListObjClick
           end
         end
+        object btnBack: TButton
+          Left = 51
+          Top = 10
+          Width = 75
+          Height = 25
+          Anchors = [akTop, akRight]
+          Caption = '<<< Back'
+          TabOrder = 0
+          OnClick = btnBackClick
+          ExplicitLeft = 953
+        end
       end
       object pnlLogServer2D: TPanel
         Left = 1
         Top = 42
-        Width = 1048
+        Width = 146
         Height = 301
         Align = alClient
         TabOrder = 1
-        ExplicitWidth = 146
+        ExplicitWidth = 1048
         object Splitter3: TSplitter
           Left = 209
           Top = 1
@@ -266,10 +187,9 @@ object frmMain: TfrmMain
           ScrollBars = ssBoth
           TabOrder = 1
           WordWrap = False
-          ExplicitWidth = 436
         end
         object mmoListObj: TMemo
-          Left = 888
+          Left = -14
           Top = 1
           Width = 159
           Height = 299
@@ -278,28 +198,28 @@ object frmMain: TfrmMain
           ScrollBars = ssBoth
           TabOrder = 2
           Visible = False
+          ExplicitLeft = 888
         end
       end
     end
     object pnlContent3D: TPanel
       Left = 1
       Top = 345
-      Width = 1050
+      Width = 148
       Height = 437
       Align = alClient
       TabOrder = 1
-      ExplicitWidth = 148
-      ExplicitHeight = 4
+      ExplicitWidth = 1050
       object pnlServer3D: TPanel
         Left = 1
         Top = 1
-        Width = 1048
+        Width = 146
         Height = 41
         Align = alTop
         Color = 13666138
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 146
+        ExplicitWidth = 1048
         object Label2: TLabel
           Left = 13
           Top = 14
@@ -330,12 +250,11 @@ object frmMain: TfrmMain
       object pnlLogServer3D: TPanel
         Left = 1
         Top = 42
-        Width = 1048
+        Width = 146
         Height = 394
         Align = alClient
         TabOrder = 1
-        ExplicitWidth = 146
-        ExplicitHeight = 17
+        ExplicitWidth = 1048
         object Splitter2: TSplitter
           Left = 209
           Top = 1
@@ -356,8 +275,6 @@ object frmMain: TfrmMain
           ScrollBars = ssBoth
           TabOrder = 0
           WordWrap = False
-          ExplicitWidth = 1124
-          ExplicitHeight = 15
         end
         object lbClients3D: TListBox
           Left = 1
@@ -368,9 +285,88 @@ object frmMain: TfrmMain
           BorderStyle = bsNone
           ItemHeight = 13
           TabOrder = 1
-          ExplicitHeight = 15
         end
       end
+    end
+  end
+  object pnl1Home: TAdvSmoothPanel
+    Left = 0
+    Top = 0
+    Width = 150
+    Height = 293
+    Cursor = crDefault
+    Caption.Location = plTopCenter
+    Caption.HatchStyle = HatchStyleDiagonalBrick
+    Caption.HTMLFont.Charset = DEFAULT_CHARSET
+    Caption.HTMLFont.Color = clWindowText
+    Caption.HTMLFont.Height = -13
+    Caption.HTMLFont.Name = 'Tahoma'
+    Caption.HTMLFont.Style = []
+    Caption.Font.Charset = DEFAULT_CHARSET
+    Caption.Font.Color = clWindowText
+    Caption.Font.Height = -16
+    Caption.Font.Name = 'Tahoma'
+    Caption.Font.Style = [fsBold]
+    Caption.Top = 20
+    Caption.ColorStart = clWhite
+    Caption.ColorEnd = clWhite
+    Caption.GradientType = gtHorizontal
+    Caption.LineColor = clBlack
+    Caption.Line = False
+    Fill.Color = 5788239
+    Fill.ColorTo = 15000804
+    Fill.ColorMirror = 15000804
+    Fill.ColorMirrorTo = 5788239
+    Fill.GradientType = gtVertical
+    Fill.GradientMirrorType = gtVertical
+    Fill.BorderColor = clSilver
+    Fill.BorderWidth = 5
+    Fill.Rounding = 10
+    Fill.ShadowColor = clNone
+    Fill.ShadowOffset = 10
+    Fill.Glow = gmNone
+    Version = '1.6.0.1'
+    Align = alClient
+    TabOrder = 1
+    ExplicitWidth = 1052
+    ExplicitHeight = 783
+    TMSStyle = 0
+    object lbljudul: TLabel
+      Left = 0
+      Top = 0
+      Width = 150
+      Height = 261
+      Align = alClient
+      Alignment = taCenter
+      Caption = 'SERVER NAFS'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 5788239
+      Font.Height = -33
+      Font.Name = 'Deusex'
+      Font.Style = []
+      ParentFont = False
+      Layout = tlCenter
+      WordWrap = True
+      ExplicitWidth = 232
+      ExplicitHeight = 38
+    end
+    object btn1: TButton
+      Left = 0
+      Top = 261
+      Width = 150
+      Height = 32
+      Align = alBottom
+      Caption = 'Show Log'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btn1Click
+      ExplicitTop = 751
+      ExplicitWidth = 1052
     end
   end
   object tmrShutdownServer: TTimer

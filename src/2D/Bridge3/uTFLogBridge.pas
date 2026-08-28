@@ -8,6 +8,9 @@ uses
 
   uBridgeManager, AdvSmoothPanel;
 
+const
+  C_MAX_LOG_LINECOUNT = 50;
+
 type
   TTFLogBridge = class(TForm)
     pnlMain: TPanel;
@@ -33,6 +36,12 @@ type
     btn1: TButton;
     Panel1: TPanel;
     btnBack: TButton;
+    btnClearLog_Packet: TButton;
+    chkVerboseLog_Cli3D: TCheckBox;
+    chkVerboseLog_Svr2D: TCheckBox;
+    chkVerboseLog_Packet: TCheckBox;
+    btnClearLog_Cli3D: TButton;
+    btnClearLog_Svr2D: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -41,6 +50,11 @@ type
     procedure FormShow(Sender: TObject);
     procedure btn1Click(Sender: TObject);
     procedure btnBackClick(Sender: TObject);
+    procedure btnClearLog_PacketClick(Sender: TObject);
+    procedure btnClearLog_Svr2DClick(Sender: TObject);
+    procedure btnClearLog_Cli3DClick(Sender: TObject);
+    procedure chkVerboseLog_Cli3DClick(Sender: TObject);
+    procedure chkVerboseLog_Svr2DClick(Sender: TObject);
   private
     { Private declarations }
     isClose: Boolean;
@@ -105,6 +119,45 @@ begin
   end;
 end;
 
+procedure TTFLogBridge.btnClearLog_Cli3DClick(Sender: TObject);
+begin
+  mLogClient.Clear;
+end;
+
+procedure TTFLogBridge.btnClearLog_PacketClick(Sender: TObject);
+begin
+  mmoPacket.Clear;
+end;
+
+procedure TTFLogBridge.btnClearLog_Svr2DClick(Sender: TObject);
+begin
+  mLogServer.Clear;
+end;
+
+procedure TTFLogBridge.chkVerboseLog_Cli3DClick(Sender: TObject);
+begin
+  if chkVerboseLog_Cli3D.Checked then
+  begin
+    BridgeManager.SetLog3DClient(TStringList(mLogClient.Lines));
+  end
+  else
+  begin
+    BridgeManager.SetLog3DClient(nil);
+  end;
+end;
+
+procedure TTFLogBridge.chkVerboseLog_Svr2DClick(Sender: TObject);
+begin
+  if chkVerboseLog_Svr2D.Checked then
+  begin
+    BridgeManager.SetLog2DServer(TStringList(mLogServer.Lines));
+  end
+  else
+  begin
+    BridgeManager.SetLog2DServer(nil);
+  end;
+end;
+
 procedure TTFLogBridge.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   PrepareStopSimulation;
@@ -134,14 +187,20 @@ begin
   BridgeManager.OnLogPnlClient := OnLogPnlClient3D;
   BridgeManager.OnLogSettingDB := OnLogSettingDB;
   BridgeManager.OnLogSettingSocket := OnLogSettingSocket;
-  BridgeManager.OnLogServer2D := OnLogServer2D;
-  BridgeManager.OnLogClient3D := OnLogClient3D;
+//  BridgeManager.OnLogServer2D := OnLogServer2D;
+//  BridgeManager.OnLogClient3D := OnLogClient3D;
+  chkVerboseLog_Cli3D.Checked := False;
+  chkVerboseLog_Svr2D.Checked := False;
+  BridgeManager.SetLog2DServer(nil);
+  BridgeManager.SetLog3DClient(nil);
   BridgeManager.OnLogPacket := OnLogPacket;
-
-  BridgeManager.SetLog2DServer(TStringList(mLogServer.Lines));
 
   BridgeManager.InitSimulation;
   BridgeManager.RunSimulation;
+
+  Self.Width := 150;
+  pnl1Home.BringToFront;
+
 end;
 
 procedure TTFLogBridge.FormDestroy(Sender: TObject);
@@ -211,10 +270,13 @@ end;
 
 procedure TTFLogBridge.OnLogClient3D(str: string);
 begin
+  if not chkVerboseLog_Cli3D.Checked then
+    Exit;
+
   // if mLogClient.Lines.Count > 100 then mLogClient.Lines.Clear;
   mLogClient.Lines.BeginUpdate;
   try
-    if mLogClient.Lines.Count > 200 then
+    if mLogClient.Lines.Count > C_MAX_LOG_LINECOUNT then
       mLogClient.Lines.Delete(0);
     mLogClient.Lines.Add(str);
   finally
@@ -224,10 +286,12 @@ end;
 
 procedure TTFLogBridge.OnLogPacket(str: string);
 begin
+  if not chkVerboseLog_Packet.Checked then
+    Exit;
   // if mmoPacket.Lines.Count > 100 then mmoPacket.Lines.Clear;
   mmoPacket.Lines.BeginUpdate;
   try
-    if mmoPacket.Lines.Count > 200 then
+    if mmoPacket.Lines.Count > C_MAX_LOG_LINECOUNT then // ori 200
       mmoPacket.Lines.Delete(0);
     mmoPacket.Lines.Add(str);
   finally
@@ -242,10 +306,13 @@ end;
 
 procedure TTFLogBridge.OnLogServer2D(str: string);
 begin
+  if not chkVerboseLog_Svr2D.Checked then
+    Exit;
+
   // if mLogServer.Lines.Count > 100 then mLogServer.Lines.Clear;
   mLogServer.Lines.BeginUpdate;
   try
-    if mLogServer.Lines.Count > 200 then
+    if mLogServer.Lines.Count > C_MAX_LOG_LINECOUNT then
       mLogServer.Lines.Delete(0);
     mLogServer.Lines.Add(str);
   finally
@@ -275,6 +342,8 @@ end;
 
 procedure TTFLogBridge.PrepareStopSimulation;
 begin
+  BridgeManager.TcpClient.setLog(nil);
+  BridgeManager.TcpServer.setLog(nil);
   BridgeManager.PrepareStopSimulation;
 end;
 

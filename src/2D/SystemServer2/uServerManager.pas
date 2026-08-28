@@ -815,7 +815,7 @@ begin
   TcpServer3D.RegisterProcedure(REC_STATUS_MESSAGE, ServerRecv_3D_Server2DSend);
   TcpServer3D.RegisterProcedure(REC_CMD_SET_CAMERA_TARGET_3D, nil);
   //TcpServer3D.RegisterProcedure(REC_ENVI_3D, nil);
-  TcpServer3D.RegisterProcedure(REC_ENVI_3D, ServerRecv_3D_Server2DSend);
+  TcpServer3D.RegisterProcedure(REC_ENVI_3D, ServerRecv_3D_Server2DSend);   //ENVI BARU
 
   // For Cannon FCC Set
   TcpServer3D.RegisterProcedure(REC_CMD_FCC573D, ServerRecv_3D_Server2DSend);
@@ -1915,6 +1915,7 @@ begin
         RecCmdSetEnvi3D.surfacePressure := RecCmdSetEnvi^.surfacePressure;
         RecCmdSetEnvi3D.fogIntensity := RecCmdSetEnvi^.fogIntensity;
 
+        //ENVI BARU
         RecCmdSetEnvi2D.seaState := RecCmdSetEnvi^.seaState;
         RecCmdSetEnvi2D.windVelocity := RecCmdSetEnvi^.windVelocity;
         RecCmdSetEnvi2D.windHeading := RecCmdSetEnvi^.windHeading;
@@ -2718,6 +2719,7 @@ var
   incoming_data_fcc: TrecData_MeriamFCC3D;
   apRec_fcc: TrecData_MeriamFCC;
 
+  //ENVI BARU
   incoming_data_envi: TRecDataEnvironment3D;
   apRec_envi: TRecDataEnvironment;
 
@@ -2872,6 +2874,7 @@ begin
     else if AHeader.PacketID=REC_ENVI_3D then
     begin
 
+      //ENVI BARU
       TgoBsonSerializer.Deserialize<TRecDataEnvironment3D>(AContent, incoming_data_envi);
 
       apRec_envi.seaState := incoming_data_envi.seaState;
