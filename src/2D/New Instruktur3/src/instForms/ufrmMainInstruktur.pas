@@ -2816,13 +2816,34 @@ begin
       frmaddshipruntime.PosY := my;
      end;
 
-     TOOL_REMOVE_VEHICLE :
-     begin
-      sx := x;
-      sy := y;
+    TOOL_REMOVE_VEHICLE:
+    begin
+      if not SimManager.FindViewByPosition(mptDown, SimManager.selectedView) then
+        Exit;
 
-      MainMap.ConvertCoord(sx, sy, mx, my, miScreenToMap);
-     end;
+      if not Assigned(SimManager.selectedObject) then
+        Exit;
+
+      if not (SimManager.selectedObject is TInsObject) then
+        Exit;
+
+      if SimManager.selectedObject is TIMissileObject then
+        Exit;
+
+      sID := TInsObject(SimManager.selectedObject).FDataBaseID;
+
+//      ShowMessage('DELETE SHIP ID = ' + IntToStr(sID));
+
+      if sID <= 0 then
+        Exit;
+
+      SimManager.NetSendTo3D_SetCommandOrder(sID, ORD_SHIP_DEL, 0, 0, 0, 0, 0);
+
+      SimManager.selectedObject := nil;
+      SimManager.selectedView := nil;
+
+      frmMainInstruktur.SetDefaultMapTool;
+    end;
     end;
   end
   else
@@ -2840,8 +2861,6 @@ begin
 //    frmAddShipRuntime.ShowModal;
   end;
 end;
-
-
 
 procedure TfrmMainInstruktur.MainMapMouseMove(Sender: TObject;
   Shift: TShiftState; X, Y: Integer);

@@ -1356,7 +1356,7 @@ procedure TSimManager.ClientRecv_3D_Order(apRec: PAnsiChar;
 var
   aRec : ^TRecData3DOrder;
 begin
-  aRec := @aPrec^;
+  aRec := @apRec^;
 
   if Assigned(OnReceive3DOrder) then
     OnReceive3DOrder(aRec^);
