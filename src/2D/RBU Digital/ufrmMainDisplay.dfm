@@ -5,7 +5,7 @@ object frmMainDisplay: TfrmMainDisplay
   BorderStyle = bsNone
   Caption = 'ANTI SUB MARINE SYSTEM (BURJA)'
   ClientHeight = 1200
-  ClientWidth = 1936
+  ClientWidth = 1920
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -27,7 +27,7 @@ object frmMainDisplay: TfrmMainDisplay
   object pnlLeft: TPanel
     Left = 0
     Top = 0
-    Width = 526
+    Width = 510
     Height = 1200
     Align = alClient
     BevelOuter = bvNone
@@ -35,11 +35,10 @@ object frmMainDisplay: TfrmMainDisplay
     ParentBackground = False
     ParentDoubleBuffered = False
     TabOrder = 0
-    ExplicitWidth = 510
     object pnlLTop: TPanel
       Left = 0
       Top = 0
-      Width = 526
+      Width = 510
       Height = 697
       Align = alTop
       Color = clBlue
@@ -51,9 +50,8 @@ object frmMainDisplay: TfrmMainDisplay
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 510
       object pnlLTRight: TPanel
-        Left = 335
+        Left = 319
         Top = 1
         Width = 190
         Height = 695
@@ -67,7 +65,6 @@ object frmMainDisplay: TfrmMainDisplay
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 319
         object grpEquipmentStatus: TGroupBox
           Left = 1
           Top = 1
@@ -672,17 +669,16 @@ object frmMainDisplay: TfrmMainDisplay
       object pnlLTLeft: TPanel
         Left = 1
         Top = 1
-        Width = 334
+        Width = 318
         Height = 695
         Align = alClient
         Color = clBlue
         ParentBackground = False
         TabOrder = 1
-        ExplicitWidth = 318
         object grpLoadingManual: TGroupBox
           Left = 1
           Top = 77
-          Width = 332
+          Width = 316
           Height = 452
           Align = alTop
           Caption = 'Loading Manual'
@@ -693,7 +689,6 @@ object frmMainDisplay: TfrmMainDisplay
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
-          ExplicitWidth = 316
           object pnlLoadingManual: TPanel
             Left = 8
             Top = 20
@@ -1138,7 +1133,7 @@ object frmMainDisplay: TfrmMainDisplay
         object grpControlMode: TGroupBox
           Left = 1
           Top = 1
-          Width = 332
+          Width = 316
           Height = 76
           Align = alTop
           Caption = 'Control Mode'
@@ -1149,7 +1144,6 @@ object frmMainDisplay: TfrmMainDisplay
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 1
-          ExplicitWidth = 316
           object pnlTgtSwap: TPanel
             Left = 8
             Top = 20
@@ -1204,7 +1198,7 @@ object frmMainDisplay: TfrmMainDisplay
         object grpDirectPosisition: TGroupBox
           Left = 1
           Top = 529
-          Width = 332
+          Width = 316
           Height = 165
           Align = alClient
           Caption = 'Direct Posisition'
@@ -1215,7 +1209,6 @@ object frmMainDisplay: TfrmMainDisplay
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 2
-          ExplicitWidth = 316
           object pnlDirectPosisition: TPanel
             Left = 8
             Top = 20
@@ -1426,15 +1419,14 @@ object frmMainDisplay: TfrmMainDisplay
     object pnlLCenter: TPanel
       Left = 0
       Top = 697
-      Width = 526
+      Width = 510
       Height = 210
       Align = alTop
       Color = clBlue
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 510
       object grpControlRoom: TGroupBox
-        Left = 337
+        Left = 321
         Top = 1
         Width = 188
         Height = 208
@@ -1447,7 +1439,6 @@ object frmMainDisplay: TfrmMainDisplay
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 321
         object pnlControlRoom: TPanel
           Left = 8
           Top = 20
@@ -1498,7 +1489,7 @@ object frmMainDisplay: TfrmMainDisplay
       object grpRbuCorrection: TGroupBox
         Left = 1
         Top = 1
-        Width = 336
+        Width = 320
         Height = 208
         Align = alClient
         Caption = 'Rbu Correction'
@@ -1509,7 +1500,6 @@ object frmMainDisplay: TfrmMainDisplay
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 1
-        ExplicitWidth = 320
         object pnlRbuCorrection: TPanel
           Left = 8
           Top = 20
@@ -1692,17 +1682,16 @@ object frmMainDisplay: TfrmMainDisplay
     object pnlLBottom: TPanel
       Left = 0
       Top = 907
-      Width = 526
+      Width = 510
       Height = 293
       Align = alClient
       Color = clBlue
       ParentBackground = False
       TabOrder = 2
-      ExplicitWidth = 510
       object grpUnitSelect: TGroupBox
         Left = 1
         Top = 1
-        Width = 336
+        Width = 320
         Height = 291
         Align = alClient
         Caption = 'Unit Select'
@@ -1713,7 +1702,6 @@ object frmMainDisplay: TfrmMainDisplay
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 320
         object btnBurjaLama: TFlatButton
           Left = 24
           Top = 24
@@ -2133,7 +2121,7 @@ object frmMainDisplay: TfrmMainDisplay
         end
       end
       object grpEndProcess: TGroupBox
-        Left = 337
+        Left = 321
         Top = 1
         Width = 188
         Height = 291
@@ -2146,7 +2134,6 @@ object frmMainDisplay: TfrmMainDisplay
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 1
-        ExplicitLeft = 321
         object btnExit: TFlatButton
           Left = 36
           Top = 30
@@ -2169,14 +2156,13 @@ object frmMainDisplay: TfrmMainDisplay
     end
   end
   object pnlCenter: TPanel
-    Left = 526
+    Left = 510
     Top = 0
     Width = 1040
     Height = 1200
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 510
     object imgBackgroundZone: TImage
       Left = 0
       Top = 0
@@ -2213,7 +2199,7 @@ object frmMainDisplay: TfrmMainDisplay
         8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
         918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
         6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-        0100011801000060AAFE3C0100000069E0DB501C000000000000000000000000
+        010001180100000831A7040100000069E0DB501C000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000002
         0000000000000000000000000000000000000000000000000000000000000000
@@ -2222,15 +2208,15 @@ object frmMainDisplay: TfrmMainDisplay
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         8076C000000000008056C0000000000080764000000000008056400100000018
-        01000060AAFE3C010000006E0064001C00000000000000000000000000000000
+        0100000831A70401000000B4D297001C00000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000200000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000000000000000000000000000000000000000058E7970008
-        E39700E5686D7558E3970000040000F0E2970000000000000000000000000000
+        000000000000000000000000000000000000000000000000000000C0D0970070
+        CC9700E5681476C0CC97000004000058CC970000000000000000000000000000
         000088B3400000000000408F400001000001}
     end
     object pnlTCP_PCOM: TPanel
@@ -2380,7 +2366,7 @@ object frmMainDisplay: TfrmMainDisplay
     end
   end
   object pnlRight: TPanel
-    Left = 1566
+    Left = 1550
     Top = 0
     Width = 370
     Height = 1200
@@ -2389,7 +2375,6 @@ object frmMainDisplay: TfrmMainDisplay
     DoubleBuffered = True
     ParentDoubleBuffered = False
     TabOrder = 2
-    ExplicitLeft = 1550
     object pnlR1: TPanel
       Left = 0
       Top = 0

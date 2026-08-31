@@ -498,6 +498,8 @@ var
   lncr: TLoncher;
   orderID: Word;
   trainVal: Double;
+
+  windRec : TRecDataEnvironment;
 begin
   FVTgtTrgtDepth := StrToFloat(edtTargetDepthValue.Text);
   FVTgtRangeTrgt := StrToFloat(edtTargetRangeValue.Text);
@@ -2149,6 +2151,7 @@ end;
 procedure TfrmMainDisplay.tmrRotateTimer(Sender: TObject);
 var
   convToDial, convToDial2, convToDial3: Double;
+  windRec: TRecDataEnvironment;
 begin
 //  if Abs(tgtAngle - curAngle) <= 180 then
 //  begin
@@ -2223,6 +2226,10 @@ begin
   // TARGET DEPTH
   edtTargetDepthValue.Text := FormatFloat('0.#', FVTgtTrgtDepth);
   edtTrgtDepthValue.Text   := FormatFloat('0.#', FVTgtTrgtDepth);
+
+  // WIND
+//  edtWindSpeedValue.Text  := FloatToStr(windRec.windVelocity);
+//  edtWindDirectValue.Text := FloatToStr(windRec.windHeading);
 
   // PUTAR HEADING SHIP
   VrHdgShip.Position := Round(FVTgtHdngShp);

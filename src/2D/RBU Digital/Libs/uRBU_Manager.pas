@@ -642,7 +642,6 @@ procedure TRBUManager.EventOnReceive3DOrder(apRec: PAnsiChar; aSize: integer);
 var
   aRec: ^TRec3DMissilePos;
   lRec : TRec3DSetRBU;
-  windRec : TRecData3DOrder;
 
   i: Integer;
   isValid: Boolean;
@@ -740,17 +739,6 @@ begin
       end;
     end;
   end;
-
-//  case windRec.sOrder of
-//    ORD_WINDSPEED :
-//    begin
-//      frmMainDisplay.edtWindSpeedValue.Text := IntToStr(Round(windRec.mValue));
-//    end;
-//    ORD_WINDDIRECTION :
-//    begin
-//      frmMainDisplay.edtWindDirectValue.Text := IntToStr(Round(windRec.mValue));
-//    end;
-//  end;
 end;
 
 procedure  TRBUManager.EventOnReceiveDataPosition(apRec: PAnsiChar; aSize: integer);
@@ -901,12 +889,10 @@ procedure TRBUManager.EventOnReceiveEnvironment(apRec: PAnsiChar; aSize: integer
 var
   Rec: ^TRecDataEnvironment;
 begin
-  ShowMessage('EventOnReceiveEnvironment MASUK. Size = ' + IntToStr(aSize) + ' / Expected = ' + IntToStr(SizeOf(TRecDataEnvironment)));
+  Rec := @apRec^;
 
   if aSize <> SizeOf(TRecDataEnvironment) then
     Exit;
-
-  Rec := @apRec^;
 
   frmMainDisplay.edtWindSpeedValue.Text  := FloatToStr(Rec^.windVelocity);
   frmMainDisplay.edtWindDirectValue.Text := FloatToStr(Rec^.windHeading);
@@ -1060,6 +1046,8 @@ var
   Id :Integer;
   MissileID: Integer;
   Picture_Path : string;
+
+  windRec : TRecDataEnvironment;
 begin
   aRec := @apRec^;
 
