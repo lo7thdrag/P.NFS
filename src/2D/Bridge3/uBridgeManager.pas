@@ -591,6 +591,8 @@ var
   recDesigA244: ^TRecDesigA244;
   recVLMica: ^TRec3DSetVLMica;
 
+  rec3DOrder : ^TRecData3DOrder;
+
   recCmdSetCameraTarget: ^TRecCmdSetCameraTarget;
 
   recCmdSetCameraController: ^TRec_CameraController;
@@ -622,6 +624,21 @@ begin
       recTorpedoSut := @apRec^;
       OnLogPacket('REC_3D_TORPEDO_SUT, ' + IntToStr(pc.ID) +
         ' --> Send Back To Server 3D');
+    end
+    else if pc.ID = REC_3D_ORDER then
+    begin
+      OnLogPacket('REC_3D_ORDER, ' + IntToStr(pc.ID) +
+        ' --> Send Back To Server 3D');
+
+      rec3DOrder := @apRec^;
+
+      OnLogPacket('ShipID :' + IntToStr(rec3DOrder^.ShipID));
+      OnLogPacket('OrderID :' + IntToStr(rec3DOrder^.sOrder));
+      OnLogPacket('mValue :' + FloatToStr(rec3DOrder^.mValue));
+      OnLogPacket('ModeMove :' + IntToStr(rec3DOrder^.ModeMove));
+      OnLogPacket('coordinatX :' + FloatToStr(rec3DOrder^.coordinatX));
+      OnLogPacket('coordinatY :' + FloatToStr(rec3DOrder^.coordinatY));
+      OnLogPacket('coordinatZ :' + FloatToStr(rec3DOrder^.coordinatZ));
     end
     else if (pc.ID = REC_CMD_FCC57) or (pc.ID = REC_CMD_57DIG) or (pc.ID = REC_CMD_TYPE730) or (pc.ID = REC_CMD_AK230) then
     begin
@@ -966,12 +983,29 @@ procedure TBridgeManager.ServerReceive_ServerClientSend(apRec: PAnsiChar;
   aSize: Integer; sender: TWSocketClient);
 var
   pc: TPacketCheck;
+  rec3DOrder : ^TRecData3DOrder;
 begin
   CopyMemory(@pc, apRec, sizeof(TPacketCheck));
   TcpServer.SendDataEx(pc.ID, apRec, nil);
   TcpClient.SendDataEx(pc.ID, apRec);
-  if Assigned(OnLogPacket) then
-    OnLogPacket('Received : ' + C_REC_PACKETNAME[pc.ID]);
+//  if Assigned(OnLogPacket) then
+//    OnLogPacket('Received : ' + C_REC_PACKETNAME[pc.ID]);
+
+  if pc.ID = REC_3D_ORDER then
+  begin
+    OnLogPacket('REC_3D_ORDER, ' + IntToStr(pc.ID) +
+      ' --> Send to 3D Server and to 2D Client');
+
+    rec3DOrder := @apRec^;
+
+    OnLogPacket('ShipID :' + IntToStr(rec3DOrder^.ShipID));
+    OnLogPacket('OrderID :' + IntToStr(rec3DOrder^.sOrder));
+    OnLogPacket('mValue :' + FloatToStr(rec3DOrder^.mValue));
+    OnLogPacket('ModeMove :' + IntToStr(rec3DOrder^.ModeMove));
+    OnLogPacket('coordinatX :' + FloatToStr(rec3DOrder^.coordinatX));
+    OnLogPacket('coordinatY :' + FloatToStr(rec3DOrder^.coordinatY));
+    OnLogPacket('coordinatZ :' + FloatToStr(rec3DOrder^.coordinatZ));
+  end
 end;
 
 procedure TBridgeManager.ServerReceive_ServerSend(apRec: PAnsiChar;
