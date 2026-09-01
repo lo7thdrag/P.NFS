@@ -102,7 +102,8 @@ end;
 function TStateManager.GetObject(i: Integer): TObject;
 begin
   Result := nil;
-  if (i > 0) or (i < FObjList.Count) then
+
+  if (i >= 0) and (i < FObjList.Count) then
     Result := FObjList[i];
 end;
 

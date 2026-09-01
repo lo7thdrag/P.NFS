@@ -1653,6 +1653,22 @@ begin
       begin
         {$REGION 'REC_3D_ORDER'}
         RecvData3DOrder := @apRec^;
+
+        if RecvData3DOrder^.sOrder = ORD_SHIP_DEL then
+        begin
+          for tempInt := StateManager.Count - 1 downto 0 do
+          begin
+            o := StateManager.Items[tempInt];
+
+            if (o is TShipObject) and
+               (TShipObject(o).IDShip = RecvData3DOrder^.ShipID) then
+            begin
+              StateManager.Delete(tempInt);
+              Break;
+            end;
+          end;
+        end;
+
         if Assigned(OnLogReceived2D) then
           OnLogReceived2D('REC_3D_ORDER' + #13#10 + 'shipID : ' +
             IntToStr(RecvData3DOrder^.ShipID) + #13#10 + 'sOrder : ' +
@@ -1669,6 +1685,9 @@ begin
         RecSendData3DOrder.coordinatX := RecvData3DOrder^.coordinatX;
         RecSendData3DOrder.coordinatY := RecvData3DOrder^.coordinatY;
         RecSendData3DOrder.coordinatZ := RecvData3DOrder^.coordinatZ;
+
+//        OnLogReceived2D('SEND TO BRIDGE REC_3D_ORDER' + #13#10 + 'ShipID : ' + IntToStr(RecSendData3DOrder.ShipID) + #13#10 +
+//                       'sOrder : ' + IntToStr(RecSendData3DOrder.sOrder));
 
         TcpServer3D.SendData(REC_3D_ORDER, RecSendData3DOrder);
         {$ENDREGION}
