@@ -930,7 +930,7 @@ end;
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 procedure TSimulationClass.DeleteAllChildren;
 begin
-  // ViewContainer.CleanUpObject;
+  ViewContainer.CleanUpObject;
   ObjectContainer.CleanUpObject;
 end;
 

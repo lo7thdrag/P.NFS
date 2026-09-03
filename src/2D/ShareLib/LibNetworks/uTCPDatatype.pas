@@ -2159,6 +2159,7 @@ const
   /// REC_3D_ORDER    = 3;
   // ........................................................................
   ORD_SHIP_DEL = 1;
+  ORD_SHIP_KILL = 2;
   ORD_NETWORK = 11;
   ORD_SETPOS = 12;
   ORD_THROTTLE = 21; // ...

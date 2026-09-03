@@ -124,6 +124,112 @@ begin
 
     if theObj <> nil then
     begin
+//      ShowMessage('OBJECT FOUND' + #13#10 + 'ShipID : ' + IntToStr(Rec.ShipID) + #13#10 + 'UID : ' + suid);
+
+      theObj.MarkAs_NeedToBeFree;
+
+      if SimManager.FGamePlayType = gpmScenAndRecord then
+       SimManager.DeleteObjectRecord(Rec.ShipID,0,0,0,0);
+    end;
+
+    { Set Nil All Pointer }
+    if Assigned(SimManager.TrackObject) then
+    begin
+      if SimManager.TrackObject.FDataBaseID = Rec.shipID then
+      begin
+        frmMainInstruktur.FrameControlLeft.NillAllSet;
+        SimManager.TrackObject := nil;
+      end;
+    end;
+
+    if Assigned(SimManager.DatabaseObject) then
+    begin
+      if SimManager.DatabaseObject.FDataBaseID = Rec.shipID then
+      begin
+        SimManager.DatabaseObject := nil;
+      end;
+    end;
+
+    if Assigned(SimManager.DragObject) then
+    begin
+      if SimManager.DragObject.FDataBaseID = Rec.shipID then
+      begin
+        SimManager.DragObject := nil;
+      end;
+    end;
+
+    { Delete List Runtime Ship }
+    if frmGameController.lvRuntimeShip.Selected <> nil then
+    begin
+      if Assigned(frmGameController.lvRuntimeShip.Selected.Data) then
+      begin
+        Vehicle := TVehicle(frmGameController.lvRuntimeShip.Selected.Data);
+
+        if Vehicle.Vehicle_ID = Rec.shipID then
+        begin
+          frmGameController.VisibleStatusShip(False, 1);
+          frmGameController.lvRuntimeShip.Selected := nil;
+
+          { Weapon }
+          for i:= frmGameController.lvWeapon.Items.Count -1 downto 0 do
+          begin
+            if Assigned(frmGameController.lvWeapon.Items[i].Data) then
+            begin
+              Weapon := TWeapon(frmGameController.lvWeapon.Items[i].Data);
+              Weapon.Free;
+            end;
+            frmGameController.lvWeapon.Items[i].Delete;
+          end;
+          frmGameController.lvWeapon.Items.Clear;
+        end;
+      end;
+    end;
+
+    for i:= 0 to frmGameController.lvRuntimeShip.Items.Count -1 do
+    begin
+      if Assigned(frmGameController.lvRuntimeShip.Items[i].Data) then
+      begin
+        Vehicle := TVehicle(frmGameController.lvRuntimeShip.Items[i].Data);
+
+        if Vehicle.Vehicle_ID = Rec.shipID then
+        begin
+          Vehicle.Free;
+
+          frmGameController.DeleteMenuWithShipID(Rec.shipID);
+          frmGameController.lvRuntimeShip.Items[i].Delete;
+
+          Break;
+        end;
+      end;
+    end;
+
+    for i:= 0 to frmGameController.lvRuntimeShipTrajectory.Items.Count -1 do
+    begin
+      if Assigned(frmGameController.lvRuntimeShipTrajectory.Items[i].Data) then
+      begin
+        Vehicle := TVehicle(frmGameController.lvRuntimeShipTrajectory.Items[i].Data);
+
+        if Vehicle.Vehicle_ID = Rec.shipID then
+        begin
+          Vehicle.Free;
+
+          frmGameController.DeleteMenuWithShipID(Rec.shipID);
+          frmGameController.lvRuntimeShipTrajectory.Items[i].Delete;
+
+          Break;
+        end;
+      end;
+    end;
+
+  end
+  else if Rec.sOrder = ORD_SHIP_KILL then
+  begin
+    theObj := SimManager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+    begin
+//      ShowMessage('OBJECT FOUND' + #13#10 + 'ShipID : ' + IntToStr(Rec.ShipID) + #13#10 + 'UID : ' + suid);
+
       theObj.MarkAs_NeedToBeFree;
 
       if SimManager.FGamePlayType = gpmScenAndRecord then

@@ -143,7 +143,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomCenter: TSpeedButtonImage
           Left = 19
-          Top = 371
+          Top = 430
           Width = 48
           Height = 48
           Hint = 'Center Map'
@@ -157,7 +157,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomOut: TSpeedButtonImage
           Left = 19
-          Top = 429
+          Top = 488
           Width = 48
           Height = 48
           Hint = 'ZoomOut'
@@ -168,7 +168,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomIn: TSpeedButtonImage
           Left = 19
-          Top = 487
+          Top = 546
           Width = 48
           Height = 48
           Hint = 'ZoomIn'
@@ -179,7 +179,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnZoomValue: TSpeedButtonImage
           Left = 19
-          Top = 545
+          Top = 604
           Width = 48
           Height = 48
           Hint = 'ZoomScale'
@@ -190,7 +190,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnToolRuler: TSpeedButtonImage
           Left = 19
-          Top = 603
+          Top = 662
           Width = 48
           Height = 48
           Hint = 'Ruler'
@@ -201,7 +201,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnToolTikas: TSpeedButtonImage
           Left = 19
-          Top = 661
+          Top = 720
           Width = 48
           Height = 48
           Hint = 'History'
@@ -212,7 +212,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnHand: TSpeedButtonImage
           Left = 19
-          Top = 313
+          Top = 372
           Width = 48
           Height = 48
           Hint = 'Move Map'
@@ -224,7 +224,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         end
         object btnMiniMap: TSpeedButtonImage
           Left = 19
-          Top = 719
+          Top = 778
           Width = 48
           Height = 48
           Hint = 'Mini Map'
@@ -237,7 +237,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         object btnMonitor: TSpeedButtonImage
           Tag = 1
           Left = 19
-          Top = 777
+          Top = 831
           Width = 48
           Height = 48
           Hint = 'Game Controller'
@@ -250,7 +250,7 @@ object frmMainInstruktur: TfrmMainInstruktur
         object btnClose: TSpeedButtonImage
           Tag = 10
           Left = 19
-          Top = 955
+          Top = 960
           Width = 48
           Height = 48
           Hint = 'Exit'
@@ -260,7 +260,6 @@ object frmMainInstruktur: TfrmMainInstruktur
           ParentShowHint = False
           ShowHint = True
           OnClick = DisplayController1Click
-          ExplicitTop = 953
         end
         object btnAddVehicle: TSpeedButtonImage
           Left = 19
@@ -287,6 +286,19 @@ object frmMainInstruktur: TfrmMainInstruktur
           ShowHint = True
           Spacing = 0
           OnClick = btnRemoveVehicleClick
+        end
+        object btnKillVehicle: TSpeedButtonImage
+          Left = 19
+          Top = 311
+          Width = 48
+          Height = 48
+          Hint = 'Kill Vehicle'
+          Caption = ''
+          Flat = True
+          ParentShowHint = False
+          ShowHint = True
+          Spacing = 0
+          OnClick = btnKillVehicleClick
         end
       end
       object pnlMap: TPanel
@@ -329,7 +341,7 @@ object frmMainInstruktur: TfrmMainInstruktur
             8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
             918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
             6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-            01000118010000F8FE2E050100000084B01D051C000000000000000000000000
+            01000118010000C80B652A01000000000000001C000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000002
             0000000000000000000000000000000000000000000000000000000000000000
@@ -338,15 +350,15 @@ object frmMainInstruktur: TfrmMainInstruktur
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             8076C000000000008056C0000000000080764000000000008056400100000018
-            010000F8FE2E0501000000ED46BD761C00000000000000000000000000000000
+            010000C80B652A010000000C9BCF771C00000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000200000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
-            00000000000000000000000000000000000000000000000000000000000000F7
-            04311700000040880300C05CE19700B2ABB776006F2201000000000000000000
+            0000000000000000000000000000000000000000000000041B2F00041B2F0030
+            E19700367C2777A4121000E4E1970000000000E4E19700000000000000000000
             000088B3400000000000408F400001000001}
         end
         object pnlHeader: TPanel
@@ -14210,7 +14222,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           8FCE119DE300AA004BB851010000009001DC7C010005417269616C000352E30B
           918FCE119DE300AA004BB851010200009001A42C02000B4D61702053796D626F
           6C730000000000000001000100FFFFFF000200FFFFFF00000000000001000000
-          01000118010000F8FE2E0501000000000000001C000000000000000000000000
+          01000118010000C80B652A01000000000000001C000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000002
           0000000000000000000000000000000000000000000000000000000000000000
@@ -14219,7 +14231,7 @@ object frmMainInstruktur: TfrmMainInstruktur
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           8076C000000000008056C0000000000080764000000000008056400100000018
-          010000F8FE2E0501000000000000001C00000000000000000000000000000000
+          010000C80B652A01000000000000001C00000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000200000000
           0000000000000000000000000000000000000000000000000000000000000000

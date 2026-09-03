@@ -1667,6 +1667,20 @@ begin
               Break;
             end;
           end;
+        end
+        else if RecvData3DOrder^.sOrder = ORD_SHIP_KILL then
+        begin
+          for tempInt := StateManager.Count - 1 downto 0 do
+          begin
+            o := StateManager.Items[tempInt];
+
+            if (o is TShipObject) and
+               (TShipObject(o).IDShip = RecvData3DOrder^.ShipID) then
+            begin
+              StateManager.Delete(tempInt);
+              Break;
+            end;
+          end;
         end;
 
         if Assigned(OnLogReceived2D) then

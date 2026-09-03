@@ -39,7 +39,7 @@ type
   TStateToolButton = (sZoomCenter, sZoomOut, sZoomIn, sZoomValue,
                       sSelectArrow, sSelectMove, sSelectMoveAll,
                       sToolRuler, sRecordStart, sRecordPause, sHand,
-                      sToolTikas, sToolZoomCenterMap1, sToolZoomCenterMap2, sAddVehicle, sRemoveVehicle);
+                      sToolTikas, sToolZoomCenterMap1, sToolZoomCenterMap2, sAddVehicle, sRemoveVehicle, sKillVehicle);
 
   TfrmMainInstruktur = class(TForm)
     pnlMain: TPanel;
@@ -122,6 +122,7 @@ type
     btnClose: TSpeedButtonImage;
     btnAddVehicle: TSpeedButtonImage;
     btnRemoveVehicle: TSpeedButtonImage;
+    btnKillVehicle: TSpeedButtonImage;
     procedure DisplayController1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -151,6 +152,7 @@ type
     procedure pnlMainMenuMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure btnRemoveVehicleClick(Sender: TObject);
+    procedure btnKillVehicleClick(Sender: TObject);
   private
     { Private declarations }
 //    TimerDestroy : TTimer;
@@ -347,6 +349,7 @@ begin
   btnZoomCenterMap2.Tag := 13;
   btnAddVehicle.Tag     := 14;
   btnRemoveVehicle.Tag  := 15;
+  btnKillVehicle.Tag    := 16;
 
   btnZoomCenter.OnClick     := OnClick_ToolButton;
   btnZoomCenterMap1.OnClick := OnClick_ToolButton;
@@ -364,6 +367,7 @@ begin
   btnToolTikas.OnClick      := OnClick_ToolButton;
   btnAddVehicle.OnClick     := OnClick_ToolButton;
   btnRemoveVehicle.OnClick  := OnClick_ToolButton;
+  btnKillVehicle.OnClick    := OnClick_ToolButton;
 end;
 
 procedure TfrmMainInstruktur.SetDefaultMapTool;
@@ -373,6 +377,7 @@ begin
   btnSelectMoveAll.ImageIndex   := 0;
   btnAddVehicle.ImageIndex      := 0;
   btnRemoveVehicle.ImageIndex   := 0;
+  btnKillVehicle.ImageIndex     := 0;
 
   btnHand.ImageIndex            := 0;
   btnZoomCenter.ImageIndex      := 0;
@@ -404,6 +409,7 @@ begin
   btnSelectMoveAll.ImageIndex   := 0;
   btnAddVehicle.ImageIndex      := 0;
   btnRemoveVehicle.ImageIndex   := 0;
+  btnKillVehicle.ImageIndex     := 0;
 
   btnHand.ImageIndex            := 0;
   btnZoomCenter.ImageIndex      := 0;
@@ -443,8 +449,8 @@ begin
   MainMap.CurrentTool := miPanTool;
 
   btnZoomCenter.ImageIndex     := 0;
-  btnZoomCenterMap1.ImageIndex     := 0;
-  btnZoomCenterMap2.ImageIndex     := 0;
+  btnZoomCenterMap1.ImageIndex := 0;
+  btnZoomCenterMap2.ImageIndex := 0;
   btnZoomOut.ImageIndex        := 0;
   btnZoomIn.ImageIndex         := 0;
   btnZoomValue.ImageIndex      := 0;
@@ -456,7 +462,8 @@ begin
   btnRecordPause.ImageIndex    := 0;
   btnHand.ImageIndex           := 0;
  // btnToolTikas.ImageIndex      := 0;
- btnRemoveVehicle.ImageIndex := 0;
+  btnRemoveVehicle.ImageIndex  := 0;
+  btnKillVehicle.ImageIndex    := 0;
 
   if FToolSelected <> sSelectMove then SimManager.Selections.ClearSelection;
 
@@ -813,6 +820,29 @@ begin
       lblToolUsed.Caption := 'Remove Vehicle';
       {$ENDREGION}
     end;
+
+    sKillVehicle :
+    begin
+      {$REGION 'sKillVehicle'}
+      if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+      begin
+        btnKillVehicle.ImageIndex := 0;
+        Exit;
+      end;
+
+      btnKillVehicle.ImageIndex := 1;
+
+      if MainMap.Geoset = '' then
+        Exit;
+
+      MainMap.CurrentTool := TOOL_KILL_VEHICLE;
+
+      SimManager.Selections.ClearSelection;
+      SimManager.VSelect.Visible := False;
+
+      lblToolUsed.Caption := 'Kill Vehicle';
+      {$ENDREGION}
+    end;
   end;
 end;
 
@@ -877,6 +907,7 @@ begin
   MainMap.CreateCustomTool(TOOL_SELECT_COORD_C705, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_SELECT_VLMICA_TARGET, miToolTypePoint, miCrossCursor, miCrossCursor);
   MainMap.CreateCustomTool(TOOL_REMOVE_VEHICLE, miToolTypePoint, miCrossCursor, miCrossCursor);
+  MainMap.CreateCustomTool(TOOL_KILL_VEHICLE, miToolTypePoint, miCrossCursor, miCrossCursor);
 
 //  TimerDestroy := TTimer.Create(nil);
 //  TimerDestroy.Enabled  := false;
@@ -1047,7 +1078,7 @@ begin
   btnAddVehicle.ImageIndex := 0;
   {$ENDREGION}
 
-  {$REGION 'Remove Vehcile'}
+ {$REGION 'Remove Vehcile'}
   ImListRemoveVehicle        := TImageList.Create(Self);
   ImListRemoveVehicle.Width  := btnRemoveVehicle.Width;
   ImListRemoveVehicle.Height := btnRemoveVehicle.Height;
@@ -1068,6 +1099,30 @@ begin
   end;
   btnRemoveVehicle.ImageList  := ImListRemoveVehicle;
   btnRemoveVehicle.ImageIndex := 0;
+
+  {$ENDREGION}
+
+  {$REGION 'Kill Vehcile'}
+  ImListRemoveVehicle        := TImageList.Create(Self);
+  ImListRemoveVehicle.Width  := btnKillVehicle.Width;
+  ImListRemoveVehicle.Height := btnKillVehicle.Height;
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'btnKill-1.bmp');
+  finally
+    ImListRemoveVehicle.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+
+  try
+    Bmap := TBitmap.Create;
+    Bmap.LoadFromFile(strPath + 'btnKill-2.bmp');
+  finally
+    ImListRemoveVehicle.Add(Bmap, nil);
+    Bmap.Free;
+  end;
+  btnKillVehicle.ImageList  := ImListRemoveVehicle;
+  btnKillVehicle.ImageIndex := 0;
 
   {$ENDREGION}
 
@@ -2816,8 +2871,9 @@ begin
       frmaddshipruntime.PosY := my;
      end;
 
-    TOOL_REMOVE_VEHICLE:
-    begin
+     TOOL_REMOVE_VEHICLE:
+     begin
+      {$REGION 'TOOL_REMOVE_VEHICLE'}
       if not SimManager.FindViewByPosition(mptDown, SimManager.selectedView) then
         Exit;
 
@@ -2832,18 +2888,46 @@ begin
 
       sID := TInsObject(SimManager.selectedObject).FDataBaseID;
 
-//      ShowMessage('DELETE SHIP ID = ' + IntToStr(sID));
-
       if sID <= 0 then
         Exit;
 
       SimManager.NetSendTo3D_SetCommandOrder(sID, ORD_SHIP_DEL, 0, 0, 0, 0, 0);
 
       SimManager.selectedObject := nil;
-      SimManager.selectedView := nil;
+      SimManager.selectedView   := nil;
 
       frmMainInstruktur.SetDefaultMapTool;
-    end;
+      {$ENDREGION}
+     end;
+
+     TOOL_KILL_VEHICLE:
+     begin
+      {$REGION 'TOOL_KILL_VEHICLE'}
+      if not SimManager.FindViewByPosition(mptDown, SimManager.selectedView) then
+        Exit;
+
+      if not Assigned(SimManager.selectedObject) then
+        Exit;
+
+      if not (SimManager.selectedObject is TInsObject) then
+        Exit;
+
+      if SimManager.selectedObject is TIMissileObject then
+        Exit;
+
+      sID := TInsObject(SimManager.selectedObject).FDataBaseID;
+
+      if sID <= 0 then
+        Exit;
+
+      SimManager.NetSendTo3D_SetCommandOrder(sID, ORD_SHIP_KILL, 0, 0, 0, 0, 0);
+
+      SimManager.selectedObject := nil;
+      SimManager.selectedView   := nil;
+
+      frmMainInstruktur.SetDefaultMapTool;
+      {$ENDREGION}
+     end;
     end;
   end
   else
@@ -3211,6 +3295,14 @@ begin
 
 //  frmAddShipRuntime.ShowModal; //
   btnAddVehicle.ImageIndex := 0;
+end;
+
+procedure TfrmMainInstruktur.btnKillVehicleClick(Sender: TObject);
+begin
+  if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
+    exit;
+
+  btnKillVehicle.BringToFront;
 end;
 
 procedure TfrmMainInstruktur.btnRemoveVehicleClick(Sender: TObject);
