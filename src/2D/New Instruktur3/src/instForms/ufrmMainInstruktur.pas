@@ -1108,7 +1108,7 @@ begin
   ImListRemoveVehicle.Height := btnKillVehicle.Height;
   try
     Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'btnKill-1.bmp');
+    Bmap.LoadFromFile(strPath + 'btnKillVehicle-1.bmp');
   finally
     ImListRemoveVehicle.Add(Bmap, nil);
     Bmap.Free;
@@ -1116,7 +1116,7 @@ begin
 
   try
     Bmap := TBitmap.Create;
-    Bmap.LoadFromFile(strPath + 'btnKill-2.bmp');
+    Bmap.LoadFromFile(strPath + 'btnKillVehicle-2.bmp');
   finally
     ImListRemoveVehicle.Add(Bmap, nil);
     Bmap.Free;
