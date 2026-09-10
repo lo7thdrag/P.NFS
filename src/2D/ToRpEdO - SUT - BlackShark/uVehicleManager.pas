@@ -49,6 +49,8 @@ type
     procedure Clear;
     procedure ClearControlledTrack;
 
+    procedure RemoveVehicleByShipID(const AShipID: Word);
+
     function  Count: Integer;
 //    function  Items(Index: Integer): TVehicle;
     function  Items(Index: Integer): TSimulationTrack;
@@ -130,6 +132,20 @@ procedure TVehicleManager.RemoveVehicle(V: TVehicle);
 begin
   if Assigned(V) and (FList.Remove(V) <> -1) then
     V.Free;
+end;
+
+procedure TVehicleManager.RemoveVehicleByShipID(const AShipID: Word);
+var
+  i: Integer;
+begin
+  for i := FList.Count - 1 downto 0 do
+  begin
+    if TSimulationTrack(FList[i]).ShipID = AShipID then
+    begin
+      FList.Delete(i);
+      Exit;
+    end;
+  end;
 end;
 
 function TVehicleManager.AddOwnShip(const x, y: Double): TSubSurfaceTrack;

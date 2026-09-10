@@ -447,23 +447,14 @@ begin
 
   suid := dbID_to_UniqueID(aRec.ShipID);
 
-  if aRec.sOrder = ORD_SHIP_DEL then
+  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
   begin
     theobj := SutBlacksharkManager.MainObjList.FindObjectByUid(suid);
 
     if theObj <> nil then
-    begin
       theObj.MarkAs_NeedToBeFree;
-    end;
-  end
-  else if aRec.sOrder = ORD_SHIP_KILL then
-  begin
-    theobj := SutBlacksharkManager.MainObjList.FindObjectByUid(suid);
 
-    if theObj <> nil then
-    begin
-      theObj.MarkAs_NeedToBeFree;
-    end;
+    VehicleMgr.RemoveVehicleByShipID(aRec.ShipID);
   end;
 end;
 
@@ -556,27 +547,16 @@ end;
 procedure TSutBlacksharkManager.InitializeSimulation;
 begin
   inherited;
-  NetComm.RegisterProcedure(
-      REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
-
-  NetComm.RegisterProcedure(
-    C_REC_CANNON          ,Event_OrderRecognizer, sizeof(TRecMeriam));
-
-  NetComm.RegisterProcedure(
-    REC_3D_TORPEDO_SUT          ,Event_OrderRecognizer, sizeof(TRecSetTorpedoSUT));
-
-  NetComm.RegisterProcedure(
-    REC_MISSILEPOS        ,EventonRecMissilePosAvailable,  sizeof(TRecMissilePos));
-
-  NetComm.RegisterProcedure(
-    REC_STAT_CANNON_SPLASH  ,EventonReceiveSplashPoint  ,  sizeof(TRecSplashCannon));
+  NetComm.RegisterProcedure(REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
+  NetComm.RegisterProcedure(C_REC_CANNON, Event_OrderRecognizer, sizeof(TRecMeriam));
+  NetComm.RegisterProcedure(REC_3D_TORPEDO_SUT, Event_OrderRecognizer, sizeof(TRecSetTorpedoSUT));
+  NetComm.RegisterProcedure(REC_MISSILEPOS, EventonRecMissilePosAvailable, sizeof(TRecMissilePos));
+  NetComm.RegisterProcedure(REC_STAT_CANNON_SPLASH, EventonReceiveSplashPoint, sizeof(TRecSplashCannon));
 
 //  NetComm.RegisterProcedure(
 //    REC_STAT_ORDER_CONSOLE  ,EventonReceiveSplashPoint  ,  sizeof(TRecStatus_Console));
 
-  NetComm.RegisterProcedure(
-    REC_STAT_ORDER_CONSOLE  ,Event_OnReceiveStatusConsole,  sizeof(TRecStatus_Console));
-
+  NetComm.RegisterProcedure(REC_STAT_ORDER_CONSOLE, Event_OnReceiveStatusConsole,  sizeof(TRecStatus_Console));
   NetComm.RegisterProcedure(REC_3D_ORDER, Event_OnReceiveBlackSharkOder, SizeOf(TRecData3DOrder));
 
   FxShip       := TXShip.Create;

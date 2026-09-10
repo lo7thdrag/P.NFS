@@ -991,8 +991,6 @@ var
 begin
   aRec := @apRec^;
 
-  ShowMessage(Format('RECEIVE RBU: OrderID=%d, Launcher=%d, ShipID=%d',[aRec^.OrderID,aRec^.mLauncherID,aRec^.ShipID]));
-
   if aRec^.ShipID <> pShipID then
     Exit;
 

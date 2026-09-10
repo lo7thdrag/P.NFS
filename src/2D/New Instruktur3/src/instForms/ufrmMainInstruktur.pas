@@ -1078,7 +1078,7 @@ begin
   btnAddVehicle.ImageIndex := 0;
   {$ENDREGION}
 
- {$REGION 'Remove Vehcile'}
+  {$REGION 'Remove Vehcile'}
   ImListRemoveVehicle        := TImageList.Create(Self);
   ImListRemoveVehicle.Width  := btnRemoveVehicle.Width;
   ImListRemoveVehicle.Height := btnRemoveVehicle.Height;

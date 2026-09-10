@@ -2151,7 +2151,6 @@ end;
 procedure TfrmMainDisplay.tmrRotateTimer(Sender: TObject);
 var
   convToDial, convToDial2, convToDial3: Double;
-  windRec: TRecDataEnvironment;
 begin
 //  if Abs(tgtAngle - curAngle) <= 180 then
 //  begin

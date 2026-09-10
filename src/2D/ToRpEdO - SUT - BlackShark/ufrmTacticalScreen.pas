@@ -89,8 +89,8 @@ type
     procedure UpdateRadarDisplay;
     procedure SetLayoutForm;
     procedure UpdateAttachFormDisplay;
-    procedure DrawTicksDegree(aCnv: TCanvas);
     procedure Render(aCnv: TCanvas);
+    procedure DrawTicksDegree(aCnv: TCanvas);
     function Rotate(Width, Height, Radius: Integer; Degrees: Double): Winapi.Windows.TPoint;
     procedure DrawLine(Canvas: TCanvas; X1, Y1, X2, Y2: Integer; Color: TColor; Width: Integer);
     procedure LoadGeoset(const aGst: string); virtual;
@@ -431,7 +431,7 @@ begin
   OwnShip := nil;
 
   if VehicleMgr.ObjectList.Count>0 then
-  
+
     for i := 0 to VehicleMgr.ObjectList.Count - 1 do
     begin
       if TSimulationTrack(VehicleMgr.ObjectList[i]).ShipID = UniqueID_To_dbID(SutBlacksharkManager.xShip.UniqueID) then
