@@ -106,6 +106,7 @@ type
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
     procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
     procedure  Event_OnReceiveStatusConsole(apRec: PAnsiChar; aSize: integer);
+    procedure  Event_OnReceiveBlackSharkOder(apRec: PAnsiChar; aSize: integer);
   public
     FTorpedoArray : array[0..7] of TTorpedoLauncher;
     FTBIFireAuth  : Boolean;
@@ -187,7 +188,7 @@ implementation
 
 uses
   uDataModule, ulibSettings,
-    uShipModel, ufrmSystemStatus;
+    uShipModel, ufrmSystemStatus,  ufrmTacticalScreen, ufrmTorpedoWP;
 
 { TSutBlacksharkManager }
 
@@ -435,6 +436,37 @@ begin
   end;
 end;
 
+procedure TSutBlacksharkManager.Event_OnReceiveBlackSharkOder(apRec: PAnsiChar; aSize: integer);
+var
+ aRec    : ^TRecData3DOrder;
+ suid    : string;
+ theObj  : TSimulationClass;
+ ACanvas : TCanvas;
+begin
+  aRec := @apRec^;
+
+  suid := dbID_to_UniqueID(aRec.ShipID);
+
+  if aRec.sOrder = ORD_SHIP_DEL then
+  begin
+    theobj := SutBlacksharkManager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+    begin
+      theObj.MarkAs_NeedToBeFree;
+    end;
+  end
+  else if aRec.sOrder = ORD_SHIP_KILL then
+  begin
+    theobj := SutBlacksharkManager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+    begin
+      theObj.MarkAs_NeedToBeFree;
+    end;
+  end;
+end;
+
 procedure TSutBlacksharkManager.Event_OnReceiveStatusConsole(apRec: PAnsiChar;
   aSize: integer);
 var
@@ -544,6 +576,8 @@ begin
 
   NetComm.RegisterProcedure(
     REC_STAT_ORDER_CONSOLE  ,Event_OnReceiveStatusConsole,  sizeof(TRecStatus_Console));
+
+  NetComm.RegisterProcedure(REC_3D_ORDER, Event_OnReceiveBlackSharkOder, SizeOf(TRecData3DOrder));
 
   FxShip       := TXShip.Create;
   FxShip.PositionX := 112.75;
