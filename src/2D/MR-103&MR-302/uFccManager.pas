@@ -47,6 +47,7 @@ type
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
     procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
     procedure  EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
+    procedure  EventOnReceive3DOrder(apRec: PAnsiChar; aSize: integer);
   public
     procedure Get57WeaponAssigned;
     procedure Get730WeaponAssigned;
@@ -340,6 +341,26 @@ begin
   end;
 end;
 
+procedure TFCCManager.EventOnReceive3DOrder(apRec: PAnsiChar; aSize: integer);
+var
+  aRec: ^TRecData3DOrder;
+  suid    : string;
+  theObj : TSimulationClass;
+begin
+  aRec := @apRec^;
+  suid := dbID_to_UniqueID(aRec.ShipID);
+
+  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
+  begin
+    theObj := FCCManager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+      theObj.MarkAs_NeedToBeFree;
+
+    VehicleMgr.RemoveVehicleByShipID(aRec.ShipID);
+  end;
+end;
+
 procedure TFCCManager.EventonReceiveSplashPoint(apRec: PAnsiChar;
   aSize: integer);
 begin
@@ -442,6 +463,9 @@ begin
 
   NetComm.RegisterProcedure(
     REC_STAT_CANNON_SPLASH    ,EventonReceiveSplashPoint    ,  sizeof(TRecSplashCannon));
+
+  NetComm.RegisterProcedure(
+    REC_3D_ORDER   ,EventOnReceive3DOrder ,  sizeof(TRecData3DOrder));
 
   case vFccSetting.FccMode of
     1 : //MR 35
