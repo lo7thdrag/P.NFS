@@ -21,6 +21,7 @@ type
     function FindObjectByUid(const aUid: string): TVehicle;
 
     procedure RemoveVehicle(V: TVehicle);
+    procedure RemoveVehicleByShipID(const AShipID: Word);
     procedure Clear;
 
     function  Count: Integer;
@@ -80,6 +81,20 @@ procedure TVehicleManager.RemoveVehicle(V: TVehicle);
 begin
   if Assigned(V) and (FList.Remove(V) <> -1) then
     V.Free;
+end;
+
+procedure TVehicleManager.RemoveVehicleByShipID(const AShipID: Word);
+var
+  i : Integer;
+begin
+  for i := FList.Count - 1 downto 0 do
+  begin
+    if TVehicle(FList[i]).ShipID = AShipID then
+    begin
+      FList.Delete(i);
+      Exit;
+    end;
+  end;
 end;
 
 procedure TVehicleManager.Clear;
