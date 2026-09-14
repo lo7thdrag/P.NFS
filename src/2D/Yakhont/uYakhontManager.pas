@@ -128,6 +128,7 @@ type
 
     // added by Iqbal ----------- sinkronisasi status misil dengan instruktur;
     procedure EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: Integer);
+    procedure Event_OnReceiveYakhontOrder(apRec: PAnsiChar; aSize: Integer);
 
     //added by Iqbal ------------ send data untuk request data
     //procedure tmrConnectToBridgeTimer(sender : TObject);
@@ -307,6 +308,7 @@ begin
 
   //  NetComm.RegisterProcedure(REC_STATUS_YAKHONT, EventOnReceiveTechnicalStatus, SizeOf(TRecStatus_Console_Yakhont));
   NetComm.RegisterProcedure(REC_EVENT_LOG, nil, SizeOf(TRecEventLog));
+  NetComm.RegisterProcedure(REC_3D_ORDER, Event_OnReceiveYakhontOrder, SizeOf(TRecData3DOrder));
   //-end
 
   Net_Connect;
@@ -1959,6 +1961,27 @@ begin
           shipTarget2 := tempAssignTarget;
       end;
     end;
+  end;
+end;
+
+procedure TYakhontManager.Event_OnReceiveYakhontOrder(apRec: PAnsiChar; aSize: Integer);
+var
+ aRec    : ^TRecData3DOrder;
+ suid    : string;
+ theObj  : TSimulationClass;
+begin
+  aRec := @apRec^;
+
+  suid := dbID_to_UniqueID(aRec.ShipID);
+
+  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
+  begin
+    theobj := YakhontManager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+      theObj.MarkAs_NeedToBeFree;
+
+    MainObjList.RemoveObject(theObj);
   end;
 end;
 

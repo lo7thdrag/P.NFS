@@ -441,7 +441,6 @@ var
  aRec    : ^TRecData3DOrder;
  suid    : string;
  theObj  : TSimulationClass;
- ACanvas : TCanvas;
 begin
   aRec := @apRec^;
 

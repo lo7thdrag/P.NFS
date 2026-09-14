@@ -84,6 +84,7 @@ type
 
      procedure EventOnReceiveMissileStatus(apRec: PAnsiChar; aSize: integer);
      procedure EventOnReceiveEnvironment(apRec: PAnsiChar; aSize: integer);
+     procedure Event_OnReceiveRBUOrder(apRec: PAnsiChar; aSize: integer);
 
      function IsMissileReady(LauncherID, MissileID: Integer): Boolean;
      function IsLauncherFullyLoaded(LauncherID: Integer): Boolean;
@@ -131,6 +132,7 @@ begin
 
    Datcom.RegisterProcedure(REC_MISSILEPOS, EventOnReceiveMissileStatus, SizeOf(TRecMissilePos));
    Datcom.RegisterProcedure(REC_ENVIRONMENT, EventOnReceiveEnvironment, SizeOf(TRecDataEnvironment));
+   Datcom.RegisterProcedure(REC_3D_ORDER, Event_OnReceiveRBUOrder, SizeOf(TRecData3DOrder));
 
 //   Datcom.setLog(TStringList(frm_Main.mmo1.Lines));
 
@@ -1035,6 +1037,27 @@ begin
   begin
     SendEvenRBU(7);
     TargetShip.ShipId := '';
+  end;
+end;
+
+procedure TRBUManager.Event_OnReceiveRBUOrder(apRec: PAnsiChar; aSize: integer);
+var
+ aRec    : ^TRecData3DOrder;
+ suid    : string;
+ theObj  : TSimulationClass;
+begin
+  aRec := @apRec^;
+
+  suid := dbID_to_UniqueID(aRec.ShipID);
+
+  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
+  begin
+    theobj := RBU_MAnager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+      theObj.MarkAs_NeedToBeFree;
+
+    MainObjList.RemoveObject(theobj);
   end;
 end;
 
