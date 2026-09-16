@@ -39,6 +39,7 @@ type
       procedure  EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
       procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
       procedure  EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
+      procedure  Event_OnReceiveAK230Order(apRec: PAnsiChar; aSize: integer);
     public
       xShip       : TXShip;         // kapal tempat Radar berada
 
@@ -243,6 +244,27 @@ begin
 
 end;
 
+procedure TAK230Manager.Event_OnReceiveAK230Order(apRec: PAnsiChar; aSize: integer);
+var
+ aRec    : ^TRecData3DOrder;
+ suid    : string;
+ theObj  : TSimulationClass;
+begin
+  aRec := @apRec^;
+
+  suid := dbID_to_UniqueID(aRec.ShipID);
+
+  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
+  begin
+    theobj := AK230Manager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+      theObj.MarkAs_NeedToBeFree;
+
+    MainObjList.RemoveObject(theObj);
+  end;
+end;
+
 procedure TAK230Manager.Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
 begin
 
@@ -274,19 +296,12 @@ end;
 procedure TAK230Manager.InitializeSimulation;
 begin
   inherited;
-  NetComm.RegisterProcedure(
-      REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
-
-  NetComm.RegisterProcedure(
-    C_REC_CANNON          ,Event_OrderRecognizer, sizeof(TRecMeriam));
-
-  NetComm.RegisterProcedure(
-    REC_MISSILEPOS        ,EventonRecMissilePosAvailable,  sizeof(TRecMissilePos));
-
-  NetComm.RegisterProcedure(
-    REC_STAT_CANNON_SPLASH  ,EventonReceiveSplashPoint  ,  sizeof(TRecSplashCannon));
-
-  NetComm.RegisterProcedure(REC_CMD_AK230  ,EventOnReceiveFCCSet  ,  sizeof(TrecData_MeriamFCC));
+  NetComm.RegisterProcedure(REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
+  NetComm.RegisterProcedure(C_REC_CANNON, Event_OrderRecognizer, sizeof(TRecMeriam));
+  NetComm.RegisterProcedure(REC_MISSILEPOS, EventonRecMissilePosAvailable, sizeof(TRecMissilePos));
+  NetComm.RegisterProcedure(REC_STAT_CANNON_SPLASH, EventonReceiveSplashPoint,  sizeof(TRecSplashCannon));
+  NetComm.RegisterProcedure(REC_CMD_AK230, EventOnReceiveFCCSet,  sizeof(TrecData_MeriamFCC));
+  NetComm.RegisterProcedure(REC_3D_ORDER, Event_OnReceiveAK230Order, SizeOf(TRecData3DOrder));
 
   xShip       := TXShip.Create;
 

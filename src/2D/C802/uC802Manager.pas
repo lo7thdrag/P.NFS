@@ -76,6 +76,7 @@ type
     procedure EventonRecMissilePosAvailable(apRec: PAnsiChar; aSize: integer);
     procedure EventOnReceiveAssignedobject(apRec: PAnsiChar; aSize: integer);
     procedure EventOnReceiveLauncherOn(apRec: PAnsiChar; aSize: integer);
+    procedure Event_OnReceiveC802Order(apRec: PAnsiChar; aSize: integer);
 
     //added by aldy prediction
     procedure CalcDistanceCoursePrediction(obj : TRec_Target; var Distance, Course : Double);
@@ -270,7 +271,7 @@ begin
   NetComm.RegisterProcedure(REC_STAT_ASSIGN_OBJECT, EventOnReceiveAssignedobject, SizeOf(TRecObjectAssigned));
   NetComm.RegisterProcedure(REC_3D_MISSILEPOS, EventonRecMissilePosAvailable, SizeOf(TRec3DMissilePos));
   NetComm.RegisterProcedure(REC_EVENT_LOG, nil, SizeOf(TRecEventLog));
-
+  NetComm.RegisterProcedure(REC_3D_ORDER, Event_OnReceiveC802Order, SizeOf(TRecData3DOrder));
 
   PanelBawah.MapC802 := FMap;
   PanelBawah.MapC802.Refresh;
@@ -1164,6 +1165,27 @@ begin
 //      MainObjList.AddObject(obj);
 //    end;
 //  end;
+end;
+
+procedure TC802Manager.Event_OnReceiveC802Order(apRec: PAnsiChar; aSize: integer);
+var
+ aRec    : ^TRecData3DOrder;
+ suid    : string;
+ theObj  : TSimulationClass;
+begin
+  aRec := @apRec^;
+
+  suid := dbID_to_UniqueID(aRec.ShipID);
+
+  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
+  begin
+    theobj := C802Manager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+      theObj.MarkAs_NeedToBeFree;
+
+    MainObjList.RemoveObject(theObj);
+  end;
 end;
 
 procedure TC802Manager.EventOnReceiveAssignedobject(apRec: PAnsiChar; aSize: Integer);
