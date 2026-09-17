@@ -53,6 +53,7 @@ type
     procedure  EventonReceiveSplashPoint(apRec: PAnsiChar; aSize: integer);
     procedure  Event_OrderRecognizer(apRec: PAnsiChar; aSize: integer);
     procedure  EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
+    procedure  Event_OnReceiveEOTracker(apRec: PAnsiChar; aSize: integer);
   public
     procedure Get57WeaponAssigned;
     procedure Get730WeaponAssigned;
@@ -366,6 +367,26 @@ begin
 
 end;
 
+procedure TFCCManager.Event_OnReceiveEOTracker(apRec: PAnsiChar; aSize: integer);
+var
+  aRec: ^TRecData3DOrder;
+  suid    : string;
+  theObj : TSimulationClass;
+begin
+  aRec := @apRec^;
+  suid := dbID_to_UniqueID(aRec.ShipID);
+
+  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
+  begin
+    theObj := FCCManager.MainObjList.FindObjectByUid(suid);
+
+    if theObj <> nil then
+      theObj.MarkAs_NeedToBeFree;
+
+    VehicleMgr.RemoveVehicleByShipID(aRec.ShipID);
+  end;
+end;
+
 procedure TFCCManager.Event_OrderCamera(apRec: PAnsiChar; aSize: integer);
 begin
 
@@ -442,22 +463,13 @@ end;
 procedure TFCCManager.InitializeSimulation;
 begin
   inherited;
-  NetComm.RegisterProcedure(
-    Rec_CMD_CAMERA_CONTROLLER ,Event_OrderCamera            , sizeof(TRec_CameraController));
-
-    NetComm.RegisterProcedure(
-      REC_3D_POSITION         , EventonReceiveDataPosition  , SizeOf(TRecData3DPosition));
-
-  NetComm.RegisterProcedure(
-    C_REC_CANNON              ,Event_OrderRecognizer        , sizeof(TRecMeriam));
-
-  NetComm.RegisterProcedure(
-    REC_MISSILEPOS            ,EventonRecMissilePosAvailable,  sizeof(TRecMissilePos));
-
-  NetComm.RegisterProcedure(
-    REC_STAT_CANNON_SPLASH    ,EventonReceiveSplashPoint    ,  sizeof(TRecSplashCannon));
-
+  NetComm.RegisterProcedure(Rec_CMD_CAMERA_CONTROLLER, Event_OrderCamera, sizeof(TRec_CameraController));
+  NetComm.RegisterProcedure(REC_3D_POSITION, EventonReceiveDataPosition, SizeOf(TRecData3DPosition));
+  NetComm.RegisterProcedure(C_REC_CANNON, Event_OrderRecognizer, sizeof(TRecMeriam));
+  NetComm.RegisterProcedure(REC_MISSILEPOS, EventonRecMissilePosAvailable,  sizeof(TRecMissilePos));
+  NetComm.RegisterProcedure(REC_STAT_CANNON_SPLASH, EventonReceiveSplashPoint,  sizeof(TRecSplashCannon));
   NetComm.RegisterProcedure(REC_CMD_TYPE730  ,EventOnReceiveFCCSet  ,  sizeof(TrecData_MeriamFCC));
+
 
   FxShip       := TXShip.Create;
   FxShip.PositionX := 112.75;
