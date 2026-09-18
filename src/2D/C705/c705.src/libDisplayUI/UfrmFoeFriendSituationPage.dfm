@@ -36,7 +36,7 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     Top = 0
     Width = 1920
     Height = 1080
-    ActivePage = advtsChSelect
+    ActivePage = advtsSituation
     ActiveFont.Charset = DEFAULT_CHARSET
     ActiveFont.Color = 10908270
     ActiveFont.Height = -13
@@ -77,19 +77,281 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           Left = 1
           Top = 1
           Width = 950
-          Height = 850
+          Height = 782
           Align = alTop
           Caption = 'pnlMap_Situation'
           TabOrder = 0
         end
         object pnlArea2_Situation: TPanel
           Left = 1
-          Top = 851
+          Top = 848
           Width = 950
-          Height = 147
+          Height = 150
           Align = alClient
           Caption = 'pnlArea2_Situation'
           TabOrder = 1
+          ExplicitTop = 851
+          ExplicitHeight = 147
+        end
+        object pnlParamTgt_Situation: TPanel
+          Left = 1
+          Top = 783
+          Width = 950
+          Height = 65
+          Align = alTop
+          BevelOuter = bvNone
+          Color = clBlack
+          ParentBackground = False
+          TabOrder = 2
+          object Label6: TLabel
+            Left = 84
+            Top = 8
+            Width = 28
+            Height = 18
+            Alignment = taRightJustify
+            Caption = 'No.'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label8: TLabel
+            Left = 158
+            Top = 8
+            Width = 73
+            Height = 18
+            Alignment = taRightJustify
+            Caption = 'RNG(km)'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label9: TLabel
+            Left = 266
+            Top = 8
+            Width = 79
+            Height = 18
+            Alignment = taRightJustify
+            Caption = 'AZM(deg)'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label10: TLabel
+            Left = 369
+            Top = 8
+            Width = 65
+            Height = 18
+            Alignment = taRightJustify
+            Caption = 'SPD(kn)'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label11: TLabel
+            Left = 700
+            Top = 8
+            Width = 73
+            Height = 18
+            Alignment = taRightJustify
+            Caption = 'LAT(deg)'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label12: TLabel
+            Left = 471
+            Top = 8
+            Width = 80
+            Height = 18
+            Alignment = taRightJustify
+            Caption = 'HDG(deg)'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label13: TLabel
+            Left = 574
+            Top = 8
+            Width = 90
+            Height = 18
+            Alignment = taRightJustify
+            Caption = 'LONG(deg)'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label14: TLabel
+            Left = 803
+            Top = 8
+            Width = 63
+            Height = 18
+            Alignment = taRightJustify
+            Caption = 'HGT(m)'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+          end
+          object lblTgtNo: TLabel
+            Left = 76
+            Top = 40
+            Width = 44
+            Height = 18
+            Alignment = taRightJustify
+            Caption = '0000'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lblTgtRng: TLabel
+            Left = 164
+            Top = 40
+            Width = 61
+            Height = 18
+            Caption = '000.00'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lblTgtAzm: TLabel
+            Left = 275
+            Top = 40
+            Width = 61
+            Height = 18
+            Caption = '000.00'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lblTgtSpd: TLabel
+            Left = 376
+            Top = 40
+            Width = 50
+            Height = 18
+            Caption = '00.00'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lblTgtHdg: TLabel
+            Left = 481
+            Top = 40
+            Width = 61
+            Height = 18
+            Caption = '000.00'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lblTgtLong: TLabel
+            Left = 583
+            Top = 40
+            Width = 72
+            Height = 18
+            Caption = '000.000'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lblTgtLat: TLabel
+            Left = 700
+            Top = 40
+            Width = 72
+            Height = 18
+            Caption = '000.000'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object lblTgtHgt: TLabel
+            Left = 830
+            Top = 40
+            Width = 8
+            Height = 18
+            Caption = '-'
+            Color = clLime
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clLime
+            Font.Height = -16
+            Font.Name = 'Verdana'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
         end
       end
       object pnlRight_Situation: TPanel
@@ -402,6 +664,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
           Align = alClient
           Caption = 'Area2'
           TabOrder = 1
+          ExplicitLeft = 33
+          ExplicitTop = 566
         end
       end
       object pnlRight_ChSelect: TPanel
@@ -1370,8 +1634,8 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     TabOrder = 2
   end
   object pnlArea2: TPanel
-    Left = 13
-    Top = 844
+    Left = 520
+    Top = 880
     Width = 954
     Height = 147
     TabOrder = 3
@@ -3911,5 +4175,10 @@ object frmFoeFriendSituationPage: TfrmFoeFriendSituationPage
     OnTimer = tmrClockTimer
     Left = 4
     Top = 371
+  end
+  object tmrServiceUpdatePage: TTimer
+    OnTimer = tmrServiceUpdatePageTimer
+    Left = 64
+    Top = 128
   end
 end

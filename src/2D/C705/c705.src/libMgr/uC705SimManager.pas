@@ -92,6 +92,9 @@ type
     FEnvironment: TEnvironmentStatus;
     FOnEnvironmentChanged : TEnvironmentChanged;
 
+    { 3D ORDER }
+    FOnShipDeleted: TNotifyEvent;
+
     procedure LauncherStatusChanged(Sender: TObject);
     procedure LauncherMissileLaunched(Sender: TObject);
 
@@ -143,6 +146,7 @@ type
     property MissileTakeOffLauncherID : Integer read FMissileTakeOffLauncherID write FMissileTakeOffLauncherID;
     property OnMissileRun: TMissileRunEvent read FOnMissileRun write FOnMissileRun;
     property MissileVisual: TMissileVisual read FMissileVisual;
+    property OnShipDeleted: TNotifyEvent read FOnShipDeleted write FOnShipDeleted;
   published
     {
       Main Function of Simulation
@@ -308,8 +312,24 @@ procedure GameSimManager.netNFS_OnDeleteShip(apRec: PAnsiChar; aSize: integer);
 var
   i: integer;
   aRec: ^TRecData3DOrder;
+  ShipObj: TShipContact;
 begin
   aRec := @apRec^;
+
+//  ShipObj := VehicleMgr.FindObjectByID(Integer(aRec^.ShipID));
+//  if not Assigned(ShipObj) then
+//    Exit;
+
+  case aRec^.sOrder of
+    ORD_SHIP_DEL, ORD_SHIP_KILL: begin
+      // pengecekan by ID di procedure sini
+      VehicleMgr.DeleteObjectByID(Integer(aRec^.ShipID));
+
+      if Assigned(FOnShipDeleted) then
+        FOnShipDeleted(Self);
+    end;
+
+  end;
 end;
 
 procedure GameSimManager.netNFS_OnReceive2DOrder(apRec: PAnsiChar; aSize: integer);

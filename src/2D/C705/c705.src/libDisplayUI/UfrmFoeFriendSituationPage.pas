@@ -18,7 +18,9 @@ uses
   uFrmPnlArea3A, uFrmPnlArea3B,
   uShipModel, uC705SimManager, uKeyboardManager,
   uC705Launcher,
-  uFrmKeyboardCalcLaunch;
+  uFrmKeyboardCalcLaunch,
+  uVehicleManager,
+  uCoordDataTypes;
 
 type
   TfrmFoeFriendSituationPage = class(TForm)
@@ -333,6 +335,24 @@ type
     Label4: TLabel;
     edtPwrOffMissile: TEdit;
     Label5: TLabel;
+    tmrServiceUpdatePage: TTimer;
+    pnlParamTgt_Situation: TPanel;
+    Label6: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    lblTgtNo: TLabel;
+    lblTgtRng: TLabel;
+    lblTgtAzm: TLabel;
+    lblTgtSpd: TLabel;
+    lblTgtHdg: TLabel;
+    lblTgtLong: TLabel;
+    lblTgtLat: TLabel;
+    lblTgtHgt: TLabel;
     {$ENDREGION}
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
@@ -344,6 +364,7 @@ type
     procedure edtRecheckMissileClick(Sender: TObject);
     procedure edtINSAlignMissileClick(Sender: TObject);
     procedure edtPwrOffMissileClick(Sender: TObject);
+    procedure tmrServiceUpdatePageTimer(Sender: TObject);
   private
     { Private declarations }
     FFormRadar: TfrmRadar;
@@ -388,6 +409,7 @@ type
     procedure MissileCtrlKeyboardEnterOffMissile(Sender: TObject);
 
     procedure UpdateMissileControl;
+    procedure UpdateOSParam;
   public
     { Public declarations }
     procedure SetMonitor(aMonitorIdx, aLeft, aTop: Integer);
@@ -1199,10 +1221,32 @@ end;
 
 procedure TfrmFoeFriendSituationPage.UpdatePnlSituationData(aObjTgt: TShipContact; aRange: Double);
 begin
-  lblLongParam.Caption := FormatFloat('0.00', aObjTgt.Lon);
-  lblLatParam.Caption := FormatFloat('0.00', aObjTgt.Lat);
-  lblESpdParam.Caption := '';
-  lblNSpdParam.Caption := '';
+//  lblLongParam.Caption := FormatFloat('0.00', aObjTgt.Lon);
+//  lblLatParam.Caption := FormatFloat('0.00', aObjTgt.Lat);
+//  lblESpdParam.Caption := '';
+//  lblNSpdParam.Caption := '';
+
+  lblTgtNo.Caption := IntToStr(aObjTgt.ID);
+  lblTgtLong.Caption := FormatFloat('0.00', aObjTgt.Lon);
+  lblTgtLat.Caption := FormatFloat('0.00', aObjTgt.Lat);
+  lblTgtSpd.Caption := FormatFloat('0.00', aObjTgt.Speed);
+  lblTgtHdg.Caption := FormatFloat('0.00', aObjTgt.Heading);
+  lblTgtRng.Caption := FormatFloat('0.00', aRange);
+end;
+
+procedure TfrmFoeFriendSituationPage.UpdateOSParam;
+var
+  OwnShip: TShipContact;
+begin
+  OwnShip := VehicleMgr.FindObjectByID(VOwnShip.ShipID);
+
+  if not Assigned(OwnShip) then
+    Exit;
+
+  lblLongParam.Caption := FormatLongitude(OwnShip.Lon);
+  lblLatParam.Caption  := FormatLatitude(OwnShip.Lat);
+  edtSHdg.Text := FormatFloat('0.00', OwnShip.Heading);;
+  edtSSpd.Text := FormatFloat('0.00', OwnShip.Speed);
 end;
 {$ENDREGION}
 
@@ -1479,6 +1523,11 @@ end;
 procedure TfrmFoeFriendSituationPage.tmrClockTimer(Sender: TObject);
 begin
   UpdateClock;
+end;
+
+procedure TfrmFoeFriendSituationPage.tmrServiceUpdatePageTimer(Sender: TObject);
+begin
+  UpdateOSParam;
 end;
 
 procedure TfrmFoeFriendSituationPage.SetMonitor(aMonitorIdx, aLeft, aTop: Integer);

@@ -12,7 +12,7 @@ uses
   uShipModel, uVehicleManager, SpeedButtonImage, AdvGroupBox, AdvPageControl,
   Vcl.ComCtrls, VrButtons, AdvOfficeButtons,
   uWaypointModel, uWaypointView, uMapViewManager, uShipView, uCoordDataTypes,
-  UfrmFoeFriendSituationPage;
+  UfrmFoeFriendSituationPage, uRulerView;
 
 type
   TEditMode = (edNone, edAddWaypoint, edMoveWaypoint, edDeleteWaypoint, edAddRoute, edDeleteRoute);
@@ -519,6 +519,9 @@ type
     FSelectMode : Boolean;
     FCurrentTool: TCurrentToolState;
 
+    { Ruler }
+    FRulerView: TRulerView;
+
     function FindShipAt(X,Y: Integer): TShipContact;
     function FindWaypointAtScreen(X, Y: Integer): TWaypoint;
 
@@ -531,6 +534,7 @@ type
     procedure MapZoomIn;
     procedure MapZoomOut;
     procedure MapMove;
+    procedure MapRuler;
 
     procedure UpdatePosOwnShip;
 
@@ -556,6 +560,7 @@ type
     procedure RegisterEvents;
     procedure TakeOffBtnChanged(Sender: TObject);
     procedure MissilePositionChanged(Sender: TObject);
+    procedure ObjectShipDeleted(Sender: TObject);
 
     property SelectMode: Boolean read FSelectMode write FSelectMode;
 
@@ -717,9 +722,12 @@ begin
     FreeAndNil(FWaypointViews);
   if Assigned(FRouteList) then
     FreeAndNil(FRouteList);
+
+//  if Assigned(FRulerView) then
+//    FreeAndNil(FRulerView);
   if Assigned(FMapViewManager) then
     FreeAndNil(FMapViewManager);
-
+                           
   FreeAndNil(FCanvas);
 
   EndC705;
@@ -770,6 +778,11 @@ begin
 
   { Set Default Tool Bar }
   SetDefaultMapTool;
+
+  { Ruler }
+  FRulerView := TRulerView.Create(FMap);
+//  if Assigned(FMapViewManager) then
+//    FMapViewManager.AddView(FRulerView);
 end;
 
 procedure TfrmRoutePlan.FormShow(Sender: TObject);
@@ -832,6 +845,8 @@ begin
     TShipView.Create(FMap, VehicleMgr)
   );
 
+  FMapViewManager.AddView(FRulerView);
+
   LoadGeoset(GeosetPath);
 end;
 
@@ -841,6 +856,15 @@ begin
   FMap.CurrentTool := miPanTool;
   FCurrentTool := stMove;
   //lblStatusMap.Caption := 'Move Map';
+end;
+
+procedure TfrmRoutePlan.MapRuler;
+begin
+  //Reset pengukuran
+  FRulerView.Clear;
+
+  FCurrentTool := stRuler;
+  FMap.MousePointer := miCrossCursor;
 end;
 
 procedure TfrmRoutePlan.MapZoomIn;
@@ -1202,11 +1226,53 @@ var
   Long, Lati : Double;
   LauncherR, LauncherL: TC705Launcher;
 begin
-  if Button <> mbLeft then
-    Exit;
-
   // Pixel -> Map Coordinate (World)
   FMapConverter.ConvertToMap(X, Y, dLong, dLat);
+
+  case FCurrentTool of
+    stRuler: begin
+      { KLIK KANAN = EXIT + CLEAR }
+      if Button = mbRight then
+      begin
+        FRulerView.Clear;
+
+        FCurrentTool := stSelectArrow;
+        FMap.MousePointer := miDefaultCursor;
+
+        FMap.Refresh;
+
+        Exit;
+      end;
+
+      { KLIK KIRI }
+      if Button = mbLeft then
+      begin
+        { Belum punya titik awal }
+        if not FRulerView.HasStartPoint then
+        begin
+          FRulerView.SetStartPoint(dLong, dLat);
+        end
+        else
+        begin
+          { Titik kedua }
+          FRulerView.FinishMeasurement(dLong, dLat);
+        end;
+
+        FMap.Refresh;
+
+        Exit;
+      end;
+    end;
+//    stDefaultCenterView: //;
+//    stZoomIn: //;
+//    stZoomOut: //;
+//    stMove: //;
+//    stSelectArrow: //;
+//    stXhairSelectTgt: //;
+  end;
+
+  if Button <> mbLeft then
+    Exit;
 
   case FEditMode of
     edNone:
@@ -1386,7 +1452,7 @@ begin
 
     end;
     {$ENDREGION}
-    
+
   end;
 
   if SimManager.RoutePlanMode = mFiring then
@@ -1456,7 +1522,13 @@ begin
   FMapConverter.ConvertToMap(X, Y, dLong, dLat);
 
   lblLat_MapInfo.Caption := FormatLatitude(dLat);
-  lblLong_MapInfo.Caption := FormatLongitude(dLong)
+  lblLong_MapInfo.Caption := FormatLongitude(dLong);
+
+  if (FCurrentTool = stRuler) and (FRulerView.HasStartPoint) then
+  begin
+    FRulerView.SetCursorPoint(dLong, dLat);
+    FMap.Refresh;
+  end;
 end;
 
 {$ENDREGION}
@@ -1617,7 +1689,13 @@ begin
     end;
     2: begin
       {$REGION 'Ruler (Measuring Range)'}
-      //
+      if FCurrentTool = stRuler then
+      begin
+        RestoreCurrentModeTool;
+      end
+      else begin
+        MapRuler;
+      end;
       {$ENDREGION}
     end;
     3: begin
@@ -2031,10 +2109,17 @@ begin
 //    SimManager.GetLauncher(2).OnMissilePosChanged := MissilePositionChanged;
 
     SimManager.OnMissileRun := MissilePositionChanged;
+
+    SimManager.OnShipDeleted := ObjectShipDeleted;
   end;
 end;
 
 procedure TfrmRoutePlan.MissilePositionChanged(Sender: TObject);
+begin
+  FMap.Refresh;
+end;
+
+procedure TfrmRoutePlan.ObjectShipDeleted(Sender: TObject);
 begin
   FMap.Refresh;
 end;
