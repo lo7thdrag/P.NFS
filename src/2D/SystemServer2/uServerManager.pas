@@ -496,8 +496,11 @@ begin
     dmMain.Ds.SQL.Clear;
     dmMain.Ds.SQL.Add('SELECT *');
     dmMain.Ds.SQL.Add('FROM sce_ship');
-    dmMain.Ds.SQL.Add('WHERE IDM=' + IntToStr(FLastScenarioActive));
-    dmMain.Ds.SQL.Add('ORDER BY IDM, ID, IDSHIP');
+    dmMain.Ds.SQL.Add('LEFT JOIN m_ship ON m_ship.SHIP_ID = sce_ship.IDSHIP');
+    dmMain.Ds.SQL.Add('WHERE sce_ship.IDM=' + IntToStr(FLastScenarioActive));
+    dmMain.Ds.SQL.Add('ORDER BY sce_ship.IDM, sce_ship.ID, sce_ship.IDSHIP');
+//    dmMain.Ds.SQL.Add('WHERE IDM=' + IntToStr(FLastScenarioActive));
+//    dmMain.Ds.SQL.Add('ORDER BY IDM, ID, IDSHIP');
     dmMain.Ds.Open;
     dmMain.Ds.First;
 
@@ -514,6 +517,7 @@ begin
       begin
         Obj := TShipObject.Create;
         Obj.IDShip := dmMain.Ds.FieldByName('IDSHIP').AsInteger;
+        Obj.Vehicle_ISTarget := dmMain.Ds.FieldByName('ISTARGET').AsInteger;
         Obj.X := dmMain.Ds.FieldByName('TRANS_X').AsFloat;
         Obj.y := dmMain.Ds.FieldByName('TRANS_Y').AsFloat;
         Obj.z := dmMain.Ds.FieldByName('TRANS_Z').AsFloat;
@@ -1661,9 +1665,13 @@ begin
             o := StateManager.Items[tempInt];
 
             if (o is TShipObject) and
-               (TShipObject(o).IDShip = RecvData3DOrder^.ShipID) then
+             (TShipObject(o).IDShip = RecvData3DOrder^.ShipID) then
             begin
-              StateManager.Delete(tempInt);
+              if TShipObject(o).Vehicle_ISTarget = 1 then
+              begin
+                StateManager.Delete(tempInt);
+              end;
+
               Break;
             end;
           end;
@@ -1675,9 +1683,13 @@ begin
             o := StateManager.Items[tempInt];
 
             if (o is TShipObject) and
-               (TShipObject(o).IDShip = RecvData3DOrder^.ShipID) then
+             (TShipObject(o).IDShip = RecvData3DOrder^.ShipID) then
             begin
-              StateManager.Delete(tempInt);
+              if TShipObject(o).Vehicle_ISTarget = 1 then
+              begin
+                StateManager.Delete(tempInt);
+              end;
+
               Break;
             end;
           end;

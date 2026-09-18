@@ -7,6 +7,7 @@ type
   private
   public
     IDShip: Integer;
+    Vehicle_ISTarget: Integer;
 
     x, y, z: Double;
     Heading, Pitch, Roll: Single;

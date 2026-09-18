@@ -65,7 +65,7 @@ var
 
 implementation
 
-uses ComCtrls, uSimulationManager;
+uses ComCtrls, uSimulationManager, ufrmSceEditor;
 
 { TEventManager }
 
@@ -111,7 +111,7 @@ var
   suid    : string;
   theObj  : TSimulationClass;
 
-  Vehicle : TVehicle;
+  Vehicle, Target : TVehicle;
   Weapon  : TWeapon;
 
   floatTmp : double;
@@ -124,13 +124,28 @@ begin
 
     if theObj <> nil then
     begin
-//      ShowMessage('OBJECT FOUND' + #13#10 + 'ShipID : ' + IntToStr(Rec.ShipID) + #13#10 + 'UID : ' + suid);
+      Target := TVehicle(theObj);
 
-      theObj.MarkAs_NeedToBeFree;
+      ShowMessage('ShipID = ' + IntToStr(Rec.ShipID) + #13#10 + 'ISTARGET = ' + IntToStr(Target.Vehicle_ISTarget));
 
-      if SimManager.FGamePlayType = gpmScenAndRecord then
-       SimManager.DeleteObjectRecord(Rec.ShipID,0,0,0,0);
+      if Target.Vehicle_ISTarget = 1 then
+      begin
+        theObj.MarkAs_NeedToBeFree;
+
+        if SimManager.FGamePlayType = gpmScenAndRecord then
+          SimManager.DeleteObjectRecord(Rec.ShipID, 0, 0, 0, 0);
+      end;
     end;
+
+//    if theObj <> nil then
+//    begin
+////      ShowMessage('OBJECT FOUND' + #13#10 + 'ShipID : ' + IntToStr(Rec.ShipID) + #13#10 + 'UID : ' + suid);
+//
+//      theObj.MarkAs_NeedToBeFree;
+//
+//      if SimManager.FGamePlayType = gpmScenAndRecord then
+//       SimManager.DeleteObjectRecord(Rec.ShipID,0,0,0,0);
+//    end;
 
     { Set Nil All Pointer }
     if Assigned(SimManager.TrackObject) then
