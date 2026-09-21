@@ -126,9 +126,7 @@ begin
     begin
       Target := TVehicle(theObj);
 
-      ShowMessage('ShipID = ' + IntToStr(Rec.ShipID) + #13#10 + 'ISTARGET = ' + IntToStr(Target.Vehicle_ISTarget));
-
-      if Target.Vehicle_ISTarget = 1 then
+      if DataModule1.GetShipTarget(Rec.ShipID) = 1 then
       begin
         theObj.MarkAs_NeedToBeFree;
 
@@ -136,16 +134,6 @@ begin
           SimManager.DeleteObjectRecord(Rec.ShipID, 0, 0, 0, 0);
       end;
     end;
-
-//    if theObj <> nil then
-//    begin
-////      ShowMessage('OBJECT FOUND' + #13#10 + 'ShipID : ' + IntToStr(Rec.ShipID) + #13#10 + 'UID : ' + suid);
-//
-//      theObj.MarkAs_NeedToBeFree;
-//
-//      if SimManager.FGamePlayType = gpmScenAndRecord then
-//       SimManager.DeleteObjectRecord(Rec.ShipID,0,0,0,0);
-//    end;
 
     { Set Nil All Pointer }
     if Assigned(SimManager.TrackObject) then
