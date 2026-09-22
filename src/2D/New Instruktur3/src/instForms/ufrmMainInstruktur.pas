@@ -33,7 +33,7 @@ uses
   uInstrukturManager, ufrmeLeftControl, uBaseConstan, ufGuidance, uTCPDatatype,
   ufWeaponStatus, uInstrukturObjects, uInstrukturViews, uBaseFunction, Contnrs, ufrmSceEditor,
   uGlobalVar, uDistance , uCustomZoom, uBaseSimulationObject, uClassDatabase, uSimulationManager,
-  System.ImageList;
+  System.ImageList, uDataModule;
 
 type
   TStateToolButton = (sZoomCenter, sZoomOut, sZoomIn, sZoomValue,
@@ -444,6 +444,7 @@ var
   i : integer;
   insObject : TInsObject;
   mapRec : TRecMapCommand;
+  Vehicle : TVehicle;
 begin
   FToolSelected       := TStateToolButton(TComponent(sender).Tag);
   MainMap.CurrentTool := miPanTool;
@@ -807,6 +808,16 @@ begin
         Exit;
       end;
 
+      if not Assigned(SimManager.TrackObject) then
+        Exit;
+
+      if DataModule1.GetShipTarget(SimManager.TrackObject.FDataBaseID) = 0 then
+      begin
+        btnRemoveVehicle.ImageIndex := 1;
+        ShowMessage('Hanya target yang dibolehkan remove');
+        Exit;
+      end;
+
       btnRemoveVehicle.ImageIndex := 1;
 
       if MainMap.Geoset = '' then
@@ -827,6 +838,16 @@ begin
       if frmMainInstruktur.lblCekRunning.Caption <> 'Play' then
       begin
         btnKillVehicle.ImageIndex := 0;
+        Exit;
+      end;
+
+      if not Assigned(SimManager.TrackObject) then
+        Exit;
+
+      if DataModule1.GetShipTarget(SimManager.TrackObject.FDataBaseID) = 0 then
+      begin
+        btnKillVehicle.ImageIndex := 1;
+        ShowMessage('Hanya target yang dibolehkan kill');
         Exit;
       end;
 
