@@ -3818,6 +3818,17 @@ begin
   FrameControlLeft.FrameGuidance.NillAllSet;
   FrameControlLeft.FrameWeaponStatus.NillAllSet;
 
+  if DataModule1.GetShipTarget(Vehicle.Vehicle_ID) = 0 then
+  begin
+    btnRemoveVehicle.ImageIndex := 1;
+    btnKillVehicle.ImageIndex   := 1;
+  end
+  else
+  begin
+    btnRemoveVehicle.ImageIndex := 0;
+    btnKillVehicle.ImageIndex   := 0;
+  end;
+
   for j := 0 to SimManager.MainObjList.ItemCount - 1 do
   begin
     o:= SimManager.MainObjList.getObject(j);
