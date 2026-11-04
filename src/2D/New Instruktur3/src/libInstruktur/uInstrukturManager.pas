@@ -294,7 +294,8 @@ type
       procedure CheckStatusConsole;
       { For Utility }
       procedure SendMoveUnit(const ship: TSimulationClass);
-      procedure NetSendTo3D_AddShipRuntime( shipID : integer ; mX, mY, mZ, mRot: double );
+//      procedure NetSendTo3D_AddShipRuntime( shipID : integer ; mX, mY, mZ, mRot: double );
+      procedure NetSendTo3D_AddShipRuntime(shipID: Integer; mX, mY, mZ, mRot: Double; AIsTarget: Word);
       procedure NetSendTo3D_DelShipRuntime( shipID : integer  );
       procedure NetSendTo3D_SetCommandObserver(rec : spUtilityTools);
       procedure NetSendTo3D_SetCommandPlayerCamera(rec : spUtilityTools);
@@ -1852,41 +1853,51 @@ begin
     TCPClient.sendDataEx(REC_EVENT_LOG, @Rec);
 end;
 
-procedure TSimManager.NetSendTo3D_AddShipRuntime(shipID: integer; mX, mY,
-  mZ, mRot: double);
+procedure TSimManager.NetSendTo3D_AddShipRuntime(shipID: Integer; mX, mY, mZ, mRot: Double; AIsTarget: Word);
 var
   lRec: spActorsController;
 begin
+  FillChar(lRec, SizeOf(lRec), 0);
 
   lRec.ShipID := shipID;
+
   case DataModule1.CheckObjectCatDomain(shipID) of
-    1 : begin
-          lRec.TypeID   := TIPE_AR_SHIP;
-          lRec.OrderID  := STATE_AR_CREATE;
-        end;
+    1:
+    begin
+      lRec.TypeID := TIPE_AR_SHIP;
+      lRec.OrderID := STATE_AR_CREATE;
+    end;
 
-    2 : begin
-          lRec.TypeID := TIPE_AR_SUBMARINE;
-          lRec.OrderID := STATE_AR_CREATE;
-        end;
+    2:
+    begin
+      lRec.TypeID := TIPE_AR_SUBMARINE;
+      lRec.OrderID := STATE_AR_CREATE;
+    end;
 
-    3 : begin
-          lRec.TypeID := TIPE_AR_HELICOPTER;
-          lRec.OrderID := STATE_AR_CREATE;
-        end;
-        
-    4 : begin
-          lRec.TypeID := TIPE_AR_AIRCRAFT;
-          lRec.OrderID := STATE_AR_CREATE;
-        end;
+    3:
+    begin
+      lRec.TypeID := TIPE_AR_HELICOPTER;
+      lRec.OrderID := STATE_AR_CREATE;
+    end;
+
+    4:
+    begin
+      lRec.TypeID := TIPE_AR_AIRCRAFT;
+      lRec.OrderID := STATE_AR_CREATE;
+    end;
+  else
+    Exit;
   end;
+
+  // Status TARGET / KRI
+  lRec.IsTarget := AIsTarget;
 
   lRec.x := mX;
   lRec.y := mY;
   lRec.z := mZ;
   lRec.h := mRot;
 
-  if (TCPClient <> nil) and (TCPClient.State in [wsConnected]) then
+  if (TCPClient <> nil) and (TCPClient.State = wsConnected) then
     TCPClient.sendDataEx(REC_3D_SETCONTROL, @lRec);
 end;
 

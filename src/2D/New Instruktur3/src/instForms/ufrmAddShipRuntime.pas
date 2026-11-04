@@ -539,7 +539,7 @@ begin
     Vehicle.Vehicle_Ctgr := VehicleRuntime.Vehicle_Ctgr;
     Vehicle.Vehicle_No   := VehicleRuntime.Vehicle_No;
     Vehicle.Vehicle_Type := VehicleRuntime.Vehicle_Type;
-    Vehicle.Vehicle_Target := VehicleRuntime.Vehicle_Target;
+    Vehicle.Vehicle_Target := DataModule1.GetShipIsTarget(VehicleRuntime.Vehicle_ID);
 
     Vehicle.Vehicle_X := PosX;
     Vehicle.Vehicle_Y := PosY;
@@ -573,7 +573,7 @@ begin
     frmMainInstruktur.MainMap.Refresh;
   end;
 
-  SimManager.NetSendTo3D_AddShipRuntime(VehicleRuntime.Vehicle_ID, PosX, PosY, PosZ, 0);
+  SimManager.NetSendTo3D_AddShipRuntime(VehicleRuntime.Vehicle_ID, PosX, PosY, PosZ, 0, DataModule1.GetShipIsTarget(VehicleRuntime.Vehicle_ID));
 
   VehicleRuntime := nil;
   Close;

@@ -589,6 +589,7 @@ type
     ActorRuntimeID4: word; // Missile Number
 
     OrderID: word;
+    IsTarget: Integer;
     X, Y, Z: double;
     h, p, r: double;
   end;

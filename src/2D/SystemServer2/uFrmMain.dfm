@@ -36,8 +36,6 @@ object frmMain: TfrmMain
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1052
-    ExplicitHeight = 783
     object pnlContent2D: TPanel
       Left = 1
       Top = 1
@@ -51,7 +49,6 @@ object frmMain: TfrmMain
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 1050
       object pnlServer2D: TPanel
         Left = 1
         Top = 1
@@ -67,7 +64,6 @@ object frmMain: TfrmMain
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 1048
         DesignSize = (
           146
           41)
@@ -105,7 +101,6 @@ object frmMain: TfrmMain
           Anchors = [akTop, akRight]
           ParentBackground = False
           TabOrder = 1
-          ExplicitLeft = 696
           DesignSize = (
             251
             26)
@@ -149,7 +144,6 @@ object frmMain: TfrmMain
           Caption = '<<< Back'
           TabOrder = 0
           OnClick = btnBackClick
-          ExplicitLeft = 953
         end
       end
       object pnlLogServer2D: TPanel
@@ -159,7 +153,6 @@ object frmMain: TfrmMain
         Height = 301
         Align = alClient
         TabOrder = 1
-        ExplicitWidth = 1048
         object Splitter3: TSplitter
           Left = 209
           Top = 1
@@ -198,7 +191,6 @@ object frmMain: TfrmMain
           ScrollBars = ssBoth
           TabOrder = 2
           Visible = False
-          ExplicitLeft = 888
         end
       end
     end
@@ -209,7 +201,6 @@ object frmMain: TfrmMain
       Height = 437
       Align = alClient
       TabOrder = 1
-      ExplicitWidth = 1050
       object pnlServer3D: TPanel
         Left = 1
         Top = 1
@@ -219,7 +210,6 @@ object frmMain: TfrmMain
         Color = 13666138
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 1048
         object Label2: TLabel
           Left = 13
           Top = 14
@@ -254,7 +244,6 @@ object frmMain: TfrmMain
         Height = 394
         Align = alClient
         TabOrder = 1
-        ExplicitWidth = 1048
         object Splitter2: TSplitter
           Left = 209
           Top = 1
@@ -328,8 +317,6 @@ object frmMain: TfrmMain
     Version = '1.6.0.1'
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 1052
-    ExplicitHeight = 783
     TMSStyle = 0
     object lbljudul: TLabel
       Left = 0
@@ -347,8 +334,8 @@ object frmMain: TfrmMain
       ParentFont = False
       Layout = tlCenter
       WordWrap = True
-      ExplicitWidth = 232
-      ExplicitHeight = 38
+      ExplicitWidth = 104
+      ExplicitHeight = 66
     end
     object btn1: TButton
       Left = 0
@@ -365,8 +352,6 @@ object frmMain: TfrmMain
       ParentFont = False
       TabOrder = 0
       OnClick = btn1Click
-      ExplicitTop = 751
-      ExplicitWidth = 1052
     end
   end
   object tmrShutdownServer: TTimer

@@ -49,6 +49,8 @@ type
     procedure cbbShowLogClick(Sender: TObject);
     procedure btnClearLogClick(Sender: TObject);
     procedure cbbShowListObjClick(Sender: TObject);
+
+    procedure RefreshListObject;
   private
     { Private declarations }
     isClose: Boolean;
@@ -118,39 +120,37 @@ begin
 end;
 
 procedure TfrmMain.cbbShowListObjClick(Sender: TObject);
+begin
+  mmoListObj.Visible := cbbShowListObj.Checked;
+
+  if cbbShowListObj.Checked then
+    RefreshListObject;
+end;
+
+procedure TfrmMain.RefreshListObject;
 var
   i: Integer;
   Obj: TObject;
   Ship: TShipObject;
 begin
-  if cbbShowListObj.Checked then
+  if not cbbShowListObj.Checked then
+    Exit;
+
+  mmoListObj.Clear;
+
+  mmoListObj.Lines.Add(Format('Total Count Object=%d',[ServerManager.StateManager.Count]));
+
+  for i := 0 to ServerManager.StateManager.Count - 1 do
   begin
-    mmoListObj.Visible := True;
-    mmoListObj.Clear;
+    Obj := ServerManager.StateManager.Items[i];
 
-    mmoListObj.Lines.Add(
-          Format('Total Count Object=%d',
-          [ServerManager.StateManager.Count]));
-
-    for i := 0 to ServerManager.StateManager.Count - 1 do
+    if Obj is TShipObject then
     begin
-      Obj := ServerManager.StateManager.Items[i];
+      Ship := TShipObject(Obj);
 
-      if Obj is TShipObject then
-      begin
-        Ship := TShipObject(Obj);
-
-        mmoListObj.Lines.Add(
-          Format('ShipID=%d - %s',
-          [Ship.IDShip, Ship.ClassName]));
-      end;
+      mmoListObj.Lines.Add(Format('ShipID=%d - %s', [Ship.IDShip, Ship.ClassName]));
     end;
-  end
-  else
-  begin
-    mmoListObj.Visible := False;
   end;
-
 end;
 
 procedure TfrmMain.cbbShowLogClick(Sender: TObject);

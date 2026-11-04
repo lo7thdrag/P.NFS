@@ -69,9 +69,9 @@ type
     // event for network
     // procedure Server2Drecv_Missilepos(apRec: PAnsiChar; aSize: Integer;
     // sender: TWSocketClient);
-    procedure ClientRecv_3D_Order(apRec: PAnsiChar; aSize: Integer;
-      sender: TWSocketClient);
+    procedure ClientRecv_3D_Order(apRec: PAnsiChar; aSize: Integer; sender: TWSocketClient);
 
+    procedure AddRuntimeShip(ShipID: Integer; PosX, PosY, PosZ, Heading: Double; IsTarget: Integer);
     procedure Server2DReceive_Server3DSend(apRec: PAnsiChar; aSize: Integer;
       sender: TWSocketClient);
     procedure Server2DRecv_StatusGame(apRec: PAnsiChar; aSize: Integer;
@@ -300,10 +300,39 @@ begin
   end;
 end;
 
-procedure TServerManager.ClientRecv_3D_Order(apRec: PAnsiChar; aSize: Integer;
-  sender: TWSocketClient);
+procedure TServerManager.ClientRecv_3D_Order(apRec: PAnsiChar; aSize: Integer; sender: TWSocketClient);
+var
+  lRec: spActorsController;
 begin
+  if (apRec = nil) or (aSize < SizeOf(lRec)) then
+    Exit;
 
+  Move(apRec^, lRec, SizeOf(lRec));
+
+  if lRec.OrderID = STATE_AR_CREATE then
+  begin
+    AddRuntimeShip(lRec.ShipID, lRec.X, lRec.Y, lRec.Z, lRec.h, lRec.IsTarget);
+  end;
+end;
+
+procedure TServerManager.AddRuntimeShip(ShipID: Integer; PosX, PosY, PosZ, Heading: Double; IsTarget: Integer);
+var
+  Ship: TShipObject;
+begin
+  if Assigned(FindObjectByShipID(ShipID)) then
+    Exit;
+
+  Ship := TShipObject.Create;
+
+  Ship.IDShip := ShipID;
+  Ship.x := PosX;
+  Ship.y := PosY;
+  Ship.z := PosZ;
+  Ship.Heading := Heading;
+
+  Ship.Vehicle_ISTarget := IsTarget;
+
+  FStateManager.Add(Ship);
 end;
 
 procedure TServerManager.ClientRecv_3D_ShipPos(AHeader: TPacketHeader;
@@ -1599,41 +1628,38 @@ begin
         TcpServer3D.SendData(REC_3D_UTIL_TOOLS, recSendUtiityTools);
         {$ENDREGION}
       end;
+
     REC_3D_SETCONTROL:
+    begin
+      {$REGION 'REC_3D_SETCONTROL'}
+      recActorController3d := @apRec^;
+
+      if recActorController3d^.OrderID = STATE_AR_CREATE then
       begin
-        {$REGION 'REC_3D_SETCONTROL'}
-        recActorController3d := @apRec^;
-
-        if Assigned(OnLogReceived2D) then
-          OnLogReceived2D('REC_3D_SETCONTROL' + #13#10 + 'ShipID : ' +
-            IntToStr(recActorController3d^.ShipID) + #13#10 + 'X : ' +
-            FloatToStr(recActorController3d^.X) + #13#10 + 'Y : ' +
-            FloatToStr(recActorController3d^.y) + #13#10 + 'Z : ' +
-            FloatToStr(recActorController3d^.z) + #13#10);
-
-        recSendActorController3d.ShipID := recActorController3d^.ShipID;
-        recSendActorController3d.TypeID := recActorController3d^.TypeID;
-
-        recSendActorController3d.ActorRuntimeID1 :=
-          recActorController3d^.ActorRuntimeID1; // Weapon ID
-        recSendActorController3d.ActorRuntimeID2 :=
-          recActorController3d^.ActorRuntimeID2; // Launcher ID
-        recSendActorController3d.ActorRuntimeID3 :=
-          recActorController3d^.ActorRuntimeID3; // Missile ID
-        recSendActorController3d.ActorRuntimeID4 :=
-          recActorController3d^.ActorRuntimeID4; // Missile Number
-
-        recSendActorController3d.OrderID := recActorController3d^.OrderID;
-        recSendActorController3d.X := recActorController3d^.X;
-        recSendActorController3d.y := recActorController3d^.y;
-        recSendActorController3d.z := recActorController3d^.z;
-        recSendActorController3d.h := recActorController3d^.h;
-        recSendActorController3d.p := recActorController3d^.p;
-        recSendActorController3d.r := recActorController3d^.r;
-
-        TcpServer3D.SendData(REC_3D_SETCONTROL, recSendActorController3d);
-        {$ENDREGION}
+        AddRuntimeShip(recActorController3d^.ShipID, recActorController3d^.X, recActorController3d^.Y,
+                       recActorController3d^.Z, recActorController3d^.H, recActorController3d^.IsTarget);
       end;
+
+      recSendActorController3d.ShipID          := recActorController3d^.ShipID;
+      recSendActorController3d.TypeID          := recActorController3d^.TypeID;
+      recSendActorController3d.ActorRuntimeID1 := recActorController3d^.ActorRuntimeID1;
+      recSendActorController3d.ActorRuntimeID2 := recActorController3d^.ActorRuntimeID2;
+      recSendActorController3d.ActorRuntimeID3 := recActorController3d^.ActorRuntimeID3;
+      recSendActorController3d.ActorRuntimeID4 := recActorController3d^.ActorRuntimeID4;
+
+      recSendActorController3d.OrderID := recActorController3d^.OrderID;
+
+      recSendActorController3d.X := recActorController3d^.X;
+      recSendActorController3d.Y := recActorController3d^.Y;
+      recSendActorController3d.Z := recActorController3d^.Z;
+      recSendActorController3d.H := recActorController3d^.H;
+      recSendActorController3d.P := recActorController3d^.P;
+      recSendActorController3d.R := recActorController3d^.R;
+
+      TcpServer3D.SendData(REC_3D_SETCONTROL, recSendActorController3d);
+      {$ENDREGION}
+    end;
+
     REC_3D_MISSILEPOS:
       begin
         {$REGION 'REC_3D_MISSILEPOS'}
