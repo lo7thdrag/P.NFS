@@ -371,6 +371,7 @@ begin
     end
     else   // jika nambah kapal
     begin
+      {
       Obj := TShipObject.Create;
       Obj.IDShip := incoming_data.ShipID;
       Obj.X := incoming_data.X;
@@ -383,7 +384,7 @@ begin
       Obj.rudder := incoming_data.rudder;
 
       FStateManager.Add(Obj);
-
+      }
 //      if Assigned(FOnLogReceived3d) then
 //        begin
 ////          FOnLogReceived3d('JSON : ' + AContent);

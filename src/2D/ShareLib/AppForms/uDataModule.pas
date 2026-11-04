@@ -73,6 +73,7 @@ type
     function GetAllShip(var aRec: Tlist): integer;
     function GetAllWarShip(var aRec: Tlist): integer;
     function GetAllGeneralShip(var aRec: Tlist): integer;
+    function GetShipIsTarget(const ShipID: Integer): Integer;
     function GetAllTarget(var aRec: Tlist): integer;
     function GetAllTargetSurface(var aRec: Tlist): integer;
     function GetAllTargetSubsurface(var aRec: Tlist): integer;
@@ -1140,6 +1141,23 @@ begin
   if not DS.IsEmpty then
   begin
     AssigenedShipData(DS, aRec);
+  end;
+end;
+
+function TDataModule1.GetShipIsTarget(const ShipID: Integer): Integer;
+begin
+  Result := 0;
+
+  with DQ do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('SELECT ISTARGET FROM m_ship');
+    SQL.Add('WHERE SHIP_ID = ' + IntToStr(ShipID));
+    Open;
+
+    if not IsEmpty then
+      Result := FieldByName('ISTARGET').AsInteger;
   end;
 end;
 

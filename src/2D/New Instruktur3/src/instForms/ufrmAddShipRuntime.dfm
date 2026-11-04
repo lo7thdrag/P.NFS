@@ -726,7 +726,7 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       CaptionShadow.Font.Style = []
       Version = '1.6.1.0'
     end
-    object btnRemoveObject: TAdvSmoothButton
+    object btnApplyObject: TAdvSmoothButton
       Left = 176
       Top = 114
       Width = 123
@@ -758,7 +758,7 @@ object frmAddShipRuntime: TfrmAddShipRuntime
       ParentFont = False
       TabOrder = 1
       Version = '2.1.3.0'
-      OnClick = btnRemoveObjectClick
+      OnClick = btnApplyObjectClick
       TMSStyle = 0
     end
     object edtZCoord: TCurvyEdit

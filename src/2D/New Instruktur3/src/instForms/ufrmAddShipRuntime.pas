@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, AdvSmoothPanel, AdvSmoothButton, ComCtrls, AdvSmoothTabPager,
-  AdvSmoothLabel, CurvyControls,
+  AdvSmoothLabel, CurvyControls, uInstrukturObjects,
 
   uClassDatabase, uInstrukturManager, ufrmGameController, uDataModule, MapXLib_TLB;
 
@@ -28,7 +28,7 @@ type
     tsShipGeneral: TAdvSmoothTabPage;
     lvGeneralShipAll: TListView;
     lvTargetSubsurfaceAll: TListView;
-    btnRemoveObject: TAdvSmoothButton;
+    btnApplyObject: TAdvSmoothButton;
     lblZ: TAdvSmoothLabel;
     edtZCoord: TCurvyEdit;
     AdvSmoothLabel1: TAdvSmoothLabel;
@@ -40,7 +40,7 @@ type
     procedure TabTargetShipChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure btnRemoveObjectClick(Sender: TObject);
+    procedure btnApplyObjectClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure AdvSmoothButton1Click(Sender: TObject);
@@ -509,27 +509,72 @@ begin
   Close;
 end;
 
-procedure TfrmAddShipRuntime.btnRemoveObjectClick(Sender: TObject);
+procedure TfrmAddShipRuntime.btnApplyObjectClick(Sender: TObject);
 var
-  isValid: Boolean;
   PosZ: Double;
+  ShipObject: TInsObject;
+  Vehicle: TVehicle;
 begin
-  isValid := True;
-  if VehicleRuntime <> nil then
-  begin
-    if not TryStrToFloat(edtZCoord.Text, PosZ) then
-      isValid := False;
+  if VehicleRuntime = nil then
+    Exit;
 
-    if isValid then
+  if not TryStrToFloat(edtZCoord.Text, PosZ) then
+    Exit;
+
+  if VehicleRuntime.Vehicle_Type = 3 then
+    PosZ := -Abs(PosZ);
+
+  ShipObject := SimManager.CreateShipnView(VehicleRuntime.Vehicle_ID);
+
+  if Assigned(ShipObject) then
+  begin
+    ShipObject.MoveTo(PosX, PosY);
+    ShipObject.OrderedZ := PosZ;
+    ShipObject.Course := 0;
+
+    Vehicle := TVehicle.Create;
+
+    Vehicle.Vehicle_ID   := VehicleRuntime.Vehicle_ID;
+    Vehicle.Vehicle_Name := VehicleRuntime.Vehicle_Name;
+    Vehicle.Vehicle_Ctgr := VehicleRuntime.Vehicle_Ctgr;
+    Vehicle.Vehicle_No   := VehicleRuntime.Vehicle_No;
+    Vehicle.Vehicle_Type := VehicleRuntime.Vehicle_Type;
+    Vehicle.Vehicle_Target := VehicleRuntime.Vehicle_Target;
+
+    Vehicle.Vehicle_X := PosX;
+    Vehicle.Vehicle_Y := PosY;
+    Vehicle.Vehicle_Z := PosZ;
+    Vehicle.Vehicle_Heading := 0;
+
+    with frmGameController.lvRuntimeShip.Items.Add do
     begin
-      if VehicleRuntime.Vehicle_Type = 3 then
-        PosZ := -1 * Abs(PosZ);
-      SimManager.NetSendTo3D_AddShipRuntime(VehicleRuntime.Vehicle_ID, PosX,
-        PosY, PosZ, 0);
+      Caption := Vehicle.Vehicle_Name;
+      Data    := Vehicle;
+
+      // Domain
+      case Vehicle.Vehicle_Type of
+        1: SubItems.Add('SURFACE');
+        2: SubItems.Add('AIR');
+        3: SubItems.Add('SUB SURFACE');
+      else
+        SubItems.Add('UNKNOWN');
+      end;
+
+     // Type
+      if DataModule1.GetShipIsTarget(Vehicle.Vehicle_ID) = 1 then
+        SubItems.Add('TARGET')
+      else if Vehicle.Vehicle_Ctgr <> 0 then
+        SubItems.Add('KRI')
+      else
+        SubItems.Add('GENERAL');
     end;
 
-    // VehicleRuntime := nil;
+
+    frmMainInstruktur.MainMap.Refresh;
   end;
+
+  SimManager.NetSendTo3D_AddShipRuntime(VehicleRuntime.Vehicle_ID, PosX, PosY, PosZ, 0);
+
   VehicleRuntime := nil;
   Close;
 end;
