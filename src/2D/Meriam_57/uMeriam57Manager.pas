@@ -255,7 +255,7 @@ begin
         FBearing := arec.Bearing;
         FElevation := arec.Elevation;
         FisDesigFromMR := True;
-        FisDesigt := True;
+        FisDesigt := False;
         FDesigtChange := True;
 
         RecSend.ShipID          := Meriam57Manager.ShipID;
