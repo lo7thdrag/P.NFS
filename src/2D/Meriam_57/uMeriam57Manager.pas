@@ -174,6 +174,7 @@ procedure TMeriam57Manager.EventOnReceiveFCCSet(apRec: PAnsiChar;
 var
   aRec: ^TrecData_MeriamFCC;
   sc  : TSimulationClass;
+  RecSend : TRec3DSetWCC;
 begin
   aRec := @apRec^;
   if Meriam57Manager.FShipID = arec^.ShipID then
@@ -219,6 +220,26 @@ begin
         FisDesigFromMR := True;
         FisDesigt := True;
         FDesigtChange := True;
+
+        RecSend.ShipID          := Meriam57Manager.ShipID;
+        RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+        RecSend.mLauncherID     := 0;
+        RecSend.mMissileID      := 0;
+        RecSend.mMissileNumber  := 0;
+        RecSend.mUpDown             := 0;
+        RecSend.mTargetID           := aRec.IDTarget2D;//  Meriam57Manager.Target2D;
+
+        RecSend.mModeID             := 1;
+
+        RecSend.mAutoCorrectElev    := 0.0;
+        RecSend.mAutoCorrectBearing := 0.0;
+
+        RecSend.mBalistikID         := 0;
+        RecSend.mSalvoRate          := 30;
+
+        RecSend.mOrderID := __ORD_CANNON_ASSIGNED;
+        Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+
       end;
 
       CORD_ID_2D_Break :
@@ -229,6 +250,33 @@ begin
         FisDesigFromMR := False;
         FisDesigt := false;
         FDesigtChange := True;
+
+        FTarget2D := arec.IDTarget2D;
+        FBearing := arec.Bearing;
+        FElevation := arec.Elevation;
+        FisDesigFromMR := True;
+        FisDesigt := True;
+        FDesigtChange := True;
+
+        RecSend.ShipID          := Meriam57Manager.ShipID;
+        RecSend.mWeaponID       := Meriam57Manager.AssignedWeapon.IDWeapon;
+        RecSend.mLauncherID     := 0;
+        RecSend.mMissileID      := 0;
+        RecSend.mMissileNumber  := 0;
+        RecSend.mUpDown             := 0;
+        RecSend.mTargetID           := aRec.IDTarget2D;//  Meriam57Manager.Target2D;
+
+        RecSend.mModeID             := 1;
+
+        RecSend.mAutoCorrectElev    := 0.0;
+        RecSend.mAutoCorrectBearing := 0.0;
+
+        RecSend.mBalistikID         := 0;
+        RecSend.mSalvoRate          := 30;
+
+        RecSend.mOrderID := __ORD_CANNON_DEASSIGNED;
+        Meriam57Manager.NetSendTo3D_OrderCannon(RecSend);
+
       end;
     end;
   end;

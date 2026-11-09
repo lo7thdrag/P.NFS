@@ -157,6 +157,8 @@ type
     procedure UpdateAngleWithLimits(var CurrentAngle, TargetAngle: Extended; StartAngle, EndAngle, Speed: Extended);
   public
     { Public declarations }
+//  published
+//    property TargetAngleKolonka: Extended read FTargetAngleKolonka write FTargetAngleKolonka;
   end;
 
 var
@@ -1253,7 +1255,7 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 var
   PngSrc, PngSrc2: TPngImage;
 begin
-  if (Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
+  if (Meriam57Manager.isDesigt) {and (Meriam57Manager.DesigtChange)} then
   begin
     FTargetAngleKolonka := Meriam57Manager.Bearing;
     FTargetAngleElevasi := Meriam57Manager.Elevation;
@@ -1261,10 +1263,10 @@ begin
     edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
     edtElevasi.Text := FormatFloat('0.00', FTargetAngleElevasi);
 
-    RzBmpBtnTrainingClick(Sender);
+    //RzBmpBtnTrainingClick(Sender); //stv
 //    Meriam57Manager.DesigtChange := False;
   end
-  else if (not Meriam57Manager.isDesigt) and (Meriam57Manager.DesigtChange) then
+  else if (not Meriam57Manager.isDesigt) {and (Meriam57Manager.DesigtChange)} then
   begin
     FTargetAngleKolonka := 180;
     FTargetAngleElevasi := 0;
@@ -1272,7 +1274,7 @@ begin
     edtTraining.Text := FormatFloat('0.00', FTargetAngleKolonka);
     edtElevasi.Text := FormatFloat('0.00', FTargetAngleElevasi);
 
-    RzBmpBtnTrainingClick(Sender);
+    //RzBmpBtnTrainingClick(Sender); //stv
 //    Meriam57Manager.DesigtChange := False;
   end;
 
