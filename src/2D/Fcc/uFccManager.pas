@@ -292,6 +292,7 @@ procedure TFCCManager.EventOnReceiveFCCSet(apRec: PAnsiChar; aSize: integer);
 var
   aRec: ^TrecData_MeriamFCC;
   shipIDX: Integer;
+  RecSend : TRec3DSetWCC;
 begin
   aRec := @apRec^;
   if FCCManager.FShipID = arec^.ShipID then
@@ -346,9 +347,12 @@ begin
     theObj := FCCManager.MainObjList.FindObjectByUid(suid);
 
     if theObj <> nil then
+    begin
       theObj.MarkAs_NeedToBeFree;
 
-    VehicleMgr.RemoveVehicleByShipID(aRec.ShipID);
+      VehicleMgr.RemoveVehicleByUID(suid);
+    end;
+
   end;
 end;
 

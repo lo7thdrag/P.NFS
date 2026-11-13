@@ -21,6 +21,7 @@ type
 
     procedure RemoveVehicle(V: TVehicle);
     procedure RemoveVehicleByShipID(const AShipID: Word);
+    procedure RemoveVehicleByUID(const AUID: string);
     procedure Clear;
 
     function  Count: Integer;
@@ -89,6 +90,20 @@ begin
   for i := FList.Count - 1 downto 0 do
   begin
     if TVehicle(FList[i]).ShipID = AShipID then
+    begin
+      FList.Delete(i);
+      Exit;
+    end;
+  end;
+end;
+
+procedure TVehicleManager.RemoveVehicleByUID(const AUID: string);
+var
+  i: Integer;
+begin
+  for i := FList.Count - 1 downto 0 do
+  begin
+    if TVehicle(FList[i]).UniqueID = AUID then
     begin
       FList.Delete(i);
       Exit;

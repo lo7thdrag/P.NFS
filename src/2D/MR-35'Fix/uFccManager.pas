@@ -371,19 +371,24 @@ var
   suid    : string;
   theObj : TSimulationClass;
 begin
-  aRec := @apRec^;
-  suid := dbID_to_UniqueID(aRec.ShipID);
-
-  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
-  begin
-    theObj := FCCManager.MainObjList.FindObjectByUid(suid);
-
-    if theObj <> nil then
-      theObj.MarkAs_NeedToBeFree;
-
-    VehicleMgr.RemoveVehicleByShipID(aRec.ShipID);
-  end;
+//  aRec := @apRec^;
+//  suid := dbID_to_UniqueID(aRec.ShipID);
+//
+//  if (aRec.sOrder = ORD_SHIP_DEL) or (aRec.sOrder = ORD_SHIP_KILL) then
+//  begin
+//    theObj := FCCManager.MainObjList.FindObjectByUid(suid);
+//
+//    if theObj <> nil then
+//    begin
+//      theObj.MarkAs_NeedToBeFree;
+//
+////      VehicleMgr.RemoveVehicleByShipID(aRec.ShipID);
+//      VehicleMgr.RemoveVehicleByUID(suid);
+//    end;
+//
+//  end;
 end;
+
 procedure TFCCManager.EventonReceiveSplashPoint(apRec: PAnsiChar;
   aSize: integer);
 begin
