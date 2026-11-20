@@ -651,6 +651,10 @@ type
     BlackSharkLoad_5, BlackSharkLoad_6,
     BlackSharkLoad_7, BlackSharkLoad_8 : Boolean;
 
+    VlmicaLoad_1, VlmicaLoad_2, VlmicaLoad_3, VlmicaLoad_4,
+    VlmicaLoad_5, VlmicaLoad_6, VlmicaLoad_7, VlmicaLoad_8,
+    VlmicaLoad_9, VlmicaLoad_10, VlmicaLoad_11, VlmicaLoad_12 : Boolean;
+
 
     { Handle Event }
     { SPS }
@@ -5082,7 +5086,8 @@ begin
             chkVLMicaAmmoTest.OnClick := VLMicaChkClick;
             chkVLMicaCAP.OnClick := VLMicaChkClick;
 
-            cbbLoadVLMica.ItemIndex := 0;
+            if cbbLoadVLMica.ItemIndex = -1 then
+                cbbLoadVLMica.ItemIndex := 0;
 
             //loading port Missile 1
             case WeaponVLMica.Missile1 of
@@ -5890,7 +5895,7 @@ begin
           begin
             RecSendVLMica.shipID                  := SimManager.TrackObject.FDataBaseID;
             RecSendVLMica.mWeaponID               := weaponVLMica.Weapon_ID;
-            RecSendVLMica.mLauncherID             := launcherID;
+            RecSendVLMica.mLauncherID             := launcherID;      //launcherID
 
             RecSendVLMica.mMissileNumber          := 1;
             RecSendVLMica.OrderID                 := __ORD_VLMICA_LOADING;
@@ -5900,7 +5905,7 @@ begin
 
             RecSendVLMica.mTargetElev             := 0;
             RecSendVLMica.TargetID                := 0;
-            
+
             if cbbLoadVLMica.Text = 'All' then
             begin
               CountLoading := tmr_VLMica;
@@ -5909,7 +5914,6 @@ begin
             else
             begin
               missileID := cbbLoadVLMica.ItemIndex + 1;
-              //missileID  := StrToInt(cbbLoadVLMica.Text);
               RecSendVLMica.mMissileID := missileID;
               SimManager.NetSendTo3D_OrderMissileVLMica(RecSendVLMica);
             end;
@@ -5920,6 +5924,168 @@ begin
     end;
   end;
 end;
+
+//procedure TfWeaponStatus.btnVLMicaLoadingClick(Sender: TObject);
+//var
+//  i, missileID,
+//  launcherID, j  : Integer;
+//  weaponShip     : TWeaponOnShip;
+//  weaponVLMica   : TWeaponOn_VLMICA;
+//
+//  RecSendVLMica : TRec3DSetVLMica;
+//  arMissile     : array[0..11] of Integer;
+//begin
+//  if SimManager.TrackObject = nil then Exit;
+//
+//  VlmicaLoad_1 := False;
+//  VlmicaLoad_2 := False;
+//  VlmicaLoad_3 := False;
+//  VlmicaLoad_4 := False;
+//  VlmicaLoad_5 := False;
+//  VlmicaLoad_6 := False;
+//  VlmicaLoad_7 := False;
+//  VlmicaLoad_8 := False;
+//  VlmicaLoad_9 := False;
+//  VlmicaLoad_10 := False;
+//  VlmicaLoad_11 := False;
+//  VlmicaLoad_12 := False;
+//
+//  if TComponent(Sender).Tag = 3 then
+//  begin
+//    for i := 0 to SimManager.TrackObject.WeaponOnShip_List.Count - 1 do
+//    begin
+//      WeaponShip := TWeaponOnShip(SimManager.TrackObject.WeaponOnShip_List[i]);
+//
+//      if WeaponShip is TWeaponOn_VLMICA then
+//      begin
+//        weaponVLMica := TWeaponOn_VLMICA(weaponShip);
+//
+//        RecSendVLMica.shipID           := SimManager.TrackObject.FDataBaseID;
+//        RecSendVLMica.mWeaponID        := weaponVLMica.Weapon_ID;
+//        RecSendVLMica.mLauncherID      := weaponVLMica.Weapon_Launcher;
+//        RecSendVLMica.mMissileID       := 1;
+//        RecSendVLMica.mMissileNumber   := 1;
+//        RecSendVLMica.OrderID          := __ORD_VLMICA_LOADING;
+//        RecSendVLMica.mTargetBearing   := 0;
+//        RecSendVLMica.mTargetRange     := 0;
+//        RecSendVLMica.mTargetElev      := 0;
+//        RecSendVLMica.TargetID         := 0;
+//
+//        if cbbLoadVLMica.Text = 'All' then
+//        begin
+//          if weaponVLMica.Weapon_Launcher = 1 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_1 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 2 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_2 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 3 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_3 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 4 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_4 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 5 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_5 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 6 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_6 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 7 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_7 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 8 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_8 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 9 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_9 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 10 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_10 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 11 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_11 := True;
+//            end;
+//          end
+//          else if weaponVLMica.Weapon_Launcher = 12 then
+//          begin
+//            if weaponVLMica.Weapon_Status = 1 then
+//            begin
+//              RecSendVLMica.mLauncherID := weaponVLMica.Weapon_Launcher;
+//              VlmicaLoad_12 := True;
+//            end;
+//
+//            CountLoading := tmr_VLMica;
+//          end;
+//          SimManager.NetSendTo3D_OrderMissileVLMica(RecSendVLMica);
+//        end
+//        else
+//        begin
+//          if weaponVLMica.Weapon_Launcher = cbbLoadVLMica.ItemIndex + 1 then
+//          begin
+//            RecSendVLMica.mLauncherID := StrToInt(cbbLoadVLMica.Text);
+//            SimManager.NetSendTo3D_OrderMissileVLMica(RecSendVLMica);
+//          end;
+//        end;
+//      end;
+//
+//    end;
+//  end;
+//end;
 
 procedure TfWeaponStatus.LoadImageLight(Aimage: TImage; imgStat: string);
 begin

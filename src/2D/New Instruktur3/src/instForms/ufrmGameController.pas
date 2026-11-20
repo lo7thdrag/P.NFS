@@ -8479,7 +8479,7 @@ begin
           end;
           {$ENDREGION}
         end
-        else if (vehicleTemp.Vehicle_Ctgr = 0) {and (vehicleTemp.Vehicle_Type = 1)}  and (vehicleTemp.Vehicle_Target <> 1) then
+        else if (vehicleTemp.Vehicle_Target = 2) then
         begin
           {$REGION ' General '}
           {Syarat General : Vehicle_Ctgr = 0, Vehicle_Type = 1, Vehicle_Target <> 1}

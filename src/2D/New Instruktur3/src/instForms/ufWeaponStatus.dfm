@@ -3531,7 +3531,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = True
+        Opened = False
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'RBU 6000'
@@ -3541,11 +3541,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 883
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 883
           object lbl23: TLabel
             Left = 159
             Top = 11
@@ -4232,11 +4233,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblNameSPS: TLabel
             Left = 159
             Top = 11
@@ -5012,11 +5014,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl4: TLabel
             Left = 145
             Top = 11
@@ -5135,11 +5138,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl200: TLabel
             Left = 145
             Top = 11
@@ -5322,11 +5326,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblExocetMM40Title: TLabel
             Left = 121
             Top = 11
@@ -5842,11 +5847,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblCannon76: TLabel
             Left = 146
             Top = 11
@@ -6059,11 +6065,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 0
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lbl3: TLabel
             Left = 146
             Top = 11
@@ -6109,7 +6116,7 @@ object fWeaponStatus: TfWeaponStatus
         Color = clGray
         ColorDefault = False
         Items = <>
-        Opened = False
+        Opened = True
         OpenedHeight = 842
         DividerVisible = False
         Caption = 'VL MICA'
@@ -6119,11 +6126,12 @@ object fWeaponStatus: TfWeaponStatus
           Left = 0
           Top = 20
           Width = 397
-          Height = 30
+          Height = 883
           Align = alClient
           Color = clGray
           ParentColor = False
           TabOrder = 0
+          ExplicitHeight = 30
           object lblVLMicaTitle: TLabel
             Left = 159
             Top = 11

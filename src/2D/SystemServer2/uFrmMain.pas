@@ -99,18 +99,18 @@ begin
 
   if mProject = 'NAFS' then
   begin
-    Top   := 10;
-    Left  := 991;
+    Top   := 325;
+    Left  := 605;
   end
   else if mProject = 'NSFS' then
   begin
-    Top   := 313;
-    Left  := 991;
+    Top   := 20;
+    Left  := 605;
   end
   else
   begin
-    Top   := 616;
-    Left  := 991;
+    Top   := 625;
+    Left  := 605;
   end;
 end;
 
@@ -230,8 +230,8 @@ begin
     pnl1Home.Fill.ColorTo       := $00D4D4D4;
     pnlServer2D.Color := $00D0875A;
     pnlServer3D.Color := $00D0875A;
-    Top   := 10;
-    Left  := 991;
+    Top   := 325;
+    Left  := 605;
   end
   else if mProject = 'NSFS' then
   begin
@@ -243,8 +243,8 @@ begin
     pnl1Home.Fill.ColorTo       := $00CF7234;
     pnlServer2D.Color := $0040220F;
     pnlServer3D.Color := $0040220F;
-    Top   := 313;
-    Left  := 991;
+    Top   := 20;
+    Left  := 605;
   end
   else
   begin
@@ -256,8 +256,8 @@ begin
     pnl1Home.Fill.ColorTo       := $00E4E4E4;
     pnlServer2D.Color := $0058524F;
     pnlServer3D.Color := $0058524F;
-    Top   := 616;
-    Left  := 991;
+    Top   := 625;
+    Left  := 605;
   end;
 
   ShowHomePanel;

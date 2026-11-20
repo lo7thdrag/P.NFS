@@ -132,6 +132,13 @@ begin
 
         if SimManager.FGamePlayType = gpmScenAndRecord then
           SimManager.DeleteObjectRecord(Rec.ShipID, 0, 0, 0, 0);
+      end
+      else if DataModule1.GetShipTarget(Rec.ShipID) = 2 then
+      begin
+        theObj.MarkAs_NeedToBeFree;
+
+        if SimManager.FGamePlayType = gpmScenAndRecord then
+          SimManager.DeleteObjectRecord(Rec.ShipID, 0, 0, 0, 0);
       end;
     end;
 
@@ -928,6 +935,7 @@ begin
       case Vehicle.Vehicle_Target of
         0 : SubItems.Add('KRI');
         1 : SubItems.Add('TARGET');
+        2 : SubItems.Add('GENERAL');
       end;
 
       { Add Pop Up Menu }
@@ -996,6 +1004,7 @@ begin
       case Vehicle.Vehicle_Target of
         0 : SubItems.Add('KRI');
         1 : SubItems.Add('TARGET');
+        2 : SubItems.Add('GENERAL');
       end;
 
       { Add Pop Up Menu }

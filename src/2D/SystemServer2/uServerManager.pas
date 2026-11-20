@@ -330,7 +330,8 @@ begin
   Ship.z := PosZ;
   Ship.Heading := Heading;
 
-  Ship.Vehicle_ISTarget := IsTarget;
+  Ship.Vehicle_ISTarget  := IsTarget;
+  Ship.Vehicle_ISGeneral := IsTarget;
 
   FStateManager.Add(Ship);
 end;
@@ -1697,6 +1698,10 @@ begin
               if TShipObject(o).Vehicle_ISTarget = 1 then
               begin
                 StateManager.Delete(tempInt);
+              end
+              else if TShipObject(o).Vehicle_ISGeneral = 2 then
+              begin
+                StateManager.Delete(tempInt);
               end;
 
               Break;
@@ -1713,6 +1718,10 @@ begin
              (TShipObject(o).IDShip = RecvData3DOrder^.ShipID) then
             begin
               if TShipObject(o).Vehicle_ISTarget = 1 then
+              begin
+                StateManager.Delete(tempInt);
+              end
+              else if TShipObject(o).Vehicle_ISGeneral = 2 then
               begin
                 StateManager.Delete(tempInt);
               end;
